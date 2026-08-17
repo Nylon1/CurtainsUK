@@ -1,10 +1,40 @@
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { notFound, permanentRedirect } from "next/navigation";
 import AdvicePostPageClient from "@/components/advice/AdvicePostPageClient";
 import { createClient } from "@/lib/supabase/server";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+type AdvicePostRow = {
+  id: string | number;
+  title?: string | null;
+  slug?: string | null;
+  category?: string | null;
+  excerpt?: string | null;
+  content?: string | null;
+  image_url?: string | null;
+  featured?: boolean | null;
+  published?: boolean | null;
+  meta_title?: string | null;
+  meta_description?: string | null;
+  related_service?: string | null;
+};
+
+const SITE_URL = "https://www.apexcurtains.com";
+
+const PERMANENT_ADVICE_REDIRECTS: Record<string, string> = {
+  "best-curtains-for-apex-windows-expert-guide":
+    "/advice/best-curtains-for-apex-windows-styles-that-actually-work",
+  "can-you-put-curtains-on-angled-windows":
+    "/advice/what-curtain-track-is-best-for-apex-windows",
+};
+
+function redirectLegacyAdviceSlug(slug: string) {
+  const destination = PERMANENT_ADVICE_REDIRECTS[slug];
+  if (destination) permanentRedirect(destination);
+}
 
 async function getPostBySlug(slug: string) {
   const supabase = await createClient();
@@ -18,19 +48,21 @@ async function getPostBySlug(slug: string) {
 
   if (error || !data) return null;
 
+  const row = data as AdvicePostRow;
+
   return {
-    id: Number(data.id),
-    title: data.title || "",
-    slug: data.slug || "",
-    category: data.category || "",
-    excerpt: data.excerpt || "",
-    content: data.content || "",
-    image: data.image_url || "",
-    featured: !!data.featured,
-    published: data.published ?? true,
-    meta_title: data.meta_title || "",
-    meta_description: data.meta_description || "",
-    related_service: data.related_service || "",
+    id: Number(row.id),
+    title: row.title || "",
+    slug: row.slug || "",
+    category: row.category || "",
+    excerpt: row.excerpt || "",
+    content: row.content || "",
+    image: row.image_url || "",
+    featured: !!row.featured,
+    published: row.published ?? true,
+    meta_title: row.meta_title || "",
+    meta_description: row.meta_description || "",
+    related_service: row.related_service || "",
   };
 }
 
@@ -45,7 +77,7 @@ async function getRelatedPosts(currentSlug: string, category: string) {
     .eq("published", true)
     .limit(3);
 
-  return (data || []).map((item: any) => ({
+  return ((data || []) as AdvicePostRow[]).map((item) => ({
     id: Number(item.id),
     title: item.title || "",
     slug: item.slug || "",
@@ -61,25 +93,63 @@ async function getRelatedPosts(currentSlug: string, category: string) {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+
+  if (PERMANENT_ADVICE_REDIRECTS[slug]) {
+    return {
+      robots: { index: false, follow: true },
+    };
+  }
+
   const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
-      title: "Advice | Apex Curtains",
+      title: { absolute: "Advice | Apex Curtains" },
       description: "Curtain advice for apex and unusual windows.",
+      robots: { index: false, follow: true },
     };
   }
 
+  const canonicalUrl = `${SITE_URL}/advice/${post.slug || slug}`;
+  const title = post.meta_title || `${post.title} | Apex Curtains`;
+  const description = post.meta_description || post.excerpt;
+
   return {
-    title: post.meta_title || `${post.title} | Apex Curtains`,
-    description: post.meta_description || post.excerpt,
+    title: { absolute: title },
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "Apex Curtains",
+      type: "article",
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              alt: post.title,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: post.image ? [post.image] : [],
+    },
   };
 }
 
 export default async function AdvicePostPage({ params }: PageProps) {
   const { slug } = await params;
+  redirectLegacyAdviceSlug(slug);
+
   const post = await getPostBySlug(slug);
 
   if (!post) notFound();

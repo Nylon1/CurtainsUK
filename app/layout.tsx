@@ -4,6 +4,8 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 
+const SITE_URL = "https://www.apexcurtains.com";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://apexcurtains.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Apex Curtains | Curtains for Apex, Triangular & Architectural Windows",
     template: "%s | Apex Curtains",
@@ -30,14 +32,10 @@ export const metadata: Metadata = {
     "curtains for shaped windows",
     "apex window curtains UK",
   ],
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Apex Curtains",
     description:
       "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK.",
-    url: "https://apexcurtains.com",
     siteName: "Apex Curtains",
     type: "website",
   },
@@ -49,72 +47,48 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout ({
-  
+const globalSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Apex Curtains",
+      url: SITE_URL,
+      description:
+        "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK.",
+      areaServed: {
+        "@type": "Country",
+        name: "United Kingdom",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Apex Curtains",
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+    },
+  ],
+};
+
+export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body>
-
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "Apex Curtains",
-      url: "https://apexcurtains.com",
-      description:
-        "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK.",
-      areaServed: "GB",
-    }),
-  }}
-/>
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "Apex Curtains",
-      url: "https://apexcurtains.com",
-      description:
-        "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK, including coastal homes and sea-facing properties.",
-     areaServed: [
-  { "@type": "Country", name: "United Kingdom" },
-  { "@type": "City", name: "London" },
-  { "@type": "City", name: "Manchester" },
-  { "@type": "City", name: "Brighton" },
-  { "@type": "City", name: "Bournemouth" },
-  { "@type": "City", name: "Oxford" },
-  { "@type": "City", name: "Cambridge" }
-],
-
-      serviceType: [
-        "Apex window curtains",
-        "Triangular window curtains",
-        "Gable end curtains",
-        "Curtains for coastal homes",
-        "Curtains for sea-facing windows",
-      ],
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "GB",
-      },
-    }),
-  }}
-/>
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
+        />
         <Navbar />
-
-        <main>
-          {children}
-        </main>
-
+        {children}
         <Footer />
-
       </body>
     </html>
   );

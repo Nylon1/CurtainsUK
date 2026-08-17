@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : "Sign in failed.";
+}
+
 export default function AdminLoginPage() {
   const supabase = createClient();
   const router = useRouter();
@@ -24,27 +28,9 @@ export default function AdminLoginPage() {
 
       if (error) throw error;
       router.push("/admin/");
-    } catch (error: any) {
-      alert(error?.message || "Sign in failed.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function handleSignUp() {
-    setLoading(true);
-
-    try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-
-      alert("Account created. You can now sign in.");
-    } catch (error: any) {
-      alert(error?.message || "Sign up failed.");
+      router.refresh();
+    } catch (error: unknown) {
+      alert(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -57,6 +43,9 @@ export default function AdminLoginPage() {
           Admin Login
         </div>
         <h1 className="mt-3 text-3xl font-semibold">Sign in</h1>
+        <p className="mt-3 text-sm leading-6 text-white/55">
+          This area is restricted to authorised Apex Curtains administrators.
+        </p>
 
         <form onSubmit={handleSignIn} className="mt-8 space-y-4">
           <label className="block">
@@ -67,6 +56,7 @@ export default function AdminLoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none"
               required
+              autoComplete="email"
             />
           </label>
 
@@ -78,27 +68,17 @@ export default function AdminLoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none"
               required
+              autoComplete="current-password"
             />
           </label>
 
-          <div className="flex gap-3">
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex-1 rounded-full bg-[#f5d38a] px-5 py-3 text-sm font-medium text-black"
-            >
-              Sign in
-            </button>
-
-            <button
-              type="button"
-              onClick={handleSignUp}
-              disabled={loading}
-              className="flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white"
-            >
-              Create account
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-full bg-[#f5d38a] px-5 py-3 text-sm font-medium text-black disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
         </form>
       </div>
     </main>

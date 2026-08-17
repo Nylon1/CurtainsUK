@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title:
     "Curtain Consultation Questions | Expert Advice for Apex & Shaped Windows",
@@ -140,19 +142,19 @@ export default function Page() {
         </p>
 
         <div className="mt-6 flex flex-wrap gap-4">
-          <a
+          <Link
             href="/start-designing"
             className="rounded-full bg-[#f5d38a] px-6 py-3 text-sm font-medium text-black hover:bg-[#e6c476]"
           >
             Start your curtain journey
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/advice"
             className="rounded-full border border-white/15 px-6 py-3 text-sm text-white hover:bg-white/10"
           >
             View more guides
-          </a>
+          </Link>
         </div>
       </section>
     </main>

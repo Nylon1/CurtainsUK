@@ -4,6 +4,24 @@ import type { AdvicePost } from "@/lib/advice-posts";
 
 export const revalidate = 60;
 
+type AdvicePostRow = {
+  id: string | number;
+  title?: string | null;
+  slug?: string | null;
+  category?: string | null;
+  excerpt?: string | null;
+  content?: string | null;
+  image_url?: string | null;
+  featured?: boolean | null;
+  published?: boolean | null;
+  meta_title?: string | null;
+  meta_description?: string | null;
+  focus_keyword?: string | null;
+  related_service?: string | null;
+  published_at?: string | null;
+  updated_at?: string | null;
+};
+
 export default async function AdvicePage() {
   const supabase = await createClient();
 
@@ -17,7 +35,7 @@ export default async function AdvicePage() {
     console.error("Supabase error:", error);
   }
 
-  const posts: AdvicePost[] = (data || []).map((item: any) => ({
+  const posts: AdvicePost[] = ((data || []) as AdvicePostRow[]).map((item) => ({
     id: String(item.id),
     title: item.title || "",
     slug: item.slug || "",

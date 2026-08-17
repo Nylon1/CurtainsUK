@@ -23,18 +23,22 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+const RETIRED_ADVICE_SLUGS = new Set([
+  "best-curtains-for-apex-windows-expert-guide",
+  "can-you-put-curtains-on-angled-windows",
+]);
+
 export async function getAdvicePosts(): Promise<AdvicePost[]> {
   const { data, error } = await supabase
     .from("advice_posts")
     .select("*")
-    
+    .eq("published", true)
     .order("created_at", { ascending: false });
-console.log("DATA:", data);
-console.log("ERROR:", error);
+
   if (error) {
     console.error("Supabase error:", error);
     return [];
   }
 
-  return data || [];
+  return (data || []).filter((post) => !RETIRED_ADVICE_SLUGS.has(post.slug));
 }

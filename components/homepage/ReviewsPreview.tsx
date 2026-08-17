@@ -1,21 +1,10 @@
-import { Star } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, GalleryVertical } from "lucide-react";
 
-const reviews = [
-  {
-    name: "Sarah L",
-    location: "Cheshire",
-    text: "We struggled to find anyone who understood our apex windows until we found Apex Curtains. The final installation looks incredible and works perfectly.",
-  },
-  {
-    name: "David R",
-    location: "Surrey",
-    text: "The measuring, track design and installation were all handled professionally. Our gable-end curtains completely transformed the room.",
-  },
-  {
-    name: "Emma W",
-    location: "Yorkshire",
-    text: "Beautiful fabrics and a truly bespoke solution. These windows are difficult but the team made it look effortless.",
-  },
+const evidencePoints = [
+  "Completed project case studies with window type and installation context",
+  "A curated selection of real customer reviews rather than an overwhelming 100-review wall",
+  "Customer feedback and project evidence kept as separate, easy-to-read proof points",
 ];
 
 export default function ReviewsPreview() {
@@ -24,55 +13,51 @@ export default function ReviewsPreview() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(245,211,138,0.05),transparent_28%)]" />
 
       <div className="relative mx-auto max-w-7xl">
-
-        <div className="mb-14 text-center">
+        <div className="mb-12 max-w-3xl">
           <div className="text-xs uppercase tracking-[0.25em] text-white/40">
-            Client Reviews
+            Reviews & project evidence
           </div>
 
           <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
-            Trusted by homeowners across the UK
+            Real customer feedback, kept focused
           </h2>
 
-          <p className="mt-4 mx-auto max-w-2xl text-white/65 leading-8">
-            Our clients often come to us after struggling to find solutions for
-            unusual window shapes. Here are a few of their experiences.
+          <p className="mt-4 max-w-2xl leading-8 text-white/65">
+            We have a larger review archive, but the website now presents a selected set of customer
+            reviews alongside completed project case studies so visitors can assess both feedback and
+            the work itself without wading through an oversized review wall.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-
-          {reviews.map((review) => (
+        <div className="grid gap-5 md:grid-cols-3">
+          {evidencePoints.map((item) => (
             <div
-              key={review.name}
-              className="group rounded-[28px] border border-white/10 bg-white/5 p-7 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] transition hover:bg-white/[0.07]"
+              key={item}
+              className="rounded-[28px] border border-white/10 bg-white/5 p-7 shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
             >
-
-              <div className="flex mb-4 gap-1 text-[#f5d38a]">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} fill="#f5d38a" stroke="none" />
-                ))}
-              </div>
-
-              <p className="text-white/75 leading-7 text-sm">
-                "{review.text}"
-              </p>
-
-              <div className="mt-6 text-sm text-white/70">
-                <strong className="text-white">{review.name}</strong> • {review.location}
-              </div>
-
+              <CheckCircle2 className="h-5 w-5 text-[#f5d38a]" />
+              <p className="mt-4 text-sm leading-7 text-white/72">{item}</p>
             </div>
           ))}
-
         </div>
 
-        <div className="mt-12 text-center">
-          <button className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white transition hover:bg-white/10">
-            View all reviews
-          </button>
-        </div>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/reviews"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f5d38a] px-6 py-3 text-sm font-medium text-black transition hover:bg-[#e6c476]"
+          >
+            Read selected reviews
+            <ArrowRight className="h-4 w-4" />
+          </Link>
 
+          <Link
+            href="/gallery"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white transition hover:bg-white/10"
+          >
+            <GalleryVertical className="h-4 w-4" />
+            View project case studies
+          </Link>
+        </div>
       </div>
     </section>
   );

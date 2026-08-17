@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function toBase64(buffer: ArrayBuffer) {
   return Buffer.from(buffer).toString("base64");
 }
@@ -17,6 +15,18 @@ function escapeHtml(value: string) {
 
 export async function POST(req: Request) {
   try {
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      return Response.json(
+        {
+          ok: false,
+          error: "Email service is not configured.",
+        },
+        { status: 503 }
+      );
+    }
+
+    const resend = new Resend(resendApiKey);
     const formData = await req.formData();
 
     const name = String(formData.get("name") || "");
@@ -41,7 +51,7 @@ export async function POST(req: Request) {
 
     const uploaded = formData.get("imageFile");
 
-    let attachments: Array<{
+    const attachments: Array<{
       filename: string;
       content: string;
     }> = [];

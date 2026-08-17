@@ -7,6 +7,21 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+type AdvicePostRow = {
+  id: string | number;
+  title?: string | null;
+  slug?: string | null;
+  category?: string | null;
+  excerpt?: string | null;
+  content?: string | null;
+  image_url?: string | null;
+  featured?: boolean | null;
+  published?: boolean | null;
+  meta_title?: string | null;
+  meta_description?: string | null;
+  related_service?: string | null;
+};
+
 const SITE_URL = "https://www.apexcurtains.com";
 
 const PERMANENT_ADVICE_REDIRECTS: Record<string, string> = {
@@ -33,19 +48,21 @@ async function getPostBySlug(slug: string) {
 
   if (error || !data) return null;
 
+  const row = data as AdvicePostRow;
+
   return {
-    id: Number(data.id),
-    title: data.title || "",
-    slug: data.slug || "",
-    category: data.category || "",
-    excerpt: data.excerpt || "",
-    content: data.content || "",
-    image: data.image_url || "",
-    featured: !!data.featured,
-    published: data.published ?? true,
-    meta_title: data.meta_title || "",
-    meta_description: data.meta_description || "",
-    related_service: data.related_service || "",
+    id: Number(row.id),
+    title: row.title || "",
+    slug: row.slug || "",
+    category: row.category || "",
+    excerpt: row.excerpt || "",
+    content: row.content || "",
+    image: row.image_url || "",
+    featured: !!row.featured,
+    published: row.published ?? true,
+    meta_title: row.meta_title || "",
+    meta_description: row.meta_description || "",
+    related_service: row.related_service || "",
   };
 }
 
@@ -60,7 +77,7 @@ async function getRelatedPosts(currentSlug: string, category: string) {
     .eq("published", true)
     .limit(3);
 
-  return (data || []).map((item: any) => ({
+  return ((data || []) as AdvicePostRow[]).map((item) => ({
     id: Number(item.id),
     title: item.title || "",
     slug: item.slug || "",

@@ -11,6 +11,7 @@ import GuidesPreview from "@/components/homepage/GuidesPreview";
 import AreasPreview from "@/components/homepage/AreasPreview";
 import ArloPreview from "@/components/homepage/ArloPreview";
 import FinalCta from "@/components/homepage/FinalCta";
+import ProfessionalsPreview from "@/components/homepage/ProfessionalsPreview";
 import LazyFabricQuiz from "@/components/performance/LazyFabricQuiz";
 
 export default function HomePage() {
@@ -20,6 +21,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-apex-navy-900 text-white">
         <Hero />
         <WhyDifferent />
+        <ProfessionalsPreview />
         <WindowNavigator />
         <GalleryShowcase />
         <HomeVisitProcess />

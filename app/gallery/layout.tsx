@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import AuthorityLinks from "@/components/seo/AuthorityLinks";
 import { canonicalMetadata } from "@/lib/seo-metadata";
 import { createClient } from "@/lib/supabase/server";
 
@@ -63,6 +64,10 @@ export default async function GalleryLayout({ children }: { children: ReactNode 
           </div>
         </section>
       )}
+      <AuthorityLinks
+        eyebrow="From project to method"
+        heading="See how the window shape connects to track planning and curtain performance"
+      />
     </>
   );
 }

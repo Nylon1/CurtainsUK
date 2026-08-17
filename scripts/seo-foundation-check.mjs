@@ -18,6 +18,8 @@ const advicePosts = read("lib/advice-posts.ts");
 const advicePage = read("app/advice/[slug]/page.tsx");
 const galleryProjectPage = read("app/gallery/[slug]/page.tsx");
 const cityPage = read("app/areas/[city]/page.tsx");
+const reviewsPage = read("app/reviews/page.tsx");
+const reviewsPreview = read("components/homepage/ReviewsPreview.tsx");
 const proxy = read("proxy.ts");
 const nextConfig = read("next.config.ts");
 
@@ -96,6 +98,27 @@ expect(
     cityPage.includes("addressLocality: cityData.name") &&
     cityPage.includes('"@id": `${SITE_URL}/#organization`'),
   "City pages must preserve the confirmed local address/locality model while connecting it to the main Apex organization."
+);
+expect(
+  "synthetic review wall is removed",
+  !reviewsPage.includes("function makeReviews") &&
+    !reviewsPage.includes("sampleTexts") &&
+    reviewsPage.includes("verifiable customer or project record") &&
+    reviewsPage.includes("index: false"),
+  "The reviews route must not generate customer names, ratings or wording and should remain noindex until verified records are available."
+);
+expect(
+  "unverified homepage review quotes are removed",
+  !reviewsPreview.includes("Sarah L") &&
+    !reviewsPreview.includes("David R") &&
+    !reviewsPreview.includes("Emma W") &&
+    reviewsPreview.includes("No generated names, ratings or review wording"),
+  "Homepage trust content must not display unsupported review identities or quotes."
+);
+expect(
+  "noindex reviews route is omitted from sitemap",
+  !sitemapPages.includes('loc: `${baseUrl}/reviews`'),
+  "A temporarily noindex reviews page should not be submitted in the XML sitemap."
 );
 
 const failed = checks.filter((check) => !check.ok);

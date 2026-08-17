@@ -22,6 +22,7 @@ const cityPage = read("app/areas/[city]/page.tsx");
 const reviewsPage = read("app/reviews/page.tsx");
 const reviewsPreview = read("components/homepage/ReviewsPreview.tsx");
 const mediaPage = read("app/seen-on-tv/page.tsx");
+const entryScreen = read("components/ApexEntryScreen.tsx");
 const proxy = read("proxy.ts");
 const nextConfig = read("next.config.ts");
 
@@ -123,21 +124,25 @@ expect(
   "A temporarily noindex reviews page should not be submitted in the XML sitemap."
 );
 expect(
-  "blocking homepage entry gate is removed",
-  !homePage.includes("ApexEntryScreen") && !fs.existsSync("components/ApexEntryScreen.tsx"),
-  "The homepage must render its primary content directly rather than behind a blocking entry overlay."
+  "lightweight homepage intro preserves rendered content",
+  homePage.includes("ApexEntryScreen") &&
+    entryScreen.includes('/images/apex-entry-poster.jpeg') &&
+    entryScreen.includes("Intro closes automatically") &&
+    !entryScreen.includes("<video") &&
+    !entryScreen.includes("apex-entry.mp4"),
+  "The intro may be visual, but the homepage must remain rendered underneath and must not depend on a heavy autoplay video."
 );
 expect(
   "20MB entry video is removed",
   !fs.existsSync("public/videos/apex-entry.mp4"),
-  "The retired autoplay entry video must not remain as an unused 20MB production asset."
+  "The retired 20MB autoplay entry video must not remain in the production bundle."
 );
 expect(
-  "unsupported media claims are withheld from indexing",
-  mediaPage.includes("index: false") &&
-    !mediaPage.includes("Sky Sports") &&
-    !sitemapPages.includes('loc: `${baseUrl}/seen-on-tv`'),
-  "Unsupported TV/media claims should be noindex and omitted from the sitemap until source records are documented."
+  "verified TV advertising claim is indexable",
+  !mediaPage.includes("index: false") &&
+    mediaPage.includes("paid television advertising") &&
+    sitemapPages.includes('loc: `${baseUrl}/seen-on-tv`'),
+  "The confirmed TV advertising page should be indexable, accurately framed as advertising, and included in the sitemap."
 );
 
 const failed = checks.filter((check) => !check.ok);

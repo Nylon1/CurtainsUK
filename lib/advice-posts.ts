@@ -25,6 +25,7 @@ const supabase = createClient(
 
 const RETIRED_ADVICE_SLUGS = new Set([
   "best-curtains-for-apex-windows-expert-guide",
+  "can-you-put-curtains-on-angled-windows",
 ]);
 
 export async function getAdvicePosts(): Promise<AdvicePost[]> {

@@ -9,7 +9,7 @@ export async function GET() {
 
   const urls = posts.map((post) => ({
     loc: fullUrl(`/advice/${post.slug}`),
-    lastmod: post.created_at || new Date().toISOString(),
+    lastmod: post.updated_at || post.created_at,
     changefreq: "monthly",
     priority: "0.80",
     images: post.image_url ? [fullImageUrl(post.image_url)] : [],

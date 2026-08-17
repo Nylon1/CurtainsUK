@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : "Sign in failed.";
+}
+
 export default function AdminLoginPage() {
   const supabase = createClient();
   const router = useRouter();
@@ -25,8 +29,8 @@ export default function AdminLoginPage() {
       if (error) throw error;
       router.push("/admin/");
       router.refresh();
-    } catch (error: any) {
-      alert(error?.message || "Sign in failed.");
+    } catch (error: unknown) {
+      alert(getErrorMessage(error));
     } finally {
       setLoading(false);
     }

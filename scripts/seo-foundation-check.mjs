@@ -16,6 +16,8 @@ const sitemapUtils = read("lib/sitemap-utils.ts");
 const sitemapPages = read("app/sitemap-pages.xml/route.ts");
 const advicePosts = read("lib/advice-posts.ts");
 const advicePage = read("app/advice/[slug]/page.tsx");
+const galleryProjectPage = read("app/gallery/[slug]/page.tsx");
+const cityPage = read("app/areas/[city]/page.tsx");
 const proxy = read("proxy.ts");
 const nextConfig = read("next.config.ts");
 
@@ -79,6 +81,21 @@ expect(
   "non-www host permanently redirects",
   hasPermanentHostRedirect,
   "The non-www host must permanently consolidate to www."
+);
+expect(
+  "gallery project metadata and schema use www",
+  galleryProjectPage.includes('const SITE_URL = "https://www.apexcurtains.com"') &&
+    galleryProjectPage.includes('const canonicalUrl = `${SITE_URL}/gallery/${data.slug || slug}`') &&
+    !galleryProjectPage.includes("https://apexcurtains.com/gallery/"),
+  "Gallery project canonical, Open Graph and structured data must use the final www origin."
+);
+expect(
+  "city schema preserves local representation with connected IDs",
+  cityPage.includes('const localRepresentativeId = `${canonicalUrl}#local-representative`') &&
+    cityPage.includes('"@id": localRepresentativeId') &&
+    cityPage.includes("addressLocality: cityData.name") &&
+    cityPage.includes('"@id": `${SITE_URL}/#organization`'),
+  "City pages must preserve the confirmed local address/locality model while connecting it to the main Apex organization."
 );
 
 const failed = checks.filter((check) => !check.ok);

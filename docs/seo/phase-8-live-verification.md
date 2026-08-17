@@ -14,13 +14,35 @@ Phase 8 is a close-out pass after the SEO/AEO remediation phases. It compares th
 - Preserve owner-confirmed facts: local representatives/locality information, the selected real reviews, and confirmed paid TV advertising.
 - Keep performance statements cautious where the result depends on fabric, lining, window geometry, installation or room conditions.
 
-## Initial live/search observations
+## Live/search observations
 
 ### Search/index lag exists
 
-Search results still expose older homepage text including an `Award-Winning Specialist Curtains Company` statement and older review-preview identities. Those strings are not present in the current homepage entry component or current review-preview component. This is therefore being treated as stale indexed/cached content rather than reintroduced repository content.
+Search results still expose older homepage text including an `Award-Winning Specialist Curtains Company` statement, exact old price ranges, the `Takes less than a minute` CTA and older review-preview identities. Those strings are not present in the current corresponding repository components after Phase 8 hardening. This is therefore being treated as stale indexed/cached content rather than reintroduced repository content.
 
 Action: allow recrawl after production deployment and verify again before assuming an implementation regression.
+
+### Legacy URLs are still discoverable in search
+
+Search results still surface older URLs and content from the previous site, including:
+
+- `/curtains-in-birmingham/`
+- `/wave-pleat-curtains-on-apex-windows-elegant-solutions-for-modern-homes/`
+- `/our-price-promise/`
+
+The current application no longer has equivalent standalone content for those legacy pages. Permanent redirects are therefore added to the closest current canonical destinations:
+
+- Birmingham legacy page → `/areas/birmingham`
+- old wave-pleat article → `/curtain-headings`
+- old price-promise page → `/get-curtain-quote`
+
+This gives search engines a clear consolidation path instead of leaving stale indexed URLs to decay into 404s or old cached results.
+
+### Apex blinds conflict found
+
+Search results still expose a much older electric-blinds page containing specific motor, smart-home, warranty, dimensions and installation claims. The current repository already had a newer `/apex-blinds` page, but it still described blinds and motorised control too positively compared with the current business position.
+
+Action: rebuild `/apex-blinds` around the current service position: curtains are the preferred solution for difficult apex/triangular/gable-end glazing; electric shaped blinds are not promoted as a standard Apex Curtains service; visitors can still ask for guidance on the trade-offs.
 
 ### Homepage claim hardening
 
@@ -43,20 +65,51 @@ Action: replace it with the more defensible statement that standard off-the-shel
 - Current homepage review preview does not generate customer identities; it sends visitors to the curated review set and project evidence.
 - Current entry screen uses a lightweight poster image rather than the former large autoplay video.
 - Phase 7 has `next/image` delivery for key homepage hero/gallery imagery and defers the large below-the-fold fabric quiz.
-- Start Designing now permits photo upload to be skipped and emits conversion events for journey and successful lead completion.
+- Start Designing permits photo upload to be skipped and emits conversion events for journey and successful lead completion.
 - City pages retain the owner-confirmed local representative/locality model while local project evidence is only shown when stored gallery location data matches.
+- The canonical host is `www.apexcurtains.com`, with a permanent non-www → www redirect in Next configuration.
+
+## Original-audit close-out status
+
+### Fixed / materially remediated
+
+- Canonical host inconsistency and homepage-canonical inheritance.
+- Sitemap broken route/image issues and omitted important public routes.
+- Public admin indexability and anonymous admin access path.
+- Advice-route duplication and known measurement/pricing duplicates.
+- Gallery crawlability and detail-page metadata/schema.
+- Local representative schema connection and local-area internal architecture.
+- Curated review presentation and separation of customer feedback from project proof.
+- Paid-TV wording so it does not imply editorial endorsement.
+- Former heavy homepage autoplay video.
+- Authority hubs for tracks, solutions, headings, fabrics, linings, accessories and specification journey.
+- Duplicate flagship FAQ schema output.
+- Arbitrary `nearby city` linking.
+- Major homepage image delivery and deferred below-the-fold quiz work.
+- Core conversion events around the quote/design journey.
+
+### Partially fixed / requires production recrawl confirmation
+
+- Stale search snippets and legacy cached pages: implementation is being consolidated, but search-engine refresh timing is external.
+- Full live crawl comparison: current search/web tooling can verify representative pages but does not replace a complete production crawler run.
+- Core Web Vitals: repository risk has been reduced, but field data should be monitored after deployment rather than inferred from code alone.
+- Conversion analytics: browser events are emitted, but downstream analytics collection depends on the configured production analytics layer.
+
+### Still operational / ongoing rather than a one-off fix
+
+- Add more real gallery projects and local project evidence as genuine records become available.
+- Expand advice only where search demand and unique evidence justify a new page.
+- Monitor Search Console indexing, queries, CWV and stale legacy URLs after recrawl.
 
 ## Remaining Phase 8 checks
 
-1. Verify production robots and sitemap after the latest deployment is visible.
-2. Recheck homepage, representative city pages, design guide, quote journey, gallery and advice routes after deployment/cache refresh.
-3. Verify admin routes remain protected and noindex.
-4. Compare sitemap URLs with canonical destinations and redirect-only routes.
-5. Spot-check schema graphs for duplicate FAQ/entity output.
-6. Review remaining homepage and flagship copy for unsupported absolutes, exact counts or inferred evidence.
-7. Confirm production conversion events can be observed by the configured analytics layer when present.
-8. Record each original audit issue as fixed, partially fixed or still open.
+1. Recheck representative production routes after the final Phase 8 deployment.
+2. Verify admin routes remain protected and noindex.
+3. Compare sitemap URLs with canonical destinations and redirect-only routes.
+4. Spot-check schema graphs for duplicate FAQ/entity output.
+5. Confirm production conversion events can be observed by the configured analytics layer when present.
+6. Monitor whether stale non-www and legacy URLs fall out of the index after permanent redirects and recrawl.
 
 ## Phase 8 status
 
-In progress. The first hardening changes are committed on `seo/phase-8-live-verification`. Production/search-engine recrawl verification follows after deployment of the final Phase 8 changes.
+In progress. Repository hardening and legacy-URL consolidation are now implemented on `seo/phase-8-live-verification`; final CI and production recrawl verification follow before close-out.

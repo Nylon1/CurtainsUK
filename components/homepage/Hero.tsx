@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Phone, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import TrackedLink from "@/components/analytics/TrackedLink";
 
 const windowOptions = [
   {
@@ -149,13 +151,15 @@ export default function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <div className="flex flex-col items-start">
-                <Link
+                <TrackedLink
                   href="/start-designing"
+                  eventName="curtain_journey_start_click"
+                  eventData={{ source: "homepage_hero" }}
                   className="inline-flex items-center gap-2 rounded-full bg-[#f5d38a] px-6 py-3 text-sm font-medium text-black transition duration-300 hover:scale-[1.02] hover:bg-[#e6c476]"
                 >
                   Start Your Curtain Journey
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </TrackedLink>
 
                 <span className="mt-2 text-xs text-white/50">
                   Takes less than a minute • No obligation
@@ -190,10 +194,13 @@ export default function Hero() {
                 className="overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.04] shadow-[0_25px_80px_rgba(0,0,0,0.32)]"
               >
                 <div className="relative h-[430px] overflow-hidden">
-                  <img
+                  <Image
                     src={active.image}
                     alt={active.title}
-                    className="h-full w-full object-cover"
+                    fill
+                    priority={active.id === "apex"}
+                    sizes="(max-width: 1023px) 100vw, 46vw"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 

@@ -16,6 +16,10 @@ export async function GET() {
     { loc: `${baseUrl}/services/premium-installation`, changefreq: "monthly", priority: "0.90" },
     { loc: `${baseUrl}/curtain-tracks`, changefreq: "monthly", priority: "0.92" },
     { loc: `${baseUrl}/curtain-solutions`, changefreq: "monthly", priority: "0.90" },
+    { loc: `${baseUrl}/curtain-fabrics`, changefreq: "monthly", priority: "0.86" },
+    { loc: `${baseUrl}/curtain-linings`, changefreq: "monthly", priority: "0.88" },
+    { loc: `${baseUrl}/curtain-headings`, changefreq: "monthly", priority: "0.88" },
+    { loc: `${baseUrl}/curtain-accessories`, changefreq: "monthly", priority: "0.76" },
     {
       loc: `${baseUrl}/window-types`,
       changefreq: "weekly",

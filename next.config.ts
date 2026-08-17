@@ -24,6 +24,21 @@ const nextConfig: NextConfig = {
         destination: "/get-curtain-quote",
         permanent: true,
       },
+      {
+        source: "/meetarlo",
+        destination: "/arlo-curtain-advisor",
+        permanent: true,
+      },
+      {
+        source: "/advice/what-curtain-track-is-best-for-apex-windows",
+        destination: "/curtain-tracks",
+        permanent: true,
+      },
+      {
+        source: "/advice/can-you-put-curtains-on-angled-windows",
+        destination: "/apex-curtains",
+        permanent: true,
+      },
     ];
   },
 };

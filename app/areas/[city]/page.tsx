@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, MapPin, Sparkles, MessageSquare, GalleryVertical } from "lucide-react";
@@ -9,25 +10,42 @@ type PageProps = {
   }>;
 };
 
+const SITE_URL = "https://www.apexcurtains.com";
+
 export async function generateStaticParams() {
   return cityPages.map((city) => ({
     city: city.slug,
   }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { city } = await params;
   const cityData = getCityBySlug(city);
 
   if (!cityData) {
     return {
-      title: "Area Not Found | Apex Curtains",
+      title: { absolute: "Area Not Found | Apex Curtains" },
+      robots: { index: false, follow: true },
     };
   }
 
+  const canonicalUrl = `${SITE_URL}/areas/${cityData.slug}`;
+  const title = `Apex Window Curtains in ${cityData.name} | Apex Curtains`;
+  const description = `Bespoke curtains for apex, angled, triangular and unusual windows in ${cityData.name}. Specialist advice, elegant solutions and tailored installations.`;
+
   return {
-    title: `Apex Window Curtains in ${cityData.name} | Apex Curtains`,
-    description: `Bespoke curtains for apex, angled, triangular and unusual windows in ${cityData.name}. Specialist advice, elegant solutions and tailored installations.`,
+    title: { absolute: title },
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "Apex Curtains",
+      type: "website",
+    },
   };
 }
 
@@ -53,103 +71,117 @@ const faqs = [
 export default async function AreaCityPage({ params }: PageProps) {
   const { city } = await params;
   const cityData = getCityBySlug(city);
-const schema = {
+
+  if (!cityData) notFound();
+
+  const canonicalUrl = `${SITE_URL}/areas/${cityData.slug}`;
+  const localRepresentativeId = `${canonicalUrl}#local-representative`;
+  const serviceId = `${canonicalUrl}#service`;
+  const webpageId = `${canonicalUrl}#webpage`;
+  const breadcrumbId = `${canonicalUrl}#breadcrumb`;
+
+  const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "LocalBusiness",
-        name: "Apex Curtains",
-        url: "https://www.apexcurtains.com",
+        "@id": localRepresentativeId,
+        name: `Apex Curtains – ${cityData.name}`,
+        url: canonicalUrl,
+        parentOrganization: {
+          "@id": `${SITE_URL}/#organization`,
+        },
         brand: {
           "@type": "Brand",
           name: "Apex Curtains",
         },
         areaServed: {
           "@type": "City",
-          name: cityData?.name,
+          name: cityData.name,
         },
         address: {
           "@type": "PostalAddress",
-          addressLocality: cityData?.name,
-          addressRegion: cityData?.region,
+          addressLocality: cityData.name,
+          addressRegion: cityData.region,
           addressCountry: "GB",
         },
       },
       {
         "@type": "Service",
-        name: `Apex Window Curtains in ${cityData?.name}`,
+        "@id": serviceId,
+        name: `Apex Window Curtains in ${cityData.name}`,
         serviceType: "Bespoke curtains for apex and unusual windows",
         provider: {
-          "@type": "LocalBusiness",
-          name: "Apex Curtains",
-          url: "https://www.apexcurtains.com",
+          "@id": localRepresentativeId,
         },
         areaServed: {
           "@type": "City",
-          name: cityData?.name,
+          name: cityData.name,
         },
-        description: `Specialist curtains for apex, angled, triangular and gable end windows in ${cityData?.name}.`,
-        url: `https://www.apexcurtains.com/areas/${cityData?.slug}`,
+        description: `Specialist curtains for apex, angled, triangular and gable end windows in ${cityData.name}.`,
+        url: canonicalUrl,
+      },
+      {
+        "@type": "WebPage",
+        "@id": webpageId,
+        url: canonicalUrl,
+        name: `Apex Window Curtains in ${cityData.name}`,
+        isPartOf: {
+          "@id": `${SITE_URL}/#website`,
+        },
+        about: {
+          "@id": serviceId,
+        },
+        breadcrumb: {
+          "@id": breadcrumbId,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": breadcrumbId,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Areas",
+            item: `${SITE_URL}/areas`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: cityData.name,
+            item: canonicalUrl,
+          },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${canonicalUrl}#faq`,
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a,
+          },
+        })),
       },
     ],
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    })),
-  };
-
-  if (!cityData) notFound();
-  
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://www.apexcurtains.com",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Areas",
-      item: "https://www.apexcurtains.com/areas",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: cityData.name,
-      item: `https://www.apexcurtains.com/areas/${cityData.slug}`,
-    },
-  ],
-};
-
-  
-
   return (
     <main className="min-h-screen overflow-hidden bg-apex-navy-900 text-white">
-        <script
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-/>
+
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute left-[8%] top-[8%] h-[320px] w-[320px] rounded-full bg-[#f5d38a]/10 blur-[120px]" />
         <div className="absolute right-[10%] top-[22%] h-[280px] w-[280px] rounded-full bg-sky-400/10 blur-[120px]" />
@@ -160,19 +192,19 @@ const breadcrumbSchema = {
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#f5d38a]/20 bg-[#f5d38a]/10 px-4 py-2 text-xs uppercase tracking-[0.24em] text-[#f5d38a]">
             <nav
-  aria-label="Breadcrumb"
-  className="mb-8 flex flex-wrap items-center gap-2 text-sm"
->
-  <Link href="/" className="text-white/45 transition hover:text-white">
-    Home
-  </Link>
-  <span className="text-white/25">/</span>
-  <Link href="/areas" className="text-white/45 transition hover:text-white">
-    Areas
-  </Link>
-  <span className="text-white/25">/</span>
-  <span className="text-[#f5d38a]">{cityData.name}</span>
-</nav>
+              aria-label="Breadcrumb"
+              className="mb-8 flex flex-wrap items-center gap-2 text-sm"
+            >
+              <Link href="/" className="text-white/45 transition hover:text-white">
+                Home
+              </Link>
+              <span className="text-white/25">/</span>
+              <Link href="/areas" className="text-white/45 transition hover:text-white">
+                Areas
+              </Link>
+              <span className="text-white/25">/</span>
+              <span className="text-[#f5d38a]">{cityData.name}</span>
+            </nav>
             <MapPin className="h-4 w-4" />
             {cityData.name}
           </div>

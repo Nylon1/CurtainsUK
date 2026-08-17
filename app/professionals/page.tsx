@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Building2, DraftingCompass, Hammer, Palette } from "lucide-react";
+import { ArrowRight, Building2, DraftingCompass, FileText, Hammer, Palette } from "lucide-react";
 
 export const metadata = {
   title: "Architectural Curtain Specialists for Designers, Architects & Developers | Apex Curtains",
@@ -49,6 +49,7 @@ export default function ProfessionalsPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/professionals/project-review" className="inline-flex items-center gap-2 rounded-full bg-[#d6b56b] px-6 py-3 text-sm font-semibold text-apex-navy-950">Discuss a project <ArrowRight className="h-4 w-4" /></Link>
+            <Link href="/professionals/specifier-resources" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold"><FileText className="h-4 w-4" />Specifier resources</Link>
             <Link href="/commercial-curtain-track-installation" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold">Commercial installation</Link>
           </div>
         </div>
@@ -64,6 +65,20 @@ export default function ProfessionalsPage() {
               <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#d6b56b]">Professional pathway <ArrowRight className="h-4 w-4" /></span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl rounded-[32px] border border-[#d6b56b]/25 bg-[#d6b56b]/10 p-8 sm:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d6b56b]">Technical resources</p>
+          <h2 className="mt-4 text-3xl font-semibold">Give the team a better starting brief.</h2>
+          <p className="mt-4 max-w-3xl leading-8 text-[#C8D1D8]">
+            Our specifier resources organise the information needed before survey and final manufacture: GA drawings, elevations, sections, aperture geometry, track route, fixing substrate, stack-back, clear opening, textile specification, access and programme.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link href="/professionals/specifier-resources" className="inline-flex items-center gap-2 rounded-full bg-[#d6b56b] px-6 py-3 text-sm font-semibold text-apex-navy-950">Open specifier resources <ArrowRight className="h-4 w-4" /></Link>
+            <Link href="/professionals/specifier-resources/project-information-checklist" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold">Project information checklist</Link>
+          </div>
         </div>
       </section>
 

@@ -98,7 +98,6 @@ export default function Page() {
         <div className="mt-10 flex flex-wrap gap-3 print:hidden">
           <Link href="/professionals/project-review" className="rounded-full bg-[#d6b56b] px-6 py-3 text-sm font-semibold text-apex-navy-950">Discuss this project</Link>
           <Link href="/professionals/specifier-resources" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold">Back to specifier resources</Link>
-          <button type="button" onClick={undefined} className="hidden">Print</button>
         </div>
 
         <p className="mt-12 text-xs leading-6 text-white/45 print:text-gray-600">

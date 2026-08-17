@@ -23,6 +23,10 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+const RETIRED_ADVICE_SLUGS = new Set([
+  "best-curtains-for-apex-windows-expert-guide",
+]);
+
 export async function getAdvicePosts(): Promise<AdvicePost[]> {
   const { data, error } = await supabase
     .from("advice_posts")
@@ -35,5 +39,5 @@ export async function getAdvicePosts(): Promise<AdvicePost[]> {
     return [];
   }
 
-  return data || [];
+  return (data || []).filter((post) => !RETIRED_ADVICE_SLUGS.has(post.slug));
 }

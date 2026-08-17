@@ -1,4 +1,4 @@
-import Link from "next/link";
+import TrackedLink from "@/components/analytics/TrackedLink";
 
 export const metadata = {
   title: "Get a Curtain Quote | Apex Curtains",
@@ -40,7 +40,14 @@ export default function Page() {
               Start the curtain journey and upload the information you already have. You do not need a finished specification before contacting us — the design can be refined around the window and room.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/start-designing" className="rounded-full bg-[#d6b56b] px-6 py-3 text-sm font-semibold text-apex-navy-950">Start your curtain journey</Link>
+              <TrackedLink
+                href="/start-designing"
+                eventName="quote_start_designing"
+                eventData={{ source: "get-curtain-quote" }}
+                className="rounded-full bg-[#d6b56b] px-6 py-3 text-sm font-semibold text-apex-navy-950"
+              >
+                Start your curtain journey
+              </TrackedLink>
               <a href="tel:08007720367" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold">Call 0800 772 0367</a>
             </div>
           </div>
@@ -51,9 +58,14 @@ export default function Page() {
             <p className="mt-4 leading-8 text-[#C8D1D8]">
               Our design guide walks through window type, heading, fabric, lining, accessories, track and installation so you can understand the choices without guessing.
             </p>
-            <Link href="/curtain-design-guide" className="mt-6 inline-flex rounded-full border border-[#d6b56b]/35 bg-[#d6b56b]/10 px-5 py-3 text-sm font-semibold text-[#F4F0E8]">
+            <TrackedLink
+              href="/curtain-design-guide"
+              eventName="quote_open_design_guide"
+              eventData={{ source: "get-curtain-quote" }}
+              className="mt-6 inline-flex rounded-full border border-[#d6b56b]/35 bg-[#d6b56b]/10 px-5 py-3 text-sm font-semibold text-[#F4F0E8]"
+            >
               Open the Curtain Design Guide
-            </Link>
+            </TrackedLink>
           </aside>
         </section>
       </div>

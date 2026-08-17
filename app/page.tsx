@@ -1,3 +1,4 @@
+import ApexEntryScreen from "@/components/ApexEntryScreen";
 import Hero from "@/components/homepage/Hero";
 import WindowNavigator from "@/components/homepage/WindowNavigator";
 import WhyDifferent from "@/components/homepage/WhyDifferent";
@@ -14,20 +15,23 @@ import FinalCta from "@/components/homepage/FinalCta";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-apex-navy-900 text-white">
-      <Hero />
-      <WhyDifferent />
-      <WindowNavigator />
-      <GalleryShowcase />
-      <HomeVisitProcess />
-      <ApexInstallationJourney />
-      <ReviewsPreview />
-      <ArloPreview />
-      <GuidesPreview />
-      <AreasPreview />
-      <SolutionFinder />
-      <FabricPersonalityQuiz />
-      <FinalCta />
-    </main>
+    <>
+      <ApexEntryScreen />
+      <main className="min-h-screen bg-apex-navy-900 text-white">
+        <Hero />
+        <WhyDifferent />
+        <WindowNavigator />
+        <GalleryShowcase />
+        <HomeVisitProcess />
+        <ApexInstallationJourney />
+        <ReviewsPreview />
+        <ArloPreview />
+        <GuidesPreview />
+        <AreasPreview />
+        <SolutionFinder />
+        <FabricPersonalityQuiz />
+        <FinalCta />
+      </main>
+    </>
   );
 }

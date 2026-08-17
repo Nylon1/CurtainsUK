@@ -2,27 +2,34 @@ import type { Metadata } from "next";
 import InfoPageTemplate from "@/components/layout/InfoPageTemplate";
 
 export const metadata: Metadata = {
-  title: { absolute: "Media Features | Apex Curtains" },
+  title: { absolute: "Apex Curtains TV Advertising | Seen on TV" },
   description:
-    "Media references for Apex Curtains will be published when supporting campaign or publication records are available.",
-  robots: {
-    index: false,
-    follow: true,
+    "Apex Curtains has advertised on television, including campaigns shown on premium TV channels. Learn more about our broadcast advertising activity.",
+  alternates: {
+    canonical: "https://www.apexcurtains.com/seen-on-tv",
+  },
+  openGraph: {
+    title: "Apex Curtains TV Advertising | Seen on TV",
+    description:
+      "Apex Curtains has advertised on television as part of its national brand and specialist architectural-curtain campaigns.",
+    url: "https://www.apexcurtains.com/seen-on-tv",
+    siteName: "Apex Curtains",
+    type: "website",
   },
 };
 
 export default function Page() {
   return (
     <InfoPageTemplate
-      title="Media Features"
-      breadcrumb="Media Features"
-      intro="We publish media and broadcast references only when they can be supported by a campaign, publication or feature record."
-      section1Title="Verification first"
-      section1Text="Media claims are being reviewed against source records before they are presented publicly as proof points."
-      section2Title="Press enquiries"
-      section2Text="Journalists, editors and producers can contact Apex Curtains for information about our specialist work with apex, triangular and architecturally unusual windows."
-      section3Title="Future updates"
-      section3Text="Verified media appearances, campaign references and approved logos can be added here once the supporting records are documented."
+      title="Apex Curtains on TV"
+      breadcrumb="Seen on TV"
+      intro="Apex Curtains has run television advertising as part of our wider UK brand campaigns for specialist curtains and difficult architectural windows."
+      section1Title="Television advertising"
+      section1Text="Our advertising has appeared on television, including premium channels, helping us introduce Apex Curtains and our specialist work with apex, triangular, gable-end and unusual windows to a wider audience."
+      section2Title="Advertising, not editorial coverage"
+      section2Text="We describe this clearly as paid television advertising rather than independent editorial endorsement. That distinction keeps the claim accurate while still documenting a genuine part of the Apex Curtains brand story."
+      section3Title="Campaign records"
+      section3Text="As campaign records, dates, channels and approved creative assets are organised, this page can be expanded with more specific broadcast details and supporting material."
     />
   );
 }

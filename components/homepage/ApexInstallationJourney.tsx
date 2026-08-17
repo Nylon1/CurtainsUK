@@ -66,7 +66,7 @@ const cardVariants = {
 
 export default function ApexInstallationJourney() {
   return (
-    <section className="relative overflow-hidden bg-[#0a0a0d] px-4 py-24 text-white sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-apex-navy-900 px-4 py-24 text-white sm:px-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[8%] top-[8%] h-[260px] w-[260px] rounded-full bg-[#f5d38a]/10 blur-[130px]" />
         <div className="absolute right-[8%] top-[24%] h-[220px] w-[220px] rounded-full bg-sky-400/8 blur-[130px]" />

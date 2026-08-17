@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <>
       <ApexEntryScreen />
-    <main className="min-h-screen bg-[#0a0a0d] text-white">
+    <main className="min-h-screen bg-apex-navy-900 text-white">
       <Hero />
       <WhyDifferent />
       <WindowNavigator />

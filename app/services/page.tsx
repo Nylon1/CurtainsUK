@@ -55,7 +55,7 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-[#070707] text-white">
+    <main className="min-h-screen bg-apex-navy-950 text-white">
       {/* Hero */}
       <section className="relative overflow-hidden px-4 pb-20 pt-36 sm:px-6 lg:px-8 lg:pb-28 lg:pt-44">
         <div className="absolute inset-0">

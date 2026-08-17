@@ -51,7 +51,7 @@ export default function WindowTypesPage() {
   const [active, setActive] = useState(windowTypes[0]);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0d] text-white overflow-hidden">
+    <main className="min-h-screen bg-apex-navy-900 text-white overflow-hidden">
 
       {/* HERO */}
       <section className="max-w-7xl mx-auto px-4 pt-24 pb-16">

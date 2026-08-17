@@ -27,7 +27,7 @@ export default async function JourneyStepPage({ params }: PageProps) {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#0a0a0d] text-white">
+    <main className="min-h-screen overflow-hidden bg-apex-navy-900 text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

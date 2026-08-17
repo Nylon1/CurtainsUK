@@ -41,7 +41,7 @@ const helpLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-white/10 bg-[#09090c] text-white">
+    <footer className="relative mt-24 overflow-hidden border-t border-white/10 bg-apex-navy-950 text-white">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-[10%] top-[10%] h-40 w-40 rounded-full bg-[#f5d38a]/8 blur-[100px]" />
         <div className="absolute right-[10%] bottom-[10%] h-40 w-40 rounded-full bg-white/5 blur-[100px]" />

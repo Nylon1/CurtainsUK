@@ -347,7 +347,7 @@ export default function StartDesigningPage() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen overflow-hidden bg-[#0a0a0d] text-white">
+      <main className="min-h-screen overflow-hidden bg-apex-navy-900 text-white">
         <div className="fixed inset-0 pointer-events-none">
           <div className="absolute left-[8%] top-[6%] h-[320px] w-[320px] rounded-full bg-[#f5d38a]/10 blur-[120px]" />
           <div className="absolute right-[10%] top-[18%] h-[300px] w-[300px] rounded-full bg-sky-400/10 blur-[120px]" />
@@ -451,7 +451,7 @@ export default function StartDesigningPage() {
   }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#0a0a0d] text-white">
+    <main className="min-h-screen overflow-hidden bg-apex-navy-900 text-white">
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute left-[8%] top-[6%] h-[320px] w-[320px] rounded-full bg-[#f5d38a]/10 blur-[120px]" />
         <div className="absolute right-[10%] top-[18%] h-[300px] w-[300px] rounded-full bg-sky-400/10 blur-[120px]" />

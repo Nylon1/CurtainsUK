@@ -44,6 +44,11 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-apex-navy-700: var(--apex-navy-700);
+  --color-apex-navy-800: var(--apex-navy-800);
+  --color-apex-navy-850: var(--apex-navy-850);
+  --color-apex-navy-900: var(--apex-navy-900);
+  --color-apex-navy-950: var(--apex-navy-950);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -54,6 +59,7 @@
 }
 
 :root {
+  /* Shared surface hierarchy for the Apex interiors palette. */
   --brand-navy: #0b2133;
   --brand-slate: #1b405b;
   --brand-slate-hover: #214a67;
@@ -65,6 +71,17 @@
   --foreground: var(--brand-cream);
   --card: var(--brand-slate);
   --card-foreground: var(--brand-cream);
+
+  /*
+   * Apex navy palette
+   * Sampled from the supplied visual reference and normalised for screens.
+   * Keeping the colours here makes future brand adjustments site-wide.
+   */
+  --apex-navy-700: #165783;
+  --apex-navy-800: #10446f;
+  --apex-navy-850: #0c385e;
+  --apex-navy-900: #082b49;
+  --apex-navy-950: #061a2d;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
@@ -180,6 +197,13 @@
   :where(p, li, dd)[class*="text-slate-"] {
     color: var(--brand-muted) !important;
   }
+}
+
+.apex-hero-surface {
+  background:
+    radial-gradient(circle at 62% 18%, rgba(35, 121, 183, 0.34), transparent 40%),
+    radial-gradient(circle at 18% 72%, rgba(8, 43, 73, 0.55), transparent 36%),
+    linear-gradient(112deg, var(--apex-navy-950) 0%, var(--apex-navy-850) 54%, var(--apex-navy-950) 100%);
 }
 
 @keyframes shine {

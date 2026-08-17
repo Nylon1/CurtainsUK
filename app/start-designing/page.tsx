@@ -7,7 +7,7 @@ export default function StartDesigningPage() {
   return (
     <Suspense
       fallback={
-        <main className="min-h-screen bg-[#0a0a0d] text-white flex items-center justify-center">
+        <main className="min-h-screen bg-apex-navy-900 text-white flex items-center justify-center">
           Loading...
         </main>
       }

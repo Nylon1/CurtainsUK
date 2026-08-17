@@ -19,10 +19,21 @@ const advicePage = read("app/advice/[slug]/page.tsx");
 const proxy = read("proxy.ts");
 const nextConfig = read("next.config.ts");
 
+const hasWwwOrigin =
+  layout.includes('const SITE_URL = "https://www.apexcurtains.com"') &&
+  (layout.includes("metadataBase: new URL(SITE_URL)") ||
+    layout.includes('metadataBase: new URL("https://www.apexcurtains.com")'));
+
+const hasPermanentHostRedirect =
+  nextConfig.includes("permanent: true") &&
+  nextConfig.includes('type: "host"') &&
+  nextConfig.includes('value: "apexcurtains.com"') &&
+  nextConfig.includes('destination: "https://www.apexcurtains.com/:path*"');
+
 expect(
   "final canonical origin is www",
-  layout.includes('metadataBase: new URL("https://www.apexcurtains.com")'),
-  "Root metadataBase must use the production www origin."
+  hasWwwOrigin,
+  "Root metadataBase must resolve to the production www origin."
 );
 expect(
   "root does not force homepage canonical",
@@ -66,7 +77,7 @@ expect(
 );
 expect(
   "non-www host permanently redirects",
-  nextConfig.includes('permanent: true') && nextConfig.includes('host: "apexcurtains.com"'),
+  hasPermanentHostRedirect,
   "The non-www host must permanently consolidate to www."
 );
 

@@ -9,6 +9,21 @@ const nextConfig: NextConfig = {
         destination: "https://www.apexcurtains.com/:path*",
         permanent: true,
       },
+      {
+        source: "/curtains-in-birmingham",
+        destination: "/areas/birmingham",
+        permanent: true,
+      },
+      {
+        source: "/wave-pleat-curtains-on-apex-windows-elegant-solutions-for-modern-homes",
+        destination: "/curtain-headings",
+        permanent: true,
+      },
+      {
+        source: "/our-price-promise",
+        destination: "/get-curtain-quote",
+        permanent: true,
+      },
     ];
   },
 };

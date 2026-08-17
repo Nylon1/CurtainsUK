@@ -17,7 +17,7 @@ const windowOptions = [
     image: "/window-types/apex-hero.jpg",
     system: "Custom bent aluminium track with made-to-measure lined drapery",
     bestFor: "Luxury homes",
-    price: "£2,500 – £6,000",
+    pricing: "Quoted to the window, specification and installation requirements",
     note: "Ideal when the room needs softness without losing the architectural drama.",
   },
   {
@@ -29,7 +29,7 @@ const windowOptions = [
     image: "/window-types/triangular.jpeg",
     system: "Tailored track direction with shaped curtain planning",
     bestFor: "Modern feature rooms",
-    price: "£2,000 – £5,000",
+    pricing: "Quoted to the window, specification and installation requirements",
     note: "Best where the shape itself is part of the design story.",
   },
   {
@@ -41,7 +41,7 @@ const windowOptions = [
     image: "/window-types/gable-end.jpeg",
     system: "Heavy-duty custom tracking for tall feature glazing",
     bestFor: "Open-plan spaces",
-    price: "£3,000 – £8,000",
+    pricing: "Quoted to the window, specification and installation requirements",
     note: "Works beautifully where scale, light and softness all need balancing.",
   },
   {
@@ -53,7 +53,7 @@ const windowOptions = [
     image: "/window-types/barn-conversion.jpeg",
     system: "Bespoke track planning for vaulted room geometry",
     bestFor: "Barns and conversions",
-    price: "£2,500 – £7,000",
+    pricing: "Quoted to the window, specification and installation requirements",
     note: "Perfect for adding warmth to large rustic-glazed interiors.",
   },
   {
@@ -65,7 +65,7 @@ const windowOptions = [
     image: "/window-types/large-feature.jpeg",
     system: "Wave or pinch pleat on robust made-to-measure tracking",
     bestFor: "Wide glazed rooms",
-    price: "£1,500 – £4,500",
+    pricing: "Quoted to the window, specification and installation requirements",
     note: "A strong choice where scale and elegance matter more than complexity.",
   },
 ];
@@ -162,7 +162,7 @@ export default function Hero() {
                 </TrackedLink>
 
                 <span className="mt-2 text-xs text-white/50">
-                  Takes less than a minute • No obligation
+                  Guided project enquiry • No obligation
                 </span>
               </div>
 
@@ -250,10 +250,10 @@ export default function Hero() {
 
                     <div className="rounded-[22px] border border-white/10 bg-black/20 p-5">
                       <div className="text-xs uppercase tracking-[0.18em] text-white/45">
-                        Typical range
+                        Pricing approach
                       </div>
-                      <div className="mt-3 text-lg font-semibold text-white">
-                        {active.price}
+                      <div className="mt-3 text-base font-semibold leading-7 text-white">
+                        {active.pricing}
                       </div>
                     </div>
                   </div>

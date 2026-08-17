@@ -7,14 +7,11 @@ import Link from "next/link";
 export default function WhyDifferent() {
   return (
     <section className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-      
-      {/* Glow background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[10%] top-[10%] h-[300px] w-[300px] rounded-full bg-[#f5d38a]/10 blur-[120px]" />
         <div className="absolute right-[10%] bottom-[10%] h-[260px] w-[260px] rounded-full bg-white/5 blur-[120px]" />
       </div>
 
-      {/* Header */}
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <div className="text-xs uppercase tracking-[0.25em] text-[#f5d38a]">
           Why Apex Curtains
@@ -28,36 +25,32 @@ export default function WhyDifferent() {
         </h2>
 
         <p className="mt-6 text-lg leading-8 text-white/65">
-          Most curtain systems fail on angled and architectural glazing.
-          We design specifically for complex window shapes - ensuring precision,
-          balance and a clean, finished result.
+          Standard off-the-shelf curtain systems are often unsuitable for angled and architectural glazing.
+          We plan the track, curtain specification and installation around the actual window shape so the finished scheme works with the architecture of the room.
         </p>
       </div>
 
-      {/* Cards */}
       <div className="relative z-10 mt-16 grid gap-6 lg:grid-cols-3">
-
         {[
           {
-            title: "Engineered for Shape",
-            desc: "Apex, triangular and gable end windows require precision angles, custom track planning and exact drop calculations.",
+            title: "Planned for the Shape",
+            desc: "Apex, triangular and gable-end windows need accurate angles, considered track routing and curtain drops based on the real glazing geometry.",
           },
           {
-            title: "Installed Properly",
-            desc: "Track positioning, weight distribution and stack-back must be correct, otherwise the curtains simply don’t sit right.",
+            title: "Track and Installation Together",
+            desc: "Track position, curtain weight, fixing surface, stack-back and access all need to be considered as one installation rather than as separate decisions.",
           },
           {
-            title: "Designed to Elevate",
-            desc: "This isn’t just about coverage. It’s about creating a clean architectural finish that enhances the entire room.",
+            title: "Designed for the Room",
+            desc: "The aim is not simply to cover the glass. Heading, fabric, lining and operation are selected to suit the window, room use and the finish you want to achieve.",
           },
-        ].map((item, i) => (
+        ].map((item) => (
           <motion.div
-            key={i}
+            key={item.title}
             whileHover={{ y: -8 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
             className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] p-8 shadow-[0_25px_80px_rgba(0,0,0,0.4)] backdrop-blur-xl"
           >
-            {/* Glow hover */}
             <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
               <div className="absolute inset-0 bg-gradient-to-br from-[#f5d38a]/10 via-transparent to-transparent" />
             </div>
@@ -75,7 +68,6 @@ export default function WhyDifferent() {
         ))}
       </div>
 
-      {/* Killer line */}
       <div className="relative z-10 mt-20 text-center">
         <p className="text-2xl font-medium text-white sm:text-3xl">
           We don’t sell curtains.
@@ -83,7 +75,6 @@ export default function WhyDifferent() {
         </p>
       </div>
 
-      {/* CTA */}
       <div className="relative z-10 mt-10 flex flex-wrap justify-center gap-4">
         <Link
           href="/start-designing"

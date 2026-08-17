@@ -42,6 +42,7 @@ export async function GET() {
     { loc: `${baseUrl}/contact`, changefreq: "monthly", priority: "0.90" },
     { loc: `${baseUrl}/start-designing`, changefreq: "weekly", priority: "0.75" },
     { loc: `${baseUrl}/faq`, changefreq: "monthly", priority: "0.65" },
+    { loc: `${baseUrl}/reviews`, changefreq: "monthly", priority: "0.70" },
     { loc: `${baseUrl}/get-curtain-quote`, changefreq: "monthly", priority: "0.80" },
     { loc: `${baseUrl}/arlo-curtain-advisor`, changefreq: "weekly", priority: "0.75" },
     { loc: `${baseUrl}/made-in-uk-curtains`, changefreq: "monthly", priority: "0.60" },

@@ -37,6 +37,8 @@ const hasPermanentHostRedirect =
   nextConfig.includes('value: "apexcurtains.com"') &&
   nextConfig.includes('destination: "https://www.apexcurtains.com/:path*"');
 
+const curatedReviewCount = (reviewsPage.match(/\n    name: "/g) || []).length;
+
 expect(
   "final canonical origin is www",
   hasWwwOrigin,
@@ -103,25 +105,25 @@ expect(
   "City pages must preserve the confirmed local address/locality model while connecting it to the main Apex organization."
 );
 expect(
-  "synthetic review wall is removed",
+  "reviews use a curated static selection",
   !reviewsPage.includes("function makeReviews") &&
     !reviewsPage.includes("sampleTexts") &&
-    reviewsPage.includes("verifiable customer or project record") &&
-    reviewsPage.includes("index: false"),
-  "The reviews route must not generate customer names, ratings or wording and should remain noindex until verified records are available."
+    curatedReviewCount === 10 &&
+    !reviewsPage.includes("index: false"),
+  "The reviews route should publish a curated set of 10 customer records without regenerating a 100-review wall."
 );
 expect(
-  "unverified homepage review quotes are removed",
+  "curated reviews route is included in sitemap",
+  sitemapPages.includes('loc: `${baseUrl}/reviews`'),
+  "The indexable curated reviews page should be submitted in the XML sitemap."
+);
+expect(
+  "homepage does not regenerate review identities",
   !reviewsPreview.includes("Sarah L") &&
     !reviewsPreview.includes("David R") &&
     !reviewsPreview.includes("Emma W") &&
     reviewsPreview.includes("No generated names, ratings or review wording"),
-  "Homepage trust content must not display unsupported review identities or quotes."
-);
-expect(
-  "noindex reviews route is omitted from sitemap",
-  !sitemapPages.includes('loc: `${baseUrl}/reviews`'),
-  "A temporarily noindex reviews page should not be submitted in the XML sitemap."
+  "Homepage trust content should not invent or regenerate review identities or wording."
 );
 expect(
   "lightweight homepage intro preserves rendered content",

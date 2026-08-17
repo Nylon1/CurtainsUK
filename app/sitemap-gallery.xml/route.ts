@@ -4,6 +4,13 @@ import { buildXml, fullImageUrl, fullUrl } from "@/lib/sitemap-utils";
 
 export const dynamic = "force-dynamic";
 
+type GalleryProjectRow = {
+  slug?: string | null;
+  updated_at?: string | null;
+  created_at?: string | null;
+  image_url?: string | null;
+};
+
 function formatSitemapDate(dateValue?: string | Date | null) {
   if (!dateValue) return undefined;
 
@@ -29,9 +36,9 @@ export async function GET() {
     });
   }
 
-  const urls = (data || [])
-    .filter((project: any) => project.slug)
-    .map((project: any) => ({
+  const urls = ((data || []) as GalleryProjectRow[])
+    .filter((project) => Boolean(project.slug))
+    .map((project) => ({
       loc: fullUrl(`/gallery/${project.slug}`),
       lastmod: formatSitemapDate(project.updated_at || project.created_at),
       changefreq: "monthly",

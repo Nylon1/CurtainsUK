@@ -4,12 +4,9 @@ export default function robots() {
       {
         userAgent: "*",
         allow: "/",
-        disallow: [
-          "/admin",
-          "/api",
-        ],
+        disallow: ["/admin", "/api"],
       },
     ],
-    sitemap: "https://apexcurtains.com/sitemap.xml",
+    sitemap: "https://www.apexcurtains.com/sitemap.xml",
   };
 }

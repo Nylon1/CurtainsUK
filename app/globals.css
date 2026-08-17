@@ -5,6 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-white: var(--brand-cream);
+  --color-apex-navy: var(--brand-navy);
+  --color-apex-slate: var(--brand-slate);
+  --color-apex-cream: var(--brand-cream);
+  --color-apex-muted: var(--brand-muted);
+  --color-apex-gold: var(--brand-gold);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -53,6 +59,19 @@
 }
 
 :root {
+  /* Shared surface hierarchy for the Apex interiors palette. */
+  --brand-navy: #0b2133;
+  --brand-slate: #1b405b;
+  --brand-slate-hover: #214a67;
+  --brand-cream: #f4f0e8;
+  --brand-muted: #c8d1d8;
+  --brand-gold: #d6b56b;
+  --brand-card-border: rgba(214, 181, 107, 0.13);
+  --background: var(--brand-navy);
+  --foreground: var(--brand-cream);
+  --card: var(--brand-slate);
+  --card-foreground: var(--brand-cream);
+
   /*
    * Apex navy palette
    * Sampled from the supplied visual reference and normalised for screens.
@@ -63,10 +82,6 @@
   --apex-navy-850: #0c385e;
   --apex-navy-900: #082b49;
   --apex-navy-950: #061a2d;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
@@ -74,11 +89,11 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: var(--brand-muted);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
+  --border: var(--brand-card-border);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.809 0.105 251.813);
@@ -142,17 +157,45 @@
 
   body {
     background:
-      radial-gradient(circle at 12% 8%, rgba(245, 211, 138, 0.10), transparent 20%),
-      radial-gradient(circle at 70% 10%, rgba(28, 112, 174, 0.30), transparent 34%),
-      radial-gradient(circle at 50% 100%, rgba(245, 211, 138, 0.05), transparent 30%),
-      linear-gradient(135deg, var(--apex-navy-950), var(--apex-navy-850) 48%, var(--apex-navy-950));
-    color: white;
+      radial-gradient(circle at 12% 8%, rgba(214, 181, 107, 0.08), transparent 18%),
+      radial-gradient(circle at 88% 12%, rgba(27, 64, 91, 0.22), transparent 20%),
+      linear-gradient(to bottom, var(--brand-navy), #091c2b 100%);
+    color: var(--brand-cream);
     min-height: 100vh;
   }
 
+  main {
+    background-color: var(--brand-navy) !important;
+  }
+
   ::selection {
-    background: rgba(245, 211, 138, 0.25);
-    color: white;
+    background: rgba(214, 181, 107, 0.25);
+    color: var(--brand-cream);
+  }
+}
+
+/*
+ * Apex card hierarchy
+ * Existing pages share these rounded, bordered surface patterns. Keeping the
+ * mapping here lets the whole site use one premium colour system without
+ * changing component structure or introducing page-by-page colour drift.
+ */
+@layer utilities {
+  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-white/"]:not([class*="rounded-full"]):not([class*="bg-[#f5d38a]"]):not([class*="bg-[#E5C07B]"]),
+  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-black/20"]:not([class*="rounded-full"]) {
+    background-color: var(--brand-slate) !important;
+    border-color: var(--brand-card-border) !important;
+    backdrop-filter: none !important;
+  }
+
+  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-white/"]:not([class*="rounded-full"]):hover,
+  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-black/20"]:not([class*="rounded-full"]):hover {
+    background-color: var(--brand-slate-hover) !important;
+  }
+
+  :where(p, li, dd)[class*="text-white/"],
+  :where(p, li, dd)[class*="text-slate-"] {
+    color: var(--brand-muted) !important;
   }
 }
 

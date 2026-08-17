@@ -37,6 +37,12 @@ export default function DesignDetailLinks() {
           <p className="mt-5 text-base leading-8 text-[#C8D1D8]">
             The window shape is only one part of the design. The finished result also depends on how the curtain is headed, what it is made from, how it is lined and which finishing details are used.
           </p>
+          <Link
+            href="/curtain-design-guide"
+            className="mt-6 inline-flex rounded-full border border-[#d6b56b]/30 bg-[#d6b56b]/10 px-5 py-3 text-sm font-semibold text-[#F4F0E8] transition hover:bg-[#d6b56b]/15"
+          >
+            Follow the full curtain design journey
+          </Link>
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

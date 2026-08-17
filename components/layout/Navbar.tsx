@@ -14,6 +14,12 @@ const navItems = [
     children: [
       { label: "Measure + Consultation", href: "/services/measure-consultation" },
       { label: "Design + Make Curtains", href: "/services/design-make-curtains" },
+      { label: "Curtain Design Guide", href: "/curtain-design-guide" },
+      { label: "Curtain Headings", href: "/curtain-headings" },
+      { label: "Curtain Linings", href: "/curtain-linings" },
+      { label: "Curtain Fabrics", href: "/curtain-fabrics" },
+      { label: "Curtain Accessories", href: "/curtain-accessories" },
+      { label: "Curtain Tracks", href: "/curtain-tracks" },
       { label: "Premium Installation", href: "/services/premium-installation" },
     ],
   },
@@ -57,7 +63,6 @@ export default function Navbar() {
           }`}
         >
           <div className="flex items-center justify-between px-3 py-2 sm:px-5 sm:py-3">
-            {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="relative h-10 w-[170px] sm:h-12 sm:w-[210px]">
                 <Image
@@ -70,7 +75,6 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden items-center gap-2 lg:flex xl:gap-3">
               {navItems.map((item) => {
                 const active = isActive(item.href);
@@ -90,7 +94,7 @@ export default function Navbar() {
                         <ChevronDown className="ml-1 h-4 w-4 transition group-hover:rotate-180" />
                       </Link>
 
-                      <div className="invisible absolute left-0 top-full z-50 mt-3 w-[260px] rounded-3xl border border-white/10 bg-apex-navy-950/95 p-3 opacity-0 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                      <div className="invisible absolute left-0 top-full z-50 mt-3 max-h-[70vh] w-[290px] overflow-y-auto rounded-3xl border border-white/10 bg-apex-navy-950/95 p-3 opacity-0 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
@@ -127,7 +131,6 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Desktop Buttons */}
             <div className="hidden items-center gap-3 lg:flex">
               <Link
                 href="/arlo-curtain-advisor"
@@ -144,7 +147,6 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
@@ -157,11 +159,9 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[60] bg-apex-navy-950/95 backdrop-blur-lg lg:hidden">
+        <div className="fixed inset-0 z-[60] overflow-y-auto bg-apex-navy-950/95 backdrop-blur-lg lg:hidden">
           <div className="flex items-center justify-between px-4 py-3">
-            {/* Mobile Logo */}
             <Link href="/" className="flex items-center">
               <div className="relative h-10 w-[180px]">
                 <Image
@@ -184,7 +184,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="px-4 pt-2">
+          <div className="px-4 pb-8 pt-2">
             <div className="rounded-[28px] border border-white/10 bg-white/5 p-4">
               <div className="mb-4 flex flex-col gap-2">
                 {navItems.map((item) => {

@@ -1,82 +1,143 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { MapPin, ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import { cityPages } from "@/lib/cities";
 
-export const metadata = {
-  title: "Areas We Cover | Apex Curtains",
+const SITE_URL = "https://www.apexcurtains.com";
+const canonicalUrl = `${SITE_URL}/areas`;
+
+export const metadata: Metadata = {
+  title: { absolute: "Areas We Cover | Apex Curtains" },
   description:
-    "Explore UK areas we cover for bespoke curtains for apex, angled, triangular and unusual windows.",
+    "Explore UK service areas for specialist curtains for apex, angled, triangular, gable-end and unusual architectural windows.",
+  alternates: { canonical: canonicalUrl },
+  openGraph: {
+    title: "Areas We Cover | Apex Curtains",
+    description:
+      "Find Apex Curtains service areas and local specialist guidance for difficult architectural windows across the UK.",
+    url: canonicalUrl,
+    siteName: "Apex Curtains",
+    type: "website",
+  },
 };
 
+const regionGroups = Array.from(
+  cityPages.reduce((groups, city) => {
+    const existing = groups.get(city.region) || [];
+    existing.push(city);
+    groups.set(city.region, existing);
+    return groups;
+  }, new Map<string, typeof cityPages>())
+).sort(([a], [b]) => a.localeCompare(b));
+
 export default function AreasPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: "Areas We Cover",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${SITE_URL}/#organization` },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${canonicalUrl}#areas`,
+        itemListElement: cityPages.map((city, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: city.name,
+          url: `${SITE_URL}/areas/${city.slug}`,
+        })),
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen overflow-hidden bg-apex-navy-900 text-white">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute left-[8%] top-[8%] h-[320px] w-[320px] rounded-full bg-[#f5d38a]/10 blur-[120px]" />
-        <div className="absolute right-[10%] top-[20%] h-[280px] w-[280px] rounded-full bg-sky-400/10 blur-[120px]" />
-        <div className="absolute bottom-[8%] left-[35%] h-[260px] w-[260px] rounded-full bg-[#f5d38a]/8 blur-[120px]" />
-      </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
 
-      <section className="relative mx-auto max-w-7xl px-4 pb-16 pt-24 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-            <nav
-  aria-label="Breadcrumb"
-  className="mb-8 flex flex-wrap items-center gap-2 text-sm"
->
-  <Link href="/" className="text-white/45 transition hover:text-white">
-    Home
-  </Link>
-  <span className="text-white/25">/</span>
-  <Link href="/areas" className="text-white/45 transition hover:text-white">
-    Areas
-  </Link>
-  <span className="text-white/25">/</span>
-  <span className="text-[#f5d38a]">Areas</span>
-</nav>
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#f5d38a]/20 bg-[#f5d38a]/10 px-4 py-2 text-xs uppercase tracking-[0.24em] text-[#f5d38a]">
+      <section className="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pt-36">
+        <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm">
+          <Link href="/" className="text-white/45 transition hover:text-white">
+            Home
+          </Link>
+          <span className="text-white/25">/</span>
+          <span className="text-[#d6b56b]">Areas</span>
+        </nav>
+
+        <div className="max-w-4xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#d6b56b]/25 bg-[#d6b56b]/10 px-4 py-2 text-xs uppercase tracking-[0.24em] text-[#d6b56b]">
             <MapPin className="h-4 w-4" />
-            Areas We Cover
+            UK service areas
           </div>
 
           <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-7xl">
-            Bespoke curtains for
-            <span className="bg-gradient-to-r from-[#f5d38a] via-white to-[#f5d38a] bg-clip-text text-transparent">
-              {" "}apex and unusual windows across the UK
-            </span>
+            Specialist curtains for difficult windows across the UK
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">
-            We help homeowners across the UK dress apex, angled, triangular and gable end windows
-            with specialist curtain solutions designed around the shape of the space.
+          <p className="mt-6 max-w-3xl text-base leading-8 text-[#C8D1D8] sm:text-lg">
+            Our area pages connect local enquiries to the same specialist process used across Apex Curtains: identify the window shape, build the curtain specification, plan the track and installation, then review relevant project evidence where it is actually recorded.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {cityPages.map((city) => (
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            ["/window-types", "Start with the window", "Apex, triangular, gable-end, barn conversion and large glazing."],
+            ["/curtain-design-guide", "Build the specification", "Heading, fabric, lining, accessories and practical design choices."],
+            ["/curtain-tracks", "Plan the track", "Track route, fixing surface, curtain weight and operation."],
+            ["/gallery", "See recorded projects", "Use real case studies where the stored project data supports the comparison."],
+          ].map(([href, title, text]) => (
             <Link
-              key={city.slug}
-              href={`/areas/${city.slug}`}
-              className="group rounded-[28px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.28)] transition hover:border-[#f5d38a]/25 hover:bg-white/[0.06]"
+              key={href}
+              href={href}
+              className="rounded-[26px] border border-white/10 bg-[#1B405B] p-6 transition hover:-translate-y-0.5 hover:border-[#d6b56b]/35"
             >
-              <div className="text-sm uppercase tracking-[0.16em] text-[#f5d38a]/80">
-                {city.region}
-              </div>
-
-              <h2 className="mt-3 text-2xl font-semibold text-white">
-                {city.name}
-              </h2>
-
-              <p className="mt-4 text-sm leading-7 text-white/65">
-                {city.seoBlurb}
-              </p>
-
-              <div className="mt-6 inline-flex items-center gap-2 text-sm text-white/80 transition group-hover:text-[#f5d38a]">
-                View city page
-                <ArrowRight className="h-4 w-4" />
-              </div>
+              <h2 className="text-xl font-semibold text-[#F4F0E8]">{title}</h2>
+              <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">{text}</p>
             </Link>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl space-y-12 px-4 pb-24 sm:px-6 lg:px-8">
+        {regionGroups.map(([region, cities]) => (
+          <div key={region}>
+            <div className="flex flex-wrap items-end justify-between gap-4 border-b border-white/10 pb-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d6b56b]">
+                  Service region
+                </p>
+                <h2 className="mt-2 text-3xl font-semibold text-[#F4F0E8]">{region}</h2>
+              </div>
+              <p className="text-sm text-[#C8D1D8]">
+                {cities.length} {cities.length === 1 ? "area" : "areas"}
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {cities.map((city) => (
+                <Link
+                  key={city.slug}
+                  href={`/areas/${city.slug}`}
+                  className="group rounded-[26px] border border-white/10 bg-white/[0.04] p-6 transition hover:border-[#d6b56b]/35 hover:bg-white/[0.06]"
+                >
+                  <h3 className="text-2xl font-semibold text-[#F4F0E8]">{city.name}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">{city.seoBlurb}</p>
+                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#d6b56b]">
+                    View local guidance
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
     </main>
   );

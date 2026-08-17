@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LocalAuthoritySection from "@/components/seo/LocalAuthoritySection";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -19,6 +20,13 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default function AreaCityLayout({ children }: LayoutProps) {
-  return children;
+export default async function AreaCityLayout({ children, params }: LayoutProps) {
+  const { city } = await params;
+
+  return (
+    <>
+      {children}
+      <LocalAuthoritySection citySlug={city} />
+    </>
+  );
 }

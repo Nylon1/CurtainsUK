@@ -118,12 +118,13 @@ expect(
   "The indexable curated reviews page should be submitted in the XML sitemap."
 );
 expect(
-  "homepage does not regenerate review identities",
+  "homepage points to curated reviews without regenerating review records",
   !reviewsPreview.includes("Sarah L") &&
     !reviewsPreview.includes("David R") &&
     !reviewsPreview.includes("Emma W") &&
-    reviewsPreview.includes("No generated names, ratings or review wording"),
-  "Homepage trust content should not invent or regenerate review identities or wording."
+    reviewsPreview.includes('href="/reviews"') &&
+    reviewsPreview.includes("curated selection of real customer reviews"),
+  "Homepage trust content should link to the curated reviews page without rebuilding a separate generated review wall."
 );
 expect(
   "lightweight homepage intro preserves rendered content",

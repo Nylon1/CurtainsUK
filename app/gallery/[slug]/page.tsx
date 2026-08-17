@@ -22,6 +22,14 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+const SITE_URL = "https://www.apexcurtains.com";
+
+function absoluteImageUrl(value?: string | null) {
+  if (!value) return undefined;
+  if (/^https?:\/\//i.test(value)) return value;
+  return `${SITE_URL}${value.startsWith("/") ? value : `/${value}`}`;
+}
+
 function withLinks(text?: string) {
   if (!text) return "";
 
@@ -56,11 +64,13 @@ export async function generateMetadata({
 
   if (!data) {
     return {
-      title: "Gallery Project | Apex Curtains",
+      title: { absolute: "Gallery Project | Apex Curtains" },
       description: "View a recent curtain installation project by Apex Curtains.",
+      robots: { index: false, follow: true },
     };
   }
 
+  const canonicalUrl = `${SITE_URL}/gallery/${data.slug || slug}`;
   const title = `${data.title} | Apex Curtains Gallery`;
   const description =
     data.summary ||
@@ -68,23 +78,24 @@ export async function generateMetadata({
     `View this ${data.category || "curtain"} installation project by Apex Curtains${
       data.location ? ` in ${data.location}` : ""
     }.`;
+  const imageUrl = absoluteImageUrl(data.image_url);
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
-      canonical: `https://apexcurtains.com/gallery/${data.slug || slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title,
       description,
-      url: `https://apexcurtains.com/gallery/${data.slug || slug}`,
+      url: canonicalUrl,
       siteName: "Apex Curtains",
       type: "article",
-      images: data.image_url
+      images: imageUrl
         ? [
             {
-              url: data.image_url,
+              url: imageUrl,
               alt: data.title,
             },
           ]
@@ -94,7 +105,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: data.image_url ? [data.image_url] : [],
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
@@ -178,25 +189,68 @@ export default async function GalleryPage({ params }: PageProps) {
     return notFound();
   }
 
+  const canonicalUrl = `${SITE_URL}/gallery/${data.slug || slug}`;
+  const imageUrl = absoluteImageUrl(data.image_url);
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: data.title,
-    description:
-      data.summary ||
-      data.brief ||
-      `Apex Curtains project page for ${data.title}.`,
-    image: data.image_url ? [data.image_url] : [],
-    datePublished: data.created_at || undefined,
-    author: {
-      "@type": "Organization",
-      name: "Apex Curtains",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Apex Curtains",
-    },
-    mainEntityOfPage: `https://apexcurtains.com/gallery/${data.slug || slug}`,
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${canonicalUrl}#article`,
+        headline: data.title,
+        description:
+          data.summary ||
+          data.brief ||
+          `Apex Curtains project page for ${data.title}.`,
+        image: imageUrl ? [imageUrl] : [],
+        datePublished: data.created_at || undefined,
+        mainEntityOfPage: {
+          "@id": `${canonicalUrl}#webpage`,
+        },
+        author: {
+          "@id": `${SITE_URL}/#organization`,
+        },
+        publisher: {
+          "@id": `${SITE_URL}/#organization`,
+        },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: data.title,
+        isPartOf: {
+          "@id": `${SITE_URL}/#website`,
+        },
+        about: {
+          "@id": `${canonicalUrl}#article`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Gallery",
+            item: `${SITE_URL}/gallery`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: data.title,
+            item: canonicalUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -272,7 +326,6 @@ export default async function GalleryPage({ params }: PageProps) {
       </section>
 
       <div className="mx-auto max-w-6xl px-6 pb-20 pt-10 md:px-8">
-        {/* Golden Gallery Image */}
         {data.image_url && (
           <section className="-mt-24 mb-16">
             <div className="mx-auto max-w-4xl">
@@ -307,7 +360,6 @@ export default async function GalleryPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* Guided Visual Story */}
         <section className="mb-16">
           <div className="mx-auto max-w-5xl text-center">
             <p className="mb-4 inline-flex items-center rounded-full border border-[#e5dcc8] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#8b7a54] shadow-sm">
@@ -356,7 +408,6 @@ export default async function GalleryPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Project Story Text */}
         <section className="mb-14">
           <div className="mx-auto max-w-4xl rounded-[34px] border border-[#efe7d7] bg-white p-7 shadow-[0_22px_80px_rgba(35,28,18,0.08)] md:p-10">
             <p className="mb-4 inline-flex items-center rounded-full border border-[#e5dcc8] bg-[#f8f6f1] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#8b7a54]">
@@ -437,7 +488,6 @@ export default async function GalleryPage({ params }: PageProps) {
         </section>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Main Content */}
           <div className="space-y-8 lg:col-span-2">
             {data.summary && (
               <ContentSection title="Project Overview">
@@ -533,7 +583,6 @@ export default async function GalleryPage({ params }: PageProps) {
             </section>
           </div>
 
-          {/* Sidebar */}
           <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
             <div className="overflow-hidden rounded-[28px] bg-apex-navy-900 text-white shadow-[0_18px_60px_rgba(20,15,8,0.18)]">
               <div className="border-b border-white/10 bg-gradient-to-br from-[#d4ab5a]/18 to-transparent p-6">

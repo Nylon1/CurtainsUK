@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Camera, Sparkles } from "lucide-react";
+import TrackedLink from "@/components/analytics/TrackedLink";
 
 const galleryItems = [
   {
@@ -62,12 +64,14 @@ export default function GalleryShowcase() {
               <ArrowUpRight className="h-4 w-4" />
             </Link>
 
-            <Link
+            <TrackedLink
               href="/start-designing"
+              eventName="curtain_journey_start_click"
+              eventData={{ source: "homepage_gallery" }}
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm text-white/85 transition hover:border-[#f5d38a]/25 hover:bg-white/10"
             >
               Start your curtain journey
-            </Link>
+            </TrackedLink>
           </div>
         </div>
 
@@ -80,10 +84,12 @@ export default function GalleryShowcase() {
           <Link href={galleryItems[0].href} className="group block">
             <div className="relative overflow-hidden rounded-[38px] border border-white/10 bg-white/[0.04] shadow-[0_30px_100px_rgba(0,0,0,0.4)] transition duration-500 hover:-translate-y-1 hover:border-[#f5d38a]/28">
               <div className="absolute inset-0">
-                <img
+                <Image
                   src={galleryItems[0].image}
                   alt={galleryItems[0].title}
-                  className="h-[520px] w-full object-cover transition duration-[1200ms] group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 55vw"
+                  className="object-cover transition duration-[1200ms] group-hover:scale-105"
                 />
               </div>
 
@@ -130,10 +136,12 @@ export default function GalleryShowcase() {
             <Link href={item.href} className="group block">
               <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.04] shadow-[0_24px_80px_rgba(0,0,0,0.35)] transition duration-500 hover:-translate-y-1 hover:border-[#f5d38a]/28">
                 <div className="absolute inset-0">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    className="h-[280px] w-full object-cover transition duration-[1000ms] group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 1023px) 100vw, 50vw"
+                    className="object-cover transition duration-[1000ms] group-hover:scale-105"
                   />
                 </div>
 

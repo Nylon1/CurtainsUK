@@ -24,11 +24,25 @@ const navItems = [
     ],
   },
   { label: "Window Types", href: "/window-types" },
+  {
+    label: "Professionals",
+    href: "/professionals",
+    children: [
+      { label: "Professional & Specifier Hub", href: "/professionals" },
+      { label: "Interior Designers", href: "/professionals/interior-designers" },
+      { label: "Architects", href: "/professionals/architects" },
+      { label: "Developers + Housebuilders", href: "/professionals/developers-housebuilders" },
+      { label: "Contractors + Fit-out", href: "/professionals/contractors-fit-out" },
+      { label: "Specifier Resources", href: "/professionals/specifier-resources" },
+      { label: "Project Information Checklist", href: "/professionals/specifier-resources/project-information-checklist" },
+      { label: "Professional Project Review", href: "/professionals/project-review" },
+      { label: "Commercial Installation", href: "/commercial-curtain-track-installation" },
+    ],
+  },
   { label: "Gallery", href: "/gallery" },
   { label: "Reviews", href: "/reviews" },
-  { label: "Posts", href: "/advice" },
+  { label: "Advice", href: "/advice" },
   { label: "Areas", href: "/areas" },
-  { label: "Commercial", href: "/commercial-curtain-track-installation" },
   { label: "FAQ", href: "/faq", highlight: true },
 ];
 
@@ -94,7 +108,7 @@ export default function Navbar() {
                         <ChevronDown className="ml-1 h-4 w-4 transition group-hover:rotate-180" />
                       </Link>
 
-                      <div className="invisible absolute left-0 top-full z-50 mt-3 max-h-[70vh] w-[290px] overflow-y-auto rounded-3xl border border-white/10 bg-apex-navy-950/95 p-3 opacity-0 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                      <div className="invisible absolute left-0 top-full z-50 mt-3 max-h-[70vh] w-[310px] overflow-y-auto rounded-3xl border border-white/10 bg-apex-navy-950/95 p-3 opacity-0 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
@@ -227,6 +241,13 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-col gap-2">
+                <Link
+                  href="/professionals/project-review"
+                  className="inline-flex items-center justify-center rounded-full border border-[#E5C07B]/30 bg-[#E5C07B]/10 px-4 py-3 text-sm font-semibold text-[#f1d48b]"
+                >
+                  Professional project review
+                </Link>
+
                 <Link
                   href="/arlo-curtain-advisor"
                   className="inline-flex items-center justify-center rounded-full bg-[#E5C07B] px-4 py-3 text-sm font-semibold text-black"

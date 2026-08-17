@@ -3,29 +3,20 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const SESSION_KEY = "apex-entry-seen";
+const INTRO_DURATION_MS = 3200;
 
 export default function ApexEntryScreen() {
   const [showEntry, setShowEntry] = useState(true);
 
   useEffect(() => {
-    const seen = window.sessionStorage.getItem(SESSION_KEY) === "true";
-
-    if (seen) {
-      const hideSeenEntry = window.setTimeout(() => setShowEntry(false), 0);
-      return () => window.clearTimeout(hideSeenEntry);
-    }
-
     const autoDismiss = window.setTimeout(() => {
-      window.sessionStorage.setItem(SESSION_KEY, "true");
       setShowEntry(false);
-    }, 3200);
+    }, INTRO_DURATION_MS);
 
     return () => window.clearTimeout(autoDismiss);
   }, []);
 
   function handleEnter() {
-    window.sessionStorage.setItem(SESSION_KEY, "true");
     setShowEntry(false);
   }
 
@@ -78,7 +69,7 @@ export default function ApexEntryScreen() {
             Enter site
           </button>
 
-          <p className="mt-4 text-xs text-white/45">Intro closes automatically.</p>
+          <p className="mt-4 text-xs text-white/45">Intro closes automatically after 3.2 seconds.</p>
         </div>
       </div>
     </section>

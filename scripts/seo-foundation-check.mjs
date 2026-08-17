@@ -11,6 +11,7 @@ function expect(name, condition, detail) {
 }
 
 const layout = read("app/layout.tsx");
+const homePage = read("app/page.tsx");
 const robots = read("app/robots.ts");
 const sitemapUtils = read("lib/sitemap-utils.ts");
 const sitemapPages = read("app/sitemap-pages.xml/route.ts");
@@ -20,6 +21,7 @@ const galleryProjectPage = read("app/gallery/[slug]/page.tsx");
 const cityPage = read("app/areas/[city]/page.tsx");
 const reviewsPage = read("app/reviews/page.tsx");
 const reviewsPreview = read("components/homepage/ReviewsPreview.tsx");
+const mediaPage = read("app/seen-on-tv/page.tsx");
 const proxy = read("proxy.ts");
 const nextConfig = read("next.config.ts");
 
@@ -119,6 +121,23 @@ expect(
   "noindex reviews route is omitted from sitemap",
   !sitemapPages.includes('loc: `${baseUrl}/reviews`'),
   "A temporarily noindex reviews page should not be submitted in the XML sitemap."
+);
+expect(
+  "blocking homepage entry gate is removed",
+  !homePage.includes("ApexEntryScreen") && !fs.existsSync("components/ApexEntryScreen.tsx"),
+  "The homepage must render its primary content directly rather than behind a blocking entry overlay."
+);
+expect(
+  "20MB entry video is removed",
+  !fs.existsSync("public/videos/apex-entry.mp4"),
+  "The retired autoplay entry video must not remain as an unused 20MB production asset."
+);
+expect(
+  "unsupported media claims are withheld from indexing",
+  mediaPage.includes("index: false") &&
+    !mediaPage.includes("Sky Sports") &&
+    !sitemapPages.includes('loc: `${baseUrl}/seen-on-tv`'),
+  "Unsupported TV/media claims should be noindex and omitted from the sitemap until source records are documented."
 );
 
 const failed = checks.filter((check) => !check.ok);

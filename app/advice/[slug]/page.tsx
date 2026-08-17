@@ -27,8 +27,7 @@ const SITE_URL = "https://www.apexcurtains.com";
 const PERMANENT_ADVICE_REDIRECTS: Record<string, string> = {
   "best-curtains-for-apex-windows-expert-guide":
     "/advice/best-curtains-for-apex-windows-styles-that-actually-work",
-  "can-you-put-curtains-on-angled-windows":
-    "/advice/what-curtain-track-is-best-for-apex-windows",
+  "can-you-put-curtains-on-angled-windows": "/apex-curtains",
 };
 
 function redirectLegacyAdviceSlug(slug: string) {

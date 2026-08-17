@@ -14,6 +14,8 @@ export async function GET() {
     { loc: `${baseUrl}/services/measure-consultation`, changefreq: "monthly", priority: "0.88" },
     { loc: `${baseUrl}/services/design-make-curtains`, changefreq: "monthly", priority: "0.88" },
     { loc: `${baseUrl}/services/premium-installation`, changefreq: "monthly", priority: "0.90" },
+    { loc: `${baseUrl}/curtain-tracks`, changefreq: "monthly", priority: "0.92" },
+    { loc: `${baseUrl}/curtain-solutions`, changefreq: "monthly", priority: "0.90" },
     {
       loc: `${baseUrl}/window-types`,
       changefreq: "weekly",

@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#0a0a0d] px-4 text-white">
+    <main className="flex min-h-screen items-center justify-center bg-apex-navy-900 px-4 text-white">
       <div className="w-full max-w-md rounded-[28px] border border-white/10 bg-white/[0.04] p-8">
         <div className="text-xs uppercase tracking-[0.22em] text-[#f5d38a]">
           Admin Login

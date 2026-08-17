@@ -52,7 +52,7 @@ export default function Navbar() {
         <div
           className={`mx-auto max-w-7xl rounded-full border transition-all duration-300 ${
             scrolled
-              ? "border-white/15 bg-black/60 shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+              ? "border-white/15 bg-apex-navy-950/85 shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl"
               : "border-white/10 bg-white/5 backdrop-blur-md"
           }`}
         >
@@ -90,7 +90,7 @@ export default function Navbar() {
                         <ChevronDown className="ml-1 h-4 w-4 transition group-hover:rotate-180" />
                       </Link>
 
-                      <div className="invisible absolute left-0 top-full z-50 mt-3 w-[260px] rounded-3xl border border-white/10 bg-black/85 p-3 opacity-0 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                      <div className="invisible absolute left-0 top-full z-50 mt-3 w-[260px] rounded-3xl border border-white/10 bg-apex-navy-950/95 p-3 opacity-0 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
@@ -159,7 +159,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-lg lg:hidden">
+        <div className="fixed inset-0 z-[60] bg-apex-navy-950/95 backdrop-blur-lg lg:hidden">
           <div className="flex items-center justify-between px-4 py-3">
             {/* Mobile Logo */}
             <Link href="/" className="flex items-center">

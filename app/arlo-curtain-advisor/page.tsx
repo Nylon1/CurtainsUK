@@ -4,7 +4,7 @@ import ArloAssistant from "@/components/ArloAssistant"
 
 export default function ArloPage() {
   return (
-    <main className="min-h-screen bg-[#0a0a0d] text-white">
+    <main className="min-h-screen bg-apex-navy-900 text-white">
 
       <div className="mx-auto max-w-6xl px-6 py-20">
 

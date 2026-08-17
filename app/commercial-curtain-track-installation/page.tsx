@@ -102,10 +102,10 @@ const faqItems = [
 
 export default function CommercialCurtainTrackInstallationPage() {
   return (
-    <main className="bg-[#070707] text-white">
+    <main className="bg-apex-navy-950 text-white">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[#c8a45d]/30">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#2a2112_0%,#070707_45%,#030303_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#173b55_0%,#082b49_48%,#061a2d_100%)]" />
         <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(135deg,#ffffff_0.5px,transparent_0.5px)] bg-[length:18px_18px]" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32">
@@ -158,7 +158,7 @@ export default function CommercialCurtainTrackInstallationPage() {
       </section>
 
       {/* Case Study */}
-      <section className="border-y border-[#c8a45d]/20 bg-[#0c0c0c]">
+      <section className="border-y border-[#c8a45d]/20 bg-apex-navy-850">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
@@ -359,7 +359,7 @@ export default function CommercialCurtainTrackInstallationPage() {
       </section>
 
       {/* Readiness */}
-      <section className="border-b border-[#c8a45d]/20 bg-[#0d0d0d]">
+      <section className="border-b border-[#c8a45d]/20 bg-apex-navy-850">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <p className="text-sm uppercase tracking-[0.3em] text-[#c8a45d]">
             Project Readiness
@@ -526,7 +526,7 @@ export default function CommercialCurtainTrackInstallationPage() {
 </section>
 
 {/* Commercial Packages */}
-<section className="border-y border-[#c8a45d]/20 bg-[#0d0d0d]">
+<section className="border-y border-[#c8a45d]/20 bg-apex-navy-850">
   <div className="mx-auto max-w-7xl px-6 py-20">
     <p className="text-sm uppercase tracking-[0.3em] text-[#c8a45d]">
       Commercial Packages
@@ -612,7 +612,7 @@ export default function CommercialCurtainTrackInstallationPage() {
 </section>
 
 {/* Why This Matters */}
-<section className="border-y border-[#c8a45d]/20 bg-[#0b0b0b]">
+<section className="border-y border-[#c8a45d]/20 bg-apex-navy-900">
   <div className="mx-auto max-w-7xl px-6 py-20">
     <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
       <div>
@@ -644,7 +644,7 @@ export default function CommercialCurtainTrackInstallationPage() {
 </section>
 
 {/* Project Types */}
-<section className="bg-[#070707]">
+<section className="bg-apex-navy-950">
   <div className="mx-auto max-w-7xl px-6 py-20">
     <p className="text-sm uppercase tracking-[0.3em] text-[#c8a45d]">
       Project Types
@@ -702,7 +702,7 @@ export default function CommercialCurtainTrackInstallationPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-[#070707] px-6 py-20 text-center">
+      <section className="bg-apex-navy-950 px-6 py-20 text-center">
         <div className="mx-auto max-w-4xl">
           <p className="text-sm uppercase tracking-[0.3em] text-[#c8a45d]">
             Apex Curtains Commercial

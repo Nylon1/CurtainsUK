@@ -43,14 +43,14 @@ export default function AdminHomePage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#0a0a0d] p-8 text-white">
+      <main className="min-h-screen bg-apex-navy-900 p-8 text-white">
         Loading admin...
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0d] text-white">
+    <main className="min-h-screen bg-apex-navy-900 text-white">
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-8 md:p-10">
           <div className="text-xs uppercase tracking-[0.22em] text-[#f5d38a]">

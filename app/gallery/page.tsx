@@ -66,7 +66,7 @@ export default function GalleryPage() {
   }, [supabase]);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#0a0a0d] text-white">
+    <main className="min-h-screen overflow-hidden bg-apex-navy-900 text-white">
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute left-[8%] top-[8%] h-[320px] w-[320px] rounded-full bg-[#f5d38a]/10 blur-[120px]" />
         <div className="absolute right-[10%] top-[22%] h-[280px] w-[280px] rounded-full bg-sky-400/10 blur-[120px]" />
@@ -146,7 +146,7 @@ function ProjectShowcase({
       <div className="relative rounded-[34px] bg-gradient-to-br from-[#fff1b8] via-[#f5d38a] to-[#8a6425] p-[2px] shadow-[0_30px_100px_rgba(245,211,138,0.18)]">
         <div className="absolute -inset-3 -z-10 rounded-[42px] bg-[#f5d38a]/15 blur-2xl" />
 
-        <div className="rounded-[32px] bg-[#101010] p-3">
+        <div className="rounded-[32px] bg-apex-navy-950 p-3">
           <div className="relative overflow-hidden rounded-[26px] border border-white/10 bg-black">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#f5d38a33,transparent_42%),linear-gradient(135deg,#ffffff12,transparent_35%,#00000045)]" />
 
@@ -366,7 +366,7 @@ function ProjectModal({
           exit={{ opacity: 0, y: 30, scale: 0.97 }}
           transition={{ duration: 0.28 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative my-4 w-full overflow-hidden rounded-[34px] border border-white/10 bg-[#0d0d11] shadow-[0_50px_160px_rgba(0,0,0,0.7)] lg:my-8"
+          className="relative my-4 w-full overflow-hidden rounded-[34px] border border-white/10 bg-apex-navy-900 shadow-[0_50px_160px_rgba(0,0,0,0.7)] lg:my-8"
         >
           <button
             onClick={onClose}
@@ -433,7 +433,7 @@ function ProjectModal({
             <div className="relative mx-auto max-w-4xl rounded-[36px] bg-gradient-to-br from-[#fff1b8] via-[#f5d38a] to-[#8a6425] p-[2px] shadow-[0_35px_120px_rgba(245,211,138,0.22)]">
               <div className="absolute -inset-4 -z-10 rounded-[44px] bg-[#f5d38a]/20 blur-2xl" />
 
-              <div className="rounded-[34px] bg-[#151515] p-3 sm:p-4">
+              <div className="rounded-[34px] bg-apex-navy-900 p-3 sm:p-4">
                 <div className="relative overflow-hidden rounded-[26px] border border-white/10 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-30px_80px_rgba(0,0,0,0.55)]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#f5d38a33,transparent_42%),linear-gradient(135deg,#ffffff12,transparent_35%,#00000040)]" />
 

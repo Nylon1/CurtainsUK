@@ -207,7 +207,7 @@ export default async function GalleryPage({ params }: PageProps) {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[#eadfca] bg-[#171717] px-6 pt-32 text-white md:px-8 md:pt-40">
+      <section className="relative overflow-hidden border-b border-[#eadfca] bg-apex-navy-950 px-6 pt-32 text-white md:px-8 md:pt-40">
         <div className="absolute inset-0">
           <div className="absolute left-1/2 top-[-220px] h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-[#d4ab5a]/25 blur-[130px]" />
           <div className="absolute bottom-[-220px] left-[-120px] h-[420px] w-[420px] rounded-full bg-[#d4ab5a]/15 blur-[120px]" />
@@ -280,7 +280,7 @@ export default async function GalleryPage({ params }: PageProps) {
                 <div className="absolute -inset-4 -z-10 rounded-[48px] bg-[#d4ab5a]/25 blur-2xl" />
 
                 <div className="rounded-[38px] bg-[#fffaf0] p-3 md:p-4">
-                  <div className="relative overflow-hidden rounded-[30px] border border-[#e7d6a6] bg-[#101010] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-20px_60px_rgba(0,0,0,0.45)]">
+                  <div className="relative overflow-hidden rounded-[30px] border border-[#e7d6a6] bg-apex-navy-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-20px_60px_rgba(0,0,0,0.45)]">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#d4ab5a33,transparent_42%),linear-gradient(135deg,#ffffff10,transparent_35%,#00000030)]" />
 
                     <div className="absolute left-5 top-5 z-20 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#f0d38b] backdrop-blur-md">
@@ -489,7 +489,7 @@ export default async function GalleryPage({ params }: PageProps) {
               </ContentSection>
             )}
 
-            <section className="relative overflow-hidden rounded-[32px] bg-[#1f1f1f] p-7 text-white shadow-[0_18px_60px_rgba(20,15,8,0.18)] md:p-10">
+            <section className="relative overflow-hidden rounded-[32px] bg-apex-navy-900 p-7 text-white shadow-[0_18px_60px_rgba(20,15,8,0.18)] md:p-10">
               <div className="absolute right-[-120px] top-[-120px] h-[280px] w-[280px] rounded-full bg-[#d4ab5a]/20 blur-[80px]" />
 
               <div className="relative">
@@ -535,7 +535,7 @@ export default async function GalleryPage({ params }: PageProps) {
 
           {/* Sidebar */}
           <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
-            <div className="overflow-hidden rounded-[28px] bg-[#1f1f1f] text-white shadow-[0_18px_60px_rgba(20,15,8,0.18)]">
+            <div className="overflow-hidden rounded-[28px] bg-apex-navy-900 text-white shadow-[0_18px_60px_rgba(20,15,8,0.18)]">
               <div className="border-b border-white/10 bg-gradient-to-br from-[#d4ab5a]/18 to-transparent p-6">
                 <h3 className="text-2xl font-semibold">
                   Need curtains for a similar window?

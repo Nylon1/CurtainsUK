@@ -288,7 +288,7 @@ const bottomRef = useRef<HTMLDivElement | null>(null);
   const progress = (progressCount / 5) * 100;
 
   return (
-    <section className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#0f1014]/90 shadow-[0_30px_100px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+    <section className="relative overflow-hidden rounded-[34px] border border-white/10 bg-apex-navy-850/90 shadow-[0_30px_100px_rgba(0,0,0,0.45)] backdrop-blur-xl">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-10%] top-[-20%] h-64 w-64 rounded-full bg-[#f5d38a]/10 blur-3xl" />
         <div className="absolute bottom-[-15%] right-[-10%] h-64 w-64 rounded-full bg-sky-400/10 blur-3xl" />

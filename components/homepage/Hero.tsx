@@ -74,7 +74,7 @@ export default function Hero() {
     windowOptions.find((item) => item.id === activeId) ?? windowOptions[0];
 
   return (
-    <section className="relative overflow-hidden bg-[#0a0a0d] text-white">
+    <section className="apex-hero-surface relative overflow-hidden text-white">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[6%] top-[8%] h-[240px] w-[240px] rounded-full bg-[#f5d38a]/10 blur-[120px]" />
         <div className="absolute right-[10%] top-[18%] h-[260px] w-[260px] rounded-full bg-sky-400/8 blur-[140px]" />

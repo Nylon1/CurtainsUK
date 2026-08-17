@@ -402,14 +402,14 @@ export default function AdminProjectsPage() {
 
   if (!loaded) {
     return (
-      <main className="min-h-screen bg-[#0a0a0d] p-8 text-white">
+      <main className="min-h-screen bg-apex-navy-900 p-8 text-white">
         Loading admin...
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0d] text-white">
+    <main className="min-h-screen bg-apex-navy-900 text-white">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="mb-10">
           <div className="text-xs uppercase tracking-[0.22em] text-[#f5d38a]">

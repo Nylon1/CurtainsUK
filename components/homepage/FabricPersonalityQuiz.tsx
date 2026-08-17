@@ -230,7 +230,7 @@ export default function FabricPersonalityQuiz() {
   }
 
   return (
-    <section className="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#0b0b0f] to-[#0e0e14] py-24">
+    <section className="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-apex-navy-850 to-apex-navy-950 py-24">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[8%] top-[10%] h-[320px] w-[320px] rounded-full bg-[#f5d38a]/10 blur-[140px]" />
         <div className="absolute right-[10%] top-[22%] h-[280px] w-[280px] rounded-full bg-sky-400/10 blur-[140px]" />

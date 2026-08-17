@@ -1,6 +1,6 @@
 export default function ApexWindowCurtainsPage() {
   return (
-    <main className="min-h-screen bg-[#0a0a0d] px-6 py-24 text-white">
+    <main className="min-h-screen bg-apex-navy-900 px-6 py-24 text-white">
       <div className="mx-auto max-w-5xl">
         <h1 className="text-4xl font-semibold sm:text-5xl">
           Apex Window Curtains

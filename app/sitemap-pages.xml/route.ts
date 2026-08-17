@@ -47,6 +47,7 @@ export async function GET() {
     { loc: `${baseUrl}/made-in-uk-curtains`, changefreq: "monthly", priority: "0.60" },
     { loc: `${baseUrl}/price-promise`, changefreq: "monthly", priority: "0.60" },
     { loc: `${baseUrl}/press`, changefreq: "monthly", priority: "0.40" },
+    { loc: `${baseUrl}/seen-on-tv`, changefreq: "monthly", priority: "0.45" },
   ];
 
   return new NextResponse(buildXml(urls), {

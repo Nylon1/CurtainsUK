@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
@@ -146,7 +146,7 @@ const screenMeta = [
     key: "imageUpload",
     eyebrow: "Step 7",
     title: "Upload a photo of your window",
-    subtitle: "A clear photo helps us understand the shape and layout quickly.",
+    subtitle: "A clear photo is helpful for unusual glazing, but you can continue without one and add it later.",
   },
   {
     key: "name",
@@ -185,7 +185,6 @@ const screenMeta = [
     subtitle: "Check everything looks right before submitting.",
   },
 ] as const;
-
 
 export default function StartDesigningPage() {
   const searchParams = useSearchParams();
@@ -226,8 +225,14 @@ export default function StartDesigningPage() {
     photoName: prefillPhotoName,
   });
 
-  const current = screenMeta[step];
+  useEffect(() => {
+    const preview = form.imagePreview;
+    return () => {
+      if (preview.startsWith("blob:")) URL.revokeObjectURL(preview);
+    };
+  }, [form.imagePreview]);
 
+  const current = screenMeta[step];
   const progress = useMemo(() => ((step + 1) / totalSteps) * 100, [step]);
 
   const canProceed = useMemo(() => {
@@ -245,7 +250,7 @@ export default function StartDesigningPage() {
       case "headingStyle":
         return !!form.headingStyle;
       case "imageUpload":
-        return !!form.imageFile;
+        return true;
       case "name":
         return form.name.trim().length > 1;
       case "email":
@@ -354,8 +359,8 @@ export default function StartDesigningPage() {
           <div className="absolute bottom-[8%] left-[35%] h-[260px] w-[260px] rounded-full bg-[#f5d38a]/8 blur-[120px]" />
         </div>
 
-        <div className="relative mx-auto flex min-h-screen max-w-5xl items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
-          <div className="w-full rounded-[36px] border border-white/10 bg-white/[0.04] p-8 text-center shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-12">
+        <div className="relative mx-auto flex min-h-screen max-w-5xl items-center justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+          <div className="w-full rounded-[30px] border border-white/10 bg-white/[0.04] p-6 text-center shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:rounded-[36px] sm:p-12">
             <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#f5d38a] text-2xl text-black">
               ✓
             </div>
@@ -408,7 +413,7 @@ export default function StartDesigningPage() {
                     <img
                       src={form.imagePreview}
                       alt="Uploaded window"
-                      className="h-[360px] w-full rounded-xl object-contain"
+                      className="h-[260px] w-full rounded-xl object-contain sm:h-[360px]"
                     />
                   </div>
                 ) : (
@@ -419,7 +424,7 @@ export default function StartDesigningPage() {
                   <div className="text-sm text-white/50">What happens next</div>
 
                   <div className="mt-3 space-y-2 text-sm text-white/80">
-                    <p>• We review your design selections and window photo</p>
+                    <p>• We review your design selections and window photo if supplied</p>
                     <p>• We prepare the most suitable curtain approach</p>
                     <p>• We contact you as soon as possible</p>
                   </div>
@@ -458,8 +463,8 @@ export default function StartDesigningPage() {
         <div className="absolute bottom-[8%] left-[35%] h-[260px] w-[260px] rounded-full bg-[#f5d38a]/8 blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
-        <div className="mb-6 flex items-center justify-between gap-4">
+      <div className="relative mx-auto max-w-4xl px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
+        <div className="mb-4 flex items-center justify-between gap-4 sm:mb-6">
           <Link
             href="/"
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10"
@@ -474,39 +479,27 @@ export default function StartDesigningPage() {
         </div>
 
         {form.recommendationTitle && (
-          <div className="mb-6 rounded-[28px] border border-[#f5d38a]/20 bg-[#f5d38a]/10 p-5 shadow-[0_0_30px_rgba(245,211,138,0.08)]">
+          <div className="mb-5 rounded-[24px] border border-[#f5d38a]/20 bg-[#f5d38a]/10 p-4 shadow-[0_0_30px_rgba(245,211,138,0.08)] sm:mb-6 sm:rounded-[28px] sm:p-5">
             <div className="text-xs uppercase tracking-[0.18em] text-[#f5d38a]">
               Arlo recommendation
             </div>
 
-            <div className="mt-3 text-2xl font-semibold text-white">
+            <div className="mt-3 text-xl font-semibold text-white sm:text-2xl">
               {form.recommendationTitle}
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="text-sm text-white/75">
-                <span className="text-white/45">Window:</span> {form.windowType || "—"}
-              </div>
-              <div className="text-sm text-white/75">
-                <span className="text-white/45">Room:</span> {form.roomType || "—"}
-              </div>
-              <div className="text-sm text-white/75">
-                <span className="text-white/45">Priority:</span> {form.arloPriority || "—"}
-              </div>
-              <div className="text-sm text-white/75">
-                <span className="text-white/45">Style:</span> {form.arloStyle || "—"}
-              </div>
-              <div className="text-sm text-white/75">
-                <span className="text-white/45">Suggested heading:</span> {form.suggestedHeading || "—"}
-              </div>
-              <div className="text-sm text-white/75">
-                <span className="text-white/45">Suggested lining:</span> {form.suggestedLining || "—"}
-              </div>
+              <div className="text-sm text-white/75"><span className="text-white/45">Window:</span> {form.windowType || "—"}</div>
+              <div className="text-sm text-white/75"><span className="text-white/45">Room:</span> {form.roomType || "—"}</div>
+              <div className="text-sm text-white/75"><span className="text-white/45">Priority:</span> {form.arloPriority || "—"}</div>
+              <div className="text-sm text-white/75"><span className="text-white/45">Style:</span> {form.arloStyle || "—"}</div>
+              <div className="text-sm text-white/75"><span className="text-white/45">Suggested heading:</span> {form.suggestedHeading || "—"}</div>
+              <div className="text-sm text-white/75"><span className="text-white/45">Suggested lining:</span> {form.suggestedLining || "—"}</div>
             </div>
           </div>
         )}
 
-        <div className="mb-8 h-2 overflow-hidden rounded-full bg-white/10">
+        <div className="mb-5 h-2 overflow-hidden rounded-full bg-white/10 sm:mb-8">
           <motion.div
             className="h-full rounded-full bg-[#f5d38a]"
             animate={{ width: `${progress}%` }}
@@ -515,8 +508,8 @@ export default function StartDesigningPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="flex min-h-[720px] flex-col rounded-[36px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-8 lg:p-10">
-            <div className="mb-8">
+          <div className="flex min-h-[560px] flex-col rounded-[28px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:min-h-[720px] sm:rounded-[36px] sm:p-8 lg:p-10">
+            <div className="mb-5 sm:mb-8">
               <div className="text-xs uppercase tracking-[0.24em] text-white/40">
                 Start Designing
               </div>
@@ -534,165 +527,64 @@ export default function StartDesigningPage() {
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   className="w-full"
                 >
-                  <div className="mb-10">
+                  <div className="mb-7 sm:mb-10">
                     <div className="text-xs uppercase tracking-[0.22em] text-[#f5d38a]">
                       {current.eyebrow}
                     </div>
-                    <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+                    <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:mt-4 sm:text-4xl lg:text-5xl">
                       {current.title}
                     </h1>
-                    <p className="mt-4 max-w-2xl text-base leading-8 text-white/65">
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-white/65 sm:mt-4 sm:text-base sm:leading-8">
                       {current.subtitle}
                     </p>
                   </div>
 
-                  {current.key === "windowType" && (
-                    <OptionGrid
-                      options={optionGroups.windowType}
-                      value={form.windowType}
-                      onSelect={(value) => updateField("windowType", value)}
-                    />
-                  )}
-
-                  {current.key === "purpose" && (
-                    <OptionGrid
-                      options={optionGroups.purpose}
-                      value={form.purpose}
-                      onSelect={(value) => updateField("purpose", value)}
-                    />
-                  )}
-
-                  {current.key === "fabricStyle" && (
-                    <OptionGrid
-                      options={optionGroups.fabricStyle}
-                      value={form.fabricStyle}
-                      onSelect={(value) => updateField("fabricStyle", value)}
-                    />
-                  )}
-
-                  {current.key === "liningType" && (
-                    <OptionGrid
-                      options={optionGroups.liningType}
-                      value={form.liningType}
-                      onSelect={(value) => updateField("liningType", value)}
-                    />
-                  )}
-
-                  {current.key === "roomType" && (
-                    <OptionGrid
-                      options={optionGroups.roomType}
-                      value={form.roomType}
-                      onSelect={(value) => updateField("roomType", value)}
-                    />
-                  )}
-
-                  {current.key === "headingStyle" && (
-                    <OptionGrid
-                      options={optionGroups.headingStyle}
-                      value={form.headingStyle}
-                      onSelect={(value) => updateField("headingStyle", value)}
-                    />
-                  )}
+                  {current.key === "windowType" && <OptionGrid options={optionGroups.windowType} value={form.windowType} onSelect={(value) => updateField("windowType", value)} />}
+                  {current.key === "purpose" && <OptionGrid options={optionGroups.purpose} value={form.purpose} onSelect={(value) => updateField("purpose", value)} />}
+                  {current.key === "fabricStyle" && <OptionGrid options={optionGroups.fabricStyle} value={form.fabricStyle} onSelect={(value) => updateField("fabricStyle", value)} />}
+                  {current.key === "liningType" && <OptionGrid options={optionGroups.liningType} value={form.liningType} onSelect={(value) => updateField("liningType", value)} />}
+                  {current.key === "roomType" && <OptionGrid options={optionGroups.roomType} value={form.roomType} onSelect={(value) => updateField("roomType", value)} />}
+                  {current.key === "headingStyle" && <OptionGrid options={optionGroups.headingStyle} value={form.headingStyle} onSelect={(value) => updateField("headingStyle", value)} />}
 
                   {current.key === "imageUpload" && (
                     <div>
-                      <label className="group flex min-h-[340px] cursor-pointer flex-col items-center justify-center rounded-[28px] border border-dashed border-white/15 bg-white/5 p-8 text-center transition hover:border-[#f5d38a]/30 hover:bg-white/10">
-                        <div className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-[#f5d38a]/20 bg-[#f5d38a]/10 text-[#f5d38a]">
+                      <label className="group flex min-h-[240px] cursor-pointer flex-col items-center justify-center rounded-[24px] border border-dashed border-white/15 bg-white/5 p-6 text-center transition hover:border-[#f5d38a]/30 hover:bg-white/10 sm:min-h-[340px] sm:rounded-[28px] sm:p-8">
+                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-[#f5d38a]/20 bg-[#f5d38a]/10 text-[#f5d38a] sm:h-16 sm:w-16">
                           <ImagePlus className="h-7 w-7" />
                         </div>
-                        <div className="mt-6 text-xl font-medium">
-                          Click to upload your window photo
+                        <div className="mt-5 text-lg font-medium sm:mt-6 sm:text-xl">
+                          Add your window photo
                         </div>
                         <div className="mt-2 text-sm text-white/55">
-                          JPG, PNG or WebP
+                          Optional • JPG, PNG or WebP
                         </div>
-                        {form.photoName && (
-                          <div className="mt-4 text-sm text-[#f5d38a]">
-                            Arlo note: {form.photoName}
-                          </div>
-                        )}
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={handleImageChange}
-                        />
+                        {form.photoName && <div className="mt-4 text-sm text-[#f5d38a]">Arlo note: {form.photoName}</div>}
+                        <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
                       </label>
 
                       {form.imagePreview && (
-                        <div className="mt-6 overflow-hidden rounded-[28px] border border-white/10 bg-black/30">
-                          <img
-                            src={form.imagePreview}
-                            alt="Uploaded window preview"
-                            className="h-[360px] w-full object-contain"
-                          />
+                        <div className="mt-5 overflow-hidden rounded-[24px] border border-white/10 bg-black/30 sm:mt-6 sm:rounded-[28px]">
+                          <img src={form.imagePreview} alt="Uploaded window preview" className="h-[260px] w-full object-contain sm:h-[360px]" />
                         </div>
                       )}
                     </div>
                   )}
 
-                  {current.key === "name" && (
-                    <SingleInput
-                      icon={<User className="h-5 w-5" />}
-                      type="text"
-                      value={form.name}
-                      onChange={(value) => updateField("name", value)}
-                      placeholder="Enter your full name"
-                    />
-                  )}
-
-                  {current.key === "email" && (
-                    <SingleInput
-                      icon={<Mail className="h-5 w-5" />}
-                      type="email"
-                      value={form.email}
-                      onChange={(value) => updateField("email", value)}
-                      placeholder="Enter your email address"
-                    />
-                  )}
-
-                  {current.key === "phone" && (
-                    <SingleInput
-                      icon={<Phone className="h-5 w-5" />}
-                      type="tel"
-                      value={form.phone}
-                      onChange={(value) => updateField("phone", value)}
-                      placeholder="Enter your phone number"
-                    />
-                  )}
-
-                  {current.key === "postcode" && (
-                    <SingleInput
-                      icon={<MapPin className="h-5 w-5" />}
-                      type="text"
-                      value={form.postcode}
-                      onChange={(value) => updateField("postcode", value)}
-                      placeholder="Enter your postcode"
-                    />
-                  )}
-
-                  {current.key === "contactTime" && (
-                    <OptionGrid
-                      options={optionGroups.contactTime}
-                      value={form.contactTime}
-                      onSelect={(value) => updateField("contactTime", value)}
-                    />
-                  )}
+                  {current.key === "name" && <SingleInput icon={<User className="h-5 w-5" />} type="text" value={form.name} onChange={(value) => updateField("name", value)} placeholder="Enter your full name" />}
+                  {current.key === "email" && <SingleInput icon={<Mail className="h-5 w-5" />} type="email" value={form.email} onChange={(value) => updateField("email", value)} placeholder="Enter your email address" />}
+                  {current.key === "phone" && <SingleInput icon={<Phone className="h-5 w-5" />} type="tel" value={form.phone} onChange={(value) => updateField("phone", value)} placeholder="Enter your phone number" />}
+                  {current.key === "postcode" && <SingleInput icon={<MapPin className="h-5 w-5" />} type="text" value={form.postcode} onChange={(value) => updateField("postcode", value)} placeholder="Enter your postcode" />}
+                  {current.key === "contactTime" && <OptionGrid options={optionGroups.contactTime} value={form.contactTime} onSelect={(value) => updateField("contactTime", value)} />}
 
                   {current.key === "review" && (
                     <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-                      <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+                      <div className="rounded-[24px] border border-white/10 bg-white/5 p-5 sm:rounded-[28px] sm:p-6">
                         {form.recommendationTitle && (
                           <div className="mb-5 rounded-[18px] border border-[#f5d38a]/20 bg-[#f5d38a]/10 p-4">
-                            <div className="text-xs uppercase tracking-[0.14em] text-[#f5d38a]">
-                              Arlo recommendation
-                            </div>
-                            <div className="mt-2 text-base font-medium text-white">
-                              {form.recommendationTitle}
-                            </div>
+                            <div className="text-xs uppercase tracking-[0.14em] text-[#f5d38a]">Arlo recommendation</div>
+                            <div className="mt-2 text-base font-medium text-white">{form.recommendationTitle}</div>
                           </div>
                         )}
-
                         <ReviewItem label="Window type" value={form.windowType} />
                         <ReviewItem label="Main goal" value={form.purpose} />
                         <ReviewItem label="Fabric style" value={form.fabricStyle} />
@@ -706,18 +598,14 @@ export default function StartDesigningPage() {
                         <ReviewItem label="Best contact time" value={form.contactTime} />
                       </div>
 
-                      <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+                      <div className="rounded-[24px] border border-white/10 bg-white/5 p-5 sm:rounded-[28px] sm:p-6">
                         <div className="text-sm text-white/50">Uploaded window photo</div>
                         {form.imagePreview ? (
                           <div className="mt-4 overflow-hidden rounded-[22px] border border-white/10 bg-black/30">
-                            <img
-                              src={form.imagePreview}
-                              alt="Uploaded window"
-                              className="h-[360px] w-full object-contain"
-                            />
+                            <img src={form.imagePreview} alt="Uploaded window" className="h-[260px] w-full object-contain sm:h-[360px]" />
                           </div>
                         ) : (
-                          <div className="mt-4 text-white/50">No image uploaded</div>
+                          <div className="mt-4 text-white/50">No image uploaded — you can provide one later.</div>
                         )}
                       </div>
                     </div>
@@ -726,12 +614,12 @@ export default function StartDesigningPage() {
               </AnimatePresence>
             </div>
 
-            <div className="mt-10 flex items-center justify-between gap-4">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:flex sm:items-center sm:justify-between sm:gap-4">
               <button
                 type="button"
                 onClick={prevStep}
                 disabled={step === 0}
-                className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 sm:px-5"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back
@@ -742,16 +630,16 @@ export default function StartDesigningPage() {
                   type="button"
                   onClick={nextStep}
                   disabled={!canProceed}
-                  className="inline-flex items-center rounded-full bg-[#f5d38a] px-6 py-3 text-sm font-medium text-black transition hover:bg-[#e6c476] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="inline-flex items-center justify-center rounded-full bg-[#f5d38a] px-4 py-3 text-sm font-medium text-black transition hover:bg-[#e6c476] disabled:cursor-not-allowed disabled:opacity-40 sm:px-6"
                 >
-                  Next
+                  {current.key === "imageUpload" && !form.imageFile ? "Skip for now" : "Next"}
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </button>
               ) : (
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex items-center rounded-full bg-[#f5d38a] px-6 py-3 text-sm font-medium text-black transition hover:bg-[#e6c476] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="inline-flex items-center justify-center rounded-full bg-[#f5d38a] px-4 py-3 text-sm font-medium text-black transition hover:bg-[#e6c476] disabled:cursor-not-allowed disabled:opacity-40 sm:px-6"
                 >
                   {submitting ? "Submitting..." : "Submit enquiry"}
                   {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
@@ -837,13 +725,9 @@ function OptionGrid({
   onSelect: (value: string) => void;
 }) {
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
       {options.map((option, index) => {
-        const item =
-          typeof option === "string"
-            ? { label: option, description: "", image: "" }
-            : option;
-
+        const item = typeof option === "string" ? { label: option, description: "", image: "" } : option;
         const active = value === item.label;
 
         return (
@@ -853,28 +737,18 @@ function OptionGrid({
             onClick={() => onSelect(item.label)}
             whileHover={{ y: -4, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
-            className={`rounded-[24px] border p-5 text-left transition ${
+            className={`rounded-[22px] border p-4 text-left transition sm:rounded-[24px] sm:p-5 ${
               active
                 ? "border-[#f5d38a]/50 bg-[#f5d38a]/10 shadow-[0_0_30px_rgba(245,211,138,0.12)]"
                 : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10"
             }`}
           >
-            {item.image ? (
-              <img
-                src={item.image}
-                alt={item.label}
-                className="mb-4 h-36 w-full rounded-[18px] object-cover"
-              />
-            ) : null}
+            {item.image ? <img src={item.image} alt={item.label} loading="lazy" className="mb-4 h-28 w-full rounded-[18px] object-cover sm:h-36" /> : null}
 
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-lg font-medium">{item.label}</div>
-                {item.description ? (
-                  <div className="mt-2 text-sm text-white/60">
-                    {item.description}
-                  </div>
-                ) : null}
+                <div className="text-base font-medium sm:text-lg">{item.label}</div>
+                {item.description ? <div className="mt-2 text-sm text-white/60">{item.description}</div> : null}
               </div>
 
               {active ? (
@@ -905,14 +779,14 @@ function SingleInput({
 }) {
   return (
     <div className="max-w-2xl">
-      <div className="flex items-center gap-4 rounded-[24px] border border-white/10 bg-white/5 px-5 py-5">
+      <div className="flex items-center gap-3 rounded-[22px] border border-white/10 bg-white/5 px-4 py-4 sm:gap-4 sm:rounded-[24px] sm:px-5 sm:py-5">
         <div className="text-[#f5d38a]">{icon}</div>
         <input
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full bg-transparent text-xl text-white outline-none placeholder:text-white/30"
+          className="w-full bg-transparent text-lg text-white outline-none placeholder:text-white/30 sm:text-xl"
           autoFocus
         />
       </div>
@@ -929,18 +803,10 @@ function ReviewItem({ label, value }: { label: string; value: string }) {
   );
 }
 
-function SummaryItem({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function SummaryItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-[18px] border border-white/10 bg-black/20 p-4">
-      <div className="text-xs uppercase tracking-[0.14em] text-white/45">
-        {label}
-      </div>
+      <div className="text-xs uppercase tracking-[0.14em] text-white/45">{label}</div>
       <div className="mt-2 text-sm text-white">{value || "—"}</div>
     </div>
   );

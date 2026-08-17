@@ -19,27 +19,9 @@ export default function FlagshipAnswerBlocks({
   intro,
   answers,
 }: FlagshipAnswerBlocksProps) {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: answers.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
   return (
     <>
       <section className="bg-apex-navy-950 px-4 py-16 text-white sm:px-6 lg:px-8">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d6b56b]">
@@ -69,8 +51,14 @@ export default function FlagshipAnswerBlocks({
 
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/curtain-tracks"
+              href="/curtain-design-guide"
               className="rounded-full border border-[#d6b56b]/30 bg-[#d6b56b]/10 px-5 py-3 text-sm font-medium text-[#F4F0E8] transition hover:bg-[#d6b56b]/15"
+            >
+              Build your curtain specification
+            </Link>
+            <Link
+              href="/curtain-tracks"
+              className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-[#F4F0E8] transition hover:bg-white/10"
             >
               Explore specialist curtain tracks
             </Link>

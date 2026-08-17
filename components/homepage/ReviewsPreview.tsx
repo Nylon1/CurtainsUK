@@ -3,8 +3,8 @@ import { ArrowRight, CheckCircle2, GalleryVertical } from "lucide-react";
 
 const evidencePoints = [
   "Completed project case studies with window type and installation context",
-  "Customer feedback published only when tied to a verifiable source record",
-  "No generated names, ratings or review wording",
+  "A curated selection of real customer reviews rather than an overwhelming 100-review wall",
+  "Customer feedback and project evidence kept as separate, easy-to-read proof points",
 ];
 
 export default function ReviewsPreview() {
@@ -15,16 +15,17 @@ export default function ReviewsPreview() {
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-12 max-w-3xl">
           <div className="text-xs uppercase tracking-[0.25em] text-white/40">
-            Proof & project evidence
+            Reviews & project evidence
           </div>
 
           <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
-            See the work behind the specialist claims
+            Real customer feedback, kept focused
           </h2>
 
           <p className="mt-4 max-w-2xl leading-8 text-white/65">
-            We are building our trust layer around real installations and source-backed customer
-            feedback. Project pages show the window challenge, design approach and completed result.
+            We have a larger review archive, but the website now presents a selected set of customer
+            reviews alongside completed project case studies so visitors can assess both feedback and
+            the work itself without wading through an oversized review wall.
           </p>
         </div>
 
@@ -42,19 +43,19 @@ export default function ReviewsPreview() {
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/gallery"
+            href="/reviews"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f5d38a] px-6 py-3 text-sm font-medium text-black transition hover:bg-[#e6c476]"
           >
-            <GalleryVertical className="h-4 w-4" />
-            View project case studies
+            Read selected reviews
+            <ArrowRight className="h-4 w-4" />
           </Link>
 
           <Link
-            href="/reviews"
+            href="/gallery"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white transition hover:bg-white/10"
           >
-            Customer feedback policy
-            <ArrowRight className="h-4 w-4" />
+            <GalleryVertical className="h-4 w-4" />
+            View project case studies
           </Link>
         </div>
       </div>

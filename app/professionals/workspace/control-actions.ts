@@ -51,31 +51,46 @@ export async function createProjectInvitation(projectId: string, formData: FormD
   const email = clean(formData.get("email")).toLowerCase();
   const role = memberRole(clean(formData.get("role")));
   const organisation = nullable(formData.get("organisation"));
+  const membersPath = `/professionals/workspace/live/projects/${projectId}/members`;
 
-  if (!email || !email.includes("@")) throw new Error("VALID_EMAIL_REQUIRED");
-
-  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-  if (sessionError || !session?.access_token) throw new Error("AUTH_SESSION_REQUIRED");
-
-  const functionUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/professional-invite`;
-  const response = await fetch(functionUrl, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${session.access_token}`,
-      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ projectId, email, role, organisation }),
-    cache: "no-store",
-  });
-
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok || !result?.ok) {
-    throw new Error(result?.error || "PROFESSIONAL_INVITATION_FAILED");
+  if (!email || !email.includes("@")) {
+    redirect(`${membersPath}?error=invalid_email`);
   }
 
-  revalidatePath(`/professionals/workspace/live/projects/${projectId}/members`);
-  redirect(`/professionals/workspace/live/projects/${projectId}/members?sent=access&email=${encodeURIComponent(email)}`);
+  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+  if (sessionError || !session?.access_token) {
+    redirect(`${membersPath}?error=session`);
+  }
+
+  try {
+    const functionUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/professional-invite`;
+    const response = await fetch(functionUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${session.access_token}`,
+        apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ projectId, email, role, organisation }),
+      cache: "no-store",
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result?.ok) {
+      const code = result?.code;
+      const message = String(result?.error || "");
+      if (response.status === 429 || code === "EMAIL_RATE_LIMITED" || /rate limit|too many/i.test(message)) {
+        redirect(`${membersPath}?error=rate_limit&email=${encodeURIComponent(email)}`);
+      }
+      redirect(`${membersPath}?error=delivery&email=${encodeURIComponent(email)}`);
+    }
+  } catch (error) {
+    if (error && typeof error === "object" && "digest" in error) throw error;
+    redirect(`${membersPath}?error=delivery&email=${encodeURIComponent(email)}`);
+  }
+
+  revalidatePath(membersPath);
+  redirect(`${membersPath}?sent=access&email=${encodeURIComponent(email)}`);
 }
 
 export async function acceptProjectInvitation(token: string) {

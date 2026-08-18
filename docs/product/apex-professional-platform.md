@@ -1,234 +1,69 @@
 # Apex Professional Platform
 
-## Purpose
+## Product direction
 
-Move Apex Curtains beyond a specialist curtain website into a project-intelligence and specification platform for complex architectural glazing.
+Apex Professional Platform is the project-intelligence and specification layer for complex architectural curtain projects.
 
-The platform serves interior designers, architects, developers, housebuilders, contractors, fit-out teams and Apex project staff through one shared project record.
-
-## Core proposition
-
-Apex Curtains helps project teams resolve the interface between:
-
-- aperture geometry
-- curtain track system
-- fixing substrate and build-up
-- textile specification
-- heading and fullness
-- stack-back and clear opening
-- installation access and sequencing
-- survey, manufacture, installation, snagging and handover
-
-The platform should support professional decision-making without pretending to replace detailed design, structural advice, manufacturer-specific engineering data or final site survey.
-
-## V1 modules
-
-### 1. Professional Project Workspace
-
-Each project has a persistent record with:
-
-- project name/reference
-- client/professional role
-- project stage
-- site location
-- project contacts
-- number of apertures / plots / repeated window types
-- target survey / approval / manufacture / install dates
-- notes and status
-
-The workspace becomes the parent record for drawings, aperture data, design decisions, risks, actions and specification outputs.
-
-### 2. Drawing & Photo Project Review
-
-The project team can upload or reference:
-
-- GA plans
-- reflected ceiling plans
-- elevations
-- sections
-- window schedules
-- photographs
-- sketches
-- marked-up details
-
-The review workflow should extract or request the key information needed for curtain specification:
-
-- aperture geometry
-- peak/apex height
-- side heights
-- width
-- ceiling line
-- recess depth
-- wall returns
-- adjacent joinery
-- proposed track route
-- available fixing zone
-- substrate / build-up
-- services or obstructions
-- installation height
-- access constraints
-
-V1 can be manual/simulated in the UI. Do not claim automatic drawing interpretation until a real extraction layer exists.
-
-### 3. Preliminary Specification Brief
-
-Generate a structured, clearly labelled preliminary brief containing only confirmed project inputs and qualified recommendations.
-
-Sections:
-
-- project summary
-- glazing / aperture type
-- geometry summary
-- proposed curtain treatment
-- track route and fixing interface
-- heading and fullness
-- face fabric / lining / interlining status
-- finished drop / floor relationship
-- stack-back and clear-opening requirement
-- operation requirement
-- access methodology considerations
-- unresolved information / RFIs
-- next actions
-
-Every output must distinguish:
-
-- confirmed information
-- client/design-team preference
-- Apex preliminary recommendation
-- unresolved item requiring survey, manufacturer data or project-team confirmation
-
-## Data model direction
-
-### projects
-- id
-- name
-- reference
-- client_name
-- professional_role
-- project_stage
-- location
-- status
-- survey_target
-- install_target
-- created_at
-- updated_at
-
-### project_contacts
-- id
-- project_id
-- name
-- role
-- organisation
-- email
-- phone
-
-### apertures
-- id
-- project_id
-- reference
-- room
-- type
-- width_mm
-- peak_height_mm
-- left_height_mm
-- right_height_mm
-- recess_depth_mm
-- installation_height_mm
-- notes
-
-### project_documents
-- id
-- project_id
-- type
-- title
-- file_url
-- revision
-- status
-
-### specification_items
-- id
-- project_id
-- aperture_id
-- category
-- field
-- value
-- provenance
-- confidence
-- status
-
-`provenance` should support values such as `drawing`, `site_photo`, `client_input`, `designer_input`, `apex_review`, `survey`, `manufacturer_data`.
-
-### project_risks
-- id
-- project_id
-- aperture_id
-- category
-- description
-- status
-- owner
-- resolution
-
-### project_actions
-- id
-- project_id
-- title
-- owner
-- due_date
-- status
-
-## Workflow
-
-1. Create project
-2. Identify professional role and project stage
-3. Add drawings/photos/project information
-4. Create aperture records
-5. Capture geometry and interface data
-6. Record design intent
-7. Flag missing information and risks
-8. Produce preliminary specification brief
-9. Review with project team
-10. Update after survey / confirmed manufacturer data
-11. Approve final project specification
-12. Coordinate installation
-13. Record snagging / handover
-14. Convert completed project into evidence/case-study data where consent allows
-
-## Product moat
-
-The long-term moat is not the UI. It is the structured knowledge accumulated across real complex-window projects:
+It is designed around the real coordination chain:
 
 `geometry -> fixing context -> track strategy -> textile specification -> installation method -> outcome`
 
-Over time that can improve project triage, specification consistency, risk detection, project search, professional guidance and AEO authority.
+The platform is not an automated engineering system. Its purpose is to give architects, interior designers, developers, housebuilders, contractors and Apex project teams one controlled project record from early design through installation and handover.
 
-## Guardrails
+## Current operating scope
 
-- Never infer structural suitability from a photo alone.
-- Never invent track load capacities or fixing requirements.
-- Never present preliminary recommendations as final specification.
-- Manufacturer-specific limits must come from current manufacturer technical data.
-- Site dimensions used for manufacture must come from an agreed survey/approval process.
-- Keep professional/client project data private and separated from public case-study content.
-- Public project evidence must use only information approved for publication.
+The current branch now includes:
 
-## V1 UX
+- authenticated professional workspace
+- persistent project creation
+- project-scoped membership and invitations
+- aperture register with immutable revision history
+- private project file upload plus external document registration
+- drawing/document revision and evidence status
+- controlled specification items with automatic revision snapshots
+- risks, RFIs and actions
+- project activity timeline
+- versioned controlled project exports
+- Row Level Security across project data and private file storage
 
-Start with a premium professional workspace under `/professionals/workspace`.
+## Core product rules
 
-Initial screens:
+### Evidence before automation
 
-- Workspace dashboard
-- New project intake
-- Project overview
-- Aperture register
-- Drawings & photos
-- Specification brief
-- Risks / RFIs / actions
+Every important field must identify whether it is confirmed project information, a design-team preference, an Apex preliminary recommendation or unresolved.
 
-Use simulated project data first, but structure components around the future persistent data model so Supabase can be connected without redesigning the product.
+### No silent promotion
 
-## Success criteria
+Preliminary assumptions must not become confirmed requirements merely because they exist in the workspace.
 
-V1 should make an architect or interior designer immediately understand that Apex can engage before installation and help coordinate the curtain package through the project lifecycle.
+### Aperture-level intelligence
 
-It should also make Apex staff faster and more consistent by giving every complex project one structured record rather than scattered emails, drawings, WhatsApp messages and notes.
+Each opening is its own controlled record. A large gable, apex, triangular or double-height scheme may contain multiple openings with different geometry, fixing zones, stack-back requirements, track routes and access constraints.
+
+### Revision history matters
+
+Aperture and specification changes preserve prior states. The platform should be able to answer not only “what is the current decision?” but “what changed, when, and from what evidence?”
+
+### Controlled outputs
+
+Exports should retain open risks, unresolved information, evidence status and provenance. A neat PDF must never imply a level of technical approval that the project has not reached.
+
+## AI layer
+
+AI is deliberately left out of the current implementation phase.
+
+The database, permissions, evidence model, revision history, document control and project workflow need to become dependable first. A later AI-assisted layer may help review information, identify omissions, compare revisions or surface coordination risks, but it must remain subordinate to provenance and human/project-team approval.
+
+Current product development should therefore continue without AI dependency.
+
+## Next non-AI build sequence
+
+1. Improve project navigation so documents, controlled specification and activity are first-class modules.
+2. Add secure file retrieval/download and explicit supersede relationships between document revisions.
+3. Add action assignees, role responsibility and programme views.
+4. Add formal controlled-export issue/supersede status.
+5. Add repeatable project/aperture templates for developers and housebuilders.
+6. Add stronger invitation/account provisioning for professional collaborators.
+7. Add handover/snagging close-out structure and project outcome capture.
+
+The long-term moat is the structured project record and the accumulated knowledge from genuine architectural curtain projects—not an AI label placed on top of incomplete data.

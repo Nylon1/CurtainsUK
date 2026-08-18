@@ -18,6 +18,7 @@ const demoProjects = [
     status: "Information review",
     apertures: 3,
     openItems: 4,
+    href: "/professionals/workspace/projects/apx-demo-001",
   },
   {
     name: "Barn conversion feature window",
@@ -27,6 +28,7 @@ const demoProjects = [
     status: "Preliminary specification",
     apertures: 2,
     openItems: 3,
+    href: null,
   },
 ];
 
@@ -66,34 +68,41 @@ export default function Page() {
         </section>
 
         <section className="mt-12">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d6b56b]">Demonstration projects</p>
-              <h2 className="mt-2 text-3xl font-semibold">How the workspace will operate</h2>
-            </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d6b56b]">Demonstration projects</p>
+            <h2 className="mt-2 text-3xl font-semibold">How the workspace will operate</h2>
           </div>
 
           <div className="mt-6 grid gap-5 lg:grid-cols-2">
-            {demoProjects.map((project) => (
-              <article key={project.ref} className="rounded-[32px] border border-white/10 bg-white/[0.04] p-7">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="rounded-full border border-[#d6b56b]/25 bg-[#d6b56b]/10 px-3 py-1 text-xs font-semibold text-[#d6b56b]">{project.stage}</span>
-                  <span className="text-xs text-white/45">{project.ref}</span>
-                </div>
-                <h3 className="mt-5 text-2xl font-semibold">{project.name}</h3>
-                <p className="mt-2 text-sm text-[#C8D1D8]">Lead role: {project.role}</p>
-                <div className="mt-6 grid grid-cols-3 gap-3 text-sm">
-                  <div className="rounded-2xl border border-white/10 p-4"><div className="text-white/45">Status</div><div className="mt-1 font-medium">{project.status}</div></div>
-                  <div className="rounded-2xl border border-white/10 p-4"><div className="text-white/45">Apertures</div><div className="mt-1 text-xl font-semibold">{project.apertures}</div></div>
-                  <div className="rounded-2xl border border-white/10 p-4"><div className="text-white/45">Open items</div><div className="mt-1 text-xl font-semibold">{project.openItems}</div></div>
-                </div>
-                <div className="mt-6 flex flex-wrap gap-2 text-xs text-[#C8D1D8]">
-                  {["Drawings", "Apertures", "Specification", "RFIs", "Programme", "Handover"].map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 px-3 py-2">{item}</span>
-                  ))}
-                </div>
-              </article>
-            ))}
+            {demoProjects.map((project) => {
+              const content = (
+                <>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span className="rounded-full border border-[#d6b56b]/25 bg-[#d6b56b]/10 px-3 py-1 text-xs font-semibold text-[#d6b56b]">{project.stage}</span>
+                    <span className="text-xs text-white/45">{project.ref}</span>
+                  </div>
+                  <h3 className="mt-5 text-2xl font-semibold">{project.name}</h3>
+                  <p className="mt-2 text-sm text-[#C8D1D8]">Lead role: {project.role}</p>
+                  <div className="mt-6 grid grid-cols-3 gap-3 text-sm">
+                    <div className="rounded-2xl border border-white/10 p-4"><div className="text-white/45">Status</div><div className="mt-1 font-medium">{project.status}</div></div>
+                    <div className="rounded-2xl border border-white/10 p-4"><div className="text-white/45">Apertures</div><div className="mt-1 text-xl font-semibold">{project.apertures}</div></div>
+                    <div className="rounded-2xl border border-white/10 p-4"><div className="text-white/45">Open items</div><div className="mt-1 text-xl font-semibold">{project.openItems}</div></div>
+                  </div>
+                  <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-[#C8D1D8]">
+                    {["Drawings", "Apertures", "Specification", "RFIs", "Programme", "Handover"].map((item) => (
+                      <span key={item} className="rounded-full border border-white/10 px-3 py-2">{item}</span>
+                    ))}
+                    {project.href && <span className="ml-auto inline-flex items-center gap-1 font-semibold text-[#d6b56b]">Open project <ArrowRight className="h-3.5 w-3.5" /></span>}
+                  </div>
+                </>
+              );
+
+              if (project.href) {
+                return <Link key={project.ref} href={project.href} className="rounded-[32px] border border-white/10 bg-white/[0.04] p-7 transition hover:-translate-y-1 hover:border-[#d6b56b]/30">{content}</Link>;
+              }
+
+              return <article key={project.ref} className="rounded-[32px] border border-white/10 bg-white/[0.04] p-7 opacity-80">{content}</article>;
+            })}
           </div>
         </section>
 

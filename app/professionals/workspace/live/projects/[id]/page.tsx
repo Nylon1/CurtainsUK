@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import { closeProjectRisk, completeProjectAction } from "@/app/professionals/workspace/control-actions";
 import { getProfessionalProject, requireProfessionalUser } from "@/lib/professional-platform/server";
 
 export const metadata = {
@@ -26,6 +27,7 @@ export default async function Page({ params }: Props) {
 
   const { project, apertures, specificationItems, risks, actions, documents } = data;
   const openActions = actions.filter((action) => action.status !== "completed" && action.status !== "cancelled");
+  const openRisks = risks.filter((risk) => risk.status === "open" || risk.status === "monitoring");
 
   return (
     <main className="min-h-screen bg-apex-navy-950 px-4 pb-24 pt-32 text-white sm:px-6 lg:px-8 lg:pt-40">
@@ -44,7 +46,9 @@ export default async function Page({ params }: Props) {
           <Link href={`/professionals/workspace/live/projects/${id}/apertures/new`} className="rounded-full bg-[#d6b56b] px-5 py-3 text-sm font-semibold text-apex-navy-950">Add aperture</Link>
           <Link href={`/professionals/workspace/live/projects/${id}/documents/new`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Register document</Link>
           <Link href={`/professionals/workspace/live/projects/${id}/actions/new`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Raise RFI / action</Link>
-          <Link href={`/professionals/workspace/live/projects/${id}/specification`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Controlled specification brief</Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/members`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Project team</Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/exports`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Export register</Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/specification`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Live specification view</Link>
         </div>
 
         <section className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
@@ -52,7 +56,7 @@ export default async function Page({ params }: Props) {
             ["Apertures", apertures.length],
             ["Documents", documents.length],
             ["Spec items", specificationItems.length],
-            ["Open risks", risks.filter((risk) => risk.status === "open" || risk.status === "monitoring").length],
+            ["Open risks", openRisks.length],
             ["Actions", openActions.length],
           ].map(([label, value]) => (
             <div key={String(label)} className="rounded-[24px] border border-white/10 bg-[#1B405B] p-5">
@@ -66,7 +70,7 @@ export default async function Page({ params }: Props) {
           <div className="space-y-6">
             <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-7">
               <div className="flex items-center justify-between gap-4">
-                <div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Aperture register</p><h2 className="mt-2 text-2xl font-semibold">Openings and interfaces</h2></div>
+                <div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Aperture register</p><h2 className="mt-2 text-2xl font-semibold">Openings, interfaces & revision history</h2></div>
                 <Link href={`/professionals/workspace/live/projects/${id}/apertures/new`} className="text-sm font-semibold text-[#d6b56b]">Add opening →</Link>
               </div>
               {apertures.length === 0 ? (
@@ -74,11 +78,11 @@ export default async function Page({ params }: Props) {
               ) : (
                 <div className="mt-6 space-y-3">
                   {apertures.map((aperture) => (
-                    <div key={aperture.id} className="rounded-2xl border border-white/10 bg-black/15 p-5">
+                    <Link href={`/professionals/workspace/live/projects/${id}/apertures/${aperture.id}`} key={aperture.id} className="block rounded-2xl border border-white/10 bg-black/15 p-5 transition hover:border-[#d6b56b]/30">
                       <div className="flex flex-wrap items-center justify-between gap-3"><div className="font-semibold">{aperture.reference} {aperture.room ? `· ${aperture.room}` : ""}</div><span className="text-xs text-[#d6b56b]">{aperture.provenance.replaceAll("_", " ")}</span></div>
                       <div className="mt-3 text-sm text-[#C8D1D8]">{aperture.window_type || "Window type unresolved"} · {aperture.fixing_position || "Fixing position unresolved"}</div>
-                      <div className="mt-2 text-xs text-white/45">Width {aperture.width_mm ?? "—"} mm · Peak {aperture.peak_height_mm ?? "—"} mm · {aperture.status.replaceAll("_", " ")}</div>
-                    </div>
+                      <div className="mt-2 text-xs text-white/45">Width {aperture.width_mm ?? "—"} mm · Peak {aperture.peak_height_mm ?? "—"} mm · {aperture.status.replaceAll("_", " ")} · open history →</div>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -95,10 +99,15 @@ export default async function Page({ params }: Props) {
 
             <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-7">
               <div className="flex items-center justify-between gap-3"><h2 className="text-xl font-semibold">Open RFIs & actions</h2><Link href={`/professionals/workspace/live/projects/${id}/actions/new`} className="text-sm text-[#d6b56b]">Add →</Link></div>
-              <div className="mt-5 space-y-3">{openActions.length === 0 ? <p className="text-sm text-[#C8D1D8]">No open actions.</p> : openActions.slice(0, 6).map((item) => <div key={item.id} className="rounded-xl border border-white/10 px-4 py-3 text-sm"><div className="text-xs uppercase tracking-[0.14em] text-[#d6b56b]">{item.action_type.replaceAll("_", " ")}</div><div className="mt-1 font-semibold">{item.title}</div></div>)}</div>
+              <div className="mt-5 space-y-3">{openActions.length === 0 ? <p className="text-sm text-[#C8D1D8]">No open actions.</p> : openActions.slice(0, 6).map((item) => <div key={item.id} className="rounded-xl border border-white/10 px-4 py-3 text-sm"><div className="text-xs uppercase tracking-[0.14em] text-[#d6b56b]">{item.action_type.replaceAll("_", " ")}</div><div className="mt-1 font-semibold">{item.title}</div><form action={completeProjectAction.bind(null, id, item.id)}><button className="mt-3 text-xs font-semibold text-[#d6b56b]">Mark complete</button></form></div>)}</div>
             </div>
 
-            <Link href={`/professionals/workspace/live/projects/${id}/specification`} className="block rounded-[30px] border border-[#d6b56b]/25 bg-[#d6b56b]/10 p-7"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Controlled output</p><h2 className="mt-3 text-xl font-semibold">Preliminary specification brief →</h2><p className="mt-3 text-sm leading-7 text-[#C8D1D8]">Print a project brief that retains provenance, evidence status, unresolved risks and open RFIs.</p></Link>
+            <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-7">
+              <h2 className="text-xl font-semibold">Open risks</h2>
+              <div className="mt-5 space-y-3">{openRisks.length === 0 ? <p className="text-sm text-[#C8D1D8]">No open risks.</p> : openRisks.slice(0, 5).map((risk) => <div key={risk.id} className="rounded-xl border border-white/10 px-4 py-4 text-sm"><div className="text-xs uppercase tracking-[0.14em] text-[#d6b56b]">{risk.severity} · {risk.risk_type.replaceAll("_", " ")}</div><div className="mt-1 font-semibold">{risk.title}</div><div className="mt-3 flex gap-4"><form action={closeProjectRisk.bind(null, id, risk.id, "resolved")}><button className="text-xs font-semibold text-[#d6b56b]">Resolve</button></form><form action={closeProjectRisk.bind(null, id, risk.id, "accepted")}><button className="text-xs text-white/55">Accept risk</button></form></div></div>)}</div>
+            </div>
+
+            <Link href={`/professionals/workspace/live/projects/${id}/exports`} className="block rounded-[30px] border border-[#d6b56b]/25 bg-[#d6b56b]/10 p-7"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Controlled output</p><h2 className="mt-3 text-xl font-semibold">Versioned project exports →</h2><p className="mt-3 text-sm leading-7 text-[#C8D1D8]">Freeze a coordination snapshot that retains provenance, evidence status, unresolved risks and open RFIs.</p></Link>
           </aside>
         </section>
       </div>

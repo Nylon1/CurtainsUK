@@ -1,6 +1,6 @@
 "use server";
 
-import { createHash, randomBytes } from "node:crypto";
+import { createHash } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getProfessionalProject, requireProfessionalUser } from "@/lib/professional-platform/server";
@@ -47,58 +47,31 @@ function provenance(value: string) {
 }
 
 export async function createProjectInvitation(projectId: string, formData: FormData) {
-  const { supabase, user } = await requireProfessionalUser();
+  const { supabase } = await requireProfessionalUser();
   const email = clean(formData.get("email")).toLowerCase();
   const role = memberRole(clean(formData.get("role")));
   const organisation = nullable(formData.get("organisation"));
 
   if (!email || !email.includes("@")) throw new Error("VALID_EMAIL_REQUIRED");
 
-  const { data: project, error: projectError } = await supabase
-    .from("professional_projects")
-    .select("id,created_by")
-    .eq("id", projectId)
-    .single();
+  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+  if (sessionError || !session?.access_token) throw new Error("AUTH_SESSION_REQUIRED");
 
-  if (projectError || !project) throw new Error("PROJECT_NOT_FOUND");
-  if (project.created_by !== user.id) throw new Error("OWNER_REQUIRED");
-
-  const token = randomBytes(24).toString("hex");
-  const tokenHash = createHash("sha256").update(token).digest("hex");
-
-  const { data: invitation, error: invitationError } = await supabase
-    .from("professional_project_invitations")
-    .insert({
-      project_id: projectId,
-      email,
-      role,
-      organisation,
-      status: "pending",
-      token_hash: tokenHash,
-      invited_by: user.id,
-    })
-    .select("id")
-    .single();
-
-  if (invitationError || !invitation) throw invitationError || new Error("INVITATION_CREATE_FAILED");
-
-  const next = `/professionals/workspace/invitations/${token}`;
-  const emailRedirectTo = `https://www.apexcurtains.com/auth/callback?next=${encodeURIComponent(next)}`;
-
-  const { error: emailError } = await supabase.auth.signInWithOtp({
-    email,
-    options: {
-      shouldCreateUser: true,
-      emailRedirectTo,
+  const functionUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/professional-invite`;
+  const response = await fetch(functionUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${session.access_token}`,
+      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({ projectId, email, role, organisation }),
+    cache: "no-store",
   });
 
-  if (emailError) {
-    await supabase
-      .from("professional_project_invitations")
-      .update({ status: "revoked" })
-      .eq("id", invitation.id);
-    throw emailError;
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result?.ok) {
+    throw new Error(result?.error || "PROFESSIONAL_INVITATION_FAILED");
   }
 
   revalidatePath(`/professionals/workspace/live/projects/${projectId}/members`);
@@ -141,6 +114,10 @@ export async function acceptProjectInvitation(token: string) {
     .eq("id", invitation.id);
 
   if (invitationUpdateError) throw invitationUpdateError;
+
+  if (user.user_metadata?.apex_professional_invite === true) {
+    redirect(`/professionals/workspace/set-password?next=${encodeURIComponent(`/professionals/workspace/live/projects/${invitation.project_id}`)}`);
+  }
 
   redirect(`/professionals/workspace/live/projects/${invitation.project_id}`);
 }

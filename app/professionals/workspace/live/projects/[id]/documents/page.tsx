@@ -30,7 +30,8 @@ export default async function Page({ params }: Props) {
             <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">Document control</h1>
             <p className="mt-4 max-w-3xl leading-8 text-[#C8D1D8]">Keep revisions visible and explicitly supersede obsolete evidence. Superseding does not automatically destroy the stored file; retention is deliberate so the project audit trail is preserved.</p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
+            <Link href={`/professionals/workspace/live/projects/${id}/drawing-review`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Drawing review</Link>
             <Link href={`/professionals/workspace/live/projects/${id}/documents/upload`} className="rounded-full bg-[#d6b56b] px-5 py-3 text-sm font-semibold text-apex-navy-950">Upload evidence</Link>
             <Link href={`/professionals/workspace/live/projects/${id}/documents/new`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Register external record</Link>
           </div>
@@ -47,6 +48,7 @@ export default async function Page({ params }: Props) {
                   {doc.superseded_at ? <p className="mt-1 text-xs text-white/45">Superseded {new Date(doc.superseded_at).toLocaleString("en-GB")}</p> : null}
                 </div>
                 <div className="flex flex-wrap gap-2">
+                  <Link target="_blank" href={`/professionals/workspace/live/projects/${id}/documents/${doc.id}/open`} className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold">Open file ↗</Link>
                   {doc.evidence_status !== "superseded" ? (
                     <form action={supersedeProjectDocument.bind(null, id, doc.id)}>
                       <button className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold">Mark superseded</button>

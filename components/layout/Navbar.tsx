@@ -36,6 +36,7 @@ const navItems = [
       { label: "Specifier Resources", href: "/professionals/specifier-resources" },
       { label: "Project Information Checklist", href: "/professionals/specifier-resources/project-information-checklist" },
       { label: "Professional Project Review", href: "/professionals/project-review" },
+      { label: "Professional Workspace", href: "/professionals/workspace/login" },
       { label: "Commercial Installation", href: "/commercial-curtain-track-installation" },
     ],
   },
@@ -241,6 +242,13 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-col gap-2">
+                <Link
+                  href="/professionals/workspace/login"
+                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white"
+                >
+                  Professional Workspace
+                </Link>
+
                 <Link
                   href="/professionals/project-review"
                   className="inline-flex items-center justify-center rounded-full border border-[#E5C07B]/30 bg-[#E5C07B]/10 px-4 py-3 text-sm font-semibold text-[#f1d48b]"

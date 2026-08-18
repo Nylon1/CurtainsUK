@@ -85,3 +85,61 @@ export type ProjectRisk = {
   severity: "low" | "medium" | "high" | "critical";
   status: "open" | "monitoring" | "resolved" | "accepted";
 };
+
+export type ProjectMemberRole =
+  | "owner"
+  | "architect"
+  | "interior_designer"
+  | "developer"
+  | "housebuilder"
+  | "contractor"
+  | "fit_out"
+  | "consultant"
+  | "collaborator"
+  | "viewer";
+
+export type ProjectMember = {
+  id: string;
+  project_id: string;
+  user_id: string;
+  role: ProjectMemberRole;
+  organisation: string | null;
+  created_at: string;
+};
+
+export type ProjectInvitation = {
+  id: string;
+  project_id: string;
+  email: string;
+  role: ProjectMemberRole;
+  organisation: string | null;
+  status: "pending" | "accepted" | "revoked" | "expired";
+  invited_by: string;
+  accepted_by: string | null;
+  expires_at: string;
+  created_at: string;
+  accepted_at: string | null;
+};
+
+export type ApertureRevision = {
+  id: string;
+  project_id: string;
+  aperture_id: string;
+  revision_no: number;
+  snapshot: Record<string, unknown>;
+  changed_by: string | null;
+  change_note: string | null;
+  created_at: string;
+};
+
+export type ProjectExport = {
+  id: string;
+  project_id: string;
+  export_type: "preliminary_specification" | "coordination_brief" | "aperture_schedule" | "handover_record";
+  version: number;
+  status: "preliminary" | "issued" | "superseded";
+  snapshot: Record<string, unknown>;
+  generated_by: string;
+  created_at: string;
+  issued_at: string | null;
+};

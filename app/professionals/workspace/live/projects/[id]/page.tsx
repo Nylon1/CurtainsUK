@@ -44,9 +44,11 @@ export default async function Page({ params }: Props) {
 
         <div className="mt-7 flex flex-wrap gap-3">
           <Link href={`/professionals/workspace/live/projects/${id}/apertures/new`} className="rounded-full bg-[#d6b56b] px-5 py-3 text-sm font-semibold text-apex-navy-950">Add aperture</Link>
-          <Link href={`/professionals/workspace/live/projects/${id}/documents/new`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Register document</Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/documents/upload`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Upload evidence</Link>
           <Link href={`/professionals/workspace/live/projects/${id}/actions/new`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Raise RFI / action</Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/programme`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Programme</Link>
           <Link href={`/professionals/workspace/live/projects/${id}/members`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Project team</Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/activity`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Activity</Link>
           <Link href={`/professionals/workspace/live/projects/${id}/exports`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Export register</Link>
           <Link href={`/professionals/workspace/live/projects/${id}/specification`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Live specification view</Link>
         </div>
@@ -89,13 +91,15 @@ export default async function Page({ params }: Props) {
             </div>
 
             <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-7">
-              <div className="flex items-center justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Evidence</p><h2 className="mt-2 text-2xl font-semibold">Drawing & document register</h2></div><Link href={`/professionals/workspace/live/projects/${id}/documents/new`} className="text-sm font-semibold text-[#d6b56b]">Register revision →</Link></div>
-              <div className="mt-5 space-y-3">{documents.length === 0 ? <p className="text-sm text-[#C8D1D8]">No evidence registered.</p> : documents.slice(0, 6).map((doc) => <div key={doc.id} className="rounded-2xl border border-white/10 p-4 text-sm"><div className="font-semibold">{doc.title}</div><div className="mt-2 text-[#C8D1D8]">{doc.document_type.replaceAll("_", " ")} · Rev {doc.revision || "—"} · {doc.evidence_status.replaceAll("_", " ")}</div></div>)}</div>
+              <div className="flex items-center justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Evidence</p><h2 className="mt-2 text-2xl font-semibold">Drawing & document register</h2></div><Link href={`/professionals/workspace/live/projects/${id}/documents/upload`} className="text-sm font-semibold text-[#d6b56b]">Upload revision →</Link></div>
+              <div className="mt-5 space-y-3">{documents.length === 0 ? <p className="text-sm text-[#C8D1D8]">No evidence registered.</p> : documents.slice(0, 6).map((doc) => <div key={doc.id} className="rounded-2xl border border-white/10 p-4 text-sm"><div className="flex flex-wrap items-start justify-between gap-3"><div><div className="font-semibold">{doc.title}</div><div className="mt-2 text-[#C8D1D8]">{doc.document_type.replaceAll("_", " ")} · Rev {doc.revision || "—"} · {doc.evidence_status.replaceAll("_", " ")}</div></div>{doc.source_url && !String(doc.source_url).startsWith("http") ? <Link href={`/professionals/workspace/live/projects/${id}/documents/${doc.id}/open`} className="text-xs font-semibold text-[#d6b56b]">Open securely →</Link> : null}</div></div>)}</div>
             </div>
           </div>
 
           <aside className="space-y-6">
             <div className="rounded-[30px] border border-white/10 bg-[#1B405B] p-7"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Design freeze</p><h2 className="mt-3 text-2xl font-semibold">Unresolved evidence stays visible</h2><p className="mt-4 text-sm leading-7 text-[#C8D1D8]">A project is not manufacture-ready merely because fields have been populated. Confirmed project evidence, design-team preference and Apex preliminary recommendations remain separate until the relevant survey, manufacturer data or approval closes the gap.</p></div>
+
+            <Link href={`/professionals/workspace/live/projects/${id}/programme`} className="block rounded-[30px] border border-white/10 bg-white/[0.04] p-7"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Programme control</p><h2 className="mt-3 text-xl font-semibold">Targets & responsibility matrix →</h2><p className="mt-3 text-sm leading-7 text-[#C8D1D8]">Coordinate survey, design freeze, manufacture release and installation against open actions and responsible parties.</p></Link>
 
             <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-7">
               <div className="flex items-center justify-between gap-3"><h2 className="text-xl font-semibold">Open RFIs & actions</h2><Link href={`/professionals/workspace/live/projects/${id}/actions/new`} className="text-sm text-[#d6b56b]">Add →</Link></div>

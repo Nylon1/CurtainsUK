@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
-export default function ProfessionalWorkspaceLoginPage() {
+function LoginForm() {
   const supabase = createClient();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -60,5 +60,13 @@ export default function ProfessionalWorkspaceLoginPage() {
         <Link href="/professionals" className="mt-6 inline-block text-sm text-[#C8D1D8] hover:text-white">Back to professional services</Link>
       </div>
     </main>
+  );
+}
+
+export default function ProfessionalWorkspaceLoginPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-apex-navy-950" />}>
+      <LoginForm />
+    </Suspense>
   );
 }

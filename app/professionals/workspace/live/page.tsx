@@ -25,8 +25,16 @@ export default async function Page() {
             <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">Your project records</h1>
             <p className="mt-5 max-w-3xl leading-8 text-[#C8D1D8]">Projects shown here are returned through authenticated, project-scoped Row Level Security rather than demo data.</p>
           </div>
-          <Link href="/professionals/workspace/live/new-project" className="rounded-full bg-[#d6b56b] px-6 py-3 text-sm font-semibold text-apex-navy-950">Create project</Link>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/professionals/workspace/live/templates" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold">Project templates</Link>
+            <Link href="/professionals/workspace/live/new-project" className="rounded-full bg-[#d6b56b] px-6 py-3 text-sm font-semibold text-apex-navy-950">Create project</Link>
+          </div>
         </div>
+
+        <section className="mt-8 rounded-[26px] border border-white/10 bg-white/[0.04] p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#d6b56b]">Repeat-project workflow</p>
+          <p className="mt-3 max-w-4xl text-sm leading-7 text-[#C8D1D8]">For developers and housebuilders, templates can seed opening references and close-out structure across repeated work while keeping every project&apos;s geometry, evidence, fixing context and approvals separate.</p>
+        </section>
 
         {projects.length === 0 ? (
           <section className="mt-12 rounded-[32px] border border-white/10 bg-[#1B405B] p-8">

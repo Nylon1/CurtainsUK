@@ -115,3 +115,16 @@ export async function getPendingInvitationByHash(tokenHash: string) {
   if (error) throw error;
   return { invitation: data, user };
 }
+
+export async function getProjectExport(projectId: string, exportId: string) {
+  const { supabase } = await requireProfessionalUser();
+  const { data, error } = await supabase
+    .from("professional_project_exports")
+    .select("*")
+    .eq("project_id", projectId)
+    .eq("id", exportId)
+    .single();
+
+  if (error) throw error;
+  return data as ProjectExport;
+}

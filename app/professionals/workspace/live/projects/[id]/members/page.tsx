@@ -10,7 +10,7 @@ export const metadata = {
 
 type Props = {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ sent?: string; email?: string }>;
+  searchParams: Promise<{ sent?: string; email?: string; error?: string }>;
 };
 
 const roles = [
@@ -24,6 +24,25 @@ const roles = [
   ["collaborator", "Collaborator"],
   ["viewer", "Viewer"],
 ];
+
+function inviteErrorCopy(error: string | undefined) {
+  if (error === "rate_limit") {
+    return {
+      title: "Email sending is temporarily rate-limited",
+      body: "Supabase has temporarily paused invitation email delivery because several messages were sent in a short period. The project is unaffected. Try sending the invitation again later.",
+    };
+  }
+  if (error === "invalid_email") {
+    return { title: "Check the email address", body: "Enter a valid professional email address and try again." };
+  }
+  if (error === "session") {
+    return { title: "Your session needs refreshing", body: "Sign out and back in, then try sending the invitation again." };
+  }
+  if (error === "delivery") {
+    return { title: "Invitation email could not be sent", body: "The invitation was not activated. Try again shortly; if the issue continues, use a different email address or check the mail service." };
+  }
+  return null;
+}
 
 export default async function Page({ params, searchParams }: Props) {
   try {
@@ -43,6 +62,7 @@ export default async function Page({ params, searchParams }: Props) {
 
   const sentEmail = query.email ? decodeURIComponent(query.email) : null;
   const accessEmailSent = query.sent === "access";
+  const inviteError = inviteErrorCopy(query.error);
 
   return (
     <main className="min-h-screen bg-apex-navy-950 px-4 pb-24 pt-32 text-white sm:px-6 lg:px-8 lg:pt-40">
@@ -61,7 +81,16 @@ export default async function Page({ params, searchParams }: Props) {
           <section className="mt-8 rounded-[28px] border border-[#d6b56b]/25 bg-[#d6b56b]/10 p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Access email sent</p>
             <h2 className="mt-3 text-xl font-semibold">{sentEmail}</h2>
-            <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">The recipient has been emailed a secure sign-in link. After signing in with this email, they can accept the project invitation and gain access to this project only.</p>
+            <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">The recipient has been emailed a secure access link. After opening it with this email, they can accept the project invitation and gain access to this project only.</p>
+          </section>
+        )}
+
+        {inviteError && (
+          <section className="mt-8 rounded-[28px] border border-amber-300/25 bg-amber-300/10 p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">Invitation not sent</p>
+            <h2 className="mt-3 text-xl font-semibold">{inviteError.title}</h2>
+            {sentEmail ? <p className="mt-2 text-sm font-semibold text-white">{sentEmail}</p> : null}
+            <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">{inviteError.body}</p>
           </section>
         )}
 

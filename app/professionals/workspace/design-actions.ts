@@ -8,8 +8,8 @@ function clean(value: FormDataEntryValue | null) {
 }
 
 function nullable(value: FormDataEntryValue | null) {
-  const value = clean(value);
-  return value || null;
+  const cleaned = clean(value);
+  return cleaned || null;
 }
 
 function positiveIntegerOrNull(value: FormDataEntryValue | null) {

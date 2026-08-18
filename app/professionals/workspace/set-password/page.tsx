@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ProfessionalSetPasswordPage() {
-  const supabase = createClient();
+  const [supabase] = useState(() => createClient());
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,7 @@ export default function ProfessionalSetPasswordPage() {
       setLoading(false);
     });
     return () => { active = false; };
-  }, [router, supabase.auth]);
+  }, [router, supabase]);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();

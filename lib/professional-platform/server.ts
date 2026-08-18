@@ -1,7 +1,16 @@
 import "server-only";
 
 import { createClient } from "@/lib/supabase/server";
-import type { ProfessionalProject, ProjectAperture, ProjectRisk, ProjectSpecItem } from "./types";
+import type {
+  ApertureRevision,
+  ProfessionalProject,
+  ProjectAperture,
+  ProjectExport,
+  ProjectInvitation,
+  ProjectMember,
+  ProjectRisk,
+  ProjectSpecItem,
+} from "./types";
 
 export async function requireProfessionalUser() {
   const supabase = await createClient();
@@ -55,4 +64,54 @@ export async function getProfessionalProject(projectId: string) {
     actions: actionsResult.data ?? [],
     documents: documentsResult.data ?? [],
   };
+}
+
+export async function getProjectCollaboration(projectId: string) {
+  const { supabase, user } = await requireProfessionalUser();
+  const [projectResult, membersResult, invitationsResult, exportsResult] = await Promise.all([
+    supabase.from("professional_projects").select("id,reference,name,created_by").eq("id", projectId).single(),
+    supabase.from("professional_project_members").select("*").eq("project_id", projectId).order("created_at"),
+    supabase.from("professional_project_invitations").select("id,project_id,email,role,organisation,status,invited_by,accepted_by,expires_at,created_at,accepted_at").eq("project_id", projectId).order("created_at", { ascending: false }),
+    supabase.from("professional_project_exports").select("*").eq("project_id", projectId).order("created_at", { ascending: false }),
+  ]);
+
+  if (projectResult.error) throw projectResult.error;
+  if (membersResult.error) throw membersResult.error;
+  if (invitationsResult.error) throw invitationsResult.error;
+  if (exportsResult.error) throw exportsResult.error;
+
+  return {
+    project: projectResult.data,
+    members: (membersResult.data ?? []) as ProjectMember[],
+    invitations: (invitationsResult.data ?? []) as ProjectInvitation[],
+    exports: (exportsResult.data ?? []) as ProjectExport[],
+    isOwner: projectResult.data.created_by === user.id,
+  };
+}
+
+export async function getApertureRevisions(projectId: string, apertureId: string) {
+  const { supabase } = await requireProfessionalUser();
+  const { data, error } = await supabase
+    .from("professional_project_aperture_revisions")
+    .select("*")
+    .eq("project_id", projectId)
+    .eq("aperture_id", apertureId)
+    .order("revision_no", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []) as ApertureRevision[];
+}
+
+export async function getPendingInvitationByHash(tokenHash: string) {
+  const { supabase, user } = await requireProfessionalUser();
+  const { data, error } = await supabase
+    .from("professional_project_invitations")
+    .select("id,project_id,email,role,organisation,status,invited_by,accepted_by,expires_at,created_at,accepted_at,professional_projects(reference,name)")
+    .eq("token_hash", tokenHash)
+    .eq("status", "pending")
+    .gt("expires_at", new Date().toISOString())
+    .single();
+
+  if (error) throw error;
+  return { invitation: data, user };
 }

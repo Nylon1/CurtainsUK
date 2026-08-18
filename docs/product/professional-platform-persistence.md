@@ -1,105 +1,87 @@
-# Apex Professional Platform — Persistence, Permissions & Control
+# Apex Professional Platform — Persistence & Permissions
 
 ## Purpose
 
-The Professional Platform now has a real persistence foundation in the existing `apex-curtains-cms` Supabase project. Authenticated project creation, live project views, aperture intake, evidence registration and RFI/action workflows are wired to this model.
+The Professional Platform now has a real persistence and collaboration foundation in the existing `apex-curtains-cms` Supabase project. The platform is deliberately evidence-led: confirmed project information, design-team preferences, Apex preliminary recommendations and unresolved items remain distinct throughout the project lifecycle.
 
-The database is deliberately structured around project evidence and provenance rather than a single free-text specification. This keeps confirmed project information, design-team preferences, Apex preliminary recommendations and unresolved items visibly distinct.
+## Core operational model
 
-## Core tables
+The platform records projects, project members and invitations, apertures and aperture revisions, documents, specification items and specification revisions, risks, actions and controlled exports.
 
-- `professional_projects`
-- `professional_project_members`
-- `professional_project_invitations`
-- `professional_project_apertures`
-- `professional_project_aperture_revisions`
-- `professional_project_documents`
-- `professional_project_spec_items`
-- `professional_project_risks`
-- `professional_project_actions`
-- `professional_project_exports`
+The design loop remains:
 
-## Project record
+`geometry -> fixing context -> track strategy -> textile specification -> installation method -> outcome`
 
-A project carries a stable reference, name, client/project-team context, project stage and workflow status. It is the parent record for every aperture, document, specification item, risk, action, member, invitation and controlled export.
+## Provenance rule
 
-## Aperture register & revision history
-
-Each opening gets its own record so difficult glazing can be coordinated opening-by-opening. The register can hold room/opening reference, window type, width, side heights, peak height, track route, fixing position, fixing substrate, operation, stack-back requirement, clear-opening requirement, evidence status and provenance.
-
-Every aperture insert or update now creates an immutable snapshot in `professional_project_aperture_revisions`. The live UI exposes that history rather than silently replacing the previous geometry/interface state.
-
-Dimensions are not treated as manufacture-ready merely because they exist in the database or revision history.
-
-## Provenance
-
-Every aperture/specification decision can be labelled as one of:
+Project information must retain one of four provenance states:
 
 1. `confirmed_project_information`
 2. `design_team_preference`
 3. `apex_preliminary_recommendation`
 4. `unresolved`
 
-This is a core product rule. Future AI-assisted review must never silently promote an inference or preliminary recommendation into confirmed project information.
+A preliminary recommendation must never be silently promoted to confirmed information.
 
-## Documents
+## Aperture control
 
-Documents are registered by type and revision, including GA plans, RCPs, elevations, sections, window schedules, photos, surveys and manufacturer data. Each document can be marked `for_review`, `usable`, `superseded` or `insufficient`.
+Each opening is recorded independently with geometry, room/opening reference, window type, fixing position/substrate, track route, operation, stack-back, clear-opening requirement, status and provenance. Aperture edits create immutable revision snapshots rather than erasing prior project history.
 
-The current operational layer registers document metadata/revisions. Real object storage and controlled file upload remain a subsequent step. The platform does not claim automatic drawing interpretation.
+## Documents & private storage
 
-## Risks / RFIs / actions
+Project files can now be uploaded into the private Supabase Storage bucket `professional-project-files`. Object paths are project-scoped and Storage RLS checks project membership before select, insert, update or delete.
 
-Risks and actions are first-class records rather than notes embedded in a project description. Actions support `action`, `rfi`, `approval`, `survey`, `installation` and `handover` types. Live project controls now support action completion and risk resolution/acceptance while retaining the project record.
+The document register still supports external controlled sources. Each registered document retains type, revision, evidence status, provenance and issue date. Uploading a file does not make it manufacture-ready or technically approved.
 
-## Collaboration & invitations
+## Specification register
 
-Project creators can create project-scoped invitations with an explicit role and organisation. Invitation links are tokenised; only a hash is persisted. Acceptance requires an authenticated account with the same email address as the invitation.
+Specification items are editable but controlled. Every insert/update is snapshotted into `professional_project_spec_revisions`, creating a revision history for track, heading, textile, lining, fixing and other specification decisions.
 
-Roles currently include architect, interior designer, developer, housebuilder, contractor, fit-out, consultant, collaborator and viewer.
+The item itself carries status, provenance and optional source-document linkage. This lets the team distinguish, for example, a design-team preference from an Apex preliminary recommendation or a confirmed project requirement.
 
-The current invitation flow assumes an authorised Supabase account already exists for the recipient. Automated account provisioning/email delivery is intentionally not claimed yet.
+## Collaboration
 
-## Permission model
+Project creators can manage project members and tokenised invitations. Invitation tokens are not stored in plaintext; only token hashes are persisted. Acceptance requires an authenticated account using the invited email address and grants access only to the relevant project.
 
-Row Level Security is enabled on every Professional Platform operational/control table.
+## Risks, RFIs & actions
 
-Access is project-scoped. A signed-in user can see a project only when they created it or have an entry in `professional_project_members`.
+Risks and actions are first-class project records. Actions can be completed and risks can be resolved or explicitly accepted. These changes remain visible in the operational project record.
 
-Project creators control invitation creation and membership management. Invitees can add themselves only when their authenticated email matches a valid pending project invitation and the inserted role matches that invitation. A private trigger then marks the invitation accepted.
+## Activity timeline
 
-The membership helper and invitation-acceptance trigger live in the non-exposed `private` schema so they can support RLS without becoming public RPC endpoints.
+The live platform now exposes a chronological activity view built from project creation, aperture updates, document registrations, specification revisions, actions, risk closures and controlled exports. This is intended to become the human-readable audit trail for project coordination.
 
 ## Controlled exports
 
-`professional_project_exports` stores versioned snapshots of a project state. A preliminary export freezes the project, apertures, evidence register, specification items, risks and actions at that point in time.
+Controlled exports remain versioned project snapshots. Their purpose is to freeze a known coordination state while retaining unresolved evidence, provenance, open risks and RFIs rather than presenting an artificially clean specification.
 
-The export UI is intentionally explicit that these records are coordination snapshots, not manufacture approval, structural confirmation or proof of surveyed dimensions. Unresolved items remain inside the exported record.
+## Security boundary
 
-## Current migration state
+Row Level Security is enabled across the Professional Platform data model. Access is project-scoped via membership. RLS helper functions are kept in the non-exposed `private` schema. Private project file storage uses the same project-membership boundary.
 
-Supabase migrations applied to `apex-curtains-cms`:
+## Supabase migrations applied
 
 - `professional_platform_v1`
 - `professional_platform_security_hardening`
 - `professional_platform_collaboration_control`
 - `professional_platform_invitation_acceptance`
 - `professional_platform_collaboration_control_notes`
+- `professional_platform_documents_specs_activity`
+- `professional_platform_storage_constraints`
 
-The security advisor currently reports no Professional Platform-specific RLS/SECURITY DEFINER issues. The remaining warning is the separate account-level leaked-password-protection setting.
+## AI position
 
-## Application data layer
+The AI layer is intentionally deferred.
 
-`lib/professional-platform/server.ts` provides server-only authenticated reads for project lists, project detail, aperture register, aperture revision history, specification items, risks, actions, documents, collaboration records, invitations and controlled exports.
+The priority is to make the underlying project record, evidence control, revision history, permissions and specification workflow reliable first. No automated drawing interpretation, AI engineering approval, AI manufacture release or hidden inference is part of the current build.
 
-RLS remains the final database boundary; application checks are not a substitute for it.
+If an AI-assisted layer is considered later, it must operate on top of this provenance model and may propose or flag information, but it must not silently change confirmed project data.
 
-## Next implementation step
+## Next non-AI implementation priorities
 
-1. Add authorised account provisioning / invitation delivery rather than link-copy only.
-2. Add real document upload/storage with project-scoped object policies and revision control.
-3. Add specification-item create/edit workflows and version comparison.
-4. Add action assignment/ownership and richer programme tracking.
-5. Add controlled export issue/supersede workflow and formal issue notes.
-6. Add project activity/audit timeline across members, documents, revisions, RFIs and exports.
-7. Only then introduce AI-assisted document/project review with provenance retained end-to-end.
+1. Connect the new specification register and activity timeline more prominently throughout the project navigation.
+2. Add richer file revision/supersede controls and secure file download links.
+3. Add action ownership/assignment and due-date views.
+4. Add formal issue/supersede workflow for controlled exports.
+5. Add project templates for repeated window types, plots and design-team workflows.
+6. Improve account provisioning/invitation delivery without opening public self-registration.

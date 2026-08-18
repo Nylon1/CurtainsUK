@@ -20,6 +20,8 @@ const specificationLinks = [
 ];
 
 const helpLinks = [
+  { label: "Professional Workspace", href: "/professionals/workspace/login" },
+  { label: "Professional & Specifier Hub", href: "/professionals" },
   { label: "Ask Arlo", href: "/arlo-curtain-advisor" },
   { label: "Measure an Apex Window", href: "/advice/how-to-measure-for-apex-curtains" },
   { label: "Apex Curtain Pricing", href: "/advice/how-much-do-apex-window-curtains-cost-in-the-uk-full-2026-pricing-guide" },

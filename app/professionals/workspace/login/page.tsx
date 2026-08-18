@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ProfessionalWorkspaceLoginPage() {
   const supabase = createClient();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,12 @@ export default function ProfessionalWorkspaceLoginPage() {
       return;
     }
 
-    router.push("/professionals/workspace/live");
+    const requestedNext = searchParams.get("next") || "";
+    const safeNext = requestedNext.startsWith("/professionals/workspace/")
+      ? requestedNext
+      : "/professionals/workspace/live";
+
+    router.push(safeNext);
     router.refresh();
   }
 

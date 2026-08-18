@@ -42,8 +42,7 @@ export default async function Page({ params, searchParams }: Props) {
   }
 
   const sentEmail = query.email ? decodeURIComponent(query.email) : null;
-  const accountInviteSent = query.sent === "account";
-  const magicLinkSent = query.sent === "magic";
+  const accessEmailSent = query.sent === "access";
 
   return (
     <main className="min-h-screen bg-apex-navy-950 px-4 pb-24 pt-32 text-white sm:px-6 lg:px-8 lg:pt-40">
@@ -53,20 +52,16 @@ export default async function Page({ params, searchParams }: Props) {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d6b56b]">Project collaboration</p>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Project team & invitations</h1>
-            <p className="mt-4 max-w-3xl text-[#C8D1D8]">Access is project-scoped. Apex can now provision the account, send the secure email and grant access to this project without opening public self-registration.</p>
+            <p className="mt-4 max-w-3xl text-[#C8D1D8]">Access is project-scoped. Send a secure access email from Apex and the recipient is added only after signing in with the invited email and accepting this project invitation.</p>
           </div>
           <Link href={`/professionals/workspace/live/projects/${id}/exports`} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold">Controlled exports</Link>
         </div>
 
-        {(accountInviteSent || magicLinkSent) && sentEmail && (
+        {accessEmailSent && sentEmail && (
           <section className="mt-8 rounded-[28px] border border-[#d6b56b]/25 bg-[#d6b56b]/10 p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Access email sent</p>
             <h2 className="mt-3 text-xl font-semibold">{sentEmail}</h2>
-            <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">
-              {accountInviteSent
-                ? "A new professional account has been provisioned. The recipient has been emailed a secure invitation and will set a password before opening the workspace."
-                : "This email already has an Apex account. A secure sign-in link has been sent and the project is now available to that account."}
-            </p>
+            <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">The recipient has been emailed a secure sign-in link. After signing in with this email, they can accept the project invitation and gain access to this project only.</p>
           </section>
         )}
 
@@ -90,8 +85,8 @@ export default async function Page({ params, searchParams }: Props) {
             {data.isOwner && (
               <form action={createProjectInvitation.bind(null, id)} className="rounded-[30px] border border-white/10 bg-[#1B405B] p-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d6b56b]">Invite project member</p>
-                <h2 className="mt-3 text-xl font-semibold">Email access directly from Apex</h2>
-                <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">New users receive an account invitation and password-setup journey. Existing users receive a secure sign-in link. Access remains limited to this project.</p>
+                <h2 className="mt-3 text-xl font-semibold">Send secure project access</h2>
+                <p className="mt-3 text-sm leading-7 text-[#C8D1D8]">Enter the professional's email and role. Apex sends a secure email; project membership is activated only when that same email signs in and accepts the invitation.</p>
                 <div className="mt-5 space-y-4">
                   <label className="block"><span className="text-sm font-semibold">Email</span><input name="email" type="email" required className="mt-2 w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3" /></label>
                   <label className="block"><span className="text-sm font-semibold">Role</span><select name="role" className="mt-2 w-full rounded-2xl border border-white/10 bg-apex-navy-950 px-4 py-3">{roles.map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></label>
@@ -108,7 +103,7 @@ export default async function Page({ params, searchParams }: Props) {
                   <div key={invite.id} className="rounded-2xl border border-white/10 p-4 text-sm">
                     <div className="font-semibold">{invite.email}</div>
                     <div className="mt-1 text-[#C8D1D8]">{invite.role.replaceAll("_", " ")} · {invite.organisation || "No organisation"}</div>
-                    <div className="mt-2 text-xs uppercase tracking-[0.14em] text-white/45">{invite.status} · access provisioned {invite.accepted_at ? new Date(invite.accepted_at).toLocaleDateString("en-GB") : "pending"}</div>
+                    <div className="mt-2 text-xs uppercase tracking-[0.14em] text-white/45">{invite.status} · expires {new Date(invite.expires_at).toLocaleDateString("en-GB")}</div>
                   </div>
                 ))}
               </div>

@@ -17,7 +17,10 @@ export default async function Page({ params }: Props) {
   const openRisks = risks.filter((risk) => risk.status === "open" || risk.status === "monitoring");
 
   const routes = [
-    ["Add aperture", `/professionals/workspace/live/projects/${id}/apertures/new`, true],
+    ["Window schedule", `/professionals/workspace/live/projects/${id}/schedule`, true],
+    ["Drawing review", `/professionals/workspace/live/projects/${id}/drawing-review`, false],
+    ["Design approvals", `/professionals/workspace/live/projects/${id}/approvals`, false],
+    ["Add aperture", `/professionals/workspace/live/projects/${id}/apertures/new`, false],
     ["Document control", `/professionals/workspace/live/projects/${id}/documents`, false],
     ["Raise RFI / action", `/professionals/workspace/live/projects/${id}/actions/new`, false],
     ["Programme", `/professionals/workspace/live/projects/${id}/programme`, false],
@@ -49,6 +52,12 @@ export default async function Page({ params }: Props) {
           {[["Apertures", apertures.length],["Documents", documents.length],["Spec items", specificationItems.length],["Open risks", openRisks.length],["Actions", openActions.length]].map(([label, value]) => (
             <div key={String(label)} className="rounded-[24px] border border-white/10 bg-[#1B405B] p-5"><div className="text-xs uppercase tracking-[0.16em] text-white/45">{label}</div><div className="mt-2 text-3xl font-semibold">{value}</div></div>
           ))}
+        </section>
+
+        <section className="mt-8 grid gap-4 md:grid-cols-3">
+          <Link href={`/professionals/workspace/live/projects/${id}/schedule`} className="rounded-[26px] border border-[#d6b56b]/25 bg-[#d6b56b]/10 p-6"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#d6b56b]">Window treatment schedule</p><h2 className="mt-2 text-xl font-semibold">Coordinate every aperture →</h2><p className="mt-3 text-sm leading-7 text-[#C8D1D8]">Track geometry, track strategy, fixing, textiles, operation and approval status in one live schedule.</p></Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/drawing-review`} className="rounded-[26px] border border-white/10 bg-white/[0.04] p-6"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#d6b56b]">Drawing review</p><h2 className="mt-2 text-xl font-semibold">Review controlled evidence →</h2><p className="mt-3 text-sm leading-7 text-[#C8D1D8]">Tie coordination notes, RFIs, risks and fixing questions to a drawing revision, page and aperture.</p></Link>
+          <Link href={`/professionals/workspace/live/projects/${id}/approvals`} className="rounded-[26px] border border-white/10 bg-white/[0.04] p-6"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#d6b56b]">Design approvals</p><h2 className="mt-2 text-xl font-semibold">Control design decisions →</h2><p className="mt-3 text-sm leading-7 text-[#C8D1D8]">Submit track, fabric, lining, heading and other project decisions for recorded review.</p></Link>
         </section>
 
         <section className="mt-10 grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">

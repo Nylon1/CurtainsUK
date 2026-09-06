@@ -12,44 +12,45 @@ const governed = <T>(decisionId: string, status: RuleImplementationStatus, value
   decisionId, status, value,
 });
 
-const heading = (code: HeadingType, fullness: number | null): HeadingPricingRule => ({
+const heading = (code: HeadingType, fullness: number | null, priceFactor: number | null): HeadingPricingRule => ({
   fullnessFactor: governed(`HEADING_FULLNESS_${code}`, "DRAFT", fullness),
   voileFullnessFactor: governed<number>(`VOILE_FULLNESS_${code}`, "DRAFT", null),
-  headingLabourNetPerWidth: null,
+  priceFactor: governed(`HEADING_PRICE_FACTOR_${code}`, priceFactor === null ? "DRAFT" : "LOCKED", priceFactor),
   overrides: [],
 });
 
-const material = (): MaterialConstructionRule => ({
+const material = (rateMinor: number | null = null): MaterialConstructionRule => ({
   structureStatus: "LOCKED",
-  usableWidthMm: null,
-  materialRateNetPerMetre: null,
-  topAllowanceMm: null,
-  bottomAllowanceMm: null,
-  labourNetPerWidth: null,
-  compatibleHeadings: [],
-  compatibleWindowTypes: [],
+  usableWidthMm: 1380,
+  materialRateNetPerMetre: rateMinor === null ? null : { amountMinor: rateMinor, currency: "GBP" },
+  topAllowanceMm: 150,
+  bottomAllowanceMm: 200,
+  labourNetPerWidth: { amountMinor: 0, currency: "GBP" },
+  compatibleHeadings: ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET", "TAB_TOP"],
+  compatibleWindowTypes: ["*"],
 });
 
 const packagingClasses = ["SMALL", "STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"] as const;
 
 /** Draft-only. Null commercial inputs and registry blockers make activation impossible. */
 export const DRAFT_PRICING_RULE_SET: PricingRuleSet = {
-  id: "curtainsuk-pricing-v2-draft",
-  version: "2.0.0-draft.1",
+  id: "curtainsuk-pricing-v1-calibration-draft",
+  version: "2.1.0-draft.1",
+  commercialModelId: "CURTAINSUK_PRICING_RULESET_V1",
   lifecycle: "DRAFT",
   currency: "GBP",
   effectiveFrom: null,
   effectiveTo: null,
-  supersedesVersion: "1.0.0-draft.1",
-  decisionRegistryVersion: "2.0.0-draft.1",
+  supersedesVersion: "2.0.0-draft.1",
+  decisionRegistryVersion: "2.1.0-draft.1",
   allowedCustomerWidthBases: governed("CUSTOMER_WIDTH_BASIS", "LOCKED", ["TRACK_WIDTH", "POLE_USABLE_WIDTH"]),
   headingRules: {
-    PENCIL_PLEAT: heading("PENCIL_PLEAT", 2),
-    WAVE: heading("WAVE", 2),
-    DOUBLE_PINCH: heading("DOUBLE_PINCH", 2.25),
-    TRIPLE_PINCH: heading("TRIPLE_PINCH", 2.5),
-    EYELET: heading("EYELET", 2),
-    TAB_TOP: heading("TAB_TOP", null),
+    PENCIL_PLEAT: heading("PENCIL_PLEAT", 2, 1),
+    WAVE: heading("WAVE", 2, 1.1),
+    DOUBLE_PINCH: heading("DOUBLE_PINCH", 2.25, 1.2),
+    TRIPLE_PINCH: heading("TRIPLE_PINCH", 2.5, 1.2),
+    EYELET: heading("EYELET", 2, 1.1),
+    TAB_TOP: heading("TAB_TOP", null, null),
   },
   constructionAllowances: {
     topAllowanceMm: governed("TOP_ALLOWANCE", "DRAFT", 150),
@@ -66,17 +67,26 @@ export const DRAFT_PRICING_RULE_SET: PricingRuleSet = {
   },
   fabricOrderingIncrementMetres: 0.1,
   pairSingleConstruction: governed("PAIR_SINGLE_ALLOCATION", "WORKROOM_CONFIRMATION_REQUIRED", "BALANCED_WHOLE_WIDTHS"),
-  baseMakeupLabourNetPerWidth: null,
+  baseMakeupLabourNetPerWidth: { amountMinor: 2500, currency: "GBP" },
   patternMatchLabourNetPerWidth: null,
+  marginPolicy: {
+    basis: "DIRECT_COST_TARGET_GROSS_MARGIN",
+    targetGrossMarginBasisPoints: governed("TARGET_GROSS_MARGIN", "LOCKED", 4000),
+    minimumNetGrossProfitFloor: {
+      status: "DRAFT",
+      active: false,
+      proposedNet: { amountMinor: 10000, currency: "GBP" },
+      calibrationUpperBoundNet: { amountMinor: 15000, currency: "GBP" },
+    },
+  },
   liningRules: {
     UNLINED: { ...material(), usableWidthMm: 1, materialRateNetPerMetre: { amountMinor: 0, currency: "GBP" }, topAllowanceMm: 0, bottomAllowanceMm: 0, labourNetPerWidth: { amountMinor: 0, currency: "GBP" }, compatibleHeadings: ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET", "TAB_TOP"], compatibleWindowTypes: ["*"] },
-    STANDARD: material(), BLACKOUT: material(), THERMAL: material(),
+    STANDARD: material(400), BLACKOUT: material(600), THERMAL: material(600),
   },
   interliningRules: {
     NONE: { ...material(), usableWidthMm: 1, materialRateNetPerMetre: { amountMinor: 0, currency: "GBP" }, topAllowanceMm: 0, bottomAllowanceMm: 0, labourNetPerWidth: { amountMinor: 0, currency: "GBP" }, compatibleHeadings: ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET", "TAB_TOP"], compatibleWindowTypes: ["*"] },
-    INTERLINING: material(),
+    INTERLINING: material(1000),
   },
-  markupTiers: [],
   oversizedWidthSurcharge: null,
   oversizedDropSurcharge: null,
   automaticComplexitySurchargesEnabled: false,
@@ -102,7 +112,7 @@ export const DRAFT_PRICING_RULE_SET: PricingRuleSet = {
     premiumInterlinedGross: null, specialistReviewedGross: null,
     samplesExempt: true, shippingCountsTowardMinimum: false,
   },
-  vat: { implementationStatus: "LOCKED", baseRatesStoredNet: true, retailPricesPresentedGross: true, rateBasisPoints: null },
+  vat: { implementationStatus: "LOCKED", baseRatesStoredNet: true, retailPricesPresentedGross: true, rateBasisPoints: 2000 },
   rounding: { implementationStatus: "LOCKED", calculateIntermediateAtFullPrecision: true, incrementMinor: 100, mode: "NEAREST" },
   measurementValidation: {
     structureStatus: "LOCKED", customerLengthUnit: "CM", minimumWidthCm: null,

@@ -9,7 +9,8 @@
     "lint": "eslint",
     "seo:check": "node scripts/seo-foundation-check.mjs",
     "test": "npm run test:decision-engine",
-    "test:decision-engine": "tsx --test lib/decision-engine/__tests__/*.test.ts"
+    "test:decision-engine": "tsx --test lib/decision-engine/__tests__/*.test.ts",
+    "calibrate:curtainsmadeforfree": "tsx scripts/curtainsuk-pricing-calibration.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.9.0",

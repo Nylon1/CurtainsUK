@@ -10,7 +10,8 @@ or network side effects.
   CurtainConfiguration contracts.
 - `seed/window-types.ts` — the 21 agreed initial window types.
 - `seed/fabrics.ts` — synthetic schema fixtures only; not supplier catalogue data.
-- `seed/pricing-rules.ts` — draft version records with commercial inputs left null.
+- `seed/pricing-rules.ts` — non-production Pricing Ruleset v1 calibration values.
+- `calibration/curtainsmadeforfree.ts` — reproducible competitor benchmark fixtures.
 - `seed/decision-registry.ts` — machine-readable LOCKED/DRAFT/workroom decisions.
 - `validation.ts` — master-data and configuration validation.
 - `compatibility.ts` — blocked/review/allowed option combinations.
@@ -31,9 +32,14 @@ or network side effects.
 - Half-drop and exact centring remain deliberately non-calculable until confirmed.
 - The engine does not write to Shopify or create a checkout.
 - Synthetic fabric fixtures are always Google-feed ineligible.
+- Pricing Ruleset v1 treats supplier fabric, lining/interlining, make-up and the
+  heading adjustment as direct costs, then divides by `1 - target margin`.
+- The proposed £100 net gross-profit floor is stored but cannot execute while it
+  remains `DRAFT` and `active: false`.
 
 Run the isolated suite with:
 
 ```bash
 npm run test:decision-engine
+npm run calibrate:curtainsmadeforfree
 ```

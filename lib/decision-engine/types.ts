@@ -186,6 +186,7 @@ export interface FabricSpec {
   usageSuitability: string[];
   fabricWeightGsm: number | null;
   supplierCostPerMetre: Money | null;
+  supplierCostEffectiveFrom: string | null;
   sellingPricePolicy: FabricSellingPricePolicy;
   sample: SamplePolicy;
   leadTime: FabricLeadTime;
@@ -212,7 +213,7 @@ export interface HeadingFullnessOverride {
 export interface HeadingPricingRule {
   fullnessFactor: GovernedValue<number>;
   voileFullnessFactor: GovernedValue<number>;
-  headingLabourNetPerWidth: Money | null;
+  priceFactor: GovernedValue<number>;
   overrides: HeadingFullnessOverride[];
 }
 
@@ -302,6 +303,7 @@ export interface MeasurementValidationRules {
 export interface PricingRuleSet {
   id: string;
   version: string;
+  commercialModelId: "CURTAINSUK_PRICING_RULESET_V1";
   lifecycle: PricingRuleLifecycle;
   currency: CurrencyCode;
   effectiveFrom: string | null;
@@ -321,14 +323,18 @@ export interface PricingRuleSet {
   pairSingleConstruction: GovernedValue<"BALANCED_WHOLE_WIDTHS">;
   baseMakeupLabourNetPerWidth: Money | null;
   patternMatchLabourNetPerWidth: Money | null;
+  marginPolicy: {
+    basis: "DIRECT_COST_TARGET_GROSS_MARGIN";
+    targetGrossMarginBasisPoints: GovernedValue<number>;
+    minimumNetGrossProfitFloor: {
+      status: "DRAFT";
+      active: false;
+      proposedNet: Money;
+      calibrationUpperBoundNet: Money;
+    };
+  };
   liningRules: Record<LiningType, MaterialConstructionRule>;
   interliningRules: Record<InterliningType, MaterialConstructionRule>;
-  markupTiers: Array<{
-    minimumSupplierCostMinor: number;
-    maximumSupplierCostMinor: number | null;
-    markupPercent: number | null;
-    minimumCashMargin: Money | null;
-  }>;
   oversizedWidthSurcharge: SurchargeRule | null;
   oversizedDropSurcharge: SurchargeRule | null;
   automaticComplexitySurchargesEnabled: false;
@@ -386,9 +392,9 @@ export type PricingConfidence = "HIGH" | "MEDIUM" | "LOW";
 
 export interface FabricRateSnapshot {
   fabricSpecId: string;
-  sellingRateNetPerMetre: Money;
+  pricingBasis: "SUPPLIER_COST";
+  supplierCostNetPerMetre: Money;
   effectiveFrom: string;
-  manualOverrideApplied: boolean;
 }
 
 export interface VatSnapshot {
@@ -477,6 +483,11 @@ export interface CalculationResult {
   fabricCutLengthMm: number;
   adjustedFabricCutLengthMm: number;
   fabricMetres: number;
+  headingPriceFactor: number;
+  directCostNet: Money;
+  netSellingPriceBeforeMinimum: Money;
+  netGrossProfit: Money;
+  grossMarginPercent: number;
   components: PriceComponent[];
   goodsNetBeforeMinimum: Money;
   applicableMinimumGross: Money | null;

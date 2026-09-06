@@ -22,6 +22,7 @@ function fixture(id: string, match: PatternMatchType): FabricSpec {
     usageSuitability: ["Curtains"],
     fabricWeightGsm: null,
     supplierCostPerMetre: null,
+    supplierCostEffectiveFrom: null,
     sellingPricePolicy: {
       supplierRrpPerMetre: null,
       curtainsUkSellingRatePerMetre: null,

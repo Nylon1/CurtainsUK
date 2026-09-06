@@ -42,8 +42,8 @@ composition, care, usage, sample SKU/availability/public price, lead time,
 supplier availability, lifecycle, images, allowed options, window-type references
 and feed eligibility.
 
-Store supplier cost, internal margin and unpublished selling inputs separately in
-private app-owned data.
+Store supplier cost, its effective date, the target margin and unpublished
+calculation inputs separately in private app-owned data.
 
 ### `curtainsuk_pricing_rule_set`
 
@@ -88,6 +88,7 @@ write a compact immutable snapshot to order metafields:
 - `curtainsuk.configuration_summary_json`
 - `curtainsuk.measurement_basis`
 - `curtainsuk.fabric_rate_snapshot_json`
+- `curtainsuk.direct_cost_and_margin_snapshot_json`
 - `curtainsuk.vat_snapshot_json`
 - `curtainsuk.technical_review_state`
 - `curtainsuk.customer_approval_revision`

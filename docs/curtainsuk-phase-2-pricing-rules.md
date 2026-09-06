@@ -1,5 +1,8 @@
 # CurtainsUK Phase 2 — governed pricing and manufacturing rules
 
+> Phase 2C supersedes the draft commercial price policy in this document. See
+> `curtainsuk-phase-2c-competitive-pricing-calibration.md` for Pricing Ruleset v1.
+
 ## Scope and safety boundary
 
 This phase extends the framework-independent decision engine only. It does not
@@ -46,8 +49,10 @@ coverage width + selected overlap/returns
   -> whole fabric widths and pair/single allocation
   -> drop + top allowance + bottom hem
   -> random/straight pattern rule
-  -> face fabric + component labour
+  -> supplier-cost face fabric + component labour
   -> lining/interlining materials + labour
+  -> heading adjustment on make-up
+  -> 40% target gross-margin selling price
   -> compatible accessories
   -> goods VAT-inclusive minimum (samples exempt)
   -> packaging classification/internal cost
@@ -58,9 +63,9 @@ coverage width + selected overlap/returns
 
 Intermediate calculations retain full precision. Shipping and packaging do not
 help an order meet the goods minimum. There are no automatic complexity
-surcharges in the draft. Fabric selling rates are effective-dated and snapped
-onto the calculation; tiered markup and minimum cash/gross-margin floors are
-supported without a universal multiplier.
+surcharges in the draft. Supplier face-fabric cost is effective-dated and
+snapshotted onto the calculation. Phase 2C applies the governed target margin to
+the complete direct-cost bill rather than applying a universal fabric multiplier.
 
 ### Routing and approvals
 

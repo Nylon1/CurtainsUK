@@ -20,6 +20,7 @@ import {
   evaluateCompatibility,
   evaluateGoogleFeedEligibility,
   finalisePrice,
+  runCurtainsMadeForFreeCalibration,
   validateConfiguration,
   validateDecisionRegistry,
   validateFabricSpec,
@@ -70,7 +71,8 @@ function validatedRules(): PricingRuleSet {
     heading.fullnessFactor.value ??= 2;
     heading.voileFullnessFactor.status = "LOCKED";
     heading.voileFullnessFactor.value = 2;
-    heading.headingLabourNetPerWidth = money;
+    heading.priceFactor.status = "LOCKED";
+    heading.priceFactor.value ??= 1;
   }
   rule.baseMakeupLabourNetPerWidth = gbp(5_000);
   rule.patternMatchLabourNetPerWidth = gbp(750);
@@ -87,7 +89,6 @@ function validatedRules(): PricingRuleSet {
   fillMaterial(rule.liningRules.BLACKOUT);
   fillMaterial(rule.liningRules.THERMAL);
   fillMaterial(rule.interliningRules.INTERLINING);
-  rule.markupTiers = [{ minimumSupplierCostMinor: 0, maximumSupplierCostMinor: null, markupPercent: 100, minimumCashMargin: gbp(1_000) }];
   rule.accessories.forEach((accessory) => {
     if (!accessory.quoteOnly) { accessory.unitPriceNet = money; accessory.vatRateBasisPoints = 2_000; accessory.compatibleHeadings = ["WAVE"]; accessory.compatibleWindowTypes = ["*"]; }
   });
@@ -125,6 +126,8 @@ function fabric(match: "RANDOM_MATCH" | "STRAIGHT_MATCH" = "STRAIGHT_MATCH"): Fa
   value.suitableWindowTypeSlugs = ["*"];
   value.sellingPricePolicy.curtainsUkSellingRatePerMetre = gbp(3_000);
   value.sellingPricePolicy.effectiveFrom = "2026-09-06T00:00:00.000Z";
+  value.supplierCostPerMetre = gbp(3_000);
+  value.supplierCostEffectiveFrom = "2026-09-06T00:00:00.000Z";
   return value;
 }
 
@@ -178,11 +181,13 @@ test("pricing calculates VAT at full precision and rounds only the final gross t
   assert.equal(result.fabricCutLengthMm, 2_650);
   assert.equal(result.adjustedFabricCutLengthMm, 3_200);
   assert.equal(result.fabricMetres, 12.8);
-  assert.equal(result.goodsNetBeforeMinimum.amountMinor, 65_400);
-  assert.equal(result.netTotal.amountMinor, 66_400);
-  assert.equal(result.vat.amountMinor, 13_280);
-  assert.equal(result.grossBeforeRounding.amountMinor, 79_680);
-  assert.equal(result.total.amountMinor, 79_700);
+  assert.equal(result.directCostNet.amountMinor, 63_700);
+  assert.ok(Math.abs(result.goodsNetBeforeMinimum.amountMinor - 106_166.66666666667) < 0.001);
+  assert.ok(Math.abs(result.netTotal.amountMinor - 107_166.66666666667) < 0.001);
+  assert.ok(Math.abs(result.vat.amountMinor - 21_433.333333333336) < 0.001);
+  assert.equal(result.grossBeforeRounding.amountMinor, 128_600);
+  assert.equal(result.total.amountMinor, 128_600);
+  assert.ok(Math.abs(result.grossMarginPercent - 40) < 0.000001);
 });
 
 test("random match fabric usage uses drop plus separate allowances", () => {
@@ -306,4 +311,37 @@ test("Google feed governance rejects quote-only, mismatched or inactive pricing"
   });
   assert.equal(result.eligible, false);
   assert.deepEqual(result.reasons, ["LANDING_PAGE_PRICE_MISMATCH", "QUOTE_ONLY_PRODUCT", "ACTIVE_PRICING_RULESET_REQUIRED"]);
+});
+
+test("Pricing Ruleset v1 locks the commercial calibration inputs but remains non-production", () => {
+  assert.equal(DRAFT_PRICING_RULE_SET.lifecycle, "DRAFT");
+  assert.equal(DRAFT_PRICING_RULE_SET.commercialModelId, "CURTAINSUK_PRICING_RULESET_V1");
+  assert.equal(DRAFT_PRICING_RULE_SET.marginPolicy.targetGrossMarginBasisPoints.value, 4_000);
+  assert.equal(DRAFT_PRICING_RULE_SET.baseMakeupLabourNetPerWidth?.amountMinor, 2_500);
+  assert.equal(DRAFT_PRICING_RULE_SET.headingRules.PENCIL_PLEAT?.priceFactor.value, 1);
+  assert.equal(DRAFT_PRICING_RULE_SET.headingRules.WAVE?.priceFactor.value, 1.1);
+  assert.equal(DRAFT_PRICING_RULE_SET.headingRules.EYELET?.priceFactor.value, 1.1);
+  assert.equal(DRAFT_PRICING_RULE_SET.headingRules.DOUBLE_PINCH?.priceFactor.value, 1.2);
+  assert.equal(DRAFT_PRICING_RULE_SET.liningRules.STANDARD.materialRateNetPerMetre?.amountMinor, 400);
+  assert.equal(DRAFT_PRICING_RULE_SET.liningRules.BLACKOUT.materialRateNetPerMetre?.amountMinor, 600);
+  assert.equal(DRAFT_PRICING_RULE_SET.liningRules.THERMAL.materialRateNetPerMetre?.amountMinor, 600);
+  assert.equal(DRAFT_PRICING_RULE_SET.interliningRules.INTERLINING.materialRateNetPerMetre?.amountMinor, 1_000);
+  assert.equal(DRAFT_PRICING_RULE_SET.marginPolicy.minimumNetGrossProfitFloor.active, false);
+  assert.deepEqual([
+    DRAFT_PRICING_RULE_SET.marginPolicy.minimumNetGrossProfitFloor.proposedNet.amountMinor,
+    DRAFT_PRICING_RULE_SET.marginPolicy.minimumNetGrossProfitFloor.calibrationUpperBoundNet.amountMinor,
+  ], [10_000, 15_000]);
+});
+
+test("the five competitor benchmarks run through the pricing engine without job-specific tuning", () => {
+  const results = runCurtainsMadeForFreeCalibration();
+  assert.deepEqual(results.map((result) => result.fabricWidths), [2, 2, 4, 4, 6]);
+  assert.deepEqual(results.map((result) => result.fabricMetres), [5.2, 5.2, 10.3, 12, 17.9]);
+  assert.deepEqual(results.map((result) => result.liningMetres), [5.1, 5.1, 10.2, 11.8, 17.7]);
+  assert.deepEqual(results.map((result) => result.interliningMetres), [0, 0, 0, 0, 17.7]);
+  assert.deepEqual(results.map((result) => result.grossSellingPrice.amountMinor), [34_900, 37_900, 75_400, 86_200, 157_200]);
+  for (const result of results) {
+    assert.ok(Math.abs(result.grossMarginPercent - 40) < 0.000001);
+    assert.equal(result.fabricWidths, result.benchmark.expectedFabricWidths);
+  }
 });

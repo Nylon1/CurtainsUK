@@ -98,26 +98,15 @@ function resolveFullness(configuration: CurtainConfiguration, fabric: FabricSpec
   return matched?.fullnessFactor ?? base;
 }
 
-function resolveFabricRate(fabric: FabricSpec, rules: PricingRuleSet): FabricRateSnapshot {
-  const policy = fabric.sellingPricePolicy;
-  let rate = policy.manualOverride.enabled ? policy.manualOverride.ratePerMetre : policy.curtainsUkSellingRatePerMetre;
-  if (!rate && fabric.supplierCostPerMetre) {
-    const tier = rules.markupTiers.find((item) => fabric.supplierCostPerMetre!.amountMinor >= item.minimumSupplierCostMinor && (item.maximumSupplierCostMinor === null || fabric.supplierCostPerMetre!.amountMinor <= item.maximumSupplierCostMinor));
-    if (tier?.markupPercent !== null && tier?.markupPercent !== undefined) {
-      const markedUp = fabric.supplierCostPerMetre.amountMinor * (1 + tier.markupPercent / 100);
-      const cashFloor = tier.minimumCashMargin ? fabric.supplierCostPerMetre.amountMinor + tier.minimumCashMargin.amountMinor : 0;
-      rate = gbp(Math.max(markedUp, cashFloor));
-    }
-  }
-  rate = requiredMoney(rate, `fabric.${fabric.id}.sellingPricePolicy`);
-  if (fabric.supplierCostPerMetre) {
-    const cost = fabric.supplierCostPerMetre.amountMinor;
-    const marginFloor = policy.minimumGrossMarginPercent === null ? 0 : cost / (1 - policy.minimumGrossMarginPercent / 100);
-    const cashFloor = policy.minimumCashMargin === null ? 0 : cost + policy.minimumCashMargin.amountMinor;
-    rate = gbp(Math.max(rate.amountMinor, marginFloor, cashFloor));
-  }
-  if (!policy.effectiveFrom) throw new MissingCommercialRuleError(`fabric.${fabric.id}.sellingPricePolicy.effectiveFrom`);
-  return { fabricSpecId: fabric.id, sellingRateNetPerMetre: rate, effectiveFrom: policy.effectiveFrom, manualOverrideApplied: policy.manualOverride.enabled };
+function resolveFabricCost(fabric: FabricSpec): FabricRateSnapshot {
+  const cost = requiredMoney(fabric.supplierCostPerMetre, `fabric.${fabric.id}.supplierCostPerMetre`);
+  if (!fabric.supplierCostEffectiveFrom) throw new MissingCommercialRuleError(`fabric.${fabric.id}.supplierCostEffectiveFrom`);
+  return {
+    fabricSpecId: fabric.id,
+    pricingBasis: "SUPPLIER_COST",
+    supplierCostNetPerMetre: cost,
+    effectiveFrom: fabric.supplierCostEffectiveFrom,
+  };
 }
 
 function adjustedCoverageWidth(configuration: CurtainConfiguration, widthMm: number, rules: PricingRuleSet): number {
@@ -230,16 +219,19 @@ export function calculatePrice(input: CalculatePriceInput): CalculationResult {
     + requiredGoverned(rules.constructionAllowances.bottomHemAllowanceMm, "constructionAllowances.bottomHemAllowanceMm");
   const adjustedCutLengthMm = adjustCutLengthForPattern(cutLengthMm, fabric.verticalRepeatMm, fabric.patternMatchType);
   const fabricMetres = roundMetresUp(fabricWidths.totalWidths * adjustedCutLengthMm / 1000, rules.fabricOrderingIncrementMetres);
-  const fabricRateSnapshot = resolveFabricRate(fabric, rules);
+  const fabricRateSnapshot = resolveFabricCost(fabric);
   const baseLabour = requiredMoney(rules.baseMakeupLabourNetPerWidth, "baseMakeupLabourNetPerWidth");
   const headingRule = rules.headingRules[configuration.heading]!;
-  const headingLabour = requiredMoney(headingRule.headingLabourNetPerWidth, `headingRules.${configuration.heading}.headingLabourNetPerWidth`);
+  const headingPriceFactor = requiredGoverned(headingRule.priceFactor, `headingRules.${configuration.heading}.priceFactor`);
+  if (!Number.isFinite(headingPriceFactor) || headingPriceFactor < 1) throw new RangeError("Heading price factor must be at least 1.00");
+  const baseMakeupCostMinor = fabricWidths.totalWidths * baseLabour.amountMinor;
+  const headingAdjustmentMinor = baseMakeupCostMinor * (headingPriceFactor - 1);
   const components: PriceComponent[] = [
-    component("FABRIC", "Face fabric", fabricMetres * fabricRateSnapshot.sellingRateNetPerMetre.amountMinor, vatRate, true, { metres: fabricMetres, widths: fabricWidths.totalWidths, usableWidthMm: fabric.usableWidthMm, adjustedCutLengthMm }),
-    component("BASE_LABOUR", "Base make-up labour", fabricWidths.totalWidths * baseLabour.amountMinor, vatRate, true, { widths: fabricWidths.totalWidths }),
-    component("HEADING_LABOUR", `${configuration.heading.toLowerCase()} heading labour`, fabricWidths.totalWidths * headingLabour.amountMinor, vatRate, true, { widths: fabricWidths.totalWidths }),
+    component("FABRIC", "Face-fabric direct cost", fabricMetres * fabricRateSnapshot.supplierCostNetPerMetre.amountMinor, vatRate, true, { metres: fabricMetres, widths: fabricWidths.totalWidths, usableWidthMm: fabric.usableWidthMm, adjustedCutLengthMm, costComponent: true }),
+    component("BASE_LABOUR", "Base make-up direct cost", baseMakeupCostMinor, vatRate, true, { widths: fabricWidths.totalWidths, rateNetPerWidthMinor: baseLabour.amountMinor, costComponent: true }),
+    component("HEADING_ADJUSTMENT", `${configuration.heading.toLowerCase()} heading adjustment`, headingAdjustmentMinor, vatRate, true, { widths: fabricWidths.totalWidths, factor: headingPriceFactor, costComponent: true }),
   ];
-  if (fabric.patternMatchType === "STRAIGHT_MATCH") {
+  if (fabric.patternMatchType === "STRAIGHT_MATCH" && rules.patternMatchLabourNetPerWidth !== null) {
     const patternLabour = requiredMoney(rules.patternMatchLabourNetPerWidth, "patternMatchLabourNetPerWidth");
     components.push(component("PATTERN_MATCH_LABOUR", "Pattern-matching labour", fabricWidths.totalWidths * patternLabour.amountMinor, vatRate, true, { widths: fabricWidths.totalWidths }));
   }
@@ -266,12 +258,24 @@ export function calculatePrice(input: CalculatePriceInput): CalculationResult {
   const packagingRule = rules.packagingRules.find((item) => item.packagingClass === packagingClass);
   if (!packagingRule) throw new MissingCommercialRuleError(`packagingRules.${packagingClass}`);
   const packagingCost = requiredMoney(packagingRule.internalCostNet, `packagingRules.${packagingClass}.internalCostNet`);
-  components.push(component("PACKAGING", `${packagingClass} packaging`, packagingCost.amountMinor, vatRate, false, { packagingClass }, packagingRule.chargeToCustomer));
+  components.push(component("PACKAGING", `${packagingClass} packaging`, packagingCost.amountMinor, vatRate, false, { packagingClass, costComponent: true }, packagingRule.chargeToCustomer));
+
+  const targetGrossMarginBasisPoints = requiredGoverned(rules.marginPolicy.targetGrossMarginBasisPoints, "marginPolicy.targetGrossMarginBasisPoints");
+  if (!Number.isFinite(targetGrossMarginBasisPoints) || targetGrossMarginBasisPoints <= 0 || targetGrossMarginBasisPoints >= 10_000) throw new RangeError("Target gross margin must be between 0% and 100%");
+  const directCostMinor = components.reduce((sum, item) => sum + item.netAmount.amountMinor, 0);
+  const chargedDirectCostMinor = components.filter((item) => item.chargeToCustomer).reduce((sum, item) => sum + item.netAmount.amountMinor, 0);
+  const targetNetSellingPriceMinor = directCostMinor / (1 - targetGrossMarginBasisPoints / 10_000);
+  components.push(component("TARGET_MARGIN_UPLIFT", "Target gross-margin uplift", targetNetSellingPriceMinor - chargedDirectCostMinor, vatRate, true, { targetGrossMarginBasisPoints, pricingBasis: rules.marginPolicy.basis }));
+
   const shippingRule = rules.shippingZones.find((item) => item.code === input.shippingZone && item.enabled && item.supplyOnly);
   if (!shippingRule || !shippingRule.allowedPackagingClasses.includes(packagingClass)) throw new MissingCommercialRuleError(`shippingZones.${input.shippingZone}`);
   const shippingRate = requiredMoney(shippingRule.rateNet, `shippingZones.${input.shippingZone}.rateNet`);
   const shipping = component("SHIPPING", shippingRule.name, shippingRate.amountMinor, vatRate, false, { shippingZone: shippingRule.code });
   const totals = finalisePrice({ components, shipping, minimumGross: applicableMinimum(rules, configuration.minimumOrderClass), sampleOrder: false, roundingIncrementMinor: rules.rounding.incrementMinor });
+  const netSellingPriceBeforeMinimum = totals.goodsNetBeforeMinimum;
+  const netGoodsSellingPriceAfterMinimumMinor = totals.netTotal.amountMinor - totals.shippingNet.amountMinor;
+  const netGrossProfitMinor = netGoodsSellingPriceAfterMinimumMinor - directCostMinor;
+  const grossMarginPercent = netGoodsSellingPriceAfterMinimumMinor === 0 ? 0 : netGrossProfitMinor / netGoodsSellingPriceAfterMinimumMinor * 100;
   const vatSnapshot = { rateBasisPoints: vatRate, netAmount: totals.netTotal, vatAmount: totals.vat, grossAmountBeforeRounding: totals.grossBeforeRounding, grossAmountAfterRounding: totals.total };
   return {
     configurationId: configuration.id,
@@ -281,6 +285,11 @@ export function calculatePrice(input: CalculatePriceInput): CalculationResult {
     fabricCutLengthMm: cutLengthMm,
     adjustedFabricCutLengthMm: adjustedCutLengthMm,
     fabricMetres,
+    headingPriceFactor,
+    directCostNet: gbp(directCostMinor),
+    netSellingPriceBeforeMinimum,
+    netGrossProfit: gbp(netGrossProfitMinor),
+    grossMarginPercent,
     ...totals,
     vatSnapshot,
   };

@@ -190,13 +190,14 @@ export function validatePricingRuleActivation(rules: PricingRuleSet, registry: D
     rules.patternRules.halfDropMatch,
     rules.patternRules.exactCentringAndJoining,
     rules.pairSingleConstruction,
+    rules.marginPolicy.targetGrossMarginBasisPoints,
   ];
   for (const governed of governedValues) if (governed.status !== "LOCKED" || governed.value === null) issues.push(issue("GOVERNED_VALUE_NOT_LOCKED", `decisions.${governed.decisionId}`, "Every executable governed value must be locked and resolved before activation"));
   for (const [heading, rule] of Object.entries(rules.headingRules)) {
     if (!rule || rule.fullnessFactor.value === null) issues.push(issue("HEADING_RULE_REQUIRED", `headingRules.${heading}`, "Heading fullness is required before activation"));
     if (rule) {
       if (rule.fullnessFactor.status !== "LOCKED" || rule.voileFullnessFactor.status !== "LOCKED" || rule.voileFullnessFactor.value === null) issues.push(issue("HEADING_RULE_NOT_LOCKED", `headingRules.${heading}`, "Heading and voile fullness must be locked before activation"));
-      validateMoney(rule.headingLabourNetPerWidth, `headingRules.${heading}.headingLabourNetPerWidth`, true, issues);
+      if (rule.priceFactor.status !== "LOCKED" || rule.priceFactor.value === null) issues.push(issue("HEADING_PRICE_FACTOR_NOT_LOCKED", `headingRules.${heading}.priceFactor`, "Heading price factor must be locked before activation"));
     }
   }
   validateMoney(rules.baseMakeupLabourNetPerWidth, "baseMakeupLabourNetPerWidth", true, issues);
@@ -218,7 +219,9 @@ export function validatePricingRuleActivation(rules: PricingRuleSet, registry: D
   const shipping = rules.shippingZones.find((zone) => zone.code === "UK_MAINLAND" && zone.enabled);
   if (!shipping) issues.push(issue("UK_MAINLAND_SHIPPING_REQUIRED", "shippingZones", "Enabled UK Mainland supply-only shipping is required"));
   else validateMoney(shipping.rateNet, "shippingZones.UK_MAINLAND.rateNet", true, issues);
-  if (rules.markupTiers.length === 0) issues.push(issue("MARKUP_POLICY_REQUIRED", "markupTiers", "A validated fabric markup policy is required"));
+  const targetMargin = rules.marginPolicy.targetGrossMarginBasisPoints.value;
+  if (targetMargin === null || targetMargin <= 0 || targetMargin >= 10_000) issues.push(issue("TARGET_MARGIN_REQUIRED", "marginPolicy.targetGrossMarginBasisPoints", "A target gross margin between 0% and 100% is required"));
+  if (rules.marginPolicy.minimumNetGrossProfitFloor.active) issues.push(issue("DRAFT_GROSS_PROFIT_FLOOR_ACTIVE", "marginPolicy.minimumNetGrossProfitFloor", "The draft net gross-profit floor cannot be activated"));
   for (const accessory of rules.accessories.filter((item) => !item.quoteOnly)) {
     validateMoney(accessory.unitPriceNet, `accessories.${accessory.code}.unitPriceNet`, true, issues);
     if (accessory.vatRateBasisPoints === null) issues.push(issue("ACCESSORY_VAT_REQUIRED", `accessories.${accessory.code}.vatRateBasisPoints`, "Launch accessories require a VAT rate"));

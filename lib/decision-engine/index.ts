@@ -9,6 +9,7 @@ export * from "./pricing-rule-registry";
 export * from "./types";
 export * from "./validation";
 export * from "./workflow";
+export * from "./calibration/curtainsmadeforfree";
 export * from "./seed/decision-registry";
 export * from "./seed/fabrics";
 export * from "./seed/pricing-rules";

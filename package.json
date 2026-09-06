@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "seo:check": "node scripts/seo-foundation-check.mjs",
-    "test": "npm run test:decision-engine && npm run test:storefront && npm run test:shopify-theme",
+    "test": "npm run test:decision-engine && npm run test:prestigious && npm run test:storefront && npm run test:shopify-theme",
     "test:decision-engine": "tsx --test lib/decision-engine/__tests__/*.test.ts",
+    "test:prestigious": "tsx --test lib/prestigious/__tests__/*.test.ts",
     "test:storefront": "tsx --test lib/storefront/__tests__/storefront.test.ts",
     "test:shopify-theme": "tsx --test lib/storefront/__tests__/shopify-theme.test.ts",
     "calibrate:curtainsmadeforfree": "tsx scripts/curtainsuk-pricing-calibration.ts"

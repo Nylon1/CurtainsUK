@@ -6,6 +6,8 @@ import { WINDOW_TYPES_BY_SLUG } from "@/lib/decision-engine/seed/window-types";
 import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
 import { STOREFRONT_FABRICS_BY_ID } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
+import { evaluateStock } from "@/lib/prestigious/availability";
+import { getPrivateSupplierRecord, resolveFabricForServerPricing } from "@/lib/prestigious/private-supplier-records";
 
 export interface StagingPriceRequest {
   windowSlug: string;
@@ -40,6 +42,7 @@ export interface StagingPriceResponse {
   totalAmountMinor: number;
   currency: "GBP";
   delivery: string;
+  availability: string;
 }
 
 export function buildStagingRuleSet(): PricingRuleSet {
@@ -108,9 +111,10 @@ export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceR
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
   const rules = buildStagingRuleSet();
-  const calculation = calculatePrice({ configuration, windowType, fabric, rules, shippingZone: "UK_MAINLAND", mode: "CALIBRATION" });
+  const pricedFabric = resolveFabricForServerPricing(fabric);
+  const calculation = calculatePrice({ configuration, windowType, fabric: pricedFabric, rules, shippingZone: "UK_MAINLAND", mode: "CALIBRATION" });
   const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, {
-    fabric,
+    fabric: pricedFabric,
     // The draft rules do not yet define an exact width-count review threshold.
     // Treat more than six widths as a review signal without making ordinary jobs
     // review-only merely because the engine calculated a width count.
@@ -133,6 +137,10 @@ export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceR
     totalAmountMinor: calculation.total.amountMinor,
     currency: "GBP",
     delivery: "UK Mainland delivery shown separately; staging rate pending",
+    availability: (() => {
+      const record = getPrivateSupplierRecord(fabric.id);
+      return record ? evaluateStock(record, calculation.fabricMetres).customerState : "Availability to be confirmed";
+    })(),
   };
 }
 

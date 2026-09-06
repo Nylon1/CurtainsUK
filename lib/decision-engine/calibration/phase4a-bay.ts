@@ -1,13 +1,23 @@
 import { createCurtainConfiguration } from "../curtain-configuration";
 import { calculatePrice } from "../pricing-engine";
 import { WINDOW_TYPES_BY_SLUG } from "../seed/window-types";
-import { STOREFRONT_FABRICS_BY_ID } from "../../storefront/fabrics";
 import { buildStagingRuleSet } from "../../storefront/staging-pricing";
+import type { FabricSpec } from "../types";
+
+const PHASE4A_HISTORICAL_FABRIC: FabricSpec = {
+  id: "stage-fabric-harlow-sage", supplier: "Prestigious Textiles (historical synthetic fixture)", collection: "Botanical Study", design: "Harlow", colour: "Sage", supplierReference: "FIX-HAR-SAG", uniqueSku: "CUK-STAGE-FIX-HAR-SAG",
+  usableWidthMm: 1380, verticalRepeatMm: 640, horizontalRepeatMm: 690, patternMatchType: "STRAIGHT_MATCH", patternCentringRequirement: "NONE",
+  composition: [{ material: "Cotton", percentage: 55 }, { material: "Polyester", percentage: 45 }], careInstructions: ["Historical calibration only"], usageSuitability: ["Curtains"], fabricWeightGsm: 240,
+  supplierCostPerMetre: { amountMinor: 2400, currency: "GBP" }, supplierCostEffectiveFrom: "2026-09-06",
+  sellingPricePolicy: { supplierRrpPerMetre: null, curtainsUkSellingRatePerMetre: null, pricingBand: "HISTORICAL_CALIBRATION", minimumGrossMarginPercent: 35, minimumCashMargin: null, effectiveFrom: null, manualOverride: { enabled: false, ratePerMetre: null, reason: null, approvedBy: null } },
+  sample: { sku: "HISTORICAL", available: false, price: null, postage: null, futureOrderCreditEligible: false }, leadTime: { minimumBusinessDays: 0, maximumBusinessDays: 0 }, recordLifecycle: "ACTIVE", supplierAvailability: "UNKNOWN", imageReferences: [],
+  allowedHeadings: ["PENCIL_PLEAT", "WAVE", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET"], allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"], suitableWindowTypeSlugs: ["bay-window"], googleFeedEligibility: { eligible: false, reason: "Historical calibration fixture", identifierExists: false }, fixtureOnly: true,
+};
 
 export function runPhase4ABayPricingGate() {
-  const fabric = STOREFRONT_FABRICS_BY_ID.get("stage-fabric-harlow-sage");
+  const fabric = PHASE4A_HISTORICAL_FABRIC;
   const windowType = WINDOW_TYPES_BY_SLUG.get("bay-window");
-  if (!fabric || !windowType) throw new Error("Phase 4A Bay fixtures are missing");
+  if (!windowType) throw new Error("Phase 4A Bay window fixture is missing");
   const configuration = createCurtainConfiguration({
     id: "phase4a-bay-harlow-sage",
     windowTypeSlug: "bay-window",

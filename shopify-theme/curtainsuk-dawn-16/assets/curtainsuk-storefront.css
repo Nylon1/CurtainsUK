@@ -63,7 +63,8 @@
 .cuk-hidden { display: none !important; }
 .cuk-fabrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.8rem; }
 .cuk-fabric { overflow: hidden; border: 1px solid var(--cuk-line); border-radius: 1.8rem; background: white; }
-.cuk-fabric__swatch { min-height: 19rem; background: linear-gradient(135deg,#d7c8b1,#708779); }
+.cuk-fabric__swatch { height: 24rem; background: #e6ded1; overflow: hidden; }
+.cuk-fabric__swatch img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cuk-fabric__body { padding: 2rem; }
 .cuk-fabric h3 { margin: 0 0 .5rem; }
 .cuk-fabric__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }

@@ -18,6 +18,7 @@
   };
 
   const endpoint = (root, path) => `${root.replace(/\/$/, "")}/${path}`;
+  const escapeHtml = (value) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);
 
   async function fetchJson(url, options = {}) {
     const response = await fetch(url, {
@@ -37,7 +38,7 @@
   function addSample(fabric, windowSlug) {
     const samples = readJson(SAMPLE_KEY, []);
     if (!samples.some((item) => item.fabricId === fabric.id)) {
-      samples.push({ fabricId: fabric.id, design: fabric.design, colour: fabric.colour, windowSlug, addedAt: new Date().toISOString() });
+      samples.push({ fabricId: fabric.id, sku: fabric.uniqueSku, design: fabric.design, colour: fabric.colour, windowSlug, addedAt: new Date().toISOString() });
       localStorage.setItem(SAMPLE_KEY, JSON.stringify(samples));
     }
     emit("sample_intended", { fabric_id: fabric.id, window_type: windowSlug || null });
@@ -69,14 +70,16 @@
     catalog.fabrics.forEach((fabric) => {
       const card = document.createElement("article");
       card.className = "cuk-fabric";
-      const repeat = fabric.verticalRepeatMm ? `${fabric.verticalRepeatMm / 10} cm vertical repeat` : "No repeat stated";
+      const repeat = fabric.verticalRepeatMm ? `${fabric.verticalRepeatMm / 10} cm vertical repeat` : "No pattern repeat";
+      const composition = fabric.composition.map((part) => `${part.percentage}% ${part.material}`).join(", ");
       card.innerHTML = `
-        <div class="cuk-fabric__swatch" aria-hidden="true"></div>
+        <div class="cuk-fabric__swatch"><img src="${escapeHtml(fabric.imageReferences[0])}" alt="${escapeHtml(fabric.design)} in ${escapeHtml(fabric.colour)} by Prestigious Textiles"></div>
         <div class="cuk-fabric__body">
-          <p class="cuk-eyebrow">${fabric.supplier} · ${fabric.collection}</p>
-          <h3>${fabric.design} — ${fabric.colour}</h3>
+          <p class="cuk-eyebrow">${escapeHtml(fabric.supplier)} · ${escapeHtml(fabric.collection)}</p>
+          <h3>${escapeHtml(fabric.design)} — ${escapeHtml(fabric.colour)}</h3>
           <p>${fabric.usableWidthMm / 10} cm usable width · ${repeat}</p>
-          <p class="cuk-hint">Synthetic staging fixture. Never feed eligible.</p>
+          <p>${escapeHtml(composition)}</p>
+          <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric__actions">
             <button class="cuk-button cuk-button--secondary" type="button" data-sample>Order sample</button>
             <a class="cuk-button" href="/pages/configure-curtains?window=${encodeURIComponent(selectedWindow)}&fabric=${encodeURIComponent(fabric.id)}">Use this fabric</a>
@@ -89,7 +92,13 @@
 
   async function initFabricBrowser(root) {
     try {
-      const catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog"));
+      let catalog;
+      try {
+        catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog"));
+      } catch (engineError) {
+        if (!root.dataset.catalogFallback) throw engineError;
+        catalog = await fetchJson(root.dataset.catalogFallback);
+      }
       renderFabricCards(root, catalog);
     } catch (error) {
       root.querySelector("[data-cuk-error]").textContent = error.message;
@@ -216,7 +225,7 @@
         const response = await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body) });
         result.querySelector("[data-cuk-result-outcome]").textContent = response.outcome.replaceAll("_", " ");
         result.querySelector("[data-cuk-result-price]").textContent = response.totalAmountMinor ? money(response.totalAmountMinor, response.currency) : "Technical review";
-        result.querySelector("[data-cuk-result-message]").textContent = response.message || (response.technicalReviewRequired ? "Price subject to technical review" : "VAT included. Delivery shown separately.");
+        result.querySelector("[data-cuk-result-message]").textContent = response.message || (response.technicalReviewRequired ? "Price subject to technical review" : `VAT included. Delivery shown separately. ${response.availability || "Availability to be confirmed"}.`);
         result.querySelector("[data-cuk-result-spec]").textContent = response.fabricWidths ? `${response.fabricWidths} fabric widths · ${response.selectedFabric.design} ${response.selectedFabric.colour}` : "Payment and production remain blocked pending review.";
         result.hidden = false;
         rememberProject({ windowSlug: windowSelect.value, fabricId: fabricSelect.value, lastOutcome: response.outcome });

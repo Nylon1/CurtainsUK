@@ -45,20 +45,21 @@ export default function FabricBrowser({ windowSlug }: { windowSlug?: string }) {
     <div>
       <label className="mx-auto flex max-w-lg items-center gap-3 rounded-full border border-[#173c32]/12 bg-white px-5 py-3 shadow-sm">
         <Search className="h-4 w-4 text-[#8d6b42]" />
-        <span className="sr-only">Search test fabrics</span>
+        <span className="sr-only">Search Prestigious fabrics</span>
         <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by design, colour or collection" className="w-full bg-transparent text-sm outline-none placeholder:text-[#80918b]" />
       </label>
       <div className="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {visible.map((fabric) => (
           <article key={fabric.id} className="overflow-hidden rounded-[26px] border border-[#173c32]/10 bg-white shadow-[0_12px_40px_rgba(23,60,50,0.07)]">
             <div className="relative aspect-square overflow-hidden bg-[#e8dfd2]">
-              <Image src={fabric.image} alt={`${fabric.design} in ${fabric.colour} synthetic staging fabric`} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+              <Image src={fabric.image} alt={`${fabric.design} in ${fabric.colour} by Prestigious Textiles`} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
               <div className="absolute right-4 top-4 h-9 w-9 rounded-full border-4 border-white shadow" style={{ backgroundColor: fabric.swatchColour }} aria-label={`${fabric.colour} colour swatch`} />
             </div>
             <div className="p-5">
               <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#996a31]">{fabric.collection}</div>
               <h2 className="mt-2 text-xl font-semibold">{fabric.design}</h2>
               <p className="text-sm font-medium text-[#5b7169]">{fabric.colour}</p>
+              <p className="mt-2 text-xs font-semibold text-[#6f5a3e]">{fabric.customerAvailability}</p>
               <p className="mt-3 text-sm leading-6 text-[#6b7d76]">{fabric.storefrontDescription}</p>
               <dl className="mt-4 space-y-1 text-xs leading-5 text-[#64776f]">
                 <div className="flex justify-between gap-3"><dt>Width</dt><dd>{fabric.usableWidthMm / 10} cm</dd></div>
@@ -73,7 +74,7 @@ export default function FabricBrowser({ windowSlug }: { windowSlug?: string }) {
           </article>
         ))}
       </div>
-      {!visible.length && <p className="py-16 text-center text-sm text-[#6b7d76]">No staging fabrics match that search.</p>}
+      {!visible.length && <p className="py-16 text-center text-sm text-[#6b7d76]">No pilot fabrics match that search.</p>}
     </div>
   );
 }

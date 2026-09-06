@@ -1,11 +1,11 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 
-<section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser data-engine-base="{{ section.settings.engine_base | escape }}">
+<section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser data-engine-base="{{ section.settings.engine_base | escape }}" data-catalog-fallback="{{ 'curtainsuk-pilot-fabrics.json' | asset_url }}">
   <div class="cuk-wrap">
-    <div class="cuk-section__head"><div><p class="cuk-eyebrow">FabricSpec-backed staging browser</p><h1>Choose fabric and colour</h1></div><p>Exact width, repeat, composition and sample links stay tied to the colourway record.</p></div>
+    <div class="cuk-section__head"><div><p class="cuk-eyebrow">Prestigious Textiles pilot</p><h1>Choose fabric and colour</h1></div><p>Twenty real colourways with exact width, repeat, composition, samples and staff-verified availability.</p></div>
     <div class="cuk-error" data-cuk-error hidden></div>
-    <div class="cuk-fabrics" data-cuk-fabric-grid aria-live="polite"><p>Loading staging fabrics…</p></div>
+    <div class="cuk-fabrics" data-cuk-fabric-grid aria-live="polite"><p>Loading Prestigious fabrics…</p></div>
   </div>
 </section>
 

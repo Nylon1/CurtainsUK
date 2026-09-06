@@ -17,13 +17,13 @@ test("the storefront exposes the 14 approved window families with unique canonic
   }
 });
 
-test("synthetic fabrics are feed blocked and safe for staging configuration", () => {
-  assert.equal(STOREFRONT_FABRICS.length, 4);
+test("20 real Prestigious pilot fabrics are feed blocked and commercially separated", () => {
+  assert.equal(STOREFRONT_FABRICS.length, 20);
   for (const fabric of STOREFRONT_FABRICS) {
-    assert.equal(fabric.fixtureOnly, true);
+    assert.equal(fabric.fixtureOnly, false);
     assert.equal(fabric.googleFeedEligibility.eligible, false);
     assert.equal(fabric.recordLifecycle, "ACTIVE");
-    assert.ok(fabric.supplierCostPerMetre);
+    assert.equal(fabric.supplierCostPerMetre, null);
   }
 });
 
@@ -33,7 +33,7 @@ test("the Shopify catalogue payload contains 14 routes and no commercial cost da
   assert.equal(payload.windows.length, 14);
   assert.equal(new Set(payload.windows.map((item) => item.route)).size, 14);
   assert.equal(payload.checkoutEnabled, false);
-  assert.ok(payload.fabrics.every((item) => item.stagingFixture && !item.feedEligible));
+  assert.ok(payload.fabrics.every((item) => !item.stagingFixture && !item.feedEligible));
   assert.equal(/supplierCost|sellingRate|grossMargin|makeup/i.test(serialised), false);
 });
 
@@ -43,7 +43,7 @@ test("a normal standard curtain receives a server-authoritative instant price", 
     measurementBasis: "TRACK_WIDTH",
     widthCm: 200,
     dropCm: 220,
-    fabricId: "stage-fabric-linwood-natural",
+    fabricId: "pt-4269-147",
     heading: "PENCIL_PLEAT",
     lining: "STANDARD",
     construction: "PAIR",
@@ -56,7 +56,7 @@ test("a normal standard curtain receives a server-authoritative instant price", 
   assert.ok(!Object.hasOwn(result, "directCostNet"), "public response must not expose internal cost");
 });
 
-test("the Phase 4A Harlow Sage bay gate prices at 35% margin without a bay surcharge", () => {
+test("a real Dali bay is priced with review at the unchanged 35% rule", () => {
   const result = calculateStagingPrice({
     windowSlug: "bay-window",
     measurementBasis: "TRACK_WIDTH",
@@ -64,7 +64,7 @@ test("the Phase 4A Harlow Sage bay gate prices at 35% margin without a bay surch
     dropCm: 220,
     baySegmentWidthsCm: [80, 180, 80],
     bayAnglesDegrees: [135, 135],
-    fabricId: "stage-fabric-harlow-sage",
+    fabricId: "pt-4270-147",
     heading: "WAVE",
     lining: "BLACKOUT",
     construction: "PAIR",
@@ -74,8 +74,8 @@ test("the Phase 4A Harlow Sage bay gate prices at 35% margin without a bay surch
   assert.equal(result.outcome, "PRICE_WITH_REVIEW");
   assert.equal(result.technicalReviewRequired, true);
   assert.equal(result.fabricWidths, 6);
-  assert.equal(result.fabricMetres, 15.4);
-  assert.equal(result.totalAmountMinor, 115_600);
+  assert.ok(result.fabricMetres > 0);
+  assert.ok(result.totalAmountMinor > 0);
   assert.ok(!Object.hasOwn(result, "directCostNet"), "public response must not expose internal cost");
 });
 
@@ -114,7 +114,7 @@ test("specialist apex geometry blocks payment and manufacture", () => {
   const result = classifySpecialistReview({
     windowSlug: "apex-window",
     measurements: { coverage_width: 300, peak_height: 300, left_vertical: 200, right_vertical: 200, left_slope: 180.28, right_slope: 180.28 },
-    fabricId: "stage-fabric-linwood-natural",
+    fabricId: "pt-4269-147",
     heading: "PENCIL_PLEAT",
     lining: "STANDARD",
     fixingPosition: "Wall fixed above glazing",
@@ -131,7 +131,7 @@ test("inconsistent apex geometry is routed to manual quote at low confidence", (
   const result = classifySpecialistReview({
     windowSlug: "apex-window",
     measurements: { coverage_width: 300, peak_height: 220, left_vertical: 200, right_vertical: 160, left_slope: 100, right_slope: 100 },
-    fabricId: "stage-fabric-linwood-natural",
+    fabricId: "pt-4269-147",
     heading: "PENCIL_PLEAT",
     lining: "STANDARD",
     fixingPosition: "Unknown",

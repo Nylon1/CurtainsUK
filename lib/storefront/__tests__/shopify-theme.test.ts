@@ -39,3 +39,17 @@ test("the Dawn header uses the task navigation instead of the production main me
   assert.equal(group.sections["curtainsuk-task-nav"].type, "curtainsuk-task-nav");
   assert.ok(group.order.includes("curtainsuk-task-nav"));
 });
+
+test("Dawn renders real Prestigious imagery and preserves exact sample SKU without commercial fields", () => {
+  const script = read("assets", "curtainsuk-storefront.js");
+  const section = read("sections", "curtainsuk-fabric-browser.liquid");
+  assert.match(script, /sku: fabric\.uniqueSku/);
+  assert.match(script, /fabric\.imageReferences\[0\]/);
+  assert.match(script, /fabric\.availability/);
+  assert.match(section, /Prestigious Textiles pilot/);
+  assert.equal(/synthetic staging fixture/i.test(script + section), false);
+  assert.equal(/supplierCost|tradePrice|stockMetres|batchReference/i.test(script + section), false);
+  const fallback = JSON.parse(read("assets", "curtainsuk-pilot-fabrics.json")) as { fabrics: unknown[] };
+  assert.equal(fallback.fabrics.length, 20);
+  assert.equal(/supplierCost|tradePrice|costingPrice|stockMetres|batchReference|pieces/i.test(JSON.stringify(fallback)), false);
+});

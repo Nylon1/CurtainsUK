@@ -5,281 +5,305 @@ import {
   DRAFT_PRICING_RULE_SET,
   FABRIC_SPEC_FIXTURES,
   INITIAL_COMPLEXITY_RULE_SET,
+  PHASE_2_DECISION_REGISTRY,
   PricingRuleRegistry,
   WINDOW_TYPE_SEEDS,
+  activatePricingRuleSet,
   adjustCutLengthForPattern,
   allocateWidths,
   calculateNumberOfWidths,
   calculatePrice,
+  canProceedToPayment,
+  canReleaseToManufacture,
   classifyComplexity,
   createCurtainConfiguration,
+  evaluateCompatibility,
+  evaluateGoogleFeedEligibility,
+  finalisePrice,
   validateConfiguration,
+  validateDecisionRegistry,
   validateFabricSpec,
-  validatePricingRuleSet,
+  validatePricingRuleActivation,
   validateWindowTypeMasterData,
 } from "../index";
-import type { FabricSpec, Money, PricingRuleSet, WindowTypeMaster } from "../types";
+import type {
+  CurtainConfiguration,
+  DecisionRegistry,
+  FabricSpec,
+  Money,
+  PriceComponent,
+  PricingRuleSet,
+  WindowTypeMaster,
+} from "../types";
 
 const gbp = (amountMinor: number): Money => ({ amountMinor, currency: "GBP" });
+const windowType = (slug: string): WindowTypeMaster => WINDOW_TYPE_SEEDS.find((item) => item.slug === slug)!;
 
-function activeRuleSet(version = "1.0.0", effectiveFrom = "2026-01-01T00:00:00Z") {
-  const materialRule = {
-    usableWidthMm: 1400,
-    headingAllowanceMm: 100,
-    hemAllowanceMm: 200,
-    sellingRatePerMetre: gbp(1_000),
-    orderingIncrementMetres: 0.1,
-  };
-  const headingRule = {
-    fullnessFactor: 2,
-    headingAllowanceMm: 100,
-    labourPerWidth: gbp(1_000),
-  };
-
+function productionSafeRegistry(): DecisionRegistry {
   return {
-    ...structuredClone(DRAFT_PRICING_RULE_SET),
-    id: `rules-${version}`,
-    version,
-    status: "ACTIVE",
-    effectiveFrom,
-    headingRules: {
-      WAVE: headingRule,
-      PENCIL_PLEAT: headingRule,
-      DOUBLE_PINCH: headingRule,
-      TRIPLE_PINCH: headingRule,
-      EYELET: headingRule,
-      TAB_TOP: headingRule,
-    },
-    hemAllowanceMm: 200,
-    liningRules: {
-      UNLINED: null,
-      STANDARD: materialRule,
-      BLACKOUT: materialRule,
-      THERMAL: materialRule,
-    },
-    interliningRules: {
-      NONE: null,
-      DOMETTE: materialRule,
-      BUMP: materialRule,
-    },
-    baseLabourPerWidth: gbp(5_000),
-    patternMatchingLabourPerWidth: gbp(750),
-    complexitySurcharges: {
-      STANDARD: null,
-      CONFIGURABLE: gbp(5_000),
-      REVIEW_REQUIRED: gbp(10_000),
-      SPECIALIST: gbp(20_000),
-    },
-    accessoryPrices: { HOLD_BACK: gbp(2_500) },
-    packaging: { base: gbp(1_000), oversized: gbp(2_000) },
-    shipping: { UK_MAINLAND: gbp(0) },
-    minimumOrderValue: gbp(10_000),
-    vat: { rateBasisPoints: 2_000, inputPricesIncludeVat: false },
-    rounding: { incrementMinor: 100, mode: "NEAREST" },
-  } satisfies PricingRuleSet;
-}
-
-function standardWindow(): WindowTypeMaster {
-  return WINDOW_TYPE_SEEDS.find((item) => item.slug === "standard-window")!;
-}
-
-function pricedPatternFabric(): FabricSpec {
-  return {
-    ...structuredClone(FABRIC_SPEC_FIXTURES[1]),
-    sellingRatePerMetre: gbp(3_000),
-    allowedLinings: [...FABRIC_SPEC_FIXTURES[1].allowedLinings, "UNLINED"],
-    status: "ACTIVE",
+    ...structuredClone(PHASE_2_DECISION_REGISTRY),
+    registryVersion: "2.0.0-test",
+    decisions: PHASE_2_DECISION_REGISTRY.decisions.map((item) => ({
+      ...structuredClone(item), status: "LOCKED", blocksProductionActivation: false,
+      effectiveVersion: "2.0.0-test",
+    })),
   };
 }
 
-function validStandardConfiguration(construction: "PAIR" | "SINGLE" = "PAIR") {
-  const configuration = createCurtainConfiguration({
-    id: "configuration-test-1",
-    windowTypeSlug: "standard-window",
-    fabricSpecId: FABRIC_SPEC_FIXTURES[1].id,
-    colour: FABRIC_SPEC_FIXTURES[1].colour,
-    heading: "WAVE",
-    lining: "UNLINED",
-    construction,
-    trackOrPole: "STRAIGHT_TRACK",
+function validatedRules(): PricingRuleSet {
+  const money = gbp(1_000);
+  const rule = structuredClone(DRAFT_PRICING_RULE_SET);
+  rule.id = "rules-test";
+  rule.version = "2.0.0-test";
+  rule.lifecycle = "VALIDATED";
+  rule.decisionRegistryVersion = "2.0.0-test";
+  rule.allowedCustomerWidthBases.status = "LOCKED";
+  Object.values(rule.constructionAllowances).forEach((value) => { value.status = "LOCKED"; });
+  rule.patternRules.randomMatch.status = "LOCKED";
+  rule.patternRules.straightMatch.status = "LOCKED";
+  rule.patternRules.halfDropMatch = { decisionId: "PATTERN_HALF_DROP", status: "LOCKED", value: "WORKROOM_APPROVED_HALF_DROP_FORMULA_V1" };
+  rule.patternRules.exactCentringAndJoining = { decisionId: "PATTERN_CENTRING_JOINING", status: "LOCKED", value: "WORKROOM_APPROVED_CENTRING_FORMULA_V1" };
+  rule.pairSingleConstruction.status = "LOCKED";
+  for (const heading of Object.values(rule.headingRules)) {
+    if (!heading) continue;
+    heading.fullnessFactor.status = "LOCKED";
+    heading.fullnessFactor.value ??= 2;
+    heading.voileFullnessFactor.status = "LOCKED";
+    heading.voileFullnessFactor.value = 2;
+    heading.headingLabourNetPerWidth = money;
+  }
+  rule.baseMakeupLabourNetPerWidth = gbp(5_000);
+  rule.patternMatchLabourNetPerWidth = gbp(750);
+  const fillMaterial = (material: PricingRuleSet["liningRules"]["STANDARD"]) => {
+    material.usableWidthMm = 1400;
+    material.materialRateNetPerMetre = money;
+    material.topAllowanceMm = 150;
+    material.bottomAllowanceMm = 200;
+    material.labourNetPerWidth = gbp(500);
+    material.compatibleHeadings = ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET", "TAB_TOP"];
+    material.compatibleWindowTypes = ["*"];
+  };
+  fillMaterial(rule.liningRules.STANDARD);
+  fillMaterial(rule.liningRules.BLACKOUT);
+  fillMaterial(rule.liningRules.THERMAL);
+  fillMaterial(rule.interliningRules.INTERLINING);
+  rule.markupTiers = [{ minimumSupplierCostMinor: 0, maximumSupplierCostMinor: null, markupPercent: 100, minimumCashMargin: gbp(1_000) }];
+  rule.accessories.forEach((accessory) => {
+    if (!accessory.quoteOnly) { accessory.unitPriceNet = money; accessory.vatRateBasisPoints = 2_000; accessory.compatibleHeadings = ["WAVE"]; accessory.compatibleWindowTypes = ["*"]; }
+  });
+  const widthLimits = [2, 6, 10, 20, null];
+  rule.packagingRules.forEach((packaging, index) => {
+    packaging.internalCostNet = gbp(250 + index * 50);
+    packaging.maximumFabricWidths = widthLimits[index];
+    packaging.maximumFinishedWeightKg = index === 0 ? 2 : index === 1 ? 20 : null;
+    packaging.maximumLongestSideMm = index === 0 ? 1_500 : index === 1 ? 4_000 : null;
+    packaging.eligibleLinings = ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"];
+    packaging.eligibleInterlinings = ["NONE", "INTERLINING"];
+  });
+  rule.shippingZones[0].rateNet = money;
+  rule.minimumOrders.standardMtmGross = gbp(10_000);
+  rule.minimumOrders.premiumInterlinedGross = gbp(20_000);
+  rule.minimumOrders.specialistReviewedGross = gbp(30_000);
+  rule.vat.rateBasisPoints = 2_000;
+  rule.measurementValidation = {
+    structureStatus: "LOCKED", customerLengthUnit: "CM", minimumWidthCm: 20,
+    maximumWidthCm: 1_000, minimumDropCm: 20, maximumDropCm: 500,
+    suspiciousLikelyMillimetresAtCm: 2_000,
+  };
+  return rule;
+}
+
+function fabric(match: "RANDOM_MATCH" | "STRAIGHT_MATCH" = "STRAIGHT_MATCH"): FabricSpec {
+  const value = structuredClone(FABRIC_SPEC_FIXTURES[match === "RANDOM_MATCH" ? 0 : 1]);
+  value.patternMatchType = match;
+  value.patternCentringRequirement = "NONE";
+  value.verticalRepeatMm = match === "STRAIGHT_MATCH" ? 640 : null;
+  value.recordLifecycle = "ACTIVE";
+  value.supplierAvailability = "ACTIVE";
+  value.fabricWeightGsm = 250;
+  value.allowedLinings = ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"];
+  value.suitableWindowTypeSlugs = ["*"];
+  value.sellingPricePolicy.curtainsUkSellingRatePerMetre = gbp(3_000);
+  value.sellingPricePolicy.effectiveFrom = "2026-09-06T00:00:00.000Z";
+  return value;
+}
+
+function configuration(slug = "standard-window", construction: "PAIR" | "SINGLE" = "PAIR"): CurtainConfiguration {
+  const selectedFabric = fabric();
+  const value = createCurtainConfiguration({
+    id: "configuration-test", windowTypeSlug: slug, measurementBasis: "TRACK_WIDTH",
+    fabricSpecId: selectedFabric.id, colour: selectedFabric.colour, heading: "WAVE",
+    lining: "UNLINED", construction, trackOrPole: "STRAIGHT_TRACK",
     stackDirection: construction === "PAIR" ? "SPLIT" : "LEFT",
   });
-  configuration.measurements = {
-    track_width_mm: 2_000,
-    finished_drop_mm: 2_300,
-  };
-  return configuration;
+  value.measurements = { coverage_width: 200, finished_drop: 230 };
+  return value;
 }
 
-test("Window Type Master contains the 21 agreed unique types", () => {
+test("Window Type Master contains the 21 agreed unique types and customer width bases", () => {
   assert.equal(WINDOW_TYPE_SEEDS.length, 21);
   assert.equal(new Set(WINDOW_TYPE_SEEDS.map((item) => item.slug)).size, 21);
   assert.equal(validateWindowTypeMasterData(WINDOW_TYPE_SEEDS).valid, true);
-  assert.deepEqual(
-    WINDOW_TYPE_SEEDS.filter((item) =>
-      ["apex-window", "triangular-window", "gable-end-window"].includes(item.slug),
-    ).map((item) => item.complexityClass),
-    ["SPECIALIST", "SPECIALIST", "SPECIALIST"],
-  );
+  assert.deepEqual(windowType("standard-window").allowedMeasurementBases, ["TRACK_WIDTH", "POLE_USABLE_WIDTH"]);
+  assert.equal(windowType("apex-window").drawingRequired, false);
 });
 
-test("FabricSpec fixtures satisfy structural validation and remain feed-ineligible", () => {
-  for (const fabric of FABRIC_SPEC_FIXTURES) {
-    assert.equal(validateFabricSpec(fabric).valid, true);
-    assert.equal(fabric.fixtureOnly, true);
-    assert.equal(fabric.googleFeedEligibility.eligible, false);
-    assert.equal(fabric.supplierCostPerMetre, null);
-    assert.equal(fabric.sellingRatePerMetre, null);
+test("FabricSpec fixtures are structurally valid, synthetic and feed-ineligible", () => {
+  for (const item of FABRIC_SPEC_FIXTURES) {
+    assert.equal(validateFabricSpec(item).valid, true);
+    assert.equal(item.fixtureOnly, true);
+    assert.equal(item.googleFeedEligibility.eligible, false);
+    assert.equal(item.sellingPricePolicy.curtainsUkSellingRatePerMetre, null);
   }
 });
 
-test("number-of-width calculation uses heading fullness and usable fabric width", () => {
+test("number of widths and pair/single allocation remain deterministic", () => {
   assert.equal(calculateNumberOfWidths(2_000, 2, 1_380), 3);
-  assert.equal(calculateNumberOfWidths(2_760, 2, 1_380), 4);
+  assert.deepEqual(allocateWidths(3, "PAIR"), { totalWidths: 4, curtainWidths: [2, 2] });
+  assert.deepEqual(allocateWidths(3, "SINGLE"), { totalWidths: 3, curtainWidths: [3] });
 });
 
-test("pair allocation balances whole widths while single allocation retains the total", () => {
-  assert.deepEqual(allocateWidths(3, "PAIR"), {
-    totalWidths: 4,
-    curtainWidths: [2, 2],
-  });
-  assert.deepEqual(allocateWidths(3, "SINGLE"), {
-    totalWidths: 3,
-    curtainWidths: [3],
-  });
+test("straight match rounds upward while random match does not", () => {
+  assert.equal(adjustCutLengthForPattern(2_650, 640, "STRAIGHT_MATCH"), 3_200);
+  assert.equal(adjustCutLengthForPattern(2_650, null, "RANDOM_MATCH"), 2_650);
+  assert.throws(() => adjustCutLengthForPattern(2_650, 640, "HALF_DROP_MATCH"), /unresolved/);
 });
 
-test("pattern repeat rounds each cut up to a complete vertical repeat", () => {
-  assert.equal(adjustCutLengthForPattern(2_600, 640, "STRAIGHT_MATCH"), 3_200);
-  assert.equal(adjustCutLengthForPattern(2_600, 640, "HALF_DROP"), 3_200);
-  assert.equal(adjustCutLengthForPattern(2_600, null, "PLAIN"), 2_600);
-});
-
-test("pricing engine produces a versioned component breakdown", () => {
+test("pricing calculates VAT at full precision and rounds only the final gross total", () => {
   const result = calculatePrice({
-    configuration: validStandardConfiguration("PAIR"),
-    windowType: standardWindow(),
-    fabric: pricedPatternFabric(),
-    rules: activeRuleSet(),
-    shippingZone: "UK_MAINLAND",
+    configuration: configuration(), windowType: windowType("standard-window"), fabric: fabric(),
+    rules: validatedRules(), shippingZone: "UK_MAINLAND", mode: "CALIBRATION",
   });
-
-  assert.equal(result.calculationVersion, "1.0.0");
-  assert.deepEqual(result.fabricWidths, {
-    totalWidths: 4,
-    curtainWidths: [2, 2],
-  });
-  assert.equal(result.fabricCutLengthMm, 2_600);
+  assert.deepEqual(result.fabricWidths, { totalWidths: 4, curtainWidths: [2, 2] });
+  assert.equal(result.fabricCutLengthMm, 2_650);
   assert.equal(result.adjustedFabricCutLengthMm, 3_200);
   assert.equal(result.fabricMetres, 12.8);
-  assert.equal(result.subtotal.amountMinor, 66_400);
+  assert.equal(result.goodsNetBeforeMinimum.amountMinor, 65_400);
+  assert.equal(result.netTotal.amountMinor, 66_400);
   assert.equal(result.vat.amountMinor, 13_280);
+  assert.equal(result.grossBeforeRounding.amountMinor, 79_680);
   assert.equal(result.total.amountMinor, 79_700);
-  assert.deepEqual(
-    result.components.map((item) => item.code),
-    [
-      "FABRIC",
-      "BASE_LABOUR",
-      "HEADING_LABOUR",
-      "PATTERN_MATCHING_LABOUR",
-      "PACKAGING",
-      "SHIPPING",
-    ],
-  );
 });
 
-test("pricing-rule registry resolves the applicable immutable version", () => {
-  const first = activeRuleSet("1.0.0", "2026-01-01T00:00:00Z");
+test("random match fabric usage uses drop plus separate allowances", () => {
+  const result = calculatePrice({
+    configuration: { ...configuration(), fabricSpecId: fabric("RANDOM_MATCH").id, colour: fabric("RANDOM_MATCH").colour },
+    windowType: windowType("standard-window"), fabric: fabric("RANDOM_MATCH"), rules: validatedRules(),
+    shippingZone: "UK_MAINLAND", mode: "CALIBRATION",
+  });
+  assert.equal(result.adjustedFabricCutLengthMm, 2_650);
+  assert.equal(result.fabricMetres, 10.6);
+});
+
+test("minimum charge is applied before shipping, with samples exempt", () => {
+  const goods: PriceComponent[] = [{ code: "GOODS", description: "Goods", netAmount: gbp(5_000), vatRateBasisPoints: 2_000, chargeToCustomer: true, countsTowardGoodsMinimum: true }];
+  const shipping = (amount: number): PriceComponent => ({ code: "SHIPPING", description: "Shipping", netAmount: gbp(amount), vatRateBasisPoints: 2_000, chargeToCustomer: true, countsTowardGoodsMinimum: false });
+  const lowShipping = finalisePrice({ components: goods, shipping: shipping(1_000), minimumGross: gbp(10_000), sampleOrder: false });
+  const highShipping = finalisePrice({ components: goods, shipping: shipping(10_000), minimumGross: gbp(10_000), sampleOrder: false });
+  assert.equal(lowShipping.minimumAdjustmentNet.amountMinor, highShipping.minimumAdjustmentNet.amountMinor);
+  assert.ok(lowShipping.minimumAdjustmentNet.amountMinor > 0);
+  const sample = finalisePrice({ components: goods, shipping: shipping(1_000), minimumGross: gbp(10_000), sampleOrder: true });
+  assert.equal(sample.minimumAdjustmentNet.amountMinor, 0);
+  assert.equal(sample.applicableMinimumGross, null);
+});
+
+test("draft width/drop thresholds preserve exact boundary semantics", () => {
+  const config = configuration();
+  config.measurements = { coverage_width: 400, finished_drop: 300 };
+  assert.equal(classifyComplexity(config, windowType("standard-window"), INITIAL_COMPLEXITY_RULE_SET).outcome, "INSTANT_PRICE");
+  config.measurements.coverage_width = 400.1;
+  assert.equal(classifyComplexity(config, windowType("standard-window"), INITIAL_COMPLEXITY_RULE_SET).outcome, "PRICE_WITH_REVIEW");
+  config.measurements.coverage_width = 600.1;
+  assert.equal(classifyComplexity(config, windowType("standard-window"), INITIAL_COMPLEXITY_RULE_SET).outcome, "MANUAL_QUOTE");
+});
+
+test("complete simple apex gets provisional review pricing but never direct manufacture", () => {
+  const apex = configuration("apex-window");
+  apex.trackOrPole = "SLOPING_TRACK";
+  apex.trackComplexity = "SLOPING";
+  apex.attachments.photoReferences = ["private://photo/1"];
+  apex.measurements = { coverage_width: 200, peak_height: 300, left_vertical: 200, right_vertical: 200, left_slope: Math.sqrt(20_000), right_slope: Math.sqrt(20_000) };
+  const result = classifyComplexity(apex, windowType("apex-window"), INITIAL_COMPLEXITY_RULE_SET);
+  assert.equal(result.outcome, "PRICE_WITH_REVIEW");
+  assert.equal(result.technicalApprovalRequiredBeforePayment, true);
+  apex.customerApprovalState = "APPROVED";
+  assert.equal(canProceedToPayment(apex, "SYMMETRICAL_APEX"), false);
+  apex.technicalReviewState = "APPROVED";
+  assert.equal(canProceedToPayment(apex, "SYMMETRICAL_APEX"), true);
+  assert.equal(canReleaseToManufacture(apex, "SYMMETRICAL_APEX"), false);
+  apex.paymentState = "PAID";
+  assert.equal(canReleaseToManufacture(apex, "SYMMETRICAL_APEX"), true);
+});
+
+test("incomplete specialist geometry routes to manual quote", () => {
+  const apex = configuration("apex-window");
+  assert.equal(classifyComplexity(apex, windowType("apex-window"), INITIAL_COMPLEXITY_RULE_SET).outcome, "MANUAL_QUOTE");
+});
+
+test("discontinued fabrics cannot start new configurations but remain representable historically", () => {
+  const discontinued = fabric();
+  discontinued.supplierAvailability = "DISCONTINUED";
+  const result = validateConfiguration(configuration(), windowType("standard-window"), discontinued);
+  assert.equal(result.valid, false);
+  assert.ok(result.issues.some((item) => item.code === "FABRIC_DISCONTINUED"));
+  assert.equal(discontinued.supplierAvailability, "DISCONTINUED");
+});
+
+test("compatibility engine blocks invalid combinations", () => {
+  const config = configuration();
+  config.heading = "EYELET";
+  const patterned = fabric();
+  assert.equal(evaluateCompatibility(config, windowType("standard-window"), patterned, validatedRules()).outcome, "BLOCKED");
+});
+
+test("Phase 2 decision registry is valid and draft decisions block activation", () => {
+  assert.equal(validateDecisionRegistry(PHASE_2_DECISION_REGISTRY).valid, true);
+  const rule = validatedRules();
+  rule.decisionRegistryVersion = PHASE_2_DECISION_REGISTRY.registryVersion;
+  const result = validatePricingRuleActivation(rule, PHASE_2_DECISION_REGISTRY);
+  assert.equal(result.valid, false);
+  assert.ok(result.issues.some((item) => item.code === "UNCONFIRMED_BUSINESS_DECISION"));
+});
+
+test("only an authorised admin can activate a fully validated version", () => {
+  const rules = validatedRules();
+  const registry = productionSafeRegistry();
+  assert.throws(() => activatePricingRuleSet(rules, registry, { id: "user", roles: [] }, "2026-09-07T00:00:00Z"), /authorised/);
+  const active = activatePricingRuleSet(rules, registry, { id: "admin", roles: ["PRICING_ADMIN"] }, "2026-09-07T00:00:00Z");
+  assert.equal(active.lifecycle, "ACTIVE");
+  assert.equal(active.effectiveFrom, "2026-09-07T00:00:00.000Z");
+});
+
+test("pricing registry snapshots versions and resolves effective ACTIVE rules", () => {
+  const registryData = productionSafeRegistry();
+  const first = activatePricingRuleSet(validatedRules(), registryData, { id: "admin", roles: ["PRICING_ADMIN"] }, "2026-01-01T00:00:00Z");
   first.effectiveTo = "2026-07-01T00:00:00Z";
-  const second = activeRuleSet("2.0.0", "2026-07-01T00:00:00Z");
-  second.supersedesVersion = "1.0.0";
+  const secondRules = validatedRules();
+  secondRules.version = "2.0.1-test";
+  secondRules.id = "rules-test-2";
+  const second = activatePricingRuleSet(secondRules, registryData, { id: "admin", roles: ["PRICING_ADMIN"] }, "2026-07-01T00:00:00Z");
   const registry = new PricingRuleRegistry([first, second]);
-
-  assert.equal(registry.resolveActive(new Date("2026-03-01T00:00:00Z")).version, "1.0.0");
-  assert.equal(registry.resolveActive(new Date("2026-09-01T00:00:00Z")).version, "2.0.0");
-  const copy = registry.get("2.0.0");
+  assert.equal(registry.resolveActive(new Date("2026-03-01T00:00:00Z")).version, "2.0.0-test");
+  assert.equal(registry.resolveActive(new Date("2026-09-01T00:00:00Z")).version, "2.0.1-test");
+  const copy = registry.get("2.0.1-test");
   copy.version = "tampered";
-  assert.equal(registry.get("2.0.0").version, "2.0.0");
-});
-
-test("an incomplete commercial rule set cannot be activated", () => {
-  const incomplete = {
-    ...structuredClone(DRAFT_PRICING_RULE_SET),
-    status: "ACTIVE",
-    effectiveFrom: "2026-01-01T00:00:00Z",
-  } satisfies PricingRuleSet;
-  const validation = validatePricingRuleSet(incomplete);
-  assert.equal(validation.valid, false);
-  assert.ok(
-    validation.issues.some((issue) => issue.code === "COMMERCIAL_INPUT_REQUIRED"),
-  );
-  assert.throws(() => new PricingRuleRegistry([incomplete]), /Invalid pricing-rule version/);
-});
-
-test("complexity engine returns instant, review and manual outcomes", () => {
-  const standard = standardWindow();
-  const bay = WINDOW_TYPE_SEEDS.find((item) => item.slug === "bay-window")!;
-  const apex = WINDOW_TYPE_SEEDS.find((item) => item.slug === "apex-window")!;
-  const base = validStandardConfiguration();
-
-  assert.equal(classifyComplexity(base, standard, INITIAL_COMPLEXITY_RULE_SET).outcome, "INSTANT_PRICE");
-  assert.equal(
-    classifyComplexity({ ...base, windowTypeSlug: bay.slug }, bay, INITIAL_COMPLEXITY_RULE_SET).outcome,
-    "PRICE_WITH_REVIEW",
-  );
-  assert.equal(
-    classifyComplexity({ ...base, windowTypeSlug: apex.slug }, apex, INITIAL_COMPLEXITY_RULE_SET).outcome,
-    "MANUAL_QUOTE",
-  );
-});
-
-test("provisional size thresholds can escalate an otherwise standard job", () => {
-  const rules = {
-    ...INITIAL_COMPLEXITY_RULE_SET,
-    reviewWidthThresholdMm: 3_000,
-    manualQuoteWidthThresholdMm: 5_000,
-  };
-  const configuration = validStandardConfiguration();
-  configuration.measurements.track_width_mm = 3_500;
-  assert.equal(classifyComplexity(configuration, standardWindow(), rules).outcome, "PRICE_WITH_REVIEW");
-  configuration.measurements.track_width_mm = 5_500;
-  assert.equal(classifyComplexity(configuration, standardWindow(), rules).outcome, "MANUAL_QUOTE");
+  assert.equal(registry.get("2.0.1-test").version, "2.0.1-test");
 });
 
 test("invalid or incomplete measurements are rejected before pricing", () => {
-  const configuration = validStandardConfiguration();
-  delete configuration.measurements.finished_drop_mm;
-  const validation = validateConfiguration(configuration, standardWindow(), pricedPatternFabric());
-  assert.equal(validation.valid, false);
-  assert.ok(validation.issues.some((issue) => issue.code === "MEASUREMENT_REQUIRED"));
-  assert.throws(
-    () =>
-      calculatePrice({
-        configuration,
-        windowType: standardWindow(),
-        fabric: pricedPatternFabric(),
-        rules: activeRuleSet(),
-        shippingZone: "UK_MAINLAND",
-      }),
-    { name: "DecisionEngineValidationError" },
-  );
+  const config = configuration();
+  delete config.measurements.finished_drop;
+  const result = validateConfiguration(config, windowType("standard-window"), fabric());
+  assert.equal(result.valid, false);
+  assert.ok(result.issues.some((item) => item.code === "MEASUREMENT_REQUIRED"));
 });
 
-test("unresolved draft commercial values cannot produce a price", () => {
-  const unresolved = {
-    ...structuredClone(DRAFT_PRICING_RULE_SET),
-    status: "ACTIVE",
-    effectiveFrom: "2026-01-01T00:00:00Z",
-  } satisfies PricingRuleSet;
-  assert.throws(
-    () =>
-      calculatePrice({
-        configuration: validStandardConfiguration(),
-        windowType: standardWindow(),
-        fabric: pricedPatternFabric(),
-        rules: unresolved,
-        shippingZone: "UK_MAINLAND",
-      }),
-    { name: "MissingCommercialRuleError" },
-  );
+test("Google feed governance rejects quote-only, mismatched or inactive pricing", () => {
+  const rules = validatedRules();
+  const result = evaluateGoogleFeedEligibility({
+    exactPrice: gbp(20_000), landingPagePrice: gbp(19_999), purchasable: true,
+    shippingValid: true, requiredProductDataComplete: true, pricingOutcome: "MANUAL_QUOTE", pricingRuleSet: rules,
+  });
+  assert.equal(result.eligible, false);
+  assert.deepEqual(result.reasons, ["LANDING_PAGE_PRICE_MISMATCH", "QUOTE_ONLY_PRODUCT", "ACTIVE_PRICING_RULESET_REQUIRED"]);
 });

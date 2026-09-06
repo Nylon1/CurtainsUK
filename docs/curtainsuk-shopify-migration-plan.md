@@ -1,6 +1,6 @@
 # CurtainsUK Shopify migration plan
 
-This is a planned projection of the Phase 1 domain model. It has not been applied
+This is a planned projection of the Phase 1/2 domain model. It has not been applied
 to either the live store or a development store.
 
 ## Recommended ownership and access
@@ -11,6 +11,7 @@ to either the live store or a development store.
 | FabricSpec public attributes | `curtainsuk_fabric_spec` metaobject | Public read after supplier validation |
 | Supplier cost and margin inputs | App-owned metafields or application database | Private server/admin only |
 | Pricing / Manufacturing Rules | `curtainsuk_pricing_rule_set` metaobject plus application validation | Private server/admin only |
+| Business decision registry | App-owned versioned record; optional private `curtainsuk_decision_registry` projection | Private server/admin only |
 | CurtainConfiguration | Application database with revision history | Private; expose only a customer-owned view |
 | Order configuration snapshot | Order metafields | Admin/customer-order view as appropriate |
 | Project photographs/drawings | Private object storage with signed URLs | Customer/project team only |
@@ -36,9 +37,10 @@ metaobject later.
 ### `curtainsuk_fabric_spec`
 
 Use one entry per design/colour and store supplier, collection, design, colour,
-supplier reference, SKU, usable width, repeats, match type, composition, care,
-usage, sample availability/public price, lead time, status, images, allowed options,
-window-type references and feed eligibility.
+supplier reference, SKU, usable width, repeats, match and centring type,
+composition, care, usage, sample SKU/availability/public price, lead time,
+supplier availability, lifecycle, images, allowed options, window-type references
+and feed eligibility.
 
 Store supplier cost, internal margin and unpublished selling inputs separately in
 private app-owned data.
@@ -51,6 +53,14 @@ JSON. The application must verify its schema and a content hash before activatio
 
 Only the server-side pricing service may read commercial pricing rules. Do not
 expose this definition through the Storefront API.
+
+### `curtainsuk_decision_registry`
+
+If projected into Shopify, keep the definition private. Store registry version,
+change date and the validated decision payload. Activation must occur in the
+server application, not in Liquid or browser JavaScript, and must verify that
+every executable decision is `LOCKED`, automated validation passed and the actor
+has the pricing-admin role. Preserve prior registries with historical orders.
 
 ## Product and variant metafields
 
@@ -74,7 +84,11 @@ write a compact immutable snapshot to order metafields:
 
 - `curtainsuk.configuration_ids`
 - `curtainsuk.calculation_versions`
+- `curtainsuk.decision_registry_versions`
 - `curtainsuk.configuration_summary_json`
+- `curtainsuk.measurement_basis`
+- `curtainsuk.fabric_rate_snapshot_json`
+- `curtainsuk.vat_snapshot_json`
 - `curtainsuk.technical_review_state`
 - `curtainsuk.customer_approval_revision`
 - `curtainsuk.production_state`
@@ -87,8 +101,8 @@ metafields.
 1. Deploy definitions to a dedicated Shopify development store only.
 2. Load the 21 Window Type Master seeds and validate all references.
 3. Load the two synthetic fabric fixtures with feed publication disabled.
-4. Load the draft pricing-rule record; confirm that it cannot become ACTIVE while
-   commercial inputs are null.
+4. Load the draft pricing-rule and decision-registry records; confirm that neither
+   can become production-active while commercial inputs or decision blockers remain.
 5. Exercise read-only application queries and access-control tests.
 6. Agree the commercial decision register and create an approved rules version.
 7. Map a small hand-verified pilot set of real products/colours without publishing

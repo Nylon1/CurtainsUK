@@ -1,0 +1,71 @@
+import type { DecisionRecord, DecisionRegistry, RuleImplementationStatus } from "../types";
+
+const VERSION = "2.0.0-draft.1";
+const DATE = "2026-09-06";
+
+function decision(
+  decisionId: string,
+  title: string,
+  status: RuleImplementationStatus,
+  value: unknown,
+  rationale: string,
+  confirmationOwner: string,
+): DecisionRecord {
+  return {
+    decisionId,
+    title,
+    status,
+    value,
+    rationale,
+    confirmationOwner,
+    effectiveVersion: VERSION,
+    lastChangedDate: DATE,
+    blocksProductionActivation: status !== "LOCKED",
+  };
+}
+
+/** Machine-readable source of truth for the Phase 2 implementation state. */
+export const PHASE_2_DECISION_REGISTRY: DecisionRegistry = {
+  registryVersion: VERSION,
+  lastChangedDate: DATE,
+  decisions: [
+    decision("CUSTOMER_WIDTH_BASIS", "Customer width basis", "LOCKED", ["TRACK_WIDTH", "POLE_USABLE_WIDTH"], "Customers provide total coverage width, never finished curtain width.", "Product owner"),
+    decision("HEADING_FULLNESS_DEFAULTS", "Heading fullness defaults", "DRAFT", { PENCIL_PLEAT: 2, WAVE: 2, DOUBLE_PINCH: 2.25, TRIPLE_PINCH: 2.5, EYELET: 2 }, "Initial calibration defaults; override dimensions are supported.", "Workroom lead"),
+    decision("VOILE_FULLNESS", "Voile fullness", "DRAFT", null, "Voile must remain independently configurable.", "Workroom lead"),
+    decision("CONSTRUCTION_ALLOWANCES", "Construction allowances", "DRAFT", { topMm: 150, bottomHemMm: 200, centreOverlapMm: 50, leftReturnMm: 100, rightReturnMm: 100 }, "Allowances are separate and applied only where configured.", "Workroom lead"),
+    decision("PATTERN_RANDOM_MATCH", "Random-match cut length", "LOCKED", "DROP_PLUS_ALLOWANCES", "Random designs do not require repeat rounding.", "Workroom lead"),
+    decision("PATTERN_STRAIGHT_MATCH", "Straight-match repeat rounding", "LOCKED", "ROUND_UP_TO_NEXT_VERTICAL_REPEAT", "Each required cut is rounded upward to a complete repeat.", "Workroom lead"),
+    decision("PATTERN_HALF_DROP", "Half-drop joining formula", "WORKROOM_CONFIRMATION_REQUIRED", null, "The workroom joining sequence and waste have not been confirmed.", "Workroom lead"),
+    decision("PATTERN_CENTRING_JOINING", "Exact pattern centring and joining", "WORKROOM_CONFIRMATION_REQUIRED", null, "Centring may add cut length and cannot be inferred safely.", "Workroom lead"),
+    decision("PAIR_SINGLE_ALLOCATION", "Pair and single width allocation", "WORKROOM_CONFIRMATION_REQUIRED", "BALANCED_WHOLE_WIDTHS_DRAFT", "Odd-width pair construction must be confirmed by the workroom.", "Workroom lead"),
+    decision("LABOUR_MODEL_STRUCTURE", "Component labour model", "LOCKED", ["BASE_PER_WIDTH", "HEADING_PER_WIDTH", "LINING_PER_WIDTH", "PATTERN_MATCH", "COMPLEXITY"], "Prevents an untraceable flat make-up fee.", "Commercial owner"),
+    decision("LABOUR_RATES", "Labour rates", "DRAFT", null, "Rates require calibration against real jobs.", "Commercial owner"),
+    decision("LINING_INTERLINING_STRUCTURE", "Lining and interlining structure", "LOCKED", ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "INTERLINING"], "Each material retains its own width, rate, allowances, labour and compatibility.", "Workroom lead"),
+    decision("LINING_INTERLINING_VALUES", "Lining and interlining commercial values", "DRAFT", null, "Material and labour rates remain unconfirmed.", "Commercial owner"),
+    decision("FABRIC_SELLING_PRICE_STRUCTURE", "Fabric selling-price policy", "LOCKED", ["SUPPLIER_COST", "SUPPLIER_RRP", "CURTAINSUK_RATE", "BAND", "MARGIN_FLOOR", "EFFECTIVE_DATE", "OVERRIDE"], "Supports rate snapshots without a universal multiplier.", "Commercial owner"),
+    decision("FABRIC_MARKUP_POLICY", "Fabric markup and margin policy", "DRAFT", null, "Tiers and minimum cash margins need commercial sign-off.", "Commercial owner"),
+    decision("MINIMUM_ORDER_STRUCTURE", "Minimum-order sequence", "LOCKED", { samplesExempt: true, shippingExcluded: true, deliveryAddedAfterMinimum: true }, "Curtain goods minimum is evaluated before delivery.", "Commercial owner"),
+    decision("MINIMUM_ORDER_VALUES", "Minimum-order values", "DRAFT", { standardMtmGross: null, premiumInterlinedGross: null, specialistReviewedGross: null }, "Placeholder ranges are intentionally not executable.", "Commercial owner"),
+    decision("VAT_BASIS", "VAT basis and snapshots", "LOCKED", { componentsStoredNet: true, retailGross: true, snapshotPerOrder: true }, "Preserves an auditable net/VAT/gross breakdown.", "Finance owner"),
+    decision("VAT_RATE", "VAT rate", "DRAFT", null, "The applicable rate must be confirmed at activation time.", "Finance owner"),
+    decision("PRICE_ROUNDING", "Final price rounding", "LOCKED", { intermediate: "FULL_PRECISION", sequence: ["MINIMUMS", "SURCHARGES", "VAT", "FINAL_ROUNDING"], finalIncrementMinor: 100, mode: "NEAREST" }, "Only the final customer-facing total is rounded; .99 bands are prohibited.", "Commercial owner"),
+    decision("COMPLEXITY_THRESHOLDS", "Width and drop routing thresholds", "DRAFT", { instant: { widthCm: 400, dropCm: 300 }, review: { widthCm: 600, dropCm: 350 } }, "Initial thresholds require calibration and do not activate surcharges.", "Technical lead"),
+    decision("WINDOW_TYPE_ROUTING", "Window-type routing", "DRAFT", { rectangular: "INSTANT_PRICE", bayAndTall: "PRICE_WITH_REVIEW", specialistShapes: "MANUAL_QUOTE" }, "Initial routing reflects manufacturing risk but requires operational validation.", "Technical lead"),
+    decision("SPECIALIST_SHAPE_WORKFLOW", "Apex, triangular and gable approval workflow", "LOCKED", { directManufacture: false, approvalBeforePayment: true, confidence: ["HIGH", "MEDIUM", "LOW"] }, "Specialist shapes require technical approval before payment and manufacture.", "Technical lead"),
+    decision("SPECIALIST_PROVISIONAL_ELIGIBILITY", "Specialist provisional-price eligibility", "DRAFT", ["SYMMETRICAL_APEX", "SIMPLE_TRIANGLE", "STRAIGHTFORWARD_GABLE"], "Simple complete geometries may receive a provisional price; low confidence stays manual.", "Technical lead"),
+    decision("ACCESSORY_STRUCTURE", "Accessory model", "LOCKED", ["UNIT_TYPE", "UNIT_PRICE", "VAT", "COMPATIBILITY", "SHIPPING_CLASS", "REVIEW"], "Accessories are itemised and governable.", "Commercial owner"),
+    decision("ACCESSORY_CATALOGUE", "Accessory catalogue and rates", "DRAFT", ["MATCHING_TIEBACK", "EXTRA_FABRIC_METRE", "HOOKS_GLIDERS"], "Launch catalogue and prices remain incomplete.", "Commercial owner"),
+    decision("PACKAGING_STRUCTURE", "Packaging classes", "LOCKED", ["SMALL", "STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"], "Packaging is classified from job characteristics and remains an internal component by default.", "Operations owner"),
+    decision("PACKAGING_THRESHOLDS", "Packaging thresholds and costs", "DRAFT", null, "Weight, dimension and width limits require fulfilment data.", "Operations owner"),
+    decision("SHIPPING_LAUNCH_POLICY", "UK Mainland supply-only launch", "LOCKED", { ukMainlandOnly: true, internationalEnabled: false, installationSeparate: true, universalWorldwideRateProhibited: true }, "Prevents use of the current universal worldwide flat rate.", "Operations owner"),
+    decision("UK_MAINLAND_SHIPPING_RATE", "UK Mainland shipping rate", "DRAFT", null, "Supply-only rate and parcel restrictions remain unconfirmed.", "Operations owner"),
+    decision("SAMPLE_POLICY_STRUCTURE", "Sample-order model", "LOCKED", { fabricColourwaySku: true, separatePostage: true, multipleAllowed: true, futureCreditSupported: true }, "Samples are separate products linked to FabricSpec.", "Product owner"),
+    decision("SAMPLE_COMMERCIAL_VALUES", "Sample price, postage and credit", "DRAFT", null, "Exact values and credit policy remain unconfirmed.", "Commercial owner"),
+    decision("MEASUREMENT_VALIDATION_STRUCTURE", "Measurement validation", "LOCKED", { customerUnit: "CM", plausibilityChecks: true, suspiciousMmCmDetection: true, geometryConsistency: true }, "Invalid and unit-confused measurements must not enter pricing.", "Technical lead"),
+    decision("MEASUREMENT_LIMITS", "Measurement limits and tolerances", "DRAFT", null, "Minimums, maximums and geometry tolerances require real-job calibration.", "Technical lead"),
+    decision("COMPATIBILITY_ENGINE", "Compatibility evaluation", "LOCKED", ["FABRIC", "WINDOW", "HEADING", "LINING", "TRACK", "SIZE_WEIGHT_COMPLEXITY"], "Invalid combinations are blocked and uncertain combinations route to review.", "Technical lead"),
+    decision("SUPPLIER_STATUS", "Supplier availability states", "LOCKED", ["ACTIVE", "LOW_STOCK", "BACKORDER", "DISCONTINUED", "UNKNOWN"], "Discontinued blocks new configurations; unknown blocks firm lead-time promises.", "Buying owner"),
+    decision("GOOGLE_FEED_GOVERNANCE", "Google feed eligibility gates", "LOCKED", ["EXACT_PRICE", "PRICE_MATCH", "PURCHASABLE", "VALID_SHIPPING", "COMPLETE_DATA", "NOT_QUOTE_ONLY", "NO_PLACEHOLDER_PRICE", "ACTIVE_RULESET"], "Only purchase-ready products with matching exact prices may be advertised.", "Feed owner"),
+    decision("PRICING_RULE_LIFECYCLE", "Pricing ruleset lifecycle and activation", "LOCKED", ["DRAFT", "VALIDATED", "ACTIVE", "RETIRED"], "An authorised pricing admin may activate only after automated validation and zero registry blockers.", "Authorised pricing admin"),
+  ],
+};

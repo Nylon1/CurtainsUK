@@ -1,0 +1,37 @@
+{
+  "job_id": "ANONYMISED-001",
+  "quoted_on": "YYYY-MM-DD",
+  "configuration": {
+    "window_type_slug": "standard-window",
+    "measurement_basis": "TRACK_WIDTH",
+    "measurements_cm": {
+      "coverage_width": null,
+      "finished_drop": null
+    },
+    "fabric_spec_id": null,
+    "heading": null,
+    "lining": null,
+    "interlining": "NONE",
+    "construction": null,
+    "track_type": null,
+    "track_complexity": null,
+    "number_of_segments": 1,
+    "accessories": []
+  },
+  "actual_quote": {
+    "fabric_widths": null,
+    "fabric_metres": null,
+    "components_net_minor_gbp": {},
+    "minimum_adjustment_net_minor_gbp": null,
+    "shipping_net_minor_gbp": null,
+    "vat_minor_gbp": null,
+    "gross_total_minor_gbp": null
+  },
+  "engine_result": null,
+  "variance": {
+    "gross_minor_gbp": null,
+    "accepted": false,
+    "reason": null,
+    "approved_by": null
+  }
+}

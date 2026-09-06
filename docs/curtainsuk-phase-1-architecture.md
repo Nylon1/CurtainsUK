@@ -1,5 +1,8 @@
 # CurtainsUK Phase 1 — core data architecture
 
+> Phase 2 supersedes the pricing, measurement, routing and activation details in
+> this document. See `curtainsuk-phase-2-pricing-rules.md`.
+
 ## Scope
 
 Phase 1 creates the master data and calculation boundary only. It does not alter

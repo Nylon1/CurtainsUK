@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "window-grid": { "type": "curtainsuk-window-grid", "settings": { "heading": "Shop by Window", "intro": "Choose the closest window type to begin a made-to-measure specification." } }
+  },
+  "order": ["window-grid"]
+}

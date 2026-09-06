@@ -1,0 +1,34 @@
+{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign window_url = section.settings.window_url | default: '/pages/shop-by-window'
+  assign fabric_url = section.settings.fabric_url | default: '/pages/shop-by-fabric'
+%}
+
+<section class="cuk-shell cuk-hero">
+  <div class="cuk-wrap cuk-hero__grid">
+    <div>
+      <p class="cuk-eyebrow">Made for the shape of your home</p>
+      <h1 class="cuk-title">Curtains for every window</h1>
+      <p class="cuk-lede">Made-to-measure curtains for standard, bay, apex, triangular, gable, tall, wide and unusual windows.</p>
+      <div class="cuk-actions">
+        <a class="cuk-button" href="{{ window_url }}">Shop by Window</a>
+        <a class="cuk-button cuk-button--secondary" href="{{ fabric_url }}">Shop by Fabric</a>
+      </div>
+    </div>
+    <div class="cuk-window-art" role="img" aria-label="Architectural window framed by full-length curtains"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CurtainsUK home hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "url", "id": "window_url", "label": "Shop by Window URL" },
+    { "type": "url", "id": "fabric_url", "label": "Shop by Fabric URL" }
+  ],
+  "presets": [{ "name": "CurtainsUK home hero" }]
+}
+{% endschema %}

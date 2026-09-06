@@ -4,6 +4,8 @@ import { WINDOW_TYPES_BY_SLUG } from "../../decision-engine/seed/window-types";
 import { STOREFRONT_FABRICS } from "../fabrics";
 import { calculateStagingPrice, classifySpecialistReview } from "../staging-pricing";
 import { STOREFRONT_WINDOW_TYPES } from "../window-catalog";
+import { buildShopifyCatalogPayload } from "../shopify-contract";
+import { runPhase4ABayPricingGate } from "../../decision-engine/calibration/phase4a-bay";
 
 test("the storefront exposes the 14 approved window families with unique canonical routes", () => {
   assert.equal(STOREFRONT_WINDOW_TYPES.length, 14);
@@ -25,6 +27,16 @@ test("synthetic fabrics are feed blocked and safe for staging configuration", ()
   }
 });
 
+test("the Shopify catalogue payload contains 14 routes and no commercial cost data", () => {
+  const payload = buildShopifyCatalogPayload();
+  const serialised = JSON.stringify(payload);
+  assert.equal(payload.windows.length, 14);
+  assert.equal(new Set(payload.windows.map((item) => item.route)).size, 14);
+  assert.equal(payload.checkoutEnabled, false);
+  assert.ok(payload.fabrics.every((item) => item.stagingFixture && !item.feedEligible));
+  assert.equal(/supplierCost|sellingRate|grossMargin|makeup/i.test(serialised), false);
+});
+
 test("a normal standard curtain receives a server-authoritative instant price", () => {
   const result = calculateStagingPrice({
     windowSlug: "standard-window",
@@ -44,7 +56,7 @@ test("a normal standard curtain receives a server-authoritative instant price", 
   assert.ok(!Object.hasOwn(result, "directCostNet"), "public response must not expose internal cost");
 });
 
-test("a bay configuration produces a price but remains routed to review", () => {
+test("the Phase 4A Harlow Sage bay gate prices at 35% margin without a bay surcharge", () => {
   const result = calculateStagingPrice({
     windowSlug: "bay-window",
     measurementBasis: "TRACK_WIDTH",
@@ -52,8 +64,8 @@ test("a bay configuration produces a price but remains routed to review", () => 
     dropCm: 220,
     baySegmentWidthsCm: [80, 180, 80],
     bayAnglesDegrees: [135, 135],
-    fabricId: "stage-fabric-linwood-natural",
-    heading: "PENCIL_PLEAT",
+    fabricId: "stage-fabric-harlow-sage",
+    heading: "WAVE",
     lining: "BLACKOUT",
     construction: "PAIR",
     stackDirection: "SPLIT",
@@ -61,7 +73,41 @@ test("a bay configuration produces a price but remains routed to review", () => 
   });
   assert.equal(result.outcome, "PRICE_WITH_REVIEW");
   assert.equal(result.technicalReviewRequired, true);
-  assert.ok(result.totalAmountMinor > 0);
+  assert.equal(result.fabricWidths, 6);
+  assert.equal(result.fabricMetres, 15.4);
+  assert.equal(result.totalAmountMinor, 115_600);
+  assert.ok(!Object.hasOwn(result, "directCostNet"), "public response must not expose internal cost");
+});
+
+test("the Phase 4A Bay gate preserves the auditable component breakdown", () => {
+  const result = runPhase4ABayPricingGate();
+  assert.deepEqual({ ...result, headingAdjustmentNetMinor: 1_500, vatMinor: 19_273.846153846156 }, {
+    calculationVersion: "2.2.0-draft.1",
+    enteredWidthCm: 340,
+    centreOverlapCm: 5,
+    effectiveWidthCm: 345,
+    fullness: 2,
+    fabricWidths: 6,
+    cutLengthCm: 255,
+    repeatAdjustedCutLengthCm: 256,
+    fabricMetres: 15.4,
+    supplierFabricRateNetPerMetreMinor: 2_400,
+    faceFabricCostNetMinor: 36_960,
+    liningMetres: 15.3,
+    liningCostNetMinor: 9_180,
+    makeupCostNetMinor: 15_000,
+    headingAdjustmentNetMinor: 1_500,
+    packagingCostNetMinor: 0,
+    directCostNetMinor: 62_640,
+    netSellingPriceMinor: 96_369.23076923077,
+    vatMinor: 19_273.846153846156,
+    grossBeforeRoundingMinor: 115_643.07692307692,
+    finalPriceMinor: 115_600,
+    grossMarginPercent: 35,
+    automaticComplexitySurchargesEnabled: false,
+  });
+  assert.ok(Math.abs(Number(result.headingAdjustmentNetMinor) - 1_500) < 0.001);
+  assert.ok(Math.abs(result.vatMinor - 19_273.846153846156) < 0.001);
 });
 
 test("specialist apex geometry blocks payment and manufacture", () => {

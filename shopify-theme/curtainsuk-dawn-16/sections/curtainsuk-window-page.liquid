@@ -1,0 +1,52 @@
+{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+
+{% assign window_slug = page.handle | remove_first: 'curtains-for-' %}
+{% assign window_name = page.title | default: section.settings.fallback_title %}
+{% assign is_specialist = false %}
+{% if window_slug == 'apex-window' or window_slug == 'triangular-window' or window_slug == 'gable-end-window' %}{% assign is_specialist = true %}{% endif %}
+{% assign is_review = false %}
+{% if window_slug == 'bay-window' or window_slug == 'curved-bow-window' or window_slug == 'corner-window' or window_slug == 'dormer-window' or window_slug == 'tall-floor-to-ceiling-window' %}{% assign is_review = true %}{% endif %}
+
+<article class="cuk-shell cuk-section">
+  <div class="cuk-wrap cuk-layout">
+    <div class="cuk-panel">
+      <p class="cuk-eyebrow">Shop by Window</p>
+      <h1 class="cuk-title">{{ window_name }}</h1>
+      {% if page.content != blank %}<div class="cuk-lede">{{ page.content }}</div>{% else %}<p class="cuk-lede">Made-to-measure curtains planned around the shape, scale and practical use of your window.</p>{% endif %}
+      <div class="cuk-actions">
+        <a class="cuk-button" href="/pages/configure-curtains?window={{ window_slug | url_encode }}">Start My Curtains</a>
+        <a class="cuk-button cuk-button--secondary" href="/pages/measure">Measurement guidance</a>
+      </div>
+    </div>
+    <aside class="cuk-panel">
+      {% if is_specialist %}<span class="cuk-status cuk-status--review">Specialist technical review</span>{% elsif is_review %}<span class="cuk-status cuk-status--review">Price with review</span>{% else %}<span class="cuk-status">Instant staging price</span>{% endif %}
+      <h2>What to prepare</h2>
+      <ul>
+        <li>Track or usable pole width</li>
+        <li>Finished drop in centimetres</li>
+        <li>Your preferred opening direction</li>
+        {% if is_specialist %}<li>Peak, vertical and slope measurements</li><li>Clear photographs and an optional drawing</li>{% endif %}
+      </ul>
+      <h2>Track notes</h2>
+      <p>{% if is_specialist %}The fixing position and specialist track geometry are checked before payment or manufacture.{% elsif is_review %}Track geometry and segment details are reviewed with the curtain specification.{% else %}Tell us whether the width is from a fitted track or the usable span between pole finials.{% endif %}</p>
+    </aside>
+  </div>
+  <div class="cuk-wrap cuk-section">
+    <h2>Frequently asked questions</h2>
+    <details class="cuk-faq"><summary>How should I measure?</summary><p>Use centimetres and record the complete coverage width. Do not calculate a finished curtain width yourself.</p></details>
+    <details class="cuk-faq"><summary>Which heading can I choose?</summary><p>Pencil pleat, wave and pinch pleat are available where compatible with the track, fabric weight and finished size.</p></details>
+    <details class="cuk-faq"><summary>Can I choose blackout or thermal lining?</summary><p>Yes, subject to the selected fabric, heading, size and technical review outcome.</p></details>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "CurtainsUK window page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "fallback_title", "label": "Fallback title", "default": "Made-to-measure curtains" }
+  ],
+  "presets": [{ "name": "CurtainsUK window page" }]
+}
+{% endschema %}

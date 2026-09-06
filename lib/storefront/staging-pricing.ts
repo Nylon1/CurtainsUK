@@ -42,7 +42,7 @@ export interface StagingPriceResponse {
   delivery: string;
 }
 
-function stagingRules(): PricingRuleSet {
+export function buildStagingRuleSet(): PricingRuleSet {
   return {
     ...DRAFT_PRICING_RULE_SET,
     packagingRules: DRAFT_PRICING_RULE_SET.packagingRules.map((rule) => ({
@@ -107,7 +107,7 @@ export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceR
     : scalarMeasurementsFor(masterSlug, input.widthCm, input.dropCm);
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
-  const rules = stagingRules();
+  const rules = buildStagingRuleSet();
   const calculation = calculatePrice({ configuration, windowType, fabric, rules, shippingZone: "UK_MAINLAND", mode: "CALIBRATION" });
   const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, {
     fabric,

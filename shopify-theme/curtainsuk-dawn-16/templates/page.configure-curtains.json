@@ -1,0 +1,4 @@
+{
+  "sections": { "configurator": { "type": "curtainsuk-configurator", "settings": { "engine_base": "/apps/curtainsuk-decision", "initial_window": "standard-window" } } },
+  "order": ["configurator"]
+}

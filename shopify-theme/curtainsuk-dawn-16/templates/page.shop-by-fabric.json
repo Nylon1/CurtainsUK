@@ -1,0 +1,4 @@
+{
+  "sections": { "fabrics": { "type": "curtainsuk-fabric-browser", "settings": { "engine_base": "/apps/curtainsuk-decision" } } },
+  "order": ["fabrics"]
+}

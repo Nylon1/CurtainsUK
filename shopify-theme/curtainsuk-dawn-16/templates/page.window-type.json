@@ -1,0 +1,4 @@
+{
+  "sections": { "window-page": { "type": "curtainsuk-window-page", "settings": {} } },
+  "order": ["window-page"]
+}

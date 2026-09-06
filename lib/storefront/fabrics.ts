@@ -51,7 +51,7 @@ function fabric(input: {
       supplierRrpPerMetre: null,
       curtainsUkSellingRatePerMetre: null,
       pricingBand: "STAGING_ONLY",
-      minimumGrossMarginPercent: 40,
+      minimumGrossMarginPercent: 35,
       minimumCashMargin: null,
       effectiveFrom: null,
       manualOverride: { enabled: false, ratePerMetre: null, reason: null, approvedBy: null },

@@ -1,0 +1,100 @@
+{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
+
+<section class="cuk-shell cuk-section" data-cuk-configurator data-engine-base="{{ section.settings.engine_base | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}">
+  <div class="cuk-wrap">
+    <div class="cuk-section__head">
+      <div>
+        <p class="cuk-eyebrow">Window-first configurator · staging only</p>
+        <h1>Build your curtain specification</h1>
+      </div>
+      <span class="cuk-status" data-cuk-route-status>Loading route…</span>
+    </div>
+    <div class="cuk-layout">
+      <form class="cuk-panel cuk-form">
+        <fieldset class="cuk-step">
+          <legend>1. Window type</legend>
+          <div class="cuk-field">
+            <label for="CukWindow-{{ section.id }}">What are you dressing?</label>
+            <select id="CukWindow-{{ section.id }}" name="windowSlug" required><option value="">Choose a window</option></select>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step" data-cuk-standard>
+          <legend>2. Measurements</legend>
+          <div class="cuk-fields">
+            <div class="cuk-field cuk-field--wide">
+              <label for="CukBasis-{{ section.id }}">Width measurement basis</label>
+              <select id="CukBasis-{{ section.id }}" name="measurementBasis" required>
+                <option value="TRACK_WIDTH">Track width</option>
+                <option value="POLE_USABLE_WIDTH">Usable pole width</option>
+              </select>
+              <p class="cuk-hint">Enter the full coverage width, not a finished curtain width.</p>
+            </div>
+            <div class="cuk-field"><label for="CukWidth-{{ section.id }}">Width (cm)</label><input id="CukWidth-{{ section.id }}" name="widthCm" type="number" min="30" max="1200" step="0.1" value="200" required></div>
+            <div class="cuk-field"><label for="CukDrop-{{ section.id }}">Drop (cm)</label><input id="CukDrop-{{ section.id }}" name="dropCm" type="number" min="30" max="600" step="0.1" value="220" required></div>
+            <div class="cuk-field cuk-field--wide cuk-hidden" data-cuk-bay><label for="CukBaySegments-{{ section.id }}">Bay segment widths (cm)</label><input id="CukBaySegments-{{ section.id }}" name="baySegments" value="80, 180, 80"><p class="cuk-hint">Separate each straight segment with a comma.</p></div>
+            <div class="cuk-field cuk-field--wide cuk-hidden" data-cuk-bay><label for="CukBayAngles-{{ section.id }}">Angles between segments (degrees)</label><input id="CukBayAngles-{{ section.id }}" name="bayAngles" value="135, 135"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step cuk-hidden" data-cuk-specialist>
+          <legend>2. Specialist measurements</legend>
+          <div class="cuk-fields">
+            <div class="cuk-field"><label for="CukBase-{{ section.id }}">Base width (cm)</label><input id="CukBase-{{ section.id }}" name="baseWidth" type="number" min="30" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukPeak-{{ section.id }}">Overall peak height (cm)</label><input id="CukPeak-{{ section.id }}" name="peakHeight" type="number" min="30" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukLeftVertical-{{ section.id }}">Left vertical (cm)</label><input id="CukLeftVertical-{{ section.id }}" name="leftVertical" type="number" min="0" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukRightVertical-{{ section.id }}">Right vertical (cm)</label><input id="CukRightVertical-{{ section.id }}" name="rightVertical" type="number" min="0" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukLeftSlope-{{ section.id }}">Left slope (cm)</label><input id="CukLeftSlope-{{ section.id }}" name="leftSlope" type="number" min="1" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukRightSlope-{{ section.id }}">Right slope (cm)</label><input id="CukRightSlope-{{ section.id }}" name="rightSlope" type="number" min="1" step="0.1" required></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukFixing-{{ section.id }}">Fixing position</label><textarea id="CukFixing-{{ section.id }}" name="fixingPosition" required placeholder="For example: ceiling fixed within the recess"></textarea></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step">
+          <legend>3. Curtain specification</legend>
+          <div class="cuk-fields">
+            <div class="cuk-field"><label for="CukHeading-{{ section.id }}">Heading</label><select id="CukHeading-{{ section.id }}" name="heading" required><option value="PENCIL_PLEAT">Pencil pleat</option><option value="WAVE">Wave</option><option value="EYELET">Eyelet</option><option value="DOUBLE_PINCH">Double pinch pleat</option></select></div>
+            <div class="cuk-field"><label for="CukFabric-{{ section.id }}">Fabric and colour</label><select id="CukFabric-{{ section.id }}" name="fabricId" required><option value="">Loading staging fabrics…</option></select></div>
+            <div class="cuk-field"><label for="CukLining-{{ section.id }}">Lining</label><select id="CukLining-{{ section.id }}" name="lining" required><option value="STANDARD">Standard lining</option><option value="BLACKOUT">Blackout lining</option><option value="THERMAL">Thermal lining</option><option value="UNLINED">Unlined</option></select></div>
+            <div class="cuk-field" data-cuk-standard><label for="CukConstruction-{{ section.id }}">Pair or single</label><select id="CukConstruction-{{ section.id }}" name="construction" required><option value="PAIR">Pair</option><option value="SINGLE">Single curtain</option></select></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukStack-{{ section.id }}">Opening / stack direction</label><select id="CukStack-{{ section.id }}" name="stackDirection" required><option value="SPLIT">Pair opening from centre</option><option value="LEFT">Stack left</option><option value="RIGHT">Stack right</option></select></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step">
+          <legend>4. Review evidence</legend>
+          <div class="cuk-fields">
+            <div class="cuk-field cuk-field--wide"><label for="CukPhotos-{{ section.id }}">Photographs</label><input id="CukPhotos-{{ section.id }}" name="photos" type="file" accept="image/*" multiple><p class="cuk-hint">Specialist jobs require clear photographs. Staging currently records filenames only; secure object storage is an integration dependency.</p></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukDrawing-{{ section.id }}">Optional drawing</label><input id="CukDrawing-{{ section.id }}" name="drawing" type="file" accept="image/*,.pdf"></div>
+          </div>
+        </fieldset>
+
+        <div class="cuk-error" data-cuk-error hidden></div>
+        <button class="cuk-button" type="submit">Check my price or review route</button>
+        <p class="cuk-hint">Staging only. This flow cannot add to cart, take payment or release a job to manufacture.</p>
+      </form>
+
+      <aside class="cuk-panel cuk-result" data-cuk-result hidden aria-live="polite">
+        <span class="cuk-status cuk-status--review" data-cuk-result-outcome></span>
+        <p class="cuk-result__price" data-cuk-result-price></p>
+        <p data-cuk-result-message></p>
+        <p class="cuk-hint" data-cuk-result-spec></p>
+        <div class="cuk-notice">No checkout control is present. Specialist jobs cannot bypass technical review.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CurtainsUK configurator",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" },
+    { "type": "text", "id": "initial_window", "label": "Initial Window Type slug", "default": "standard-window" }
+  ],
+  "presets": [{ "name": "CurtainsUK configurator" }]
+}
+{% endschema %}

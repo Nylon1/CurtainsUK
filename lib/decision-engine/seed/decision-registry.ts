@@ -1,6 +1,6 @@
 import type { DecisionRecord, DecisionRegistry, RuleImplementationStatus } from "../types";
 
-const VERSION = "2.1.0-draft.1";
+const VERSION = "2.2.0-draft.1";
 const DATE = "2026-09-06";
 
 function decision(
@@ -43,10 +43,10 @@ export const PHASE_2_DECISION_REGISTRY: DecisionRegistry = {
     decision("BASE_MAKEUP_RATE", "Base make-up rate", "LOCKED", { netPerFabricWidthMinor: 2500, currency: "GBP", includesLiningConstructionLabour: true }, "Pricing Ruleset v1 uses a single base make-up cost per face-fabric width before the heading adjustment.", "Commercial owner"),
     decision("PATTERN_MATCH_LABOUR_RATE", "Pattern-match labour rate", "DRAFT", null, "No additional pattern-match labour rate was supplied for v1; calibration therefore applies no separate charge.", "Commercial owner"),
     decision("LINING_INTERLINING_STRUCTURE", "Lining and interlining structure", "LOCKED", ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "INTERLINING"], "Each material retains its own width, rate, allowances, labour and compatibility.", "Workroom lead"),
-    decision("LINING_MATERIAL_RATES", "Lining and interlining material rates", "LOCKED", { STANDARD: { netPerMetreMinor: 400 }, BLACKOUT: { netPerMetreMinor: 600 }, THERMAL: { netPerMetreMinor: 600 }, INTERLINING: { netPerMetreMinor: 1000 }, currency: "GBP" }, "These are direct material costs used before target-margin pricing.", "Commercial owner"),
+    decision("LINING_MATERIAL_RATES", "Lining and interlining material rates", "LOCKED", { STANDARD: { netPerMetreMinor: 400 }, BLACKOUT: { netPerMetreMinor: 600 }, THERMAL: { netPerMetreMinor: 600 }, INTERLINING: { netPerMetreMinor: 500 }, currency: "GBP" }, "These are direct material costs used before target-margin pricing.", "Commercial owner"),
     decision("LINING_MANUFACTURING_ASSUMPTIONS", "Lining and interlining manufacturing assumptions", "DRAFT", { usableWidthMm: 1380, topAllowanceMm: 150, bottomAllowanceMm: 200, separateLabourPerWidthMinor: 0 }, "The benchmark needs executable quantities; lining width, allowances and inclusion of lining labour in base make-up still require workroom calibration.", "Workroom lead"),
     decision("FABRIC_SELLING_PRICE_STRUCTURE", "Fabric selling-price policy", "LOCKED", ["SUPPLIER_COST", "SUPPLIER_RRP", "CURTAINSUK_RATE", "BAND", "MARGIN_FLOOR", "EFFECTIVE_DATE", "OVERRIDE"], "Supports rate snapshots without a universal multiplier.", "Commercial owner"),
-    decision("TARGET_GROSS_MARGIN", "Direct-cost target gross margin", "LOCKED", { basis: "DIRECT_COST_TARGET_GROSS_MARGIN", basisPoints: 4000 }, "Net selling price is total direct cost divided by 0.60; no job-specific tuning is permitted.", "Commercial owner"),
+    decision("TARGET_GROSS_MARGIN", "Direct-cost target gross margin", "LOCKED", { basis: "DIRECT_COST_TARGET_GROSS_MARGIN", basisPoints: 3500 }, "Net selling price is total direct cost divided by 0.65; no job-specific tuning is permitted.", "Commercial owner"),
     decision("MINIMUM_NET_GROSS_PROFIT_FLOOR", "Minimum net gross-profit floor", "DRAFT", { active: false, proposedNetMinor: 10000, calibrationUpperBoundNetMinor: 15000, currency: "GBP" }, "£100 is the preliminary floor; £150 remains an upper calibration candidate. The floor must remain inactive until real-job review.", "Commercial owner"),
     decision("MINIMUM_ORDER_STRUCTURE", "Minimum-order sequence", "LOCKED", { samplesExempt: true, shippingExcluded: true, deliveryAddedAfterMinimum: true }, "Curtain goods minimum is evaluated before delivery.", "Commercial owner"),
     decision("MINIMUM_ORDER_VALUES", "Minimum-order values", "DRAFT", { standardMtmGross: null, premiumInterlinedGross: null, specialistReviewedGross: null }, "Placeholder ranges are intentionally not executable.", "Commercial owner"),

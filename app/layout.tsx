@@ -4,7 +4,7 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 
-const SITE_URL = "https://www.apexcurtains.com";
+const SITE_URL = "https://www.curtainsuk.com";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,32 +19,31 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Apex Curtains | Curtains for Apex, Triangular & Architectural Windows",
-    template: "%s | Apex Curtains",
+    default: "CurtainsUK | Curtains for Every Window",
+    template: "%s | CurtainsUK",
   },
   description:
-    "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK.",
+    "Made-to-measure curtains for standard, bay, apex, triangular, gable, tall, wide and unusual windows.",
   keywords: [
+    "made to measure curtains",
+    "bay window curtains",
     "apex curtains",
-    "triangular window curtains",
-    "gable end curtains",
-    "architectural window curtains",
-    "curtains for shaped windows",
-    "apex window curtains UK",
+    "curtains for unusual windows",
   ],
   openGraph: {
-    title: "Apex Curtains",
+    title: "CurtainsUK | Curtains for Every Window",
     description:
-      "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK.",
-    siteName: "Apex Curtains",
+      "Made-to-measure curtains for standard, bay, apex, triangular, gable, tall, wide and unusual windows.",
+    siteName: "CurtainsUK",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Apex Curtains",
+    title: "CurtainsUK | Curtains for Every Window",
     description:
-      "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK.",
+      "Made-to-measure curtains for standard, bay, apex, triangular, gable, tall, wide and unusual windows.",
   },
+  robots: { index: false, follow: false },
 };
 
 const globalSchema = {
@@ -53,10 +52,10 @@ const globalSchema = {
     {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: "Apex Curtains",
+      name: "CurtainsUK",
       url: SITE_URL,
       description:
-        "Specialists in curtains for apex, triangular, gable end and architectural windows across the UK.",
+        "Made-to-measure curtains for standard and specialist-shaped windows across the UK.",
       areaServed: {
         "@type": "Country",
         name: "United Kingdom",
@@ -66,7 +65,7 @@ const globalSchema = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: "Apex Curtains",
+      name: "CurtainsUK",
       publisher: {
         "@id": `${SITE_URL}/#organization`,
       },
@@ -80,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en-GB">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <script
           type="application/ld+json"

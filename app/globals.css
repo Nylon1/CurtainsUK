@@ -67,6 +67,10 @@
   --brand-muted: #c8d1d8;
   --brand-gold: #d6b56b;
   --brand-card-border: rgba(214, 181, 107, 0.13);
+  --curtains-forest: #173c32;
+  --curtains-sage: #577067;
+  --curtains-cream: #f7f3ec;
+  --curtains-gold: #d9aa67;
   --background: var(--brand-navy);
   --foreground: var(--brand-cream);
   --card: var(--brand-slate);
@@ -164,38 +168,9 @@
     min-height: 100vh;
   }
 
-  main {
-    background-color: var(--brand-navy) !important;
-  }
-
   ::selection {
     background: rgba(214, 181, 107, 0.25);
     color: var(--brand-cream);
-  }
-}
-
-/*
- * Apex card hierarchy
- * Existing pages share these rounded, bordered surface patterns. Keeping the
- * mapping here lets the whole site use one premium colour system without
- * changing component structure or introducing page-by-page colour drift.
- */
-@layer utilities {
-  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-white/"]:not([class*="rounded-full"]):not([class*="bg-[#f5d38a]"]):not([class*="bg-[#E5C07B]"]),
-  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-black/20"]:not([class*="rounded-full"]) {
-    background-color: var(--brand-slate) !important;
-    border-color: var(--brand-card-border) !important;
-    backdrop-filter: none !important;
-  }
-
-  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-white/"]:not([class*="rounded-full"]):hover,
-  :where(div, section, article, aside, a, button)[class*="rounded-"][class*="border"][class*="bg-black/20"]:not([class*="rounded-full"]):hover {
-    background-color: var(--brand-slate-hover) !important;
-  }
-
-  :where(p, li, dd)[class*="text-white/"],
-  :where(p, li, dd)[class*="text-slate-"] {
-    color: var(--brand-muted) !important;
   }
 }
 

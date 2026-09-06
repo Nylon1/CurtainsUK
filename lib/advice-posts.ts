@@ -18,17 +18,19 @@ export type AdvicePost = {
   updated_at?: string;
 };
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 const RETIRED_ADVICE_SLUGS = new Set([
   "best-curtains-for-apex-windows-expert-guide",
   "can-you-put-curtains-on-angled-windows",
 ]);
 
 export async function getAdvicePosts(): Promise<AdvicePost[]> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !serviceRoleKey) {
+    console.warn("Advice posts are unavailable because Supabase staging credentials are not configured.");
+    return [];
+  }
+  const supabase = createClient(supabaseUrl, serviceRoleKey);
   const { data, error } = await supabase
     .from("advice_posts")
     .select("*")

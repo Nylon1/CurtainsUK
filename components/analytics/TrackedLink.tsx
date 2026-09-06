@@ -20,6 +20,7 @@ export default function TrackedLink({ eventName, eventData, onClick, ...props }:
 
     window.dataLayer?.push(detail);
     window.dispatchEvent(new CustomEvent("apex:conversion", { detail }));
+    window.dispatchEvent(new CustomEvent("curtainsuk:analytics", { detail }));
     onClick?.(event);
   }
 

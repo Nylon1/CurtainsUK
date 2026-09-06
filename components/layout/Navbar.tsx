@@ -1,289 +1,72 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Menu, Sparkles, X, ArrowRight, Phone, ChevronDown } from "lucide-react";
+import { Menu, Phone, Ruler, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const navItems = [
-  { label: "Home", href: "/" },
-  {
-    label: "Services",
-    href: "/services",
-    children: [
-      { label: "Measure + Consultation", href: "/services/measure-consultation" },
-      { label: "Design + Make Curtains", href: "/services/design-make-curtains" },
-      { label: "Curtain Design Guide", href: "/curtain-design-guide" },
-      { label: "Curtain Headings", href: "/curtain-headings" },
-      { label: "Curtain Linings", href: "/curtain-linings" },
-      { label: "Curtain Fabrics", href: "/curtain-fabrics" },
-      { label: "Curtain Accessories", href: "/curtain-accessories" },
-      { label: "Curtain Tracks", href: "/curtain-tracks" },
-      { label: "Premium Installation", href: "/services/premium-installation" },
-    ],
-  },
-  { label: "Window Types", href: "/window-types" },
-  {
-    label: "Professionals",
-    href: "/professionals",
-    children: [
-      { label: "Professional & Specifier Hub", href: "/professionals" },
-      { label: "Interior Designers", href: "/professionals/interior-designers" },
-      { label: "Architects", href: "/professionals/architects" },
-      { label: "Developers + Housebuilders", href: "/professionals/developers-housebuilders" },
-      { label: "Contractors + Fit-out", href: "/professionals/contractors-fit-out" },
-      { label: "Specifier Resources", href: "/professionals/specifier-resources" },
-      { label: "Project Information Checklist", href: "/professionals/specifier-resources/project-information-checklist" },
-      { label: "Professional Project Review", href: "/professionals/project-review" },
-      { label: "Professional Workspace", href: "/professionals/workspace/login" },
-      { label: "Commercial Installation", href: "/commercial-curtain-track-installation" },
-    ],
-  },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Reviews", href: "/reviews" },
-  { label: "Advice", href: "/advice" },
-  { label: "Areas", href: "/areas" },
-  { label: "FAQ", href: "/faq", highlight: true },
-];
+  { label: "Shop Curtains", href: "/configure" },
+  { label: "Shop by Window", href: "/shop-by-window" },
+  { label: "Shop by Fabric", href: "/fabrics" },
+  { label: "Apex & Gable", href: "/shop-by-window/apex-window" },
+  { label: "Measure", href: "/measure" },
+  { label: "Samples", href: "/samples" },
+  { label: "Inspiration", href: "/gallery" },
+  { label: "Help", href: "/faq" },
+] as const;
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  function isActive(href: string) {
-    if (href === "/") return pathname === "/";
-    return pathname === href || pathname.startsWith(href + "/");
-  }
+  const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
   return (
-    <>
-      <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-2 sm:px-6 sm:pt-4 lg:px-8">
-        <div
-          className={`mx-auto max-w-7xl rounded-full border transition-all duration-300 ${
-            scrolled
-              ? "border-white/15 bg-apex-navy-950/85 shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl"
-              : "border-white/10 bg-white/5 backdrop-blur-md"
-          }`}
-        >
-          <div className="flex items-center justify-between px-3 py-2 sm:px-5 sm:py-3">
-            <Link href="/" className="flex items-center">
-              <div className="relative h-10 w-[170px] sm:h-12 sm:w-[210px]">
-                <Image
-                  src="/images/apex-logo-horizontal.svg"
-                  alt="Apex Curtains"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                />
-              </div>
-            </Link>
+    <header className="sticky top-0 z-50 border-b border-[#173c32]/10 bg-[#fbf8f2]/95 text-[#173c32] backdrop-blur-xl">
+      <div className="mx-auto flex min-h-16 max-w-[1440px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label="CurtainsUK home">
+          <span className="text-xl font-semibold tracking-[-0.04em] sm:text-2xl">CurtainsUK</span>
+          <span className="hidden rounded-full bg-[#d9aa67]/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#7a5425] sm:inline">Staging</span>
+        </Link>
 
-            <div className="hidden items-center gap-2 lg:flex xl:gap-3">
-              {navItems.map((item) => {
-                const active = isActive(item.href);
-
-                if (item.children) {
-                  return (
-                    <div key={item.href} className="group relative">
-                      <Link
-                        href={item.href}
-                        className={`inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition ${
-                          active
-                            ? "bg-[#E5C07B]/15 text-[#f1d48b]"
-                            : "text-white/85 hover:text-white"
-                        }`}
-                      >
-                        {item.label}
-                        <ChevronDown className="ml-1 h-4 w-4 transition group-hover:rotate-180" />
-                      </Link>
-
-                      <div className="invisible absolute left-0 top-full z-50 mt-3 max-h-[70vh] w-[310px] overflow-y-auto rounded-3xl border border-white/10 bg-apex-navy-950/95 p-3 opacity-0 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={`block rounded-2xl px-4 py-3 text-sm font-medium transition ${
-                              isActive(child.href)
-                                ? "bg-[#E5C07B]/15 text-[#f1d48b]"
-                                : "text-white/80 hover:bg-white/5 hover:text-white"
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                      active
-                        ? "bg-[#E5C07B]/15 text-[#f1d48b]"
-                        : item.highlight
-                        ? "text-white hover:text-[#f1d48b]"
-                        : "text-white/85 hover:text-white"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="hidden items-center gap-3 lg:flex">
-              <Link
-                href="/arlo-curtain-advisor"
-                className="inline-flex items-center justify-center rounded-full bg-[#E5C07B] px-5 py-2.5 text-sm font-semibold text-black transition hover:brightness-105"
-              >
-                Ask Arlo
-              </Link>
-
-              <Link
-                href="/start-designing"
-                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90"
-              >
-                Start your Curtain Journey
-              </Link>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setMobileOpen(true)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white lg:hidden"
-              aria-label="Open menu"
+        <nav className="hidden items-center gap-1 xl:flex" aria-label="Main navigation">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`rounded-full px-3 py-2 text-sm font-medium transition ${isActive(item.href) ? "bg-[#173c32] text-white" : "text-[#315248] hover:bg-[#173c32]/7 hover:text-[#173c32]"}`}
             >
-              <Menu className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {mobileOpen && (
-        <div className="fixed inset-0 z-[60] overflow-y-auto bg-apex-navy-950/95 backdrop-blur-lg lg:hidden">
-          <div className="flex items-center justify-between px-4 py-3">
-            <Link href="/" className="flex items-center">
-              <div className="relative h-10 w-[180px]">
-                <Image
-                  src="/images/apex-logo-horizontal.svg"
-                  alt="Apex Curtains"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                />
-              </div>
+              {item.label}
             </Link>
+          ))}
+        </nav>
 
-            <button
-              type="button"
-              onClick={() => setMobileOpen(false)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white"
-              aria-label="Close menu"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="px-4 pb-8 pt-2">
-            <div className="rounded-[28px] border border-white/10 bg-white/5 p-4">
-              <div className="mb-4 flex flex-col gap-2">
-                {navItems.map((item) => {
-                  const active = isActive(item.href);
-
-                  return (
-                    <div key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={`flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium transition ${
-                          active
-                            ? "bg-[#E5C07B]/15 text-[#f1d48b]"
-                            : "text-white hover:bg-white/5"
-                        }`}
-                      >
-                        {item.label}
-                        {item.children && <ChevronDown className="h-4 w-4" />}
-                      </Link>
-
-                      {item.children && (
-                        <div className="mt-2 space-y-1 border-l border-[#E5C07B]/30 pl-3">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              className={`block rounded-2xl px-4 py-2.5 text-sm transition ${
-                                isActive(child.href)
-                                  ? "bg-[#E5C07B]/15 text-[#f1d48b]"
-                                  : "text-white/70 hover:bg-white/5 hover:text-white"
-                              }`}
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/professionals/workspace/login"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white"
-                >
-                  Professional Workspace
-                </Link>
-
-                <Link
-                  href="/professionals/project-review"
-                  className="inline-flex items-center justify-center rounded-full border border-[#E5C07B]/30 bg-[#E5C07B]/10 px-4 py-3 text-sm font-semibold text-[#f1d48b]"
-                >
-                  Professional project review
-                </Link>
-
-                <Link
-                  href="/arlo-curtain-advisor"
-                  className="inline-flex items-center justify-center rounded-full bg-[#E5C07B] px-4 py-3 text-sm font-semibold text-black"
-                >
-                  <Sparkles className="mr-2 h-4 w-4" />
-                  Ask Arlo
-                </Link>
-
-                <Link
-                  href="/start-designing"
-                  className="inline-flex items-center justify-center rounded-full bg-white px-4 py-3 text-sm font-semibold text-black"
-                >
-                  Start your Curtain Journey
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-
-                <Link
-                  href="tel:08007720367"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white"
-                >
-                  <Phone className="mr-2 h-4 w-4" />
-                  Speak to us
-                </Link>
-              </div>
-            </div>
-          </div>
+        <div className="flex items-center gap-2">
+          <Link href="tel:08007720367" className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-[#315248] hover:bg-[#173c32]/7 lg:flex">
+            <Phone className="h-4 w-4" /> 0800 772 0367
+          </Link>
+          <Link href="/configure" className="hidden items-center gap-2 rounded-full bg-[#d9aa67] px-4 py-2.5 text-sm font-semibold text-[#1f2f2a] transition hover:bg-[#c89958] sm:flex">
+            <Ruler className="h-4 w-4" /> Start My Curtains
+          </Link>
+          <button type="button" onClick={() => setMobileOpen((open) => !open)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#173c32]/15 xl:hidden" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen}>
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
-      )}
-    </>
+      </div>
+
+      {mobileOpen ? (
+        <nav className="border-t border-[#173c32]/10 bg-[#fbf8f2] px-4 py-4 xl:hidden" aria-label="Mobile navigation">
+          <div className="mx-auto grid max-w-[1440px] gap-1 sm:grid-cols-2">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`rounded-2xl px-4 py-3 text-sm font-medium ${isActive(item.href) ? "bg-[#173c32] text-white" : "text-[#315248] hover:bg-[#173c32]/7"}`}>
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/configure" onClick={() => setMobileOpen(false)} className="mt-2 rounded-2xl bg-[#d9aa67] px-4 py-3 text-center text-sm font-semibold text-[#1f2f2a] sm:col-span-2">Start My Curtains</Link>
+          </div>
+        </nav>
+      ) : null}
+    </header>
   );
 }

@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "seo:check": "node scripts/seo-foundation-check.mjs",
-    "test": "npm run test:decision-engine",
+    "test": "npm run test:decision-engine && npm run test:storefront",
     "test:decision-engine": "tsx --test lib/decision-engine/__tests__/*.test.ts",
+    "test:storefront": "tsx --test lib/storefront/__tests__/*.test.ts",
     "calibrate:curtainsmadeforfree": "tsx scripts/curtainsuk-pricing-calibration.ts"
   },
   "dependencies": {

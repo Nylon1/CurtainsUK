@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seo:check": "node scripts/seo-foundation-check.mjs"
+    "seo:check": "node scripts/seo-foundation-check.mjs",
+    "test": "npm run test:decision-engine",
+    "test:decision-engine": "tsx --test lib/decision-engine/__tests__/*.test.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.9.0",
@@ -33,6 +35,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsx": "^4.23.13",
     "typescript": "^5"
   }
 }

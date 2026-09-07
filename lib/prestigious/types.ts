@@ -1,23 +1,11 @@
 import type { FabricSpec, Money } from "@/lib/decision-engine/types";
+import type { SupplierAvailabilityState, SupplierCustomerAvailability } from "@/lib/supplier-sync/types";
 
 export type PrestigiousPriceVerificationStatus = "VERIFIED" | "PRICE_REQUIRES_VERIFICATION";
 
-export type PrestigiousStockState =
-  | "UNKNOWN"
-  | "AVAILABLE"
-  | "LOW_STOCK"
-  | "INSUFFICIENT_SINGLE_BATCH"
-  | "DUE"
-  | "TEMPORARILY_UNAVAILABLE"
-  | "DISCONTINUED";
+export type PrestigiousStockState = SupplierAvailabilityState;
 
-export type CustomerFabricAvailability =
-  | "Fabric available"
-  | "Limited availability"
-  | "Available soon"
-  | "Availability to be confirmed"
-  | "Temporarily unavailable"
-  | "No longer available";
+export type CustomerFabricAvailability = SupplierCustomerAvailability;
 
 export interface PrestigiousPublicFabric extends FabricSpec {
   fullWidthMm: number;

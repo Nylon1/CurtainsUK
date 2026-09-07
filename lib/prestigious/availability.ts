@@ -1,6 +1,8 @@
+import { DEFAULT_SUPPLIER_SNAPSHOT_FRESHNESS_HOURS, evaluateSupplierAvailability, supplierCustomerAvailability } from "@/lib/supplier-sync/availability";
+import { normalizeSupplierSnapshot } from "@/lib/supplier-sync/normalize";
 import type { PrestigiousPrivateSupplierRecord, PrestigiousStockState, StockEvaluation } from "./types";
 
-export const DEFAULT_STOCK_FRESHNESS_HOURS = 24;
+export const DEFAULT_STOCK_FRESHNESS_HOURS = DEFAULT_SUPPLIER_SNAPSHOT_FRESHNESS_HOURS;
 
 export function isVerificationStale(verifiedAt: string | null, now = new Date(), freshnessHours = DEFAULT_STOCK_FRESHNESS_HOURS) {
   if (!verifiedAt) return true;
@@ -9,12 +11,7 @@ export function isVerificationStale(verifiedAt: string | null, now = new Date(),
 }
 
 export function customerStateFor(internalState: PrestigiousStockState) {
-  if (internalState === "AVAILABLE") return "Fabric available" as const;
-  if (internalState === "LOW_STOCK") return "Limited availability" as const;
-  if (internalState === "DUE") return "Available soon" as const;
-  if (internalState === "TEMPORARILY_UNAVAILABLE") return "Temporarily unavailable" as const;
-  if (internalState === "DISCONTINUED") return "No longer available" as const;
-  return "Availability to be confirmed" as const;
+  return supplierCustomerAvailability(internalState);
 }
 
 export function customerStateForRecord(record: PrestigiousPrivateSupplierRecord, now = new Date(), freshnessHours = DEFAULT_STOCK_FRESHNESS_HOURS) {
@@ -22,20 +19,28 @@ export function customerStateForRecord(record: PrestigiousPrivateSupplierRecord,
 }
 
 export function evaluateStock(record: PrestigiousPrivateSupplierRecord, requiredMetres: number, options: { now?: Date; freshnessHours?: number; lowStockHeadroomMetres?: number } = {}): StockEvaluation {
-  if (!Number.isFinite(requiredMetres) || requiredMetres <= 0) throw new RangeError("Required metres must be positive");
-  if (record.stockState === "DISCONTINUED") return { internalState: "DISCONTINUED", customerState: "No longer available", stale: false, sufficientSingleBatch: false };
-  const stale = isVerificationStale(record.verifiedAt, options.now, options.freshnessHours);
-  if (stale) return { internalState: "UNKNOWN", customerState: "Availability to be confirmed", stale: true, sufficientSingleBatch: false };
-  const qualifying = record.batches.filter((batch) => batch.usableMetres >= requiredMetres);
-  if (qualifying.length) {
-    const best = Math.max(...qualifying.map((batch) => batch.usableMetres));
-    const low = best - requiredMetres <= (options.lowStockHeadroomMetres ?? 5);
-    const internalState = low ? "LOW_STOCK" : "AVAILABLE";
-    return { internalState, customerState: customerStateFor(internalState), stale: false, sufficientSingleBatch: true };
-  }
-  const aggregate = record.batches.reduce((sum, batch) => sum + batch.usableMetres, 0);
-  if (aggregate >= requiredMetres) return { internalState: "INSUFFICIENT_SINGLE_BATCH", customerState: "Availability to be confirmed", stale: false, sufficientSingleBatch: false };
-  if (record.nextDueDate) return { internalState: "DUE", customerState: "Available soon", stale: false, sufficientSingleBatch: false };
-  const internalState = record.stockState === "TEMPORARILY_UNAVAILABLE" ? "TEMPORARILY_UNAVAILABLE" : "UNKNOWN";
-  return { internalState, customerState: customerStateFor(internalState), stale: false, sufficientSingleBatch: false };
+  const snapshot = normalizeSupplierSnapshot({
+    supplier_id: "prestigious-textiles",
+    supplier_sku: record.supplierSku,
+    checked_at: record.verifiedAt ?? "invalid",
+    stock_unit: "METRE",
+    aggregate_available_quantity: record.stockState === "TEMPORARILY_UNAVAILABLE" ? 0 : record.totalFreeStockMetres,
+    batches: record.batches.map((batch) => ({ batch_reference: batch.batchReference, batch_available_quantity: batch.usableMetres, pieces: batch.pieces })),
+    next_due_date: record.nextDueDate,
+    next_due_quantity: record.nextDueMetres,
+    lifecycle_state: record.stockState === "DISCONTINUED" ? "DISCONTINUED" : "UNKNOWN",
+    source: { type: "MANUAL_PORTAL", name: "Legacy Phase 4C verification", reference: null },
+    verification_status: record.verifiedAt ? "VERIFIED" : "UNVERIFIED",
+  });
+  const evaluated = evaluateSupplierAvailability(snapshot, { quantity: requiredMetres, stock_unit: "METRE" }, {
+    now: options.now,
+    freshnessHours: options.freshnessHours,
+    lowStockHeadroom: options.lowStockHeadroomMetres,
+  });
+  return {
+    internalState: evaluated.internal_state,
+    customerState: evaluated.customer_state,
+    stale: evaluated.stale,
+    sufficientSingleBatch: evaluated.sufficient_single_batch,
+  };
 }

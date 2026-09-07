@@ -1,7 +1,5 @@
 import { STOREFRONT_FABRICS } from "./fabrics";
 import { STOREFRONT_WINDOW_TYPES } from "./window-catalog";
-import { customerStateForRecord } from "@/lib/prestigious/availability";
-import { getPrivateSupplierRecord } from "@/lib/prestigious/private-supplier-records";
 
 /**
  * Customer-safe payload consumed by the unpublished Dawn theme. Commercial
@@ -40,10 +38,7 @@ export function buildShopifyCatalogPayload() {
       patternMatchType: fabric.patternMatchType,
       composition: fabric.composition,
       imageReferences: fabric.imageReferences,
-      availability: (() => {
-        const record = getPrivateSupplierRecord(fabric.id);
-        return record ? customerStateForRecord(record) : "Availability to be confirmed";
-      })(),
+      availability: fabric.customerAvailability,
       priceVerificationStatus: fabric.priceVerificationStatus,
       stagingFixture: false,
       feedEligible: false,

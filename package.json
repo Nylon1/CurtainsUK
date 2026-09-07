@@ -14,7 +14,7 @@
     "test:supplier-intelligence": "tsx --test lib/supplier-intelligence/__tests__/*.test.ts",
     "test:supplier-import": "tsx --test lib/supplier-import/__tests__/*.test.ts",
     "test:prestigious": "tsx --test lib/prestigious/__tests__/*.test.ts",
-    "test:storefront": "tsx --test lib/storefront/__tests__/storefront.test.ts lib/storefront/__tests__/review-request.test.ts",
+    "test:storefront": "tsx --test lib/storefront/__tests__/*.test.ts",
     "test:shopify-theme": "tsx --test lib/storefront/__tests__/shopify-theme.test.ts",
     "calibrate:curtainsmadeforfree": "tsx scripts/curtainsuk-pricing-calibration.ts",
     "supplier-sync:shadow": "tsx scripts/curtainsuk-supplier-shadow-sync.ts",

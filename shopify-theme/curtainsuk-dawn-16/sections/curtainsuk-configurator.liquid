@@ -108,7 +108,40 @@
         <span class="cuk-status cuk-status--review" data-cuk-result-outcome></span>
         <p class="cuk-result__price" data-cuk-result-price></p>
         <p data-cuk-result-message></p>
+        <h2 class="cuk-result__summary-title">Your curtain summary</h2>
+        <dl class="cuk-result__summary" data-cuk-result-summary>
+          <div><dt>Window</dt><dd data-cuk-summary-window>—</dd></div>
+          <div><dt>Dimensions</dt><dd data-cuk-summary-dimensions>—</dd></div>
+          <div><dt>Fabric</dt><dd data-cuk-summary-fabric>—</dd></div>
+          <div><dt>Heading</dt><dd data-cuk-summary-heading>—</dd></div>
+          <div><dt>Lining</dt><dd data-cuk-summary-lining>—</dd></div>
+          <div><dt>Pair / single</dt><dd data-cuk-summary-construction>—</dd></div>
+          <div><dt>Availability</dt><dd data-cuk-summary-availability>—</dd></div>
+          <div><dt>Price</dt><dd data-cuk-summary-price>—</dd></div>
+          <div><dt>Delivery</dt><dd data-cuk-summary-delivery>Shown separately</dd></div>
+          <div><dt>Review status</dt><dd data-cuk-summary-review>Not required</dd></div>
+        </dl>
         <p class="cuk-hint" data-cuk-result-spec></p>
+        <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form>
+          <h2>Prepare the staging checkout handoff</h2>
+          <p>This validates and freezes the exact curtain specification and price. It cannot open checkout or take payment.</p>
+          <div class="cuk-field">
+            <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>
+            <select id="CukShippingRegion-{{ section.id }}" name="shippingRegion" required>
+              <option value="UK_MAINLAND">UK Mainland</option>
+              <option value="HIGHLANDS_ISLANDS">Highlands and Islands</option>
+              <option value="NORTHERN_IRELAND">Northern Ireland</option>
+            </select>
+          </div>
+          <label class="cuk-checkout-handoff__accept" for="CukAcceptSummary-{{ section.id }}">
+            <input id="CukAcceptSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>
+            <span>I confirm the summary above matches my measurements and selections.</span>
+          </label>
+          <div class="cuk-error" data-cuk-checkout-error hidden></div>
+          <p class="cuk-review-confirmation cuk-hidden" data-cuk-checkout-confirmation tabindex="-1"></p>
+          <button class="cuk-button" type="submit">Prepare staging handoff</button>
+          <p class="cuk-hint">Payment, checkout and manufacture remain disabled.</p>
+        </form>
         <form class="cuk-review-submit cuk-hidden" data-cuk-review-form>
           <h2>Send this project for review</h2>
           <p data-cuk-review-next-step>Share your contact details and our curtain team will check the specification before confirming the next step.</p>

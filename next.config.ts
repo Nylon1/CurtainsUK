@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
+  // Shopify app proxies can forward a trailing slash. Serving both forms
+  // directly avoids a redirect back onto the storefront host.
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "www.prestigious.co.uk", pathname: "/assets/**" },

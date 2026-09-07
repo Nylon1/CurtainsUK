@@ -1,12 +1,18 @@
 export type StorefrontEventName =
   | "window_type_selected"
   | "configurator_started"
+  | "measurement_completion"
   | "configurator_step_completed"
   | "validation_failure"
   | "fabric_selected"
+  | "sample_intent"
   | "sample_ordered_intended"
+  | "review_submitted"
   | "quote_review_submitted"
   | "price_displayed"
+  | "review_approved"
+  | "quote_accepted"
+  | "checkout_handoff_reached"
   | "checkout_started";
 
 declare global {

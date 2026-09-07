@@ -1480,7 +1480,7 @@
         "type": "text",
         "id": "curtainsuk_staging_api_base",
         "label": "Customer-safe staging API base",
-        "default": "https://curtainsuk-staging-8n6r5mdbj-hamzas-projects-4ef62f35.vercel.app/api/staging/shopify"
+        "default": "/apps/curtainsuk-decision"
       },
       {
         "type": "text",

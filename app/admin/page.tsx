@@ -82,6 +82,15 @@ export default function AdminHomePage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <Link
+              href="/admin/reviews"
+              className="group rounded-[28px] border border-[#f5d38a]/30 bg-[#f5d38a]/10 p-6 transition hover:bg-[#f5d38a]/15"
+            >
+              <div className="text-sm uppercase tracking-[0.18em] text-[#f5d38a]">Curtain operations</div>
+              <h2 className="mt-3 text-2xl font-semibold text-white">Technical Review Queue</h2>
+              <p className="mt-3 text-sm leading-6 text-white/70">Review customer measurements, evidence and pricing revisions before a project is marked ready for checkout.</p>
+              <div className="mt-6 text-sm font-medium text-[#f5d38a]">Open review queue →</div>
+            </Link>
+            <Link
               href="/admin/supplier-imports"
               className="group rounded-[28px] border border-[#f5d38a]/20 bg-[#f5d38a]/10 p-6 transition hover:bg-[#f5d38a]/15"
             >
@@ -107,6 +116,15 @@ export default function AdminHomePage() {
               <h2 className="mt-3 text-2xl font-semibold text-white">Prestigious Stock Check</h2>
               <p className="mt-3 text-sm leading-6 text-white/70">Record current cut pricing, dye-lot stock and next-due information from Webtex.</p>
               <div className="mt-6 text-sm font-medium text-[#f5d38a]">Open stock check →</div>
+            </Link>
+            <Link
+              href="/admin/catalogue-readiness"
+              className="group rounded-[28px] border border-[#f5d38a]/20 bg-[#f5d38a]/10 p-6 transition hover:bg-[#f5d38a]/15"
+            >
+              <div className="text-sm uppercase tracking-[0.18em] text-[#f5d38a]">Launch control</div>
+              <h2 className="mt-3 text-2xl font-semibold text-white">Catalogue Readiness</h2>
+              <p className="mt-3 text-sm leading-6 text-white/70">Check imagery, pricing, lifecycle and merge-safety evidence before any wider supplier import.</p>
+              <div className="mt-6 text-sm font-medium text-[#f5d38a]">Open readiness gates →</div>
             </Link>
             <Link
               href="/admin/projects"

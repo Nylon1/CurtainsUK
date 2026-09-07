@@ -1,7 +1,8 @@
 .cuk-shell {
   --cuk-ink: #17312b;
   --cuk-forest: #214e43;
-  --cuk-moss: #728777;
+  --cuk-moss: #536b5a;
+  --cuk-muted: #52675f;
   --cuk-cream: #f4f0e7;
   --cuk-paper: #fffdf8;
   --cuk-line: rgba(23, 49, 43, 0.18);
@@ -62,12 +63,21 @@
 .cuk-result { position: sticky; top: 2rem; }
 .cuk-result__price { margin: 1.5rem 0 .4rem; font-family: var(--font-heading-family); font-size: 4.8rem; line-height: 1; }
 .cuk-result__price--message { max-width: 40rem; font-size: clamp(2.6rem, 4vw, 3.8rem); line-height: 1.12; }
+.cuk-result__summary-title { margin: 2.4rem 0 1rem; font-size: 2.2rem; }
+.cuk-result__summary { display: grid; gap: 0; margin: 0; border: 1px solid var(--cuk-line); border-radius: 1.2rem; overflow: hidden; }
+.cuk-result__summary > div { display: grid; grid-template-columns: minmax(11rem, .75fr) minmax(0, 1.25fr); gap: 1.2rem; padding: 1rem 1.2rem; border-bottom: 1px solid var(--cuk-line); }
+.cuk-result__summary > div:last-child { border-bottom: 0; }
+.cuk-result__summary dt { color: #52625d; font-weight: 600; }
+.cuk-result__summary dd { margin: 0; overflow-wrap: anywhere; font-weight: 700; }
 .cuk-result__meta { display: grid; gap: .8rem; margin: 2rem 0; padding: 0; list-style: none; }
 .cuk-notice { border-left: .4rem solid var(--cuk-warn); padding: 1.2rem 1.4rem; background: #faf1e7; color: #683b1e; line-height: 1.5; }
 .cuk-error { border-radius: 1rem; padding: 1.2rem; background: #f9e3df; color: #782b20; }
-.cuk-review-submit, .cuk-review-confirmation { border-top: 1px solid var(--cuk-line); margin-top: 2.4rem; padding-top: 2.4rem; }
-.cuk-review-submit h2, .cuk-review-confirmation h2 { margin: 0 0 1rem; font-size: 2.4rem; }
+.cuk-review-submit, .cuk-review-confirmation, .cuk-checkout-handoff { border-top: 1px solid var(--cuk-line); margin-top: 2.4rem; padding-top: 2.4rem; }
+.cuk-review-submit h2, .cuk-review-confirmation h2, .cuk-checkout-handoff h2 { margin: 0 0 1rem; font-size: 2.4rem; }
 .cuk-review-submit > .cuk-button { width: 100%; margin-top: 1.6rem; }
+.cuk-checkout-handoff > .cuk-button { width: 100%; margin-top: 1.6rem; }
+.cuk-checkout-handoff__accept { display: grid; grid-template-columns: 2.4rem 1fr; align-items: start; gap: 1rem; margin-top: 1.6rem; cursor: pointer; }
+.cuk-checkout-handoff__accept input { width: 2.4rem; height: 2.4rem; margin: 0; }
 .cuk-review-confirmation { border-radius: 1.2rem; padding: 1.8rem; background: #e3eee8; }
 .cuk-hidden { display: none !important; }
 .cuk-fabrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.8rem; }
@@ -116,4 +126,5 @@
   }
   .cuk-task-nav__list a { min-height: 4.4rem; padding-inline: .4rem; font-size: 1.3rem; }
   .cuk-field input, .cuk-field select, .cuk-field textarea { font-size: 1.6rem; }
+  .cuk-result__summary > div { grid-template-columns: 1fr; gap: .3rem; }
 }

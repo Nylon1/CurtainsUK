@@ -7,6 +7,7 @@ import { WINDOW_TYPES_BY_SLUG } from "@/lib/decision-engine/seed/window-types";
 import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, FabricSpec, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
 import { STOREFRONT_FABRICS_BY_ID } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
+import { allocateVatInclusiveRetailTotal } from "./checkout-gates";
 
 export interface StagingPriceRequest {
   windowSlug: string;
@@ -43,6 +44,7 @@ export interface StagingPriceResponse {
   netAmountMinor: number | null;
   vatAmountMinor: number | null;
   totalAmountMinor: number | null;
+  vatRateBasisPoints: number | null;
   currency: "GBP";
   totalCoverageWidthCm: number;
   bayTrackOrPoleFitted: boolean | null;
@@ -187,6 +189,9 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     calculatedFabricWidths: calculation.fabricWidths.totalWidths > 6 ? calculation.fabricWidths.totalWidths : undefined,
   });
   const manualQuote = complexity.outcome === "MANUAL_QUOTE";
+  const retailPrice = manualQuote
+    ? null
+    : allocateVatInclusiveRetailTotal(calculation.total.amountMinor, rules.vat.rateBasisPoints!);
   return {
     configurationId: configuration.id,
     calculationVersion: calculation.calculationVersion,
@@ -200,9 +205,10 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     heading: input.heading,
     lining: input.lining,
     construction: input.construction,
-    netAmountMinor: manualQuote ? null : calculation.netTotal.amountMinor,
-    vatAmountMinor: manualQuote ? null : calculation.vat.amountMinor,
-    totalAmountMinor: manualQuote ? null : calculation.total.amountMinor,
+    netAmountMinor: retailPrice?.netAmountMinor ?? null,
+    vatAmountMinor: retailPrice?.vatAmountMinor ?? null,
+    totalAmountMinor: retailPrice?.grossAmountMinor ?? null,
+    vatRateBasisPoints: retailPrice?.vatRateBasisPoints ?? null,
     currency: "GBP",
     totalCoverageWidthCm: widthCm,
     bayTrackOrPoleFitted: bay ? input.bayTrackOrPoleFitted! : null,

@@ -1,6 +1,5 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { extname } from "node:path";
 import { fabricMasterRecordById } from "@/lib/fabric-master/repository";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import { SupplierIntelligenceService } from "@/lib/supplier-intelligence/service";
@@ -19,13 +18,18 @@ import {
   type ReviewRequestReceipt,
 } from "./review-request";
 import { verifyReviewSubmission } from "./review-token";
+import { REVIEW_STATES } from "./review-workflow";
+import { evidenceRetentionExpiry, verifyEvidencePayload } from "./security/evidence-core";
+import {
+  configuredEvidenceRetentionDays,
+  scanUploadedReviewEvidence,
+  uploadedReviewEvidencePayload,
+  type UploadedEvidenceSecurityRecord,
+} from "./security/evidence-persistence";
 
 const EVIDENCE_BUCKET = "curtainsuk-review-evidence-staging";
-const MAX_FILE_BYTES = 3 * 1024 * 1024;
 const MAX_TOTAL_EVIDENCE_BYTES = 3_800_000;
 const MAX_PHOTOS = 8;
-const PHOTO_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"]);
-const DRAWING_TYPES = new Set([...PHOTO_TYPES, "application/pdf"]);
 
 export interface ReviewSubmissionFiles {
   photos: File[];
@@ -34,38 +38,6 @@ export interface ReviewSubmissionFiles {
 
 function isSpecialistConfiguration(input: ReviewConfiguration): input is SpecialistReviewRequest {
   return "measurements" in input;
-}
-
-function validatedFile(file: File, kind: ReviewEvidenceReference["kind"]) {
-  const allowed = kind === "PHOTO" ? PHOTO_TYPES : DRAWING_TYPES;
-  if (!file.name || file.size <= 0 || file.size > MAX_FILE_BYTES || !allowed.has(file.type)) {
-    throw new Error("REVIEW_EVIDENCE_INVALID");
-  }
-  return file;
-}
-
-function safeExtension(file: File) {
-  const byType: Record<string, string> = {
-    "image/jpeg": ".jpg",
-    "image/png": ".png",
-    "image/webp": ".webp",
-    "image/heic": ".heic",
-    "image/heif": ".heif",
-    "application/pdf": ".pdf",
-  };
-  return byType[file.type] ?? extname(file.name).toLowerCase();
-}
-
-function hasExpectedSignature(bytes: Buffer, contentType: string) {
-  if (contentType === "image/jpeg") return bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
-  if (contentType === "image/png") return bytes.length >= 8 && bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
-  if (contentType === "image/webp") return bytes.length >= 12 && bytes.toString("ascii", 0, 4) === "RIFF" && bytes.toString("ascii", 8, 12) === "WEBP";
-  if (contentType === "application/pdf") return bytes.length >= 5 && bytes.toString("ascii", 0, 5) === "%PDF-";
-  if (contentType === "image/heic" || contentType === "image/heif") {
-    const brand = bytes.length >= 12 && bytes.toString("ascii", 4, 8) === "ftyp" ? bytes.toString("ascii", 8, 12) : "";
-    return ["heic", "heix", "hevc", "hevx", "mif1", "msf1"].includes(brand);
-  }
-  return false;
 }
 
 function normalizedMeasurements(configuration: ReviewConfiguration) {
@@ -103,9 +75,10 @@ async function uploadEvidence(requestId: string, files: ReviewSubmissionFiles) {
   const database = createSupplierServiceClient();
   const uploadedPaths: string[] = [];
   const evidence: ReviewEvidenceReference[] = [];
+  const securityRecords: UploadedEvidenceSecurityRecord[] = [];
   const candidates = [
-    ...files.photos.map((file) => ({ file: validatedFile(file, "PHOTO"), kind: "PHOTO" as const })),
-    ...(files.drawing ? [{ file: validatedFile(files.drawing, "DRAWING"), kind: "DRAWING" as const }] : []),
+    ...files.photos.map((file) => ({ file, kind: "PHOTO" as const })),
+    ...(files.drawing ? [{ file: files.drawing, kind: "DRAWING" as const }] : []),
   ];
   if (candidates.reduce((total, candidate) => total + candidate.file.size, 0) > MAX_TOTAL_EVIDENCE_BYTES) {
     throw new Error("REVIEW_EVIDENCE_INVALID");
@@ -113,11 +86,17 @@ async function uploadEvidence(requestId: string, files: ReviewSubmissionFiles) {
 
   try {
     for (const candidate of candidates) {
-      const objectPath = `${requestId}/${candidate.kind.toLowerCase()}-${randomUUID()}${safeExtension(candidate.file)}`;
-      const bytes = Buffer.from(await candidate.file.arrayBuffer());
-      if (!hasExpectedSignature(bytes, candidate.file.type)) throw new Error("REVIEW_EVIDENCE_INVALID");
+      const bytes = new Uint8Array(await candidate.file.arrayBuffer());
+      const verified = verifyEvidencePayload({
+        kind: candidate.kind,
+        fileName: candidate.file.name,
+        claimedContentType: candidate.file.type,
+        bytes,
+      });
+      const evidenceId = randomUUID();
+      const objectPath = `${requestId}/${candidate.kind.toLowerCase()}-${evidenceId}${verified.safeExtension}`;
       const { error } = await database.storage.from(EVIDENCE_BUCKET).upload(objectPath, bytes, {
-        contentType: candidate.file.type,
+        contentType: verified.detectedContentType,
         upsert: false,
         cacheControl: "0",
       });
@@ -130,8 +109,15 @@ async function uploadEvidence(requestId: string, files: ReviewSubmissionFiles) {
         content_type: candidate.file.type,
         size_bytes: candidate.file.size,
       });
+      securityRecords.push({
+        evidenceId,
+        requestId,
+        objectPath,
+        payload: verified,
+        retentionExpiresAt: evidenceRetentionExpiry(new Date(), configuredEvidenceRetentionDays()),
+      });
     }
-    return { evidence, uploadedPaths };
+    return { evidence, uploadedPaths, securityRecords };
   } catch (error) {
     if (uploadedPaths.length) await database.storage.from(EVIDENCE_BUCKET).remove(uploadedPaths);
     throw error;
@@ -147,7 +133,7 @@ async function existingReviewRecord(configurationId: string): Promise<{ receipt:
   if (error) throw new Error("REVIEW_REQUEST_PERSISTENCE_FAILED");
   if (!data) return null;
   const reviewState = String(data.review_state) as ReviewRequestReceipt["reviewState"];
-  if (!["PENDING", "IN_REVIEW", "MORE_INFORMATION_REQUIRED", "APPROVED", "REJECTED"].includes(reviewState)) {
+  if (!REVIEW_STATES.includes(reviewState)) {
     throw new Error("REVIEW_REQUEST_PERSISTENCE_FAILED");
   }
   const evidence = Array.isArray(data.evidence) ? data.evidence : [];
@@ -220,11 +206,11 @@ export async function createStagingReviewRequest(input: {
   const configurationId = clientConfigurationId;
   const existing = await existingReviewReceipt(configurationId);
   if (existing) return existing;
-  const { evidence, uploadedPaths } = await uploadEvidence(requestId, input.files);
+  const { evidence, uploadedPaths, securityRecords } = await uploadEvidence(requestId, input.files);
   const database = createSupplierServiceClient();
 
   try {
-    const { data, error } = await database.rpc("create_staging_review_request", {
+    const { data, error } = await database.rpc("create_staging_review_request_with_evidence", {
       p_request: {
         request_id: requestId,
         event_id: randomUUID(),
@@ -248,7 +234,9 @@ export async function createStagingReviewRequest(input: {
         calculation_version: "calculationVersion" in calculation
           ? calculation.calculationVersion
           : calculation.rulesVersion,
+        calculated_fabric_metres: "fabricMetres" in calculation ? calculation.fabricMetres : null,
         evidence,
+        evidence_security: uploadedReviewEvidencePayload(securityRecords),
         customer_name: contact.name,
         customer_email: contact.email,
         customer_phone: contact.phone,
@@ -259,10 +247,14 @@ export async function createStagingReviewRequest(input: {
     if (error) throw new Error("REVIEW_REQUEST_PERSISTENCE_FAILED");
     const persisted = data as { request_id?: string; configuration_id?: string; review_state?: string; submitted_at?: string; created?: boolean } | null;
     const persistedState = persisted?.review_state as ReviewRequestReceipt["reviewState"] | undefined;
-    if (!persisted?.request_id || !persistedState || !["PENDING", "IN_REVIEW", "MORE_INFORMATION_REQUIRED", "APPROVED", "REJECTED"].includes(persistedState)) {
+    if (!persisted?.request_id || !persistedState || !REVIEW_STATES.includes(persistedState)) {
       throw new Error("REVIEW_REQUEST_PERSISTENCE_FAILED");
     }
-    if (persisted.created === false && uploadedPaths.length) await database.storage.from(EVIDENCE_BUCKET).remove(uploadedPaths);
+    if (persisted.created === false && uploadedPaths.length) {
+      await database.storage.from(EVIDENCE_BUCKET).remove(uploadedPaths);
+    } else if (persisted.created !== false && securityRecords.length) {
+      await scanUploadedReviewEvidence(securityRecords);
+    }
     return {
       requestId: persisted.request_id,
       configurationId: persisted.configuration_id ?? configurationId,

@@ -15,14 +15,18 @@ test("Dawn contains the 14 unique Window Type route definitions", () => {
   assert.equal(manifest.publishState, "UNPUBLISHED_STAGING_ONLY");
 });
 
-test("Dawn delegates all decisions to controlled endpoints and has no configurator checkout path", () => {
+test("Dawn delegates decisions to the signed app proxy and only exposes a disabled-payment staging handoff", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
+  const settings = JSON.parse(read("config", "settings_data.json")) as { current: Record<string, unknown> };
   assert.match(script, /endpoint\(root\.dataset\.engineBase, "catalog"\)/);
   assert.match(script, /path = "specialist-review"/);
+  assert.match(script, /endpoint\(root\.dataset\.engineBase, "checkout-handoff"\)/);
   assert.match(section, /settings\.curtainsuk_staging_api_base/);
+  assert.equal(settings.current.curtainsuk_staging_api_base, "/apps/curtainsuk-decision");
   assert.equal(/cart\/add|checkout\.js|supplierCost|grossMargin|makeupCost/i.test(script + section), false);
   assert.match(section, /This flow cannot add to cart, take payment or release a job to manufacture/);
+  assert.match(section, /Payment, checkout and manufacture remain disabled/);
 });
 
 test("the specialist workflow requires a photo and never renders a payment control", () => {
@@ -161,6 +165,18 @@ test("results always show VAT, availability and delivery while standard results 
   assert.match(script, /response\.delivery \|\| "Delivery shown separately\."/);
   assert.match(script, /Staging price only\. Checkout remains disabled until the launch gate is approved/);
   assert.match(section, /data-cuk-result-notice>Staging only\. Checkout remains disabled/);
+  for (const field of ["window", "dimensions", "fabric", "heading", "lining", "construction", "availability", "price", "delivery", "review"]) {
+    assert.match(section, new RegExp(`data-cuk-summary-${field}`));
+  }
+});
+
+test("Dawn emits the launch funnel without supplier-commercial analytics fields", () => {
+  const script = read("assets", "curtainsuk-storefront.js");
+  for (const event of [
+    "configurator_started", "window_type_selected", "measurement_completion", "fabric_selected",
+    "sample_intent", "price_displayed", "review_submitted", "quote_accepted", "checkout_handoff_reached",
+  ]) assert.match(script, new RegExp(`emit\\(\"${event}\"`));
+  assert.equal(/supplier_cost|trade_price|gross_margin|batch_reference|stock_metres/i.test(script), false);
 });
 
 test("mobile controls meet the 44px staging target and avoid iOS input zoom", () => {

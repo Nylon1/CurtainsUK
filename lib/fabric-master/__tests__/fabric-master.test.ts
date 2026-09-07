@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import * as XLSX from "xlsx";
 import { officialPrestigiousThumbnailUrl } from "../prestigious-imagery";
+import { BULK_IMPORT_GATES, evaluateBulkImportReadiness } from "../bulk-import-readiness";
 import { buildCatalogueImport } from "../catalogue-normalization";
 import { protectCatalogueCandidate } from "../catalogue-protection";
 import { toDecisionEngineFabric } from "../decision-engine";
@@ -11,6 +12,7 @@ import { assertCustomerSafeProjection, fabricIsConfigurationEligible, projectCus
 import { previewSandersonAllBrandsCatalogue } from "../sanderson-catalogue-import";
 import { SANDERSON_CANARY_ALLOCATION, selectSandersonCanary } from "../sanderson-canary";
 import { normalizeSandersonRows } from "../sanderson";
+import { selectCurrentApprovedCutCostMinor } from "../verified-supplier-price";
 
 const prestigiousRows = [{
   Title: "ESCHER",
@@ -347,4 +349,72 @@ test("No Pattern Match and shifted trailing cells stay blocked for review", asyn
   assert.equal(preview.records[0].pattern_match_type, null);
   assert.equal(preview.rejected_rows.length, 1);
   assert.deepEqual(preview.rejected_rows[0].reasons, ["UNNAMED_TRAILING_COLUMN_DATA"]);
+});
+
+test("bulk supplier expansion fails closed until every dated gate has evidence", () => {
+  const complete = Object.fromEntries(BULK_IMPORT_GATES.map((id) => [id, {
+    state: "PASS" as const,
+    checkedAt: "2026-09-07T17:00:00.000Z",
+    evidenceReference: `phase5c:${id.toLowerCase()}`,
+    detail: "Verified in staging",
+  }]));
+  const ready = evaluateBulkImportReadiness({
+    supplierId: "sanderson-design-group",
+    intendedColourways: 9_630,
+    gates: complete as Parameters<typeof evaluateBulkImportReadiness>[0]["gates"],
+  }, new Date("2026-09-07T17:30:00.000Z"));
+  assert.equal(ready.status, "READY_FOR_BULK_IMPORT");
+  assert.deepEqual(ready.failedGates, []);
+
+  const missingImageryEvidence = {
+    ...complete,
+    AUTHORISED_IMAGERY: { ...complete.AUTHORISED_IMAGERY, evidenceReference: null },
+  };
+  const blocked = evaluateBulkImportReadiness({
+    supplierId: "sanderson-design-group",
+    intendedColourways: 9_630,
+    gates: missingImageryEvidence as Parameters<typeof evaluateBulkImportReadiness>[0]["gates"],
+  });
+  assert.equal(blocked.status, "BLOCKED");
+  assert.deepEqual(blocked.unknownGates, ["AUTHORISED_IMAGERY"]);
+});
+
+test("verified cut pricing requires a current expiry and the latest promotion to remain approved", () => {
+  const now = new Date("2026-09-07T19:00:00.000Z");
+  const snapshots = [{
+    snapshot_id: "snapshot-current",
+    checked_at: "2026-09-07T18:00:00.000Z",
+    price_expires_at: "2026-09-14T18:00:00.000Z",
+    prices: { cut_trade_price: "20.0000", currency: "GBP" },
+  }, {
+    snapshot_id: "snapshot-older",
+    checked_at: "2026-09-06T18:00:00.000Z",
+    price_expires_at: "2026-09-13T18:00:00.000Z",
+    prices: { cut_trade_price: "19.0000", currency: "GBP" },
+  }];
+  const approved = [
+    { snapshot_id: "snapshot-current", promotion_state: "APPROVED_FOR_PROJECTION", created_at: "2026-09-07T18:01:00.000Z" },
+    { snapshot_id: "snapshot-older", promotion_state: "APPROVED_FOR_PROJECTION", created_at: "2026-09-06T18:01:00.000Z" },
+  ];
+
+  assert.equal(selectCurrentApprovedCutCostMinor({ snapshots, promotionEvents: approved, now }), 2_000);
+  assert.equal(selectCurrentApprovedCutCostMinor({
+    snapshots,
+    promotionEvents: [...approved, {
+      snapshot_id: "snapshot-current",
+      promotion_state: "REJECTED",
+      created_at: "2026-09-07T18:02:00.000Z",
+    }],
+    now,
+  }), 1_900, "a later rejection invalidates that snapshot but preserves an older current approval");
+  assert.equal(selectCurrentApprovedCutCostMinor({
+    snapshots: [{ ...snapshots[0], price_expires_at: "2026-09-07T18:59:59.000Z" }],
+    promotionEvents: approved,
+    now,
+  }), null);
+  assert.equal(selectCurrentApprovedCutCostMinor({
+    snapshots: [{ ...snapshots[0], price_expires_at: null }],
+    promotionEvents: approved,
+    now,
+  }), null);
 });

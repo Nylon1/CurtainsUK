@@ -1,6 +1,11 @@
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import type { FabricCatalogueImportItem, FabricCatalogueImportMetadata, FabricMasterRecord } from "./types";
 import type { ExistingCatalogueRecord } from "./catalogue-protection";
+import {
+  selectCurrentApprovedCutCostMinor,
+  type SupplierPriceSnapshotCandidate,
+  type SupplierPromotionObservation,
+} from "./verified-supplier-price";
 
 type Row = Record<string, unknown>;
 
@@ -118,21 +123,27 @@ export async function verifiedCutCostMinor(supplierId: string, supplierSku: stri
   const database = createSupplierServiceClient();
   const { data: snapshots, error: snapshotError } = await database
     .from("supplier_snapshots")
-    .select("snapshot_id,checked_at,price_expires_at,promotion_events:supplier_promotion_events!supplier_promotion_events_snapshot_id_fkey!inner(promotion_state,created_at),prices:supplier_snapshot_prices!inner(cut_trade_price,currency)")
+    .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(cut_trade_price,currency)")
     .eq("supplier_id", supplierId)
     .eq("supplier_sku", supplierSku)
     .eq("validation_status", "VALIDATED")
-    .eq("promotion_events.promotion_state", "APPROVED_FOR_PROJECTION")
     .order("checked_at", { ascending: false })
-    .limit(1);
+    .limit(100);
   databaseError(snapshotError);
-  const row = (snapshots?.[0] ?? null) as Row | null;
-  if (!row) throw new Error("PRICE_REQUIRES_VERIFICATION");
-  const relation = row.prices as Row | Row[];
-  const prices = Array.isArray(relation) ? relation[0] : relation;
-  if (!prices) throw new Error("PRICE_REQUIRES_VERIFICATION");
-  if (prices.currency !== "GBP" || prices.cut_trade_price === null) throw new Error("PRICE_REQUIRES_VERIFICATION");
-  return Math.round(Number(prices.cut_trade_price) * 100);
+  const candidates = (snapshots ?? []) as SupplierPriceSnapshotCandidate[];
+  if (!candidates.length) throw new Error("PRICE_REQUIRES_VERIFICATION");
+  const { data: promotionEvents, error: promotionError } = await database
+    .from("supplier_promotion_events")
+    .select("snapshot_id,promotion_state,created_at")
+    .in("snapshot_id", candidates.map((snapshot) => snapshot.snapshot_id))
+    .order("created_at", { ascending: false });
+  databaseError(promotionError);
+  const price = selectCurrentApprovedCutCostMinor({
+    snapshots: candidates,
+    promotionEvents: (promotionEvents ?? []) as SupplierPromotionObservation[],
+  });
+  if (price === null) throw new Error("PRICE_REQUIRES_VERIFICATION");
+  return price;
 }
 
 /** Reuses the Phase 4E manual approval gate; this does not write to Shopify. */

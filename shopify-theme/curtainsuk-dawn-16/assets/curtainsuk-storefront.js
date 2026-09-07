@@ -45,7 +45,7 @@
       localStorage.setItem(SAMPLE_KEY, JSON.stringify(samples));
     }
     rememberProject({ fabricId: fabric.id, windowSlug: windowSlug || "standard-window" });
-    emit("sample_intended", { fabric_id: fabric.id, window_type: windowSlug || null });
+    emit("sample_intent", { fabric_id: fabric.id, window_type: windowSlug || null });
     renderBaskets();
   }
 
@@ -286,6 +286,7 @@
     const form = root.querySelector("form");
     const reviewForm = root.querySelector("[data-cuk-review-form]");
     const reviewConfirmation = root.querySelector("[data-cuk-review-confirmation]");
+    const checkoutForm = root.querySelector("[data-cuk-checkout-form]");
     const errorBox = root.querySelector("[data-cuk-error]");
     const result = root.querySelector("[data-cuk-result]");
     const windowSelect = form.elements.windowSlug;
@@ -321,6 +322,7 @@
       setJourneyFields(root, selected);
       result.hidden = true;
       reviewForm.classList.add("cuk-hidden");
+      checkoutForm.classList.add("cuk-hidden");
       reviewConfirmation.classList.add("cuk-hidden");
       rememberProject(projectSnapshot(form, root));
       syncConfiguratorUrl(form);
@@ -342,6 +344,10 @@
         lastEvaluation = null;
         result.hidden = true;
         reviewForm.classList.add("cuk-hidden");
+        checkoutForm.classList.add("cuk-hidden");
+        const checkoutButton = checkoutForm.querySelector("button[type=submit]");
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare staging handoff"; }
+        checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         reviewConfirmation.classList.add("cuk-hidden");
       }
     });
@@ -355,6 +361,7 @@
         return;
       }
       const selected = catalog.windows.find((item) => item.slug === windowSelect.value);
+      emit("measurement_completion", { window_type: windowSelect.value, journey: selected.journey });
       const photoNames = [...(form.elements.photos.files || [])].map((file) => file.name);
       const drawingName = form.elements.drawing.files[0]?.name;
       let path = "price";
@@ -474,6 +481,23 @@
           response.availability || "Availability to be confirmed",
           response.delivery || "Delivery shown separately.",
         ].filter(Boolean).join(" · ");
+        const priceLabel = isManualQuote
+          ? "Confirmed after technical review"
+          : Number.isFinite(response.totalAmountMinor)
+            ? `${money(response.totalAmountMinor, response.currency)} · VAT included`
+            : "Not available";
+        result.querySelector("[data-cuk-summary-window]").textContent = selected.name;
+        result.querySelector("[data-cuk-summary-dimensions]").textContent = widthSummary;
+        result.querySelector("[data-cuk-summary-fabric]").textContent = selectedFabric
+          ? `${selectedFabric.design} — ${selectedFabric.colour}`
+          : "Fabric selection unavailable";
+        result.querySelector("[data-cuk-summary-heading]").textContent = form.elements.heading.selectedOptions[0]?.textContent || form.elements.heading.value;
+        result.querySelector("[data-cuk-summary-lining]").textContent = form.elements.lining.selectedOptions[0]?.textContent || form.elements.lining.value;
+        result.querySelector("[data-cuk-summary-construction]").textContent = form.elements.construction.selectedOptions[0]?.textContent || form.elements.construction.value;
+        result.querySelector("[data-cuk-summary-availability]").textContent = response.availability || "Availability to be confirmed";
+        result.querySelector("[data-cuk-summary-price]").textContent = priceLabel;
+        result.querySelector("[data-cuk-summary-delivery]").textContent = response.delivery || "Delivery shown separately";
+        result.querySelector("[data-cuk-summary-review]").textContent = needsReview ? "Required before checkout" : "Not required";
         result.querySelector("[data-cuk-result-spec]").textContent = [
           selected.name,
           widthSummary,
@@ -485,6 +509,11 @@
         ].filter(Boolean).join(" · ");
         lastEvaluation = { configuration: body, calculation: response };
         reviewForm.classList.toggle("cuk-hidden", !needsReview);
+        checkoutForm.classList.toggle("cuk-hidden", needsReview || isManualQuote || response.outcome !== "INSTANT_PRICE");
+        checkoutForm.reset();
+        checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
+        const checkoutButton = checkoutForm.querySelector("button[type=submit]");
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare staging handoff"; }
         const notice = result.querySelector("[data-cuk-result-notice]");
         if (notice) notice.textContent = needsReview
           ? "Checkout is unavailable. This project must be reviewed before payment or manufacture."
@@ -492,7 +521,9 @@
         reviewConfirmation.classList.add("cuk-hidden");
         result.hidden = false;
         rememberProject({ ...projectSnapshot(form, root), lastOutcome: response.outcome });
-        emit(isManualQuote ? "technical_review_prepared" : Number.isFinite(response.totalAmountMinor) ? "price_displayed" : "technical_review_prepared", { window_type: windowSelect.value, outcome: response.outcome, calculation_version: response.calculationVersion || null });
+        if (Number.isFinite(response.totalAmountMinor) && !isManualQuote) {
+          emit("price_displayed", { window_type: windowSelect.value, outcome: response.outcome, amount_minor: response.totalAmountMinor, currency: response.currency, calculation_version: response.calculationVersion || null });
+        }
       } catch (error) {
         errorBox.textContent = error.message;
         errorBox.hidden = false;
@@ -527,13 +558,60 @@
         reviewConfirmation.innerHTML = `<h2>Project received</h2><p>${escapeHtml(response.message || "Our curtain team will review the measurements and contact you with the next step.")}</p><p class="cuk-hint">Reference ${escapeHtml(response.requestId)} · No payment has been taken.</p>`;
         reviewConfirmation.classList.remove("cuk-hidden");
         reviewConfirmation.focus();
-        emit("quote_review_submitted", { window_type: form.elements.windowSlug.value, outcome: lastEvaluation.calculation.outcome, configuration_id: response.configurationId || null });
+        emit("review_submitted", { window_type: form.elements.windowSlug.value, outcome: lastEvaluation.calculation.outcome, configuration_id: response.configurationId || null });
       } catch (error) {
         reviewError.textContent = error.message;
         reviewError.hidden = false;
       } finally {
         submit.disabled = false;
         submit.textContent = "Submit project for review";
+      }
+    });
+
+    checkoutForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const checkoutError = checkoutForm.querySelector("[data-cuk-checkout-error]");
+      checkoutError.hidden = true;
+      if (!checkoutForm.reportValidity() || !lastEvaluation || lastEvaluation.calculation.outcome !== "INSTANT_PRICE") return;
+      const submit = checkoutForm.querySelector("button[type=submit]");
+      submit.disabled = true;
+      submit.textContent = "Validating and freezing…";
+      emit("quote_accepted", {
+        window_type: lastEvaluation.configuration.windowSlug,
+        outcome: lastEvaluation.calculation.outcome,
+        configuration_id: lastEvaluation.calculation.configurationId,
+      });
+      try {
+        const handoff = await fetchJson(endpoint(root.dataset.engineBase, "checkout-handoff"), {
+          method: "POST",
+          body: JSON.stringify({
+            configuration: lastEvaluation.configuration,
+            customerAccepted: checkoutForm.elements.customerAccepted.checked,
+            shippingRegion: checkoutForm.elements.shippingRegion.value,
+            parcelClass: lastEvaluation.calculation.fabricWidths > 6 ? "OVERSIZE" : "STANDARD",
+          }),
+        });
+        if (!handoff.prepared) {
+          const blockers = Array.isArray(handoff.blockers) ? handoff.blockers.map((item) => String(item).replaceAll("_", " ").toLowerCase()).join(", ") : "a launch gate";
+          throw new Error(`${handoff.message || "This configuration is not ready for checkout"} (${blockers}).`);
+        }
+        const confirmation = checkoutForm.querySelector("[data-cuk-checkout-confirmation]");
+        confirmation.innerHTML = `${escapeHtml(handoff.message)}<br><span class="cuk-hint">Reference ${escapeHtml(handoff.handoffId)} · Payment remains disabled · No Shopify checkout or order was created.</span>`;
+        confirmation.classList.remove("cuk-hidden");
+        confirmation.focus();
+        submit.textContent = "Staging handoff prepared";
+        result.querySelector("[data-cuk-summary-review]").textContent = "Validated for staging handoff";
+        emit("checkout_handoff_reached", {
+          window_type: lastEvaluation.configuration.windowSlug,
+          outcome: lastEvaluation.calculation.outcome,
+          configuration_id: lastEvaluation.calculation.configurationId,
+          handoff_id: handoff.handoffId,
+        });
+      } catch (error) {
+        checkoutError.textContent = error.message;
+        checkoutError.hidden = false;
+        submit.disabled = false;
+        submit.textContent = "Prepare staging handoff";
       }
     });
   }

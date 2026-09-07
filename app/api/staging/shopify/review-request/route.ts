@@ -3,12 +3,15 @@ import { createStagingReviewRequest } from "@/lib/storefront/review-request-repo
 import type { ReviewConfiguration } from "@/lib/storefront/review-request";
 import { assertAllowedStagingMutation, customerSafeApiError, stagingApiHeaders, stagingOptions } from "@/lib/storefront/staging-api";
 import { consumeStagingRequestSlot } from "@/lib/storefront/staging-rate-limit";
+import { legacyStagingApiDisabledResponse } from "@/lib/storefront/security/legacy-staging-api";
 
 export const runtime = "nodejs";
 const MAX_REQUEST_BYTES = 4_000_000;
 const ALLOWED_FIELDS = new Set(["configuration", "calculation", "contactName", "contactEmail", "contactPhone", "notes", "photos", "drawing"]);
 
 export function OPTIONS(request: Request) {
+  const disabled = legacyStagingApiDisabledResponse();
+  if (disabled) return disabled;
   return stagingOptions(request);
 }
 
@@ -47,6 +50,8 @@ function assertFormShape(form: FormData) {
 }
 
 export async function POST(request: Request) {
+  const disabled = legacyStagingApiDisabledResponse();
+  if (disabled) return disabled;
   try {
     assertAllowedStagingMutation(request);
     const rawDeclaredSize = request.headers.get("content-length");

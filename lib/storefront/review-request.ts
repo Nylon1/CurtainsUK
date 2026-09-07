@@ -1,5 +1,6 @@
 import type { PublicSupplierAvailability } from "@/lib/supplier-intelligence/types";
 import type { SpecialistReviewRequest, StagingPriceRequest } from "./staging-pricing";
+import type { ReviewState } from "./review-workflow";
 
 export type ReviewConfiguration = StagingPriceRequest | SpecialistReviewRequest;
 
@@ -21,7 +22,7 @@ export interface ReviewEvidenceReference {
 export interface ReviewRequestReceipt {
   requestId: string;
   configurationId: string;
-  reviewState: "PENDING" | "IN_REVIEW" | "MORE_INFORMATION_REQUIRED" | "APPROVED" | "REJECTED";
+  reviewState: ReviewState;
   submittedAt: string;
   message: string;
 }

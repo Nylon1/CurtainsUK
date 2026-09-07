@@ -1,0 +1,45 @@
+[
+  {
+    "fields": {
+      "view": "retail"
+    },
+    "status": 200,
+    "ms": 4047,
+    "records": 24,
+    "bytes": 32391,
+    "leakage": false
+  },
+  {
+    "fields": {
+      "view": "retail",
+      "query": "Dali"
+    },
+    "status": 200,
+    "ms": 348,
+    "records": 1,
+    "bytes": 2411,
+    "leakage": false
+  },
+  {
+    "fields": {
+      "view": "retail",
+      "fabric": "pt-4270-147"
+    },
+    "status": 200,
+    "ms": 174,
+    "records": 1,
+    "bytes": 1305,
+    "leakage": false
+  },
+  {
+    "fields": {},
+    "status": 200,
+    "ms": 199,
+    "records": 4,
+    "bytes": 20110,
+    "leakage": false
+  },
+  {
+    "unsignedStatus": 401
+  }
+]

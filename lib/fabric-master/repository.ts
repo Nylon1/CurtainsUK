@@ -78,9 +78,9 @@ export async function applyFabricCatalogueBatch(metadata: FabricCatalogueImportM
   return data as { inserted: number; updated: number; rejected: number; shopify_writes: 0 };
 }
 
-export async function listFabricMasterRecords(input: { storefrontOnly?: boolean; stagingCatalogOnly?: boolean; supplierId?: string } = {}): Promise<FabricMasterRecord[]> {
+export async function listFabricMasterRecords(input: { storefrontOnly?: boolean; stagingCatalogOnly?: boolean; supplierId?: string; limit?: number } = {}): Promise<FabricMasterRecord[]> {
   const database = createSupplierServiceClient();
-  const pageSize = 500;
+  const pageSize = Math.min(500, input.limit ?? 500);
   const rows: Row[] = [];
   for (let from = 0; ; from += pageSize) {
     let query = database
@@ -96,7 +96,7 @@ export async function listFabricMasterRecords(input: { storefrontOnly?: boolean;
     databaseError(error);
     const page = (data ?? []) as Row[];
     rows.push(...page);
-    if (page.length < pageSize) break;
+    if (page.length < pageSize || (input.limit && rows.length >= input.limit)) break;
   }
 
   return rows.map(mapFabricMasterRow);
@@ -182,4 +182,13 @@ export async function promoteFabricForStagingProjection(input: { supplierId: str
     p_snapshot_id: input.snapshotId,
   });
   databaseError(error);
+}
+
+/** Bounded hydration for one retail search page. */
+export async function fabricMasterRecordsByIds(ids: string[]) {
+  if (ids.length > 48) throw new Error("RETAIL_PAGE_TOO_LARGE");
+  if (!ids.length) return [];
+  const { data, error } = await createSupplierServiceClient().from("fabric_colourways").select(FABRIC_MASTER_SELECT).in("fabric_id", ids);
+  databaseError(error);
+  return ((data ?? []) as Row[]).map(mapFabricMasterRow);
 }

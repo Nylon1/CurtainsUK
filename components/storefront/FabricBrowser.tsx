@@ -11,7 +11,8 @@ const SAMPLE_STORAGE_KEY = "curtainsuk_staging_samples_v1";
 
 export interface SavedSample {
   fabricId: string;
-  sku: string;
+  supplier?: string;
+  brand?: string;
   design: string;
   colour: string;
   windowSlug?: string;
@@ -19,7 +20,9 @@ export interface SavedSample {
 
 function saveSample(sample: SavedSample) {
   const current = JSON.parse(localStorage.getItem(SAMPLE_STORAGE_KEY) ?? "[]") as SavedSample[];
-  if (!current.some((item) => item.fabricId === sample.fabricId)) current.push(sample);
+  const existing = current.find((item) => item.fabricId === sample.fabricId);
+  if (existing && sample.windowSlug) existing.windowSlug = sample.windowSlug;
+  else if (!existing) current.push(sample);
   localStorage.setItem(SAMPLE_STORAGE_KEY, JSON.stringify(current));
   window.dispatchEvent(new Event("curtainsuk:samples-updated"));
 }
@@ -46,7 +49,7 @@ export default function FabricBrowser({ fabrics, windowSlug }: { fabrics: Custom
   function handleSample(fabricId: string) {
     const fabric = fabrics.find((item) => item.id === fabricId);
     if (!fabric) return;
-    saveSample({ fabricId, sku: `SAMPLE-${fabric.supplierSku}`, design: fabric.design, colour: fabric.colour, windowSlug });
+    saveSample({ fabricId, supplier: fabric.supplier, brand: fabric.brand, design: fabric.design, colour: fabric.colour, windowSlug });
     setSaved((items) => Array.from(new Set([...items, fabricId])));
     trackStorefrontEvent("sample_ordered_intended", { fabric_id: fabric.id, colour: fabric.colour, window_type: windowSlug ?? "unset" });
   }

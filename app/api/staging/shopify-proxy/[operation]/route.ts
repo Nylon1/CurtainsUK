@@ -18,6 +18,7 @@ import {
 import { parseProxyReviewRequest } from "@/lib/storefront/security/shopify-proxy-review-controller";
 import { endpointRateLimitResponse } from "@/lib/storefront/security/endpoint-rate-limit";
 import { getCustomerReviewAcceptance } from "@/lib/storefront/review-acceptance-server";
+import { retailFabricDetail, searchRetailFabrics } from "@/lib/fabric-master/retail-repository";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,7 +77,15 @@ export async function GET(request: Request, context: { params: Promise<{ operati
   try {
     const selected = await operation(request, (await context.params).operation);
     if (selected !== "catalog") throw new Error("SHOPIFY_PROXY_METHOD_DENIED");
-    return NextResponse.json(await buildDatabaseShopifyCatalogPayload(), { headers: PUBLIC_NO_STORE_HEADERS });
+    const params = new URL(request.url).searchParams;
+    if (params.get("view") === "retail") {
+      if (params.has("fabric")) {
+        const fabric = await retailFabricDetail(params.get("fabric") ?? "");
+        return NextResponse.json({ fabric }, { status: fabric ? 200 : 404, headers: PUBLIC_NO_STORE_HEADERS });
+      }
+      return NextResponse.json(await searchRetailFabrics(params), { headers: PUBLIC_NO_STORE_HEADERS });
+    }
+    return NextResponse.json(await buildDatabaseShopifyCatalogPayload(params.get("fabric") ?? undefined), { headers: PUBLIC_NO_STORE_HEADERS });
   } catch (error) {
     return errorResponse(error, "Unable to load the fabric catalogue");
   }

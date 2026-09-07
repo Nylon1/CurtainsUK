@@ -78,7 +78,8 @@ export interface FabricCatalogueImportMetadata {
 
 export interface CustomerSafeFabricProjection {
   id: string;
-  supplierSku: string;
+  /** Legacy private projection only; retail responses omit this field. */
+  supplierSku?: string;
   supplier: string;
   brand: string;
   collection: string;

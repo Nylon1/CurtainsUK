@@ -5,15 +5,25 @@
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
 <section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser data-engine-base="{{ engine_base | escape }}">
   <div class="cuk-wrap">
-    <div class="cuk-section__head"><div><p class="cuk-eyebrow">Real supplier fabric master</p><h1>Choose fabric and colour</h1></div><p>Approved Prestigious and Sanderson-group colourways, served from the private CurtainsUK Fabric Master.</p></div>
+    <div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>
     <div class="cuk-error" data-cuk-error hidden></div>
     <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search">
-      <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Design, colour, collection or SKU"></div>
+      <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Design, colour or collection"></div>
+      <details class="cuk-filter-options" data-cuk-filter-options open><summary>Refine by brand, colour and style</summary><div class="cuk-filter-options__grid">
       <div class="cuk-field"><label for="CukFabricBrand-{{ section.id }}">Brand</label><select id="CukFabricBrand-{{ section.id }}" name="brand"><option value="">All brands</option></select></div>
-      <div class="cuk-field"><label for="CukFabricReadiness-{{ section.id }}">Configuration status</label><select id="CukFabricReadiness-{{ section.id }}" name="readiness"><option value="">All fabrics</option><option value="READY">Ready to configure</option><option value="CONFIRM">Price to be confirmed</option></select></div>
+      <div class="cuk-field"><label for="CukFabric-collection-{{ section.id }}">Collections</label><select id="CukFabric-collection-{{ section.id }}" name="collection"><option value="">All collections</option></select></div>
+      <div class="cuk-field"><label for="CukFabric-colour-{{ section.id }}">Colour families</label><select id="CukFabric-colour-{{ section.id }}" name="colour"><option value="">All colour families</option></select></div>
+      <div class="cuk-field"><label for="CukFabric-pattern-{{ section.id }}">Patterns</label><select id="CukFabric-pattern-{{ section.id }}" name="pattern"><option value="">All patterns</option></select></div>
+      <div class="cuk-field"><label for="CukFabric-style-{{ section.id }}">Styles</label><select id="CukFabric-style-{{ section.id }}" name="style"><option value="">All styles</option></select></div>
+      <div class="cuk-field"><label for="CukFabric-character-{{ section.id }}">Fabric characters</label><select id="CukFabric-character-{{ section.id }}" name="character"><option value="">All fabric characters</option></select></div>
+      <div class="cuk-field"><label for="CukFabricAvailability-{{ section.id }}">Availability</label><select id="CukFabricAvailability-{{ section.id }}" name="availability"><option value="">All availability</option><option value="CURRENT">Current range</option><option value="CONFIRM">To be confirmed</option></select></div>
+      <div class="cuk-field"><label for="CukFabricSample-{{ section.id }}">Samples</label><select id="CukFabricSample-{{ section.id }}" name="sample"><option value="">All fabrics</option><option value="AVAILABLE">Sample available</option><option value="UNAVAILABLE">Sample unavailable</option></select></div>
+      </div></details>
     </form>
     <p class="cuk-hint" data-cuk-fabric-count aria-live="polite"></p>
-    <div class="cuk-fabrics" data-cuk-fabric-grid aria-live="polite"><p>Loading approved fabrics…</p></div>
+    <div class="cuk-fabrics" data-cuk-fabric-grid aria-live="polite"><p>Loading fabrics…</p></div>
+    <nav class="cuk-pagination" data-cuk-pagination aria-label="Fabric pages"><button class="cuk-button cuk-button--secondary" data-cuk-previous type="button" disabled>Previous</button><button class="cuk-button cuk-button--secondary" data-cuk-next type="button" disabled>Next</button></nav>
+    <div data-cuk-fabric-detail hidden></div>
   </div>
 </section>
 {% endif %}

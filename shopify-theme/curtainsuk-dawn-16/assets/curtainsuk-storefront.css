@@ -135,3 +135,23 @@
   .cuk-field input, .cuk-field select, .cuk-field textarea { font-size: 1.6rem; }
   .cuk-result__summary > div { grid-template-columns: 1fr; gap: .3rem; }
 }
+
+/* Paginated retail catalogue and colourway detail. */
+.cuk-fabric-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
+.cuk-pagination { display:flex; justify-content:center; gap:1.5rem; margin-top:3rem; }
+.cuk-fabric-detail { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:5rem; margin-top:3rem; align-items:start; }
+.cuk-fabric-detail__main { display:block; width:100%; height:auto; max-height:85vh; object-fit:contain; background:#eeeae3; }
+.cuk-fabric-detail__additional { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:1rem; }
+.cuk-fabric-detail__additional img { width:100%; height:auto; }
+.cuk-fabric-detail__colour { font-size:2.2rem; margin-top:0; }
+.cuk-fabric-detail__actions { display:grid; gap:1rem; margin:2rem 0; }
+.cuk-fabric-spec > div { display:grid; grid-template-columns:1fr 1.5fr; gap:1rem; padding:1.2rem 0; border-bottom:1px solid #d8d7cd; }
+.cuk-fabric-spec dd { margin:0; }
+[data-cuk-fabric-browser][aria-busy="true"] [data-cuk-fabric-grid] { opacity:.65; }
+@media(max-width:749px) { .cuk-fabric-filters { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; } .cuk-fabric-filters .cuk-field:first-child { grid-column:1/-1; } .cuk-fabric-detail { grid-template-columns:1fr; gap:2rem; } }
+
+.cuk-fabric-filters { display:block; }
+.cuk-filter-options { margin-top:1.5rem; }
+.cuk-filter-options summary { min-height:44px; padding:1rem 0; cursor:pointer; }
+.cuk-filter-options__grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.5rem; }
+@media(max-width:749px) { .cuk-filter-options__grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; } }

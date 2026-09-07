@@ -32,7 +32,7 @@ test("Dawn delegates decisions to the signed app proxy and exposes only a develo
   assert.match(script, /Continue to Shopify test checkout/);
 });
 
-test("the specialist workflow requires a photo and never renders a payment control", () => {
+test("the specialist workflow has no upload requirement and never renders a payment control", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
   assert.doesNotMatch(section, /type="file"/);
@@ -118,20 +118,21 @@ test("the Dawn header uses the task navigation instead of the production main me
   assert.ok(group.order.includes("curtainsuk-task-nav"));
 });
 
-test("Dawn renders database-projected multi-supplier imagery and preserves exact sample SKU without commercial fields", () => {
+test("Dawn uses paginated retail imagery and retains canonical sample identity without commercial fields", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-fabric-browser.liquid");
-  assert.match(script, /sku: fabric\.uniqueSku/);
+  assert.match(script, /fabricId: fabric\.id, supplier: fabric\.supplier, brand: fabric\.brand/);
   assert.match(script, /fabric\.imageReferences\?\.\[0\]/);
   assert.match(script, /fabric\.availability/);
-  assert.match(script, /fabric\.configurable === true/);
-  assert.match(script, /Price and availability to be confirmed/);
+  assert.match(script, /fabric\.configurable \?/);
+  assert.match(script, /price and availability must be confirmed/);
   assert.match(script, /Usable width to be confirmed/);
   assert.match(script, /addEventListener\("error"/);
   assert.match(section, /data-cuk-fabric-filters/);
   assert.match(script, /fabric\.brand \|\| fabric\.supplier/);
-  assert.match(script, /fabric\.configurable === true : fabric\.configurable !== true/);
-  assert.match(section, /Real supplier fabric master/);
+  assert.match(script, /url\.searchParams\.set\("view", "retail"\)/);
+  assert.match(script, /data-cuk-next/);
+  assert.match(section, /Find your fabric/);
   assert.equal(/data-catalog-fallback/.test(section), false);
   assert.equal(/synthetic staging fixture/i.test(script + section), false);
   assert.equal(/supplierCost|tradePrice|stockMetres|batchReference/i.test(script + section), false);
@@ -139,7 +140,8 @@ test("Dawn renders database-projected multi-supplier imagery and preserves exact
 
 test("an unverified fabric deep link is explained instead of silently substituted", () => {
   const script = read("assets", "curtainsuk-storefront.js");
-  assert.match(script, /That fabric is not currently pricing-ready/);
+  assert.match(script, /Your selected fabric is saved/);
+  assert.match(script, /fabricSelect\.value = requestedFabric/);
   assert.match(script, /fabricSelect\.value !== requestedFabric/);
 });
 

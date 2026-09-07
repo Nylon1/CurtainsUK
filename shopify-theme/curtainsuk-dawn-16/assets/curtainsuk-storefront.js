@@ -125,10 +125,11 @@
 
   function addSample(fabric, windowSlug) {
     const samples = readJson(SAMPLE_KEY, []);
-    if (!samples.some((item) => item.fabricId === fabric.id)) {
-      samples.push({ fabricId: fabric.id, sku: fabric.uniqueSku, design: fabric.design, colour: fabric.colour, windowSlug, addedAt: new Date().toISOString() });
-      localStorage.setItem(SAMPLE_KEY, JSON.stringify(samples));
-    }
+    const existing = samples.find((item) => item.fabricId === fabric.id);
+    if (existing) {
+      if (windowSlug) existing.windowSlug = windowSlug;
+    } else samples.push({ fabricId: fabric.id, supplier: fabric.supplier, brand: fabric.brand, design: fabric.design, colour: fabric.colour, windowSlug, addedAt: new Date().toISOString() });
+    localStorage.setItem(SAMPLE_KEY, JSON.stringify(samples));
     rememberProject({ fabricId: fabric.id, windowSlug: windowSlug || "standard-window" });
     emit("sample_intent", { fabric_id: fabric.id, window_type: windowSlug || null });
     renderBaskets();
@@ -164,7 +165,7 @@
     const selectedWindow = params.get("window") || readJson(PROJECT_KEY, {}).windowSlug || "standard-window";
     grid.innerHTML = "";
     const count = root.querySelector("[data-cuk-fabric-count]");
-    if (count) count.textContent = `${catalog.fabrics.length} ${catalog.fabrics.length === 1 ? "fabric" : "fabrics"} shown`;
+    if (count) count.textContent = `${catalog.total ?? catalog.fabrics.length} fabrics · Page ${catalog.page || 1} of ${Math.max(1, catalog.pages || 1)}`;
     if (catalog.fabrics.length === 0) {
       grid.innerHTML = '<p class="cuk-empty">No fabrics match those filters.</p>';
       return;
@@ -181,14 +182,11 @@
       const composition = (fabric.composition || []).map((part) => `${part.percentage}% ${part.material}`).join(", ") || "Composition available on request";
       const image = fabric.imageReferences?.[0];
       const visual = image
-        ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(fabric.design)} in ${escapeHtml(fabric.colour)} by ${escapeHtml(fabric.brand || fabric.supplier)}" loading="lazy">`
+        ? `<img width="600" height="600" src="${escapeHtml(image)}?width=600" srcset="${escapeHtml(image)}?width=400 400w, ${escapeHtml(image)}?width=800 800w" sizes="(max-width: 749px) 90vw, 25vw" alt="${escapeHtml(fabric.design)} in ${escapeHtml(fabric.colour)} by ${escapeHtml(fabric.brand || fabric.supplier)}" loading="lazy">`
         : `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;
       const sampleAction = fabric.sampleAvailable === true
         ? `<button class="cuk-button cuk-button--secondary" type="button" data-sample>Order sample</button>`
         : `<button class="cuk-button cuk-button--secondary" type="button" disabled>${fabric.sampleAvailable === false ? "Sample unavailable" : "Sample to be confirmed"}</button>`;
-      const configureAction = fabric.configurable === true
-        ? `<a class="cuk-button" href="/pages/curtain-visualiser?window=${encodeURIComponent(selectedWindow)}&fabric=${encodeURIComponent(fabric.id)}">Use this fabric</a>`
-        : `<button class="cuk-button" type="button" disabled>${escapeHtml(fabric.configurationMessage || "Price and availability to be confirmed")}</button>`;
       card.innerHTML = `
         <div class="cuk-fabric__swatch">${visual}</div>
         <div class="cuk-fabric__body">
@@ -199,7 +197,7 @@
           <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric__actions">
             ${sampleAction}
-            ${configureAction}
+            <a class="cuk-button" href="/pages/fabric-library?fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}">View Fabric</a>
           </div>
         </div>`;
       card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
@@ -212,38 +210,71 @@
   }
 
   async function initFabricBrowser(root) {
+    const filters = root.querySelector("[data-cuk-fabric-filters]");
+    const filterOptions = root.querySelector("[data-cuk-filter-options]");
+    if (filterOptions && window.matchMedia("(max-width: 749px)").matches) filterOptions.open = false;
+    const grid = root.querySelector("[data-cuk-fabric-grid]");
+    const detail = root.querySelector("[data-cuk-fabric-detail]");
+    const navigation = root.querySelector("[data-cuk-pagination]");
+    const params = new URLSearchParams(location.search);
+    const windowSlug = params.get("window") || readJson(PROJECT_KEY, {}).windowSlug || "";
+    let page = Math.max(1, Number(params.get("page")) || 1), generation = 0, timer;
+    const showError = (error) => { const box = root.querySelector("[data-cuk-error]"); box.textContent = error.message || "Unable to load fabrics. Please try again."; box.hidden = false; };
+    const apiUrl = () => new URL(endpoint(root.dataset.engineBase, "catalog"), location.origin);
     try {
-      let catalog;
-      try {
-        catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog"));
-      } catch (engineError) {
-        if (!root.dataset.catalogFallback) throw engineError;
-        catalog = await fetchJson(root.dataset.catalogFallback);
+      if (params.get("fabric")) {
+        const url = apiUrl(); url.searchParams.set("view", "retail"); url.searchParams.set("fabric", params.get("fabric"));
+        const { fabric } = await fetchJson(url.href);
+        if (!fabric) throw new Error("This fabric is not available to view.");
+        filters.hidden = true; grid.hidden = true; navigation.hidden = true; root.querySelector("[data-cuk-fabric-count]").hidden = true;
+        detail.hidden = false;
+        const main = fabric.images?.[0];
+        const configureUrl = `/pages/curtain-visualiser?fabric=${encodeURIComponent(fabric.id)}${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}`;
+        const spec = (label, value) => value ? `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>` : "";
+        detail.innerHTML = `<a href="/pages/fabric-library${windowSlug ? `?window=${encodeURIComponent(windowSlug)}` : ""}" class="cuk-text-link">← All fabrics</a>
+          <div class="cuk-fabric-detail"><div class="cuk-fabric-detail__gallery">${main ? `<img class="cuk-fabric-detail__main" src="${escapeHtml(main.url)}" width="${main.width}" height="${main.height}" alt="${escapeHtml(fabric.metadata.alt)}" fetchpriority="high">` : '<p class="cuk-empty">Fabric photography is being prepared.</p>'}
+          <div class="cuk-fabric-detail__additional">${(fabric.images || []).slice(1).map((image) => `<img src="${escapeHtml(image.url)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(fabric.metadata.alt)} — ${escapeHtml(image.imageType.toLowerCase())}" loading="lazy">`).join("")}</div></div>
+          <div><p class="cuk-eyebrow">${escapeHtml(fabric.brand)} · ${escapeHtml(fabric.collection)}</p><h2>${escapeHtml(fabric.design)}</h2><p class="cuk-fabric-detail__colour">${escapeHtml(fabric.colour)}</p>
+          ${fabric.description ? `<p>${escapeHtml(fabric.description)}</p>` : ""}<p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
+          <div class="cuk-fabric-detail__actions"><button class="cuk-button cuk-button--secondary" data-sample ${fabric.sampleAvailable === true ? "" : "disabled"}>${fabric.sampleAvailable === true ? "Order a Sample" : "Sample availability to be confirmed"}</button>
+          ${fabric.configurable ? `<a class="cuk-button" href="${configureUrl}">Make Curtains in This Fabric</a>` : '<p class="cuk-hint">Curtain pricing is being confirmed. You can save a sample request while we check.</p>'}</div>
+          <dl class="cuk-fabric-spec">${spec("Composition", (fabric.composition || []).map((part) => `${part.percentage}% ${part.material}`).join(", "))}${spec("Usable width", fabric.usableWidthMm ? `${fabric.usableWidthMm / 10} cm` : null)}${spec("Full width", fabric.fullWidthMm ? `${fabric.fullWidthMm / 10} cm` : null)}${spec("Vertical repeat", fabric.verticalRepeatMm === null ? null : `${fabric.verticalRepeatMm / 10} cm`)}${spec("Horizontal repeat", fabric.horizontalRepeatMm === null ? null : `${fabric.horizontalRepeatMm / 10} cm`)}${spec("Pattern match", fabric.patternMatchType ? humanise(fabric.patternMatchType) : null)}${spec("Care", (fabric.careInstructions || []).join(", "))}${spec("Headings", (fabric.headings || []).map(humanise).join(", "))}${spec("Applications", (fabric.windowTypes || []).map(humanise).join(", "))}</dl>
+          <p class="cuk-hint">Screens vary. A sample helps you check the colour and texture in your own light.</p></div></div>`;
+        detail.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, windowSlug));
+        document.title = fabric.metadata.title;
+        root.querySelector("h1").textContent = fabric.metadata.h1;
+        const description = document.querySelector('meta[name="description"]'); if (description) description.content = fabric.metadata.metaDescription;
+        // Prepared /fabrics/... canonical paths are not advertised as working routes yet.
+        const canonical = document.querySelector('link[rel="canonical"]'); if (canonical) canonical.href = `${location.origin}/pages/fabric-library?fabric=${encodeURIComponent(fabric.id)}`;
+        return;
       }
-      const filters = root.querySelector("[data-cuk-fabric-filters]");
-      const brandSelect = filters?.elements.brand;
-      [...new Set(catalog.fabrics.map((fabric) => fabric.brand || fabric.supplier).filter(Boolean))]
-        .sort((left, right) => left.localeCompare(right))
-        .forEach((brand) => brandSelect?.appendChild(option(brand, brand)));
-      const applyFilters = () => {
-        const query = String(filters?.elements.query.value || "").trim().toLowerCase();
-        const brand = String(filters?.elements.brand.value || "");
-        const readiness = String(filters?.elements.readiness.value || "");
-        const fabrics = catalog.fabrics.filter((fabric) => {
-          const searchable = [fabric.supplier, fabric.brand, fabric.collection, fabric.design, fabric.colour, fabric.uniqueSku].join(" ").toLowerCase();
-          return (!query || searchable.includes(query))
-            && (!brand || (fabric.brand || fabric.supplier) === brand)
-            && (!readiness || (readiness === "READY" ? fabric.configurable === true : fabric.configurable !== true));
-        });
-        renderFabricCards(root, { ...catalog, fabrics });
+      const load = async () => {
+        const current = ++generation; const url = apiUrl(); url.searchParams.set("view", "retail"); url.searchParams.set("page", String(page));
+        for (const [key, value] of new FormData(filters)) if (String(value).trim()) url.searchParams.set(key, String(value).trim());
+        root.setAttribute("aria-busy", "true");
+        try {
+          const catalog = await fetchJson(url.href); if (current !== generation) return;
+          for (const [key, values] of Object.entries({ brand: catalog.facets.brands, collection: catalog.facets.collections, colour: catalog.facets.colour, pattern: catalog.facets.pattern, style: catalog.facets.style, character: catalog.facets.character })) {
+            const select = filters.elements[key]; if (select && !select.dataset.facetsLoaded) { values.filter((v) => v !== "UNKNOWN" && ![...select.options].some((o) => o.value === v)).forEach((v) => select.appendChild(option(v, v))); select.dataset.facetsLoaded = "true"; }
+          }
+          renderFabricCards(root, catalog);
+          navigation.querySelector("[data-cuk-previous]").disabled = page <= 1;
+          navigation.querySelector("[data-cuk-next]").disabled = page >= catalog.pages;
+          root.querySelector("[data-cuk-error]").hidden = true;
+          const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (key !== "window" && key !== "preview_theme_id") address.searchParams.delete(key);
+          for (const [key, value] of new FormData(filters)) if (String(value).trim()) address.searchParams.set(key, String(value).trim());
+          address.searchParams.set("page", String(page)); history.replaceState(null, "", address);
+        } catch (error) { if (current === generation) showError(error); } finally { if (current === generation) root.removeAttribute("aria-busy"); }
       };
-      filters?.addEventListener("input", applyFilters);
-      filters?.addEventListener("change", applyFilters);
-      applyFilters();
-    } catch (error) {
-      root.querySelector("[data-cuk-error]").textContent = error.message;
-      root.querySelector("[data-cuk-error]").hidden = false;
-    }
+      for (const [key, value] of params) if (filters.elements[key]) {
+        const element = filters.elements[key]; if (element.tagName === "SELECT" && value && ![...element.options].some((o) => o.value === value)) element.appendChild(option(value, value)); element.value = value;
+      }
+      filters.addEventListener("submit", (event) => event.preventDefault());
+      filters.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(() => { page = 1; load(); }, 300); });
+      navigation.querySelector("[data-cuk-previous]").addEventListener("click", async () => { page = Math.max(1, page - 1); await load(); grid.scrollIntoView({ block: "start" }); });
+      navigation.querySelector("[data-cuk-next]").addEventListener("click", async () => { page++; await load(); grid.scrollIntoView({ block: "start" }); });
+      await load();
+    } catch (error) { showError(error); }
   }
 
   function baySectionWidths(root) {
@@ -476,7 +507,8 @@
     let lastEvaluation = null;
 
     try {
-      catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog"));
+      const requested = params.get("fabric") || readJson(PROJECT_KEY, {}).fabricId;
+      catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog") + (requested ? `?fabric=${encodeURIComponent(requested)}` : ""));
       catalog.windows.forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
       catalog.fabrics.filter((item) => item.configurable === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} — ${item.colour}`, item.id)));
     } catch (error) {
@@ -493,7 +525,10 @@
     const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true);
     fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric) ? requestedFabric : configurableFabrics[0]?.id;
     if (requestedFabric && fabricSelect.value !== requestedFabric) {
-      errorBox.textContent = "That fabric is not currently pricing-ready. We have kept the journey open with the first verified fabric instead.";
+      fabricSelect.appendChild(option("Your selected fabric — price to be confirmed", requestedFabric));
+      fabricSelect.value = requestedFabric;
+      form.querySelector("button[type=submit]").disabled = true;
+      errorBox.textContent = "Your selected fabric is saved. Its price and availability must be confirmed before we can calculate curtains.";
       errorBox.hidden = false;
     }
     renderBaySections(root, remembered.baySectionCount || 3, remembered.baySectionWidthsCm || []);
@@ -513,6 +548,7 @@
       emit("window_type_selected", { window_type: windowSelect.value });
     });
     fabricSelect.addEventListener("change", () => {
+      form.querySelector("button[type=submit]").disabled = !configurableFabrics.some((fabric) => fabric.id === fabricSelect.value);
       rememberProject(projectSnapshot(form, root));
       syncConfiguratorUrl(form);
       emit("fabric_selected", { fabric_id: fabricSelect.value, window_type: windowSelect.value });

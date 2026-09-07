@@ -1,4 +1,5 @@
 import type { NormalizedSupplierSnapshot } from "@/lib/supplier-sync/types";
+import type { SupplierBulkAppendItem } from "@/lib/supplier-import/types";
 import type {
   DurableSupplierSnapshot,
   DurableSupplierSyncRun,
@@ -22,6 +23,7 @@ export interface SupplierIntelligenceRepository {
     validation: SupplierValidationResult;
     validationEvent: PromotionEvent;
   }): Promise<void>;
+  appendBulkValidatedSnapshots(input: { run: DurableSupplierSyncRun; items: SupplierBulkAppendItem[] }): Promise<void>;
   appendPromotionEvent(event: PromotionEvent): Promise<void>;
   snapshot(snapshotId: string): Promise<DurableSupplierSnapshot | null>;
   promotionEvents(snapshotId?: string): Promise<PromotionEvent[]>;

@@ -1,0 +1,3 @@
+SKU,Brand Code,Standard Price,Cut Length Price,Currency,Stock UOM,Available Quantity,Dye Lot,Lot Quantity,Pieces,Due Date,Due Quantity,Sample Available,Lifecycle
+TEST-SDG-001,sanderson-test,19.20,24.00,GBP,METRE,30,TEST-DYE-A,30,2,2026-10-12,40,Yes,Active
+TEST-SDG-002,sanderson-test,21.60,27.00,GBP,METRE,0,,,,,,No,Discontinued

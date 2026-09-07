@@ -48,11 +48,11 @@ export function validateSupplierSnapshot(snapshot: NormalizedSupplierSnapshot): 
   }
   if ((snapshot.standard_trade_price !== null || snapshot.cut_trade_price !== null) && snapshot.currency === null) errors.push("currency is required when a price is present");
   if (snapshot.currency !== null && !/^[A-Z]{3}$/.test(snapshot.currency)) errors.push("currency must be an ISO 4217 code or null");
-  if (snapshot.aggregate_available_quantity !== null && snapshot.aggregate_available_quantity < 0) errors.push("aggregate_available_quantity cannot be negative");
+  if (snapshot.aggregate_available_quantity !== null && (!Number.isFinite(snapshot.aggregate_available_quantity) || snapshot.aggregate_available_quantity < 0)) errors.push("aggregate_available_quantity must be a non-negative finite number or null");
   if ((snapshot.aggregate_available_quantity !== null || snapshot.batches !== null) && snapshot.stock_unit === null) errors.push("stock_unit is required when stock data is present");
-  if (snapshot.next_due_quantity !== null && snapshot.next_due_quantity < 0) errors.push("next_due_quantity cannot be negative");
+  if (snapshot.next_due_quantity !== null && (!Number.isFinite(snapshot.next_due_quantity) || snapshot.next_due_quantity < 0)) errors.push("next_due_quantity must be a non-negative finite number or null");
   for (const batch of snapshot.batches ?? []) {
-    if (batch.batch_available_quantity !== null && batch.batch_available_quantity < 0) errors.push("batch_available_quantity cannot be negative");
+    if (batch.batch_available_quantity !== null && (!Number.isFinite(batch.batch_available_quantity) || batch.batch_available_quantity < 0)) errors.push("batch_available_quantity must be a non-negative finite number or null");
     if (batch.pieces !== null && (!Number.isInteger(batch.pieces) || batch.pieces < 0)) errors.push("pieces must be a non-negative integer or null");
   }
   return errors;

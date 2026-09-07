@@ -1,4 +1,5 @@
 import type { NormalizedSupplierSnapshot } from "@/lib/supplier-sync/types";
+import type { SupplierBulkAppendItem } from "@/lib/supplier-import/types";
 import type { SupplierIntelligenceRepository } from "./repository";
 import type {
   DurableSupplierSnapshot,
@@ -58,6 +59,35 @@ export class InMemorySupplierIntelligenceRepository implements SupplierIntellige
       lifecycle_expires_at: input.validation.lifecycle_expires_at,
     });
     this.#events.push(structuredClone(input.validationEvent));
+  }
+
+  async appendBulkValidatedSnapshots(input: { run: DurableSupplierSyncRun; items: SupplierBulkAppendItem[] }) {
+    const snapshotIds = new Set(input.items.map((item) => item.snapshot.snapshot_id));
+    const eventIds = new Set(input.items.map((item) => item.validation_event.event_id));
+    if (input.items.length === 0
+      || input.run.snapshots_received !== input.items.length
+      || input.run.snapshots_appended !== input.items.length
+      || input.items.some((item) => item.snapshot.supplier_id !== input.run.supplier_id
+        || item.validation_event.snapshot_id !== item.snapshot.snapshot_id)
+      || this.#runs.some((run) => run.run_id === input.run.run_id)
+      || snapshotIds.size !== input.items.length
+      || eventIds.size !== input.items.length
+      || this.#snapshots.some((snapshot) => snapshotIds.has(snapshot.snapshot_id))
+      || this.#events.some((event) => eventIds.has(event.event_id))) throw new Error("APPEND_ONLY_CONFLICT");
+    this.#runs.push(structuredClone(input.run));
+    for (const item of input.items) {
+      this.#snapshots.push({
+        ...structuredClone(item.snapshot),
+        run_id: input.run.run_id,
+        validation_status: item.validation.status,
+        validation_errors: [...item.validation.errors],
+        initial_promotion_state: "RAW_SHADOW",
+        stock_expires_at: item.validation.stock_expires_at,
+        price_expires_at: item.validation.price_expires_at,
+        lifecycle_expires_at: item.validation.lifecycle_expires_at,
+      });
+      this.#events.push(structuredClone(item.validation_event));
+    }
   }
 
   async appendPromotionEvent(event: PromotionEvent) {

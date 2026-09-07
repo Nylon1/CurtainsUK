@@ -1,0 +1,4 @@
+Product Code,Brand,Standard Trade Price,Cut Trade Price,Currency,Unit,Free Stock,Batch,Batch Metres,Pieces,Next Due,Next Due Quantity,Sample Available,Status
+TEST-PT-001,prestigious-test,18.00,22.50,GBP,METRE,40,TEST-LOT-A,25,1,2026-10-01,20,Yes,Current
+TEST-PT-001,prestigious-test,18.00,22.50,GBP,METRE,40,TEST-LOT-B,15,1,2026-10-01,20,Yes,Current
+TEST-PT-002,prestigious-test,20.00,25.00,GBP,METRE,0,,,,,,No,Discontinued

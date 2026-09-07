@@ -2,6 +2,7 @@ import "server-only";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import { normalizeSupplierSnapshot } from "@/lib/supplier-sync/normalize";
 import type { NormalizedSupplierSnapshot } from "@/lib/supplier-sync/types";
+import type { SupplierBulkAppendItem } from "@/lib/supplier-import/types";
 import type { SupplierIntelligenceRepository } from "./repository";
 import type {
   DurableSupplierSnapshot,
@@ -105,6 +106,27 @@ export class SupabaseSupplierIntelligenceRepository implements SupplierIntellige
       normalized_payload: input.snapshot,
     };
     const { error } = await database.rpc("append_validated_supplier_snapshot", { p_run: input.run, p_snapshot: payload, p_validation_event: input.validationEvent });
+    databaseError(error);
+  }
+
+  async appendBulkValidatedSnapshots(input: { run: DurableSupplierSyncRun; items: SupplierBulkAppendItem[] }) {
+    const items = input.items.map((item) => ({
+      snapshot: {
+        ...item.snapshot,
+        run_id: input.run.run_id,
+        source_type: item.snapshot.source.type,
+        source_name: item.snapshot.source.name,
+        source_reference: item.snapshot.source.reference,
+        validation_status: item.validation.status,
+        validation_errors: item.validation.errors,
+        stock_expires_at: item.validation.stock_expires_at,
+        price_expires_at: item.validation.price_expires_at,
+        lifecycle_expires_at: item.validation.lifecycle_expires_at,
+        normalized_payload: item.snapshot,
+      },
+      validation_event: item.validation_event,
+    }));
+    const { error } = await createSupplierServiceClient().rpc("append_supplier_snapshot_batch", { p_run: input.run, p_items: items });
     databaseError(error);
   }
 

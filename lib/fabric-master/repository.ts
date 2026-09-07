@@ -1,5 +1,6 @@
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import type { FabricCatalogueImportItem, FabricCatalogueImportMetadata, FabricMasterRecord } from "./types";
+import type { ExistingCatalogueRecord } from "./catalogue-protection";
 
 type Row = Record<string, unknown>;
 
@@ -19,6 +20,8 @@ export async function existingSupplierSkus(supplierId: string) {
 }
 
 export async function applyFabricCatalogueBatch(metadata: FabricCatalogueImportMetadata, items: FabricCatalogueImportItem[]) {
+  const unsafeUpdate = items.find((item) => item.merge_action === "UPDATE" && !item.expected_existing_updated_at);
+  if (unsafeUpdate) throw new Error(`CATALOGUE_UPDATE_REVISION_REQUIRED:${unsafeUpdate.supplier_sku}`);
   const { data, error } = await createSupplierServiceClient().rpc("apply_fabric_catalogue_batch", {
     p_import: metadata,
     p_items: items,
@@ -27,7 +30,7 @@ export async function applyFabricCatalogueBatch(metadata: FabricCatalogueImportM
   return data as { inserted: number; updated: number; rejected: number; shopify_writes: 0 };
 }
 
-export async function listFabricMasterRecords(input: { storefrontOnly?: boolean; supplierId?: string } = {}): Promise<FabricMasterRecord[]> {
+export async function listFabricMasterRecords(input: { storefrontOnly?: boolean; stagingCatalogOnly?: boolean; supplierId?: string } = {}): Promise<FabricMasterRecord[]> {
   const database = createSupplierServiceClient();
   let query = database
     .from("fabric_colourways")
@@ -35,6 +38,7 @@ export async function listFabricMasterRecords(input: { storefrontOnly?: boolean;
     .order("supplier_id")
     .order("supplier_sku");
   if (input.storefrontOnly) query = query.eq("storefront_selectable", true).eq("lifecycle_state", "CURRENT");
+  if (input.stagingCatalogOnly) query = query.eq("staging_catalog_visible", true);
   if (input.supplierId) query = query.eq("supplier_id", input.supplierId);
   const { data, error } = await query;
   databaseError(error);
@@ -53,7 +57,7 @@ export async function listFabricMasterRecords(input: { storefrontOnly?: boolean;
       collection_name: String(collection.display_name),
       supplier_collection_code: null,
       design_id: String(row.design_id),
-      supplier_design_code: String(design.supplier_design_code),
+      supplier_design_code: design.supplier_design_code === null ? null : String(design.supplier_design_code),
       design_name: String(design.display_name),
       supplier_sku: String(row.supplier_sku),
       colourway_code: row.colourway_code === null ? null : String(row.colourway_code),
@@ -72,10 +76,35 @@ export async function listFabricMasterRecords(input: { storefrontOnly?: boolean;
       lifecycle_state: row.lifecycle_state as FabricMasterRecord["lifecycle_state"],
       price_verification_status: row.price_verification_status as FabricMasterRecord["price_verification_status"],
       storefront_selectable: Boolean(row.storefront_selectable),
+      staging_catalog_visible: Boolean(row.staging_catalog_visible),
       source_type: String(row.source_type),
       source_name: String(row.source_name),
       source_reference: row.source_reference === null ? null : String(row.source_reference),
       source_effective_date: row.source_effective_date === null ? null : String(row.source_effective_date),
+    };
+  });
+}
+
+export interface ExistingCatalogueDatabaseRecord extends ExistingCatalogueRecord {
+  updated_at: string;
+}
+
+/** Private current-master revision used to bind catalogue previews to apply. */
+export async function listExistingCatalogueRecords(supplierId: string): Promise<ExistingCatalogueDatabaseRecord[]> {
+  const records = await listFabricMasterRecords({ supplierId });
+  const { data, error } = await createSupplierServiceClient()
+    .from("fabric_colourways")
+    .select("supplier_sku,updated_at,source_observed_at")
+    .eq("supplier_id", supplierId);
+  databaseError(error);
+  const revisions = new Map(((data ?? []) as Row[]).map((row) => [String(row.supplier_sku), row]));
+  return records.map((record) => {
+    const revision = revisions.get(record.supplier_sku);
+    if (!revision?.updated_at) throw new Error(`FABRIC_MASTER_REVISION_MISSING:${record.supplier_sku}`);
+    return {
+      record,
+      observed_at: revision.source_observed_at === null ? record.source_effective_date : String(revision.source_observed_at),
+      updated_at: String(revision.updated_at),
     };
   });
 }

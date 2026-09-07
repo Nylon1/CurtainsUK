@@ -1,0 +1,31 @@
+{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+
+<section class="cuk-shell cuk-section cuk-section--tint">
+  <div class="cuk-wrap cuk-support-grid">
+    <article id="curtainsuk-inspiration" class="cuk-panel cuk-support-card">
+      <p class="cuk-eyebrow">Ideas for every shape</p>
+      <h2>Find the right starting point</h2>
+      <p>Explore standard, bay, tall, apex, gable and unusual windows, then see which measurements, headings and linings suit the job.</p>
+      <a class="cuk-button cuk-button--secondary" href="/pages/solve-my-window">Browse window inspiration</a>
+    </article>
+    <article id="curtainsuk-help" class="cuk-panel cuk-support-card">
+      <p class="cuk-eyebrow">Need a hand?</p>
+      <h2>Measure with confidence</h2>
+      <p>Our guide explains full coverage width, finished drop and what to prepare for reviewed or specialist-shaped curtains.</p>
+      <div class="cuk-actions">
+        <a class="cuk-button cuk-button--secondary" href="/pages/measure-guide">Open the measure guide</a>
+        <a class="cuk-button" href="/pages/curtain-visualiser">Start and ask for review</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Inspiration and help",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [{ "name": "Inspiration and help" }]
+}
+{% endschema %}

@@ -1,6 +1,7 @@
 import { classifyComplexity } from "@/lib/decision-engine/complexity";
 import { createCurtainConfiguration } from "@/lib/decision-engine/curtain-configuration";
 import { calculatePrice } from "@/lib/decision-engine/pricing-engine";
+import { assertValidConfiguration } from "@/lib/decision-engine/validation";
 import { DRAFT_PRICING_RULE_SET, INITIAL_COMPLEXITY_RULE_SET } from "@/lib/decision-engine/seed/pricing-rules";
 import { WINDOW_TYPES_BY_SLUG } from "@/lib/decision-engine/seed/window-types";
 import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, FabricSpec, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
@@ -10,10 +11,13 @@ import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
 export interface StagingPriceRequest {
   windowSlug: string;
   measurementBasis: CoverageMeasurementBasis;
-  widthCm: number;
+  widthCm?: number;
   dropCm: number;
+  bayTrackOrPoleFitted?: boolean;
+  bayNumberOfSections?: number;
   baySegmentWidthsCm?: number[];
-  bayAnglesDegrees?: number[];
+  cornerSectionWidthsCm?: number[];
+  cornerAngleDegrees?: number;
   fabricId: string;
   heading: HeadingType;
   lining: LiningType;
@@ -24,6 +28,7 @@ export interface StagingPriceRequest {
 }
 
 export interface StagingPriceResponse {
+  configurationId: string;
   calculationVersion: string;
   outcome: "INSTANT_PRICE" | "PRICE_WITH_REVIEW" | "MANUAL_QUOTE";
   pricingConfidence: "HIGH" | "MEDIUM" | "LOW";
@@ -35,12 +40,17 @@ export interface StagingPriceResponse {
   heading: HeadingType;
   lining: LiningType;
   construction: ConstructionType;
-  netAmountMinor: number;
-  vatAmountMinor: number;
-  totalAmountMinor: number;
+  netAmountMinor: number | null;
+  vatAmountMinor: number | null;
+  totalAmountMinor: number | null;
   currency: "GBP";
+  totalCoverageWidthCm: number;
+  bayTrackOrPoleFitted: boolean | null;
   delivery: string;
   availability: string;
+  message: string;
+  /** Short-lived staging capability created only by the server wrapper for review routes. */
+  reviewSubmissionToken?: string | null;
 }
 
 export function buildStagingRuleSet(): PricingRuleSet {
@@ -72,6 +82,49 @@ function scalarMeasurementsFor(masterSlug: string, widthCm: number, dropCm: numb
     : { coverage_width: widthCm, finished_drop: dropCm };
 }
 
+function newConfigurationId() {
+  return crypto.randomUUID();
+}
+
+function bayMeasurements(input: StagingPriceRequest) {
+  if (typeof input.bayTrackOrPoleFitted !== "boolean") throw new Error("Bay track or pole status is required");
+  if (!Number.isInteger(input.bayNumberOfSections) || input.bayNumberOfSections! < 2 || input.bayNumberOfSections! > 8) {
+    throw new Error("Bay section count must be between 2 and 8");
+  }
+  if (!Array.isArray(input.baySegmentWidthsCm) || input.baySegmentWidthsCm.length !== input.bayNumberOfSections) {
+    throw new Error("Bay section widths must match the section count");
+  }
+  if (input.baySegmentWidthsCm.some((value) => !Number.isFinite(value) || value < 10 || value > 600)) {
+    throw new Error("Bay section widths must be between 10 cm and 600 cm");
+  }
+  return {
+    sectionWidthsCm: [...input.baySegmentWidthsCm],
+    numberOfSections: input.bayNumberOfSections,
+    totalCoverageWidthCm: input.baySegmentWidthsCm.reduce((sum, value) => sum + value, 0),
+  };
+}
+
+function cornerMeasurements(input: StagingPriceRequest) {
+  if (!Array.isArray(input.cornerSectionWidthsCm) || input.cornerSectionWidthsCm.length !== 2) {
+    throw new Error("Corner windows require exactly two section widths");
+  }
+  if (input.cornerSectionWidthsCm.some((value) => !Number.isFinite(value) || value < 10 || value > 600)) {
+    throw new Error("Corner section widths must be between 10 cm and 600 cm");
+  }
+  if (!Number.isFinite(input.cornerAngleDegrees) || input.cornerAngleDegrees! < 1 || input.cornerAngleDegrees! > 359) {
+    throw new Error("Corner angle must be between 1 and 359 degrees");
+  }
+  const totalCoverageWidthCm = input.cornerSectionWidthsCm.reduce((sum, value) => sum + value, 0);
+  if (totalCoverageWidthCm < 30 || totalCoverageWidthCm > 1_200) {
+    throw new Error("Corner total coverage width must be between 30 cm and 1,200 cm");
+  }
+  return {
+    sectionWidthsCm: [...input.cornerSectionWidthsCm],
+    angleDegrees: input.cornerAngleDegrees!,
+    totalCoverageWidthCm,
+  };
+}
+
 function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabric: FabricSpec, availability: string): StagingPriceResponse {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow) throw new Error("Unknown window type");
@@ -79,11 +132,16 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
   const masterSlug = storefrontWindow.masterSlugs[0];
   const windowType = WINDOW_TYPES_BY_SLUG.get(masterSlug);
   if (!windowType) throw new Error("Window type is unavailable");
-  if (!Number.isFinite(input.widthCm) || !Number.isFinite(input.dropCm)) throw new Error("Width and drop must be valid numbers");
-
   const isBay = masterSlug === "bay-window";
+  const isCorner = masterSlug === "corner-window";
+  const isCurved = masterSlug === "curved-window" || masterSlug === "bow-window";
+  const bay = isBay ? bayMeasurements(input) : null;
+  const corner = isCorner ? cornerMeasurements(input) : null;
+  const widthCm = bay?.totalCoverageWidthCm ?? corner?.totalCoverageWidthCm ?? input.widthCm;
+  if (typeof widthCm !== "number" || !Number.isFinite(widthCm) || !Number.isFinite(input.dropCm)) throw new Error("Width and drop must be valid numbers");
+
   const configuration = createCurtainConfiguration({
-    id: `stage-${Date.now()}`,
+    id: newConfigurationId(),
     windowTypeSlug: masterSlug,
     measurementBasis: input.measurementBasis,
     fabricSpecId: pricedFabric.id,
@@ -92,19 +150,31 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     lining: input.lining,
     interlining: input.interlining ?? "NONE",
     construction: input.construction,
-    trackOrPole: isBay ? "BAY_TRACK" : input.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE" : "STRAIGHT_TRACK",
-    trackComplexity: isBay ? "MULTI_SEGMENT" : "SIMPLE_STRAIGHT",
-    numberOfSegments: isBay ? input.baySegmentWidthsCm?.length ?? 1 : 1,
+    trackOrPole: isBay || isCorner ? "BAY_TRACK" : isCurved ? "CURVED_TRACK" : input.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE" : "STRAIGHT_TRACK",
+    trackComplexity: isBay || isCorner ? "MULTI_SEGMENT" : isCurved ? "BENT" : "SIMPLE_STRAIGHT",
+    numberOfSegments: bay?.numberOfSections ?? corner?.sectionWidthsCm.length ?? 1,
     stackDirection: input.stackDirection,
   });
   configuration.measurements = isBay
     ? {
-        coverage_width: input.widthCm,
+        coverage_width: widthCm,
         finished_drop: input.dropCm,
-        bay_segment_widths: input.baySegmentWidthsCm ?? [],
-        bay_angles_degrees: input.bayAnglesDegrees ?? [],
+        bay_segment_widths: bay!.sectionWidthsCm,
       }
-    : scalarMeasurementsFor(masterSlug, input.widthCm, input.dropCm);
+    : isCorner
+      ? {
+          coverage_width: widthCm,
+          finished_drop: input.dropCm,
+          bay_segment_widths: corner!.sectionWidthsCm,
+          bay_angles_degrees: [corner!.angleDegrees],
+        }
+      : isCurved
+        ? {
+            coverage_width: widthCm,
+            curve_arc_length: widthCm,
+            finished_drop: input.dropCm,
+          }
+        : scalarMeasurementsFor(masterSlug, widthCm, input.dropCm);
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
   const rules = buildStagingRuleSet();
@@ -116,7 +186,9 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     // review-only merely because the engine calculated a width count.
     calculatedFabricWidths: calculation.fabricWidths.totalWidths > 6 ? calculation.fabricWidths.totalWidths : undefined,
   });
+  const manualQuote = complexity.outcome === "MANUAL_QUOTE";
   return {
+    configurationId: configuration.id,
     calculationVersion: calculation.calculationVersion,
     outcome: complexity.outcome,
     pricingConfidence: complexity.pricingConfidence,
@@ -128,12 +200,19 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     heading: input.heading,
     lining: input.lining,
     construction: input.construction,
-    netAmountMinor: calculation.netTotal.amountMinor,
-    vatAmountMinor: calculation.vat.amountMinor,
-    totalAmountMinor: calculation.total.amountMinor,
+    netAmountMinor: manualQuote ? null : calculation.netTotal.amountMinor,
+    vatAmountMinor: manualQuote ? null : calculation.vat.amountMinor,
+    totalAmountMinor: manualQuote ? null : calculation.total.amountMinor,
     currency: "GBP",
+    totalCoverageWidthCm: widthCm,
+    bayTrackOrPoleFitted: bay ? input.bayTrackOrPoleFitted! : null,
     delivery: "UK Mainland delivery shown separately; staging rate pending",
     availability,
+    message: manualQuote
+      ? "Price confirmed after technical review"
+      : complexity.outcome === "PRICE_WITH_REVIEW"
+        ? "Provisional price subject to technical review"
+        : "Your made-to-measure price is ready",
   };
 }
 
@@ -148,6 +227,7 @@ export interface SpecialistReviewRequest {
   fabricId: string;
   heading: HeadingType;
   lining: LiningType;
+  construction: ConstructionType;
   fixingPosition: string;
   stackDirection: CurtainConfiguration["stackDirection"];
   photoNames: string[];
@@ -157,18 +237,21 @@ export interface SpecialistReviewRequest {
 export function classifySpecialistReview(input: SpecialistReviewRequest, suppliedFabric?: FabricSpec) {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow || storefrontWindow.journey !== "SPECIALIST") throw new Error("A specialist window type is required");
+  if (typeof input.fixingPosition !== "string" || input.fixingPosition.trim().length < 3 || input.fixingPosition.trim().length > 200) {
+    throw new Error("Specialist fixing position is required");
+  }
   const windowType = WINDOW_TYPES_BY_SLUG.get(storefrontWindow.masterSlugs[0]);
   const fabric = suppliedFabric ?? STOREFRONT_FABRICS_BY_ID.get(input.fabricId);
   if (!windowType || !fabric) throw new Error("Window type or fabric is unavailable");
   const configuration = createCurtainConfiguration({
-    id: `stage-review-${Date.now()}`,
+    id: newConfigurationId(),
     windowTypeSlug: windowType.slug,
     measurementBasis: "TRACK_WIDTH",
     fabricSpecId: fabric.id,
     colour: fabric.colour,
     heading: input.heading,
     lining: input.lining,
-    construction: "PAIR",
+    construction: input.construction,
     trackOrPole: "SLOPING_TRACK",
     trackComplexity: "SLOPING",
     stackDirection: input.stackDirection,
@@ -177,14 +260,19 @@ export function classifySpecialistReview(input: SpecialistReviewRequest, supplie
   configuration.measurements = input.measurements;
   configuration.attachments.photoReferences = input.photoNames.map((name) => `staging-local://${name}`);
   configuration.attachments.drawingReferences = input.drawingName ? [`staging-local://${input.drawingName}`] : [];
+  assertValidConfiguration(configuration, windowType, fabric, buildStagingRuleSet().measurementValidation);
   const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, { fabric });
   return {
     ...complexity,
+    configurationId: configuration.id,
+    construction: configuration.construction,
     technicalReviewState: "PENDING" as const,
     paymentState: "BLOCKED" as const,
     productionState: "BLOCKED" as const,
-    fixingPosition: input.fixingPosition,
-    message: "Price subject to technical review",
+    fixingPosition: input.fixingPosition.trim(),
+    message: complexity.outcome === "MANUAL_QUOTE"
+      ? "Price confirmed after technical review"
+      : "Price subject to technical review",
     persisted: false,
   };
 }

@@ -139,11 +139,6 @@ export function parseSandersonComposition(raw: string | null): SandersonTradeRow
   return parts;
 }
 
-function derivedDesignCode(brand: string, collection: string, design: string) {
-  const identity = `${brand.trim().toLowerCase()}|${collection.trim().toLowerCase()}|${design.trim().toLowerCase()}`;
-  return `SDG-CATALOGUE-${sha256(identity).slice(0, 16).toUpperCase()}`;
-}
-
 function assertSandersonHeaders(table: ParsedSupplierTable) {
   const missing = REQUIRED_HEADERS.filter((header) => !table.headers.includes(header));
   if (missing.length) throw new Error(`SANDERSON_CATALOGUE_HEADERS_MISSING:${missing.join(",")}`);
@@ -204,7 +199,9 @@ export function mapSandersonCatalogueTable(input: {
       design: design!,
       colour: colour!,
       supplierSku: supplierSku!,
-      supplierDesignCode: derivedDesignCode(brand!, collection!, design!),
+      // This export has no supplier-issued design-code field. The normalized
+      // design_id remains deterministic while supplier_design_code stays unknown.
+      supplierDesignCode: null,
       fullWidthMm: positiveCentimetresToMm(value(row, "Width (cms)")),
       // The export contains finished/full width only. Usable width is not inferred.
       usableWidthMm: null,

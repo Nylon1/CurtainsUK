@@ -39,7 +39,10 @@ export function buildShopifyCatalogPayload() {
       composition: fabric.composition,
       imageReferences: fabric.imageReferences,
       availability: fabric.customerAvailability,
-      priceVerificationStatus: fabric.priceVerificationStatus,
+      configurable: fabric.priceVerificationStatus === "VERIFIED",
+      configurationMessage: fabric.priceVerificationStatus === "VERIFIED"
+        ? "Ready to configure"
+        : "Price and availability to be confirmed",
       stagingFixture: false,
       feedEligible: false,
     })),

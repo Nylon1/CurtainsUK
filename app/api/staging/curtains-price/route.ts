@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import type { StagingPriceRequest } from "@/lib/storefront/staging-pricing";
 import { calculateStagingPrice } from "@/lib/storefront/server-staging-pricing";
+import { assertAllowedStagingMutation, customerSafeApiError, readBoundedJson } from "@/lib/storefront/staging-api";
+import { consumeStagingRequestSlot } from "@/lib/storefront/staging-rate-limit";
 
 export async function POST(request: Request) {
   try {
-    const input = await request.json() as StagingPriceRequest;
+    assertAllowedStagingMutation(request);
+    await consumeStagingRequestSlot({ request, scope: "price", environmentVariable: "CURTAINSUK_STAGING_PRICE_RATE_LIMIT", defaultLimit: 60 });
+    const input = await readBoundedJson<StagingPriceRequest>(request);
     return NextResponse.json(await calculateStagingPrice(input));
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unable to calculate the staging price";
+    const message = customerSafeApiError(error, "Unable to calculate the staging price");
     return NextResponse.json({ error: message }, { status: 400 });
   }
 }

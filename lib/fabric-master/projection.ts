@@ -1,6 +1,18 @@
 import type { CustomerSafeFabricProjection, FabricMasterRecord } from "./types";
 
+export function fabricIsConfigurationEligible(record: FabricMasterRecord) {
+  return record.storefront_selectable
+    && record.price_verification_status === "VERIFIED"
+    && record.lifecycle_state === "CURRENT";
+}
+
 export function projectCustomerSafeFabric(record: FabricMasterRecord): CustomerSafeFabricProjection {
+  const configurable = fabricIsConfigurationEligible(record);
+  const configurationMessage = record.lifecycle_state === "DISCONTINUED"
+    ? "No longer available"
+    : configurable
+      ? "Ready to configure"
+      : "Price and availability to be confirmed";
   return {
     id: record.fabric_id,
     supplierSku: record.supplier_sku,
@@ -18,7 +30,8 @@ export function projectCustomerSafeFabric(record: FabricMasterRecord): CustomerS
     patternMatchType: record.pattern_match_type,
     sampleAvailable: record.sample_available,
     availability: record.lifecycle_state === "DISCONTINUED" ? "No longer available" : "Availability to be confirmed",
-    priceVerificationStatus: record.price_verification_status,
+    configurable,
+    configurationMessage,
     feedEligible: false,
   };
 }
@@ -33,6 +46,8 @@ export function assertCustomerSafeProjection(value: unknown) {
     "batch_reference",
     "batch_available_quantity",
     "next_due_quantity",
+    "priceVerificationStatus",
+    "price_verification_status",
   ];
   for (const key of forbidden) {
     if (json.includes(key)) throw new Error(`PRIVATE_FIELD_LEAK:${key}`);

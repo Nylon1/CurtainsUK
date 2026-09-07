@@ -110,16 +110,14 @@
                   id="checkout"
                   class="cart__checkout-button button"
                   name="checkout"
-                  {% if cart == empty %}
-                    disabled
-                  {% endif %}
+                  disabled
                   form="cart"
                 >
-                  {{ 'sections.cart.checkout' | t }}
+                  Checkout disabled in this staging preview
                 </button>
               </div>
 
-              {%- if additional_checkout_buttons -%}
+              {%- if false and additional_checkout_buttons -%}
                 <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
                   {{ content_for_additional_checkout_buttons }}
                 </div>

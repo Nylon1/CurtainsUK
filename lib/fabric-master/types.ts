@@ -18,7 +18,8 @@ export interface FabricMasterRecord {
   collection_name: string;
   supplier_collection_code: string | null;
   design_id: string;
-  supplier_design_code: string;
+  /** Supplier-issued design code when the authorised source provides one. */
+  supplier_design_code: string | null;
   design_name: string;
   supplier_sku: string;
   colourway_code: string | null;
@@ -37,6 +38,8 @@ export interface FabricMasterRecord {
   lifecycle_state: FabricLifecycleState;
   price_verification_status: FabricPriceVerificationStatus;
   storefront_selectable: boolean;
+  /** Staging catalogue visibility is independent from price/configuration eligibility. */
+  staging_catalog_visible?: boolean;
   source_type: string;
   source_name: string;
   source_reference: string | null;
@@ -49,6 +52,10 @@ export interface FabricCatalogueImportItem extends Omit<FabricMasterRecord, "sup
   observation_id: string;
   public_record_sha256: string;
   source_row_number: number | null;
+  merge_action: "INSERT" | "UPDATE";
+  /** Optimistic-lock token required before an existing colourway may be changed. */
+  expected_existing_updated_at: string | null;
+  protected_fields: string[];
 }
 
 export interface FabricCatalogueImportMetadata {
@@ -59,6 +66,8 @@ export interface FabricCatalogueImportMetadata {
   source_reference: string | null;
   source_sha256: string;
   source_effective_date: string | null;
+  /** True observation time from the supplier document, not the import run time. */
+  source_observed_at: string;
   imported_at: string;
   row_count: number;
   inserted_count: number;
@@ -84,8 +93,9 @@ export interface CustomerSafeFabricProjection {
   patternMatchType: PatternMatchType | null;
   sampleAvailable: boolean | null;
   availability: "Fabric available" | "Limited availability" | "Available soon" | "Availability to be confirmed" | "Temporarily unavailable" | "No longer available";
-  /** Private workflows may include this; public storefront projections omit it. */
-  priceVerificationStatus?: FabricPriceVerificationStatus;
+  /** Public action gate. The private reason/status is deliberately not projected. */
+  configurable: boolean;
+  configurationMessage: "Ready to configure" | "Price and availability to be confirmed" | "No longer available";
   feedEligible: false;
 }
 

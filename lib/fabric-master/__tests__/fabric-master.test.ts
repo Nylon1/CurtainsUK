@@ -7,8 +7,9 @@ import { buildCatalogueImport } from "../catalogue-normalization";
 import { protectCatalogueCandidate } from "../catalogue-protection";
 import { toDecisionEngineFabric } from "../decision-engine";
 import { normalizePrestigiousFormationRows } from "../prestigious";
-import { assertCustomerSafeProjection, projectCustomerSafeFabric } from "../projection";
+import { assertCustomerSafeProjection, fabricIsConfigurationEligible, projectCustomerSafeFabric } from "../projection";
 import { previewSandersonAllBrandsCatalogue } from "../sanderson-catalogue-import";
+import { SANDERSON_CANARY_ALLOCATION, selectSandersonCanary } from "../sanderson-canary";
 import { normalizeSandersonRows } from "../sanderson";
 
 const prestigiousRows = [{
@@ -87,6 +88,30 @@ test("customer projection strips supplier-commercial intelligence", () => {
   assert.doesNotThrow(() => assertCustomerSafeProjection(projection));
   const serialised = JSON.stringify(projection);
   assert.equal(/trade_price|batch_reference|aggregate_available_quantity|costing_price/i.test(serialised), false);
+  assert.equal(/priceVerificationStatus|price_verification_status/.test(serialised), false);
+  assert.equal(projection.configurable, true);
+  assert.equal(projection.configurationMessage, "Ready to configure");
+});
+
+test("a staging-visible unverified canary is customer-visible but cannot enter configuration", () => {
+  const source = normalizeSandersonRows([{
+    brand: "Sanderson", collection: "Canary", design: "Safe card", colour: "Blue",
+    supplierSku: "CANARYSAFE101", supplierDesignCode: null, fullWidthMm: 1370, usableWidthMm: null,
+    verticalRepeatMm: 640, horizontalRepeatMm: 685, patternMatchType: "STRAIGHT_MATCH",
+    composition: [{ material: "Cotton", percentage: 100 }], imageUrl: null,
+    lifecycleState: "UNKNOWN", sampleAvailable: null, sourceRowNumber: 2,
+  }])[0];
+  const projection = projectCustomerSafeFabric({
+    ...source,
+    supplier_name: "Sanderson Design Group",
+    staging_catalog_visible: true,
+  });
+
+  assert.equal(projection.configurable, false);
+  assert.equal(projection.configurationMessage, "Price and availability to be confirmed");
+  assert.equal(projection.availability, "Availability to be confirmed");
+  assert.equal(JSON.stringify(projection).includes("PRICE_REQUIRES_VERIFICATION"), false);
+  assert.equal(fabricIsConfigurationEligible({ ...source, supplier_name: "Sanderson Design Group", staging_catalog_visible: true }), false);
 });
 
 test("decision engine adapter accepts either supplier through the same FabricSpec contract", () => {
@@ -214,6 +239,49 @@ test("catalogue protection keeps newer verified pilot data instead of applying a
   assert.deepEqual(preview.records[0].imagery, [pilot.imageUrl]);
   assert.equal(preview.records[0].collection_name, "A Painters Garden Fabrics");
   assert.equal(preview.records[0].source_effective_date, "2026-09-07");
+});
+
+test("Sanderson canary selects exactly 50 new records across six brands and leaves DAPGPA203 untouched", async () => {
+  const brands = ["Sanderson", "Morris & Co.", "Harlequin", "Zoffany", "Scion", "Clarke & Clarke"];
+  const rows = [catalogueRow({ sku: "DAPGPA203" })];
+  for (const [brandIndex, brand] of brands.entries()) {
+    for (let index = 0; index < 10; index += 1) {
+      rows.push(catalogueRow({
+        sku: `CANARY${brandIndex}${String(index).padStart(2, "0")}`,
+        brand,
+        collection: `Collection ${brandIndex}-${index}`,
+        design: `Design ${brandIndex}-${index}`,
+        colour: `Colour ${brandIndex}-${index}`,
+      }));
+    }
+  }
+  const pilot = JSON.parse(readFileSync(
+    "fixtures/suppliers/sanderson/painters-garden-DAPGPA203.public.json",
+    "utf8",
+  ));
+  const existing = {
+    ...normalizeSandersonRows([pilot])[0],
+    supplier_name: "Sanderson Design Group",
+    price_verification_status: "VERIFIED" as const,
+    storefront_selectable: true,
+  };
+  const preview = await previewSandersonAllBrandsCatalogue({
+    document: { filename: "canary.xlsx", mime_type: null, format: "XLSX", bytes: sandersonWorkbook(rows) },
+    existing_records: [{ record: existing, observed_at: "2026-09-07T10:00:00.000Z" }],
+  });
+  const selected = selectSandersonCanary(preview);
+
+  assert.equal(selected.length, 50);
+  assert.equal(new Set(selected.map((record) => record.supplier_sku)).size, 50);
+  assert.equal(selected.some((record) => record.supplier_sku === "DAPGPA203"), false);
+  assert.equal(preview.rows.find((row) => row.supplier_sku === "DAPGPA203")?.action, "PRESERVE_NEWER_EXISTING");
+  for (const [brandId, expected] of Object.entries(SANDERSON_CANARY_ALLOCATION)) {
+    assert.equal(selected.filter((record) => record.brand_id === brandId).length, expected);
+  }
+  assert.equal(selected.every((record) => record.supplier_design_code === null), true);
+  assert.equal(selected.every((record) => !record.storefront_selectable), true);
+  assert.equal(selected.every((record) => record.staging_catalog_visible === true), true);
+  assert.equal(selected.every((record) => record.price_verification_status === "PRICE_REQUIRES_VERIFICATION"), true);
 });
 
 test("catalogue protection enriches newer specs without erasing independently verified fields", () => {

@@ -8,7 +8,8 @@
         "intro": "Start with shape and use. The correct measurements, compatible specification and price or review route follow from there."
       }
     },
-    "curtainsuk-fabrics": { "type": "curtainsuk-fabric-browser", "settings": { "engine_base": "/apps/curtainsuk-decision" } }
+    "curtainsuk-fabrics": { "type": "curtainsuk-fabric-browser", "settings": { "engine_base": "/apps/curtainsuk-decision" } },
+    "curtainsuk-inspiration-help": { "type": "curtainsuk-inspiration-help", "settings": {} }
   },
-  "order": ["curtainsuk-hero", "curtainsuk-windows", "curtainsuk-fabrics"]
+  "order": ["curtainsuk-hero", "curtainsuk-windows", "curtainsuk-fabrics", "curtainsuk-inspiration-help"]
 }

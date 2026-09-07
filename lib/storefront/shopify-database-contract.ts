@@ -6,12 +6,14 @@ import { buildShopifyCatalogPayload } from "./shopify-contract";
 /** Read-only PostgreSQL projection consumed by the unpublished Dawn theme. */
 export async function buildDatabaseShopifyCatalogPayload() {
   const base = buildShopifyCatalogPayload();
-  const records = await listFabricMasterRecords({ storefrontOnly: true });
+  // The unpublished Dawn catalogue may show an approved canary before it is
+  // commercially eligible. Configuration remains governed by the independent
+  // public `configurable` gate in the projection.
+  const records = await listFabricMasterRecords({ stagingCatalogOnly: true });
   const fabrics = records.map((record) => {
     const fabric = projectCustomerSafeFabric(record);
-    const { priceVerificationStatus: _privatePricingGate, ...customerFabric } = fabric;
     return {
-      ...customerFabric,
+      ...fabric,
       supplierReference: fabric.supplierSku,
       uniqueSku: fabric.supplierSku,
     };

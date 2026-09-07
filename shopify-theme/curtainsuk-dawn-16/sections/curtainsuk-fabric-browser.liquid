@@ -7,6 +7,12 @@
   <div class="cuk-wrap">
     <div class="cuk-section__head"><div><p class="cuk-eyebrow">Real supplier fabric master</p><h1>Choose fabric and colour</h1></div><p>Approved Prestigious and Sanderson-group colourways, served from the private CurtainsUK Fabric Master.</p></div>
     <div class="cuk-error" data-cuk-error hidden></div>
+    <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search">
+      <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Design, colour, collection or SKU"></div>
+      <div class="cuk-field"><label for="CukFabricBrand-{{ section.id }}">Brand</label><select id="CukFabricBrand-{{ section.id }}" name="brand"><option value="">All brands</option></select></div>
+      <div class="cuk-field"><label for="CukFabricReadiness-{{ section.id }}">Configuration status</label><select id="CukFabricReadiness-{{ section.id }}" name="readiness"><option value="">All fabrics</option><option value="READY">Ready to configure</option><option value="CONFIRM">Price to be confirmed</option></select></div>
+    </form>
+    <p class="cuk-hint" data-cuk-fabric-count aria-live="polite"></p>
     <div class="cuk-fabrics" data-cuk-fabric-grid aria-live="polite"><p>Loading approved fabrics…</p></div>
   </div>
 </section>

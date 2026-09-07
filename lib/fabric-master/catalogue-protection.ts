@@ -101,6 +101,11 @@ export function protectCatalogueCandidate(input: {
     protectedFields.push("storefront_selectable");
     storefrontSelectable = true;
   }
+  let stagingCatalogVisible = input.incoming.staging_catalog_visible ?? false;
+  if (existing.staging_catalog_visible && !stagingCatalogVisible) {
+    protectedFields.push("staging_catalog_visible");
+    stagingCatalogVisible = true;
+  }
   const merged: NormalizedCatalogueRecord = {
     ...input.incoming,
     supplier_collection_code: preserveIfMissing(
@@ -124,6 +129,7 @@ export function protectCatalogueCandidate(input: {
     lifecycle_state: lifecycleState,
     price_verification_status: priceVerificationStatus,
     storefront_selectable: storefrontSelectable,
+    staging_catalog_visible: stagingCatalogVisible,
   };
 
   const mergedBusiness = Object.fromEntries(Object.entries(merged).filter(([key]) => !SOURCE_FIELDS.has(key)));

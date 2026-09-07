@@ -27,19 +27,27 @@ export function buildCatalogueImport(input: {
   sourceReference?: string | null;
   sourceSha256: string;
   sourceEffectiveDate?: string | null;
+  sourceObservedAt?: string;
   existingSupplierSkus: ReadonlySet<string>;
+  existingSupplierUpdatedAt?: ReadonlyMap<string, string>;
   records: Array<Omit<FabricMasterRecord, "supplier_name"> & { brand_name: string; source_row_number?: number | null }>;
   importedAt?: string;
 }) {
   const importedAt = input.importedAt ?? new Date().toISOString();
   const importId = `fabric-catalogue:${input.supplierId}:${importedAt}:${randomUUID()}`;
-  const items: FabricCatalogueImportItem[] = input.records.map((record) => ({
-    ...record,
-    collection_lifecycle_state: record.lifecycle_state,
-    observation_id: `fabric-observation:${randomUUID()}`,
-    public_record_sha256: publicRecordHash(record),
-    source_row_number: record.source_row_number ?? null,
-  }));
+  const items: FabricCatalogueImportItem[] = input.records.map((record) => {
+    const isExisting = input.existingSupplierSkus.has(record.supplier_sku);
+    return {
+      ...record,
+      collection_lifecycle_state: record.lifecycle_state,
+      observation_id: `fabric-observation:${randomUUID()}`,
+      public_record_sha256: publicRecordHash(record),
+      source_row_number: record.source_row_number ?? null,
+      merge_action: isExisting ? "UPDATE" : "INSERT",
+      expected_existing_updated_at: input.existingSupplierUpdatedAt?.get(record.supplier_sku) ?? null,
+      protected_fields: [],
+    };
+  });
   const inserted = items.filter((item) => !input.existingSupplierSkus.has(item.supplier_sku)).length;
   const metadata: FabricCatalogueImportMetadata = {
     import_id: importId,
@@ -49,6 +57,7 @@ export function buildCatalogueImport(input: {
     source_reference: input.sourceReference ?? null,
     source_sha256: input.sourceSha256,
     source_effective_date: input.sourceEffectiveDate ?? null,
+    source_observed_at: input.sourceObservedAt ?? importedAt,
     imported_at: importedAt,
     row_count: items.length,
     inserted_count: inserted,

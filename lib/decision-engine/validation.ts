@@ -72,8 +72,42 @@ export function validateSpecialistGeometry(configuration: CurtainConfiguration, 
   const leftSlope = number("left_slope");
   const rightSlope = number("right_slope");
   if ([width, peak, leftVertical, rightVertical, leftSlope, rightSlope].some((value) => value === null)) return { valid: true, issues };
+
+  const criticalMeasurements = [
+    ["coverage_width", width],
+    ["peak_height", peak],
+    ["left_vertical", leftVertical],
+    ["right_vertical", rightVertical],
+    ["left_slope", leftSlope],
+    ["right_slope", rightSlope],
+  ] as const;
+  for (const [key, value] of criticalMeasurements) {
+    if (!Number.isFinite(value) || value! <= 0) {
+      issues.push(issue("GEOMETRY_MEASUREMENT_NON_POSITIVE", `measurements.${key}`, "Specialist measurements must be positive finite numbers"));
+    }
+  }
+  if (issues.length) return { valid: false, issues };
+
   if (peak! <= Math.max(leftVertical!, rightVertical!)) issues.push(issue("GEOMETRY_PEAK_INCONSISTENT", "measurements.peak_height", "Peak height must exceed the vertical heights"));
   if (leftSlope! + rightSlope! <= width!) issues.push(issue("GEOMETRY_TRIANGLE_INCONSISTENT", "measurements", "Slope lengths cannot span the supplied base width"));
+
+  const leftRise = peak! - leftVertical!;
+  const rightRise = peak! - rightVertical!;
+  if (leftRise > 0 && leftSlope! < leftRise) {
+    issues.push(issue("GEOMETRY_LEFT_SLOPE_TOO_SHORT", "measurements.left_slope", "Left slope is shorter than the measured vertical rise"));
+  }
+  if (rightRise > 0 && rightSlope! < rightRise) {
+    issues.push(issue("GEOMETRY_RIGHT_SLOPE_TOO_SHORT", "measurements.right_slope", "Right slope is shorter than the measured vertical rise"));
+  }
+  if (leftRise > 0 && rightRise > 0 && leftSlope! >= leftRise && rightSlope! >= rightRise) {
+    const leftHorizontalRun = Math.sqrt(leftSlope! ** 2 - leftRise ** 2);
+    const rightHorizontalRun = Math.sqrt(rightSlope! ** 2 - rightRise ** 2);
+    const toleranceCm = Math.max(2, width! * 0.01);
+    if (Math.abs(leftHorizontalRun + rightHorizontalRun - width!) > toleranceCm) {
+      issues.push(issue("GEOMETRY_BASE_WIDTH_INCONSISTENT", "measurements.coverage_width", "Base width is inconsistent with the supplied heights and slope lengths"));
+    }
+  }
+
   if (windowType.geometryType === "SYMMETRICAL_APEX") {
     const toleranceCm = 2;
     if (Math.abs(leftVertical! - rightVertical!) > toleranceCm || Math.abs(leftSlope! - rightSlope!) > toleranceCm) {
@@ -81,7 +115,70 @@ export function validateSpecialistGeometry(configuration: CurtainConfiguration, 
     }
     const expectedSlope = Math.hypot(width! / 2, peak! - leftVertical!);
     if (Math.abs(expectedSlope - leftSlope!) > toleranceCm) issues.push(issue("APEX_PYTHAGORAS_INCONSISTENT", "measurements.left_slope", "Apex dimensions are mathematically inconsistent"));
+    if (Math.abs(expectedSlope - rightSlope!) > toleranceCm) issues.push(issue("APEX_PYTHAGORAS_INCONSISTENT", "measurements.right_slope", "Apex dimensions are mathematically inconsistent"));
   }
+  return { valid: issues.length === 0, issues };
+}
+
+export function validateSegmentedBayGeometry(configuration: CurtainConfiguration, windowType: WindowTypeMaster): ValidationResult {
+  const issues: ValidationIssue[] = [];
+  if (windowType.geometryType !== "SEGMENTED_BAY") return { valid: true, issues };
+
+  const segmentWidths = configuration.measurements.bay_segment_widths;
+  if (!Array.isArray(segmentWidths)) return { valid: true, issues };
+  if (segmentWidths.length < 2 || segmentWidths.length > 8) {
+    issues.push(issue("BAY_SECTION_COUNT_UNSUPPORTED", "measurements.bay_segment_widths", "A bay must contain between 2 and 8 sections"));
+  }
+  if (configuration.numberOfSegments !== segmentWidths.length) {
+    issues.push(issue("BAY_SECTION_COUNT_MISMATCH", "numberOfSegments", "Bay section count must match the number of supplied section widths"));
+  }
+  if (segmentWidths.some((value) => !Number.isFinite(value) || value <= 0)) {
+    issues.push(issue("BAY_SECTION_WIDTH_INVALID", "measurements.bay_segment_widths", "Bay section widths must be positive finite numbers"));
+  }
+
+  const coverageWidth = scalar(configuration, "coverage_width");
+  if (coverageWidth === null) {
+    issues.push(issue("BAY_TOTAL_COVERAGE_REQUIRED", "measurements.coverage_width", "Bay total coverage width must be derived from its sections"));
+  } else if (segmentWidths.every((value) => Number.isFinite(value) && value > 0)) {
+    const derivedWidth = segmentWidths.reduce((sum, value) => sum + value, 0);
+    if (Math.abs(coverageWidth - derivedWidth) > 0.01) {
+      issues.push(issue("BAY_TOTAL_COVERAGE_MISMATCH", "measurements.coverage_width", "Bay total coverage width must equal the sum of its section widths"));
+    }
+  }
+
+  return { valid: issues.length === 0, issues };
+}
+
+export function validateCornerGeometry(configuration: CurtainConfiguration, windowType: WindowTypeMaster): ValidationResult {
+  const issues: ValidationIssue[] = [];
+  if (windowType.geometryType !== "CORNER") return { valid: true, issues };
+
+  const sectionWidths = configuration.measurements.bay_segment_widths;
+  const angles = configuration.measurements.bay_angles_degrees;
+  if (!Array.isArray(sectionWidths) || sectionWidths.length !== 2) {
+    issues.push(issue("CORNER_SECTION_COUNT_INVALID", "measurements.bay_segment_widths", "A corner window requires exactly two section widths"));
+    return { valid: false, issues };
+  }
+  if (configuration.numberOfSegments !== 2) {
+    issues.push(issue("CORNER_SECTION_COUNT_MISMATCH", "numberOfSegments", "Corner section count must match the two supplied widths"));
+  }
+  if (sectionWidths.some((value) => !Number.isFinite(value) || value <= 0)) {
+    issues.push(issue("CORNER_SECTION_WIDTH_INVALID", "measurements.bay_segment_widths", "Corner section widths must be positive finite numbers"));
+  }
+  if (!Array.isArray(angles) || angles.length !== 1 || !Number.isFinite(angles[0]) || angles[0] <= 0 || angles[0] >= 360) {
+    issues.push(issue("CORNER_ANGLE_INVALID", "measurements.bay_angles_degrees", "A corner window requires one angle between 1 and 359 degrees"));
+  }
+
+  const coverageWidth = scalar(configuration, "coverage_width");
+  if (coverageWidth === null) {
+    issues.push(issue("CORNER_TOTAL_COVERAGE_REQUIRED", "measurements.coverage_width", "Corner total coverage width must be derived from its sections"));
+  } else if (sectionWidths.every((value) => Number.isFinite(value) && value > 0)) {
+    const derivedWidth = sectionWidths.reduce((sum, value) => sum + value, 0);
+    if (Math.abs(coverageWidth - derivedWidth) > 0.01) {
+      issues.push(issue("CORNER_TOTAL_COVERAGE_MISMATCH", "measurements.coverage_width", "Corner total coverage width must equal the sum of its section widths"));
+    }
+  }
+
   return { valid: issues.length === 0, issues };
 }
 
@@ -103,6 +200,8 @@ export function validateConfiguration(configuration: CurtainConfiguration, windo
   if (windowType.photoRequired && configuration.attachments.photoReferences.length === 0) issues.push(issue("PHOTO_REQUIRED", "attachments.photoReferences", "At least one project photo is required"));
   if (windowType.drawingRequired && configuration.attachments.drawingReferences.length === 0) issues.push(issue("DRAWING_REQUIRED", "attachments.drawingReferences", "A drawing is required"));
   if (!Number.isInteger(configuration.numberOfSegments) || configuration.numberOfSegments < 1) issues.push(issue("SEGMENT_COUNT_INVALID", "numberOfSegments", "Number of segments must be a positive integer"));
+  issues.push(...validateSegmentedBayGeometry(configuration, windowType).issues);
+  issues.push(...validateCornerGeometry(configuration, windowType).issues);
   issues.push(...validateSpecialistGeometry(configuration, windowType).issues);
   if (measurementRules) issues.push(...validateMeasurementPlausibility(configuration, measurementRules).issues);
   return { valid: issues.length === 0, issues };

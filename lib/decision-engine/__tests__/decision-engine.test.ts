@@ -255,6 +255,81 @@ test("complete simple apex gets provisional review pricing but never direct manu
   assert.equal(canReleaseToManufacture(apex, "SYMMETRICAL_APEX"), true);
 });
 
+test("specialist geometry validation rejects non-positive, impossible and inconsistent dimensions", () => {
+  const valid = configuration("apex-window");
+  valid.attachments.photoReferences = ["private://photo/1"];
+  valid.measurements = { coverage_width: 300, peak_height: 300, left_vertical: 200, right_vertical: 200, left_slope: 180.28, right_slope: 180.28 };
+  assert.equal(validateConfiguration(valid, windowType("apex-window"), fabric()).valid, true);
+
+  for (const [field, value] of [["coverage_width", 0], ["peak_height", -1], ["left_slope", 0]] as const) {
+    const invalid = structuredClone(valid);
+    invalid.measurements[field] = value;
+    const result = validateConfiguration(invalid, windowType("apex-window"), fabric());
+    assert.equal(result.valid, false);
+    assert.ok(result.issues.some((item) => item.code === "GEOMETRY_MEASUREMENT_NON_POSITIVE"));
+  }
+
+  const impossible = structuredClone(valid);
+  impossible.measurements.right_slope = 110;
+  const result = validateConfiguration(impossible, windowType("apex-window"), fabric());
+  assert.equal(result.valid, false);
+  assert.ok(result.issues.some((item) => item.code === "GEOMETRY_BASE_WIDTH_INCONSISTENT"));
+
+  const lowPeak = structuredClone(valid);
+  lowPeak.measurements.peak_height = 190;
+  assert.ok(validateConfiguration(lowPeak, windowType("apex-window"), fabric()).issues.some((item) => item.code === "GEOMETRY_PEAK_INCONSISTENT"));
+});
+
+test("Bay geometry derives from section widths without requiring customer-entered angles", () => {
+  const bay = configuration("bay-window");
+  bay.trackOrPole = "BAY_TRACK";
+  bay.trackComplexity = "MULTI_SEGMENT";
+  bay.numberOfSegments = 3;
+  bay.measurements = { coverage_width: 340, finished_drop: 220, bay_segment_widths: [80, 180, 80] };
+  assert.equal(windowType("bay-window").requiredMeasurements.some((item) => item.key === "bay_angles_degrees"), false);
+  assert.equal(windowType("bay-window").photoRequired, false);
+  assert.equal(validateConfiguration(bay, windowType("bay-window"), fabric()).valid, true);
+
+  bay.measurements.coverage_width = 341;
+  const mismatch = validateConfiguration(bay, windowType("bay-window"), fabric());
+  assert.ok(mismatch.issues.some((item) => item.code === "BAY_TOTAL_COVERAGE_MISMATCH"));
+  bay.measurements.coverage_width = 340;
+  bay.numberOfSegments = 4;
+  const countMismatch = validateConfiguration(bay, windowType("bay-window"), fabric());
+  assert.ok(countMismatch.issues.some((item) => item.code === "BAY_SECTION_COUNT_MISMATCH"));
+});
+
+test("Corner geometry requires two sections, one angle and matching derived coverage", () => {
+  const corner = configuration("corner-window");
+  corner.trackOrPole = "BAY_TRACK";
+  corner.trackComplexity = "MULTI_SEGMENT";
+  corner.numberOfSegments = 2;
+  corner.measurements = {
+    coverage_width: 300,
+    finished_drop: 220,
+    bay_segment_widths: [160, 140],
+    bay_angles_degrees: [90],
+  };
+  corner.attachments.photoReferences = ["staging-local://corner.jpg"];
+  assert.equal(validateConfiguration(corner, windowType("corner-window"), fabric()).valid, true);
+
+  corner.measurements.coverage_width = 301;
+  assert.ok(validateConfiguration(corner, windowType("corner-window"), fabric()).issues.some((item) => item.code === "CORNER_TOTAL_COVERAGE_MISMATCH"));
+  corner.measurements.coverage_width = 300;
+  corner.measurements.bay_angles_degrees = [];
+  assert.ok(validateConfiguration(corner, windowType("corner-window"), fabric()).issues.some((item) => item.code === "CORNER_ANGLE_INVALID"));
+  corner.measurements.bay_angles_degrees = [90];
+  corner.measurements.bay_segment_widths = [300];
+  assert.ok(validateConfiguration(corner, windowType("corner-window"), fabric()).issues.some((item) => item.code === "CORNER_SECTION_COUNT_INVALID"));
+});
+
+test("Awkward window master requires rough dimensions, a photo and a drawing", () => {
+  const awkward = windowType("awkward-unusual-window");
+  assert.deepEqual(awkward.requiredMeasurements.map((item) => item.key), ["coverage_width", "finished_drop"]);
+  assert.equal(awkward.photoRequired, true);
+  assert.equal(awkward.drawingRequired, true);
+});
+
 test("incomplete specialist geometry routes to manual quote", () => {
   const apex = configuration("apex-window");
   assert.equal(classifyComplexity(apex, windowType("apex-window"), INITIAL_COMPLEXITY_RULE_SET).outcome, "MANUAL_QUOTE");

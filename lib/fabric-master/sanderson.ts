@@ -7,7 +7,7 @@ export interface SandersonTradeRow {
   design: string;
   colour: string;
   supplierSku: string;
-  supplierDesignCode: string;
+  supplierDesignCode: string | null;
   /** Legacy combined width field retained for the manually verified pilot. */
   widthMm?: number | null;
   fullWidthMm?: number | null;
@@ -48,7 +48,10 @@ export function sandersonBrandId(brand: string) {
 export function normalizeSandersonRows(rows: SandersonTradeRow[]): Array<Omit<FabricMasterRecord, "supplier_name"> & { brand_name: string; source_row_number: number }> {
   return rows.map((row) => {
     const brandId = sandersonBrandId(row.brand);
-    const designCode = row.supplierDesignCode || row.supplierSku.split(/[\/-]/)[0];
+    const supplierDesignCode = row.supplierDesignCode?.trim() || null;
+    const designIdentity = supplierDesignCode
+      ? `supplier-${stableSlug(supplierDesignCode)}`
+      : `catalogue-${stableSlug(`${row.brand}|${row.collection}|${row.design}`)}`;
     const pattern = row.patternMatchType !== undefined
       ? row.patternMatchType
       : (row.verticalRepeatMm === null || row.verticalRepeatMm === 0 ? "RANDOM_MATCH" : "STRAIGHT_MATCH");
@@ -62,8 +65,8 @@ export function normalizeSandersonRows(rows: SandersonTradeRow[]): Array<Omit<Fa
       collection_id: `${brandId}-collection-${stableSlug(row.collection)}`,
       collection_name: row.collection.trim(),
       supplier_collection_code: null,
-      design_id: `${brandId}-design-${stableSlug(designCode)}`,
-      supplier_design_code: designCode,
+      design_id: `${brandId}-design-${designIdentity}`,
+      supplier_design_code: supplierDesignCode,
       design_name: row.design.trim(),
       supplier_sku: row.supplierSku.trim(),
       colourway_code: null,

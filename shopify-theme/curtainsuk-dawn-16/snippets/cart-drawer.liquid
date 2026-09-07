@@ -581,11 +581,9 @@
             class="cart__checkout-button button"
             name="checkout"
             form="CartDrawer-Form"
-            {% if cart == empty %}
-              disabled
-            {% endif %}
+            disabled
           >
-            {{ 'sections.cart.checkout' | t }}
+            Checkout disabled in this staging preview
           </button>
         </div>
       </div>

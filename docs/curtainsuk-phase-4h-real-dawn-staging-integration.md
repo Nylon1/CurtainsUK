@@ -81,7 +81,7 @@ A supplier-admin Supabase Auth user still needs to be provisioned before staff c
 
 ## Sanderson export
 
-The authorised portal's All Brands Excel export was requested, but it continued to show its build-in-progress state during this phase. No workbook was available to download, so no unverified bulk data was invented or imported. The existing one-colourway authorised Sanderson pilot remains the only Sanderson projection until the export is available and its price semantics are confirmed.
+At the time of the Phase 4H browser session, the authorised portal continued to show its All Brands export as build-in-progress, so no portal download was made during that phase. A later Phase 5A local-source inventory found an earlier genuine All Product Data workbook under a UUID filename in Downloads. It contains 15,550 products but is dated 3 March 2026 and has no prices or imagery, so it is suitable for mapper development and catalogue/specification validation only. Its stock and lifecycle fields must not be projected as current. The existing one-colourway authorised Sanderson pilot remains the only Sanderson storefront projection until a fresh export and price semantics are confirmed.
 
 ## Verification
 
@@ -107,4 +107,3 @@ Screenshots were captured during browser verification for the desktop Prestigiou
 6. Approve production availability freshness/promotion policy and project only approved states.
 7. Run commercial calibration on real jobs and explicitly activate the pricing ruleset.
 8. Complete pre-launch accessibility, browser/device, analytics, delivery, checkout and feed acceptance testing.
-

@@ -8,7 +8,10 @@ export interface SandersonTradeRow {
   colour: string;
   supplierSku: string;
   supplierDesignCode: string;
-  widthMm: number | null;
+  /** Legacy combined width field retained for the manually verified pilot. */
+  widthMm?: number | null;
+  fullWidthMm?: number | null;
+  usableWidthMm?: number | null;
   verticalRepeatMm: number | null;
   horizontalRepeatMm: number | null;
   composition: FabricMasterRecord["composition"];
@@ -46,7 +49,11 @@ export function normalizeSandersonRows(rows: SandersonTradeRow[]): Array<Omit<Fa
   return rows.map((row) => {
     const brandId = sandersonBrandId(row.brand);
     const designCode = row.supplierDesignCode || row.supplierSku.split(/[\/-]/)[0];
-    const pattern = row.patternMatchType ?? (row.verticalRepeatMm === null || row.verticalRepeatMm === 0 ? "RANDOM_MATCH" : "STRAIGHT_MATCH");
+    const pattern = row.patternMatchType !== undefined
+      ? row.patternMatchType
+      : (row.verticalRepeatMm === null || row.verticalRepeatMm === 0 ? "RANDOM_MATCH" : "STRAIGHT_MATCH");
+    const fullWidth = row.fullWidthMm !== undefined ? row.fullWidthMm : (row.widthMm ?? null);
+    const usableWidth = row.usableWidthMm !== undefined ? row.usableWidthMm : (row.widthMm ?? null);
     return {
       fabric_id: `sdg-${stableSlug(row.supplierSku)}`,
       supplier_id: "sanderson-design-group",
@@ -61,8 +68,8 @@ export function normalizeSandersonRows(rows: SandersonTradeRow[]): Array<Omit<Fa
       supplier_sku: row.supplierSku.trim(),
       colourway_code: null,
       colour_name: row.colour.trim(),
-      full_width_mm: row.widthMm,
-      usable_width_mm: row.widthMm,
+      full_width_mm: fullWidth,
+      usable_width_mm: usableWidth,
       vertical_repeat_mm: row.verticalRepeatMm,
       horizontal_repeat_mm: row.horizontalRepeatMm,
       pattern_match_type: pattern,

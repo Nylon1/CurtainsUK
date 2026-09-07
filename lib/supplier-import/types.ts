@@ -20,6 +20,8 @@ export interface SupplierImportParserOptions {
 export interface ParsedSupplierTable {
   format: SupplierImportFormat;
   sheet_name: string | null;
+  /** Timestamp embedded by the source document, never the local import time. */
+  source_observed_at: string | null;
   headers: string[];
   rows: Array<Record<string, string | null>>;
   warnings: string[];

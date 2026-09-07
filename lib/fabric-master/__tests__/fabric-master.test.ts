@@ -1,11 +1,14 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import * as XLSX from "xlsx";
 import { officialPrestigiousThumbnailUrl } from "../prestigious-imagery";
 import { buildCatalogueImport } from "../catalogue-normalization";
+import { protectCatalogueCandidate } from "../catalogue-protection";
 import { toDecisionEngineFabric } from "../decision-engine";
 import { normalizePrestigiousFormationRows } from "../prestigious";
 import { assertCustomerSafeProjection, projectCustomerSafeFabric } from "../projection";
+import { previewSandersonAllBrandsCatalogue } from "../sanderson-catalogue-import";
 import { normalizeSandersonRows } from "../sanderson";
 
 const prestigiousRows = [{
@@ -91,4 +94,189 @@ test("decision engine adapter accepts either supplier through the same FabricSpe
   const fabric = toDecisionEngineFabric({ ...source, supplier_name: "Prestigious Textiles" }, 2_000, "2026-09-07");
   assert.equal(fabric.supplierCostPerMetre?.amountMinor, 2_000);
   assert.equal(fabric.sellingPricePolicy.minimumGrossMarginPercent, 35);
+});
+
+const sandersonHeaders = [
+  "Sku/Product Code", "Design Name", "Descriptive Colour", "Collection Name", "Brand",
+  "Main Product Category", "Pattern Match", "Vertical Pattern Repeat (cms)",
+  "Horizontal Pattern Repeat (cms)", "Width (cms)", "Weight (gsm)",
+  "Composition Description", "Product Status", "Available Stock", "On Po Due Date",
+  "",
+];
+
+function sandersonWorkbook(rows: Array<Array<string | number | null>>) {
+  const workbook = XLSX.utils.book_new();
+  const sheet = XLSX.utils.aoa_to_sheet([sandersonHeaders, ...rows]);
+  XLSX.utils.book_append_sheet(workbook, sheet, "All Product Data");
+  workbook.Props = {
+    CreatedDate: new Date("2026-02-24T08:47:01.000Z"),
+    ModifiedDate: new Date("2026-02-24T08:48:32.000Z"),
+  };
+  return new Uint8Array(XLSX.write(workbook, { type: "buffer", bookType: "xlsx" }));
+}
+
+function catalogueRow(input: {
+  sku: string;
+  brand?: string;
+  category?: string;
+  collection?: string | null;
+  design?: string | null;
+  colour?: string | null;
+  match?: string | null;
+}) {
+  return [
+    input.sku,
+    input.design === undefined ? "Painters Garden" : input.design,
+    input.colour === undefined ? "Violet/Crimson" : input.colour,
+    input.collection === undefined ? "Sanderson One Sixty Fabrics" : input.collection,
+    input.brand ?? "Sanderson",
+    input.category ?? "Fabric",
+    input.match === undefined ? "Straight Match" : input.match,
+    66,
+    137,
+    137,
+    131,
+    "100% Cotton",
+    "LIVE",
+    99.5,
+    "3/17/26",
+  ];
+}
+
+test("Sanderson all-brands catalogue maps identity/specification fields but ignores stale operations", async () => {
+  const bytes = sandersonWorkbook([
+    catalogueRow({ sku: "DAPGPA203" }),
+    catalogueRow({ sku: "DMORRIS101", brand: "Morris & Co." }),
+    catalogueRow({ sku: "WALL101", category: "Wallpaper" }),
+    catalogueRow({ sku: "OTHER101", brand: "Studio G" }),
+  ]);
+  const preview = await previewSandersonAllBrandsCatalogue({
+    document: { filename: "sanderson-all-brands.xlsx", mime_type: null, format: "XLSX", bytes },
+    now: new Date("2026-09-07T12:00:00.000Z"),
+  });
+
+  assert.equal(preview.source.observed_at, "2026-02-24T08:48:32.000Z");
+  assert.equal(preview.source.stale_operational_data_ignored, true);
+  assert.equal(preview.summary.source_rows, 4);
+  assert.equal(preview.summary.eligible_fabric_rows, 2);
+  assert.equal(preview.summary.accepted_colourways, 2);
+  assert.equal(preview.summary.brands, 2);
+  const record = preview.records.find((item) => item.supplier_sku === "DAPGPA203")!;
+  assert.equal(record.full_width_mm, 1370);
+  assert.equal(record.usable_width_mm, null);
+  assert.equal(record.vertical_repeat_mm, 660);
+  assert.equal(record.pattern_match_type, "STRAIGHT_MATCH");
+  assert.deepEqual(record.composition, [{ material: "Cotton", percentage: 100 }]);
+  assert.equal(record.lifecycle_state, "UNKNOWN");
+  assert.equal(record.sample_available, null);
+  assert.deepEqual(record.imagery, []);
+  assert.equal(record.price_verification_status, "PRICE_REQUIRES_VERIFICATION");
+  assert.equal(record.storefront_selectable, false);
+  assert.equal(JSON.stringify(record).includes("99.5"), false);
+});
+
+test("Sanderson catalogue supports exactly the six approved brands through one Fabric Master", async () => {
+  const brands = ["Sanderson", "Morris & Co.", "Harlequin", "Zoffany", "Scion", "Clarke & Clarke"];
+  const bytes = sandersonWorkbook(brands.map((brand, index) => catalogueRow({ sku: `SKU${index}101`, brand })));
+  const preview = await previewSandersonAllBrandsCatalogue({
+    document: { filename: "all-brands.xlsx", mime_type: null, format: "XLSX", bytes },
+  });
+  assert.equal(preview.summary.brands, 6);
+  assert.equal(preview.records.every((record) => record.supplier_id === "sanderson-design-group"), true);
+  assert.deepEqual(new Set(preview.records.map((record) => record.brand_id)), new Set([
+    "sdg-sanderson", "sdg-morris-co", "sdg-harlequin", "sdg-zoffany", "sdg-scion", "sdg-clarke-clarke",
+  ]));
+});
+
+test("catalogue protection keeps newer verified pilot data instead of applying a stale bulk row", async () => {
+  const pilot = JSON.parse(readFileSync(
+    "fixtures/suppliers/sanderson/painters-garden-DAPGPA203.public.json",
+    "utf8",
+  ));
+  const incomingBytes = sandersonWorkbook([catalogueRow({ sku: "DAPGPA203" })]);
+  const existing = {
+    ...normalizeSandersonRows([pilot])[0],
+    supplier_name: "Sanderson Design Group",
+    price_verification_status: "VERIFIED" as const,
+    storefront_selectable: true,
+  };
+  const preview = await previewSandersonAllBrandsCatalogue({
+    document: { filename: "stale-all-brands.xlsx", mime_type: null, format: "XLSX", bytes: incomingBytes },
+    existing_records: [{ record: existing, observed_at: "2026-09-07T10:00:00.000Z" }],
+  });
+
+  assert.equal(preview.rows[0].action, "PRESERVE_NEWER_EXISTING");
+  assert.equal(preview.records_to_apply.length, 0);
+  assert.equal(preview.records[0].price_verification_status, "VERIFIED");
+  assert.equal(preview.records[0].storefront_selectable, true);
+  assert.equal(preview.records[0].lifecycle_state, "CURRENT");
+  assert.equal(preview.records[0].sample_available, true);
+  assert.deepEqual(preview.records[0].imagery, [pilot.imageUrl]);
+  assert.equal(preview.records[0].collection_name, "A Painters Garden Fabrics");
+  assert.equal(preview.records[0].source_effective_date, "2026-09-07");
+});
+
+test("catalogue protection enriches newer specs without erasing independently verified fields", () => {
+  const [incoming] = normalizeSandersonRows([{
+    brand: "Sanderson", collection: "Current collection", design: "Design", colour: "Blue",
+    supplierSku: "SAFE101", supplierDesignCode: "SAFE", fullWidthMm: 1400, usableWidthMm: null,
+    verticalRepeatMm: 500, horizontalRepeatMm: null, patternMatchType: null, composition: [],
+    imageUrl: null, lifecycleState: "UNKNOWN", sampleAvailable: null, sourceRowNumber: 2,
+    sourceEffectiveDate: "2026-09-07",
+  }]);
+  const existing = {
+    ...incoming,
+    supplier_name: "Sanderson Design Group",
+    full_width_mm: 1370,
+    usable_width_mm: 1350,
+    vertical_repeat_mm: 480,
+    pattern_match_type: "STRAIGHT_MATCH" as const,
+    composition: [{ material: "Linen", percentage: 100 }],
+    imagery: ["https://example.test/safe.jpg"],
+    sample_available: true,
+    lifecycle_state: "CURRENT" as const,
+    price_verification_status: "VERIFIED" as const,
+    storefront_selectable: true,
+    source_effective_date: "2026-02-01",
+  };
+  const result = protectCatalogueCandidate({
+    incoming,
+    incoming_observed_at: "2026-09-07T10:00:00.000Z",
+    existing: { record: existing, observed_at: "2026-02-01T10:00:00.000Z" },
+  });
+
+  assert.equal(result.action, "UPDATE");
+  assert.equal(result.record.full_width_mm, 1400);
+  assert.equal(result.record.usable_width_mm, 1350);
+  assert.equal(result.record.pattern_match_type, "STRAIGHT_MATCH");
+  assert.deepEqual(result.record.composition, existing.composition);
+  assert.deepEqual(result.record.imagery, existing.imagery);
+  assert.equal(result.record.sample_available, true);
+  assert.equal(result.record.lifecycle_state, "CURRENT");
+  assert.equal(result.record.price_verification_status, "VERIFIED");
+  assert.equal(result.record.storefront_selectable, true);
+});
+
+test("unsupported or absent Sanderson match data remains unknown", async () => {
+  const bytes = sandersonWorkbook([
+    catalogueRow({ sku: "THIRD101", match: "Third Drop Match" }),
+    catalogueRow({ sku: "BLANK101", match: null }),
+  ]);
+  const preview = await previewSandersonAllBrandsCatalogue({
+    document: { filename: "matches.xlsx", mime_type: null, format: "XLSX", bytes },
+  });
+  assert.equal(preview.summary.pattern_match_unknown, 2);
+  assert.equal(preview.records.every((record) => record.pattern_match_type === null), true);
+});
+
+test("No Pattern Match and shifted trailing cells stay blocked for review", async () => {
+  const noMatch = catalogueRow({ sku: "NOMATCH101", match: "No Pattern Match" });
+  const shifted = [...catalogueRow({ sku: "SHIFTED101" }), "unexpected shifted value"];
+  const bytes = sandersonWorkbook([noMatch, shifted]);
+  const preview = await previewSandersonAllBrandsCatalogue({
+    document: { filename: "structural-review.xlsx", mime_type: null, format: "XLSX", bytes },
+  });
+  assert.equal(preview.records[0].pattern_match_type, null);
+  assert.equal(preview.rejected_rows.length, 1);
+  assert.deepEqual(preview.rejected_rows[0].reasons, ["UNNAMED_TRAILING_COLUMN_DATA"]);
 });

@@ -27,7 +27,13 @@ function uniqueHeaders(values: unknown[]) {
   });
 }
 
-function tableFromMatrix(matrix: unknown[][], format: SupplierImportFormat, options: SupplierImportParserOptions, sheetName: string | null): ParsedSupplierTable {
+function tableFromMatrix(
+  matrix: unknown[][],
+  format: SupplierImportFormat,
+  options: SupplierImportParserOptions,
+  sheetName: string | null,
+  sourceObservedAt: string | null = null,
+): ParsedSupplierTable {
   const headerRow = options.header_row ?? 0;
   if (!Number.isInteger(headerRow) || headerRow < 0 || headerRow >= matrix.length) throw new Error("IMPORT_HEADER_ROW_NOT_FOUND");
   const headers = uniqueHeaders(matrix[headerRow] ?? []);
@@ -40,7 +46,7 @@ function tableFromMatrix(matrix: unknown[][], format: SupplierImportFormat, opti
   })));
   const warnings: string[] = [];
   if (matrix.some((row) => row.length > MAX_COLUMNS)) warnings.push(`Only the first ${MAX_COLUMNS} columns were imported.`);
-  return { format, sheet_name: sheetName, headers, rows, warnings };
+  return { format, sheet_name: sheetName, source_observed_at: sourceObservedAt, headers, rows, warnings };
 }
 
 function parseDelimited(document: SupplierImportDocument, format: SupplierImportFormat, options: SupplierImportParserOptions) {
@@ -65,7 +71,10 @@ function parseSpreadsheet(document: SupplierImportDocument, format: SupplierImpo
   const sheetName = options.sheet_name ?? workbook.SheetNames[0];
   if (!sheetName || !workbook.Sheets[sheetName]) throw new Error("IMPORT_WORKSHEET_NOT_FOUND");
   const matrix = XLSX.utils.sheet_to_json<unknown[]>(workbook.Sheets[sheetName], { header: 1, raw: false, defval: "", blankrows: false });
-  return tableFromMatrix(matrix, format, options, sheetName);
+  const modified = workbook.Props?.ModifiedDate;
+  const created = workbook.Props?.CreatedDate;
+  const observed = modified instanceof Date ? modified : created instanceof Date ? created : null;
+  return tableFromMatrix(matrix, format, options, sheetName, observed?.toISOString() ?? null);
 }
 
 function splitPdfLine(cells: string[], delimiter: string | undefined) {

@@ -1,6 +1,6 @@
 # CurtainsUK Phase 4E — durable supplier intelligence and approval gate
 
-Status: implemented on the non-production branch; database migration prepared but not applied
+Status: implemented and applied to the dedicated CurtainsUK development database
 
 Date: 2026-09-07
 
@@ -18,7 +18,7 @@ The implementation targets Postgres through Supabase. The migration is:
 
 It creates a dedicated `curtainsuk_private` schema. The schema is exposed to PostgREST only so server-side code can use the Data API; `public`, `anon` and `authenticated` receive no schema or table privileges. Every table has RLS enabled and forced. Only the elevated server role receives `SELECT` and `INSERT`. Default privileges prevent future private tables from being accidentally opened to browser roles.
 
-The migration has not been applied because this workspace has neither a linked development Supabase project nor a local Postgres/Docker runtime. Applying it without an explicit development target would risk the wrong environment. No production database action was attempted.
+The migration was applied on 2026-09-07 to the dedicated CurtainsUK development Supabase/PostgreSQL project and its schema, RLS, forced-RLS, append-only triggers, service-role access and browser-role isolation were verified. It was applied through the Supabase SQL editor, so no Supabase CLI migration-history row is claimed. See `docs/curtainsuk-phase-4g-postgresql-activation.md` for the activation evidence and current operational state. No production database action was attempted.
 
 Required development configuration:
 
@@ -136,12 +136,10 @@ Security verification checks server-only key naming, browser-role revocations, a
 
 ## Remaining gates
 
-1. Provision or identify the non-production Supabase project and apply the migration there.
-2. Store `SUPABASE_SECRET_KEY` in server-only environment configuration and assign `SUPPLIER_ADMIN` through trusted `app_metadata`.
-3. Re-append and manually approve the three verified Mocha observations in the development database.
-4. Confirm a business low-stock threshold if the health dashboard should classify quantity changes as low stock.
-5. Verify the remaining 17 colourways before they can leave `PRICE_REQUIRES_VERIFICATION`.
-6. Perform a separately authorised Git-history review/remediation for the Phase 4C supplier-commercial fixture.
-7. Run database-level migration/RLS tests against the development project before any scheduling or Shopify projection is considered.
+1. Assign production-ready `SUPPLIER_ADMIN` identities through trusted `app_metadata` before operational staff use.
+2. Confirm a business low-stock threshold if the health dashboard should classify quantity changes as low stock.
+3. Verify outstanding colourway commercial prices before they can leave `PRICE_REQUIRES_VERIFICATION`.
+4. Perform a separately authorised Git-history review/remediation if required for older Phase 4C supplier-commercial fixtures.
+5. Keep scheduling and Shopify writes disabled until separately approved.
 
 No production changes were made.

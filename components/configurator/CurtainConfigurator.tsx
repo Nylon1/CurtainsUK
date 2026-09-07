@@ -5,8 +5,8 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, CircleAlert, LoaderCircle, LockKeyhole, Ruler, ShieldCheck, Upload } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { ConstructionType, CoverageMeasurementBasis, HeadingType, LiningType, StackDirection } from "@/lib/decision-engine/types";
+import type { CustomerSafeFabricProjection } from "@/lib/fabric-master/types";
 import { trackStorefrontEvent } from "@/lib/storefront/analytics";
-import { STOREFRONT_FABRICS, repeatLabel } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOW_TYPES, STOREFRONT_WINDOWS_BY_SLUG, formatHeading, formatLining } from "@/lib/storefront/window-catalog";
 import type { StagingPriceResponse } from "@/lib/storefront/staging-pricing";
 
@@ -55,6 +55,12 @@ function currency(amountMinor: number) {
   return new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 }).format(amountMinor / 100);
 }
 
+function repeatLabel(fabric: CustomerSafeFabricProjection) {
+  if (fabric.patternMatchType === "RANDOM_MATCH") return "No pattern repeat";
+  if (fabric.verticalRepeatMm === null) return "Repeat pending";
+  return `${fabric.verticalRepeatMm / 10} cm vertical repeat`;
+}
+
 function ChoiceButton({ selected, title, detail, onClick }: { selected: boolean; title: string; detail?: string; onClick: () => void }) {
   return <button type="button" aria-pressed={selected} onClick={onClick} className={`min-h-20 rounded-2xl border p-4 text-left transition ${selected ? "border-[#173c32] bg-[#e8dfd2] ring-1 ring-[#173c32]" : "border-[#173c32]/12 bg-white hover:border-[#173c32]/35"}`}><span className="flex items-center justify-between gap-3 font-semibold">{title}{selected && <Check className="h-4 w-4" />}</span>{detail && <span className="mt-1 block text-xs leading-5 text-[#687a73]">{detail}</span>}</button>;
 }
@@ -63,9 +69,9 @@ function Field({ label, value, onChange, suffix = "cm", placeholder }: { label: 
   return <label className="block text-sm font-semibold">{label}<span className="mt-2 flex overflow-hidden rounded-xl border border-[#173c32]/15 bg-white focus-within:border-[#173c32]"><input inputMode="decimal" value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="min-w-0 flex-1 px-4 py-3 font-normal outline-none" /><span className="flex items-center bg-[#f0e9df] px-4 text-xs text-[#63756e]">{suffix}</span></span></label>;
 }
 
-export default function CurtainConfigurator({ initialWindow, initialFabric }: { initialWindow?: string; initialFabric?: string }) {
+export default function CurtainConfigurator({ fabrics, initialWindow, initialFabric }: { fabrics: [CustomerSafeFabricProjection, ...CustomerSafeFabricProjection[]]; initialWindow?: string; initialFabric?: string }) {
   const safeWindow = STOREFRONT_WINDOWS_BY_SLUG.has(initialWindow ?? "") ? initialWindow! : "standard-window";
-  const safeFabric = STOREFRONT_FABRICS.some((item) => item.id === initialFabric) ? initialFabric! : STOREFRONT_FABRICS[0].id;
+  const safeFabric = fabrics.some((item) => item.id === initialFabric) ? initialFabric! : fabrics[0].id;
   const [step, setStep] = useState(initialWindow ? 1 : 0);
   const [form, setForm] = useState<FormState>({
     windowSlug: safeWindow, measurementBasis: "TRACK_WIDTH", widthCm: "", dropCm: "", baySegments: "", bayAngles: "", peakHeight: "", leftVertical: "", rightVertical: "", leftSlope: "", rightSlope: "", leftAngle: "", rightAngle: "", fixingPosition: "Wall fixed above glazing", heading: "PENCIL_PLEAT", fabricId: safeFabric, liningChoice: "STANDARD", construction: "PAIR", stackDirection: "SPLIT", extras: [], photoNames: [], drawingName: "",
@@ -78,8 +84,8 @@ export default function CurtainConfigurator({ initialWindow, initialFabric }: { 
   const windowType = STOREFRONT_WINDOWS_BY_SLUG.get(form.windowSlug)!;
   const specialist = windowType.journey === "SPECIALIST";
   const steps = specialist ? SPECIALIST_STEPS : STEPS;
-  const fabric = STOREFRONT_FABRICS.find((item) => item.id === form.fabricId)!;
-  const availableHeadings = useMemo(() => windowType.headings.filter((item) => fabric.allowedHeadings.includes(item)), [fabric, windowType]);
+  const fabric = fabrics.find((item) => item.id === form.fabricId) ?? fabrics[0];
+  const availableHeadings = useMemo(() => windowType.headings, [windowType]);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) { setForm((current) => ({ ...current, [key]: value })); setError(""); }
 
@@ -154,7 +160,7 @@ export default function CurtainConfigurator({ initialWindow, initialFabric }: { 
 
           {((!specialist && step === 2) || (specialist && step === 2)) && <div><div className="text-xs font-semibold uppercase tracking-[0.16em] text-[#996a31]">Heading</div><h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">How should the top of the curtain look?</h1><div className="mt-7 grid gap-3 sm:grid-cols-2">{availableHeadings.map((heading) => <ChoiceButton key={heading} selected={form.heading === heading} title={formatHeading(heading)} detail={heading === "WAVE" ? "A neat, even fold on a compatible track" : heading.includes("PINCH") ? "A tailored, structured finish" : heading === "EYELET" ? "Contemporary rings for a pole" : "A versatile traditional heading"} onClick={() => update("heading", heading)} />)}</div></div>}
 
-          {((!specialist && step === 3) || (specialist && step === 3)) && <div><div className="text-xs font-semibold uppercase tracking-[0.16em] text-[#996a31]">Prestigious Textiles pilot</div><h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Choose the exact colourway</h1><div className="mt-7 grid gap-4 sm:grid-cols-2">{STOREFRONT_FABRICS.map((item) => <button key={item.id} type="button" onClick={() => { update("fabricId", item.id); trackStorefrontEvent("fabric_selected", { fabric_id: item.id, colour: item.colour, placement: "configurator" }); }} className={`overflow-hidden rounded-2xl border text-left ${form.fabricId === item.id ? "border-[#173c32] ring-1 ring-[#173c32]" : "border-[#173c32]/12"}`}><div className="relative aspect-[16/8]"><Image src={item.image} alt={`${item.design} ${item.colour} by Prestigious Textiles`} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" /></div><div className="p-4"><div className="font-semibold">{item.design} — {item.colour}</div><div className="mt-1 text-xs text-[#6a7c75]">{item.collection} · {item.usableWidthMm / 10} cm · {repeatLabel(item)}</div><div className="mt-1 text-xs font-semibold text-[#7a5a35]">{item.customerAvailability}</div></div></button>)}</div><Link href={`/fabrics?window=${form.windowSlug}`} className="mt-5 inline-flex text-sm font-semibold underline underline-offset-4">See full fabric details</Link></div>}
+          {((!specialist && step === 3) || (specialist && step === 3)) && <div><div className="text-xs font-semibold uppercase tracking-[0.16em] text-[#996a31]">Approved supplier pilot</div><h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Choose the exact colourway</h1><div className="mt-7 grid gap-4 sm:grid-cols-2">{fabrics.map((item) => <button key={item.id} type="button" onClick={() => { update("fabricId", item.id); trackStorefrontEvent("fabric_selected", { fabric_id: item.id, colour: item.colour, placement: "configurator" }); }} className={`overflow-hidden rounded-2xl border text-left ${form.fabricId === item.id ? "border-[#173c32] ring-1 ring-[#173c32]" : "border-[#173c32]/12"}`}><div className="relative aspect-[16/8] bg-[#e8dfd2]">{item.imageReferences[0] ? <Image src={item.imageReferences[0]} alt={`${item.design} ${item.colour} by ${item.brand}`} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" /> : <div className="flex h-full items-center justify-center text-xs font-semibold uppercase tracking-[0.14em] text-[#60736b]">Authorised image pending</div>}</div><div className="p-4"><div className="font-semibold">{item.design} — {item.colour}</div><div className="mt-1 text-xs text-[#6a7c75]">{item.brand} · {item.collection} · {item.usableWidthMm === null ? "Width pending" : `${item.usableWidthMm / 10} cm`} · {repeatLabel(item)}</div><div className="mt-1 text-xs font-semibold text-[#7a5a35]">{item.availability}</div></div></button>)}</div><Link href={`/fabrics?window=${form.windowSlug}`} className="mt-5 inline-flex text-sm font-semibold underline underline-offset-4">See full fabric details</Link></div>}
 
           {((!specialist && step === 4) || (specialist && step === 4)) && <div><div className="text-xs font-semibold uppercase tracking-[0.16em] text-[#996a31]">Lining</div><h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Choose light, warmth and finish</h1><div className="mt-7 grid gap-3 sm:grid-cols-2">{(["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "INTERLINING"] as const).map((lining) => <ChoiceButton key={lining} selected={form.liningChoice === lining} title={lining === "INTERLINING" ? "Interlining" : formatLining(lining)} detail={lining === "BLACKOUT" ? "Stronger light control" : lining === "THERMAL" ? "Thermal-lined construction" : lining === "INTERLINING" ? "Additional body and insulation; always reviewed" : lining === "UNLINED" ? "Only where fabric and window allow" : "A practical everyday finish"} onClick={() => update("liningChoice", lining)} />)}</div></div>}
 

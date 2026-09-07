@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { WINDOW_TYPES_BY_SLUG } from "../../decision-engine/seed/window-types";
 import { STOREFRONT_FABRICS } from "../fabrics";
-import { calculateStagingPrice, classifySpecialistReview } from "../staging-pricing";
+import { calculateStagingPriceForTest, classifySpecialistReview } from "../staging-pricing";
 import { STOREFRONT_WINDOW_TYPES } from "../window-catalog";
 import { buildShopifyCatalogPayload } from "../shopify-contract";
 import { runPhase4ABayPricingGate } from "../../decision-engine/calibration/phase4a-bay";
@@ -38,7 +38,8 @@ test("the Shopify catalogue payload contains 14 routes and no commercial cost da
 });
 
 test("a normal standard curtain receives a server-authoritative instant price", () => {
-  const result = calculateStagingPrice({
+  const fabric = { ...STOREFRONT_FABRICS[0], supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
+  const result = calculateStagingPriceForTest({
     windowSlug: "standard-window",
     measurementBasis: "TRACK_WIDTH",
     widthCm: 200,
@@ -48,7 +49,7 @@ test("a normal standard curtain receives a server-authoritative instant price", 
     lining: "STANDARD",
     construction: "PAIR",
     stackDirection: "SPLIT",
-  });
+  }, fabric);
   assert.equal(result.outcome, "INSTANT_PRICE");
   assert.ok(result.totalAmountMinor > 0);
   assert.equal(result.totalAmountMinor % 100, 0, "customer total should round to a whole pound");
@@ -57,7 +58,8 @@ test("a normal standard curtain receives a server-authoritative instant price", 
 });
 
 test("a real Dali bay is priced with review at the unchanged 35% rule", () => {
-  const result = calculateStagingPrice({
+  const fabric = { ...STOREFRONT_FABRICS.find((item) => item.id === "pt-4270-147")!, supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
+  const result = calculateStagingPriceForTest({
     windowSlug: "bay-window",
     measurementBasis: "TRACK_WIDTH",
     widthCm: 340,
@@ -70,7 +72,7 @@ test("a real Dali bay is priced with review at the unchanged 35% rule", () => {
     construction: "PAIR",
     stackDirection: "SPLIT",
     photoNames: ["bay-room.jpg"],
-  });
+  }, fabric);
   assert.equal(result.outcome, "PRICE_WITH_REVIEW");
   assert.equal(result.technicalReviewRequired, true);
   assert.equal(result.fabricWidths, 6);

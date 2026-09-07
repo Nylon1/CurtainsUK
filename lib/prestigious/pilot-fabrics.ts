@@ -14,7 +14,7 @@ const DESIGNS: Record<DesignKey, {
   weightGsm: number | null;
   description: string;
 }> = {
-  ESCHER: { code: "4269", fullWidthMm: 1450, usableWidthMm: 1400, verticalRepeatMm: null, horizontalRepeatMm: null, composition: [{ material: "Polyester", percentage: 68 }, { material: "Viscose", percentage: 32 }], careCode: "0CSpE", usageCode: "BCDU", weightGsm: 845, description: "A tactile Formation weave with a calm, architectural surface." },
+  ESCHER: { code: "4269", fullWidthMm: 1420, usableWidthMm: 1400, verticalRepeatMm: null, horizontalRepeatMm: null, composition: [{ material: "Polyester", percentage: 68 }, { material: "Viscose", percentage: 32 }], careCode: "0CSpE", usageCode: "BCDU", weightGsm: 845, description: "A tactile Formation weave with a calm, architectural surface." },
   DALI: { code: "4270", fullWidthMm: 1460, usableWidthMm: 1430, verticalRepeatMm: 627, horizontalRepeatMm: 237, composition: [{ material: "Polyester", percentage: 61 }, { material: "Cotton", percentage: 39 }], careCode: "1CTpE", usageCode: "BCDU", weightGsm: 434, description: "A rhythmic geometric from the Formation collection." },
   DIEZ: { code: "4271", fullWidthMm: 1400, usableWidthMm: 1320, verticalRepeatMm: 233, horizontalRepeatMm: 220, composition: [{ material: "Polyester", percentage: 77 }, { material: "Cotton", percentage: 23 }], careCode: "0CSpE", usageCode: "BCD", weightGsm: 847, description: "A structured Formation design with a compact repeat." },
   SARCONE: { code: "4272", fullWidthMm: 1420, usableWidthMm: 1390, verticalRepeatMm: 255, horizontalRepeatMm: null, composition: [{ material: "Polyester", percentage: 61 }, { material: "Cotton", percentage: 39 }], careCode: "1CTpE", usageCode: "BCDU", weightGsm: null, description: "A versatile small-scale geometric in the Formation palette." },
@@ -48,7 +48,7 @@ const PORTAL_VERIFIED_SKUS = new Set(["4269/147", "4270/147", "4271/147"]);
 
 function imageUrl(design: DesignKey, code: string, colour: string) {
   const name = design.toLowerCase();
-  return `https://www.prestigious.co.uk/wp-content/uploads/product_images/thumbs/${DESIGNS[design].code}-${code}%20${name}%20${colour.toLowerCase()}.jpg`;
+  return `https://www.prestigious.co.uk/assets/collections/${DESIGNS[design].code}%20${name}/${DESIGNS[design].code}-${code}%20${name}%20${colour.toLowerCase()}.jpg`;
 }
 
 function buildFabric(row: (typeof COLOURWAYS)[number]): PrestigiousPublicFabric {

@@ -3,11 +3,9 @@ import { createCurtainConfiguration } from "@/lib/decision-engine/curtain-config
 import { calculatePrice } from "@/lib/decision-engine/pricing-engine";
 import { DRAFT_PRICING_RULE_SET, INITIAL_COMPLEXITY_RULE_SET } from "@/lib/decision-engine/seed/pricing-rules";
 import { WINDOW_TYPES_BY_SLUG } from "@/lib/decision-engine/seed/window-types";
-import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
+import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, FabricSpec, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
 import { STOREFRONT_FABRICS_BY_ID } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
-import { evaluateStock } from "@/lib/prestigious/availability";
-import { getPrivateSupplierRecord, resolveFabricForServerPricing } from "@/lib/prestigious/private-supplier-records";
 
 export interface StagingPriceRequest {
   windowSlug: string;
@@ -74,14 +72,13 @@ function scalarMeasurementsFor(masterSlug: string, widthCm: number, dropCm: numb
     : { coverage_width: widthCm, finished_drop: dropCm };
 }
 
-export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceResponse {
+function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabric: FabricSpec, availability: string): StagingPriceResponse {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow) throw new Error("Unknown window type");
   if (storefrontWindow.journey === "SPECIALIST") throw new Error("Specialist shapes require the review journey");
   const masterSlug = storefrontWindow.masterSlugs[0];
   const windowType = WINDOW_TYPES_BY_SLUG.get(masterSlug);
-  const fabric = STOREFRONT_FABRICS_BY_ID.get(input.fabricId);
-  if (!windowType || !fabric) throw new Error("Window type or fabric is unavailable");
+  if (!windowType) throw new Error("Window type is unavailable");
   if (!Number.isFinite(input.widthCm) || !Number.isFinite(input.dropCm)) throw new Error("Width and drop must be valid numbers");
 
   const isBay = masterSlug === "bay-window";
@@ -89,8 +86,8 @@ export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceR
     id: `stage-${Date.now()}`,
     windowTypeSlug: masterSlug,
     measurementBasis: input.measurementBasis,
-    fabricSpecId: fabric.id,
-    colour: fabric.colour,
+    fabricSpecId: pricedFabric.id,
+    colour: pricedFabric.colour,
     heading: input.heading,
     lining: input.lining,
     interlining: input.interlining ?? "NONE",
@@ -111,7 +108,6 @@ export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceR
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
   const rules = buildStagingRuleSet();
-  const pricedFabric = resolveFabricForServerPricing(fabric);
   const calculation = calculatePrice({ configuration, windowType, fabric: pricedFabric, rules, shippingZone: "UK_MAINLAND", mode: "CALIBRATION" });
   const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, {
     fabric: pricedFabric,
@@ -128,7 +124,7 @@ export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceR
     reasons: complexity.reasons,
     fabricWidths: calculation.fabricWidths.totalWidths,
     fabricMetres: calculation.fabricMetres,
-    selectedFabric: { id: fabric.id, supplier: fabric.supplier.replace(" (synthetic staging fixture)", ""), collection: fabric.collection, design: fabric.design, colour: fabric.colour },
+    selectedFabric: { id: pricedFabric.id, supplier: pricedFabric.supplier, collection: pricedFabric.collection, design: pricedFabric.design, colour: pricedFabric.colour },
     heading: input.heading,
     lining: input.lining,
     construction: input.construction,
@@ -137,11 +133,13 @@ export function calculateStagingPrice(input: StagingPriceRequest): StagingPriceR
     totalAmountMinor: calculation.total.amountMinor,
     currency: "GBP",
     delivery: "UK Mainland delivery shown separately; staging rate pending",
-    availability: (() => {
-      const record = getPrivateSupplierRecord(fabric.id);
-      return record ? evaluateStock(record, calculation.fabricMetres).customerState : "Availability to be confirmed";
-    })(),
+    availability,
   };
+}
+
+/** Pure test/calibration entry point. The cost is supplied by the test, never read from Git. */
+export function calculateStagingPriceForTest(input: StagingPriceRequest, pricedFabric: FabricSpec) {
+  return calculateStagingPriceWithFabric(input, pricedFabric, "Availability to be confirmed");
 }
 
 export interface SpecialistReviewRequest {

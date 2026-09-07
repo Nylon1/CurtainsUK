@@ -1,6 +1,6 @@
 # CurtainsUK Phase 4F - supplier-neutral bulk import
 
-Status: implemented on the non-production branch; database migrations prepared but not applied
+Status: implemented and applied to the dedicated CurtainsUK development database
 
 Date: 2026-09-07
 
@@ -117,7 +117,7 @@ Phase 4F registers the non-commercial Sanderson supplier identity and adds the g
 
 It creates no supplier table or supplier-specific column. Public, anonymous and authenticated roles cannot execute it; only the server role receives execution permission.
 
-No development Supabase/Postgres environment is available in this workspace. Neither the Phase 4E nor Phase 4F migration was applied. Tests use the in-memory repository contract and synthetic, non-commercial fixtures. No persistence is claimed.
+The Phase 4E and Phase 4F migrations were applied on 2026-09-07 to the dedicated CurtainsUK development Supabase/PostgreSQL project and verified directly. They were applied through the Supabase SQL editor, so no Supabase CLI migration-history row is claimed. Phase 4G subsequently used the same supplier-neutral import contract for real authorised Prestigious catalogue data and one real Sanderson pilot record. See `docs/curtainsuk-phase-4g-postgresql-activation.md`.
 
 ## Sanderson compatibility
 
@@ -158,13 +158,11 @@ Tests cover:
 
 ## Remaining decisions and gates
 
-1. Provide a non-production Supabase project and apply Phase 4E before Phase 4F.
-2. Obtain representative authorised Prestigious and Sanderson files to confirm real column names, sheet names, date formats and status values.
-3. Register Sanderson supplier/SKU links and its source-specific policies in private data.
-4. Decide whether supplier PDF layouts are stable enough for approved mappings or should remain manual/reference-only.
-5. Decide whether OCR is needed for scanned supplier PDFs and, if so, approve a private OCR processor and retention policy.
-6. Confirm whether imported official files should start `UNVERIFIED`, `PARTIALLY_VERIFIED` or `VERIFIED` by supplier/source.
-7. Confirm source-specific freshness for official PDF/CSV/XLS exports; Phase 4F does not copy Prestigious Webtex freshness assumptions to other sources.
-8. Run the migrations and database-level transaction/RLS tests against the development project before operational use.
+1. Obtain the completed authorised Sanderson all-brands XLSX export and approve its real column mapping.
+2. Decide whether supplier PDF layouts are stable enough for approved mappings or should remain manual/reference-only.
+3. Decide whether OCR is needed for scanned supplier PDFs and, if so, approve a private OCR processor and retention policy.
+4. Confirm the verification status policy for each official supplier source.
+5. Confirm source-specific freshness for future official Sanderson exports.
+6. Keep supplier scheduling, ordering and Shopify writes disabled until separately approved.
 
 No production changes were made.

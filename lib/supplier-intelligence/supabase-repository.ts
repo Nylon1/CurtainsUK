@@ -1,4 +1,3 @@
-import "server-only";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import { normalizeSupplierSnapshot } from "@/lib/supplier-sync/normalize";
 import type { NormalizedSupplierSnapshot } from "@/lib/supplier-sync/types";

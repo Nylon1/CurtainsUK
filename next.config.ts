@@ -3,7 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "www.prestigious.co.uk", pathname: "/wp-content/uploads/product_images/thumbs/**" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "www.prestigious.co.uk", pathname: "/assets/**" },
+      { protocol: "https", hostname: "trade.sandersondesigngroup.com", pathname: "/static/media/catalog/product/**" },
+    ],
   },
   async redirects() {
     return [

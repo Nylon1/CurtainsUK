@@ -5,7 +5,7 @@ import { applyDiscontinuedExport } from "../discontinued-import";
 import { PRESTIGIOUS_PILOT_FABRICS, PRESTIGIOUS_PILOT_FABRICS_BY_ID } from "../pilot-fabrics";
 import { resolveFabricForServerPricing } from "../private-supplier-records";
 import type { PrestigiousPrivateSupplierRecord } from "../types";
-import { calculateStagingPrice, classifySpecialistReview } from "@/lib/storefront/staging-pricing";
+import { calculateStagingPriceForTest, classifySpecialistReview } from "@/lib/storefront/staging-pricing";
 import { buildShopifyCatalogPayload } from "@/lib/storefront/shopify-contract";
 
 const now = new Date("2026-09-06T12:00:00.000Z");
@@ -50,10 +50,12 @@ test("official discontinued export transitions without deletion", () => {
 });
 
 test("real Escher standard and Dali bay configurations use verified cut costs", () => {
-  const standard = calculateStagingPrice({ windowSlug: "standard-window", measurementBasis: "TRACK_WIDTH", widthCm: 200, dropCm: 220, fabricId: "pt-4269-147", heading: "PENCIL_PLEAT", lining: "STANDARD", construction: "PAIR", stackDirection: "SPLIT" });
+  const escher = resolveFabricForServerPricing(PRESTIGIOUS_PILOT_FABRICS_BY_ID.get("pt-4269-147")!, 2_000, "2026-09-07");
+  const dali = resolveFabricForServerPricing(PRESTIGIOUS_PILOT_FABRICS_BY_ID.get("pt-4270-147")!, 2_000, "2026-09-07");
+  const standard = calculateStagingPriceForTest({ windowSlug: "standard-window", measurementBasis: "TRACK_WIDTH", widthCm: 200, dropCm: 220, fabricId: "pt-4269-147", heading: "PENCIL_PLEAT", lining: "STANDARD", construction: "PAIR", stackDirection: "SPLIT" }, escher);
   assert.equal(standard.outcome, "INSTANT_PRICE");
   assert.ok(standard.totalAmountMinor > 0);
-  const bay = calculateStagingPrice({ windowSlug: "bay-window", measurementBasis: "TRACK_WIDTH", widthCm: 340, dropCm: 220, baySegmentWidthsCm: [80, 180, 80], bayAnglesDegrees: [135, 135], fabricId: "pt-4270-147", heading: "WAVE", lining: "BLACKOUT", construction: "PAIR", stackDirection: "SPLIT", photoNames: ["bay.jpg"] });
+  const bay = calculateStagingPriceForTest({ windowSlug: "bay-window", measurementBasis: "TRACK_WIDTH", widthCm: 340, dropCm: 220, baySegmentWidthsCm: [80, 180, 80], bayAnglesDegrees: [135, 135], fabricId: "pt-4270-147", heading: "WAVE", lining: "BLACKOUT", construction: "PAIR", stackDirection: "SPLIT", photoNames: ["bay.jpg"] }, dali);
   assert.equal(bay.outcome, "PRICE_WITH_REVIEW");
   assert.equal(bay.technicalReviewRequired, true);
 });

@@ -1,4 +1,4 @@
-import { supplierAdminIdentity } from "@/lib/supplier-intelligence/server-auth";
+import { reviewStaffIdentity } from "@/lib/storefront/review-auth";
 import { contentDispositionFileName, retrieveStaffEvidence } from "@/lib/storefront/security/evidence-access";
 import { PRIVATE_NO_STORE_HEADERS } from "@/lib/storefront/security/http";
 import { endpointRateLimitResponse } from "@/lib/storefront/security/endpoint-rate-limit";
@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request, context: { params: Promise<{ evidenceId: string }> }) {
-  const actor = await supplierAdminIdentity();
+  const actor = await reviewStaffIdentity();
   if (!actor) return Response.json({ error: "STAFF_ACCESS_REQUIRED" }, { status: 403, headers: PRIVATE_NO_STORE_HEADERS });
   try {
     await enforceStaffEndpointRateLimit({ request, actorId: actor.id, scope: "evidence-download", policy: { limit: 60, windowSeconds: 60 } });

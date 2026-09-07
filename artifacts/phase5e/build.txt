@@ -1,0 +1,170 @@
+
+> apex-curtains-site@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 16.4s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/178) ...
+  Generating static pages using 15 workers (44/178) 
+  Generating static pages using 15 workers (88/178) 
+  Generating static pages using 15 workers (133/178) 
+✓ Generating static pages using 15 workers (178/178) in 2.6s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about-apex-curtains
+├ ○ /admin
+├ ○ /admin/catalogue-readiness
+├ ○ /admin/login
+├ ○ /admin/posts
+├ ○ /admin/prestigious-stock
+├ ○ /admin/projects
+├ ○ /admin/reviews
+├ ○ /admin/shipping-rates
+├ ○ /admin/supplier-imports
+├ ○ /admin/supplier-intelligence
+├ ƒ /advice
+├ ƒ /advice/[slug]
+├ ○ /advice/curtain-consultation-questions
+├ ○ /advice/curtain-measurements-apex-windows
+├ ○ /advice/curtain-pricing-apex-windows
+├ ○ /advice/curtains-discussing-fabrics
+├ ○ /apex-blinds
+├ ○ /apex-curtains
+├ ƒ /api/admin/catalogue-readiness
+├ ƒ /api/admin/prestigious-prices
+├ ƒ /api/admin/prestigious-stock
+├ ƒ /api/admin/review-evidence/[evidenceId]/access-token
+├ ƒ /api/admin/review-evidence/[evidenceId]/deletion-complete
+├ ƒ /api/admin/review-evidence/[evidenceId]/deletion-request
+├ ƒ /api/admin/review-evidence/[evidenceId]/download
+├ ƒ /api/admin/review-evidence/maintenance
+├ ƒ /api/admin/reviews
+├ ƒ /api/admin/reviews/[requestId]
+├ ƒ /api/admin/reviews/[requestId]/amend
+├ ƒ /api/admin/reviews/[requestId]/checkout
+├ ƒ /api/admin/reviews/[requestId]/transition
+├ ƒ /api/admin/shipping-rates
+├ ƒ /api/admin/supplier-imports/apply
+├ ƒ /api/admin/supplier-imports/preview
+├ ƒ /api/admin/supplier-intelligence/decision
+├ ƒ /api/admin/supplier-intelligence/health
+├ ƒ /api/admin/supplier-intelligence/projection
+├ ƒ /api/send-lead
+├ ƒ /api/staging/curtains-price
+├ ƒ /api/staging/shopify-proxy/[operation]
+├ ƒ /api/staging/shopify/catalog
+├ ƒ /api/staging/shopify/price
+├ ƒ /api/staging/shopify/review-request
+├ ƒ /api/staging/shopify/specialist-review
+├ ƒ /api/staging/specialist-review
+├ ○ /areas
+├ ƒ /areas/[city]
+├ ○ /arlo-curtain-advisor
+├ ○ /auth/callback
+├ ○ /barn-conversion-curtains
+├ ○ /commercial-curtain-track-installation
+├ ƒ /configure
+├ ○ /contact
+├ ○ /cookies
+├ ○ /curtain-accessories
+├ ○ /curtain-design-guide
+├ ○ /curtain-fabrics
+├ ○ /curtain-headings
+├ ○ /curtain-linings
+├ ○ /curtain-solutions
+├ ○ /curtain-tracks
+├ ○ /data-request
+├ ƒ /fabrics
+├ ○ /faq
+├ ○ /gable-end-curtains
+├ ƒ /gallery
+├ ƒ /gallery/[slug]
+├ ○ /get-curtain-quote
+├ ● /journey/[slug]
+│ ├ /journey/show-us-your-window
+│ ├ /journey/we-decode-the-shape
+│ ├ /journey/we-shape-the-design
+│ └ [+2 more paths]
+├ ○ /large-window-curtains
+├ ○ /made-in-uk-curtains
+├ ○ /measure
+├ ○ /press
+├ ○ /price-promise
+├ ○ /privacy-policy
+├ ○ /professionals
+├ ○ /professionals/architects
+├ ○ /professionals/contractors-fit-out
+├ ○ /professionals/developers-housebuilders
+├ ○ /professionals/interior-designers
+├ ○ /professionals/project-review
+├ ○ /professionals/specifier-resources
+├ ○ /professionals/specifier-resources/project-information-checklist
+├ ○ /professionals/workspace
+├ ƒ /professionals/workspace/invitations/[token]
+├ ƒ /professionals/workspace/live
+├ ƒ /professionals/workspace/live/new-project
+├ ƒ /professionals/workspace/live/projects/[id]
+├ ƒ /professionals/workspace/live/projects/[id]/actions/new
+├ ƒ /professionals/workspace/live/projects/[id]/activity
+├ ƒ /professionals/workspace/live/projects/[id]/apertures/[apertureId]
+├ ƒ /professionals/workspace/live/projects/[id]/apertures/new
+├ ƒ /professionals/workspace/live/projects/[id]/approvals
+├ ƒ /professionals/workspace/live/projects/[id]/documents
+├ ƒ /professionals/workspace/live/projects/[id]/documents/[documentId]/open
+├ ƒ /professionals/workspace/live/projects/[id]/documents/new
+├ ƒ /professionals/workspace/live/projects/[id]/documents/upload
+├ ƒ /professionals/workspace/live/projects/[id]/drawing-review
+├ ƒ /professionals/workspace/live/projects/[id]/exports
+├ ƒ /professionals/workspace/live/projects/[id]/exports/[exportId]
+├ ƒ /professionals/workspace/live/projects/[id]/handover
+├ ƒ /professionals/workspace/live/projects/[id]/members
+├ ƒ /professionals/workspace/live/projects/[id]/programme
+├ ƒ /professionals/workspace/live/projects/[id]/schedule
+├ ƒ /professionals/workspace/live/projects/[id]/specification
+├ ƒ /professionals/workspace/live/projects/[id]/specification/items
+├ ƒ /professionals/workspace/live/templates
+├ ○ /professionals/workspace/login
+├ ○ /professionals/workspace/new-project
+├ ○ /professionals/workspace/projects/apx-demo-001
+├ ○ /professionals/workspace/projects/apx-demo-001/review
+├ ○ /professionals/workspace/projects/apx-demo-001/specification
+├ ○ /professionals/workspace/set-password
+├ ○ /reviews
+├ ○ /robots.txt
+├ ○ /samples
+├ ○ /seen-on-tv
+├ ○ /services
+├ ○ /services/design-make-curtains
+├ ○ /services/measure-consultation
+├ ○ /services/premium-installation
+├ ○ /shop-by-window
+├ ● /shop-by-window/[slug]
+│ ├ /shop-by-window/standard-window
+│ ├ /shop-by-window/bay-window
+│ ├ /shop-by-window/apex-window
+│ └ [+11 more paths]
+├ ƒ /sitemap-advice.xml
+├ ƒ /sitemap-areas.xml
+├ ƒ /sitemap-gallery.xml
+├ ƒ /sitemap-pages.xml
+├ ○ /sitemap.xml
+├ ƒ /start-designing
+├ ○ /terms
+├ ○ /triangular-window-curtains
+└ ○ /window-types
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

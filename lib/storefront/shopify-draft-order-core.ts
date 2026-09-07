@@ -43,6 +43,7 @@ export interface ShopifyDraftOrderInput {
   };
   shippingAddress: {
     countryCode: "GB";
+    zip?: string;
   };
   tags: string[];
   taxExempt: false;
@@ -263,14 +264,13 @@ export function buildShopifyDraftOrderContract(input: {
   );
   const availability = AVAILABILITY_LABELS[snapshot.availability]
     ?? "Availability to be confirmed";
-  const fabricLabel = safeText(input.fabricLabel || snapshot.supplierSku);
+  const fabricLabel = safeText(input.fabricLabel || "Approved curtain fabric");
   const approval = approvalReference(handoff);
   const lineAttributes: ShopifyAttributeInput[] = [
     { key: "Configuration", value: snapshot.configurationId },
     { key: "Window type", value: humanize(snapshot.windowType) },
     { key: "Measurements", value: customerMeasurementSummary(snapshot.measurements) },
     { key: "Fabric", value: fabricLabel },
-    { key: "Fabric SKU", value: safeText(snapshot.supplierSku) },
     { key: "Heading", value: humanize(snapshot.heading) },
     { key: "Lining", value: humanize(snapshot.lining) },
     { key: "Pair / single", value: humanize(snapshot.construction) },
@@ -299,7 +299,8 @@ export function buildShopifyDraftOrderContract(input: {
       originalUnitPriceWithCurrency: moneyFromMinor(snapshot.customerPrice.grossAmountMinor),
       requiresShipping: true,
       taxable: true,
-      sku: safeText(snapshot.supplierSku, 120),
+      // Supplier SKU remains in the private snapshot, joined by configuration ID.
+      sku: `CUK-${snapshot.configurationId}`,
       customAttributes: lineAttributes,
     }],
     note: `STAGING TEST ONLY — do not fulfil or collect live payment. CurtainsUK configuration ${snapshot.configurationId}.`,
@@ -310,7 +311,7 @@ export function buildShopifyDraftOrderContract(input: {
     },
     // Draft order tax calculation needs an explicit UK jurisdiction before
     // checkout collects the customer's full delivery address.
-    shippingAddress: { countryCode: "GB" },
+    shippingAddress: { countryCode: "GB", ...(snapshot.shipping.postcode ? { zip: snapshot.shipping.postcode } : {}) },
     tags: [
       "CURTAINSUK_STAGING",
       "DO_NOT_FULFIL",

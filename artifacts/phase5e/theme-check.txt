@@ -1,0 +1,125 @@
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\hamza\OneDrive\Documents\ChatGPT\Sitora Apex                        │
+│  curtains\shopify-theme\curtainsuk-dawn-16\layout\password.liquid            │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'scheme_classes' used.                                       │
+│                                                                              │
+│  40  {% assign scheme_classes = scheme_classes | append: ', .color-' |       │
+│  append: scheme.id %}                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\hamza\OneDrive\Documents\ChatGPT\Sitora Apex                        │
+│  curtains\shopify-theme\curtainsuk-dawn-16\layout\theme.liquid               │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'scheme_classes' used.                                       │
+│                                                                              │
+│  82  {% assign scheme_classes = scheme_classes | append: ', .color-' |       │
+│  append: scheme.id %}                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\hamza\OneDrive\Documents\ChatGPT\Sitora Apex                        │
+│  curtains\shopify-theme\curtainsuk-dawn-16\sections\main-article.liquid      │
+│                                                                              │
+│                                                                              │
+│  [warning]: VariableName                                                     │
+│  The variable 'anchorId' uses wrong naming format                            │
+│                                                                              │
+│  102  {%- assign anchorId = '#Comments-' | append: article.id -%}            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\hamza\OneDrive\Documents\ChatGPT\Sitora Apex curtains\shopify-them  │
+│  e\curtainsuk-dawn-16\sections\main-list-collections.liquid                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: VariableName                                                     │
+│  The variable 'moduloResult' uses wrong naming format                        │
+│                                                                              │
+│  20  assign moduloResult = 28 | modulo: section.settings.columns_desktop     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\hamza\OneDrive\Documents\ChatGPT\Sitora Apex                        │
+│  curtains\shopify-theme\curtainsuk-dawn-16\sections\main-product.liquid      │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'seo_media' is assigned but not used                           │
+│                                                                              │
+│  745  assign seo_media = product.featured_media                              │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'continue' used.                                             │
+│                                                                              │
+│  601  offset: continue                                                       │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\hamza\OneDrive\Documents\ChatGPT\Sitora Apex                        │
+│  curtains\shopify-theme\curtainsuk-dawn-16\sections\main-search.liquid       │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'product_settings' is assigned but not used                    │
+│                                                                              │
+│  274  {%- capture product_settings -%}{%- if                                 │
+│  section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%-  │
+│   endcapture -%}                                                             │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\hamza\OneDrive\Documents\ChatGPT\Sitora Apex                        │
+│  curtains\shopify-theme\curtainsuk-dawn-16\snippets\header-drawer.liquid     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  28  {%- for link in section.settings.menu.links -%}                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  23  <div id="menu-drawer" class="gradient menu-drawer motion-reduce         │
+│  color-{{ section.settings.menu_color_scheme }}">                            │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  12  <header-drawer data-breakpoint="{% if                                   │
+│  section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{%  │
+│   endif %}">                                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Theme Check Summary.                                                        │
+│                                                                              │
+│  172 files inspected with 10 total offenses found across 7 files.            │
+│  10 warnings.                                                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

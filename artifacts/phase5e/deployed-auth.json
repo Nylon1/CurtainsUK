@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-09-07T21:47:47.484Z",
+  "base": "https://curtainsuk-staging-gateway.vercel.app",
+  "checks": [
+    {
+      "path": "/api/admin/reviews",
+      "authenticated": false,
+      "status": 401,
+      "noStore": true
+    },
+    {
+      "path": "/api/admin/reviews",
+      "authenticated": true,
+      "status": 200,
+      "noStore": true
+    },
+    {
+      "path": "/api/admin/shipping-rates",
+      "authenticated": true,
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/admin/prestigious-stock",
+      "authenticated": true,
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/admin/review-evidence/maintenance",
+      "authenticated": true,
+      "status": 403,
+      "noStore": true
+    }
+  ]
+}

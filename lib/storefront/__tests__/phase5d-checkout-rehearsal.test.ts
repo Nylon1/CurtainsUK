@@ -26,6 +26,8 @@ import type { ShippingQuote } from "../shipping";
 import { createReviewAcceptanceTokenWithSecret } from "../review-acceptance-token-core";
 import { buildStagingReviewResumeUrl } from "../review-resume-link-core";
 import { stagingCheckoutIdentity } from "../checkout-idempotency";
+import { calculateStagingPriceForTest } from "../staging-pricing";
+import { STOREFRONT_FABRICS } from "../fabrics";
 
 const IDS = {
   request: "11111111-1111-4111-8111-111111111111",
@@ -60,10 +62,11 @@ const READY_SHIPPING: ShippingQuote = Object.freeze({
 
 function approvedHandoff(
   outcome: "INSTANT_PRICE" | "PRICE_WITH_REVIEW" | "MANUAL_QUOTE" = "PRICE_WITH_REVIEW",
+  price: { netAmountMinor: number; vatAmountMinor: number; grossAmountMinor: number; vatRateBasisPoints: number; currency: "GBP" } = PRICE,
 ): Readonly<StagingCheckoutHandoff> {
   const gate = evaluateCheckoutGate({
     outcome,
-    price: PRICE,
+    price,
     fabricPricingEligible: true,
     technicallyValid: true,
     availability: "FABRIC_AVAILABLE",
@@ -89,7 +92,7 @@ function approvedHandoff(
     construction: "PAIR",
     calculatedFabricMetres: outcome === "INSTANT_PRICE" ? 10.4 : 15.6,
     pricingRuleVersion: "curtainsuk-draft-v1-35",
-    customerPrice: PRICE,
+    customerPrice: price,
     availability: "FABRIC_AVAILABLE",
     shipping: READY_SHIPPING,
     customerAcceptedAt: "2026-09-07T18:00:00.000Z",
@@ -144,7 +147,9 @@ test("Shopify test Draft Order contract carries exact immutable goods, VAT, deli
   assert.ok(contract.input.tags.includes("NO_REAL_PAYMENT"));
   assert.ok(contract.input.tags.includes(contract.idempotencyTag));
   const lineAttributes = new Map(contract.input.lineItems[0].customAttributes.map((item) => [item.key, item.value]));
-  assert.equal(lineAttributes.get("Fabric SKU"), "4270/147");
+  assert.equal(lineAttributes.has("Fabric SKU"), false);
+  assert.doesNotMatch(JSON.stringify(contract.input), /4270\/147/);
+  assert.equal(handoff.snapshot.supplierSku, "4270/147");
   assert.equal(lineAttributes.get("Pricing rules"), "curtainsuk-draft-v1-35");
   assert.match(lineAttributes.get("Measurements") ?? "", /Bay Segment Widths: 80 cm \/ 180 cm \/ 80 cm/);
   assert.match(lineAttributes.get("Review / quote") ?? "", new RegExp(IDS.request));
@@ -500,6 +505,20 @@ test("approved monetary snapshot and Shopify contract do not reprice after later
   assert.deepEqual(rebuiltFromApprovedSnapshot.expected, originalContract.expected);
   assert.equal(rebuiltFromApprovedSnapshot.input.lineItems[0].originalUnitPriceWithCurrency.amount, "1253.00");
   assert.equal(rebuiltFromApprovedSnapshot.input.lineItems[0].customAttributes.find((item) => item.key === "Availability")?.value, "Fabric available");
+});
+
+test("a real pricing-engine cost change affects a new configuration but cannot mutate the existing snapshot contract", () => {
+  const pricedFabric = { ...STOREFRONT_FABRICS[0], supplierCostPerMetre: { amountMinor: 2000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
+  const configuration = { windowSlug: "standard-window", measurementBasis: "TRACK_WIDTH" as const, widthCm: 200, dropCm: 220, fabricId: pricedFabric.id, heading: "PENCIL_PLEAT" as const, lining: "STANDARD" as const, construction: "PAIR" as const, stackDirection: "SPLIT" as const };
+  const oldPrice = calculateStagingPriceForTest(configuration, pricedFabric);
+  const stored = approvedHandoff("INSTANT_PRICE", { netAmountMinor: oldPrice.netAmountMinor!, vatAmountMinor: oldPrice.vatAmountMinor!, grossAmountMinor: oldPrice.totalAmountMinor!, vatRateBasisPoints: oldPrice.vatRateBasisPoints!, currency: "GBP" });
+  const before = buildShopifyDraftOrderContract({ handoff: stored });
+  pricedFabric.supplierCostPerMetre.amountMinor = 6000;
+  const newPrice = calculateStagingPriceForTest(configuration, pricedFabric);
+  assert.ok(newPrice.totalAmountMinor! > oldPrice.totalAmountMinor!);
+  assert.notEqual(newPrice.configurationId, oldPrice.configurationId);
+  assert.deepEqual(buildShopifyDraftOrderContract({ handoff: stored }), before);
+  assert.equal(Object.isFrozen(stored.snapshot.customerPrice), true);
 });
 
 test("staff audit operations require actor and a meaningful reason", () => {

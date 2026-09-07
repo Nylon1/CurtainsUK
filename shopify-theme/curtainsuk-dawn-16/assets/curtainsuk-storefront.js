@@ -439,6 +439,7 @@
               reviewAcceptanceToken: resume.capability.reviewAcceptanceToken,
               customerAccepted: form.elements.customerAccepted.checked,
               shippingRegion: form.elements.shippingRegion.value,
+              shippingPostcode: form.elements.shippingPostcode.value,
               parcelClass: summary.shippingParcelClass,
             }),
           });
@@ -709,7 +710,11 @@
         lastEvaluation = { configuration: body, calculation: response };
         reviewForm.classList.toggle("cuk-hidden", !needsReview);
         checkoutForm.classList.toggle("cuk-hidden", needsReview || isManualQuote || response.outcome !== "INSTANT_PRICE");
-        checkoutForm.reset();
+        // Preserve the delivery destination while requiring acceptance of every new price.
+        checkoutForm.elements.customerAccepted.checked = false;
+        const previousCheckoutError = checkoutForm.querySelector("[data-cuk-checkout-error]");
+        previousCheckoutError.hidden = true;
+        previousCheckoutError.textContent = "";
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
         if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare test checkout"; }
@@ -788,6 +793,7 @@
             configurationId: lastEvaluation.calculation.configurationId,
             customerAccepted: checkoutForm.elements.customerAccepted.checked,
             shippingRegion: checkoutForm.elements.shippingRegion.value,
+            shippingPostcode: checkoutForm.elements.shippingPostcode.value,
             parcelClass: lastEvaluation.calculation.fabricWidths > 6 ? "OVERSIZE" : "STANDARD",
           }),
         });

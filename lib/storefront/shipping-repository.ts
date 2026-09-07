@@ -1,6 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
+import { shippingPolicyBlockers } from "./shipping-owner-inputs";
 import {
   shippingRuleFromVersion,
   type ShippingParcelClass,
@@ -43,11 +44,16 @@ export async function currentStagingShippingRates(now: Date = new Date()): Promi
       createdAt: row.created_at,
     });
   }
-  return [...current.values()].sort((left, right) => recordKey(left).localeCompare(recordKey(right)));
+  return [...current.values()].filter(rule => rule.parcelClass !== "SPECIALIST")
+    .sort((left, right) => recordKey(left).localeCompare(recordKey(right)));
 }
 
 export async function loadStagingUkShippingRules(): Promise<readonly ShippingRule[]> {
-  return currentStagingShippingRates();
+  const rates = await currentStagingShippingRates();
+  // Confirming money alone cannot enable delivery before the operating policy.
+  return shippingPolicyBlockers().length
+    ? rates.map(rate => ({ ...rate, grossAmountMinor: null, status: "AWAITING_OWNER_CONFIRMATION" as const }))
+    : rates;
 }
 
 export async function appendStagingShippingRate(input: {

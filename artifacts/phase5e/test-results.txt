@@ -1,0 +1,302 @@
+
+> apex-curtains-site@0.1.0 test
+> npm run test:decision-engine && npm run test:supplier-sync && npm run test:supplier-intelligence && npm run test:supplier-import && npm run test:fabric-master && npm run test:prestigious && npm run test:storefront && npm run test:shopify-theme
+
+
+> apex-curtains-site@0.1.0 test:decision-engine
+> tsx --test lib/decision-engine/__tests__/*.test.ts
+
+✔ Window Type Master contains the 21 agreed unique types and customer width bases (3.5455ms)
+✔ FabricSpec fixtures are structurally valid, synthetic and feed-ineligible (0.6215ms)
+✔ number of widths and pair/single allocation remain deterministic (0.5986ms)
+✔ straight match rounds upward while random match does not (1.0981ms)
+✔ pricing calculates VAT at full precision and rounds only the final gross total (5.5214ms)
+✔ random match fabric usage uses drop plus separate allowances (1.3637ms)
+✔ minimum charge is applied before shipping, with samples exempt (0.732ms)
+✔ draft width/drop thresholds preserve exact boundary semantics (1.1063ms)
+✔ unknown supplier fabric weight does not force a standard curtain into technical review (1.0061ms)
+✔ complete simple apex gets provisional review pricing but never direct manufacture (1.0867ms)
+✔ specialist geometry validation rejects non-positive, impossible and inconsistent dimensions (1.7919ms)
+✔ Bay geometry derives from section widths without requiring customer-entered angles (0.919ms)
+✔ Corner geometry requires two sections, one angle and matching derived coverage (0.953ms)
+✔ Awkward window master requires rough dimensions, a photo and a drawing (0.333ms)
+✔ incomplete specialist geometry routes to manual quote (0.4608ms)
+✔ discontinued fabrics cannot start new configurations but remain representable historically (0.4597ms)
+✔ compatibility engine blocks invalid combinations (1.0672ms)
+✔ Phase 2 decision registry is valid and draft decisions block activation (1.7422ms)
+✔ only an authorised admin can activate a fully validated version (4.6025ms)
+✔ pricing registry snapshots versions and resolves effective ACTIVE rules (4.4671ms)
+✔ invalid or incomplete measurements are rejected before pricing (0.3535ms)
+✔ Google feed governance rejects quote-only, mismatched or inactive pricing (0.6477ms)
+✔ Pricing Ruleset v1 locks the commercial calibration inputs but remains non-production (0.2749ms)
+✔ the five competitor benchmarks run through the pricing engine without job-specific tuning (2.7265ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 605.3381
+
+> apex-curtains-site@0.1.0 test:supplier-sync
+> tsx --test lib/supplier-sync/__tests__/*.test.ts
+
+✔ normalization preserves missing supplier fields as unknown (2.0195ms)
+✔ Prestigious Webtex adapter runs the three verified Mocha SKUs in shadow mode (2.2308ms)
+✔ shadow orchestration appends snapshots but cannot write Shopify or schedule production (4.5649ms)
+✔ the 20-colourway Prestigious expansion is gated on verified cut prices (0.5746ms)
+✔ supplier history is append-only and retains price and availability changes (0.8022ms)
+✔ a failed sync never replaces a previously verified snapshot with out-of-stock (1.0297ms)
+✔ availability requires a verified sufficient single batch (0.4758ms)
+✔ pricing selects the configured normalized price field without supplier assumptions (0.4705ms)
+✔ a future Sanderson adapter uses the same FabricSpec link and availability engine (0.581ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 491.4513
+
+> apex-curtains-site@0.1.0 test:supplier-intelligence
+> tsx --test lib/supplier-intelligence/__tests__/*.test.ts
+
+✔ durable writes are append-only and retain historical reconstruction (9.2406ms)
+✔ validation failures are retained and cannot enter approval (1.8415ms)
+✔ manual approval and rejection append attributed decision events (1.4832ms)
+✔ a later approval links to the previous approved snapshot (2.9859ms)
+✔ expiration and stale supplier state project availability to be confirmed (3.4756ms)
+✔ a failed sync preserves the previous approval until it expires (1.7094ms)
+✔ batch-level projection does not combine incompatible dye lots (1.266ms)
+✔ health reports price, stock, due-date and lifecycle transitions (1.3997ms)
+✔ Sanderson uses the same durable storage and approval service (0.7068ms)
+✔ customer-safe projection contains no supplier-commercial fields (1.3704ms)
+✔ service access is role-gated and database grants deny browser roles (2.3279ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 521.2251
+
+> apex-curtains-site@0.1.0 test:supplier-import
+> tsx --test lib/supplier-import/__tests__/*.test.ts
+
+✔ CSV mapping merges multiple dye-lot rows into one normalized Prestigious snapshot (40.0848ms)
+✔ portal exports reuse the same normalized mapping pipeline (4.5177ms)
+✔ XLSX and legacy XLS files parse to the same tabular rows (54.7447ms)
+✔ text PDFs parse positionally and carry a mandatory review warning (1805.9566ms)
+✔ preview reports private diffs and lifecycle transitions without mutating history (4.1607ms)
+✔ bulk apply verifies the preview hash and atomically appends shadow history (11.6732ms)
+✔ invalid mapped observations are retained as rejected audit records (2.851ms)
+✔ unmappable rows block bulk apply and declarative mappings reject executable kinds (4.0645ms)
+✔ Sanderson uses identical parser, preview, validation and bulk storage contracts (5.3945ms)
+✔ bulk import remains private and disconnected from Shopify (2.0784ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3585.6728
+
+> apex-curtains-site@0.1.0 test:fabric-master
+> tsx --test lib/fabric-master/__tests__/*.test.ts
+
+✔ catalogue completion keeps private QA, pricing eligibility and launch projection separate (3.8045ms)
+✔ catalogue completion rejects duplicate supplier SKUs case-insensitively (2.2861ms)
+✔ Prestigious preview ignores Shopify placeholder price and retired image URL (45.9468ms)
+✔ Prestigious preview preserves a newer approved record instead of downgrading it (10.3588ms)
+✔ full Sanderson preview remains private QA data until an explicit canary projection (11.0197ms)
+✔ catalogue import carries protected-field evidence into the atomic batch (25.3687ms)
+✔ Prestigious catalogue normalization preserves permanent IDs and corrected public specifications (3.7786ms)
+✔ Prestigious imagery is derived from the stable SKU/design/colour mapping (0.6364ms)
+✔ Sanderson uses the same normalized Fabric Master contract without supplier-specific storage (0.8138ms)
+✔ the authorised Sanderson pilot fixture maps into the shared contract (0.9841ms)
+✔ catalogue preview counts inserts and updates deterministically (25.644ms)
+✔ customer projection strips supplier-commercial intelligence (1.1303ms)
+✔ a staging-visible unverified canary is customer-visible but cannot enter configuration (0.6192ms)
+✔ decision engine adapter accepts either supplier through the same FabricSpec contract (0.6886ms)
+✔ Sanderson all-brands catalogue maps identity/specification fields but ignores stale operations (58.3485ms)
+✔ Sanderson catalogue supports exactly the six approved brands through one Fabric Master (13.8385ms)
+✔ catalogue protection keeps newer verified pilot data instead of applying a stale bulk row (8.8356ms)
+✔ Sanderson canary selects exactly 50 new records across six brands and leaves DAPGPA203 untouched (35.3196ms)
+✔ catalogue protection enriches newer specs without erasing independently verified fields (0.8473ms)
+✔ unsupported or absent Sanderson match data remains unknown (7.4067ms)
+✔ No Pattern Match and shifted trailing cells stay blocked for review (6.536ms)
+✔ bulk supplier expansion fails closed until every dated gate has evidence (1.1731ms)
+✔ verified cut pricing requires a current expiry and the latest promotion to remain approved (0.8768ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1167.9039
+
+> apex-curtains-site@0.1.0 test:prestigious
+> tsx --test lib/prestigious/__tests__/*.test.ts
+
+✔ pilot contains 20 stable real Prestigious Formation colourways (1.8374ms)
+✔ stock is available only when one current batch covers the requirement (1.3184ms)
+✔ low, due, stale and discontinued states map safely (0.5863ms)
+✔ unverified colourway price cannot enter calculation (1.0431ms)
+✔ official discontinued export transitions without deletion (0.9973ms)
+✔ real Escher standard and Dali bay configurations use verified cut costs (6.7723ms)
+✔ real Prestigious fabric never bypasses apex technical review (1.1346ms)
+✔ customer Shopify payload contains no supplier-commercial or batch fields (1.3104ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 631.2882
+
+> apex-curtains-site@0.1.0 test:storefront
+> tsx --test lib/storefront/__tests__/*.test.ts
+
+✔ review workflow uses only the six agreed states and deterministic transitions (9.9206ms)
+✔ review state changes require actor, timestamp, reason, clean evidence and a final price (7.5769ms)
+✔ staff amendments create immutable revisions without changing customer-submitted content (2.9273ms)
+✔ instant checkout is allowed only when every independent gate is satisfied (2.6691ms)
+✔ review and manual-quote routes cannot bypass approval or customer acceptance (5.6639ms)
+✔ approved checkout snapshot and handoff stay immutable when later supplier inputs change (6.3206ms)
+✔ rounded VAT-inclusive totals are allocated to exact pennies and reject non-whole-pound checkout prices (0.9777ms)
+✔ private supplier-commercial keys are rejected from checkout snapshots (1.1518ms)
+✔ review checkout acceptance is a short-lived capability bound to the exact immutable revision (4.6417ms)
+✔ UK shipping separates three launch regions and parcel classes without international or minimum-order leakage (5.2839ms)
+✔ shipping class comes from server calculation or an approved review revision (4.8296ms)
+✔ Phase 5C migration keeps checkout/evidence private and closes the database-clock import gate (3.5353ms)
+✔ Shopify test Draft Order contract carries exact immutable goods, VAT, delivery and configuration references (45.8946ms)
+✔ checkout retries derive stable snapshot and handoff identities from the displayed configuration (1.81ms)
+✔ Shopify Draft Order contract refuses supplier-commercial leakage and unsafe handoffs (1.0939ms)
+✔ Shopify financial preflight fails closed unless tax-inclusive GBP totals exactly match the snapshot (3.573ms)
+✔ existing or newly created test Draft Orders must retain exact price and handoff identity (2.3282ms)
+✔ server adapter is calculate-first, idempotent by handoff tag and contains no payment-completion mutation (1.8752ms)
+✔ checkout persistence recovers only an exact immutable retry and rejects identity conflicts (1.3449ms)
+✔ Phase 5D persists Shopify execution as append-only private audit without storing checkout capability URLs (2.1226ms)
+✔ Bay operational rehearsal preserves the original submission through staff amendment, approval and checkout readiness (2.5376ms)
+✔ Apex and gable operational rehearsal supports information requests but blocks approval until evidence and price are clean (2.2445ms)
+✔ Manual Quote rehearsal exposes no customer price before staff quote and never allows payment before acceptance (1.1456ms)
+✔ approved monetary snapshot and Shopify contract do not reprice after later supplier, margin or stock changes (4.1494ms)
+✔ a real pricing-engine cost change affects a new configuration but cannot mutate the existing snapshot contract (16.4425ms)
+✔ staff audit operations require actor and a meaningful reason (0.795ms)
+✔ staff-issued review resume links keep the revision-bound capability in an allowed staging URL fragment (2.5603ms)
+✔ customer review acceptance projection is revision-bound and statically excludes private supplier and customer fields (1.8116ms)
+✔ Cloudmersive advanced adapter sends an allowlisted private file scan and fails closed (118.4697ms)
+✔ an unexpected malware-provider exception remains quarantined with an auditable failure code (1.522ms)
+✔ one-time evidence grants store only a non-reversible token digest (3.281ms)
+✔ UK shipping defaults remain owner-blocked and database versions parse fail closed (4.2096ms)
+✔ staging shipping selection excludes future-effective rate versions (1.4765ms)
+✔ customer and staff endpoint policies separate browse, compute, upload and checkout pressure (1.7395ms)
+✔ signed mutation replay fingerprints are stable for identical requests and body-bound (2.3883ms)
+✔ Phase 5D security migration is private, append-only and never invents shipping rates (2.9703ms)
+✔ signed proxy mutations claim replay receipts before processing customer content (1.662ms)
+✔ scan failures are durably recorded and never promoted by application code (1.9001ms)
+✔ the review-only identity is denied outside staging, for customers and for anonymous users (4.3312ms)
+✔ all nine owner rate cells remain null, and specialist is a manual override (3.2886ms)
+✔ postcode and packed-parcel rules reject unmapped, ambiguous and oversized deliveries (3.5612ms)
+✔ review list query accepts bounded filters and rejects unknown or duplicate inputs (10.3313ms)
+✔ staff transition input is exact, audited and optimistic (1.6308ms)
+✔ staff amendments require an immutable predecessor and exact GBP arithmetic (1.8039ms)
+✔ checkout readiness accepts only approved state and the reviewed revision (1.2504ms)
+✔ admin review routes use private auth, no-store responses and optimistic repository calls (2.8804ms)
+✔ review contact input is normalized without accepting an invalid email (5.0946ms)
+✔ review availability accepts only the customer-safe vocabulary (0.5105ms)
+✔ manual quote submissions cannot persist a numeric provisional price (0.8535ms)
+✔ only canonical UUIDs are accepted as customer-safe configuration IDs (0.8853ms)
+✔ review validation errors cross the public API as customer-safe guidance (0.8504ms)
+✔ review submission tokens bind canonical configuration, outcome and price (2.0113ms)
+✔ rate-limit fingerprints are IP- and scope-bound, not user-agent-bound (7.0361ms)
+✔ JSON staging requests are bounded even when Content-Length is absent or misleading (15.0466ms)
+✔ Shopify official app-proxy signature vectors canonicalize exactly (9.1079ms)
+✔ app-proxy auth verifies HMAC, shop, path and replay window independently of Origin (9.5756ms)
+✔ ambiguous duplicate signatures are rejected (1.5916ms)
+✔ proxy rate keys bind the signed shop, operation and client address (1.2766ms)
+✔ evidence verification uses magic bytes, MIME, extension and hard size limits (6.8111ms)
+✔ malware scanning is fail-closed and never promotes unavailable scans (4.159ms)
+✔ retention and orphan cleanup plans preserve held, current and referenced evidence (8.1625ms)
+✔ staff evidence tokens are short-lived and bound to evidence plus actor (2.4504ms)
+✔ gateway and staff responses are no-store and request envelopes are bounded (94.6993ms)
+✔ multipart bodies have a hard streaming cap without trusting Content-Length (12.8851ms)
+✔ Dawn contains the 14 unique Window Type route definitions (4.4166ms)
+✔ Dawn delegates decisions to the signed app proxy and exposes only a development-store test handoff with real payment disabled (5.371ms)
+✔ the specialist workflow requires a photo and never renders a payment control (2.4191ms)
+✔ manual quote results suppress numeric prices and expose review submission without checkout (3.0625ms)
+✔ Bay UI derives coverage from section widths and never asks for angles (3.8494ms)
+✔ Curved, corner and awkward advertised routes collect their required review measurements (9.2415ms)
+✔ standard windows hide review evidence while reviewed and specialist routes can submit evidence (2.0651ms)
+✔ task navigation uses resolvable theme-owned inspiration, help and sample anchors (3.1619ms)
+✔ the Dawn header uses the task navigation instead of the production main menu (1.5146ms)
+✔ Dawn renders database-projected multi-supplier imagery and preserves exact sample SKU without commercial fields (4.2709ms)
+✔ an unverified fabric deep link is explained instead of silently substituted (1.4652ms)
+✔ Dawn staging mode hides commerce controls and fixes the preview market label without changing Shopify Markets (2.1283ms)
+✔ all inherited Dawn commerce controls are disabled in the unpublished staging theme (3.6013ms)
+✔ results always show VAT, availability and delivery while standard results avoid specialist warnings (2.291ms)
+✔ reviewed configurations resume through a fragment capability and revalidate the exact revision server-side (2.1759ms)
+✔ Dawn emits the launch funnel without supplier-commercial analytics fields (2.5721ms)
+✔ mobile controls meet the 44px staging target and avoid iOS input zoom (1.6441ms)
+✔ persistent task, logo and footer navigation meet the 44px staging target (1.3907ms)
+✔ the storefront exposes the 14 approved window families with unique canonical routes (2.4872ms)
+✔ 20 real Prestigious pilot fabrics are feed blocked and commercially separated (0.4855ms)
+✔ the Shopify catalogue payload contains 14 routes and no commercial cost data (1.4022ms)
+✔ a normal standard curtain receives a server-authoritative instant price (7.2498ms)
+✔ a real Dali bay is priced with review at the unchanged 35% rule (1.5869ms)
+✔ the Phase 4A Bay gate preserves the auditable component breakdown (2.9169ms)
+✔ specialist apex geometry blocks payment and manufacture (1.1584ms)
+✔ inconsistent apex geometry is rejected before review routing (1.2572ms)
+✔ manual-quote pricing suppresses every numeric selling amount (1.0377ms)
+✔ Bay coverage is derived from section widths and angles are not part of the contract (1.6805ms)
+✔ Bay section-count and per-section launch boundaries are server-authoritative (2.4777ms)
+✔ Curved and bow pricing uses the entered track arc as both coverage and required curve geometry (2.9427ms)
+✔ Corner pricing derives coverage from exactly two sections and retains one corner angle (2.7791ms)
+✔ Awkward and unusual windows collect rough dimensions and require both photo and drawing (4.4828ms)
+✔ a valid oversized specialist job remains blocked and uses manual-quote messaging (1.1429ms)
+✔ specialist review rejects non-positive and impossible geometry for every launch shape (2.5346ms)
+✔ the staging API permits only the Shopify store origins used by theme previews (9.4235ms)
+ℹ tests 99
+ℹ suites 0
+ℹ pass 99
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1780.1405
+
+> apex-curtains-site@0.1.0 test:shopify-theme
+> tsx --test lib/storefront/__tests__/shopify-theme.test.ts
+
+✔ Dawn contains the 14 unique Window Type route definitions (2.8122ms)
+✔ Dawn delegates decisions to the signed app proxy and exposes only a development-store test handoff with real payment disabled (3.2461ms)
+✔ the specialist workflow requires a photo and never renders a payment control (1.4849ms)
+✔ manual quote results suppress numeric prices and expose review submission without checkout (2.4302ms)
+✔ Bay UI derives coverage from section widths and never asks for angles (3.6509ms)
+✔ Curved, corner and awkward advertised routes collect their required review measurements (4.326ms)
+✔ standard windows hide review evidence while reviewed and specialist routes can submit evidence (1.7051ms)
+✔ task navigation uses resolvable theme-owned inspiration, help and sample anchors (2.0775ms)
+✔ the Dawn header uses the task navigation instead of the production main menu (1.0812ms)
+✔ Dawn renders database-projected multi-supplier imagery and preserves exact sample SKU without commercial fields (2.3062ms)
+✔ an unverified fabric deep link is explained instead of silently substituted (1.3306ms)
+✔ Dawn staging mode hides commerce controls and fixes the preview market label without changing Shopify Markets (1.8363ms)
+✔ all inherited Dawn commerce controls are disabled in the unpublished staging theme (3.8258ms)
+✔ results always show VAT, availability and delivery while standard results avoid specialist warnings (2.2303ms)
+✔ reviewed configurations resume through a fragment capability and revalidate the exact revision server-side (1.7431ms)
+✔ Dawn emits the launch funnel without supplier-commercial analytics fields (1.4277ms)
+✔ mobile controls meet the 44px staging target and avoid iOS input zoom (0.9682ms)
+✔ persistent task, logo and footer navigation meet the 44px staging target (0.92ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 554.9572

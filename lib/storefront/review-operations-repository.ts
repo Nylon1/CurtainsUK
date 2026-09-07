@@ -8,6 +8,7 @@ import type {
   ReviewRevision,
 } from "@/app/admin/reviews/contracts";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
+import { shippingPolicyBlockers } from "./shipping-owner-inputs";
 import type { ImmutableConfigurationSnapshot } from "./checkout-gates";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "./window-catalog";
 import { REVIEW_STATES, type ReviewState } from "./review-workflow";
@@ -431,6 +432,7 @@ export async function getStaffReviewDashboard(requestId: string): Promise<Review
     && fabric.supplierId === effective.supplierId
     && fabric.supplierSku === effective.supplierSku;
   const blockedReasons: string[] = [];
+  if (shippingPolicyBlockers().length) blockedReasons.push("Owner-confirmed delivery policy is required");
   if (detail.request.review_state !== "APPROVED") blockedReasons.push(detail.request.review_state === "READY_FOR_CHECKOUT" ? "Checkout readiness is already recorded" : "Review approval is required");
   if (!latest?.finalPrice) blockedReasons.push("A final VAT-inclusive price is required");
   if (!latest?.pricingRuleVersion) blockedReasons.push("A pricing ruleset version is required");
@@ -443,7 +445,7 @@ export async function getStaffReviewDashboard(requestId: string): Promise<Review
   if (!Number.isFinite(calculatedMetres) || calculatedMetres <= 0) {
     blockedReasons.push("Calculated fabric metres are required");
   }
-  const shippingParcelClass = ["STANDARD", "OVERSIZE", "SPECIALIST"].includes(String(specification.shipping_parcel_class))
+  const shippingParcelClass = ["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(String(specification.shipping_parcel_class))
     ? String(specification.shipping_parcel_class) as ReviewDetail["configuration"]["shippingParcelClass"]
     : null;
   if (!shippingParcelClass) blockedReasons.push("A shipping parcel class is required");

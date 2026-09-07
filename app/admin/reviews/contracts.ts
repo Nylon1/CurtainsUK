@@ -112,7 +112,7 @@ export interface ReviewDetail extends ReviewListItem {
     construction: string;
     stackDirection: string;
     fixingPosition: string | null;
-    shippingParcelClass: "STANDARD" | "OVERSIZE" | "SPECIALIST" | null;
+    shippingParcelClass: "STANDARD" | "LARGE" | "OVERSIZE" | "SPECIALIST" | null;
     accessories: JsonValue[];
   };
   pricing: {
@@ -329,7 +329,7 @@ function detail(value: unknown): ReviewDetail {
       fixingPosition: nullableString(configuration.fixingPosition, "review.configuration.fixingPosition"),
       shippingParcelClass: configuration.shippingParcelClass === null
         ? null
-        : oneOf(configuration.shippingParcelClass, ["STANDARD", "OVERSIZE", "SPECIALIST"] as const, "review.configuration.shippingParcelClass"),
+        : oneOf(configuration.shippingParcelClass, ["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"] as const, "review.configuration.shippingParcelClass"),
       accessories: configuration.accessories as JsonValue[],
     },
     pricing: {

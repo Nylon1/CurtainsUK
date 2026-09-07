@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { STAGING_SHIPPING_OWNER_INPUTS, shippingPolicyBlockers } from "@/lib/storefront/shipping-owner-inputs";
 import { supplierAdminIdentity } from "@/lib/supplier-intelligence/server-auth";
 import { readBoundedJson } from "@/lib/storefront/staging-api";
 import { assertSameOriginJsonMutation, PRIVATE_NO_STORE_HEADERS } from "@/lib/storefront/security/http";
@@ -17,7 +18,7 @@ export async function GET(request: Request) {
   }
   try {
     await enforceStaffEndpointRateLimit({ request, actorId: actor.id, scope: "shipping-rates-read", policy: { limit: 30, windowSeconds: 60 } });
-    return NextResponse.json({ rates: await currentStagingShippingRates() }, { headers: PRIVATE_NO_STORE_HEADERS });
+    return NextResponse.json({ rates: await currentStagingShippingRates(), ownerInputs: STAGING_SHIPPING_OWNER_INPUTS, policyBlockers: shippingPolicyBlockers() }, { headers: PRIVATE_NO_STORE_HEADERS });
   } catch (error) {
     const limited = endpointRateLimitResponse(error);
     if (limited) return NextResponse.json({ error: limited.message }, { status: limited.status, headers: { ...PRIVATE_NO_STORE_HEADERS, ...limited.headers } });
@@ -36,7 +37,7 @@ export async function POST(request: Request) {
     const input = await readBoundedJson<Record<string, unknown>>(request, 8_192);
     if (typeof input.expectedCurrentRateVersionId !== "string"
       || !UK_SHIPPING_REGIONS.includes(input.region as never)
-      || !["STANDARD", "OVERSIZE", "SPECIALIST"].includes(String(input.parcelClass))
+      || !["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(String(input.parcelClass))
       || !["AWAITING_OWNER_CONFIRMATION", "VALIDATED", "RETIRED"].includes(String(input.status))
       || (input.grossAmountMinor !== null && !Number.isInteger(input.grossAmountMinor))
       || typeof input.reason !== "string") {

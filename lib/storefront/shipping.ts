@@ -5,7 +5,7 @@ export const UK_SHIPPING_REGIONS = [
 ] as const;
 
 export type UkShippingRegion = (typeof UK_SHIPPING_REGIONS)[number];
-export type ShippingParcelClass = "STANDARD" | "OVERSIZE" | "SPECIALIST";
+export type ShippingParcelClass = "STANDARD" | "LARGE" | "OVERSIZE" | "SPECIALIST";
 
 export function instantCurtainParcelClass(fabricWidths: number): ShippingParcelClass {
   if (!Number.isInteger(fabricWidths) || fabricWidths < 1) throw new Error("SHIPPING_CLASS_INPUT_INVALID");
@@ -13,7 +13,7 @@ export function instantCurtainParcelClass(fabricWidths: number): ShippingParcelC
 }
 
 export function approvedReviewParcelClass(value: unknown): ShippingParcelClass {
-  if (value !== "STANDARD" && value !== "OVERSIZE" && value !== "SPECIALIST") {
+  if (value !== "STANDARD" && value !== "LARGE" && value !== "OVERSIZE" && value !== "SPECIALIST") {
     throw new Error("CHECKOUT_SHIPPING_CLASS_REQUIRES_APPROVAL");
   }
   return value;
@@ -31,6 +31,8 @@ export interface ShippingRule {
 }
 
 export interface ShippingQuote {
+  postcode?: string;
+  policyVersion?: string;
   region: UkShippingRegion;
   parcelClass: ShippingParcelClass;
   status: "READY" | "RATE_REQUIRES_CONFIRMATION" | "UNAVAILABLE";
@@ -46,7 +48,7 @@ export interface ShippingQuote {
  * owner approves them; an unknown rate is never represented as free delivery.
  */
 export const STAGING_UK_SHIPPING_RULES: readonly ShippingRule[] = UK_SHIPPING_REGIONS.flatMap((region) => (
-  (["STANDARD", "OVERSIZE", "SPECIALIST"] as const).map((parcelClass) => ({
+  (["STANDARD", "LARGE", "OVERSIZE"] as const).map((parcelClass) => ({
     region,
     parcelClass,
     enabled: true,
@@ -65,6 +67,12 @@ export function quoteUkShipping(input: {
     throw new Error("INTERNATIONAL_SHIPPING_DISABLED");
   }
   const region = input.region as UkShippingRegion;
+  // Legacy Specialist history is never an automatic delivery rate.
+  if (input.parcelClass === "SPECIALIST") return {
+    region, parcelClass: input.parcelClass, status: "RATE_REQUIRES_CONFIRMATION",
+    grossAmountMinor: null, currency: "GBP", shownSeparately: true,
+    countsTowardGoodsMinimum: false, message: "Specialist delivery requires a staff-approved manual quote",
+  };
   const rule = (input.rules ?? STAGING_UK_SHIPPING_RULES).find(
     (candidate) => candidate.region === region && candidate.parcelClass === input.parcelClass,
   );
@@ -120,7 +128,7 @@ export interface ShippingRateVersionRecord {
 
 export function shippingRuleFromVersion(record: ShippingRateVersionRecord): ShippingRule {
   if (!UK_SHIPPING_REGIONS.includes(record.region as UkShippingRegion)
-    || !["STANDARD", "OVERSIZE", "SPECIALIST"].includes(record.parcel_class)
+    || !["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(record.parcel_class)
     || record.currency !== "GBP"
     || !["AWAITING_OWNER_CONFIRMATION", "VALIDATED", "RETIRED"].includes(record.status)
     || !record.rate_version_id

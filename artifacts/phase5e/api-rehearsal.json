@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-09-07T21:40:33.248Z",
+  "environment": "LOCAL_APP_WITH_STAGING_DATABASE",
+  "remoteShopifyWrites": 0,
+  "checks": [
+    {
+      "name": "anonymous denied; reviewer queue allowed; commercial and maintenance routes denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary customer denied and synthetic customer disabled after test",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid measurements and unavailable fabric show no numeric price",
+      "status": "PASS"
+    }
+  ],
+  "cases": [
+    {
+      "name": "Standard pt-4270-147",
+      "priceGrossMinor": 61400,
+      "fabricMetres": 12.6,
+      "checkout": "BLOCKED",
+      "blockers": [
+        "AVAILABILITY_NOT_ACCEPTABLE",
+        "SHIPPING_NOT_READY"
+      ]
+    },
+    {
+      "name": "Standard pt-4269-147",
+      "priceGrossMinor": 83400,
+      "fabricMetres": 10.2,
+      "checkout": "BLOCKED",
+      "blockers": [
+        "AVAILABILITY_NOT_ACCEPTABLE",
+        "SHIPPING_NOT_READY"
+      ]
+    },
+    {
+      "name": "Standard sdg-dapgpa203",
+      "priceGrossMinor": 110500,
+      "fabricMetres": 10.6,
+      "checkout": "BLOCKED",
+      "blockers": [
+        "AVAILABILITY_NOT_ACCEPTABLE",
+        "SHIPPING_NOT_READY"
+      ]
+    },
+    {
+      "name": "Bay",
+      "requestId": "c2134a78-be87-4c8a-bfc5-3af766b31f3b",
+      "staffApproval": "PASS",
+      "checkout": "BLOCKED",
+      "blockers": [
+        "Owner-confirmed delivery policy is required",
+        "Fabric availability must be confirmed"
+      ],
+      "originalImmutable": true
+    },
+    {
+      "name": "Manual Quote",
+      "requestId": "2dfe1d58-5de8-4bc9-88e2-6712ff00c25d",
+      "staffApproval": "PASS",
+      "checkout": "BLOCKED",
+      "blockers": [
+        "Owner-confirmed delivery policy is required",
+        "Fabric availability must be confirmed"
+      ],
+      "originalImmutable": true
+    },
+    {
+      "name": "Apex",
+      "requestId": "d087e1df-caa0-4d4d-b328-0b8424b7ac8c",
+      "informationRequest": "PASS",
+      "newRevision": "PASS",
+      "safeEvidence": "QUARANTINED",
+      "approval": "BLOCKED",
+      "blockers": [
+        "REVIEW_EVIDENCE_NOT_CLEAN"
+      ],
+      "originalImmutable": true
+    }
+  ]
+}

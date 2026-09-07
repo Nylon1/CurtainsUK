@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { supplierAdminIdentity } from "@/lib/supplier-intelligence/server-auth";
+import { reviewStaffIdentity } from "@/lib/storefront/review-auth";
 import { PRIVATE_NO_STORE_HEADERS } from "@/lib/storefront/security/http";
 
 export function reviewResponse(body: unknown, status = 200) {
@@ -9,7 +9,7 @@ export function reviewResponse(body: unknown, status = 200) {
 
 export async function requireReviewAdmin() {
   try {
-    const admin = await supplierAdminIdentity();
+    const admin = await reviewStaffIdentity();
     if (admin) return { admin, response: null } as const;
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();

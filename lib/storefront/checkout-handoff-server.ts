@@ -17,6 +17,7 @@ import {
 import { persistShopifyDraftOrderExecution } from "./shopify-draft-order-repository";
 import { executeStagingShopifyDraftOrder } from "./shopify-draft-order-server";
 import { loadStagingUkShippingRules } from "./shipping-repository";
+import { quoteOwnerApprovedCurtainShipping } from "./shipping-owner-inputs";
 import { normalizeAvailabilityState } from "./review-request";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
 import { stagingCheckoutIdentity } from "./checkout-idempotency";
@@ -37,6 +38,7 @@ export interface ServerStagingCheckoutHandoffInput {
   reviewAcceptanceToken?: string;
   customerAccepted: boolean;
   shippingRegion: string;
+  shippingPostcode?: string;
   parcelClass: ShippingParcelClass;
 }
 
@@ -124,7 +126,7 @@ export async function prepareServerStagingCheckoutHandoff(
   if (!input || typeof input !== "object"
       || typeof input.customerAccepted !== "boolean"
       || typeof input.shippingRegion !== "string"
-      || !["STANDARD", "OVERSIZE", "SPECIALIST"].includes(input.parcelClass)
+      || !["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(input.parcelClass)
       || Boolean(input.reviewRequestId) === Boolean(input.configuration)
       || Boolean(input.configuration) !== Boolean(input.configurationId)
       || (input.configurationId && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.configurationId))
@@ -264,11 +266,16 @@ export async function prepareServerStagingCheckoutHandoff(
     ].filter(Boolean).join(" — ");
   }
 
-  const shipping = quoteUkShipping({
-    region: input.shippingRegion,
-    parcelClass: shippingParcelClass,
-    rules: await loadStagingUkShippingRules(),
-  });
+  const shipping = shippingParcelClass === "SPECIALIST"
+    ? quoteUkShipping({ region: input.shippingRegion, parcelClass: "SPECIALIST" })
+    : quoteOwnerApprovedCurtainShipping({
+      selectedRegion: input.shippingRegion, postcode: input.shippingPostcode,
+      fabricMetres: calculatedFabricMetres,
+      maximumDropCm: Math.max(0, ...Object.entries(measurements)
+        .filter(([key, value]) => /drop|height|vertical/i.test(key) && typeof value === "number")
+        .map(([, value]) => Number(value))),
+      rules: await loadStagingUkShippingRules(),
+    });
 
   const gate = evaluateCheckoutGate({
     outcome,

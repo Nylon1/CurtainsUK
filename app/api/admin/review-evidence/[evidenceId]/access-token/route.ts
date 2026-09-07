@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supplierAdminIdentity } from "@/lib/supplier-intelligence/server-auth";
+import { reviewStaffIdentity } from "@/lib/storefront/review-auth";
 import { issueStaffEvidenceAccess } from "@/lib/storefront/security/evidence-access";
 import { assertSameOriginJsonMutation, PRIVATE_NO_STORE_HEADERS } from "@/lib/storefront/security/http";
 import { readBoundedJson } from "@/lib/storefront/staging-api";
@@ -10,7 +10,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request, context: { params: Promise<{ evidenceId: string }> }) {
-  const actor = await supplierAdminIdentity();
+  const actor = await reviewStaffIdentity();
   if (!actor) return NextResponse.json({ error: "STAFF_ACCESS_REQUIRED" }, { status: 403, headers: PRIVATE_NO_STORE_HEADERS });
   try {
     await enforceStaffEndpointRateLimit({ request, actorId: actor.id, scope: "evidence-token", policy: { limit: 30, windowSeconds: 60 } });

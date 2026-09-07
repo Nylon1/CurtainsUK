@@ -44,6 +44,10 @@
               <option value="NORTHERN_IRELAND">Northern Ireland</option>
             </select>
           </div>
+          <div class="cuk-field">
+            <label for="CukReviewedPostcode-{{ section.id }}">Delivery postcode</label>
+            <input id="CukReviewedPostcode-{{ section.id }}" name="shippingPostcode" autocomplete="postal-code" maxlength="8" required>
+          </div>
           <label class="cuk-checkout-handoff__accept" for="CukAcceptReviewedSummary-{{ section.id }}">
             <input id="CukAcceptReviewedSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>
             <span>I accept this exact staff-reviewed specification and VAT-inclusive price.</span>
@@ -177,6 +181,10 @@
               <option value="HIGHLANDS_ISLANDS">Highlands and Islands</option>
               <option value="NORTHERN_IRELAND">Northern Ireland</option>
             </select>
+          </div>
+          <div class="cuk-field">
+            <label for="CukPostcode-{{ section.id }}">Delivery postcode</label>
+            <input id="CukPostcode-{{ section.id }}" name="shippingPostcode" autocomplete="postal-code" maxlength="8" required>
           </div>
           <label class="cuk-checkout-handoff__accept" for="CukAcceptSummary-{{ section.id }}">
             <input id="CukAcceptSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>

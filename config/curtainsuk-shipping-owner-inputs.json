@@ -1,0 +1,42 @@
+{
+  "environment": "STAGING",
+  "version": "phase5e-owner-inputs-v1",
+  "status": "AWAITING_OWNER_CONFIRMATION",
+  "approvedBy": null,
+  "approvedAt": null,
+  "currency": "GBP",
+  "ratesIncludeVat": true,
+  "rates": [
+    { "region": "UK_MAINLAND", "parcelClass": "STANDARD", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "UK_MAINLAND", "parcelClass": "LARGE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "UK_MAINLAND", "parcelClass": "OVERSIZE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "HIGHLANDS_ISLANDS", "parcelClass": "STANDARD", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "HIGHLANDS_ISLANDS", "parcelClass": "LARGE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "HIGHLANDS_ISLANDS", "parcelClass": "OVERSIZE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "NORTHERN_IRELAND", "parcelClass": "STANDARD", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "NORTHERN_IRELAND", "parcelClass": "LARGE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
+    { "region": "NORTHERN_IRELAND", "parcelClass": "OVERSIZE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" }
+  ],
+  "postcodeMapping": {
+    "status": "AWAITING_OWNER_CONFIRMATION",
+    "rules": [],
+    "unmatchedPostcode": "BLOCKED",
+    "conflictingMatches": "BLOCKED"
+  },
+  "parcelThresholds": {
+    "status": "AWAITING_OWNER_CONFIRMATION",
+    "STANDARD": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null },
+    "LARGE": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null },
+    "OVERSIZE": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null }
+  },
+  "maximumParcel": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null },
+  "packingRules": [],
+  "specialistManualOverride": {
+    "automaticCheckout": false,
+    "requiresStaffApproval": true,
+    "requiresExactGrossQuote": true,
+    "requiresConfigurationAndRevisionReference": true,
+    "carrierService": null,
+    "status": "AWAITING_OWNER_CONFIRMATION"
+  }
+}

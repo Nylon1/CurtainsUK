@@ -1,5 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { hasStagingReviewRole } from "@/lib/storefront/review-authz";
+import { hasSupplierAdminRole } from "@/lib/supplier-intelligence/authz";
 
 function privateAdminResponse(response: NextResponse) {
   response.headers.set("Cache-Control", "private, no-store, max-age=0");
@@ -37,6 +39,22 @@ export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const isAdminRoute = pathname === "/admin" || pathname.startsWith("/admin/");
   const isLoginRoute = pathname === "/admin/login";
+  const reviewer = user && hasStagingReviewRole({ appMetadata: user.app_metadata,
+    authUrl: process.env.NEXT_PUBLIC_SUPABASE_URL, environment: process.env.VERCEL_ENV,
+    anonymous: user.is_anonymous });
+  const isCurtainsStaging = process.env.NEXT_PUBLIC_SUPABASE_URL === "https://hqysjumypgeapgmqkcrx.supabase.co"
+    && process.env.VERCEL_ENV === "preview";
+  if (isCurtainsStaging && !isLoginRoute && (user || pathname.startsWith("/api/admin/"))) {
+    const reviewPath = /^\/admin\/reviews(?:\/|$)/.test(pathname)
+      || /^\/api\/admin\/reviews(?:\/|$)/.test(pathname)
+      || /^\/api\/admin\/review-evidence\/[^/]+\/(access-token|download)$/.test(pathname);
+    if (!user || user.is_anonymous || (!hasSupplierAdminRole(user.app_metadata) && !(reviewer && reviewPath))) {
+      if (reviewer && (pathname === "/admin" || pathname === "/admin/")) {
+        return privateAdminResponse(NextResponse.redirect(new URL("/admin/reviews", request.url)));
+      }
+      return privateAdminResponse(NextResponse.json({ error: user ? "STAFF_ROLE_REQUIRED" : "AUTHENTICATION_REQUIRED" }, { status: user ? 403 : 401 }));
+    }
+  }
 
   if (isAdminRoute && !isLoginRoute && !user) {
     const loginUrl = request.nextUrl.clone();
@@ -47,7 +65,7 @@ export async function proxy(request: NextRequest) {
 
   if (isLoginRoute && user) {
     const adminUrl = request.nextUrl.clone();
-    adminUrl.pathname = "/admin";
+    adminUrl.pathname = reviewer ? "/admin/reviews" : "/admin";
     adminUrl.search = "";
     return privateAdminResponse(NextResponse.redirect(adminUrl));
   }
@@ -56,5 +74,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/admin/:path*"],
 };

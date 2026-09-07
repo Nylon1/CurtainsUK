@@ -1,0 +1,30 @@
+
+> apex-curtains-site@0.1.0 test:shopify-theme
+> tsx --test lib/storefront/__tests__/shopify-theme.test.ts
+
+✔ Dawn contains the 14 unique Window Type route definitions (2.5354ms)
+✔ Dawn delegates decisions to the signed app proxy and exposes only a development-store test handoff with real payment disabled (3.6948ms)
+✔ the specialist workflow requires a photo and never renders a payment control (1.7172ms)
+✔ manual quote results suppress numeric prices and expose review submission without checkout (1.7378ms)
+✔ Bay UI derives coverage from section widths and never asks for angles (2.1394ms)
+✔ Curved, corner and awkward advertised routes collect their required review measurements (3.0452ms)
+✔ standard windows hide review evidence while reviewed and specialist routes can submit evidence (1.3697ms)
+✔ task navigation uses resolvable theme-owned inspiration, help and sample anchors (1.8971ms)
+✔ the Dawn header uses the task navigation instead of the production main menu (0.942ms)
+✔ Dawn renders database-projected multi-supplier imagery and preserves exact sample SKU without commercial fields (2.0758ms)
+✔ an unverified fabric deep link is explained instead of silently substituted (1.0675ms)
+✔ Dawn staging mode hides commerce controls and fixes the preview market label without changing Shopify Markets (1.5348ms)
+✔ all inherited Dawn commerce controls are disabled in the unpublished staging theme (2.3412ms)
+✔ results always show VAT, availability and delivery while standard results avoid specialist warnings (1.4588ms)
+✔ reviewed configurations resume through a fragment capability and revalidate the exact revision server-side (1.3616ms)
+✔ Dawn emits the launch funnel without supplier-commercial analytics fields (1.2682ms)
+✔ mobile controls meet the 44px staging target and avoid iOS input zoom (0.723ms)
+✔ persistent task, logo and footer navigation meet the 44px staging target (0.8699ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 490.3391

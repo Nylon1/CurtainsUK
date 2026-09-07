@@ -91,7 +91,7 @@ test("admin review routes use private auth, no-store responses and optimistic re
   const root = new URL("../../..", import.meta.url);
   const shared = readFileSync(new URL("app/api/admin/reviews/_shared.ts", root), "utf8");
   const repository = readFileSync(new URL("lib/storefront/review-operations-repository.ts", root), "utf8");
-  assert.match(shared, /supplierAdminIdentity/);
+  assert.match(shared, /reviewStaffIdentity/);
   assert.match(shared, /PRIVATE_NO_STORE_HEADERS/);
   assert.match(shared, /AUTHENTICATION_REQUIRED/);
   assert.match(shared, /STAFF_ROLE_REQUIRED/);

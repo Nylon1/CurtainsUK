@@ -1,5 +1,7 @@
 # CurtainsUK Phase 5D — Launch readiness
 
+> Launch update: customer uploads, scanner setup and private file storage in this historical report are superseded by the [Phase 5E email-evidence workflow](curtainsuk-phase-5e-owner-inputs.md#evidence-by-email--owner-decision-applied). Do not activate those file services for launch.
+
 Date: 7 September 2026
 
 Branch: `feature/curtainsuk-phase-5a-prelaunch`

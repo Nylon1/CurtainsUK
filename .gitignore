@@ -49,3 +49,6 @@ next-env.d.ts
 /shopify-theme/curtainsuk-dawn-16/README.md
 /shopify-theme/curtainsuk-dawn-16/release-notes.md
 /shopify-theme/curtainsuk-dawn-16/*.zip
+
+# Local rehearsal output can include ephemeral signed request URLs.
+/artifacts/phase5e/email-local-server.log

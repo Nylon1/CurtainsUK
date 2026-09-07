@@ -1,3 +1,4 @@
+import { emailEvidenceReady } from "./email-evidence";
 import "server-only";
 import { getStaffReviewDashboard, getStaffReviewRequest } from "./review-operations-repository";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
@@ -74,7 +75,7 @@ export async function getCustomerReviewAcceptance(
   if (!calculatedFabricMetres
       || !latest.pricingRuleVersion
       || !review.configuration.shippingParcelClass
-      || review.evidenceCounts.clean !== review.evidenceCounts.total) {
+      || !emailEvidenceReady(review.emailEvidence)) {
     throw new Error("REVIEW_ACCEPTANCE_NOT_READY");
   }
 

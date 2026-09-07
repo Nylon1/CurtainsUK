@@ -90,7 +90,7 @@ export function createReviewTransition(input: {
   occurredAt: string;
   pricingOutcome: Exclude<DecisionOutcome, "INSTANT_PRICE">;
   latestRevision: ReviewRevision | null;
-  allEvidenceClean: boolean;
+  emailEvidenceReviewed: boolean;
 }): ReviewAuditEntry {
   if (!validUuid(input.eventId) || !validUuid(input.requestId)) throw new Error("REVIEW_ID_INVALID");
   if (!input.actorId.trim() || input.actorId.length > 320) throw new Error("REVIEW_ACTOR_INVALID");
@@ -98,7 +98,7 @@ export function createReviewTransition(input: {
   if (!canTransitionReview(input.fromState, input.toState)) throw new Error("REVIEW_TRANSITION_INVALID");
 
   if (["APPROVED", "READY_FOR_CHECKOUT"].includes(input.toState)) {
-    if (!input.allEvidenceClean) throw new Error("REVIEW_EVIDENCE_NOT_CLEAN");
+    if (!input.emailEvidenceReviewed) throw new Error("REVIEW_EMAIL_EVIDENCE_REQUIRED");
     if (!input.latestRevision?.finalPrice || input.latestRevision.finalPrice.grossAmountMinor <= 0) {
       throw new Error("REVIEW_FINAL_PRICE_REQUIRED");
     }

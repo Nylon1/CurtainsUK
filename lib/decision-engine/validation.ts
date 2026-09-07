@@ -197,8 +197,6 @@ export function validateConfiguration(configuration: CurtainConfiguration, windo
   if (!fabric.allowedLinings.includes(configuration.lining)) issues.push(issue("LINING_NOT_ALLOWED_FOR_FABRIC", "lining", "Lining is not allowed for this fabric"));
   if (!windowType.pairSingleAvailability.includes(configuration.construction)) issues.push(issue("CONSTRUCTION_NOT_ALLOWED", "construction", "Pair/single selection is not allowed"));
   if (!fabric.suitableWindowTypeSlugs.includes("*") && !fabric.suitableWindowTypeSlugs.includes(windowType.slug)) issues.push(issue("FABRIC_NOT_SUITABLE_FOR_WINDOW", "fabricSpecId", "Fabric is not approved for this window type"));
-  if (windowType.photoRequired && configuration.attachments.photoReferences.length === 0) issues.push(issue("PHOTO_REQUIRED", "attachments.photoReferences", "At least one project photo is required"));
-  if (windowType.drawingRequired && configuration.attachments.drawingReferences.length === 0) issues.push(issue("DRAWING_REQUIRED", "attachments.drawingReferences", "A drawing is required"));
   if (!Number.isInteger(configuration.numberOfSegments) || configuration.numberOfSegments < 1) issues.push(issue("SEGMENT_COUNT_INVALID", "numberOfSegments", "Number of segments must be a positive integer"));
   issues.push(...validateSegmentedBayGeometry(configuration, windowType).issues);
   issues.push(...validateCornerGeometry(configuration, windowType).issues);

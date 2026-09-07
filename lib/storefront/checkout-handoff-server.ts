@@ -1,3 +1,4 @@
+import { emailEvidenceReady, summarizeEmailEvidence } from "./email-evidence";
 import "server-only";
 import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
 import { fabricMasterRecordById } from "@/lib/fabric-master/repository";
@@ -168,6 +169,7 @@ export async function prepareServerStagingCheckoutHandoff(
       throw new Error("CHECKOUT_REVIEW_REVISION_INVALID");
     }
     const spec = specification as Record<string, unknown>;
+    if (!emailEvidenceReady(summarizeEmailEvidence(detail.emailEvidenceEvents, String(latest.revision_id), request.window_type_slug, String(spec.window_type_slug ?? request.window_type_slug)))) throw new Error("CHECKOUT_REVIEW_NOT_READY");
     calculatedFabricMetres = positiveMetres(spec.calculated_fabric_metres)
       ?? positiveMetres((request as unknown as Record<string, unknown>).calculated_fabric_metres)
       ?? 0;

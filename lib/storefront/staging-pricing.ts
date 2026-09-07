@@ -236,7 +236,7 @@ export interface SpecialistReviewRequest {
   construction: ConstructionType;
   fixingPosition: string;
   stackDirection: CurtainConfiguration["stackDirection"];
-  photoNames: string[];
+  photoNames?: string[];
   drawingName?: string;
 }
 
@@ -264,7 +264,7 @@ export function classifySpecialistReview(input: SpecialistReviewRequest, supplie
     minimumOrderClass: "SPECIALIST_REVIEWED",
   });
   configuration.measurements = input.measurements;
-  configuration.attachments.photoReferences = input.photoNames.map((name) => `staging-local://${name}`);
+  configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
   configuration.attachments.drawingReferences = input.drawingName ? [`staging-local://${input.drawingName}`] : [];
   assertValidConfiguration(configuration, windowType, fabric, buildStagingRuleSet().measurementValidation);
   const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, { fabric });

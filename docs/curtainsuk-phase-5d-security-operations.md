@@ -1,5 +1,7 @@
 # CurtainsUK Phase 5D — Security and Operations Readiness
 
+> Launch update: customer uploads, scanner setup and private file storage in this historical report are superseded by the [Phase 5E email-evidence workflow](curtainsuk-phase-5e-owner-inputs.md#evidence-by-email--owner-decision-applied). Do not activate those file services for launch.
+
 Status: non-production implementation. No firewall rule, malware-scanning subscription, supplier automation, Shopify publication, or production payment setting was changed.
 
 ## Evidence-upload security

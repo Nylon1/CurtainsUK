@@ -5,7 +5,7 @@ import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import { SupplierIntelligenceService } from "@/lib/supplier-intelligence/service";
 import { SupabaseSupplierIntelligenceRepository } from "@/lib/supplier-intelligence/supabase-repository";
 import type { PublicSupplierAvailability } from "@/lib/supplier-intelligence/types";
-import { getPrimaryMaster, STOREFRONT_WINDOWS_BY_SLUG } from "./window-catalog";
+import { STOREFRONT_WINDOWS_BY_SLUG } from "./window-catalog";
 import { calculateStagingPrice, classifyServerSpecialistReview } from "./server-staging-pricing";
 import type { SpecialistReviewRequest, StagingPriceRequest } from "./staging-pricing";
 import {
@@ -13,23 +13,12 @@ import {
   normalizeReviewContact,
   reviewProvisionalPrice,
   validConfigurationId,
-  type ReviewEvidenceReference,
   type ReviewConfiguration,
   type ReviewRequestReceipt,
 } from "./review-request";
 import { verifyReviewSubmission } from "./review-token";
 import { REVIEW_STATES } from "./review-workflow";
-import { evidenceRetentionExpiry, verifyEvidencePayload } from "./security/evidence-core";
-import {
-  configuredEvidenceRetentionDays,
-  scanUploadedReviewEvidence,
-  uploadedReviewEvidencePayload,
-  type UploadedEvidenceSecurityRecord,
-} from "./security/evidence-persistence";
-
-const EVIDENCE_BUCKET = "curtainsuk-review-evidence-staging";
-const MAX_TOTAL_EVIDENCE_BYTES = 3_800_000;
-const MAX_PHOTOS = 8;
+import { reviewEmailInstructions, reviewReference } from "./email-evidence";
 
 export interface ReviewSubmissionFiles {
   photos: File[];
@@ -71,63 +60,10 @@ async function specialistAvailability(supplierId: string, supplierSku: string): 
   return projection.availability;
 }
 
-async function uploadEvidence(requestId: string, files: ReviewSubmissionFiles) {
-  const database = createSupplierServiceClient();
-  const uploadedPaths: string[] = [];
-  const evidence: ReviewEvidenceReference[] = [];
-  const securityRecords: UploadedEvidenceSecurityRecord[] = [];
-  const candidates = [
-    ...files.photos.map((file) => ({ file, kind: "PHOTO" as const })),
-    ...(files.drawing ? [{ file: files.drawing, kind: "DRAWING" as const }] : []),
-  ];
-  if (candidates.reduce((total, candidate) => total + candidate.file.size, 0) > MAX_TOTAL_EVIDENCE_BYTES) {
-    throw new Error("REVIEW_EVIDENCE_INVALID");
-  }
-
-  try {
-    for (const candidate of candidates) {
-      const bytes = new Uint8Array(await candidate.file.arrayBuffer());
-      const verified = verifyEvidencePayload({
-        kind: candidate.kind,
-        fileName: candidate.file.name,
-        claimedContentType: candidate.file.type,
-        bytes,
-      });
-      const evidenceId = randomUUID();
-      const objectPath = `${requestId}/${candidate.kind.toLowerCase()}-${evidenceId}${verified.safeExtension}`;
-      const { error } = await database.storage.from(EVIDENCE_BUCKET).upload(objectPath, bytes, {
-        contentType: verified.detectedContentType,
-        upsert: false,
-        cacheControl: "0",
-      });
-      if (error) throw new Error("REVIEW_EVIDENCE_UPLOAD_FAILED");
-      uploadedPaths.push(objectPath);
-      evidence.push({
-        kind: candidate.kind,
-        file_name: candidate.file.name.slice(0, 255),
-        object_path: objectPath,
-        content_type: candidate.file.type,
-        size_bytes: candidate.file.size,
-      });
-      securityRecords.push({
-        evidenceId,
-        requestId,
-        objectPath,
-        payload: verified,
-        retentionExpiresAt: evidenceRetentionExpiry(new Date(), configuredEvidenceRetentionDays()),
-      });
-    }
-    return { evidence, uploadedPaths, securityRecords };
-  } catch (error) {
-    if (uploadedPaths.length) await database.storage.from(EVIDENCE_BUCKET).remove(uploadedPaths);
-    throw error;
-  }
-}
-
-async function existingReviewRecord(configurationId: string): Promise<{ receipt: ReviewRequestReceipt; evidencePaths: Set<string> } | null> {
+async function existingReviewRecord(configurationId: string): Promise<{ receipt: ReviewRequestReceipt } | null> {
   const { data, error } = await createSupplierServiceClient()
     .from("staging_review_requests")
-    .select("request_id,configuration_id,review_state,submitted_at,evidence")
+    .select("request_id,configuration_id,review_state,submitted_at")
     .eq("configuration_id", configurationId)
     .maybeSingle();
   if (error) throw new Error("REVIEW_REQUEST_PERSISTENCE_FAILED");
@@ -136,19 +72,16 @@ async function existingReviewRecord(configurationId: string): Promise<{ receipt:
   if (!REVIEW_STATES.includes(reviewState)) {
     throw new Error("REVIEW_REQUEST_PERSISTENCE_FAILED");
   }
-  const evidence = Array.isArray(data.evidence) ? data.evidence : [];
   return {
     receipt: {
       requestId: String(data.request_id),
       configurationId: String(data.configuration_id),
       reviewState,
       submittedAt: String(data.submitted_at),
-      message: "Your project is already saved for technical review. No duplicate request or payment was created.",
+      reference: reviewReference(String(data.request_id)),
+      message: reviewEmailInstructions(String(data.request_id)),
     },
-    evidencePaths: new Set(evidence.flatMap((item) => {
-      if (!item || typeof item !== "object" || !("object_path" in item) || typeof item.object_path !== "string") return [];
-      return [item.object_path];
-    })),
+
   };
 }
 
@@ -163,15 +96,12 @@ export async function createStagingReviewRequest(input: {
   files: ReviewSubmissionFiles;
 }): Promise<ReviewRequestReceipt> {
   const contact = normalizeReviewContact(input.contact);
-  if (input.files.photos.length > MAX_PHOTOS) throw new Error("REVIEW_EVIDENCE_INVALID");
+  if (input.files.photos.length || input.files.drawing) throw new Error("REVIEW_UPLOADS_DISABLED");
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.configuration.windowSlug);
   if (!storefrontWindow) throw new Error("REVIEW_CONFIGURATION_INVALID");
-  const windowMaster = getPrimaryMaster(storefrontWindow);
   const specialistConfiguration = isSpecialistConfiguration(input.configuration) ? input.configuration : null;
   const standardConfiguration = specialistConfiguration ? null : input.configuration as StagingPriceRequest;
   if ((storefrontWindow.journey === "SPECIALIST") !== Boolean(specialistConfiguration)) throw new Error("REVIEW_CONFIGURATION_INVALID");
-  if (windowMaster.photoRequired && input.files.photos.length === 0) throw new Error("REVIEW_EVIDENCE_REQUIRED");
-  if (windowMaster.drawingRequired && !input.files.drawing) throw new Error("REVIEW_DRAWING_REQUIRED");
 
   const record = await fabricMasterRecordById(input.configuration.fabricId);
   if (!record || record.lifecycle_state === "DISCONTINUED") throw new Error("Window type or fabric is unavailable");
@@ -206,11 +136,10 @@ export async function createStagingReviewRequest(input: {
   const configurationId = clientConfigurationId;
   const existing = await existingReviewReceipt(configurationId);
   if (existing) return existing;
-  const { evidence, uploadedPaths, securityRecords } = await uploadEvidence(requestId, input.files);
   const database = createSupplierServiceClient();
 
   try {
-    const { data, error } = await database.rpc("create_staging_review_request_with_evidence", {
+    const { data, error } = await database.rpc("create_staging_email_review_request", {
       p_request: {
         request_id: requestId,
         event_id: randomUUID(),
@@ -235,8 +164,7 @@ export async function createStagingReviewRequest(input: {
           ? calculation.calculationVersion
           : calculation.rulesVersion,
         calculated_fabric_metres: "fabricMetres" in calculation ? calculation.fabricMetres : null,
-        evidence,
-        evidence_security: uploadedReviewEvidencePayload(securityRecords),
+        evidence: [],
         customer_name: contact.name,
         customer_email: contact.email,
         customer_phone: contact.phone,
@@ -250,32 +178,22 @@ export async function createStagingReviewRequest(input: {
     if (!persisted?.request_id || !persistedState || !REVIEW_STATES.includes(persistedState)) {
       throw new Error("REVIEW_REQUEST_PERSISTENCE_FAILED");
     }
-    if (persisted.created === false && uploadedPaths.length) {
-      await database.storage.from(EVIDENCE_BUCKET).remove(uploadedPaths);
-    } else if (persisted.created !== false && securityRecords.length) {
-      await scanUploadedReviewEvidence(securityRecords);
-    }
     return {
       requestId: persisted.request_id,
       configurationId: persisted.configuration_id ?? configurationId,
       reviewState: persistedState,
       submittedAt: persisted.submitted_at ?? submittedAt,
-      message: persisted.created === false
-        ? "Your project is already saved for technical review. No duplicate request or payment was created."
-        : "Your project is saved for technical review. We will contact you with the next steps before any payment or manufacture.",
+      reference: reviewReference(persisted.request_id),
+      message: reviewEmailInstructions(persisted.request_id),
     };
   } catch (error) {
     let persistedAfterFailure: Awaited<ReturnType<typeof existingReviewRecord>> = null;
     try {
       persistedAfterFailure = await existingReviewRecord(configurationId);
     } catch {
-      // Preserve evidence when persistence is ambiguous; a later orphan-cleanup
-      // policy may remove unreferenced objects without breaking a committed row.
+      // A retry uses the immutable configuration identity to recover its receipt.
       throw error;
     }
-    const committedEvidence = persistedAfterFailure
-      && uploadedPaths.every((objectPath) => persistedAfterFailure.evidencePaths.has(objectPath));
-    if (!committedEvidence && uploadedPaths.length) await database.storage.from(EVIDENCE_BUCKET).remove(uploadedPaths);
     if (persistedAfterFailure) return persistedAfterFailure.receipt;
     throw error;
   }

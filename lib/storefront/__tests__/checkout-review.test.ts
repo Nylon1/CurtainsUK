@@ -110,7 +110,7 @@ test("review state changes require actor, timestamp, reason, clean evidence and 
     occurredAt: "2026-09-07T12:20:00.000Z",
     pricingOutcome: "PRICE_WITH_REVIEW",
     latestRevision: amendment,
-    allEvidenceClean: true,
+    emailEvidenceReviewed: true,
   });
   assert.equal(event.toState, "APPROVED");
   assert.throws(() => createReviewTransition({
@@ -123,8 +123,8 @@ test("review state changes require actor, timestamp, reason, clean evidence and 
     occurredAt: "2026-09-07T12:20:00.000Z",
     pricingOutcome: "MANUAL_QUOTE",
     latestRevision: amendment,
-    allEvidenceClean: false,
-  }), /REVIEW_EVIDENCE_NOT_CLEAN/);
+    emailEvidenceReviewed: false,
+  }), /REVIEW_EMAIL_EVIDENCE_REQUIRED/);
   assert.throws(() => createReviewTransition({
     eventId: IDS.event,
     requestId: IDS.request,
@@ -135,7 +135,7 @@ test("review state changes require actor, timestamp, reason, clean evidence and 
     occurredAt: "2026-09-07T12:20:00.000Z",
     pricingOutcome: "PRICE_WITH_REVIEW",
     latestRevision: amendment,
-    allEvidenceClean: true,
+    emailEvidenceReviewed: true,
   }), /REVIEW_TRANSITION_INVALID/);
 });
 

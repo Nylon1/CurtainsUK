@@ -1,0 +1,19 @@
+✔ review list contract preserves every workflow state and private queue fields (3.9159ms)
+✔ review detail contract exposes customer, configuration, pricing, availability, evidence and audit data (1.5089ms)
+✔ review contracts reject unknown states, evidence states and invalid price arithmetic (1.5768ms)
+✔ state transitions and checkout readiness remain explicit (1.0979ms)
+✔ every staff action requires an audit reason (0.7767ms)
+✔ admin review endpoint builders encode filters and identifiers (0.9782ms)
+✔ private dashboard keeps its access, target-size and disabled-payment safety cues (3.187ms)
+✔ specialist approval requires email review for exactly the current revision (2.8212ms)
+✔ changing window type cannot remove original specialist evidence gate; staff-requested evidence also gates optional cases (0.4003ms)
+✔ email references retain the full unique request identity (0.4ms)
+✔ launch repository and customer form have no storage or scanner dependency (1.8849ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 470.1591

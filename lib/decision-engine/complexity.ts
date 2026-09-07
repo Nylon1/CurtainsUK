@@ -42,11 +42,10 @@ export function classifyComplexity(
   if (specialist) {
     const missing = windowType.requiredMeasurements.some((requirement) => configuration.measurements[requirement.key] === undefined);
     const geometry = validateSpecialistGeometry(configuration, windowType);
-    if (missing || !geometry.valid || configuration.attachments.photoReferences.length === 0) {
+    if (missing || !geometry.valid) {
       return decision("MANUAL_QUOTE", "LOW", true, [
         missing ? "Required specialist measurements are incomplete" : "Specialist measurements are present",
         ...geometry.issues.map((item) => item.message),
-        ...(configuration.attachments.photoReferences.length ? [] : ["Specialist project photographs are required"]),
       ], rules.version);
     }
     reasons.push("Complete simple specialist geometry is eligible only for a provisional reviewed price");

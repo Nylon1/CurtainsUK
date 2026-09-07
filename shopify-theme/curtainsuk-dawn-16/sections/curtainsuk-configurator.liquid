@@ -3,7 +3,7 @@
 {% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
-<section class="cuk-shell cuk-section" data-cuk-configurator data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
+<section class="cuk-shell cuk-section" data-cuk-configurator data-review-email="{{ shop.email | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
@@ -141,11 +141,8 @@
         </fieldset>
 
         <fieldset class="cuk-step cuk-hidden" data-cuk-review-evidence>
-          <legend>4. Project evidence</legend>
-          <div class="cuk-fields">
-            <div class="cuk-field cuk-field--wide"><label for="CukPhotos-{{ section.id }}">Photographs</label><input id="CukPhotos-{{ section.id }}" name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple><p class="cuk-hint" data-cuk-photo-guidance>Add a clear photograph if it will help our curtain team understand the window. Specialist-shaped windows require at least one photograph. Staging uploads accept up to 3 MB per file.</p></div>
-            <div class="cuk-field cuk-field--wide cuk-hidden" data-cuk-specialist-evidence><label for="CukDrawing-{{ section.id }}" data-cuk-drawing-label>Optional drawing</label><input id="CukDrawing-{{ section.id }}" name="drawing" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf"></div>
-          </div>
+          <legend>4. Photos and drawings by email</legend>
+          <p>Submit your measurements first. We will give you a unique reference to include when emailing photos or drawings separately. No files are uploaded here.</p>
         </fieldset>
 
         <div class="cuk-error" data-cuk-error hidden></div>

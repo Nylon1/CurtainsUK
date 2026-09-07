@@ -1,6 +1,6 @@
 # CurtainsUK Phase 5E owner inputs
 
-Shipping and malware scanning remain **OWNER DECISION REQUIRED**. No amounts or supplier stock observations have been invented.
+Shipping remains **OWNER DECISION REQUIRED**. Malware scanning and private file storage are not launch requirements. No amounts or supplier stock observations have been invented.
 
 ## Shipping
 
@@ -18,21 +18,15 @@ Specialist/manual delivery is separate from the nine cells. Legacy Specialist ra
 
 The customer postcode is collected and a successful mapped postcode/policy version is retained in the immutable shipping snapshot. Postcode/region mismatches, absent packing rules and unconfirmed operating policy all fail closed. Full Shopify address-change behaviour still requires the blocked remote checkout rehearsal.
 
-## Malware-scanning decision
+## Evidence by email — owner decision applied
 
-Checked 7 September 2026. Monthly prices below are published USD prices, before any applicable taxes; they are not commitments or subscriptions.
+Customer uploads are removed from launch. Submit measurements and contact details first; the receipt displays a full unique `CUK-<request UUID>` reference and an email link to the Shopify store contact address (currently `enquiries@drapesey.com`), with that reference in the subject. No message is sent automatically.
 
-| Candidate | Cost and UK/EU processing | API / PDF and images | Published file limit | Processing / DPA position |
-| --- | --- | --- | --- | --- |
-| Cloudmersive Advanced, Business | $49.99/month, 25,000 calls; Germany available | Existing adapter; one multipart API request; file scanning includes PDF/images | Plan maximum 1 GB; individual API limits also apply | Published DPA and subprocessors; owner must approve DPA and explicitly choose regional endpoint |
-| Cloudmersive Advanced, Business Advantage | $199.99/month, 100,000 calls; UK and EU available | Same existing adapter and file types | Plan maximum 2 GB; individual API limits also apply | Same DPA review; UK processing must be selected explicitly |
-| OPSWAT MetaDefender Cloud private processing | Commercial quote required for the appropriate private service; confirm EU region and contractual residency, no verified UK-specific option | Upload file, then retrieve report/poll; PDF and images supported | Licensing table lists 140 MB, 256 MB and 1 GB+ tiers; confirm contracted private tier | Select both private scanning and private processing; private scan removes the file after analysis but retains metadata/results. Request the applicable DPA, retention and region terms before using customer evidence |
+Staff record `EVIDENCE_NOT_RECEIVED`, then `EVIDENCE_RECEIVED`, then `EVIDENCE_REVIEWED` in the private review dashboard. This status is independent of the technical review state. The system stores only status, reason, revision, staff actor and timestamp. Files, mailbox contents and attachments remain outside CurtainsUK.
 
-Sources: [Cloudmersive pricing](https://cloudmersive.com/pricing-small-business), [scan API](https://api.cloudmersive.com/docs/virus.asp), [regional/security controls](https://www.cloudmersive.com/security), [DPA](https://www.cloudmersive.com/data-processing-dpa); [OPSWAT product, formats and limits](https://www.opswat.com/products/metadefender/cloud), [API](https://www.opswat.com/docs/mdcloud/metadefender-cloud-api-v4), [private scanning/processing](https://www.opswat.com/docs/mdcloud/operation/private-scanning-with-metadefender-cloud-apis), [privacy policy](https://www.opswat.com/legal/privacy-policy), [regional service status](https://trust.opswat.com/).
+Apex, triangular, Gable, awkward, dormer, curved/bow and corner requests require evidence reviewed against the current revision before approval. Bay/manual requests can also be gated when staff request evidence. After a new revision, prior reviewed evidence becomes received until staff review it again. Reopen an approved request before changing evidence status.
 
-My implementation recommendation is Cloudmersive Business in Germany if EU processing is acceptable; Business Advantage if UK processing is required. This is an inference from the published options and the existing adapter. The current application cap remains 3 MiB per evidence file regardless of provider plan. No provider is activated and no paid service was purchased.
-
-After selection, provision the staging key and explicit regional endpoint in sensitive Preview variables. Rehearse a valid clean PDF/image, an approved harmless antivirus test fixture, and provider unavailability through the actual upload/quarantine path. Do not interpret mocked scanner tests as provider certification. The current real staging test proves unavailability keeps a safe synthetic PNG quarantined and blocks approval; clean acceptance and infected-test detection remain blocked.
+No scanner provider, staging scanner credentials, private bucket, retention job or paid subscription is needed to operate this launch workflow. Legacy file endpoints return 410, the upload RPC rejects calls, and the launch submission/review/checkout code does not access storage or scanning services. Existing historical test objects are retained outside the launch workflow; they are neither served nor treated as proof of emailed evidence.
 
 ## Supplier pilot verification worksheet
 

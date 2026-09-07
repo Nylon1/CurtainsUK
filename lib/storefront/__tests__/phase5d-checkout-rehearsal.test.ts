@@ -323,7 +323,7 @@ test("Bay operational rehearsal preserves the original submission through staff 
     occurredAt: "2026-09-07T18:10:00.000Z",
     pricingOutcome: "PRICE_WITH_REVIEW",
     latestRevision: original,
-    allEvidenceClean: true,
+    emailEvidenceReviewed: true,
   });
   const amended = createStaffAmendment({
     revisionId: IDS.staffRevision,
@@ -350,7 +350,7 @@ test("Bay operational rehearsal preserves the original submission through staff 
     occurredAt: "2026-09-07T18:30:00.000Z",
     pricingOutcome: "PRICE_WITH_REVIEW",
     latestRevision: amended,
-    allEvidenceClean: true,
+    emailEvidenceReviewed: true,
   });
   const ready = createReviewTransition({
     eventId: IDS.event3,
@@ -362,7 +362,7 @@ test("Bay operational rehearsal preserves the original submission through staff 
     occurredAt: "2026-09-07T18:40:00.000Z",
     pricingOutcome: "PRICE_WITH_REVIEW",
     latestRevision: amended,
-    allEvidenceClean: true,
+    emailEvidenceReviewed: true,
   });
   assert.equal(ready.toState, "READY_FOR_CHECKOUT");
   assert.deepEqual((original.specification.measurements as { section_widths: number[] }).section_widths, [80, 180, 80]);
@@ -384,7 +384,7 @@ test("Apex and gable operational rehearsal supports information requests but blo
       occurredAt: "2026-09-07T18:10:00.000Z",
       pricingOutcome: "MANUAL_QUOTE",
       latestRevision: original,
-      allEvidenceClean: false,
+      emailEvidenceReviewed: false,
     });
     const amended = createStaffAmendment({
       revisionId: IDS.staffRevision,
@@ -411,7 +411,7 @@ test("Apex and gable operational rehearsal supports information requests but blo
       occurredAt: "2026-09-07T18:25:00.000Z",
       pricingOutcome: "MANUAL_QUOTE",
       latestRevision: amended,
-      allEvidenceClean: true,
+      emailEvidenceReviewed: true,
     });
     assert.throws(() => createReviewTransition({
       eventId: IDS.event3,
@@ -423,8 +423,8 @@ test("Apex and gable operational rehearsal supports information requests but blo
       occurredAt: "2026-09-07T18:30:00.000Z",
       pricingOutcome: "MANUAL_QUOTE",
       latestRevision: amended,
-      allEvidenceClean: false,
-    }), /REVIEW_EVIDENCE_NOT_CLEAN/);
+      emailEvidenceReviewed: false,
+    }), /REVIEW_EMAIL_EVIDENCE_REQUIRED/);
     assert.doesNotThrow(() => createReviewTransition({
       eventId: IDS.event3,
       requestId: IDS.request,
@@ -435,7 +435,7 @@ test("Apex and gable operational rehearsal supports information requests but blo
       occurredAt: "2026-09-07T18:30:00.000Z",
       pricingOutcome: "MANUAL_QUOTE",
       latestRevision: amended,
-      allEvidenceClean: true,
+      emailEvidenceReviewed: true,
     }));
     assert.equal(original.finalPrice, null);
     assert.equal(amended.finalPrice?.grossAmountMinor, 125_300);
@@ -533,7 +533,7 @@ test("staff audit operations require actor and a meaningful reason", () => {
     occurredAt: "2026-09-07T18:10:00.000Z",
     pricingOutcome: "PRICE_WITH_REVIEW",
     latestRevision: original,
-    allEvidenceClean: true,
+    emailEvidenceReviewed: true,
   }), /REVIEW_ACTOR_INVALID/);
   assert.throws(() => createReviewTransition({
     eventId: IDS.event1,
@@ -545,7 +545,7 @@ test("staff audit operations require actor and a meaningful reason", () => {
     occurredAt: "2026-09-07T18:10:00.000Z",
     pricingOutcome: "PRICE_WITH_REVIEW",
     latestRevision: original,
-    allEvidenceClean: true,
+    emailEvidenceReviewed: true,
   }), /REVIEW_REASON_INVALID/);
 });
 

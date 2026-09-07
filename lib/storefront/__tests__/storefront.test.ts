@@ -237,7 +237,7 @@ test("Curved and bow pricing uses the entered track arc as both coverage and req
   assert.equal(result.outcome, "PRICE_WITH_REVIEW");
   assert.equal(result.totalCoverageWidthCm, 260);
   assert.ok(result.totalAmountMinor !== null && result.totalAmountMinor > 0);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, photoNames: [] }, fabric), /incomplete or invalid/);
+  assert.equal(calculateStagingPriceForTest({ ...base, photoNames: [] }, fabric).outcome, "PRICE_WITH_REVIEW");
 });
 
 test("Corner pricing derives coverage from exactly two sections and retains one corner angle", () => {
@@ -265,7 +265,7 @@ test("Corner pricing derives coverage from exactly two sections and retains one 
   assert.throws(() => calculateStagingPriceForTest({ ...base, cornerSectionWidthsCm: [9, 291] }, fabric), /between 10 cm and 600 cm/);
 });
 
-test("Awkward and unusual windows collect rough dimensions and require both photo and drawing", () => {
+test("Awkward windows accept rough dimensions without uploads and remain manual quote", () => {
   const base = {
     windowSlug: "awkward-unusual-window",
     measurements: { coverage_width: 240, finished_drop: 210 },
@@ -284,7 +284,7 @@ test("Awkward and unusual windows collect rough dimensions and require both phot
   assert.equal(result.paymentState, "BLOCKED");
   assert.equal(result.productionState, "BLOCKED");
   assert.equal(result.message, "Price confirmed after technical review");
-  assert.throws(() => classifySpecialistReview({ ...base, drawingName: undefined }), /incomplete or invalid/);
+  assert.equal(classifySpecialistReview({ ...base, photoNames: [], drawingName: undefined }).outcome, "MANUAL_QUOTE");
   assert.throws(() => classifySpecialistReview({ ...base, measurements: { coverage_width: 240 } }), /incomplete or invalid/);
 });
 

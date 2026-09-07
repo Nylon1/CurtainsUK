@@ -7,7 +7,7 @@
 | Shipping | OWNER DECISION REQUIRED |
 | Stock verification | BLOCKED |
 | Staff review | BLOCKED |
-| Malware scanning | OWNER DECISION REQUIRED |
+| Malware scanning | PASS |
 | Instant checkout | BLOCKED |
 | Reviewed checkout | BLOCKED |
 | Manual-quote checkout | BLOCKED |
@@ -15,6 +15,8 @@
 | Prestigious readiness | BLOCKED |
 | Sanderson readiness | BLOCKED |
 | Mobile/desktop QA | BLOCKED |
+
+Owner update applied: customer uploads, malware scanning and private storage are removed from launch. The malware row is PASS because this dependency is retired, not because a scanner was certified.
 
 These are complete operational-path statuses. Passing implementation tests do not certify an unexecuted remote checkout.
 
@@ -29,7 +31,15 @@ These are complete operational-path statuses. Passing implementation tests do no
 - Backend deployed to Vercel Preview `dpl_EJBQvZDdYeiDHcQLWXFRNz2ybRB1`, through existing staging alias `https://curtainsuk-staging-gateway.vercel.app`. Deployed reviewer/anonymous/commercial-denial checks passed, all with no-store responses.
 - Updated only `assets/curtainsuk-storefront.js` and `sections/curtainsuk-configurator.liquid` in unpublished Dawn `182264234363`. Shopify confirmed role `unpublished`. Minimal `79650455661` remains `live`.
 
-## Rehearsal evidence
+## Email-evidence update
+
+Deployed to Preview `dpl_39X3uVgwdNRifzFBLG2eXv57sBVi` via the existing staging alias; unpublished Dawn `182264234363` updated. Remote browser submission `4e7a9ccb-b07c-436c-9736-864a96201a5c` displayed its full reference and email link to the existing Shopify contact `enquiries@drapesey.com`. Mobile at 390 px had no horizontal overflow and zero file inputs. No email was sent. All 206 main-suite tests and seven admin contract tests pass; TypeScript, changed-file lint and the Preview build pass.
+
+The follow-up rehearsal submitted Apex and Gable without files, recovered the same reference on retry, rejected an attached file, blocked review before receipt, rejected a stale status update, recorded staff receipt/review, invalidated evidence review after a new priced revision and then approved both requests after a fresh evidence review. Original submissions stayed immutable and the audit actor matched the restricted staff identity. No new stored evidence rows were created. Bay and Manual Quote approval also passed; shipping and availability remain blocked. See [email workflow rehearsal](../artifacts/phase5e/email-evidence-rehearsal.json).
+
+The launch dashboard has no file retrieval controls. Legacy access/download/deletion/maintenance endpoints are hard-disabled. Scanner and storage library code and historical migrations remain dormant; no launch code invokes them. This supersedes the earlier scanner-related stopping points below, which remain as dated historical evidence.
+
+## Earlier rehearsal evidence
 
 The API harness uses a local application with the real dedicated staging database, locally generated proxy-signing keys and Draft Order mode forced to `DISABLED`. It exercises application routes and durable records, not merely pure function mocks. It does not impersonate the deployed Shopify gateway or claim a remote Draft Order.
 
@@ -57,8 +67,8 @@ Evidence: [API rehearsal](../artifacts/phase5e/api-rehearsal.json), [deployed au
 
 1. **Shipping:** owner rates and all operating inputs in [the owner brief](curtainsuk-phase-5e-owner-inputs.md). No rate is confirmed. Confirm conservative packing allocations for lining/construction variants; unsupported/manual-delivery combinations stay blocked. Rehearse delivery-address changes in Shopify before launch.
 2. **Supplier pilot:** current authorised cut prices and single-batch/dye-lot metre records for Escher `4269/147`, Dali `4270/147` and Sanderson `DAPGPA203`. All have zero batch records. Prestigious stored observations are from 6 September and expired at 00:00 UTC on 7 September. Sanderson's 7 September observation has no single-batch evidence even though its freshness window has not expired. No pilot was checkout-promoted.
-3. **Scanner:** owner selects plan, UK/EU region, DPA and staging credentials. Then prove real clean acceptance, harmless infected-test detection and outage rejection. Only outage/quarantine has been exercised against durable staging evidence in this phase. No subscription was purchased.
-4. **Review completion:** after stock/shipping/scanning, complete READY_FOR_CHECKOUT for Bay and Manual Quote and clean-evidence approval for Apex/Gable, then customer acceptance and exact-price handoff. The staff identity blocker is resolved; full reviewed checkout is not.
+3. **Email evidence:** for real specialist work, staff must record receipt and review of photos/drawings handled in the store mailbox, quoting the unique reference. No scanner or private file storage requirement remains. Synthetic Apex and Gable email-state rehearsals passed, with no files uploaded or emails sent.
+4. **Review completion:** after stock/shipping and real email-evidence review, complete READY_FOR_CHECKOUT for Bay, Manual Quote and Apex/Gable, then customer acceptance and exact-price handoff. The staff identity blocker is resolved; full reviewed checkout is not.
 5. **Shopify payment safety:** verify the development store cannot capture real payments using actual payment-provider settings before enabling any test-draft creation. Authenticated Chrome access timed out; development-store naming alone is not accepted as proof. Keep Draft Order execution disabled. Database execution audit remains empty.
 6. **Three remote checkout paths and immutability:** create and inspect the first test Draft Orders only after 1–5, verify all exact financial/specification fields and private SKU linkage, and repeat the cost-change test against an existing remote Draft Order. No remote Draft Order, checkout URL, payment, invoice send or fulfilment was created.
 7. **Prestigious:** verify remaining 29 cut prices; refresh lifecycle and stock from authorised Webtex access. Read-only imagery audit: 32/32 current image URLs resolve. Catalogue remains 3/32 price-verified, 32/32 recorded current. No bulk approval.

@@ -75,6 +75,7 @@ const detail = {
     label: "Availability to be confirmed",
     checkedAt: null,
   },
+  emailEvidence: { required: true, state: "EVIDENCE_NOT_RECEIVED", latestEventId: null, reviewedRevisionId: null, events: [] },
   evidence: [
     {
       evidenceId: "evidence-clean",
@@ -193,10 +194,10 @@ test("private dashboard keeps its access, target-size and disabled-payment safet
   const dashboardSource = readFileSync(new URL("./review-dashboard.tsx", import.meta.url), "utf8");
   const proxySource = readFileSync(new URL("../../../proxy.ts", import.meta.url), "utf8");
 
-  assert.match(proxySource, /matcher:\s*\["\/admin\/:path\*"\]/, "the admin page route must remain behind session auth");
+  assert.match(proxySource, /matcher:\s*\["\/admin\/:path\*", "\/api\/admin\/:path\*"\]/, "the admin page route must remain behind session auth");
   assert.match(proxySource, /private, no-store, max-age=0/, "admin pages and auth redirects must never be shared-cacheable");
   assert.match(dashboardSource, /const CONTROL = "min-h-11/, "form controls retain a 44px minimum height");
   assert.match(dashboardSource, /const BUTTON = "inline-flex min-h-11/, "buttons retain a 44px minimum height");
-  assert.match(dashboardSource, /item\.securityState !== "CLEAN"/, "non-clean evidence retrieval remains disabled");
-  assert.match(dashboardSource, /Checkout\/payment disabled/, "the dashboard visibly states that payment is disabled");
+  assert.doesNotMatch(dashboardSource, /window\.open|evidenceAccess\(/, "file retrieval is absent from launch UI");
+  assert.match(dashboardSource, /Payment remains disabled/, "the dashboard visibly states that payment is disabled");
 });

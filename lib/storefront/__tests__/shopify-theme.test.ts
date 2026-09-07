@@ -35,7 +35,7 @@ test("Dawn delegates decisions to the signed app proxy and exposes only a develo
 test("the specialist workflow requires a photo and never renders a payment control", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
-  assert.match(script, /photos\.required = requiresPhoto/);
+  assert.doesNotMatch(section, /type="file"/);
   assert.match(script, /This project must be reviewed before payment or manufacture/);
   assert.equal(/<(?:button|a)[^>]*>\s*(?:Add to cart|Buy now|Proceed to checkout)/i.test(section), false);
 });
@@ -48,7 +48,7 @@ test("manual quote results suppress numeric prices and expose review submission 
   assert.match(script, /routeStatus\.textContent = isManualQuote \? "Manual quote"/);
   assert.match(script, /endpoint\(root\.dataset\.engineBase, root\.dataset\.reviewPath \|\| "review-request"\)/);
   assert.match(script, /payload\.set\("configuration", JSON\.stringify\(lastEvaluation\.configuration\)\)/);
-  assert.match(script, /payload\.append\("photos", file\)/);
+  assert.doesNotMatch(script, /payload\.append\("photos", file\)/);
   assert.match(section, /Submit project for review/);
   assert.match(section, /name="customerEmail"[^>]*required/);
   assert.equal(/cart\/add|checkout\.js/i.test(script + section), false);
@@ -81,18 +81,19 @@ test("Curved, corner and awkward advertised routes collect their required review
   assert.match(section, /data-cuk-awkward/);
   assert.match(section, /name="roughWidthCm"/);
   assert.match(section, /name="roughDropCm"/);
-  assert.match(script, /drawing\.required = isAwkward/);
+  assert.doesNotMatch(script, /drawing\.required/);
   assert.equal(/Map every edge[\s\S]{0,500}data-cuk-awkward/.test(section), false, "awkward route must not inherit apex-specific measurement copy");
 });
 
-test("standard windows hide review evidence while reviewed and specialist routes can submit evidence", () => {
+test("review routes explain email evidence without file inputs", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
   assert.match(section, /class="cuk-step cuk-hidden" data-cuk-review-evidence/);
   assert.match(script, /const needsEvidence = isReview \|\| isSpecialist/);
-  assert.match(script, /photos\.required = requiresPhoto/);
+  assert.doesNotMatch(section, /type="file"/);
   assert.match(script, /construction: form\.elements\.construction\.value/);
-  assert.match(section, /data-cuk-specialist-evidence/);
+  assert.match(section, /unique reference/);
+  assert.match(script, /mailto:/);
 });
 
 test("task navigation uses resolvable theme-owned inspiration, help and sample anchors", () => {

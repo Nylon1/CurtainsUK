@@ -2,8 +2,8 @@ import "server-only";
 import type { ReviewConfiguration } from "@/lib/storefront/review-request";
 import { readHardLimitedRequestBytes } from "./http";
 
-const ALLOWED_FIELDS = new Set(["configuration", "calculation", "contactName", "contactEmail", "contactPhone", "notes", "photos", "drawing"]);
-const MAX_PROXY_REVIEW_BYTES = 4_000_000;
+const ALLOWED_FIELDS = new Set(["configuration", "calculation", "contactName", "contactEmail", "contactPhone", "notes"]);
+const MAX_PROXY_REVIEW_BYTES = 128_000;
 
 function jsonField(form: FormData, name: string) {
   const value = form.get(name);
@@ -15,10 +15,6 @@ function jsonField(form: FormData, name: string) {
   }
 }
 
-function files(form: FormData, name: string) {
-  return form.getAll(name).filter((value): value is File => value instanceof File && value.size > 0);
-}
-
 export interface ParsedProxyReviewRequest {
   configuration: ReviewConfiguration;
   clientCalculation: Record<string, unknown>;
@@ -26,10 +22,7 @@ export interface ParsedProxyReviewRequest {
   files: { photos: File[]; drawing: File | null };
 }
 
-/**
- * Parses a signed proxy upload before the review repository performs its
- * magic-byte validation, quarantine registration and configured malware scan.
- */
+/** Launch reviews accept text only; evidence is handled by email. */
 export async function parseProxyReviewRequest(request: Request): Promise<ParsedProxyReviewRequest> {
   const contentType = request.headers.get("content-type");
   if (!contentType) throw new Error("REVIEW_CONFIGURATION_INVALID");
@@ -50,10 +43,6 @@ export async function parseProxyReviewRequest(request: Request): Promise<ParsedP
       throw new Error("REVIEW_CONFIGURATION_INVALID");
     }
   }
-  const photos = files(form, "photos");
-  const drawings = files(form, "drawing");
-  if (photos.length > 8 || drawings.length > 1) throw new Error("REVIEW_EVIDENCE_INVALID");
-  const drawing = drawings[0] ?? null;
   return {
     configuration: jsonField(form, "configuration") as ReviewConfiguration,
     clientCalculation: jsonField(form, "calculation") as Record<string, unknown>,
@@ -63,6 +52,6 @@ export async function parseProxyReviewRequest(request: Request): Promise<ParsedP
       phone: form.get("contactPhone"),
       notes: form.get("notes"),
     },
-    files: { photos, drawing },
+    files: { photos: [], drawing: null },
   };
 }

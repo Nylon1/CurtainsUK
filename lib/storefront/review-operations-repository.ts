@@ -2,12 +2,12 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import type {
   ReviewDetail,
-  ReviewEvidence,
   ReviewListItem,
   ReviewListResponse,
   ReviewRevision,
 } from "@/app/admin/reviews/contracts";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
+import { reviewReference, summarizeEmailEvidence, emailEvidenceReady, type EmailEvidenceEvent } from "./email-evidence";
 import { shippingPolicyBlockers } from "./shipping-owner-inputs";
 import type { ImmutableConfigurationSnapshot } from "./checkout-gates";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "./window-catalog";
@@ -15,7 +15,7 @@ import { REVIEW_STATES, type ReviewState } from "./review-workflow";
 
 const REVIEW_REQUEST_COLUMNS = "request_id,configuration_id,window_type_slug,measurement_basis,measurements,fabric_id,supplier_id,supplier_sku,heading,lining,interlining,construction,stack_direction,fixing_position,availability_state,pricing_outcome,provisional_gross_price_minor,calculated_fabric_metres,currency,calculation_version,evidence,customer_name,customer_email,customer_phone,notes,review_state,submitted_at,updated_at";
 const REVIEW_REVISION_COLUMNS = "revision_id,request_id,revision_number,previous_revision_id,revision_kind,specification,final_net_amount_minor,final_vat_amount_minor,final_gross_amount_minor,final_vat_rate_basis_points,currency,pricing_rule_version,actor_type,actor_id,reason,created_at";
-const REVIEW_EVIDENCE_COLUMNS = "evidence_id,request_id,kind,file_name,claimed_content_type,detected_content_type,size_bytes,security_state,scanned_at,rejection_reason,retention_expires_at,deletion_requested_at,deleted_at,created_at,updated_at";
+const EMAIL_EVIDENCE_COLUMNS = "event_id,request_id,evidence_state,revision_id,actor_id,reason,created_at,event_number";
 
 type Row = Record<string, unknown>;
 
@@ -55,6 +55,7 @@ export interface StaffReviewDetail {
   revisions: Record<string, unknown>[];
   events: Record<string, unknown>[];
   evidence: Record<string, unknown>[];
+  emailEvidenceEvents: EmailEvidenceEvent[];
 }
 
 interface StaffFabricMetadata {
@@ -118,7 +119,7 @@ export async function listStaffReviewRequests(input: {
     .limit(limit + 1);
   if (input.state) query = query.eq("review_state", input.state);
   if (input.query) {
-    const term = input.query.trim();
+    const term = input.query.trim().replace(/^CUK-/i, "");
     const filters = [
       `customer_name.ilike.%${term}%`,
       `customer_email.ilike.%${term}%`,
@@ -158,10 +159,10 @@ export async function getStaffReviewRequest(requestId: string): Promise<StaffRev
       .select("event_id,request_id,review_state,actor_type,actor_id,reason,created_at")
       .eq("request_id", requestId)
       .order("created_at", { ascending: true }),
-    database.from("staging_review_evidence")
-      .select(REVIEW_EVIDENCE_COLUMNS)
+    database.from("staging_review_email_evidence_events")
+      .select(EMAIL_EVIDENCE_COLUMNS)
       .eq("request_id", requestId)
-      .order("created_at", { ascending: true }),
+      .order("event_number", { ascending: true }),
   ]);
   if (requestResult.error || revisionResult.error || eventResult.error || evidenceResult.error) {
     throw new Error("REVIEW_DETAIL_FAILED");
@@ -171,7 +172,8 @@ export async function getStaffReviewRequest(requestId: string): Promise<StaffRev
     request: normalizeRequest(requestResult.data as Record<string, unknown>),
     revisions: (revisionResult.data ?? []) as Record<string, unknown>[],
     events: (eventResult.data ?? []) as Record<string, unknown>[],
-    evidence: (evidenceResult.data ?? []) as Record<string, unknown>[],
+    evidence: [],
+    emailEvidenceEvents: (evidenceResult.data ?? []).map((row) => ({ eventId: String(row.event_id), state: row.evidence_state as EmailEvidenceEvent["state"], revisionId: String(row.revision_id), actorId: row.actor_id == null ? null : String(row.actor_id), reason: String(row.reason), createdAt: String(row.created_at) })),
   };
 }
 
@@ -242,10 +244,6 @@ async function fabricMetadata(fabricIds: readonly string[]): Promise<Map<string,
   }));
 }
 
-function reviewReference(requestId: string) {
-  return `CUK-R-${requestId.replaceAll("-", "").slice(0, 8).toUpperCase()}`;
-}
-
 function windowLabel(slug: string) {
   return STOREFRONT_WINDOWS_BY_SLUG.get(slug)?.name
     ?? slug.split("-").map((part) => part ? part[0].toUpperCase() + part.slice(1) : part).join(" ");
@@ -267,12 +265,6 @@ function assertPublicAvailability(value: string): asserts value is ReviewListIte
   if (!["FABRIC_AVAILABLE", "LIMITED_AVAILABILITY", "AVAILABLE_SOON", "AVAILABILITY_TO_BE_CONFIRMED", "TEMPORARILY_UNAVAILABLE", "NO_LONGER_AVAILABLE"].includes(value)) {
     throw new Error("REVIEW_PERSISTED_AVAILABILITY_INVALID");
   }
-}
-
-function evidenceCount(rows: readonly Row[], expectedTotal: number) {
-  const clean = rows.filter((row) => row.security_state === "CLEAN").length;
-  const total = Math.max(rows.length, expectedTotal);
-  return { total, clean, blocked: total - clean };
 }
 
 function latestRevision(rows: readonly Row[]) {
@@ -333,7 +325,7 @@ function dashboardListItem(input: {
     provisionalGrossPriceMinor: input.request.provisional_gross_price_minor,
     finalGrossPriceMinor: latest?.final_gross_amount_minor == null ? null : Number(latest.final_gross_amount_minor),
     currency: "GBP",
-    evidenceCounts: evidenceCount(input.evidence, input.request.evidence.length),
+    evidenceCounts: { total: 0, clean: 0, blocked: 0 },
   };
 }
 
@@ -346,16 +338,10 @@ export async function listStaffReviewDashboard(input: {
   const [page, counts] = await Promise.all([listStaffReviewRequests(input), reviewCounts()]);
   const requestIds = page.requests.map((request) => request.request_id);
   const database = createSupplierServiceClient();
-  const [evidenceResult, revisionsResult] = await Promise.all([
-    requestIds.length === 0
-      ? Promise.resolve({ data: [] as Row[], error: null })
-      : database.from("staging_review_evidence").select("request_id,security_state").in("request_id", requestIds),
-    requestIds.length === 0
-      ? Promise.resolve({ data: [] as Row[], error: null })
-      : database.from("staging_review_request_revisions").select("request_id,revision_number,specification,final_gross_amount_minor").in("request_id", requestIds),
-  ]);
-  if (evidenceResult.error || revisionsResult.error) throw new Error("REVIEW_LIST_RELATION_FAILED");
-  const evidence = (evidenceResult.data ?? []) as Row[];
+  const revisionsResult = requestIds.length === 0
+    ? { data: [] as Row[], error: null }
+    : await database.from("staging_review_request_revisions").select("request_id,revision_number,specification,final_gross_amount_minor").in("request_id", requestIds);
+  if (revisionsResult.error) throw new Error("REVIEW_LIST_RELATION_FAILED");
   const revisions = (revisionsResult.data ?? []) as Row[];
   const effectiveByRequest = new Map(page.requests.map((request) => {
     const requestRevisions = revisions.filter((row) => row.request_id === request.request_id);
@@ -370,7 +356,7 @@ export async function listStaffReviewDashboard(input: {
       return dashboardListItem({
         request,
         fabric,
-        evidence: evidence.filter((row) => row.request_id === request.request_id),
+        evidence: [],
         revisions: revisions.filter((row) => row.request_id === request.request_id),
         effective,
       });
@@ -402,19 +388,6 @@ function dashboardRevision(row: Row): ReviewRevision {
   };
 }
 
-function dashboardEvidence(row: Row): ReviewEvidence {
-  return {
-    evidenceId: String(row.evidence_id),
-    kind: row.kind as ReviewEvidence["kind"],
-    fileName: String(row.file_name),
-    contentType: String(row.detected_content_type ?? row.claimed_content_type),
-    sizeBytes: Number(row.size_bytes),
-    securityState: row.security_state as ReviewEvidence["securityState"],
-    scannedAt: row.scanned_at == null ? null : String(row.scanned_at),
-    retentionExpiresAt: String(row.retention_expires_at),
-  };
-}
-
 export async function getStaffReviewDashboard(requestId: string): Promise<ReviewDetail | null> {
   const detail = await getStaffReviewRequest(requestId);
   if (!detail) return null;
@@ -424,9 +397,7 @@ export async function getStaffReviewDashboard(requestId: string): Promise<Review
   assertPublicAvailability(effective.availabilityState);
   const revisions = detail.revisions.map(dashboardRevision);
   const latest = revisions.at(-1) ?? null;
-  const evidence = detail.evidence.map(dashboardEvidence);
-  const allEvidenceClean = evidence.length === detail.request.evidence.length
-    && evidence.every((item) => item.securityState === "CLEAN");
+  const emailEvidence = summarizeEmailEvidence(detail.emailEvidenceEvents, latest?.revisionId ?? null, detail.request.window_type_slug, effective.windowTypeSlug);
   const availabilityAcceptable = ["FABRIC_AVAILABLE", "LIMITED_AVAILABILITY"].includes(effective.availabilityState);
   const fabricIdentityValid = fabric.fabricId === effective.fabricId
     && fabric.supplierId === effective.supplierId
@@ -436,7 +407,7 @@ export async function getStaffReviewDashboard(requestId: string): Promise<Review
   if (detail.request.review_state !== "APPROVED") blockedReasons.push(detail.request.review_state === "READY_FOR_CHECKOUT" ? "Checkout readiness is already recorded" : "Review approval is required");
   if (!latest?.finalPrice) blockedReasons.push("A final VAT-inclusive price is required");
   if (!latest?.pricingRuleVersion) blockedReasons.push("A pricing ruleset version is required");
-  if (!allEvidenceClean) blockedReasons.push("All submitted evidence must pass security scanning");
+  if (!emailEvidenceReady(emailEvidence)) blockedReasons.push("Email evidence must be reviewed for the current revision");
   if (!availabilityAcceptable) blockedReasons.push("Fabric availability must be confirmed");
   if (!fabricIdentityValid) blockedReasons.push("The amended fabric identity is inconsistent");
   if (!fabric.configurationEligible) blockedReasons.push("Fabric is not pricing-eligible");
@@ -499,7 +470,8 @@ export async function getStaffReviewDashboard(requestId: string): Promise<Review
       label: publicAvailabilityLabel(effective.availabilityState),
       checkedAt: null,
     },
-    evidence,
+    evidence: [],
+    emailEvidence,
     revisions,
     audit,
     checkout: {
@@ -571,7 +543,7 @@ function throwReviewRepositoryError(error: { code?: string; message?: string }, 
   if (message.includes("Unknown review request")) throw new Error("REVIEW_NOT_FOUND");
   if (message.includes("Review must be open before amendment")) throw new Error("REVIEW_CONFLICT");
   if (message.includes("Invalid review state transition") || message.includes("Review state is unchanged")) throw new Error("REVIEW_TRANSITION_INVALID");
-  if (message.includes("evidence must be clean")) throw new Error("REVIEW_EVIDENCE_NOT_CLEAN");
+  if (message.includes("Email evidence must be reviewed")) throw new Error("REVIEW_EMAIL_EVIDENCE_REQUIRED");
   if (message.includes("final price")) throw new Error("REVIEW_FINAL_PRICE_REQUIRED");
   if (message.includes("availability must be acceptable")
       || message.includes("not pricing-eligible")

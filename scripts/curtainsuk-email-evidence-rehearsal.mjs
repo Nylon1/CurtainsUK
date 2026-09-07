@@ -1,5 +1,3 @@
-// Historical upload rehearsal is retired; use curtainsuk-email-evidence-rehearsal.mjs.
-throw new Error("UPLOAD_REHEARSAL_RETIRED: run scripts/curtainsuk-email-evidence-rehearsal.mjs");
 import assert from 'node:assert/strict';
 import { loadEnvFile } from 'node:process';
 import { createServerClient } from '@supabase/ssr';
@@ -12,6 +10,7 @@ const base = 'http://localhost:3205';
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 assert.equal(url, 'https://hqysjumypgeapgmqkcrx.supabase.co');
 const service = createClient(url, process.env.SUPABASE_SECRET_KEY, { auth: { persistSession: false } });
+let syntheticAddress = `198.51.100.${1 + Math.floor(Math.random()*200)}`;
 const report = { checkedAt: new Date().toISOString(), environment: 'LOCAL_APP_WITH_STAGING_DATABASE', remoteShopifyWrites: 0, checks: [], cases: [] };
 async function authCookie(email, password) {
   const jar = new Map();
@@ -24,7 +23,7 @@ async function authCookie(email, password) {
 }
 async function api(path, body, cookie) {
   const response = await fetch(`${base}${path}`, { method: body === undefined ? 'GET' : 'POST',
-    headers: { Origin: base, ...(cookie ? {Cookie:cookie} : {}), ...(body instanceof FormData || body === undefined ? {} : {'Content-Type':'application/json'}) },
+    headers: { Origin: base, "x-vercel-forwarded-for": syntheticAddress, ...(cookie ? {Cookie:cookie} : {}), ...(body instanceof FormData || body === undefined ? {} : {'Content-Type':'application/json'}) },
     body: body === undefined ? undefined : body instanceof FormData ? body : JSON.stringify(body), redirect: 'manual' });
   const text = await response.text();
   let data; try { data = JSON.parse(text); } catch { data = { nonJson: true }; }
@@ -96,34 +95,49 @@ for (const [name,configuration] of [
   assert.ok(after.audit.filter(event => event.fromState !== null).every(event => event.actorLabel === process.env.PHASE5E_STAFF_ID));
   report.cases.push({name,requestId,staffApproval:'PASS',checkout:'BLOCKED',blockers:after.checkout.blockedReasons,originalImmutable:true});
 }
-const specialist = {windowSlug:'apex-window',measurements:{coverage_width:300,peak_height:300,left_vertical:200,right_vertical:200,left_slope:180.278,right_slope:180.278},fabricId:'pt-4269-147',heading:'WAVE',lining:'BLACKOUT',construction:'PAIR',fixingPosition:'Ceiling-mounted curtain track inside the reveal',stackDirection:'SPLIT',photoNames:['phase5e-safe-window.png']};
-const specialistCalculation = await proxy('specialist-review',specialist);
-assert.equal(specialistCalculation.status,200,JSON.stringify(specialistCalculation.data));
-const specialistForm = new FormData();
-for (const [key,value] of Object.entries({configuration:JSON.stringify(specialist),calculation:JSON.stringify(specialistCalculation.data),contactName:'Phase 5E Apex',contactEmail:'phase5e-apex@curtainsuk.invalid',contactPhone:'',notes:'Synthetic one-pixel PNG, no personal data. Scanner must fail closed.'})) specialistForm.set(key,value);
-specialistForm.set('photos',new File([Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a8yoAAAAASUVORK5CYII=','base64')],'phase5e-safe-window.png',{type:'image/png'}));
-const apexSubmitted = await proxy('review-request',specialistForm);
-assert.equal(apexSubmitted.status,201,JSON.stringify(apexSubmitted.data));
-const apexId = apexSubmitted.data.requestId;
-let apex = (await api(`/api/admin/reviews/${apexId}`,undefined,staff.cookie)).data.review;
-const apexOriginal = structuredClone(apex.revisions[0]);
-assert.ok(apex.evidence.length > 0 && apex.evidence.every(item => item.securityState === 'QUARANTINED'));
-for (const toState of ['NEEDS_INFORMATION','UNDER_REVIEW']) {
-  const changed = await api(`/api/admin/reviews/${apexId}/transition`,{toState,expectedState:apex.reviewState,latestRevisionId:apex.revisions.at(-1).revisionId,reason:'Phase 5E synthetic geometry follow-up rehearsal'},staff.cookie);
-  assert.equal(changed.status,200,JSON.stringify(changed.data)); apex=changed.data.review;
+
+const db = service.schema('curtainsuk_private');
+const countFiles = async () => { const r = await db.from('staging_review_evidence').select('evidence_id',{count:'exact',head:true}); assert.equal(r.error,null); return r.count; };
+const beforeFiles = await countFiles();
+for (const windowSlug of ['apex-window','gable-end-window']) {
+ syntheticAddress = `198.51.100.${1 + Math.floor(Math.random()*200)}`; // Separate synthetic customer for each local scenario.
+ const configuration = {windowSlug,measurements:{coverage_width:300,peak_height:300,left_vertical:200,right_vertical:200,left_slope:180.278,right_slope:180.278},fabricId:'pt-4269-147',heading:'WAVE',lining:'BLACKOUT',construction:'PAIR',fixingPosition:'Ceiling-mounted curtain track inside the reveal',stackDirection:'SPLIT'};
+ const calculation = await proxy('specialist-review',configuration); assert.equal(calculation.status,200,JSON.stringify(calculation.data));
+ const form = new FormData();
+ for (const [key,value] of Object.entries({configuration:JSON.stringify(configuration),calculation:JSON.stringify(calculation.data),contactName:'Email evidence rehearsal',contactEmail:'phase5e-email-rehearsal@curtainsuk.invalid',contactPhone:'',notes:'Synthetic training case. Evidence receipt/review below are simulated mailbox actions. Do not contact or fulfil.'})) form.set(key,value);
+ const submit = await proxy('review-request',form); assert.equal(submit.status,201,JSON.stringify(submit.data));
+ const id=submit.data.requestId; assert.equal(submit.data.reference,`CUK-${id.toUpperCase()}`); assert.match(submit.data.message,/Email photos or drawings separately/);
+ const retry=await proxy('review-request',form); assert.equal(retry.status,201,JSON.stringify(retry.data)); assert.equal(retry.data.reference,submit.data.reference);
+ form.set('photos',new File(['test'],'not-uploaded.png',{type:'image/png'}));
+ assert.equal((await proxy('review-request',form)).status,400);
+ let current=(await api(`/api/admin/reviews/${id}`,undefined,staff.cookie)).data.review;
+ assert.equal(current.emailEvidence.state,'EVIDENCE_NOT_RECEIVED'); assert.deepEqual(current.evidence,[]);
+ const original=structuredClone(current.revisions[0]);
+ const change=async (toState) => api(`/api/admin/reviews/${id}/transition`,{toState,expectedState:current.reviewState,latestRevisionId:current.revisions.at(-1).revisionId,reason:'Synthetic email workflow rehearsal'},staff.cookie);
+ let result=await change('UNDER_REVIEW'); assert.equal(result.status,200,JSON.stringify(result.data)); current=result.data.review;
+ const statusBody=(state)=>({state,reason:'Simulated mailbox action for synthetic rehearsal only',revisionId:current.revisions.at(-1).revisionId,expectedEventId:current.emailEvidence.latestEventId});
+ const record=async(state)=>api(`/api/admin/reviews/${id}/email-evidence`,statusBody(state),staff.cookie);
+ assert.equal((await api(`/api/admin/reviews/${id}/email-evidence`,statusBody('EVIDENCE_RECEIVED'))).status,401);
+ assert.equal((await record('EVIDENCE_REVIEWED')).status,400);
+ const stale=statusBody('EVIDENCE_RECEIVED');
+ result=await record('EVIDENCE_RECEIVED'); assert.equal(result.status,200,JSON.stringify(result.data)); current=result.data.review;
+ assert.equal((await api(`/api/admin/reviews/${id}/email-evidence`,stale,staff.cookie)).status,409);
+ const amend=async()=>api(`/api/admin/reviews/${id}/amend`,{previousRevisionId:current.revisions.at(-1).revisionId,specification:{...current.revisions.at(-1).specification,calculated_fabric_metres:20,shipping_parcel_class:'SPECIALIST'},finalPrice:{netAmountMinor:100000,vatAmountMinor:20000,grossAmountMinor:120000,vatRateBasisPoints:2000,currency:'GBP'},pricingRuleVersion:'email-evidence-synthetic-quote',reason:'Synthetic training quote; no manufacturing or commercial approval'},staff.cookie);
+ result=await amend(); assert.equal(result.status,200,JSON.stringify(result.data)); current=result.data.review;
+ assert.equal((await change('APPROVED')).status,409);
+ result=await record('EVIDENCE_REVIEWED'); assert.equal(result.status,200,JSON.stringify(result.data)); current=result.data.review;
+ result=await amend(); assert.equal(result.status,200,JSON.stringify(result.data)); current=result.data.review;
+ assert.equal(current.emailEvidence.state,'EVIDENCE_RECEIVED'); assert.equal((await change('APPROVED')).status,409);
+ result=await record('EVIDENCE_REVIEWED'); assert.equal(result.status,200,JSON.stringify(result.data)); current=result.data.review;
+ result=await change('APPROVED'); assert.equal(result.status,200,JSON.stringify(result.data)); current=result.data.review;
+ assert.deepEqual(current.revisions[0],original);
+ assert.ok(current.emailEvidence.events.filter(e=>e.actorId).every(e=>e.actorId===process.env.PHASE5E_STAFF_ID));
+ assert.ok(current.checkout.blockedReasons.every(reason=> !/scan|storage|evidence/i.test(reason)));
+ report.cases.push({name:windowSlug,requestId:id,reference:submit.data.reference,status:'APPROVED',emailEvidence:current.emailEvidence.state,eventCount:current.emailEvidence.events.length,originalImmutable:true,staleRevisionBlocked:true,noUpload:true,remainingBlockers:current.checkout.blockedReasons});
 }
-const apexAmended = await api(`/api/admin/reviews/${apexId}/amend`,{previousRevisionId:apex.revisions.at(-1).revisionId,specification:{...apex.revisions.at(-1).specification,customer_follow_up_recorded:true,calculated_fabric_metres:20,shipping_parcel_class:'SPECIALIST'},finalPrice:{netAmountMinor:100000,vatAmountMinor:20000,grossAmountMinor:120000,vatRateBasisPoints:2000,currency:'GBP'},pricingRuleVersion:'phase5e-synthetic-staff-quote',reason:'Synthetic training quote only; evidence is still quarantined'},staff.cookie);
-assert.equal(apexAmended.status,200,JSON.stringify(apexAmended.data)); apex=apexAmended.data.review;
-const apexApproval = await api(`/api/admin/reviews/${apexId}/transition`,{toState:'APPROVED',expectedState:apex.reviewState,latestRevisionId:apex.revisions.at(-1).revisionId,reason:'Phase 5E validate evidence gate blocks approval'},staff.cookie);
-assert.equal(apexApproval.status,409,JSON.stringify(apexApproval.data));
-assert.deepEqual(apex.revisions[0],apexOriginal);
-report.cases.push({name:'Apex',requestId:apexId,informationRequest:'PASS',newRevision:'PASS',safeEvidence:'QUARANTINED',approval:'BLOCKED',blockers:[apexApproval.data.error],originalImmutable:true});
-for (const configuration of [{...standard,widthCm:-1},{...standard,fabricId:'unavailable-phase5e-fabric'}]) {
-  const invalid = await proxy('price',configuration); assert.equal(invalid.status,400);
-  assert.equal(typeof invalid.data.totalAmountMinor,'undefined');
-}
-report.checks.push({name:'invalid measurements and unavailable fabric show no numeric price',status:'PASS'});
+assert.equal(await countFiles(),beforeFiles);
+const legacy=await db.rpc('create_staging_review_request_with_evidence',{p_request:{}}); assert.match(legacy.error.message,/uploads are disabled/);
+report.checks.push({name:'No new stored files; legacy upload RPC disabled; actual email not sent',status:'PASS'});
 await staff.client.auth.signOut();
-mkdirSync('artifacts/phase5e',{recursive:true});
-writeFileSync('artifacts/phase5e/api-rehearsal.json',JSON.stringify(report,null,2)+'\n');
+writeFileSync('artifacts/phase5e/email-evidence-rehearsal.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));

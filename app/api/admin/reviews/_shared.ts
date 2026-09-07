@@ -52,7 +52,7 @@ export function reviewErrorResponse(error: unknown, fallback = "REVIEW_OPERATION
   if (badRequest.has(code)) return reviewResponse({ error: code }, 400);
   if (code === "REVIEW_NOT_FOUND") return reviewResponse({ error: code }, 404);
   if (code === "REVIEW_RESUME_NOT_CONFIGURED") return reviewResponse({ error: code }, 503);
-  if (["REVIEW_CONFLICT", "REVIEW_EVIDENCE_NOT_CLEAN", "REVIEW_FINAL_PRICE_REQUIRED", "REVIEW_CHECKOUT_BLOCKED"].includes(code)) {
+  if (["REVIEW_CONFLICT", "REVIEW_EMAIL_EVIDENCE_REQUIRED", "REVIEW_FINAL_PRICE_REQUIRED", "REVIEW_CHECKOUT_BLOCKED"].includes(code)) {
     return reviewResponse({ error: code }, 409);
   }
   return reviewResponse({ error: fallback }, 503);

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { EMAIL_EVIDENCE_STATES, type EmailEvidenceState } from "@/lib/storefront/email-evidence";
 import { useCallback, useEffect, useState } from "react";
 import {
   REVIEW_STATES,
@@ -13,7 +14,6 @@ import {
   type CheckoutRequest,
   type JsonValue,
   type ReviewDetail,
-  type ReviewEvidence,
   type ReviewListItem,
   type ReviewState,
   type TransitionRequest,
@@ -47,11 +47,6 @@ function formatMoney(value: number | null, currency: "GBP" = "GBP") {
   return new Intl.NumberFormat("en-GB", { style: "currency", currency }).format(value / 100);
 }
 
-function formatBytes(value: number) {
-  if (value < 1_024) return `${value} B`;
-  if (value < 1_048_576) return `${(value / 1_024).toFixed(1)} KB`;
-  return `${(value / 1_048_576).toFixed(1)} MB`;
-}
 
 function statusLabel(error: unknown) {
   if (!(error instanceof Error)) return "Review workspace request failed";
@@ -96,7 +91,7 @@ function QueueItem({ item, selected, onSelect }: { item: ReviewListItem; selecte
       <div className="flex flex-wrap items-start justify-between gap-2"><span className="font-semibold">{item.reference}</span><StatusPill state={item.reviewState} /></div>
       <p className="mt-2 text-sm text-white/75">{item.windowTypeLabel} · {item.fabric.design} {item.fabric.colour}</p>
       <p className="mt-1 text-xs text-white/45">{item.customerName || item.customerEmail} · {formatDate(item.submittedAt)}</p>
-      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-white/60"><span>{humanise(item.pricingOutcome)}</span><span>{formatMoney(price)}</span><span>{item.evidenceCounts.clean}/{item.evidenceCounts.total} evidence clean</span></div>
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-white/60"><span>{humanise(item.pricingOutcome)}</span><span>{formatMoney(price)}</span><span>Evidence handled by email</span></div>
     </button>
   );
 }
@@ -159,7 +154,7 @@ export default function ReviewDashboard() {
     await Promise.all([loadList(), selectedId ? loadDetail(selectedId) : Promise.resolve()]);
   }, [loadDetail, loadList, selectedId]);
 
-  async function mutate(url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest, success: string): Promise<unknown | null> {
+  async function mutate(url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest | { state: EmailEvidenceState; reason: string; revisionId: string; expectedEventId: string | null }, success: string): Promise<unknown | null> {
     setActionBusy(true);
     setError("");
     setNotice("");
@@ -226,13 +221,12 @@ export default function ReviewDashboard() {
   );
 }
 
-function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewDetail; actionBusy: boolean; mutate: (url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest, success: string) => Promise<unknown | null> }) {
+function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewDetail; actionBusy: boolean; mutate: (url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest | { state: EmailEvidenceState; reason: string; revisionId: string; expectedEventId: string | null }, success: string) => Promise<unknown | null> }) {
   const latestRevision = detail.revisions.toSorted((left, right) => right.revisionNumber - left.revisionNumber)[0] ?? null;
   const [transitionState, setTransitionState] = useState<ReviewState | "">(REVIEW_TRANSITIONS[detail.reviewState][0] ?? "");
   const [transitionReason, setTransitionReason] = useState("");
   const [evidenceReason, setEvidenceReason] = useState("");
-  const [evidenceBusy, setEvidenceBusy] = useState("");
-  const [evidenceError, setEvidenceError] = useState("");
+  const [emailState, setEmailState] = useState<EmailEvidenceState>("EVIDENCE_RECEIVED");
   const [amendmentReason, setAmendmentReason] = useState("");
   const [pricingVersion, setPricingVersion] = useState(detail.pricing.pricingRuleVersion ?? detail.pricing.calculationVersion ?? "");
   const [specification, setSpecification] = useState(() => JSON.stringify(latestRevision?.specification ?? detail.configuration, null, 2));
@@ -305,21 +299,10 @@ function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewD
     }
   }
 
-  async function retrieveEvidence(item: ReviewEvidence) {
-    if (item.securityState !== "CLEAN" || !isActionReason(evidenceReason)) return;
-    setEvidenceBusy(item.evidenceId);
-    setEvidenceError("");
-    try {
-      const response = await fetch(reviewEndpoints.evidenceAccess(item.evidenceId), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ reason: evidenceReason.trim() }) });
-      const payload = await responseJson(response);
-      if (!payload || typeof payload !== "object" || !("downloadUrl" in payload) || typeof payload.downloadUrl !== "string") throw new Error("EVIDENCE_ACCESS_RESPONSE_INVALID");
-      const opened = window.open(payload.downloadUrl, "_blank", "noopener,noreferrer");
-      if (!opened) setEvidenceError("Your browser blocked the evidence tab. Allow pop-ups and try again.");
-    } catch (caught) {
-      setEvidenceError(statusLabel(caught));
-    } finally {
-      setEvidenceBusy("");
-    }
+  async function recordEmailEvidence(event: React.FormEvent) {
+    event.preventDefault();
+    if (!latestRevision || !isActionReason(evidenceReason)) return;
+    await mutate(`/api/admin/reviews/${encodeURIComponent(detail.requestId)}/email-evidence`, { state: emailState, reason: evidenceReason.trim(), revisionId: latestRevision.revisionId, expectedEventId: detail.emailEvidence.latestEventId }, "Email evidence status recorded. Files remain outside CurtainsUK.");
   }
 
   return <div className="space-y-6">
@@ -338,10 +321,15 @@ function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewD
       <Panel title="Pricing" description="Internal review values only. Supplier costs and margins are not part of this UI contract."><dl><Field label="Outcome" value={humanise(detail.pricing.outcome)} /><Field label="Provisional gross" value={formatMoney(detail.pricing.provisionalGrossPriceMinor)} /><Field label="Final net" value={formatMoney(detail.pricing.finalPrice?.netAmountMinor ?? null)} /><Field label="VAT" value={formatMoney(detail.pricing.finalPrice?.vatAmountMinor ?? null)} /><Field label="VAT rate" value={detail.pricing.finalPrice ? `${detail.pricing.finalPrice.vatRateBasisPoints / 100}%` : "Not recorded"} /><Field label="Final VAT-inclusive total" value={formatMoney(detail.pricing.finalPrice?.grossAmountMinor ?? null)} /><Field label="Calculation version" value={detail.pricing.calculationVersion || "Not recorded"} /><Field label="Pricing ruleset" value={detail.pricing.pricingRuleVersion || "Not recorded"} /></dl></Panel>
     </div>
 
-    <Panel title="Evidence security" description="Files remain private. Retrieval is available only after the evidence state is CLEAN and a staff reason is recorded.">
-      <label className="block text-sm font-medium text-white/70" htmlFor={`evidence-reason-${detail.requestId}`}>Evidence access reason</label><input id={`evidence-reason-${detail.requestId}`} value={evidenceReason} onChange={(event) => setEvidenceReason(event.target.value)} className={`${CONTROL} mt-2 w-full`} placeholder="Required for the access audit trail" />
-      {evidenceError && <p role="alert" className="mt-3 rounded-xl bg-red-300/10 p-3 text-sm text-red-100">{evidenceError}</p>}
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">{detail.evidence.map((item) => <article key={item.evidenceId} className="rounded-2xl border border-white/10 bg-black/15 p-4"><div className="flex items-start justify-between gap-3"><div><h3 className="font-semibold">{item.fileName}</h3><p className="mt-1 text-xs text-white/50">{item.kind} · {item.contentType} · {formatBytes(item.sizeBytes)}</p></div><span className={`rounded-full border px-2 py-1 text-[11px] font-semibold ${item.securityState === "CLEAN" ? "border-emerald-200/30 text-emerald-100" : "border-amber-200/30 text-amber-100"}`}>{humanise(item.securityState)}</span></div><dl className="mt-3"><Field label="Scanned" value={formatDate(item.scannedAt)} /><Field label="Retention expiry" value={formatDate(item.retentionExpiresAt)} /></dl><button type="button" disabled={item.securityState !== "CLEAN" || !isActionReason(evidenceReason) || evidenceBusy === item.evidenceId} onClick={() => void retrieveEvidence(item)} className={`${BUTTON} mt-3 w-full ${item.securityState === "CLEAN" ? "bg-[#f1cf8a] text-[#102c26]" : "border border-white/15 text-white/60"}`}>{item.securityState === "CLEAN" ? evidenceBusy === item.evidenceId ? "Requesting secure access…" : "Open secure evidence" : "Retrieval blocked"}</button></article>)}{detail.evidence.length === 0 && <p className="text-sm text-white/50">No evidence is attached.</p>}</div>
+    <Panel title="Email evidence" description="Photos and drawings are handled in the store mailbox. CurtainsUK records only the status, revision, staff actor and reason; do not paste files, links or email contents here.">
+      <p className="mb-3 font-semibold">{detail.emailEvidence.state}</p>
+      <p className="mb-4 text-sm text-white/60">Use reference {detail.reference}. {detail.emailEvidence.required ? "Evidence must be reviewed for this revision before approval." : "Evidence is optional unless requested by staff."} A new specification revision requires a fresh evidence review.</p>
+      <form onSubmit={recordEmailEvidence} className="space-y-3">
+        <label className="block">Evidence status<select className={`${CONTROL} mt-2 w-full`} value={emailState} onChange={(event) => setEmailState(event.target.value as EmailEvidenceState)}>{EMAIL_EVIDENCE_STATES.map((state) => <option key={state} value={state}>{state}</option>)}</select></label>
+        <label className="block">Status reason<input className={`${CONTROL} mt-2 w-full`} value={evidenceReason} onChange={(event) => setEvidenceReason(event.target.value)} placeholder="Record receipt or review, without file contents" /></label>
+        <button className={BUTTON} disabled={actionBusy || !isActionReason(evidenceReason) || !["PENDING", "NEEDS_INFORMATION", "UNDER_REVIEW"].includes(detail.reviewState)}>Record evidence status</button>
+      </form>
+      <ol className="mt-4 space-y-2 text-sm">{detail.emailEvidence.events.map((event) => <li key={event.eventId}>{event.state} · {formatDate(event.createdAt)} · {event.actorId || "System"} · {event.reason} · Revision {event.revisionId}</li>)}</ol>
     </Panel>
 
     <Panel title="Staff amendment" description="Saving creates an immutable revision. It does not overwrite the customer submission.">

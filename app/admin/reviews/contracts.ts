@@ -1,3 +1,4 @@
+import { EMAIL_EVIDENCE_STATES, type EmailEvidence } from "@/lib/storefront/email-evidence";
 export const REVIEW_STATES = [
   "PENDING",
   "NEEDS_INFORMATION",
@@ -128,6 +129,7 @@ export interface ReviewDetail extends ReviewListItem {
     checkedAt: string | null;
   };
   evidence: ReviewEvidence[];
+  emailEvidence: EmailEvidence;
   revisions: ReviewRevision[];
   audit: ReviewAuditEntry[];
   checkout: {
@@ -306,12 +308,25 @@ function detail(value: unknown): ReviewDetail {
   const pricing = record(item.pricing, "review.pricing");
   const availability = record(item.availability, "review.availability");
   const checkout = record(item.checkout, "review.checkout");
+  const email = record(item.emailEvidence, "review.emailEvidence");
+  if (typeof email.required !== "boolean" || !Array.isArray(email.events)) throw new Error("REVIEW_API_CONTRACT_INVALID:emailEvidence");
+  const emailEvidence: EmailEvidence = {
+    required: email.required,
+    state: oneOf(email.state, EMAIL_EVIDENCE_STATES, "review.emailEvidence.state"),
+    latestEventId: nullableString(email.latestEventId, "review.emailEvidence.latestEventId"),
+    reviewedRevisionId: nullableString(email.reviewedRevisionId, "review.emailEvidence.reviewedRevisionId"),
+    events: email.events.map((value) => {
+      const event = record(value, "review.emailEvidence.event");
+      return { eventId: string(event.eventId, "eventId"), state: oneOf(event.state, EMAIL_EVIDENCE_STATES, "state"), revisionId: string(event.revisionId, "revisionId"), actorId: nullableString(event.actorId, "actorId"), reason: string(event.reason, "reason"), createdAt: timestamp(event.createdAt, "createdAt") };
+    }),
+  };
   if (!Array.isArray(item.evidence) || !Array.isArray(item.revisions) || !Array.isArray(item.audit) || !Array.isArray(configuration.accessories) || !Array.isArray(checkout.blockedReasons)) {
     throw new Error("REVIEW_API_CONTRACT_INVALID:review.collections");
   }
 
   return {
     ...base,
+    emailEvidence,
     customer: {
       name: nullableString(customer.name, "review.customer.name"),
       email: string(customer.email, "review.customer.email"),

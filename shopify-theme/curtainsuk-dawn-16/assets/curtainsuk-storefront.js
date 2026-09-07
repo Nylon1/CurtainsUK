@@ -330,19 +330,6 @@
     root.querySelectorAll("[data-cuk-awkward] input, [data-cuk-awkward] select, [data-cuk-awkward] textarea").forEach((field) => { field.disabled = !isAwkward; });
     root.querySelectorAll("[data-cuk-review-evidence] input, [data-cuk-review-evidence] select, [data-cuk-review-evidence] textarea").forEach((field) => { field.disabled = !needsEvidence; });
     root.querySelectorAll("[data-cuk-specialist-evidence] input, [data-cuk-specialist-evidence] select, [data-cuk-specialist-evidence] textarea").forEach((field) => { field.disabled = !isSpecialist; });
-    const photos = root.querySelector('input[name="photos"]');
-    const requiresPhoto = isSpecialist || windowType?.slug === "dormer-window" || windowType?.slug === "curved-bow-window" || windowType?.slug === "corner-window";
-    if (photos) photos.required = requiresPhoto;
-    const drawing = root.querySelector('input[name="drawing"]');
-    if (drawing) drawing.required = isAwkward;
-    const drawingLabel = root.querySelector("[data-cuk-drawing-label]");
-    if (drawingLabel) drawingLabel.textContent = isAwkward ? "Simple drawing (required)" : "Optional drawing";
-    const photoGuidance = root.querySelector("[data-cuk-photo-guidance]");
-    if (photoGuidance) photoGuidance.textContent = isAwkward
-      ? "Add at least one clear photograph of the complete window. A simple drawing is also required."
-      : requiresPhoto
-        ? "Add at least one clear photograph of the complete window. A drawing is optional."
-      : "A photograph is optional, but can help our curtain team review the bay or unusual window.";
     const widthLabel = root.querySelector("[data-cuk-width-label]");
     if (widthLabel) widthLabel.textContent = isCurved ? "Track arc length (cm)" : "Width (cm)";
     root.querySelector("[data-cuk-width-hint]")?.classList.toggle("cuk-hidden", !isCurved);
@@ -559,8 +546,7 @@
       }
       const selected = catalog.windows.find((item) => item.slug === windowSelect.value);
       emit("measurement_completion", { window_type: windowSelect.value, journey: selected.journey });
-      const photoNames = [...(form.elements.photos.files || [])].map((file) => file.name);
-      const drawingName = form.elements.drawing.files[0]?.name;
+      const photoNames = [];
       let path = "price";
       let body;
 
@@ -589,7 +575,6 @@
           fixingPosition: isAwkward ? form.elements.awkwardFixingPosition.value : form.elements.fixingPosition.value,
           stackDirection: form.elements.stackDirection.value,
           photoNames,
-          drawingName,
         };
       } else {
         const segments = baySectionWidths(root);
@@ -750,8 +735,6 @@
       payload.set("contactEmail", reviewForm.elements.customerEmail.value);
       payload.set("contactPhone", reviewForm.elements.customerPhone.value);
       payload.set("notes", reviewForm.elements.customerNotes.value);
-      [...(form.elements.photos.files || [])].forEach((file) => payload.append("photos", file));
-      if (form.elements.drawing.files[0]) payload.set("drawing", form.elements.drawing.files[0]);
 
       const submit = reviewForm.querySelector("button[type=submit]");
       submit.disabled = true;
@@ -759,7 +742,16 @@
       try {
         const response = await fetchJson(endpoint(root.dataset.engineBase, root.dataset.reviewPath || "review-request"), { method: "POST", body: payload });
         reviewForm.classList.add("cuk-hidden");
-        reviewConfirmation.innerHTML = `<h2>Project received</h2><p>${escapeHtml(response.message || "Our curtain team will review the measurements and contact you with the next step.")}</p><p class="cuk-hint">Reference ${escapeHtml(response.requestId)} · No payment has been taken.</p>`;
+        reviewConfirmation.innerHTML = `<h2>Project received</h2><p>${escapeHtml(response.message || "Our curtain team will review the measurements and contact you with the next step.")}</p><p class="cuk-hint">Reference ${escapeHtml(response.reference || response.requestId)} · No payment has been taken.</p>`;
+        const email = root.dataset.reviewEmail;
+        if (email) {
+          const link = document.createElement("a");
+          link.className = "cuk-button";
+          link.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(`Curtain evidence ${response.reference || response.requestId}`)}`;
+          link.textContent = `Email photos / drawings to ${email}`;
+          reviewConfirmation.append(link);
+        }
+
         reviewConfirmation.classList.remove("cuk-hidden");
         reviewConfirmation.focus();
         emit("review_submitted", { window_type: form.elements.windowSlug.value, outcome: lastEvaluation.calculation.outcome, configuration_id: response.configurationId || null });

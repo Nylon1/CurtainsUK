@@ -21,6 +21,7 @@ export interface ReviewEvidenceReference {
 
 export interface ReviewRequestReceipt {
   requestId: string;
+  reference: string;
   configurationId: string;
   reviewState: ReviewState;
   submittedAt: string;

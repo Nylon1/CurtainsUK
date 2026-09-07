@@ -62,6 +62,7 @@ export function customerSafeApiError(error: unknown, fallback: string) {
     PRICE_REQUIRES_VERIFICATION: "This fabric price must be confirmed before it can be configured",
     FABRIC_SPECIFICATION_INCOMPLETE: "This fabric specification must be confirmed before it can be configured",
     REVIEW_CONTACT_INVALID: "Enter a valid email address so our curtain team can contact you",
+    REVIEW_UPLOADS_DISABLED: "Please email photos or drawings separately using your review reference",
     REVIEW_EVIDENCE_REQUIRED: "Add at least one clear photo of the specialist window",
     REVIEW_DRAWING_REQUIRED: "Add a simple drawing of the unusual window",
     REVIEW_EVIDENCE_INVALID: "Use a JPG, PNG, WebP, HEIC or PDF file no larger than 3 MB",

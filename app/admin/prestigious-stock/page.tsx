@@ -80,7 +80,7 @@ export default function PrestigiousStockCheckPage() {
     });
     const data = await response.json();
     if (!response.ok) { setMessage(data.error || "Could not save"); return; }
-    setMessage("Verification saved to staging process memory. No supplier action was taken.");
+    setMessage("Verification appended to private supplier history. Approval is still required; no supplier or Shopify action was taken.");
     await load();
   }
 
@@ -92,7 +92,7 @@ export default function PrestigiousStockCheckPage() {
       </section>
       <form onSubmit={save} className="rounded-3xl border border-white/10 bg-white/[0.04] p-6"><h2 className="text-2xl font-semibold">Record manual verification</h2><div className="mt-6 grid gap-4 sm:grid-cols-2">{[
         ["Total free stock (m)", "totalFreeStockMetres"], ["Batch reference", "batchReference"], ["Metres in selected batch", "selectedBatchMetres"], ["Pieces", "pieces"], ["Next-due date", "nextDueDate"], ["Next-due metres", "nextDueMetres"], ["Standard price ex VAT (£)", "standardPrice"], ["Cut price ex VAT (£)", "cutPrice"],
-      ].map(([label, key]) => <label key={key} className="text-sm text-white/70">{label}<input type={key === "nextDueDate" ? "date" : key === "batchReference" ? "text" : "number"} min={key === "batchReference" ? undefined : "0"} step={key.includes("Price") ? "0.01" : "0.1"} value={form[key as keyof typeof form]} onChange={(e) => setForm({ ...form, [key]: e.target.value })} className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3" /></label>)}</div><label className="mt-4 block text-sm text-white/70">Notes<textarea rows={4} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3" /></label><button type="submit" disabled={!selectedId} className="mt-5 rounded-full bg-[#f1cf8a] px-5 py-3 font-semibold text-[#102c26] disabled:opacity-50">Save staging verification</button>{message && <p role="status" className="mt-4 text-sm text-[#f1cf8a]">{message}</p>}<p className="mt-4 text-xs text-white/45">Pilot persistence is process-local. A private staging database table is still required before multi-user use.</p></form>
+      ].map(([label, key]) => <label key={key} className="text-sm text-white/70">{label}<input type={key === "nextDueDate" ? "date" : key === "batchReference" ? "text" : "number"} min={key === "batchReference" ? undefined : "0"} step={key.includes("Price") ? "0.01" : "0.1"} value={form[key as keyof typeof form]} onChange={(e) => setForm({ ...form, [key]: e.target.value })} className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3" /></label>)}</div><label className="mt-4 block text-sm text-white/70">Notes<textarea rows={4} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} className="mt-2 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3" /></label><button type="submit" disabled={!selectedId} className="mt-5 rounded-full bg-[#f1cf8a] px-5 py-3 font-semibold text-[#102c26] disabled:opacity-50">Append supplier observation</button>{message && <p role="status" className="mt-4 text-sm text-[#f1cf8a]">{message}</p>}<p className="mt-4 text-xs text-white/45">Observations are append-only and remain RAW_SHADOW/VALIDATED until separately approved. Notes are not currently persisted.</p></form>
     </div>
   </div></main>;
 }

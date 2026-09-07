@@ -1,40 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function AdminHomePage() {
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    checkSession();
-  }, []);
+    let cancelled = false;
+    async function checkSession() {
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
-  async function checkSession() {
-    try {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+        if (!session?.user) {
+          router.push("/admin/login");
+          return;
+        }
 
-      if (!session?.user) {
+        if (!cancelled) setEmail(session.user.email ?? null);
+      } catch (error) {
+        console.error(error);
         router.push("/admin/login");
-        return;
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-
-      setEmail(session.user.email ?? null);
-    } catch (error) {
-      console.error(error);
-      router.push("/admin/login");
-    } finally {
-      setLoading(false);
     }
-  }
+    void checkSession();
+    return () => { cancelled = true; };
+  }, [router, supabase]);
 
   async function handleSignOut() {
     await supabase.auth.signOut();
@@ -80,6 +81,15 @@ export default function AdminHomePage() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <Link
+              href="/admin/supplier-intelligence"
+              className="group rounded-[28px] border border-[#f5d38a]/20 bg-[#f5d38a]/10 p-6 transition hover:bg-[#f5d38a]/15"
+            >
+              <div className="text-sm uppercase tracking-[0.18em] text-[#f5d38a]">Supplier intelligence</div>
+              <h2 className="mt-3 text-2xl font-semibold text-white">Supplier Sync Health</h2>
+              <p className="mt-3 text-sm leading-6 text-white/70">Review validation, freshness, price and stock changes before approving a supplier snapshot.</p>
+              <div className="mt-6 text-sm font-medium text-[#f5d38a]">Open supplier health →</div>
+            </Link>
             <Link
               href="/admin/prestigious-stock"
               className="group rounded-[28px] border border-[#f5d38a]/20 bg-[#f5d38a]/10 p-6 transition hover:bg-[#f5d38a]/15"

@@ -1,0 +1,4 @@
+-- Supplier-commercial seed data is deliberately excluded from version control.
+-- The Phase 4E schema and non-sensitive supplier catalogue links are installed by
+-- migrations. Verified observations must be appended through the private admin
+-- workflow after a development database is configured.

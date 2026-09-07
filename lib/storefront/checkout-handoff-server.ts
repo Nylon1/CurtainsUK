@@ -1,5 +1,4 @@
 import "server-only";
-import { randomUUID } from "node:crypto";
 import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
 import { fabricMasterRecordById } from "@/lib/fabric-master/repository";
 import { SupplierIntelligenceService } from "@/lib/supplier-intelligence/service";
@@ -15,21 +14,25 @@ import {
   getStaffReviewRequest,
   persistStagingCheckoutSnapshotAndHandoff,
 } from "./review-operations-repository";
+import { persistShopifyDraftOrderExecution } from "./shopify-draft-order-repository";
+import { executeStagingShopifyDraftOrder } from "./shopify-draft-order-server";
+import { loadStagingUkShippingRules } from "./shipping-repository";
 import { normalizeAvailabilityState } from "./review-request";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
+import { stagingCheckoutIdentity } from "./checkout-idempotency";
 import { calculateStagingPrice } from "./server-staging-pricing";
 import {
   approvedReviewParcelClass,
   instantCurtainParcelClass,
   quoteUkShipping,
-  STAGING_UK_SHIPPING_RULES,
   type ShippingParcelClass,
-  type ShippingRule,
 } from "./shipping";
 import type { StagingPriceRequest } from "./staging-pricing";
 
 export interface ServerStagingCheckoutHandoffInput {
   configuration?: StagingPriceRequest;
+  /** The configuration ID returned by the signed price response. */
+  configurationId?: string;
   reviewRequestId?: string;
   reviewAcceptanceToken?: string;
   customerAccepted: boolean;
@@ -55,26 +58,11 @@ export type ServerStagingCheckoutHandoffResult = {
   shippingGrossAmountMinor: number;
   currency: "GBP";
   paymentEnabled: false;
-  shopifyWritePerformed: false;
-  checkoutUrl: null;
+  shopifyWritePerformed: boolean;
+  checkoutUrl: string | null;
+  testCheckoutStatus: "DISABLED" | "CALCULATED" | "TEST_DRAFT_CREATED" | "EXISTING_TEST_DRAFT_REUSED";
   message: string;
 };
-
-function serverShippingRules(): readonly ShippingRule[] {
-  const raw = process.env.CURTAINSUK_STAGING_SHIPPING_RATES_JSON;
-  if (!raw) return STAGING_UK_SHIPPING_RULES;
-  try {
-    const configured = JSON.parse(raw) as Record<string, unknown>;
-    return STAGING_UK_SHIPPING_RULES.map((rule) => {
-      const value = configured[`${rule.region}:${rule.parcelClass}`];
-      return Number.isInteger(value) && Number(value) > 0
-        ? { ...rule, grossAmountMinor: Number(value), status: "VALIDATED" as const }
-        : rule;
-    });
-  } catch {
-    return STAGING_UK_SHIPPING_RULES;
-  }
-}
 
 function blocked(input: {
   action: "SUBMIT_FOR_REVIEW" | "SUBMIT_PROJECT" | "BLOCKED";
@@ -138,6 +126,8 @@ export async function prepareServerStagingCheckoutHandoff(
       || typeof input.shippingRegion !== "string"
       || !["STANDARD", "OVERSIZE", "SPECIALIST"].includes(input.parcelClass)
       || Boolean(input.reviewRequestId) === Boolean(input.configuration)
+      || Boolean(input.configuration) !== Boolean(input.configurationId)
+      || (input.configurationId && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.configurationId))
       || (input.reviewRequestId && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.reviewRequestId))) {
     throw new Error("CHECKOUT_REQUEST_INVALID");
   }
@@ -162,6 +152,8 @@ export async function prepareServerStagingCheckoutHandoff(
   let fabricPricingEligible: boolean;
   let customerSummary: Record<string, unknown>;
   let shippingParcelClass: ShippingParcelClass;
+  let customerEmail: string | null = null;
+  let fabricLabel: string | null = null;
 
   if (input.reviewRequestId) {
     const detail = await getStaffReviewRequest(input.reviewRequestId);
@@ -205,6 +197,7 @@ export async function prepareServerStagingCheckoutHandoff(
     shippingParcelClass = approvedReviewParcelClass(spec.shipping_parcel_class);
     pricingRuleVersion = String(latest.pricing_rule_version ?? "");
     reviewState = request.review_state;
+    customerEmail = request.customer_email;
     fabricPricingEligible = fabricIsConfigurationEligible(record);
     availability = calculatedFabricMetres > 0
       ? await currentAvailability({ supplierId: record.supplier_id, supplierSku: record.supplier_sku, metres: calculatedFabricMetres })
@@ -221,12 +214,13 @@ export async function prepareServerStagingCheckoutHandoff(
       vatIncluded: true,
       deliveryShownSeparately: true,
     };
+    fabricLabel = [record.brand_name, record.design_name, record.colour_name].filter(Boolean).join(" — ");
   } else {
     if (!input.configuration) throw new Error("CHECKOUT_CONFIGURATION_REQUIRED");
     const calculation = await calculateStagingPrice(input.configuration);
     const record = await fabricMasterRecordById(input.configuration.fabricId);
     if (!record) throw new Error("CHECKOUT_FABRIC_IDENTITY_INVALID");
-    configurationId = calculation.configurationId;
+    configurationId = input.configurationId!;
     outcome = calculation.outcome;
     windowType = input.configuration.windowSlug;
     measurements = {
@@ -263,12 +257,17 @@ export async function prepareServerStagingCheckoutHandoff(
       vatIncluded: true,
       deliveryShownSeparately: true,
     };
+    fabricLabel = [
+      calculation.selectedFabric.supplier,
+      calculation.selectedFabric.design,
+      calculation.selectedFabric.colour,
+    ].filter(Boolean).join(" — ");
   }
 
   const shipping = quoteUkShipping({
     region: input.shippingRegion,
     parcelClass: shippingParcelClass,
-    rules: serverShippingRules(),
+    rules: await loadStagingUkShippingRules(),
   });
 
   const gate = evaluateCheckoutGate({
@@ -283,8 +282,9 @@ export async function prepareServerStagingCheckoutHandoff(
   });
   if (!gate.eligible) return blocked({ action: gate.action as "SUBMIT_FOR_REVIEW" | "SUBMIT_PROJECT" | "BLOCKED", blockers: gate.blockers });
 
+  const checkoutIdentity = stagingCheckoutIdentity(configurationId);
   const snapshot = createImmutableConfigurationSnapshot({
-    snapshotId: randomUUID(),
+    snapshotId: checkoutIdentity.snapshotId,
     configurationId,
     reviewRequestId,
     reviewRevisionId,
@@ -311,13 +311,25 @@ export async function prepareServerStagingCheckoutHandoff(
     recordedAt: now,
     gate,
   });
-  const handoff = prepareStagingCheckoutHandoff({ handoffId: randomUUID(), snapshot, preparedAt: now });
+  const handoff = prepareStagingCheckoutHandoff({ handoffId: checkoutIdentity.handoffId, snapshot, preparedAt: now });
   const persisted = await persistStagingCheckoutSnapshotAndHandoff({
     snapshot,
     customerSummary,
     handoffId: handoff.handoffId,
     preparedBy: "SHOPIFY_APP_PROXY_CUSTOMER",
   });
+  const shopifyExecution = await executeStagingShopifyDraftOrder({
+    handoff,
+    customerEmail,
+    fabricLabel,
+  });
+  if (shopifyExecution.status !== "DISABLED") {
+    await persistShopifyDraftOrderExecution({
+      handoff,
+      execution: shopifyExecution,
+      executedBy: "SHOPIFY_APP_PROXY_CUSTOMER",
+    });
+  }
   return {
     prepared: true,
     action: "STAGING_CHECKOUT_HANDOFF",
@@ -328,8 +340,15 @@ export async function prepareServerStagingCheckoutHandoff(
     shippingGrossAmountMinor: handoff.shippingGrossAmountMinor,
     currency: "GBP",
     paymentEnabled: false,
-    shopifyWritePerformed: false,
-    checkoutUrl: null,
-    message: "Staging checkout handoff prepared. Payment remains disabled.",
+    shopifyWritePerformed: shopifyExecution.shopifyWritePerformed,
+    checkoutUrl: shopifyExecution.checkoutUrl,
+    testCheckoutStatus: shopifyExecution.status,
+    message: shopifyExecution.status === "TEST_DRAFT_CREATED"
+      ? "Shopify test checkout is ready. Real payment remains disabled."
+      : shopifyExecution.status === "EXISTING_TEST_DRAFT_REUSED"
+        ? "Existing Shopify test checkout recovered. Real payment remains disabled."
+        : shopifyExecution.status === "CALCULATED"
+          ? "Shopify verified the exact staging total. Test checkout creation remains disabled."
+          : "Staging checkout handoff prepared. Shopify test checkout remains disabled.",
   };
 }

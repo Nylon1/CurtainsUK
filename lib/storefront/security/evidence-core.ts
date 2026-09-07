@@ -16,6 +16,7 @@ export interface MalwareScanResult {
   verdict: MalwareVerdict;
   provider: string;
   reference: string | null;
+  failureCode?: "NOT_CONFIGURED" | "TIMEOUT" | "PROVIDER_ERROR" | "INVALID_RESPONSE";
 }
 
 export interface MalwareScanner {
@@ -134,7 +135,12 @@ export async function scanEvidencePayload(
   } catch {
     return {
       state: "QUARANTINED",
-      result: { verdict: "UNAVAILABLE", provider: "unavailable", reference: null },
+      result: {
+        verdict: "UNAVAILABLE",
+        provider: "unavailable",
+        reference: null,
+        failureCode: "PROVIDER_ERROR",
+      },
     };
   }
 }
@@ -154,7 +160,12 @@ export class DeterministicTestMalwareScanner implements MalwareScanner {
 
 export class UnavailableMalwareScanner implements MalwareScanner {
   async scan(): Promise<MalwareScanResult> {
-    return { verdict: "UNAVAILABLE", provider: "not-configured", reference: null };
+    return {
+      verdict: "UNAVAILABLE",
+      provider: "not-configured",
+      reference: null,
+      failureCode: "NOT_CONFIGURED",
+    };
   }
 }
 

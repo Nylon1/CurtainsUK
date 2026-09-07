@@ -21,6 +21,8 @@
     "fabric:import:prestigious": "tsx scripts/curtainsuk-import-prestigious-catalogue.ts",
     "fabric:import:sanderson-pilot": "tsx scripts/curtainsuk-import-sanderson-pilot.ts",
     "fabric:preview:sanderson": "tsx scripts/curtainsuk-preview-sanderson-catalogue.ts",
+    "fabric:import:sanderson": "tsx scripts/curtainsuk-import-sanderson-catalogue.ts",
+    "fabric:audit:images": "tsx scripts/curtainsuk-audit-catalogue-images.ts",
     "fabric:canary:sanderson": "tsx scripts/curtainsuk-import-sanderson-canary.ts",
     "fabric:refresh:prestigious-images": "tsx scripts/curtainsuk-refresh-prestigious-imagery.ts",
     "test:fabric-master": "tsx --test lib/fabric-master/__tests__/*.test.ts"

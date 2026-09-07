@@ -134,3 +134,25 @@ export function shopifyProxyRateLimitFingerprint(input: {
     .update(input.operation)
     .digest("hex");
 }
+
+export function shopifyProxyReplayFingerprint(input: {
+  shop: string;
+  operation: "review-request" | "checkout-handoff";
+  signature: string;
+  bodySha256: string;
+  secret: string;
+}) {
+  if (!/^[a-f0-9]{64}$/i.test(input.signature) || !/^[a-f0-9]{64}$/i.test(input.bodySha256)) {
+    throw new Error("SHOPIFY_PROXY_REPLAY_INPUT_INVALID");
+  }
+  return createHmac("sha256", input.secret)
+    .update("curtainsuk:shopify-app-proxy-replay:v1\0")
+    .update(input.shop.toLowerCase())
+    .update("\0")
+    .update(input.operation)
+    .update("\0")
+    .update(input.signature.toLowerCase())
+    .update("\0")
+    .update(input.bodySha256.toLowerCase())
+    .digest("hex");
+}

@@ -15,7 +15,7 @@ test("Dawn contains the 14 unique Window Type route definitions", () => {
   assert.equal(manifest.publishState, "UNPUBLISHED_STAGING_ONLY");
 });
 
-test("Dawn delegates decisions to the signed app proxy and only exposes a disabled-payment staging handoff", () => {
+test("Dawn delegates decisions to the signed app proxy and exposes only a development-store test handoff with real payment disabled", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
   const settings = JSON.parse(read("config", "settings_data.json")) as { current: Record<string, unknown> };
@@ -25,8 +25,11 @@ test("Dawn delegates decisions to the signed app proxy and only exposes a disabl
   assert.match(section, /settings\.curtainsuk_staging_api_base/);
   assert.equal(settings.current.curtainsuk_staging_api_base, "/apps/curtainsuk-decision");
   assert.equal(/cart\/add|checkout\.js|supplierCost|grossMargin|makeupCost/i.test(script + section), false);
-  assert.match(section, /This flow cannot add to cart, take payment or release a job to manufacture/);
-  assert.match(section, /Payment, checkout and manufacture remain disabled/);
+  assert.match(section, /This flow cannot take real payment or release a job to manufacture/);
+  assert.match(section, /Real payment and manufacture remain disabled/);
+  assert.match(section, /data-staging-checkout-host/);
+  assert.match(script, /checkoutUrl\.hostname\.toLowerCase\(\) !== allowedHost/);
+  assert.match(script, /Continue to Shopify test checkout/);
 });
 
 test("the specialist workflow requires a photo and never renders a payment control", () => {
@@ -42,6 +45,7 @@ test("manual quote results suppress numeric prices and expose review submission 
   const section = read("sections", "curtainsuk-configurator.liquid");
   assert.match(script, /response\.outcome === "MANUAL_QUOTE"/);
   assert.match(script, /isManualQuote\s*\?\s*"Price confirmed after technical review"/);
+  assert.match(script, /routeStatus\.textContent = isManualQuote \? "Manual quote"/);
   assert.match(script, /endpoint\(root\.dataset\.engineBase, root\.dataset\.reviewPath \|\| "review-request"\)/);
   assert.match(script, /payload\.set\("configuration", JSON\.stringify\(lastEvaluation\.configuration\)\)/);
   assert.match(script, /payload\.append\("photos", file\)/);
@@ -132,6 +136,12 @@ test("Dawn renders database-projected multi-supplier imagery and preserves exact
   assert.equal(/supplierCost|tradePrice|stockMetres|batchReference/i.test(script + section), false);
 });
 
+test("an unverified fabric deep link is explained instead of silently substituted", () => {
+  const script = read("assets", "curtainsuk-storefront.js");
+  assert.match(script, /That fabric is not currently pricing-ready/);
+  assert.match(script, /fabricSelect\.value !== requestedFabric/);
+});
+
 test("Dawn staging mode hides commerce controls and fixes the preview market label without changing Shopify Markets", () => {
   const settings = JSON.parse(read("config", "settings_data.json")) as { current: Record<string, unknown> };
   const header = read("sections", "header.liquid");
@@ -163,11 +173,25 @@ test("results always show VAT, availability and delivery while standard results 
   assert.match(script, /"VAT included\."/);
   assert.match(script, /response\.availability \|\| "Availability to be confirmed"/);
   assert.match(script, /response\.delivery \|\| "Delivery shown separately\."/);
-  assert.match(script, /Staging price only\. Checkout remains disabled until the launch gate is approved/);
-  assert.match(section, /data-cuk-result-notice>Staging only\. Checkout remains disabled/);
+  assert.match(script, /Shopify test checkout is available only when every launch gate passes; real payment remains disabled/);
+  assert.match(section, /data-cuk-result-notice>Staging only\. Shopify test checkout remains gated; real payment is disabled/);
   for (const field of ["window", "dimensions", "fabric", "heading", "lining", "construction", "availability", "price", "delivery", "review"]) {
     assert.match(section, new RegExp(`data-cuk-summary-${field}`));
   }
+});
+
+test("reviewed configurations resume through a fragment capability and revalidate the exact revision server-side", () => {
+  const script = read("assets", "curtainsuk-storefront.js");
+  const section = read("sections", "curtainsuk-configurator.liquid");
+  assert.match(script, /sessionStorage\.setItem\(REVIEW_RESUME_KEY/);
+  assert.match(script, /cleanUrl\.hash = ""/);
+  assert.match(script, /endpoint\(root\.dataset\.engineBase, "review-acceptance"\)/);
+  assert.match(script, /reviewAcceptanceToken: resume\.capability\.reviewAcceptanceToken/);
+  assert.match(script, /summary\.reviewState !== "READY_FOR_CHECKOUT"/);
+  assert.doesNotMatch(script, /localStorage\.setItem\(REVIEW_RESUME_KEY/);
+  assert.match(section, /data-cuk-reviewed-resume/);
+  assert.match(section, /I accept this exact staff-reviewed specification and VAT-inclusive price/);
+  assert.match(section, /No real payment can be taken/);
 });
 
 test("Dawn emits the launch funnel without supplier-commercial analytics fields", () => {
@@ -183,4 +207,11 @@ test("mobile controls meet the 44px staging target and avoid iOS input zoom", ()
   const css = read("assets", "curtainsuk-storefront.css");
   assert.match(css, /\.cuk-fabric__actions \.cuk-button \{ min-height: 4\.4rem/);
   assert.match(css, /\.cuk-field input, \.cuk-field select, \.cuk-field textarea \{ font-size: 1\.6rem; \}/);
+});
+
+test("persistent task, logo and footer navigation meet the 44px staging target", () => {
+  const css = read("assets", "curtainsuk-storefront.css");
+  assert.match(css, /\.cuk-task-nav__list a \{[^}]*min-width: 4\.4rem;[^}]*min-height: 4\.4rem;/);
+  assert.match(css, /\.header__heading-link \{[^}]*min-height: 4\.4rem;/);
+  assert.match(css, /\.footer \.policies li a,[\s\S]{0,180}min-height: 4\.4rem;/);
 });

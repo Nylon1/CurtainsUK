@@ -8,35 +8,47 @@ import {
   prepareServerStagingCheckoutHandoff,
   type ServerStagingCheckoutHandoffInput,
 } from "@/lib/storefront/checkout-handoff-server";
-import { assertBoundedProxyRequest, PUBLIC_NO_STORE_HEADERS } from "@/lib/storefront/security/http";
-import { authenticateShopifyAppProxy } from "@/lib/storefront/security/shopify-app-proxy";
+import { assertBoundedProxyRequest, PUBLIC_NO_STORE_HEADERS, readHardLimitedRequestBytes } from "@/lib/storefront/security/http";
+import { authenticateShopifyAppProxy, claimShopifyMutationReplay } from "@/lib/storefront/security/shopify-app-proxy";
 import {
   isShopifyProxyOperation,
   SHOPIFY_PROXY_OPERATION_POLICY,
   type ShopifyProxyOperation,
 } from "@/lib/storefront/security/shopify-proxy-operations";
 import { parseProxyReviewRequest } from "@/lib/storefront/security/shopify-proxy-review-controller";
+import { endpointRateLimitResponse } from "@/lib/storefront/security/endpoint-rate-limit";
+import { getCustomerReviewAcceptance } from "@/lib/storefront/review-acceptance-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 function errorResponse(error: unknown, fallback: string) {
+  const rateLimit = endpointRateLimitResponse(error);
   const code = error instanceof Error ? error.message : "";
-  const status = code === "SHOPIFY_PROXY_RATE_LIMITED"
-    ? 429
-    : code === "SHOPIFY_PROXY_RATE_LIMIT_UNAVAILABLE"
-      ? 503
-      : code.startsWith("SHOPIFY_PROXY_")
+  const replayStatus = code === "SHOPIFY_PROXY_REPLAY_DETECTED" ? 409 : null;
+  const replayUnavailable = code === "SHOPIFY_PROXY_REPLAY_UNAVAILABLE";
+  const status = rateLimit?.status ?? replayStatus ?? (replayUnavailable
+    ? 503
+    : code.startsWith("SHOPIFY_PROXY_")
         ? 401
-        : 400;
-  const message = code === "SHOPIFY_PROXY_RATE_LIMITED"
-    ? "Too many requests. Please try again shortly."
-    : code === "SHOPIFY_PROXY_RATE_LIMIT_UNAVAILABLE"
+        : 400);
+  const message = rateLimit?.message ?? (replayStatus
+    ? "This signed request has already been processed."
+    : replayUnavailable
       ? "This service is temporarily unavailable."
       : code.startsWith("SHOPIFY_PROXY_")
         ? "Request authentication failed."
-        : customerSafeApiError(error, fallback);
-  return NextResponse.json({ error: message }, { status, headers: PUBLIC_NO_STORE_HEADERS });
+        : customerSafeApiError(error, fallback));
+  const replayHeader: Record<string, string> = {};
+  if (replayStatus) {
+    replayHeader["X-CurtainsUK-Rejection-Reason"] = "REPLAY_DETECTED";
+  } else if (replayUnavailable) {
+    replayHeader["X-CurtainsUK-Rejection-Reason"] = "REPLAY_PROTECTION_UNAVAILABLE";
+  }
+  return NextResponse.json({ error: message }, {
+    status,
+    headers: { ...PUBLIC_NO_STORE_HEADERS, ...(rateLimit?.headers ?? {}), ...replayHeader },
+  });
 }
 
 async function operation(request: Request, rawOperation: string) {
@@ -52,7 +64,11 @@ async function operation(request: Request, rawOperation: string) {
         ? undefined
         : ["application/json"],
   });
-  await authenticateShopifyAppProxy({ request, operation: selected, limit: policy.limitPerWindow });
+  const proxyContext = await authenticateShopifyAppProxy({ request, operation: selected, rateLimit: policy.rateLimit });
+  if (selected === "review-request" || selected === "checkout-handoff") {
+    const bodyBytes = await readHardLimitedRequestBytes(request.clone(), policy.maximumBytes);
+    await claimShopifyMutationReplay({ request, context: proxyContext, operation: selected, bodyBytes });
+  }
   return selected;
 }
 
@@ -82,6 +98,11 @@ export async function POST(request: Request, context: { params: Promise<{ operat
     if (selected === "review-request") {
       const parsed = await parseProxyReviewRequest(request);
       return NextResponse.json(await createStagingReviewRequest(parsed), { status: 201, headers: PUBLIC_NO_STORE_HEADERS });
+    }
+    if (selected === "review-acceptance") {
+      return NextResponse.json(await getCustomerReviewAcceptance(await readBoundedJson(request, 8 * 1024)), {
+        headers: PUBLIC_NO_STORE_HEADERS,
+      });
     }
     if (selected === "checkout-handoff") {
       const input = await readBoundedJson<ServerStagingCheckoutHandoffInput>(request);

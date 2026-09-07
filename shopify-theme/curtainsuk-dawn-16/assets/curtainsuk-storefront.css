@@ -16,7 +16,14 @@
 .cuk-task-nav { border-bottom: 1px solid var(--cuk-line); background: var(--cuk-paper); }
 .cuk-task-nav__list { display: flex; gap: 2.2rem; overflow-x: auto; margin: 0; padding: 1.2rem 0; list-style: none; scrollbar-width: thin; }
 .cuk-task-nav__market { margin: 0; padding: .65rem 0 0; color: var(--cuk-muted); font-size: 1.1rem; letter-spacing: .04em; text-align: center; }
-.cuk-task-nav__list a { display: flex; min-height: 4.4rem; align-items: center; white-space: nowrap; font-size: 1.35rem; font-weight: 700; text-decoration: none; }
+.cuk-task-nav__list a { display: flex; min-width: 4.4rem; min-height: 4.4rem; align-items: center; justify-content: center; white-space: nowrap; font-size: 1.35rem; font-weight: 700; text-decoration: none; }
+
+/* Staging Dawn release gate: every persistent navigation target remains at
+   least 44px high/wide on touch screens, including inherited header/footer. */
+.header__heading-link { min-height: 4.4rem; display: inline-flex; align-items: center; }
+.footer .list-menu__item--link,
+.footer .policies li a,
+.footer .copyright__content a { min-height: 4.4rem; display: inline-flex; align-items: center; }
 .cuk-wrap { width: min(124rem, calc(100% - 3.2rem)); margin-inline: auto; }
 .cuk-eyebrow { margin: 0 0 1.2rem; color: var(--cuk-moss); font-size: 1.2rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .cuk-title { margin: 0; font-family: var(--font-heading-family); font-size: clamp(4rem, 7vw, 8.8rem); line-height: .98; letter-spacing: -.045em; }

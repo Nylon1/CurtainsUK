@@ -54,7 +54,11 @@ function formatBytes(value: number) {
 }
 
 function statusLabel(error: unknown) {
-  return error instanceof Error ? error.message.replace(/^REVIEW_API_CONTRACT_INVALID:/, "Unexpected review-service response: ") : "Review workspace request failed";
+  if (!(error instanceof Error)) return "Review workspace request failed";
+  if (error.message === "REVIEW_RESUME_NOT_CONFIGURED") {
+    return "The unpublished Dawn customer-resume URL is not configured; the request remains approved and was not made checkout-ready";
+  }
+  return error.message.replace(/^REVIEW_API_CONTRACT_INVALID:/, "Unexpected review-service response: ");
 }
 
 async function responseJson(response: Response) {
@@ -155,7 +159,7 @@ export default function ReviewDashboard() {
     await Promise.all([loadList(), selectedId ? loadDetail(selectedId) : Promise.resolve()]);
   }, [loadDetail, loadList, selectedId]);
 
-  async function mutate(url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest, success: string) {
+  async function mutate(url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest, success: string): Promise<unknown | null> {
     setActionBusy(true);
     setError("");
     setNotice("");
@@ -173,8 +177,10 @@ export default function ReviewDashboard() {
       }
       setNotice(success);
       await refresh();
+      return payload;
     } catch (caught) {
       setError(statusLabel(caught));
+      return null;
     } finally {
       setActionBusy(false);
     }
@@ -211,7 +217,7 @@ export default function ReviewDashboard() {
 
           <section aria-label="Selected review request" aria-busy={detailBusy}>
             {detailBusy && <div role="status" className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-white/60">Loading request detail…</div>}
-            {!detailBusy && detail && <ReviewDetailWorkspace detail={detail} actionBusy={actionBusy} mutate={mutate} />}
+            {!detailBusy && detail && <ReviewDetailWorkspace key={detail.requestId} detail={detail} actionBusy={actionBusy} mutate={mutate} />}
             {!detailBusy && !detail && <div className="rounded-3xl border border-dashed border-white/15 p-8 text-sm text-white/50">Choose a request to inspect its customer, configuration, evidence, pricing and audit history.</div>}
           </section>
         </div>
@@ -220,7 +226,7 @@ export default function ReviewDashboard() {
   );
 }
 
-function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewDetail; actionBusy: boolean; mutate: (url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest, success: string) => Promise<void> }) {
+function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewDetail; actionBusy: boolean; mutate: (url: string, body: TransitionRequest | AmendmentRequest | CheckoutRequest, success: string) => Promise<unknown | null> }) {
   const latestRevision = detail.revisions.toSorted((left, right) => right.revisionNumber - left.revisionNumber)[0] ?? null;
   const [transitionState, setTransitionState] = useState<ReviewState | "">(REVIEW_TRANSITIONS[detail.reviewState][0] ?? "");
   const [transitionReason, setTransitionReason] = useState("");
@@ -232,6 +238,8 @@ function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewD
   const [specification, setSpecification] = useState(() => JSON.stringify(latestRevision?.specification ?? detail.configuration, null, 2));
   const [grossGbp, setGrossGbp] = useState(detail.pricing.finalPrice ? String(detail.pricing.finalPrice.grossAmountMinor / 100) : "");
   const [checkoutReason, setCheckoutReason] = useState("");
+  const [reviewResumeUrl, setReviewResumeUrl] = useState("");
+  const [reviewResumeStatus, setReviewResumeStatus] = useState("");
   const [formError, setFormError] = useState("");
 
   useEffect(() => {
@@ -278,7 +286,23 @@ function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewD
     event.preventDefault();
     if (!latestRevision || detail.reviewState !== "APPROVED" || !detail.checkout.eligible || !isActionReason(checkoutReason)) { setFormError("Checkout readiness requires an approved request, an eligible final revision and a reason."); return; }
     setFormError("");
-    await mutate(reviewEndpoints.checkout(detail.requestId), { reason: checkoutReason.trim(), expectedState: "APPROVED", revisionId: latestRevision.revisionId }, "Request marked ready for a later controlled checkout. No payment was taken.");
+    const payload = await mutate(reviewEndpoints.checkout(detail.requestId), { reason: checkoutReason.trim(), expectedState: "APPROVED", revisionId: latestRevision.revisionId }, "Request marked ready for customer acceptance. No payment was taken.");
+    const acceptance = payload && typeof payload === "object" && "customerAcceptance" in payload
+      && payload.customerAcceptance && typeof payload.customerAcceptance === "object"
+      ? payload.customerAcceptance as Record<string, unknown>
+      : null;
+    setReviewResumeUrl(typeof acceptance?.resumeUrl === "string" ? acceptance.resumeUrl : "");
+    setReviewResumeStatus(typeof acceptance?.resumeUrlStatus === "string" ? acceptance.resumeUrlStatus : "BLOCKED_RESPONSE_INVALID");
+  }
+
+  async function copyReviewResumeLink() {
+    if (!reviewResumeUrl) return;
+    try {
+      await navigator.clipboard.writeText(reviewResumeUrl);
+      setReviewResumeStatus("COPIED");
+    } catch {
+      setReviewResumeStatus("COPY_FAILED");
+    }
   }
 
   async function retrieveEvidence(item: ReviewEvidence) {
@@ -333,7 +357,7 @@ function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewD
 
     <div className="grid gap-6 xl:grid-cols-2">
       <Panel title="Review decision" description="Every state change is append-only and requires a reason."><form onSubmit={submitTransition} className="space-y-4"><label className="block text-sm font-medium text-white/70">Next state<select value={transitionState} onChange={(event) => setTransitionState(event.target.value as ReviewState)} disabled={REVIEW_TRANSITIONS[detail.reviewState].length === 0} className={`${CONTROL} mt-2 w-full`}><option value="">No transition available</option>{REVIEW_TRANSITIONS[detail.reviewState].map((state) => <option key={state} value={state}>{humanise(state)}</option>)}</select></label><label className="block text-sm font-medium text-white/70">Decision reason<textarea rows={3} value={transitionReason} onChange={(event) => setTransitionReason(event.target.value)} className={`${CONTROL} mt-2 w-full`} placeholder="Required for audit history" /></label><button type="submit" disabled={actionBusy || !transitionState || !isActionReason(transitionReason)} className={`${BUTTON} w-full border border-[#f1cf8a]/50 bg-[#f1cf8a]/10 text-[#f7dda5]`}>Record review decision</button></form></Panel>
-      <Panel title="Checkout readiness" description="Payment remains disabled. This records readiness only; it cannot create a checkout, charge a customer or release manufacture."><div className="rounded-2xl border border-amber-200/20 bg-amber-300/10 p-4 text-sm text-amber-100"><strong>Checkout/payment disabled</strong><p className="mt-1 text-amber-100/70">A production checkout integration is not active.</p></div>{detail.checkout.blockedReasons.length > 0 && <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-white/60">{detail.checkout.blockedReasons.map((reason) => <li key={reason}>{reason}</li>)}</ul>}{detail.checkout.reference && <p className="mt-4 text-sm">Readiness reference: <strong>{detail.checkout.reference}</strong></p>}<form onSubmit={prepareCheckout} className="mt-4 space-y-4"><label className="block text-sm font-medium text-white/70">Readiness reason<textarea rows={3} value={checkoutReason} onChange={(event) => setCheckoutReason(event.target.value)} className={`${CONTROL} mt-2 w-full`} placeholder="Required for audit history" /></label><button type="submit" disabled={actionBusy || detail.reviewState !== "APPROVED" || !detail.checkout.eligible || !latestRevision || !isActionReason(checkoutReason)} className={`${BUTTON} w-full bg-[#f1cf8a] text-[#102c26]`}>Mark ready for future checkout</button></form></Panel>
+      <Panel title="Checkout readiness" description="Payment remains disabled. This records readiness and can issue a revision-bound staging acceptance link; it cannot charge a customer or release manufacture."><div className="rounded-2xl border border-amber-200/20 bg-amber-300/10 p-4 text-sm text-amber-100"><strong>Real payment disabled</strong><p className="mt-1 text-amber-100/70">Only the explicitly gated Shopify development-store test checkout can be prepared.</p></div>{detail.checkout.blockedReasons.length > 0 && <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-white/60">{detail.checkout.blockedReasons.map((reason) => <li key={reason}>{reason}</li>)}</ul>}{detail.checkout.reference && <p className="mt-4 text-sm">Readiness reference: <strong>{detail.checkout.reference}</strong></p>}{reviewResumeUrl && <div className="mt-4 rounded-2xl border border-emerald-200/25 bg-emerald-300/10 p-4 text-sm text-emerald-100"><strong>Customer staging link ready</strong><p className="mt-1 text-emerald-100/70">The link contains a short-lived, revision-bound capability in its URL fragment. Send it only to this customer.</p><div className="mt-3 flex flex-wrap gap-2"><button type="button" onClick={() => void copyReviewResumeLink()} className={`${BUTTON} border border-emerald-100/30 text-emerald-50`}>Copy secure link</button><a href={reviewResumeUrl} target="_blank" rel="noopener noreferrer" className={`${BUTTON} border border-emerald-100/30 text-emerald-50`}>Open customer acceptance</a></div>{reviewResumeStatus === "COPIED" && <p role="status" className="mt-2 text-emerald-100/75">Secure link copied.</p>}{reviewResumeStatus === "COPY_FAILED" && <p role="alert" className="mt-2 text-red-100">Clipboard access was blocked. Open the link and copy it from the new tab.</p>}</div>}{!reviewResumeUrl && reviewResumeStatus && <div className="mt-4 rounded-2xl border border-red-200/25 bg-red-300/10 p-4 text-sm text-red-100"><strong>Acceptance link blocked</strong><p className="mt-1 text-red-100/70">{reviewResumeStatus === "BLOCKED_BASE_URL_NOT_CONFIGURED" ? "Configure CURTAINSUK_STAGING_REVIEW_RESUME_URL with the unpublished Dawn preview URL." : "The configured staging resume URL is invalid or outside the allowed staging origins."}</p></div>}<form onSubmit={prepareCheckout} className="mt-4 space-y-4"><label className="block text-sm font-medium text-white/70">Readiness reason<textarea rows={3} value={checkoutReason} onChange={(event) => setCheckoutReason(event.target.value)} className={`${CONTROL} mt-2 w-full`} placeholder="Required for audit history" /></label><button type="submit" disabled={actionBusy || detail.reviewState !== "APPROVED" || !detail.checkout.eligible || !latestRevision || !isActionReason(checkoutReason)} className={`${BUTTON} w-full bg-[#f1cf8a] text-[#102c26]`}>Mark ready and create acceptance link</button></form></Panel>
     </div>
 
     {formError && <p role="alert" className="rounded-2xl border border-red-200/25 bg-red-300/10 p-4 text-sm text-red-100">{formError}</p>}

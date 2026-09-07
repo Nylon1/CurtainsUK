@@ -25,7 +25,9 @@ export interface ShippingRule {
   enabled: boolean;
   grossAmountMinor: number | null;
   currency: "GBP";
-  status: "DRAFT" | "VALIDATED";
+  status: "AWAITING_OWNER_CONFIRMATION" | "VALIDATED" | "RETIRED";
+  rateVersionId?: string;
+  effectiveFrom?: string;
 }
 
 export interface ShippingQuote {
@@ -50,7 +52,7 @@ export const STAGING_UK_SHIPPING_RULES: readonly ShippingRule[] = UK_SHIPPING_RE
     enabled: true,
     grossAmountMinor: null,
     currency: "GBP" as const,
-    status: "DRAFT" as const,
+    status: "AWAITING_OWNER_CONFIRMATION" as const,
   }))
 ));
 
@@ -102,6 +104,44 @@ export function quoteUkShipping(input: {
     shownSeparately: true,
     countsTowardGoodsMinimum: false,
     message: "Delivery shown separately",
+  };
+}
+
+export interface ShippingRateVersionRecord {
+  rate_version_id: string;
+  region: string;
+  parcel_class: string;
+  gross_amount_minor: number | null;
+  currency: string;
+  status: string;
+  effective_from: string;
+  created_at: string;
+}
+
+export function shippingRuleFromVersion(record: ShippingRateVersionRecord): ShippingRule {
+  if (!UK_SHIPPING_REGIONS.includes(record.region as UkShippingRegion)
+    || !["STANDARD", "OVERSIZE", "SPECIALIST"].includes(record.parcel_class)
+    || record.currency !== "GBP"
+    || !["AWAITING_OWNER_CONFIRMATION", "VALIDATED", "RETIRED"].includes(record.status)
+    || !record.rate_version_id
+    || Number.isNaN(new Date(record.effective_from).getTime())) {
+    throw new Error("SHIPPING_RATE_RECORD_INVALID");
+  }
+  const amount = record.gross_amount_minor;
+  if (record.status === "VALIDATED"
+    ? !Number.isInteger(amount) || amount === null || amount <= 0
+    : amount !== null) {
+    throw new Error("SHIPPING_RATE_RECORD_INVALID");
+  }
+  return {
+    region: record.region as UkShippingRegion,
+    parcelClass: record.parcel_class as ShippingParcelClass,
+    enabled: record.status !== "RETIRED",
+    grossAmountMinor: amount,
+    currency: "GBP",
+    status: record.status as ShippingRule["status"],
+    rateVersionId: record.rate_version_id,
+    effectiveFrom: record.effective_from,
   };
 }
 

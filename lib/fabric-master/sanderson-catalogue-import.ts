@@ -2,6 +2,7 @@ import { basename } from "node:path";
 import type { ParsedSupplierTable, SupplierImportDocument } from "@/lib/supplier-import/types";
 import { parseSupplierImportDocument } from "@/lib/supplier-import/parse";
 import { sha256 } from "./catalogue-normalization";
+import { summarizeCatalogueCompletion, type CatalogueCompletionReport } from "./catalogue-completion";
 import {
   protectCatalogueCandidate,
   type CatalogueProtectionAction,
@@ -73,6 +74,7 @@ export interface SandersonCataloguePreview {
     existing_master_compared: boolean;
   };
   ignored_operational_headers: readonly string[];
+  completion: CatalogueCompletionReport;
   records: NormalizedCatalogueRecord[];
   records_to_apply: NormalizedCatalogueRecord[];
   rows: SandersonCataloguePreviewRow[];
@@ -223,7 +225,13 @@ export function mapSandersonCatalogueTable(input: {
     });
   }
 
-  const incoming = normalizeSandersonRows(tradeRows);
+  // A full supplier catalogue import is private Fabric Master/QA data. It must
+  // not become Dawn catalogue content merely because the file was accepted.
+  // The separately reviewed canary selector may opt specific rows into staging.
+  const incoming = normalizeSandersonRows(tradeRows).map((record) => ({
+    ...record,
+    staging_catalog_visible: false,
+  }));
   const existing = new Map((input.existing_records ?? []).map((entry) => [
     `${entry.record.supplier_id}:${entry.record.supplier_sku.toUpperCase()}`,
     entry,
@@ -242,6 +250,7 @@ export function mapSandersonCatalogueTable(input: {
   }));
   const countAction = (action: CatalogueProtectionAction) => rows.filter((row) => row.action === action).length;
   const now = input.now ?? new Date();
+  const completion = summarizeCatalogueCompletion("sanderson-design-group", records);
 
   return {
     supplier_id: "sanderson-design-group",
@@ -256,6 +265,7 @@ export function mapSandersonCatalogueTable(input: {
       existing_master_compared: input.existing_records !== undefined,
     },
     ignored_operational_headers: SANDERSON_IGNORED_OPERATIONAL_HEADERS,
+    completion,
     records,
     records_to_apply: protectedRows.filter((row) => row.apply).map((row) => row.record),
     rows,

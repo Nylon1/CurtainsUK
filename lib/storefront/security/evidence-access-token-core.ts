@@ -1,4 +1,4 @@
-import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 
 export interface EvidenceAccessClaims {
   evidenceId: string;
@@ -55,4 +55,8 @@ export function verifyEvidenceAccessTokenWithSecret(
   const receivedBytes = Buffer.from(signature.toLowerCase(), "ascii");
   const expectedBytes = Buffer.from(expected, "ascii");
   return receivedBytes.length === expectedBytes.length && timingSafeEqual(receivedBytes, expectedBytes);
+}
+
+export function evidenceAccessTokenSha256(token: string) {
+  return createHash("sha256").update(token, "utf8").digest("hex");
 }

@@ -3,7 +3,7 @@
 {% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
-<section class="cuk-shell cuk-section" data-cuk-configurator data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}">
+<section class="cuk-shell cuk-section" data-cuk-configurator data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
@@ -12,7 +12,52 @@
       </div>
       <span class="cuk-status" data-cuk-route-status>Loading route…</span>
     </div>
-    <div class="cuk-layout">
+    <section class="cuk-panel cuk-reviewed-resume cuk-hidden" data-cuk-reviewed-resume tabindex="-1" aria-live="polite">
+      <p class="cuk-eyebrow">Staff-reviewed curtain · staging only</p>
+      <h2>Review and accept your final curtain specification</h2>
+      <p data-cuk-reviewed-loading>Securely checking the approved revision…</p>
+      <div class="cuk-hidden" data-cuk-reviewed-content>
+        <span class="cuk-status" data-cuk-reviewed-status>Ready for acceptance</span>
+        <p class="cuk-result__price" data-cuk-reviewed-price></p>
+        <p data-cuk-reviewed-message>Your staff-reviewed price is frozen to this exact revision. Delivery is shown separately.</p>
+        <dl class="cuk-result__summary">
+          <div><dt>Reference</dt><dd data-cuk-reviewed-reference>—</dd></div>
+          <div><dt>Window</dt><dd data-cuk-reviewed-window>—</dd></div>
+          <div><dt>Measurements</dt><dd data-cuk-reviewed-measurements>—</dd></div>
+          <div><dt>Fabric</dt><dd data-cuk-reviewed-fabric>—</dd></div>
+          <div><dt>Heading</dt><dd data-cuk-reviewed-heading>—</dd></div>
+          <div><dt>Lining</dt><dd data-cuk-reviewed-lining>—</dd></div>
+          <div><dt>Pair / single</dt><dd data-cuk-reviewed-construction>—</dd></div>
+          <div><dt>Availability</dt><dd data-cuk-reviewed-availability>—</dd></div>
+          <div><dt>Price</dt><dd data-cuk-reviewed-price-summary>—</dd></div>
+          <div><dt>Delivery</dt><dd data-cuk-reviewed-delivery>Shown separately</dd></div>
+          <div><dt>Review status</dt><dd>Approved by the curtain team</dd></div>
+        </dl>
+        <form class="cuk-checkout-handoff" data-cuk-reviewed-checkout-form>
+          <h3>Prepare your Shopify test checkout</h3>
+          <p>The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.</p>
+          <div class="cuk-field">
+            <label for="CukReviewedShippingRegion-{{ section.id }}">Delivery area</label>
+            <select id="CukReviewedShippingRegion-{{ section.id }}" name="shippingRegion" required>
+              <option value="UK_MAINLAND">UK Mainland</option>
+              <option value="HIGHLANDS_ISLANDS">Highlands and Islands</option>
+              <option value="NORTHERN_IRELAND">Northern Ireland</option>
+            </select>
+          </div>
+          <label class="cuk-checkout-handoff__accept" for="CukAcceptReviewedSummary-{{ section.id }}">
+            <input id="CukAcceptReviewedSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>
+            <span>I accept this exact staff-reviewed specification and VAT-inclusive price.</span>
+          </label>
+          <div class="cuk-error" data-cuk-reviewed-error hidden></div>
+          <div class="cuk-review-confirmation cuk-hidden" data-cuk-reviewed-confirmation tabindex="-1"></div>
+          <button class="cuk-button" type="submit">Prepare test checkout</button>
+          <p class="cuk-hint">No real payment can be taken and this does not release the job to manufacture.</p>
+        </form>
+      </div>
+      <div class="cuk-error" data-cuk-reviewed-load-error hidden></div>
+      <p class="cuk-hint"><a href="/pages/curtain-visualiser" data-cuk-reviewed-clear>Start a new curtain configuration</a></p>
+    </section>
+    <div class="cuk-layout" data-cuk-configurator-builder>
       <form class="cuk-panel cuk-form">
         <fieldset class="cuk-step">
           <legend>1. Window type</legend>
@@ -101,7 +146,7 @@
 
         <div class="cuk-error" data-cuk-error hidden></div>
         <button class="cuk-button" type="submit">Check my price or review route</button>
-        <p class="cuk-hint">Staging only. This flow cannot add to cart, take payment or release a job to manufacture.</p>
+        <p class="cuk-hint">Staging only. This flow cannot take real payment or release a job to manufacture.</p>
       </form>
 
       <aside class="cuk-panel cuk-result" data-cuk-result hidden aria-live="polite">
@@ -123,8 +168,8 @@
         </dl>
         <p class="cuk-hint" data-cuk-result-spec></p>
         <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form>
-          <h2>Prepare the staging checkout handoff</h2>
-          <p>This validates and freezes the exact curtain specification and price. It cannot open checkout or take payment.</p>
+          <h2>Prepare a Shopify test checkout</h2>
+          <p>This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.</p>
           <div class="cuk-field">
             <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukShippingRegion-{{ section.id }}" name="shippingRegion" required>
@@ -139,8 +184,8 @@
           </label>
           <div class="cuk-error" data-cuk-checkout-error hidden></div>
           <p class="cuk-review-confirmation cuk-hidden" data-cuk-checkout-confirmation tabindex="-1"></p>
-          <button class="cuk-button" type="submit">Prepare staging handoff</button>
-          <p class="cuk-hint">Payment, checkout and manufacture remain disabled.</p>
+          <button class="cuk-button" type="submit">Prepare test checkout</button>
+          <p class="cuk-hint">Real payment and manufacture remain disabled.</p>
         </form>
         <form class="cuk-review-submit cuk-hidden" data-cuk-review-form>
           <h2>Send this project for review</h2>
@@ -156,7 +201,7 @@
           <p class="cuk-hint">Submitting does not take payment or release anything to manufacture.</p>
         </form>
         <div class="cuk-review-confirmation cuk-hidden" data-cuk-review-confirmation tabindex="-1"></div>
-        <div class="cuk-notice" data-cuk-result-notice>Staging only. Checkout remains disabled.</div>
+        <div class="cuk-notice" data-cuk-result-notice>Staging only. Shopify test checkout remains gated; real payment is disabled.</div>
       </aside>
     </div>
   </div>
@@ -171,7 +216,8 @@
   "settings": [
     { "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" },
     { "type": "text", "id": "initial_window", "label": "Initial Window Type slug", "default": "standard-window" },
-    { "type": "text", "id": "review_request_path", "label": "Review request endpoint path", "default": "review-request" }
+    { "type": "text", "id": "review_request_path", "label": "Review request endpoint path", "default": "review-request" },
+    { "type": "text", "id": "staging_checkout_host", "label": "Allowed Shopify development-store checkout host", "default": "curtainsuk-dev.myshopify.com" }
   ],
   "presets": [{ "name": "CurtainsUK configurator" }]
 }

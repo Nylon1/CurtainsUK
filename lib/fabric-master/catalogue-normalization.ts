@@ -30,6 +30,7 @@ export function buildCatalogueImport(input: {
   sourceObservedAt?: string;
   existingSupplierSkus: ReadonlySet<string>;
   existingSupplierUpdatedAt?: ReadonlyMap<string, string>;
+  protectedFieldsBySku?: ReadonlyMap<string, string[]>;
   records: Array<Omit<FabricMasterRecord, "supplier_name"> & { brand_name: string; source_row_number?: number | null }>;
   importedAt?: string;
 }) {
@@ -45,7 +46,7 @@ export function buildCatalogueImport(input: {
       source_row_number: record.source_row_number ?? null,
       merge_action: isExisting ? "UPDATE" : "INSERT",
       expected_existing_updated_at: input.existingSupplierUpdatedAt?.get(record.supplier_sku) ?? null,
-      protected_fields: [],
+      protected_fields: [...(input.protectedFieldsBySku?.get(record.supplier_sku) ?? [])],
     };
   });
   const inserted = items.filter((item) => !input.existingSupplierSkus.has(item.supplier_sku)).length;

@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import {
   createEvidenceAccessTokenWithSecret,
+  evidenceAccessTokenSha256,
   verifyEvidenceAccessTokenWithSecret,
 } from "./evidence-access-token-core";
 
@@ -72,11 +73,27 @@ export async function issueStaffEvidenceAccess(input: {
   await evidenceById(input.evidenceId);
   const reason = input.reason.trim();
   if (!reason || reason.length > 500) throw new Error("EVIDENCE_ACCESS_REASON_REQUIRED");
+  const nowSeconds = Math.floor(Date.now() / 1_000);
+  const expiresAt = new Date((nowSeconds + 60) * 1_000).toISOString();
   const token = createEvidenceAccessTokenWithSecret({
     evidenceId: input.evidenceId,
     actorId: input.actorId,
-  }, accessSecret(), { ttlSeconds: 60 });
-  await accessLog({ evidenceId: input.evidenceId, actorId: input.actorId, action: "ISSUE_TOKEN", reason });
+  }, accessSecret(), { nowSeconds, ttlSeconds: 60 });
+  const { data, error } = await createSupplierServiceClient().rpc("issue_staging_review_evidence_access_grant", {
+    p_grant: {
+      grant_id: randomUUID(),
+      event_id: randomUUID(),
+      token_sha256: evidenceAccessTokenSha256(token),
+      evidence_id: input.evidenceId,
+      actor_id: input.actorId,
+      reason,
+      expires_at: expiresAt,
+    },
+  });
+  const grant = data as { grant_id?: unknown; expires_at?: unknown } | null;
+  if (error || typeof grant?.grant_id !== "string" || typeof grant.expires_at !== "string") {
+    throw new Error("EVIDENCE_ACCESS_UNAVAILABLE");
+  }
   return { token, expiresInSeconds: 60 };
 }
 
@@ -89,6 +106,16 @@ export async function retrieveStaffEvidence(input: {
     evidenceId: input.evidenceId,
     actorId: input.actorId,
   }, accessSecret())) throw new Error("EVIDENCE_ACCESS_DENIED");
+  const token = input.token as string;
+  const { data: consumed, error: consumeError } = await createSupplierServiceClient().rpc(
+    "consume_staging_review_evidence_access_grant",
+    {
+      p_token_sha256: evidenceAccessTokenSha256(token),
+      p_evidence_id: input.evidenceId,
+      p_actor_id: input.actorId,
+    },
+  );
+  if (consumeError || consumed !== true) throw new Error("EVIDENCE_ACCESS_DENIED");
   const row = await evidenceById(input.evidenceId);
   const { data, error } = await createSupplierServiceClient().storage.from(EVIDENCE_BUCKET).download(row.object_path);
   if (error || !data) throw new Error("EVIDENCE_ACCESS_UNAVAILABLE");

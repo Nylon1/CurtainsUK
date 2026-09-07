@@ -672,6 +672,69 @@ export async function persistStagingCheckoutSnapshotAndHandoff(input: {
     p_handoff_id: input.handoffId,
     p_prepared_by: input.preparedBy,
   });
-  if (error) throw new Error("CHECKOUT_HANDOFF_PERSISTENCE_FAILED");
+  if (error) {
+    // The configuration ID and derived snapshot/handoff IDs are stable. If a
+    // response was lost after commit, return the exact existing receipt only
+    // after proving that every immutable customer-facing field still matches.
+    const database = createSupplierServiceClient();
+    const { data: existingSnapshot, error: snapshotError } = await database
+      .from("staging_configuration_snapshots")
+      .select("snapshot_id,configuration_id,review_request_id,review_revision_id,pricing_outcome,window_type_slug,measurements,fabric_master_id,supplier_sku,heading,lining,construction,calculated_fabric_metres,pricing_rule_version,net_amount_minor,vat_amount_minor,customer_price_minor,vat_rate_basis_points,currency,availability_state,shipping_region,shipping_parcel_class,shipping_gross_amount_minor,customer_summary")
+      .eq("configuration_id", snapshot.configurationId)
+      .maybeSingle();
+    if (snapshotError || !existingSnapshot) throw new Error("CHECKOUT_HANDOFF_PERSISTENCE_FAILED");
+    const canonical = (value: unknown): string => {
+      if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+      if (value && typeof value === "object") {
+        return `{${Object.entries(value as Record<string, unknown>)
+          .sort(([left], [right]) => left.localeCompare(right))
+          .map(([key, child]) => `${JSON.stringify(key)}:${canonical(child)}`)
+          .join(",")}}`;
+      }
+      return JSON.stringify(value);
+    };
+    const text = (value: unknown) => value === null || value === undefined ? null : String(value);
+    const matches = text(existingSnapshot.snapshot_id) === snapshot.snapshotId
+      && text(existingSnapshot.configuration_id) === snapshot.configurationId
+      && text(existingSnapshot.review_request_id) === snapshot.reviewRequestId
+      && text(existingSnapshot.review_revision_id) === snapshot.reviewRevisionId
+      && text(existingSnapshot.pricing_outcome) === snapshot.outcome
+      && text(existingSnapshot.window_type_slug) === snapshot.windowType
+      && canonical(existingSnapshot.measurements) === canonical(snapshot.measurements)
+      && text(existingSnapshot.fabric_master_id) === snapshot.fabricMasterId
+      && text(existingSnapshot.supplier_sku) === snapshot.supplierSku
+      && text(existingSnapshot.heading) === snapshot.heading
+      && text(existingSnapshot.lining) === snapshot.lining
+      && text(existingSnapshot.construction) === snapshot.construction
+      && Number(existingSnapshot.calculated_fabric_metres) === snapshot.calculatedFabricMetres
+      && text(existingSnapshot.pricing_rule_version) === snapshot.pricingRuleVersion
+      && Number(existingSnapshot.net_amount_minor) === snapshot.customerPrice.netAmountMinor
+      && Number(existingSnapshot.vat_amount_minor) === snapshot.customerPrice.vatAmountMinor
+      && Number(existingSnapshot.customer_price_minor) === snapshot.customerPrice.grossAmountMinor
+      && Number(existingSnapshot.vat_rate_basis_points) === snapshot.customerPrice.vatRateBasisPoints
+      && text(existingSnapshot.currency) === snapshot.customerPrice.currency
+      && text(existingSnapshot.availability_state) === snapshot.availability
+      && text(existingSnapshot.shipping_region) === snapshot.shipping.region
+      && text(existingSnapshot.shipping_parcel_class) === snapshot.shipping.parcelClass
+      && Number(existingSnapshot.shipping_gross_amount_minor) === snapshot.shipping.grossAmountMinor
+      && canonical(existingSnapshot.customer_summary) === canonical(input.customerSummary);
+    if (!matches) throw new Error("CHECKOUT_IDEMPOTENCY_CONFLICT");
+    const { data: existingHandoff, error: handoffError } = await database
+      .from("staging_checkout_handoffs")
+      .select("handoff_id,snapshot_id")
+      .eq("snapshot_id", snapshot.snapshotId)
+      .maybeSingle();
+    if (handoffError || !existingHandoff
+        || text(existingHandoff.handoff_id) !== input.handoffId
+        || text(existingHandoff.snapshot_id) !== snapshot.snapshotId) {
+      throw new Error("CHECKOUT_IDEMPOTENCY_CONFLICT");
+    }
+    return {
+      snapshot_id: snapshot.snapshotId,
+      configuration_id: snapshot.configurationId,
+      handoff_id: input.handoffId,
+      idempotent_recovery: true,
+    };
+  }
   return data as Record<string, unknown>;
 }

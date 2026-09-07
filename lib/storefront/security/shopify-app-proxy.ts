@@ -1,10 +1,13 @@
 import "server-only";
+import { createHash } from "node:crypto";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import {
+  shopifyProxyReplayFingerprint,
   shopifyProxyRateLimitFingerprint,
   verifyShopifyAppProxyQuery,
   type ShopifyAppProxyContext,
 } from "./shopify-app-proxy-core";
+import { consumeEndpointRateLimit, type EndpointRateLimitPolicy } from "./endpoint-rate-limit";
 
 const DEFAULT_ALLOWED_SHOPS = ["carpetup.myshopify.com"];
 const DEFAULT_ALLOWED_PATHS = ["/apps/curtainsuk-decision"];
@@ -37,7 +40,7 @@ function replayWindowSeconds() {
 export async function authenticateShopifyAppProxy(input: {
   request: Request;
   operation: string;
-  limit: number;
+  rateLimit: EndpointRateLimitPolicy;
 }): Promise<ShopifyAppProxyContext> {
   const secret = appProxySecret();
   const url = new URL(input.request.url);
@@ -47,18 +50,38 @@ export async function authenticateShopifyAppProxy(input: {
     allowedPathPrefixes: listFromEnvironment("CURTAINSUK_SHOPIFY_ALLOWED_PATHS", DEFAULT_ALLOWED_PATHS),
     maximumAgeSeconds: replayWindowSeconds(),
   });
-  const limit = Number.isInteger(input.limit) && input.limit >= 1 && input.limit <= 300 ? input.limit : 60;
   const fingerprint = shopifyProxyRateLimitFingerprint({
     shop: context.shop,
     clientAddress: clientAddress(input.request),
     operation: input.operation,
     secret,
   });
-  const { data, error } = await createSupplierServiceClient().rpc("consume_staging_review_submission_slot", {
-    p_fingerprint_sha256: fingerprint,
-    p_limit: limit,
-  });
-  if (error) throw new Error("SHOPIFY_PROXY_RATE_LIMIT_UNAVAILABLE");
-  if (data !== true) throw new Error("SHOPIFY_PROXY_RATE_LIMITED");
+  await consumeEndpointRateLimit(fingerprint, input.rateLimit);
   return context;
+}
+
+export async function claimShopifyMutationReplay(input: {
+  request: Request;
+  context: ShopifyAppProxyContext;
+  operation: "review-request" | "checkout-handoff";
+  bodyBytes: Uint8Array;
+}) {
+  const signature = new URL(input.request.url).searchParams.get("signature") ?? "";
+  const bodySha256 = createHash("sha256").update(input.bodyBytes).digest("hex");
+  const fingerprint = shopifyProxyReplayFingerprint({
+    shop: input.context.shop,
+    operation: input.operation,
+    signature,
+    bodySha256,
+    secret: appProxySecret(),
+  });
+  const { data, error } = await createSupplierServiceClient().rpc("claim_staging_shopify_proxy_replay_receipt", {
+    p_request_fingerprint_sha256: fingerprint,
+    p_shop: input.context.shop,
+    p_operation: input.operation,
+    p_signature_timestamp: input.context.timestamp,
+    p_ttl_seconds: replayWindowSeconds(),
+  });
+  if (error) throw new Error("SHOPIFY_PROXY_REPLAY_UNAVAILABLE");
+  if (data !== true) throw new Error("SHOPIFY_PROXY_REPLAY_DETECTED");
 }

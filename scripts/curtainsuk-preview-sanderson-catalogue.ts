@@ -45,6 +45,7 @@ async function main() {
     supplier: preview.supplier_id,
     source: preview.source,
     summary: preview.summary,
+    completion: preview.completion,
     by_brand: byBrand,
     rejected_reasons: rejectedReasons,
     ignored_operational_headers: preview.ignored_operational_headers,

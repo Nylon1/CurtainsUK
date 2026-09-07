@@ -1,6 +1,9 @@
 (() => {
   const SAMPLE_KEY = "curtainsuk_staging_samples_v1";
   const PROJECT_KEY = "curtainsuk_staging_project_v1";
+  const REVIEW_RESUME_KEY = "curtainsuk_staging_review_resume_v1";
+  const REVIEW_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  const REVIEW_ACCEPTANCE_TOKEN = /^v1\.\d{10,12}\.[A-Za-z0-9_-]{43}$/;
 
   const emit = (name, detail = {}) => {
     const payload = { event: `curtainsuk_${name}`, ...detail };
@@ -19,6 +22,88 @@
 
   const endpoint = (root, path) => `${root.replace(/\/$/, "")}/${path}`;
   const escapeHtml = (value) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);
+
+  function humanise(value) {
+    return String(value ?? "").replaceAll("_", " ").toLowerCase().replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
+  }
+
+  function reviewedResumeCapability() {
+    const fragment = new URLSearchParams(location.hash.startsWith("#") ? location.hash.slice(1) : location.hash);
+    const fragmentContainsCapability = fragment.has("cuk_review") || fragment.has("cuk_token");
+    if (fragmentContainsCapability) {
+      const reviewRequestId = fragment.get("cuk_review") || "";
+      const reviewAcceptanceToken = fragment.get("cuk_token") || "";
+      const cleanUrl = new URL(location.href);
+      cleanUrl.hash = "";
+      history.replaceState(history.state, "", cleanUrl);
+      if (!REVIEW_REQUEST_ID.test(reviewRequestId) || !REVIEW_ACCEPTANCE_TOKEN.test(reviewAcceptanceToken)) {
+        sessionStorage.removeItem(REVIEW_RESUME_KEY);
+        return { error: "This review link is incomplete or invalid. Ask the curtain team for a new link." };
+      }
+      const capability = { reviewRequestId, reviewAcceptanceToken };
+      sessionStorage.setItem(REVIEW_RESUME_KEY, JSON.stringify(capability));
+      return { capability };
+    }
+    try {
+      const capability = JSON.parse(sessionStorage.getItem(REVIEW_RESUME_KEY) || "null");
+      if (capability
+          && REVIEW_REQUEST_ID.test(capability.reviewRequestId)
+          && REVIEW_ACCEPTANCE_TOKEN.test(capability.reviewAcceptanceToken)) {
+        return { capability };
+      }
+    } catch {
+      sessionStorage.removeItem(REVIEW_RESUME_KEY);
+    }
+    return {};
+  }
+
+  function checkoutUrlFor(root, handoff) {
+    if (!handoff
+        || handoff.paymentEnabled !== false
+        || !["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED"].includes(handoff.testCheckoutStatus)
+        || (handoff.testCheckoutStatus === "TEST_DRAFT_CREATED" && handoff.shopifyWritePerformed !== true)
+        || (handoff.testCheckoutStatus === "EXISTING_TEST_DRAFT_REUSED" && handoff.shopifyWritePerformed !== false)
+        || typeof handoff.checkoutUrl !== "string") return null;
+    let checkoutUrl;
+    try { checkoutUrl = new URL(handoff.checkoutUrl); } catch { return null; }
+    const allowedHost = String(root.dataset.stagingCheckoutHost || "").trim().toLowerCase();
+    if (!allowedHost || checkoutUrl.protocol !== "https:" || checkoutUrl.hostname.toLowerCase() !== allowedHost || checkoutUrl.username || checkoutUrl.password) return null;
+    return checkoutUrl.toString();
+  }
+
+  function renderHandoffConfirmation(root, confirmation, handoff) {
+    const checkoutUrl = checkoutUrlFor(root, handoff);
+    confirmation.replaceChildren();
+    const message = document.createElement("p");
+    message.textContent = handoff.message || "Staging checkout handoff prepared.";
+    const reference = document.createElement("p");
+    reference.className = "cuk-hint";
+    reference.textContent = `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;
+    confirmation.append(message, reference);
+    if (["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED"].includes(handoff.testCheckoutStatus) && !checkoutUrl) {
+      throw new Error("The Shopify test Draft Order was prepared, but its checkout URL did not match the configured CurtainsUK development store. Ask staff to check the staging checkout host before retrying.");
+    }
+    if (checkoutUrl) {
+      const link = document.createElement("a");
+      link.className = "cuk-button";
+      link.href = checkoutUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Continue to Shopify test checkout";
+      link.addEventListener("click", () => emit("test_checkout_opened", { handoff_id: handoff.handoffId }));
+      confirmation.append(link);
+    }
+    confirmation.classList.remove("cuk-hidden");
+    confirmation.focus();
+  }
+
+  function measurementSummary(measurements) {
+    if (!measurements || typeof measurements !== "object" || Array.isArray(measurements)) return "Measurements held in the approved revision";
+    return Object.entries(measurements)
+      .filter(([, value]) => ["string", "number", "boolean"].includes(typeof value))
+      .map(([key, value]) => `${humanise(key)}: ${value}${typeof value === "number" ? " cm" : ""}`)
+      .join(" · ") || "Measurements held in the approved revision";
+  }
 
   async function fetchJson(url, options = {}) {
     const isFormData = options.body instanceof FormData;
@@ -282,8 +367,115 @@
     return element;
   }
 
+  async function initReviewedAcceptance(root, resume) {
+    const panel = root.querySelector("[data-cuk-reviewed-resume]");
+    const builder = root.querySelector("[data-cuk-configurator-builder]");
+    if (!panel || (!resume.capability && !resume.error)) return false;
+    panel.classList.remove("cuk-hidden");
+    builder?.classList.add("cuk-hidden");
+    root.querySelector("[data-cuk-route-status]").textContent = "Staff-reviewed staging checkout";
+    root.querySelector("[data-cuk-reviewed-clear]")?.addEventListener("click", () => {
+      sessionStorage.removeItem(REVIEW_RESUME_KEY);
+    });
+    const loadError = panel.querySelector("[data-cuk-reviewed-load-error]");
+    const loading = panel.querySelector("[data-cuk-reviewed-loading]");
+    if (resume.error) {
+      loading.hidden = true;
+      loadError.textContent = resume.error;
+      loadError.hidden = false;
+      panel.focus();
+      return true;
+    }
+
+    try {
+      const summary = await fetchJson(endpoint(root.dataset.engineBase, "review-acceptance"), {
+        method: "POST",
+        body: JSON.stringify(resume.capability),
+      });
+      if (summary.reviewRequestId !== resume.capability.reviewRequestId
+          || summary.reviewState !== "READY_FOR_CHECKOUT"
+          || summary.paymentEnabled !== false
+          || summary.supplierCommercialDataIncluded !== false
+          || !summary.price
+          || !Number.isInteger(summary.price.grossAmountMinor)
+          || summary.price.grossAmountMinor <= 0
+          || summary.price.currency !== "GBP") {
+        throw new Error("The approved review summary failed its staging safety checks.");
+      }
+      loading.hidden = true;
+      panel.querySelector("[data-cuk-reviewed-content]").classList.remove("cuk-hidden");
+      panel.querySelector("[data-cuk-reviewed-status]").textContent = summary.pricingOutcome === "MANUAL_QUOTE" ? "Approved staff quote" : "Approved after review";
+      panel.querySelector("[data-cuk-reviewed-price]").textContent = `${money(summary.price.grossAmountMinor, summary.price.currency)} · VAT included`;
+      panel.querySelector("[data-cuk-reviewed-reference]").textContent = summary.reference;
+      panel.querySelector("[data-cuk-reviewed-window]").textContent = summary.window?.label || "Reviewed curtain";
+      panel.querySelector("[data-cuk-reviewed-measurements]").textContent = measurementSummary(summary.measurements);
+      panel.querySelector("[data-cuk-reviewed-fabric]").textContent = [summary.fabric?.brand, summary.fabric?.design, summary.fabric?.colour, summary.fabric?.supplierSku ? `Ref ${summary.fabric.supplierSku}` : null].filter(Boolean).join(" · ");
+      panel.querySelector("[data-cuk-reviewed-heading]").textContent = humanise(summary.heading);
+      panel.querySelector("[data-cuk-reviewed-lining]").textContent = humanise(summary.lining);
+      panel.querySelector("[data-cuk-reviewed-construction]").textContent = humanise(summary.construction);
+      panel.querySelector("[data-cuk-reviewed-availability]").textContent = summary.availability?.label || "Availability to be confirmed";
+      panel.querySelector("[data-cuk-reviewed-price-summary]").textContent = `${money(summary.price.grossAmountMinor, summary.price.currency)} · VAT included`;
+      panel.querySelector("[data-cuk-reviewed-delivery]").textContent = summary.delivery?.label || "Delivery shown separately";
+
+      const form = panel.querySelector("[data-cuk-reviewed-checkout-form]");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const error = form.querySelector("[data-cuk-reviewed-error]");
+        error.hidden = true;
+        if (!form.reportValidity()) return;
+        const submit = form.querySelector("button[type=submit]");
+        submit.disabled = true;
+        submit.textContent = "Re-checking approved revision…";
+        emit("quote_accepted", {
+          window_type: summary.window.slug,
+          outcome: summary.pricingOutcome,
+          configuration_id: summary.configurationId,
+        });
+        try {
+          const handoff = await fetchJson(endpoint(root.dataset.engineBase, "checkout-handoff"), {
+            method: "POST",
+            body: JSON.stringify({
+              reviewRequestId: resume.capability.reviewRequestId,
+              reviewAcceptanceToken: resume.capability.reviewAcceptanceToken,
+              customerAccepted: form.elements.customerAccepted.checked,
+              shippingRegion: form.elements.shippingRegion.value,
+              parcelClass: summary.shippingParcelClass,
+            }),
+          });
+          if (!handoff.prepared) {
+            const blockers = Array.isArray(handoff.blockers) ? handoff.blockers.map((item) => humanise(item)).join(", ") : "a staging launch gate";
+            throw new Error(`${handoff.message || "This reviewed configuration is not ready for checkout"} (${blockers}).`);
+          }
+          renderHandoffConfirmation(root, form.querySelector("[data-cuk-reviewed-confirmation]"), handoff);
+          submit.textContent = "Test checkout prepared";
+          emit("checkout_handoff_reached", {
+            window_type: summary.window.slug,
+            outcome: summary.pricingOutcome,
+            configuration_id: summary.configurationId,
+            handoff_id: handoff.handoffId,
+          });
+        } catch (caught) {
+          error.textContent = caught.message;
+          error.hidden = false;
+          submit.disabled = false;
+          submit.textContent = "Prepare test checkout";
+        }
+      });
+      panel.focus();
+    } catch (caught) {
+      loading.hidden = true;
+      loadError.textContent = `${caught.message} The link may have expired or the approved specification may have changed. Ask the curtain team for a new link.`;
+      loadError.hidden = false;
+      sessionStorage.removeItem(REVIEW_RESUME_KEY);
+      panel.focus();
+    }
+    return true;
+  }
+
   async function initConfigurator(root) {
-    const form = root.querySelector("form");
+    const resume = reviewedResumeCapability();
+    if (await initReviewedAcceptance(root, resume)) return;
+    const form = root.querySelector(".cuk-form");
     const reviewForm = root.querySelector("[data-cuk-review-form]");
     const reviewConfirmation = root.querySelector("[data-cuk-review-confirmation]");
     const checkoutForm = root.querySelector("[data-cuk-checkout-form]");
@@ -312,6 +504,10 @@
     const requestedFabric = params.get("fabric") || remembered.fabricId;
     const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true);
     fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric) ? requestedFabric : configurableFabrics[0]?.id;
+    if (requestedFabric && fabricSelect.value !== requestedFabric) {
+      errorBox.textContent = "That fabric is not currently pricing-ready. We have kept the journey open with the first verified fabric instead.";
+      errorBox.hidden = false;
+    }
     renderBaySections(root, remembered.baySectionCount || 3, remembered.baySectionWidthsCm || []);
     setJourneyFields(root, catalog.windows.find((item) => item.slug === windowSelect.value));
     syncConfiguratorUrl(form);
@@ -346,7 +542,7 @@
         reviewForm.classList.add("cuk-hidden");
         checkoutForm.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare staging handoff"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare test checkout"; }
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         reviewConfirmation.classList.add("cuk-hidden");
       }
@@ -444,6 +640,9 @@
         const isManualQuote = response.outcome === "MANUAL_QUOTE";
         const isPriceWithReview = response.outcome === "PRICE_WITH_REVIEW";
         const needsReview = isManualQuote || isPriceWithReview;
+        const routeStatus = root.querySelector("[data-cuk-route-status]");
+        routeStatus.textContent = isManualQuote ? "Manual quote" : isPriceWithReview ? "Price with review" : "Instant staging price";
+        routeStatus.classList.toggle("cuk-status--review", needsReview);
         const evidence = root.querySelector("[data-cuk-review-evidence]");
         if (needsReview && evidence) {
           evidence.classList.remove("cuk-hidden");
@@ -513,11 +712,11 @@
         checkoutForm.reset();
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare staging handoff"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare test checkout"; }
         const notice = result.querySelector("[data-cuk-result-notice]");
         if (notice) notice.textContent = needsReview
           ? "Checkout is unavailable. This project must be reviewed before payment or manufacture."
-          : "Staging price only. Checkout remains disabled until the launch gate is approved.";
+          : "Staging price only. Shopify test checkout is available only when every launch gate passes; real payment remains disabled.";
         reviewConfirmation.classList.add("cuk-hidden");
         result.hidden = false;
         rememberProject({ ...projectSnapshot(form, root), lastOutcome: response.outcome });
@@ -586,6 +785,7 @@
           method: "POST",
           body: JSON.stringify({
             configuration: lastEvaluation.configuration,
+            configurationId: lastEvaluation.calculation.configurationId,
             customerAccepted: checkoutForm.elements.customerAccepted.checked,
             shippingRegion: checkoutForm.elements.shippingRegion.value,
             parcelClass: lastEvaluation.calculation.fabricWidths > 6 ? "OVERSIZE" : "STANDARD",
@@ -596,11 +796,9 @@
           throw new Error(`${handoff.message || "This configuration is not ready for checkout"} (${blockers}).`);
         }
         const confirmation = checkoutForm.querySelector("[data-cuk-checkout-confirmation]");
-        confirmation.innerHTML = `${escapeHtml(handoff.message)}<br><span class="cuk-hint">Reference ${escapeHtml(handoff.handoffId)} · Payment remains disabled · No Shopify checkout or order was created.</span>`;
-        confirmation.classList.remove("cuk-hidden");
-        confirmation.focus();
-        submit.textContent = "Staging handoff prepared";
-        result.querySelector("[data-cuk-summary-review]").textContent = "Validated for staging handoff";
+        renderHandoffConfirmation(root, confirmation, handoff);
+        submit.textContent = handoff.checkoutUrl ? "Test checkout prepared" : "Staging total validated";
+        result.querySelector("[data-cuk-summary-review]").textContent = handoff.checkoutUrl ? "Shopify test checkout ready" : "Validated for staging";
         emit("checkout_handoff_reached", {
           window_type: lastEvaluation.configuration.windowSlug,
           outcome: lastEvaluation.calculation.outcome,
@@ -611,7 +809,7 @@
         checkoutError.textContent = error.message;
         checkoutError.hidden = false;
         submit.disabled = false;
-        submit.textContent = "Prepare staging handoff";
+        submit.textContent = "Prepare test checkout";
       }
     });
   }

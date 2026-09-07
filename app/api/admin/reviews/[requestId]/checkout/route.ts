@@ -6,10 +6,34 @@ import {
 import { parseReviewCheckoutInput, parseReviewRequestId } from "@/lib/storefront/review-admin-validation";
 import { readBoundedJson } from "@/lib/storefront/staging-api";
 import { createReviewAcceptanceToken } from "@/lib/storefront/review-acceptance-token";
+import { buildStagingReviewResumeUrl } from "@/lib/storefront/review-resume-link-core";
 import { assertPrivateJsonMutation, requireReviewAdmin, reviewErrorResponse, reviewResponse } from "../../_shared";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+function customerResumeLink(input: {
+  reviewRequestId: string;
+  reviewRevisionId: string;
+  token: string;
+}) {
+  const baseUrl = process.env.CURTAINSUK_STAGING_REVIEW_RESUME_URL;
+  if (!baseUrl) throw new Error("REVIEW_RESUME_NOT_CONFIGURED");
+  const allowedOrigins = (process.env.CURTAINSUK_STAGING_ALLOWED_ORIGINS ?? "https://carpetup.myshopify.com")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  try {
+    return buildStagingReviewResumeUrl({
+      baseUrl,
+      allowedOrigins,
+      reviewRequestId: input.reviewRequestId,
+      reviewAcceptanceToken: input.token,
+    });
+  } catch {
+    throw new Error("REVIEW_RESUME_NOT_CONFIGURED");
+  }
+}
 
 export async function POST(request: Request, context: { params: Promise<{ requestId: string }> }) {
   const auth = await requireReviewAdmin();
@@ -26,6 +50,17 @@ export async function POST(request: Request, context: { params: Promise<{ reques
     const latest = current.revisions.at(-1);
     if (current.request.review_state !== input.expectedState || !latest || latest.revision_id !== input.revisionId) throw new Error("REVIEW_CONFLICT");
     if (!dashboard.checkout.eligible) throw new Error("REVIEW_CHECKOUT_BLOCKED");
+    const token = createReviewAcceptanceToken({
+      reviewRequestId: requestId,
+      reviewRevisionId: input.revisionId,
+    });
+    // Do not make READY_FOR_CHECKOUT terminal until the unpublished Dawn
+    // acceptance route is configured and a deliverable link can be built.
+    const resumeUrl = customerResumeLink({
+      reviewRequestId: requestId,
+      reviewRevisionId: input.revisionId,
+      token,
+    });
     await transitionStaffReviewRequest({
       requestId,
       state: "READY_FOR_CHECKOUT",
@@ -41,11 +76,10 @@ export async function POST(request: Request, context: { params: Promise<{ reques
       customerAcceptance: {
         reviewRequestId: requestId,
         reviewRevisionId: input.revisionId,
-        token: createReviewAcceptanceToken({
-          reviewRequestId: requestId,
-          reviewRevisionId: input.revisionId,
-        }),
+        token,
         expiresInSeconds: 14 * 24 * 60 * 60,
+        resumeUrl,
+        resumeUrlStatus: "READY",
       },
       paymentEnabled: false,
       shopifyWritePerformed: false,

@@ -1,5 +1,6 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 
+{% if page.handle == 'measure' or page.handle == 'measure-guide' %}
 <section class="cuk-shell cuk-section">
   <div class="cuk-wrap">
     <p class="cuk-eyebrow">Measure once, describe the basis</p>
@@ -14,6 +15,7 @@
     <div class="cuk-notice">Values that appear to be millimetres entered as centimetres, or mathematically inconsistent specialist geometry, are rejected or routed to review.</div>
   </div>
 </section>
+{% endif %}
 
 {% schema %}
 { "name": "CurtainsUK measure guide", "tag": "section", "class": "section", "settings": [], "presets": [{ "name": "CurtainsUK measure guide" }] }

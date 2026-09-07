@@ -84,7 +84,8 @@ export interface CustomerSafeFabricProjection {
   patternMatchType: PatternMatchType | null;
   sampleAvailable: boolean | null;
   availability: "Fabric available" | "Limited availability" | "Available soon" | "Availability to be confirmed" | "Temporarily unavailable" | "No longer available";
-  priceVerificationStatus: FabricPriceVerificationStatus;
+  /** Private workflows may include this; public storefront projections omit it. */
+  priceVerificationStatus?: FabricPriceVerificationStatus;
   feedEligible: false;
 }
 

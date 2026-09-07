@@ -222,6 +222,21 @@ test("draft width/drop thresholds preserve exact boundary semantics", () => {
   assert.equal(classifyComplexity(config, windowType("standard-window"), INITIAL_COMPLEXITY_RULE_SET).outcome, "MANUAL_QUOTE");
 });
 
+test("unknown supplier fabric weight does not force a standard curtain into technical review", () => {
+  const config = configuration();
+  config.measurements = { coverage_width: 200, finished_drop: 220 };
+  const supplierFabric = fabric();
+  supplierFabric.fabricWeightGsm = null;
+
+  const result = classifyComplexity(config, windowType("standard-window"), INITIAL_COMPLEXITY_RULE_SET, {
+    fabric: supplierFabric,
+  });
+
+  assert.equal(result.outcome, "INSTANT_PRICE");
+  assert.equal(result.technicalApprovalRequiredBeforePayment, false);
+  assert.doesNotMatch(result.reasons.join(" "), /weight/i);
+});
+
 test("complete simple apex gets provisional review pricing but never direct manufacture", () => {
   const apex = configuration("apex-window");
   apex.trackOrPole = "SLOPING_TRACK";

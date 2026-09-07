@@ -22,7 +22,8 @@
 
   async function fetchJson(url, options = {}) {
     const response = await fetch(url, {
-      credentials: "same-origin",
+      credentials: url.startsWith(location.origin) ? "same-origin" : "omit",
+      mode: "cors",
       headers: { "Accept": "application/json", "Content-Type": "application/json", ...(options.headers || {}) },
       ...options,
     });
@@ -71,21 +72,28 @@
       const card = document.createElement("article");
       card.className = "cuk-fabric";
       const repeat = fabric.verticalRepeatMm ? `${fabric.verticalRepeatMm / 10} cm vertical repeat` : "No pattern repeat";
-      const composition = fabric.composition.map((part) => `${part.percentage}% ${part.material}`).join(", ");
+      const composition = (fabric.composition || []).map((part) => `${part.percentage}% ${part.material}`).join(", ") || "Composition available on request";
+      const image = fabric.imageReferences?.[0];
+      const visual = image
+        ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(fabric.design)} in ${escapeHtml(fabric.colour)} by ${escapeHtml(fabric.brand || fabric.supplier)}" loading="lazy">`
+        : `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;
+      const sampleAction = fabric.sampleAvailable
+        ? `<button class="cuk-button cuk-button--secondary" type="button" data-sample>Order sample</button>`
+        : `<button class="cuk-button cuk-button--secondary" type="button" disabled>Sample unavailable</button>`;
       card.innerHTML = `
-        <div class="cuk-fabric__swatch"><img src="${escapeHtml(fabric.imageReferences[0])}" alt="${escapeHtml(fabric.design)} in ${escapeHtml(fabric.colour)} by Prestigious Textiles"></div>
+        <div class="cuk-fabric__swatch">${visual}</div>
         <div class="cuk-fabric__body">
-          <p class="cuk-eyebrow">${escapeHtml(fabric.supplier)} · ${escapeHtml(fabric.collection)}</p>
+          <p class="cuk-eyebrow">${escapeHtml(fabric.brand || fabric.supplier)} · ${escapeHtml(fabric.collection)}</p>
           <h3>${escapeHtml(fabric.design)} — ${escapeHtml(fabric.colour)}</h3>
           <p>${fabric.usableWidthMm / 10} cm usable width · ${repeat}</p>
           <p>${escapeHtml(composition)}</p>
           <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric__actions">
-            <button class="cuk-button cuk-button--secondary" type="button" data-sample>Order sample</button>
-            <a class="cuk-button" href="/pages/configure-curtains?window=${encodeURIComponent(selectedWindow)}&fabric=${encodeURIComponent(fabric.id)}">Use this fabric</a>
+            ${sampleAction}
+            <a class="cuk-button" href="/pages/curtain-visualiser?window=${encodeURIComponent(selectedWindow)}&fabric=${encodeURIComponent(fabric.id)}">Use this fabric</a>
           </div>
         </div>`;
-      card.querySelector("[data-sample]").addEventListener("click", () => addSample(fabric, selectedWindow));
+      card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
       grid.appendChild(card);
     });
   }
@@ -116,7 +124,7 @@
     root.querySelectorAll("[data-cuk-standard] input, [data-cuk-standard] select, [data-cuk-standard] textarea").forEach((field) => { field.disabled = isSpecialist; });
     root.querySelectorAll("[data-cuk-specialist] input, [data-cuk-specialist] select, [data-cuk-specialist] textarea").forEach((field) => { field.disabled = !isSpecialist; });
     const photos = root.querySelector('input[name="photos"]');
-    if (photos) photos.required = isSpecialist;
+    if (photos) photos.required = isSpecialist || isBay;
     const status = root.querySelector("[data-cuk-route-status]");
     status.textContent = isSpecialist ? "Technical review" : isBay ? "Price with review" : "Instant staging price";
     status.classList.toggle("cuk-status--review", isBay || isSpecialist);
@@ -141,7 +149,7 @@
     try {
       catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog"));
       catalog.windows.forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
-      catalog.fabrics.forEach((item) => fabricSelect.appendChild(option(`${item.design} — ${item.colour}`, item.id)));
+      catalog.fabrics.forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} — ${item.colour}`, item.id)));
     } catch (error) {
       errorBox.textContent = error.message;
       errorBox.hidden = false;

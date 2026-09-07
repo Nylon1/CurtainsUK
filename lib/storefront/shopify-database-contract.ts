@@ -9,8 +9,9 @@ export async function buildDatabaseShopifyCatalogPayload() {
   const records = await listFabricMasterRecords({ storefrontOnly: true });
   const fabrics = records.map((record) => {
     const fabric = projectCustomerSafeFabric(record);
+    const { priceVerificationStatus: _privatePricingGate, ...customerFabric } = fabric;
     return {
-      ...fabric,
+      ...customerFabric,
       supplierReference: fabric.supplierSku,
       uniqueSku: fabric.supplierSku,
     };

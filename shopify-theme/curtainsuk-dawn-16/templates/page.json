@@ -1,5 +1,29 @@
 {
   "sections": {
+    "curtainsuk_configurator": {
+      "type": "curtainsuk-configurator",
+      "settings": {}
+    },
+    "curtainsuk_window_grid": {
+      "type": "curtainsuk-window-grid",
+      "settings": {}
+    },
+    "curtainsuk_fabric_browser": {
+      "type": "curtainsuk-fabric-browser",
+      "settings": {}
+    },
+    "curtainsuk_measure_guide": {
+      "type": "curtainsuk-measure-guide",
+      "settings": {}
+    },
+    "curtainsuk_sample_basket": {
+      "type": "curtainsuk-sample-basket",
+      "settings": {}
+    },
+    "curtainsuk_window_page": {
+      "type": "curtainsuk-window-page",
+      "settings": {}
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -9,6 +33,12 @@
     }
   },
   "order": [
+    "curtainsuk_configurator",
+    "curtainsuk_window_grid",
+    "curtainsuk_fabric_browser",
+    "curtainsuk_measure_guide",
+    "curtainsuk_sample_basket",
+    "curtainsuk_window_page",
     "main"
   ]
 }

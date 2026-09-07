@@ -154,11 +154,11 @@ export interface SpecialistReviewRequest {
   drawingName?: string;
 }
 
-export function classifySpecialistReview(input: SpecialistReviewRequest) {
+export function classifySpecialistReview(input: SpecialistReviewRequest, suppliedFabric?: FabricSpec) {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow || storefrontWindow.journey !== "SPECIALIST") throw new Error("A specialist window type is required");
   const windowType = WINDOW_TYPES_BY_SLUG.get(storefrontWindow.masterSlugs[0]);
-  const fabric = STOREFRONT_FABRICS_BY_ID.get(input.fabricId);
+  const fabric = suppliedFabric ?? STOREFRONT_FABRICS_BY_ID.get(input.fabricId);
   if (!windowType || !fabric) throw new Error("Window type or fabric is unavailable");
   const configuration = createCurtainConfiguration({
     id: `stage-review-${Date.now()}`,

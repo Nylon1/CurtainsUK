@@ -1466,5 +1466,28 @@
         "label": "t:settings_schema.customer_accounts.settings.customer_account_menu.label"
       }
     ]
+  },
+  {
+    "name": "CurtainsUK staging",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "curtainsuk_staging_mode",
+        "label": "Keep CurtainsUK commerce disabled",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "curtainsuk_staging_api_base",
+        "label": "Customer-safe staging API base",
+        "default": "https://curtainsuk-staging-p1n66mqhy-hamzas-projects-4ef62f35.vercel.app/api/staging/shopify"
+      },
+      {
+        "type": "text",
+        "id": "curtainsuk_staging_market_label",
+        "label": "Staging market label",
+        "default": "United Kingdom | GBP"
+      }
+    ]
   }
 ]

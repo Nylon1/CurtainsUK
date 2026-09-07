@@ -66,7 +66,10 @@ export function classifyComplexity(
   if (configuration.trackComplexity !== "SIMPLE_STRAIGHT") reasons.push("Track complexity requires review");
   if (configuration.numberOfSegments > 1) reasons.push("Multi-segment construction requires review");
   if (context.fabric?.patternMatchType === "HALF_DROP_MATCH" || context.fabric?.patternCentringRequirement === "WORKROOM_CONFIRMATION_REQUIRED") reasons.push("Pattern handling requires workroom review");
-  if (context.fabric?.fabricWeightGsm === null) reasons.push("Fabric weight is unknown and must be checked");
+  // Missing supplier metadata must not change a technically standard curtain
+  // into a review job. Known heavy fabrics can be routed by an explicit,
+  // versioned threshold once the workroom approves one; unknown weight remains
+  // a separate fabric-data/availability concern.
   if (configuration.interlining === "INTERLINING") reasons.push("Interlining is a complexity factor");
   if (context.calculatedFabricWidths !== undefined) reasons.push(`Calculated construction uses ${context.calculatedFabricWidths} fabric widths`);
 

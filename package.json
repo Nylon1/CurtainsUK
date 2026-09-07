@@ -20,6 +20,7 @@
     "supplier-sync:shadow": "tsx scripts/curtainsuk-supplier-shadow-sync.ts",
     "fabric:import:prestigious": "tsx scripts/curtainsuk-import-prestigious-catalogue.ts",
     "fabric:import:sanderson-pilot": "tsx scripts/curtainsuk-import-sanderson-pilot.ts",
+    "fabric:refresh:prestigious-images": "tsx scripts/curtainsuk-refresh-prestigious-imagery.ts",
     "test:fabric-master": "tsx --test lib/fabric-master/__tests__/*.test.ts"
   },
   "dependencies": {

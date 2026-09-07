@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { officialPrestigiousThumbnailUrl } from "../prestigious-imagery";
 import { buildCatalogueImport } from "../catalogue-normalization";
 import { toDecisionEngineFabric } from "../decision-engine";
 import { normalizePrestigiousFormationRows } from "../prestigious";
@@ -24,6 +25,13 @@ test("Prestigious catalogue normalization preserves permanent IDs and corrected 
   assert.equal(record.pattern_match_type, "RANDOM_MATCH");
   assert.equal(record.price_verification_status, "VERIFIED");
   assert.deepEqual(record.imagery, []);
+});
+
+test("Prestigious imagery is derived from the stable SKU/design/colour mapping", () => {
+  assert.equal(
+    officialPrestigiousThumbnailUrl({ supplierSku: "4269/147", design: "Escher", colour: "Mocha" }),
+    "https://www.prestigious.co.uk/wp-content/uploads/product_images/thumbs/4269-147%20escher%20mocha.jpg",
+  );
 });
 
 test("Sanderson uses the same normalized Fabric Master contract without supplier-specific storage", () => {

@@ -282,7 +282,7 @@
       </div>
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
-      {%- if shop.customer_accounts_enabled -%}
+      {%- if shop.customer_accounts_enabled and settings.curtainsuk_staging_mode == false -%}
         <shopify-account
           menu="{{ settings.customer_account_menu | default: 'customer-account-main-menu' }}"
           class="header__icon header__icon--account link focus-inset"
@@ -299,6 +299,7 @@
         {%- endcase -%}
       {%- endfor -%}
 
+      {%- unless settings.curtainsuk_staging_mode -%}
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
@@ -315,11 +316,12 @@
           </div>
         {%- endif -%}
       </a>
+      {%- endunless -%}
     </div>
   </header>
 </{{ header_tag }}>
 
-{%- if settings.cart_type == 'notification' -%}
+{%- if settings.cart_type == 'notification' and settings.curtainsuk_staging_mode == false -%}
   {%- render 'cart-notification',
     color_scheme: section.settings.color_scheme,
     desktop_menu_type: section.settings.menu_type_desktop

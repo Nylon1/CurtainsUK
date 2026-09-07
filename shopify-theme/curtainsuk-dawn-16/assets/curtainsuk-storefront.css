@@ -14,6 +14,7 @@
 .cuk-shell a { color: inherit; }
 .cuk-task-nav { border-bottom: 1px solid var(--cuk-line); background: var(--cuk-paper); }
 .cuk-task-nav__list { display: flex; gap: 2.2rem; overflow-x: auto; margin: 0; padding: 1.2rem 0; list-style: none; scrollbar-width: thin; }
+.cuk-task-nav__market { margin: 0; padding: .65rem 0 0; color: var(--cuk-muted); font-size: 1.1rem; letter-spacing: .04em; text-align: center; }
 .cuk-task-nav__list a { display: block; white-space: nowrap; font-size: 1.35rem; font-weight: 700; text-decoration: none; }
 .cuk-wrap { width: min(124rem, calc(100% - 3.2rem)); margin-inline: auto; }
 .cuk-eyebrow { margin: 0 0 1.2rem; color: var(--cuk-moss); font-size: 1.2rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
@@ -65,6 +66,7 @@
 .cuk-fabric { overflow: hidden; border: 1px solid var(--cuk-line); border-radius: 1.8rem; background: white; }
 .cuk-fabric__swatch { height: 24rem; background: #e6ded1; overflow: hidden; }
 .cuk-fabric__swatch img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cuk-fabric__placeholder { display: grid; min-height: 24rem; place-items: center; background: linear-gradient(145deg,#e8e0d3,#c7d1c8); color: var(--cuk-ink); font-size: 7rem; font-weight: 700; }
 .cuk-fabric__body { padding: 2rem; }
 .cuk-fabric h3 { margin: 0 0 .5rem; }
 .cuk-fabric__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
@@ -92,5 +94,11 @@
   .cuk-window-art { min-height: 25rem; }
   .cuk-section__head { display: block; }
   .cuk-actions .cuk-button { width: 100%; }
-  .cuk-task-nav__list { gap: 1.5rem; }
+  .cuk-task-nav__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .65rem 1.25rem;
+    overflow: visible;
+  }
+  .cuk-task-nav__list a { font-size: 1.15rem; }
 }

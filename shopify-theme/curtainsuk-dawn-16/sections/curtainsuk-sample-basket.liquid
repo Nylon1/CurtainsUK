@@ -1,13 +1,14 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 
-<section class="cuk-shell cuk-section">
+{% if page.handle == 'samples' or page.handle == 'fabric-library' %}
+{% if page.handle == 'samples' %}<script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>{% endif %}
+<section id="samples" class="cuk-shell cuk-section">
   <div class="cuk-wrap cuk-layout">
     <div>
       <p class="cuk-eyebrow">Staging sample journey</p>
       <h1>Bring the shortlist home</h1>
       <p class="cuk-lede">Save several exact colourways and resume the curtain project with the remembered Window Type.</p>
-      <div class="cuk-actions"><a class="cuk-button" href="/pages/shop-by-fabric">Browse fabrics</a><a class="cuk-button cuk-button--secondary" href="/pages/configure-curtains">Resume my curtains</a></div>
+      <div class="cuk-actions"><a class="cuk-button" href="/pages/fabric-library">Browse fabrics</a><a class="cuk-button cuk-button--secondary" href="/pages/curtain-visualiser">Resume my curtains</a></div>
     </div>
     <aside class="cuk-basket" data-cuk-sample-basket>
       <h2>Saved samples</h2>
@@ -17,6 +18,7 @@
     </aside>
   </div>
 </section>
+{% endif %}
 
 {% schema %}
 { "name": "CurtainsUK sample basket", "tag": "section", "class": "section", "settings": [], "presets": [{ "name": "CurtainsUK sample basket" }] }

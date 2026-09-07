@@ -3,6 +3,7 @@ import test from "node:test";
 import { WINDOW_TYPES_BY_SLUG } from "../../decision-engine/seed/window-types";
 import { STOREFRONT_FABRICS } from "../fabrics";
 import { calculateStagingPriceForTest, classifySpecialistReview } from "../staging-pricing";
+import { stagingApiHeaders, stagingOptions } from "../staging-api";
 import { STOREFRONT_WINDOW_TYPES } from "../window-catalog";
 import { buildShopifyCatalogPayload } from "../shopify-contract";
 import { runPhase4ABayPricingGate } from "../../decision-engine/calibration/phase4a-bay";
@@ -142,4 +143,14 @@ test("inconsistent apex geometry is routed to manual quote at low confidence", (
   });
   assert.equal(result.outcome, "MANUAL_QUOTE");
   assert.equal(result.pricingConfidence, "LOW");
+});
+
+test("the staging API permits only the Shopify store origins used by theme previews", () => {
+  for (const origin of ["https://carpetup.myshopify.com", "https://www.curtainsuk.com", "https://curtainsuk.com"]) {
+    const headers = stagingApiHeaders(new Request("https://staging.example/api", { headers: { origin } }));
+    assert.equal(headers["Access-Control-Allow-Origin"], origin);
+  }
+  const blocked = stagingOptions(new Request("https://staging.example/api", { method: "OPTIONS", headers: { origin: "https://example.invalid" } }));
+  assert.equal(blocked.status, 403);
+  assert.equal(blocked.headers.get("access-control-allow-origin"), null);
 });

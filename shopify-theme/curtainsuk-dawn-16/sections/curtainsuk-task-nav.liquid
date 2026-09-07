@@ -1,13 +1,14 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 <nav class="cuk-shell cuk-task-nav" aria-label="CurtainsUK tasks">
   <div class="cuk-wrap">
+    <p class="cuk-task-nav__market">{{ settings.curtainsuk_staging_market_label | default: 'United Kingdom | GBP' }} · Supply-only staging · Checkout disabled</p>
     <ul class="cuk-task-nav__list">
-      <li><a href="/pages/configure-curtains">Shop Curtains</a></li>
-      <li><a href="/pages/shop-by-window">Shop by Window</a></li>
-      <li><a href="/pages/shop-by-fabric">Shop by Fabric</a></li>
-      <li><a href="/pages/curtains-for-apex-window">Apex &amp; Gable</a></li>
-      <li><a href="/pages/measure">Measure</a></li>
-      <li><a href="/pages/samples">Samples</a></li>
+      <li><a href="/pages/curtain-visualiser">Shop Curtains</a></li>
+      <li><a href="/pages/solve-my-window">Shop by Window</a></li>
+      <li><a href="/pages/fabric-library">Shop by Fabric</a></li>
+      <li><a href="/pages/curtain-visualiser?window=apex-window">Apex &amp; Gable</a></li>
+      <li><a href="/pages/measure-guide">Measure</a></li>
+      <li><a href="/pages/fabric-library#samples">Samples</a></li>
       <li><a href="/blogs/inspiration">Inspiration</a></li>
       <li><a href="/pages/contact">Help</a></li>
     </ul>

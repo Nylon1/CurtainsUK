@@ -20,7 +20,7 @@ test("Dawn delegates all decisions to controlled endpoints and has no configurat
   const section = read("sections", "curtainsuk-configurator.liquid");
   assert.match(script, /endpoint\(root\.dataset\.engineBase, "catalog"\)/);
   assert.match(script, /path = "specialist-review"/);
-  assert.match(section, /\/apps\/curtainsuk-decision/);
+  assert.match(section, /settings\.curtainsuk_staging_api_base/);
   assert.equal(/cart\/add|checkout\.js|supplierCost|grossMargin|makeupCost/i.test(script + section), false);
   assert.match(section, /This flow cannot add to cart, take payment or release a job to manufacture/);
 });
@@ -40,16 +40,23 @@ test("the Dawn header uses the task navigation instead of the production main me
   assert.ok(group.order.includes("curtainsuk-task-nav"));
 });
 
-test("Dawn renders real Prestigious imagery and preserves exact sample SKU without commercial fields", () => {
+test("Dawn renders database-projected multi-supplier imagery and preserves exact sample SKU without commercial fields", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-fabric-browser.liquid");
   assert.match(script, /sku: fabric\.uniqueSku/);
-  assert.match(script, /fabric\.imageReferences\[0\]/);
+  assert.match(script, /fabric\.imageReferences\?\.\[0\]/);
   assert.match(script, /fabric\.availability/);
-  assert.match(section, /Prestigious Textiles pilot/);
+  assert.match(section, /Real supplier fabric master/);
+  assert.equal(/data-catalog-fallback/.test(section), false);
   assert.equal(/synthetic staging fixture/i.test(script + section), false);
   assert.equal(/supplierCost|tradePrice|stockMetres|batchReference/i.test(script + section), false);
-  const fallback = JSON.parse(read("assets", "curtainsuk-pilot-fabrics.json")) as { fabrics: unknown[] };
-  assert.equal(fallback.fabrics.length, 20);
-  assert.equal(/supplierCost|tradePrice|costingPrice|stockMetres|batchReference|pieces/i.test(JSON.stringify(fallback)), false);
+});
+
+test("Dawn staging mode hides commerce controls and fixes the preview market label without changing Shopify Markets", () => {
+  const settings = JSON.parse(read("config", "settings_data.json")) as { current: Record<string, unknown> };
+  const header = read("sections", "header.liquid");
+  assert.equal(settings.current.curtainsuk_staging_mode, true);
+  assert.equal(settings.current.curtainsuk_staging_market_label, "United Kingdom | GBP");
+  assert.match(header, /unless settings\.curtainsuk_staging_mode/);
+  assert.match(header, /settings\.curtainsuk_staging_mode == false/);
 });

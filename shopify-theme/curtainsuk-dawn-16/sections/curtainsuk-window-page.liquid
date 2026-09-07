@@ -1,6 +1,9 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 
+{% if page.handle contains 'curtains-for-' or page.handle == 'standard-window' or page.handle == 'bay-window' or page.handle == 'apex-window-curtains' or page.handle == 'patio-door-curtains' %}
 {% assign window_slug = page.handle | remove_first: 'curtains-for-' %}
+{% if page.handle == 'apex-window-curtains' %}{% assign window_slug = 'apex-window' %}{% endif %}
+{% if page.handle == 'patio-door-curtains' %}{% assign window_slug = 'patio-sliding-doors' %}{% endif %}
 {% assign window_name = page.title | default: section.settings.fallback_title %}
 {% assign is_specialist = false %}
 {% if window_slug == 'apex-window' or window_slug == 'triangular-window' or window_slug == 'gable-end-window' %}{% assign is_specialist = true %}{% endif %}
@@ -14,8 +17,8 @@
       <h1 class="cuk-title">{{ window_name }}</h1>
       {% if page.content != blank %}<div class="cuk-lede">{{ page.content }}</div>{% else %}<p class="cuk-lede">Made-to-measure curtains planned around the shape, scale and practical use of your window.</p>{% endif %}
       <div class="cuk-actions">
-        <a class="cuk-button" href="/pages/configure-curtains?window={{ window_slug | url_encode }}">Start My Curtains</a>
-        <a class="cuk-button cuk-button--secondary" href="/pages/measure">Measurement guidance</a>
+        <a class="cuk-button" href="/pages/curtain-visualiser?window={{ window_slug | url_encode }}">Start My Curtains</a>
+        <a class="cuk-button cuk-button--secondary" href="/pages/measure-guide">Measurement guidance</a>
       </div>
     </div>
     <aside class="cuk-panel">
@@ -38,6 +41,7 @@
     <details class="cuk-faq"><summary>Can I choose blackout or thermal lining?</summary><p>Yes, subject to the selected fabric, heading, size and technical review outcome.</p></details>
   </div>
 </article>
+{% endif %}
 
 {% schema %}
 {

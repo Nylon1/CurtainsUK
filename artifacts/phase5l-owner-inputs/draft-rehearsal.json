@@ -1,0 +1,309 @@
+{
+  "checkedAt": "2026-09-08T16:00:10.192Z",
+  "store": "curtainsuk-dev.myshopify.com",
+  "routes": [
+    {
+      "route": "INSTANT_PRICE",
+      "configurationId": "0a649bf5-9a26-4256-b9a3-37fb31a43a63",
+      "status": "PASS",
+      "metres": 10.6,
+      "stock": "FABRIC_AVAILABLE",
+      "initialPrice": 110500,
+      "price": {
+        "netAmountMinor": 92083,
+        "vatAmountMinor": 18417,
+        "grossAmountMinor": 110500,
+        "vatRateBasisPoints": 2000,
+        "currency": "GBP"
+      },
+      "shipping": {
+        "region": "UK_MAINLAND",
+        "parcelClass": "STANDARD",
+        "status": "READY",
+        "grossAmountMinor": 1295,
+        "currency": "GBP",
+        "shownSeparately": true,
+        "countsTowardGoodsMinimum": false,
+        "message": "Delivery shown separately",
+        "postcode": "SW1A1AA",
+        "policyVersion": "phase5l-owner-shipping-v2"
+      },
+      "parcelEvidence": {
+        "kind": "SYNTHETIC_STAGING_PACKED_PARCEL",
+        "lengthMm": 1200,
+        "weightGrams": 10000
+      },
+      "snapshotId": "f2be653e-5f3b-54fb-854c-d957a9cea312",
+      "expected": {
+        "currency": "GBP",
+        "goodsGrossAmountMinor": 110500,
+        "goodsVatAmountMinor": 18417,
+        "shippingGrossAmountMinor": 1295,
+        "shippingVatAmountMinor": 216,
+        "orderGrossAmountMinor": 111795,
+        "orderVatAmountMinor": 18633
+      },
+      "draftOrderId": "gid://shopify/DraftOrder/1610660643190",
+      "draftOrderName": "#D1",
+      "remoteStatus": "EXISTING_TEST_DRAFT_REUSED",
+      "immutability": "PASS",
+      "newSimulatedConfigurationPriceMinor": 112400,
+      "idempotentReplay": "PASS",
+      "remoteConfigurationDetails": "PASS",
+      "newSimulatedConfigurationId": "78917fa4-8271-408f-a962-eab8e7df09e2"
+    },
+    {
+      "route": "PRICE_WITH_REVIEW",
+      "configurationId": "88d905ab-79f1-41d6-b840-1927c0e5542f",
+      "status": "PASS",
+      "metres": 15.9,
+      "stock": "FABRIC_AVAILABLE",
+      "initialPrice": 165700,
+      "price": {
+        "netAmountMinor": 138083,
+        "vatAmountMinor": 27617,
+        "grossAmountMinor": 165700,
+        "vatRateBasisPoints": 2000,
+        "currency": "GBP"
+      },
+      "shipping": {
+        "region": "HIGHLANDS_ISLANDS",
+        "parcelClass": "STANDARD",
+        "status": "READY",
+        "grossAmountMinor": 1995,
+        "currency": "GBP",
+        "shownSeparately": true,
+        "countsTowardGoodsMinimum": false,
+        "message": "Delivery shown separately",
+        "postcode": "IV11AA",
+        "policyVersion": "phase5l-owner-shipping-v2"
+      },
+      "parcelEvidence": {
+        "kind": "SYNTHETIC_STAGING_PACKED_PARCEL",
+        "lengthMm": 1200,
+        "weightGrams": 10000
+      },
+      "reviewRequestId": "e145fadb-7afb-4ec2-88e1-435e0413217a",
+      "reviewRevisionId": "141f738c-a51f-4ed7-82da-3cfefa43f4dc",
+      "originalSubmissionImmutable": true,
+      "staffActor": "29beb53f-8e81-465f-bbf9-18496f31cecd",
+      "auditStates": [
+        "PENDING",
+        "UNDER_REVIEW",
+        "APPROVED",
+        "READY_FOR_CHECKOUT"
+      ],
+      "snapshotId": "1691e440-b226-5da7-81c6-8f5d5b946107",
+      "expected": {
+        "currency": "GBP",
+        "goodsGrossAmountMinor": 165700,
+        "goodsVatAmountMinor": 27617,
+        "shippingGrossAmountMinor": 1995,
+        "shippingVatAmountMinor": 333,
+        "orderGrossAmountMinor": 167695,
+        "orderVatAmountMinor": 27950
+      },
+      "draftOrderId": "gid://shopify/DraftOrder/1610661298550",
+      "draftOrderName": "#D3",
+      "remoteStatus": "EXISTING_TEST_DRAFT_REUSED",
+      "immutability": "PASS",
+      "newSimulatedConfigurationPriceMinor": 168600,
+      "idempotentReplay": "PASS",
+      "remoteConfigurationDetails": "PASS",
+      "newSimulatedConfigurationId": "3eaea54b-3136-426b-9776-f416fdfe781c"
+    },
+    {
+      "route": "MANUAL_QUOTE",
+      "configurationId": "92e38b40-9a7d-4116-8e37-b877fc8c0df4",
+      "status": "PASS",
+      "metres": 31.7,
+      "stock": "FABRIC_AVAILABLE",
+      "initialPrice": null,
+      "price": {
+        "netAmountMinor": 280250,
+        "vatAmountMinor": 56050,
+        "grossAmountMinor": 336300,
+        "vatRateBasisPoints": 2000,
+        "currency": "GBP"
+      },
+      "shipping": {
+        "region": "NORTHERN_IRELAND",
+        "parcelClass": "OVERSIZE",
+        "status": "READY",
+        "grossAmountMinor": 4495,
+        "currency": "GBP",
+        "shownSeparately": true,
+        "countsTowardGoodsMinimum": false,
+        "message": "Delivery shown separately",
+        "postcode": "BT11AA",
+        "policyVersion": "phase5l-owner-shipping-v2"
+      },
+      "parcelEvidence": {
+        "kind": "SYNTHETIC_STAGING_PACKED_PARCEL",
+        "lengthMm": 1900,
+        "weightGrams": 21000,
+        "specialistHandling": true
+      },
+      "reviewRequestId": "149dc5cc-b0d4-49a3-9b5f-3bcc2dc3a817",
+      "reviewRevisionId": "7a4053c4-42c9-4f7a-bba4-656347062df5",
+      "originalSubmissionImmutable": true,
+      "staffActor": "29beb53f-8e81-465f-bbf9-18496f31cecd",
+      "auditStates": [
+        "PENDING",
+        "UNDER_REVIEW",
+        "APPROVED",
+        "READY_FOR_CHECKOUT"
+      ],
+      "snapshotId": "4a0f37af-161b-59a9-8305-17196ac7007c",
+      "expected": {
+        "currency": "GBP",
+        "goodsGrossAmountMinor": 336300,
+        "goodsVatAmountMinor": 56050,
+        "shippingGrossAmountMinor": 4495,
+        "shippingVatAmountMinor": 749,
+        "orderGrossAmountMinor": 340795,
+        "orderVatAmountMinor": 56799
+      },
+      "draftOrderId": "gid://shopify/DraftOrder/1610661462390",
+      "draftOrderName": "#D4",
+      "remoteStatus": "EXISTING_TEST_DRAFT_REUSED",
+      "immutability": "PASS",
+      "newSimulatedConfigurationPriceMinor": 342100,
+      "idempotentReplay": "PASS",
+      "remoteConfigurationDetails": "PASS",
+      "newSimulatedConfigurationId": "45ee4c8d-e5c0-4950-9009-078882815baa"
+    }
+  ],
+  "shipping": [
+    {
+      "region": "HIGHLANDS_ISLANDS",
+      "parcelClass": "LARGE",
+      "enabled": true,
+      "grossAmountMinor": 2995,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "006d8a0d-9f3a-4c23-8d34-d0937678bc4f",
+      "effectiveFrom": "2026-09-08T16:00:11.696+00:00",
+      "createdAt": "2026-09-08T16:00:11.707412+00:00"
+    },
+    {
+      "region": "HIGHLANDS_ISLANDS",
+      "parcelClass": "OVERSIZE",
+      "enabled": true,
+      "grossAmountMinor": 4495,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "9f9885e8-094b-4dbf-8269-fa3d270bb4a9",
+      "effectiveFrom": "2026-09-08T16:00:11.76+00:00",
+      "createdAt": "2026-09-08T16:00:11.769424+00:00"
+    },
+    {
+      "region": "HIGHLANDS_ISLANDS",
+      "parcelClass": "STANDARD",
+      "enabled": true,
+      "grossAmountMinor": 1995,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "4a700d8f-698a-4351-9223-c80ace161937",
+      "effectiveFrom": "2026-09-08T16:00:11.604+00:00",
+      "createdAt": "2026-09-08T16:00:11.617046+00:00"
+    },
+    {
+      "region": "NORTHERN_IRELAND",
+      "parcelClass": "LARGE",
+      "enabled": true,
+      "grossAmountMinor": 2995,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "29d89dbe-1a2e-4217-9137-6959a4aebd5a",
+      "effectiveFrom": "2026-09-08T16:00:11.91+00:00",
+      "createdAt": "2026-09-08T16:00:11.921845+00:00"
+    },
+    {
+      "region": "NORTHERN_IRELAND",
+      "parcelClass": "OVERSIZE",
+      "enabled": true,
+      "grossAmountMinor": 4495,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "38a7145e-a5b6-4a46-914b-23b80fd08937",
+      "effectiveFrom": "2026-09-08T16:00:11.963+00:00",
+      "createdAt": "2026-09-08T16:00:11.975069+00:00"
+    },
+    {
+      "region": "NORTHERN_IRELAND",
+      "parcelClass": "STANDARD",
+      "enabled": true,
+      "grossAmountMinor": 1995,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "4bd49fb8-0b0f-46d0-82a1-66e9ddad1f0a",
+      "effectiveFrom": "2026-09-08T16:00:11.813+00:00",
+      "createdAt": "2026-09-08T16:00:11.824843+00:00"
+    },
+    {
+      "region": "UK_MAINLAND",
+      "parcelClass": "LARGE",
+      "enabled": true,
+      "grossAmountMinor": 1995,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "2eb3b50e-3a66-4362-a051-1228e854bd12",
+      "effectiveFrom": "2026-09-08T16:00:11.399+00:00",
+      "createdAt": "2026-09-08T16:00:11.432606+00:00"
+    },
+    {
+      "region": "UK_MAINLAND",
+      "parcelClass": "OVERSIZE",
+      "enabled": true,
+      "grossAmountMinor": 2995,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "5bb26477-fb69-48ef-81bc-fe92bbc530f7",
+      "effectiveFrom": "2026-09-08T16:00:11.505+00:00",
+      "createdAt": "2026-09-08T16:00:11.514781+00:00"
+    },
+    {
+      "region": "UK_MAINLAND",
+      "parcelClass": "STANDARD",
+      "enabled": true,
+      "grossAmountMinor": 1295,
+      "currency": "GBP",
+      "status": "VALIDATED",
+      "rateVersionId": "6a79515b-911a-4b9c-837d-d93aa49f01c6",
+      "effectiveFrom": "2026-09-08T16:00:11.29+00:00",
+      "createdAt": "2026-09-08T16:00:11.339084+00:00"
+    }
+  ],
+  "remoteDraftOrdersCreated": 4,
+  "safety": {
+    "checkedAt": "2026-09-08T16:14:24.513Z",
+    "myshopifyDomain": "curtainsuk-dev.myshopify.com",
+    "currencyCode": "GBP",
+    "taxesIncluded": true,
+    "plan": {
+      "partnerDevelopment": true,
+      "displayName": "Basic App Development"
+    },
+    "paymentSettingsChanged": false,
+    "paymentBannerVerifiedAt": "2026-09-08",
+    "paymentBanner": "Development stores can only process test payments"
+  },
+  "removedDuplicate": {
+    "id": "gid://shopify/DraftOrder/1610660675958",
+    "name": "#D2",
+    "reason": "Immediate tag-search indexing lag discovered during retry test",
+    "removedAt": "2026-09-08T16:07:32.811Z"
+  },
+  "supplierPriceWrites": 0,
+  "supplierOrders": 0,
+  "completedAt": "2026-09-08T16:14:30.325Z",
+  "developmentTaxChanges": {
+    "ukVatCalculation": true,
+    "vatOnShipping": true,
+    "registrationNumberSupplied": false,
+    "productionChanged": false
+  },
+  "remoteDraftOrdersRetained": 3,
+  "rehearsalScope": "Existing server services and remote staging database / Shopify development store; synthetic packed parcels; not a complete browser checkout test"
+}

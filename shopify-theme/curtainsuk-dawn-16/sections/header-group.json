@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Unpublished CurtainsUK staging preview · UK Mainland supply only · Checkout disabled",
+            "text": "Unpublished CurtainsUK staging preview · UK supply only · Checkout disabled",
             "text_alignment": "center",
             "color_scheme": "scheme-1",
             "link": ""

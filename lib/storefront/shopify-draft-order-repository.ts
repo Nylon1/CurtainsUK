@@ -1,4 +1,5 @@
 import "server-only";
+import { allocateVatFromGross } from "./shopify-draft-order-core";
 import { randomUUID } from "node:crypto";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import type { StagingCheckoutHandoff } from "./checkout-gates";
@@ -14,11 +15,7 @@ export async function persistShopifyDraftOrderExecution(input: {
   if (expected.shipping.status !== "READY" || shippingGrossAmountMinor === null) {
     throw new Error("SHOPIFY_DRAFT_ORDER_EXECUTION_SHIPPING_INVALID");
   }
-  const shippingNetAmountMinor = Math.round(
-    shippingGrossAmountMinor * 10_000
-      / (10_000 + expected.customerPrice.vatRateBasisPoints),
-  );
-  const shippingVatAmountMinor = shippingGrossAmountMinor - shippingNetAmountMinor;
+  const shippingVatAmountMinor = allocateVatFromGross(shippingGrossAmountMinor, expected.customerPrice.vatRateBasisPoints);
   const { data, error } = await createSupplierServiceClient().rpc(
     "record_staging_checkout_execution",
     {
@@ -54,4 +51,16 @@ export async function persistShopifyDraftOrderExecution(input: {
   );
   if (error) throw new Error("SHOPIFY_DRAFT_ORDER_EXECUTION_PERSISTENCE_FAILED");
   return data as Record<string, unknown>;
+}
+
+
+/** Recover by the durable receipt, avoiding Shopify's eventually indexed tag search. */
+export async function persistedShopifyDraftOrderId(handoffId: string): Promise<string | null> {
+  const {data,error} = await createSupplierServiceClient().from("staging_checkout_executions")
+    .select("shopify_draft_order_gid").eq("handoff_id",handoffId)
+    .not("shopify_draft_order_gid","is",null);
+  if(error) throw new Error("SHOPIFY_DRAFT_ORDER_RECEIPT_UNAVAILABLE");
+  const ids = [...new Set((data ?? []).map(row => String(row.shopify_draft_order_gid)))];
+  if(ids.length > 1) throw new Error("SHOPIFY_DRAFT_ORDER_DUPLICATE");
+  return ids[0] ?? null;
 }

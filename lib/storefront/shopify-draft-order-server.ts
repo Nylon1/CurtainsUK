@@ -1,4 +1,5 @@
 import "server-only";
+import { persistedShopifyDraftOrderId } from "./shopify-draft-order-repository";
 import { createHash } from "node:crypto";
 import {
   assertShopifyDraftOrderFinancials,
@@ -98,6 +99,15 @@ export const SHOPIFY_DRAFT_ORDER_LOOKUP_QUERY = `
         customAttributes { key value }
         ${FINANCIAL_FIELDS}
       }
+    }
+  }
+`;
+
+export const SHOPIFY_DRAFT_ORDER_BY_ID_QUERY = `
+  query CurtainsUKRecoverDraftOrder($id: ID!) {
+    draftOrder(id: $id) {
+      id name invoiceUrl status tags customAttributes { key value }
+      ${FINANCIAL_FIELDS}
     }
   }
 `;
@@ -397,6 +407,7 @@ async function create(input: {
 export async function executeShopifyDraftOrder(input: {
   contract: ShopifyDraftOrderContract;
   config: ShopifyDraftOrderRuntimeConfig | null;
+  existingDraftOrderId?: string | null;
   fetchImpl?: FetchLike;
 }): Promise<ShopifyDraftOrderExecutionResult> {
   if (!input.config) {
@@ -436,6 +447,12 @@ export async function executeShopifyDraftOrder(input: {
   if (input.config.mode !== "CREATE_TEST_DRAFT") {
     throw new Error("SHOPIFY_DRAFT_ORDER_PAYMENT_SAFETY_NOT_CONFIRMED");
   }
+  if (input.existingDraftOrderId) {
+    const data = await graphql({config:input.config,accessToken,fetchImpl,query:SHOPIFY_DRAFT_ORDER_BY_ID_QUERY,variables:{id:input.existingDraftOrderId}});
+    if (!isRecord(data.draftOrder)) throw new Error("SHOPIFY_DRAFT_ORDER_RECEIPT_NOT_FOUND");
+    const recovered = validateShopifyDraftOrderNode(data.draftOrder as ShopifyDraftOrderNode,input.contract);
+    return {status:"EXISTING_TEST_DRAFT_REUSED",shopifyWritePerformed:false,checkoutUrl:recovered.invoiceUrl,draftOrderId:recovered.id,draftOrderName:recovered.name,paymentEnabled:false};
+  }
   const existing = await findExisting({ contract: input.contract, config: input.config, accessToken, fetchImpl });
   if (existing) {
     return {
@@ -471,9 +488,11 @@ export async function executeStagingShopifyDraftOrder(input: {
     customerEmail: input.customerEmail,
     fabricLabel: input.fabricLabel,
   });
+  const config = shopifyDraftOrderConfigFromEnvironment(input.environment);
   return executeShopifyDraftOrder({
     contract,
-    config: shopifyDraftOrderConfigFromEnvironment(input.environment),
+    config,
+    existingDraftOrderId: config ? await persistedShopifyDraftOrderId(input.handoff.handoffId) : null,
     fetchImpl: input.fetchImpl,
   });
 }

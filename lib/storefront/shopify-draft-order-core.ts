@@ -141,7 +141,7 @@ function moneyFromMinor(amountMinor: number): ShopifyMoneyInput {
   return { amount: (amountMinor / 100).toFixed(2), currencyCode: "GBP" };
 }
 
-function allocateVatFromGross(
+export function allocateVatFromGross(
   grossAmountMinor: number,
   vatRateBasisPoints: number,
 ): number {
@@ -150,10 +150,8 @@ function allocateVatFromGross(
       || vatRateBasisPoints > 10_000) {
     throw new Error("SHOPIFY_DRAFT_ORDER_VAT_INVALID");
   }
-  const netAmountMinor = Math.round(
-    grossAmountMinor * 10_000 / (10_000 + vatRateBasisPoints),
-  );
-  return grossAmountMinor - netAmountMinor;
+  // Shopify rounds tax directly; subtracting rounded net differs at half pennies.
+  return Math.round(grossAmountMinor * vatRateBasisPoints / (10_000 + vatRateBasisPoints));
 }
 
 function humanize(value: string): string {
@@ -257,7 +255,7 @@ export function buildShopifyDraftOrderContract(input: {
   }
 
   const customerEmail = optionalEmail(input.customerEmail);
-  const idempotencyTag = `CUK_HANDOFF_${handoff.handoffId.replaceAll("-", "")}`;
+  const idempotencyTag = `CUK_H_${handoff.handoffId.replaceAll("-", "")}`;
   const shippingVatAmountMinor = allocateVatFromGross(
     snapshot.shipping.grossAmountMinor,
     snapshot.customerPrice.vatRateBasisPoints,

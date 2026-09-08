@@ -1,35 +1,150 @@
 {
   "environment": "STAGING",
-  "version": "phase5e-owner-inputs-v1",
-  "status": "AWAITING_OWNER_CONFIRMATION",
-  "approvedBy": null,
-  "approvedAt": null,
+  "version": "phase5l-owner-shipping-v2",
+  "status": "VALIDATED",
+  "approvedBy": "CurtainsUK owner \u2014 explicit staging shipping instruction",
+  "approvedAt": "2026-09-08T15:56:37.711926+00:00",
   "currency": "GBP",
   "ratesIncludeVat": true,
   "rates": [
-    { "region": "UK_MAINLAND", "parcelClass": "STANDARD", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "UK_MAINLAND", "parcelClass": "LARGE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "UK_MAINLAND", "parcelClass": "OVERSIZE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "HIGHLANDS_ISLANDS", "parcelClass": "STANDARD", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "HIGHLANDS_ISLANDS", "parcelClass": "LARGE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "HIGHLANDS_ISLANDS", "parcelClass": "OVERSIZE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "NORTHERN_IRELAND", "parcelClass": "STANDARD", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "NORTHERN_IRELAND", "parcelClass": "LARGE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" },
-    { "region": "NORTHERN_IRELAND", "parcelClass": "OVERSIZE", "grossAmountMinor": null, "status": "AWAITING_OWNER_CONFIRMATION" }
+    {
+      "region": "UK_MAINLAND",
+      "parcelClass": "STANDARD",
+      "grossAmountMinor": 1295,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "UK_MAINLAND",
+      "parcelClass": "LARGE",
+      "grossAmountMinor": 1995,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "UK_MAINLAND",
+      "parcelClass": "OVERSIZE",
+      "grossAmountMinor": 2995,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "HIGHLANDS_ISLANDS",
+      "parcelClass": "STANDARD",
+      "grossAmountMinor": 1995,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "HIGHLANDS_ISLANDS",
+      "parcelClass": "LARGE",
+      "grossAmountMinor": 2995,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "HIGHLANDS_ISLANDS",
+      "parcelClass": "OVERSIZE",
+      "grossAmountMinor": 4495,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "NORTHERN_IRELAND",
+      "parcelClass": "STANDARD",
+      "grossAmountMinor": 1995,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "NORTHERN_IRELAND",
+      "parcelClass": "LARGE",
+      "grossAmountMinor": 2995,
+      "status": "VALIDATED"
+    },
+    {
+      "region": "NORTHERN_IRELAND",
+      "parcelClass": "OVERSIZE",
+      "grossAmountMinor": 4495,
+      "status": "VALIDATED"
+    }
   ],
   "postcodeMapping": {
-    "status": "AWAITING_OWNER_CONFIRMATION",
-    "rules": [],
-    "unmatchedPostcode": "BLOCKED",
-    "conflictingMatches": "BLOCKED"
+    "status": "VALIDATED",
+    "rules": [
+      {
+        "area": "BT",
+        "region": "NORTHERN_IRELAND"
+      },
+      {
+        "area": "HS",
+        "region": "HIGHLANDS_ISLANDS"
+      },
+      {
+        "area": "IV",
+        "region": "HIGHLANDS_ISLANDS"
+      },
+      {
+        "area": "KW",
+        "region": "HIGHLANDS_ISLANDS"
+      },
+      {
+        "area": "ZE",
+        "region": "HIGHLANDS_ISLANDS"
+      },
+      {
+        "area": "PA",
+        "minDistrict": 20,
+        "maxDistrict": 80,
+        "region": "HIGHLANDS_ISLANDS"
+      },
+      {
+        "area": "PH",
+        "minDistrict": 15,
+        "maxDistrict": 50,
+        "region": "HIGHLANDS_ISLANDS"
+      },
+      {
+        "area": "FK",
+        "minDistrict": 17,
+        "maxDistrict": 21,
+        "region": "HIGHLANDS_ISLANDS"
+      },
+      {
+        "area": "KA",
+        "minDistrict": 27,
+        "maxDistrict": 28,
+        "region": "HIGHLANDS_ISLANDS"
+      }
+    ],
+    "unmatchedPostcode": "UK_MAINLAND",
+    "conflictingMatches": "BLOCKED",
+    "excludedAreas": [
+      "JE",
+      "GY",
+      "IM"
+    ]
   },
   "parcelThresholds": {
-    "status": "AWAITING_OWNER_CONFIRMATION",
-    "STANDARD": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null },
-    "LARGE": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null },
-    "OVERSIZE": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null }
+    "status": "VALIDATED",
+    "STANDARD": {
+      "maxLengthMm": 1200,
+      "maxWidthMm": null,
+      "maxHeightMm": null,
+      "maxWeightGrams": 10000
+    },
+    "LARGE": {
+      "maxLengthMm": 1800,
+      "maxWidthMm": null,
+      "maxHeightMm": null,
+      "maxWeightGrams": 20000
+    },
+    "OVERSIZE": {
+      "maxLengthMm": null,
+      "maxWidthMm": null,
+      "maxHeightMm": null,
+      "maxWeightGrams": null
+    }
   },
-  "maximumParcel": { "maxLengthMm": null, "maxWidthMm": null, "maxHeightMm": null, "maxWeightGrams": null },
+  "maximumParcel": {
+    "maxLengthMm": null,
+    "maxWidthMm": null,
+    "maxHeightMm": null,
+    "maxWeightGrams": null
+  },
   "packingRules": [],
   "specialistManualOverride": {
     "automaticCheckout": false,
@@ -37,6 +152,7 @@
     "requiresExactGrossQuote": true,
     "requiresConfigurationAndRevisionReference": true,
     "carrierService": null,
-    "status": "AWAITING_OWNER_CONFIRMATION"
-  }
+    "status": "VALIDATED"
+  },
+  "specialistHandlingClass": "OVERSIZE"
 }

@@ -10,6 +10,7 @@ import {
 } from "../checkout-gates";
 import {
   assertShopifyDraftOrderFinancials,
+  allocateVatFromGross,
   buildShopifyDraftOrderContract,
   parseShopifyMoneyMinor,
   SHOPIFY_DRAFT_ORDER_API_VERSION,
@@ -146,6 +147,7 @@ test("Shopify test Draft Order contract carries exact immutable goods, VAT, deli
   assert.ok(contract.input.tags.includes("DO_NOT_FULFIL"));
   assert.ok(contract.input.tags.includes("NO_REAL_PAYMENT"));
   assert.ok(contract.input.tags.includes(contract.idempotencyTag));
+  assert.ok(contract.input.tags.every(tag => tag.length <= 40), "Shopify Draft Order tags permit at most 40 characters");
   const lineAttributes = new Map(contract.input.lineItems[0].customAttributes.map((item) => [item.key, item.value]));
   assert.equal(lineAttributes.has("Fabric SKU"), false);
   assert.doesNotMatch(JSON.stringify(contract.input), /4270\/147/);
@@ -587,4 +589,34 @@ test("customer review acceptance projection is revision-bound and statically exc
   assert.doesNotMatch(source, /supplier_cost|cut_trade_price|gross_margin|batch_reference|customer_email|customer_phone/i);
   assert.match(proxy, /selected === "review-acceptance"/);
   assert.doesNotMatch(proxy, /selected === "review-acceptance"[\s\S]{0,300}claimShopifyMutationReplay/);
+});
+
+
+test("shipping VAT rounds the tax amount itself, matching Shopify half-penny boundaries", () => {
+  assert.equal(allocateVatFromGross(1295,2000),216);
+  assert.equal(allocateVatFromGross(1995,2000),333);
+  assert.equal(allocateVatFromGross(2995,2000),499);
+  assert.equal(allocateVatFromGross(4495,2000),749);
+});
+
+
+test("saved Shopify receipt recovers directly by ID without a search-index dependent create", async () => {
+  const {serverScriptHooks:hooks}=await import("../../../scripts/curtainsuk-server-script-loader.mjs");
+  try {
+    const {executeShopifyDraftOrder}=await import("../shopify-draft-order-server");
+    const contract=buildShopifyDraftOrderContract({handoff:approvedHandoff()});
+    const id="gid://shopify/DraftOrder/123";
+    const queries:string[]=[];
+    const config={mode:"CREATE_TEST_DRAFT" as const,deploymentStage:"STAGING" as const,shopDomain:"curtainsuk-dev.myshopify.com",clientId:"test-client-id",clientSecret:"test-client-secret-not-real",realPaymentsDisabledConfirmed:true,requestTimeoutMs:1000};
+    const fetchImpl:typeof fetch=async(url,init)=>{
+      if(String(url).endsWith("/access_token"))return Response.json({access_token:"test-token-not-real-1234",expires_in:3600,scope:"write_draft_orders"});
+      const body=JSON.parse(String(init?.body));queries.push(body.query);
+      if(body.query.includes("currentAppInstallation"))return Response.json({data:{currentAppInstallation:{accessScopes:[{handle:"write_draft_orders"}]}}});
+      assert.ok(body.query.includes("draftOrder(id: $id)"));assert.equal(body.variables.id,id);
+      return Response.json({data:{draftOrder:{...financialNode(contract),id,name:"#D-test",status:"OPEN",invoiceUrl:"https://curtainsuk-dev.myshopify.com/test-invoice",tags:contract.input.tags,customAttributes:contract.input.customAttributes}}});
+    };
+    const result=await executeShopifyDraftOrder({contract,config,existingDraftOrderId:id,fetchImpl});
+    assert.equal(result.status,"EXISTING_TEST_DRAFT_REUSED");assert.equal(result.shopifyWritePerformed,false);
+    assert.ok(queries.every(query=>!query.includes("draftOrders(")&&!query.includes("draftOrderCreate(")));
+  } finally {hooks.deregister();}
 });

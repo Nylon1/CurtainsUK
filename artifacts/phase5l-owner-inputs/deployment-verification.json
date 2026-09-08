@@ -1,0 +1,31 @@
+{
+  "deployment": "https://curtainsuk-staging-l7ghsigu1-hamzas-projects-4ef62f35.vercel.app",
+  "alias": "https://curtainsuk-staging-gateway.vercel.app",
+  "themeId": 182264234363,
+  "themeRole": "unpublished",
+  "liveMinimalId": 79650455661,
+  "minimalChanged": false,
+  "desktop": {
+    "width": 1229,
+    "bondedPriceGrossMinor": 112400,
+    "correctMailbox": true,
+    "deliveryConfirmationMessage": true,
+    "realPaymentDisabled": true
+  },
+  "mobile": {
+    "width": 344,
+    "horizontalOverflow": false,
+    "bondedPriceGrossMinor": 112400,
+    "correctMailbox": true,
+    "deliveryConfirmationMessage": true,
+    "realPaymentDisabled": true
+  },
+  "testResults": {
+    "npmTest": "PASS",
+    "typecheck": "PASS",
+    "targetedEslint": "PASS",
+    "previewBuild": "PASS",
+    "secretScan": "PASS"
+  },
+  "checkoutModeInDawn": "DISABLED"
+}

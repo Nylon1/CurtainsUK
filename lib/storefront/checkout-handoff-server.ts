@@ -18,15 +18,13 @@ import {
 import { persistShopifyDraftOrderExecution } from "./shopify-draft-order-repository";
 import { executeStagingShopifyDraftOrder } from "./shopify-draft-order-server";
 import { loadStagingUkShippingRules } from "./shipping-repository";
-import { quoteOwnerApprovedCurtainShipping } from "./shipping-owner-inputs";
+import { quoteOwnerApprovedCurtainShipping, type PackedParcel } from "./shipping-owner-inputs";
 import { normalizeAvailabilityState } from "./review-request";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
 import { stagingCheckoutIdentity } from "./checkout-idempotency";
 import { calculateStagingPrice } from "./server-staging-pricing";
 import {
   approvedReviewParcelClass,
-  instantCurtainParcelClass,
-  quoteUkShipping,
   type ShippingParcelClass,
 } from "./shipping";
 import type { StagingPriceRequest } from "./staging-pricing";
@@ -154,7 +152,8 @@ export async function prepareServerStagingCheckoutHandoff(
   let reviewState: import("./review-workflow").ReviewState | null = null;
   let fabricPricingEligible: boolean;
   let customerSummary: Record<string, unknown>;
-  let shippingParcelClass: ShippingParcelClass;
+  let shippingParcelClass: ShippingParcelClass | null = null;
+  let packedParcel: PackedParcel | undefined;
   let customerEmail: string | null = null;
   let fabricLabel: string | null = null;
 
@@ -199,6 +198,9 @@ export async function prepareServerStagingCheckoutHandoff(
     lining = String(spec.lining ?? request.lining);
     construction = String(spec.construction ?? request.construction) as "PAIR" | "SINGLE";
     shippingParcelClass = approvedReviewParcelClass(spec.shipping_parcel_class);
+    if (spec.packed_parcel && typeof spec.packed_parcel === "object" && !Array.isArray(spec.packed_parcel)) {
+      packedParcel = spec.packed_parcel as PackedParcel;
+    }
     pricingRuleVersion = String(latest.pricing_rule_version ?? "");
     reviewState = request.review_state;
     customerEmail = request.customer_email;
@@ -243,7 +245,6 @@ export async function prepareServerStagingCheckoutHandoff(
     lining = calculation.lining;
     construction = calculation.construction;
     calculatedFabricMetres = calculation.fabricMetres;
-    shippingParcelClass = instantCurtainParcelClass(calculation.fabricWidths);
     pricingRuleVersion = calculation.calculationVersion;
     price = {
       netAmountMinor: calculation.netAmountMinor,
@@ -272,9 +273,8 @@ export async function prepareServerStagingCheckoutHandoff(
     ].filter(Boolean).join(" — ");
   }
 
-  const shipping = shippingParcelClass === "SPECIALIST"
-    ? quoteUkShipping({ region: input.shippingRegion, parcelClass: "SPECIALIST" })
-    : quoteOwnerApprovedCurtainShipping({
+  const shipping = quoteOwnerApprovedCurtainShipping({
+      packedParcel,
       selectedRegion: input.shippingRegion, postcode: input.shippingPostcode,
       fabricMetres: calculatedFabricMetres,
       maximumDropCm: Math.max(0, ...Object.entries(measurements)
@@ -282,6 +282,10 @@ export async function prepareServerStagingCheckoutHandoff(
         .map(([, value]) => Number(value))),
       rules: await loadStagingUkShippingRules(),
     });
+
+  if (reviewRequestId && shipping.status === "READY" && shipping.parcelClass !== shippingParcelClass) {
+    return blocked({action:"BLOCKED",blockers:["SHIPPING_NOT_READY"]});
+  }
 
   const gate = evaluateCheckoutGate({
     outcome,

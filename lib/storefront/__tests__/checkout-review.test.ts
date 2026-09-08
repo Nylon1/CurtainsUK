@@ -395,7 +395,8 @@ test("shipping class comes from server calculation or an approved review revisio
   assert.throws(() => instantCurtainParcelClass(0), /SHIPPING_CLASS_INPUT_INVALID/);
   assert.throws(() => approvedReviewParcelClass("STANDARD_FROM_BROWSER"), /CHECKOUT_SHIPPING_CLASS_REQUIRES_APPROVAL/);
   const controller = readFileSync(join(process.cwd(), "lib", "storefront", "checkout-handoff-server.ts"), "utf8");
-  assert.match(controller, /instantCurtainParcelClass\(calculation\.fabricWidths\)/);
+  assert.doesNotMatch(controller, /instantCurtainParcelClass\(calculation\.fabricWidths\)/);
+  assert.match(controller, /packedParcel = spec\.packed_parcel/);
   assert.match(controller, /approvedReviewParcelClass\(spec\.shipping_parcel_class\)/);
   assert.doesNotMatch(controller, /quoteUkShipping\(\{[\s\S]{0,160}parcelClass: input\.parcelClass/);
 });

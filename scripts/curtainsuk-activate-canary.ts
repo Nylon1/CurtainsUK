@@ -16,14 +16,14 @@ async function main() {
   const ids = manifest.map((r) => r.fabric_id);
   const [profiles, mappings] = await Promise.all([
     db.from("fabric_retail_profiles").select("*").in("fabric_id", ids),
-    db.from("fabric_media_mappings").select("fabric_id,image_type,fabric_media_assets!inner(shopify_cdn_url,width,height)").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
+    db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,image_type,fabric_media_assets!inner(shopify_cdn_url,width,height)").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
   ]);
   if (profiles.error || mappings.error) throw new Error("CANARY_READ_FAILED");
   const report = [];
   for (const item of manifest) {
     const current = rows.find((r) => r.record.fabric_id === item.fabric_id && r.record.supplier_sku === item.supplier_sku);
     if (!current) throw new Error("CANARY_IDENTITY_MISMATCH");
-    const images = mappings.data.filter((m) => m.fabric_id === item.fabric_id).map((m) => {
+    const images = mappings.data.filter((m) => m.fabric_id === item.fabric_id && m.supplier_sku === item.supplier_sku && m.supplier_id === current.record.supplier_id).map((m) => {
       const a = m.fabric_media_assets as unknown as { shopify_cdn_url: string; width: number; height: number };
       return { imageType: m.image_type, url: a.shopify_cdn_url, width: a.width, height: a.height, approved: true };
     });
@@ -31,7 +31,7 @@ async function main() {
     const blockers = retailLaunchBlockers(current.record, profile ?? null, images);
     let activated = false;
     if (!blockers.length && process.argv.includes("--apply") && !current.record.staging_catalog_visible) {
-      const result = await db.from("fabric_colourways").update({ staging_catalog_visible: true, updated_at: new Date().toISOString() }).eq("fabric_id", item.fabric_id).eq("updated_at", current.updated_at).eq("lifecycle_state", "CURRENT").select("fabric_id");
+      const result = await db.from("fabric_colourways").update({ staging_catalog_visible: true, updated_at: new Date().toISOString() }).eq("fabric_id", item.fabric_id).eq("updated_at", current.updated_at).neq("lifecycle_state", "DISCONTINUED").select("fabric_id");
       if (result.error || result.data?.length !== 1) throw new Error("CANARY_REVISION_CHANGED");
       activated = true;
     }

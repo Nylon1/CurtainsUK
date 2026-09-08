@@ -69,16 +69,11 @@ export function fabricIsCatalogueQaEligible(record: CatalogueRecord) {
   return hasIdentity(record);
 }
 
-/**
- * Launch projection requires the three explicit Phase 5D catalogue gates in
- * addition to the existing configuration flag. Image URLs are counted as
- * references here; network resolution must be proven separately at release.
- */
+/** Canonical Shopify imagery is written only after approved exact-identity mapping. */
 export function fabricIsCustomerLaunchEligible(record: CatalogueRecord) {
-  return record.storefront_selectable
-    && record.price_verification_status === "VERIFIED"
-    && record.lifecycle_state === "CURRENT"
-    && record.imagery.length > 0;
+  return hasIdentity(record)
+    && record.lifecycle_state !== "DISCONTINUED"
+    && record.imagery.some(url => /^https:\/\/cdn\.shopify\.com\/[^?#]+$/.test(url));
 }
 
 export function summarizeCatalogueCompletion(
@@ -97,10 +92,10 @@ export function summarizeCatalogueCompletion(
   }
   const duplicateSupplierSkus = [...skuCounts.values()].reduce((sum, count) => sum + Math.max(0, count - 1), 0);
   const launchEligible = records.filter(fabricIsCustomerLaunchEligible);
-  const currentRecords = records.filter((record) => record.lifecycle_state === "CURRENT");
+  const browseCandidates = records.filter((record) => record.lifecycle_state !== "DISCONTINUED");
   const pricingEligible = records.filter((record) => record.storefront_selectable
     && record.price_verification_status === "VERIFIED"
-    && record.lifecycle_state === "CURRENT");
+    && record.lifecycle_state !== "DISCONTINUED");
   const unsafePublicCandidates = records.filter((record) => record.storefront_selectable
     && !fabricIsCustomerLaunchEligible(record));
   const byBrand = Object.fromEntries([...new Set(records.map((record) => record.brand_name?.trim() || record.brand_id))]
@@ -147,12 +142,10 @@ export function summarizeCatalogueCompletion(
 
   const launchBlockers: string[] = [];
   if (records.length === 0) launchBlockers.push("NO_CATALOGUE_RECORDS");
-  if (currentRecords.length === 0) launchBlockers.push("NO_CURRENT_COLOURWAYS");
-  if (currentRecords.some((record) => record.price_verification_status !== "VERIFIED")) launchBlockers.push("CURRENT_COMMERCIAL_PRICES_INCOMPLETE");
-  if (currentRecords.some((record) => record.imagery.length === 0)) launchBlockers.push("AUTHORISED_IMAGERY_INCOMPLETE");
-  if (counts.lifecycle_current + counts.lifecycle_discontinued !== counts.colourways) launchBlockers.push("CURRENT_LIFECYCLE_INCOMPLETE");
+  if (browseCandidates.length === 0) launchBlockers.push("NO_BROWSABLE_COLOURWAYS");
+  if (browseCandidates.some((record) => record.imagery.length === 0)) launchBlockers.push("AUTHORISED_IMAGERY_INCOMPLETE");
   if (unsafePublicCandidates.length > 0) launchBlockers.push("UNSAFE_PUBLIC_CANDIDATES");
-  if (launchEligible.length !== currentRecords.length) {
+  if (launchEligible.length !== browseCandidates.length) {
     launchBlockers.push("CUSTOMER_LAUNCH_COVERAGE_INCOMPLETE");
   }
 

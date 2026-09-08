@@ -22,6 +22,8 @@ test("media strips metadata and rejects tiny images", async () => {
   const result = await prepareSupplierImage(source);
   assert.equal((await sharp(result.bytes).metadata()).exif, undefined);
   assert.equal(result.contentHash.length, 64);
+  const thumbnail = await sharp(source).resize(300, 300).jpeg().toBuffer();
+  assert.equal((await prepareSupplierImage(thumbnail)).width, 300);
 });
 test("interrupted upload resumes cached content without fetching again; credentials never enter failures", async () => {
   const source = await sharp({ create: { width: 500, height: 500, channels: 3, background: "blue" } }).png().toBuffer();
@@ -43,14 +45,19 @@ test("interrupted upload resumes cached content without fetching again; credenti
   assert.equal(downloads, 1);
   assert.equal((await importSupplierMediaBatch([candidate], ports)).duplicatesAvoided, 1);
 });
-test("a catalogue record cannot become launch-ready without real approved imagery and validated merchandising", () => {
+test("browse readiness requires genuine imagery but not commercial or editorial completeness", () => {
   const base = normalizePrestigiousFormationRows([{ Title: "Dali", Tags: "Formation", "Option1%20Value": "Mocha", "Variant%20SKU": "4270/147", "Image%20Src": "" }])[0];
   const record = { ...base, supplier_name: "Prestigious Textiles" };
   const profile = { description: "Factual description", description_validated: true, colour_families: ["UNKNOWN"], patterns: ["UNKNOWN"], characters: ["UNKNOWN"], styles: ["UNKNOWN"], rooms: [], window_types: [], headings: [], linings: [] };
   assert.equal(validTaxonomy(profile), true);
   assert.equal(validTaxonomy({ ...profile, patterns: ["acoustic"] }), false);
-  assert.ok(retailLaunchBlockers(record, profile, []).includes("APPROVED_MAIN_IMAGE_REQUIRED"));
-  assert.ok(retailLaunchBlockers({ ...record, lifecycle_state: "UNKNOWN" }, profile, []).includes("CURRENT_LIFECYCLE_UNCONFIRMED"));
+  assert.ok(retailLaunchBlockers(record, profile, []).includes("APPROVED_IMAGE_REQUIRED"));
+  const image = { imageType: "SWATCH", approved: true, width: 300, height: 300, url: "https://cdn.shopify.com/f.jpg" };
+  const incomplete = { ...record, lifecycle_state: "UNKNOWN" as const, composition: [], usable_width_mm: null, sample_available: null, price_verification_status: "PRICE_REQUIRES_VERIFICATION" as const, storefront_selectable: false };
+  assert.deepEqual(retailLaunchBlockers(incomplete, null, [image]), []);
+  assert.deepEqual(retailLaunchBlockers({ ...incomplete, lifecycle_state: "DISCONTINUED" }, null, [image]), ["DISCONTINUED"]);
+  assert.deepEqual(retailLaunchBlockers(incomplete, null, [{ ...image, approved: false }]), ["APPROVED_IMAGE_REQUIRED"]);
+  assert.deepEqual(retailLaunchBlockers(incomplete, null, [{ ...image, url: "https://portal.invalid/private.jpg" }]), ["APPROVED_IMAGE_REQUIRED"]);
   assert.equal(retailLaunchBlockers(record, profile, [{ imageType: "MAIN", approved: true, width: 800, height: 800, url: "https://cdn.shopify.com/f.jpg" }]).length, 0);
 });
 

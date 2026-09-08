@@ -1,0 +1,29 @@
+{
+  "totalFabrics": 9938,
+  "knownDiscontinuedHidden": 1,
+  "browsable": 265,
+  "missingImagery": 9673,
+  "genuinelyMismatchedRecords": 2,
+  "priceReady": 251,
+  "orderReady": 0,
+  "bySupplier": {
+    "Prestigious Textiles": {
+      "total": 258,
+      "browsable": 258,
+      "missingImagery": 0,
+      "priceReady": 250
+    },
+    "Sanderson Group": {
+      "total": 9680,
+      "browsable": 7,
+      "missingImagery": 9673,
+      "knownDiscontinuedHidden": 1,
+      "priceReady": 1
+    }
+  },
+  "notes": {
+    "missingImagery": "No approved exact-identity Shopify-hosted image; includes the discontinued record and two withheld wrong-colourway candidate image results. Categories overlap.",
+    "mismatched": "Two existing wrong-colourway candidate results (DARP222519 and EAZU132713) remain withheld; zero accepted image/master SKU mismatches. These are not proof that the master identities are invalid.",
+    "orderReady": "No quantity-bound order-ready configurations exist. Catalogue activation does not verify stock or enable checkout."
+  }
+}

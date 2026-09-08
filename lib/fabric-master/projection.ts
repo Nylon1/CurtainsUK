@@ -3,7 +3,7 @@ import type { CustomerSafeFabricProjection, FabricMasterRecord } from "./types";
 export function fabricIsConfigurationEligible(record: FabricMasterRecord) {
   return record.storefront_selectable
     && record.price_verification_status === "VERIFIED"
-    && record.lifecycle_state === "CURRENT";
+    && record.lifecycle_state !== "DISCONTINUED";
 }
 
 export function projectCustomerSafeFabric(record: FabricMasterRecord): CustomerSafeFabricProjection {

@@ -1,7 +1,7 @@
 import { createSupplierServiceClient } from "../supabase/supplier-service";
 import { fabricMasterRecordsByIds } from "./repository";
 import { projectCustomerSafeFabric, assertCustomerSafeProjection } from "./projection";
-import { RETAIL_TAXONOMY, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
+import { RETAIL_TAXONOMY, factualRetailDescription, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
 
 export async function retailFabricDetail(id: string) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
@@ -13,14 +13,14 @@ async function hydrateRetailFabrics(ids: string[]) {
   const [records, profileResult, imageResult] = await Promise.all([
     fabricMasterRecordsByIds(ids),
     db.from("fabric_retail_profiles").select("fabric_id,description,description_validated,colour_families,patterns,characters,styles,rooms,window_types,headings,linings").in("fabric_id", ids),
-    db.from("fabric_media_mappings").select("fabric_id,image_type,fabric_media_assets!inner(shopify_cdn_url,width,height)").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
+    db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,image_type,fabric_media_assets!inner(shopify_cdn_url,width,height)").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
   ]);
   if (profileResult.error || imageResult.error) throw new Error("RETAIL_CATALOGUE_UNAVAILABLE");
   return ids.flatMap((id) => {
   const record = records.find((r) => r.fabric_id === id);
   if (!record?.staging_catalog_visible || record.lifecycle_state === "DISCONTINUED") return [];
   const profile = profileResult.data?.find((p) => p.fabric_id === id) as RetailProfile | undefined;
-  const images: RetailImage[] = (imageResult.data ?? []).filter((row) => row.fabric_id === id).map((row) => {
+  const images: RetailImage[] = (imageResult.data ?? []).filter((row) => row.fabric_id === id && row.supplier_id === record.supplier_id && row.supplier_sku === record.supplier_sku).map((row) => {
     const asset = row.fabric_media_assets as unknown as { shopify_cdn_url: string; width: number; height: number };
     return { imageType: String(row.image_type), url: asset.shopify_cdn_url, width: asset.width, height: asset.height, approved: true };
   }).filter((i) => /^https:\/\/cdn\.shopify\.com\/[^?#]+$/.test(i.url)).sort((a, b) => Number(b.imageType === "MAIN") - Number(a.imageType === "MAIN"));
@@ -32,10 +32,10 @@ async function hydrateRetailFabrics(ids: string[]) {
     composition: safe.composition, fullWidthMm: safe.fullWidthMm, usableWidthMm: safe.usableWidthMm, verticalRepeatMm: safe.verticalRepeatMm, horizontalRepeatMm: safe.horizontalRepeatMm,
     patternMatchType: safe.patternMatchType, weightGsm: record.weight_gsm, careInstructions: record.care_instructions,
     sampleAvailable: safe.sampleAvailable, availability: safe.availability, configurable: safe.configurable, configurationMessage: safe.configurationMessage,
-    imageReferences: images.map((i) => i.url), images, description: profile?.description_validated ? profile.description : "",
+    imageReferences: images.map((i) => i.url), images, description: profile?.description_validated && profile.description.trim() ? profile.description : factualRetailDescription(record),
     colourFamilies: profile?.colour_families ?? ["UNKNOWN"], patterns: profile?.patterns ?? ["UNKNOWN"], characters: profile?.characters ?? ["UNKNOWN"], styles: profile?.styles ?? ["UNKNOWN"],
     headings: profile?.headings ?? [], windowTypes: profile?.window_types ?? [], linings: profile?.linings ?? [], rooms: profile?.rooms ?? [],
-    launchReady: retailLaunchBlockers(record, profile ?? null, images).length === 0, metadata: retailMetadata(record), feedEligible: false,
+    browseReady: true, orderReady: false, launchReady: true, metadata: retailMetadata(record), feedEligible: false,
   };
   assertCustomerSafeProjection(result); return [result];
   });

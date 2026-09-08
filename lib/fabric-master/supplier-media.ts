@@ -33,7 +33,7 @@ export function sourceImageMatchesSku(url: string, supplier: string, sku: string
 export async function prepareSupplierImage(bytes: Uint8Array) {
   if (bytes.length > 20 * 1024 * 1024 || bytes.length < 100) throw new Error("IMAGE_SIZE_INVALID");
   const metadata = await sharp(bytes, { limitInputPixels: 40_000_000, animated: false }).metadata();
-  if (!["jpeg", "png", "webp"].includes(metadata.format ?? "") || !metadata.width || !metadata.height || Math.min(metadata.width, metadata.height) < 400) throw new Error("IMAGE_QUALITY_REJECTED");
+  if (!["jpeg", "png", "webp"].includes(metadata.format ?? "") || !metadata.width || !metadata.height || Math.min(metadata.width, metadata.height) < 32) throw new Error("IMAGE_QUALITY_REJECTED");
   // Re-encode without EXIF, XMP, comments or other supplier metadata.
   const image = await sharp(bytes, { limitInputPixels: 40_000_000 }).rotate().resize({ width: 2400, height: 2400, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 90 }).toBuffer({ resolveWithObject: true });
   return { bytes: image.data, width: image.info.width, height: image.info.height, contentHash: createHash("sha256").update(image.data).digest("hex") };

@@ -1,7 +1,7 @@
 import { emailEvidenceReady, summarizeEmailEvidence } from "./email-evidence";
 import "server-only";
 import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
-import { fabricMasterRecordById } from "@/lib/fabric-master/repository";
+import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
 import { SupplierIntelligenceService } from "@/lib/supplier-intelligence/service";
 import { SupabaseSupplierIntelligenceRepository } from "@/lib/supplier-intelligence/supabase-repository";
 import type { PublicSupplierAvailability } from "@/lib/supplier-intelligence/types";
@@ -203,6 +203,9 @@ export async function prepareServerStagingCheckoutHandoff(
     reviewState = request.review_state;
     customerEmail = request.customer_email;
     fabricPricingEligible = fabricIsConfigurationEligible(record);
+    // Recheck current supplier cost eligibility without repricing the immutable
+    // customer-approved revision.
+    if (fabricPricingEligible) await verifiedCutCostMinor(record.supplier_id, record.supplier_sku);
     availability = calculatedFabricMetres > 0
       ? await currentAvailability({ supplierId: record.supplier_id, supplierSku: record.supplier_sku, metres: calculatedFabricMetres })
       : "AVAILABILITY_TO_BE_CONFIRMED";

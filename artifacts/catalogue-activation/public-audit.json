@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-09-08T07:20:57Z",
+  "uniqueBrowsed": 265,
+  "pages": 12,
+  "pageMetrics": [
+    {
+      "ms": 1117,
+      "bytes": 54598
+    },
+    {
+      "ms": 1183,
+      "bytes": 53652
+    },
+    {
+      "ms": 1413,
+      "bytes": 51006
+    },
+    {
+      "ms": 937,
+      "bytes": 55268
+    },
+    {
+      "ms": 638,
+      "bytes": 55791
+    },
+    {
+      "ms": 861,
+      "bytes": 53982
+    },
+    {
+      "ms": 4839,
+      "bytes": 52276
+    },
+    {
+      "ms": 1307,
+      "bytes": 53716
+    },
+    {
+      "ms": 1209,
+      "bytes": 55640
+    },
+    {
+      "ms": 855,
+      "bytes": 55348
+    },
+    {
+      "ms": 783,
+      "bytes": 55148
+    },
+    {
+      "ms": 654,
+      "bytes": 3131
+    }
+  ],
+  "probes": {
+    "unknownLifecycle": {
+      "ms": 818,
+      "bytes": 12640,
+      "total": 6
+    },
+    "allPrestigious": {
+      "ms": 806,
+      "bytes": 55006,
+      "total": 258
+    },
+    "search": {
+      "ms": 832,
+      "bytes": 4734,
+      "total": 2
+    },
+    "pattern": {
+      "ms": 684,
+      "bytes": 55613,
+      "total": 85
+    },
+    "colour": {
+      "ms": 632,
+      "bytes": 54351,
+      "total": 58
+    },
+    "collection": {
+      "ms": 663,
+      "bytes": 55939,
+      "total": 32
+    },
+    "pt-4273-658": {
+      "ms": 502,
+      "bytes": 2047,
+      "measurementSelection": true
+    },
+    "pt-4282-543": {
+      "ms": 555,
+      "bytes": 2008,
+      "measurementSelection": true
+    },
+    "sdg-f1787-02": {
+      "ms": 765,
+      "bytes": 2204,
+      "measurementSelection": true
+    }
+  },
+  "security": "PASS",
+  "onlyShopifyImages": true,
+  "hiddenRecordsDenied": true
+}

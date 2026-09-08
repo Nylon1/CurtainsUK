@@ -1,5 +1,5 @@
 """Scan tracked and proposed files; report locations, never matching secret text."""
-import json,re,subprocess
+import argparse,json,re,subprocess
 from pathlib import Path
 patterns={
  'shopify_token':re.compile(rb'\bshp(?:at|ua|ss|ca)_[A-Za-z0-9]{24,}'),
@@ -21,6 +21,10 @@ for path in sorted(set(filter(None,paths))):
         for match in pattern.finditer(data):
             findings.append({'path':path,'line':data[:match.start()].count(b'\n')+1,'kind':kind})
 report={'scope':'Tracked and proposed non-ignored text files','filesScanned':scanned,'findings':findings,'status':'PASS' if not findings else 'BLOCKED','limitations':'Pattern scan plus public-payload and provenance checks; not a guarantee that every possible secret format is detected.'}
-Path('artifacts/phase5h/secret-scan.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+parser=argparse.ArgumentParser()
+parser.add_argument('--report', default='artifacts/phase5h/secret-scan.json')
+report_path=Path(parser.parse_args().report)
+report_path.parent.mkdir(parents=True,exist_ok=True)
+report_path.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(report))
 raise SystemExit(bool(findings))

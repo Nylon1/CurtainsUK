@@ -124,7 +124,7 @@ test("Dawn uses paginated retail imagery and retains canonical sample identity w
   assert.match(script, /fabricId: fabric\.id, supplier: fabric\.supplier, brand: fabric\.brand/);
   assert.match(script, /fabric\.imageReferences\?\.\[0\]/);
   assert.match(script, /fabric\.availability/);
-  assert.match(script, /fabric\.configurable \?/);
+  assert.match(script, /fabric\.browseReady \?/);
   assert.match(script, /price and availability must be confirmed/);
   assert.match(script, /Usable width to be confirmed/);
   assert.match(script, /addEventListener\("error"/);

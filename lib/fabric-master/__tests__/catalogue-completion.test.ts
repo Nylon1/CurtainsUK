@@ -45,13 +45,15 @@ test("catalogue completion keeps private QA, pricing eligibility and launch proj
     ...base,
     supplier_sku: "4269/998",
     fabric_id: "pt-4269-998",
-    imagery: ["https://supplier.example/authorised.jpg"],
+    imagery: ["https://cdn.shopify.com/authorised.jpg"],
   };
   const report = summarizeCatalogueCompletion("prestigious-textiles", [safeQaOnly, unsafePublic, launchReady]);
 
   assert.equal(fabricIsCatalogueQaEligible(safeQaOnly), true);
   assert.equal(fabricIsCustomerLaunchEligible(safeQaOnly), false);
   assert.equal(fabricIsCustomerLaunchEligible(launchReady), true);
+  assert.equal(fabricIsCustomerLaunchEligible({ ...launchReady, lifecycle_state: "UNKNOWN", price_verification_status: "PRICE_REQUIRES_VERIFICATION", composition: [], storefront_selectable: false }), true);
+  assert.equal(fabricIsCustomerLaunchEligible({ ...launchReady, lifecycle_state: "DISCONTINUED" }), false);
   assert.equal(report.qa_import.eligible, true);
   assert.equal(report.customer_launch.eligible, false);
   assert.equal(report.counts.pricing_eligible, 2);

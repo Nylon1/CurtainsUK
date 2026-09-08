@@ -1,0 +1,26 @@
+{
+  "desktopDetail": "pt-4273-658",
+  "mobileDetail": "pt-4282-543",
+  "mobileViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "makeCurtainsPreservedFabric": true,
+  "windowContext": "bay-window",
+  "sampleIntentAdded": true,
+  "enteredBayMeasurementsCm": [
+    80,
+    180,
+    80
+  ],
+  "dropCm": 220,
+  "serverError": "This fabric price must be confirmed before it can be configured",
+  "numericPriceShown": false,
+  "checkoutVisible": false,
+  "horizontalOverflow": false,
+  "newCustomerSubmissions": 0,
+  "newOrders": 0,
+  "themeId": "182264234363",
+  "themeRole": "unpublished",
+  "deploymentId": "dpl_8CfHHjZkE29vXpT7oTF52ASxyUa7"
+}

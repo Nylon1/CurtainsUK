@@ -1471,6 +1471,12 @@
     "name": "CurtainsUK staging",
     "settings": [
       {
+        "type": "text",
+        "id": "curtainsuk_review_email",
+        "label": "CurtainsUK review evidence email",
+        "default": "enquiries@curtainsuk.com"
+      },
+      {
         "type": "checkbox",
         "id": "curtainsuk_staging_mode",
         "label": "Keep CurtainsUK commerce disabled",

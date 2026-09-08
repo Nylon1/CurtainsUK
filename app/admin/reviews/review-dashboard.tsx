@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { EMAIL_EVIDENCE_STATES, type EmailEvidenceState } from "@/lib/storefront/email-evidence";
+import { CURTAINSUK_REVIEW_EMAIL, EMAIL_EVIDENCE_STATES, type EmailEvidenceState } from "@/lib/storefront/email-evidence";
 import { useCallback, useEffect, useState } from "react";
 import {
   REVIEW_STATES,
@@ -321,7 +321,7 @@ function ReviewDetailWorkspace({ detail, actionBusy, mutate }: { detail: ReviewD
       <Panel title="Pricing" description="Internal review values only. Supplier costs and margins are not part of this UI contract."><dl><Field label="Outcome" value={humanise(detail.pricing.outcome)} /><Field label="Provisional gross" value={formatMoney(detail.pricing.provisionalGrossPriceMinor)} /><Field label="Final net" value={formatMoney(detail.pricing.finalPrice?.netAmountMinor ?? null)} /><Field label="VAT" value={formatMoney(detail.pricing.finalPrice?.vatAmountMinor ?? null)} /><Field label="VAT rate" value={detail.pricing.finalPrice ? `${detail.pricing.finalPrice.vatRateBasisPoints / 100}%` : "Not recorded"} /><Field label="Final VAT-inclusive total" value={formatMoney(detail.pricing.finalPrice?.grossAmountMinor ?? null)} /><Field label="Calculation version" value={detail.pricing.calculationVersion || "Not recorded"} /><Field label="Pricing ruleset" value={detail.pricing.pricingRuleVersion || "Not recorded"} /></dl></Panel>
     </div>
 
-    <Panel title="Email evidence" description="Photos and drawings are handled in the store mailbox. CurtainsUK records only the status, revision, staff actor and reason; do not paste files, links or email contents here.">
+    <Panel title="Email evidence" description={`Photos and drawings are handled at ${CURTAINSUK_REVIEW_EMAIL}. CurtainsUK records only the status, revision, staff actor and reason; do not paste files, links or email contents here.`}>
       <p className="mb-3 font-semibold">{detail.emailEvidence.state}</p>
       <p className="mb-4 text-sm text-white/60">Use reference {detail.reference}. {detail.emailEvidence.required ? "Evidence must be reviewed for this revision before approval." : "Evidence is optional unless requested by staff."} A new specification revision requires a fresh evidence review.</p>
       <form onSubmit={recordEmailEvidence} className="space-y-3">

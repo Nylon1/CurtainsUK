@@ -3,7 +3,7 @@
 {% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
-<section class="cuk-shell cuk-section" data-cuk-configurator data-review-email="{{ shop.email | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
+<section class="cuk-shell cuk-section" data-cuk-configurator data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
@@ -142,7 +142,7 @@
 
         <fieldset class="cuk-step cuk-hidden" data-cuk-review-evidence>
           <legend>4. Photos and drawings by email</legend>
-          <p>Submit your measurements first. We will give you a unique reference to include when emailing photos or drawings separately. No files are uploaded here.</p>
+          <p>Submit your measurements first. We will give you a unique reference to include when emailing photos or drawings separately to {{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}. No files are uploaded here.</p>
         </fieldset>
 
         <div class="cuk-error" data-cuk-error hidden></div>

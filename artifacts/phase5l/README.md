@@ -28,7 +28,7 @@ The approved stock evidence expires **2026-09-09 14:34:25 UTC**. `ORDER_READY` i
 | Desktop/mobile QA | PASS | Desktop real-price/configuration/checkout gate; mobile unpriced review submission, samples, filters and window handoff verified. 24-record pagination retained. Fixed a reproduced Bay→library context-loss bug. |
 | Catalogue security/privacy | PASS | Sampled public pages, filters and detail contain no supplier-commercial or credential fields; approved Shopify CDN images and staging noindex retained. Restricted reviewer/anonymous/customer access checks pass. |
 | Bonded interlining | OWNER DECISION REQUIRED | Separate interlining is not a confirmed bonded product basis. Bonded price remains unavailable; no substitute cost invented. |
-| Review mailbox | OWNER DECISION REQUIRED | Current Dawn `shop.email` resolves to enquiries@drapesey.com. Confirm whether to use enquiries@curtainsuk.com or retain the configured mailbox. No store-wide email change or test email was sent. |
+| Review mailbox | PASS | Owner selected `enquiries@curtainsuk.com`. Customer instructions, staff guidance and a dedicated Dawn review setting are updated in source. Not deployed or pushed to Shopify; the existing remote preview still needs the separately authorised rollout. Store-wide email is untouched. |
 
 ## Owner shipping input table
 
@@ -74,3 +74,7 @@ Preview deployment: `curtainsuk-staging-pk6p7cqrb-hamzas-projects-4ef62f35.verce
 ![Mobile filtered catalogue](mobile-filtered-catalogue.png)
 
 The 195 genuine identity-conflict candidates remain withheld in the existing exception queue. Zoffany source recovery and the remaining 2,685 records are secondary work; neither is a commerce launch gate and neither was remapped in this phase.
+
+## Owner mailbox correction
+
+The review mailbox is configured in `config/curtainsuk-review.json` for the application and `curtainsuk_review_email` in Dawn settings. Both are set to `enquiries@curtainsuk.com`; blank Dawn settings fall back to that address, never `shop.email`. All review routes share the same receipt/instructions path. Theme tests 18/18, email-evidence tests 4/4 and TypeScript pass. Source scan finds no Drapesey address or `shop.email` in CurtainsUK theme/review runtime code. Remote pages were not changed or claimed clean: no deployment or Shopify write occurred.

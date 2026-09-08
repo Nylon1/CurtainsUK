@@ -1,3 +1,7 @@
+import reviewSettings from "../../config/curtainsuk-review.json";
+
+export const CURTAINSUK_REVIEW_EMAIL = reviewSettings.reviewEmail;
+
 export const EMAIL_EVIDENCE_STATES = ["EVIDENCE_NOT_RECEIVED", "EVIDENCE_RECEIVED", "EVIDENCE_REVIEWED"] as const;
 export type EmailEvidenceState = typeof EMAIL_EVIDENCE_STATES[number];
 export interface EmailEvidenceEvent {
@@ -19,7 +23,7 @@ export interface EmailEvidence {
 // Full UUID, never a truncated reference that could collide.
 export function reviewReference(requestId: string) { return `CUK-${requestId.toUpperCase()}`; }
 export function reviewEmailInstructions(requestId: string) {
-  return `Your project is saved. Email photos or drawings separately to our curtain team, with ${reviewReference(requestId)} in the subject. No payment has been taken. We will review the evidence before approving specialist work.`;
+  return `Your project is saved. Email photos or drawings separately to ${CURTAINSUK_REVIEW_EMAIL}, with ${reviewReference(requestId)} in the subject. No payment has been taken. We will review the evidence before approving specialist work.`;
 }
 export function requiresEmailEvidence(slug: string) {
   return ["apex-window", "triangular-window", "gable-end-window", "awkward-unusual-window", "dormer-window", "curved-bow-window", "corner-window"].includes(slug);

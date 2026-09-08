@@ -1,0 +1,125 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "rows": [
+    {
+      "master_id": "sdg-nmel120049",
+      "workbook_sku": "NMEL120049",
+      "portal_sku": "NMEL120049",
+      "brand": "Scion",
+      "design": "Berry Tree",
+      "portal_design": "Berry Tree",
+      "workbook_colour": "Peacock Powder Blue Lime And Neutral",
+      "portal_colour": "Peacock/ Powder Blue/ Lime/ Neutral",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel120051",
+      "workbook_sku": "NMEL120051",
+      "portal_sku": "NMEL120051",
+      "brand": "Scion",
+      "design": "Berry Tree",
+      "portal_design": "Berry Tree",
+      "workbook_colour": "Emerald Lime And Chalk",
+      "portal_colour": "Emerald/Lime/Chalk",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel120052",
+      "workbook_sku": "NMEL120052",
+      "portal_sku": "NMEL120052",
+      "brand": "Scion",
+      "design": "Berry Tree",
+      "portal_design": "Berry Tree",
+      "workbook_colour": "Neutral Tangerine Powder Blue And Lemon",
+      "portal_colour": "Neutral/Tangerine/Powder Blue/Lemon",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel120053",
+      "workbook_sku": "NMEL120053",
+      "portal_sku": "NMEL120053",
+      "brand": "Scion",
+      "design": "Berry Tree",
+      "portal_design": "Berry Tree",
+      "workbook_colour": "Mink Plum Berry And Lime",
+      "portal_colour": "Mink/Plum/Berry/Lime",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel120070",
+      "workbook_sku": "NMEL120070",
+      "portal_sku": "NMEL120070",
+      "brand": "Scion",
+      "design": "Mr Fox",
+      "portal_design": "Mr Fox",
+      "workbook_colour": "Sunflower Gull And Chalk",
+      "portal_colour": "Sunflower/Gull/Chalk",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel120071",
+      "workbook_sku": "NMEL120071",
+      "portal_sku": "NMEL120071",
+      "brand": "Scion",
+      "design": "Mr Fox",
+      "portal_design": "Mr Fox",
+      "workbook_colour": "Neutral And Paprika",
+      "portal_colour": "Neutral/Paprika",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel120072",
+      "workbook_sku": "NMEL120072",
+      "portal_sku": "NMEL120072",
+      "brand": "Scion",
+      "design": "Mr Fox",
+      "portal_design": "Mr Fox",
+      "workbook_colour": "Sky Tangerine And Chalk",
+      "portal_colour": "Sky/Tangerine/Chalk",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel130352",
+      "workbook_sku": "NMEL130352",
+      "portal_sku": "NMEL130352",
+      "brand": "Scion",
+      "design": "Athyrium",
+      "portal_design": "Athyrium",
+      "workbook_colour": "Hessian Apple And Pebble",
+      "portal_colour": "Apple/Pebble",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel130353",
+      "workbook_sku": "NMEL130353",
+      "portal_sku": "NMEL130353",
+      "brand": "Scion",
+      "design": "Athyrium",
+      "portal_design": "Athyrium",
+      "workbook_colour": "Chalk Pewter And Biscuit",
+      "portal_colour": "Chalk/Pewter/Biscuit",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-nmel130355",
+      "workbook_sku": "NMEL130355",
+      "portal_sku": "NMEL130355",
+      "brand": "Scion",
+      "design": "Athyrium",
+      "portal_design": "Athyrium",
+      "workbook_colour": "Plum Fuchsia Linen And Lime",
+      "portal_colour": "Plum/Fuchsia/Linen/Lime",
+      "expected_revision": "2026-09-07T20:33:49.91009+00:00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

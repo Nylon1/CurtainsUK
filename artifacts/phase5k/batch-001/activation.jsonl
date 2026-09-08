@@ -1,0 +1,4 @@
+{"start": 0, "records": 250, "exitCode": 0, "result": "{\"mappingsApplied\":250,\"visibilityChanges\":250,\"pricingChanges\":0}", "failure": null}
+{"start": 250, "records": 250, "exitCode": 0, "result": "{\"mappingsApplied\":250,\"visibilityChanges\":250,\"pricingChanges\":0}", "failure": null}
+{"start": 500, "records": 250, "exitCode": 0, "result": "{\"mappingsApplied\":250,\"visibilityChanges\":250,\"pricingChanges\":0}", "failure": null}
+{"start": 750, "records": 35, "exitCode": 0, "result": "{\"mappingsApplied\":35,\"visibilityChanges\":35,\"pricingChanges\":0}", "failure": null}

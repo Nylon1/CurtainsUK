@@ -1,0 +1,7 @@
+{"input": "discontinued-0-0.json", "exit": 0, "result": "{\"observed\":48,\"verified\":43,\"applied\":true,\"commercialChanges\":0}"}
+{"input": "discontinued-0-48.json", "exit": 0, "result": "{\"observed\":48,\"verified\":44,\"applied\":true,\"commercialChanges\":0}"}
+{"input": "discontinued-0-96.json", "exit": 0, "result": "{\"observed\":10,\"verified\":10,\"applied\":true,\"commercialChanges\":0}"}
+{"input": "discontinued-3-0.json", "exit": 0, "result": "{\"observed\":6,\"verified\":3,\"applied\":true,\"commercialChanges\":0}"}
+{"input": "discontinued-5-0.json", "exit": 0, "result": "{\"observed\":48,\"verified\":30,\"applied\":true,\"commercialChanges\":0}"}
+{"input": "discontinued-5-48.json", "exit": 0, "result": "{\"observed\":48,\"verified\":47,\"applied\":true,\"commercialChanges\":0}"}
+{"input": "discontinued-5-96.json", "exit": 0, "result": "{\"observed\":22,\"verified\":17,\"applied\":true,\"commercialChanges\":0}"}

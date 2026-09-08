@@ -7,12 +7,15 @@ import { prepareSupplierImage, ShopifyMediaClient, type ImportedMedia } from "..
 import { approvedMediaJob, discoveredMediaKey, legacyMediaJob, mediaJobAlreadyMapped, sharedMediaCanReuse, type DiscoveredImage } from "../lib/fabric-master/discovered-media";
 import { newDiscoveryCheckpoint, recordDiscoveryObservation, discoverySummary, type RouteObservation, type DiscoveryIdentity } from "../lib/fabric-master/portal-discovery";
 import { PORTAL_MAP_VERSION } from "../lib/fabric-master/portal-discovery-maps";
+import { forEachMediaRecord, mediaOperationLocks, retryMediaCheckpointRename } from "../lib/fabric-master/media-batch-work";
 import type { parsePrestigiousPublicProduct } from "../lib/fabric-master/prestigious-public";
 
 const arg = (name: string) => process.argv.find((v) => v.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
 const limit = Number(arg("batch-size") ?? 100);
+const concurrency = Number(arg("concurrency") ?? 1);
+if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 8) throw new Error("MEDIA_CONCURRENCY_INVALID");
 const collection = arg("collection") ?? "rustic-persian";
-if (!Number.isInteger(limit) || limit < 50 || limit > 250 || !/^[a-z0-9-]+$/.test(collection)) throw new Error("BATCH_ARGUMENTS_INVALID");
+if (!Number.isInteger(limit) || limit < 50 || limit > 2500 || !/^[a-z0-9-]+$/.test(collection)) throw new Error("BATCH_ARGUMENTS_INVALID");
 const root = resolve("artifacts/phase5f/checkpoints");
 const mediaRoot = resolve("artifacts/phase5f/media");
 type MediaState = { supplier: string; lastSku: string | null; sources: Record<string, { hash: string; width: number; height: number }>; assets: Record<string, { shopifyFileId: string; shopifyCdnUrl: string }>; mappings: Record<string, ImportedMedia>; failures: Record<string, string>; duplicatesAvoided: number };
@@ -55,7 +58,8 @@ async function main() {
       }
       return incomplete;
     }).slice(0, limit);
-    for (const product of pending) {
+    const locked = mediaOperationLocks();
+    await forEachMediaRecord(pending,concurrency,async product => {
       const record = product.record;
       const identity = identityFor(product);
       let discovery = newDiscoveryCheckpoint(identity,PORTAL_MAP_VERSION);
@@ -67,7 +71,7 @@ async function main() {
         }
       } catch (e) { if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw new Error("DISCOVERY_CHECKPOINT_INVALID"); }
       for (const observation of product.discovery ?? []) discovery = recordDiscoveryObservation(discovery,observation);
-      await writeFile(discoveryPath + ".tmp",JSON.stringify(discovery,null,2)); await rename(discoveryPath + ".tmp",discoveryPath);
+      await writeFile(discoveryPath + ".tmp",JSON.stringify(discovery,null,2)); await retryMediaCheckpointRename(()=>rename(discoveryPath + ".tmp",discoveryPath));
       const inputs = product.media?.length ? product.media : [null];
       for (const input of inputs) {
       let jobKey = input ? discoveredMediaKey(record.fabric_id,input) : record.fabric_id;
@@ -77,6 +81,7 @@ async function main() {
         if (mediaJobAlreadyMapped(job,Object.values(state.mappings),state.sources[job.url]?.hash)) continue;
         if (state.failures[jobKey] && !retryFailures) continue;
         const { candidate, url } = job;
+        const known = await locked(`source:${url}`,async()=>{
         let known = state.sources[url];
         if (!known) {
           let bytes: Buffer;
@@ -99,6 +104,9 @@ async function main() {
           await writeFile(resolve(mediaRoot, `${known.hash}.jpg`), image.bytes, { flag: "w" });
           state.sources[url] = known;
         } else state.duplicatesAvoided++;
+        return known;
+        });
+        await locked(`hash:${known.hash}`,async()=>{
         const conflicting = Object.values(state.mappings).some((m) => m.contentHash === known.hash && m.fabricId !== record.fabric_id && !sharedMediaCanReuse(candidate,m));
         if (conflicting) throw new Error("CROSS_COLOURWAY_DUPLICATE_REVIEW_REQUIRED");
         if (client) {
@@ -108,18 +116,27 @@ async function main() {
           state.mappings[jobKey] = { ...candidate, contentHash: known.hash, width: known.width, height: known.height, importedAt: new Date().toISOString(), ...asset };
         }
         delete state.failures[jobKey];
+        });
       } catch (error) {
         const code = error instanceof Error ? error.message : "MEDIA_IMPORT_FAILED";
         state.failures[jobKey] = code === "DISCOVERY_INCOMPLETE" ? discoverySummary(discovery).status : /^[A-Z0-9_]+$/.test(code) ? code : "MEDIA_IMPORT_FAILED";
       }
-      state.supplier = record.supplier_id;
-      state.lastSku = record.supplier_sku;
-      await writeFile(path + ".tmp", JSON.stringify(state, null, 2), "utf8"); await rename(path + ".tmp", path);
-      console.log(JSON.stringify({ sku: state.lastSku, downloaded: Object.keys(state.sources).length, uploaded: Object.keys(state.assets).length, mapped: Object.keys(state.mappings).length, failed: Object.keys(state.failures).length }));
+      await locked("checkpoint",async()=>{
+        state.supplier = record.supplier_id;
+        state.lastSku = record.supplier_sku;
+        await writeFile(path + ".tmp", JSON.stringify(state, null, 2), "utf8"); await retryMediaCheckpointRename(()=>rename(path + ".tmp", path));
+        console.log(JSON.stringify({ sku: state.lastSku, downloaded: Object.keys(state.sources).length, uploaded: Object.keys(state.assets).length, mapped: Object.keys(state.mappings).length, failed: Object.keys(state.failures).length }));
+      });
       }
       await new Promise((r) => setTimeout(r, 500));
-    }
+    });
     console.log(JSON.stringify({ batchComplete: true, processed: pending.length, alreadyMappedSkipped: completeSkipped, newMappings: Object.keys(state.mappings).length - mappedBefore, totalUploadedAssets: Object.keys(state.assets).length }));
   } finally { await lock.close(); await unlink(lockPath); }
 }
-main().catch((error) => { const message = error instanceof Error ? error.message : "MEDIA_IMPORT_FAILED"; console.error(/^[A-Z0-9_]+$/.test(message) ? message : "MEDIA_IMPORT_FAILED"); process.exitCode = 1; });
+main().catch((error) => {
+  const message = error instanceof Error ? error.message : "MEDIA_IMPORT_FAILED";
+  const code = (error as NodeJS.ErrnoException)?.code ?? "";
+  // Keep actionable filesystem categories without exposing paths or auth data.
+  console.error(/^[A-Z0-9_]+$/.test(message) ? message : /^(EACCES|EPERM|EBUSY|ENOENT|EIO)$/.test(code) ? `MEDIA_FILESYSTEM_${code}` : "MEDIA_IMPORT_FAILED");
+  process.exitCode = 1;
+});

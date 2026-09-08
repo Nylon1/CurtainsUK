@@ -1,0 +1,623 @@
+[
+  {
+    "fabricId": "sdg-f1417-03",
+    "sku": "F1417/03",
+    "observedTitle": "Claro Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1417-06",
+    "sku": "F1417/06",
+    "observedTitle": "Claro Taupe",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-01",
+    "sku": "F1402/01",
+    "observedTitle": "Havana Antique",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-02",
+    "sku": "F1402/02",
+    "observedTitle": "Havana Beaver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-07",
+    "sku": "F1402/07",
+    "observedTitle": "Havana Cocoa",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-11",
+    "sku": "F1402/11",
+    "observedTitle": "Havana Feather",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-17",
+    "sku": "F1402/17",
+    "observedTitle": "Havana Natural",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-19",
+    "sku": "F1402/19",
+    "observedTitle": "Havana Peacock",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-21",
+    "sku": "F1402/21",
+    "observedTitle": "Havana Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-23",
+    "sku": "F1402/23",
+    "observedTitle": "Havana Spice",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1402-24",
+    "sku": "F1402/24",
+    "observedTitle": "Havana Storm",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "F1464/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1464/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1464/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1464/05",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1465/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1465/03",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1465/05",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-f1403-01",
+    "sku": "F1403/01",
+    "observedTitle": "Nevada Antique",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1403-04",
+    "sku": "F1403/04",
+    "observedTitle": "Nevada Charcoal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1403-10",
+    "sku": "F1403/10",
+    "observedTitle": "Nevada Ebony",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1403-12",
+    "sku": "F1403/12",
+    "observedTitle": "Nevada Feather",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "F1403/13",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1403/21",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-f1403-28",
+    "sku": "F1403/28",
+    "observedTitle": "Nevada Truffle",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1408-06",
+    "sku": "F1408/06",
+    "observedTitle": "Pura Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1427-01",
+    "sku": "F1427/01",
+    "observedTitle": "Rebano Indigo",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1427-03",
+    "sku": "F1427/03",
+    "observedTitle": "Rebano Slate",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1409-01",
+    "sku": "F1409/01",
+    "observedTitle": "Terra Blush",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.683685+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-02",
+    "sku": "F1511/02",
+    "observedTitle": "Miami Amber",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-03",
+    "sku": "F1511/03",
+    "observedTitle": "Miami Arctic",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-04",
+    "sku": "F1511/04",
+    "observedTitle": "Miami Ash",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-05",
+    "sku": "F1511/05",
+    "observedTitle": "Miami Beaver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-07",
+    "sku": "F1511/07",
+    "observedTitle": "Miami Chartreuse",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-08",
+    "sku": "F1511/08",
+    "observedTitle": "Miami Chive",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-10",
+    "sku": "F1511/10",
+    "observedTitle": "Miami Cream",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-11",
+    "sku": "F1511/11",
+    "observedTitle": "Miami Ebony",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-12",
+    "sku": "F1511/12",
+    "observedTitle": "Miami Espresso",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-13",
+    "sku": "F1511/13",
+    "observedTitle": "Miami Fuchsia",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-14",
+    "sku": "F1511/14",
+    "observedTitle": "Miami Gold",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-15",
+    "sku": "F1511/15",
+    "observedTitle": "Miami Heather",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-16",
+    "sku": "F1511/16",
+    "observedTitle": "Miami Herb",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-18",
+    "sku": "F1511/18",
+    "observedTitle": "Miami Mineral",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-19",
+    "sku": "F1511/19",
+    "observedTitle": "Miami Plum",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-22",
+    "sku": "F1511/22",
+    "observedTitle": "Miami Spruce",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-23",
+    "sku": "F1511/23",
+    "observedTitle": "Miami Taupe",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-24",
+    "sku": "F1511/24",
+    "observedTitle": "Miami Teal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1511-25",
+    "sku": "F1511/25",
+    "observedTitle": "Miami Wedgewood",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

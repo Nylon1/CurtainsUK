@@ -1,0 +1,18 @@
+[
+  {
+    "fabricId": "sdg-f1287-01",
+    "sku": "F1287/01",
+    "observedTitle": "Bhutan Charcoal",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:41.240827+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

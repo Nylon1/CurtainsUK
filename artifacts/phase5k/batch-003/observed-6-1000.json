@@ -1,0 +1,1258 @@
+{
+  "checkedAt": "2026-09-08T11:28:53.958Z",
+  "brand": "Harlequin",
+  "productType": "FABRIC",
+  "status": "Live",
+  "rows": [
+    [
+      "HMMC133022",
+      "Tectrix Tulip",
+      "H/M/HMMC133022_cf51.jpg"
+    ],
+    [
+      "HMMC133023",
+      "Tectrix Sedona",
+      "H/M/HMMC133023_9c44.jpg"
+    ],
+    [
+      "HMMC133024",
+      "Tectrix Jet",
+      "H/M/HMMC133024_bbdc.jpg"
+    ],
+    [
+      "HMMC133025",
+      "Tectrix Pewter",
+      "H/M/HMMC133025_2b81.jpg"
+    ],
+    [
+      "HMMC133026",
+      "Tectrix Bronze",
+      "H/M/HMMC133026_f076.jpg"
+    ],
+    [
+      "HMMC133027",
+      "Tectrix Oyster/ Ink",
+      "H/M/HMMC133027_d0ff.jpg"
+    ],
+    [
+      "HMMC133041",
+      "Tectrix Rose Quartz",
+      "H/M/HMMC133041_c684.jpg"
+    ],
+    [
+      "HMMC133042",
+      "Tectrix Marine",
+      "H/M/HMMC133042_82e2.jpg"
+    ],
+    [
+      "HMMC133043",
+      "Tectrix Titanium",
+      "H/M/HMMC133043_5b60.jpg"
+    ],
+    [
+      "HMMF133011",
+      "Tremolo Tulip/Coral",
+      "H/M/HMMF133011_28ce.jpg"
+    ],
+    [
+      "HMMF133012",
+      "Tremolo Aubergine/Chartreuse",
+      "H/M/HMMF133012_147d.jpg"
+    ],
+    [
+      "HMMF133013",
+      "Tremolo Oyster/Titanium",
+      "H/M/HMMF133013_f2f5.jpg"
+    ],
+    [
+      "HMMF133014",
+      "Tremolo Azure/Ink",
+      "H/M/HMMF133014_1e32.jpg"
+    ],
+    [
+      "HMMF133015",
+      "Typhonic Pumice",
+      "H/M/HMMF133015_8bbe.jpg"
+    ],
+    [
+      "HMMF133016",
+      "Typhonic Graphite",
+      "H/M/HMMF133016_1731.jpg"
+    ],
+    [
+      "HMMF133017",
+      "Typhonic Onyx",
+      "H/M/HMMF133017_4fa3.jpg"
+    ],
+    [
+      "HMMF133006",
+      "Zendo Saffron",
+      "H/M/HMMF133006_1a03.jpg"
+    ],
+    [
+      "HMMF133007",
+      "Zendo Pumice",
+      "H/M/HMMF133007_95bf.jpg"
+    ],
+    [
+      "HMMF133008",
+      "Zendo Oyster",
+      "H/M/HMMF133008_9d4b.jpg"
+    ],
+    [
+      "HMMF133009",
+      "Zendo Emerald",
+      "H/M/HMMF133009_02ab.jpg"
+    ],
+    [
+      "HMMF133010",
+      "Zendo Palm",
+      "H/M/HMMF133010_5b55.jpg"
+    ],
+    [
+      "HMIF120899",
+      "Alvaro Honey/Slate/Topaz",
+      "H/M/HMIF120899_cec6.jpg"
+    ],
+    [
+      "HMIF120900",
+      "Alvaro Lime/Jade/Palm",
+      "H/M/HMIF120900_ac24.jpg"
+    ],
+    [
+      "HMIF120901",
+      "Alvaro Harissa/Jute/Jet",
+      "H/M/HMIF120901_a46b.jpg"
+    ],
+    [
+      "HMIF120902",
+      "Alvaro Slate/Stone/Charcoal",
+      "H/M/HMIF120902_3f56.jpg"
+    ],
+    [
+      "HMIF120903",
+      "Ananda Topaz",
+      "H/M/HMIF120903_bdab.jpg"
+    ],
+    [
+      "HMIF120904",
+      "Ananda Oyster",
+      "H/M/HMIF120904_046d.jpg"
+    ],
+    [
+      "HMIF120905",
+      "Ananda Slate",
+      "H/M/HMIF120905_b494.jpg"
+    ],
+    [
+      "HMIF120913",
+      "Habanera Cerise/Honey/Marine",
+      "H/M/HMIF120913_c389.jpg"
+    ],
+    [
+      "HMIF120914",
+      "Habanera Coral/Harbour/Lime",
+      "H/M/HMIF120914_9564.jpg"
+    ],
+    [
+      "HMIF133060",
+      "Kalimba Seaglass/ Cerise/ Indigo",
+      "H/M/HMIF133060_b3eb.jpg"
+    ],
+    [
+      "HMIF133061",
+      "Kalimba Harissa/ Jute/ Harbour",
+      "H/M/HMIF133061_d7c6.jpg"
+    ],
+    [
+      "HMIF133062",
+      "Kalimba Honey/ Topaz/ Slate",
+      "H/M/HMIF133062_62bb.jpg"
+    ],
+    [
+      "HMIF120906",
+      "Llenya Honey/Jet/Jute",
+      "H/M/HMIF120906_76d4.jpg"
+    ],
+    [
+      "HMIF120907",
+      "Llenya Cerise/Harbour/Saffron",
+      "H/M/HMIF120907_62dd.jpg"
+    ],
+    [
+      "HMIF120908",
+      "Llenya Lime/Jade/Pebble",
+      "H/M/HMIF120908_df31.jpg"
+    ],
+    [
+      "HMIF120909",
+      "Llenya Ink/Coral/Pebble",
+      "H/M/HMIF120909_8825.jpg"
+    ],
+    [
+      "HMIF133054",
+      "Lorenza Saffron/ Oyster",
+      "H/M/HMIF133054_9bf3.jpg"
+    ],
+    [
+      "HMIF133055",
+      "Lorenza Ink/ Seaglass",
+      "H/M/HMIF133055_9a86.jpg"
+    ],
+    [
+      "HMIF133056",
+      "Lorenza Honey/ Jet",
+      "H/M/HMIF133056_0f7b.jpg"
+    ],
+    [
+      "HMIF133057",
+      "Lorenza Oyster/ Pearl",
+      "H/M/HMIF133057_3de1.jpg"
+    ],
+    [
+      "HMIF133052",
+      "Mehari Harissa/ Oyster/ Charcoal",
+      "H/M/HMIF133052_eaef.jpg"
+    ],
+    [
+      "HMIF133053",
+      "Mehari Sky/ Maize/ Charcoal",
+      "H/M/HMIF133053_0c48.jpg"
+    ],
+    [
+      "HMIF133065",
+      "Nirmala Jet",
+      "H/M/HMIF133065_0eff.jpg"
+    ],
+    [
+      "HMIF133066",
+      "Nirmala Pebble",
+      "H/M/HMIF133066_bef6.jpg"
+    ],
+    [
+      "HMIF120910",
+      "Sabi Saffron",
+      "H/M/HMIF120910_22f7.jpg"
+    ],
+    [
+      "HMIF120911",
+      "Sabi Seaglass",
+      "H/M/HMIF120911_b94d.jpg"
+    ],
+    [
+      "HQN3121135",
+      "Zori Cornflower/Awakening",
+      "H/Q/HQN3121135_c44d.jpg"
+    ],
+    [
+      "HC4F133916",
+      "Eco Takara Black Earth/Pumice",
+      "H/C/HC4F133916_8874.jpg"
+    ],
+    [
+      "HC4F133917",
+      "Eco Takara Ochre/Temple Grey",
+      "H/C/HC4F133917_e695.jpg"
+    ],
+    [
+      "HC4F133918",
+      "Eco Takara Baked Terracotta/Rust",
+      "H/C/HC4F133918_8dfe.jpg"
+    ],
+    [
+      "HC4F133919",
+      "Eco Takara Frost/Silver Willow",
+      "H/C/HC4F133919_0c28.jpg"
+    ],
+    [
+      "HC4F121160",
+      "Ertha Positano/Clover/Fig Leaf",
+      "H/C/HC4F121160_cf0f.jpg"
+    ],
+    [
+      "HC4F121161",
+      "Ertha Celestial/Murmuration/Awakening",
+      "H/C/HC4F121161_c96e.jpg"
+    ],
+    [
+      "HC4F121164",
+      "Fayola Tranquility/Exhale/Celestial",
+      "H/C/HC4F121164_6078.jpg"
+    ],
+    [
+      "HC4F121165",
+      "Fayola Fig Leaf/Clover/Succulent",
+      "H/C/HC4F121165_f29c.jpg"
+    ],
+    [
+      "HC4F121166",
+      "Fayola Seaglass/Clover/Awakening",
+      "H/C/HC4F121166_c811.jpg"
+    ],
+    [
+      "HC4F121156",
+      "Florent Hempseed/ Lagoon/Rosehip",
+      "H/C/HC4F121156_b955.jpg"
+    ],
+    [
+      "HC4F121157",
+      "Florent Sail Cloth/Celestial/Clay",
+      "H/C/HC4F121157_ed61.jpg"
+    ],
+    [
+      "HC4F121158",
+      "Florent Positano/Maple/Graphite",
+      "H/C/HC4F121158_20d1.jpg"
+    ],
+    [
+      "HC4F121159",
+      "Florent Seaglass/Clover/Rosehip",
+      "H/C/HC4F121159_088a.jpg"
+    ],
+    [
+      "HC4F121150",
+      "Foresta Velvet Forest/Amazonia/Lagoon",
+      "H/C/HC4F121150_799e.jpg"
+    ],
+    [
+      "HC4F121152",
+      "Foresta Velvet Rosewood/Azul/Huckleberry",
+      "H/C/HC4F121152_c51e.jpg"
+    ],
+    [
+      "HC4F121151",
+      "Foresta Diffused Light/Pebble/Sand",
+      "H/C/HC4F121151_d8e4.jpg"
+    ],
+    [
+      "HC4F121153",
+      "Grounded Celestial /Awakening",
+      "H/C/HC4F121153_a542.jpg"
+    ],
+    [
+      "HC4F121154",
+      "Grounded Black Earth/Parchment",
+      "H/C/HC4F121154_0f40.jpg"
+    ],
+    [
+      "HC4F121155",
+      "Grounded Baked Terracotta/Parchment",
+      "H/C/HC4F121155_3888.jpg"
+    ],
+    [
+      "HC4F133920",
+      "Izumi Shiitake/Brazilian Rosewood",
+      "H/C/HC4F133920_81ce.jpg"
+    ],
+    [
+      "HC4F133921",
+      "Izumi Temple Gry/Diffused Light",
+      "H/C/HC4F133921_d4f2.jpg"
+    ],
+    [
+      "HC4F133922",
+      "Izumi Hessian/Sandstone",
+      "H/C/HC4F133922_a917.jpg"
+    ],
+    [
+      "HC4F133923",
+      "Izumi Exhale/Soft Focus",
+      "H/C/HC4F133923_4d03.jpg"
+    ],
+    [
+      "HC4F121167",
+      "Kalina Parchment/Forest/Azalea",
+      "H/C/HC4F121167_5476.jpg"
+    ],
+    [
+      "HC4F121168",
+      "Kalina Celestial/Murmuration/Awakening",
+      "H/C/HC4F121168_0b80.jpg"
+    ],
+    [
+      "HC4F121169",
+      "Mini Wood Frog Terracotta/Parchment/Sketched",
+      "H/C/HC4F121169_4d7d.jpg"
+    ],
+    [
+      "HC4F121170",
+      "Mini Wood Frog Celestial/ Clay/Sketched",
+      "H/C/HC4F121170_33db.jpg"
+    ],
+    [
+      "HC4F133927",
+      "Onni Hessian/Shiitake",
+      "H/C/HC4F133927_b92e.jpg"
+    ],
+    [
+      "HC4F133928",
+      "Onni Putty/Celestial",
+      "H/C/HC4F133928_e5de.jpg"
+    ],
+    [
+      "HC4F133929",
+      "Onni First Light/Clover",
+      "H/C/HC4F133929_7df5.jpg"
+    ],
+    [
+      "HC4F133924",
+      "Sow Baked Terracotta/Soft Focus",
+      "H/C/HC4F133924_a498.jpg"
+    ],
+    [
+      "HC4F133925",
+      "Sow Pumice/Mineral",
+      "H/C/HC4F133925_3b59.jpg"
+    ],
+    [
+      "HC4F133926",
+      "Sow First Light/Exhale",
+      "H/C/HC4F133926_d2a5.jpg"
+    ],
+    [
+      "HC4F133930",
+      "Sunstone Positano/Chocolate/ Pistachio",
+      "H/C/HC4F133930_9db4.jpg"
+    ],
+    [
+      "HC4F133931",
+      "Sunstone Celestial/Fig Leaf/Nectar",
+      "H/C/HC4F133931_6fb0.jpg"
+    ],
+    [
+      "HC4F121162",
+      "Wood Frog Velvet Chocolate/Pistachio",
+      "H/C/HC4F121162_4554.jpg"
+    ],
+    [
+      "HC4F121163",
+      "Wood Frog Velvet Azul/Forest",
+      "H/C/HC4F121163_e151.jpg"
+    ],
+    [
+      "HCOL133958",
+      "Air Sheer Sky Blue",
+      "H/C/HCOL133958_7021.jpg"
+    ],
+    [
+      "HCOL133944",
+      "Alto Parchment/Chalk Sheer",
+      "H/C/HCOL133944_0bea.jpg"
+    ],
+    [
+      "HCOL133945",
+      "Alto Chalk/Celestial Sheer",
+      "H/C/HCOL133945_dfb2.jpg"
+    ],
+    [
+      "HCOL133946",
+      "Amble Chalk/Multi Sheer",
+      "H/C/HCOL133946_9061.jpg"
+    ],
+    [
+      "HCOL133947",
+      "Amble Chalk/Mist Sheer",
+      "H/C/HCOL133947_0223.jpg"
+    ],
+    [
+      "HCOL133948",
+      "Amble Chalk/Black Earth Sheer",
+      "H/C/HCOL133948_6208.jpg"
+    ],
+    [
+      "HCOL133934",
+      "Arbor Temple Grey Sheer",
+      "H/C/HCOL133934_0ec9.jpg"
+    ],
+    [
+      "HCOL133935",
+      "Arbor Chalk",
+      "H/C/HCOL133935_ff52.jpg"
+    ],
+    [
+      "HSRF121176",
+      "Basket Weave Emerald/Aquamarine",
+      "H/S/HSRF121176_eece.jpg"
+    ],
+    [
+      "HSRF121177",
+      "Basket Weave Coral/Rose",
+      "H/S/HSRF121177_f51b.jpg"
+    ],
+    [
+      "HSRF121178",
+      "Basket Weave Lapis/Sky",
+      "H/S/HSRF121178_932e.jpg"
+    ],
+    [
+      "HSRF121172",
+      "Dahlia Bunch Lapis/Carnelian/Spinel",
+      "H/S/HSRF121172_3cce.jpg"
+    ],
+    [
+      "HSRF121194",
+      "Daisy Trellis Emerald/Pearl",
+      "H/S/HSRF121194_4311.jpg"
+    ],
+    [
+      "HSRF121190",
+      "Dappled Leaf Amber/Rose Velvet",
+      "H/S/HSRF121190_f629.jpg"
+    ],
+    [
+      "HSRF121191",
+      "Dappled Leaf Emerald/Amber Velvet",
+      "H/S/HSRF121191_c3b6.jpg"
+    ],
+    [
+      "HSRF121188",
+      "Dappled Leaf Emerald",
+      "H/S/HSRF121188_dd26.jpg"
+    ],
+    [
+      "HSRF121189",
+      "Dappled Leaf Lapis",
+      "H/S/HSRF121189_7316.jpg"
+    ],
+    [
+      "HCOL133961",
+      "Enigmatic Sheer Japanese Ink",
+      "H/C/HCOL133961_9bd4.jpg"
+    ],
+    [
+      "HCOL133962",
+      "Enigmatic Sheer Nectar",
+      "H/C/HCOL133962_4f06.jpg"
+    ],
+    [
+      "HCOL133932",
+      "Equus Chalk/First Light Sheer",
+      "H/C/HCOL133932_f4dd.jpg"
+    ],
+    [
+      "HCOL133933",
+      "Equus Chalk/Tranquility Sheer",
+      "H/C/HCOL133933_d834.jpg"
+    ],
+    [
+      "HCOL133955",
+      "Ertha Sheer First Light",
+      "H/C/HCOL133955_497a.jpg"
+    ],
+    [
+      "HCOL133956",
+      "Ertha Sheer Clover",
+      "H/C/HCOL133956_73fc.jpg"
+    ],
+    [
+      "HCOL133957",
+      "Ertha Sheer Celestial",
+      "H/C/HCOL133957_0fea.jpg"
+    ],
+    [
+      "HCOL133941",
+      "Ether Chalk/Incense Sheer",
+      "H/C/HCOL133941_0318.jpg"
+    ],
+    [
+      "HCOL133942",
+      "Ether Chalk/Celestial Sheer",
+      "H/C/HCOL133942_adbc.jpg"
+    ],
+    [
+      "HCOL133943",
+      "Ether Chalk/Black Earth Sheer",
+      "H/C/HCOL133943_7b61.jpg"
+    ],
+    [
+      "HCOL133959",
+      "Floreana Sheer Black Earth/Tranquility",
+      "H/C/HCOL133959_8a33.jpg"
+    ],
+    [
+      "HCOL133960",
+      "Floreana Sheer Bleached Coral/Succulent",
+      "H/C/HCOL133960_524a.jpg"
+    ],
+    [
+      "HCOL133953",
+      "Foresta Sheer Ethereal",
+      "H/C/HCOL133953_d9a5.jpg"
+    ],
+    [
+      "HCOL133954",
+      "Foresta Sheer Baked Terracotta",
+      "H/C/HCOL133954_7d86.jpg"
+    ],
+    [
+      "HSRF133996",
+      "Garden Terrace Lapis/Rose",
+      "H/S/HSRF133996_176c.jpg"
+    ],
+    [
+      "HSRF133997",
+      "Garden Terrace Peridot/Pearl",
+      "H/S/HSRF133997_d3ca.jpg"
+    ],
+    [
+      "HSRF134998",
+      "Garden Terrace Ruby/Rose",
+      "H/S/HSRF134998_8914.jpg"
+    ],
+    [
+      "HCOL133950",
+      "Grounded Sheer Celestial",
+      "H/C/HCOL133950_40fd.jpg"
+    ],
+    [
+      "HCOL133951",
+      "Grounded Sheer Parchment",
+      "H/C/HCOL133951_9d15.jpg"
+    ],
+    [
+      "HCOL133952",
+      "Grounded Sheer Black Earth",
+      "H/C/HCOL133952_e925.jpg"
+    ],
+    [
+      "HCOL133979",
+      "Himmel Stone Sheer",
+      "H/C/HCOL133979_d261.jpg"
+    ],
+    [
+      "HCOL133980",
+      "Himmel Denim Sheer",
+      "H/C/HCOL133980_04b8.jpg"
+    ],
+    [
+      "HCOL133981",
+      "Himmel Olive Sheer",
+      "H/C/HCOL133981_ef99.jpg"
+    ],
+    [
+      "HSRF133982",
+      "Jewel Beetles Lapis",
+      "H/S/HSRF133982_cd33.jpg"
+    ],
+    [
+      "HSRF133983",
+      "Jewel Beetles Emerald",
+      "H/S/HSRF133983_1673.jpg"
+    ],
+    [
+      "HCOL133964",
+      "Lucent Hempseed Sheer",
+      "H/C/HCOL133964_1c3c.jpg"
+    ],
+    [
+      "HCOL133965",
+      "Lucent Ebony Sheer",
+      "H/C/HCOL133965_e1eb.jpg"
+    ],
+    [
+      "HCOL133966",
+      "Lucent Incense Sheer",
+      "H/C/HCOL133966_6ed6.jpg"
+    ],
+    [
+      "HCOL133967",
+      "Lucent Celestial Sheer",
+      "H/C/HCOL133967_95cc.jpg"
+    ],
+    [
+      "HCOL133968",
+      "Lucent Parchment Sheer",
+      "H/C/HCOL133968_7e80.jpg"
+    ],
+    [
+      "HCOL133969",
+      "Lucent Diffused Light Sheer",
+      "H/C/HCOL133969_dfd2.jpg"
+    ],
+    [
+      "HCOL133970",
+      "Lucent Seaglass Sheer",
+      "H/C/HCOL133970_cdef.jpg"
+    ],
+    [
+      "HCOL133971",
+      "Lucent Innocent Sheer",
+      "H/C/HCOL133971_4daa.jpg"
+    ],
+    [
+      "HCOL133972",
+      "Lucent Soft Focus Sheer",
+      "H/C/HCOL133972_70bf.jpg"
+    ],
+    [
+      "HCOL133973",
+      "Lucent Oyster Sheer",
+      "H/C/HCOL133973_ecb9.jpg"
+    ],
+    [
+      "HCOL133974",
+      "Lucent Chalk Sheer",
+      "H/C/HCOL133974_67aa.jpg"
+    ],
+    [
+      "HCOL133975",
+      "Lucent Tranquility Sheer",
+      "H/C/HCOL133975_76c7.jpg"
+    ],
+    [
+      "HSRF133988",
+      "Meander Lapis/Spinel",
+      "H/S/HSRF133988_5d5b.jpg"
+    ],
+    [
+      "HSRF133989",
+      "Meander Emerald/Aquamarine",
+      "H/S/HSRF133989_b307.jpg"
+    ],
+    [
+      "HCOL133938",
+      "Melodic Sheer Tranquility/Chalk",
+      "H/C/HCOL133938_92ef.jpg"
+    ],
+    [
+      "HCOL133939",
+      "Melodic Sheer Chalk/First Light",
+      "H/C/HCOL133939_870f.jpg"
+    ],
+    [
+      "HCOL133940",
+      "Melodic Sheer Chalk/Parchment",
+      "H/C/HCOL133940_e719.jpg"
+    ],
+    [
+      "HCOL133936",
+      "Nuvole Origami Sheer",
+      "H/C/HCOL133936_de96.jpg"
+    ],
+    [
+      "HCOL133937",
+      "Nuvole Incense Sheer",
+      "H/C/HCOL133937_49aa.jpg"
+    ],
+    [
+      "HSRF133990",
+      "Paper Straw Stripe Ruby/Rose",
+      "H/S/HSRF133990_33a7.jpg"
+    ],
+    [
+      "HSRF133991",
+      "Paper Straw Stripe Citrine",
+      "H/S/HSRF133991_40e4.jpg"
+    ],
+    [
+      "HSRF133992",
+      "Paper Straw Stripe Lapis",
+      "H/S/HSRF133992_9729.jpg"
+    ],
+    [
+      "HSRF133993",
+      "Paper Straw Stripe Peridot",
+      "H/S/HSRF133993_4b73.jpg"
+    ],
+    [
+      "HSRF133984",
+      "Ribbon Stripe Spinel",
+      "H/S/HSRF133984_45a8.jpg"
+    ],
+    [
+      "HSRF133985",
+      "Ribbon Stripe Citrine",
+      "H/S/HSRF133985_2bb0.jpg"
+    ],
+    [
+      "HSRF133986",
+      "Ribbon Stripe Lapis",
+      "H/S/HSRF133986_a2d5.jpg"
+    ],
+    [
+      "HSRF133987",
+      "Ribbon Stripe Peridot",
+      "H/S/HSRF133987_a016.jpg"
+    ],
+    [
+      "HSRF121192",
+      "Sherbet Stripe Lapis/Spinel/Aquamarine Velvet",
+      "H/S/HSRF121192_8285.jpg"
+    ],
+    [
+      "HSRF121193",
+      "Sherbet Stripe Emerald/Amber/Rose Velvet",
+      "H/S/HSRF121193_1b83.jpg"
+    ],
+    [
+      "HCOL133949",
+      "Stratus Chalk/Incense Sheer",
+      "H/C/HCOL133949_58e5.jpg"
+    ],
+    [
+      "HSRF134000",
+      "Wiggle Rose Quartz/Ruby",
+      "H/S/HSRF134000_b40a.jpg"
+    ],
+    [
+      "HSRF134001",
+      "Wiggle Amethyst/Lapis",
+      "H/S/HSRF134001_a3a5.jpg"
+    ],
+    [
+      "HSRF134002",
+      "Wiggle Lapis/Spinel",
+      "H/S/HSRF134002_f41d.jpg"
+    ],
+    [
+      "HSRF134003",
+      "Wiggle Peridot/Pearl",
+      "H/S/HSRF134003_e401.jpg"
+    ],
+    [
+      "HSRF134999",
+      "Wiggle Linen/Carnelian",
+      "H/S/HSRF134999_9d7a.jpg"
+    ],
+    [
+      "HSRF133994",
+      "Wilderness Lapis/Carnelian/Ruby",
+      "H/S/HSRF133994_4632.jpg"
+    ],
+    [
+      "HSRF133995",
+      "Wilderness Peridot/Emerald/Ruby",
+      "H/S/HSRF133995_a22c.jpg"
+    ],
+    [
+      "HSRF121184",
+      "Wildflower Meadow Carnelian/Aquamarine/Peridot Velvet",
+      "H/S/HSRF121184_8387.jpg"
+    ],
+    [
+      "HSRF121186",
+      "Wildflower Meadow Emerald/Amethyst/Spinel Velvet",
+      "H/S/HSRF121186_34a7.jpg"
+    ],
+    [
+      "HSRF121187",
+      "Wildflower Meadow Carnelian/Spinel/Amethyst Velvet",
+      "H/S/HSRF121187_ea06.jpg"
+    ],
+    [
+      "HTEF120976",
+      "Lotus French Grey",
+      "H/T/HTEF120976_4be1.jpg"
+    ],
+    [
+      "HTEF121002",
+      "Matupi Amber Light/Black Earth",
+      "H/T/HTEF121002_6fe7.jpg"
+    ],
+    [
+      "HTEF121003",
+      "Matupi Black Earth/Awakening",
+      "H/T/HTEF121003_2ee3.jpg"
+    ],
+    [
+      "HTEF120997",
+      "Melora Brazilian Rosewood/ Ink/ Amazonia Velvet",
+      "H/T/HTEF120997_2f1c.jpg"
+    ],
+    [
+      "HTEF120998",
+      "Melora Positano/Succulent/Amber Light Velvet",
+      "H/T/HTEF120998_2bb5.jpg"
+    ],
+    [
+      "HTEF121006",
+      "Montipora Harissa/Slate/Insence",
+      "H/T/HTEF121006_7586.jpg"
+    ],
+    [
+      "HTEF121007",
+      "Montipora Amazonia/Nectar",
+      "H/T/HTEF121007_cdbb.jpg"
+    ],
+    [
+      "HTEF121014",
+      "Perennials Positano/Tree Canopy/Tulip",
+      "H/T/HTEF121014_1f66.jpg"
+    ],
+    [
+      "HTEF121015",
+      "Perennials Seaglass/ Exhale/ Murmuration",
+      "H/T/HTEF121015_5089.jpg"
+    ],
+    [
+      "HTEF121016",
+      "Perennials Grounded/Positano/Succulent",
+      "H/T/HTEF121016_dee9.jpg"
+    ],
+    [
+      "HTEF120971",
+      "Sumi Linen/Copper",
+      "H/T/HTEF120971_0e67.jpg"
+    ],
+    [
+      "HTEF120972",
+      "Sumi Oyster/Gold",
+      "H/T/HTEF120972_7e6f.jpg"
+    ],
+    [
+      "HLUM121052",
+      "Acropora Brazilian Rosewood/Nectar/Tree Canopy",
+      "H/L/HLUM121052_2806.jpg"
+    ],
+    [
+      "HLUM121050",
+      "Alvaro Pebble/Sky",
+      "H/L/HLUM121050_b154.jpg"
+    ],
+    [
+      "HIOP121219",
+      "Alvaro Lime/Palm/Palm",
+      "H/I/HIOP121219_5351.jpg"
+    ],
+    [
+      "HIOP121234",
+      "Alvaro Honey/Slate/Topaz",
+      "H/I/HIOP121234_e56d.jpg"
+    ],
+    [
+      "HLUM121057",
+      "Edo Ink/Ivory",
+      "H/L/HLUM121057_fc6c.jpg"
+    ],
+    [
+      "HLUM121047",
+      "Kelapa Emerald",
+      "H/L/HLUM121047_2e01.jpg"
+    ],
+    [
+      "HLUM121051",
+      "Papilio Flamingo/Papaya/Loganberry",
+      "H/L/HLUM121051_a3a6.jpg"
+    ],
+    [
+      "HLUM121054",
+      "Shenlong Celestial/Ink",
+      "H/L/HLUM121054_d4bd.jpg"
+    ],
+    [
+      "HLUM121055",
+      "Shenlong Pomegranate/Grounded/Incense",
+      "H/L/HLUM121055_c51a.jpg"
+    ],
+    [
+      "HQN2133881",
+      "Calla Emerald/First Light",
+      "H/Q/HQN2133881_f435.jpg"
+    ],
+    [
+      "HQN2133882",
+      "Calla Sky/First Light",
+      "H/Q/HQN2133882_2608.jpg"
+    ],
+    [
+      "HQN2133883",
+      "Calla Pomegranate/Clementine/Peony/Blueberry",
+      "H/Q/HQN2133883_7eae.jpg"
+    ],
+    [
+      "HQN2133884",
+      "Calla Seaglass/Nectar",
+      "H/Q/HQN2133884_c3a1.jpg"
+    ],
+    [
+      "HQN2133893",
+      "Calla Clemetine/Peony",
+      "H/Q/HQN2133893_a0c1.jpg"
+    ],
+    [
+      "HQN2133874",
+      "Cognate Dijon/Shiitake",
+      "H/Q/HQN2133874_e70b.jpg"
+    ],
+    [
+      "HQN2133875",
+      "Cognate Japanese Ink/ Awakening",
+      "H/Q/HQN2133875_baec.jpg"
+    ],
+    [
+      "HQN2121081",
+      "Dahlia Blossom/Emerald/New Beginnings",
+      "H/Q/HQN2121081_980b.jpg"
+    ],
+    [
+      "HQN2121083",
+      "Dahlia Coral/Fig Leaf/Sky",
+      "H/Q/HQN2121083_2356.jpg"
+    ],
+    [
+      "HQN2121084",
+      "Dahlia Fig Blossom/Nectar/Awakening",
+      "H/Q/HQN2121084_21e5.jpg"
+    ],
+    [
+      "HQN2121085",
+      "Dahlia Sail Cloth/Meadow/Sketched",
+      "H/Q/HQN2121085_0293.jpg"
+    ],
+    [
+      "HQN2121090",
+      "Equidae Black Earth/Brass Velvet",
+      "H/Q/HQN2121090_0ec1.jpg"
+    ],
+    [
+      "HQN2121091",
+      "Equidae Onyx/Amber Light Velvet",
+      "H/Q/HQN2121091_7f06.jpg"
+    ],
+    [
+      "HQN2121075",
+      "Helianthus Vermillion/Harissa/Fig Leaf Velvet",
+      "H/Q/HQN2121075_bd8f.jpg"
+    ],
+    [
+      "HQN2121073",
+      "Helianthus Sunflower/Grass/Awakening",
+      "H/Q/HQN2121073_2ecc.jpg"
+    ],
+    [
+      "HQN2121074",
+      "Helianthus Moonstone/Succulent/Bleached Coral",
+      "H/Q/HQN2121074_69b9.jpg"
+    ],
+    [
+      "HQN2133890",
+      "Ixora Emerald/Palm/Chartreuse",
+      "H/Q/HQN2133890_33bb.jpg"
+    ],
+    [
+      "HQN2133891",
+      "Ixora Sky/Seaglass/Sketched",
+      "H/Q/HQN2133891_d941.jpg"
+    ],
+    [
+      "HQN2133892",
+      "Ixora Pomegranate/Tree Canopy/Ink",
+      "H/Q/HQN2133892_248f.jpg"
+    ],
+    [
+      "HQN2133894",
+      "Ixora Sky/Cascade/Vermillion",
+      "H/Q/HQN2133894_cabb.jpg"
+    ],
+    [
+      "HQN2133878",
+      "Lyrical Forest/Black Earth",
+      "H/Q/HQN2133878_5435.jpg"
+    ],
+    [
+      "HQN2133879",
+      "Lyrical Black Earth",
+      "H/Q/HQN2133879_2bd5.jpg"
+    ],
+    [
+      "HQN2133880",
+      "Lyrical Orchid/Brazilian Rosewood",
+      "H/Q/HQN2133880_3503.jpg"
+    ],
+    [
+      "HQN2133885",
+      "Lyrical Japanese Ink/Lagoon",
+      "H/Q/HQN2133885_e0c7.jpg"
+    ],
+    [
+      "HQN2121069",
+      "Melodic Japanese Ink/Origami",
+      "H/Q/HQN2121069_3d83.jpg"
+    ],
+    [
+      "HQN2121070",
+      "Melodic Stone/Awakening",
+      "H/Q/HQN2121070_4d19.jpg"
+    ],
+    [
+      "HQN2121071",
+      "Melodic French Ochre/Paper Lantern",
+      "H/Q/HQN2121071_86b4.jpg"
+    ],
+    [
+      "HQN2121087",
+      "Paeonia Black Earth/Fig Leaf/Nectar",
+      "H/Q/HQN2121087_38af.jpg"
+    ],
+    [
+      "HQN2121088",
+      "Paeonia Azurite/Meadow/Nectar",
+      "H/Q/HQN2121088_28d2.jpg"
+    ],
+    [
+      "HQN2133869",
+      "Perception Brazilian Rosewood/Shiitake/New Beginnings",
+      "H/Q/HQN2133869_7d3c.jpg"
+    ],
+    [
+      "HQN2133870",
+      "Perception Japanese Ink/ Sky/ New Beginnings",
+      "H/Q/HQN2133870_ea2d.jpg"
+    ],
+    [
+      "HQN2133871",
+      "Perception Dijon/Black Earth/New Beginnings",
+      "H/Q/HQN2133871_e373.jpg"
+    ],
+    [
+      "HQN2133876",
+      "Popova Dijon/Incense/Origami/Sketched",
+      "H/Q/HQN2133876_5ffd.jpg"
+    ],
+    [
+      "HQN2133877",
+      "Popova Amazonia/Sea Glass/Forest/Japanese Ink",
+      "H/Q/HQN2133877_f34b.jpg"
+    ],
+    [
+      "HQN2133886",
+      "Popova Onsen/Japanese Ink/Silver Willow",
+      "H/Q/HQN2133886_1dac.jpg"
+    ],
+    [
+      "HQN2121076",
+      "Rewilded Wild Water/Lagoon/Sky Velvet",
+      "H/Q/HQN2121076_0ad1.jpg"
+    ],
+    [
+      "HQN2121077",
+      "Rewilded Fig/Pomegranate/Tangerine Velvet",
+      "H/Q/HQN2121077_0ad3.jpg"
+    ],
+    [
+      "HQN2121078",
+      "Rewilded Wilderness/Amazonia/Tree Canopy Velvet",
+      "H/Q/HQN2121078_672a.jpg"
+    ],
+    [
+      "HQN2121079",
+      "Rewilded Emerald/Azurite/Palm Velvet",
+      "H/Q/HQN2121079_c572.jpg"
+    ],
+    [
+      "HQN2121089",
+      "Rhythm 2 Fire/Brazilian Rosewood/Onsen/Forest",
+      "H/Q/HQN2121089_027c.jpg"
+    ],
+    [
+      "HQN2121080",
+      "Sanguine Pomegranate/Clementine/Peony/Blueberry",
+      "H/Q/HQN2121080_1f68.jpg"
+    ],
+    [
+      "HQN2133872",
+      "Synchronic Black Earth/Bleached Coral/Moss",
+      "H/Q/HQN2133872_5a9b.jpg"
+    ],
+    [
+      "HQN2133873",
+      "Synchronic Brazilian Rosewood/Onsen/Fire",
+      "H/Q/HQN2133873_4349.jpg"
+    ],
+    [
+      "HQN2133887",
+      "Zinnia Clemetine/Peony",
+      "H/Q/HQN2133887_1177.jpg"
+    ],
+    [
+      "HQN2133888",
+      "Zinnia Emerald/Sky",
+      "H/Q/HQN2133888_8fb9.jpg"
+    ],
+    [
+      "HQN2133889",
+      "Zinnia Tranquility/Sky",
+      "H/Q/HQN2133889_4cc7.jpg"
+    ],
+    [
+      "HDHP121111",
+      "Ella Fig Blossom/Fig Leaf/ Nectarine",
+      "H/D/HDHP121111_a0d4.jpg"
+    ],
+    [
+      "HDHP121112",
+      "Ella Powder/ Sage / Peach",
+      "H/D/HDHP121112_f959.jpg"
+    ],
+    [
+      "HDHP121113",
+      "Ella Sky/Fig Leaf/ Nectarine",
+      "H/D/HDHP121113_5382.jpg"
+    ],
+    [
+      "HDHP121114",
+      "Emmeline Chalk/Rose/Sky",
+      "H/D/HDHP121114_7b5d.jpg"
+    ],
+    [
+      "HDHP121101",
+      "Lady Alford Apple/ Magenta",
+      "H/D/HDHP121101_604c.jpg"
+    ],
+    [
+      "HDHP121102",
+      "Lady Alford Sky/Magenta",
+      "H/D/HDHP121102_2a3b.jpg"
+    ],
+    [
+      "HDHP121100",
+      "Lady Alford Porcelain / China Blue",
+      "H/D/HDHP121100_8a12.jpg"
+    ],
+    [
+      "HDHP121103",
+      "Lady Alford Fig Blossom/Magenta",
+      "H/D/HDHP121103_0eb5.jpg"
+    ],
+    [
+      "HDHP121104",
+      "Lovelace Delft/Origami",
+      "H/D/HDHP121104_9030.jpg"
+    ],
+    [
+      "HDHP121105",
+      "Lovelace Apple/Paper Lantern",
+      "H/D/HDHP121105_f141.jpg"
+    ],
+    [
+      "HDHP121106",
+      "Lovelace Honey/Paper Lantern",
+      "H/D/HDHP121106_9832.jpg"
+    ],
+    [
+      "HDHP121115",
+      "Marie Fig Leaf/Honey/Blossom",
+      "H/D/HDHP121115_f4db.jpg"
+    ],
+    [
+      "HDHP121116",
+      "Marie Rose/ Lagoon",
+      "H/D/HDHP121116_40bd.jpg"
+    ],
+    [
+      "HDHP121107",
+      "Marsha Apple/Peony/Magenta Velvet",
+      "H/D/HDHP121107_0216.jpg"
+    ],
+    [
+      "HDHP121108",
+      "Marsha Aqua/Peony/Magenta Velvet",
+      "H/D/HDHP121108_c7cd.jpg"
+    ],
+    [
+      "HDHP121109",
+      "Marsha Delft/Lagoon/Porcelain",
+      "H/D/HDHP121109_892d.jpg"
+    ]
+  ]
+}

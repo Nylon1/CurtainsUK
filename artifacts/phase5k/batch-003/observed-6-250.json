@@ -1,0 +1,1258 @@
+{
+  "checkedAt": "2026-09-08T11:25:22.338Z",
+  "brand": "Harlequin",
+  "productType": "FABRIC",
+  "status": "Live",
+  "rows": [
+    [
+      "HLAL130950",
+      "Tranquil Cypress/Driftwood Sheer",
+      "H/L/HLAL130950_7048.jpg"
+    ],
+    [
+      "HLAL130951",
+      "Tranquil Pebble/Hessian Sheer",
+      "H/L/HLAL130951_fa22.jpg"
+    ],
+    [
+      "HLAL130953",
+      "Tranquil Parchment/Spice Sheer",
+      "H/L/HLAL130953_f10e.jpg"
+    ],
+    [
+      "HLAL130955",
+      "Tranquil Sky/Chalk Sheer",
+      "H/L/HLAL130955_87c4.jpg"
+    ],
+    [
+      "HLAL130956",
+      "Tranquil Slate/Aqua Sheer",
+      "H/L/HLAL130956_106b.jpg"
+    ],
+    [
+      "HLAL130957",
+      "Tranquil Pistachio/Shale Sheer",
+      "H/L/HLAL130957_2fce.jpg"
+    ],
+    [
+      "HLAL130958",
+      "Tranquil Indigo/Denim Sheer",
+      "H/L/HLAL130958_01d0.jpg"
+    ],
+    [
+      "HMOP131317",
+      "Accents Lagoon",
+      "H/M/HMOP131317_7bb6.jpg"
+    ],
+    [
+      "HMOP131335",
+      "Accents Nude",
+      "H/M/HMOP131335_77c9.jpg"
+    ],
+    [
+      "HMOS131387",
+      "Asuka Moonstone",
+      "H/M/HMOS131387_73b5.jpg"
+    ],
+    [
+      "HMOH131492",
+      "Kasumi Ivory",
+      "H/M/HMOH131492_8250.jpg"
+    ],
+    [
+      "HMOH131457",
+      "Kimie Ivory",
+      "H/M/HMOH131457_3601.jpg"
+    ],
+    [
+      "HMOH131458",
+      "Kimie Stone",
+      "H/M/HMOH131458_94e8.jpg"
+    ],
+    [
+      "HMOH131459",
+      "Kimie Oatmeal",
+      "H/M/HMOH131459_806d.jpg"
+    ],
+    [
+      "HMOS131362",
+      "Koto Stone",
+      "H/M/HMOS131362_e7b4.jpg"
+    ],
+    [
+      "HMOS131363",
+      "Koto Dove",
+      "H/M/HMOS131363_9b92.jpg"
+    ],
+    [
+      "HMOS131345",
+      "Lotus Dove/Moonstone",
+      "H/M/HMOS131345_e429.jpg"
+    ],
+    [
+      "HMOS131348",
+      "Lotus Indigo/Silver",
+      "H/M/HMOS131348_45c7.jpg"
+    ],
+    [
+      "HMOS131379",
+      "Moriko Steel",
+      "H/M/HMOS131379_d06a.jpg"
+    ],
+    [
+      "HMOS131381",
+      "Moriko Linden",
+      "H/M/HMOS131381_c37e.jpg"
+    ],
+    [
+      "HMOH131502",
+      "Noa Steel",
+      "H/M/HMOH131502_8fbf.jpg"
+    ],
+    [
+      "HMOF131432",
+      "Osamu Steel",
+      "H/M/HMOF131432_86fb.jpg"
+    ],
+    [
+      "HMOF131434",
+      "Osamu Oatmeal",
+      "H/M/HMOF131434_d33e.jpg"
+    ],
+    [
+      "HMOF131436",
+      "Osamu Sea Mist",
+      "H/M/HMOF131436_3e23.jpg"
+    ],
+    [
+      "HMOF131438",
+      "Osamu Mustard",
+      "H/M/HMOF131438_e370.jpg"
+    ],
+    [
+      "HMOF131440",
+      "Osamu Hazelnut",
+      "H/M/HMOF131440_b6e7.jpg"
+    ],
+    [
+      "HMOF131441",
+      "Osamu Treacle",
+      "H/M/HMOF131441_35ba.jpg"
+    ],
+    [
+      "HMOS131352",
+      "Saki Indigo/Ochre",
+      "H/M/HMOS131352_4595.jpg"
+    ],
+    [
+      "HMOS131368",
+      "Takara Steel/Chalk",
+      "H/M/HMOS131368_c655.jpg"
+    ],
+    [
+      "HMOS131369",
+      "Takara Indigo/Denim",
+      "H/M/HMOS131369_82ba.jpg"
+    ],
+    [
+      "HMOS131370",
+      "Takara Teal/Ink",
+      "H/M/HMOS131370_5f04.jpg"
+    ],
+    [
+      "HMOH131467",
+      "Yoko Champagne",
+      "H/M/HMOH131467_78bd.jpg"
+    ],
+    [
+      "HAMV131506",
+      "Amazilia Velvets Gsebery/Emerald/Lgnbery",
+      "H/A/HAMV131506_b6ee.jpg"
+    ],
+    [
+      "HAMV131507",
+      "Amazilia Velvets Stone/Mustard/Elephant",
+      "H/A/HAMV131507_59ff.jpg"
+    ],
+    [
+      "HAMV131508",
+      "Amazilia Velvets Zest/Lagoon/Indigo",
+      "H/A/HAMV131508_301f.jpg"
+    ],
+    [
+      "HAMV131509",
+      "Amazilia Velvets Mustard/Papaya/Indigo",
+      "H/A/HAMV131509_1e07.jpg"
+    ],
+    [
+      "HAMV131510",
+      "Amazilia Velvets Papaya/Rspbery/Lgnbery",
+      "H/A/HAMV131510_24f7.jpg"
+    ],
+    [
+      "HAMV131511",
+      "Amazilia Velvets Stone/Lgnberry/Rspberry",
+      "H/A/HAMV131511_9748.jpg"
+    ],
+    [
+      "HAMV131512",
+      "Amazilia Velvets Cocoa/Lagoon/Blueberry",
+      "H/A/HAMV131512_46e9.jpg"
+    ],
+    [
+      "HAMV131513",
+      "Amazilia Velvets Lagoon/Rspbery/Lgnbery",
+      "H/A/HAMV131513_d1b7.jpg"
+    ],
+    [
+      "HAMA120350",
+      "Amazilia Flamingo/Papaya/Apple",
+      "H/A/HAMA120350_4744.jpg"
+    ],
+    [
+      "HAMA120338",
+      "Limosa Indigo/Mustard/Stone",
+      "H/A/HAMA120338_0a47.jpg"
+    ],
+    [
+      "HAMA120340",
+      "Limosa Papaya/Lagoon/Loganberry",
+      "H/A/HAMA120340_0c85.jpg"
+    ],
+    [
+      "HAMA120331",
+      "Nalina Flamingo/Papaya/Loganberry",
+      "H/A/HAMA120331_ad0c.jpg"
+    ],
+    [
+      "HAMA120332",
+      "Nalina Zest/Cocoa/Stone",
+      "H/A/HAMA120332_015e.jpg"
+    ],
+    [
+      "HAMA120333",
+      "Nalina Indigo/Mustard/Stone",
+      "H/A/HAMA120333_6f0f.jpg"
+    ],
+    [
+      "HAMA120334",
+      "Nalina Peach/Mango/Olive",
+      "H/A/HAMA120334_1ef8.jpg"
+    ],
+    [
+      "HAMA120335",
+      "Nalina Zest/Lagoon/Gooseberry",
+      "H/A/HAMA120335_f202.jpg"
+    ],
+    [
+      "HAMA120336",
+      "Nalina Loganberry/Raspberry/Apricot",
+      "H/A/HAMA120336_7801.jpg"
+    ],
+    [
+      "HAMA120344",
+      "Papilio Flamingo/Papaya/Loganberry",
+      "H/A/HAMA120344_09d3.jpg"
+    ],
+    [
+      "HAMA120351",
+      "Paradise Papaya/Flamingo/Apple",
+      "H/A/HAMA120351_3717.jpg"
+    ],
+    [
+      "HAMA120352",
+      "Paradise Loganberry/Raspberry/Emerald",
+      "H/A/HAMA120352_203c.jpg"
+    ],
+    [
+      "HAMA120345",
+      "Savanna Elephant",
+      "H/A/HAMA120345_a229.jpg"
+    ],
+    [
+      "HWHI131564",
+      "Abella Powder Blue",
+      "H/W/HWHI131564_3dca.jpg"
+    ],
+    [
+      "HWHI131540",
+      "Eloise Pearl",
+      "H/W/HWHI131540_293e.jpg"
+    ],
+    [
+      "HWHI131541",
+      "Eloise Dusty Blue",
+      "H/W/HWHI131541_ac86.jpg"
+    ],
+    [
+      "HWHI131543",
+      "Eloise Avocado",
+      "H/W/HWHI131543_a606.jpg"
+    ],
+    [
+      "HWHI131544",
+      "Eloise Willow",
+      "H/W/HWHI131544_6d14.jpg"
+    ],
+    [
+      "HWHI131545",
+      "Eloise Marigold",
+      "H/W/HWHI131545_17fa.jpg"
+    ],
+    [
+      "HWHI131576",
+      "Florence Linen",
+      "H/W/HWHI131576_0728.jpg"
+    ],
+    [
+      "HWHI131570",
+      "Gigi Oatmeal",
+      "H/W/HWHI131570_331c.jpg"
+    ],
+    [
+      "HWHI131573",
+      "Gigi French Grey",
+      "H/W/HWHI131573_b171.jpg"
+    ],
+    [
+      "HGAT120422",
+      "Amborella Olive/Seaglass",
+      "H/G/HGAT120422_7035.jpg"
+    ],
+    [
+      "HGAT120417",
+      "Dardanella Amber/Mint",
+      "H/G/HGAT120417_03c0.jpg"
+    ],
+    [
+      "HGAT120432",
+      "Demoiselle Chartreuse/Grape",
+      "H/G/HGAT120432_03f4.jpg"
+    ],
+    [
+      "HGAT120433",
+      "Demoiselle Graphite/Almond",
+      "H/G/HGAT120433_a6f1.jpg"
+    ],
+    [
+      "HGAT120435",
+      "Demoiselle Ink/Chartreuse",
+      "H/G/HGAT120435_06c9.jpg"
+    ],
+    [
+      "HSGR131874",
+      "Cestino Sediment",
+      "H/S/HSGR131874_3a1b.jpg"
+    ],
+    [
+      "HSGR131875",
+      "Cestino Ocean",
+      "H/S/HSGR131875_ca43.jpg"
+    ],
+    [
+      "HSGR131876",
+      "Cestino Flameneco",
+      "H/S/HSGR131876_e6e8.jpg"
+    ],
+    [
+      "HSGR131878",
+      "Cestino Cinnamon",
+      "H/S/HSGR131878_8509.jpg"
+    ],
+    [
+      "HSGR131879",
+      "Cestino Monochrome",
+      "H/S/HSGR131879_a8e5.jpg"
+    ],
+    [
+      "HSGR131885",
+      "Cestino Liquorice",
+      "H/S/HSGR131885_4a27.jpg"
+    ],
+    [
+      "HSGW134556",
+      "Cestino Dalmation",
+      "H/S/HSGW134556_e87d.jpg"
+    ],
+    [
+      "HSGW134557",
+      "Cestino Moss",
+      "H/S/HSGW134557_0f57.jpg"
+    ],
+    [
+      "HSGW134558",
+      "Cestino Lagoon",
+      "H/S/HSGW134558_b14b.jpg"
+    ],
+    [
+      "HFAU131851",
+      "Chroma Indigo/Parchment/Sky",
+      "H/F/HFAU131851_d1cb.jpg"
+    ],
+    [
+      "HFAU120524",
+      "Floreale Fuchsia/Heather/Lime",
+      "H/F/HFAU120524_3c06.jpg"
+    ],
+    [
+      "HFAU120525",
+      "Floreale Turquoise/Ocean/Marine",
+      "H/F/HFAU120525_7a36.jpg"
+    ],
+    [
+      "ESHE131815",
+      "Kiyoshi Copper/Charcoal",
+      "E/S/ESHE131815_af14.jpg"
+    ],
+    [
+      "ESHE131816",
+      "Kiyoshi Jade/Truffle",
+      "E/S/ESHE131816_ec40.jpg"
+    ],
+    [
+      "HFAU120511",
+      "Salice Tangerine",
+      "H/F/HFAU120511_d797.jpg"
+    ],
+    [
+      "HFAU120512",
+      "Salice Plum",
+      "H/F/HFAU120512_fec6.jpg"
+    ],
+    [
+      "HFAU120513",
+      "Salice Mustard",
+      "H/F/HFAU120513_7d92.jpg"
+    ],
+    [
+      "HFAU120514",
+      "Salice Marine",
+      "H/F/HFAU120514_ee15.jpg"
+    ],
+    [
+      "HSGR131863",
+      "Speckle Linen",
+      "H/S/HSGR131863_8880.jpg"
+    ],
+    [
+      "HSGR131868",
+      "Speckle Honey",
+      "H/S/HSGR131868_2a31.jpg"
+    ],
+    [
+      "HSGR131872",
+      "Speckle Denim",
+      "H/S/HSGR131872_8961.jpg"
+    ],
+    [
+      "HSGR131873",
+      "Speckle Powder Blue",
+      "H/S/HSGR131873_ade2.jpg"
+    ],
+    [
+      "HSGW134554",
+      "Speckle Forest",
+      "H/S/HSGW134554_e5ee.jpg"
+    ],
+    [
+      "HSGW134614",
+      "Speckle Paprika",
+      "H/S/HSGW134614_611f.jpg"
+    ],
+    [
+      "HSGR131857",
+      "Strato Silver/Hessian",
+      "H/S/HSGR131857_f504.jpg"
+    ],
+    [
+      "HSGR131858",
+      "Strato Frost/Charcoal",
+      "H/S/HSGR131858_9963.jpg"
+    ],
+    [
+      "HHHD134194",
+      "Bisque Aegean",
+      "H/H/HHHD134194_8465.jpg"
+    ],
+    [
+      "HHHU134224",
+      "Blenets Check Mini Oatmeal",
+      "H/H/HHHU134224_6e84.jpg"
+    ],
+    [
+      "HHHU134225",
+      "Blenets Check Mini Atlantic",
+      "H/H/HHHU134225_6d4e.jpg"
+    ],
+    [
+      "HHHU134226",
+      "Blenets Check Mini Terracotta",
+      "H/H/HHHU134226_98f7.jpg"
+    ],
+    [
+      "HHHU134227",
+      "Blenets Check Mini Chocolate",
+      "H/H/HHHU134227_128a.jpg"
+    ],
+    [
+      "HHHD134182",
+      "Blenets Check Chocolate",
+      "H/H/HHHD134182_8af4.jpg"
+    ],
+    [
+      "HHHD134183",
+      "Blenets Check Matcha",
+      "H/H/HHHD134183_2097.jpg"
+    ],
+    [
+      "HHHD134184",
+      "Blenets Check Atlantic",
+      "H/H/HHHD134184_268c.jpg"
+    ],
+    [
+      "HHHD134185",
+      "Blenets Check Oatmeal",
+      "H/H/HHHD134185_23be.jpg"
+    ],
+    [
+      "HHHD134186",
+      "Blenets Check Limestone",
+      "H/H/HHHD134186_1be5.jpg"
+    ],
+    [
+      "HHHD134191",
+      "Blenets Sheer Oatmeal",
+      "H/H/HHHD134191_4afd.jpg"
+    ],
+    [
+      "HHHD134192",
+      "Blenets Sheer Chocolate",
+      "H/H/HHHD134192_ef15.jpg"
+    ],
+    [
+      "HHHU134211",
+      "Bonseki Aegean",
+      "H/H/HHHU134211_6db9.jpg"
+    ],
+    [
+      "HHHU134212",
+      "Bonseki Porcelain",
+      "H/H/HHHU134212_6324.jpg"
+    ],
+    [
+      "HHHU134213",
+      "Bonseki Chocolate",
+      "H/H/HHHU134213_ac22.jpg"
+    ],
+    [
+      "HHHU134214",
+      "Bonseki Terracotta",
+      "H/H/HHHU134214_5612.jpg"
+    ],
+    [
+      "HHHU134215",
+      "Bonseki Matcha",
+      "H/H/HHHU134215_3944.jpg"
+    ],
+    [
+      "HHHM134232",
+      "Elsworthy Chocolate",
+      "H/H/HHHM134232_c45f.jpg"
+    ],
+    [
+      "HHHM134233",
+      "Elsworthy Matcha",
+      "H/H/HHHM134233_ea98.jpg"
+    ],
+    [
+      "HHHM134234",
+      "Elsworthy Moss",
+      "H/H/HHHM134234_2036.jpg"
+    ],
+    [
+      "HHHM134235",
+      "Elsworthy Neptune Green",
+      "H/H/HHHM134235_f51d.jpg"
+    ],
+    [
+      "HHHM134236",
+      "Elsworthy Nectar",
+      "H/H/HHHM134236_8cd0.jpg"
+    ],
+    [
+      "HHHM134237",
+      "Elsworthy Aegean",
+      "H/H/HHHM134237_0886.jpg"
+    ],
+    [
+      "HHHM134238",
+      "Elsworthy Glacier",
+      "H/H/HHHM134238_f165.jpg"
+    ],
+    [
+      "HHHM134239",
+      "Elsworthy Pacific",
+      "H/H/HHHM134239_5c49.jpg"
+    ],
+    [
+      "HHHM134240",
+      "Elsworthy Heather",
+      "H/H/HHHM134240_b424.jpg"
+    ],
+    [
+      "HHHM134241",
+      "Elsworthy Rose",
+      "H/H/HHHM134241_fb2a.jpg"
+    ],
+    [
+      "HHHM134242",
+      "Elsworthy Dusk",
+      "H/H/HHHM134242_a7e1.jpg"
+    ],
+    [
+      "HHHM134243",
+      "Elsworthy Bisque",
+      "H/H/HHHM134243_ef1a.jpg"
+    ],
+    [
+      "HHHM134244",
+      "Elsworthy Limestone",
+      "H/H/HHHM134244_6784.jpg"
+    ],
+    [
+      "HHHM134245",
+      "Elsworthy Oatmeal",
+      "H/H/HHHM134245_6d16.jpg"
+    ],
+    [
+      "HHHM134246",
+      "Elsworthy Porcelain",
+      "H/H/HHHM134246_5d46.jpg"
+    ],
+    [
+      "HHHD121259",
+      "Fellcroft Rose",
+      "H/H/HHHD121259_cbac.jpg"
+    ],
+    [
+      "HHHD121260",
+      "Fellcroft Neptune Green",
+      "H/H/HHHD121260_b223.jpg"
+    ],
+    [
+      "HHHD121261",
+      "Fellcroft Atlantic",
+      "H/H/HHHD121261_e471.jpg"
+    ],
+    [
+      "HHHU134228",
+      "Great Hey Atlantic",
+      "H/H/HHHU134228_d1b0.jpg"
+    ],
+    [
+      "HHHU134229",
+      "Great Hey Oatmeal",
+      "H/H/HHHU134229_1f6d.jpg"
+    ],
+    [
+      "HHHU134230",
+      "Great Hey Chocolate",
+      "H/H/HHHU134230_8071.jpg"
+    ],
+    [
+      "HHHU134231",
+      "Great Hey Matcha",
+      "H/H/HHHU134231_1b85.jpg"
+    ],
+    [
+      "HHHD134195",
+      "Ikigai Terracotta",
+      "H/H/HHHD134195_8a85.jpg"
+    ],
+    [
+      "HHHD134196",
+      "Ikigai Pacific",
+      "H/H/HHHD134196_ac28.jpg"
+    ],
+    [
+      "HHHD134197",
+      "Ikigai Seafoam",
+      "H/H/HHHD134197_22cf.jpg"
+    ],
+    [
+      "HHHU134204",
+      "Loopy Spot Oatmeal",
+      "H/H/HHHU134204_9526.jpg"
+    ],
+    [
+      "HHHU134205",
+      "Loopy Spot Chocolate",
+      "H/H/HHHU134205_5e2e.jpg"
+    ],
+    [
+      "HHHU134206",
+      "Loopy Spot Moss",
+      "H/H/HHHU134206_556a.jpg"
+    ],
+    [
+      "HHHU134207",
+      "Loopy Spot Pacific",
+      "H/H/HHHU134207_4c07.jpg"
+    ],
+    [
+      "HHHD121256",
+      "Ludaix Velvet Rosewood",
+      "H/H/HHHD121256_8f83.jpg"
+    ],
+    [
+      "HHHD121257",
+      "Ludaix Velvet Matcha",
+      "H/H/HHHD121257_e601.jpg"
+    ],
+    [
+      "HHHD121258",
+      "Ludaix Velvet Pacific",
+      "H/H/HHHD121258_d719.jpg"
+    ],
+    [
+      "HHHU134220",
+      "Marble Tapestry Chocolate",
+      "H/H/HHHU134220_fce3.jpg"
+    ],
+    [
+      "HHHU134221",
+      "Marble Tapestry Atlantic",
+      "H/H/HHHU134221_5f92.jpg"
+    ],
+    [
+      "HHHU134222",
+      "Marble Tapestry Oatmeal",
+      "H/H/HHHU134222_c967.jpg"
+    ],
+    [
+      "HHHU134223",
+      "Marble Tapestry Matcha",
+      "H/H/HHHU134223_d226.jpg"
+    ],
+    [
+      "HHHD134187",
+      "Marble Wave Terracotta",
+      "H/H/HHHD134187_4cbc.jpg"
+    ],
+    [
+      "HHHD134188",
+      "Marble Wave Neptune Green",
+      "H/H/HHHD134188_677d.jpg"
+    ],
+    [
+      "HHHD134189",
+      "Marble Wave Pacific",
+      "H/H/HHHD134189_ad01.jpg"
+    ],
+    [
+      "HHHD134190",
+      "Marble Wave Porcelain",
+      "H/H/HHHD134190_e519.jpg"
+    ],
+    [
+      "HHHD121265",
+      "Marble Oatmeal",
+      "H/H/HHHD121265_ec94.jpg"
+    ],
+    [
+      "HHHD121266",
+      "Marble Atlantic",
+      "H/H/HHHD121266_c765.jpg"
+    ],
+    [
+      "HHHD134198",
+      "Nerikomi Oatmeal",
+      "H/H/HHHD134198_cbf9.jpg"
+    ],
+    [
+      "HHHD134199",
+      "Nerikomi Terracotta",
+      "H/H/HHHD134199_90cd.jpg"
+    ],
+    [
+      "HHHD134200",
+      "Nerikomi Matcha",
+      "H/H/HHHD134200_64d3.jpg"
+    ],
+    [
+      "HHHD134201",
+      "Nerikomi Aegean",
+      "H/H/HHHD134201_c7e6.jpg"
+    ],
+    [
+      "HHHD134203",
+      "Potshop Rose/Pacific",
+      "H/H/HHHD134203_5587.jpg"
+    ],
+    [
+      "HHHD134202",
+      "Potshop Atlantic/Neptune Green",
+      "H/H/HHHD134202_db05.jpg"
+    ],
+    [
+      "HHHU134208",
+      "Ridley Aegean",
+      "H/H/HHHU134208_7315.jpg"
+    ],
+    [
+      "HHHU134209",
+      "Ridley Oatmeal",
+      "H/H/HHHU134209_45ea.jpg"
+    ],
+    [
+      "HHHU134210",
+      "Ridley Matcha",
+      "H/H/HHHU134210_5db5.jpg"
+    ],
+    [
+      "HHHD134179",
+      "Southborough Rose",
+      "H/H/HHHD134179_ea76.jpg"
+    ],
+    [
+      "HHHD134180",
+      "Southborough Matcha",
+      "H/H/HHHD134180_1dfb.jpg"
+    ],
+    [
+      "HHHD134181",
+      "Southborough Pacific",
+      "H/H/HHHD134181_d3b9.jpg"
+    ],
+    [
+      "HHHD121262",
+      "Washi Matcha",
+      "H/H/HHHD121262_e341.jpg"
+    ],
+    [
+      "HHHD121263",
+      "Washi Pacific",
+      "H/H/HHHD121263_df5f.jpg"
+    ],
+    [
+      "HHHD121264",
+      "Washi Oatmeal",
+      "H/H/HHHD121264_b6f2.jpg"
+    ],
+    [
+      "HARO134461",
+      "Ario Wide Width Satin",
+      "H/A/HARO134461_ac0e.jpg"
+    ],
+    [
+      "HARO134462",
+      "Ario Wide Width Orchid",
+      "H/A/HARO134462_d418.jpg"
+    ],
+    [
+      "HARO134463",
+      "Ario Wide Width Lilac",
+      "H/A/HARO134463_8525.jpg"
+    ],
+    [
+      "HARO134464",
+      "Ario Wide Width Blush",
+      "H/A/HARO134464_bedb.jpg"
+    ],
+    [
+      "HARO134465",
+      "Ario Wide Width Peony",
+      "H/A/HARO134465_df65.jpg"
+    ],
+    [
+      "HARO134466",
+      "Ario Wide Width Melba",
+      "H/A/HARO134466_7955.jpg"
+    ],
+    [
+      "HARO134467",
+      "Ario Wide Width Blossom",
+      "H/A/HARO134467_0459.jpg"
+    ],
+    [
+      "HARO134468",
+      "Ario Wide Width Positano",
+      "H/A/HARO134468_4753.jpg"
+    ],
+    [
+      "HARO134469",
+      "Ario Wide Width Cameo",
+      "H/A/HARO134469_d3ae.jpg"
+    ],
+    [
+      "HARO134470",
+      "Ario Wide Width Scarlet",
+      "H/A/HARO134470_6aa0.jpg"
+    ],
+    [
+      "HARO134471",
+      "Ario Wide Width Tawny",
+      "H/A/HARO134471_4091.jpg"
+    ],
+    [
+      "HARO134472",
+      "Ario Wide Width Birch",
+      "H/A/HARO134472_b6e5.jpg"
+    ],
+    [
+      "HARO134473",
+      "Ario Wide Width Taupe",
+      "H/A/HARO134473_3682.jpg"
+    ],
+    [
+      "HARO134474",
+      "Ario Wide Width Eggshell",
+      "H/A/HARO134474_559c.jpg"
+    ],
+    [
+      "HARO134475",
+      "Ario Wide Width Silk",
+      "H/A/HARO134475_fd96.jpg"
+    ],
+    [
+      "HARO134476",
+      "Ario Wide Width Limpet",
+      "H/A/HARO134476_a2ec.jpg"
+    ],
+    [
+      "HARO134477",
+      "Ario Wide Width Atlantic",
+      "H/A/HARO134477_187f.jpg"
+    ],
+    [
+      "HARO134478",
+      "Ario Wide Width Iceberg",
+      "H/A/HARO134478_c4d5.jpg"
+    ],
+    [
+      "HARO134479",
+      "Ario Wide Width Riviera",
+      "H/A/HARO134479_09b8.jpg"
+    ],
+    [
+      "HARO134480",
+      "Ario Wide Width Sky",
+      "H/A/HARO134480_3734.jpg"
+    ],
+    [
+      "HARO134481",
+      "Ario Wide Width Pacific",
+      "H/A/HARO134481_99e4.jpg"
+    ],
+    [
+      "HARO134482",
+      "Ario Wide Width Midnight",
+      "H/A/HARO134482_a1a2.jpg"
+    ],
+    [
+      "HARO134483",
+      "Ario Wide Width Sweet Pea",
+      "H/A/HARO134483_6289.jpg"
+    ],
+    [
+      "HARO134484",
+      "Ario Wide Width Jade",
+      "H/A/HARO134484_c24c.jpg"
+    ],
+    [
+      "HARO134485",
+      "Ario Wide Width Aloe",
+      "H/A/HARO134485_aa6f.jpg"
+    ],
+    [
+      "HARO134486",
+      "Ario Wide Width Fern",
+      "H/A/HARO134486_077d.jpg"
+    ],
+    [
+      "HARO134487",
+      "Ario Wide Width Julep",
+      "H/A/HARO134487_d023.jpg"
+    ],
+    [
+      "HARO134488",
+      "Ario Wide Width Buttermilk",
+      "H/A/HARO134488_3bfe.jpg"
+    ],
+    [
+      "HARO134489",
+      "Ario Wide Width Chalk",
+      "H/A/HARO134489_4b81.jpg"
+    ],
+    [
+      "HARO134490",
+      "Ario Wide Width Parchment",
+      "H/A/HARO134490_9991.jpg"
+    ],
+    [
+      "HARO134491",
+      "Ario Wide Width Sesame",
+      "H/A/HARO134491_d4cc.jpg"
+    ],
+    [
+      "HARO134492",
+      "Ario Wide Width Whisper",
+      "H/A/HARO134492_d7cc.jpg"
+    ],
+    [
+      "HARO134493",
+      "Ario Wide Width Oat",
+      "H/A/HARO134493_fc10.jpg"
+    ],
+    [
+      "HARO134494",
+      "Ario Wide Width Sand",
+      "H/A/HARO134494_029b.jpg"
+    ],
+    [
+      "HARO134495",
+      "Ario Wide Width Clay",
+      "H/A/HARO134495_7515.jpg"
+    ],
+    [
+      "HARO134496",
+      "Ario Wide Width Oyster",
+      "H/A/HARO134496_3eff.jpg"
+    ],
+    [
+      "HARO134497",
+      "Ario Wide Width Fog",
+      "H/A/HARO134497_d9b9.jpg"
+    ],
+    [
+      "HARO134498",
+      "Ario Wide Width Pumice",
+      "H/A/HARO134498_1924.jpg"
+    ],
+    [
+      "HARO134423",
+      "Ario Satin",
+      "H/A/HARO134423_d61f.jpg"
+    ],
+    [
+      "HARO134424",
+      "Ario Orchid",
+      "H/A/HARO134424_86ff.jpg"
+    ],
+    [
+      "HARO134425",
+      "Ario Lilac",
+      "H/A/HARO134425_5edb.jpg"
+    ],
+    [
+      "HARO134426",
+      "Ario Blush",
+      "H/A/HARO134426_9d0d.jpg"
+    ],
+    [
+      "HARO134427",
+      "Ario Peony",
+      "H/A/HARO134427_4eda.jpg"
+    ],
+    [
+      "HARO134428",
+      "Ario Melba",
+      "H/A/HARO134428_c062.jpg"
+    ],
+    [
+      "HARO134429",
+      "Ario Blossom",
+      "H/A/HARO134429_ed2f.jpg"
+    ],
+    [
+      "HARO134430",
+      "Ario Positano",
+      "H/A/HARO134430_bafa.jpg"
+    ],
+    [
+      "HPUT132679",
+      "Dentella Silver",
+      "H/P/HPUT132679_8471.jpg"
+    ],
+    [
+      "HPUT132680",
+      "Dentella Brass",
+      "H/P/HPUT132680_298d.jpg"
+    ],
+    [
+      "HPUT132653",
+      "Louella Seaglass/Pearl",
+      "H/P/HPUT132653_3984.jpg"
+    ],
+    [
+      "HPUT132654",
+      "Louella Rose Quartz/Pearl",
+      "H/P/HPUT132654_b419.jpg"
+    ],
+    [
+      "HPUT132673",
+      "Lucette Blush",
+      "H/P/HPUT132673_2354.jpg"
+    ],
+    [
+      "HPUT132674",
+      "Lucette Silver",
+      "H/P/HPUT132674_da65.jpg"
+    ],
+    [
+      "HPUT132675",
+      "Lucette French Grey",
+      "H/P/HPUT132675_e0ea.jpg"
+    ],
+    [
+      "HPUT132676",
+      "Lucette Putty",
+      "H/P/HPUT132676_087e.jpg"
+    ],
+    [
+      "HPUT132677",
+      "Lucette Brass",
+      "H/P/HPUT132677_cfb3.jpg"
+    ],
+    [
+      "HPUT132659",
+      "Lucielle Chalk/Linen",
+      "H/P/HPUT132659_584c.jpg"
+    ],
+    [
+      "HPUT132661",
+      "Lucielle Pearl/French Grey",
+      "H/P/HPUT132661_30f1.jpg"
+    ],
+    [
+      "HPUT132665",
+      "Orlena Rose Gold/Pearl",
+      "H/P/HPUT132665_695e.jpg"
+    ],
+    [
+      "HPUT132666",
+      "Orlena Putty/Silver",
+      "H/P/HPUT132666_bc42.jpg"
+    ],
+    [
+      "HPUT132667",
+      "Orlena Powder Blue/Gilver",
+      "H/P/HPUT132667_f8d8.jpg"
+    ],
+    [
+      "HPUT132668",
+      "Orlena Gilver/Pewter",
+      "H/P/HPUT132668_5957.jpg"
+    ],
+    [
+      "HMTE132775",
+      "Axal Sedona",
+      "H/M/HMTE132775_a1fa.jpg"
+    ],
+    [
+      "HMTE132776",
+      "Axal Ochre",
+      "H/M/HMTE132776_75d4.jpg"
+    ],
+    [
+      "HMTE132779",
+      "Chromatic Sedona/Neptune/Melon",
+      "H/M/HMTE132779_b906.jpg"
+    ],
+    [
+      "HMTE132781",
+      "Chromatic Emerald/Beryl/Lichen",
+      "H/M/HMTE132781_bf7e.jpg"
+    ],
+    [
+      "HMTE132782",
+      "Convex Steel/Copper",
+      "H/M/HMTE132782_6a3c.jpg"
+    ],
+    [
+      "HMTE132783",
+      "Convex Charcoal/Gold",
+      "H/M/HMTE132783_d527.jpg"
+    ],
+    [
+      "HMTE132763",
+      "Kengo Heather/Mist",
+      "H/M/HMTE132763_e5d7.jpg"
+    ],
+    [
+      "HMTE132764",
+      "Kengo Gold/Topaz",
+      "H/M/HMTE132764_327b.jpg"
+    ],
+    [
+      "HMTE132765",
+      "Kengo Emerald/Zest",
+      "H/M/HMTE132765_b19e.jpg"
+    ],
+    [
+      "HMTE132760",
+      "Kienze Bronze/Graphite",
+      "H/M/HMTE132760_af42.jpg"
+    ],
+    [
+      "HMTE132761",
+      "Kienze Ochre/Steel",
+      "H/M/HMTE132761_d980.jpg"
+    ],
+    [
+      "HMTE132762",
+      "Kienze Marine/Zest",
+      "H/M/HMTE132762_c677.jpg"
+    ],
+    [
+      "HMTE132791",
+      "Perspective Slate/Sedona",
+      "H/M/HMTE132791_f32d.jpg"
+    ],
+    [
+      "HMTE132792",
+      "Perspective Charcoal/Gold",
+      "H/M/HMTE132792_4bec.jpg"
+    ],
+    [
+      "HMTE132793",
+      "Perspective Emerald/Peony",
+      "H/M/HMTE132793_6309.jpg"
+    ],
+    [
+      "HMNI132825",
+      "Spectro Stripe Teal/Sedonia/Rust",
+      "H/M/HMNI132825_f0d4.jpg"
+    ],
+    [
+      "HALG134392",
+      "Allegra Nettle",
+      "H/A/HALG134392_72b3.jpg"
+    ],
+    [
+      "HALG134394",
+      "Allegra Artichoke",
+      "H/A/HALG134394_17ef.jpg"
+    ],
+    [
+      "HALG134398",
+      "Allegra Glacier",
+      "H/A/HALG134398_6287.jpg"
+    ],
+    [
+      "HALG134399",
+      "Allegra Mist",
+      "H/A/HALG134399_caef.jpg"
+    ],
+    [
+      "HALG134400",
+      "Allegra Fossil",
+      "H/A/HALG134400_971d.jpg"
+    ],
+    [
+      "HALG134402",
+      "Allegra Willow",
+      "H/A/HALG134402_f505.jpg"
+    ]
+  ]
+}

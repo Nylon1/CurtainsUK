@@ -1,0 +1,576 @@
+[
+  {
+    "fabricId": "sdg-dcst232680",
+    "sku": "DCST232680",
+    "observedTitle": "Saxon Charcoal/Dove",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:24.776+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-daeg222949",
+    "sku": "DAEG222949",
+    "observedTitle": "Simi Spring",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:24.848+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dbyr233242",
+    "sku": "DBYR233242",
+    "observedTitle": "Byron Eggshell/Cream",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:24.898+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dbyr233234",
+    "sku": "DBYR233234",
+    "observedTitle": "Portland Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:24.952+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dbyr233265",
+    "sku": "DBYR233265",
+    "observedTitle": "Squirrel & Dove Wool Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.003+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dfab223987",
+    "sku": "DFAB223987",
+    "observedTitle": "Josette Indigo/Taupe",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.053+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dvin224322",
+    "sku": "DVIN224322",
+    "observedTitle": "Chelsea Coral/Emerald",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.104+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dvlv235263",
+    "sku": "DVLV235263",
+    "observedTitle": "Boho Velvets Dove",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.153+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dvlv235265",
+    "sku": "DVLV235265",
+    "observedTitle": "Boho Velvets Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.203+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dvlv235277",
+    "sku": "DVLV235277",
+    "observedTitle": "Boho Velvets Smoke",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.262+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-ddam236483",
+    "sku": "DDAM236483",
+    "observedTitle": "Courtney Damask Indigo",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.34+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-ddam226380",
+    "sku": "DDAM226380",
+    "observedTitle": "Courtney Grey/Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.388+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-debw236572",
+    "sku": "DEBW236572",
+    "observedTitle": "Curlew Mustard/Natural",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.443+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-debw236565",
+    "sku": "DEBW236565",
+    "observedTitle": "Misty Haze Indigo",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.495+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwow235610",
+    "sku": "DWOW235610",
+    "observedTitle": "Fern Embroidery Pebble",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.542+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwow225518",
+    "sku": "DWOW225518",
+    "observedTitle": "Harebells & Violets Sorrel/Sky Blue",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.593+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwow235601",
+    "sku": "DWOW235601",
+    "observedTitle": "Oak Filigree Stone",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.639+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwow225527",
+    "sku": "DWOW225527",
+    "observedTitle": "Wisteria & Butterfly Fuchsia/Parchment",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.693+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwow225528",
+    "sku": "DWOW225528",
+    "observedTitle": "Wisteria & Butterfly Linen/Citrus",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.743+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dlag245750",
+    "sku": "DLAG245750",
+    "observedTitle": "Lagom Kangaroo",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.809+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dlag245752",
+    "sku": "DLAG245752",
+    "observedTitle": "Lagom Earth",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.862+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dlag245765",
+    "sku": "DLAG245765",
+    "observedTitle": "Lagom Flax",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.91+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dlag245772",
+    "sku": "DLAG245772",
+    "observedTitle": "Lagom Orchid",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:25.971+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dlag245773",
+    "sku": "DLAG245773",
+    "observedTitle": "Lagom Eggplant",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.022+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dlag245777",
+    "sku": "DLAG245777",
+    "observedTitle": "Lagom Flame",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.074+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dsca235887",
+    "sku": "DSCA235887",
+    "observedTitle": "Gingko Trail Fig/Olive",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.135+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwap226295",
+    "sku": "DWAP226295",
+    "observedTitle": "Magnolia & Blossom Coral/Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.185+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwap235929",
+    "sku": "DWAP235929",
+    "observedTitle": "Riverside Damask Pewter",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.237+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dwap226265",
+    "sku": "DWAP226265",
+    "observedTitle": "Rosa Indigo",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.283+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dvib246225",
+    "sku": "DVIB246225",
+    "observedTitle": "Vibeke Cabernet",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.349+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dvib246228",
+    "sku": "DVIB246228",
+    "observedTitle": "Vibeke Paprika",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.405+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dpot236273",
+    "sku": "DPOT236273",
+    "observedTitle": "Dalby Mole",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.482+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dart236359",
+    "sku": "DART236359",
+    "observedTitle": "Baroque Trellis Daffodil/Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.537+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dpgr236319",
+    "sku": "DPGR236319",
+    "observedTitle": "Palm Grove Artichoke/Amber Embroidery",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:36.565403+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dher236656",
+    "sku": "DHER236656",
+    "observedTitle": "Herring Coral",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.589+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dher236664",
+    "sku": "DHER236664",
+    "observedTitle": "Herring Ochre",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.647+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "DLYRLY358",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-dpempt205",
+    "sku": "DPEMPT205",
+    "observedTitle": "Peony Tree Midnight Blue/Primrose Dpempt205",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.7+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-dmay221949",
+    "sku": "DMAY221949",
+    "observedTitle": "Dancing Tulips 221949 Red/Cream",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:57:26.751+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

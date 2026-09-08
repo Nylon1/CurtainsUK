@@ -1,0 +1,535 @@
+[
+  {
+    "fabricId": "sdg-f1406-03",
+    "sku": "F1406/03",
+    "observedTitle": "Vena Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:03.278+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-01",
+    "sku": "F1537/01",
+    "observedTitle": "Lazio Antique",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:03.918+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-02",
+    "sku": "F1537/02",
+    "observedTitle": "Lazio Ash",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.229+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-06",
+    "sku": "F1537/06",
+    "observedTitle": "Lazio Buff",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.381+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-07",
+    "sku": "F1537/07",
+    "observedTitle": "Lazio Charcoal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.433+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-08",
+    "sku": "F1537/08",
+    "observedTitle": "Lazio Cloud",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.489+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-09",
+    "sku": "F1537/09",
+    "observedTitle": "Lazio Cranberry",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.554+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-10",
+    "sku": "F1537/10",
+    "observedTitle": "Lazio Delft",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.618+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-11",
+    "sku": "F1537/11",
+    "observedTitle": "Lazio Denim",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.675+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-15",
+    "sku": "F1537/15",
+    "observedTitle": "Lazio Forest",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.732+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-16",
+    "sku": "F1537/16",
+    "observedTitle": "Lazio Graphite",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.803+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-18",
+    "sku": "F1537/18",
+    "observedTitle": "Lazio Herb",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.879+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-20",
+    "sku": "F1537/20",
+    "observedTitle": "Lazio Kingfisher",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:04.942+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-22",
+    "sku": "F1537/22",
+    "observedTitle": "Lazio Midnight",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.005+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-23",
+    "sku": "F1537/23",
+    "observedTitle": "Lazio Nordic",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.057+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-27",
+    "sku": "F1537/27",
+    "observedTitle": "Lazio Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.117+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1537-29",
+    "sku": "F1537/29",
+    "observedTitle": "Lazio Steel",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.183+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-01",
+    "sku": "F1598/01",
+    "observedTitle": "Dawson Charcoal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.242+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-02",
+    "sku": "F1598/02",
+    "observedTitle": "Dawson Chestnut",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.429+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-04",
+    "sku": "F1598/04",
+    "observedTitle": "Dawson Claret",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.493+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-06",
+    "sku": "F1598/06",
+    "observedTitle": "Dawson Gold",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.573+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-07",
+    "sku": "F1598/07",
+    "observedTitle": "Dawson Ink",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.663+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-08",
+    "sku": "F1598/08",
+    "observedTitle": "Dawson Mahogany",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.724+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-09",
+    "sku": "F1598/09",
+    "observedTitle": "Dawson Midnight",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.779+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-10",
+    "sku": "F1598/10",
+    "observedTitle": "Dawson Natural",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:05.915+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-11",
+    "sku": "F1598/11",
+    "observedTitle": "Dawson Ocean",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:06.036+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-13",
+    "sku": "F1598/13",
+    "observedTitle": "Dawson Pearl",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:06.227+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-14",
+    "sku": "F1598/14",
+    "observedTitle": "Dawson Pewter",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:06.288+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-16",
+    "sku": "F1598/16",
+    "observedTitle": "Dawson Slate",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:06.346+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-17",
+    "sku": "F1598/17",
+    "observedTitle": "Dawson Stone",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:06.424+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1598-18",
+    "sku": "F1598/18",
+    "observedTitle": "Dawson Teak",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:06.506+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "F1581/03",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1576/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1603/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1593/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1593/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1593/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1594/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1595/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1580/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1596/03",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1606/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1052/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1057/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1058/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1058/06",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1058/07",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1053/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  }
+]

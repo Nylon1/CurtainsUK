@@ -3,7 +3,8 @@ import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { fabricMasterRecordsByIds } from "../lib/fabric-master/repository";
 import { approvedMediaJob, type DiscoveredImage } from "../lib/fabric-master/discovered-media";
-import { newDiscoveryCheckpoint, normalisePortalDisplay, recordDiscoveryObservation, type DiscoveryCheckpoint, type DiscoveryRoute } from "../lib/fabric-master/portal-discovery";
+import { sourceImageMatchesSku } from "../lib/fabric-master/supplier-media";
+import { newDiscoveryCheckpoint, normalisePortalDisplay, portalTitleMatchesIdentity, recordDiscoveryObservation, type DiscoveryCheckpoint, type DiscoveryRoute } from "../lib/fabric-master/portal-discovery";
 import { PORTAL_MAP_VERSION } from "../lib/fabric-master/portal-discovery-maps";
 
 // Data preparation for the existing importer: no schema or catalogue architecture changes.
@@ -14,7 +15,7 @@ async function main(){
  const observed=JSON.parse(await readFile(input,"utf8")) as {checkedAt:string;brand:string;productType:string;status:string;route?:DiscoveryRoute;location?:string;rows:[string,string,string][]};
  // A missing lifecycle label is not a catalogue exclusion. Explicitly
  // discontinued batches use the existing exclusion workflow instead.
- if(observed.productType!=="FABRIC" || !["Live","UNKNOWN"].includes(observed.status) || observed.rows.length>250) throw new Error("OBSERVATIONS_INVALID");
+ if(observed.productType!=="FABRIC" || !["Live","Live (Special Order)","Limited Stock","UNKNOWN"].includes(observed.status) || observed.rows.length>250) throw new Error("OBSERVATIONS_INVALID");
  const route=observed.route ?? "FABRIC_LISTING", location=observed.location ?? "sdg.fabric-listing";
  const db=createSupplierServiceClient();
  let databaseWrites=0;
@@ -49,14 +50,16 @@ async function main(){
   CCF0888:{design:"Kalia",portalDesign:"Kalia Print"},
   CCF0891:{design:"Viento",portalDesign:"Viento Print"},
   CCF0892:{design:"Wildbloom",portalDesign:"Wildbloom Print"},
+  F0453:{design:"Linoso Ii",portalDesign:"Linoso"},
+  F1070:{design:"Carraway Rose",portalDesign:"Carraway"},
  };
  for(const [sku,title,imagePath] of observed.rows){
   const matches=masters.filter(m=>m.supplier_sku===sku);
   if(matches.length!==1){withheld.push({sku,reason:matches.length?"DUPLICATE_MASTER_SKU":"NO_EXACT_MASTER_SKU"});continue;}
   const m=matches[0];
-  const alias=displayAliases[sku.split("-")[0]];
+  const alias=displayAliases[sku.split(/[-/]/)[0]];
   const exactTitle=normal(`${m.design_name} ${m.colour_name}`)===normal(title);
-  const formattedTitle=normalisePortalDisplay(`${m.design_name} ${m.colour_name}`)===normalisePortalDisplay(title);
+  const formattedTitle=portalTitleMatchesIdentity(m.design_name,m.colour_name,title,sku);
   const clarkeDisplayAlias=observed.brand==="Clarke & Clarke" && alias && normal(alias.design)===normal(m.design_name) && normal(`${alias.portalDesign} ${m.colour_name}`)===normal(title);
   const scionDesigns=["Bimble Embroidery","Canter Print","Dancing Daisies Print","Duckweed Weave","Falling Foss Weave","Fretwork Print","Fringed Poppy Print","Hayloft Embroidery","Oakham Embroidery","Raft Stripe Print","Split Pea Print","Sweet Bay Print","Swithland Embroidery","Tulip Trellis Print"];
   const scionDisplayAlias=observed.brand==="Scion" && sku.startsWith("NSCD") && scionDesigns.includes(m.design_name) && normalisePortalDisplay(`${m.design_name.replace(/ (Embroidery|Print|Weave)$/,"")} ${m.colour_name}`)===normalisePortalDisplay(title);
@@ -68,7 +71,9 @@ async function main(){
   if(!/^[A-Za-z0-9/_ .-]+\.jpg$/.test(imagePath)){withheld.push({sku,reason:"UNSAFE_IMAGE_PATH"});continue;}
   const identity={supplier:m.supplier_id,fabricId:m.fabric_id,sku,brand:m.brand_name,design:m.design_name,colour:m.colour_name,collection:m.collection_name};
   const media:DiscoveredImage={url:`https://trade.sandersondesigngroup.com/static/media/catalog/product/${imagePath}`,route,location,rightsState:"APPROVED",evidence:{sku,brand:observed.brand,design:m.design_name,colour:m.colour_name,productType:"FABRIC",scope:"COLOURWAY",imageType:"MAIN",relationshipEstablished:true}};
-  approvedMediaJob(identity,media);
+  if(!sourceImageMatchesSku(media.url,m.supplier_id,sku)){withheld.push({sku,reason:"IMAGE_SKU_MISMATCH"});continue;}
+  try { approvedMediaJob(identity,media); }
+  catch { withheld.push({sku,reason:"MEDIA_CANDIDATE_REJECTED"});continue; }
   const discoveryPath=`artifacts/phase5f/checkpoints/discovery-${m.fabric_id}.json`;
   let discovery=newDiscoveryCheckpoint(identity,PORTAL_MAP_VERSION);
   try {

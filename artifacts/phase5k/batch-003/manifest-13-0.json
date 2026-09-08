@@ -1,0 +1,94 @@
+{
+  "results": {
+    "sdg-nhap121092": {
+      "record": {
+        "fabric_id": "sdg-nhap121092",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NHAP121092",
+        "brand_name": "Scion",
+        "design_name": "Midi Fox",
+        "colour_name": "Snow",
+        "collection_name": "Midi Fox Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/H/NHAP121092_cf17.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NHAP121092",
+            "brand": "Scion",
+            "design": "Midi Fox",
+            "colour": "Snow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nhap121093": {
+      "record": {
+        "fabric_id": "sdg-nhap121093",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NHAP121093",
+        "brand_name": "Scion",
+        "design_name": "Midi Fox",
+        "colour_name": "Milkshake/Rose",
+        "collection_name": "Midi Fox Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/H/NHAP121093_7fcf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NHAP121093",
+            "brand": "Scion",
+            "design": "Midi Fox",
+            "colour": "Milkshake/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nhap121095": {
+      "record": {
+        "fabric_id": "sdg-nhap121095",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NHAP121095",
+        "brand_name": "Scion",
+        "design_name": "Midi Fox",
+        "colour_name": "Chai",
+        "collection_name": "Midi Fox Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/H/NHAP121095_993c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NHAP121095",
+            "brand": "Scion",
+            "design": "Midi Fox",
+            "colour": "Chai",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

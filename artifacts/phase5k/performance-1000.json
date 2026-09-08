@@ -1,0 +1,154 @@
+{
+  "publicRecords": 1000,
+  "publicPriceReady": 251,
+  "publicOrderReady": 0,
+  "canaryRecords": 215,
+  "canaryPriceBlocked": 215,
+  "sampleKnownAvailable": 0,
+  "pages": 42,
+  "maxRecordsPerPayload": 24,
+  "largestRawResponseBytes": 56479,
+  "commercialOrCredentialLeaks": 0,
+  "imageHost": "Shopify CDN",
+  "robots": "noindex, nofollow",
+  "filterSemantics": "PASS",
+  "testedCollection": "Lethaby Weaves",
+  "timings": {
+    "browse": {
+      "medianMs": 832,
+      "measurements": [
+        {
+          "ms": 850,
+          "bytes": 42466
+        },
+        {
+          "ms": 832,
+          "bytes": 42466
+        },
+        {
+          "ms": 664,
+          "bytes": 42466
+        }
+      ]
+    },
+    "search": {
+      "medianMs": 726,
+      "measurements": [
+        {
+          "ms": 726,
+          "bytes": 7835
+        },
+        {
+          "ms": 685,
+          "bytes": 7835
+        },
+        {
+          "ms": 861,
+          "bytes": 7835
+        }
+      ]
+    },
+    "brand": {
+      "medianMs": 877,
+      "measurements": [
+        {
+          "ms": 636,
+          "bytes": 42465
+        },
+        {
+          "ms": 1148,
+          "bytes": 42465
+        },
+        {
+          "ms": 877,
+          "bytes": 42465
+        }
+      ]
+    },
+    "colour": {
+      "medianMs": 702,
+      "measurements": [
+        {
+          "ms": 738,
+          "bytes": 55095
+        },
+        {
+          "ms": 702,
+          "bytes": 55095
+        },
+        {
+          "ms": 669,
+          "bytes": 55095
+        }
+      ]
+    },
+    "pattern": {
+      "medianMs": 705,
+      "measurements": [
+        {
+          "ms": 656,
+          "bytes": 56357
+        },
+        {
+          "ms": 705,
+          "bytes": 56357
+        },
+        {
+          "ms": 843,
+          "bytes": 56357
+        }
+      ]
+    },
+    "collection": {
+      "medianMs": 680,
+      "measurements": [
+        {
+          "ms": 680,
+          "bytes": 48460
+        },
+        {
+          "ms": 663,
+          "bytes": 48460
+        },
+        {
+          "ms": 740,
+          "bytes": 48460
+        }
+      ]
+    },
+    "detail": {
+      "medianMs": 483,
+      "measurements": [
+        {
+          "ms": 471,
+          "bytes": 1895
+        },
+        {
+          "ms": 511,
+          "bytes": 1895
+        },
+        {
+          "ms": 483,
+          "bytes": 1895
+        }
+      ]
+    },
+    "page2": {
+      "medianMs": 656,
+      "measurements": [
+        {
+          "ms": 673,
+          "bytes": 42445
+        },
+        {
+          "ms": 656,
+          "bytes": 42445
+        },
+        {
+          "ms": 648,
+          "bytes": 42445
+        }
+      ]
+    }
+  }
+}

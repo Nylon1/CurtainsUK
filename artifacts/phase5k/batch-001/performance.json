@@ -1,0 +1,154 @@
+{
+  "publicRecords": 1785,
+  "publicPriceReady": 251,
+  "publicOrderReady": 0,
+  "canaryRecords": 1000,
+  "canaryPriceBlocked": 1000,
+  "sampleKnownAvailable": 0,
+  "pages": 75,
+  "maxRecordsPerPayload": 24,
+  "largestRawResponseBytes": 57121,
+  "commercialOrCredentialLeaks": 0,
+  "imageHost": "Shopify CDN",
+  "robots": "noindex, nofollow",
+  "filterSemantics": "PASS",
+  "testedCollection": "Amara",
+  "timings": {
+    "browse": {
+      "medianMs": 689,
+      "measurements": [
+        {
+          "ms": 689,
+          "bytes": 43126
+        },
+        {
+          "ms": 689,
+          "bytes": 43126
+        },
+        {
+          "ms": 686,
+          "bytes": 43126
+        }
+      ]
+    },
+    "search": {
+      "medianMs": 739,
+      "measurements": [
+        {
+          "ms": 801,
+          "bytes": 8453
+        },
+        {
+          "ms": 739,
+          "bytes": 8453
+        },
+        {
+          "ms": 731,
+          "bytes": 8453
+        }
+      ]
+    },
+    "brand": {
+      "medianMs": 717,
+      "measurements": [
+        {
+          "ms": 699,
+          "bytes": 43125
+        },
+        {
+          "ms": 717,
+          "bytes": 43125
+        },
+        {
+          "ms": 878,
+          "bytes": 43125
+        }
+      ]
+    },
+    "colour": {
+      "medianMs": 699,
+      "measurements": [
+        {
+          "ms": 699,
+          "bytes": 55713
+        },
+        {
+          "ms": 702,
+          "bytes": 55713
+        },
+        {
+          "ms": 688,
+          "bytes": 55713
+        }
+      ]
+    },
+    "pattern": {
+      "medianMs": 706,
+      "measurements": [
+        {
+          "ms": 698,
+          "bytes": 56975
+        },
+        {
+          "ms": 890,
+          "bytes": 56975
+        },
+        {
+          "ms": 706,
+          "bytes": 56975
+        }
+      ]
+    },
+    "collection": {
+      "medianMs": 699,
+      "measurements": [
+        {
+          "ms": 709,
+          "bytes": 46565
+        },
+        {
+          "ms": 699,
+          "bytes": 46565
+        },
+        {
+          "ms": 690,
+          "bytes": 46565
+        }
+      ]
+    },
+    "detail": {
+      "medianMs": 479,
+      "measurements": [
+        {
+          "ms": 530,
+          "bytes": 1895
+        },
+        {
+          "ms": 479,
+          "bytes": 1895
+        },
+        {
+          "ms": 477,
+          "bytes": 1895
+        }
+      ]
+    },
+    "page2": {
+      "medianMs": 674,
+      "measurements": [
+        {
+          "ms": 671,
+          "bytes": 43077
+        },
+        {
+          "ms": 674,
+          "bytes": 43077
+        },
+        {
+          "ms": 889,
+          "bytes": 43077
+        }
+      ]
+    }
+  }
+}

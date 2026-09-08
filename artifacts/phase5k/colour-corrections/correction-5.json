@@ -1,0 +1,77 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "rows": [
+    {
+      "master_id": "sdg-hsgr131882",
+      "workbook_sku": "HSGR131882",
+      "portal_sku": "HSGR131882",
+      "brand": "Harlequin",
+      "design": "Vitto",
+      "portal_design": "Vitto",
+      "workbook_colour": "Flameneco",
+      "portal_colour": "Flamenco",
+      "expected_revision": "2026-09-07T20:33:48.131394+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-htef120974",
+      "workbook_sku": "HTEF120974",
+      "portal_sku": "HTEF120974",
+      "brand": "Harlequin",
+      "design": "Aureilia",
+      "portal_design": "Aureilia",
+      "workbook_colour": "Sandstone/Chalk",
+      "portal_colour": "Sandstone Chalk",
+      "expected_revision": "2026-09-07T20:33:48.573332+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-htef121008",
+      "workbook_sku": "HTEF121008",
+      "portal_sku": "HTEF121008",
+      "brand": "Harlequin",
+      "design": "Dance of Adornment",
+      "portal_design": "Dance Of Adornment",
+      "workbook_colour": "Wilderness/Nectar",
+      "portal_colour": "Wilderness/ Nectar/ Pomegranate",
+      "expected_revision": "2026-09-07T20:33:48.573332+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-hwo03224",
+      "workbook_sku": "HWO03224",
+      "portal_sku": "HWO03224",
+      "brand": "Harlequin",
+      "design": "What A Hoot",
+      "portal_design": "What A Hoot",
+      "workbook_colour": "Pink/Aquamarine/Natural",
+      "portal_colour": "Pink/Aquamarine/Lime",
+      "expected_revision": "2026-09-07T20:33:48.573332+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-hwo03229",
+      "workbook_sku": "HWO03229",
+      "portal_sku": "HWO03229",
+      "brand": "Harlequin",
+      "design": "Jolly Jurassic",
+      "portal_design": "Jolly Jurassic",
+      "workbook_colour": "Aqua Tangerine Apple And Natural",
+      "portal_colour": "Aqua/Tangerine/Apple",
+      "expected_revision": "2026-09-07T20:33:48.573332+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-hwo03232",
+      "workbook_sku": "HWO03232",
+      "portal_sku": "HWO03232",
+      "brand": "Harlequin",
+      "design": "Go Go Retro",
+      "portal_design": "Go Go Retro",
+      "workbook_colour": "Sky Blue/Lemon/Natural",
+      "portal_colour": "Strawberry/Blue/Lemon",
+      "expected_revision": "2026-09-07T20:33:48.573332+00:00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

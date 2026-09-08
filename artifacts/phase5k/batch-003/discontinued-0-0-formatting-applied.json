@@ -1,0 +1,645 @@
+[
+  {
+    "fabricId": "sdg-f0847-03",
+    "sku": "F0847/03",
+    "observedTitle": "Vienna Ash",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.432+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-08",
+    "sku": "F0847/08",
+    "observedTitle": "Vienna Cadet",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.562+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-09",
+    "sku": "F0847/09",
+    "observedTitle": "Vienna Charcoal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.641+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-11",
+    "sku": "F0847/11",
+    "observedTitle": "Vienna Citron",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.695+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-12",
+    "sku": "F0847/12",
+    "observedTitle": "Vienna Claret",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.744+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-17",
+    "sku": "F0847/17",
+    "observedTitle": "Vienna Dove",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.794+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-27",
+    "sku": "F0847/27",
+    "observedTitle": "Vienna Orchid",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.843+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-31",
+    "sku": "F0847/31",
+    "observedTitle": "Vienna Spice",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.899+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0847-35",
+    "sku": "F0847/35",
+    "observedTitle": "Vienna Taupe",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:00.95+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0965-03",
+    "sku": "F0965/03",
+    "observedTitle": "Biarritz Aubergine",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.003+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0965-05",
+    "sku": "F0965/05",
+    "observedTitle": "Biarritz Blush",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.057+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0965-20",
+    "sku": "F0965/20",
+    "observedTitle": "Biarritz Heather",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.106+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0965-35",
+    "sku": "F0965/35",
+    "observedTitle": "Biarritz Paprika",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.153+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0965-38",
+    "sku": "F0965/38",
+    "observedTitle": "Biarritz Raspberry",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.205+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0965-39",
+    "sku": "F0965/39",
+    "observedTitle": "Biarritz Rose",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.252+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0965-44",
+    "sku": "F0965/44",
+    "observedTitle": "Biarritz Slate",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.301+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "F0991/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F0995/05",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F0996/03",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F0996/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F0993/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-f0371-02",
+    "sku": "F0371/02",
+    "observedTitle": "Karina Aubergine",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.354+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-03",
+    "sku": "F0371/03",
+    "observedTitle": "Karina Cream",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.409+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-08",
+    "sku": "F0371/08",
+    "observedTitle": "Karina Celadon",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.458+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-09",
+    "sku": "F0371/09",
+    "observedTitle": "Karina Charcoal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.508+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-12",
+    "sku": "F0371/12",
+    "observedTitle": "Karina Damson",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.556+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-13",
+    "sku": "F0371/13",
+    "observedTitle": "Karina Ebony",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.608+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-14",
+    "sku": "F0371/14",
+    "observedTitle": "Karina Espresso",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.664+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-17",
+    "sku": "F0371/17",
+    "observedTitle": "Karina Gunmetal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.717+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-26",
+    "sku": "F0371/26",
+    "observedTitle": "Karina Port",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.766+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0371-29",
+    "sku": "F0371/29",
+    "observedTitle": "Karina Steel",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.816+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0595-04",
+    "sku": "F0595/04",
+    "observedTitle": "Abbey Natural",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.318+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0595-06",
+    "sku": "F0595/06",
+    "observedTitle": "Abbey Smoke",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.369+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0596-02",
+    "sku": "F0596/02",
+    "observedTitle": "Bowland Heather",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.422+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0596-03",
+    "sku": "F0596/03",
+    "observedTitle": "Bowland Mineral",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.468+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0596-04",
+    "sku": "F0596/04",
+    "observedTitle": "Bowland Natural",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.537+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0596-06",
+    "sku": "F0596/06",
+    "observedTitle": "Bowland Spice",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.606+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0597-01",
+    "sku": "F0597/01",
+    "observedTitle": "Chatburn Citrus",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.654+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0597-02",
+    "sku": "F0597/02",
+    "observedTitle": "Chatburn Heather",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.703+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0583-03",
+    "sku": "F0583/03",
+    "observedTitle": "Davina Duckegg",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.75+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0598-01",
+    "sku": "F0598/01",
+    "observedTitle": "Downham Citrus",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.801+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0598-02",
+    "sku": "F0598/02",
+    "observedTitle": "Downham Heather",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.853+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0598-03",
+    "sku": "F0598/03",
+    "observedTitle": "Downham Mineral",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.9+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0598-04",
+    "sku": "F0598/04",
+    "observedTitle": "Downham Natural",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:04.951+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0598-05",
+    "sku": "F0598/05",
+    "observedTitle": "Downham Raspberry",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:05.008+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "F0621/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F0621/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-f0584-04",
+    "sku": "F0584/04",
+    "observedTitle": "Fairmont Natural",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:05.057+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "results": {
+    "sdg-f1062-15": {
+      "record": {
+        "fabric_id": "sdg-f1062-15",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1062/15",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Spectrum",
+        "colour_name": "Fuchsia",
+        "collection_name": "Spectrum"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1062_15_b5d7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1062/15",
+            "brand": "Clarke & Clarke",
+            "design": "Spectrum",
+            "colour": "Fuchsia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1423-08": {
+      "record": {
+        "fabric_id": "sdg-f1423-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1423/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Maculo",
+        "colour_name": "Heather",
+        "collection_name": "Purus"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1423_08_5552.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1423/08",
+            "brand": "Clarke & Clarke",
+            "design": "Maculo",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

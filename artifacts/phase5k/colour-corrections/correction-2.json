@@ -1,0 +1,29 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "rows": [
+    {
+      "master_id": "sdg-f1062-15",
+      "workbook_sku": "F1062/15",
+      "portal_sku": "F1062/15",
+      "brand": "Clarke & Clarke",
+      "design": "Spectrum",
+      "portal_design": "Spectrum",
+      "workbook_colour": "Fuchia",
+      "portal_colour": "Fuchsia",
+      "expected_revision": "2026-09-07T20:33:39.686303+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-f1423-08",
+      "workbook_sku": "F1423/08",
+      "portal_sku": "F1423/08",
+      "brand": "Clarke & Clarke",
+      "design": "Maculo",
+      "portal_design": "Maculo",
+      "workbook_colour": "Mheather",
+      "portal_colour": "Heather",
+      "expected_revision": "2026-09-07T20:33:41.683685+00:00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

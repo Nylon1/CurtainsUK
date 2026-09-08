@@ -1,0 +1,304 @@
+{
+  "results": {
+    "sdg-nmel120049": {
+      "record": {
+        "fabric_id": "sdg-nmel120049",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL120049",
+        "brand_name": "Scion",
+        "design_name": "Berry Tree",
+        "colour_name": "Peacock/ Powder Blue/ Lime/ Neutral",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL120049_30ba.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL120049",
+            "brand": "Scion",
+            "design": "Berry Tree",
+            "colour": "Peacock/ Powder Blue/ Lime/ Neutral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel120051": {
+      "record": {
+        "fabric_id": "sdg-nmel120051",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL120051",
+        "brand_name": "Scion",
+        "design_name": "Berry Tree",
+        "colour_name": "Emerald/Lime/Chalk",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL120051_6961.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL120051",
+            "brand": "Scion",
+            "design": "Berry Tree",
+            "colour": "Emerald/Lime/Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel120052": {
+      "record": {
+        "fabric_id": "sdg-nmel120052",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL120052",
+        "brand_name": "Scion",
+        "design_name": "Berry Tree",
+        "colour_name": "Neutral/Tangerine/Powder Blue/Lemon",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL120052_f0e7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL120052",
+            "brand": "Scion",
+            "design": "Berry Tree",
+            "colour": "Neutral/Tangerine/Powder Blue/Lemon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel120053": {
+      "record": {
+        "fabric_id": "sdg-nmel120053",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL120053",
+        "brand_name": "Scion",
+        "design_name": "Berry Tree",
+        "colour_name": "Mink/Plum/Berry/Lime",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL120053_7006.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL120053",
+            "brand": "Scion",
+            "design": "Berry Tree",
+            "colour": "Mink/Plum/Berry/Lime",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel120070": {
+      "record": {
+        "fabric_id": "sdg-nmel120070",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL120070",
+        "brand_name": "Scion",
+        "design_name": "Mr Fox",
+        "colour_name": "Sunflower/Gull/Chalk",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL120070_4110.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL120070",
+            "brand": "Scion",
+            "design": "Mr Fox",
+            "colour": "Sunflower/Gull/Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel120071": {
+      "record": {
+        "fabric_id": "sdg-nmel120071",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL120071",
+        "brand_name": "Scion",
+        "design_name": "Mr Fox",
+        "colour_name": "Neutral/Paprika",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL120071_49dd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL120071",
+            "brand": "Scion",
+            "design": "Mr Fox",
+            "colour": "Neutral/Paprika",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel120072": {
+      "record": {
+        "fabric_id": "sdg-nmel120072",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL120072",
+        "brand_name": "Scion",
+        "design_name": "Mr Fox",
+        "colour_name": "Sky/Tangerine/Chalk",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL120072_2765.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL120072",
+            "brand": "Scion",
+            "design": "Mr Fox",
+            "colour": "Sky/Tangerine/Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel130352": {
+      "record": {
+        "fabric_id": "sdg-nmel130352",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL130352",
+        "brand_name": "Scion",
+        "design_name": "Athyrium",
+        "colour_name": "Apple/Pebble",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL130352_5955.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL130352",
+            "brand": "Scion",
+            "design": "Athyrium",
+            "colour": "Apple/Pebble",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel130353": {
+      "record": {
+        "fabric_id": "sdg-nmel130353",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL130353",
+        "brand_name": "Scion",
+        "design_name": "Athyrium",
+        "colour_name": "Chalk/Pewter/Biscuit",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL130353_3136.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL130353",
+            "brand": "Scion",
+            "design": "Athyrium",
+            "colour": "Chalk/Pewter/Biscuit",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-nmel130355": {
+      "record": {
+        "fabric_id": "sdg-nmel130355",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "NMEL130355",
+        "brand_name": "Scion",
+        "design_name": "Athyrium",
+        "colour_name": "Plum/Fuchsia/Linen/Lime",
+        "collection_name": "Esala"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/N/M/NMEL130355_a4d8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "NMEL130355",
+            "brand": "Scion",
+            "design": "Athyrium",
+            "colour": "Plum/Fuchsia/Linen/Lime",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

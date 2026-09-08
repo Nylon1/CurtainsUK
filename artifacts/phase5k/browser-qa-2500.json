@@ -1,0 +1,32 @@
+{
+  "publicRecords": 2500,
+  "themeId": "182264234363",
+  "unpublishedPreviewObserved": true,
+  "desktop": {
+    "brandFilter": "Sanderson",
+    "brandResults": 700,
+    "keyword": "Amanpuri",
+    "keywordResults": 4,
+    "detailImage": [
+      1366,
+      1366
+    ]
+  },
+  "mobile": {
+    "cssViewport": [
+      390,
+      844
+    ],
+    "horizontalOverflow": false,
+    "visibleCheckoutActions": 0
+  },
+  "handoff": {
+    "fabricId": "sdg-dcouam203",
+    "window": "bay-window",
+    "preserved": true
+  },
+  "sampleState": "UNKNOWN_DISABLED",
+  "priceState": "VERIFICATION_REQUIRED",
+  "draftOrdersCreated": 0,
+  "paymentsEnabled": false
+}

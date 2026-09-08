@@ -1,0 +1,37 @@
+{
+  "observedDate": "2026-09-08",
+  "brand": "Scion",
+  "supplierLabel": "Discontinued",
+  "productType": "Fabric",
+  "source": "SDG authenticated fabric listing; exact supplier SKU status",
+  "rows": [
+    [
+      "NMEL120050",
+      "Berry Tree Cream/Storm/Hessian"
+    ],
+    [
+      "NMEL120055",
+      "Melinki One 120055 Celandine"
+    ],
+    [
+      "NMEL120062",
+      "Melinki One 120062 Lunaria"
+    ],
+    [
+      "NMEL120064",
+      "Melinki One 120064 Lunaria"
+    ],
+    [
+      "NPLO131947",
+      "Plains One Plus 1 Navy"
+    ],
+    [
+      "NSCK131655",
+      "Mr Fox Tangerine/Linen"
+    ],
+    [
+      "NSCK131657",
+      "Up Periscope Postbox Red/Denim/Pea"
+    ]
+  ]
+}

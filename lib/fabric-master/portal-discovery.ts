@@ -14,6 +14,32 @@ export function orderedDiscoveryRoutes(supplier: string): readonly DiscoveryRout
 export function normalisePortalDisplay(value: string) {
   return value.normalize("NFKC").trim().replace(/\s+/g," ").replace(/[’'`]s\b/gi,"s").replace(/\s*\/\s*/g,"/").toLowerCase();
 }
+/** Remove only the verified row's redundant product code, never name tokens. */
+export function normalisePortalSkuTitle(value:string,exactSku:string) {
+  const code=exactSku.toLowerCase(), numeric=code.match(/\d{6}$/)?.[0];
+  return normalisePortalDisplay(value.split(/\s+/).filter(token=>{
+    const t=token.toLowerCase(); return t!==code && (!numeric || t!==numeric);
+  }).join(" "));
+}
+/** Listing display formatting only; callers must independently verify exact SKU/brand.
+ * Never sorts colour tokens, drops colour words, or tolerates spelling differences.
+ */
+export function portalTitleMatchesIdentity(design:string,colour:string,title:string,exactSku:string) {
+  const display=(value:string)=>normalisePortalSkuTitle(value,exactSku).replace(/\s*&\s*/g," and ").replace(/\s+/g," ");
+  const actual=display(title), d=display(design), c=display(colour);
+  if(actual===`${d} ${c}`) return true;
+  // Workbooks sometimes repeat the end of the design at the start of colour.
+  const words=d.split(" "), colours=c.split(" ");
+  for(let count=1;count<=Math.min(words.length,colours.length);count++) {
+    if(words.slice(-count).join(" ")===colours.slice(0,count).join(" ") && actual===[...words,...colours.slice(count)].join(" ")) return true;
+  }
+  // Supplier listings move a fabric-format suffix after the exact colour.
+  const suffix=d.match(/^(.*) \(?(velvet|weave|embroidery|print|sheer)\)?$/);
+  // These format labels are also omitted in observed fabric listings. Exact
+  // SKU, image filename, brand, base design and the full colour still agree.
+  if(suffix && (actual===`${suffix[1]} ${c}` || actual===`${suffix[1]} ${c} ${suffix[2]}` || actual===`${suffix[1]} ${c} (${suffix[2]})`))return true;
+  return ["velvet","weave","embroidery","print","sheer","jacquard"].some(format=>actual===`${d} ${c} ${format}` || actual===`${d} ${c} (${format})`);
+}
 export type MediaScope = "COLOURWAY" | "DESIGN" | "COLLECTION";
 export interface DiscoveryIdentity {
   supplier: string; fabricId: string; sku: string; brand: string; design: string; colour: string; collection: string;

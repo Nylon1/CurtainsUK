@@ -30,6 +30,9 @@ for page in range(1, first['pages']+1):
     assert len(data['fabrics']) <= 24
     records.extend(data['fabrics']); largest=max(largest,metric['bytes'])
 assert len(records) == len({r['id'] for r in records}) == a.expected_total
+for r in records:
+    assert r['images'] and all(i['url'].startswith('https://cdn.shopify.com/') for i in r['images'])
+    assert r['description'].strip() and r['metadata']['robots'] == 'noindex, nofollow'
 canary = [r for r in records if r['id'] in ids]
 assert len(canary) == len(ids), (len(canary),len(ids))
 for r in canary:
@@ -47,6 +50,6 @@ for name, params in cases.items():
             assert all(checks[name](r) for r in data['fabrics']), name
             assert data['total']==sum(checks[name](r) for r in records), name
     timings[name]={'medianMs':statistics.median(x['ms'] for x in observations),'measurements':observations}
-report={'publicRecords':len(records),'publicPriceReady':sum(r['configurable'] is True for r in records),'publicOrderReady':sum(r['orderReady'] is True for r in records),'canaryRecords':len(canary),'canaryPriceBlocked':len(canary),'sampleKnownAvailable':sum(r['sampleAvailable'] is True for r in canary),'pages':first['pages'],'maxRecordsPerPayload':24,'largestRawResponseBytes':largest,'commercialOrCredentialLeaks':0,'imageHost':'Shopify CDN','robots':'noindex, nofollow','filterSemantics':'PASS','testedCollection':canary[0]['collection'],'timings':timings}
+report={'publicRecords':len(records),'publicImageReady':sum(bool(r['images']) for r in records),'publicDescriptionReady':sum(bool(r['description'].strip()) for r in records),'publicPriceReady':sum(r['configurable'] is True for r in records),'publicOrderReady':sum(r['orderReady'] is True for r in records),'canaryRecords':len(canary),'canaryPriceBlocked':len(canary),'sampleKnownAvailable':sum(r['sampleAvailable'] is True for r in canary),'pages':first['pages'],'maxRecordsPerPayload':24,'largestRawResponseBytes':largest,'commercialOrCredentialLeaks':0,'imageHost':'Shopify CDN','robots':'noindex, nofollow','filterSemantics':'PASS','testedCollection':canary[0]['collection'],'timings':timings}
 Path(a.report).write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(report))

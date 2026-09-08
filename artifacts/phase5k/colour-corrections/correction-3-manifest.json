@@ -1,0 +1,64 @@
+{
+  "results": {
+    "sdg-f1276-02": {
+      "record": {
+        "fabric_id": "sdg-f1276-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1276/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Fino",
+        "colour_name": "Ivory/Rose Gold",
+        "collection_name": "Lusso Sheers"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1276_02_a4bc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1276/02",
+            "brand": "Clarke & Clarke",
+            "design": "Fino",
+            "colour": "Ivory/Rose Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1542-03": {
+      "record": {
+        "fabric_id": "sdg-f1542-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1542/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Lucienne",
+        "colour_name": "Raspberry/Linen",
+        "collection_name": "Vintage"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1542_03_e2de.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1542/03",
+            "brand": "Clarke & Clarke",
+            "design": "Lucienne",
+            "colour": "Raspberry/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

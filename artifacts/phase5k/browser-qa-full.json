@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "catalogueTotal": 6328,
+  "desktop": {
+    "viewport": [
+      1229,
+      539
+    ],
+    "documentWidth": 1216,
+    "cardsPerPage": 24,
+    "initialImagesLoaded": 6,
+    "initialImagesDeferred": 18,
+    "allImagesLazy": true,
+    "brandFilterScion": 227,
+    "searchScionAikyo": 4,
+    "scionBlueFilter": 0
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "documentWidth": 378,
+    "detail": "sdg-njap132735",
+    "imageNaturalWidth": 1366,
+    "imageLoaded": true,
+    "canonicalHandoff": "/pages/curtain-visualiser?fabric=sdg-njap132735&window=bay-window",
+    "unknownSampleDisabled": true,
+    "description": "Factual identity, composition and repeat; no added performance claims.",
+    "pagination": {
+      "pageOneTotal": 6328,
+      "totalPages": 264,
+      "nextPage": 2,
+      "pageTwoCards": 24,
+      "firstPageTwoFabric": "Acies \u2014 Peacock",
+      "documentWidth": 378
+    }
+  },
+  "savedSampleIntentPreserved": true,
+  "dawnDraftBadge": true,
+  "actualHeapMemoryNotInstrumented": true,
+  "stabilityEvidence": "Bounded DOM, deferred image loading, repeated filtering and detail navigation remained responsive.",
+  "viewportOverrideCleared": true
+}

@@ -1,0 +1,53 @@
+{
+  "databaseWrites": 0,
+  "files": [
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-0.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-0-observed.json",
+      "rows": 10,
+      "brand": "Sanderson"
+    },
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-1.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-1-observed.json",
+      "rows": 3,
+      "brand": "Morris & Co."
+    },
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-2.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-2-observed.json",
+      "rows": 2,
+      "brand": "Clarke & Clarke"
+    },
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-3.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-3-observed.json",
+      "rows": 2,
+      "brand": "Clarke & Clarke"
+    },
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-4.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-4-observed.json",
+      "rows": 48,
+      "brand": "Harlequin"
+    },
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-5.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-5-observed.json",
+      "rows": 6,
+      "brand": "Harlequin"
+    },
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-6.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-6-observed.json",
+      "rows": 4,
+      "brand": "Harlequin"
+    },
+    {
+      "corrections": "artifacts/phase5k/colour-corrections/correction-7.json",
+      "input": "artifacts/phase5k/colour-corrections/correction-7-observed.json",
+      "rows": 10,
+      "brand": "Scion"
+    }
+  ]
+}

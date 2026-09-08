@@ -1,0 +1,48 @@
+{
+  "observed": 3,
+  "exactIdentityMatches": 3,
+  "withheld": [],
+  "databaseWrites": 0,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-nhap121092",
+      "workbook_sku": "NHAP121092",
+      "portal_sku": "NHAP121092",
+      "master_design": "Midi Fox",
+      "master_colour": "Snow",
+      "portal_title": "Midi Fox Snow",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:13:08.372Z"
+    },
+    {
+      "master_id": "sdg-nhap121093",
+      "workbook_sku": "NHAP121093",
+      "portal_sku": "NHAP121093",
+      "master_design": "Midi Fox",
+      "master_colour": "Milkshake/Rose",
+      "portal_title": "Midi Fox Milkshake/Rose",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:13:08.372Z"
+    },
+    {
+      "master_id": "sdg-nhap121095",
+      "workbook_sku": "NHAP121095",
+      "portal_sku": "NHAP121095",
+      "master_design": "Midi Fox",
+      "master_colour": "Chai",
+      "portal_title": "Midi Fox Chai",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:13:08.372Z"
+    }
+  ]
+}

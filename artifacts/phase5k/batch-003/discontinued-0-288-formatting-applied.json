@@ -1,0 +1,403 @@
+[
+  {
+    "fabricId": "sdg-f1508-01",
+    "sku": "F1508/01",
+    "observedTitle": "Sicilian Lemon",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.023+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1510-01",
+    "sku": "F1510/01",
+    "observedTitle": "Sorento Ebony Velvet",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1510-02",
+    "sku": "F1510/02",
+    "observedTitle": "Sorento Teal Velvet",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:42.144876+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1509-01",
+    "sku": "F1509/01",
+    "observedTitle": "Sorento Autumn",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.087+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1509-02",
+    "sku": "F1509/02",
+    "observedTitle": "Sorento Blush",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.139+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1509-03",
+    "sku": "F1509/03",
+    "observedTitle": "Sorento Mineral",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.196+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "F1564/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1564/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1564/03",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1564/06",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1564/07",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1564/08",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1564/09",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1565/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1565/03",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1565/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1565/06",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1565/08",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/03",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/04",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/05",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/06",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/07",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/08",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1566/09",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1585/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1586/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1587/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1588/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1590/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1590/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1592/01",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "F1592/02",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-f0412-03",
+    "sku": "F0412/03",
+    "observedTitle": "Cecilia Mocha",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.863+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0412-06",
+    "sku": "F0412/06",
+    "observedTitle": "Cecilia Taupe",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.913+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0413-03",
+    "sku": "F0413/03",
+    "observedTitle": "Corina Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:01.961+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0413-06",
+    "sku": "F0413/06",
+    "observedTitle": "Corina Pebble",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:02.014+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0414-04",
+    "sku": "F0414/04",
+    "observedTitle": "Diva Mocha",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:02.064+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f0417-02",
+    "sku": "F0417/02",
+    "observedTitle": "Olbia Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:23:02.13+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1126-03",
+    "sku": "F1126/03",
+    "observedTitle": "Axis Duckegg",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.275+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1127-01",
+    "sku": "F1127/01",
+    "observedTitle": "Comet Charcoal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.322+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1127-03",
+    "sku": "F1127/03",
+    "observedTitle": "Comet Denim",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.381+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1142-05",
+    "sku": "F1142/05",
+    "observedTitle": "Impulse Midnight",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.443+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1142-06",
+    "sku": "F1142/06",
+    "observedTitle": "Impulse Mocha",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.497+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1142-07",
+    "sku": "F1142/07",
+    "observedTitle": "Impulse Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.548+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-f1142-09",
+    "sku": "F1142/09",
+    "observedTitle": "Impulse Teal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:36:54.599+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

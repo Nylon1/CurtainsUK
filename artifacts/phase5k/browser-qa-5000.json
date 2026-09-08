@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "total": 5000,
+  "desktop": {
+    "cards": 24,
+    "initialLoadedImages": 6,
+    "lazyUnloadedImages": 18,
+    "allLazy": true,
+    "HarlequinFilterTotal": 1265,
+    "AbellaSearchTotal": 1
+  },
+  "mobile": {
+    "cssWidth": 390,
+    "cssHeight": 844,
+    "documentWidth": 378,
+    "horizontalOverflow": false,
+    "imageNaturalWidth": 1366
+  },
+  "detail": {
+    "fabricId": "sdg-hwhi131564",
+    "brand": "Harlequin",
+    "design": "Abella",
+    "colour": "Powder Blue",
+    "collection": "Purity Fabric Edit",
+    "shopifyCdnImage": true,
+    "sampleUnknownDisabled": true
+  },
+  "handoff": {
+    "window": "bay-window",
+    "fabric": "sdg-hwhi131564",
+    "dropCm": 220,
+    "sectionsCm": [
+      80,
+      180,
+      80
+    ],
+    "heading": "Wave",
+    "linings": "Blackout lining",
+    "pair": true,
+    "selectedFabricPreserved": true,
+    "priceGate": "This fabric price must be confirmed before it can be configured",
+    "customerUploadRequired": false
+  },
+  "savedSampleIntentPreserved": true,
+  "theme": "Dawn draft 182264234363",
+  "checkoutDisabled": true
+}

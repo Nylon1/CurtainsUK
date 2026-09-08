@@ -1,0 +1,5358 @@
+{
+  "observedUnique": 8352,
+  "exactMatches": 5941,
+  "alreadyMapped": 5941,
+  "reservedInEarlierBatches": 5543,
+  "pendingVerified": 0,
+  "selected": 0,
+  "requestedBatchSize": 2500,
+  "discontinuedInputs": [
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-0.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-48.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-96.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-144.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-192.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-240.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-288.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-336.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-384.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-432.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-480.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-0-528.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-0.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-48.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-96.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-144.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-192.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-240.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-288.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-336.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-4-384.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-7-0.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-9-0.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-12-0.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-12-48.json",
+    "artifacts\\phase5k\\batch-final-audit\\discontinued-12-96.json"
+  ],
+  "groups": [
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Limited Stock",
+      "observed": 174,
+      "matched": 152,
+      "withheld": [
+        {
+          "sku": "F0624/05/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/21",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1608/23",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1252/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 190,
+      "withheld": [
+        {
+          "sku": "F1749/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1749/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1749/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1749/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1749/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1752/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1752/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1752/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1753/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1753/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1757/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1759/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1759/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1759/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1764/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1764/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1637/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1637/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1638/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1638/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1638/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1638/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1639/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1639/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1639/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1639/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1641/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1641/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1641/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1641/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1643/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1643/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1645/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1645/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1650/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1650/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1650/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1648/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1648/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1648/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1648/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1701/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1701/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1701/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1702/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1702/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 163,
+      "withheld": [
+        {
+          "sku": "F1702/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1703/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1703/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1703/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1703/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1704/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1704/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1704/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1705/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1705/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1705/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1706/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1706/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1706/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1706/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1726/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1726/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1726/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0967/21",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0968/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0966/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1035/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1035/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1035/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1040/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0453/11",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1111/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1111/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1111/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1111/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1192/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1192/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1192/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1211/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1112/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1112/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1112/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1112/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1164/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1165/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1189/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1189/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 136,
+      "withheld": [
+        {
+          "sku": "F1189/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1167/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1191/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1191/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1191/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1169/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1171/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1172/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1172/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1172/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1212/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1113/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1113/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1113/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1113/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1173/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1174/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1193/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1193/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1193/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1213/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1114/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1114/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1114/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1114/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1176/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1196/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1196/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1196/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1307/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1308/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1310/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1311/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0370/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0293/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0299/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1781/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1781/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1781/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1781/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0408/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0408/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0408/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0409/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0519/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0519/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0519/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0521/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0521/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0521/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0620/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0620/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0622/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0636/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0686/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0686/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0794/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0794/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "ZF0722/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 179,
+      "withheld": [
+        {
+          "sku": "F0785/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0524/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0841/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1183/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1183/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1206/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1107/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1107/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1107/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1107/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1107/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1207/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1108/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1108/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1108/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1108/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1184/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1184/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1184/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1146/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1147/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1148/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1150/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1149/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1149/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1151/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1186/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1186/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1186/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1208/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1109/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1109/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1109/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1109/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1109/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1152/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1153/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1154/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1156/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1159/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1159/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1159/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1158/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1158/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1158/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1161/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1163/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1209/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1110/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1110/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1110/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1110/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1210/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1111/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1111/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1111/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 195,
+      "withheld": [
+        {
+          "sku": "F1295/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1295/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1296/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1667/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1668/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1669/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1669/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1669/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1669/04",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1669/05",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1669/06",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/04",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/05",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/06",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/07",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1673/08",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1675/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1182/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1182/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1182/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 186,
+      "withheld": [
+        {
+          "sku": "F1097/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1654/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1654/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1654/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1745/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1751/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1755/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1474/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1474/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1474/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1475/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1476/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1477/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1477/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1477/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1478/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1478/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1478/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1479/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1479/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1479/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1479/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1479/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1480/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1481/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1481/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1481/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1515/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1515/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1515/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1515/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1517/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1520/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1520/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1520/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1520/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1522/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1522/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1644/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1644/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1644/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1644/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1646/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1646/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1646/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1649/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1649/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1649/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1649/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1649/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 215,
+      "withheld": [
+        {
+          "sku": "F1373/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1373/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1373/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1727/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1727/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1728/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1728/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1731/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1731/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1732/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1732/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1733/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1733/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1748/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 152,
+      "withheld": [
+        {
+          "sku": "F1779/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1782/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1782/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1782/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1783/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1783/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1756/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1756/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1756/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1758/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1758/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1785/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1785/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1785/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1785/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1760/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1760/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1760/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1763/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1513/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1513/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1513/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1514/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1514/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1514/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1514/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1516/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1532/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1532/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1518/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1518/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1519/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1519/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1519/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1534/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1534/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1534/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1536/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1536/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1521/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1538/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1538/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1538/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1538/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1538/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1557/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1557/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1559/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1559/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1558/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1558/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1558/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1560/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1560/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1560/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1561/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1539/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1539/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1539/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1539/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1539/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1563/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1563/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1562/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1562/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1562/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1562/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1562/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1636/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1636/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1636/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1636/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1637/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1637/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 169,
+      "withheld": [
+        {
+          "sku": "F0884/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F0895/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F0902/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F0907/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F0911/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F0912/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1097/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/21",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/22",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/23",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/24",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/25",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/26",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/27",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/28",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/29",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/30",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/31",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/32",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/33",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/34",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/35",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/36",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/37",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/38",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/39",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/40",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/41",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/42",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/43",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/44",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/45",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/46",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/47",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/48",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/49",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/50",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/51",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/52",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/53",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/54",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/55",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/56",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/57",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/58",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/59",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/60",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/61",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/62",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/63",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/64",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/65",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1097/66",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/21",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/22",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/23",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/24",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/25",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 202,
+      "withheld": [
+        {
+          "sku": "F1231/26",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1231/27",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/21",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/22",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/23",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/24",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/25",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/26",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/27",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/28",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/29",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/30",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/31",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/32",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/33",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/34",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/35",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/36",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/37",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/38",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/39",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/40",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/41",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1345/42",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1459/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1459/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1459/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1458/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 202,
+      "withheld": [
+        {
+          "sku": "F1572/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/21",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/22",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/23",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1572/24",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1615/04",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1642/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/14",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1642/21",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1647/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1647/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 250,
+      "matched": 217,
+      "withheld": [
+        {
+          "sku": "F1750/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1750/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1766/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1766/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1766/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1766/04",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1769/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1769/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1769/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1769/04",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1767/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1767/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1767/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1767/04",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1768/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1768/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1768/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1771/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1771/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1754/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1772/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1772/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1772/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1761/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1761/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1773/01",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1773/02",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1773/03",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1762/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1762/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1762/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1762/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1488/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live",
+      "observed": 132,
+      "matched": 85,
+      "withheld": [
+        {
+          "sku": "F1488/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1482/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1482/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1490/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1490/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1483/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1489/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1489/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1489/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1491/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1484/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1484/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1492/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1492/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1485/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1493/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1494/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1494/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1486/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/03",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/04",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/05",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/07",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/08",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/09",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/10",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/11",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/12",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/13",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/15",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/16",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/17",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/18",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/19",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1473/20",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1495/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1495/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1487/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1487/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1513/01",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1513/02",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0453/38",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F0453/51",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F0453/64",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live (Special Order)",
+      "observed": 250,
+      "matched": 0,
+      "withheld": [
+        {
+          "sku": "F1291/03/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1310/06/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1681/01/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1681/02/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1681/03/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1681/04/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1677/01/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1677/02/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1677/03/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1677/04/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1677/05/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1680/01/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1680/02/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1680/03/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1680/04/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1678/01/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1678/02/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1678/03/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1678/04/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1678/05/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1678/06/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1679/01/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1679/02/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1679/03/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1679/04/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1679/05/PVM",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1702/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1725/04/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1726/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1726/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1726/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1727/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1727/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1728/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1728/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/04/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/05/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1729/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/04/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/05/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1730/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1731/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1731/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1732/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1732/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1733/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1733/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1733/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1677/05/PVC",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1680/02/PVC",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "F1778/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1778/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/04/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1779/05/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1780/04/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1783/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1783/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1783/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1783/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1784/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/02/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/03/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1786/04/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/16/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/06/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/07/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/08/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/09/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/10/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/12/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0063/13/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0370/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0293/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0299/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0408/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0408/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0408/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0409/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0409/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0620/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0620/01/PVM",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0620/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0686/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0686/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0794/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0794/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "ZF0722/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0519/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0519/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0519/06/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0636/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0521/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0521/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0521/05/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0785/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0524/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F0841/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1035/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1035/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1035/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1040/10/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1182/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1182/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1182/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1183/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1183/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1184/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1184/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1184/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1147/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1151/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1185/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1186/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1186/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1186/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1153/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1156/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/05/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/06/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1187/07/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1159/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1161/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1188/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1163/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1192/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1192/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1164/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1165/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1189/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1189/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1189/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1190/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1167/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1191/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1191/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1191/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1169/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1171/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1172/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1174/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1193/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1193/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1193/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1194/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1195/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1176/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1196/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1196/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1196/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1197/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1373/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1373/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1373/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1375/05/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1531/05/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1532/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1532/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1533/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1534/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1534/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1534/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1535/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1536/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1536/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1638/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1638/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1638/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1639/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1639/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1640/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1706/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1706/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1699/05/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/04/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1700/05/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1701/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "status": "Live (Special Order)",
+      "observed": 7,
+      "matched": 0,
+      "withheld": [
+        {
+          "sku": "F1701/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1701/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1704/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1704/02/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1704/03/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1705/01/PVC",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "F1374/06",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Harlequin",
+      "status": "Limited Stock",
+      "observed": 148,
+      "matched": 139,
+      "withheld": [
+        {
+          "sku": "HLUT132592",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HOT04419",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOV130581",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOV130582",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOV130555",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOV130558",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130667",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOD130697",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HVER131292",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Harlequin",
+      "status": "Live",
+      "observed": 250,
+      "matched": 222,
+      "withheld": [
+        {
+          "sku": "HLUT132590",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HLUT132594",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HWO03263",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HWO03245",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HWO03248",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HWO03250",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HOT04409",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HOT04411",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HOT04416",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOV130587",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOV130588",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOV130590",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOD130734",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130668",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130670",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130672",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130673",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130674",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130633",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130684",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130690",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOU130680",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOD130695",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOD130696",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HMOD130698",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HKID130758",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HKID130759",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HKID130755",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Harlequin",
+      "status": "Live",
+      "observed": 250,
+      "matched": 246,
+      "withheld": [
+        {
+          "sku": "HAMV131506",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HAMV131510",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HAMV131511",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HAMV131513",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Harlequin",
+      "status": "Live",
+      "observed": 250,
+      "matched": 249,
+      "withheld": [
+        {
+          "sku": "HKAF134595",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Harlequin",
+      "status": "Live",
+      "observed": 250,
+      "matched": 243,
+      "withheld": [
+        {
+          "sku": "HDMF134687",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HDMV134737",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HDMF134701",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDMF134702",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDMF134703",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDMF134720",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HTEF121010",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Harlequin",
+      "status": "Live",
+      "observed": 250,
+      "matched": 224,
+      "withheld": [
+        {
+          "sku": "HC4F133921",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HTEF120997",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HTEF120998",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HQN2121090",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HQN2121091",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HQN2121075",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HQN2121076",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HQN2121077",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HQN2121078",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HQN2121089",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "HDHP121111",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121112",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121113",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121114",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121101",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121102",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121100",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121103",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121104",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121105",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121106",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121115",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121116",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121107",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121108",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "HDHP121109",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Harlequin",
+      "status": "Live",
+      "observed": 157,
+      "matched": 156,
+      "withheld": [
+        {
+          "sku": "HDHP121110",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Morris & Co.",
+      "status": "Live",
+      "observed": 250,
+      "matched": 239,
+      "withheld": [
+        {
+          "sku": "MHTF237656",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "MHTF237666",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "MHTF237707",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "MHTF227355",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "MHTF227356",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "MHTF227357",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "DMI1G3204",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DMC1W2203",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DMC1W2204",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DJA1WB203",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DMC1WB209",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Morris & Co.",
+      "status": "Live",
+      "observed": 250,
+      "matched": 240,
+      "withheld": [
+        {
+          "sku": "DM6E230340",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DARP222533",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DARP222534",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DM3P224470",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DM3P224471",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DM3P224472",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DMPU236064",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DMPU236065",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DMPU236066",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DMPU236067",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Morris & Co.",
+      "status": "Live",
+      "observed": 172,
+      "matched": 160,
+      "withheld": [
+        {
+          "sku": "DBPF226841",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DBPF226842",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DBPF226843",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "MCOP226978",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "MCOP226979",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "AARC520007",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "AARC520003",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "MSIM226893",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "MSIM226894",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "MSIM226895",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "MEWF237313",
+          "reason": "NO_EXACT_MASTER_SKU"
+        },
+        {
+          "sku": "MEWF227034",
+          "reason": "NO_EXACT_MASTER_SKU"
+        }
+      ]
+    },
+    {
+      "brand": "Sanderson",
+      "status": "Limited Stock",
+      "observed": 152,
+      "matched": 144,
+      "withheld": [
+        {
+          "sku": "DCN11R201",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DLYRLY322",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DLYRLY323",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DLYRLY339",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DLYRLY350",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DLYRLY357",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DLYRLY363",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DLYRLY365",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Sanderson",
+      "status": "Live",
+      "observed": 250,
+      "matched": 243,
+      "withheld": [
+        {
+          "sku": "DVOY233300",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DHIF227340",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DHIF227337",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DHIF227339",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DHIF227320",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DHIF227322",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DHIF227338",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Sanderson",
+      "status": "Live",
+      "observed": 250,
+      "matched": 246,
+      "withheld": [
+        {
+          "sku": "DYSI226520",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DGDF237389",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DGDF237390",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DGDF237391",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Sanderson",
+      "status": "Live",
+      "observed": 250,
+      "matched": 249,
+      "withheld": [
+        {
+          "sku": "DOSF226859",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Sanderson",
+      "status": "Live",
+      "observed": 250,
+      "matched": 241,
+      "withheld": [
+        {
+          "sku": "DWAT226969",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DWAT226972",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DKH1C2205",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DKH11R203",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DVIPSQ301",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DVIPSQ302",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DVIPSQ303",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DRCH232093",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "DRCH232094",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    },
+    {
+      "brand": "Sanderson",
+      "status": "Live",
+      "observed": 31,
+      "matched": 31,
+      "withheld": []
+    },
+    {
+      "brand": "Scion",
+      "status": "Limited Stock",
+      "observed": 3,
+      "matched": 3,
+      "withheld": []
+    },
+    {
+      "brand": "Scion",
+      "status": "Live",
+      "observed": 227,
+      "matched": 223,
+      "withheld": [
+        {
+          "sku": "NMEL120063",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "NWAB120179",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "NWAB120172",
+          "reason": "IDENTITY_MISMATCH"
+        },
+        {
+          "sku": "NSCD134679",
+          "reason": "IDENTITY_MISMATCH"
+        }
+      ]
+    }
+  ],
+  "pricingChanges": 0
+}

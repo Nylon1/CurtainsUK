@@ -1,0 +1,1258 @@
+{
+  "checkedAt": "2026-09-08T11:53:23.609Z",
+  "brand": "Clarke & Clarke",
+  "productType": "FABRIC",
+  "status": "Live",
+  "rows": [
+    [
+      "F1702/03",
+      "Rivington Teal",
+      "F/1/F1702_03_87d2.jpg"
+    ],
+    [
+      "F1703/01",
+      "Swinley Blush",
+      "F/1/F1703_01_a80a.jpg"
+    ],
+    [
+      "F1703/02",
+      "Swinley Denim",
+      "F/1/F1703_02_be53.jpg"
+    ],
+    [
+      "F1703/03",
+      "Swinley Graphite",
+      "F/1/F1703_03_af9e.jpg"
+    ],
+    [
+      "F1703/04",
+      "Swinley Linen",
+      "F/1/F1703_04_4a4d.jpg"
+    ],
+    [
+      "F1704/01",
+      "Thetford Blush",
+      "F/1/F1704_01_ef5d.jpg"
+    ],
+    [
+      "F1704/02",
+      "Thetford Saffron/Ink",
+      "F/1/F1704_02_71d0.jpg"
+    ],
+    [
+      "F1704/03",
+      "Thetford Teal/Spice",
+      "F/1/F1704_03_9ff3.jpg"
+    ],
+    [
+      "F1705/01",
+      "Whinfell Blush",
+      "F/1/F1705_01_505b.jpg"
+    ],
+    [
+      "F1705/02",
+      "Whinfell Mineral/Spice",
+      "F/1/F1705_02_bbae.jpg"
+    ],
+    [
+      "F1705/03",
+      "Whinfell Saffron/Mineral",
+      "F/1/F1705_03_a8f9.jpg"
+    ],
+    [
+      "F1706/01",
+      "Wilderwood Denim",
+      "F/1/F1706_01_0453.jpg"
+    ],
+    [
+      "F1706/02",
+      "Wilderwood Natural",
+      "F/1/F1706_02_cf78.jpg"
+    ],
+    [
+      "F1706/03",
+      "Wilderwood Summer",
+      "F/1/F1706_03_136a.jpg"
+    ],
+    [
+      "F1706/04",
+      "Wilderwood Teal/Spice",
+      "F/1/F1706_04_f68b.jpg"
+    ],
+    [
+      "F1725/01",
+      "Aquarium Mineral",
+      "F/1/F1725_01_b63c.jpg"
+    ],
+    [
+      "F1725/02",
+      "Aquarium Natural",
+      "F/1/F1725_02_1403.jpg"
+    ],
+    [
+      "F1725/03",
+      "Aquarium Navy",
+      "F/1/F1725_03_3576.jpg"
+    ],
+    [
+      "F1725/04",
+      "Aquarium Smoke",
+      "F/1/F1725_04_8947.jpg"
+    ],
+    [
+      "F1734/01",
+      "Attingham Cobalt/Green",
+      "F/1/F1734_01_6401.jpg"
+    ],
+    [
+      "F1734/02",
+      "Attingham Denim",
+      "F/1/F1734_02_384b.jpg"
+    ],
+    [
+      "F1734/03",
+      "Attingham Mineral",
+      "F/1/F1734_03_deeb.jpg"
+    ],
+    [
+      "F1734/04",
+      "Attingham Sage/Blush",
+      "F/1/F1734_04_53cc.jpg"
+    ],
+    [
+      "F1726/01",
+      "Fin Blush",
+      "F/1/F1726_01_54d9.jpg"
+    ],
+    [
+      "F1726/02",
+      "Fin Mineral",
+      "F/1/F1726_02_1423.jpg"
+    ],
+    [
+      "F1726/03",
+      "Fin Navy",
+      "F/1/F1726_03_0fac.jpg"
+    ],
+    [
+      "F1735/01",
+      "Giverny Cobalt",
+      "F/1/F1735_01_4543.jpg"
+    ],
+    [
+      "F1735/02",
+      "Giverny Midnight",
+      "F/1/F1735_02_9220.jpg"
+    ],
+    [
+      "F1735/03",
+      "Giverny Mineral",
+      "F/1/F1735_03_c568.jpg"
+    ],
+    [
+      "F1735/04",
+      "Giverny Mustard",
+      "F/1/F1735_04_3b12.jpg"
+    ],
+    [
+      "F1735/05",
+      "Giverny Sage",
+      "F/1/F1735_05_d2db.jpg"
+    ],
+    [
+      "F1735/06",
+      "Giverny Spice",
+      "F/1/F1735_06_24ea.jpg"
+    ],
+    [
+      "F1736/01",
+      "Leiden Blush/Ochre",
+      "F/1/F1736_01_4863.jpg"
+    ],
+    [
+      "F1736/02",
+      "Leiden Blush/Sage",
+      "F/1/F1736_02_bcf8.jpg"
+    ],
+    [
+      "F1736/03",
+      "Leiden Denim",
+      "F/1/F1736_03_284f.jpg"
+    ],
+    [
+      "F1736/04",
+      "Leiden Seaglass",
+      "F/1/F1736_04_0f1b.jpg"
+    ],
+    [
+      "F1736/05",
+      "Leiden Teal/Berry",
+      "F/1/F1736_05_a2b7.jpg"
+    ],
+    [
+      "F1737/01",
+      "Mirabell Midnight",
+      "F/1/F1737_01_c4d8.jpg"
+    ],
+    [
+      "F1737/02",
+      "Mirabell Natural/Blush",
+      "F/1/F1737_02_12b6.jpg"
+    ],
+    [
+      "F0868/01",
+      "Imperiale Antique",
+      "F/0/F0868_01_4475.jpg"
+    ],
+    [
+      "F0868/02",
+      "Imperiale Chicory",
+      "F/0/F0868_02_4b12.jpg"
+    ],
+    [
+      "F0868/03",
+      "Imperiale Ebony",
+      "F/0/F0868_03_f29c.jpg"
+    ],
+    [
+      "F0868/04",
+      "Imperiale Ivory",
+      "F/0/F0868_04_0504.jpg"
+    ],
+    [
+      "F0868/05",
+      "Imperiale Linen",
+      "F/0/F0868_05_bb85.jpg"
+    ],
+    [
+      "F0868/06",
+      "Imperiale Mineral",
+      "F/0/F0868_06_4c18.jpg"
+    ],
+    [
+      "F0868/07",
+      "Imperiale Pebble",
+      "F/0/F0868_07_6ede.jpg"
+    ],
+    [
+      "F0869/01",
+      "Lucania Antique",
+      "F/0/F0869_01_9b09.jpg"
+    ],
+    [
+      "F0869/02",
+      "Lucania Chicory",
+      "F/0/F0869_02_34ef.jpg"
+    ],
+    [
+      "F0869/03",
+      "Lucania Ebony",
+      "F/0/F0869_03_4290.jpg"
+    ],
+    [
+      "F0869/04",
+      "Lucania Ivory",
+      "F/0/F0869_04_4ad2.jpg"
+    ],
+    [
+      "F0869/05",
+      "Lucania Linen",
+      "F/0/F0869_05_0d9d.jpg"
+    ],
+    [
+      "F0869/06",
+      "Lucania Mineral",
+      "F/0/F0869_06_49c1.jpg"
+    ],
+    [
+      "F0869/07",
+      "Lucania Pebble",
+      "F/0/F0869_07_ba4e.jpg"
+    ],
+    [
+      "F0870/01",
+      "Marmo Antique",
+      "F/0/F0870_01_07c2.jpg"
+    ],
+    [
+      "F0870/02",
+      "Marmo Chicory",
+      "F/0/F0870_02_5383.jpg"
+    ],
+    [
+      "F0870/03",
+      "Marmo Ivory",
+      "F/0/F0870_03_057c.jpg"
+    ],
+    [
+      "F0870/04",
+      "Marmo Linen",
+      "F/0/F0870_04_192b.jpg"
+    ],
+    [
+      "F0870/05",
+      "Marmo Mineral",
+      "F/0/F0870_05_9036.jpg"
+    ],
+    [
+      "F0870/06",
+      "Marmo Pebble",
+      "F/0/F0870_06_1a67.jpg"
+    ],
+    [
+      "F0870/07",
+      "Marmo Taupe",
+      "F/0/F0870_07_3547.jpg"
+    ],
+    [
+      "F0871/01",
+      "Otranto Antique",
+      "F/0/F0871_01_250b.jpg"
+    ],
+    [
+      "F0871/02",
+      "Otranto Chicory",
+      "F/0/F0871_02_ddd8.jpg"
+    ],
+    [
+      "F0871/03",
+      "Otranto Ivory",
+      "F/0/F0871_03_e852.jpg"
+    ],
+    [
+      "F0871/04",
+      "Otranto Linen",
+      "F/0/F0871_04_97ad.jpg"
+    ],
+    [
+      "F0871/05",
+      "Otranto Mineral",
+      "F/0/F0871_05_ad9e.jpg"
+    ],
+    [
+      "F0871/06",
+      "Otranto Pebble",
+      "F/0/F0871_06_c5c4.jpg"
+    ],
+    [
+      "F0871/07",
+      "Otranto Taupe",
+      "F/0/F0871_07_c8ef.jpg"
+    ],
+    [
+      "F0872/01",
+      "Reggio Antique",
+      "F/0/F0872_01_76b9.jpg"
+    ],
+    [
+      "F0872/02",
+      "Reggio Chicory",
+      "F/0/F0872_02_bb77.jpg"
+    ],
+    [
+      "F0872/03",
+      "Reggio Ebony",
+      "F/0/F0872_03_e996.jpg"
+    ],
+    [
+      "F0872/04",
+      "Reggio Ivory",
+      "F/0/F0872_04_dac5.jpg"
+    ],
+    [
+      "F0872/05",
+      "Reggio Linen",
+      "F/0/F0872_05_ecb0.jpg"
+    ],
+    [
+      "F0872/06",
+      "Reggio Mineral",
+      "F/0/F0872_06_1b6f.jpg"
+    ],
+    [
+      "F0872/07",
+      "Reggio Pebble",
+      "F/0/F0872_07_8330.jpg"
+    ],
+    [
+      "F0952/01",
+      "Adisa Charcoal",
+      "F/0/F0952_01_4015.jpg"
+    ],
+    [
+      "F0952/02",
+      "Adisa Natural",
+      "F/0/F0952_02_eb5e.jpg"
+    ],
+    [
+      "F0952/03",
+      "Adisa Taupe",
+      "F/0/F0952_03_1ff1.jpg"
+    ],
+    [
+      "F0952/04",
+      "Adisa Willow",
+      "F/0/F0952_04_f3cc.jpg"
+    ],
+    [
+      "F0967/01",
+      "Alessia Aubergine",
+      "F/0/F0967_01_3c4f.jpg"
+    ],
+    [
+      "F0967/02",
+      "Alessia Espresso",
+      "F/0/F0967_02_d79d.jpg"
+    ],
+    [
+      "F0967/03",
+      "Alessia Heather",
+      "F/0/F0967_03_95c5.jpg"
+    ],
+    [
+      "F0967/04",
+      "Alessia Jet",
+      "F/0/F0967_04_620d.jpg"
+    ],
+    [
+      "F0967/05",
+      "Alessia Mulberry",
+      "F/0/F0967_05_96b4.jpg"
+    ],
+    [
+      "F0967/06",
+      "Alessia Olive",
+      "F/0/F0967_06_96e0.jpg"
+    ],
+    [
+      "F0967/08",
+      "Alessia Smoke",
+      "F/0/F0967_08_3262.jpg"
+    ],
+    [
+      "F0967/09",
+      "Alessia Stone",
+      "F/0/F0967_09_4935.jpg"
+    ],
+    [
+      "F0967/10",
+      "Alessia Taupe",
+      "F/0/F0967_10_095d.jpg"
+    ],
+    [
+      "F0967/11",
+      "Alessia Teal",
+      "F/0/F0967_11_fa24.jpg"
+    ],
+    [
+      "F0967/12",
+      "Alessia Gold",
+      "F/0/F0967_12_3946.jpg"
+    ],
+    [
+      "F0967/13",
+      "Alessia Citrus",
+      "F/0/F0967_13_6255.jpg"
+    ],
+    [
+      "F0967/14",
+      "Alessia Emerald",
+      "F/0/F0967_14_258d.jpg"
+    ],
+    [
+      "F0967/15",
+      "Alessia Indigo",
+      "F/0/F0967_15_6c6b.jpg"
+    ],
+    [
+      "F0967/16",
+      "Alessia Mocha",
+      "F/0/F0967_16_a485.jpg"
+    ],
+    [
+      "F0967/17",
+      "Alessia Oyster",
+      "F/0/F0967_17_38cb.jpg"
+    ],
+    [
+      "F0967/18",
+      "Alessia Silver",
+      "F/0/F0967_18_7e03.jpg"
+    ],
+    [
+      "F0967/19",
+      "Alessia Blush",
+      "F/0/F0967_19_4981.jpg"
+    ],
+    [
+      "F0967/20",
+      "Alessia Navy",
+      "F/0/F0967_20_f8ac.jpg"
+    ],
+    [
+      "F0967/21",
+      "Alessia Spice",
+      "F/0/F0967_21_b1b9.jpg"
+    ],
+    [
+      "F0953/01",
+      "Amara Cinnamon",
+      "F/0/F0953_01_df39.jpg"
+    ],
+    [
+      "F0953/02",
+      "Amara Natural",
+      "F/0/F0953_02_78b0.jpg"
+    ],
+    [
+      "F0953/03",
+      "Amara Orchid",
+      "F/0/F0953_03_a309.jpg"
+    ],
+    [
+      "F0954/01",
+      "Dashiki Cinnabar",
+      "F/0/F0954_01_4b88.jpg"
+    ],
+    [
+      "F0954/02",
+      "Dashiki Cinnamon",
+      "F/0/F0954_02_b171.jpg"
+    ],
+    [
+      "F0954/03",
+      "Dashiki Indigo",
+      "F/0/F0954_03_5d58.jpg"
+    ],
+    [
+      "F0954/04",
+      "Dashiki Plum",
+      "F/0/F0954_04_cb21.jpg"
+    ],
+    [
+      "F0955/01",
+      "Imani Charcoal/Cinnamon",
+      "F/0/F0955_01_0883.jpg"
+    ],
+    [
+      "F0955/02",
+      "Imani Cinnabar/Aqua",
+      "F/0/F0955_02_30a7.jpg"
+    ],
+    [
+      "F0955/03",
+      "Imani Indigo/Red",
+      "F/0/F0955_03_6a04.jpg"
+    ],
+    [
+      "F0955/04",
+      "Imani Orchid/Willow",
+      "F/0/F0955_04_9336.jpg"
+    ],
+    [
+      "F0956/01",
+      "Kiko Aqua",
+      "F/0/F0956_01_e249.jpg"
+    ],
+    [
+      "F0956/02",
+      "Kiko Charcoal",
+      "F/0/F0956_02_4cba.jpg"
+    ],
+    [
+      "F0956/03",
+      "Kiko Cinnamon",
+      "F/0/F0956_03_ef81.jpg"
+    ],
+    [
+      "F0956/04",
+      "Kiko Indigo",
+      "F/0/F0956_04_8a54.jpg"
+    ],
+    [
+      "F0956/05",
+      "Kiko Natural",
+      "F/0/F0956_05_3dfd.jpg"
+    ],
+    [
+      "F0956/06",
+      "Kiko Red",
+      "F/0/F0956_06_1739.jpg"
+    ],
+    [
+      "F0956/07",
+      "Kiko Willow",
+      "F/0/F0956_07_c56c.jpg"
+    ],
+    [
+      "F0968/01",
+      "Loreto Aubergine",
+      "F/0/F0968_01_4c63.jpg"
+    ],
+    [
+      "F0968/02",
+      "Loreto Espresso",
+      "F/0/F0968_02_db53.jpg"
+    ],
+    [
+      "F0968/03",
+      "Loreto Heather",
+      "F/0/F0968_03_3129.jpg"
+    ],
+    [
+      "F0968/04",
+      "Loreto Jet",
+      "F/0/F0968_04_b649.jpg"
+    ],
+    [
+      "F0968/05",
+      "Loreto Mulberry",
+      "F/0/F0968_05_fd33.jpg"
+    ],
+    [
+      "F0968/06",
+      "Loreto Olive",
+      "F/0/F0968_06_299f.jpg"
+    ],
+    [
+      "F0968/08",
+      "Loreto Smoke",
+      "F/0/F0968_08_efe6.jpg"
+    ],
+    [
+      "F0968/09",
+      "Loreto Stone",
+      "F/0/F0968_09_37bb.jpg"
+    ],
+    [
+      "F0968/10",
+      "Loreto Taupe",
+      "F/0/F0968_10_ce31.jpg"
+    ],
+    [
+      "F0968/11",
+      "Loreto Teal",
+      "F/0/F0968_11_a856.jpg"
+    ],
+    [
+      "F0968/12",
+      "Loreto Gold",
+      "F/0/F0968_12_9b63.jpg"
+    ],
+    [
+      "F0957/01",
+      "Makenzi Aqua",
+      "F/0/F0957_01_2353.jpg"
+    ],
+    [
+      "F0957/02",
+      "Makenzi Charcoal",
+      "F/0/F0957_02_7d3d.jpg"
+    ],
+    [
+      "F0957/03",
+      "Makenzi Natural",
+      "F/0/F0957_03_ebb2.jpg"
+    ],
+    [
+      "F0957/04",
+      "Makenzi Red",
+      "F/0/F0957_04_485c.jpg"
+    ],
+    [
+      "F0998/01",
+      "Monkey Business Charcoal",
+      "F/0/F0998_01_88ec.jpg"
+    ],
+    [
+      "F0998/02",
+      "Monkey Business Indigo",
+      "F/0/F0998_02_997a.jpg"
+    ],
+    [
+      "F0998/03",
+      "Monkey Business Natural",
+      "F/0/F0998_03_0d7f.jpg"
+    ],
+    [
+      "F0998/04",
+      "Monkey Business Rouge",
+      "F/0/F0998_04_7113.jpg"
+    ],
+    [
+      "F0958/01",
+      "Nala Charcoal",
+      "F/0/F0958_01_70b2.jpg"
+    ],
+    [
+      "F0958/02",
+      "Nala Indigo",
+      "F/0/F0958_02_3e87.jpg"
+    ],
+    [
+      "F0958/03",
+      "Nala Natural",
+      "F/0/F0958_03_e95e.jpg"
+    ],
+    [
+      "F0958/04",
+      "Nala Willow",
+      "F/0/F0958_04_817d.jpg"
+    ],
+    [
+      "F0959/01",
+      "Oni Charcoal/Cinnamon",
+      "F/0/F0959_01_9419.jpg"
+    ],
+    [
+      "F0959/02",
+      "Oni Cinnabar",
+      "F/0/F0959_02_e55b.jpg"
+    ],
+    [
+      "F0959/03",
+      "Oni Indigo",
+      "F/0/F0959_03_a517.jpg"
+    ],
+    [
+      "F0960/01",
+      "Sekai Charcoal/Cinnamon",
+      "F/0/F0960_01_94c1.jpg"
+    ],
+    [
+      "F0960/02",
+      "Sekai Cinnabar/Aqua",
+      "F/0/F0960_02_30cf.jpg"
+    ],
+    [
+      "F0960/03",
+      "Sekai Indigo/Red",
+      "F/0/F0960_03_3057.jpg"
+    ],
+    [
+      "F0960/04",
+      "Sekai Orchid/Willow",
+      "F/0/F0960_04_46e6.jpg"
+    ],
+    [
+      "F0966/01",
+      "Sylvana Aubergine",
+      "F/0/F0966_01_1411.jpg"
+    ],
+    [
+      "F0966/02",
+      "Sylvana Espresso",
+      "F/0/F0966_02_9c77.jpg"
+    ],
+    [
+      "F0966/03",
+      "Sylvana Heather",
+      "F/0/F0966_03_31a6.jpg"
+    ],
+    [
+      "F0966/04",
+      "Sylvana Jet",
+      "F/0/F0966_04_5b6c.jpg"
+    ],
+    [
+      "F0966/05",
+      "Sylvana Mulberry",
+      "F/0/F0966_05_e68a.jpg"
+    ],
+    [
+      "F0966/06",
+      "Sylvana Olive",
+      "F/0/F0966_06_79e9.jpg"
+    ],
+    [
+      "F0966/07",
+      "Sylvana Oyster",
+      "F/0/F0966_07_6d72.jpg"
+    ],
+    [
+      "F0966/08",
+      "Sylvana Silver",
+      "F/0/F0966_08_9408.jpg"
+    ],
+    [
+      "F0966/09",
+      "Sylvana Smoke",
+      "F/0/F0966_09_006b.jpg"
+    ],
+    [
+      "F0966/10",
+      "Sylvana Stone",
+      "F/0/F0966_10_dc8e.jpg"
+    ],
+    [
+      "F0966/11",
+      "Sylvana Taupe",
+      "F/0/F0966_11_d46f.jpg"
+    ],
+    [
+      "F0966/12",
+      "Sylvana Teal",
+      "F/0/F0966_12_51b6.jpg"
+    ],
+    [
+      "F0966/13",
+      "Sylvana Gold",
+      "F/0/F0966_13_bf5a.jpg"
+    ],
+    [
+      "F0962/01",
+      "Yoruba Cinnamon",
+      "F/0/F0962_01_8bc3.jpg"
+    ],
+    [
+      "F0962/02",
+      "Yoruba Natural",
+      "F/0/F0962_02_4758.jpg"
+    ],
+    [
+      "F0962/03",
+      "Yoruba Orchid",
+      "F/0/F0962_03_b704.jpg"
+    ],
+    [
+      "F0963/01",
+      "Zalika Charcoal",
+      "F/0/F0963_01_2a04.jpg"
+    ],
+    [
+      "F0963/02",
+      "Zalika Cinnabar",
+      "F/0/F0963_02_f3db.jpg"
+    ],
+    [
+      "F0963/03",
+      "Zalika Indigo",
+      "F/0/F0963_03_1d1f.jpg"
+    ],
+    [
+      "F0963/04",
+      "Zalika Natural",
+      "F/0/F0963_04_1f61.jpg"
+    ],
+    [
+      "F1042/01",
+      "Austin Check Charcoal",
+      "F/1/F1042_01_3f32.jpg"
+    ],
+    [
+      "F1042/02",
+      "Austin Check Citron/Natural",
+      "F/1/F1042_02_d896.jpg"
+    ],
+    [
+      "F1042/03",
+      "Austin Check Natural",
+      "F/1/F1042_03_c3f5.jpg"
+    ],
+    [
+      "F1042/04",
+      "Austin Check Heather",
+      "F/1/F1042_04_274a.jpg"
+    ],
+    [
+      "F1042/05",
+      "Austin Check Midnight",
+      "F/1/F1042_05_84a9.jpg"
+    ],
+    [
+      "F1042/06",
+      "Austin Check Mineral/Blush",
+      "F/1/F1042_06_79d8.jpg"
+    ],
+    [
+      "F1043/01",
+      "Baker Camel",
+      "F/1/F1043_01_4293.jpg"
+    ],
+    [
+      "F1043/02",
+      "Baker Heather",
+      "F/1/F1043_02_5fed.jpg"
+    ],
+    [
+      "F1043/03",
+      "Baker Linen",
+      "F/1/F1043_03_27d9.jpg"
+    ],
+    [
+      "F1043/04",
+      "Baker Mineral",
+      "F/1/F1043_04_a902.jpg"
+    ],
+    [
+      "F1043/05",
+      "Baker Natural",
+      "F/1/F1043_05_1c79.jpg"
+    ],
+    [
+      "F1043/06",
+      "Baker Silver",
+      "F/1/F1043_06_86cd.jpg"
+    ],
+    [
+      "F1035/02",
+      "Brio Denim",
+      "F/1/F1035_02_3516.jpg"
+    ],
+    [
+      "F1035/03",
+      "Brio Mineral",
+      "F/1/F1035_03_a5e3.jpg"
+    ],
+    [
+      "F1035/04",
+      "Brio Sorbet",
+      "F/1/F1035_04_c74b.jpg"
+    ],
+    [
+      "F1040/10",
+      "Clio Smoke",
+      "F/1/F1040_10_4fd9.jpg"
+    ],
+    [
+      "F1044/01",
+      "Cranbrook Charcoal",
+      "F/1/F1044_01_8141.jpg"
+    ],
+    [
+      "F1044/02",
+      "Cranbrook Citron",
+      "F/1/F1044_02_4da1.jpg"
+    ],
+    [
+      "F1044/03",
+      "Cranbrook Eau De Nil",
+      "F/1/F1044_03_e3bf.jpg"
+    ],
+    [
+      "F1044/04",
+      "Cranbrook Linen",
+      "F/1/F1044_04_e6de.jpg"
+    ],
+    [
+      "F1044/05",
+      "Cranbrook Midnight",
+      "F/1/F1044_05_261e.jpg"
+    ],
+    [
+      "F1044/06",
+      "Cranbrook Mineral",
+      "F/1/F1044_06_385b.jpg"
+    ],
+    [
+      "F1004/01",
+      "Delamere Chartreuse",
+      "F/1/F1004_01_b76c.jpg"
+    ],
+    [
+      "F1004/02",
+      "Delamere Duckegg",
+      "F/1/F1004_02_a056.jpg"
+    ],
+    [
+      "F1004/03",
+      "Delamere Heather",
+      "F/1/F1004_03_6418.jpg"
+    ],
+    [
+      "F1004/04",
+      "Delamere Natural",
+      "F/1/F1004_04_7c9c.jpg"
+    ],
+    [
+      "F1004/05",
+      "Delamere Raspberry",
+      "F/1/F1004_05_6a93.jpg"
+    ],
+    [
+      "F1005/01",
+      "Hampstead Apple",
+      "F/1/F1005_01_4cf5.jpg"
+    ],
+    [
+      "F1005/02",
+      "Hampstead Charcoal",
+      "F/1/F1005_02_eca0.jpg"
+    ],
+    [
+      "F1005/03",
+      "Hampstead Linen",
+      "F/1/F1005_03_3e56.jpg"
+    ],
+    [
+      "F1005/04",
+      "Hampstead Natural",
+      "F/1/F1005_04_6f88.jpg"
+    ],
+    [
+      "F1005/05",
+      "Hampstead Storm",
+      "F/1/F1005_05_23bb.jpg"
+    ],
+    [
+      "F1045/01",
+      "Keaton Blush",
+      "F/1/F1045_01_2e08.jpg"
+    ],
+    [
+      "F1045/02",
+      "Keaton Midnight",
+      "F/1/F1045_02_9c90.jpg"
+    ],
+    [
+      "F1045/03",
+      "Keaton Natural",
+      "F/1/F1045_03_9b3a.jpg"
+    ],
+    [
+      "F1045/04",
+      "Keaton Olive",
+      "F/1/F1045_04_8b13.jpg"
+    ],
+    [
+      "F1045/05",
+      "Keaton Silver",
+      "F/1/F1045_05_bea7.jpg"
+    ],
+    [
+      "F1045/06",
+      "Keaton Spice",
+      "F/1/F1045_06_a332.jpg"
+    ],
+    [
+      "F1006/01",
+      "Layton Chartreuse",
+      "F/1/F1006_01_290d.jpg"
+    ],
+    [
+      "F1006/02",
+      "Layton Dove",
+      "F/1/F1006_02_f1ba.jpg"
+    ],
+    [
+      "F1006/03",
+      "Layton Duckegg",
+      "F/1/F1006_03_3786.jpg"
+    ],
+    [
+      "F1006/04",
+      "Layton Heather",
+      "F/1/F1006_04_224b.jpg"
+    ],
+    [
+      "F1006/05",
+      "Layton Pink/Apple",
+      "F/1/F1006_05_88cf.jpg"
+    ],
+    [
+      "F1007/01",
+      "Liliana Apple",
+      "F/1/F1007_01_774c.jpg"
+    ],
+    [
+      "F1007/02",
+      "Liliana Dove",
+      "F/1/F1007_02_43a3.jpg"
+    ],
+    [
+      "F1007/03",
+      "Liliana Duckegg",
+      "F/1/F1007_03_a1de.jpg"
+    ],
+    [
+      "F1007/04",
+      "Liliana Heather",
+      "F/1/F1007_04_1e10.jpg"
+    ],
+    [
+      "F1007/05",
+      "Liliana Linen",
+      "F/1/F1007_05_e6ef.jpg"
+    ],
+    [
+      "F0453/01",
+      "Linoso Ash",
+      "F/0/F0453_01_5782.jpg"
+    ],
+    [
+      "F0453/02",
+      "Linoso Brick",
+      "F/0/F0453_02_99ad.jpg"
+    ],
+    [
+      "F0453/03",
+      "Linoso Buff",
+      "F/0/F0453_03_75eb.jpg"
+    ],
+    [
+      "F0453/04",
+      "Linoso Charcoal",
+      "F/0/F0453_04_8297.jpg"
+    ],
+    [
+      "F0453/06",
+      "Linoso Chocolate",
+      "F/0/F0453_06_7169.jpg"
+    ],
+    [
+      "F0453/07",
+      "Linoso Citrus",
+      "F/0/F0453_07_d7e5.jpg"
+    ],
+    [
+      "F0453/08",
+      "Linoso Cranberry",
+      "F/0/F0453_08_8430.jpg"
+    ],
+    [
+      "F0453/09",
+      "Linoso Cream",
+      "F/0/F0453_09_bd46.jpg"
+    ],
+    [
+      "F0453/10",
+      "Linoso Denim",
+      "F/0/F0453_10_791d.jpg"
+    ],
+    [
+      "F0453/11",
+      "Linoso Duck Egg",
+      "F/0/F0453_11_c182.jpg"
+    ],
+    [
+      "F0453/13",
+      "Linoso Espresso",
+      "F/0/F0453_13_7845.jpg"
+    ],
+    [
+      "F0453/14",
+      "Linoso Feather",
+      "F/0/F0453_14_c1ce.jpg"
+    ],
+    [
+      "F0453/15",
+      "Linoso Flame",
+      "F/0/F0453_15_3d51.jpg"
+    ],
+    [
+      "F0453/16",
+      "Linoso Garnet",
+      "F/0/F0453_16_adce.jpg"
+    ],
+    [
+      "F0453/17",
+      "Linoso Graphite",
+      "F/0/F0453_17_0bb7.jpg"
+    ],
+    [
+      "F0453/18",
+      "Linoso Grey",
+      "F/0/F0453_18_dead.jpg"
+    ],
+    [
+      "F0453/19",
+      "Linoso Indigo",
+      "F/0/F0453_19_1502.jpg"
+    ],
+    [
+      "F0453/21",
+      "Linoso Linen",
+      "F/0/F0453_21_732c.jpg"
+    ],
+    [
+      "F0453/23",
+      "Linoso Mist",
+      "F/0/F0453_23_dc85.jpg"
+    ],
+    [
+      "F0453/24",
+      "Linoso Mocha",
+      "F/0/F0453_24_8c74.jpg"
+    ],
+    [
+      "F1111/04",
+      "Kruger Magenta",
+      "F/1/F1111_04_fc6c.jpg"
+    ],
+    [
+      "F1111/05",
+      "Kruger Navy",
+      "F/1/F1111_05_ddb4.jpg"
+    ],
+    [
+      "F1111/06",
+      "Kruger Pink",
+      "F/1/F1111_06_326d.jpg"
+    ],
+    [
+      "F1111/07",
+      "Kruger Teal",
+      "F/1/F1111_07_cb44.jpg"
+    ],
+    [
+      "F1192/01",
+      "Laridae Duckegg",
+      "F/1/F1192_01_9c7d.jpg"
+    ],
+    [
+      "F1192/02",
+      "Laridae Natural",
+      "F/1/F1192_02_c304.jpg"
+    ],
+    [
+      "F1192/03",
+      "Laridae Taupe",
+      "F/1/F1192_03_36d4.jpg"
+    ],
+    [
+      "F1211/01",
+      "Lemur Navy Velvet",
+      "F/1/F1211_01_1f7c.jpg"
+    ],
+    [
+      "F1112/01",
+      "Lemur Jungle",
+      "F/1/F1112_01_6c75.jpg"
+    ],
+    [
+      "F1112/02",
+      "Lemur Lime",
+      "F/1/F1112_02_3395.jpg"
+    ],
+    [
+      "F1112/03",
+      "Lemur Navy",
+      "F/1/F1112_03_6cd4.jpg"
+    ],
+    [
+      "F1112/04",
+      "Lemur Pink",
+      "F/1/F1112_04_f2a0.jpg"
+    ],
+    [
+      "F1164/01",
+      "Lolita Multi/Cream",
+      "F/1/F1164_01_b5e3.jpg"
+    ],
+    [
+      "F1165/01",
+      "Lolita Summer/Linen",
+      "F/1/F1165_01_a5e1.jpg"
+    ],
+    [
+      "F1189/01",
+      "Lowestoft Marine",
+      "F/1/F1189_01_e11d.jpg"
+    ],
+    [
+      "F1189/02",
+      "Lowestoft Mineral",
+      "F/1/F1189_02_6676.jpg"
+    ]
+  ]
+}

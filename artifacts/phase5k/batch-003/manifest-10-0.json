@@ -1,0 +1,4324 @@
+{
+  "results": {
+    "sdg-dcst232700": {
+      "record": {
+        "fabric_id": "sdg-dcst232700",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCST232700",
+        "brand_name": "Sanderson",
+        "design_name": "Deben",
+        "colour_name": "Indigo",
+        "collection_name": "Melford Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCST232700_a36c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCST232700",
+            "brand": "Sanderson",
+            "design": "Deben",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-daeg222945": {
+      "record": {
+        "fabric_id": "sdg-daeg222945",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DAEG222945",
+        "brand_name": "Sanderson",
+        "design_name": "Eleni",
+        "colour_name": "Indian Yellow",
+        "collection_name": "Aegean Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DAEG222945_6cbb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DAEG222945",
+            "brand": "Sanderson",
+            "design": "Eleni",
+            "colour": "Indian Yellow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-daeg222947": {
+      "record": {
+        "fabric_id": "sdg-daeg222947",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DAEG222947",
+        "brand_name": "Sanderson",
+        "design_name": "Eleni",
+        "colour_name": "Grey Pearl",
+        "collection_name": "Aegean Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DAEG222947_fe8b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DAEG222947",
+            "brand": "Sanderson",
+            "design": "Eleni",
+            "colour": "Grey Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-daeg232975": {
+      "record": {
+        "fabric_id": "sdg-daeg232975",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DAEG232975",
+        "brand_name": "Sanderson",
+        "design_name": "Sparkle Coral Embroidery",
+        "colour_name": "Gold/Purple",
+        "collection_name": "Aegean Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DAEG232975_fc79.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DAEG232975",
+            "brand": "Sanderson",
+            "design": "Sparkle Coral Embroidery",
+            "colour": "Gold/Purple",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dchk223589": {
+      "record": {
+        "fabric_id": "sdg-dchk223589",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCHK223589",
+        "brand_name": "Sanderson",
+        "design_name": "Fretwork",
+        "colour_name": "Silver/Linden",
+        "collection_name": "Chika Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCHK223589_49ea.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCHK223589",
+            "brand": "Sanderson",
+            "design": "Fretwork",
+            "colour": "Silver/Linden",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlit223917": {
+      "record": {
+        "fabric_id": "sdg-dlit223917",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLIT223917",
+        "brand_name": "Sanderson",
+        "design_name": "Ballet Shoes",
+        "colour_name": "Pink",
+        "collection_name": "Abracazoo Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLIT223917_dc8e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLIT223917",
+            "brand": "Sanderson",
+            "design": "Ballet Shoes",
+            "colour": "Pink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlit223906": {
+      "record": {
+        "fabric_id": "sdg-dlit223906",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLIT223906",
+        "brand_name": "Sanderson",
+        "design_name": "Posy Floral",
+        "colour_name": "Chintz",
+        "collection_name": "Abracazoo Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLIT223906_2c9b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLIT223906",
+            "brand": "Sanderson",
+            "design": "Posy Floral",
+            "colour": "Chintz",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlit223913": {
+      "record": {
+        "fabric_id": "sdg-dlit223913",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLIT223913",
+        "brand_name": "Sanderson",
+        "design_name": "Treasure Map",
+        "colour_name": "Vanilla",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLIT223913_3696.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLIT223913",
+            "brand": "Sanderson",
+            "design": "Treasure Map",
+            "colour": "Vanilla",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dart226319": {
+      "record": {
+        "fabric_id": "sdg-dart226319",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DART226319",
+        "brand_name": "Sanderson",
+        "design_name": "Shalimar",
+        "colour_name": "China Blue/Linen",
+        "collection_name": "Art Of The Garden Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DART226319_fb60.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DART226319",
+            "brand": "Sanderson",
+            "design": "Shalimar",
+            "colour": "China Blue/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dart226317": {
+      "record": {
+        "fabric_id": "sdg-dart226317",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DART226317",
+        "brand_name": "Sanderson",
+        "design_name": "Thalia",
+        "colour_name": "Daffodil/Natural",
+        "collection_name": "Art Of The Garden Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DART226317_e91b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DART226317",
+            "brand": "Sanderson",
+            "design": "Thalia",
+            "colour": "Daffodil/Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dhpo236418": {
+      "record": {
+        "fabric_id": "sdg-dhpo236418",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DHPO236418",
+        "brand_name": "Sanderson",
+        "design_name": "Alcott",
+        "colour_name": "Mineral/Stone",
+        "collection_name": "Potting Room Prints and Embroideries"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/H/DHPO236418_5368.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DHPO236418",
+            "brand": "Sanderson",
+            "design": "Alcott",
+            "colour": "Mineral/Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-ddam236482": {
+      "record": {
+        "fabric_id": "sdg-ddam236482",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DDAM236482",
+        "brand_name": "Sanderson",
+        "design_name": "Courtney Damask",
+        "colour_name": "Fig",
+        "collection_name": "Chiswick Grove Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/D/DDAM236482_25a5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DDAM236482",
+            "brand": "Sanderson",
+            "design": "Courtney Damask",
+            "colour": "Fig",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-ddam226382": {
+      "record": {
+        "fabric_id": "sdg-ddam226382",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DDAM226382",
+        "brand_name": "Sanderson",
+        "design_name": "Courtney",
+        "colour_name": "Amber/Linen",
+        "collection_name": "Country House Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/D/DDAM226382_5d7c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DDAM226382",
+            "brand": "Sanderson",
+            "design": "Courtney",
+            "colour": "Amber/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlei246271": {
+      "record": {
+        "fabric_id": "sdg-dlei246271",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLEI246271",
+        "brand_name": "Sanderson",
+        "design_name": "Leila",
+        "colour_name": "Limestone",
+        "collection_name": "Leila Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLEI246271_795b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLEI246271",
+            "brand": "Sanderson",
+            "design": "Leila",
+            "colour": "Limestone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlei246292": {
+      "record": {
+        "fabric_id": "sdg-dlei246292",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLEI246292",
+        "brand_name": "Sanderson",
+        "design_name": "Leila",
+        "colour_name": "Tawny",
+        "collection_name": "Leila Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLEI246292_c9fa.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLEI246292",
+            "brand": "Sanderson",
+            "design": "Leila",
+            "colour": "Tawny",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlev246309": {
+      "record": {
+        "fabric_id": "sdg-dlev246309",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLEV246309",
+        "brand_name": "Sanderson",
+        "design_name": "Levens",
+        "colour_name": "Storm",
+        "collection_name": "Levens Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLEV246309_3896.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLEV246309",
+            "brand": "Sanderson",
+            "design": "Levens",
+            "colour": "Storm",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-ddae236490": {
+      "record": {
+        "fabric_id": "sdg-ddae236490",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DDAE236490",
+        "brand_name": "Sanderson",
+        "design_name": "Linden",
+        "colour_name": "Dove",
+        "collection_name": "Orwell Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/D/DDAE236490_ab60.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DDAE236490",
+            "brand": "Sanderson",
+            "design": "Linden",
+            "colour": "Dove",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-ddam236479": {
+      "record": {
+        "fabric_id": "sdg-ddam236479",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DDAM236479",
+        "brand_name": "Sanderson",
+        "design_name": "Mawton",
+        "colour_name": "Fig",
+        "collection_name": "Chiswick Grove Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/D/DDAM236479_ab19.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DDAM236479",
+            "brand": "Sanderson",
+            "design": "Mawton",
+            "colour": "Fig",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dhpu236442": {
+      "record": {
+        "fabric_id": "sdg-dhpu236442",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DHPU236442",
+        "brand_name": "Sanderson",
+        "design_name": "Meade",
+        "colour_name": "Indigo",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/H/DHPU236442_7e6b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DHPU236442",
+            "brand": "Sanderson",
+            "design": "Meade",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dhpu236446": {
+      "record": {
+        "fabric_id": "sdg-dhpu236446",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DHPU236446",
+        "brand_name": "Sanderson",
+        "design_name": "Meade",
+        "colour_name": "Barley",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/H/DHPU236446_b0b0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DHPU236446",
+            "brand": "Sanderson",
+            "design": "Meade",
+            "colour": "Barley",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-debw236587": {
+      "record": {
+        "fabric_id": "sdg-debw236587",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DEBW236587",
+        "brand_name": "Sanderson",
+        "design_name": "Spindlestone",
+        "colour_name": "Grape",
+        "collection_name": "Embleton Bay Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/E/DEBW236587_7f31.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DEBW236587",
+            "brand": "Sanderson",
+            "design": "Spindlestone",
+            "colour": "Grape",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236674": {
+      "record": {
+        "fabric_id": "sdg-dcoa236674",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236674",
+        "brand_name": "Sanderson",
+        "design_name": "Armeria Trail",
+        "colour_name": "Driftwood",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236674_21fd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236674",
+            "brand": "Sanderson",
+            "design": "Armeria Trail",
+            "colour": "Driftwood",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236675": {
+      "record": {
+        "fabric_id": "sdg-dcoa236675",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236675",
+        "brand_name": "Sanderson",
+        "design_name": "Armeria Trail",
+        "colour_name": "Lichen",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236675_5a28.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236675",
+            "brand": "Sanderson",
+            "design": "Armeria Trail",
+            "colour": "Lichen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226490": {
+      "record": {
+        "fabric_id": "sdg-dcoa226490",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226490",
+        "brand_name": "Sanderson",
+        "design_name": "Beach Huts",
+        "colour_name": "Nautical",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226490_e149.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226490",
+            "brand": "Sanderson",
+            "design": "Beach Huts",
+            "colour": "Nautical",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226491": {
+      "record": {
+        "fabric_id": "sdg-dcoa226491",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226491",
+        "brand_name": "Sanderson",
+        "design_name": "Beach Huts",
+        "colour_name": "Driftwood",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226491_f88d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226491",
+            "brand": "Sanderson",
+            "design": "Beach Huts",
+            "colour": "Driftwood",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236672": {
+      "record": {
+        "fabric_id": "sdg-dcoa236672",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236672",
+        "brand_name": "Sanderson",
+        "design_name": "Bird Feet",
+        "colour_name": "Driftwood",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236672_bb62.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236672",
+            "brand": "Sanderson",
+            "design": "Bird Feet",
+            "colour": "Driftwood",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236678": {
+      "record": {
+        "fabric_id": "sdg-dcoa236678",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236678",
+        "brand_name": "Sanderson",
+        "design_name": "Cobble",
+        "colour_name": "Gull",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236678_1217.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236678",
+            "brand": "Sanderson",
+            "design": "Cobble",
+            "colour": "Gull",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236676": {
+      "record": {
+        "fabric_id": "sdg-dcoa236676",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236676",
+        "brand_name": "Sanderson",
+        "design_name": "Cromer Embroidery",
+        "colour_name": "Stone",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236676_d493.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236676",
+            "brand": "Sanderson",
+            "design": "Cromer Embroidery",
+            "colour": "Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236677": {
+      "record": {
+        "fabric_id": "sdg-dcoa236677",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236677",
+        "brand_name": "Sanderson",
+        "design_name": "Cromer Embroidery",
+        "colour_name": "Coral",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236677_ece9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236677",
+            "brand": "Sanderson",
+            "design": "Cromer Embroidery",
+            "colour": "Coral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226507": {
+      "record": {
+        "fabric_id": "sdg-dcoa226507",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226507",
+        "brand_name": "Sanderson",
+        "design_name": "Cromer",
+        "colour_name": "Gull",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226507_c98e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226507",
+            "brand": "Sanderson",
+            "design": "Cromer",
+            "colour": "Gull",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236916": {
+      "record": {
+        "fabric_id": "sdg-dcac236916",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236916",
+        "brand_name": "Sanderson",
+        "design_name": "Baroda",
+        "colour_name": "Coral",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236916_65eb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236916",
+            "brand": "Sanderson",
+            "design": "Baroda",
+            "colour": "Coral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236917": {
+      "record": {
+        "fabric_id": "sdg-dcac236917",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236917",
+        "brand_name": "Sanderson",
+        "design_name": "Baroda",
+        "colour_name": "Charcoal",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236917_1b28.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236917",
+            "brand": "Sanderson",
+            "design": "Baroda",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236919": {
+      "record": {
+        "fabric_id": "sdg-dcac236919",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236919",
+        "brand_name": "Sanderson",
+        "design_name": "Baroda",
+        "colour_name": "Calico",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236919_a899.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236919",
+            "brand": "Sanderson",
+            "design": "Baroda",
+            "colour": "Calico",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236898": {
+      "record": {
+        "fabric_id": "sdg-dcac236898",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236898",
+        "brand_name": "Sanderson",
+        "design_name": "Darter",
+        "colour_name": "Nettle",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236898_7b1a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236898",
+            "brand": "Sanderson",
+            "design": "Darter",
+            "colour": "Nettle",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236899": {
+      "record": {
+        "fabric_id": "sdg-dcac236899",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236899",
+        "brand_name": "Sanderson",
+        "design_name": "Darter",
+        "colour_name": "Yarrow",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236899_9078.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236899",
+            "brand": "Sanderson",
+            "design": "Darter",
+            "colour": "Yarrow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236900": {
+      "record": {
+        "fabric_id": "sdg-dcac236900",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236900",
+        "brand_name": "Sanderson",
+        "design_name": "Darter",
+        "colour_name": "Jute",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236900_f871.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236900",
+            "brand": "Sanderson",
+            "design": "Darter",
+            "colour": "Jute",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236901": {
+      "record": {
+        "fabric_id": "sdg-dcac236901",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236901",
+        "brand_name": "Sanderson",
+        "design_name": "Darter",
+        "colour_name": "Indigo",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236901_fdc7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236901",
+            "brand": "Sanderson",
+            "design": "Darter",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac226643": {
+      "record": {
+        "fabric_id": "sdg-dcac226643",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC226643",
+        "brand_name": "Sanderson",
+        "design_name": "Ishi",
+        "colour_name": "Dove",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC226643_8b8b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC226643",
+            "brand": "Sanderson",
+            "design": "Ishi",
+            "colour": "Dove",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac226644": {
+      "record": {
+        "fabric_id": "sdg-dcac226644",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC226644",
+        "brand_name": "Sanderson",
+        "design_name": "Ishi",
+        "colour_name": "Paprika/Misy",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC226644_a7d2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC226644",
+            "brand": "Sanderson",
+            "design": "Ishi",
+            "colour": "Paprika/Misy",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac226645": {
+      "record": {
+        "fabric_id": "sdg-dcac226645",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC226645",
+        "brand_name": "Sanderson",
+        "design_name": "Ishi",
+        "colour_name": "Nettle/Celeste",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC226645_b8e8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC226645",
+            "brand": "Sanderson",
+            "design": "Ishi",
+            "colour": "Nettle/Celeste",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac226646": {
+      "record": {
+        "fabric_id": "sdg-dcac226646",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC226646",
+        "brand_name": "Sanderson",
+        "design_name": "Ishi",
+        "colour_name": "Rose/Nettle",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC226646_3a0b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC226646",
+            "brand": "Sanderson",
+            "design": "Ishi",
+            "colour": "Rose/Nettle",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236913": {
+      "record": {
+        "fabric_id": "sdg-dcac236913",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236913",
+        "brand_name": "Sanderson",
+        "design_name": "Kelim",
+        "colour_name": "Celeste",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236913_732a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236913",
+            "brand": "Sanderson",
+            "design": "Kelim",
+            "colour": "Celeste",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236914": {
+      "record": {
+        "fabric_id": "sdg-dcac236914",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236914",
+        "brand_name": "Sanderson",
+        "design_name": "Kelim",
+        "colour_name": "Madder",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236914_ec79.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236914",
+            "brand": "Sanderson",
+            "design": "Kelim",
+            "colour": "Madder",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236909": {
+      "record": {
+        "fabric_id": "sdg-dcac236909",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236909",
+        "brand_name": "Sanderson",
+        "design_name": "Khira",
+        "colour_name": "Sumac",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236909_0735.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236909",
+            "brand": "Sanderson",
+            "design": "Khira",
+            "colour": "Sumac",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236904": {
+      "record": {
+        "fabric_id": "sdg-dcac236904",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236904",
+        "brand_name": "Sanderson",
+        "design_name": "Madhu",
+        "colour_name": "Celeste",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236904_a5b4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236904",
+            "brand": "Sanderson",
+            "design": "Madhu",
+            "colour": "Celeste",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236910": {
+      "record": {
+        "fabric_id": "sdg-dcac236910",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236910",
+        "brand_name": "Sanderson",
+        "design_name": "Meru",
+        "colour_name": "Nettle",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236910_1165.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236910",
+            "brand": "Sanderson",
+            "design": "Meru",
+            "colour": "Nettle",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236911": {
+      "record": {
+        "fabric_id": "sdg-dcac236911",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236911",
+        "brand_name": "Sanderson",
+        "design_name": "Meru",
+        "colour_name": "Indigo",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236911_794d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236911",
+            "brand": "Sanderson",
+            "design": "Meru",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236912": {
+      "record": {
+        "fabric_id": "sdg-dcac236912",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236912",
+        "brand_name": "Sanderson",
+        "design_name": "Meru",
+        "colour_name": "Celeste",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236912_8030.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236912",
+            "brand": "Sanderson",
+            "design": "Meru",
+            "colour": "Celeste",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236920": {
+      "record": {
+        "fabric_id": "sdg-dcac236920",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236920",
+        "brand_name": "Sanderson",
+        "design_name": "Tamizart",
+        "colour_name": "Sandbank",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236920_ddca.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236920",
+            "brand": "Sanderson",
+            "design": "Tamizart",
+            "colour": "Sandbank",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcac236922": {
+      "record": {
+        "fabric_id": "sdg-dcac236922",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCAC236922",
+        "brand_name": "Sanderson",
+        "design_name": "Tamizart",
+        "colour_name": "Slate/Blush",
+        "collection_name": "Caspian Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCAC236922_d6a5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCAC236922",
+            "brand": "Sanderson",
+            "design": "Tamizart",
+            "colour": "Slate/Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dwol235314": {
+      "record": {
+        "fabric_id": "sdg-dwol235314",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DWOL235314",
+        "brand_name": "Sanderson",
+        "design_name": "Byron Wool Plains",
+        "colour_name": "Moss",
+        "collection_name": "Byron Wools"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/W/DWOL235314_b133.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DWOL235314",
+            "brand": "Sanderson",
+            "design": "Byron Wool Plains",
+            "colour": "Moss",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dwow225512": {
+      "record": {
+        "fabric_id": "sdg-dwow225512",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DWOW225512",
+        "brand_name": "Sanderson",
+        "design_name": "Butterfly Voile",
+        "colour_name": "Fuchsia/Cream",
+        "collection_name": "Country Woodland Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/W/DWOW225512_a961.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DWOW225512",
+            "brand": "Sanderson",
+            "design": "Butterfly Voile",
+            "colour": "Fuchsia/Cream",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dash235639": {
+      "record": {
+        "fabric_id": "sdg-dash235639",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DASH235639",
+        "brand_name": "Sanderson",
+        "design_name": "Chenies",
+        "colour_name": "Taupe",
+        "collection_name": "Ashridge Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DASH235639_98ce.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DASH235639",
+            "brand": "Sanderson",
+            "design": "Chenies",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlag245780": {
+      "record": {
+        "fabric_id": "sdg-dlag245780",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLAG245780",
+        "brand_name": "Sanderson",
+        "design_name": "Lagom",
+        "colour_name": "Mandarin",
+        "collection_name": "Lagom Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLAG245780_dbb8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLAG245780",
+            "brand": "Sanderson",
+            "design": "Lagom",
+            "colour": "Mandarin",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbay236112": {
+      "record": {
+        "fabric_id": "sdg-dbay236112",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBAY236112",
+        "brand_name": "Sanderson",
+        "design_name": "Bay Willow",
+        "colour_name": "Chalk",
+        "collection_name": "Bay Willow Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBAY236112_3bd2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBAY236112",
+            "brand": "Sanderson",
+            "design": "Bay Willow",
+            "colour": "Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dche235939": {
+      "record": {
+        "fabric_id": "sdg-dche235939",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCHE235939",
+        "brand_name": "Sanderson",
+        "design_name": "Cherwell",
+        "colour_name": "Pewter",
+        "collection_name": "Cherwell Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCHE235939_7885.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCHE235939",
+            "brand": "Sanderson",
+            "design": "Cherwell",
+            "colour": "Pewter",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dche235954": {
+      "record": {
+        "fabric_id": "sdg-dche235954",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCHE235954",
+        "brand_name": "Sanderson",
+        "design_name": "Cherwell",
+        "colour_name": "Duck Egg",
+        "collection_name": "Cherwell Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCHE235954_11a2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCHE235954",
+            "brand": "Sanderson",
+            "design": "Cherwell",
+            "colour": "Duck Egg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbay236123": {
+      "record": {
+        "fabric_id": "sdg-dbay236123",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBAY236123",
+        "brand_name": "Sanderson",
+        "design_name": "Trailing Jenny Embroidery",
+        "colour_name": "Chalk",
+        "collection_name": "Sheers"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBAY236123_b29c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBAY236123",
+            "brand": "Sanderson",
+            "design": "Trailing Jenny Embroidery",
+            "colour": "Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246179": {
+      "record": {
+        "fabric_id": "sdg-dvib246179",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246179",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Gargoyle",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246179_21a1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246179",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Gargoyle",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246180": {
+      "record": {
+        "fabric_id": "sdg-dvib246180",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246180",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Onyx",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246180_820f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246180",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Onyx",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246181": {
+      "record": {
+        "fabric_id": "sdg-dvib246181",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246181",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Pinecone",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246181_0ab9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246181",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Pinecone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246184": {
+      "record": {
+        "fabric_id": "sdg-dvib246184",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246184",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Shark",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246184_16e0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246184",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Shark",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246186": {
+      "record": {
+        "fabric_id": "sdg-dvib246186",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246186",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Limestone",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246186_7d25.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246186",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Limestone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246191": {
+      "record": {
+        "fabric_id": "sdg-dvib246191",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246191",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Putty",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246191_399a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246191",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Putty",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246198": {
+      "record": {
+        "fabric_id": "sdg-dvib246198",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246198",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Sand",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246198_97c8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246198",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Sand",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246200": {
+      "record": {
+        "fabric_id": "sdg-dvib246200",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246200",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Nut",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246200_2916.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246200",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Nut",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246203": {
+      "record": {
+        "fabric_id": "sdg-dvib246203",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246203",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Boa",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246203_040e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246203",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Boa",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246204": {
+      "record": {
+        "fabric_id": "sdg-dvib246204",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246204",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Lettuce",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246204_aaf2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246204",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Lettuce",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246211": {
+      "record": {
+        "fabric_id": "sdg-dvib246211",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246211",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Hydro",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246211_b2e2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246211",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Hydro",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246214": {
+      "record": {
+        "fabric_id": "sdg-dvib246214",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246214",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Denim",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246214_b9d1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246214",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246217": {
+      "record": {
+        "fabric_id": "sdg-dvib246217",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246217",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Emperor",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246217_fd83.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246217",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Emperor",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246218": {
+      "record": {
+        "fabric_id": "sdg-dvib246218",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246218",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Grape",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246218_5fd3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246218",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Grape",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246220": {
+      "record": {
+        "fabric_id": "sdg-dvib246220",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246220",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Quartz",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246220_442d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246220",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Quartz",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dvib246222": {
+      "record": {
+        "fabric_id": "sdg-dvib246222",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DVIB246222",
+        "brand_name": "Sanderson",
+        "design_name": "Vibeke",
+        "colour_name": "Blossom",
+        "collection_name": "Vibeke"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/V/DVIB246222_1d54.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DVIB246222",
+            "brand": "Sanderson",
+            "design": "Vibeke",
+            "colour": "Blossom",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dpot236270": {
+      "record": {
+        "fabric_id": "sdg-dpot236270",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DPOT236270",
+        "brand_name": "Sanderson",
+        "design_name": "Dalby",
+        "colour_name": "Silver",
+        "collection_name": "Potton Wood Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/P/DPOT236270_065a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DPOT236270",
+            "brand": "Sanderson",
+            "design": "Dalby",
+            "colour": "Silver",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-daly246259": {
+      "record": {
+        "fabric_id": "sdg-daly246259",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DALY246259",
+        "brand_name": "Sanderson",
+        "design_name": "Malbec",
+        "colour_name": "Heather",
+        "collection_name": "Arley Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DALY246259_86a2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DALY246259",
+            "brand": "Sanderson",
+            "design": "Malbec",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dmoo236294": {
+      "record": {
+        "fabric_id": "sdg-dmoo236294",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMOO236294",
+        "brand_name": "Sanderson",
+        "design_name": "Moorbank",
+        "colour_name": "Birch",
+        "collection_name": "Country House Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMOO236294_fff0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMOO236294",
+            "brand": "Sanderson",
+            "design": "Moorbank",
+            "colour": "Birch",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dmoo236299": {
+      "record": {
+        "fabric_id": "sdg-dmoo236299",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMOO236299",
+        "brand_name": "Sanderson",
+        "design_name": "Moorbank",
+        "colour_name": "Mushroom",
+        "collection_name": "Country House Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMOO236299_91a8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMOO236299",
+            "brand": "Sanderson",
+            "design": "Moorbank",
+            "colour": "Mushroom",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236667": {
+      "record": {
+        "fabric_id": "sdg-dcoa236667",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236667",
+        "brand_name": "Sanderson",
+        "design_name": "Hemsby",
+        "colour_name": "Lichen",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236667_5add.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236667",
+            "brand": "Sanderson",
+            "design": "Hemsby",
+            "colour": "Lichen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236668": {
+      "record": {
+        "fabric_id": "sdg-dcoa236668",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236668",
+        "brand_name": "Sanderson",
+        "design_name": "Hemsby",
+        "colour_name": "Ochre",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236668_03b9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236668",
+            "brand": "Sanderson",
+            "design": "Hemsby",
+            "colour": "Ochre",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236669": {
+      "record": {
+        "fabric_id": "sdg-dcoa236669",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236669",
+        "brand_name": "Sanderson",
+        "design_name": "Hemsby",
+        "colour_name": "Marine",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236669_8d38.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236669",
+            "brand": "Sanderson",
+            "design": "Hemsby",
+            "colour": "Marine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dher236655": {
+      "record": {
+        "fabric_id": "sdg-dher236655",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DHER236655",
+        "brand_name": "Sanderson",
+        "design_name": "Herring",
+        "colour_name": "Gull",
+        "collection_name": "Herring Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/H/DHER236655_e3b4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DHER236655",
+            "brand": "Sanderson",
+            "design": "Herring",
+            "colour": "Gull",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226501": {
+      "record": {
+        "fabric_id": "sdg-dcoa226501",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226501",
+        "brand_name": "Sanderson",
+        "design_name": "Sailor",
+        "colour_name": "Gull",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226501_849b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226501",
+            "brand": "Sanderson",
+            "design": "Sailor",
+            "colour": "Gull",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226502": {
+      "record": {
+        "fabric_id": "sdg-dcoa226502",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226502",
+        "brand_name": "Sanderson",
+        "design_name": "Sailor",
+        "colour_name": "Pacific",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226502_3d3f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226502",
+            "brand": "Sanderson",
+            "design": "Sailor",
+            "colour": "Pacific",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226503": {
+      "record": {
+        "fabric_id": "sdg-dcoa226503",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226503",
+        "brand_name": "Sanderson",
+        "design_name": "Sailor",
+        "colour_name": "Nautical",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226503_3071.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226503",
+            "brand": "Sanderson",
+            "design": "Sailor",
+            "colour": "Nautical",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226504": {
+      "record": {
+        "fabric_id": "sdg-dcoa226504",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226504",
+        "brand_name": "Sanderson",
+        "design_name": "Sailor",
+        "colour_name": "Sky",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226504_f8c4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226504",
+            "brand": "Sanderson",
+            "design": "Sailor",
+            "colour": "Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226505": {
+      "record": {
+        "fabric_id": "sdg-dcoa226505",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226505",
+        "brand_name": "Sanderson",
+        "design_name": "Sailor",
+        "colour_name": "Aqua",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226505_e2bd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226505",
+            "brand": "Sanderson",
+            "design": "Sailor",
+            "colour": "Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226498": {
+      "record": {
+        "fabric_id": "sdg-dcoa226498",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226498",
+        "brand_name": "Sanderson",
+        "design_name": "Sea Kelp",
+        "colour_name": "Aqua/Lichen",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226498_9cac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226498",
+            "brand": "Sanderson",
+            "design": "Sea Kelp",
+            "colour": "Aqua/Lichen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226499": {
+      "record": {
+        "fabric_id": "sdg-dcoa226499",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226499",
+        "brand_name": "Sanderson",
+        "design_name": "Sea Kelp",
+        "colour_name": "Blush/Stone",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226499_7571.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226499",
+            "brand": "Sanderson",
+            "design": "Sea Kelp",
+            "colour": "Blush/Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226500": {
+      "record": {
+        "fabric_id": "sdg-dcoa226500",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226500",
+        "brand_name": "Sanderson",
+        "design_name": "Sea Kelp",
+        "colour_name": "Ochre/Slate",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226500_1934.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226500",
+            "brand": "Sanderson",
+            "design": "Sea Kelp",
+            "colour": "Ochre/Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226493": {
+      "record": {
+        "fabric_id": "sdg-dcoa226493",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226493",
+        "brand_name": "Sanderson",
+        "design_name": "Shore Birds",
+        "colour_name": "Pacific",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226493_528b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226493",
+            "brand": "Sanderson",
+            "design": "Shore Birds",
+            "colour": "Pacific",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226494": {
+      "record": {
+        "fabric_id": "sdg-dcoa226494",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226494",
+        "brand_name": "Sanderson",
+        "design_name": "Shore Birds",
+        "colour_name": "Driftwood",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226494_b520.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226494",
+            "brand": "Sanderson",
+            "design": "Shore Birds",
+            "colour": "Driftwood",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226495": {
+      "record": {
+        "fabric_id": "sdg-dcoa226495",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226495",
+        "brand_name": "Sanderson",
+        "design_name": "Shore Birds",
+        "colour_name": "Blush",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226495_50c9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226495",
+            "brand": "Sanderson",
+            "design": "Shore Birds",
+            "colour": "Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236670": {
+      "record": {
+        "fabric_id": "sdg-dcoa236670",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236670",
+        "brand_name": "Sanderson",
+        "design_name": "Skipper",
+        "colour_name": "Coral/Lichen",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236670_43a4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236670",
+            "brand": "Sanderson",
+            "design": "Skipper",
+            "colour": "Coral/Lichen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa236671": {
+      "record": {
+        "fabric_id": "sdg-dcoa236671",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA236671",
+        "brand_name": "Sanderson",
+        "design_name": "Skipper",
+        "colour_name": "Pacific/Rust",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA236671_02bc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA236671",
+            "brand": "Sanderson",
+            "design": "Skipper",
+            "colour": "Pacific/Rust",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226496": {
+      "record": {
+        "fabric_id": "sdg-dcoa226496",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226496",
+        "brand_name": "Sanderson",
+        "design_name": "Stacking Pebbles",
+        "colour_name": "Driftwood/Slate",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226496_8741.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226496",
+            "brand": "Sanderson",
+            "design": "Stacking Pebbles",
+            "colour": "Driftwood/Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcoa226497": {
+      "record": {
+        "fabric_id": "sdg-dcoa226497",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCOA226497",
+        "brand_name": "Sanderson",
+        "design_name": "Stacking Pebbles",
+        "colour_name": "Sky/Blush",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCOA226497_0b4e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCOA226497",
+            "brand": "Sanderson",
+            "design": "Stacking Pebbles",
+            "colour": "Sky/Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236788": {
+      "record": {
+        "fabric_id": "sdg-dlnc236788",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236788",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Bengal Red",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236788_6808.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236788",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Bengal Red",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236789": {
+      "record": {
+        "fabric_id": "sdg-dlnc236789",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236789",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Tropical Palm",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236789_f6b9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236789",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Tropical Palm",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236790": {
+      "record": {
+        "fabric_id": "sdg-dlnc236790",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236790",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Lime",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236790_844a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236790",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Lime",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236791": {
+      "record": {
+        "fabric_id": "sdg-dlnc236791",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236791",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Papaya",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236791_b98a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236791",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Papaya",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236792": {
+      "record": {
+        "fabric_id": "sdg-dlnc236792",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236792",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Blue Clay",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236792_d5a9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236792",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Blue Clay",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236793": {
+      "record": {
+        "fabric_id": "sdg-dlnc236793",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236793",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Flint",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236793_9302.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236793",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Flint",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236794": {
+      "record": {
+        "fabric_id": "sdg-dlnc236794",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236794",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Stone Grey",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236794_b8dc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236794",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Stone Grey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236795": {
+      "record": {
+        "fabric_id": "sdg-dlnc236795",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236795",
+        "brand_name": "Sanderson",
+        "design_name": "Botanic Trellis",
+        "colour_name": "Rhodera",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236795_4a11.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236795",
+            "brand": "Sanderson",
+            "design": "Botanic Trellis",
+            "colour": "Rhodera",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236808": {
+      "record": {
+        "fabric_id": "sdg-dlnc236808",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236808",
+        "brand_name": "Sanderson",
+        "design_name": "Fenne",
+        "colour_name": "Mimosa",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236808_7eb3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236808",
+            "brand": "Sanderson",
+            "design": "Fenne",
+            "colour": "Mimosa",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236809": {
+      "record": {
+        "fabric_id": "sdg-dlnc236809",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236809",
+        "brand_name": "Sanderson",
+        "design_name": "Fenne",
+        "colour_name": "Botanical Green",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236809_1b6d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236809",
+            "brand": "Sanderson",
+            "design": "Fenne",
+            "colour": "Botanical Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236810": {
+      "record": {
+        "fabric_id": "sdg-dlnc236810",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236810",
+        "brand_name": "Sanderson",
+        "design_name": "Fenne",
+        "colour_name": "Tropical Palm",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236810_f27e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236810",
+            "brand": "Sanderson",
+            "design": "Fenne",
+            "colour": "Tropical Palm",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236811": {
+      "record": {
+        "fabric_id": "sdg-dlnc236811",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236811",
+        "brand_name": "Sanderson",
+        "design_name": "Fenne",
+        "colour_name": "Orchid",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236811_e319.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236811",
+            "brand": "Sanderson",
+            "design": "Fenne",
+            "colour": "Orchid",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236802": {
+      "record": {
+        "fabric_id": "sdg-dlnc236802",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236802",
+        "brand_name": "Sanderson",
+        "design_name": "Hutton",
+        "colour_name": "Indigo",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236802_87a4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236802",
+            "brand": "Sanderson",
+            "design": "Hutton",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236803": {
+      "record": {
+        "fabric_id": "sdg-dlnc236803",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236803",
+        "brand_name": "Sanderson",
+        "design_name": "Hutton",
+        "colour_name": "Midnight Blue",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236803_1a72.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236803",
+            "brand": "Sanderson",
+            "design": "Hutton",
+            "colour": "Midnight Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236804": {
+      "record": {
+        "fabric_id": "sdg-dlnc236804",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236804",
+        "brand_name": "Sanderson",
+        "design_name": "Hutton",
+        "colour_name": "Lime",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236804_376a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236804",
+            "brand": "Sanderson",
+            "design": "Hutton",
+            "colour": "Lime",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236806": {
+      "record": {
+        "fabric_id": "sdg-dlnc236806",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236806",
+        "brand_name": "Sanderson",
+        "design_name": "Hutton",
+        "colour_name": "Blue Clay",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236806_2325.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236806",
+            "brand": "Sanderson",
+            "design": "Hutton",
+            "colour": "Blue Clay",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236807": {
+      "record": {
+        "fabric_id": "sdg-dlnc236807",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236807",
+        "brand_name": "Sanderson",
+        "design_name": "Hutton",
+        "colour_name": "Silver Fern",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236807_bb15.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236807",
+            "brand": "Sanderson",
+            "design": "Hutton",
+            "colour": "Silver Fern",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236782": {
+      "record": {
+        "fabric_id": "sdg-dlnc236782",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236782",
+        "brand_name": "Sanderson",
+        "design_name": "Linnean",
+        "colour_name": "Linnean Crusoe Blue",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236782_7436.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236782",
+            "brand": "Sanderson",
+            "design": "Linnean",
+            "colour": "Linnean Crusoe Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236783": {
+      "record": {
+        "fabric_id": "sdg-dlnc236783",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236783",
+        "brand_name": "Sanderson",
+        "design_name": "Linnean",
+        "colour_name": "Linnean Indigo",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236783_b07f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236783",
+            "brand": "Sanderson",
+            "design": "Linnean",
+            "colour": "Linnean Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236784": {
+      "record": {
+        "fabric_id": "sdg-dlnc236784",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236784",
+        "brand_name": "Sanderson",
+        "design_name": "Linnean",
+        "colour_name": "Linnean Botanical Green",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236784_7fdd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236784",
+            "brand": "Sanderson",
+            "design": "Linnean",
+            "colour": "Linnean Botanical Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236785": {
+      "record": {
+        "fabric_id": "sdg-dlnc236785",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236785",
+        "brand_name": "Sanderson",
+        "design_name": "Linnean",
+        "colour_name": "Linnean Lime",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236785_7fb4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236785",
+            "brand": "Sanderson",
+            "design": "Linnean",
+            "colour": "Linnean Lime",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236786": {
+      "record": {
+        "fabric_id": "sdg-dlnc236786",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236786",
+        "brand_name": "Sanderson",
+        "design_name": "Linnean",
+        "colour_name": "Linnean Tropical Palm",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236786_95f7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236786",
+            "brand": "Sanderson",
+            "design": "Linnean",
+            "colour": "Linnean Tropical Palm",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236787": {
+      "record": {
+        "fabric_id": "sdg-dlnc236787",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236787",
+        "brand_name": "Sanderson",
+        "design_name": "Linnean",
+        "colour_name": "Linnean Stone Grey",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236787_28b4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236787",
+            "brand": "Sanderson",
+            "design": "Linnean",
+            "colour": "Linnean Stone Grey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236796": {
+      "record": {
+        "fabric_id": "sdg-dlnc236796",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236796",
+        "brand_name": "Sanderson",
+        "design_name": "Nelson",
+        "colour_name": "Nelson Bengal Red",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236796_9a49.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236796",
+            "brand": "Sanderson",
+            "design": "Nelson",
+            "colour": "Nelson Bengal Red",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236797": {
+      "record": {
+        "fabric_id": "sdg-dlnc236797",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236797",
+        "brand_name": "Sanderson",
+        "design_name": "Nelson",
+        "colour_name": "Nelson Tropical Palm",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236797_77b7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236797",
+            "brand": "Sanderson",
+            "design": "Nelson",
+            "colour": "Nelson Tropical Palm",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236798": {
+      "record": {
+        "fabric_id": "sdg-dlnc236798",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236798",
+        "brand_name": "Sanderson",
+        "design_name": "Nelson",
+        "colour_name": "Nelson Marine",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236798_9285.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236798",
+            "brand": "Sanderson",
+            "design": "Nelson",
+            "colour": "Nelson Marine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dlnc236799": {
+      "record": {
+        "fabric_id": "sdg-dlnc236799",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DLNC236799",
+        "brand_name": "Sanderson",
+        "design_name": "Nelson",
+        "colour_name": "Nelson Stone Grey",
+        "collection_name": "Linnean Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/L/DLNC236799_ac26.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DLNC236799",
+            "brand": "Sanderson",
+            "design": "Nelson",
+            "colour": "Nelson Stone Grey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dkh17a205": {
+      "record": {
+        "fabric_id": "sdg-dkh17a205",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DKH17A205",
+        "brand_name": "Sanderson",
+        "design_name": "Avening",
+        "colour_name": "Midnight/Multi",
+        "collection_name": "Sanderson One Sixty Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/K/DKH17A205_8c79.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DKH17A205",
+            "brand": "Sanderson",
+            "design": "Avening",
+            "colour": "Midnight/Multi",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly385": {
+      "record": {
+        "fabric_id": "sdg-dricly385",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY385",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Oyster",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY385_e754.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY385",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Oyster",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly386": {
+      "record": {
+        "fabric_id": "sdg-dricly386",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY386",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Crystal",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY386_2457.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY386",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Crystal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly388": {
+      "record": {
+        "fabric_id": "sdg-dricly388",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY388",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Plaza",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY388_5d45.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY388",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Plaza",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly389": {
+      "record": {
+        "fabric_id": "sdg-dricly389",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY389",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Doe",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY389_e5a3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY389",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Doe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly394": {
+      "record": {
+        "fabric_id": "sdg-dricly394",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY394",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Sterling",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY394_e63f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY394",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Sterling",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly397": {
+      "record": {
+        "fabric_id": "sdg-dricly397",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY397",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Dove",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY397_0eb5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY397",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Dove",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly398": {
+      "record": {
+        "fabric_id": "sdg-dricly398",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY398",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Zinc",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY398_5ddb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY398",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Zinc",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly401": {
+      "record": {
+        "fabric_id": "sdg-dricly401",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY401",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Poppy",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY401_8c2e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY401",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Poppy",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly419": {
+      "record": {
+        "fabric_id": "sdg-dricly419",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY419",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Fossil",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY419_a795.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY419",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Fossil",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly431": {
+      "record": {
+        "fabric_id": "sdg-dricly431",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY431",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Quail",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY431_3f8f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY431",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Quail",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly434": {
+      "record": {
+        "fabric_id": "sdg-dricly434",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY434",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Raisin",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY434_8a90.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY434",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Raisin",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dricly437": {
+      "record": {
+        "fabric_id": "sdg-dricly437",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRICLY437",
+        "brand_name": "Sanderson",
+        "design_name": "Lyric Ii",
+        "colour_name": "Petrol",
+        "collection_name": "Lyric Silks II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRICLY437_7e4a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRICLY437",
+            "brand": "Sanderson",
+            "design": "Lyric Ii",
+            "colour": "Petrol",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dopnda202": {
+      "record": {
+        "fabric_id": "sdg-dopnda202",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DOPNDA202",
+        "brand_name": "Sanderson",
+        "design_name": "Dandelion Clocks",
+        "colour_name": "Blackcurrant",
+        "collection_name": "Sanderson Home Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/O/DOPNDA202_6f1b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DOPNDA202",
+            "brand": "Sanderson",
+            "design": "Dandelion Clocks",
+            "colour": "Blackcurrant",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcha240159": {
+      "record": {
+        "fabric_id": "sdg-dcha240159",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCHA240159",
+        "brand_name": "Sanderson",
+        "design_name": "Chatham",
+        "colour_name": "Brick",
+        "collection_name": "Chatham Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCHA240159_12ea.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCHA240159",
+            "brand": "Sanderson",
+            "design": "Chatham",
+            "colour": "Brick",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dclo232022": {
+      "record": {
+        "fabric_id": "sdg-dclo232022",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCLO232022",
+        "brand_name": "Sanderson",
+        "design_name": "Merrington",
+        "colour_name": "Olive",
+        "collection_name": "Orwell Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCLO232022_0213.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCLO232022",
+            "brand": "Sanderson",
+            "design": "Merrington",
+            "colour": "Olive",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dclo232023": {
+      "record": {
+        "fabric_id": "sdg-dclo232023",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCLO232023",
+        "brand_name": "Sanderson",
+        "design_name": "Merrington",
+        "colour_name": "Indigo",
+        "collection_name": "Orwell Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCLO232023_bf46.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCLO232023",
+            "brand": "Sanderson",
+            "design": "Merrington",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcst232668": {
+      "record": {
+        "fabric_id": "sdg-dcst232668",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCST232668",
+        "brand_name": "Sanderson",
+        "design_name": "Brecon",
+        "colour_name": "Sea Blue/Teal",
+        "collection_name": "Melford Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCST232668_80fa.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCST232668",
+            "brand": "Sanderson",
+            "design": "Brecon",
+            "colour": "Sea Blue/Teal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcst232696": {
+      "record": {
+        "fabric_id": "sdg-dcst232696",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCST232696",
+        "brand_name": "Sanderson",
+        "design_name": "Deben",
+        "colour_name": "Delph Blue",
+        "collection_name": "Melford Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCST232696_1ff9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCST232696",
+            "brand": "Sanderson",
+            "design": "Deben",
+            "colour": "Delph Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dcst232697": {
+      "record": {
+        "fabric_id": "sdg-dcst232697",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DCST232697",
+        "brand_name": "Sanderson",
+        "design_name": "Deben",
+        "colour_name": "Charcoal",
+        "collection_name": "Melford Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/C/DCST232697_cbdd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DCST232697",
+            "brand": "Sanderson",
+            "design": "Deben",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

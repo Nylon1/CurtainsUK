@@ -1,0 +1,667 @@
+[
+  {
+    "fabricId": "sdg-hlin141708",
+    "sku": "HLIN141708",
+    "observedTitle": "Purity Voiles Ivory/Dove",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.466+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hlin141696",
+    "sku": "HLIN141696",
+    "observedTitle": "Purity Voiles Ecru",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.524+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgat120420",
+    "sku": "HGAT120420",
+    "observedTitle": "Amborella Silk Steel",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.575+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgat120430",
+    "sku": "HGAT120430",
+    "observedTitle": "Protea Almond/Slate",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.628+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgat120431",
+    "sku": "HGAT120431",
+    "observedTitle": "Protea Seaglass/Willow",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.676+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav120438",
+    "sku": "HGAV120438",
+    "observedTitle": "Belvedere Pebble/Pearl",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.729+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav120439",
+    "sku": "HGAV120439",
+    "observedTitle": "Belvedere Steel/Silver",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.779+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav131606",
+    "sku": "HGAV131606",
+    "observedTitle": "Odisha Almond/Mink",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.827+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav131594",
+    "sku": "HGAV131594",
+    "observedTitle": "Regina Shell",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.887+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav131595",
+    "sku": "HGAV131595",
+    "observedTitle": "Regina Titanium",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.941+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav131596",
+    "sku": "HGAV131596",
+    "observedTitle": "Regina Truffle",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:58.997+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "HGAV131597",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-hgav131598",
+    "sku": "HGAV131598",
+    "observedTitle": "Regina Antique Gold",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.054+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav131602",
+    "sku": "HGAV131602",
+    "observedTitle": "Regina Ink",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.133+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav131604",
+    "sku": "HGAV131604",
+    "observedTitle": "Regina Onyx",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.192+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "HILL142355",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "sku": "EFAB131811",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-efab131812",
+    "sku": "EFAB131812",
+    "observedTitle": "Cambium Charcoal/Saffron",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.248+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hsgr131877",
+    "sku": "HSGR131877",
+    "observedTitle": "Cestino Spice",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.311+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hfau131854",
+    "sku": "HFAU131854",
+    "observedTitle": "Flux Aqua/Lagoon",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.368+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "HPER142323",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-eket131713",
+    "sku": "EKET131713",
+    "observedTitle": "Ketu Pewter/Oyster",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.417+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-eket131722",
+    "sku": "EKET131722",
+    "observedTitle": "Ketu Petrol/Clay",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.474+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-eket131723",
+    "sku": "EKET131723",
+    "observedTitle": "Ketu Midnight/Sand",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.526+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-eshe131814",
+    "sku": "ESHE131814",
+    "observedTitle": "Kiyoshi Parchment/Charcoal",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.575+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-eluc131751",
+    "sku": "ELUC131751",
+    "observedTitle": "Lucio Pewter",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.625+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmai141915",
+    "sku": "HMAI141915",
+    "observedTitle": "Maison Gold",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.678+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hfau131842",
+    "sku": "HFAU131842",
+    "observedTitle": "Pennello Blush/Honey/Dove",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.731+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hfau131844",
+    "sku": "HFAU131844",
+    "observedTitle": "Pennello Sunset/Fuchsia/Jute",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.781+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hfau131846",
+    "sku": "HFAU131846",
+    "observedTitle": "Persico Indigo/Lime/Sky Embroidery",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:15.76+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hfau131847",
+    "sku": "HFAU131847",
+    "observedTitle": "Persico Blush/Slate/Sky Embroidery",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:15.823+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hfau131848",
+    "sku": "HFAU131848",
+    "observedTitle": "Persico Damson/Lime/Plum Embroidery",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T12:37:15.878+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-efab131757",
+    "sku": "EFAB131757",
+    "observedTitle": "Pumice Pewter",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.833+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-efab131758",
+    "sku": "EFAB131758",
+    "observedTitle": "Pumice Sepia",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.88+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-efab131775",
+    "sku": "EFAB131775",
+    "observedTitle": "Spinel Rose Quartz/Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.93+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "sku": "HAER142453",
+    "resolution": "IDENTITY_RECONCILIATION_REQUIRED"
+  },
+  {
+    "fabricId": "sdg-hput132652",
+    "sku": "HPUT132652",
+    "observedTitle": "Louella Blush/Linen",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T11:56:59.983+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440388",
+    "sku": "HPOL440388",
+    "observedTitle": "Deflect Basil",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:54.545+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440446",
+    "sku": "HPOL440446",
+    "observedTitle": "Deflect Acorn",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:54.674+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440456",
+    "sku": "HPOL440456",
+    "observedTitle": "Deflect Cocoa",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:54.756+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440500",
+    "sku": "HPOL440500",
+    "observedTitle": "Deflect Aurora",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:54.82+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440572",
+    "sku": "HPOL440572",
+    "observedTitle": "Deflect Surf",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:54.881+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440621",
+    "sku": "HPOL440621",
+    "observedTitle": "Deflect Swedish Grey",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:54.941+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440629",
+    "sku": "HPOL440629",
+    "observedTitle": "Deflect Driftwood",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:54.994+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440674",
+    "sku": "HPOL440674",
+    "observedTitle": "Deflect Sediment",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:55.053+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440700",
+    "sku": "HPOL440700",
+    "observedTitle": "Deflect Willow",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:55.107+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440368",
+    "sku": "HPOL440368",
+    "observedTitle": "Electron Fresh Lime",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:55.169+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440391",
+    "sku": "HPOL440391",
+    "observedTitle": "Electron Peppermint",
+    "source": "SDG authenticated fabric listing",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "DISCONTINUED",
+      "visible": false,
+      "revision": "2026-09-08T08:53:55.282+00:00"
+    },
+    "resolution": "ALREADY_DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "fabricId": "sdg-nmel120050",
+    "sku": "NMEL120050",
+    "observedTitle": "Berry Tree Cream/Storm/Hessian",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:49.91009+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-nmel120055",
+    "sku": "NMEL120055",
+    "observedTitle": "Melinki One 120055 Celandine",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:49.91009+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-nmel120062",
+    "sku": "NMEL120062",
+    "observedTitle": "Melinki One 120062 Lunaria",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:49.91009+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-nmel120064",
+    "sku": "NMEL120064",
+    "observedTitle": "Melinki One 120064 Lunaria",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:49.91009+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-nplo131947",
+    "sku": "NPLO131947",
+    "observedTitle": "Plains One Plus 1 Navy",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:49.91009+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-nsck131655",
+    "sku": "NSCK131655",
+    "observedTitle": "Mr Fox Tangerine/Linen",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:49.91009+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-nsck131657",
+    "sku": "NSCK131657",
+    "observedTitle": "Up Periscope Postbox Red/Denim/Pea",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:49.91009+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

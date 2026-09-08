@@ -1,0 +1,18 @@
+[
+  {
+    "fabricId": "sdg-dja1bd202",
+    "sku": "DJA1BD202",
+    "observedTitle": "Bird And Anemone",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:35.166284+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

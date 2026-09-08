@@ -1,0 +1,4654 @@
+{
+  "results": {
+    "sdg-hcol133935": {
+      "record": {
+        "fabric_id": "sdg-hcol133935",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133935",
+        "brand_name": "Harlequin",
+        "design_name": "Arbor",
+        "colour_name": "Chalk",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133935_ff52.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133935",
+            "brand": "Harlequin",
+            "design": "Arbor",
+            "colour": "Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf121176": {
+      "record": {
+        "fabric_id": "sdg-hsrf121176",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF121176",
+        "brand_name": "Harlequin",
+        "design_name": "Basket Weave",
+        "colour_name": "Emerald/Aquamarine",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF121176_eece.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF121176",
+            "brand": "Harlequin",
+            "design": "Basket Weave",
+            "colour": "Emerald/Aquamarine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf121177": {
+      "record": {
+        "fabric_id": "sdg-hsrf121177",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF121177",
+        "brand_name": "Harlequin",
+        "design_name": "Basket Weave",
+        "colour_name": "Coral/Rose",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF121177_f51b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF121177",
+            "brand": "Harlequin",
+            "design": "Basket Weave",
+            "colour": "Coral/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf121178": {
+      "record": {
+        "fabric_id": "sdg-hsrf121178",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF121178",
+        "brand_name": "Harlequin",
+        "design_name": "Basket Weave",
+        "colour_name": "Lapis/Sky",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF121178_932e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF121178",
+            "brand": "Harlequin",
+            "design": "Basket Weave",
+            "colour": "Lapis/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf121172": {
+      "record": {
+        "fabric_id": "sdg-hsrf121172",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF121172",
+        "brand_name": "Harlequin",
+        "design_name": "Dahlia Bunch",
+        "colour_name": "Lapis/Carnelian/Spinel",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF121172_3cce.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF121172",
+            "brand": "Harlequin",
+            "design": "Dahlia Bunch",
+            "colour": "Lapis/Carnelian/Spinel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf121194": {
+      "record": {
+        "fabric_id": "sdg-hsrf121194",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF121194",
+        "brand_name": "Harlequin",
+        "design_name": "Daisy Trellis",
+        "colour_name": "Emerald/Pearl",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF121194_4311.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF121194",
+            "brand": "Harlequin",
+            "design": "Daisy Trellis",
+            "colour": "Emerald/Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf121188": {
+      "record": {
+        "fabric_id": "sdg-hsrf121188",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF121188",
+        "brand_name": "Harlequin",
+        "design_name": "Dappled Leaf",
+        "colour_name": "Emerald",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF121188_dd26.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF121188",
+            "brand": "Harlequin",
+            "design": "Dappled Leaf",
+            "colour": "Emerald",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf121189": {
+      "record": {
+        "fabric_id": "sdg-hsrf121189",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF121189",
+        "brand_name": "Harlequin",
+        "design_name": "Dappled Leaf",
+        "colour_name": "Lapis",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF121189_7316.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF121189",
+            "brand": "Harlequin",
+            "design": "Dappled Leaf",
+            "colour": "Lapis",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133961": {
+      "record": {
+        "fabric_id": "sdg-hcol133961",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133961",
+        "brand_name": "Harlequin",
+        "design_name": "Enigmatic Sheer",
+        "colour_name": "Japanese Ink",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133961_9bd4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133961",
+            "brand": "Harlequin",
+            "design": "Enigmatic Sheer",
+            "colour": "Japanese Ink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133962": {
+      "record": {
+        "fabric_id": "sdg-hcol133962",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133962",
+        "brand_name": "Harlequin",
+        "design_name": "Enigmatic Sheer",
+        "colour_name": "Nectar",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133962_4f06.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133962",
+            "brand": "Harlequin",
+            "design": "Enigmatic Sheer",
+            "colour": "Nectar",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133955": {
+      "record": {
+        "fabric_id": "sdg-hcol133955",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133955",
+        "brand_name": "Harlequin",
+        "design_name": "Ertha Sheer",
+        "colour_name": "First Light",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133955_497a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133955",
+            "brand": "Harlequin",
+            "design": "Ertha Sheer",
+            "colour": "First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133956": {
+      "record": {
+        "fabric_id": "sdg-hcol133956",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133956",
+        "brand_name": "Harlequin",
+        "design_name": "Ertha Sheer",
+        "colour_name": "Clover",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133956_73fc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133956",
+            "brand": "Harlequin",
+            "design": "Ertha Sheer",
+            "colour": "Clover",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133957": {
+      "record": {
+        "fabric_id": "sdg-hcol133957",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133957",
+        "brand_name": "Harlequin",
+        "design_name": "Ertha Sheer",
+        "colour_name": "Celestial",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133957_0fea.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133957",
+            "brand": "Harlequin",
+            "design": "Ertha Sheer",
+            "colour": "Celestial",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133959": {
+      "record": {
+        "fabric_id": "sdg-hcol133959",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133959",
+        "brand_name": "Harlequin",
+        "design_name": "Floreana Sheer",
+        "colour_name": "Black Earth/Tranquility",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133959_8a33.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133959",
+            "brand": "Harlequin",
+            "design": "Floreana Sheer",
+            "colour": "Black Earth/Tranquility",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133960": {
+      "record": {
+        "fabric_id": "sdg-hcol133960",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133960",
+        "brand_name": "Harlequin",
+        "design_name": "Floreana Sheer",
+        "colour_name": "Bleached Coral/Succulent",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133960_524a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133960",
+            "brand": "Harlequin",
+            "design": "Floreana Sheer",
+            "colour": "Bleached Coral/Succulent",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133953": {
+      "record": {
+        "fabric_id": "sdg-hcol133953",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133953",
+        "brand_name": "Harlequin",
+        "design_name": "Foresta Sheer",
+        "colour_name": "Ethereal",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133953_d9a5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133953",
+            "brand": "Harlequin",
+            "design": "Foresta Sheer",
+            "colour": "Ethereal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133954": {
+      "record": {
+        "fabric_id": "sdg-hcol133954",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133954",
+        "brand_name": "Harlequin",
+        "design_name": "Foresta Sheer",
+        "colour_name": "Baked Terracotta",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133954_7d86.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133954",
+            "brand": "Harlequin",
+            "design": "Foresta Sheer",
+            "colour": "Baked Terracotta",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133996": {
+      "record": {
+        "fabric_id": "sdg-hsrf133996",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133996",
+        "brand_name": "Harlequin",
+        "design_name": "Garden Terrace",
+        "colour_name": "Lapis/Rose",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133996_176c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133996",
+            "brand": "Harlequin",
+            "design": "Garden Terrace",
+            "colour": "Lapis/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133997": {
+      "record": {
+        "fabric_id": "sdg-hsrf133997",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133997",
+        "brand_name": "Harlequin",
+        "design_name": "Garden Terrace",
+        "colour_name": "Peridot/Pearl",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133997_d3ca.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133997",
+            "brand": "Harlequin",
+            "design": "Garden Terrace",
+            "colour": "Peridot/Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf134998": {
+      "record": {
+        "fabric_id": "sdg-hsrf134998",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF134998",
+        "brand_name": "Harlequin",
+        "design_name": "Garden Terrace",
+        "colour_name": "Ruby/Rose",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF134998_8914.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF134998",
+            "brand": "Harlequin",
+            "design": "Garden Terrace",
+            "colour": "Ruby/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133950": {
+      "record": {
+        "fabric_id": "sdg-hcol133950",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133950",
+        "brand_name": "Harlequin",
+        "design_name": "Grounded Sheer",
+        "colour_name": "Celestial",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133950_40fd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133950",
+            "brand": "Harlequin",
+            "design": "Grounded Sheer",
+            "colour": "Celestial",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133951": {
+      "record": {
+        "fabric_id": "sdg-hcol133951",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133951",
+        "brand_name": "Harlequin",
+        "design_name": "Grounded Sheer",
+        "colour_name": "Parchment",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133951_9d15.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133951",
+            "brand": "Harlequin",
+            "design": "Grounded Sheer",
+            "colour": "Parchment",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133952": {
+      "record": {
+        "fabric_id": "sdg-hcol133952",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133952",
+        "brand_name": "Harlequin",
+        "design_name": "Grounded Sheer",
+        "colour_name": "Black Earth",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133952_e925.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133952",
+            "brand": "Harlequin",
+            "design": "Grounded Sheer",
+            "colour": "Black Earth",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133982": {
+      "record": {
+        "fabric_id": "sdg-hsrf133982",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133982",
+        "brand_name": "Harlequin",
+        "design_name": "Jewel Beetles",
+        "colour_name": "Lapis",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133982_cd33.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133982",
+            "brand": "Harlequin",
+            "design": "Jewel Beetles",
+            "colour": "Lapis",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133983": {
+      "record": {
+        "fabric_id": "sdg-hsrf133983",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133983",
+        "brand_name": "Harlequin",
+        "design_name": "Jewel Beetles",
+        "colour_name": "Emerald",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133983_1673.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133983",
+            "brand": "Harlequin",
+            "design": "Jewel Beetles",
+            "colour": "Emerald",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133988": {
+      "record": {
+        "fabric_id": "sdg-hsrf133988",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133988",
+        "brand_name": "Harlequin",
+        "design_name": "Meander",
+        "colour_name": "Lapis/Spinel",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133988_5d5b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133988",
+            "brand": "Harlequin",
+            "design": "Meander",
+            "colour": "Lapis/Spinel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133989": {
+      "record": {
+        "fabric_id": "sdg-hsrf133989",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133989",
+        "brand_name": "Harlequin",
+        "design_name": "Meander",
+        "colour_name": "Emerald/Aquamarine",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133989_b307.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133989",
+            "brand": "Harlequin",
+            "design": "Meander",
+            "colour": "Emerald/Aquamarine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133938": {
+      "record": {
+        "fabric_id": "sdg-hcol133938",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133938",
+        "brand_name": "Harlequin",
+        "design_name": "Melodic Sheer",
+        "colour_name": "Tranquility/Chalk",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133938_92ef.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133938",
+            "brand": "Harlequin",
+            "design": "Melodic Sheer",
+            "colour": "Tranquility/Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133939": {
+      "record": {
+        "fabric_id": "sdg-hcol133939",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133939",
+        "brand_name": "Harlequin",
+        "design_name": "Melodic Sheer",
+        "colour_name": "Chalk/First Light",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133939_870f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133939",
+            "brand": "Harlequin",
+            "design": "Melodic Sheer",
+            "colour": "Chalk/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hcol133940": {
+      "record": {
+        "fabric_id": "sdg-hcol133940",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HCOL133940",
+        "brand_name": "Harlequin",
+        "design_name": "Melodic Sheer",
+        "colour_name": "Chalk/Parchment",
+        "collection_name": "Sheers 1"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/C/HCOL133940_e719.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HCOL133940",
+            "brand": "Harlequin",
+            "design": "Melodic Sheer",
+            "colour": "Chalk/Parchment",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133990": {
+      "record": {
+        "fabric_id": "sdg-hsrf133990",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133990",
+        "brand_name": "Harlequin",
+        "design_name": "Paper Straw Stripe",
+        "colour_name": "Ruby/Rose",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133990_33a7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133990",
+            "brand": "Harlequin",
+            "design": "Paper Straw Stripe",
+            "colour": "Ruby/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133991": {
+      "record": {
+        "fabric_id": "sdg-hsrf133991",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133991",
+        "brand_name": "Harlequin",
+        "design_name": "Paper Straw Stripe",
+        "colour_name": "Citrine",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133991_40e4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133991",
+            "brand": "Harlequin",
+            "design": "Paper Straw Stripe",
+            "colour": "Citrine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133992": {
+      "record": {
+        "fabric_id": "sdg-hsrf133992",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133992",
+        "brand_name": "Harlequin",
+        "design_name": "Paper Straw Stripe",
+        "colour_name": "Lapis",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133992_9729.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133992",
+            "brand": "Harlequin",
+            "design": "Paper Straw Stripe",
+            "colour": "Lapis",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133993": {
+      "record": {
+        "fabric_id": "sdg-hsrf133993",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133993",
+        "brand_name": "Harlequin",
+        "design_name": "Paper Straw Stripe",
+        "colour_name": "Peridot",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133993_4b73.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133993",
+            "brand": "Harlequin",
+            "design": "Paper Straw Stripe",
+            "colour": "Peridot",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133984": {
+      "record": {
+        "fabric_id": "sdg-hsrf133984",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133984",
+        "brand_name": "Harlequin",
+        "design_name": "Ribbon Stripe",
+        "colour_name": "Spinel",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133984_45a8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133984",
+            "brand": "Harlequin",
+            "design": "Ribbon Stripe",
+            "colour": "Spinel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133985": {
+      "record": {
+        "fabric_id": "sdg-hsrf133985",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133985",
+        "brand_name": "Harlequin",
+        "design_name": "Ribbon Stripe",
+        "colour_name": "Citrine",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133985_2bb0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133985",
+            "brand": "Harlequin",
+            "design": "Ribbon Stripe",
+            "colour": "Citrine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133986": {
+      "record": {
+        "fabric_id": "sdg-hsrf133986",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133986",
+        "brand_name": "Harlequin",
+        "design_name": "Ribbon Stripe",
+        "colour_name": "Lapis",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133986_a2d5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133986",
+            "brand": "Harlequin",
+            "design": "Ribbon Stripe",
+            "colour": "Lapis",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133987": {
+      "record": {
+        "fabric_id": "sdg-hsrf133987",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133987",
+        "brand_name": "Harlequin",
+        "design_name": "Ribbon Stripe",
+        "colour_name": "Peridot",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133987_a016.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133987",
+            "brand": "Harlequin",
+            "design": "Ribbon Stripe",
+            "colour": "Peridot",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf134000": {
+      "record": {
+        "fabric_id": "sdg-hsrf134000",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF134000",
+        "brand_name": "Harlequin",
+        "design_name": "Wiggle",
+        "colour_name": "Rose Quartz/Ruby",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF134000_b40a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF134000",
+            "brand": "Harlequin",
+            "design": "Wiggle",
+            "colour": "Rose Quartz/Ruby",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf134001": {
+      "record": {
+        "fabric_id": "sdg-hsrf134001",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF134001",
+        "brand_name": "Harlequin",
+        "design_name": "Wiggle",
+        "colour_name": "Amethyst/Lapis",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF134001_a3a5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF134001",
+            "brand": "Harlequin",
+            "design": "Wiggle",
+            "colour": "Amethyst/Lapis",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf134002": {
+      "record": {
+        "fabric_id": "sdg-hsrf134002",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF134002",
+        "brand_name": "Harlequin",
+        "design_name": "Wiggle",
+        "colour_name": "Lapis/Spinel",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF134002_f41d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF134002",
+            "brand": "Harlequin",
+            "design": "Wiggle",
+            "colour": "Lapis/Spinel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf134003": {
+      "record": {
+        "fabric_id": "sdg-hsrf134003",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF134003",
+        "brand_name": "Harlequin",
+        "design_name": "Wiggle",
+        "colour_name": "Peridot/Pearl",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF134003_e401.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF134003",
+            "brand": "Harlequin",
+            "design": "Wiggle",
+            "colour": "Peridot/Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf134999": {
+      "record": {
+        "fabric_id": "sdg-hsrf134999",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF134999",
+        "brand_name": "Harlequin",
+        "design_name": "Wiggle",
+        "colour_name": "Linen/Carnelian",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF134999_9d7a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF134999",
+            "brand": "Harlequin",
+            "design": "Wiggle",
+            "colour": "Linen/Carnelian",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133994": {
+      "record": {
+        "fabric_id": "sdg-hsrf133994",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133994",
+        "brand_name": "Harlequin",
+        "design_name": "Wilderness",
+        "colour_name": "Lapis/Carnelian/Ruby",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133994_4632.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133994",
+            "brand": "Harlequin",
+            "design": "Wilderness",
+            "colour": "Lapis/Carnelian/Ruby",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hsrf133995": {
+      "record": {
+        "fabric_id": "sdg-hsrf133995",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSRF133995",
+        "brand_name": "Harlequin",
+        "design_name": "Wilderness",
+        "colour_name": "Peridot/Emerald/Ruby",
+        "collection_name": "Harlequin X Sophie Robinson Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSRF133995_a22c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSRF133995",
+            "brand": "Harlequin",
+            "design": "Wilderness",
+            "colour": "Peridot/Emerald/Ruby",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef120976": {
+      "record": {
+        "fabric_id": "sdg-htef120976",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF120976",
+        "brand_name": "Harlequin",
+        "design_name": "Lotus",
+        "colour_name": "French Grey",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF120976_4be1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF120976",
+            "brand": "Harlequin",
+            "design": "Lotus",
+            "colour": "French Grey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121002": {
+      "record": {
+        "fabric_id": "sdg-htef121002",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121002",
+        "brand_name": "Harlequin",
+        "design_name": "Matupi",
+        "colour_name": "Amber Light/Black Earth",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121002_6fe7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121002",
+            "brand": "Harlequin",
+            "design": "Matupi",
+            "colour": "Amber Light/Black Earth",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121003": {
+      "record": {
+        "fabric_id": "sdg-htef121003",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121003",
+        "brand_name": "Harlequin",
+        "design_name": "Matupi",
+        "colour_name": "Black Earth/Awakening",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121003_2ee3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121003",
+            "brand": "Harlequin",
+            "design": "Matupi",
+            "colour": "Black Earth/Awakening",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121006": {
+      "record": {
+        "fabric_id": "sdg-htef121006",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121006",
+        "brand_name": "Harlequin",
+        "design_name": "Montipora",
+        "colour_name": "Harissa/Slate/Insence",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121006_7586.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121006",
+            "brand": "Harlequin",
+            "design": "Montipora",
+            "colour": "Harissa/Slate/Insence",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121007": {
+      "record": {
+        "fabric_id": "sdg-htef121007",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121007",
+        "brand_name": "Harlequin",
+        "design_name": "Montipora",
+        "colour_name": "Amazonia/Nectar",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121007_cdbb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121007",
+            "brand": "Harlequin",
+            "design": "Montipora",
+            "colour": "Amazonia/Nectar",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121014": {
+      "record": {
+        "fabric_id": "sdg-htef121014",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121014",
+        "brand_name": "Harlequin",
+        "design_name": "Perennials",
+        "colour_name": "Positano/Tree Canopy/Tulip",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121014_1f66.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121014",
+            "brand": "Harlequin",
+            "design": "Perennials",
+            "colour": "Positano/Tree Canopy/Tulip",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121015": {
+      "record": {
+        "fabric_id": "sdg-htef121015",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121015",
+        "brand_name": "Harlequin",
+        "design_name": "Perennials",
+        "colour_name": "Seaglass/Exhale/Murmuration",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121015_5089.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121015",
+            "brand": "Harlequin",
+            "design": "Perennials",
+            "colour": "Seaglass/Exhale/Murmuration",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121016": {
+      "record": {
+        "fabric_id": "sdg-htef121016",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121016",
+        "brand_name": "Harlequin",
+        "design_name": "Perennials",
+        "colour_name": "Grounded/Positano/Succulent",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121016_dee9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121016",
+            "brand": "Harlequin",
+            "design": "Perennials",
+            "colour": "Grounded/Positano/Succulent",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef120971": {
+      "record": {
+        "fabric_id": "sdg-htef120971",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF120971",
+        "brand_name": "Harlequin",
+        "design_name": "Sumi",
+        "colour_name": "Linen/Copper",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF120971_0e67.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF120971",
+            "brand": "Harlequin",
+            "design": "Sumi",
+            "colour": "Linen/Copper",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef120972": {
+      "record": {
+        "fabric_id": "sdg-htef120972",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF120972",
+        "brand_name": "Harlequin",
+        "design_name": "Sumi",
+        "colour_name": "Oyster/Gold",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF120972_7e6f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF120972",
+            "brand": "Harlequin",
+            "design": "Sumi",
+            "colour": "Oyster/Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hlum121050": {
+      "record": {
+        "fabric_id": "sdg-hlum121050",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HLUM121050",
+        "brand_name": "Harlequin",
+        "design_name": "Alvaro",
+        "colour_name": "Pebble/Sky",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/L/HLUM121050_b154.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HLUM121050",
+            "brand": "Harlequin",
+            "design": "Alvaro",
+            "colour": "Pebble/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121219": {
+      "record": {
+        "fabric_id": "sdg-hiop121219",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121219",
+        "brand_name": "Harlequin",
+        "design_name": "Alvaro",
+        "colour_name": "Lime/Palm/Palm",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121219_5351.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121219",
+            "brand": "Harlequin",
+            "design": "Alvaro",
+            "colour": "Lime/Palm/Palm",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121234": {
+      "record": {
+        "fabric_id": "sdg-hiop121234",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121234",
+        "brand_name": "Harlequin",
+        "design_name": "Alvaro",
+        "colour_name": "Honey/Slate/Topaz",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121234_e56d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121234",
+            "brand": "Harlequin",
+            "design": "Alvaro",
+            "colour": "Honey/Slate/Topaz",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hlum121057": {
+      "record": {
+        "fabric_id": "sdg-hlum121057",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HLUM121057",
+        "brand_name": "Harlequin",
+        "design_name": "Edo",
+        "colour_name": "Ink/Ivory",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/L/HLUM121057_fc6c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HLUM121057",
+            "brand": "Harlequin",
+            "design": "Edo",
+            "colour": "Ink/Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hlum121047": {
+      "record": {
+        "fabric_id": "sdg-hlum121047",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HLUM121047",
+        "brand_name": "Harlequin",
+        "design_name": "Kelapa",
+        "colour_name": "Emerald",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/L/HLUM121047_2e01.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HLUM121047",
+            "brand": "Harlequin",
+            "design": "Kelapa",
+            "colour": "Emerald",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hlum121051": {
+      "record": {
+        "fabric_id": "sdg-hlum121051",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HLUM121051",
+        "brand_name": "Harlequin",
+        "design_name": "Papilio",
+        "colour_name": "Flamingo/Papaya/Loganberry",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/L/HLUM121051_a3a6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HLUM121051",
+            "brand": "Harlequin",
+            "design": "Papilio",
+            "colour": "Flamingo/Papaya/Loganberry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hlum121054": {
+      "record": {
+        "fabric_id": "sdg-hlum121054",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HLUM121054",
+        "brand_name": "Harlequin",
+        "design_name": "Shenlong",
+        "colour_name": "Celestial/Ink",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/L/HLUM121054_d4bd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HLUM121054",
+            "brand": "Harlequin",
+            "design": "Shenlong",
+            "colour": "Celestial/Ink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hlum121055": {
+      "record": {
+        "fabric_id": "sdg-hlum121055",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HLUM121055",
+        "brand_name": "Harlequin",
+        "design_name": "Shenlong",
+        "colour_name": "Pomegranate/Grounded/Incense",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/L/HLUM121055_c51a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HLUM121055",
+            "brand": "Harlequin",
+            "design": "Shenlong",
+            "colour": "Pomegranate/Grounded/Incense",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133881": {
+      "record": {
+        "fabric_id": "sdg-hqn2133881",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133881",
+        "brand_name": "Harlequin",
+        "design_name": "Calla",
+        "colour_name": "Emerald/First Light",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133881_f435.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133881",
+            "brand": "Harlequin",
+            "design": "Calla",
+            "colour": "Emerald/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133882": {
+      "record": {
+        "fabric_id": "sdg-hqn2133882",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133882",
+        "brand_name": "Harlequin",
+        "design_name": "Calla",
+        "colour_name": "Sky/First Light",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133882_2608.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133882",
+            "brand": "Harlequin",
+            "design": "Calla",
+            "colour": "Sky/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133884": {
+      "record": {
+        "fabric_id": "sdg-hqn2133884",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133884",
+        "brand_name": "Harlequin",
+        "design_name": "Calla",
+        "colour_name": "Seaglass/Nectar",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133884_c3a1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133884",
+            "brand": "Harlequin",
+            "design": "Calla",
+            "colour": "Seaglass/Nectar",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133893": {
+      "record": {
+        "fabric_id": "sdg-hqn2133893",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133893",
+        "brand_name": "Harlequin",
+        "design_name": "Calla",
+        "colour_name": "Clemetine/Peony",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133893_a0c1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133893",
+            "brand": "Harlequin",
+            "design": "Calla",
+            "colour": "Clemetine/Peony",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133874": {
+      "record": {
+        "fabric_id": "sdg-hqn2133874",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133874",
+        "brand_name": "Harlequin",
+        "design_name": "Cognate",
+        "colour_name": "Dijon/Shiitake",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133874_e70b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133874",
+            "brand": "Harlequin",
+            "design": "Cognate",
+            "colour": "Dijon/Shiitake",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2121084": {
+      "record": {
+        "fabric_id": "sdg-hqn2121084",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2121084",
+        "brand_name": "Harlequin",
+        "design_name": "Dahlia",
+        "colour_name": "Fig Blossom/Nectar/Awakening",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2121084_21e5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2121084",
+            "brand": "Harlequin",
+            "design": "Dahlia",
+            "colour": "Fig Blossom/Nectar/Awakening",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133890": {
+      "record": {
+        "fabric_id": "sdg-hqn2133890",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133890",
+        "brand_name": "Harlequin",
+        "design_name": "Ixora",
+        "colour_name": "Emerald/Palm/Chartreuse",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133890_33bb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133890",
+            "brand": "Harlequin",
+            "design": "Ixora",
+            "colour": "Emerald/Palm/Chartreuse",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133891": {
+      "record": {
+        "fabric_id": "sdg-hqn2133891",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133891",
+        "brand_name": "Harlequin",
+        "design_name": "Ixora",
+        "colour_name": "Sky/Seaglass/Sketched",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133891_d941.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133891",
+            "brand": "Harlequin",
+            "design": "Ixora",
+            "colour": "Sky/Seaglass/Sketched",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133892": {
+      "record": {
+        "fabric_id": "sdg-hqn2133892",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133892",
+        "brand_name": "Harlequin",
+        "design_name": "Ixora",
+        "colour_name": "Pomegranate/Tree Canopy/Ink",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133892_248f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133892",
+            "brand": "Harlequin",
+            "design": "Ixora",
+            "colour": "Pomegranate/Tree Canopy/Ink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133894": {
+      "record": {
+        "fabric_id": "sdg-hqn2133894",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133894",
+        "brand_name": "Harlequin",
+        "design_name": "Ixora",
+        "colour_name": "Sky/Cascade/Vermillion",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133894_cabb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133894",
+            "brand": "Harlequin",
+            "design": "Ixora",
+            "colour": "Sky/Cascade/Vermillion",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133878": {
+      "record": {
+        "fabric_id": "sdg-hqn2133878",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133878",
+        "brand_name": "Harlequin",
+        "design_name": "Lyrical",
+        "colour_name": "Forest/Black Earth",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133878_5435.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133878",
+            "brand": "Harlequin",
+            "design": "Lyrical",
+            "colour": "Forest/Black Earth",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133879": {
+      "record": {
+        "fabric_id": "sdg-hqn2133879",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133879",
+        "brand_name": "Harlequin",
+        "design_name": "Lyrical",
+        "colour_name": "Black Earth",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133879_2bd5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133879",
+            "brand": "Harlequin",
+            "design": "Lyrical",
+            "colour": "Black Earth",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133880": {
+      "record": {
+        "fabric_id": "sdg-hqn2133880",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133880",
+        "brand_name": "Harlequin",
+        "design_name": "Lyrical",
+        "colour_name": "Orchid/Brazilian Rosewood",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133880_3503.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133880",
+            "brand": "Harlequin",
+            "design": "Lyrical",
+            "colour": "Orchid/Brazilian Rosewood",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133885": {
+      "record": {
+        "fabric_id": "sdg-hqn2133885",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133885",
+        "brand_name": "Harlequin",
+        "design_name": "Lyrical",
+        "colour_name": "Japanese Ink/Lagoon",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133885_e0c7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133885",
+            "brand": "Harlequin",
+            "design": "Lyrical",
+            "colour": "Japanese Ink/Lagoon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2121071": {
+      "record": {
+        "fabric_id": "sdg-hqn2121071",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2121071",
+        "brand_name": "Harlequin",
+        "design_name": "Melodic",
+        "colour_name": "French Ochre/Paper Lantern",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2121071_86b4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2121071",
+            "brand": "Harlequin",
+            "design": "Melodic",
+            "colour": "French Ochre/Paper Lantern",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2121087": {
+      "record": {
+        "fabric_id": "sdg-hqn2121087",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2121087",
+        "brand_name": "Harlequin",
+        "design_name": "Paeonia",
+        "colour_name": "Black Earth/Fig Leaf/Nectar",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2121087_38af.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2121087",
+            "brand": "Harlequin",
+            "design": "Paeonia",
+            "colour": "Black Earth/Fig Leaf/Nectar",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133887": {
+      "record": {
+        "fabric_id": "sdg-hqn2133887",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133887",
+        "brand_name": "Harlequin",
+        "design_name": "Zinnia",
+        "colour_name": "Clemetine/Peony",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133887_1177.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133887",
+            "brand": "Harlequin",
+            "design": "Zinnia",
+            "colour": "Clemetine/Peony",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133888": {
+      "record": {
+        "fabric_id": "sdg-hqn2133888",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133888",
+        "brand_name": "Harlequin",
+        "design_name": "Zinnia",
+        "colour_name": "Emerald/Sky",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133888_8fb9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133888",
+            "brand": "Harlequin",
+            "design": "Zinnia",
+            "colour": "Emerald/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn2133889": {
+      "record": {
+        "fabric_id": "sdg-hqn2133889",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN2133889",
+        "brand_name": "Harlequin",
+        "design_name": "Zinnia",
+        "colour_name": "Tranquility/Sky",
+        "collection_name": "Colour 2 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN2133889_4cc7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN2133889",
+            "brand": "Harlequin",
+            "design": "Zinnia",
+            "colour": "Tranquility/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133897": {
+      "record": {
+        "fabric_id": "sdg-hqn3133897",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133897",
+        "brand_name": "Harlequin",
+        "design_name": "Blocks",
+        "colour_name": "Paprika/Bark/Bleached Coral",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133897_3a41.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133897",
+            "brand": "Harlequin",
+            "design": "Blocks",
+            "colour": "Paprika/Bark/Bleached Coral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121146": {
+      "record": {
+        "fabric_id": "sdg-hqn3121146",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121146",
+        "brand_name": "Harlequin",
+        "design_name": "Flourish",
+        "colour_name": "Nectar/Zest/First Light",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121146_c497.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121146",
+            "brand": "Harlequin",
+            "design": "Flourish",
+            "colour": "Nectar/Zest/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121125": {
+      "record": {
+        "fabric_id": "sdg-hqn3121125",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121125",
+        "brand_name": "Harlequin",
+        "design_name": "Journey of Discovery Velvet",
+        "colour_name": "Ionian/Harissa/Emerald",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121125_eb8f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121125",
+            "brand": "Harlequin",
+            "design": "Journey of Discovery Velvet",
+            "colour": "Ionian/Harissa/Emerald",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121126": {
+      "record": {
+        "fabric_id": "sdg-hqn3121126",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121126",
+        "brand_name": "Harlequin",
+        "design_name": "Journey of Discovery",
+        "colour_name": "Paprika/Fuschia/Fig Blossom",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121126_8045.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121126",
+            "brand": "Harlequin",
+            "design": "Journey of Discovery",
+            "colour": "Paprika/Fuschia/Fig Blossom",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121127": {
+      "record": {
+        "fabric_id": "sdg-hqn3121127",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121127",
+        "brand_name": "Harlequin",
+        "design_name": "Journey of Discovery",
+        "colour_name": "Wild Water/Exhale",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121127_d935.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121127",
+            "brand": "Harlequin",
+            "design": "Journey of Discovery",
+            "colour": "Wild Water/Exhale",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133904": {
+      "record": {
+        "fabric_id": "sdg-hqn3133904",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133904",
+        "brand_name": "Harlequin",
+        "design_name": "Khorol",
+        "colour_name": "Almond/Diffused Light",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133904_5389.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133904",
+            "brand": "Harlequin",
+            "design": "Khorol",
+            "colour": "Almond/Diffused Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133905": {
+      "record": {
+        "fabric_id": "sdg-hqn3133905",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133905",
+        "brand_name": "Harlequin",
+        "design_name": "Khorol",
+        "colour_name": "Sage/Shiitake",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133905_580a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133905",
+            "brand": "Harlequin",
+            "design": "Khorol",
+            "colour": "Sage/Shiitake",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133906": {
+      "record": {
+        "fabric_id": "sdg-hqn3133906",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133906",
+        "brand_name": "Harlequin",
+        "design_name": "Khorol",
+        "colour_name": "Cornflower/Incense",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133906_30b3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133906",
+            "brand": "Harlequin",
+            "design": "Khorol",
+            "colour": "Cornflower/Incense",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133909": {
+      "record": {
+        "fabric_id": "sdg-hqn3133909",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133909",
+        "brand_name": "Harlequin",
+        "design_name": "Kumo",
+        "colour_name": "Hempseed/Shiitake/Sketched",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133909_4f01.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133909",
+            "brand": "Harlequin",
+            "design": "Kumo",
+            "colour": "Hempseed/Shiitake/Sketched",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121142": {
+      "record": {
+        "fabric_id": "sdg-hqn3121142",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121142",
+        "brand_name": "Harlequin",
+        "design_name": "Melograno",
+        "colour_name": "Forest/First Light",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121142_79c3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121142",
+            "brand": "Harlequin",
+            "design": "Melograno",
+            "colour": "Forest/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121143": {
+      "record": {
+        "fabric_id": "sdg-hqn3121143",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121143",
+        "brand_name": "Harlequin",
+        "design_name": "Melograno",
+        "colour_name": "Shiitake/Fig Blossom",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121143_9ce1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121143",
+            "brand": "Harlequin",
+            "design": "Melograno",
+            "colour": "Shiitake/Fig Blossom",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121144": {
+      "record": {
+        "fabric_id": "sdg-hqn3121144",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121144",
+        "brand_name": "Harlequin",
+        "design_name": "Melograno",
+        "colour_name": "Celestial/Fig Blossom",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121144_1e77.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121144",
+            "brand": "Harlequin",
+            "design": "Melograno",
+            "colour": "Celestial/Fig Blossom",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133911": {
+      "record": {
+        "fabric_id": "sdg-hqn3133911",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133911",
+        "brand_name": "Harlequin",
+        "design_name": "Michi",
+        "colour_name": "Shiitake/Charcoal/Celestial",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133911_a204.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133911",
+            "brand": "Harlequin",
+            "design": "Michi",
+            "colour": "Shiitake/Charcoal/Celestial",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133901": {
+      "record": {
+        "fabric_id": "sdg-hqn3133901",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133901",
+        "brand_name": "Harlequin",
+        "design_name": "Mizu",
+        "colour_name": "Sketched/Beach Path/Hempseed",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133901_fd64.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133901",
+            "brand": "Harlequin",
+            "design": "Mizu",
+            "colour": "Sketched/Beach Path/Hempseed",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3133903": {
+      "record": {
+        "fabric_id": "sdg-hqn3133903",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3133903",
+        "brand_name": "Harlequin",
+        "design_name": "Mizu",
+        "colour_name": "Nectar/Ritual/Tranquility",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3133903_7419.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3133903",
+            "brand": "Harlequin",
+            "design": "Mizu",
+            "colour": "Nectar/Ritual/Tranquility",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121139": {
+      "record": {
+        "fabric_id": "sdg-hqn3121139",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121139",
+        "brand_name": "Harlequin",
+        "design_name": "Serpenti Velvet",
+        "colour_name": "Onsen/Emerald/Azul",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121139_4b29.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121139",
+            "brand": "Harlequin",
+            "design": "Serpenti Velvet",
+            "colour": "Onsen/Emerald/Azul",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121128": {
+      "record": {
+        "fabric_id": "sdg-hqn3121128",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121128",
+        "brand_name": "Harlequin",
+        "design_name": "Shiruku",
+        "colour_name": "Harissa/Amazonia/Emerald",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121128_a591.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121128",
+            "brand": "Harlequin",
+            "design": "Shiruku",
+            "colour": "Harissa/Amazonia/Emerald",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121129": {
+      "record": {
+        "fabric_id": "sdg-hqn3121129",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121129",
+        "brand_name": "Harlequin",
+        "design_name": "Shiruku",
+        "colour_name": "Wild Water/Azul/Exhale",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121129_6852.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121129",
+            "brand": "Harlequin",
+            "design": "Shiruku",
+            "colour": "Wild Water/Azul/Exhale",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121130": {
+      "record": {
+        "fabric_id": "sdg-hqn3121130",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121130",
+        "brand_name": "Harlequin",
+        "design_name": "Shiruku",
+        "colour_name": "Paprika/Sketched/Nectar",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121130_bd00.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121130",
+            "brand": "Harlequin",
+            "design": "Shiruku",
+            "colour": "Paprika/Sketched/Nectar",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121131": {
+      "record": {
+        "fabric_id": "sdg-hqn3121131",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121131",
+        "brand_name": "Harlequin",
+        "design_name": "Shiruku",
+        "colour_name": "Paprika/Fuschia/Fig Blossom",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121131_8d1d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121131",
+            "brand": "Harlequin",
+            "design": "Shiruku",
+            "colour": "Paprika/Fuschia/Fig Blossom",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121132": {
+      "record": {
+        "fabric_id": "sdg-hqn3121132",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121132",
+        "brand_name": "Harlequin",
+        "design_name": "Shiruku",
+        "colour_name": "Emerald/Forest/Silver Willow",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121132_019c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121132",
+            "brand": "Harlequin",
+            "design": "Shiruku",
+            "colour": "Emerald/Forest/Silver Willow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121133": {
+      "record": {
+        "fabric_id": "sdg-hqn3121133",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121133",
+        "brand_name": "Harlequin",
+        "design_name": "Zori",
+        "colour_name": "Forest/First Light",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121133_616f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121133",
+            "brand": "Harlequin",
+            "design": "Zori",
+            "colour": "Forest/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hqn3121134": {
+      "record": {
+        "fabric_id": "sdg-hqn3121134",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HQN3121134",
+        "brand_name": "Harlequin",
+        "design_name": "Zori",
+        "colour_name": "Harissa/Paper Lantern",
+        "collection_name": "Colour 3 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/Q/HQN3121134_e743.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HQN3121134",
+            "brand": "Harlequin",
+            "design": "Zori",
+            "colour": "Harissa/Paper Lantern",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134135": {
+      "record": {
+        "fabric_id": "sdg-hiov134135",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134135",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Kelp",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134135_0969.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134135",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Kelp",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134136": {
+      "record": {
+        "fabric_id": "sdg-hiov134136",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134136",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Moss",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134136_4598.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134136",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Moss",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134137": {
+      "record": {
+        "fabric_id": "sdg-hiov134137",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134137",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Forest",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134137_fe75.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134137",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Forest",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134138": {
+      "record": {
+        "fabric_id": "sdg-hiov134138",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134138",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Pine",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134138_b029.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134138",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Pine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134139": {
+      "record": {
+        "fabric_id": "sdg-hiov134139",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134139",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Teal",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134139_ac2a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134139",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Teal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134140": {
+      "record": {
+        "fabric_id": "sdg-hiov134140",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134140",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Mole",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134140_014a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134140",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Mole",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134141": {
+      "record": {
+        "fabric_id": "sdg-hiov134141",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134141",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Chocolate",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134141_3ce9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134141",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Chocolate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134142": {
+      "record": {
+        "fabric_id": "sdg-hiov134142",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134142",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Magenta",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134142_3cd6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134142",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Magenta",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134143": {
+      "record": {
+        "fabric_id": "sdg-hiov134143",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134143",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Coral",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134143_e8d8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134143",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Coral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134144": {
+      "record": {
+        "fabric_id": "sdg-hiov134144",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134144",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Peony",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134144_5a93.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134144",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Peony",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134145": {
+      "record": {
+        "fabric_id": "sdg-hiov134145",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134145",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Rose Quartz",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134145_fb75.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134145",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Rose Quartz",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134146": {
+      "record": {
+        "fabric_id": "sdg-hiov134146",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134146",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Positano",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134146_533e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134146",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Positano",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134147": {
+      "record": {
+        "fabric_id": "sdg-hiov134147",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134147",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Carnelian",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134147_3dbf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134147",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Carnelian",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134148": {
+      "record": {
+        "fabric_id": "sdg-hiov134148",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134148",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Clementine",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134148_95e4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134148",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Clementine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134149": {
+      "record": {
+        "fabric_id": "sdg-hiov134149",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134149",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Paprika",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134149_5470.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134149",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Paprika",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134150": {
+      "record": {
+        "fabric_id": "sdg-hiov134150",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134150",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Rust",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134150_675f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134150",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Rust",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134151": {
+      "record": {
+        "fabric_id": "sdg-hiov134151",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134151",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Harissa",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134151_91f8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134151",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Harissa",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134152": {
+      "record": {
+        "fabric_id": "sdg-hiov134152",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134152",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Taupe",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134152_93f8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134152",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134153": {
+      "record": {
+        "fabric_id": "sdg-hiov134153",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134153",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Oyster",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134153_ebe9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134153",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Oyster",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134154": {
+      "record": {
+        "fabric_id": "sdg-hiov134154",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134154",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Sand",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134154_1c41.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134154",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Sand",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134155": {
+      "record": {
+        "fabric_id": "sdg-hiov134155",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134155",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Raffia",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134155_5b7c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134155",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Raffia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134156": {
+      "record": {
+        "fabric_id": "sdg-hiov134156",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134156",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Parchment",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134156_05f2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134156",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Parchment",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134157": {
+      "record": {
+        "fabric_id": "sdg-hiov134157",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134157",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Mist",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134157_8620.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134157",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Mist",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134158": {
+      "record": {
+        "fabric_id": "sdg-hiov134158",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134158",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Steel",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134158_8c9f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134158",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Steel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134159": {
+      "record": {
+        "fabric_id": "sdg-hiov134159",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134159",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Slate",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134159_0393.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134159",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134160": {
+      "record": {
+        "fabric_id": "sdg-hiov134160",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134160",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Graphite",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134160_617a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134160",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Graphite",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134161": {
+      "record": {
+        "fabric_id": "sdg-hiov134161",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134161",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Bay",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134161_a78d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134161",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Bay",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134162": {
+      "record": {
+        "fabric_id": "sdg-hiov134162",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134162",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Seaglass",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134162_13a1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134162",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Seaglass",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134163": {
+      "record": {
+        "fabric_id": "sdg-hiov134163",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134163",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Cornflower",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134163_e68a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134163",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Cornflower",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134164": {
+      "record": {
+        "fabric_id": "sdg-hiov134164",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134164",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Azul",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134164_8844.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134164",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Azul",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134165": {
+      "record": {
+        "fabric_id": "sdg-hiov134165",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134165",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Sky",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134165_78b3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134165",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134166": {
+      "record": {
+        "fabric_id": "sdg-hiov134166",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134166",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Aqua",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134166_ac14.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134166",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134167": {
+      "record": {
+        "fabric_id": "sdg-hiov134167",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134167",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Ocean",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134167_4229.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134167",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Ocean",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134168": {
+      "record": {
+        "fabric_id": "sdg-hiov134168",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134168",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Indigo",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134168_3f73.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134168",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134169": {
+      "record": {
+        "fabric_id": "sdg-hiov134169",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134169",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Celestial",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134169_36d7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134169",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Celestial",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134170": {
+      "record": {
+        "fabric_id": "sdg-hiov134170",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134170",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Azurite",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134170_cfe6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134170",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Azurite",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134171": {
+      "record": {
+        "fabric_id": "sdg-hiov134171",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134171",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Hydrangea",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134171_169f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134171",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Hydrangea",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134172": {
+      "record": {
+        "fabric_id": "sdg-hiov134172",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134172",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Lagoon",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134172_88d2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134172",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Lagoon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134173": {
+      "record": {
+        "fabric_id": "sdg-hiov134173",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134173",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Emerald",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134173_22c9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134173",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Emerald",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134174": {
+      "record": {
+        "fabric_id": "sdg-hiov134174",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134174",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Dove",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134174_b7b5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134174",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Dove",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134175": {
+      "record": {
+        "fabric_id": "sdg-hiov134175",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134175",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Ink",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134175_5c7a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134175",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Ink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134176": {
+      "record": {
+        "fabric_id": "sdg-hiov134176",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134176",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Glacier",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134176_5480.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134176",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Glacier",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134177": {
+      "record": {
+        "fabric_id": "sdg-hiov134177",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134177",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Black Earth",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134177_f8fe.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134177",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Black Earth",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiov134178": {
+      "record": {
+        "fabric_id": "sdg-hiov134178",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOV134178",
+        "brand_name": "Harlequin",
+        "design_name": "Performance Velvets",
+        "colour_name": "Tranquil",
+        "collection_name": "Performance Velvet"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOV134178_8379.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOV134178",
+            "brand": "Harlequin",
+            "design": "Performance Velvets",
+            "colour": "Tranquil",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121229": {
+      "record": {
+        "fabric_id": "sdg-hiop121229",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121229",
+        "brand_name": "Harlequin",
+        "design_name": "Skiva",
+        "colour_name": "Kelly/Origami",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121229_ad2f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121229",
+            "brand": "Harlequin",
+            "design": "Skiva",
+            "colour": "Kelly/Origami",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121230": {
+      "record": {
+        "fabric_id": "sdg-hiop121230",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121230",
+        "brand_name": "Harlequin",
+        "design_name": "Skiva",
+        "colour_name": "Black Earth/Origami",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121230_0149.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121230",
+            "brand": "Harlequin",
+            "design": "Skiva",
+            "colour": "Black Earth/Origami",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121226": {
+      "record": {
+        "fabric_id": "sdg-hiop121226",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121226",
+        "brand_name": "Harlequin",
+        "design_name": "Sora",
+        "colour_name": "Positano/Paprika",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121226_9b73.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121226",
+            "brand": "Harlequin",
+            "design": "Sora",
+            "colour": "Positano/Paprika",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121227": {
+      "record": {
+        "fabric_id": "sdg-hiop121227",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121227",
+        "brand_name": "Harlequin",
+        "design_name": "Sora",
+        "colour_name": "Mint/Kelly",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121227_8e88.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121227",
+            "brand": "Harlequin",
+            "design": "Sora",
+            "colour": "Mint/Kelly",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121228": {
+      "record": {
+        "fabric_id": "sdg-hiop121228",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121228",
+        "brand_name": "Harlequin",
+        "design_name": "Sora",
+        "colour_name": "Indigo/Cornflower",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121228_bc10.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121228",
+            "brand": "Harlequin",
+            "design": "Sora",
+            "colour": "Indigo/Cornflower",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121220": {
+      "record": {
+        "fabric_id": "sdg-hiop121220",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121220",
+        "brand_name": "Harlequin",
+        "design_name": "Utto",
+        "colour_name": "Kelly/Sky",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121220_9230.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121220",
+            "brand": "Harlequin",
+            "design": "Utto",
+            "colour": "Kelly/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

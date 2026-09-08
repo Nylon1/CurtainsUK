@@ -1,0 +1,94 @@
+{
+  "results": {
+    "sdg-dma4226406": {
+      "record": {
+        "fabric_id": "sdg-dma4226406",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMA4226406",
+        "brand_name": "Morris & Co.",
+        "design_name": "Little Chintz",
+        "colour_name": "Slate Blue/Fennel",
+        "collection_name": "Archive IV The Collector Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMA4226406_a808.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMA4226406",
+            "brand": "Morris & Co.",
+            "design": "Little Chintz",
+            "colour": "Slate Blue/Fennel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dmc1g4206": {
+      "record": {
+        "fabric_id": "sdg-dmc1g4206",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMC1G4206",
+        "brand_name": "Morris & Co.",
+        "design_name": "Golden Lily Minor",
+        "colour_name": "Artichoke/Manilla",
+        "collection_name": "Morris and Friends Volume II Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMC1G4206_129d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMC1G4206",
+            "brand": "Morris & Co.",
+            "design": "Golden Lily Minor",
+            "colour": "Artichoke/Manilla",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dmorho204": {
+      "record": {
+        "fabric_id": "sdg-dmorho204",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMORHO204",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle & Tulip",
+        "colour_name": "Wine/Bay Leaf",
+        "collection_name": "Morris and Friends Volume II Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMORHO204_8ec1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMORHO204",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle & Tulip",
+            "colour": "Wine/Bay Leaf",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

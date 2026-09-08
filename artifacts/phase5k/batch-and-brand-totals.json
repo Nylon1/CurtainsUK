@@ -1,0 +1,159 @@
+{
+  "brands": [
+    {
+      "brand": "Prestigious Textiles",
+      "masterRecords": 258,
+      "processedExactListing": 0,
+      "genuineImagesMapped": 258,
+      "newPhaseMappings": 0,
+      "browsable": 258,
+      "discontinuedHidden": 0,
+      "stillUnmapped": 0,
+      "phaseShopifyUploads": 0,
+      "newSharedContentDuplicates": 0,
+      "identityCandidatesWithheld": 0
+    },
+    {
+      "brand": "Morris & Co.",
+      "masterRecords": 830,
+      "processedExactListing": 670,
+      "genuineImagesMapped": 639,
+      "newPhaseMappings": 609,
+      "browsable": 639,
+      "discontinuedHidden": 6,
+      "stillUnmapped": 191,
+      "phaseShopifyUploads": 609,
+      "newSharedContentDuplicates": 0,
+      "identityCandidatesWithheld": 25
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "masterRecords": 3302,
+      "processedExactListing": 2855,
+      "genuineImagesMapped": 2536,
+      "newPhaseMappings": 2175,
+      "browsable": 2536,
+      "discontinuedHidden": 330,
+      "stillUnmapped": 766,
+      "phaseShopifyUploads": 2175,
+      "newSharedContentDuplicates": 0,
+      "identityCandidatesWithheld": 82
+    },
+    {
+      "brand": "Sanderson",
+      "masterRecords": 1762,
+      "processedExactListing": 1222,
+      "genuineImagesMapped": 1187,
+      "newPhaseMappings": 1152,
+      "browsable": 1187,
+      "discontinuedHidden": 39,
+      "stillUnmapped": 575,
+      "phaseShopifyUploads": 1152,
+      "newSharedContentDuplicates": 0,
+      "identityCandidatesWithheld": 29
+    },
+    {
+      "brand": "Harlequin",
+      "masterRecords": 2428,
+      "processedExactListing": 1967,
+      "genuineImagesMapped": 1479,
+      "newPhaseMappings": 1427,
+      "browsable": 1479,
+      "discontinuedHidden": 432,
+      "stillUnmapped": 949,
+      "phaseShopifyUploads": 1427,
+      "newSharedContentDuplicates": 0,
+      "identityCandidatesWithheld": 56
+    },
+    {
+      "brand": "Scion",
+      "masterRecords": 464,
+      "processedExactListing": 348,
+      "genuineImagesMapped": 227,
+      "newPhaseMappings": 180,
+      "browsable": 227,
+      "discontinuedHidden": 118,
+      "stillUnmapped": 237,
+      "phaseShopifyUploads": 180,
+      "newSharedContentDuplicates": 0,
+      "identityCandidatesWithheld": 3
+    },
+    {
+      "brand": "Zoffany",
+      "masterRecords": 894,
+      "processedExactListing": 0,
+      "genuineImagesMapped": 2,
+      "newPhaseMappings": 0,
+      "browsable": 2,
+      "discontinuedHidden": 0,
+      "stillUnmapped": 892,
+      "phaseShopifyUploads": 0,
+      "newSharedContentDuplicates": 0,
+      "identityCandidatesWithheld": 0
+    }
+  ],
+  "batches": [
+    {
+      "batch": "batch-001",
+      "processed": 1000,
+      "mapped": 1000,
+      "uploaded": 1000,
+      "sharedContentReused": 0,
+      "byBrand": {
+        "Morris & Co.": 537,
+        "Clarke & Clarke": 382,
+        "Scion": 81
+      },
+      "validation": "PASS",
+      "acceptedMismatches": 0
+    },
+    {
+      "batch": "batch-002",
+      "processed": 2500,
+      "mapped": 2500,
+      "uploaded": 2500,
+      "sharedContentReused": 0,
+      "byBrand": {
+        "Sanderson": 1105,
+        "Morris & Co.": 50,
+        "Harlequin": 1213,
+        "Clarke & Clarke": 132
+      },
+      "validation": "PASS",
+      "acceptedMismatches": 0
+    },
+    {
+      "batch": "batch-003",
+      "processed": 2043,
+      "mapped": 2043,
+      "uploaded": 2043,
+      "sharedContentReused": 0,
+      "byBrand": {
+        "Morris & Co.": 22,
+        "Sanderson": 47,
+        "Clarke & Clarke": 1661,
+        "Harlequin": 214,
+        "Scion": 99
+      },
+      "validation": "PASS",
+      "acceptedMismatches": 0
+    }
+  ],
+  "newRoomImages": 0,
+  "newDetailImages": 0,
+  "sourceQuality": "Original listing asset, typically 1366 x 1366; inspected detail-gallery samples used the same image.",
+  "deduplication": "No equal-content images among the 5543 new mappings. Checkpoint resumes skipped completed records; retries reused cached source bytes.",
+  "completedJobSkips": {
+    "batch001Retry": 998,
+    "batch002Validation": 2500,
+    "batch003Retry": 2041,
+    "batch003Validation": 2043
+  },
+  "note": "ProcessedExactListing counts existing master SKUs found in captured portal listings, including discontinued and withheld identities. It is not a count of all remaining SKUs searched individually.",
+  "previousApprovedTitleDifference": {
+    "sku": "NSCD134679",
+    "catalogueColour": "Seaglass",
+    "currentListingTitle": "Falling Foss Seaglas",
+    "action": "Existing exact-SKU approved mapping retained; strict new-job reconciliation withheld the abbreviated listing title."
+  }
+}

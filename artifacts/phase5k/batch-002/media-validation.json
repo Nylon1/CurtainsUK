@@ -1,0 +1,23 @@
+{
+  "manifestRecords": 2500,
+  "verifiedMappings": 2500,
+  "byBrand": {
+    "Sanderson": 1105,
+    "Morris & Co.": 50,
+    "Harlequin": 1213,
+    "Clarke & Clarke": 132
+  },
+  "uniqueContentHashes": 2500,
+  "sharedHashMappings": 0,
+  "dimensions": {
+    "1366x1366": 2483,
+    "1366x1367": 1,
+    "1366x1383": 11,
+    "1366x1385": 1,
+    "1366x1378": 1,
+    "1366x1397": 3
+  },
+  "imageSkuMismatchesAccepted": 0,
+  "errors": [],
+  "status": "PASS"
+}

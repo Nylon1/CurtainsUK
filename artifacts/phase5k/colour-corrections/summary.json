@@ -1,0 +1,12 @@
+{
+  "applied": 85,
+  "byBrand": {"Sanderson":10,"Morris & Co.":3,"Clarke & Clarke":4,"Harlequin":58,"Scion":10},
+  "identityBasis": "Exact existing supplier SKU, exact brand, exact design prefix and SKU-matching original supplier image filename",
+  "scope": "Previously non-browsable, non-selectable records outside all started/reserved media batches",
+  "workflow": "Existing curtainsuk-reconcile-observed-media.ts guarded colour correction operation",
+  "preserved": ["supplier SKU", "canonical Fabric Master ID", "design", "commercial history", "approved configuration/order pricing snapshots"],
+  "guardedBy": ["expected current row revision", "expected workbook colour", "expected source effective date", "fresh authenticated listing evidence", "staging visibility false"],
+  "excludedFromCorrections": "Portal product codes, fabric-format suffixes, known spelling errors and abbreviated labels were not copied into customer colour names.",
+  "pricingChanges": 0,
+  "stockChanges": 0
+}

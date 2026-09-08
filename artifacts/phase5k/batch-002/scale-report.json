@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-09-08T12:59:22.916Z",
+  "byBrand": {
+    "Prestigious Textiles": {
+      "masterRecords": 258,
+      "processedExactListing": 0,
+      "genuineImagesMapped": 258,
+      "newPhaseMappings": 0,
+      "browsable": 258,
+      "discontinuedHidden": 0,
+      "stillUnmapped": 0
+    },
+    "Morris & Co.": {
+      "masterRecords": 830,
+      "processedExactListing": 670,
+      "genuineImagesMapped": 629,
+      "newPhaseMappings": 599,
+      "browsable": 617,
+      "discontinuedHidden": 5,
+      "stillUnmapped": 201
+    },
+    "Clarke & Clarke": {
+      "masterRecords": 3302,
+      "processedExactListing": 2855,
+      "genuineImagesMapped": 907,
+      "newPhaseMappings": 546,
+      "browsable": 875,
+      "discontinuedHidden": 329,
+      "stillUnmapped": 2395
+    },
+    "Sanderson": {
+      "masterRecords": 1762,
+      "processedExactListing": 1222,
+      "genuineImagesMapped": 1177,
+      "newPhaseMappings": 1142,
+      "browsable": 1140,
+      "discontinuedHidden": 38,
+      "stillUnmapped": 585
+    },
+    "Harlequin": {
+      "masterRecords": 2428,
+      "processedExactListing": 1967,
+      "genuineImagesMapped": 1265,
+      "newPhaseMappings": 1213,
+      "browsable": 1265,
+      "discontinuedHidden": 412,
+      "stillUnmapped": 1163
+    },
+    "Scion": {
+      "masterRecords": 464,
+      "processedExactListing": 348,
+      "genuineImagesMapped": 128,
+      "newPhaseMappings": 81,
+      "browsable": 128,
+      "discontinuedHidden": 111,
+      "stillUnmapped": 336
+    },
+    "Zoffany": {
+      "masterRecords": 894,
+      "processedExactListing": 0,
+      "genuineImagesMapped": 2,
+      "newPhaseMappings": 0,
+      "browsable": 2,
+      "discontinuedHidden": 0,
+      "stillUnmapped": 892
+    }
+  },
+  "batches": [
+    {
+      "batch": "batch-001",
+      "selected": 1000,
+      "mapped": 1000,
+      "unmapped": 0
+    },
+    {
+      "batch": "batch-002",
+      "selected": 2500,
+      "mapped": 2500,
+      "unmapped": 0
+    },
+    {
+      "batch": "batch-003",
+      "selected": 2043,
+      "mapped": 81,
+      "unmapped": 1962
+    }
+  ],
+  "totalFabrics": 9938,
+  "totalBrowsables": 4285,
+  "totalImageReady": 4366,
+  "phaseMappings": 3581,
+  "distinctPhaseImageHashes": 3581,
+  "unmapped": 5572,
+  "unmappedDoesNotMeanMissing": true,
+  "commercialChanges": 0
+}

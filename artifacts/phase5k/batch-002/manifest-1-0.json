@@ -1,0 +1,964 @@
+{
+  "results": {
+    "sdg-f0936-04": {
+      "record": {
+        "fabric_id": "sdg-f0936-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0936/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Healey",
+        "colour_name": "Raspberry/Duckegg",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0936_04_0544.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0936/04",
+            "brand": "Clarke & Clarke",
+            "design": "Healey",
+            "colour": "Raspberry/Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0936-06": {
+      "record": {
+        "fabric_id": "sdg-f0936-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0936/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Healey",
+        "colour_name": "Teal/Acacia",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0936_06_531a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0936/06",
+            "brand": "Clarke & Clarke",
+            "design": "Healey",
+            "colour": "Teal/Acacia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0937-01": {
+      "record": {
+        "fabric_id": "sdg-f0937-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0937/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Hetton",
+        "colour_name": "Acacia",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0937_01_3550.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0937/01",
+            "brand": "Clarke & Clarke",
+            "design": "Hetton",
+            "colour": "Acacia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0937-02": {
+      "record": {
+        "fabric_id": "sdg-f0937-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0937/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Hetton",
+        "colour_name": "Caramel",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0937_02_5b6e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0937/02",
+            "brand": "Clarke & Clarke",
+            "design": "Hetton",
+            "colour": "Caramel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0937-03": {
+      "record": {
+        "fabric_id": "sdg-f0937-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0937/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Hetton",
+        "colour_name": "Charcoal",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0937_03_a668.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0937/03",
+            "brand": "Clarke & Clarke",
+            "design": "Hetton",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0937-05": {
+      "record": {
+        "fabric_id": "sdg-f0937-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0937/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Hetton",
+        "colour_name": "Heather",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0937_05_3981.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0937/05",
+            "brand": "Clarke & Clarke",
+            "design": "Hetton",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0937-06": {
+      "record": {
+        "fabric_id": "sdg-f0937-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0937/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Hetton",
+        "colour_name": "Natural",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0937_06_dc37.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0937/06",
+            "brand": "Clarke & Clarke",
+            "design": "Hetton",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0938-01": {
+      "record": {
+        "fabric_id": "sdg-f0938-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0938/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Leyburn",
+        "colour_name": "Charcoal",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0938_01_39c6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0938/01",
+            "brand": "Clarke & Clarke",
+            "design": "Leyburn",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0938-02": {
+      "record": {
+        "fabric_id": "sdg-f0938-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0938/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Leyburn",
+        "colour_name": "Citrus",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0938_02_64e6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0938/02",
+            "brand": "Clarke & Clarke",
+            "design": "Leyburn",
+            "colour": "Citrus",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0938-04": {
+      "record": {
+        "fabric_id": "sdg-f0938-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0938/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Leyburn",
+        "colour_name": "Duckegg",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0938_04_a492.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0938/04",
+            "brand": "Clarke & Clarke",
+            "design": "Leyburn",
+            "colour": "Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0938-05": {
+      "record": {
+        "fabric_id": "sdg-f0938-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0938/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Leyburn",
+        "colour_name": "Natural",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0938_05_586c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0938/05",
+            "brand": "Clarke & Clarke",
+            "design": "Leyburn",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0939-01": {
+      "record": {
+        "fabric_id": "sdg-f0939-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0939/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Malham",
+        "colour_name": "Charcoal",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0939_01_d138.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0939/01",
+            "brand": "Clarke & Clarke",
+            "design": "Malham",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0939-02": {
+      "record": {
+        "fabric_id": "sdg-f0939-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0939/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Malham",
+        "colour_name": "Duckegg",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0939_02_a18d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0939/02",
+            "brand": "Clarke & Clarke",
+            "design": "Malham",
+            "colour": "Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0939-03": {
+      "record": {
+        "fabric_id": "sdg-f0939-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0939/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Malham",
+        "colour_name": "Linen",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0939_03_f4ac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0939/03",
+            "brand": "Clarke & Clarke",
+            "design": "Malham",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0939-05": {
+      "record": {
+        "fabric_id": "sdg-f0939-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0939/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Malham",
+        "colour_name": "Smoke",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0939_05_a30b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0939/05",
+            "brand": "Clarke & Clarke",
+            "design": "Malham",
+            "colour": "Smoke",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0939-06": {
+      "record": {
+        "fabric_id": "sdg-f0939-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0939/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Malham",
+        "colour_name": "Taupe",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0939_06_2491.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0939/06",
+            "brand": "Clarke & Clarke",
+            "design": "Malham",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0940-03": {
+      "record": {
+        "fabric_id": "sdg-f0940-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0940/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Richmond",
+        "colour_name": "Heather",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0940_03_b2ea.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0940/03",
+            "brand": "Clarke & Clarke",
+            "design": "Richmond",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0940-04": {
+      "record": {
+        "fabric_id": "sdg-f0940-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0940/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Richmond",
+        "colour_name": "Raspberry/Duckegg",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0940_04_7009.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0940/04",
+            "brand": "Clarke & Clarke",
+            "design": "Richmond",
+            "colour": "Raspberry/Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0940-05": {
+      "record": {
+        "fabric_id": "sdg-f0940-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0940/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Richmond",
+        "colour_name": "Spice",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0940_05_2c09.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0940/05",
+            "brand": "Clarke & Clarke",
+            "design": "Richmond",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0941-01": {
+      "record": {
+        "fabric_id": "sdg-f0941-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0941/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Wensley",
+        "colour_name": "Charcoal",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0941_01_e93b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0941/01",
+            "brand": "Clarke & Clarke",
+            "design": "Wensley",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0941-02": {
+      "record": {
+        "fabric_id": "sdg-f0941-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0941/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Wensley",
+        "colour_name": "Denim",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0941_02_61ee.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0941/02",
+            "brand": "Clarke & Clarke",
+            "design": "Wensley",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0941-03": {
+      "record": {
+        "fabric_id": "sdg-f0941-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0941/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Wensley",
+        "colour_name": "Raspberry/Duckegg",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0941_03_6e32.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0941/03",
+            "brand": "Clarke & Clarke",
+            "design": "Wensley",
+            "colour": "Raspberry/Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0941-04": {
+      "record": {
+        "fabric_id": "sdg-f0941-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0941/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Wensley",
+        "colour_name": "Spice",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0941_04_342e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0941/04",
+            "brand": "Clarke & Clarke",
+            "design": "Wensley",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0941-05": {
+      "record": {
+        "fabric_id": "sdg-f0941-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0941/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Wensley",
+        "colour_name": "Teal/Acacia",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0941_05_143b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0941/05",
+            "brand": "Clarke & Clarke",
+            "design": "Wensley",
+            "colour": "Teal/Acacia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0415-02": {
+      "record": {
+        "fabric_id": "sdg-f0415-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0415/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gino",
+        "colour_name": "Ivory",
+        "collection_name": "Natura Sheers"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0415_02_77c8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0415/02",
+            "brand": "Clarke & Clarke",
+            "design": "Gino",
+            "colour": "Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0419-04": {
+      "record": {
+        "fabric_id": "sdg-f0419-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0419/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Oxford",
+        "colour_name": "Red",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0419_04_e3e4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0419/04",
+            "brand": "Clarke & Clarke",
+            "design": "Oxford",
+            "colour": "Red",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0420-01": {
+      "record": {
+        "fabric_id": "sdg-f0420-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0420/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sutton",
+        "colour_name": "Charcoal",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0420_01_e172.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0420/01",
+            "brand": "Clarke & Clarke",
+            "design": "Sutton",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0420-06": {
+      "record": {
+        "fabric_id": "sdg-f0420-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0420/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sutton",
+        "colour_name": "Red",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0420_06_d7a6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0420/06",
+            "brand": "Clarke & Clarke",
+            "design": "Sutton",
+            "colour": "Red",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0498-04": {
+      "record": {
+        "fabric_id": "sdg-f0498-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0498/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Hartford",
+        "colour_name": "Denim",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0498_04_29a9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0498/04",
+            "brand": "Clarke & Clarke",
+            "design": "Hartford",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0501-04": {
+      "record": {
+        "fabric_id": "sdg-f0501-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0501/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Stamford",
+        "colour_name": "Denim",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0501_04_5e99.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0501/04",
+            "brand": "Clarke & Clarke",
+            "design": "Stamford",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0936-01": {
+      "record": {
+        "fabric_id": "sdg-f0936-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0936/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Healey",
+        "colour_name": "Charcoal",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0936_01_e711.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0936/01",
+            "brand": "Clarke & Clarke",
+            "design": "Healey",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0936-03": {
+      "record": {
+        "fabric_id": "sdg-f0936-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0936/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Healey",
+        "colour_name": "Heather",
+        "collection_name": "Richmond"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0936_03_3bd8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0936/03",
+            "brand": "Clarke & Clarke",
+            "design": "Healey",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

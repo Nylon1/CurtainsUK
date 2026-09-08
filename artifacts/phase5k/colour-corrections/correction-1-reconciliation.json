@@ -1,0 +1,48 @@
+{
+  "observed": 3,
+  "exactIdentityMatches": 3,
+  "withheld": [],
+  "databaseWrites": 3,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-dma4226406",
+      "workbook_sku": "DMA4226406",
+      "portal_sku": "DMA4226406",
+      "master_design": "Little Chintz",
+      "master_colour": "Slate Blue/Fennel",
+      "portal_title": "Little Chintz Slate Blue/Fennel",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:17:36.102Z"
+    },
+    {
+      "master_id": "sdg-dmc1g4206",
+      "workbook_sku": "DMC1G4206",
+      "portal_sku": "DMC1G4206",
+      "master_design": "Golden Lily Minor",
+      "master_colour": "Artichoke/Manilla",
+      "portal_title": "Golden Lily Minor Artichoke/Manilla",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:17:36.102Z"
+    },
+    {
+      "master_id": "sdg-dmorho204",
+      "workbook_sku": "DMORHO204",
+      "portal_sku": "DMORHO204",
+      "master_design": "Honeysuckle & Tulip",
+      "master_colour": "Wine/Bay Leaf",
+      "portal_title": "Honeysuckle & Tulip Wine/Bay Leaf",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:17:36.102Z"
+    }
+  ]
+}

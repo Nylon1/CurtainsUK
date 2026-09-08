@@ -1,0 +1,17 @@
+{
+  "manifestRecords": 1000,
+  "verifiedMappings": 1000,
+  "byBrand": {
+    "Morris & Co.": 537,
+    "Clarke & Clarke": 382,
+    "Scion": 81
+  },
+  "uniqueContentHashes": 1000,
+  "sharedHashMappings": 0,
+  "dimensions": {
+    "1366x1366": 1000
+  },
+  "imageSkuMismatchesAccepted": 0,
+  "errors": [],
+  "status": "PASS"
+}

@@ -1,0 +1,154 @@
+{
+  "publicRecords": 2500,
+  "publicPriceReady": 251,
+  "publicOrderReady": 0,
+  "canaryRecords": 715,
+  "canaryPriceBlocked": 715,
+  "sampleKnownAvailable": 0,
+  "pages": 105,
+  "maxRecordsPerPayload": 24,
+  "largestRawResponseBytes": 58038,
+  "commercialOrCredentialLeaks": 0,
+  "imageHost": "Shopify CDN",
+  "robots": "noindex, nofollow",
+  "filterSemantics": "PASS",
+  "testedCollection": "Morris and Friends Volume I Fabrics",
+  "timings": {
+    "browse": {
+      "medianMs": 755,
+      "measurements": [
+        {
+          "ms": 755,
+          "bytes": 44055
+        },
+        {
+          "ms": 802,
+          "bytes": 44055
+        },
+        {
+          "ms": 700,
+          "bytes": 44055
+        }
+      ]
+    },
+    "search": {
+      "medianMs": 772,
+      "measurements": [
+        {
+          "ms": 779,
+          "bytes": 9381
+        },
+        {
+          "ms": 772,
+          "bytes": 9381
+        },
+        {
+          "ms": 767,
+          "bytes": 9381
+        }
+      ]
+    },
+    "brand": {
+      "medianMs": 780,
+      "measurements": [
+        {
+          "ms": 780,
+          "bytes": 44053
+        },
+        {
+          "ms": 707,
+          "bytes": 44053
+        },
+        {
+          "ms": 948,
+          "bytes": 44053
+        }
+      ]
+    },
+    "colour": {
+      "medianMs": 728,
+      "measurements": [
+        {
+          "ms": 728,
+          "bytes": 56641
+        },
+        {
+          "ms": 724,
+          "bytes": 56641
+        },
+        {
+          "ms": 794,
+          "bytes": 56641
+        }
+      ]
+    },
+    "pattern": {
+      "medianMs": 834,
+      "measurements": [
+        {
+          "ms": 778,
+          "bytes": 57903
+        },
+        {
+          "ms": 1017,
+          "bytes": 57903
+        },
+        {
+          "ms": 834,
+          "bytes": 57903
+        }
+      ]
+    },
+    "collection": {
+      "medianMs": 754,
+      "measurements": [
+        {
+          "ms": 768,
+          "bytes": 51655
+        },
+        {
+          "ms": 754,
+          "bytes": 51655
+        },
+        {
+          "ms": 715,
+          "bytes": 51655
+        }
+      ]
+    },
+    "detail": {
+      "medianMs": 508,
+      "measurements": [
+        {
+          "ms": 564,
+          "bytes": 1897
+        },
+        {
+          "ms": 508,
+          "bytes": 1897
+        },
+        {
+          "ms": 496,
+          "bytes": 1897
+        }
+      ]
+    },
+    "page2": {
+      "medianMs": 2410,
+      "measurements": [
+        {
+          "ms": 956,
+          "bytes": 44006
+        },
+        {
+          "ms": 2473,
+          "bytes": 44006
+        },
+        {
+          "ms": 2410,
+          "bytes": 44006
+        }
+      ]
+    }
+  }
+}

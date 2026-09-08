@@ -1,0 +1,2378 @@
+{
+  "observed": 250,
+  "exactIdentityMatches": 152,
+  "withheld": [
+    {
+      "sku": "F1779/05",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1782/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1782/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1782/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1783/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1783/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1756/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1756/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1756/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1758/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1758/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1785/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1785/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1785/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1785/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1760/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1760/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1760/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1763/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1513/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1513/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1513/05",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/05",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1514/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1514/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1514/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1514/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1516/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1532/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1532/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1518/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1518/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1519/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1519/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1519/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1534/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1534/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1534/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1536/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1536/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1521/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1538/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1538/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1538/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1538/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1538/05",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1557/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1557/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1559/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1559/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1558/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1558/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1558/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1560/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1560/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1560/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1561/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1539/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1539/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1539/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1539/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1539/05",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1563/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1563/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1562/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1562/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1562/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1562/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1562/05",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1636/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1636/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1636/03",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1636/04",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1637/01",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1637/02",
+      "reason": "NO_EXACT_MASTER_SKU"
+    }
+  ],
+  "databaseWrites": 0,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-f1770-01",
+      "workbook_sku": "F1770/01",
+      "portal_sku": "F1770/01",
+      "master_design": "Malevich",
+      "master_colour": "Ink",
+      "portal_title": "Malevich Ink",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1770-02",
+      "workbook_sku": "F1770/02",
+      "portal_sku": "F1770/02",
+      "master_design": "Malevich",
+      "master_colour": "Linen",
+      "portal_title": "Malevich Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1770-03",
+      "workbook_sku": "F1770/03",
+      "portal_sku": "F1770/03",
+      "master_design": "Malevich",
+      "master_colour": "Noir",
+      "portal_title": "Malevich Noir",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1807-01",
+      "workbook_sku": "F1807/01",
+      "portal_sku": "F1807/01",
+      "master_design": "Barmeri",
+      "master_colour": "Cobalt",
+      "portal_title": "Barmeri Cobalt",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1807-02",
+      "workbook_sku": "F1807/02",
+      "portal_sku": "F1807/02",
+      "master_design": "Barmeri",
+      "master_colour": "Natural",
+      "portal_title": "Barmeri Natural",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1807-03",
+      "workbook_sku": "F1807/03",
+      "portal_sku": "F1807/03",
+      "master_design": "Barmeri",
+      "master_colour": "Sage/Blush",
+      "portal_title": "Barmeri Sage/Blush",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1807-04",
+      "workbook_sku": "F1807/04",
+      "portal_sku": "F1807/04",
+      "master_design": "Barmeri",
+      "master_colour": "Teal",
+      "portal_title": "Barmeri Teal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1808-01",
+      "workbook_sku": "F1808/01",
+      "portal_sku": "F1808/01",
+      "master_design": "Buta",
+      "master_colour": "Apple",
+      "portal_title": "Buta Apple",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1808-02",
+      "workbook_sku": "F1808/02",
+      "portal_sku": "F1808/02",
+      "master_design": "Buta",
+      "master_colour": "Cobalt",
+      "portal_title": "Buta Cobalt",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1808-03",
+      "workbook_sku": "F1808/03",
+      "portal_sku": "F1808/03",
+      "master_design": "Buta",
+      "master_colour": "Sage",
+      "portal_title": "Buta Sage",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-01",
+      "workbook_sku": "F1810/01",
+      "portal_sku": "F1810/01",
+      "master_design": "Kalpa",
+      "master_colour": "Antique",
+      "portal_title": "Kalpa Antique",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-02",
+      "workbook_sku": "F1810/02",
+      "portal_sku": "F1810/02",
+      "master_design": "Kalpa",
+      "master_colour": "Apple",
+      "portal_title": "Kalpa Apple",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-03",
+      "workbook_sku": "F1810/03",
+      "portal_sku": "F1810/03",
+      "master_design": "Kalpa",
+      "master_colour": "Cobalt",
+      "portal_title": "Kalpa Cobalt",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-04",
+      "workbook_sku": "F1810/04",
+      "portal_sku": "F1810/04",
+      "master_design": "Kalpa",
+      "master_colour": "Ink",
+      "portal_title": "Kalpa Ink",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-05",
+      "workbook_sku": "F1810/05",
+      "portal_sku": "F1810/05",
+      "master_design": "Kalpa",
+      "master_colour": "Natural",
+      "portal_title": "Kalpa Natural",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-06",
+      "workbook_sku": "F1810/06",
+      "portal_sku": "F1810/06",
+      "master_design": "Kalpa",
+      "master_colour": "Sage",
+      "portal_title": "Kalpa Sage",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-07",
+      "workbook_sku": "F1810/07",
+      "portal_sku": "F1810/07",
+      "master_design": "Kalpa",
+      "master_colour": "Spice",
+      "portal_title": "Kalpa Spice",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1810-08",
+      "workbook_sku": "F1810/08",
+      "portal_sku": "F1810/08",
+      "master_design": "Kalpa",
+      "master_colour": "Teal",
+      "portal_title": "Kalpa Teal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1811-01",
+      "workbook_sku": "F1811/01",
+      "portal_sku": "F1811/01",
+      "master_design": "Gamthi",
+      "master_colour": "Blush",
+      "portal_title": "Gamthi Blush",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1811-02",
+      "workbook_sku": "F1811/02",
+      "portal_sku": "F1811/02",
+      "master_design": "Gamthi",
+      "master_colour": "Cobalt",
+      "portal_title": "Gamthi Cobalt",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1811-03",
+      "workbook_sku": "F1811/03",
+      "portal_sku": "F1811/03",
+      "master_design": "Gamthi",
+      "master_colour": "Sage/Blush",
+      "portal_title": "Gamthi Sage/Blush",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1811-04",
+      "workbook_sku": "F1811/04",
+      "portal_sku": "F1811/04",
+      "master_design": "Gamthi",
+      "master_colour": "Teal",
+      "portal_title": "Gamthi Teal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1812-01",
+      "workbook_sku": "F1812/01",
+      "portal_sku": "F1812/01",
+      "master_design": "Hathi",
+      "master_colour": "Cobalt",
+      "portal_title": "Hathi Cobalt",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1812-02",
+      "workbook_sku": "F1812/02",
+      "portal_sku": "F1812/02",
+      "master_design": "Hathi",
+      "master_colour": "Natural",
+      "portal_title": "Hathi Natural",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1812-03",
+      "workbook_sku": "F1812/03",
+      "portal_sku": "F1812/03",
+      "master_design": "Hathi",
+      "master_colour": "Sage",
+      "portal_title": "Hathi Sage",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1812-04",
+      "workbook_sku": "F1812/04",
+      "portal_sku": "F1812/04",
+      "master_design": "Hathi",
+      "master_colour": "Sage/Blush",
+      "portal_title": "Hathi Sage/Blush",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1812-05",
+      "workbook_sku": "F1812/05",
+      "portal_sku": "F1812/05",
+      "master_design": "Hathi",
+      "master_colour": "Teal",
+      "portal_title": "Hathi Teal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1814-01",
+      "workbook_sku": "F1814/01",
+      "portal_sku": "F1814/01",
+      "master_design": "Kalamkari",
+      "master_colour": "Antique",
+      "portal_title": "Kalamkari Antique",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1814-02",
+      "workbook_sku": "F1814/02",
+      "portal_sku": "F1814/02",
+      "master_design": "Kalamkari",
+      "master_colour": "Cobalt",
+      "portal_title": "Kalamkari Cobalt",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1814-03",
+      "workbook_sku": "F1814/03",
+      "portal_sku": "F1814/03",
+      "master_design": "Kalamkari",
+      "master_colour": "Sage",
+      "portal_title": "Kalamkari Sage",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1814-04",
+      "workbook_sku": "F1814/04",
+      "portal_sku": "F1814/04",
+      "master_design": "Kalamkari",
+      "master_colour": "Teal",
+      "portal_title": "Kalamkari Teal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1497-01",
+      "workbook_sku": "F1497/01",
+      "portal_sku": "F1497/01",
+      "master_design": "Belgravia",
+      "master_colour": "Charcoal/Linen",
+      "portal_title": "Belgravia Charcoal/Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1497-02",
+      "workbook_sku": "F1497/02",
+      "portal_sku": "F1497/02",
+      "master_design": "Belgravia",
+      "master_colour": "Denim/Linen",
+      "portal_title": "Belgravia Denim/Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1497-03",
+      "workbook_sku": "F1497/03",
+      "portal_sku": "F1497/03",
+      "master_design": "Belgravia",
+      "master_colour": "Navy/Rouge",
+      "portal_title": "Belgravia Navy/Rouge",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1497-04",
+      "workbook_sku": "F1497/04",
+      "portal_sku": "F1497/04",
+      "master_design": "Belgravia",
+      "master_colour": "Ochre/Charcoal",
+      "portal_title": "Belgravia Ochre/Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1497-05",
+      "workbook_sku": "F1497/05",
+      "portal_sku": "F1497/05",
+      "master_design": "Belgravia",
+      "master_colour": "Racing Green/Linen",
+      "portal_title": "Belgravia Racing Green/Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-01",
+      "workbook_sku": "F1498/01",
+      "portal_sku": "F1498/01",
+      "master_design": "Breton",
+      "master_colour": "Blush",
+      "portal_title": "Breton Blush",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-02",
+      "workbook_sku": "F1498/02",
+      "portal_sku": "F1498/02",
+      "master_design": "Breton",
+      "master_colour": "Chambray",
+      "portal_title": "Breton Chambray",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-03",
+      "workbook_sku": "F1498/03",
+      "portal_sku": "F1498/03",
+      "master_design": "Breton",
+      "master_colour": "Charcoal",
+      "portal_title": "Breton Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-04",
+      "workbook_sku": "F1498/04",
+      "portal_sku": "F1498/04",
+      "master_design": "Breton",
+      "master_colour": "Dove",
+      "portal_title": "Breton Dove",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-05",
+      "workbook_sku": "F1498/05",
+      "portal_sku": "F1498/05",
+      "master_design": "Breton",
+      "master_colour": "Linen",
+      "portal_title": "Breton Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-06",
+      "workbook_sku": "F1498/06",
+      "portal_sku": "F1498/06",
+      "master_design": "Breton",
+      "master_colour": "Ochre",
+      "portal_title": "Breton Ochre",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-07",
+      "workbook_sku": "F1498/07",
+      "portal_sku": "F1498/07",
+      "master_design": "Breton",
+      "master_colour": "Racing Green",
+      "portal_title": "Breton Racing Green",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1498-08",
+      "workbook_sku": "F1498/08",
+      "portal_sku": "F1498/08",
+      "master_design": "Breton",
+      "master_colour": "Sage",
+      "portal_title": "Breton Sage",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1499-01",
+      "workbook_sku": "F1499/01",
+      "portal_sku": "F1499/01",
+      "master_design": "Edison",
+      "master_colour": "Charcoal/Natural",
+      "portal_title": "Edison Charcoal/Natural",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1499-02",
+      "workbook_sku": "F1499/02",
+      "portal_sku": "F1499/02",
+      "master_design": "Edison",
+      "master_colour": "Denim",
+      "portal_title": "Edison Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1499-03",
+      "workbook_sku": "F1499/03",
+      "portal_sku": "F1499/03",
+      "master_design": "Edison",
+      "master_colour": "Racing Green/Linen",
+      "portal_title": "Edison Racing Green/Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1507-01",
+      "workbook_sku": "F1507/01",
+      "portal_sku": "F1507/01",
+      "master_design": "Falena",
+      "master_colour": "Blush/Gold",
+      "portal_title": "Falena Blush/Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1507-02",
+      "workbook_sku": "F1507/02",
+      "portal_sku": "F1507/02",
+      "master_design": "Falena",
+      "master_colour": "Linen/Gold",
+      "portal_title": "Falena Linen/Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1507-03",
+      "workbook_sku": "F1507/03",
+      "portal_sku": "F1507/03",
+      "master_design": "Falena",
+      "master_colour": "Mineral/Rose Gold",
+      "portal_title": "Falena Mineral/Rose Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1500-01",
+      "workbook_sku": "F1500/01",
+      "portal_sku": "F1500/01",
+      "master_design": "Knightsbridge",
+      "master_colour": "Denim",
+      "portal_title": "Knightsbridge Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1500-02",
+      "workbook_sku": "F1500/02",
+      "portal_sku": "F1500/02",
+      "master_design": "Knightsbridge",
+      "master_colour": "Charcoal/Linen",
+      "portal_title": "Knightsbridge Charcoal/Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1500-03",
+      "workbook_sku": "F1500/03",
+      "portal_sku": "F1500/03",
+      "master_design": "Knightsbridge",
+      "master_colour": "Navy/Rouge",
+      "portal_title": "Knightsbridge Navy/Rouge",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1500-04",
+      "workbook_sku": "F1500/04",
+      "portal_sku": "F1500/04",
+      "master_design": "Knightsbridge",
+      "master_colour": "Ochre/Charcoal",
+      "portal_title": "Knightsbridge Ochre/Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1501-01",
+      "workbook_sku": "F1501/01",
+      "portal_sku": "F1501/01",
+      "master_design": "Maryland",
+      "master_colour": "Charcoal/Natural",
+      "portal_title": "Maryland Charcoal/Natural",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1501-02",
+      "workbook_sku": "F1501/02",
+      "portal_sku": "F1501/02",
+      "master_design": "Maryland",
+      "master_colour": "Denim",
+      "portal_title": "Maryland Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1501-03",
+      "workbook_sku": "F1501/03",
+      "portal_sku": "F1501/03",
+      "master_design": "Maryland",
+      "master_colour": "Ochre/Charcoal",
+      "portal_title": "Maryland Ochre/Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1502-01",
+      "workbook_sku": "F1502/01",
+      "portal_sku": "F1502/01",
+      "master_design": "Marylebone",
+      "master_colour": "Denim/Linen",
+      "portal_title": "Marylebone Denim/Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1502-02",
+      "workbook_sku": "F1502/02",
+      "portal_sku": "F1502/02",
+      "master_design": "Marylebone",
+      "master_colour": "Navy/Rouge",
+      "portal_title": "Marylebone Navy/Rouge",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1503-01",
+      "workbook_sku": "F1503/01",
+      "portal_sku": "F1503/01",
+      "master_design": "Portland",
+      "master_colour": "Denim",
+      "portal_title": "Portland Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1503-02",
+      "workbook_sku": "F1503/02",
+      "portal_sku": "F1503/02",
+      "master_design": "Portland",
+      "master_colour": "Ebony",
+      "portal_title": "Portland Ebony",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1503-03",
+      "workbook_sku": "F1503/03",
+      "portal_sku": "F1503/03",
+      "master_design": "Portland",
+      "master_colour": "Linen",
+      "portal_title": "Portland Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1503-04",
+      "workbook_sku": "F1503/04",
+      "portal_sku": "F1503/04",
+      "master_design": "Portland",
+      "master_colour": "Navy",
+      "portal_title": "Portland Navy",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1503-05",
+      "workbook_sku": "F1503/05",
+      "portal_sku": "F1503/05",
+      "master_design": "Portland",
+      "master_colour": "Racing Green",
+      "portal_title": "Portland Racing Green",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1504-01",
+      "workbook_sku": "F1504/01",
+      "portal_sku": "F1504/01",
+      "master_design": "Spencer",
+      "master_colour": "Denim",
+      "portal_title": "Spencer Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1504-02",
+      "workbook_sku": "F1504/02",
+      "portal_sku": "F1504/02",
+      "master_design": "Spencer",
+      "master_colour": "Ebony",
+      "portal_title": "Spencer Ebony",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1504-03",
+      "workbook_sku": "F1504/03",
+      "portal_sku": "F1504/03",
+      "master_design": "Spencer",
+      "master_colour": "Linen",
+      "portal_title": "Spencer Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1504-04",
+      "workbook_sku": "F1504/04",
+      "portal_sku": "F1504/04",
+      "master_design": "Spencer",
+      "master_colour": "Racing Green",
+      "portal_title": "Spencer Racing Green",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1504-05",
+      "workbook_sku": "F1504/05",
+      "portal_sku": "F1504/05",
+      "master_design": "Spencer",
+      "master_colour": "Sage",
+      "portal_title": "Spencer Sage",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-01",
+      "workbook_sku": "F1505/01",
+      "portal_sku": "F1505/01",
+      "master_design": "Windsor",
+      "master_colour": "Blush",
+      "portal_title": "Windsor Blush",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-02",
+      "workbook_sku": "F1505/02",
+      "portal_sku": "F1505/02",
+      "master_design": "Windsor",
+      "master_colour": "Chambray",
+      "portal_title": "Windsor Chambray",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-03",
+      "workbook_sku": "F1505/03",
+      "portal_sku": "F1505/03",
+      "master_design": "Windsor",
+      "master_colour": "Charcoal",
+      "portal_title": "Windsor Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-04",
+      "workbook_sku": "F1505/04",
+      "portal_sku": "F1505/04",
+      "master_design": "Windsor",
+      "master_colour": "Dove",
+      "portal_title": "Windsor Dove",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-05",
+      "workbook_sku": "F1505/05",
+      "portal_sku": "F1505/05",
+      "master_design": "Windsor",
+      "master_colour": "Linen",
+      "portal_title": "Windsor Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-06",
+      "workbook_sku": "F1505/06",
+      "portal_sku": "F1505/06",
+      "master_design": "Windsor",
+      "master_colour": "Navy",
+      "portal_title": "Windsor Navy",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-07",
+      "workbook_sku": "F1505/07",
+      "portal_sku": "F1505/07",
+      "master_design": "Windsor",
+      "master_colour": "Ochre",
+      "portal_title": "Windsor Ochre",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-08",
+      "workbook_sku": "F1505/08",
+      "portal_sku": "F1505/08",
+      "master_design": "Windsor",
+      "master_colour": "Racing Green",
+      "portal_title": "Windsor Racing Green",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-09",
+      "workbook_sku": "F1505/09",
+      "portal_sku": "F1505/09",
+      "master_design": "Windsor",
+      "master_colour": "Rouge",
+      "portal_title": "Windsor Rouge",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1505-10",
+      "workbook_sku": "F1505/10",
+      "portal_sku": "F1505/10",
+      "master_design": "Windsor",
+      "master_colour": "Sage",
+      "portal_title": "Windsor Sage",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1613-01",
+      "workbook_sku": "F1613/01",
+      "portal_sku": "F1613/01",
+      "master_design": "Bloom",
+      "master_colour": "Amethyst",
+      "portal_title": "Bloom Amethyst",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1613-02",
+      "workbook_sku": "F1613/02",
+      "portal_sku": "F1613/02",
+      "master_design": "Bloom",
+      "master_colour": "Antique",
+      "portal_title": "Bloom Antique",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1613-03",
+      "workbook_sku": "F1613/03",
+      "portal_sku": "F1613/03",
+      "master_design": "Bloom",
+      "master_colour": "Fuchsia",
+      "portal_title": "Bloom Fuchsia",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1613-04",
+      "workbook_sku": "F1613/04",
+      "portal_sku": "F1613/04",
+      "master_design": "Bloom",
+      "master_colour": "Multi",
+      "portal_title": "Bloom Multi",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1713-01",
+      "workbook_sku": "F1713/01",
+      "portal_sku": "F1713/01",
+      "master_design": "Nairobi",
+      "master_colour": "Azure",
+      "portal_title": "Nairobi Azure",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1713-02",
+      "workbook_sku": "F1713/02",
+      "portal_sku": "F1713/02",
+      "master_design": "Nairobi",
+      "master_colour": "Linen",
+      "portal_title": "Nairobi Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1277-01",
+      "workbook_sku": "F1277/01",
+      "portal_sku": "F1277/01",
+      "master_design": "Alexis",
+      "master_colour": "Chalk",
+      "portal_title": "Alexis Chalk",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1277-02",
+      "workbook_sku": "F1277/02",
+      "portal_sku": "F1277/02",
+      "master_design": "Alexis",
+      "master_colour": "Champagne",
+      "portal_title": "Alexis Champagne",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1277-03",
+      "workbook_sku": "F1277/03",
+      "portal_sku": "F1277/03",
+      "master_design": "Alexis",
+      "master_colour": "Kingfisher",
+      "portal_title": "Alexis Kingfisher",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1277-04",
+      "workbook_sku": "F1277/04",
+      "portal_sku": "F1277/04",
+      "master_design": "Alexis",
+      "master_colour": "Pewter",
+      "portal_title": "Alexis Pewter",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1286-01",
+      "workbook_sku": "F1286/01",
+      "portal_sku": "F1286/01",
+      "master_design": "Arturo",
+      "master_colour": "Ivory/Gold",
+      "portal_title": "Arturo Ivory/Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1286-02",
+      "workbook_sku": "F1286/02",
+      "portal_sku": "F1286/02",
+      "master_design": "Arturo",
+      "master_colour": "Silver",
+      "portal_title": "Arturo Silver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1278-01",
+      "workbook_sku": "F1278/01",
+      "portal_sku": "F1278/01",
+      "master_design": "Corallino Sheer",
+      "master_colour": "Chalk/Silver",
+      "portal_title": "Corallino Sheer Chalk/Silver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1278-02",
+      "workbook_sku": "F1278/02",
+      "portal_sku": "F1278/02",
+      "master_design": "Corallino Sheer",
+      "master_colour": "Champagne/Gold",
+      "portal_title": "Corallino Sheer Champagne/Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1278-03",
+      "workbook_sku": "F1278/03",
+      "portal_sku": "F1278/03",
+      "master_design": "Corallino Sheer",
+      "master_colour": "Charcoal",
+      "portal_title": "Corallino Sheer Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1278-04",
+      "workbook_sku": "F1278/04",
+      "portal_sku": "F1278/04",
+      "master_design": "Corallino Sheer",
+      "master_colour": "Mineral",
+      "portal_title": "Corallino Sheer Mineral",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1278-05",
+      "workbook_sku": "F1278/05",
+      "portal_sku": "F1278/05",
+      "master_design": "Corallino Sheer",
+      "master_colour": "Silver",
+      "portal_title": "Corallino Sheer Silver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1279-01",
+      "workbook_sku": "F1279/01",
+      "portal_sku": "F1279/01",
+      "master_design": "Corrado",
+      "master_colour": "Champagne",
+      "portal_title": "Corrado Champagne",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1279-02",
+      "workbook_sku": "F1279/02",
+      "portal_sku": "F1279/02",
+      "master_design": "Corrado",
+      "master_colour": "Ivory",
+      "portal_title": "Corrado Ivory",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1279-03",
+      "workbook_sku": "F1279/03",
+      "portal_sku": "F1279/03",
+      "master_design": "Corrado",
+      "master_colour": "Pebble",
+      "portal_title": "Corrado Pebble",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1279-04",
+      "workbook_sku": "F1279/04",
+      "portal_sku": "F1279/04",
+      "master_design": "Corrado",
+      "master_colour": "Pewter",
+      "portal_title": "Corrado Pewter",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1276-01",
+      "workbook_sku": "F1276/01",
+      "portal_sku": "F1276/01",
+      "master_design": "Fino",
+      "master_colour": "Gilver",
+      "portal_title": "Fino Gilver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1276-02",
+      "workbook_sku": "F1276/02",
+      "portal_sku": "F1276/02",
+      "master_design": "Fino",
+      "master_colour": "Ivory/Rose Gold",
+      "portal_title": "Fino Ivory/Rose Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1280-01",
+      "workbook_sku": "F1280/01",
+      "portal_sku": "F1280/01",
+      "master_design": "Lavico Sheer",
+      "master_colour": "Chambray",
+      "portal_title": "Lavico Sheer Chambray",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1280-02",
+      "workbook_sku": "F1280/02",
+      "portal_sku": "F1280/02",
+      "master_design": "Lavico Sheer",
+      "master_colour": "Champagne/Pebble",
+      "portal_title": "Lavico Sheer Champagne/Pebble",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1280-03",
+      "workbook_sku": "F1280/03",
+      "portal_sku": "F1280/03",
+      "master_design": "Lavico Sheer",
+      "master_colour": "Charcoal",
+      "portal_title": "Lavico Sheer Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1280-04",
+      "workbook_sku": "F1280/04",
+      "portal_sku": "F1280/04",
+      "master_design": "Lavico Sheer",
+      "master_colour": "Mineral/Kingfisher",
+      "portal_title": "Lavico Sheer Mineral/Kingfisher",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1281-01",
+      "workbook_sku": "F1281/01",
+      "portal_sku": "F1281/01",
+      "master_design": "Lucido",
+      "master_colour": "Chambray",
+      "portal_title": "Lucido Chambray",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1281-02",
+      "workbook_sku": "F1281/02",
+      "portal_sku": "F1281/02",
+      "master_design": "Lucido",
+      "master_colour": "Champagne",
+      "portal_title": "Lucido Champagne",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1281-03",
+      "workbook_sku": "F1281/03",
+      "portal_sku": "F1281/03",
+      "master_design": "Lucido",
+      "master_colour": "Charcoal/Gilver",
+      "portal_title": "Lucido Charcoal/Gilver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1281-04",
+      "workbook_sku": "F1281/04",
+      "portal_sku": "F1281/04",
+      "master_design": "Lucido",
+      "master_colour": "Silver",
+      "portal_title": "Lucido Silver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1282-01",
+      "workbook_sku": "F1282/01",
+      "portal_sku": "F1282/01",
+      "master_design": "Maddox",
+      "master_colour": "Antique",
+      "portal_title": "Maddox Antique",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1282-02",
+      "workbook_sku": "F1282/02",
+      "portal_sku": "F1282/02",
+      "master_design": "Maddox",
+      "master_colour": "Charcoal",
+      "portal_title": "Maddox Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1282-03",
+      "workbook_sku": "F1282/03",
+      "portal_sku": "F1282/03",
+      "master_design": "Maddox",
+      "master_colour": "Ivory",
+      "portal_title": "Maddox Ivory",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1282-04",
+      "workbook_sku": "F1282/04",
+      "portal_sku": "F1282/04",
+      "master_design": "Maddox",
+      "master_colour": "Pebble",
+      "portal_title": "Maddox Pebble",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1282-05",
+      "workbook_sku": "F1282/05",
+      "portal_sku": "F1282/05",
+      "master_design": "Maddox",
+      "master_colour": "Denim",
+      "portal_title": "Maddox Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1282-06",
+      "workbook_sku": "F1282/06",
+      "portal_sku": "F1282/06",
+      "master_design": "Maddox",
+      "master_colour": "Teal",
+      "portal_title": "Maddox Teal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1283-01",
+      "workbook_sku": "F1283/01",
+      "portal_sku": "F1283/01",
+      "master_design": "Matteo",
+      "master_colour": "Chalk",
+      "portal_title": "Matteo Chalk",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1283-02",
+      "workbook_sku": "F1283/02",
+      "portal_sku": "F1283/02",
+      "master_design": "Matteo",
+      "master_colour": "Chambray",
+      "portal_title": "Matteo Chambray",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1283-03",
+      "workbook_sku": "F1283/03",
+      "portal_sku": "F1283/03",
+      "master_design": "Matteo",
+      "master_colour": "Champagne",
+      "portal_title": "Matteo Champagne",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1283-04",
+      "workbook_sku": "F1283/04",
+      "portal_sku": "F1283/04",
+      "master_design": "Matteo",
+      "master_colour": "Charcoal",
+      "portal_title": "Matteo Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1283-05",
+      "workbook_sku": "F1283/05",
+      "portal_sku": "F1283/05",
+      "master_design": "Matteo",
+      "master_colour": "Ebony/Gold",
+      "portal_title": "Matteo Ebony/Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1283-06",
+      "workbook_sku": "F1283/06",
+      "portal_sku": "F1283/06",
+      "master_design": "Matteo",
+      "master_colour": "Midnight/Gold",
+      "portal_title": "Matteo Midnight/Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1283-07",
+      "workbook_sku": "F1283/07",
+      "portal_sku": "F1283/07",
+      "master_design": "Matteo",
+      "master_colour": "Teal/Gilver",
+      "portal_title": "Matteo Teal/Gilver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1284-01",
+      "workbook_sku": "F1284/01",
+      "portal_sku": "F1284/01",
+      "master_design": "Opulenza",
+      "master_colour": "Chambray/Denim",
+      "portal_title": "Opulenza Chambray/Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1284-02",
+      "workbook_sku": "F1284/02",
+      "portal_sku": "F1284/02",
+      "master_design": "Opulenza",
+      "master_colour": "Charcoal/Pewter",
+      "portal_title": "Opulenza Charcoal/Pewter",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1284-03",
+      "workbook_sku": "F1284/03",
+      "portal_sku": "F1284/03",
+      "master_design": "Opulenza",
+      "master_colour": "Ivory/Pebble",
+      "portal_title": "Opulenza Ivory/Pebble",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1284-04",
+      "workbook_sku": "F1284/04",
+      "portal_sku": "F1284/04",
+      "master_design": "Opulenza",
+      "master_colour": "Kingfisher",
+      "portal_title": "Opulenza Kingfisher",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1285-01",
+      "workbook_sku": "F1285/01",
+      "portal_sku": "F1285/01",
+      "master_design": "Puro",
+      "master_colour": "Chalk",
+      "portal_title": "Puro Chalk",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1285-02",
+      "workbook_sku": "F1285/02",
+      "portal_sku": "F1285/02",
+      "master_design": "Puro",
+      "master_colour": "Chambray",
+      "portal_title": "Puro Chambray",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1285-03",
+      "workbook_sku": "F1285/03",
+      "portal_sku": "F1285/03",
+      "master_design": "Puro",
+      "master_colour": "Ivory",
+      "portal_title": "Puro Ivory",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1285-04",
+      "workbook_sku": "F1285/04",
+      "portal_sku": "F1285/04",
+      "master_design": "Puro",
+      "master_colour": "Pebble",
+      "portal_title": "Puro Pebble",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1285-05",
+      "workbook_sku": "F1285/05",
+      "portal_sku": "F1285/05",
+      "master_design": "Puro",
+      "master_colour": "Pewter",
+      "portal_title": "Puro Pewter",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1469-01",
+      "workbook_sku": "F1469/01",
+      "portal_sku": "F1469/01",
+      "master_design": "Forma",
+      "master_colour": "Champagne",
+      "portal_title": "Forma Champagne",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1469-02",
+      "workbook_sku": "F1469/02",
+      "portal_sku": "F1469/02",
+      "master_design": "Forma",
+      "master_colour": "Charcoal/Gold",
+      "portal_title": "Forma Charcoal/Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1469-03",
+      "workbook_sku": "F1469/03",
+      "portal_sku": "F1469/03",
+      "master_design": "Forma",
+      "master_colour": "Charcoal/Silver",
+      "portal_title": "Forma Charcoal/Silver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1469-04",
+      "workbook_sku": "F1469/04",
+      "portal_sku": "F1469/04",
+      "master_design": "Forma",
+      "master_colour": "Ivory/Silver",
+      "portal_title": "Forma Ivory/Silver",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1621-01",
+      "workbook_sku": "F1621/01",
+      "portal_sku": "F1621/01",
+      "master_design": "Alberte",
+      "master_colour": "Charcoal",
+      "portal_title": "Alberte Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1621-02",
+      "workbook_sku": "F1621/02",
+      "portal_sku": "F1621/02",
+      "master_design": "Alberte",
+      "master_colour": "Natural",
+      "portal_title": "Alberte Natural",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1621-03",
+      "workbook_sku": "F1621/03",
+      "portal_sku": "F1621/03",
+      "master_design": "Alberte",
+      "master_colour": "Summer",
+      "portal_title": "Alberte Summer",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1622-01",
+      "workbook_sku": "F1622/01",
+      "portal_sku": "F1622/01",
+      "master_design": "Annika",
+      "master_colour": "Charcoal",
+      "portal_title": "Annika Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1622-02",
+      "workbook_sku": "F1622/02",
+      "portal_sku": "F1622/02",
+      "master_design": "Annika",
+      "master_colour": "Summer",
+      "portal_title": "Annika Summer",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1623-01",
+      "workbook_sku": "F1623/01",
+      "portal_sku": "F1623/01",
+      "master_design": "Anton",
+      "master_colour": "Charcoal",
+      "portal_title": "Anton Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1623-02",
+      "workbook_sku": "F1623/02",
+      "portal_sku": "F1623/02",
+      "master_design": "Anton",
+      "master_colour": "Linen",
+      "portal_title": "Anton Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1623-03",
+      "workbook_sku": "F1623/03",
+      "portal_sku": "F1623/03",
+      "master_design": "Anton",
+      "master_colour": "Midnight",
+      "portal_title": "Anton Midnight",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1623-04",
+      "workbook_sku": "F1623/04",
+      "portal_sku": "F1623/04",
+      "master_design": "Anton",
+      "master_colour": "Pebble",
+      "portal_title": "Anton Pebble",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1624-01",
+      "workbook_sku": "F1624/01",
+      "portal_sku": "F1624/01",
+      "master_design": "Bergen",
+      "master_colour": "Charcoal",
+      "portal_title": "Bergen Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1624-02",
+      "workbook_sku": "F1624/02",
+      "portal_sku": "F1624/02",
+      "master_design": "Bergen",
+      "master_colour": "Denim",
+      "portal_title": "Bergen Denim",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1624-03",
+      "workbook_sku": "F1624/03",
+      "portal_sku": "F1624/03",
+      "master_design": "Bergen",
+      "master_colour": "Kingfisher",
+      "portal_title": "Bergen Kingfisher",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1624-04",
+      "workbook_sku": "F1624/04",
+      "portal_sku": "F1624/04",
+      "master_design": "Bergen",
+      "master_colour": "Summer",
+      "portal_title": "Bergen Summer",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1625-01",
+      "workbook_sku": "F1625/01",
+      "portal_sku": "F1625/01",
+      "master_design": "Jonas",
+      "master_colour": "Charcoal",
+      "portal_title": "Jonas Charcoal",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1625-02",
+      "workbook_sku": "F1625/02",
+      "portal_sku": "F1625/02",
+      "master_design": "Jonas",
+      "master_colour": "Midnight",
+      "portal_title": "Jonas Midnight",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    },
+    {
+      "master_id": "sdg-f1625-03",
+      "workbook_sku": "F1625/03",
+      "portal_sku": "F1625/03",
+      "master_design": "Jonas",
+      "master_colour": "Mocha",
+      "portal_title": "Jonas Mocha",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:07:45.239Z"
+    }
+  ]
+}

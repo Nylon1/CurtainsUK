@@ -1,0 +1,87 @@
+{
+  "observed": 6,
+  "exactIdentityMatches": 6,
+  "withheld": [],
+  "databaseWrites": 6,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-hsgr131882",
+      "workbook_sku": "HSGR131882",
+      "portal_sku": "HSGR131882",
+      "master_design": "Vitto",
+      "master_colour": "Flamenco",
+      "portal_title": "Vitto Flamenco",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-htef120974",
+      "workbook_sku": "HTEF120974",
+      "portal_sku": "HTEF120974",
+      "master_design": "Aureilia",
+      "master_colour": "Sandstone Chalk",
+      "portal_title": "Aureilia Sandstone Chalk",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-htef121008",
+      "workbook_sku": "HTEF121008",
+      "portal_sku": "HTEF121008",
+      "master_design": "Dance of Adornment",
+      "master_colour": "Wilderness/ Nectar/ Pomegranate",
+      "portal_title": "Dance Of Adornment Wilderness/ Nectar/ Pomegranate",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-hwo03224",
+      "workbook_sku": "HWO03224",
+      "portal_sku": "HWO03224",
+      "master_design": "What A Hoot",
+      "master_colour": "Pink/Aquamarine/Lime",
+      "portal_title": "What A Hoot Pink/Aquamarine/Lime",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-hwo03229",
+      "workbook_sku": "HWO03229",
+      "portal_sku": "HWO03229",
+      "master_design": "Jolly Jurassic",
+      "master_colour": "Aqua/Tangerine/Apple",
+      "portal_title": "Jolly Jurassic Aqua/Tangerine/Apple",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-hwo03232",
+      "workbook_sku": "HWO03232",
+      "portal_sku": "HWO03232",
+      "master_design": "Go Go Retro",
+      "master_colour": "Strawberry/Blue/Lemon",
+      "portal_title": "Go Go Retro Strawberry/Blue/Lemon",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-0-0.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":43,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-0-48.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":44,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-0-96.json", "exitCode": 0, "result": "{\"observed\":10,\"verified\":10,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-0.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":48,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-48.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":37,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-96.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":35,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-144.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":40,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-192.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":46,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-240.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":48,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-288.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":48,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-336.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":48,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-3-384.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":48,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-6-0.json", "exitCode": 0, "result": "{\"observed\":6,\"verified\":5,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-8-0.json", "exitCode": 0, "result": "{\"observed\":39,\"verified\":37,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-11-0.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":37,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-11-48.json", "exitCode": 0, "result": "{\"observed\":48,\"verified\":47,\"applied\":true,\"commercialChanges\":0}", "failure": null}
+{"input": "artifacts\\phase5k\\batch-002\\discontinued-11-96.json", "exitCode": 0, "result": "{\"observed\":22,\"verified\":17,\"applied\":true,\"commercialChanges\":0}", "failure": null}

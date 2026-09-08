@@ -1,0 +1,61 @@
+{
+  "observed": 4,
+  "exactIdentityMatches": 4,
+  "withheld": [],
+  "databaseWrites": 4,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-hama120337",
+      "workbook_sku": "HAMA120337",
+      "portal_sku": "HAMA120337",
+      "master_design": "Limosa",
+      "master_colour": "Loganberry/Raspberry/Olive",
+      "portal_title": "Limosa Loganberry/Raspberry/Olive",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-hama120341",
+      "workbook_sku": "HAMA120341",
+      "portal_sku": "HAMA120341",
+      "master_design": "Limosa",
+      "master_colour": "Mustard/Cocoa/Stone",
+      "portal_title": "Limosa Mustard/Cocoa/Stone",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-hgat131586",
+      "workbook_sku": "HGAT131586",
+      "portal_sku": "HGAT131586",
+      "master_design": "Aster",
+      "master_colour": "Russet/Willow/Nutmeg/Dusk",
+      "portal_title": "Aster Russet/Willow/Nutmeg/Dusk",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    },
+    {
+      "master_id": "sdg-hgat131588",
+      "workbook_sku": "HGAT131588",
+      "portal_sku": "HGAT131588",
+      "master_design": "Aster",
+      "master_colour": "Amber/Amethyst/Gold/Ink",
+      "portal_title": "Aster Amber/Amethyst/Gold/Ink",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:25:22.338Z"
+    }
+  ]
+}

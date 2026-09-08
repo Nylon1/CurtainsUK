@@ -1,0 +1,793 @@
+{
+  "checkedAt": "2026-09-08T11:39:01.094Z",
+  "brand": "Harlequin",
+  "productType": "FABRIC",
+  "status": "Live",
+  "rows": [
+    [
+      "HDHP121110",
+      "Marsha Powder/Peony/Magenta",
+      "H/D/HDHP121110_d97a.jpg"
+    ],
+    [
+      "HQN3133897",
+      "Blocks Paprika/Bark/Bleached Coral",
+      "H/Q/HQN3133897_3a41.jpg"
+    ],
+    [
+      "HQN3133898",
+      "Blocks Cornflower/Black Earth/Sketched",
+      "H/Q/HQN3133898_e6ac.jpg"
+    ],
+    [
+      "HQN3133899",
+      "Blocks Nectar/Sketched/Diffused Light",
+      "H/Q/HQN3133899_aa74.jpg"
+    ],
+    [
+      "HQN3133900",
+      "Blocks Black Earth/Sketched/Diffused Light",
+      "H/Q/HQN3133900_890b.jpg"
+    ],
+    [
+      "HQN3121136",
+      "Calathea Velvet Amber Light/Brazilian Rosewood/Pomegranate/Shiitake",
+      "H/Q/HQN3121136_598b.jpg"
+    ],
+    [
+      "HQN3121138",
+      "Calathea Velvet Azul/Onsen/French Ochre/Paprika",
+      "H/Q/HQN3121138_22a7.jpg"
+    ],
+    [
+      "HQN3121145",
+      "Flourish Celestial/Midsummers Eve/First Light",
+      "H/Q/HQN3121145_70f5.jpg"
+    ],
+    [
+      "HQN3121146",
+      "Flourish Nectar/Zest/First Light",
+      "H/Q/HQN3121146_c497.jpg"
+    ],
+    [
+      "HQN3121147",
+      "Flourish Tree Canopy/Silver Willow/Awakening",
+      "H/Q/HQN3121147_81b5.jpg"
+    ],
+    [
+      "HQN3121125",
+      "Journey Of Discovery Velvet Ionian/Harissa/Emerald",
+      "H/Q/HQN3121125_eb8f.jpg"
+    ],
+    [
+      "HQN3121126",
+      "Journey Of Discovery Paprika/Fuschia/Fig Blossom",
+      "H/Q/HQN3121126_8045.jpg"
+    ],
+    [
+      "HQN3121127",
+      "Journey Of Discovery Wild Water/Exhale",
+      "H/Q/HQN3121127_d935.jpg"
+    ],
+    [
+      "HQN3133904",
+      "Khorol Almond/Diffused Light",
+      "H/Q/HQN3133904_5389.jpg"
+    ],
+    [
+      "HQN3133905",
+      "Khorol Sage/Shiitake",
+      "H/Q/HQN3133905_580a.jpg"
+    ],
+    [
+      "HQN3133906",
+      "Khorol Cornflower/Incense",
+      "H/Q/HQN3133906_30b3.jpg"
+    ],
+    [
+      "HQN3133907",
+      "Kumo Seaglass/Forest/Silver Willow",
+      "H/Q/HQN3133907_2a55.jpg"
+    ],
+    [
+      "HQN3133908",
+      "Kumo Wilderness/Amber Light/Paprika",
+      "H/Q/HQN3133908_575b.jpg"
+    ],
+    [
+      "HQN3133909",
+      "Kumo Hempseed/Shiitake/Sketched",
+      "H/Q/HQN3133909_4f01.jpg"
+    ],
+    [
+      "HQN3121142",
+      "Melograno Forest/ First Light",
+      "H/Q/HQN3121142_79c3.jpg"
+    ],
+    [
+      "HQN3121143",
+      "Melograno Shiitake/Fig Blossom",
+      "H/Q/HQN3121143_9ce1.jpg"
+    ],
+    [
+      "HQN3121144",
+      "Melograno Celestial/Fig Blossom",
+      "H/Q/HQN3121144_1e77.jpg"
+    ],
+    [
+      "HQN3133911",
+      "Michi Shiitake/Charcoal/Celestial",
+      "H/Q/HQN3133911_a204.jpg"
+    ],
+    [
+      "HQN3133912",
+      "Michi Forest/Black Earth/First Light",
+      "H/Q/HQN3133912_b515.jpg"
+    ],
+    [
+      "HQN3133901",
+      "Mizu Sketched/Beach Path/Hempseed",
+      "H/Q/HQN3133901_fd64.jpg"
+    ],
+    [
+      "HQN3133902",
+      "Mizu Wild Water/Exhale/Tranquility",
+      "H/Q/HQN3133902_9571.jpg"
+    ],
+    [
+      "HQN3133903",
+      "Mizu Nectar/Ritual/Tranquility",
+      "H/Q/HQN3133903_7419.jpg"
+    ],
+    [
+      "HQN3121139",
+      "Serpenti Velvet Onsen/Emerald/Azul",
+      "H/Q/HQN3121139_4b29.jpg"
+    ],
+    [
+      "HQN3121140",
+      "Serpenti Velvet Brazilian Rosewood/Grounded/Amber Light",
+      "H/Q/HQN3121140_a261.jpg"
+    ],
+    [
+      "HQN3121141",
+      "Serpenti Bleached Coral/Paprika/Positano/Azul",
+      "H/Q/HQN3121141_881b.jpg"
+    ],
+    [
+      "HQN3121128",
+      "Shiruku Harissa/Amazonia/Emerald",
+      "H/Q/HQN3121128_a591.jpg"
+    ],
+    [
+      "HQN3121129",
+      "Shiruku Wild Water/Azul/Exhale",
+      "H/Q/HQN3121129_6852.jpg"
+    ],
+    [
+      "HQN3121130",
+      "Shiruku Paprika/Sketched/Nectar",
+      "H/Q/HQN3121130_bd00.jpg"
+    ],
+    [
+      "HQN3121131",
+      "Shiruku Paprika/Fuschia/Fig Blossom",
+      "H/Q/HQN3121131_8d1d.jpg"
+    ],
+    [
+      "HQN3121132",
+      "Shiruku Emerald/Forest/Silver Willow",
+      "H/Q/HQN3121132_019c.jpg"
+    ],
+    [
+      "HQN3121133",
+      "Zori Forest/First Light",
+      "H/Q/HQN3121133_616f.jpg"
+    ],
+    [
+      "HQN3121134",
+      "Zori Harissa/Paper Lantern",
+      "H/Q/HQN3121134_e743.jpg"
+    ],
+    [
+      "HIOV134135",
+      "Performance Velvets Kelp",
+      "H/I/HIOV134135_0969.jpg"
+    ],
+    [
+      "HIOV134136",
+      "Performance Velvets Moss",
+      "H/I/HIOV134136_4598.jpg"
+    ],
+    [
+      "HIOV134137",
+      "Performance Velvets Forest",
+      "H/I/HIOV134137_fe75.jpg"
+    ],
+    [
+      "HIOV134138",
+      "Performance Velvets Pine",
+      "H/I/HIOV134138_b029.jpg"
+    ],
+    [
+      "HIOV134139",
+      "Performance Velvets Teal",
+      "H/I/HIOV134139_ac2a.jpg"
+    ],
+    [
+      "HIOV134140",
+      "Performance Velvets Mole",
+      "H/I/HIOV134140_014a.jpg"
+    ],
+    [
+      "HIOV134141",
+      "Performance Velvets Chocolate",
+      "H/I/HIOV134141_3ce9.jpg"
+    ],
+    [
+      "HIOV134142",
+      "Performance Velvets Magenta",
+      "H/I/HIOV134142_3cd6.jpg"
+    ],
+    [
+      "HIOV134143",
+      "Performance Velvets Coral",
+      "H/I/HIOV134143_e8d8.jpg"
+    ],
+    [
+      "HIOV134144",
+      "Performance Velvets Peony",
+      "H/I/HIOV134144_5a93.jpg"
+    ],
+    [
+      "HIOV134145",
+      "Performance Velvets Rose Quartz",
+      "H/I/HIOV134145_fb75.jpg"
+    ],
+    [
+      "HIOV134146",
+      "Performance Velvets Positano",
+      "H/I/HIOV134146_533e.jpg"
+    ],
+    [
+      "HIOV134147",
+      "Performance Velvets Carnelian",
+      "H/I/HIOV134147_3dbf.jpg"
+    ],
+    [
+      "HIOV134148",
+      "Performance Velvets Clementine",
+      "H/I/HIOV134148_95e4.jpg"
+    ],
+    [
+      "HIOV134149",
+      "Performance Velvets Paprika",
+      "H/I/HIOV134149_5470.jpg"
+    ],
+    [
+      "HIOV134150",
+      "Performance Velvets Rust",
+      "H/I/HIOV134150_675f.jpg"
+    ],
+    [
+      "HIOV134151",
+      "Performance Velvets Harissa",
+      "H/I/HIOV134151_91f8.jpg"
+    ],
+    [
+      "HIOV134152",
+      "Performance Velvets Taupe",
+      "H/I/HIOV134152_93f8.jpg"
+    ],
+    [
+      "HIOV134153",
+      "Performance Velvets Oyster",
+      "H/I/HIOV134153_ebe9.jpg"
+    ],
+    [
+      "HIOV134154",
+      "Performance Velvets Sand",
+      "H/I/HIOV134154_1c41.jpg"
+    ],
+    [
+      "HIOV134155",
+      "Performance Velvets Raffia",
+      "H/I/HIOV134155_5b7c.jpg"
+    ],
+    [
+      "HIOV134156",
+      "Performance Velvets Parchment",
+      "H/I/HIOV134156_05f2.jpg"
+    ],
+    [
+      "HIOV134157",
+      "Performance Velvets Mist",
+      "H/I/HIOV134157_8620.jpg"
+    ],
+    [
+      "HIOV134158",
+      "Performance Velvets Steel",
+      "H/I/HIOV134158_8c9f.jpg"
+    ],
+    [
+      "HIOV134159",
+      "Performance Velvets Slate",
+      "H/I/HIOV134159_0393.jpg"
+    ],
+    [
+      "HIOV134160",
+      "Performance Velvets Graphite",
+      "H/I/HIOV134160_617a.jpg"
+    ],
+    [
+      "HIOV134161",
+      "Performance Velvets Bay",
+      "H/I/HIOV134161_a78d.jpg"
+    ],
+    [
+      "HIOV134162",
+      "Performance Velvets Seaglass",
+      "H/I/HIOV134162_13a1.jpg"
+    ],
+    [
+      "HIOV134163",
+      "Performance Velvets Cornflower",
+      "H/I/HIOV134163_e68a.jpg"
+    ],
+    [
+      "HIOV134164",
+      "Performance Velvets Azul",
+      "H/I/HIOV134164_8844.jpg"
+    ],
+    [
+      "HIOV134165",
+      "Performance Velvets Sky",
+      "H/I/HIOV134165_78b3.jpg"
+    ],
+    [
+      "HIOV134166",
+      "Performance Velvets Aqua",
+      "H/I/HIOV134166_ac14.jpg"
+    ],
+    [
+      "HIOV134167",
+      "Performance Velvets Ocean",
+      "H/I/HIOV134167_4229.jpg"
+    ],
+    [
+      "HIOV134168",
+      "Performance Velvets Indigo",
+      "H/I/HIOV134168_3f73.jpg"
+    ],
+    [
+      "HIOV134169",
+      "Performance Velvets Celestial",
+      "H/I/HIOV134169_36d7.jpg"
+    ],
+    [
+      "HIOV134170",
+      "Performance Velvets Azurite",
+      "H/I/HIOV134170_cfe6.jpg"
+    ],
+    [
+      "HIOV134171",
+      "Performance Velvets Hydrangea",
+      "H/I/HIOV134171_169f.jpg"
+    ],
+    [
+      "HIOV134172",
+      "Performance Velvets Lagoon",
+      "H/I/HIOV134172_88d2.jpg"
+    ],
+    [
+      "HIOV134173",
+      "Performance Velvets Emerald",
+      "H/I/HIOV134173_22c9.jpg"
+    ],
+    [
+      "HIOV134174",
+      "Performance Velvets Dove",
+      "H/I/HIOV134174_b7b5.jpg"
+    ],
+    [
+      "HIOV134175",
+      "Performance Velvets Ink",
+      "H/I/HIOV134175_5c7a.jpg"
+    ],
+    [
+      "HIOV134176",
+      "Performance Velvets Glacier",
+      "H/I/HIOV134176_5480.jpg"
+    ],
+    [
+      "HIOV134177",
+      "Performance Velvets Black Earth",
+      "H/I/HIOV134177_f8fe.jpg"
+    ],
+    [
+      "HIOV134178",
+      "Performance Velvets Tranquil",
+      "H/I/HIOV134178_8379.jpg"
+    ],
+    [
+      "HIOP121229",
+      "Skiva Kelly/Origami",
+      "H/I/HIOP121229_ad2f.jpg"
+    ],
+    [
+      "HIOP121230",
+      "Skiva Black Earth/Origami",
+      "H/I/HIOP121230_0149.jpg"
+    ],
+    [
+      "HIOP121226",
+      "Sora Positano/Paprika",
+      "H/I/HIOP121226_9b73.jpg"
+    ],
+    [
+      "HIOP121227",
+      "Sora Mint/Kelly",
+      "H/I/HIOP121227_8e88.jpg"
+    ],
+    [
+      "HIOP121228",
+      "Sora Indigo/Cornflower",
+      "H/I/HIOP121228_bc10.jpg"
+    ],
+    [
+      "HIOP121220",
+      "Utto Kelly/Sky",
+      "H/I/HIOP121220_9230.jpg"
+    ],
+    [
+      "HIOP121222",
+      "Utto Indigo/Azul",
+      "H/I/HIOP121222_d116.jpg"
+    ],
+    [
+      "HIOP121223",
+      "Utto Black Earth/Taupe",
+      "H/I/HIOP121223_8730.jpg"
+    ],
+    [
+      "HRTF121248",
+      "Fleur De Joie Sky/Forest",
+      "H/R/HRTF121248_4771.jpg"
+    ],
+    [
+      "HRTF121250",
+      "Fleur De Joie Paprika/Aqua",
+      "H/R/HRTF121250_dbc9.jpg"
+    ],
+    [
+      "HRTF134067",
+      "Java Linen Sky/Pearl",
+      "H/R/HRTF134067_adc0.jpg"
+    ],
+    [
+      "HRTF134068",
+      "Java Linen Denim/Pearl",
+      "H/R/HRTF134068_1296.jpg"
+    ],
+    [
+      "HRTF134069",
+      "Java Linen Diffused Light/Pearl",
+      "H/R/HRTF134069_620a.jpg"
+    ],
+    [
+      "HRTF134047",
+      "Kaku Honey",
+      "H/R/HRTF134047_a9d4.jpg"
+    ],
+    [
+      "HRTF134048",
+      "Kaku Sweet Pea",
+      "H/R/HRTF134048_41c2.jpg"
+    ],
+    [
+      "HRTF134049",
+      "Kaku Denim",
+      "H/R/HRTF134049_0304.jpg"
+    ],
+    [
+      "HRTF134051",
+      "Kaku Paprika",
+      "H/R/HRTF134051_afd2.jpg"
+    ],
+    [
+      "HRTF134052",
+      "Kaku Taupe",
+      "H/R/HRTF134052_8558.jpg"
+    ],
+    [
+      "HRTF134053",
+      "Kaku Celestial",
+      "H/R/HRTF134053_e46d.jpg"
+    ],
+    [
+      "HRTF121252",
+      "Klimt Kelly/Aqua",
+      "H/R/HRTF121252_4f0d.jpg"
+    ],
+    [
+      "HRTF121253",
+      "Klimt Ink/Honey",
+      "H/R/HRTF121253_314a.jpg"
+    ],
+    [
+      "HRTF121244",
+      "Locronan Honey/First Light",
+      "H/R/HRTF121244_51f0.jpg"
+    ],
+    [
+      "HRTF121245",
+      "Locronan Aqua/First Light",
+      "H/R/HRTF121245_e67b.jpg"
+    ],
+    [
+      "HRTF121246",
+      "Locronan Cornflower/First Light",
+      "H/R/HRTF121246_16b7.jpg"
+    ],
+    [
+      "HRTF134058",
+      "Palla Honey/First Light",
+      "H/R/HRTF134058_3819.jpg"
+    ],
+    [
+      "HRTF134060",
+      "Palla Paprika/Aqua",
+      "H/R/HRTF134060_f774.jpg"
+    ],
+    [
+      "HRTF134061",
+      "Palla Sky/Linen",
+      "H/R/HRTF134061_a330.jpg"
+    ],
+    [
+      "HRTF134062",
+      "Palla Kelly/Honey",
+      "H/R/HRTF134062_6c86.jpg"
+    ],
+    [
+      "HRTF134063",
+      "Pepita Stripe Sky/Linen",
+      "H/R/HRTF134063_1939.jpg"
+    ],
+    [
+      "HRTF134064",
+      "Pepita Stripe Taupe/Mint",
+      "H/R/HRTF134064_2ae6.jpg"
+    ],
+    [
+      "HRTF134065",
+      "Pepita Stripe Kelly/First Light",
+      "H/R/HRTF134065_b823.jpg"
+    ],
+    [
+      "HRTF134066",
+      "Pepita Stripe Diffused Light/Pearl",
+      "H/R/HRTF134066_539b.jpg"
+    ],
+    [
+      "HRTF134070",
+      "Silene Honey/First Light/Ochre",
+      "H/R/HRTF134070_8634.jpg"
+    ],
+    [
+      "HRTF134071",
+      "Silene Sky/First Light/Honey",
+      "H/R/HRTF134071_1c20.jpg"
+    ],
+    [
+      "HRTF134072",
+      "Silene Taupe/First Light/Ochre",
+      "H/R/HRTF134072_d9ff.jpg"
+    ],
+    [
+      "HRTF134073",
+      "Silene Aqua/First Light/Forest",
+      "H/R/HRTF134073_fdac.jpg"
+    ],
+    [
+      "HRTF134074",
+      "Silene Denim/First Light/Sky",
+      "H/R/HRTF134074_d730.jpg"
+    ],
+    [
+      "HRTF134054",
+      "Suisai Moss/Positano/First Light",
+      "H/R/HRTF134054_69b3.jpg"
+    ],
+    [
+      "HRTF134055",
+      "Suisai Sky/Sweet Pea/First Light",
+      "H/R/HRTF134055_f479.jpg"
+    ],
+    [
+      "HRTF134056",
+      "Suisai Taupe/Paprika/First Light",
+      "H/R/HRTF134056_4246.jpg"
+    ],
+    [
+      "HRTF121254",
+      "Tree Tops Baked Terracotta/Azul/Honey",
+      "H/R/HRTF121254_7c17.jpg"
+    ],
+    [
+      "HRTF121255",
+      "Tree Tops Forest/Kelly/Aqua",
+      "H/R/HRTF121255_2ec9.jpg"
+    ],
+    [
+      "HALG134345",
+      "Allegra Lilac",
+      "H/A/HALG134345_6197.jpg"
+    ],
+    [
+      "HALG134346",
+      "Allegra Heather",
+      "H/A/HALG134346_38f9.jpg"
+    ],
+    [
+      "HALG134348",
+      "Allegra Peony",
+      "H/A/HALG134348_943d.jpg"
+    ],
+    [
+      "HALG134353",
+      "Allegra Cherry",
+      "H/A/HALG134353_9602.jpg"
+    ],
+    [
+      "HALG134354",
+      "Allegra Scarlet",
+      "H/A/HALG134354_a96f.jpg"
+    ],
+    [
+      "HALG134355",
+      "Allegra Reef",
+      "H/A/HALG134355_c6a7.jpg"
+    ],
+    [
+      "HALG134356",
+      "Allegra Cameo",
+      "H/A/HALG134356_3324.jpg"
+    ],
+    [
+      "HALG134357",
+      "Allegra Postiano",
+      "H/A/HALG134357_7a86.jpg"
+    ],
+    [
+      "HALG134358",
+      "Allegra Burnt",
+      "H/A/HALG134358_1c26.jpg"
+    ],
+    [
+      "HALG134359",
+      "Allegra Rust",
+      "H/A/HALG134359_f47c.jpg"
+    ],
+    [
+      "HALG134360",
+      "Allegra Sandstone",
+      "H/A/HALG134360_dac7.jpg"
+    ],
+    [
+      "HALG134361",
+      "Allegra Crumb",
+      "H/A/HALG134361_24e0.jpg"
+    ],
+    [
+      "HALG134363",
+      "Allegra Incense",
+      "H/A/HALG134363_5726.jpg"
+    ],
+    [
+      "HALG134364",
+      "Allegra Truffle",
+      "H/A/HALG134364_05bc.jpg"
+    ],
+    [
+      "HALG134365",
+      "Allegra Oyster",
+      "H/A/HALG134365_849b.jpg"
+    ],
+    [
+      "HALG134366",
+      "Allegra Avery",
+      "H/A/HALG134366_f328.jpg"
+    ],
+    [
+      "HALG134367",
+      "Allegra Dove",
+      "H/A/HALG134367_155c.jpg"
+    ],
+    [
+      "HALG134368",
+      "Allegra Powder",
+      "H/A/HALG134368_f03a.jpg"
+    ],
+    [
+      "HALG134369",
+      "Allegra Atlantic",
+      "H/A/HALG134369_b17a.jpg"
+    ],
+    [
+      "HALG134370",
+      "Allegra Blue Bird",
+      "H/A/HALG134370_277d.jpg"
+    ],
+    [
+      "HALG134371",
+      "Allegra Hydrangea",
+      "H/A/HALG134371_aa79.jpg"
+    ],
+    [
+      "HALG134372",
+      "Allegra Silk",
+      "H/A/HALG134372_cfe0.jpg"
+    ],
+    [
+      "HALG134373",
+      "Allegra Sky",
+      "H/A/HALG134373_0e09.jpg"
+    ],
+    [
+      "HALG134374",
+      "Allegra Harbour",
+      "H/A/HALG134374_442a.jpg"
+    ],
+    [
+      "HALG134377",
+      "Allegra Storm",
+      "H/A/HALG134377_ec63.jpg"
+    ],
+    [
+      "HALG134378",
+      "Allegra Denim",
+      "H/A/HALG134378_ef62.jpg"
+    ],
+    [
+      "HALG134382",
+      "Allegra Cloud",
+      "H/A/HALG134382_21c8.jpg"
+    ],
+    [
+      "HALG134383",
+      "Allegra Lagoon",
+      "H/A/HALG134383_ee6a.jpg"
+    ],
+    [
+      "HALG134384",
+      "Allegra Prussian",
+      "H/A/HALG134384_901f.jpg"
+    ],
+    [
+      "HALG134385",
+      "Allegra Mallard",
+      "H/A/HALG134385_4387.jpg"
+    ],
+    [
+      "HALG134388",
+      "Allegra Seafoam",
+      "H/A/HALG134388_0d00.jpg"
+    ],
+    [
+      "HALG134389",
+      "Allegra Jade",
+      "H/A/HALG134389_f0ac.jpg"
+    ],
+    [
+      "HALG134390",
+      "Allegra Juniper",
+      "H/A/HALG134390_cd73.jpg"
+    ],
+    [
+      "HALG134391",
+      "Allegra Avocado",
+      "H/A/HALG134391_5098.jpg"
+    ]
+  ]
+}

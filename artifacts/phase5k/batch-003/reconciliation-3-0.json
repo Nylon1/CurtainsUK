@@ -1,0 +1,1361 @@
+{
+  "observed": 250,
+  "exactIdentityMatches": 0,
+  "withheld": [
+    {
+      "sku": "F1291/03/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1310/06/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1681/01/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1681/02/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1681/03/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1681/04/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1677/01/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1677/02/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1677/03/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1677/04/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1677/05/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1680/01/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1680/02/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1680/03/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1680/04/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1678/01/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1678/02/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1678/03/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1678/04/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1678/05/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1678/06/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1679/01/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1679/02/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1679/03/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1679/04/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1679/05/PVM",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1702/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1725/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1725/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1725/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1725/04/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1726/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1726/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1726/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1727/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1727/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1728/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1728/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1729/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1729/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1729/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1729/04/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1729/05/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1729/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1730/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1730/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1730/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1730/04/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1730/05/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1730/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1731/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1731/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1732/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1732/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1733/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1733/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1733/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1677/05/PVC",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1680/02/PVC",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1778/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1778/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1778/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1778/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1778/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1778/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1779/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1779/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1779/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1779/04/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1779/05/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1780/04/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1783/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1783/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1783/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1783/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1784/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/02/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/03/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1786/04/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/16/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/06/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/07/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/08/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/09/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/10/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/12/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0063/13/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0370/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0293/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0299/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0408/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0408/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0408/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0409/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0409/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0620/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0620/01/PVM",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0620/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0686/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0686/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0794/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0794/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "ZF0722/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0519/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0519/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0519/06/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0636/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0521/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0521/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0521/05/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0785/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0524/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F0841/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1035/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1035/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1035/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1040/10/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1182/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1182/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1182/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1183/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1183/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1184/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1184/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1184/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1147/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1151/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1185/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1185/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1185/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1185/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1186/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1186/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1186/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1153/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1156/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1187/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1187/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1187/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1187/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1187/05/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1187/06/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1187/07/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1159/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1161/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1188/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1188/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1188/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1188/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1163/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1192/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1192/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1164/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1165/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1189/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1189/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1189/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1190/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1190/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1190/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1190/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1167/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1191/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1191/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1191/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1169/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1171/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1172/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1174/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1193/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1193/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1193/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1194/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1194/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1194/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1194/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1195/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1195/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1195/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1195/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1176/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1196/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1196/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1196/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1197/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1197/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1197/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1197/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1373/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1373/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1373/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1375/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1375/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1375/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1375/05/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1531/05/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1532/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1532/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1533/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1534/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1534/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1534/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1535/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1536/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1536/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1638/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1638/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1638/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1639/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1639/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1640/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1640/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1640/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1640/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1706/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1706/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1699/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1699/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1699/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1699/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1699/05/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1700/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1700/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1700/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1700/04/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1700/05/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1701/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    }
+  ],
+  "databaseWrites": 0,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-f1291-03-pvm",
+      "workbook_sku": "F1291/03/PVM",
+      "portal_sku": "F1291/03/PVM",
+      "master_design": "Sensu PVC",
+      "master_colour": "Denim",
+      "portal_title": "Sensu Denim Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1681-01-pvm",
+      "workbook_sku": "F1681/01/PVM",
+      "portal_sku": "F1681/01/PVM",
+      "master_design": "Acanthus PVC",
+      "master_colour": "Denim",
+      "portal_title": "Acanthus Denim Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1681-02-pvm",
+      "workbook_sku": "F1681/02/PVM",
+      "portal_sku": "F1681/02/PVM",
+      "master_design": "Acanthus PVC",
+      "master_colour": "Apple/Sage",
+      "portal_title": "Acanthus Apple/Sage Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1681-03-pvm",
+      "workbook_sku": "F1681/03/PVM",
+      "portal_sku": "F1681/03/PVM",
+      "master_design": "Acanthus PVC",
+      "master_colour": "Slate/Dove",
+      "portal_title": "Acanthus Slate/Dove Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1681-04-pvm",
+      "workbook_sku": "F1681/04/PVM",
+      "portal_sku": "F1681/04/PVM",
+      "master_design": "Acanthus PVC",
+      "master_colour": "Teal",
+      "portal_title": "Acanthus Teal Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1677-01-pvm",
+      "workbook_sku": "F1677/01/PVM",
+      "portal_sku": "F1677/01/PVM",
+      "master_design": "Golden Lily PVC",
+      "master_colour": "Dove/Plum",
+      "portal_title": "Golden Lily Dove/Plum Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1677-02-pvm",
+      "workbook_sku": "F1677/02/PVM",
+      "portal_sku": "F1677/02/PVM",
+      "master_design": "Golden Lily PVC",
+      "master_colour": "Slate/Dove",
+      "portal_title": "Golden Lily Slate/Dove Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1677-03-pvm",
+      "workbook_sku": "F1677/03/PVM",
+      "portal_sku": "F1677/03/PVM",
+      "master_design": "Golden Lily PVC",
+      "master_colour": "Linen/Blush",
+      "portal_title": "Golden Lily Linen/Blush Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1677-04-pvm",
+      "workbook_sku": "F1677/04/PVM",
+      "portal_sku": "F1677/04/PVM",
+      "master_design": "Golden Lily PVC",
+      "master_colour": "Linen/Teal",
+      "portal_title": "Golden Lily Linen/Teal Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1677-05-pvm",
+      "workbook_sku": "F1677/05/PVM",
+      "portal_sku": "F1677/05/PVM",
+      "master_design": "Golden Lily PVC",
+      "master_colour": "Apple/Blush",
+      "portal_title": "Golden Lily Apple/Blush Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1680-01-pvm",
+      "workbook_sku": "F1680/01/PVM",
+      "portal_sku": "F1680/01/PVM",
+      "master_design": "Mallow PVC",
+      "master_colour": "Slate/Dove",
+      "portal_title": "Mallow Slate/Dove Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1680-02-pvm",
+      "workbook_sku": "F1680/02/PVM",
+      "portal_sku": "F1680/02/PVM",
+      "master_design": "Mallow PVC",
+      "master_colour": "Apple/Linen",
+      "portal_title": "Mallow Apple/Linen Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1680-03-pvm",
+      "workbook_sku": "F1680/03/PVM",
+      "portal_sku": "F1680/03/PVM",
+      "master_design": "Mallow PVC",
+      "master_colour": "Denim/Ivory",
+      "portal_title": "Mallow Denim/Ivory Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1680-04-pvm",
+      "workbook_sku": "F1680/04/PVM",
+      "portal_sku": "F1680/04/PVM",
+      "master_design": "Mallow PVC",
+      "master_colour": "Teal",
+      "portal_title": "Mallow Teal Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1678-01-pvm",
+      "workbook_sku": "F1678/01/PVM",
+      "portal_sku": "F1678/01/PVM",
+      "master_design": "Strawberry Thief PVC",
+      "master_colour": "Teal",
+      "portal_title": "Strawberry Thief Teal Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1678-02-pvm",
+      "workbook_sku": "F1678/02/PVM",
+      "portal_sku": "F1678/02/PVM",
+      "master_design": "Strawberry Thief PVC",
+      "master_colour": "Slate/Blush",
+      "portal_title": "Strawberry Thief Slate/Blush Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1678-03-pvm",
+      "workbook_sku": "F1678/03/PVM",
+      "portal_sku": "F1678/03/PVM",
+      "master_design": "Strawberry Thief PVC",
+      "master_colour": "Plum",
+      "portal_title": "Strawberry Thief Plum Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1678-04-pvm",
+      "workbook_sku": "F1678/04/PVM",
+      "portal_sku": "F1678/04/PVM",
+      "master_design": "Strawberry Thief PVC",
+      "master_colour": "Linen/Plum",
+      "portal_title": "Strawberry Thief Linen/Plum Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1678-05-pvm",
+      "workbook_sku": "F1678/05/PVM",
+      "portal_sku": "F1678/05/PVM",
+      "master_design": "Strawberry Thief PVC",
+      "master_colour": "Apple/Blush",
+      "portal_title": "Strawberry Thief Apple/Blush Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1678-06-pvm",
+      "workbook_sku": "F1678/06/PVM",
+      "portal_sku": "F1678/06/PVM",
+      "master_design": "Strawberry Thief PVC",
+      "master_colour": "Denim/Spice",
+      "portal_title": "Strawberry Thief Denim/Spice Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1679-01-pvm",
+      "workbook_sku": "F1679/01/PVM",
+      "portal_sku": "F1679/01/PVM",
+      "master_design": "Willow Boughs",
+      "master_colour": "Denim",
+      "portal_title": "Willow Boughs Denim Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1679-02-pvm",
+      "workbook_sku": "F1679/02/PVM",
+      "portal_sku": "F1679/02/PVM",
+      "master_design": "Willow Boughs",
+      "master_colour": "Mineral",
+      "portal_title": "Willow Boughs Mineral Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1679-03-pvm",
+      "workbook_sku": "F1679/03/PVM",
+      "portal_sku": "F1679/03/PVM",
+      "master_design": "Willow Boughs",
+      "master_colour": "Dove",
+      "portal_title": "Willow Boughs Dove Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1679-04-pvm",
+      "workbook_sku": "F1679/04/PVM",
+      "portal_sku": "F1679/04/PVM",
+      "master_design": "Willow Boughs",
+      "master_colour": "Linen",
+      "portal_title": "Willow Boughs Linen Matt Pvm",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1679-05-pvm",
+      "workbook_sku": "F1679/05/PVM",
+      "portal_sku": "F1679/05/PVM",
+      "master_design": "Willow Boughs",
+      "master_colour": "Teal",
+      "portal_title": "Willow Boughs Teal Matt Pvc",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1677-05-pvc",
+      "workbook_sku": "F1677/05/PVC",
+      "portal_sku": "F1677/05/PVC",
+      "master_design": "Golden Lily PVC",
+      "master_colour": "Apple/Blush",
+      "portal_title": "Golden Lily Apple/Blush Pvc",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    },
+    {
+      "master_id": "sdg-f1680-02-pvc",
+      "workbook_sku": "F1680/02/PVC",
+      "portal_sku": "F1680/02/PVC",
+      "master_design": "Mallow PVC",
+      "master_colour": "Apple/Linen",
+      "portal_title": "Mallow Apple/Linen Pvc",
+      "portal_status": "Live (Special Order)",
+      "match_method": "UNRESOLVED_IDENTITY_DIFFERENCE",
+      "confidence": "WITHHELD",
+      "resolution": "WITHHELD",
+      "verified_at": "2026-09-08T12:06:24.862Z"
+    }
+  ]
+}

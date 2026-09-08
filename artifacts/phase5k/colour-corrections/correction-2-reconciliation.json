@@ -1,0 +1,35 @@
+{
+  "observed": 2,
+  "exactIdentityMatches": 2,
+  "withheld": [],
+  "databaseWrites": 2,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-f1062-15",
+      "workbook_sku": "F1062/15",
+      "portal_sku": "F1062/15",
+      "master_design": "Spectrum",
+      "master_colour": "Fuchsia",
+      "portal_title": "Spectrum Fuchsia",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:58:31.271Z"
+    },
+    {
+      "master_id": "sdg-f1423-08",
+      "workbook_sku": "F1423/08",
+      "portal_sku": "F1423/08",
+      "master_design": "Maculo",
+      "master_colour": "Heather",
+      "portal_title": "Maculo Heather",
+      "portal_status": "Limited Stock",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T11:58:31.271Z"
+    }
+  ]
+}

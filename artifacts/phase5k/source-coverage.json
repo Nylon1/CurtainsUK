@@ -1,0 +1,26 @@
+{
+  "checkedDate": "2026-09-08",
+  "source": "Authorised SDG trade catalogue rendered fabric listings",
+  "captureMethod": "CUA read-only extraction of rendered SKU, brand, title, status and original product-image path",
+  "uniqueObservedSkus": 8352,
+  "conflictingSkuTitleOrImageObservations": 0,
+  "brands": {
+    "Clarke & Clarke": {"facetCount": 4120, "uniqueCaptured": 4117, "route": "Category subsets; Printed Fabric also split by supplier status", "unresolvedFacetDifference": 3},
+    "Harlequin": {"facetCount": 1987, "uniqueCaptured": 1987, "route": "Fabric listing plus remaining Live subset"},
+    "Sanderson": {"facetCount": 1222, "uniqueCaptured": 1222, "route": "Complete fabric listing"},
+    "Morris & Co.": {"facetCount": 689, "uniqueCaptured": 678, "route": "Fabric listing; repeated View more stopped advancing at 678. A second pass applied the Live filter through the UI: facet 683, actual cards stopped at 672 after further Load more, plus six discontinued already captured.", "unresolvedFacetDifference": 11},
+    "Scion": {"facetCount": 348, "uniqueCaptured": 348, "route": "Complete fabric listing"},
+    "Zoffany": {"uniqueCapturedThisPhase": 0, "previousApprovedMappingsRetained": 2, "status": "PORTAL_RESULTS_UNAVAILABLE", "checkedRoutes": ["Zoffany fabric page", "Zoffany collection index", "Indienne Fabrics collection", "Luxury Plains collection", "Bestsellers", "known legacy SKU search", "known modern product code ZOF0223-02 search", "exact Artisan Palampore design search"], "observation": "Brand and collection landing pages are accessible, but tested product listings/searches return no Zoffany fabric results."}
+  },
+  "qualityChecks": {
+    "primaryImage": "Exact listing colourway image with matching supplier SKU filename",
+    "originalAsset": "Observed /static/media/catalog/product/ URL; not the rendered thumbnail transformation",
+    "detailGallerySamples": [
+      {"sku":"F0419/04","product":"Oxford Red","finding":"Detail gallery uses the same original exact-colourway image; no additional exact-colourway asset observed."},
+      {"sku":"DCOUAM203","product":"Amanpuri Mulberry/Olive","finding":"Detail uses the same original image. Other colourways and related-product images are not attached as gallery images for this SKU."}
+    ],
+    "wrongColourwayCandidates": "Remain withheld; source filename and canonical identity guards are mandatory.",
+    "lifecycle": "Only explicit Discontinued observations are applied through the existing revision-guarded workflow.",
+    "unmapped": "Does not mean image-missing. No genuinely unavailable-image conclusion is made in this phase."
+  }
+}

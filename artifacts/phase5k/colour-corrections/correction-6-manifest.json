@@ -1,0 +1,124 @@
+{
+  "results": {
+    "sdg-hama120337": {
+      "record": {
+        "fabric_id": "sdg-hama120337",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HAMA120337",
+        "brand_name": "Harlequin",
+        "design_name": "Limosa",
+        "colour_name": "Loganberry/Raspberry/Olive",
+        "collection_name": "Fauvisimo Edit"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HAMA120337_08d6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HAMA120337",
+            "brand": "Harlequin",
+            "design": "Limosa",
+            "colour": "Loganberry/Raspberry/Olive",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hama120341": {
+      "record": {
+        "fabric_id": "sdg-hama120341",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HAMA120341",
+        "brand_name": "Harlequin",
+        "design_name": "Limosa",
+        "colour_name": "Mustard/Cocoa/Stone",
+        "collection_name": "Fauvisimo Edit"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HAMA120341_5fb5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HAMA120341",
+            "brand": "Harlequin",
+            "design": "Limosa",
+            "colour": "Mustard/Cocoa/Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hgat131586": {
+      "record": {
+        "fabric_id": "sdg-hgat131586",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HGAT131586",
+        "brand_name": "Harlequin",
+        "design_name": "Aster",
+        "colour_name": "Russet/Willow/Nutmeg/Dusk",
+        "collection_name": "Fauvisimo Edit"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/G/HGAT131586_6591.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HGAT131586",
+            "brand": "Harlequin",
+            "design": "Aster",
+            "colour": "Russet/Willow/Nutmeg/Dusk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hgat131588": {
+      "record": {
+        "fabric_id": "sdg-hgat131588",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HGAT131588",
+        "brand_name": "Harlequin",
+        "design_name": "Aster",
+        "colour_name": "Amber/Amethyst/Gold/Ink",
+        "collection_name": "Fauvisimo Edit"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/G/HGAT131588_7167.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HGAT131588",
+            "brand": "Harlequin",
+            "design": "Aster",
+            "colour": "Amber/Amethyst/Gold/Ink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

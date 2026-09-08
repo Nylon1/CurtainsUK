@@ -1,0 +1,41 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "rows": [
+    {
+      "master_id": "sdg-dma4226406",
+      "workbook_sku": "DMA4226406",
+      "portal_sku": "DMA4226406",
+      "brand": "Morris & Co.",
+      "design": "Little Chintz",
+      "portal_design": "Little Chintz",
+      "workbook_colour": "Blue/Fennel",
+      "portal_colour": "Slate Blue/Fennel",
+      "expected_revision": "2026-09-07T20:33:36.097137+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dmc1g4206",
+      "workbook_sku": "DMC1G4206",
+      "portal_sku": "DMC1G4206",
+      "brand": "Morris & Co.",
+      "design": "Golden Lily Minor",
+      "portal_design": "Golden Lily Minor",
+      "workbook_colour": "Artichoke/Vanilla",
+      "portal_colour": "Artichoke/Manilla",
+      "expected_revision": "2026-09-07T20:33:36.097137+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dmorho204",
+      "workbook_sku": "DMORHO204",
+      "portal_sku": "DMORHO204",
+      "brand": "Morris & Co.",
+      "design": "Honeysuckle & Tulip",
+      "portal_design": "Honeysuckle & Tulip",
+      "workbook_colour": "Wine/Bayleaf",
+      "portal_colour": "Wine/Bay Leaf",
+      "expected_revision": "2026-09-07T20:33:36.097137+00:00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

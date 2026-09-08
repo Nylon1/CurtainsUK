@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { isShopifyCdnUrl, validateMediaCandidate, type ImportedMedia } from "../lib/fabric-master/supplier-media";
+import { forEachMediaRecord } from "../lib/fabric-master/media-batch-work";
 
 async function main() {
   loadEnvConfig(process.cwd());
@@ -9,13 +10,20 @@ async function main() {
   if (new URL(url).hostname !== "hqysjumypgeapgmqkcrx.supabase.co" || !process.argv.includes("--confirm-project=hqysjumypgeapgmqkcrx")) throw new Error("STAGING_DATABASE_REQUIRED");
   const state = JSON.parse(await readFile("artifacts/phase5f/checkpoints/supplier-media.json", "utf8")) as { mappings: Record<string, ImportedMedia> };
   const requested = process.argv.find(arg => arg.startsWith("--fabric-ids="))?.slice("--fabric-ids=".length).split(",");
+  const concurrency = Number(process.argv.find(arg=>arg.startsWith("--concurrency="))?.slice("--concurrency=".length) ?? 1);
+  if(!Number.isInteger(concurrency) || concurrency<1 || concurrency>4)throw new Error("MEDIA_CONCURRENCY_INVALID");
   const all = Object.values(state.mappings);
   if (requested && (!requested.length || requested.length > 250 || new Set(requested).size !== requested.length || requested.some(id => !/^[a-z0-9-]{1,150}$/.test(id) || !all.some(m => m.fabricId === id)))) throw new Error("MEDIA_BATCH_INVALID");
   // A fabric can now have several resumable image jobs rather than one fabric-id key.
   const batch = (requested ? all.filter(m => requested.includes(m.fabricId)) : all).sort((a,b) => Number(b.imageType === "MAIN") - Number(a.imageType === "MAIN"));
   const db = createSupplierServiceClient();
   let count = 0, visibilityChanges = 0;
-  for (const mapping of batch) {
+  // Different fabrics can be attached concurrently. Keep every image belonging
+  // to one fabric sequential so MAIN/gallery updates cannot race each other.
+  const groups=new Map<string,ImportedMedia[]>();
+  for(const mapping of batch)groups.set(mapping.fabricId,[...(groups.get(mapping.fabricId)??[]),mapping]);
+  await forEachMediaRecord([...groups.values()],concurrency,async mappings=>{
+   for (const mapping of mappings) {
     validateMediaCandidate(mapping);
     if (!isShopifyCdnUrl(mapping.shopifyCdnUrl) || !/^[a-f0-9]{64}$/.test(mapping.contentHash)) throw new Error("MEDIA_ASSET_INVALID");
     const { data: row, error } = await db.from("fabric_colourways").select("supplier_id,supplier_sku,updated_at,imagery,lifecycle_state,staging_catalog_visible,brand_id,design_id,colour_name").eq("fabric_id", mapping.fabricId).single();
@@ -40,7 +48,8 @@ async function main() {
     const checkpoint = await db.from("fabric_media_checkpoints").upsert({ supplier_id: mapping.supplier, supplier_sku: mapping.supplierSku, fabric_id: mapping.fabricId, state: "UPLOADED", failure_reason: null, updated_at: new Date().toISOString() });
     if (checkpoint.error) throw new Error("MEDIA_CHECKPOINT_WRITE_FAILED");
     count++;
-  }
+   }
+  });
   console.log(JSON.stringify({ mappingsApplied: count, visibilityChanges, pricingChanges: 0 }));
 }
 main().catch(() => { console.error("MEDIA_MAPPING_APPLY_FAILED"); process.exitCode = 1; });

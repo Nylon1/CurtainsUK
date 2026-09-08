@@ -1,0 +1,11 @@
+{
+  "checkedDate": "2026-09-08",
+  "method": "Read-only Shopify CLI theme list",
+  "store": "carpetup.myshopify.com",
+  "workingTheme": {"id":182264234363,"name":"CurtainsUK Phase 4A Dawn 16","role":"unpublished"},
+  "productionTheme": {"id":79650455661,"name":"Minimal","role":"live"},
+  "themeWritesThisPhase": 0,
+  "paymentChangesThisPhase": 0,
+  "merchantCenterChangesThisPhase": 0,
+  "supplierOrdersThisPhase": 0
+}

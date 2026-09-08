@@ -1,0 +1,29 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "rows": [
+    {
+      "master_id": "sdg-f1276-02",
+      "workbook_sku": "F1276/02",
+      "portal_sku": "F1276/02",
+      "brand": "Clarke & Clarke",
+      "design": "Fino",
+      "portal_design": "Fino",
+      "workbook_colour": "Ivory-Rose Gold",
+      "portal_colour": "Ivory/Rose Gold",
+      "expected_revision": "2026-09-07T20:33:40.779659+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-f1542-03",
+      "workbook_sku": "F1542/03",
+      "portal_sku": "F1542/03",
+      "brand": "Clarke & Clarke",
+      "design": "Lucienne",
+      "portal_design": "Lucienne",
+      "workbook_colour": "Rasberry/Linen",
+      "portal_colour": "Raspberry/Linen",
+      "expected_revision": "2026-09-07T20:33:42.144876+00:00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "rows": [
+    {
+      "master_id": "sdg-darf227061",
+      "workbook_sku": "DARF227061",
+      "portal_sku": "DARF227061",
+      "brand": "Sanderson",
+      "design": "Enys Garden",
+      "portal_design": "Enys Garden",
+      "workbook_colour": "Blush/Jade",
+      "portal_colour": "Blush Jade",
+      "expected_revision": "2026-09-07T20:33:33.711258+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-darf227062",
+      "workbook_sku": "DARF227062",
+      "portal_sku": "DARF227062",
+      "brand": "Sanderson",
+      "design": "Enys Garden",
+      "portal_design": "Enys Garden",
+      "workbook_colour": "Rose/ Leaf",
+      "portal_colour": "Rose Leaf",
+      "expected_revision": "2026-09-07T20:33:33.711258+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-darf237324",
+      "workbook_sku": "DARF237324",
+      "portal_sku": "DARF237324",
+      "brand": "Sanderson",
+      "design": "Forest of Dean",
+      "portal_design": "Forest Of Dean",
+      "workbook_colour": "Bright/Multi",
+      "portal_colour": "Brights/Multi",
+      "expected_revision": "2026-09-07T20:33:33.711258+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dcn1sa201",
+      "workbook_sku": "DCN1SA201",
+      "portal_sku": "DCN1SA201",
+      "brand": "Sanderson",
+      "design": "Sorilla",
+      "portal_design": "Sorilla",
+      "workbook_colour": "Pink/Lilac",
+      "portal_colour": "Pink And Lilac",
+      "expected_revision": "2026-09-07T20:33:34.224612+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-ddvc237016",
+      "workbook_sku": "DDVC237016",
+      "portal_sku": "DDVC237016",
+      "brand": "Sanderson",
+      "design": "Dorton",
+      "portal_design": "Dorton",
+      "workbook_colour": "Fuschia",
+      "portal_colour": "Fuchsia",
+      "expected_revision": "2026-09-07T20:33:34.711576+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dkh16c201",
+      "workbook_sku": "DKH16C201",
+      "portal_sku": "DKH16C201",
+      "brand": "Sanderson",
+      "design": "Cluny",
+      "portal_design": "Cluny",
+      "workbook_colour": "Cream/Brown Multi",
+      "portal_colour": "Cream/Brown/Multi",
+      "expected_revision": "2026-09-07T20:33:35.166284+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dosf226869",
+      "workbook_sku": "DOSF226869",
+      "portal_sku": "DOSF226869",
+      "brand": "Sanderson",
+      "design": "Etchings & Roses",
+      "portal_design": "Etchings & Roses",
+      "workbook_colour": "China/ Blue",
+      "portal_colour": "China Blue",
+      "expected_revision": "2026-09-07T20:33:36.565403+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dsor234357",
+      "workbook_sku": "DSOR234357",
+      "portal_sku": "DSOR234357",
+      "brand": "Sanderson",
+      "design": "Sorilla Stripe",
+      "portal_design": "Sorilla Stripe",
+      "workbook_colour": "Eggshell Linen",
+      "portal_colour": "Eggshell/Linen",
+      "expected_revision": "2026-09-07T20:33:37.011973+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dsor234359",
+      "workbook_sku": "DSOR234359",
+      "portal_sku": "DSOR234359",
+      "brand": "Sanderson",
+      "design": "Sorilla Stripe",
+      "portal_design": "Sorilla Stripe",
+      "workbook_colour": "Shell Pink Linen",
+      "portal_colour": "Shell Pink/Linen",
+      "expected_revision": "2026-09-07T20:33:37.011973+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-dsor234360",
+      "workbook_sku": "DSOR234360",
+      "portal_sku": "DSOR234360",
+      "brand": "Sanderson",
+      "design": "Sorilla Stripe",
+      "portal_design": "Sorilla Stripe",
+      "workbook_colour": "Rose Linen",
+      "portal_colour": "Rose/Linen",
+      "expected_revision": "2026-09-07T20:33:37.011973+00:00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

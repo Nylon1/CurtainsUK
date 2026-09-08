@@ -1,0 +1,322 @@
+[
+  {
+    "fabricId": "sdg-efab131811",
+    "sku": "EFAB131811",
+    "observedTitle": "Cambium Putty/Stone",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:37.893088+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-haer142453",
+    "sku": "HAER142453",
+    "observedTitle": "Starburst 03 Gold",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:44.045353+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hama131524",
+    "sku": "HAMA131524",
+    "observedTitle": "Tambo Indigo/Loganberry/Flamingo",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:44.045353+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hbru130609",
+    "sku": "HBRU130609",
+    "observedTitle": "Impasto 130609 Mariposa",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:44.517637+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hgav131597",
+    "sku": "HGAV131597",
+    "observedTitle": "Regina Steel",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:45.012847+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hill142355",
+    "sku": "HILL142355",
+    "observedTitle": "Assumption 01 Hazel",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:45.606881+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hlut132589",
+    "sku": "HLUT132589",
+    "observedTitle": "Extravagance Blush",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.253163+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hlut132593",
+    "sku": "HLUT132593",
+    "observedTitle": "Extravagance Platinum",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.253163+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hlut132595",
+    "sku": "HLUT132595",
+    "observedTitle": "Extravagance Sapphire",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.253163+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hlut132596",
+    "sku": "HLUT132596",
+    "observedTitle": "Extravagance Powder Blue",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.253163+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmod130699",
+    "sku": "HMOD130699",
+    "observedTitle": "Momentum 4 Soleil 130699",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.771226+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmod130702",
+    "sku": "HMOD130702",
+    "observedTitle": "Momentum 4 Soleil 130702",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.771226+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmod130725",
+    "sku": "HMOD130725",
+    "observedTitle": "Momentum 4 Twist 130725",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.771226+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmod130731",
+    "sku": "HMOD130731",
+    "observedTitle": "Momentum 4 People 130731",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.771226+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmod130740",
+    "sku": "HMOD130740",
+    "observedTitle": "Momentum 4 Array 130740",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:46.771226+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmou130669",
+    "sku": "HMOU130669",
+    "observedTitle": "Momentum 3 Concept 130669",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.226421+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmou130671",
+    "sku": "HMOU130671",
+    "observedTitle": "Momentum 3 Concept 130671",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.226421+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmov130567",
+    "sku": "HMOV130567",
+    "observedTitle": "Momentum Sheers Trellis 130567",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.226421+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hmov130591",
+    "sku": "HMOV130591",
+    "observedTitle": "Momentum Sheers Ribbon 130591",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.226421+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hper142323",
+    "sku": "HPER142323",
+    "observedTitle": "Haze 04 Sand",
+    "titleMatches": false,
+    "source": "SDG authenticated fabric listing; exact supplier SKU status",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

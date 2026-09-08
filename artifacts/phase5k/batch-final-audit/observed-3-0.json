@@ -1,0 +1,1258 @@
+{
+  "checkedAt": "2026-09-08T12:06:24.862Z",
+  "brand": "Clarke & Clarke",
+  "productType": "FABRIC",
+  "status": "Live (Special Order)",
+  "rows": [
+    [
+      "F1291/03/PVM",
+      "Sensu Denim Matt Pvm",
+      "F/1/F1291_03_PVM_0175.jpg"
+    ],
+    [
+      "F1310/06/PVM",
+      "Mappleton Mineral Matt Pvm",
+      "F/1/F1310_06_PVM_3e13.jpg"
+    ],
+    [
+      "F1681/01/PVM",
+      "Acanthus Denim Matt Pvm",
+      "F/1/F1681_01_PVM_edea.jpg"
+    ],
+    [
+      "F1681/02/PVM",
+      "Acanthus Apple/Sage Matt Pvm",
+      "F/1/F1681_02_PVM_4f39.jpg"
+    ],
+    [
+      "F1681/03/PVM",
+      "Acanthus Slate/Dove Matt Pvm",
+      "F/1/F1681_03_PVM_b1f7.jpg"
+    ],
+    [
+      "F1681/04/PVM",
+      "Acanthus Teal Matt Pvm",
+      "F/1/F1681_04_PVM_0320.jpg"
+    ],
+    [
+      "F1677/01/PVM",
+      "Golden Lily Dove/Plum Matt Pvm",
+      "F/1/F1677_01_PVM_6375.jpg"
+    ],
+    [
+      "F1677/02/PVM",
+      "Golden Lily Slate/Dove Matt Pvm",
+      "F/1/F1677_02_PVM_a6c2.jpg"
+    ],
+    [
+      "F1677/03/PVM",
+      "Golden Lily Linen/Blush Matt Pvm",
+      "F/1/F1677_03_PVM_8e96.jpg"
+    ],
+    [
+      "F1677/04/PVM",
+      "Golden Lily Linen/Teal Matt Pvm",
+      "F/1/F1677_04_PVM_2c49.jpg"
+    ],
+    [
+      "F1677/05/PVM",
+      "Golden Lily Apple/Blush Matt Pvm",
+      "F/1/F1677_05_PVM_a425.jpg"
+    ],
+    [
+      "F1680/01/PVM",
+      "Mallow Slate/Dove Matt Pvm",
+      "F/1/F1680_01_PVM_fbc5.jpg"
+    ],
+    [
+      "F1680/02/PVM",
+      "Mallow Apple/Linen Matt Pvm",
+      "F/1/F1680_02_PVM_2706.jpg"
+    ],
+    [
+      "F1680/03/PVM",
+      "Mallow Denim/Ivory Matt Pvm",
+      "F/1/F1680_03_PVM_c809.jpg"
+    ],
+    [
+      "F1680/04/PVM",
+      "Mallow Teal Matt Pvm",
+      "F/1/F1680_04_PVM_2e69.jpg"
+    ],
+    [
+      "F1678/01/PVM",
+      "Strawberry Thief Teal Matt Pvm",
+      "F/1/F1678_01_PVM_37cd.jpg"
+    ],
+    [
+      "F1678/02/PVM",
+      "Strawberry Thief Slate/Blush Matt Pvm",
+      "F/1/F1678_02_PVM_7c04.jpg"
+    ],
+    [
+      "F1678/03/PVM",
+      "Strawberry Thief Plum Matt Pvm",
+      "F/1/F1678_03_PVM_2f2c.jpg"
+    ],
+    [
+      "F1678/04/PVM",
+      "Strawberry Thief Linen/Plum Matt Pvm",
+      "F/1/F1678_04_PVM_f519.jpg"
+    ],
+    [
+      "F1678/05/PVM",
+      "Strawberry Thief Apple/Blush Matt Pvm",
+      "F/1/F1678_05_PVM_9eb7.jpg"
+    ],
+    [
+      "F1678/06/PVM",
+      "Strawberry Thief Denim/Spice Matt Pvm",
+      "F/1/F1678_06_PVM_d2b8.jpg"
+    ],
+    [
+      "F1679/01/PVM",
+      "Willow Boughs Denim Matt Pvm",
+      "F/1/F1679_01_PVM_f171.jpg"
+    ],
+    [
+      "F1679/02/PVM",
+      "Willow Boughs Mineral Matt Pvm",
+      "F/1/F1679_02_PVM_2c66.jpg"
+    ],
+    [
+      "F1679/03/PVM",
+      "Willow Boughs Dove Matt Pvm",
+      "F/1/F1679_03_PVM_a9ef.jpg"
+    ],
+    [
+      "F1679/04/PVM",
+      "Willow Boughs Linen Matt Pvm",
+      "F/1/F1679_04_PVM_f39f.jpg"
+    ],
+    [
+      "F1679/05/PVM",
+      "Willow Boughs Teal Matt Pvc",
+      "F/1/F1679_05_PVM_b2a3.jpg"
+    ],
+    [
+      "F1702/02/PVC",
+      "Rivington Sage Pvc",
+      "F/1/F1702_02_PVC_d7af.jpg"
+    ],
+    [
+      "F1725/01/PVM",
+      "Aquarium Mineral Matt Pvm",
+      "F/1/F1725_01_PVM_55ea.jpg"
+    ],
+    [
+      "F1725/02/PVM",
+      "Aquarium Natural Matt Pvm",
+      "F/1/F1725_02_PVM_262a.jpg"
+    ],
+    [
+      "F1725/03/PVM",
+      "Aquarium Navy Matt Pvm",
+      "F/1/F1725_03_PVM_24ad.jpg"
+    ],
+    [
+      "F1725/04/PVM",
+      "Aquarium Smoke Matt Pvm",
+      "F/1/F1725_04_PVM_eae2.jpg"
+    ],
+    [
+      "F1726/01/PVM",
+      "Fin Blush Matt Pvm",
+      "F/1/F1726_01_PVM_0437.jpg"
+    ],
+    [
+      "F1726/02/PVM",
+      "Fin Mineral Matt Pvm",
+      "F/1/F1726_02_PVM_0281.jpg"
+    ],
+    [
+      "F1726/03/PVM",
+      "Fin Navy Matt Pvm",
+      "F/1/F1726_03_PVM_7d7c.jpg"
+    ],
+    [
+      "F1727/01/PVM",
+      "Portside Coral/Mineral Matt Pvm",
+      "F/1/F1727_01_PVM_0dc5.jpg"
+    ],
+    [
+      "F1727/02/PVM",
+      "Portside Ocean Matt Pvm",
+      "F/1/F1727_02_PVM_4263.jpg"
+    ],
+    [
+      "F1728/01/PVM",
+      "Sailing Yacht Marine Matt Pvm",
+      "F/1/F1728_01_PVM_e5d3.jpg"
+    ],
+    [
+      "F1728/02/PVM",
+      "Sailing Yacht Mineral Matt Pvm",
+      "F/1/F1728_02_PVM_f007.jpg"
+    ],
+    [
+      "F1729/01/PVM",
+      "Seabed Cloud Matt Pvm",
+      "F/1/F1729_01_PVM_cfbc.jpg"
+    ],
+    [
+      "F1729/02/PVM",
+      "Seabed Coral Matt Pvm",
+      "F/1/F1729_02_PVM_825c.jpg"
+    ],
+    [
+      "F1729/03/PVM",
+      "Seabed Mineral Matt Pvm",
+      "F/1/F1729_03_PVM_ebcc.jpg"
+    ],
+    [
+      "F1729/04/PVM",
+      "Seabed Natural Matt Pvm",
+      "F/1/F1729_04_PVM_c6f2.jpg"
+    ],
+    [
+      "F1729/05/PVM",
+      "Seabed Navy Matt Pvm",
+      "F/1/F1729_05_PVM_2bc3.jpg"
+    ],
+    [
+      "F1729/04/PVC",
+      "Seabed Natural Pvc",
+      "F/1/F1729_04_PVC_8f30.jpg"
+    ],
+    [
+      "F1730/01/PVM",
+      "Seastar Coral Matt Pvm",
+      "F/1/F1730_01_PVM_a9d6.jpg"
+    ],
+    [
+      "F1730/02/PVM",
+      "Seastar Mineral Matt Pvm",
+      "F/1/F1730_02_PVM_9b97.jpg"
+    ],
+    [
+      "F1730/03/PVM",
+      "Seastar Natural Matt Pvm",
+      "F/1/F1730_03_PVM_b8fa.jpg"
+    ],
+    [
+      "F1730/04/PVM",
+      "Seastar Navy Matt Pvm",
+      "F/1/F1730_04_PVM_d7af.jpg"
+    ],
+    [
+      "F1730/05/PVM",
+      "Seastar Smoke Matt Pvm",
+      "F/1/F1730_05_PVM_3532.jpg"
+    ],
+    [
+      "F1730/02/PVC",
+      "Seastar Mineral Pvc",
+      "F/1/F1730_02_PVC_9434.jpg"
+    ],
+    [
+      "F1731/01/PVM",
+      "Shellfish Charcoal Matt Pvm",
+      "F/1/F1731_01_PVM_e5d7.jpg"
+    ],
+    [
+      "F1731/02/PVM",
+      "Shellfish Ink Matt Pvm",
+      "F/1/F1731_02_PVM_8cb4.jpg"
+    ],
+    [
+      "F1732/01/PVM",
+      "Tidal Marine Matt Pvm",
+      "F/1/F1732_01_PVM_e964.jpg"
+    ],
+    [
+      "F1732/02/PVM",
+      "Tidal Mineral Matt Pvm",
+      "F/1/F1732_02_PVM_7de2.jpg"
+    ],
+    [
+      "F1733/02/PVC",
+      "Waterfront Mineral Pvc",
+      "F/1/F1733_02_PVC_d248.jpg"
+    ],
+    [
+      "F1733/01/PVM",
+      "Waterfront Marine Matt Pvm",
+      "F/1/F1733_01_PVM_f7e4.jpg"
+    ],
+    [
+      "F1733/02/PVM",
+      "Waterfront Mineral Matt Pvm",
+      "F/1/F1733_02_PVM_5ec1.jpg"
+    ],
+    [
+      "F1677/05/PVC",
+      "Golden Lily Apple/Blush Pvc",
+      "F/1/F1677_05_1262.jpg"
+    ],
+    [
+      "F1680/02/PVC",
+      "Mallow Apple/Linen Pvc",
+      "F/1/F1680_02_9873.jpg"
+    ],
+    [
+      "F1778/01/PVM",
+      "Camellia Cobalt Matt Pvc",
+      "F/1/F1778_01_PVM_9223.jpg"
+    ],
+    [
+      "F1778/02/PVM",
+      "Camellia Spice Matt Pvc",
+      "F/1/F1778_02_PVM_f489.jpg"
+    ],
+    [
+      "F1778/03/PVM",
+      "Camellia Summer Matt Pvc",
+      "F/1/F1778_03_PVM_cebc.jpg"
+    ],
+    [
+      "F1778/01/PVC",
+      "Camellia Cobalt Pvc",
+      "F/1/F1778_01_defa.jpg"
+    ],
+    [
+      "F1778/02/PVC",
+      "Camellia Spice Pvc",
+      "F/1/F1778_02_7fa4.jpg"
+    ],
+    [
+      "F1778/03/PVC",
+      "Camellia Summer Pvc",
+      "F/1/F1778_03_8579.jpg"
+    ],
+    [
+      "F1779/01/PVM",
+      "Cara Cobalt Matt Pvc",
+      "F/1/F1779_01_PVM_cead.jpg"
+    ],
+    [
+      "F1779/02/PVM",
+      "Cara Midnight Matt Pvc",
+      "F/1/F1779_02_PVM_9cea.jpg"
+    ],
+    [
+      "F1779/03/PVM",
+      "Cara Mineral Matt Pvc",
+      "F/1/F1779_03_PVM_b4bd.jpg"
+    ],
+    [
+      "F1779/04/PVM",
+      "Cara Spice Matt Pvc",
+      "F/1/F1779_04_PVM_7887.jpg"
+    ],
+    [
+      "F1779/05/PVM",
+      "Cara Sunshine Matt Pvc",
+      "F/1/F1779_05_PVM_cc43.jpg"
+    ],
+    [
+      "F1780/01/PVM",
+      "Clementine Denim Matt Pvc",
+      "F/1/F1780_01_PVM_deab.jpg"
+    ],
+    [
+      "F1780/02/PVM",
+      "Clementine Midnight/Spice Matt Pvc",
+      "F/1/F1780_02_PVM_3df5.jpg"
+    ],
+    [
+      "F1780/03/PVM",
+      "Clementine Spice Matt Pvc",
+      "F/1/F1780_03_PVM_c7ba.jpg"
+    ],
+    [
+      "F1780/01/PVC",
+      "Clementine Denim Pvc",
+      "F/1/F1780_01_dbac.jpg"
+    ],
+    [
+      "F1780/02/PVC",
+      "Clementine Midnight/Spice Pvc",
+      "F/1/F1780_02_cb52.jpg"
+    ],
+    [
+      "F1780/04/PVC",
+      "Clementine Summer Pvc",
+      "F/1/F1780_04_d873.jpg"
+    ],
+    [
+      "F1780/04/PVM",
+      "Clementine Summer Matt Pvc",
+      "F/1/F1780_04_PVM_3f20.jpg"
+    ],
+    [
+      "F1783/01/PVM",
+      "Kielder Midnight Matt Pvc",
+      "F/1/F1783_01_PVM_d38e.jpg"
+    ],
+    [
+      "F1783/02/PVM",
+      "Kielder Mineral Matt Pvc",
+      "F/1/F1783_02_PVM_8a80.jpg"
+    ],
+    [
+      "F1783/01/PVC",
+      "Kielder Midnight Pvc",
+      "F/1/F1783_01_c4a2.jpg"
+    ],
+    [
+      "F1783/02/PVC",
+      "Kielder Mineral Pvc",
+      "F/1/F1783_02_8015.jpg"
+    ],
+    [
+      "F1784/01/PVM",
+      "Orange Blossom Blush Matt Pvc",
+      "F/1/F1784_01_PVM_66d4.jpg"
+    ],
+    [
+      "F1784/02/PVM",
+      "Orange Blossom Citron Matt Pvc",
+      "F/1/F1784_02_PVM_146b.jpg"
+    ],
+    [
+      "F1784/03/PVM",
+      "Orange Blossom Jade Matt Pvc",
+      "F/1/F1784_03_PVM_c960.jpg"
+    ],
+    [
+      "F1784/01/PVC",
+      "Orange Blossom Blush Pvc",
+      "F/1/F1784_01_d195.jpg"
+    ],
+    [
+      "F1784/02/PVC",
+      "Orange Blossom Citron Pvc",
+      "F/1/F1784_02_7f1c.jpg"
+    ],
+    [
+      "F1784/03/PVC",
+      "Orange Blossom Jade Pvc",
+      "F/1/F1784_03_00d8.jpg"
+    ],
+    [
+      "F1786/01/PVM",
+      "Tutti Fruity Denim Matt Pvc",
+      "F/1/F1786_01_PVM_0dad.jpg"
+    ],
+    [
+      "F1786/02/PVM",
+      "Tutti Fruity Midnight/Spice Matt Pvc",
+      "F/1/F1786_02_PVM_50e5.jpg"
+    ],
+    [
+      "F1786/03/PVM",
+      "Tutti Fruity Spice Matt Pvc",
+      "F/1/F1786_03_PVM_9091.jpg"
+    ],
+    [
+      "F1786/04/PVM",
+      "Tutti Fruity Summer Matt Pvc",
+      "F/1/F1786_04_PVM_c34d.jpg"
+    ],
+    [
+      "F0063/02/PVC",
+      "Dotty Charcoal Pvc",
+      "F/0/F0063_02_PVC_d45d.jpg"
+    ],
+    [
+      "F0063/16/PVC",
+      "Dotty Smoke Pvc",
+      "F/0/F0063_16_PVC_b68d.jpg"
+    ],
+    [
+      "F0063/06/PVC",
+      "Dotty Multi Pvc",
+      "F/0/F0063_06_PVC_dec6.jpg"
+    ],
+    [
+      "F0063/07/PVC",
+      "Dotty Natural Pvc",
+      "F/0/F0063_07_PVC_cdd0.jpg"
+    ],
+    [
+      "F0063/08/PVC",
+      "Dotty Powder Blue Pvc",
+      "F/0/F0063_08_PVC_e82a.jpg"
+    ],
+    [
+      "F0063/09/PVC",
+      "Dotty Rose Pvc",
+      "F/0/F0063_09_PVC_e9e1.jpg"
+    ],
+    [
+      "F0063/10/PVC",
+      "Dotty Sage Pvc",
+      "F/0/F0063_10_PVC_ca80.jpg"
+    ],
+    [
+      "F0063/12/PVC",
+      "Dotty Taupe Pvc",
+      "F/0/F0063_12_PVC_401e.jpg"
+    ],
+    [
+      "F0063/13/PVC",
+      "Dotty Grey Pvc",
+      "F/0/F0063_13_PVC_9862.jpg"
+    ],
+    [
+      "F0370/01/PVC",
+      "Dotty Duckegg Pvc",
+      "F/0/F0370_01_PVC_2f11.jpg"
+    ],
+    [
+      "F0293/02/PVC",
+      "Bird Trail Grey Pvc",
+      "F/0/F0293_02_PVC_c1bf.jpg"
+    ],
+    [
+      "F0299/04/PVC",
+      "Rosebud Sage Pvc",
+      "F/0/F0299_04_PVC_6d5f.jpg"
+    ],
+    [
+      "F0408/01/PVC",
+      "Sail Stripe Marine Pvc",
+      "F/0/F0408_01_PVC_209c.jpg"
+    ],
+    [
+      "F0408/02/PVC",
+      "Sail Stripe Cloud Pvc",
+      "F/0/F0408_02_PVC_20ad.jpg"
+    ],
+    [
+      "F0408/03/PVC",
+      "Sail Stripe Mineral Pvc",
+      "F/0/F0408_03_PVC_469c.jpg"
+    ],
+    [
+      "F0409/01/PVC",
+      "Skipper Marine Pvc",
+      "F/0/F0409_01_PVC_2f0f.jpg"
+    ],
+    [
+      "F0409/01/PVM",
+      "Skipper Marine Matt Pvm",
+      "F/0/F0409_01_PVM_641a.jpg"
+    ],
+    [
+      "F0620/01/PVC",
+      "Belle Chambray Pvc",
+      "F/0/F0620_01_PVC_d708.jpg"
+    ],
+    [
+      "F0620/01/PVM",
+      "Belle Chambray Matt Pvc",
+      "F/0/F0620_01_PVM_c92f.jpg"
+    ],
+    [
+      "F0620/02/PVC",
+      "Belle Mineral Pvc",
+      "F/0/F0620_02_PVC_79ae.jpg"
+    ],
+    [
+      "F0686/03/PVC",
+      "Capri Chartreuse Pvc",
+      "F/0/F0686_03_PVC_3dfd.jpg"
+    ],
+    [
+      "F0686/04/PVC",
+      "Capri Mineral Pvc",
+      "F/0/F0686_04_PVC_d77e.jpg"
+    ],
+    [
+      "F0794/01/PVC",
+      "Elephants Natural Pvc",
+      "F/0/F0794_01_PVC_a749.jpg"
+    ],
+    [
+      "F0794/02/PVC",
+      "Elephants Spice Pvc",
+      "F/0/F0794_02_PVC_da39.jpg"
+    ],
+    [
+      "ZF0722/01/PVC",
+      "Elephants Pastel Pvc",
+      "Z/F/ZF0722_01_PVC_7b3d.jpg"
+    ],
+    [
+      "F0519/01/PVC",
+      "Etoile Denim Pvc",
+      "F/0/F0519_01_PVC_3d26.jpg"
+    ],
+    [
+      "F0519/03/PVC",
+      "Etoile Linen Pvc",
+      "F/0/F0519_03_PVC_909b.jpg"
+    ],
+    [
+      "F0519/06/PVC",
+      "Etoile Smoke Pvc",
+      "F/0/F0519_06_PVC_3f62.jpg"
+    ],
+    [
+      "F0636/02/PVC",
+      "Melodie Natural Pvc",
+      "F/0/F0636_02_PVC_227d.jpg"
+    ],
+    [
+      "F0521/03/PVC",
+      "Moorland Duckegg Pvc",
+      "F/0/F0521_03_PVC_adc1.jpg"
+    ],
+    [
+      "F0521/04/PVC",
+      "Moorland Green Pvc",
+      "F/0/F0521_04_PVC_9ac7.jpg"
+    ],
+    [
+      "F0521/05/PVC",
+      "Moorland Taupe Pvc",
+      "F/0/F0521_05_PVC_c2be.jpg"
+    ],
+    [
+      "F0785/01/PVC",
+      "New Forest Natural Pvc",
+      "F/0/F0785_01_PVC_a273.jpg"
+    ],
+    [
+      "F0524/02/PVC",
+      "Rover Linen Pvc",
+      "F/0/F0524_02_PVC_bdf8.jpg"
+    ],
+    [
+      "F0841/01/PVC",
+      "Party Stripe Chambray Pvc",
+      "F/0/F0841_01_PVC_d0df.jpg"
+    ],
+    [
+      "F1035/02/PVC",
+      "Brio Denim Pvc",
+      "F/1/F1035_02_PVC_d312.jpg"
+    ],
+    [
+      "F1035/03/PVC",
+      "Brio Mineral Pvc",
+      "F/1/F1035_03_PVC_b79a.jpg"
+    ],
+    [
+      "F1035/04/PVC",
+      "Brio Sorbet Pvc",
+      "F/1/F1035_04_PVC_7d65.jpg"
+    ],
+    [
+      "F1040/10/PVC",
+      "Clio Smoke Pvc",
+      "F/1/F1040_10_PVC_d220.jpg"
+    ],
+    [
+      "F1182/01/PVC",
+      "Acorn Trail Duckegg Pvc",
+      "F/1/F1182_01_PVC_4feb.jpg"
+    ],
+    [
+      "F1182/02/PVC",
+      "Acorn Trail Natural Pvc",
+      "F/1/F1182_02_PVC_0b48.jpg"
+    ],
+    [
+      "F1182/03/PVC",
+      "Acorn Trail Sage Pvc",
+      "F/1/F1182_03_PVC_e3eb.jpg"
+    ],
+    [
+      "F1183/01/PVC",
+      "Ahoy Marine Pvc",
+      "F/1/F1183_01_PVC_b7c6.jpg"
+    ],
+    [
+      "F1183/02/PVC",
+      "Ahoy Mineral Pvc",
+      "F/1/F1183_02_PVC_2363.jpg"
+    ],
+    [
+      "F1184/01/PVC",
+      "Bird Song Autumn Pvc",
+      "F/1/F1184_01_PVC_8da8.jpg"
+    ],
+    [
+      "F1184/02/PVC",
+      "Bird Song Pastel Pvc",
+      "F/1/F1184_02_PVC_2efd.jpg"
+    ],
+    [
+      "F1184/03/PVC",
+      "Bird Song Summer Pvc",
+      "F/1/F1184_03_PVC_7d5c.jpg"
+    ],
+    [
+      "F1147/01/PVC",
+      "Coppice Autumn/Cream Pvc",
+      "F/1/F1147_01_PVC_1a8c.jpg"
+    ],
+    [
+      "F1151/01/PVC",
+      "Droplet Cream Pvc",
+      "F/1/F1151_01_PVC_fcba.jpg"
+    ],
+    [
+      "F1185/01/PVC",
+      "Dunwich Autumn Pvc",
+      "F/1/F1185_01_PVC_32e3.jpg"
+    ],
+    [
+      "F1185/02/PVC",
+      "Dunwich Linen Pvc",
+      "F/1/F1185_02_PVC_2c83.jpg"
+    ],
+    [
+      "F1185/03/PVC",
+      "Dunwich Mineral Pvc",
+      "F/1/F1185_03_PVC_fa6e.jpg"
+    ],
+    [
+      "F1185/04/PVC",
+      "Dunwich Pastel Pvc",
+      "F/1/F1185_04_PVC_f011.jpg"
+    ],
+    [
+      "F1186/01/PVC",
+      "Explorer Marine Pvc",
+      "F/1/F1186_01_PVC_e6bd.jpg"
+    ],
+    [
+      "F1186/02/PVC",
+      "Explorer Mineral Pvc",
+      "F/1/F1186_02_PVC_5fc9.jpg"
+    ],
+    [
+      "F1186/03/PVC",
+      "Explorer Pastel Pvc",
+      "F/1/F1186_03_PVC_5603.jpg"
+    ],
+    [
+      "F1153/01/PVC",
+      "Feather Cream Pvc",
+      "F/1/F1153_01_PVC_bdf8.jpg"
+    ],
+    [
+      "F1156/01/PVC",
+      "Fern Glade Linen Pvc",
+      "F/1/F1156_01_PVC_4293.jpg"
+    ],
+    [
+      "F1187/01/PVC",
+      "Fly Away Duckegg Pvc",
+      "F/1/F1187_01_PVC_19af.jpg"
+    ],
+    [
+      "F1187/02/PVC",
+      "Fly Away Grey Pvc",
+      "F/1/F1187_02_PVC_23ff.jpg"
+    ],
+    [
+      "F1187/03/PVC",
+      "Fly Away Mineral Pvc",
+      "F/1/F1187_03_PVC_4791.jpg"
+    ],
+    [
+      "F1187/04/PVC",
+      "Fly Away Navy Pvc",
+      "F/1/F1187_04_PVC_fe83.jpg"
+    ],
+    [
+      "F1187/05/PVC",
+      "Fly Away Sage Pvc",
+      "F/1/F1187_05_PVC_1335.jpg"
+    ],
+    [
+      "F1187/06/PVC",
+      "Fly Away Sorbet Pvc",
+      "F/1/F1187_06_PVC_9abc.jpg"
+    ],
+    [
+      "F1187/07/PVC",
+      "Fly Away Taupe Pvc",
+      "F/1/F1187_07_PVC_6bfb.jpg"
+    ],
+    [
+      "F1159/03/PVC",
+      "Forest Trail Smoke Pvc",
+      "F/1/F1159_03_PVC_3b48.jpg"
+    ],
+    [
+      "F1161/01/PVC",
+      "Forget Me Not Linen Pvc",
+      "F/1/F1161_01_PVC_2aeb.jpg"
+    ],
+    [
+      "F1188/01/PVC",
+      "Hawthorn Autumn Pvc",
+      "F/1/F1188_01_PVC_a779.jpg"
+    ],
+    [
+      "F1188/02/PVC",
+      "Hawthorn Mineral Pvc",
+      "F/1/F1188_02_PVC_790f.jpg"
+    ],
+    [
+      "F1188/03/PVC",
+      "Hawthorn Natural Pvc",
+      "F/1/F1188_03_PVC_af75.jpg"
+    ],
+    [
+      "F1188/04/PVC",
+      "Hawthorn Summer Pvc",
+      "F/1/F1188_04_PVC_a717.jpg"
+    ],
+    [
+      "F1163/01/PVC",
+      "In The Garden Linen Pvc",
+      "F/1/F1163_01_PVC_a58f.jpg"
+    ],
+    [
+      "F1192/01/PVC",
+      "Laridae Duckegg Pvc",
+      "F/1/F1192_01_PVC_c694.jpg"
+    ],
+    [
+      "F1192/03/PVC",
+      "Laridae Taupe Pvc",
+      "F/1/F1192_03_PVC_b372.jpg"
+    ],
+    [
+      "F1164/01/PVC",
+      "Lolita Multi/Cream Pvc",
+      "F/1/F1164_01_PVC_f977.jpg"
+    ],
+    [
+      "F1165/01/PVC",
+      "Lolita Summer/Linen Pvc",
+      "F/1/F1165_01_PVC_6bbc.jpg"
+    ],
+    [
+      "F1189/01/PVC",
+      "Lowestoft Marine Pvc",
+      "F/1/F1189_01_PVC_a7a2.jpg"
+    ],
+    [
+      "F1189/02/PVC",
+      "Lowestoft Mineral Pvc",
+      "F/1/F1189_02_PVC_c8c9.jpg"
+    ],
+    [
+      "F1189/03/PVC",
+      "Lowestoft Pastel Pvc",
+      "F/1/F1189_03_PVC_02fc.jpg"
+    ],
+    [
+      "F1190/01/PVC",
+      "March Hare Linen Pvc",
+      "F/1/F1190_01_PVC_aeaa.jpg"
+    ],
+    [
+      "F1190/02/PVC",
+      "March Hare Mineral Pvc",
+      "F/1/F1190_02_PVC_9e86.jpg"
+    ],
+    [
+      "F1190/03/PVC",
+      "March Hare Pastel Pvc",
+      "F/1/F1190_03_PVC_5a82.jpg"
+    ],
+    [
+      "F1190/04/PVC",
+      "March Hare Summer Pvc",
+      "F/1/F1190_04_PVC_9314.jpg"
+    ],
+    [
+      "F1167/01/PVC",
+      "Nerium Linen Pvc",
+      "F/1/F1167_01_PVC_811b.jpg"
+    ],
+    [
+      "F1191/01/PVC",
+      "Offshore Marine Pvc",
+      "F/1/F1191_01_PVC_02d7.jpg"
+    ],
+    [
+      "F1191/02/PVC",
+      "Offshore Mineral Pvc",
+      "F/1/F1191_02_PVC_ee99.jpg"
+    ],
+    [
+      "F1191/03/PVC",
+      "Offshore Pastel Pvc",
+      "F/1/F1191_03_PVC_0384.jpg"
+    ],
+    [
+      "F1169/01/PVC",
+      "On The Farm Linen Pvc",
+      "F/1/F1169_01_PVC_b52d.jpg"
+    ],
+    [
+      "F1171/01/PVC",
+      "Riverside Linen Pvc",
+      "F/1/F1171_01_PVC_b14d.jpg"
+    ],
+    [
+      "F1172/01/PVC",
+      "Rosalie Mineral Pvc",
+      "F/1/F1172_01_PVC_bb26.jpg"
+    ],
+    [
+      "F1174/01/PVC",
+      "Secret Garden Linen Pvc",
+      "F/1/F1174_01_PVC_30f0.jpg"
+    ],
+    [
+      "F1193/01/PVC",
+      "Surf Aqua Pvc",
+      "F/1/F1193_01_PVC_ccf8.jpg"
+    ],
+    [
+      "F1193/02/PVC",
+      "Surf Grey Pvc",
+      "F/1/F1193_02_PVC_f972.jpg"
+    ],
+    [
+      "F1193/03/PVC",
+      "Surf Navy Pvc",
+      "F/1/F1193_03_PVC_6075.jpg"
+    ],
+    [
+      "F1194/01/PVC",
+      "Trawler Aqua Pvc",
+      "F/1/F1194_01_PVC_1195.jpg"
+    ],
+    [
+      "F1194/02/PVC",
+      "Trawler Grey Pvc",
+      "F/1/F1194_02_PVC_77d6.jpg"
+    ],
+    [
+      "F1194/03/PVC",
+      "Trawler Navy Pvc",
+      "F/1/F1194_03_PVC_f50b.jpg"
+    ],
+    [
+      "F1194/04/PVC",
+      "Trawler Red Pvc",
+      "F/1/F1194_04_PVC_8e10.jpg"
+    ],
+    [
+      "F1195/01/PVC",
+      "Walcott Marine Pvc",
+      "F/1/F1195_01_PVC_0141.jpg"
+    ],
+    [
+      "F1195/02/PVC",
+      "Walcott Mineral Pvc",
+      "F/1/F1195_02_PVC_e2f9.jpg"
+    ],
+    [
+      "F1195/03/PVC",
+      "Walcott Navy Pvc",
+      "F/1/F1195_03_PVC_aa19.jpg"
+    ],
+    [
+      "F1195/04/PVC",
+      "Walcott Pastel Pvc",
+      "F/1/F1195_04_PVC_dc1c.jpg"
+    ],
+    [
+      "F1176/01/PVC",
+      "Walkies Linen Pvc",
+      "F/1/F1176_01_PVC_4ca7.jpg"
+    ],
+    [
+      "F1196/01/PVC",
+      "Waterside Duckegg Pvc",
+      "F/1/F1196_01_PVC_bec5.jpg"
+    ],
+    [
+      "F1196/02/PVC",
+      "Waterside Grey Pvc",
+      "F/1/F1196_02_PVC_43f9.jpg"
+    ],
+    [
+      "F1196/03/PVC",
+      "Waterside Navy Pvc",
+      "F/1/F1196_03_PVC_1353.jpg"
+    ],
+    [
+      "F1197/01/PVC",
+      "Westleton Duckegg Pvc",
+      "F/1/F1197_01_PVC_7ca4.jpg"
+    ],
+    [
+      "F1197/02/PVC",
+      "Westleton Ochre Pvc",
+      "F/1/F1197_02_PVC_fbdf.jpg"
+    ],
+    [
+      "F1197/03/PVC",
+      "Westleton Sage Pvc",
+      "F/1/F1197_03_PVC_95e1.jpg"
+    ],
+    [
+      "F1197/04/PVC",
+      "Westleton Taupe Pvc",
+      "F/1/F1197_04_PVC_a780.jpg"
+    ],
+    [
+      "F1373/01/PVC",
+      "Fleur Blush/Mineral Pvc",
+      "F/1/F1373_01_PVC_a486.jpg"
+    ],
+    [
+      "F1373/02/PVC",
+      "Fleur Denim Pvc",
+      "F/1/F1373_02_PVC_ac34.jpg"
+    ],
+    [
+      "F1373/03/PVC",
+      "Fleur Chartreuse/Charcoal Pvc",
+      "F/1/F1373_03_PVC_945a.jpg"
+    ],
+    [
+      "F1375/01/PVC",
+      "Lila Blush Pvc",
+      "F/1/F1375_01_PVC_039b.jpg"
+    ],
+    [
+      "F1375/02/PVC",
+      "Lila Chambray Pvc",
+      "F/1/F1375_02_PVC_3f16.jpg"
+    ],
+    [
+      "F1375/04/PVC",
+      "Lila Mineral Pvc",
+      "F/1/F1375_04_PVC_1dbe.jpg"
+    ],
+    [
+      "F1375/05/PVC",
+      "Lila Smoke Pvc",
+      "F/1/F1375_05_PVC_1a21.jpg"
+    ],
+    [
+      "F1531/01/PVC",
+      "Atlantic Blush Pvc",
+      "F/1/F1531_01_PVC_8f18.jpg"
+    ],
+    [
+      "F1531/02/PVC",
+      "Atlantic Mineral Pvc",
+      "F/1/F1531_02_PVC_0ca9.jpg"
+    ],
+    [
+      "F1531/03/PVC",
+      "Atlantic Natural Pvc",
+      "F/1/F1531_03_PVC_ef4d.jpg"
+    ],
+    [
+      "F1531/04/PVC",
+      "Atlantic Powder Blue Pvc",
+      "F/1/F1531_04_PVC_b752.jpg"
+    ],
+    [
+      "F1531/05/PVC",
+      "Atlantic Smoke Pvc",
+      "F/1/F1531_05_PVC_c6e6.jpg"
+    ],
+    [
+      "F1532/01/PVC",
+      "Gardenia Blush Pvc",
+      "F/1/F1532_01_PVC_c8c2.jpg"
+    ],
+    [
+      "F1532/02/PVC",
+      "Gardenia Summer Pvc",
+      "F/1/F1532_02_PVC_fbbd.jpg"
+    ],
+    [
+      "F1533/01/PVC",
+      "Ornella Charcoal/Chartreuse Pvc",
+      "F/1/F1533_01_PVC_0c25.jpg"
+    ],
+    [
+      "F1533/02/PVC",
+      "Ornella Denim Pvc",
+      "F/1/F1533_02_PVC_73a0.jpg"
+    ],
+    [
+      "F1533/03/PVC",
+      "Ornella Mineral/Blush Pvc",
+      "F/1/F1533_03_PVC_9458.jpg"
+    ],
+    [
+      "F1533/04/PVC",
+      "Ornella Summer Pvc",
+      "F/1/F1533_04_PVC_3229.jpg"
+    ],
+    [
+      "F1534/01/PVC",
+      "Petal Denim Pvc",
+      "F/1/F1534_01_PVC_f0d7.jpg"
+    ],
+    [
+      "F1534/02/PVC",
+      "Petal Mineral Rouge Pvc",
+      "F/1/F1534_02_PVC_6248.jpg"
+    ],
+    [
+      "F1534/03/PVC",
+      "Petal Summer Pvc",
+      "F/1/F1534_03_PVC_aa01.jpg"
+    ],
+    [
+      "F1535/01/PVC",
+      "Pieris Blush Pvc",
+      "F/1/F1535_01_PVC_8f7a.jpg"
+    ],
+    [
+      "F1535/02/PVC",
+      "Pieris Mineral Pvc",
+      "F/1/F1535_02_PVC_a2f3.jpg"
+    ],
+    [
+      "F1535/03/PVC",
+      "Pieris Multi Pvc",
+      "F/1/F1535_03_PVC_7c98.jpg"
+    ],
+    [
+      "F1535/04/PVC",
+      "Pieris Smoke Pvc",
+      "F/1/F1535_04_PVC_56b3.jpg"
+    ],
+    [
+      "F1536/01/PVC",
+      "Posy Autumn Pvc",
+      "F/1/F1536_01_PVC_752c.jpg"
+    ],
+    [
+      "F1536/02/PVC",
+      "Posy Blush Pvc",
+      "F/1/F1536_02_PVC_07d2.jpg"
+    ],
+    [
+      "F1638/01/PVC",
+      "Olympia Blush Pvc",
+      "F/1/F1638_01_PVC_750e.jpg"
+    ],
+    [
+      "F1638/03/PVC",
+      "Olympia Mineral Pvc",
+      "F/1/F1638_03_PVC_daad.jpg"
+    ],
+    [
+      "F1638/04/PVC",
+      "Olympia Navy Pvc",
+      "F/1/F1638_04_PVC_c527.jpg"
+    ],
+    [
+      "F1639/01/PVC",
+      "Phoenix Mineral/Navy Pvc",
+      "F/1/F1639_01_PVC_c800.jpg"
+    ],
+    [
+      "F1639/04/PVC",
+      "Phoenix Retro Pvc",
+      "F/1/F1639_04_PVC_a3ef.jpg"
+    ],
+    [
+      "F1640/01/PVC",
+      "Reno Mineral/Navy Pvc",
+      "F/1/F1640_01_PVC_25ee.jpg"
+    ],
+    [
+      "F1640/02/PVC",
+      "Reno Monochrome Pvc",
+      "F/1/F1640_02_PVC_0fce.jpg"
+    ],
+    [
+      "F1640/03/PVC",
+      "Reno Multi Pvc",
+      "F/1/F1640_03_PVC_52d0.jpg"
+    ],
+    [
+      "F1640/04/PVC",
+      "Reno Retro Pvc",
+      "F/1/F1640_04_PVC_b62c.jpg"
+    ],
+    [
+      "F1706/01/PVC",
+      "Wilderwood Denim Pvc",
+      "F/1/F1706_01_PVC_109d.jpg"
+    ],
+    [
+      "F1706/02/PVC",
+      "Wilderwood Natural Pvc",
+      "F/1/F1706_02_PVC_6fcd.jpg"
+    ],
+    [
+      "F1699/01/PVC",
+      "Bellever Blush Pvc",
+      "F/1/F1699_01_PVC_16b7.jpg"
+    ],
+    [
+      "F1699/02/PVC",
+      "Bellever Denim Pvc",
+      "F/1/F1699_02_PVC_159c.jpg"
+    ],
+    [
+      "F1699/03/PVC",
+      "Bellever Graphite Pvc",
+      "F/1/F1699_03_PVC_6e93.jpg"
+    ],
+    [
+      "F1699/04/PVC",
+      "Bellever Linen Pvc",
+      "F/1/F1699_04_PVC_3a28.jpg"
+    ],
+    [
+      "F1699/05/PVC",
+      "Bellever Mineral Pvc",
+      "F/1/F1699_05_PVC_a6fe.jpg"
+    ],
+    [
+      "F1700/01/PVC",
+      "Ennerdale Denim/Blush Pvc",
+      "F/1/F1700_01_PVC_8b99.jpg"
+    ],
+    [
+      "F1700/02/PVC",
+      "Ennerdale Denim/Saffron Pvc",
+      "F/1/F1700_02_PVC_576b.jpg"
+    ],
+    [
+      "F1700/03/PVC",
+      "Ennerdale Mineral Pvc",
+      "F/1/F1700_03_PVC_e5df.jpg"
+    ],
+    [
+      "F1700/04/PVC",
+      "Ennerdale Summer Pvc",
+      "F/1/F1700_04_PVC_522e.jpg"
+    ],
+    [
+      "F1700/05/PVC",
+      "Ennerdale Teal Pvc",
+      "F/1/F1700_05_PVC_08ab.jpg"
+    ],
+    [
+      "F1701/01/PVC",
+      "Mercia Apple/Spice Pvc",
+      "F/1/F1701_01_PVC_6fa1.jpg"
+    ]
+  ]
+}

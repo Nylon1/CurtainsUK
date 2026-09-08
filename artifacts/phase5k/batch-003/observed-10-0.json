@@ -1,0 +1,768 @@
+{
+  "checkedAt": "2026-09-08T11:42:16.483Z",
+  "brand": "Sanderson",
+  "productType": "FABRIC",
+  "status": "Limited Stock",
+  "rows": [
+    [
+      "DCST232700",
+      "Deben Indigo",
+      "D/C/DCST232700_a36c.jpg"
+    ],
+    [
+      "DAEG222945",
+      "Eleni Indian Yellow",
+      "D/A/DAEG222945_6cbb.jpg"
+    ],
+    [
+      "DAEG222947",
+      "Eleni Grey Pearl",
+      "D/A/DAEG222947_fe8b.jpg"
+    ],
+    [
+      "DAEG232975",
+      "Sparkle Coral Embroidery Gold/Purple",
+      "D/A/DAEG232975_fc79.jpg"
+    ],
+    [
+      "DCHK223589",
+      "Fretwork Silver/Linden",
+      "D/C/DCHK223589_49ea.jpg"
+    ],
+    [
+      "DLIT223917",
+      "Ballet Shoes Pink",
+      "D/L/DLIT223917_dc8e.jpg"
+    ],
+    [
+      "DLIT223906",
+      "Posy Floral Chintz",
+      "D/L/DLIT223906_2c9b.jpg"
+    ],
+    [
+      "DLIT223913",
+      "Treasure Map Vanilla",
+      "D/L/DLIT223913_3696.jpg"
+    ],
+    [
+      "DART226319",
+      "Shalimar China Blue/Linen",
+      "D/A/DART226319_fb60.jpg"
+    ],
+    [
+      "DART226317",
+      "Thalia Daffodil/Natural",
+      "D/A/DART226317_e91b.jpg"
+    ],
+    [
+      "DHPO236418",
+      "Alcott Mineral/Stone",
+      "D/H/DHPO236418_5368.jpg"
+    ],
+    [
+      "DDAM236482",
+      "Courtney Damask Fig",
+      "D/D/DDAM236482_25a5.jpg"
+    ],
+    [
+      "DDAM226382",
+      "Courtney Amber/Linen",
+      "D/D/DDAM226382_5d7c.jpg"
+    ],
+    [
+      "DLEI246271",
+      "Leila Limestone",
+      "D/L/DLEI246271_795b.jpg"
+    ],
+    [
+      "DLEI246292",
+      "Leila Tawny",
+      "D/L/DLEI246292_c9fa.jpg"
+    ],
+    [
+      "DLEV246309",
+      "Levens Storm",
+      "D/L/DLEV246309_3896.jpg"
+    ],
+    [
+      "DDAE236490",
+      "Linden Dove",
+      "D/D/DDAE236490_ab60.jpg"
+    ],
+    [
+      "DDAM236479",
+      "Mawton Fig",
+      "D/D/DDAM236479_ab19.jpg"
+    ],
+    [
+      "DHPU236442",
+      "Meade Indigo",
+      "D/H/DHPU236442_7e6b.jpg"
+    ],
+    [
+      "DHPU236446",
+      "Meade Barley",
+      "D/H/DHPU236446_b0b0.jpg"
+    ],
+    [
+      "DEBW236587",
+      "Spindlestone Grape",
+      "D/E/DEBW236587_7f31.jpg"
+    ],
+    [
+      "DCOA236674",
+      "Armeria Trail Driftwood",
+      "D/C/DCOA236674_21fd.jpg"
+    ],
+    [
+      "DCOA236675",
+      "Armeria Trail Lichen",
+      "D/C/DCOA236675_5a28.jpg"
+    ],
+    [
+      "DCOA226490",
+      "Beach Huts Nautical",
+      "D/C/DCOA226490_e149.jpg"
+    ],
+    [
+      "DCOA226491",
+      "Beach Huts Driftwood",
+      "D/C/DCOA226491_f88d.jpg"
+    ],
+    [
+      "DCOA236672",
+      "Bird Feet Driftwood",
+      "D/C/DCOA236672_bb62.jpg"
+    ],
+    [
+      "DCOA236678",
+      "Cobble Gull",
+      "D/C/DCOA236678_1217.jpg"
+    ],
+    [
+      "DCOA236676",
+      "Cromer Embroidery Stone",
+      "D/C/DCOA236676_d493.jpg"
+    ],
+    [
+      "DCOA236677",
+      "Cromer Embroidery Coral",
+      "D/C/DCOA236677_ece9.jpg"
+    ],
+    [
+      "DCOA226507",
+      "Cromer Gull",
+      "D/C/DCOA226507_c98e.jpg"
+    ],
+    [
+      "DCAC236916",
+      "Baroda Coral",
+      "D/C/DCAC236916_65eb.jpg"
+    ],
+    [
+      "DCAC236917",
+      "Baroda Charcoal",
+      "D/C/DCAC236917_1b28.jpg"
+    ],
+    [
+      "DCAC236919",
+      "Baroda Calico",
+      "D/C/DCAC236919_a899.jpg"
+    ],
+    [
+      "DCAC236898",
+      "Darter Nettle",
+      "D/C/DCAC236898_7b1a.jpg"
+    ],
+    [
+      "DCAC236899",
+      "Darter Yarrow",
+      "D/C/DCAC236899_9078.jpg"
+    ],
+    [
+      "DCAC236900",
+      "Darter Jute",
+      "D/C/DCAC236900_f871.jpg"
+    ],
+    [
+      "DCAC236901",
+      "Darter Indigo",
+      "D/C/DCAC236901_fdc7.jpg"
+    ],
+    [
+      "DCAC226643",
+      "Ishi Dove",
+      "D/C/DCAC226643_8b8b.jpg"
+    ],
+    [
+      "DCAC226644",
+      "Ishi Paprika/Misy",
+      "D/C/DCAC226644_a7d2.jpg"
+    ],
+    [
+      "DCAC226645",
+      "Ishi Nettle/Celeste",
+      "D/C/DCAC226645_b8e8.jpg"
+    ],
+    [
+      "DCAC226646",
+      "Ishi Rose/Nettle",
+      "D/C/DCAC226646_3a0b.jpg"
+    ],
+    [
+      "DCAC236913",
+      "Kelim Celeste",
+      "D/C/DCAC236913_732a.jpg"
+    ],
+    [
+      "DCAC236914",
+      "Kelim Madder",
+      "D/C/DCAC236914_ec79.jpg"
+    ],
+    [
+      "DCAC236909",
+      "Khira Sumac",
+      "D/C/DCAC236909_0735.jpg"
+    ],
+    [
+      "DCAC236904",
+      "Madhu Celeste",
+      "D/C/DCAC236904_a5b4.jpg"
+    ],
+    [
+      "DCAC236910",
+      "Meru Nettle",
+      "D/C/DCAC236910_1165.jpg"
+    ],
+    [
+      "DCAC236911",
+      "Meru Indigo",
+      "D/C/DCAC236911_794d.jpg"
+    ],
+    [
+      "DCAC236912",
+      "Meru Celeste",
+      "D/C/DCAC236912_8030.jpg"
+    ],
+    [
+      "DCAC236920",
+      "Tamizart Sandbank",
+      "D/C/DCAC236920_ddca.jpg"
+    ],
+    [
+      "DCAC236922",
+      "Tamizart Slate/Blush",
+      "D/C/DCAC236922_d6a5.jpg"
+    ],
+    [
+      "DWOL235314",
+      "Byron Wool Plains Moss",
+      "D/W/DWOL235314_b133.jpg"
+    ],
+    [
+      "DWOW225512",
+      "Butterfly Voile Fuchsia/Cream",
+      "D/W/DWOW225512_a961.jpg"
+    ],
+    [
+      "DASH235639",
+      "Chenies Taupe",
+      "D/A/DASH235639_98ce.jpg"
+    ],
+    [
+      "DLAG245780",
+      "Lagom Mandarin",
+      "D/L/DLAG245780_dbb8.jpg"
+    ],
+    [
+      "DBAY236112",
+      "Bay Willow Chalk",
+      "D/B/DBAY236112_3bd2.jpg"
+    ],
+    [
+      "DCHE235939",
+      "Cherwell Pewter",
+      "D/C/DCHE235939_7885.jpg"
+    ],
+    [
+      "DCHE235954",
+      "Cherwell Duck Egg",
+      "D/C/DCHE235954_11a2.jpg"
+    ],
+    [
+      "DBAY236123",
+      "Trailing Jenny Chalk Embroidery",
+      "D/B/DBAY236123_b29c.jpg"
+    ],
+    [
+      "DVIB246179",
+      "Vibeke Gargoyle",
+      "D/V/DVIB246179_21a1.jpg"
+    ],
+    [
+      "DVIB246180",
+      "Vibeke Onyx",
+      "D/V/DVIB246180_820f.jpg"
+    ],
+    [
+      "DVIB246181",
+      "Vibeke Pinecone",
+      "D/V/DVIB246181_0ab9.jpg"
+    ],
+    [
+      "DVIB246184",
+      "Vibeke Shark",
+      "D/V/DVIB246184_16e0.jpg"
+    ],
+    [
+      "DVIB246186",
+      "Vibeke Limestone",
+      "D/V/DVIB246186_7d25.jpg"
+    ],
+    [
+      "DVIB246191",
+      "Vibeke Putty",
+      "D/V/DVIB246191_399a.jpg"
+    ],
+    [
+      "DVIB246198",
+      "Vibeke Sand",
+      "D/V/DVIB246198_97c8.jpg"
+    ],
+    [
+      "DVIB246200",
+      "Vibeke Nut",
+      "D/V/DVIB246200_2916.jpg"
+    ],
+    [
+      "DVIB246203",
+      "Vibeke Boa",
+      "D/V/DVIB246203_040e.jpg"
+    ],
+    [
+      "DVIB246204",
+      "Vibeke Lettuce",
+      "D/V/DVIB246204_aaf2.jpg"
+    ],
+    [
+      "DVIB246211",
+      "Vibeke Hydro",
+      "D/V/DVIB246211_b2e2.jpg"
+    ],
+    [
+      "DVIB246214",
+      "Vibeke Denim",
+      "D/V/DVIB246214_b9d1.jpg"
+    ],
+    [
+      "DVIB246217",
+      "Vibeke Emperor",
+      "D/V/DVIB246217_fd83.jpg"
+    ],
+    [
+      "DVIB246218",
+      "Vibeke Grape",
+      "D/V/DVIB246218_5fd3.jpg"
+    ],
+    [
+      "DVIB246220",
+      "Vibeke Quartz",
+      "D/V/DVIB246220_442d.jpg"
+    ],
+    [
+      "DVIB246222",
+      "Vibeke Blossom",
+      "D/V/DVIB246222_1d54.jpg"
+    ],
+    [
+      "DPOT236270",
+      "Dalby Silver",
+      "D/P/DPOT236270_065a.jpg"
+    ],
+    [
+      "DALY246259",
+      "Malbec Heather",
+      "D/A/DALY246259_86a2.jpg"
+    ],
+    [
+      "DMOO236294",
+      "Moorbank Birch",
+      "D/M/DMOO236294_fff0.jpg"
+    ],
+    [
+      "DMOO236299",
+      "Moorbank Mushroom",
+      "D/M/DMOO236299_91a8.jpg"
+    ],
+    [
+      "DCOA236667",
+      "Hemsby Lichen",
+      "D/C/DCOA236667_5add.jpg"
+    ],
+    [
+      "DCOA236668",
+      "Hemsby Ochre",
+      "D/C/DCOA236668_03b9.jpg"
+    ],
+    [
+      "DCOA236669",
+      "Hemsby Marine",
+      "D/C/DCOA236669_8d38.jpg"
+    ],
+    [
+      "DHER236655",
+      "Herring Gull",
+      "D/H/DHER236655_e3b4.jpg"
+    ],
+    [
+      "DCOA226501",
+      "Sailor Gull",
+      "D/C/DCOA226501_849b.jpg"
+    ],
+    [
+      "DCOA226502",
+      "Sailor Pacific",
+      "D/C/DCOA226502_3d3f.jpg"
+    ],
+    [
+      "DCOA226503",
+      "Sailor Nautical",
+      "D/C/DCOA226503_3071.jpg"
+    ],
+    [
+      "DCOA226504",
+      "Sailor Sky",
+      "D/C/DCOA226504_f8c4.jpg"
+    ],
+    [
+      "DCOA226505",
+      "Sailor Aqua",
+      "D/C/DCOA226505_e2bd.jpg"
+    ],
+    [
+      "DCOA226498",
+      "Sea Kelp Aqua/Lichen",
+      "D/C/DCOA226498_9cac.jpg"
+    ],
+    [
+      "DCOA226499",
+      "Sea Kelp Blush/Stone",
+      "D/C/DCOA226499_7571.jpg"
+    ],
+    [
+      "DCOA226500",
+      "Sea Kelp Ochre/Slate",
+      "D/C/DCOA226500_1934.jpg"
+    ],
+    [
+      "DCOA226493",
+      "Shore Birds Pacific",
+      "D/C/DCOA226493_528b.jpg"
+    ],
+    [
+      "DCOA226494",
+      "Shore Birds Driftwood",
+      "D/C/DCOA226494_b520.jpg"
+    ],
+    [
+      "DCOA226495",
+      "Shore Birds Blush",
+      "D/C/DCOA226495_50c9.jpg"
+    ],
+    [
+      "DCOA236670",
+      "Skipper Coral/Lichen",
+      "D/C/DCOA236670_43a4.jpg"
+    ],
+    [
+      "DCOA236671",
+      "Skipper Pacific/Rust",
+      "D/C/DCOA236671_02bc.jpg"
+    ],
+    [
+      "DCOA226496",
+      "Stacking Pebbles Driftwood/Slate",
+      "D/C/DCOA226496_8741.jpg"
+    ],
+    [
+      "DCOA226497",
+      "Stacking Pebbles Sky/Blush",
+      "D/C/DCOA226497_0b4e.jpg"
+    ],
+    [
+      "DLNC236788",
+      "Botanic Trellis Bengal Red",
+      "D/L/DLNC236788_6808.jpg"
+    ],
+    [
+      "DLNC236789",
+      "Botanic Trellis Tropical Palm",
+      "D/L/DLNC236789_f6b9.jpg"
+    ],
+    [
+      "DLNC236790",
+      "Botanic Trellis Lime",
+      "D/L/DLNC236790_844a.jpg"
+    ],
+    [
+      "DLNC236791",
+      "Botanic Trellis Papaya",
+      "D/L/DLNC236791_b98a.jpg"
+    ],
+    [
+      "DLNC236792",
+      "Botanic Trellis Blue Clay",
+      "D/L/DLNC236792_d5a9.jpg"
+    ],
+    [
+      "DLNC236793",
+      "Botanic Trellis Flint",
+      "D/L/DLNC236793_9302.jpg"
+    ],
+    [
+      "DLNC236794",
+      "Botanic Trellis Stone Grey",
+      "D/L/DLNC236794_b8dc.jpg"
+    ],
+    [
+      "DLNC236795",
+      "Botanic Trellis Rhodera",
+      "D/L/DLNC236795_4a11.jpg"
+    ],
+    [
+      "DLNC236808",
+      "Fenne Mimosa",
+      "D/L/DLNC236808_7eb3.jpg"
+    ],
+    [
+      "DLNC236809",
+      "Fenne Botanical Green",
+      "D/L/DLNC236809_1b6d.jpg"
+    ],
+    [
+      "DLNC236810",
+      "Fenne Tropical Palm",
+      "D/L/DLNC236810_f27e.jpg"
+    ],
+    [
+      "DLNC236811",
+      "Fenne Orchid",
+      "D/L/DLNC236811_e319.jpg"
+    ],
+    [
+      "DLNC236802",
+      "Hutton Indigo",
+      "D/L/DLNC236802_87a4.jpg"
+    ],
+    [
+      "DLNC236803",
+      "Hutton Midnight Blue",
+      "D/L/DLNC236803_1a72.jpg"
+    ],
+    [
+      "DLNC236804",
+      "Hutton Lime",
+      "D/L/DLNC236804_376a.jpg"
+    ],
+    [
+      "DLNC236806",
+      "Hutton Blue Clay",
+      "D/L/DLNC236806_2325.jpg"
+    ],
+    [
+      "DLNC236807",
+      "Hutton Silver Fern",
+      "D/L/DLNC236807_bb15.jpg"
+    ],
+    [
+      "DLNC236782",
+      "Linnean Crusoe Blue",
+      "D/L/DLNC236782_7436.jpg"
+    ],
+    [
+      "DLNC236783",
+      "Linnean Indigo",
+      "D/L/DLNC236783_b07f.jpg"
+    ],
+    [
+      "DLNC236784",
+      "Linnean Botanical Green",
+      "D/L/DLNC236784_7fdd.jpg"
+    ],
+    [
+      "DLNC236785",
+      "Linnean Lime",
+      "D/L/DLNC236785_7fb4.jpg"
+    ],
+    [
+      "DLNC236786",
+      "Linnean Tropical Palm",
+      "D/L/DLNC236786_95f7.jpg"
+    ],
+    [
+      "DLNC236787",
+      "Linnean Stone Grey",
+      "D/L/DLNC236787_28b4.jpg"
+    ],
+    [
+      "DLNC236796",
+      "Nelson Bengal Red",
+      "D/L/DLNC236796_9a49.jpg"
+    ],
+    [
+      "DLNC236797",
+      "Nelson Tropical Palm",
+      "D/L/DLNC236797_77b7.jpg"
+    ],
+    [
+      "DLNC236798",
+      "Nelson Marine",
+      "D/L/DLNC236798_9285.jpg"
+    ],
+    [
+      "DLNC236799",
+      "Nelson Stone Grey",
+      "D/L/DLNC236799_ac26.jpg"
+    ],
+    [
+      "DKH17A205",
+      "Avening Midnight/Multi",
+      "D/K/DKH17A205_8c79.jpg"
+    ],
+    [
+      "DCN11R201",
+      "Rose And Peony Red (Cotton)",
+      "D/C/DCN11R201_0655.jpg"
+    ],
+    [
+      "DLYRLY322",
+      "Lyric Dlyrly322 Caramel",
+      "D/L/DLYRLY322_dcf3.jpg"
+    ],
+    [
+      "DLYRLY323",
+      "Lyric Dlyrly323 Taupe",
+      "D/L/DLYRLY323_5c66.jpg"
+    ],
+    [
+      "DLYRLY339",
+      "Lyric Dlyrly339 Brick",
+      "D/L/DLYRLY339_07e5.jpg"
+    ],
+    [
+      "DLYRLY350",
+      "Lyric Dlyrly350 Gold",
+      "D/L/DLYRLY350_0b44.jpg"
+    ],
+    [
+      "DLYRLY357",
+      "Lyric Dlyrly357 Jute",
+      "D/L/DLYRLY357_8234.jpg"
+    ],
+    [
+      "DLYRLY363",
+      "Lyric Dlyrly363 Chestnut",
+      "D/L/DLYRLY363_a531.jpg"
+    ],
+    [
+      "DLYRLY365",
+      "Lyric Dlyrly365 Dust",
+      "D/L/DLYRLY365_ce66.jpg"
+    ],
+    [
+      "DRICLY385",
+      "Lyric Ii Dricly385 Oyster",
+      "D/R/DRICLY385_e754.jpg"
+    ],
+    [
+      "DRICLY386",
+      "Lyric Ii Dricly386 Crystal",
+      "D/R/DRICLY386_2457.jpg"
+    ],
+    [
+      "DRICLY388",
+      "Lyric Ii Dricly388 Plaza",
+      "D/R/DRICLY388_5d45.jpg"
+    ],
+    [
+      "DRICLY389",
+      "Lyric Ii Dricly389 Doe",
+      "D/R/DRICLY389_e5a3.jpg"
+    ],
+    [
+      "DRICLY394",
+      "Lyric Ii Dricly394 Sterling",
+      "D/R/DRICLY394_e63f.jpg"
+    ],
+    [
+      "DRICLY397",
+      "Lyric Ii Dricly397 Dove",
+      "D/R/DRICLY397_0eb5.jpg"
+    ],
+    [
+      "DRICLY398",
+      "Lyric Ii Dricly398 Zinc",
+      "D/R/DRICLY398_5ddb.jpg"
+    ],
+    [
+      "DRICLY401",
+      "Lyric Ii Dricly401 Poppy",
+      "D/R/DRICLY401_8c2e.jpg"
+    ],
+    [
+      "DRICLY419",
+      "Lyric Ii Dricly419 Fossil",
+      "D/R/DRICLY419_a795.jpg"
+    ],
+    [
+      "DRICLY431",
+      "Lyric Ii Dricly431 Quail",
+      "D/R/DRICLY431_3f8f.jpg"
+    ],
+    [
+      "DRICLY434",
+      "Lyric Ii Dricly434 Raisin",
+      "D/R/DRICLY434_8a90.jpg"
+    ],
+    [
+      "DRICLY437",
+      "Lyric Ii Dricly437 Petrol",
+      "D/R/DRICLY437_7e4a.jpg"
+    ],
+    [
+      "DOPNDA202",
+      "Dandelion Clocks Dopnda202 Blackcurrant",
+      "D/O/DOPNDA202_6f1b.jpg"
+    ],
+    [
+      "DCHA240159",
+      "Chatham 240159 Brick",
+      "D/C/DCHA240159_12ea.jpg"
+    ],
+    [
+      "DCLO232022",
+      "Merrington 232022 Olive",
+      "D/C/DCLO232022_0213.jpg"
+    ],
+    [
+      "DCLO232023",
+      "Merrington 232023 Indigo",
+      "D/C/DCLO232023_bf46.jpg"
+    ],
+    [
+      "DCST232668",
+      "Brecon Sea Blue/Teal",
+      "D/C/DCST232668_80fa.jpg"
+    ],
+    [
+      "DCST232696",
+      "Deben Delph Blue",
+      "D/C/DCST232696_1ff9.jpg"
+    ],
+    [
+      "DCST232697",
+      "Deben Charcoal",
+      "D/C/DCST232697_cbdd.jpg"
+    ]
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "publicRecords": 6328,
+  "publicImageReady": 6328,
+  "publicDescriptionReady": 6328,
+  "publicPriceReady": 251,
+  "publicOrderReady": 0,
+  "canaryRecords": 2043,
+  "canaryPriceBlocked": 2043,
+  "sampleKnownAvailable": 0,
+  "pages": 264,
+  "maxRecordsPerPayload": 24,
+  "largestRawResponseBytes": 59780,
+  "commercialOrCredentialLeaks": 0,
+  "imageHost": "Shopify CDN",
+  "robots": "noindex, nofollow",
+  "filterSemantics": "PASS",
+  "testedCollection": "Eden",
+  "timings": {
+    "browse": {
+      "medianMs": 1121,
+      "measurements": [
+        {
+          "ms": 872,
+          "bytes": 50725
+        },
+        {
+          "ms": 1121,
+          "bytes": 50725
+        },
+        {
+          "ms": 2451,
+          "bytes": 50725
+        }
+      ]
+    },
+    "search": {
+      "medianMs": 1436,
+      "measurements": [
+        {
+          "ms": 1061,
+          "bytes": 11219
+        },
+        {
+          "ms": 2616,
+          "bytes": 11219
+        },
+        {
+          "ms": 1436,
+          "bytes": 11219
+        }
+      ]
+    },
+    "brand": {
+      "medianMs": 1098,
+      "measurements": [
+        {
+          "ms": 1098,
+          "bytes": 50725
+        },
+        {
+          "ms": 1697,
+          "bytes": 50725
+        },
+        {
+          "ms": 1011,
+          "bytes": 50725
+        }
+      ]
+    },
+    "colour": {
+      "medianMs": 1427,
+      "measurements": [
+        {
+          "ms": 1427,
+          "bytes": 58479
+        },
+        {
+          "ms": 983,
+          "bytes": 58479
+        },
+        {
+          "ms": 1900,
+          "bytes": 58479
+        }
+      ]
+    },
+    "pattern": {
+      "medianMs": 996,
+      "measurements": [
+        {
+          "ms": 923,
+          "bytes": 59741
+        },
+        {
+          "ms": 1232,
+          "bytes": 59741
+        },
+        {
+          "ms": 996,
+          "bytes": 59741
+        }
+      ]
+    },
+    "collection": {
+      "medianMs": 1230,
+      "measurements": [
+        {
+          "ms": 1230,
+          "bytes": 48181
+        },
+        {
+          "ms": 1052,
+          "bytes": 48181
+        },
+        {
+          "ms": 1292,
+          "bytes": 48181
+        }
+      ]
+    },
+    "detail": {
+      "medianMs": 839,
+      "measurements": [
+        {
+          "ms": 839,
+          "bytes": 2036
+        },
+        {
+          "ms": 709,
+          "bytes": 2036
+        },
+        {
+          "ms": 1056,
+          "bytes": 2036
+        }
+      ]
+    },
+    "page2": {
+      "medianMs": 1353,
+      "measurements": [
+        {
+          "ms": 1544,
+          "bytes": 48462
+        },
+        {
+          "ms": 1353,
+          "bytes": 48462
+        },
+        {
+          "ms": 996,
+          "bytes": 48462
+        }
+      ]
+    }
+  }
+}

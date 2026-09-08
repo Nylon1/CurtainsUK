@@ -1,0 +1,35 @@
+{
+  "observed": 2,
+  "exactIdentityMatches": 2,
+  "withheld": [],
+  "databaseWrites": 2,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-f1276-02",
+      "workbook_sku": "F1276/02",
+      "portal_sku": "F1276/02",
+      "master_design": "Fino",
+      "master_colour": "Ivory/Rose Gold",
+      "portal_title": "Fino Ivory/Rose Gold",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:03:30.490Z"
+    },
+    {
+      "master_id": "sdg-f1542-03",
+      "workbook_sku": "F1542/03",
+      "portal_sku": "F1542/03",
+      "master_design": "Lucienne",
+      "master_colour": "Raspberry/Linen",
+      "portal_title": "Lucienne Raspberry/Linen",
+      "portal_status": "Live",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T12:03:30.490Z"
+    }
+  ]
+}

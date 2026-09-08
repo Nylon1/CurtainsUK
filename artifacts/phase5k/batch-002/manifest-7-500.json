@@ -1,0 +1,4594 @@
+{
+  "results": {
+    "sdg-dmlf236845": {
+      "record": {
+        "fabric_id": "sdg-dmlf236845",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMLF236845",
+        "brand_name": "Morris & Co.",
+        "design_name": "Thistle Weave",
+        "colour_name": "Slate",
+        "collection_name": "Lethaby Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMLF236845_36ef.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMLF236845",
+            "brand": "Morris & Co.",
+            "design": "Thistle Weave",
+            "colour": "Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dm5f236819": {
+      "record": {
+        "fabric_id": "sdg-dm5f236819",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DM5F236819",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Embroidery",
+        "colour_name": "Olive / Brick",
+        "collection_name": "Melsetter Fabric & Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DM5F236819_9fed.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DM5F236819",
+            "brand": "Morris & Co.",
+            "design": "Wardle Embroidery",
+            "colour": "Olive / Brick",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dm5f236820": {
+      "record": {
+        "fabric_id": "sdg-dm5f236820",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DM5F236820",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Embroidery",
+        "colour_name": "Bayleaf / Manilla",
+        "collection_name": "Melsetter Fabric & Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DM5F236820_aabe.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DM5F236820",
+            "brand": "Morris & Co.",
+            "design": "Wardle Embroidery",
+            "colour": "Bayleaf / Manilla",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dmlf236849": {
+      "record": {
+        "fabric_id": "sdg-dmlf236849",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMLF236849",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wilhelmina Weave",
+        "colour_name": "Rust",
+        "collection_name": "Lethaby Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMLF236849_bd35.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMLF236849",
+            "brand": "Morris & Co.",
+            "design": "Wilhelmina Weave",
+            "colour": "Rust",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dmlf236850": {
+      "record": {
+        "fabric_id": "sdg-dmlf236850",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMLF236850",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wilhelmina Weave",
+        "colour_name": "Indigo",
+        "collection_name": "Lethaby Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMLF236850_f333.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMLF236850",
+            "brand": "Morris & Co.",
+            "design": "Wilhelmina Weave",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dmlf236851": {
+      "record": {
+        "fabric_id": "sdg-dmlf236851",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DMLF236851",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wilhelmina Weave",
+        "colour_name": "Linen",
+        "collection_name": "Lethaby Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DMLF236851_4da9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DMLF236851",
+            "brand": "Morris & Co.",
+            "design": "Wilhelmina Weave",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dm5f226603": {
+      "record": {
+        "fabric_id": "sdg-dm5f226603",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DM5F226603",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wilhelmina",
+        "colour_name": "Ivory",
+        "collection_name": "Melsetter Fabric & Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DM5F226603_67e3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DM5F226603",
+            "brand": "Morris & Co.",
+            "design": "Wilhelmina",
+            "colour": "Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dm5f226604": {
+      "record": {
+        "fabric_id": "sdg-dm5f226604",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DM5F226604",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wilhelmina",
+        "colour_name": "Teal",
+        "collection_name": "Melsetter Fabric & Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DM5F226604_2d92.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DM5F226604",
+            "brand": "Morris & Co.",
+            "design": "Wilhelmina",
+            "colour": "Teal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dm5f226605": {
+      "record": {
+        "fabric_id": "sdg-dm5f226605",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DM5F226605",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wilhelmina",
+        "colour_name": "Moss",
+        "collection_name": "Melsetter Fabric & Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/M/DM5F226605_6bb3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DM5F226605",
+            "brand": "Morris & Co.",
+            "design": "Wilhelmina",
+            "colour": "Moss",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236924": {
+      "record": {
+        "fabric_id": "sdg-drof236924",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236924",
+        "brand_name": "Morris & Co.",
+        "design_name": "Fruit Velvet",
+        "colour_name": "Indigo/Slate",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236924_1589.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236924",
+            "brand": "Morris & Co.",
+            "design": "Fruit Velvet",
+            "colour": "Indigo/Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236925": {
+      "record": {
+        "fabric_id": "sdg-drof236925",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236925",
+        "brand_name": "Morris & Co.",
+        "design_name": "Fruit Velvet",
+        "colour_name": "Madder/Bayleaf",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236925_f088.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236925",
+            "brand": "Morris & Co.",
+            "design": "Fruit Velvet",
+            "colour": "Madder/Bayleaf",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236926": {
+      "record": {
+        "fabric_id": "sdg-drof236926",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236926",
+        "brand_name": "Morris & Co.",
+        "design_name": "Fruit Velvet",
+        "colour_name": "Walnut/Bullrush",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236926_ddb9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236926",
+            "brand": "Morris & Co.",
+            "design": "Fruit Velvet",
+            "colour": "Walnut/Bullrush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236927": {
+      "record": {
+        "fabric_id": "sdg-drof236927",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236927",
+        "brand_name": "Morris & Co.",
+        "design_name": "Fruit Velvet",
+        "colour_name": "Privet/Thyme",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236927_5835.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236927",
+            "brand": "Morris & Co.",
+            "design": "Fruit Velvet",
+            "colour": "Privet/Thyme",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236938": {
+      "record": {
+        "fabric_id": "sdg-drof236938",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236938",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle and Tulip Velvet",
+        "colour_name": "Black Walnut/Stone",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236938_41f8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236938",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle and Tulip Velvet",
+            "colour": "Black Walnut/Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236939": {
+      "record": {
+        "fabric_id": "sdg-drof236939",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236939",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle and Tulip Velvet",
+        "colour_name": "Forest/Chestnut",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236939_903c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236939",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle and Tulip Velvet",
+            "colour": "Forest/Chestnut",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236940": {
+      "record": {
+        "fabric_id": "sdg-drof236940",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236940",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle and Tulip Velvet",
+        "colour_name": "Woad/Mulberry",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236940_390b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236940",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle and Tulip Velvet",
+            "colour": "Woad/Mulberry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236943": {
+      "record": {
+        "fabric_id": "sdg-drof236943",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236943",
+        "brand_name": "Morris & Co.",
+        "design_name": "Indian Flock Velvet",
+        "colour_name": "Russet/Mulberry",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236943_1e5e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236943",
+            "brand": "Morris & Co.",
+            "design": "Indian Flock Velvet",
+            "colour": "Russet/Mulberry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236944": {
+      "record": {
+        "fabric_id": "sdg-drof236944",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236944",
+        "brand_name": "Morris & Co.",
+        "design_name": "Indian Flock Velvet",
+        "colour_name": "Cerulean/ Walnut",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236944_e6b6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236944",
+            "brand": "Morris & Co.",
+            "design": "Indian Flock Velvet",
+            "colour": "Cerulean/ Walnut",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236935": {
+      "record": {
+        "fabric_id": "sdg-drof236935",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236935",
+        "brand_name": "Morris & Co.",
+        "design_name": "Snakeshead Velvet",
+        "colour_name": "Crimson/Saffron",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236935_5255.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236935",
+            "brand": "Morris & Co.",
+            "design": "Snakeshead Velvet",
+            "colour": "Crimson/Saffron",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236936": {
+      "record": {
+        "fabric_id": "sdg-drof236936",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236936",
+        "brand_name": "Morris & Co.",
+        "design_name": "Snakeshead Velvet",
+        "colour_name": "Mulberry/Saffron",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236936_7d04.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236936",
+            "brand": "Morris & Co.",
+            "design": "Snakeshead Velvet",
+            "colour": "Mulberry/Saffron",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236937": {
+      "record": {
+        "fabric_id": "sdg-drof236937",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236937",
+        "brand_name": "Morris & Co.",
+        "design_name": "Snakeshead Velvet",
+        "colour_name": "Thistle/Russet",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236937_85c9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236937",
+            "brand": "Morris & Co.",
+            "design": "Snakeshead Velvet",
+            "colour": "Thistle/Russet",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236931": {
+      "record": {
+        "fabric_id": "sdg-drof236931",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236931",
+        "brand_name": "Morris & Co.",
+        "design_name": "Strawberry Thief Velvet",
+        "colour_name": "Mulberry/Slate",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236931_9a70.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236931",
+            "brand": "Morris & Co.",
+            "design": "Strawberry Thief Velvet",
+            "colour": "Mulberry/Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236932": {
+      "record": {
+        "fabric_id": "sdg-drof236932",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236932",
+        "brand_name": "Morris & Co.",
+        "design_name": "Strawberry Thief Velvet",
+        "colour_name": "Indigo/Thyme",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236932_68fd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236932",
+            "brand": "Morris & Co.",
+            "design": "Strawberry Thief Velvet",
+            "colour": "Indigo/Thyme",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236933": {
+      "record": {
+        "fabric_id": "sdg-drof236933",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236933",
+        "brand_name": "Morris & Co.",
+        "design_name": "Strawberry Thief Velvet",
+        "colour_name": "Crimson/Slate",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236933_055f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236933",
+            "brand": "Morris & Co.",
+            "design": "Strawberry Thief Velvet",
+            "colour": "Crimson/Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236928": {
+      "record": {
+        "fabric_id": "sdg-drof236928",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236928",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Velvet",
+        "colour_name": "Kermes/Birch",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236928_42c4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236928",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Velvet",
+            "colour": "Kermes/Birch",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drof236929": {
+      "record": {
+        "fabric_id": "sdg-drof236929",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DROF236929",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Velvet",
+        "colour_name": "Maple/Lichen",
+        "collection_name": "Rouen Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DROF236929_17bf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DROF236929",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Velvet",
+            "colour": "Maple/Lichen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226840": {
+      "record": {
+        "fabric_id": "sdg-dbpf226840",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226840",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bachelors Button",
+        "colour_name": "Olive/Turquoise",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226840_61e2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226840",
+            "brand": "Morris & Co.",
+            "design": "Bachelors Button",
+            "colour": "Olive/Turquoise",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226986": {
+      "record": {
+        "fabric_id": "sdg-mcop226986",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226986",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bachelors Button",
+        "colour_name": "Leaf Green/Sky",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226986_3f95.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226986",
+            "brand": "Morris & Co.",
+            "design": "Bachelors Button",
+            "colour": "Leaf Green/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226987": {
+      "record": {
+        "fabric_id": "sdg-mcop226987",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226987",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bachelors Button",
+        "colour_name": "Burnt Orange/Sky",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226987_1095.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226987",
+            "brand": "Morris & Co.",
+            "design": "Bachelors Button",
+            "colour": "Burnt Orange/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226848": {
+      "record": {
+        "fabric_id": "sdg-dbpf226848",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226848",
+        "brand_name": "Morris & Co.",
+        "design_name": "Brer Rabbit",
+        "colour_name": "Olive/Turquoise",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226848_62a9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226848",
+            "brand": "Morris & Co.",
+            "design": "Brer Rabbit",
+            "colour": "Olive/Turquoise",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226849": {
+      "record": {
+        "fabric_id": "sdg-dbpf226849",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226849",
+        "brand_name": "Morris & Co.",
+        "design_name": "Brer Rabbit",
+        "colour_name": "Burnt Orange",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226849_363f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226849",
+            "brand": "Morris & Co.",
+            "design": "Brer Rabbit",
+            "colour": "Burnt Orange",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226855": {
+      "record": {
+        "fabric_id": "sdg-dbpf226855",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226855",
+        "brand_name": "Morris & Co.",
+        "design_name": "Chrysanthemum",
+        "colour_name": "Summer",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226855_0ab6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226855",
+            "brand": "Morris & Co.",
+            "design": "Chrysanthemum",
+            "colour": "Summer",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226853": {
+      "record": {
+        "fabric_id": "sdg-dbpf226853",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226853",
+        "brand_name": "Morris & Co.",
+        "design_name": "Daffodil",
+        "colour_name": "Archive",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226853_b8c0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226853",
+            "brand": "Morris & Co.",
+            "design": "Daffodil",
+            "colour": "Archive",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226854": {
+      "record": {
+        "fabric_id": "sdg-dbpf226854",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226854",
+        "brand_name": "Morris & Co.",
+        "design_name": "Daffodil",
+        "colour_name": "Dark Olive",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226854_648b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226854",
+            "brand": "Morris & Co.",
+            "design": "Daffodil",
+            "colour": "Dark Olive",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226992": {
+      "record": {
+        "fabric_id": "sdg-mcop226992",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226992",
+        "brand_name": "Morris & Co.",
+        "design_name": "Daffodil",
+        "colour_name": "Pink/Leaf Green",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226992_4d2f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226992",
+            "brand": "Morris & Co.",
+            "design": "Daffodil",
+            "colour": "Pink/Leaf Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226993": {
+      "record": {
+        "fabric_id": "sdg-mcop226993",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226993",
+        "brand_name": "Morris & Co.",
+        "design_name": "Daffodil",
+        "colour_name": "Cove Blue/Chocolate",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226993_41cb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226993",
+            "brand": "Morris & Co.",
+            "design": "Daffodil",
+            "colour": "Cove Blue/Chocolate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226850": {
+      "record": {
+        "fabric_id": "sdg-dbpf226850",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226850",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle",
+        "colour_name": "Summer",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226850_d2c1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226850",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle",
+            "colour": "Summer",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226851": {
+      "record": {
+        "fabric_id": "sdg-dbpf226851",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226851",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle",
+        "colour_name": "Autumn",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226851_b315.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226851",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle",
+            "colour": "Autumn",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226984": {
+      "record": {
+        "fabric_id": "sdg-mcop226984",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226984",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle",
+        "colour_name": "Cream/Chocolate",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226984_4335.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226984",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle",
+            "colour": "Cream/Chocolate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226985": {
+      "record": {
+        "fabric_id": "sdg-mcop226985",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226985",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle",
+        "colour_name": "Sky/Burnt Orange",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226985_1d8d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226985",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle",
+            "colour": "Sky/Burnt Orange",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226856": {
+      "record": {
+        "fabric_id": "sdg-dbpf226856",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226856",
+        "brand_name": "Morris & Co.",
+        "design_name": "Kennet",
+        "colour_name": "Olive/Turquoise",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226856_d8fe.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226856",
+            "brand": "Morris & Co.",
+            "design": "Kennet",
+            "colour": "Olive/Turquoise",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226857": {
+      "record": {
+        "fabric_id": "sdg-dbpf226857",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226857",
+        "brand_name": "Morris & Co.",
+        "design_name": "Kennet",
+        "colour_name": "Aqua/Pink",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226857_38a1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226857",
+            "brand": "Morris & Co.",
+            "design": "Kennet",
+            "colour": "Aqua/Pink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226844": {
+      "record": {
+        "fabric_id": "sdg-dbpf226844",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226844",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Orange/Pink",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226844_7a11.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226844",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Orange/Pink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226845": {
+      "record": {
+        "fabric_id": "sdg-dbpf226845",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226845",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Navy/Burnt Orange",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226845_a726.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226845",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Navy/Burnt Orange",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226846": {
+      "record": {
+        "fabric_id": "sdg-dbpf226846",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226846",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Navy/Turquoise",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226846_de0c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226846",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Navy/Turquoise",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226847": {
+      "record": {
+        "fabric_id": "sdg-dbpf226847",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226847",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Olive/Pink",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226847_9e4b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226847",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Olive/Pink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226980": {
+      "record": {
+        "fabric_id": "sdg-mcop226980",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226980",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Sky/Chocolate",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226980_f0e8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226980",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Sky/Chocolate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226981": {
+      "record": {
+        "fabric_id": "sdg-mcop226981",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226981",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Cream/Orange",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226981_c0f2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226981",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Cream/Orange",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226982": {
+      "record": {
+        "fabric_id": "sdg-mcop226982",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226982",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Cream/Sap Green",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226982_6c0d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226982",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Cream/Sap Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226983": {
+      "record": {
+        "fabric_id": "sdg-mcop226983",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226983",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Summer Yellow/Chocolate",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226983_40f9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226983",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Summer Yellow/Chocolate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dbpf226852": {
+      "record": {
+        "fabric_id": "sdg-dbpf226852",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DBPF226852",
+        "brand_name": "Morris & Co.",
+        "design_name": "Vine",
+        "colour_name": "Dark Olive",
+        "collection_name": "Queen Square Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/B/DBPF226852_cd40.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DBPF226852",
+            "brand": "Morris & Co.",
+            "design": "Vine",
+            "colour": "Dark Olive",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-aarc520005": {
+      "record": {
+        "fabric_id": "sdg-aarc520005",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "AARC520005",
+        "brand_name": "Morris & Co.",
+        "design_name": "Hyacinth",
+        "colour_name": "Cosmo Pink",
+        "collection_name": "Bedford Park Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/A/A/AARC520005_283d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "AARC520005",
+            "brand": "Morris & Co.",
+            "design": "Hyacinth",
+            "colour": "Cosmo Pink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226896": {
+      "record": {
+        "fabric_id": "sdg-msim226896",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226896",
+        "brand_name": "Morris & Co.",
+        "design_name": "Acanthus",
+        "colour_name": "Leaf Green",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226896_33b1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226896",
+            "brand": "Morris & Co.",
+            "design": "Acanthus",
+            "colour": "Leaf Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226897": {
+      "record": {
+        "fabric_id": "sdg-msim226897",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226897",
+        "brand_name": "Morris & Co.",
+        "design_name": "Acanthus",
+        "colour_name": "Woad",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226897_5aae.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226897",
+            "brand": "Morris & Co.",
+            "design": "Acanthus",
+            "colour": "Woad",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226910": {
+      "record": {
+        "fabric_id": "sdg-msim226910",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226910",
+        "brand_name": "Morris & Co.",
+        "design_name": "Chrysanthemum Toile",
+        "colour_name": "Cochineal Pink",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226910_c04a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226910",
+            "brand": "Morris & Co.",
+            "design": "Chrysanthemum Toile",
+            "colour": "Cochineal Pink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226911": {
+      "record": {
+        "fabric_id": "sdg-msim226911",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226911",
+        "brand_name": "Morris & Co.",
+        "design_name": "Chrysanthemum Toile",
+        "colour_name": "Willow",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226911_dee1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226911",
+            "brand": "Morris & Co.",
+            "design": "Chrysanthemum Toile",
+            "colour": "Willow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226912": {
+      "record": {
+        "fabric_id": "sdg-msim226912",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226912",
+        "brand_name": "Morris & Co.",
+        "design_name": "Chrysanthemum Toile",
+        "colour_name": "Slate",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226912_b4b3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226912",
+            "brand": "Morris & Co.",
+            "design": "Chrysanthemum Toile",
+            "colour": "Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226909": {
+      "record": {
+        "fabric_id": "sdg-msim226909",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226909",
+        "brand_name": "Morris & Co.",
+        "design_name": "Lemon Tree",
+        "colour_name": "Lemon/ Bayleaf",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226909_3f53.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226909",
+            "brand": "Morris & Co.",
+            "design": "Lemon Tree",
+            "colour": "Lemon/ Bayleaf",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226919": {
+      "record": {
+        "fabric_id": "sdg-msim226919",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226919",
+        "brand_name": "Morris & Co.",
+        "design_name": "Mallow",
+        "colour_name": "Weld",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226919_ccb1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226919",
+            "brand": "Morris & Co.",
+            "design": "Mallow",
+            "colour": "Weld",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226920": {
+      "record": {
+        "fabric_id": "sdg-msim226920",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226920",
+        "brand_name": "Morris & Co.",
+        "design_name": "Mallow",
+        "colour_name": "Madder",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226920_e8d3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226920",
+            "brand": "Morris & Co.",
+            "design": "Mallow",
+            "colour": "Madder",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226921": {
+      "record": {
+        "fabric_id": "sdg-msim226921",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226921",
+        "brand_name": "Morris & Co.",
+        "design_name": "Mallow",
+        "colour_name": "Linen",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226921_2cdd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226921",
+            "brand": "Morris & Co.",
+            "design": "Mallow",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226898": {
+      "record": {
+        "fabric_id": "sdg-msim226898",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226898",
+        "brand_name": "Morris & Co.",
+        "design_name": "Pimpernel",
+        "colour_name": "Weld/ Leaf Green",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226898_0735.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226898",
+            "brand": "Morris & Co.",
+            "design": "Pimpernel",
+            "colour": "Weld/ Leaf Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226899": {
+      "record": {
+        "fabric_id": "sdg-msim226899",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226899",
+        "brand_name": "Morris & Co.",
+        "design_name": "Pimpernel",
+        "colour_name": "Bayleaf/Manilla",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226899_eb6d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226899",
+            "brand": "Morris & Co.",
+            "design": "Pimpernel",
+            "colour": "Bayleaf/Manilla",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226900": {
+      "record": {
+        "fabric_id": "sdg-msim226900",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226900",
+        "brand_name": "Morris & Co.",
+        "design_name": "Pimpernel",
+        "colour_name": "Cochineal Pink",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226900_91fa.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226900",
+            "brand": "Morris & Co.",
+            "design": "Pimpernel",
+            "colour": "Cochineal Pink",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226901": {
+      "record": {
+        "fabric_id": "sdg-msim226901",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226901",
+        "brand_name": "Morris & Co.",
+        "design_name": "Pimpernel",
+        "colour_name": "Woad",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226901_205f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226901",
+            "brand": "Morris & Co.",
+            "design": "Pimpernel",
+            "colour": "Woad",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226902": {
+      "record": {
+        "fabric_id": "sdg-msim226902",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226902",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Severn",
+        "colour_name": "Woad",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226902_d4bf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226902",
+            "brand": "Morris & Co.",
+            "design": "Simply Severn",
+            "colour": "Woad",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226903": {
+      "record": {
+        "fabric_id": "sdg-msim226903",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226903",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Severn",
+        "colour_name": "Madder/Russet",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226903_c736.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226903",
+            "brand": "Morris & Co.",
+            "design": "Simply Severn",
+            "colour": "Madder/Russet",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226904": {
+      "record": {
+        "fabric_id": "sdg-msim226904",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226904",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Severn",
+        "colour_name": "Cochineal/Willow",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226904_631c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226904",
+            "brand": "Morris & Co.",
+            "design": "Simply Severn",
+            "colour": "Cochineal/Willow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226905": {
+      "record": {
+        "fabric_id": "sdg-msim226905",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226905",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Severn",
+        "colour_name": "Bayleaf/Annatto",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226905_4cee.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226905",
+            "brand": "Morris & Co.",
+            "design": "Simply Severn",
+            "colour": "Bayleaf/Annatto",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226915": {
+      "record": {
+        "fabric_id": "sdg-msim226915",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226915",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Strawberry Thief",
+        "colour_name": "Indian Red",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226915_e521.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226915",
+            "brand": "Morris & Co.",
+            "design": "Simply Strawberry Thief",
+            "colour": "Indian Red",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226916": {
+      "record": {
+        "fabric_id": "sdg-msim226916",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226916",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Strawberry Thief",
+        "colour_name": "Woad",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226916_8583.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226916",
+            "brand": "Morris & Co.",
+            "design": "Simply Strawberry Thief",
+            "colour": "Woad",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226917": {
+      "record": {
+        "fabric_id": "sdg-msim226917",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226917",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Strawberry Thief",
+        "colour_name": "Slate/Vellum",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226917_0330.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226917",
+            "brand": "Morris & Co.",
+            "design": "Simply Strawberry Thief",
+            "colour": "Slate/Vellum",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226918": {
+      "record": {
+        "fabric_id": "sdg-msim226918",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226918",
+        "brand_name": "Morris & Co.",
+        "design_name": "Simply Strawberry Thief",
+        "colour_name": "Cochineal/Willow",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226918_ad41.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226918",
+            "brand": "Morris & Co.",
+            "design": "Simply Strawberry Thief",
+            "colour": "Cochineal/Willow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226922": {
+      "record": {
+        "fabric_id": "sdg-msim226922",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226922",
+        "brand_name": "Morris & Co.",
+        "design_name": "Standen",
+        "colour_name": "Leaf Green",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226922_ba8c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226922",
+            "brand": "Morris & Co.",
+            "design": "Standen",
+            "colour": "Leaf Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-msim226923": {
+      "record": {
+        "fabric_id": "sdg-msim226923",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MSIM226923",
+        "brand_name": "Morris & Co.",
+        "design_name": "Standen",
+        "colour_name": "Sea Glass",
+        "collection_name": "Simply Morris Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/S/MSIM226923_fd95.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MSIM226923",
+            "brand": "Morris & Co.",
+            "design": "Standen",
+            "colour": "Sea Glass",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226988": {
+      "record": {
+        "fabric_id": "sdg-mcop226988",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226988",
+        "brand_name": "Morris & Co.",
+        "design_name": "Compton",
+        "colour_name": "Spring",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226988_f295.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226988",
+            "brand": "Morris & Co.",
+            "design": "Compton",
+            "colour": "Spring",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226989": {
+      "record": {
+        "fabric_id": "sdg-mcop226989",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226989",
+        "brand_name": "Morris & Co.",
+        "design_name": "Compton",
+        "colour_name": "Summer Yellow",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226989_1103.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226989",
+            "brand": "Morris & Co.",
+            "design": "Compton",
+            "colour": "Summer Yellow",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226994": {
+      "record": {
+        "fabric_id": "sdg-mcop226994",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226994",
+        "brand_name": "Morris & Co.",
+        "design_name": "Merton",
+        "colour_name": "Burnt Orange/Chartreuse",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226994_f43f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226994",
+            "brand": "Morris & Co.",
+            "design": "Merton",
+            "colour": "Burnt Orange/Chartreuse",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226995": {
+      "record": {
+        "fabric_id": "sdg-mcop226995",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226995",
+        "brand_name": "Morris & Co.",
+        "design_name": "Merton",
+        "colour_name": "Leaf Green/Sky",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226995_8046.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226995",
+            "brand": "Morris & Co.",
+            "design": "Merton",
+            "colour": "Leaf Green/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226990": {
+      "record": {
+        "fabric_id": "sdg-mcop226990",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226990",
+        "brand_name": "Morris & Co.",
+        "design_name": "Woodland Weeds",
+        "colour_name": "Sap Green",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226990_ee46.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226990",
+            "brand": "Morris & Co.",
+            "design": "Woodland Weeds",
+            "colour": "Sap Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mcop226991": {
+      "record": {
+        "fabric_id": "sdg-mcop226991",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MCOP226991",
+        "brand_name": "Morris & Co.",
+        "design_name": "Woodland Weeds",
+        "colour_name": "Orange/Turquoise",
+        "collection_name": "Cornubia Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/C/MCOP226991_d906.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MCOP226991",
+            "brand": "Morris & Co.",
+            "design": "Woodland Weeds",
+            "colour": "Orange/Turquoise",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227099": {
+      "record": {
+        "fabric_id": "sdg-mamb227099",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227099",
+        "brand_name": "Morris & Co.",
+        "design_name": "Chrysanthemum",
+        "colour_name": "Indigo/Bayleaf",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227099_e749.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227099",
+            "brand": "Morris & Co.",
+            "design": "Chrysanthemum",
+            "colour": "Indigo/Bayleaf",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227100": {
+      "record": {
+        "fabric_id": "sdg-mamb227100",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227100",
+        "brand_name": "Morris & Co.",
+        "design_name": "Chrysanthemum",
+        "colour_name": "Russet",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227100_0e16.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227100",
+            "brand": "Morris & Co.",
+            "design": "Chrysanthemum",
+            "colour": "Russet",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227101": {
+      "record": {
+        "fabric_id": "sdg-mamb227101",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227101",
+        "brand_name": "Morris & Co.",
+        "design_name": "Chrysanthemum",
+        "colour_name": "Mineral/Cream",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227101_3552.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227101",
+            "brand": "Morris & Co.",
+            "design": "Chrysanthemum",
+            "colour": "Mineral/Cream",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227117": {
+      "record": {
+        "fabric_id": "sdg-mamb227117",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227117",
+        "brand_name": "Morris & Co.",
+        "design_name": "Fruit Stripe",
+        "colour_name": "Indigo",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227117_02a3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227117",
+            "brand": "Morris & Co.",
+            "design": "Fruit Stripe",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227118": {
+      "record": {
+        "fabric_id": "sdg-mamb227118",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227118",
+        "brand_name": "Morris & Co.",
+        "design_name": "Holland Park Stripe",
+        "colour_name": "Sage/Linen",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227118_b2c5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227118",
+            "brand": "Morris & Co.",
+            "design": "Holland Park Stripe",
+            "colour": "Sage/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227119": {
+      "record": {
+        "fabric_id": "sdg-mamb227119",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227119",
+        "brand_name": "Morris & Co.",
+        "design_name": "Holland Park Stripe",
+        "colour_name": "Slate/Linen",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227119_d94c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227119",
+            "brand": "Morris & Co.",
+            "design": "Holland Park Stripe",
+            "colour": "Slate/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227120": {
+      "record": {
+        "fabric_id": "sdg-mamb227120",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227120",
+        "brand_name": "Morris & Co.",
+        "design_name": "Holland Park Stripe",
+        "colour_name": "Mineral Blue",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227120_1457.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227120",
+            "brand": "Morris & Co.",
+            "design": "Holland Park Stripe",
+            "colour": "Mineral Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227122": {
+      "record": {
+        "fabric_id": "sdg-mamb227122",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227122",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle",
+        "colour_name": "Sage/Clay",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227122_1d33.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227122",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle",
+            "colour": "Sage/Clay",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227123": {
+      "record": {
+        "fabric_id": "sdg-mamb227123",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227123",
+        "brand_name": "Morris & Co.",
+        "design_name": "Honeysuckle",
+        "colour_name": "Teal/Soft Lemon",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227123_a8e7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227123",
+            "brand": "Morris & Co.",
+            "design": "Honeysuckle",
+            "colour": "Teal/Soft Lemon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227102": {
+      "record": {
+        "fabric_id": "sdg-mamb227102",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227102",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Mineral Blue",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227102_4aab.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227102",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Mineral Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227103": {
+      "record": {
+        "fabric_id": "sdg-mamb227103",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227103",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Wheat",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227103_2d25.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227103",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Wheat",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227104": {
+      "record": {
+        "fabric_id": "sdg-mamb227104",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227104",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Russet",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227104_4f31.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227104",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Russet",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227105": {
+      "record": {
+        "fabric_id": "sdg-mamb227105",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227105",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Indigo",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227105_d3b0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227105",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227106": {
+      "record": {
+        "fabric_id": "sdg-mamb227106",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227106",
+        "brand_name": "Morris & Co.",
+        "design_name": "Marigold",
+        "colour_name": "Soft Teal",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227106_47ca.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227106",
+            "brand": "Morris & Co.",
+            "design": "Marigold",
+            "colour": "Soft Teal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227121": {
+      "record": {
+        "fabric_id": "sdg-mamb227121",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227121",
+        "brand_name": "Morris & Co.",
+        "design_name": "Oak",
+        "colour_name": "Sage Green",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227121_d25d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227121",
+            "brand": "Morris & Co.",
+            "design": "Oak",
+            "colour": "Sage Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227107": {
+      "record": {
+        "fabric_id": "sdg-mamb227107",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227107",
+        "brand_name": "Morris & Co.",
+        "design_name": "Rosehip",
+        "colour_name": "Nettle",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227107_e42a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227107",
+            "brand": "Morris & Co.",
+            "design": "Rosehip",
+            "colour": "Nettle",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227108": {
+      "record": {
+        "fabric_id": "sdg-mamb227108",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227108",
+        "brand_name": "Morris & Co.",
+        "design_name": "Rosehip",
+        "colour_name": "Mineral Blue",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227108_5714.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227108",
+            "brand": "Morris & Co.",
+            "design": "Rosehip",
+            "colour": "Mineral Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227109": {
+      "record": {
+        "fabric_id": "sdg-mamb227109",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227109",
+        "brand_name": "Morris & Co.",
+        "design_name": "Rosehip",
+        "colour_name": "Wheat",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227109_8f4c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227109",
+            "brand": "Morris & Co.",
+            "design": "Rosehip",
+            "colour": "Wheat",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227110": {
+      "record": {
+        "fabric_id": "sdg-mamb227110",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227110",
+        "brand_name": "Morris & Co.",
+        "design_name": "Willow Bough",
+        "colour_name": "Russet/Wheat",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227110_fd00.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227110",
+            "brand": "Morris & Co.",
+            "design": "Willow Bough",
+            "colour": "Russet/Wheat",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227111": {
+      "record": {
+        "fabric_id": "sdg-mamb227111",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227111",
+        "brand_name": "Morris & Co.",
+        "design_name": "Willow Bough",
+        "colour_name": "Indigo",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227111_060e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227111",
+            "brand": "Morris & Co.",
+            "design": "Willow Bough",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227112": {
+      "record": {
+        "fabric_id": "sdg-mamb227112",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227112",
+        "brand_name": "Morris & Co.",
+        "design_name": "Willow Bough",
+        "colour_name": "Nettle/Sky Blue",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227112_edf7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227112",
+            "brand": "Morris & Co.",
+            "design": "Willow Bough",
+            "colour": "Nettle/Sky Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mamb227113": {
+      "record": {
+        "fabric_id": "sdg-mamb227113",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MAMB227113",
+        "brand_name": "Morris & Co.",
+        "design_name": "Willow Bough",
+        "colour_name": "Sage",
+        "collection_name": "Outdoor Performance"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/A/MAMB227113_1303.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MAMB227113",
+            "brand": "Morris & Co.",
+            "design": "Willow Bough",
+            "colour": "Sage",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf237311": {
+      "record": {
+        "fabric_id": "sdg-mewf237311",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF237311",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bird Tapestry",
+        "colour_name": "Tump Green",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF237311_3d59.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF237311",
+            "brand": "Morris & Co.",
+            "design": "Bird Tapestry",
+            "colour": "Tump Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf237312": {
+      "record": {
+        "fabric_id": "sdg-mewf237312",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF237312",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bird Tapestry",
+        "colour_name": "Webb`s Blue",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF237312_813e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF237312",
+            "brand": "Morris & Co.",
+            "design": "Bird Tapestry",
+            "colour": "Webb`s Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227036": {
+      "record": {
+        "fabric_id": "sdg-mewf227036",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227036",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bluebell",
+        "colour_name": "Leafy Arbour",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227036_55e4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227036",
+            "brand": "Morris & Co.",
+            "design": "Bluebell",
+            "colour": "Leafy Arbour",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227037": {
+      "record": {
+        "fabric_id": "sdg-mewf227037",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227037",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bluebell",
+        "colour_name": "Indigo/Rose",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227037_6a72.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227037",
+            "brand": "Morris & Co.",
+            "design": "Bluebell",
+            "colour": "Indigo/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227038": {
+      "record": {
+        "fabric_id": "sdg-mewf227038",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227038",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bluebell",
+        "colour_name": "Leaf Green/Sweet Briar",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227038_7f10.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227038",
+            "brand": "Morris & Co.",
+            "design": "Bluebell",
+            "colour": "Leaf Green/Sweet Briar",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227031": {
+      "record": {
+        "fabric_id": "sdg-mewf227031",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227031",
+        "brand_name": "Morris & Co.",
+        "design_name": "Borage",
+        "colour_name": "Sunflower",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227031_13a9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227031",
+            "brand": "Morris & Co.",
+            "design": "Borage",
+            "colour": "Sunflower",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227032": {
+      "record": {
+        "fabric_id": "sdg-mewf227032",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227032",
+        "brand_name": "Morris & Co.",
+        "design_name": "Borage",
+        "colour_name": "Indigo",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227032_5c5f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227032",
+            "brand": "Morris & Co.",
+            "design": "Borage",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227033": {
+      "record": {
+        "fabric_id": "sdg-mewf227033",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227033",
+        "brand_name": "Morris & Co.",
+        "design_name": "Borage",
+        "colour_name": "Barbed Berry",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227033_d083.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227033",
+            "brand": "Morris & Co.",
+            "design": "Borage",
+            "colour": "Barbed Berry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227027": {
+      "record": {
+        "fabric_id": "sdg-mewf227027",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227027",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bower",
+        "colour_name": "Bough`s Green/Rose",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227027_48ac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227027",
+            "brand": "Morris & Co.",
+            "design": "Bower",
+            "colour": "Bough`s Green/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227028": {
+      "record": {
+        "fabric_id": "sdg-mewf227028",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227028",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bower",
+        "colour_name": "Herball/Weld",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227028_d2ef.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227028",
+            "brand": "Morris & Co.",
+            "design": "Bower",
+            "colour": "Herball/Weld",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227029": {
+      "record": {
+        "fabric_id": "sdg-mewf227029",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227029",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bower",
+        "colour_name": "Indigo",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227029_61c5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227029",
+            "brand": "Morris & Co.",
+            "design": "Bower",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227030": {
+      "record": {
+        "fabric_id": "sdg-mewf227030",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227030",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bower",
+        "colour_name": "Barbed Berry/Indigo",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227030_ce30.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227030",
+            "brand": "Morris & Co.",
+            "design": "Bower",
+            "colour": "Barbed Berry/Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf237310": {
+      "record": {
+        "fabric_id": "sdg-mewf237310",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF237310",
+        "brand_name": "Morris & Co.",
+        "design_name": "Daisy Embroidery",
+        "colour_name": "Cream/Multi",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF237310_3eea.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF237310",
+            "brand": "Morris & Co.",
+            "design": "Daisy Embroidery",
+            "colour": "Cream/Multi",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf237306": {
+      "record": {
+        "fabric_id": "sdg-mewf237306",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF237306",
+        "brand_name": "Morris & Co.",
+        "design_name": "Dorothy`s Kilim",
+        "colour_name": "Barbed Berry/Indigo",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF237306_16a0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF237306",
+            "brand": "Morris & Co.",
+            "design": "Dorothy`s Kilim",
+            "colour": "Barbed Berry/Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf237307": {
+      "record": {
+        "fabric_id": "sdg-mewf237307",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF237307",
+        "brand_name": "Morris & Co.",
+        "design_name": "Dorothy`s Kilim",
+        "colour_name": "Sunflower/Tump Green",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF237307_e508.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF237307",
+            "brand": "Morris & Co.",
+            "design": "Dorothy`s Kilim",
+            "colour": "Sunflower/Tump Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227019": {
+      "record": {
+        "fabric_id": "sdg-mewf227019",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227019",
+        "brand_name": "Morris & Co.",
+        "design_name": "Emery`s Willow",
+        "colour_name": "Woad Blue",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227019_e275.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227019",
+            "brand": "Morris & Co.",
+            "design": "Emery`s Willow",
+            "colour": "Woad Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227020": {
+      "record": {
+        "fabric_id": "sdg-mewf227020",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227020",
+        "brand_name": "Morris & Co.",
+        "design_name": "Emery`s Willow",
+        "colour_name": "Leaf Green",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227020_d318.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227020",
+            "brand": "Morris & Co.",
+            "design": "Emery`s Willow",
+            "colour": "Leaf Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227021": {
+      "record": {
+        "fabric_id": "sdg-mewf227021",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227021",
+        "brand_name": "Morris & Co.",
+        "design_name": "Emery`s Willow",
+        "colour_name": "Citrus Stone",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227021_4d1a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227021",
+            "brand": "Morris & Co.",
+            "design": "Emery`s Willow",
+            "colour": "Citrus Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf237308": {
+      "record": {
+        "fabric_id": "sdg-mewf237308",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF237308",
+        "brand_name": "Morris & Co.",
+        "design_name": "May`s Coverlet",
+        "colour_name": "Indigo/Rose",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF237308_5004.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF237308",
+            "brand": "Morris & Co.",
+            "design": "May`s Coverlet",
+            "colour": "Indigo/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf237309": {
+      "record": {
+        "fabric_id": "sdg-mewf237309",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF237309",
+        "brand_name": "Morris & Co.",
+        "design_name": "May`s Coverlet",
+        "colour_name": "Twining Vine",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF237309_8973.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF237309",
+            "brand": "Morris & Co.",
+            "design": "May`s Coverlet",
+            "colour": "Twining Vine",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227022": {
+      "record": {
+        "fabric_id": "sdg-mewf227022",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227022",
+        "brand_name": "Morris & Co.",
+        "design_name": "Rose",
+        "colour_name": "Weld/Leaf Green",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227022_9712.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227022",
+            "brand": "Morris & Co.",
+            "design": "Rose",
+            "colour": "Weld/Leaf Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227023": {
+      "record": {
+        "fabric_id": "sdg-mewf227023",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227023",
+        "brand_name": "Morris & Co.",
+        "design_name": "Rose",
+        "colour_name": "Bough`s Green/Rose",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227023_d724.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227023",
+            "brand": "Morris & Co.",
+            "design": "Rose",
+            "colour": "Bough`s Green/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227024": {
+      "record": {
+        "fabric_id": "sdg-mewf227024",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227024",
+        "brand_name": "Morris & Co.",
+        "design_name": "Trent",
+        "colour_name": "Madder/Webb`s Blue",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227024_bb86.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227024",
+            "brand": "Morris & Co.",
+            "design": "Trent",
+            "colour": "Madder/Webb`s Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227025": {
+      "record": {
+        "fabric_id": "sdg-mewf227025",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227025",
+        "brand_name": "Morris & Co.",
+        "design_name": "Trent",
+        "colour_name": "Red House",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227025_5d03.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227025",
+            "brand": "Morris & Co.",
+            "design": "Trent",
+            "colour": "Red House",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mewf227026": {
+      "record": {
+        "fabric_id": "sdg-mewf227026",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MEWF227026",
+        "brand_name": "Morris & Co.",
+        "design_name": "Trent",
+        "colour_name": "Woad Blue",
+        "collection_name": "Emery Walker`s House Fabric Collection"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/E/MEWF227026_998e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MEWF227026",
+            "brand": "Morris & Co.",
+            "design": "Trent",
+            "colour": "Woad Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar227000": {
+      "record": {
+        "fabric_id": "sdg-mwar227000",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR227000",
+        "brand_name": "Morris & Co.",
+        "design_name": "Artichoke Velvet",
+        "colour_name": "Tump",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR227000_002e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR227000",
+            "brand": "Morris & Co.",
+            "design": "Artichoke Velvet",
+            "colour": "Tump",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar227001": {
+      "record": {
+        "fabric_id": "sdg-mwar227001",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR227001",
+        "brand_name": "Morris & Co.",
+        "design_name": "Artichoke Velvet",
+        "colour_name": "Barbed Berry",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR227001_0e8b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR227001",
+            "brand": "Morris & Co.",
+            "design": "Artichoke Velvet",
+            "colour": "Barbed Berry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar227002": {
+      "record": {
+        "fabric_id": "sdg-mwar227002",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR227002",
+        "brand_name": "Morris & Co.",
+        "design_name": "Artichoke Velvet",
+        "colour_name": "Inky Fingers/Blush",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR227002_ec9b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR227002",
+            "brand": "Morris & Co.",
+            "design": "Artichoke Velvet",
+            "colour": "Inky Fingers/Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar227003": {
+      "record": {
+        "fabric_id": "sdg-mwar227003",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR227003",
+        "brand_name": "Morris & Co.",
+        "design_name": "Artichoke Velvet",
+        "colour_name": "Midnight/Pearwood",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR227003_f403.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR227003",
+            "brand": "Morris & Co.",
+            "design": "Artichoke Velvet",
+            "colour": "Midnight/Pearwood",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237292": {
+      "record": {
+        "fabric_id": "sdg-mwar237292",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237292",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bluebell Embroidery",
+        "colour_name": "Tump/Webb`s Blue",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237292_a3ba.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237292",
+            "brand": "Morris & Co.",
+            "design": "Bluebell Embroidery",
+            "colour": "Tump/Webb`s Blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237293": {
+      "record": {
+        "fabric_id": "sdg-mwar237293",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237293",
+        "brand_name": "Morris & Co.",
+        "design_name": "Bluebell Embroidery",
+        "colour_name": "Indigo/Russet",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237293_4fbe.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237293",
+            "brand": "Morris & Co.",
+            "design": "Bluebell Embroidery",
+            "colour": "Indigo/Russet",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237280": {
+      "record": {
+        "fabric_id": "sdg-mwar237280",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237280",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Caffoy Velvet",
+        "colour_name": "Sussex Rush",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237280_fea7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237280",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Caffoy Velvet",
+            "colour": "Sussex Rush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237281": {
+      "record": {
+        "fabric_id": "sdg-mwar237281",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237281",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Caffoy Velvet",
+        "colour_name": "Redhouse",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237281_3cd9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237281",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Caffoy Velvet",
+            "colour": "Redhouse",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237282": {
+      "record": {
+        "fabric_id": "sdg-mwar237282",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237282",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Caffoy Velvet",
+        "colour_name": "Inky Fingers",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237282_4cfb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237282",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Caffoy Velvet",
+            "colour": "Inky Fingers",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237283": {
+      "record": {
+        "fabric_id": "sdg-mwar237283",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237283",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Caffoy Velvet",
+        "colour_name": "Tump",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237283_2d56.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237283",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Caffoy Velvet",
+            "colour": "Tump",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237284": {
+      "record": {
+        "fabric_id": "sdg-mwar237284",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237284",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Caffoy Velvet",
+        "colour_name": "Barbed Berry",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237284_b4d5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237284",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Caffoy Velvet",
+            "colour": "Barbed Berry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237285": {
+      "record": {
+        "fabric_id": "sdg-mwar237285",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237285",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Caffoy Velvet",
+        "colour_name": "Webb`s blue",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237285_4def.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237285",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Caffoy Velvet",
+            "colour": "Webb`s blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237286": {
+      "record": {
+        "fabric_id": "sdg-mwar237286",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237286",
+        "brand_name": "Morris & Co.",
+        "design_name": "Sunflower Caffoy Velvet",
+        "colour_name": "Fired Biscuit",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237286_c0de.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237286",
+            "brand": "Morris & Co.",
+            "design": "Sunflower Caffoy Velvet",
+            "colour": "Fired Biscuit",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237294": {
+      "record": {
+        "fabric_id": "sdg-mwar237294",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237294",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Sussex Rush",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237294_0ec4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237294",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Sussex Rush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237295": {
+      "record": {
+        "fabric_id": "sdg-mwar237295",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237295",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Redhouse",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237295_f2d5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237295",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Redhouse",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237296": {
+      "record": {
+        "fabric_id": "sdg-mwar237296",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237296",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Inky Fingers",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237296_d2f9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237296",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Inky Fingers",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237297": {
+      "record": {
+        "fabric_id": "sdg-mwar237297",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237297",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Tump",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237297_fdee.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237297",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Tump",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237298": {
+      "record": {
+        "fabric_id": "sdg-mwar237298",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237298",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Barbed Berry",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237298_be44.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237298",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Barbed Berry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237299": {
+      "record": {
+        "fabric_id": "sdg-mwar237299",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237299",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Webb`s blue",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237299_482b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237299",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Webb`s blue",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237300": {
+      "record": {
+        "fabric_id": "sdg-mwar237300",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237300",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Fired Biscuit",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237300_bbb9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237300",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Fired Biscuit",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237301": {
+      "record": {
+        "fabric_id": "sdg-mwar237301",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237301",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Citrus Stone",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237301_ceaf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237301",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Citrus Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237302": {
+      "record": {
+        "fabric_id": "sdg-mwar237302",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237302",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Standen Clay",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237302_7259.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237302",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Standen Clay",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237303": {
+      "record": {
+        "fabric_id": "sdg-mwar237303",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237303",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Mumington`s Stem",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237303_8202.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237303",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Mumington`s Stem",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237304": {
+      "record": {
+        "fabric_id": "sdg-mwar237304",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237304",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Pearwood",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237304_5cef.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237304",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Pearwood",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-mwar237305": {
+      "record": {
+        "fabric_id": "sdg-mwar237305",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "MWAR237305",
+        "brand_name": "Morris & Co.",
+        "design_name": "Wardle Velvet",
+        "colour_name": "Muddy Warren",
+        "collection_name": "Wardle Velvets"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/M/W/MWAR237305_bbac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "MWAR237305",
+            "brand": "Morris & Co.",
+            "design": "Wardle Velvet",
+            "colour": "Muddy Warren",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

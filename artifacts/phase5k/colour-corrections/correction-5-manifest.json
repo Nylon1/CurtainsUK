@@ -1,0 +1,184 @@
+{
+  "results": {
+    "sdg-hsgr131882": {
+      "record": {
+        "fabric_id": "sdg-hsgr131882",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HSGR131882",
+        "brand_name": "Harlequin",
+        "design_name": "Vitto",
+        "colour_name": "Flamenco",
+        "collection_name": "Sgraffito II"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/S/HSGR131882_5071.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HSGR131882",
+            "brand": "Harlequin",
+            "design": "Vitto",
+            "colour": "Flamenco",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef120974": {
+      "record": {
+        "fabric_id": "sdg-htef120974",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF120974",
+        "brand_name": "Harlequin",
+        "design_name": "Aureilia",
+        "colour_name": "Sandstone Chalk",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF120974_3afa.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF120974",
+            "brand": "Harlequin",
+            "design": "Aureilia",
+            "colour": "Sandstone Chalk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-htef121008": {
+      "record": {
+        "fabric_id": "sdg-htef121008",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HTEF121008",
+        "brand_name": "Harlequin",
+        "design_name": "Dance of Adornment",
+        "colour_name": "Wilderness/ Nectar/ Pomegranate",
+        "collection_name": "Colour 1 Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/T/HTEF121008_f364.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HTEF121008",
+            "brand": "Harlequin",
+            "design": "Dance of Adornment",
+            "colour": "Wilderness/ Nectar/ Pomegranate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hwo03224": {
+      "record": {
+        "fabric_id": "sdg-hwo03224",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HWO03224",
+        "brand_name": "Harlequin",
+        "design_name": "What A Hoot",
+        "colour_name": "Pink/Aquamarine/Lime",
+        "collection_name": "Book of Little Treasures Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/W/HWO03224_b2d9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HWO03224",
+            "brand": "Harlequin",
+            "design": "What A Hoot",
+            "colour": "Pink/Aquamarine/Lime",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hwo03229": {
+      "record": {
+        "fabric_id": "sdg-hwo03229",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HWO03229",
+        "brand_name": "Harlequin",
+        "design_name": "Jolly Jurassic",
+        "colour_name": "Aqua/Tangerine/Apple",
+        "collection_name": "Book of Little Treasures Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/W/HWO03229_f3a4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HWO03229",
+            "brand": "Harlequin",
+            "design": "Jolly Jurassic",
+            "colour": "Aqua/Tangerine/Apple",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hwo03232": {
+      "record": {
+        "fabric_id": "sdg-hwo03232",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HWO03232",
+        "brand_name": "Harlequin",
+        "design_name": "Go Go Retro",
+        "colour_name": "Strawberry/Blue/Lemon",
+        "collection_name": "Book of Little Treasures Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/W/HWO03232_8a61.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HWO03232",
+            "brand": "Harlequin",
+            "design": "Go Go Retro",
+            "colour": "Strawberry/Blue/Lemon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

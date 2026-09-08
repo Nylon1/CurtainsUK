@@ -1,0 +1,53 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "rows": [
+    {
+      "master_id": "sdg-hama120337",
+      "workbook_sku": "HAMA120337",
+      "portal_sku": "HAMA120337",
+      "brand": "Harlequin",
+      "design": "Limosa",
+      "portal_design": "Limosa",
+      "workbook_colour": "Loganberry/Raspberry",
+      "portal_colour": "Loganberry/Raspberry/Olive",
+      "expected_revision": "2026-09-07T20:33:44.045353+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-hama120341",
+      "workbook_sku": "HAMA120341",
+      "portal_sku": "HAMA120341",
+      "brand": "Harlequin",
+      "design": "Limosa",
+      "portal_design": "Limosa",
+      "workbook_colour": "Mustard / Cocao / Stone",
+      "portal_colour": "Mustard/Cocoa/Stone",
+      "expected_revision": "2026-09-07T20:33:44.045353+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-hgat131586",
+      "workbook_sku": "HGAT131586",
+      "portal_sku": "HGAT131586",
+      "brand": "Harlequin",
+      "design": "Aster",
+      "portal_design": "Aster",
+      "workbook_colour": "Russet/Willow/Dusk",
+      "portal_colour": "Russet/Willow/Nutmeg/Dusk",
+      "expected_revision": "2026-09-07T20:33:45.012847+00:00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-hgat131588",
+      "workbook_sku": "HGAT131588",
+      "portal_sku": "HGAT131588",
+      "brand": "Harlequin",
+      "design": "Aster",
+      "portal_design": "Aster",
+      "workbook_colour": "Amber/Amethyst/Gold",
+      "portal_colour": "Amber/Amethyst/Gold/Ink",
+      "expected_revision": "2026-09-07T20:33:45.012847+00:00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

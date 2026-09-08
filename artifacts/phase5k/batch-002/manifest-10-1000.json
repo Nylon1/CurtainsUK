@@ -1,0 +1,934 @@
+{
+  "results": {
+    "sdg-drlc237072": {
+      "record": {
+        "fabric_id": "sdg-drlc237072",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRLC237072",
+        "brand_name": "Sanderson",
+        "design_name": "Rue Linen",
+        "colour_name": "Graphite",
+        "collection_name": "Rue Linen"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRLC237072_5640.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRLC237072",
+            "brand": "Sanderson",
+            "design": "Rue Linen",
+            "colour": "Graphite",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drlc237073": {
+      "record": {
+        "fabric_id": "sdg-drlc237073",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRLC237073",
+        "brand_name": "Sanderson",
+        "design_name": "Rue Linen",
+        "colour_name": "Mercury",
+        "collection_name": "Rue Linen"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRLC237073_fb49.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRLC237073",
+            "brand": "Sanderson",
+            "design": "Rue Linen",
+            "colour": "Mercury",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drlc237074": {
+      "record": {
+        "fabric_id": "sdg-drlc237074",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRLC237074",
+        "brand_name": "Sanderson",
+        "design_name": "Rue Linen",
+        "colour_name": "Elephant",
+        "collection_name": "Rue Linen"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRLC237074_8dcc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRLC237074",
+            "brand": "Sanderson",
+            "design": "Rue Linen",
+            "colour": "Elephant",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drlc237075": {
+      "record": {
+        "fabric_id": "sdg-drlc237075",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRLC237075",
+        "brand_name": "Sanderson",
+        "design_name": "Rue Linen",
+        "colour_name": "Mouse",
+        "collection_name": "Rue Linen"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRLC237075_0bc6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRLC237075",
+            "brand": "Sanderson",
+            "design": "Rue Linen",
+            "colour": "Mouse",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-drlc237076": {
+      "record": {
+        "fabric_id": "sdg-drlc237076",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DRLC237076",
+        "brand_name": "Sanderson",
+        "design_name": "Rue Linen",
+        "colour_name": "Stone",
+        "collection_name": "Rue Linen"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/R/DRLC237076_c189.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DRLC237076",
+            "brand": "Sanderson",
+            "design": "Rue Linen",
+            "colour": "Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226748": {
+      "record": {
+        "fabric_id": "sdg-dntf226748",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226748",
+        "brand_name": "Sanderson",
+        "design_name": "Summer Peony",
+        "colour_name": "Fuchshia/Rose",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226748_1d4f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226748",
+            "brand": "Sanderson",
+            "design": "Summer Peony",
+            "colour": "Fuchshia/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226747": {
+      "record": {
+        "fabric_id": "sdg-dntf226747",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226747",
+        "brand_name": "Sanderson",
+        "design_name": "Summer Peony",
+        "colour_name": "Vineyard/Rose",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226747_6414.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226747",
+            "brand": "Sanderson",
+            "design": "Summer Peony",
+            "colour": "Vineyard/Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226749": {
+      "record": {
+        "fabric_id": "sdg-dntf226749",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226749",
+        "brand_name": "Sanderson",
+        "design_name": "Summer Peony",
+        "colour_name": "Newby Green",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226749_b753.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226749",
+            "brand": "Sanderson",
+            "design": "Summer Peony",
+            "colour": "Newby Green",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226741": {
+      "record": {
+        "fabric_id": "sdg-dntf226741",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226741",
+        "brand_name": "Sanderson",
+        "design_name": "Swallows at Sea",
+        "colour_name": "Navy",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226741_560b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226741",
+            "brand": "Sanderson",
+            "design": "Swallows at Sea",
+            "colour": "Navy",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226742": {
+      "record": {
+        "fabric_id": "sdg-dntf226742",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226742",
+        "brand_name": "Sanderson",
+        "design_name": "Swallows at Sea",
+        "colour_name": "Linen",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226742_b17b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226742",
+            "brand": "Sanderson",
+            "design": "Swallows at Sea",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226750": {
+      "record": {
+        "fabric_id": "sdg-dntf226750",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226750",
+        "brand_name": "Sanderson",
+        "design_name": "Tilia Lime",
+        "colour_name": "Stone",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226750_042f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226750",
+            "brand": "Sanderson",
+            "design": "Tilia Lime",
+            "colour": "Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226751": {
+      "record": {
+        "fabric_id": "sdg-dntf226751",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226751",
+        "brand_name": "Sanderson",
+        "design_name": "Tilia Lime",
+        "colour_name": "Soft Teal",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226751_5513.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226751",
+            "brand": "Sanderson",
+            "design": "Tilia Lime",
+            "colour": "Soft Teal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dntf226752": {
+      "record": {
+        "fabric_id": "sdg-dntf226752",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DNTF226752",
+        "brand_name": "Sanderson",
+        "design_name": "Tilia Lime",
+        "colour_name": "Gold",
+        "collection_name": "A Celebration of the National Trust"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/N/DNTF226752_c655.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DNTF226752",
+            "brand": "Sanderson",
+            "design": "Tilia Lime",
+            "colour": "Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237119": {
+      "record": {
+        "fabric_id": "sdg-dtuc237119",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237119",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Manilla Beige",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237119_a536.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237119",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Manilla Beige",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237121": {
+      "record": {
+        "fabric_id": "sdg-dtuc237121",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237121",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Marzipan",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237121_77ac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237121",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Marzipan",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237125": {
+      "record": {
+        "fabric_id": "sdg-dtuc237125",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237125",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Grey Squirrel",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237125_cf85.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237125",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Grey Squirrel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237127": {
+      "record": {
+        "fabric_id": "sdg-dtuc237127",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237127",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Sepia",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237127_d136.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237127",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Sepia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237128": {
+      "record": {
+        "fabric_id": "sdg-dtuc237128",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237128",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Field Mushroom",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237128_b319.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237128",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Field Mushroom",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237129": {
+      "record": {
+        "fabric_id": "sdg-dtuc237129",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237129",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Espresso",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237129_26b1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237129",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Espresso",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237130": {
+      "record": {
+        "fabric_id": "sdg-dtuc237130",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237130",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Wren Feather",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237130_a9a4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237130",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Wren Feather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237131": {
+      "record": {
+        "fabric_id": "sdg-dtuc237131",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237131",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Elephant",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237131_dfcc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237131",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Elephant",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237133": {
+      "record": {
+        "fabric_id": "sdg-dtuc237133",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237133",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Aluminium",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237133_c51f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237133",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Aluminium",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237134": {
+      "record": {
+        "fabric_id": "sdg-dtuc237134",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237134",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Gunmetal",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237134_e781.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237134",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Gunmetal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237135": {
+      "record": {
+        "fabric_id": "sdg-dtuc237135",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237135",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Pewter",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237135_01a0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237135",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Pewter",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237136": {
+      "record": {
+        "fabric_id": "sdg-dtuc237136",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237136",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Mercury",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237136_9101.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237136",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Mercury",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237137": {
+      "record": {
+        "fabric_id": "sdg-dtuc237137",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237137",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Slate",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237137_47de.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237137",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237138": {
+      "record": {
+        "fabric_id": "sdg-dtuc237138",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237138",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Flint",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237138_f059.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237138",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Flint",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237139": {
+      "record": {
+        "fabric_id": "sdg-dtuc237139",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237139",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Graphite",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237139_2d9d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237139",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Graphite",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237140": {
+      "record": {
+        "fabric_id": "sdg-dtuc237140",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237140",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Carbon",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237140_8ddc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237140",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Carbon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237141": {
+      "record": {
+        "fabric_id": "sdg-dtuc237141",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237141",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Doe",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237141_0107.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237141",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Doe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-dtuc237142": {
+      "record": {
+        "fabric_id": "sdg-dtuc237142",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "DTUC237142",
+        "brand_name": "Sanderson",
+        "design_name": "Tuscany II",
+        "colour_name": "Hay",
+        "collection_name": "Tuscany II Weaves"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/D/T/DTUC237142_6cf7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "DTUC237142",
+            "brand": "Sanderson",
+            "design": "Tuscany II",
+            "colour": "Hay",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

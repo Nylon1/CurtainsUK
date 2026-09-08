@@ -1,0 +1,41 @@
+{
+  "publicRecords": 1000,
+  "theme": "Dawn",
+  "themeId": "182264234363",
+  "unpublishedPreviewObserved": true,
+  "desktop": {
+    "brandFilter": "PASS",
+    "keywordSearch": "PASS",
+    "detailImage": "PASS"
+  },
+  "mobile": {
+    "cssViewport": [
+      390,
+      844
+    ],
+    "horizontalOverflow": false,
+    "imageNaturalSize": [
+      1366,
+      1366
+    ]
+  },
+  "handoff": {
+    "fabricId": "sdg-aarc520005",
+    "window": "bay-window",
+    "preserved": true,
+    "measurementsCm": {
+      "drop": 220,
+      "baySections": [
+        80,
+        180,
+        80
+      ]
+    },
+    "priceMessage": "This fabric price must be confirmed before it can be configured",
+    "visibleCheckoutActions": 0
+  },
+  "sampleState": "UNKNOWN_DISABLED",
+  "evidence": "EMAIL_REFERENCE_NO_UPLOAD",
+  "draftOrdersCreated": 0,
+  "paymentsEnabled": false
+}

@@ -1,0 +1,37 @@
+{
+  "observed": 7,
+  "exactIdentityMatches": 0,
+  "withheld": [
+    {
+      "sku": "F1701/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1701/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1704/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1704/02/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1704/03/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1705/01/PVC",
+      "reason": "NO_EXACT_MASTER_SKU"
+    },
+    {
+      "sku": "F1374/06",
+      "reason": "NO_EXACT_MASTER_SKU"
+    }
+  ],
+  "databaseWrites": 0,
+  "pricingChanges": 0,
+  "reconciliation": []
+}

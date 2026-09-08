@@ -1,0 +1,5374 @@
+{
+  "results": {
+    "sdg-f0752-12": {
+      "record": {
+        "fabric_id": "sdg-f0752-12",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0752/12",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Moda",
+        "colour_name": "Taupe",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0752_12_acf5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0752/12",
+            "brand": "Clarke & Clarke",
+            "design": "Moda",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-01": {
+      "record": {
+        "fabric_id": "sdg-f0749-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Aqua",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_01_e288.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/01",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-02": {
+      "record": {
+        "fabric_id": "sdg-f0749-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Citrus",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_02_0122.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/02",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Citrus",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-03": {
+      "record": {
+        "fabric_id": "sdg-f0749-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Damson",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_03_5c2c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/03",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Damson",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-04": {
+      "record": {
+        "fabric_id": "sdg-f0749-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Ebony",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_04_ddb3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/04",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Ebony",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-05": {
+      "record": {
+        "fabric_id": "sdg-f0749-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Espresso",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_05_25f6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/05",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Espresso",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-06": {
+      "record": {
+        "fabric_id": "sdg-f0749-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Fuchsia",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_06_46a2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/06",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Fuchsia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-07": {
+      "record": {
+        "fabric_id": "sdg-f0749-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Gold",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_07_6bf5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/07",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-08": {
+      "record": {
+        "fabric_id": "sdg-f0749-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Natural",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_08_19f9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/08",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-09": {
+      "record": {
+        "fabric_id": "sdg-f0749-09",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/09",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Pebble",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_09_8a68.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/09",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Pebble",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-10": {
+      "record": {
+        "fabric_id": "sdg-f0749-10",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/10",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Rouge",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_10_b80c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/10",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Rouge",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-11": {
+      "record": {
+        "fabric_id": "sdg-f0749-11",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/11",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Sand",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_11_4a56.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/11",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Sand",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-12": {
+      "record": {
+        "fabric_id": "sdg-f0749-12",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/12",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Spice",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_12_4307.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/12",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0749-13": {
+      "record": {
+        "fabric_id": "sdg-f0749-13",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0749/13",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Onda",
+        "colour_name": "Steel",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0749_13_522e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0749/13",
+            "brand": "Clarke & Clarke",
+            "design": "Onda",
+            "colour": "Steel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-01": {
+      "record": {
+        "fabric_id": "sdg-f0751-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Aqua",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_01_bcfa.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/01",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-02": {
+      "record": {
+        "fabric_id": "sdg-f0751-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Citrus",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_02_d55e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/02",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Citrus",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-03": {
+      "record": {
+        "fabric_id": "sdg-f0751-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Damson",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_03_90b4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/03",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Damson",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-04": {
+      "record": {
+        "fabric_id": "sdg-f0751-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Ebony",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_04_1861.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/04",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Ebony",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-05": {
+      "record": {
+        "fabric_id": "sdg-f0751-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Espresso",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_05_6c31.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/05",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Espresso",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-06": {
+      "record": {
+        "fabric_id": "sdg-f0751-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Fuchsia",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_06_3af4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/06",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Fuchsia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-07": {
+      "record": {
+        "fabric_id": "sdg-f0751-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Natural",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_07_9f06.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/07",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-08": {
+      "record": {
+        "fabric_id": "sdg-f0751-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Pewter",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_08_8465.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/08",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Pewter",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-09": {
+      "record": {
+        "fabric_id": "sdg-f0751-09",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/09",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Rouge",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_09_3123.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/09",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Rouge",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-10": {
+      "record": {
+        "fabric_id": "sdg-f0751-10",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/10",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Spice",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_10_5bbd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/10",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0751-11": {
+      "record": {
+        "fabric_id": "sdg-f0751-11",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0751/11",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Patina",
+        "colour_name": "Taupe",
+        "collection_name": "Dimensions"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0751_11_a893.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0751/11",
+            "brand": "Clarke & Clarke",
+            "design": "Patina",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0740-01": {
+      "record": {
+        "fabric_id": "sdg-f0740-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0740/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Welbeck",
+        "colour_name": "Acacia",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0740_01_85e5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0740/01",
+            "brand": "Clarke & Clarke",
+            "design": "Welbeck",
+            "colour": "Acacia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0740-02": {
+      "record": {
+        "fabric_id": "sdg-f0740-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0740/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Welbeck",
+        "colour_name": "Chambray",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0740_02_cd80.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0740/02",
+            "brand": "Clarke & Clarke",
+            "design": "Welbeck",
+            "colour": "Chambray",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0740-03": {
+      "record": {
+        "fabric_id": "sdg-f0740-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0740/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Welbeck",
+        "colour_name": "Charcoal",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0740_03_2d38.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0740/03",
+            "brand": "Clarke & Clarke",
+            "design": "Welbeck",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0740-04": {
+      "record": {
+        "fabric_id": "sdg-f0740-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0740/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Welbeck",
+        "colour_name": "Duckegg",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0740_04_d05b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0740/04",
+            "brand": "Clarke & Clarke",
+            "design": "Welbeck",
+            "colour": "Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0740-05": {
+      "record": {
+        "fabric_id": "sdg-f0740-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0740/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Welbeck",
+        "colour_name": "Orchid",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0740_05_4126.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0740/05",
+            "brand": "Clarke & Clarke",
+            "design": "Welbeck",
+            "colour": "Orchid",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0741-01": {
+      "record": {
+        "fabric_id": "sdg-f0741-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0741/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Woburn",
+        "colour_name": "Acacia",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0741_01_7b50.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0741/01",
+            "brand": "Clarke & Clarke",
+            "design": "Woburn",
+            "colour": "Acacia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0741-02": {
+      "record": {
+        "fabric_id": "sdg-f0741-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0741/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Woburn",
+        "colour_name": "Chambray",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0741_02_049c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0741/02",
+            "brand": "Clarke & Clarke",
+            "design": "Woburn",
+            "colour": "Chambray",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0741-03": {
+      "record": {
+        "fabric_id": "sdg-f0741-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0741/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Woburn",
+        "colour_name": "Charcoal",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0741_03_ad4f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0741/03",
+            "brand": "Clarke & Clarke",
+            "design": "Woburn",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0741-04": {
+      "record": {
+        "fabric_id": "sdg-f0741-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0741/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Woburn",
+        "colour_name": "Duckegg",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0741_04_9f76.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0741/04",
+            "brand": "Clarke & Clarke",
+            "design": "Woburn",
+            "colour": "Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0741-05": {
+      "record": {
+        "fabric_id": "sdg-f0741-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0741/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Woburn",
+        "colour_name": "Taupe",
+        "collection_name": "Manor House"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0741_05_2706.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0741/05",
+            "brand": "Clarke & Clarke",
+            "design": "Woburn",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-01": {
+      "record": {
+        "fabric_id": "sdg-f0804-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Charcoal",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_01_8ff9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/01",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-02": {
+      "record": {
+        "fabric_id": "sdg-f0804-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Citrus",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_02_8abf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/02",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Citrus",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-03": {
+      "record": {
+        "fabric_id": "sdg-f0804-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Indigo",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_03_b2ac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/03",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-04": {
+      "record": {
+        "fabric_id": "sdg-f0804-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Lagoon",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_04_88c7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/04",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Lagoon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-05": {
+      "record": {
+        "fabric_id": "sdg-f0804-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Orchid",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_05_71d4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/05",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Orchid",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-06": {
+      "record": {
+        "fabric_id": "sdg-f0804-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Passion",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_06_60d0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/06",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Passion",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-07": {
+      "record": {
+        "fabric_id": "sdg-f0804-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Spice",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_07_0e72.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/07",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0804-08": {
+      "record": {
+        "fabric_id": "sdg-f0804-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0804/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Beauvoir",
+        "colour_name": "Taupe",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0804_08_a633.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0804/08",
+            "brand": "Clarke & Clarke",
+            "design": "Beauvoir",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-01": {
+      "record": {
+        "fabric_id": "sdg-f0805-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Charcoal",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_01_07fa.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/01",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-02": {
+      "record": {
+        "fabric_id": "sdg-f0805-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Espresso",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_02_2f56.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/02",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Espresso",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-03": {
+      "record": {
+        "fabric_id": "sdg-f0805-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Indigo",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_03_48be.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/03",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-04": {
+      "record": {
+        "fabric_id": "sdg-f0805-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Lagoon",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_04_616f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/04",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Lagoon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-05": {
+      "record": {
+        "fabric_id": "sdg-f0805-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Natural",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_05_9b9d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/05",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-06": {
+      "record": {
+        "fabric_id": "sdg-f0805-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Passion",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_06_2757.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/06",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Passion",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-07": {
+      "record": {
+        "fabric_id": "sdg-f0805-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Stone",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_07_4e9b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/07",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Stone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0805-08": {
+      "record": {
+        "fabric_id": "sdg-f0805-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0805/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gautier",
+        "colour_name": "Taupe",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0805_08_90b6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0805/08",
+            "brand": "Clarke & Clarke",
+            "design": "Gautier",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0806-02": {
+      "record": {
+        "fabric_id": "sdg-f0806-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0806/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Latour",
+        "colour_name": "Citrus",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0806_02_e0b0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0806/02",
+            "brand": "Clarke & Clarke",
+            "design": "Latour",
+            "colour": "Citrus",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0806-03": {
+      "record": {
+        "fabric_id": "sdg-f0806-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0806/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Latour",
+        "colour_name": "Damson",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0806_03_aaae.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0806/03",
+            "brand": "Clarke & Clarke",
+            "design": "Latour",
+            "colour": "Damson",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0806-04": {
+      "record": {
+        "fabric_id": "sdg-f0806-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0806/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Latour",
+        "colour_name": "Indigo",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0806_04_9c86.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0806/04",
+            "brand": "Clarke & Clarke",
+            "design": "Latour",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0806-05": {
+      "record": {
+        "fabric_id": "sdg-f0806-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0806/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Latour",
+        "colour_name": "Lagoon",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0806_05_55f9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0806/05",
+            "brand": "Clarke & Clarke",
+            "design": "Latour",
+            "colour": "Lagoon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0806-06": {
+      "record": {
+        "fabric_id": "sdg-f0806-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0806/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Latour",
+        "colour_name": "Passion",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0806_06_7d01.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0806/06",
+            "brand": "Clarke & Clarke",
+            "design": "Latour",
+            "colour": "Passion",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0806-07": {
+      "record": {
+        "fabric_id": "sdg-f0806-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0806/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Latour",
+        "colour_name": "Spice",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0806_07_b194.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0806/07",
+            "brand": "Clarke & Clarke",
+            "design": "Latour",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0806-08": {
+      "record": {
+        "fabric_id": "sdg-f0806-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0806/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Latour",
+        "colour_name": "Taupe",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0806_08_5744.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0806/08",
+            "brand": "Clarke & Clarke",
+            "design": "Latour",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-01": {
+      "record": {
+        "fabric_id": "sdg-f0807-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Charcoal",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_01_1438.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/01",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-02": {
+      "record": {
+        "fabric_id": "sdg-f0807-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Citrus",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_02_f7e5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/02",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Citrus",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-03": {
+      "record": {
+        "fabric_id": "sdg-f0807-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Damson",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_03_27ef.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/03",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Damson",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-04": {
+      "record": {
+        "fabric_id": "sdg-f0807-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Indigo",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_04_4f1e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/04",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Indigo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-05": {
+      "record": {
+        "fabric_id": "sdg-f0807-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Lagoon",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_05_85f1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/05",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Lagoon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-06": {
+      "record": {
+        "fabric_id": "sdg-f0807-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Passion",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_06_3948.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/06",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Passion",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-07": {
+      "record": {
+        "fabric_id": "sdg-f0807-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Spice",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_07_d5d3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/07",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0807-08": {
+      "record": {
+        "fabric_id": "sdg-f0807-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0807/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Mansour",
+        "colour_name": "Taupe",
+        "collection_name": "Latour"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0807_08_1244.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0807/08",
+            "brand": "Clarke & Clarke",
+            "design": "Mansour",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0947-02": {
+      "record": {
+        "fabric_id": "sdg-f0947-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0947/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Aviemore",
+        "colour_name": "Denim",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0947_02_f9a9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0947/02",
+            "brand": "Clarke & Clarke",
+            "design": "Aviemore",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0947-04": {
+      "record": {
+        "fabric_id": "sdg-f0947-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0947/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Aviemore",
+        "colour_name": "Flannel",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0947_04_0331.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0947/04",
+            "brand": "Clarke & Clarke",
+            "design": "Aviemore",
+            "colour": "Flannel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0867-01": {
+      "record": {
+        "fabric_id": "sdg-f0867-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0867/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Duomo",
+        "colour_name": "Antique",
+        "collection_name": "Imperiale"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0867_01_739a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0867/01",
+            "brand": "Clarke & Clarke",
+            "design": "Duomo",
+            "colour": "Antique",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0867-02": {
+      "record": {
+        "fabric_id": "sdg-f0867-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0867/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Duomo",
+        "colour_name": "Chicory",
+        "collection_name": "Imperiale"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0867_02_dde4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0867/02",
+            "brand": "Clarke & Clarke",
+            "design": "Duomo",
+            "colour": "Chicory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0867-03": {
+      "record": {
+        "fabric_id": "sdg-f0867-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0867/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Duomo",
+        "colour_name": "Ebony",
+        "collection_name": "Imperiale"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0867_03_ff8e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0867/03",
+            "brand": "Clarke & Clarke",
+            "design": "Duomo",
+            "colour": "Ebony",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0867-04": {
+      "record": {
+        "fabric_id": "sdg-f0867-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0867/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Duomo",
+        "colour_name": "Ivory",
+        "collection_name": "Imperiale"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0867_04_459b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0867/04",
+            "brand": "Clarke & Clarke",
+            "design": "Duomo",
+            "colour": "Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0867-05": {
+      "record": {
+        "fabric_id": "sdg-f0867-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0867/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Duomo",
+        "colour_name": "Linen",
+        "collection_name": "Imperiale"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0867_05_bb0a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0867/05",
+            "brand": "Clarke & Clarke",
+            "design": "Duomo",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0867-06": {
+      "record": {
+        "fabric_id": "sdg-f0867-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0867/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Duomo",
+        "colour_name": "Mineral",
+        "collection_name": "Imperiale"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0867_06_a2f9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0867/06",
+            "brand": "Clarke & Clarke",
+            "design": "Duomo",
+            "colour": "Mineral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0867-07": {
+      "record": {
+        "fabric_id": "sdg-f0867-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0867/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Duomo",
+        "colour_name": "Pebble",
+        "collection_name": "Imperiale"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0867_07_0e33.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0867/07",
+            "brand": "Clarke & Clarke",
+            "design": "Duomo",
+            "colour": "Pebble",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0949-04": {
+      "record": {
+        "fabric_id": "sdg-f0949-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0949/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Glenmore",
+        "colour_name": "Flannel",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0949_04_2729.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0949/04",
+            "brand": "Clarke & Clarke",
+            "design": "Glenmore",
+            "colour": "Flannel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0949-08": {
+      "record": {
+        "fabric_id": "sdg-f0949-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0949/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Glenmore",
+        "colour_name": "Red",
+        "collection_name": "Edgeworth"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0949_08_10a3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0949/08",
+            "brand": "Clarke & Clarke",
+            "design": "Glenmore",
+            "colour": "Red",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1009-01": {
+      "record": {
+        "fabric_id": "sdg-f1009-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1009/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Pastiche",
+        "colour_name": "Chartreuse",
+        "collection_name": "Halcyon"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1009_01_3b2a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1009/01",
+            "brand": "Clarke & Clarke",
+            "design": "Pastiche",
+            "colour": "Chartreuse",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1009-02": {
+      "record": {
+        "fabric_id": "sdg-f1009-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1009/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Pastiche",
+        "colour_name": "Duckegg",
+        "collection_name": "Halcyon"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1009_02_4c97.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1009/02",
+            "brand": "Clarke & Clarke",
+            "design": "Pastiche",
+            "colour": "Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1009-03": {
+      "record": {
+        "fabric_id": "sdg-f1009-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1009/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Pastiche",
+        "colour_name": "Heather",
+        "collection_name": "Halcyon"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1009_03_884a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1009/03",
+            "brand": "Clarke & Clarke",
+            "design": "Pastiche",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1009-04": {
+      "record": {
+        "fabric_id": "sdg-f1009-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1009/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Pastiche",
+        "colour_name": "Mist",
+        "collection_name": "Halcyon"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1009_04_164f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1009/04",
+            "brand": "Clarke & Clarke",
+            "design": "Pastiche",
+            "colour": "Mist",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1009-05": {
+      "record": {
+        "fabric_id": "sdg-f1009-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1009/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Pastiche",
+        "colour_name": "Mocha",
+        "collection_name": "Halcyon"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1009_05_f0b7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1009/05",
+            "brand": "Clarke & Clarke",
+            "design": "Pastiche",
+            "colour": "Mocha",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1046-01": {
+      "record": {
+        "fabric_id": "sdg-f1046-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1046/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sackville Stripe",
+        "colour_name": "Citron/Natural",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1046_01_5fdd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1046/01",
+            "brand": "Clarke & Clarke",
+            "design": "Sackville Stripe",
+            "colour": "Citron/Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1046-02": {
+      "record": {
+        "fabric_id": "sdg-f1046-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1046/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sackville Stripe",
+        "colour_name": "Eau De Nil/Linen",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1046_02_040e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1046/02",
+            "brand": "Clarke & Clarke",
+            "design": "Sackville Stripe",
+            "colour": "Eau De Nil/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1046-03": {
+      "record": {
+        "fabric_id": "sdg-f1046-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1046/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sackville Stripe",
+        "colour_name": "Heather/Linen",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1046_03_29bf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1046/03",
+            "brand": "Clarke & Clarke",
+            "design": "Sackville Stripe",
+            "colour": "Heather/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1046-04": {
+      "record": {
+        "fabric_id": "sdg-f1046-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1046/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sackville Stripe",
+        "colour_name": "Midnight/Spice",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1046_04_e38d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1046/04",
+            "brand": "Clarke & Clarke",
+            "design": "Sackville Stripe",
+            "colour": "Midnight/Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1046-05": {
+      "record": {
+        "fabric_id": "sdg-f1046-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1046/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sackville Stripe",
+        "colour_name": "Mineral/Blush",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1046_05_ddf6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1046/05",
+            "brand": "Clarke & Clarke",
+            "design": "Sackville Stripe",
+            "colour": "Mineral/Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1046-06": {
+      "record": {
+        "fabric_id": "sdg-f1046-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1046/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sackville Stripe",
+        "colour_name": "Natural",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1046_06_cdbf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1046/06",
+            "brand": "Clarke & Clarke",
+            "design": "Sackville Stripe",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1047-01": {
+      "record": {
+        "fabric_id": "sdg-f1047-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1047/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Simone",
+        "colour_name": "Citron",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1047_01_5321.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1047/01",
+            "brand": "Clarke & Clarke",
+            "design": "Simone",
+            "colour": "Citron",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1047-02": {
+      "record": {
+        "fabric_id": "sdg-f1047-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1047/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Simone",
+        "colour_name": "Eau De Nil",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1047_02_34d5.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1047/02",
+            "brand": "Clarke & Clarke",
+            "design": "Simone",
+            "colour": "Eau De Nil",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1047-03": {
+      "record": {
+        "fabric_id": "sdg-f1047-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1047/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Simone",
+        "colour_name": "Heather",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1047_03_56bf.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1047/03",
+            "brand": "Clarke & Clarke",
+            "design": "Simone",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1047-04": {
+      "record": {
+        "fabric_id": "sdg-f1047-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1047/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Simone",
+        "colour_name": "Linen",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1047_04_50a0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1047/04",
+            "brand": "Clarke & Clarke",
+            "design": "Simone",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1047-05": {
+      "record": {
+        "fabric_id": "sdg-f1047-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1047/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Simone",
+        "colour_name": "Mineral",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1047_05_ca86.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1047/05",
+            "brand": "Clarke & Clarke",
+            "design": "Simone",
+            "colour": "Mineral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1047-06": {
+      "record": {
+        "fabric_id": "sdg-f1047-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1047/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Simone",
+        "colour_name": "Natural",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1047_06_49dc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1047/06",
+            "brand": "Clarke & Clarke",
+            "design": "Simone",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1048-01": {
+      "record": {
+        "fabric_id": "sdg-f1048-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1048/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sissinghurst",
+        "colour_name": "Charcoal",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1048_01_fc64.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1048/01",
+            "brand": "Clarke & Clarke",
+            "design": "Sissinghurst",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1048-02": {
+      "record": {
+        "fabric_id": "sdg-f1048-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1048/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sissinghurst",
+        "colour_name": "Citron/Natural",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1048_02_a55b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1048/02",
+            "brand": "Clarke & Clarke",
+            "design": "Sissinghurst",
+            "colour": "Citron/Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1048-03": {
+      "record": {
+        "fabric_id": "sdg-f1048-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1048/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sissinghurst",
+        "colour_name": "Eau De Nil",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1048_03_8ab9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1048/03",
+            "brand": "Clarke & Clarke",
+            "design": "Sissinghurst",
+            "colour": "Eau De Nil",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1048-04": {
+      "record": {
+        "fabric_id": "sdg-f1048-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1048/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sissinghurst",
+        "colour_name": "Heather/Olive",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1048_04_6a89.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1048/04",
+            "brand": "Clarke & Clarke",
+            "design": "Sissinghurst",
+            "colour": "Heather/Olive",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1048-05": {
+      "record": {
+        "fabric_id": "sdg-f1048-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1048/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sissinghurst",
+        "colour_name": "Midnight/Spice",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1048_05_d893.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1048/05",
+            "brand": "Clarke & Clarke",
+            "design": "Sissinghurst",
+            "colour": "Midnight/Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1048-06": {
+      "record": {
+        "fabric_id": "sdg-f1048-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1048/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Sissinghurst",
+        "colour_name": "Mineral/Blush",
+        "collection_name": "Castle Garden"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1048_06_9a8c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1048/06",
+            "brand": "Clarke & Clarke",
+            "design": "Sissinghurst",
+            "colour": "Mineral/Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1070-01": {
+      "record": {
+        "fabric_id": "sdg-f1070-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1070/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Carraway Rose",
+        "colour_name": "Champagne",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1070_01_1aa4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1070/01",
+            "brand": "Clarke & Clarke",
+            "design": "Carraway Rose",
+            "colour": "Champagne",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1070-02": {
+      "record": {
+        "fabric_id": "sdg-f1070-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1070/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Carraway Rose",
+        "colour_name": "Charcoal",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1070_02_b3c6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1070/02",
+            "brand": "Clarke & Clarke",
+            "design": "Carraway Rose",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1070-03": {
+      "record": {
+        "fabric_id": "sdg-f1070-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1070/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Carraway Rose",
+        "colour_name": "Linen",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1070_03_74f7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1070/03",
+            "brand": "Clarke & Clarke",
+            "design": "Carraway Rose",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1070-04": {
+      "record": {
+        "fabric_id": "sdg-f1070-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1070/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Carraway Rose",
+        "colour_name": "Mineral",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1070_04_b9a7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1070/04",
+            "brand": "Clarke & Clarke",
+            "design": "Carraway Rose",
+            "colour": "Mineral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1070-05": {
+      "record": {
+        "fabric_id": "sdg-f1070-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1070/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Carraway Rose",
+        "colour_name": "Mocha",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1070_05_dadc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1070/05",
+            "brand": "Clarke & Clarke",
+            "design": "Carraway Rose",
+            "colour": "Mocha",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1070-06": {
+      "record": {
+        "fabric_id": "sdg-f1070-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1070/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Carraway Rose",
+        "colour_name": "Rose Gold",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1070_06_ae9e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1070/06",
+            "brand": "Clarke & Clarke",
+            "design": "Carraway Rose",
+            "colour": "Rose Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1071-01": {
+      "record": {
+        "fabric_id": "sdg-f1071-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1071/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Chrysler",
+        "colour_name": "Charcoal",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1071_01_35b8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1071/01",
+            "brand": "Clarke & Clarke",
+            "design": "Chrysler",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1071-02": {
+      "record": {
+        "fabric_id": "sdg-f1071-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1071/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Chrysler",
+        "colour_name": "Ivory",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1071_02_7281.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1071/02",
+            "brand": "Clarke & Clarke",
+            "design": "Chrysler",
+            "colour": "Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1071-03": {
+      "record": {
+        "fabric_id": "sdg-f1071-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1071/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Chrysler",
+        "colour_name": "Mineral",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1071_03_37e1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1071/03",
+            "brand": "Clarke & Clarke",
+            "design": "Chrysler",
+            "colour": "Mineral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1071-04": {
+      "record": {
+        "fabric_id": "sdg-f1071-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1071/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Chrysler",
+        "colour_name": "Mocha",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1071_04_d4ee.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1071/04",
+            "brand": "Clarke & Clarke",
+            "design": "Chrysler",
+            "colour": "Mocha",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1071-05": {
+      "record": {
+        "fabric_id": "sdg-f1071-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1071/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Chrysler",
+        "colour_name": "Pebble",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1071_05_ad87.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1071/05",
+            "brand": "Clarke & Clarke",
+            "design": "Chrysler",
+            "colour": "Pebble",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1071-06": {
+      "record": {
+        "fabric_id": "sdg-f1071-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1071/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Chrysler",
+        "colour_name": "Rose Gold",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1071_06_7957.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1071/06",
+            "brand": "Clarke & Clarke",
+            "design": "Chrysler",
+            "colour": "Rose Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1072-01": {
+      "record": {
+        "fabric_id": "sdg-f1072-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1072/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gatsby",
+        "colour_name": "Blush",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1072_01_6069.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1072/01",
+            "brand": "Clarke & Clarke",
+            "design": "Gatsby",
+            "colour": "Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1072-02": {
+      "record": {
+        "fabric_id": "sdg-f1072-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1072/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gatsby",
+        "colour_name": "Champagne",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1072_02_7a96.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1072/02",
+            "brand": "Clarke & Clarke",
+            "design": "Gatsby",
+            "colour": "Champagne",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1072-03": {
+      "record": {
+        "fabric_id": "sdg-f1072-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1072/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gatsby",
+        "colour_name": "Charcoal",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1072_03_1732.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1072/03",
+            "brand": "Clarke & Clarke",
+            "design": "Gatsby",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1072-04": {
+      "record": {
+        "fabric_id": "sdg-f1072-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1072/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gatsby",
+        "colour_name": "Ivory",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1072_04_ca73.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1072/04",
+            "brand": "Clarke & Clarke",
+            "design": "Gatsby",
+            "colour": "Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1072-05": {
+      "record": {
+        "fabric_id": "sdg-f1072-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1072/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gatsby",
+        "colour_name": "Mineral",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1072_05_a91f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1072/05",
+            "brand": "Clarke & Clarke",
+            "design": "Gatsby",
+            "colour": "Mineral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1072-06": {
+      "record": {
+        "fabric_id": "sdg-f1072-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1072/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Gatsby",
+        "colour_name": "Mocha",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1072_06_a9a8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1072/06",
+            "brand": "Clarke & Clarke",
+            "design": "Gatsby",
+            "colour": "Mocha",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-02": {
+      "record": {
+        "fabric_id": "sdg-f1068-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Apple",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_02_e133.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/02",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Apple",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-03": {
+      "record": {
+        "fabric_id": "sdg-f1068-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Bamboo",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_03_0a78.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/03",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Bamboo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-04": {
+      "record": {
+        "fabric_id": "sdg-f1068-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Blush",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_04_a153.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/04",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Blush",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-05": {
+      "record": {
+        "fabric_id": "sdg-f1068-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Chambray",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_05_ddc2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/05",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Chambray",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-06": {
+      "record": {
+        "fabric_id": "sdg-f1068-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Charcoal",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_06_3fb0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/06",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-07": {
+      "record": {
+        "fabric_id": "sdg-f1068-07",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/07",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Citron",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_07_2769.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/07",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Citron",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-08": {
+      "record": {
+        "fabric_id": "sdg-f1068-08",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/08",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Coral",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_08_50bb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/08",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Coral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-09": {
+      "record": {
+        "fabric_id": "sdg-f1068-09",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/09",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Damson",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_09_efdd.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/09",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Damson",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-10": {
+      "record": {
+        "fabric_id": "sdg-f1068-10",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/10",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Denim",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_10_24e4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/10",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-11": {
+      "record": {
+        "fabric_id": "sdg-f1068-11",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/11",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Dove",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_11_553c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/11",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Dove",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-12": {
+      "record": {
+        "fabric_id": "sdg-f1068-12",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/12",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Duckegg",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_12_89d0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/12",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Duckegg",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-13": {
+      "record": {
+        "fabric_id": "sdg-f1068-13",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/13",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Dusk",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_13_f7ac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/13",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Dusk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-14": {
+      "record": {
+        "fabric_id": "sdg-f1068-14",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/14",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Eau De Nil",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_14_8850.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/14",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Eau De Nil",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-15": {
+      "record": {
+        "fabric_id": "sdg-f1068-15",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/15",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Espresso",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_15_5668.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/15",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Espresso",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-16": {
+      "record": {
+        "fabric_id": "sdg-f1068-16",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/16",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Gold",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_16_975a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/16",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-17": {
+      "record": {
+        "fabric_id": "sdg-f1068-17",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/17",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Granite",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_17_2408.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/17",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Granite",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-18": {
+      "record": {
+        "fabric_id": "sdg-f1068-18",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/18",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Hazel",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_18_672b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/18",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Hazel",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-19": {
+      "record": {
+        "fabric_id": "sdg-f1068-19",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/19",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Heather",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_19_a91c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/19",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-20": {
+      "record": {
+        "fabric_id": "sdg-f1068-20",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/20",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Herb",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_20_be89.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/20",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Herb",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-21": {
+      "record": {
+        "fabric_id": "sdg-f1068-21",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/21",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Honey",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_21_4bf1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/21",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Honey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-22": {
+      "record": {
+        "fabric_id": "sdg-f1068-22",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/22",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Ivory",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_22_20f1.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/22",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-23": {
+      "record": {
+        "fabric_id": "sdg-f1068-23",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/23",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Lavender",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_23_263c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/23",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Lavender",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-24": {
+      "record": {
+        "fabric_id": "sdg-f1068-24",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/24",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Lilac",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_24_ba22.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/24",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Lilac",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-25": {
+      "record": {
+        "fabric_id": "sdg-f1068-25",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/25",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Linen",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_25_12ef.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/25",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-26": {
+      "record": {
+        "fabric_id": "sdg-f1068-26",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/26",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Mediterranean",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_26_cd6f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/26",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Mediterranean",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-27": {
+      "record": {
+        "fabric_id": "sdg-f1068-27",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/27",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Mineral",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_27_e6ea.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/27",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Mineral",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-28": {
+      "record": {
+        "fabric_id": "sdg-f1068-28",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/28",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Mist",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_28_016a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/28",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Mist",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-29": {
+      "record": {
+        "fabric_id": "sdg-f1068-29",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/29",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Mocha",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_29_128e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/29",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Mocha",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-30": {
+      "record": {
+        "fabric_id": "sdg-f1068-30",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/30",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Natural",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_30_c3ee.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/30",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Natural",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-31": {
+      "record": {
+        "fabric_id": "sdg-f1068-31",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/31",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Ocean",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_31_bfd7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/31",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Ocean",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-32": {
+      "record": {
+        "fabric_id": "sdg-f1068-32",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/32",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Oyster",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_32_4d39.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/32",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Oyster",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-33": {
+      "record": {
+        "fabric_id": "sdg-f1068-33",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/33",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Parsley",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_33_c006.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/33",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Parsley",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-34": {
+      "record": {
+        "fabric_id": "sdg-f1068-34",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/34",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Pebble",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_34_4f9d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/34",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Pebble",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-35": {
+      "record": {
+        "fabric_id": "sdg-f1068-35",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/35",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Pistachio",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_35_100c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/35",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Pistachio",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-36": {
+      "record": {
+        "fabric_id": "sdg-f1068-36",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/36",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Polar",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_36_54ff.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/36",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Polar",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-37": {
+      "record": {
+        "fabric_id": "sdg-f1068-37",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/37",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Putty",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_37_595f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/37",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Putty",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-38": {
+      "record": {
+        "fabric_id": "sdg-f1068-38",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/38",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Raffia",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_38_9d89.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/38",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Raffia",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-39": {
+      "record": {
+        "fabric_id": "sdg-f1068-39",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/39",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Raspberry",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_39_a454.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/39",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Raspberry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-40": {
+      "record": {
+        "fabric_id": "sdg-f1068-40",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/40",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Rose",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_40_7728.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/40",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Rose",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-41": {
+      "record": {
+        "fabric_id": "sdg-f1068-41",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/41",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Sand",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_41_dc05.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/41",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Sand",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-42": {
+      "record": {
+        "fabric_id": "sdg-f1068-42",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/42",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Seafoam",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_42_6f3a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/42",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Seafoam",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-43": {
+      "record": {
+        "fabric_id": "sdg-f1068-43",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/43",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Sky",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_43_27a4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/43",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-44": {
+      "record": {
+        "fabric_id": "sdg-f1068-44",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/44",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Slate",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_44_b31f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/44",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Slate",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-45": {
+      "record": {
+        "fabric_id": "sdg-f1068-45",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/45",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Smoke",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_45_ca7d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/45",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Smoke",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-46": {
+      "record": {
+        "fabric_id": "sdg-f1068-46",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/46",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Spice",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_46_dcfc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/46",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Spice",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1068-47": {
+      "record": {
+        "fabric_id": "sdg-f1068-47",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1068/47",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Midori",
+        "colour_name": "Truffle",
+        "collection_name": "Midori"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1068_47_a0ad.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1068/47",
+            "brand": "Clarke & Clarke",
+            "design": "Midori",
+            "colour": "Truffle",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1074-01": {
+      "record": {
+        "fabric_id": "sdg-f1074-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1074/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Shimmer",
+        "colour_name": "Blush/Linen",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1074_01_7a46.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1074/01",
+            "brand": "Clarke & Clarke",
+            "design": "Shimmer",
+            "colour": "Blush/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1074-02": {
+      "record": {
+        "fabric_id": "sdg-f1074-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1074/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Shimmer",
+        "colour_name": "Charcoal",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1074_02_fa29.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1074/02",
+            "brand": "Clarke & Clarke",
+            "design": "Shimmer",
+            "colour": "Charcoal",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1074-03": {
+      "record": {
+        "fabric_id": "sdg-f1074-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1074/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Shimmer",
+        "colour_name": "Gold",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1074_03_ab74.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1074/03",
+            "brand": "Clarke & Clarke",
+            "design": "Shimmer",
+            "colour": "Gold",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1074-04": {
+      "record": {
+        "fabric_id": "sdg-f1074-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1074/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Shimmer",
+        "colour_name": "Linen",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1074_04_eca4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1074/04",
+            "brand": "Clarke & Clarke",
+            "design": "Shimmer",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1074-05": {
+      "record": {
+        "fabric_id": "sdg-f1074-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1074/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Shimmer",
+        "colour_name": "Mocha",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1074_05_0d2e.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1074/05",
+            "brand": "Clarke & Clarke",
+            "design": "Shimmer",
+            "colour": "Mocha",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1074-06": {
+      "record": {
+        "fabric_id": "sdg-f1074-06",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1074/06",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Shimmer",
+        "colour_name": "Pebble",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1074_06_fb55.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1074/06",
+            "brand": "Clarke & Clarke",
+            "design": "Shimmer",
+            "colour": "Pebble",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1075-01": {
+      "record": {
+        "fabric_id": "sdg-f1075-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1075/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Waldorf",
+        "colour_name": "Champagne",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1075_01_ba47.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1075/01",
+            "brand": "Clarke & Clarke",
+            "design": "Waldorf",
+            "colour": "Champagne",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1075-02": {
+      "record": {
+        "fabric_id": "sdg-f1075-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1075/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Waldorf",
+        "colour_name": "Ivory",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1075_02_77f0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1075/02",
+            "brand": "Clarke & Clarke",
+            "design": "Waldorf",
+            "colour": "Ivory",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1075-03": {
+      "record": {
+        "fabric_id": "sdg-f1075-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1075/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Waldorf",
+        "colour_name": "Linen",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1075_03_ce51.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1075/03",
+            "brand": "Clarke & Clarke",
+            "design": "Waldorf",
+            "colour": "Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1075-04": {
+      "record": {
+        "fabric_id": "sdg-f1075-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1075/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Waldorf",
+        "colour_name": "Mocha",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1075_04_1728.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1075/04",
+            "brand": "Clarke & Clarke",
+            "design": "Waldorf",
+            "colour": "Mocha",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f1075-05": {
+      "record": {
+        "fabric_id": "sdg-f1075-05",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F1075/05",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Waldorf",
+        "colour_name": "Silver",
+        "collection_name": "Lusso"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1075_05_e8d3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F1075/05",
+            "brand": "Clarke & Clarke",
+            "design": "Waldorf",
+            "colour": "Silver",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0650-01": {
+      "record": {
+        "fabric_id": "sdg-f0650-01",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0650/01",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Crush",
+        "colour_name": "Ash",
+        "collection_name": "Crush"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0650_01_b3fb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0650/01",
+            "brand": "Clarke & Clarke",
+            "design": "Crush",
+            "colour": "Ash",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0650-02": {
+      "record": {
+        "fabric_id": "sdg-f0650-02",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0650/02",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Crush",
+        "colour_name": "Azure",
+        "collection_name": "Crush"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0650_02_093d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0650/02",
+            "brand": "Clarke & Clarke",
+            "design": "Crush",
+            "colour": "Azure",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0650-03": {
+      "record": {
+        "fabric_id": "sdg-f0650-03",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0650/03",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Crush",
+        "colour_name": "Berry",
+        "collection_name": "Crush"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0650_03_f2b8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0650/03",
+            "brand": "Clarke & Clarke",
+            "design": "Crush",
+            "colour": "Berry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-f0650-04": {
+      "record": {
+        "fabric_id": "sdg-f0650-04",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "F0650/04",
+        "brand_name": "Clarke & Clarke",
+        "design_name": "Crush",
+        "colour_name": "Carnation",
+        "collection_name": "Crush"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/F/0/F0650_04_41bb.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "F0650/04",
+            "brand": "Clarke & Clarke",
+            "design": "Crush",
+            "colour": "Carnation",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

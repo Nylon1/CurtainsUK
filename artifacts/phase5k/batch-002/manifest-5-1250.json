@@ -1,0 +1,2104 @@
+{
+  "results": {
+    "sdg-hiop121222": {
+      "record": {
+        "fabric_id": "sdg-hiop121222",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121222",
+        "brand_name": "Harlequin",
+        "design_name": "Utto",
+        "colour_name": "Indigo/Azul",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121222_d116.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121222",
+            "brand": "Harlequin",
+            "design": "Utto",
+            "colour": "Indigo/Azul",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hiop121223": {
+      "record": {
+        "fabric_id": "sdg-hiop121223",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HIOP121223",
+        "brand_name": "Harlequin",
+        "design_name": "Utto",
+        "colour_name": "Black Earth/Taupe",
+        "collection_name": "Indoor Outdoor Prints"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/I/HIOP121223_8730.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HIOP121223",
+            "brand": "Harlequin",
+            "design": "Utto",
+            "colour": "Black Earth/Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121248": {
+      "record": {
+        "fabric_id": "sdg-hrtf121248",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121248",
+        "brand_name": "Harlequin",
+        "design_name": "Fleur de Joie",
+        "colour_name": "Sky/Forest",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121248_4771.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121248",
+            "brand": "Harlequin",
+            "design": "Fleur de Joie",
+            "colour": "Sky/Forest",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121250": {
+      "record": {
+        "fabric_id": "sdg-hrtf121250",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121250",
+        "brand_name": "Harlequin",
+        "design_name": "Fleur de Joie",
+        "colour_name": "Paprika/Aqua",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121250_dbc9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121250",
+            "brand": "Harlequin",
+            "design": "Fleur de Joie",
+            "colour": "Paprika/Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134067": {
+      "record": {
+        "fabric_id": "sdg-hrtf134067",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134067",
+        "brand_name": "Harlequin",
+        "design_name": "Java Linen",
+        "colour_name": "Sky/Pearl",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134067_adc0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134067",
+            "brand": "Harlequin",
+            "design": "Java Linen",
+            "colour": "Sky/Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134068": {
+      "record": {
+        "fabric_id": "sdg-hrtf134068",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134068",
+        "brand_name": "Harlequin",
+        "design_name": "Java Linen",
+        "colour_name": "Denim/Pearl",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134068_1296.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134068",
+            "brand": "Harlequin",
+            "design": "Java Linen",
+            "colour": "Denim/Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134069": {
+      "record": {
+        "fabric_id": "sdg-hrtf134069",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134069",
+        "brand_name": "Harlequin",
+        "design_name": "Java Linen",
+        "colour_name": "Diffused Light/Pearl",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134069_620a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134069",
+            "brand": "Harlequin",
+            "design": "Java Linen",
+            "colour": "Diffused Light/Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134047": {
+      "record": {
+        "fabric_id": "sdg-hrtf134047",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134047",
+        "brand_name": "Harlequin",
+        "design_name": "Kaku",
+        "colour_name": "Honey",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134047_a9d4.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134047",
+            "brand": "Harlequin",
+            "design": "Kaku",
+            "colour": "Honey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134048": {
+      "record": {
+        "fabric_id": "sdg-hrtf134048",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134048",
+        "brand_name": "Harlequin",
+        "design_name": "Kaku",
+        "colour_name": "Sweet Pea",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134048_41c2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134048",
+            "brand": "Harlequin",
+            "design": "Kaku",
+            "colour": "Sweet Pea",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134049": {
+      "record": {
+        "fabric_id": "sdg-hrtf134049",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134049",
+        "brand_name": "Harlequin",
+        "design_name": "Kaku",
+        "colour_name": "Denim",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134049_0304.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134049",
+            "brand": "Harlequin",
+            "design": "Kaku",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134051": {
+      "record": {
+        "fabric_id": "sdg-hrtf134051",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134051",
+        "brand_name": "Harlequin",
+        "design_name": "Kaku",
+        "colour_name": "Paprika",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134051_afd2.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134051",
+            "brand": "Harlequin",
+            "design": "Kaku",
+            "colour": "Paprika",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134052": {
+      "record": {
+        "fabric_id": "sdg-hrtf134052",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134052",
+        "brand_name": "Harlequin",
+        "design_name": "Kaku",
+        "colour_name": "Taupe",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134052_8558.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134052",
+            "brand": "Harlequin",
+            "design": "Kaku",
+            "colour": "Taupe",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134053": {
+      "record": {
+        "fabric_id": "sdg-hrtf134053",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134053",
+        "brand_name": "Harlequin",
+        "design_name": "Kaku",
+        "colour_name": "Celestial",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134053_e46d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134053",
+            "brand": "Harlequin",
+            "design": "Kaku",
+            "colour": "Celestial",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121252": {
+      "record": {
+        "fabric_id": "sdg-hrtf121252",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121252",
+        "brand_name": "Harlequin",
+        "design_name": "Klimt",
+        "colour_name": "Kelly/Aqua",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121252_4f0d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121252",
+            "brand": "Harlequin",
+            "design": "Klimt",
+            "colour": "Kelly/Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121253": {
+      "record": {
+        "fabric_id": "sdg-hrtf121253",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121253",
+        "brand_name": "Harlequin",
+        "design_name": "Klimt",
+        "colour_name": "Ink/Honey",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121253_314a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121253",
+            "brand": "Harlequin",
+            "design": "Klimt",
+            "colour": "Ink/Honey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121244": {
+      "record": {
+        "fabric_id": "sdg-hrtf121244",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121244",
+        "brand_name": "Harlequin",
+        "design_name": "Locronan",
+        "colour_name": "Honey/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121244_51f0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121244",
+            "brand": "Harlequin",
+            "design": "Locronan",
+            "colour": "Honey/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121245": {
+      "record": {
+        "fabric_id": "sdg-hrtf121245",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121245",
+        "brand_name": "Harlequin",
+        "design_name": "Locronan",
+        "colour_name": "Aqua/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121245_e67b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121245",
+            "brand": "Harlequin",
+            "design": "Locronan",
+            "colour": "Aqua/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121246": {
+      "record": {
+        "fabric_id": "sdg-hrtf121246",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121246",
+        "brand_name": "Harlequin",
+        "design_name": "Locronan",
+        "colour_name": "Cornflower/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121246_16b7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121246",
+            "brand": "Harlequin",
+            "design": "Locronan",
+            "colour": "Cornflower/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134058": {
+      "record": {
+        "fabric_id": "sdg-hrtf134058",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134058",
+        "brand_name": "Harlequin",
+        "design_name": "Palla",
+        "colour_name": "Honey/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134058_3819.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134058",
+            "brand": "Harlequin",
+            "design": "Palla",
+            "colour": "Honey/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134060": {
+      "record": {
+        "fabric_id": "sdg-hrtf134060",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134060",
+        "brand_name": "Harlequin",
+        "design_name": "Palla",
+        "colour_name": "Paprika/Aqua",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134060_f774.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134060",
+            "brand": "Harlequin",
+            "design": "Palla",
+            "colour": "Paprika/Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134061": {
+      "record": {
+        "fabric_id": "sdg-hrtf134061",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134061",
+        "brand_name": "Harlequin",
+        "design_name": "Palla",
+        "colour_name": "Sky/Linen",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134061_a330.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134061",
+            "brand": "Harlequin",
+            "design": "Palla",
+            "colour": "Sky/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134062": {
+      "record": {
+        "fabric_id": "sdg-hrtf134062",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134062",
+        "brand_name": "Harlequin",
+        "design_name": "Palla",
+        "colour_name": "Kelly/Honey",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134062_6c86.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134062",
+            "brand": "Harlequin",
+            "design": "Palla",
+            "colour": "Kelly/Honey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134063": {
+      "record": {
+        "fabric_id": "sdg-hrtf134063",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134063",
+        "brand_name": "Harlequin",
+        "design_name": "Pepita Stripe",
+        "colour_name": "Sky/Linen",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134063_1939.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134063",
+            "brand": "Harlequin",
+            "design": "Pepita Stripe",
+            "colour": "Sky/Linen",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134064": {
+      "record": {
+        "fabric_id": "sdg-hrtf134064",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134064",
+        "brand_name": "Harlequin",
+        "design_name": "Pepita Stripe",
+        "colour_name": "Taupe/Mint",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134064_2ae6.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134064",
+            "brand": "Harlequin",
+            "design": "Pepita Stripe",
+            "colour": "Taupe/Mint",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134065": {
+      "record": {
+        "fabric_id": "sdg-hrtf134065",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134065",
+        "brand_name": "Harlequin",
+        "design_name": "Pepita Stripe",
+        "colour_name": "Kelly/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134065_b823.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134065",
+            "brand": "Harlequin",
+            "design": "Pepita Stripe",
+            "colour": "Kelly/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134066": {
+      "record": {
+        "fabric_id": "sdg-hrtf134066",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134066",
+        "brand_name": "Harlequin",
+        "design_name": "Pepita Stripe",
+        "colour_name": "Diffused Light/Pearl",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134066_539b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134066",
+            "brand": "Harlequin",
+            "design": "Pepita Stripe",
+            "colour": "Diffused Light/Pearl",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134070": {
+      "record": {
+        "fabric_id": "sdg-hrtf134070",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134070",
+        "brand_name": "Harlequin",
+        "design_name": "Silene",
+        "colour_name": "Honey/First Light/Ochre",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134070_8634.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134070",
+            "brand": "Harlequin",
+            "design": "Silene",
+            "colour": "Honey/First Light/Ochre",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134071": {
+      "record": {
+        "fabric_id": "sdg-hrtf134071",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134071",
+        "brand_name": "Harlequin",
+        "design_name": "Silene",
+        "colour_name": "Sky/First Light/Honey",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134071_1c20.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134071",
+            "brand": "Harlequin",
+            "design": "Silene",
+            "colour": "Sky/First Light/Honey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134072": {
+      "record": {
+        "fabric_id": "sdg-hrtf134072",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134072",
+        "brand_name": "Harlequin",
+        "design_name": "Silene",
+        "colour_name": "Taupe/First Light/Ochre",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134072_d9ff.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134072",
+            "brand": "Harlequin",
+            "design": "Silene",
+            "colour": "Taupe/First Light/Ochre",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134073": {
+      "record": {
+        "fabric_id": "sdg-hrtf134073",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134073",
+        "brand_name": "Harlequin",
+        "design_name": "Silene",
+        "colour_name": "Aqua/First Light/Forest",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134073_fdac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134073",
+            "brand": "Harlequin",
+            "design": "Silene",
+            "colour": "Aqua/First Light/Forest",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134074": {
+      "record": {
+        "fabric_id": "sdg-hrtf134074",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134074",
+        "brand_name": "Harlequin",
+        "design_name": "Silene",
+        "colour_name": "Denim/First Light/Sky",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134074_d730.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134074",
+            "brand": "Harlequin",
+            "design": "Silene",
+            "colour": "Denim/First Light/Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134054": {
+      "record": {
+        "fabric_id": "sdg-hrtf134054",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134054",
+        "brand_name": "Harlequin",
+        "design_name": "Suisai",
+        "colour_name": "Moss/Positano/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134054_69b3.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134054",
+            "brand": "Harlequin",
+            "design": "Suisai",
+            "colour": "Moss/Positano/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134055": {
+      "record": {
+        "fabric_id": "sdg-hrtf134055",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134055",
+        "brand_name": "Harlequin",
+        "design_name": "Suisai",
+        "colour_name": "Sky/Sweet Pea/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134055_f479.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134055",
+            "brand": "Harlequin",
+            "design": "Suisai",
+            "colour": "Sky/Sweet Pea/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf134056": {
+      "record": {
+        "fabric_id": "sdg-hrtf134056",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF134056",
+        "brand_name": "Harlequin",
+        "design_name": "Suisai",
+        "colour_name": "Taupe/Paprika/First Light",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF134056_4246.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF134056",
+            "brand": "Harlequin",
+            "design": "Suisai",
+            "colour": "Taupe/Paprika/First Light",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121254": {
+      "record": {
+        "fabric_id": "sdg-hrtf121254",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121254",
+        "brand_name": "Harlequin",
+        "design_name": "Tree Tops",
+        "colour_name": "Baked Terracotta/Azul/Honey",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121254_7c17.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121254",
+            "brand": "Harlequin",
+            "design": "Tree Tops",
+            "colour": "Baked Terracotta/Azul/Honey",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-hrtf121255": {
+      "record": {
+        "fabric_id": "sdg-hrtf121255",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HRTF121255",
+        "brand_name": "Harlequin",
+        "design_name": "Tree Tops",
+        "colour_name": "Forest/Kelly/Aqua",
+        "collection_name": "Idyllic Fabrics"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/R/HRTF121255_2ec9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HRTF121255",
+            "brand": "Harlequin",
+            "design": "Tree Tops",
+            "colour": "Forest/Kelly/Aqua",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134345": {
+      "record": {
+        "fabric_id": "sdg-halg134345",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134345",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Lilac",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134345_6197.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134345",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Lilac",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134346": {
+      "record": {
+        "fabric_id": "sdg-halg134346",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134346",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Heather",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134346_38f9.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134346",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Heather",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134348": {
+      "record": {
+        "fabric_id": "sdg-halg134348",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134348",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Peony",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134348_943d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134348",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Peony",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134353": {
+      "record": {
+        "fabric_id": "sdg-halg134353",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134353",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Cherry",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134353_9602.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134353",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Cherry",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134354": {
+      "record": {
+        "fabric_id": "sdg-halg134354",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134354",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Scarlet",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134354_a96f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134354",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Scarlet",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134355": {
+      "record": {
+        "fabric_id": "sdg-halg134355",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134355",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Reef",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134355_c6a7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134355",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Reef",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134356": {
+      "record": {
+        "fabric_id": "sdg-halg134356",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134356",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Cameo",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134356_3324.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134356",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Cameo",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134357": {
+      "record": {
+        "fabric_id": "sdg-halg134357",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134357",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Postiano",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134357_7a86.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134357",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Postiano",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134358": {
+      "record": {
+        "fabric_id": "sdg-halg134358",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134358",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Burnt",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134358_1c26.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134358",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Burnt",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134359": {
+      "record": {
+        "fabric_id": "sdg-halg134359",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134359",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Rust",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134359_f47c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134359",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Rust",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134360": {
+      "record": {
+        "fabric_id": "sdg-halg134360",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134360",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Sandstone",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134360_dac7.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134360",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Sandstone",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134361": {
+      "record": {
+        "fabric_id": "sdg-halg134361",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134361",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Crumb",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134361_24e0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134361",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Crumb",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134363": {
+      "record": {
+        "fabric_id": "sdg-halg134363",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134363",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Incense",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134363_5726.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134363",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Incense",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134364": {
+      "record": {
+        "fabric_id": "sdg-halg134364",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134364",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Truffle",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134364_05bc.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134364",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Truffle",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134365": {
+      "record": {
+        "fabric_id": "sdg-halg134365",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134365",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Oyster",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134365_849b.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134365",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Oyster",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134366": {
+      "record": {
+        "fabric_id": "sdg-halg134366",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134366",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Avery",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134366_f328.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134366",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Avery",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134367": {
+      "record": {
+        "fabric_id": "sdg-halg134367",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134367",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Dove",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134367_155c.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134367",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Dove",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134368": {
+      "record": {
+        "fabric_id": "sdg-halg134368",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134368",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Powder",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134368_f03a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134368",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Powder",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134369": {
+      "record": {
+        "fabric_id": "sdg-halg134369",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134369",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Atlantic",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134369_b17a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134369",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Atlantic",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134370": {
+      "record": {
+        "fabric_id": "sdg-halg134370",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134370",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Blue bird",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134370_277d.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134370",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Blue bird",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134371": {
+      "record": {
+        "fabric_id": "sdg-halg134371",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134371",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Hydrangea",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134371_aa79.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134371",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Hydrangea",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134372": {
+      "record": {
+        "fabric_id": "sdg-halg134372",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134372",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Silk",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134372_cfe0.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134372",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Silk",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134373": {
+      "record": {
+        "fabric_id": "sdg-halg134373",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134373",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Sky",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134373_0e09.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134373",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Sky",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134374": {
+      "record": {
+        "fabric_id": "sdg-halg134374",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134374",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Harbour",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134374_442a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134374",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Harbour",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134377": {
+      "record": {
+        "fabric_id": "sdg-halg134377",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134377",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Storm",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134377_ec63.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134377",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Storm",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134378": {
+      "record": {
+        "fabric_id": "sdg-halg134378",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134378",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Denim",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134378_ef62.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134378",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Denim",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134382": {
+      "record": {
+        "fabric_id": "sdg-halg134382",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134382",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Cloud",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134382_21c8.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134382",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Cloud",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134383": {
+      "record": {
+        "fabric_id": "sdg-halg134383",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134383",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Lagoon",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134383_ee6a.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134383",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Lagoon",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134384": {
+      "record": {
+        "fabric_id": "sdg-halg134384",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134384",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Prussian",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134384_901f.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134384",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Prussian",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134385": {
+      "record": {
+        "fabric_id": "sdg-halg134385",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134385",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Mallard",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134385_4387.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134385",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Mallard",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134388": {
+      "record": {
+        "fabric_id": "sdg-halg134388",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134388",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Seafoam",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134388_0d00.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134388",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Seafoam",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134389": {
+      "record": {
+        "fabric_id": "sdg-halg134389",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134389",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Jade",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134389_f0ac.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134389",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Jade",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134390": {
+      "record": {
+        "fabric_id": "sdg-halg134390",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134390",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Juniper",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134390_cd73.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134390",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Juniper",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    },
+    "sdg-halg134391": {
+      "record": {
+        "fabric_id": "sdg-halg134391",
+        "supplier_id": "sanderson-design-group",
+        "supplier_sku": "HALG134391",
+        "brand_name": "Harlequin",
+        "design_name": "Allegra",
+        "colour_name": "Avocado",
+        "collection_name": "Allegra"
+      },
+      "images": [],
+      "media": [
+        {
+          "url": "https://trade.sandersondesigngroup.com/static/media/catalog/product/H/A/HALG134391_5098.jpg",
+          "route": "FABRIC_LISTING",
+          "location": "sdg.fabric-listing",
+          "rightsState": "APPROVED",
+          "evidence": {
+            "sku": "HALG134391",
+            "brand": "Harlequin",
+            "design": "Allegra",
+            "colour": "Avocado",
+            "productType": "FABRIC",
+            "scope": "COLOURWAY",
+            "imageType": "MAIN",
+            "relationshipEstablished": true
+          }
+        }
+      ]
+    }
+  }
+}

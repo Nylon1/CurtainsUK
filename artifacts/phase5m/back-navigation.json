@@ -1,0 +1,21 @@
+{
+  "same": true,
+  "before": {
+    "construction": "PAIR",
+    "fabricId": "sdg-dapgpa203",
+    "heading": "PENCIL_PLEAT",
+    "lining": "STANDARD",
+    "roughDropCm": "250",
+    "roughWidthCm": "300",
+    "windowSlug": "awkward-unusual-window"
+  },
+  "after": {
+    "construction": "PAIR",
+    "fabricId": "sdg-dapgpa203",
+    "heading": "PENCIL_PLEAT",
+    "lining": "STANDARD",
+    "roughDropCm": "250",
+    "roughWidthCm": "300",
+    "windowSlug": "awkward-unusual-window"
+  }
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "drapesey": false,
+    "email": true,
+    "window": "bay-window"
+  },
+  {
+    "drapesey": false,
+    "email": true,
+    "window": "apex-window"
+  },
+  {
+    "drapesey": false,
+    "email": true,
+    "window": "triangular-window"
+  },
+  {
+    "drapesey": false,
+    "email": true,
+    "window": "gable-end-window"
+  },
+  {
+    "drapesey": false,
+    "email": true,
+    "window": "awkward-unusual-window"
+  }
+]

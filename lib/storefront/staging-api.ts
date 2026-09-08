@@ -59,6 +59,11 @@ export function stagingOptions(request: Request) {
 export function customerSafeApiError(error: unknown, fallback: string) {
   const message = error instanceof Error ? error.message : fallback;
   const customerMessages: Record<string, string> = {
+    SHOPIFY_DRAFT_ORDER_PENDING: "Your test order is being confirmed. Retry shortly to recover it; if it remains pending, contact the curtain team. Do not start a replacement order.",
+    SHOPIFY_ADMIN_REQUEST_FAILED: "The test checkout service did not respond. Your configuration is retained. Retry to check the same order.",
+    SHOPIFY_DRAFT_ORDER_CLAIM_UNAVAILABLE: "Test checkout is temporarily unavailable. Your configuration is retained; please retry later.",
+    SHOPIFY_DRAFT_ORDER_RECEIPT_UNAVAILABLE: "Test checkout is temporarily unavailable. Your configuration is retained; please retry later.",
+    CHECKOUT_PRICE_RECONFIRM_REQUIRED: "Please check your price again before continuing. The previous price confirmation has expired or the configuration price has changed.",
     PRICE_REQUIRES_VERIFICATION: "This fabric price must be confirmed before it can be configured",
     FABRIC_SPECIFICATION_INCOMPLETE: "This fabric specification must be confirmed before it can be configured",
     REVIEW_CONTACT_INVALID: "Enter a valid email address so our curtain team can contact you",

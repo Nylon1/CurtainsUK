@@ -1,0 +1,62 @@
+{
+  "approvalRetries": {
+    "requests": 8,
+    "duplicateRevisions": 0,
+    "duplicateEvents": 0,
+    "status": "PASS"
+  },
+  "checkedAt": "2026-09-08T17:07:54.048Z",
+  "scope": "Staging persistence and read-only development Shopify verification; not browser checkout proof",
+  "developmentShop": {
+    "myshopifyDomain": "curtainsuk-dev.myshopify.com",
+    "currencyCode": "GBP",
+    "taxesIncluded": true,
+    "plan": {
+      "partnerDevelopment": true,
+      "displayName": "Basic App Development"
+    }
+  },
+  "claims": {
+    "requests": 20,
+    "newClaims": 0,
+    "retryCreatesClaim": false,
+    "status": "PASS"
+  },
+  "stock": {
+    "requests": 6,
+    "requirementMetres": 31.7,
+    "publicAvailability": "FABRIC_AVAILABLE",
+    "status": "PASS"
+  },
+  "drafts": [
+    {
+      "name": "#D1",
+      "id": "gid://shopify/DraftOrder/1610660643190",
+      "goods": 110500,
+      "shipping": 1295,
+      "total": 111795,
+      "vat": 18633,
+      "status": "PASS"
+    },
+    {
+      "name": "#D3",
+      "id": "gid://shopify/DraftOrder/1610661298550",
+      "goods": 165700,
+      "shipping": 1995,
+      "total": 167695,
+      "vat": 27950,
+      "status": "PASS"
+    },
+    {
+      "name": "#D4",
+      "id": "gid://shopify/DraftOrder/1610661462390",
+      "goods": 336300,
+      "shipping": 4495,
+      "total": 340795,
+      "vat": 56799,
+      "status": "PASS"
+    }
+  ],
+  "shopifyWrites": 0,
+  "realPaymentsEnabled": false
+}

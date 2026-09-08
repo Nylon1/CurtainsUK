@@ -1,5 +1,5 @@
 import "server-only";
-import { persistedShopifyDraftOrderId } from "./shopify-draft-order-repository";
+import { claimShopifyDraftOrderCreation, persistedShopifyDraftOrderId } from "./shopify-draft-order-repository";
 import { createHash } from "node:crypto";
 import {
   assertShopifyDraftOrderFinancials,
@@ -408,6 +408,8 @@ export async function executeShopifyDraftOrder(input: {
   contract: ShopifyDraftOrderContract;
   config: ShopifyDraftOrderRuntimeConfig | null;
   existingDraftOrderId?: string | null;
+  /** Durable one-shot claim; injectable only for controlled transport tests. */
+  claimCreate?: (handoffId: string) => Promise<boolean>;
   fetchImpl?: FetchLike;
 }): Promise<ShopifyDraftOrderExecutionResult> {
   if (!input.config) {
@@ -465,6 +467,12 @@ export async function executeShopifyDraftOrder(input: {
     };
   }
   await calculate({ contract: input.contract, config: input.config, accessToken, fetchImpl });
+  // Never release this claim on a timeout, malformed response, process death or
+  // failed receipt write: Shopify may already have accepted the create. A retry
+  // may recover an existing order, but an empty tag index is not proof of absence.
+  if (!await (input.claimCreate ?? claimShopifyDraftOrderCreation)(input.contract.handoffId)) {
+    throw new Error("SHOPIFY_DRAFT_ORDER_PENDING");
+  }
   const created = await create({ contract: input.contract, config: input.config, accessToken, fetchImpl });
   return {
     status: "TEST_DRAFT_CREATED",

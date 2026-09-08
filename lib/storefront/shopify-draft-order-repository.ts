@@ -64,3 +64,12 @@ export async function persistedShopifyDraftOrderId(handoffId: string): Promise<s
   if(ids.length > 1) throw new Error("SHOPIFY_DRAFT_ORDER_DUPLICATE");
   return ids[0] ?? null;
 }
+
+/** Permanent per-handoff claim: the database unique key serializes workers. */
+export async function claimShopifyDraftOrderCreation(handoffId: string): Promise<boolean> {
+  const {error} = await createSupplierServiceClient().from("staging_draft_creation_claims")
+    .insert({handoff_id: handoffId});
+  if (error?.code === "23505") return false;
+  if (error) throw new Error("SHOPIFY_DRAFT_ORDER_CLAIM_UNAVAILABLE");
+  return true;
+}

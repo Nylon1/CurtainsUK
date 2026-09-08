@@ -212,3 +212,23 @@ test("service access is role-gated and database grants deny browser roles", () =
   assert.match(auth, /user\.app_metadata/);
   assert.doesNotMatch(auth, /user_metadata/);
 });
+
+
+test("supplier timeout and temporary database failure retain last approved availability without inventing out-of-stock", async () => {
+  const repo=repository(), service=new SupplierIntelligenceService(repo);
+  await service.ingest({run:run("recovery-run"),snapshot:snapshot("recovery-snapshot"),requiredPriceField:"CUT_TRADE_PRICE",now});
+  await service.manuallyApprove({snapshotId:"recovery-snapshot",approvedBy:staffId,reason:"Staging recovery fixture approved",approvedAt:now});
+  const request={supplierId,supplierSku:sku,requirement:{quantity:10,stock_unit:"METRE" as const},now};
+  const original=await repo.dataset(supplierId), good=await service.projection(request);
+  assert.equal(good.availability,"FABRIC_AVAILABLE");
+  await service.recordFailedRun(run("timeout-run","FAILED"));
+  assert.deepEqual(await service.projection(request),good);
+  const readDataset=repo.dataset.bind(repo);
+  repo.dataset=async()=>{throw new Error("DATABASE_TIMEOUT");};
+  await assert.rejects(service.projection(request),/DATABASE_TIMEOUT/);
+  repo.dataset=readDataset;
+  assert.deepEqual(await service.projection(request),good);
+  const recovered=await repo.dataset(supplierId);
+  assert.deepEqual(recovered.snapshots,original.snapshots);
+  assert.deepEqual(recovered.promotion_events,original.promotion_events);
+});

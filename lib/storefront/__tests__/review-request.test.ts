@@ -112,3 +112,15 @@ test("JSON staging requests are bounded even when Content-Length is absent or mi
   const invalid = new Request("https://staging.example", { method: "POST", body: "not-json" });
   await assert.rejects(() => readBoundedJson(invalid, 64), /STAGING_REQUEST_INVALID_JSON/);
 });
+
+
+test("instant checkout confirmation binds identity, measurements and the displayed price", () => {
+  const configuration = {windowSlug:"standard-window",fabricId:"sdg-dapgpa203",measurementBasis:"TRACK_WIDTH" as const,widthCm:200,dropCm:220,heading:"PENCIL_PLEAT" as const,lining:"STANDARD" as const,construction:"PAIR" as const,stackDirection:"SPLIT" as const};
+  const claims = {configuration,configurationId:"11111111-1111-4111-8111-111111111111",outcome:"INSTANT_PRICE" as const,totalAmountMinor:110500};
+  const token = signReviewSubmissionWithSecret(claims,TEST_SIGNING_SECRET,1000);
+  assert.equal(verifyReviewSubmissionWithSecret(claims,token,TEST_SIGNING_SECRET,1001),true);
+  assert.equal(verifyReviewSubmissionWithSecret({...claims,totalAmountMinor:112400},token,TEST_SIGNING_SECRET,1001),false);
+  assert.equal(verifyReviewSubmissionWithSecret({...claims,configuration:{...configuration,widthCm:300}},token,TEST_SIGNING_SECRET,1001),false);
+  assert.equal(verifyReviewSubmissionWithSecret({...claims,configurationId:"22222222-2222-4222-8222-222222222222"},token,TEST_SIGNING_SECRET,1001),false);
+  assert.equal(verifyReviewSubmissionWithSecret(claims,token,TEST_SIGNING_SECRET,8201),false);
+});

@@ -245,7 +245,7 @@ test("server adapter is calculate-first, idempotent by handoff tag and contains 
   assert.doesNotMatch(source, /CURTAINSUK_SHOPIFY_ADMIN_ACCESS_TOKEN/);
   assert.match(source, /draftOrderCalculate/);
   assert.match(source, /draftOrders\(first: 2, query: \$query/);
-  assert.match(source, /await calculate[\s\S]{0,500}await create/);
+  assert.match(source, /await calculate[\s\S]{0,1200}await create/);
   assert.doesNotMatch(source, /draftOrderComplete\s*\(/);
   assert.doesNotMatch(source, /draftOrderInvoiceSend\s*\(/);
   assert.doesNotMatch(source, /console\.(log|info|warn|error)/);
@@ -619,4 +619,38 @@ test("saved Shopify receipt recovers directly by ID without a search-index depen
     assert.equal(result.status,"EXISTING_TEST_DRAFT_REUSED");assert.equal(result.shopifyWritePerformed,false);
     assert.ok(queries.every(query=>!query.includes("draftOrders(")&&!query.includes("draftOrderCreate(")));
   } finally {hooks.deregister();}
+});
+
+
+test("concurrent creation and a lost accepted response never issue a second create", async () => {
+  const {serverScriptHooks: hooks} = await import("../../../scripts/curtainsuk-server-script-loader.mjs");
+  try {
+    const {executeShopifyDraftOrder} = await import("../shopify-draft-order-server");
+    const contract = buildShopifyDraftOrderContract({handoff: approvedHandoff()});
+    let claimed = false, creates = 0, indexed = false;
+    const claimCreate = async () => { if (claimed) return false; claimed = true; return true; };
+    const node = {...financialNode(contract), id:"gid://shopify/DraftOrder/456", name:"#D-fault", status:"OPEN", invoiceUrl:"https://curtainsuk-dev.myshopify.com/test-invoice", tags:contract.input.tags, customAttributes:contract.input.customAttributes};
+    const config = {mode:"CREATE_TEST_DRAFT" as const, deploymentStage:"STAGING" as const, shopDomain:"curtainsuk-dev.myshopify.com", clientId:"fault-test-client", clientSecret:"fault-test-secret-not-real", realPaymentsDisabledConfirmed:true, requestTimeoutMs:1000};
+    const fetchImpl:typeof fetch = async (url,init) => {
+      if(String(url).endsWith("/access_token")) return Response.json({access_token:"fault-test-token-not-real", expires_in:3600, scope:"write_draft_orders"});
+      const {query} = JSON.parse(String(init?.body));
+      if(query.includes("currentAppInstallation")) return Response.json({data:{currentAppInstallation:{accessScopes:[{handle:"write_draft_orders"}]}}});
+      if(query.includes("draftOrders(")) return Response.json({data:{draftOrders:{nodes:indexed ? [node] : []}}});
+      if(query.includes("draftOrderCalculate(")) return Response.json({data:{draftOrderCalculate:{calculatedDraftOrder:financialNode(contract),userErrors:[]}}});
+      assert.ok(query.includes("draftOrderCreate(")); creates++; throw new Error("Accepted remotely; response lost");
+    };
+    const request = {contract,config,fetchImpl,claimCreate};
+    const results = await Promise.allSettled([executeShopifyDraftOrder(request),executeShopifyDraftOrder(request)]);
+    assert.equal(results.filter(r=>r.status === "rejected").length,2);
+    assert.equal(creates,1,"only one remote creation may be attempted");
+    await assert.rejects(executeShopifyDraftOrder(request),/SHOPIFY_DRAFT_ORDER_PENDING/);
+    assert.equal(creates,1,"an empty eventually consistent lookup must not release the claim");
+    indexed = true;
+    const recovered = await executeShopifyDraftOrder(request);
+    assert.equal(recovered.status,"EXISTING_TEST_DRAFT_REUSED");
+    assert.equal(creates,1);
+    indexed = false;
+    await assert.rejects(executeShopifyDraftOrder({...request,claimCreate:async()=>{throw new Error("DATABASE_UNAVAILABLE");}}),/DATABASE_UNAVAILABLE/);
+    assert.equal(creates,1,"database failure must prevent creation");
+  } finally { hooks.deregister(); }
 });

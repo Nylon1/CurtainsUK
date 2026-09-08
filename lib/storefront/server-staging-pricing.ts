@@ -45,7 +45,7 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
     ...provisional,
     commercialState: ["FABRIC_AVAILABLE", "LIMITED_AVAILABILITY"].includes(projection.availability) ? "ORDER_READY" : "PRICE_READY",
     availability: labels[projection.availability] ?? "Availability to be confirmed",
-    reviewSubmissionToken: provisional.outcome === "INSTANT_PRICE" ? null : signReviewSubmission({
+    reviewSubmissionToken: signReviewSubmission({
       configuration: input,
       configurationId: provisional.configurationId,
       outcome: provisional.outcome,

@@ -1,0 +1,24 @@
+
+> apex-curtains-site@0.1.0 test:supplier-intelligence
+> tsx --test lib/supplier-intelligence/__tests__/*.test.ts
+
+✔ durable writes are append-only and retain historical reconstruction (5.0733ms)
+✔ validation failures are retained and cannot enter approval (1.1105ms)
+✔ manual approval and rejection append attributed decision events (0.885ms)
+✔ a later approval links to the previous approved snapshot (0.7741ms)
+✔ expiration and stale supplier state project availability to be confirmed (1.8166ms)
+✔ a failed sync preserves the previous approval until it expires (1.0328ms)
+✔ batch-level projection does not combine incompatible dye lots (0.7321ms)
+✔ health reports price, stock, due-date and lifecycle transitions (0.6897ms)
+✔ Sanderson uses the same durable storage and approval service (0.3511ms)
+✔ customer-safe projection contains no supplier-commercial fields (0.7519ms)
+✔ service access is role-gated and database grants deny browser roles (2.2475ms)
+✔ supplier timeout and temporary database failure retain last approved availability without inventing out-of-stock (1.0362ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 471.9684

@@ -1,0 +1,27 @@
+[
+  {
+    "postcode": "SW1A 1AA",
+    "region": "UK_MAINLAND",
+    "visibleResult": "Delivery must be confirmed before the staging checkout handoff (shipping not ready)."
+  },
+  {
+    "postcode": "BT1 1AA",
+    "region": "NORTHERN_IRELAND",
+    "visibleResult": "Delivery must be confirmed before the staging checkout handoff (shipping not ready)."
+  },
+  {
+    "postcode": "IV1 1AA",
+    "region": "HIGHLANDS_ISLANDS",
+    "visibleResult": "Delivery must be confirmed before the staging checkout handoff (shipping not ready)."
+  },
+  {
+    "postcode": "HS1 1AA",
+    "region": "HIGHLANDS_ISLANDS",
+    "visibleResult": "Delivery must be confirmed before the staging checkout handoff (shipping not ready)."
+  },
+  {
+    "postcode": "invalid",
+    "region": "UK_MAINLAND",
+    "visibleResult": "Delivery must be confirmed before the staging checkout handoff (shipping not ready)."
+  }
+]

@@ -4,7 +4,7 @@ import type { ReviewConfiguration } from "./review-request";
 export interface ReviewTokenClaims {
   configuration: ReviewConfiguration;
   configurationId: string;
-  outcome: "PRICE_WITH_REVIEW" | "MANUAL_QUOTE";
+  outcome: "INSTANT_PRICE" | "PRICE_WITH_REVIEW" | "MANUAL_QUOTE";
   totalAmountMinor: number | null;
 }
 

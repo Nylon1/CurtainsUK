@@ -1,6 +1,8 @@
 (() => {
   const SAMPLE_KEY = "curtainsuk_staging_samples_v1";
   const PROJECT_KEY = "curtainsuk_staging_project_v1";
+  const EVALUATION_KEY = "curtainsuk_staging_evaluation_v1";
+  const RECEIPT_KEY = "curtainsuk_staging_submission_v1";
   const REVIEW_RESUME_KEY = "curtainsuk_staging_review_resume_v1";
   const REVIEW_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   const REVIEW_ACCEPTANCE_TOKEN = /^v1\.\d{10,12}\.[A-Za-z0-9_-]{43}$/;
@@ -13,7 +15,7 @@
   };
 
   const money = (minor, currency = "GBP") => new Intl.NumberFormat("en-GB", {
-    style: "currency", currency, maximumFractionDigits: 0,
+    style: "currency", currency, minimumFractionDigits: 2, maximumFractionDigits: 2,
   }).format(minor / 100);
 
   const readJson = (key, fallback) => {
@@ -79,7 +81,9 @@
     const reference = document.createElement("p");
     reference.className = "cuk-hint";
     reference.textContent = `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;
-    confirmation.append(message, reference);
+    const amounts = document.createElement("p");
+    amounts.textContent = `Curtains ${money(handoff.goodsPriceGrossAmountMinor)} · Delivery ${money(handoff.shippingGrossAmountMinor)} · Total ${money(handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor)} (VAT included)`;
+    confirmation.append(message, amounts, reference);
     if (["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED"].includes(handoff.testCheckoutStatus) && !checkoutUrl) {
       throw new Error("The Shopify test Draft Order was prepared, but its checkout URL did not match the configured CurtainsUK development store. Ask staff to check the staging checkout host before retrying.");
     }
@@ -541,6 +545,28 @@
     syncConfiguratorUrl(form);
     emit("configurator_started", { window_type: windowSelect.value, surface: "shopify_dawn" });
 
+    function showSavedReview(response) {
+      reviewForm.classList.add("cuk-hidden");
+      checkoutForm.classList.add("cuk-hidden");
+      result.hidden = false;
+      reviewConfirmation.innerHTML = `<h2>Project received</h2><p>${escapeHtml(response.message || "Our curtain team will review the measurements and contact you with the next step.")}</p><p class="cuk-hint">Reference ${escapeHtml(response.reference || response.requestId)} · No payment has been taken.</p>`;
+      const email = root.dataset.reviewEmail;
+      if (email) {
+        const link = document.createElement("a");
+        link.className = "cuk-button";
+        link.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(`Curtain evidence ${response.reference || response.requestId}`)}`;
+        link.textContent = `Email photos / drawings to ${email}`;
+        reviewConfirmation.append(link);
+      }
+
+      reviewConfirmation.classList.remove("cuk-hidden");
+      reviewConfirmation.focus();
+    }
+    const savedReceipt = readJson(RECEIPT_KEY, null);
+    if (savedReceipt && JSON.stringify(savedReceipt.project) === JSON.stringify(projectSnapshot(form, root))) {
+      showSavedReview(savedReceipt.receipt);
+    }
+
     windowSelect.addEventListener("change", () => {
       const selected = catalog.windows.find((item) => item.slug === windowSelect.value);
       setJourneyFields(root, selected);
@@ -663,7 +689,16 @@
       submit.textContent = "Checking…";
       try {
         emit("configurator_step_completed", { step: "specification", window_type: windowSelect.value });
-        const response = await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body) });
+        const savedEvaluation = readJson(EVALUATION_KEY, null);
+        const matchingSaved = savedEvaluation && JSON.stringify(savedEvaluation.configuration) === JSON.stringify(body);
+        const tokenExpiry = Number(savedEvaluation?.calculation?.reviewSubmissionToken?.split(".")[1] || 0);
+        if (matchingSaved && savedEvaluation.checkoutAttempted && tokenExpiry <= Date.now() / 1000 + 30) {
+          throw new Error(`Your previous test order needs confirmation. Contact the curtain team quoting configuration ${savedEvaluation.calculation.configurationId}. Do not start a replacement order.`);
+        }
+        const response = matchingSaved && tokenExpiry > Date.now() / 1000 + 30
+          ? savedEvaluation.calculation
+          : await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body) });
+        localStorage.setItem(EVALUATION_KEY, JSON.stringify({configuration: body, calculation: response, checkoutAttempted: matchingSaved && savedEvaluation.checkoutAttempted === true}));
         const isManualQuote = response.outcome === "MANUAL_QUOTE";
         const isPriceWithReview = response.outcome === "PRICE_WITH_REVIEW";
         const needsReview = isManualQuote || isPriceWithReview;
@@ -750,6 +785,8 @@
           : "Staging price only. Shopify test checkout is available only when every launch gate passes; real payment remains disabled.";
         reviewConfirmation.classList.add("cuk-hidden");
         result.hidden = false;
+        const receipt = readJson(RECEIPT_KEY, null);
+        if (receipt && JSON.stringify(receipt.project) === JSON.stringify(projectSnapshot(form, root))) showSavedReview(receipt.receipt);
         rememberProject({ ...projectSnapshot(form, root), lastOutcome: response.outcome });
         if (Number.isFinite(response.totalAmountMinor) && !isManualQuote) {
           emit("price_displayed", { window_type: windowSelect.value, outcome: response.outcome, amount_minor: response.totalAmountMinor, currency: response.currency, calculation_version: response.calculationVersion || null });
@@ -783,18 +820,8 @@
       try {
         const response = await fetchJson(endpoint(root.dataset.engineBase, root.dataset.reviewPath || "review-request"), { method: "POST", body: payload });
         reviewForm.classList.add("cuk-hidden");
-        reviewConfirmation.innerHTML = `<h2>Project received</h2><p>${escapeHtml(response.message || "Our curtain team will review the measurements and contact you with the next step.")}</p><p class="cuk-hint">Reference ${escapeHtml(response.reference || response.requestId)} · No payment has been taken.</p>`;
-        const email = root.dataset.reviewEmail;
-        if (email) {
-          const link = document.createElement("a");
-          link.className = "cuk-button";
-          link.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(`Curtain evidence ${response.reference || response.requestId}`)}`;
-          link.textContent = `Email photos / drawings to ${email}`;
-          reviewConfirmation.append(link);
-        }
-
-        reviewConfirmation.classList.remove("cuk-hidden");
-        reviewConfirmation.focus();
+        localStorage.setItem(RECEIPT_KEY, JSON.stringify({project: projectSnapshot(form, root), receipt: response}));
+        showSavedReview(response);
         emit("review_submitted", { window_type: form.elements.windowSlug.value, outcome: lastEvaluation.calculation.outcome, configuration_id: response.configurationId || null });
       } catch (error) {
         reviewError.textContent = error.message;
@@ -810,6 +837,7 @@
       const checkoutError = checkoutForm.querySelector("[data-cuk-checkout-error]");
       checkoutError.hidden = true;
       if (!checkoutForm.reportValidity() || !lastEvaluation || lastEvaluation.calculation.outcome !== "INSTANT_PRICE") return;
+      const previousAttempt = readJson(EVALUATION_KEY, {}).checkoutAttempted === true;
       const submit = checkoutForm.querySelector("button[type=submit]");
       submit.disabled = true;
       submit.textContent = "Validating and freezing…";
@@ -819,11 +847,13 @@
         configuration_id: lastEvaluation.calculation.configurationId,
       });
       try {
+        localStorage.setItem(EVALUATION_KEY, JSON.stringify({...lastEvaluation, checkoutAttempted: true}));
         const handoff = await fetchJson(endpoint(root.dataset.engineBase, "checkout-handoff"), {
           method: "POST",
           body: JSON.stringify({
             configuration: lastEvaluation.configuration,
             configurationId: lastEvaluation.calculation.configurationId,
+            priceConfirmationToken: lastEvaluation.calculation.reviewSubmissionToken,
             customerAccepted: checkoutForm.elements.customerAccepted.checked,
             shippingRegion: checkoutForm.elements.shippingRegion.value,
             shippingPostcode: checkoutForm.elements.shippingPostcode.value,
@@ -831,6 +861,7 @@
           }),
         });
         if (!handoff.prepared) {
+          localStorage.setItem(EVALUATION_KEY, JSON.stringify({...lastEvaluation, checkoutAttempted: previousAttempt}));
           const blockers = Array.isArray(handoff.blockers) ? handoff.blockers.map((item) => String(item).replaceAll("_", " ").toLowerCase()).join(", ") : "a launch gate";
           throw new Error(`${handoff.message || "This configuration is not ready for checkout"} (${blockers}).`);
         }
@@ -845,6 +876,7 @@
           handoff_id: handoff.handoffId,
         });
       } catch (error) {
+        if (!previousAttempt && error.message.includes("previous price confirmation")) localStorage.removeItem(EVALUATION_KEY);
         checkoutError.textContent = error.message;
         checkoutError.hidden = false;
         submit.disabled = false;

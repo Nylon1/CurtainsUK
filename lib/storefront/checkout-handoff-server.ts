@@ -20,6 +20,7 @@ import { executeStagingShopifyDraftOrder } from "./shopify-draft-order-server";
 import { loadStagingUkShippingRules } from "./shipping-repository";
 import { quoteOwnerApprovedCurtainShipping, type PackedParcel } from "./shipping-owner-inputs";
 import { normalizeAvailabilityState } from "./review-request";
+import { verifyReviewSubmission } from "./review-token";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
 import { stagingCheckoutIdentity } from "./checkout-idempotency";
 import { calculateStagingPrice } from "./server-staging-pricing";
@@ -33,6 +34,7 @@ export interface ServerStagingCheckoutHandoffInput {
   configuration?: StagingPriceRequest;
   /** The configuration ID returned by the signed price response. */
   configurationId?: string;
+  priceConfirmationToken?: string;
   reviewRequestId?: string;
   reviewAcceptanceToken?: string;
   customerAccepted: boolean;
@@ -228,6 +230,12 @@ export async function prepareServerStagingCheckoutHandoff(
     if (!input.configuration) throw new Error("CHECKOUT_CONFIGURATION_REQUIRED");
     const calculation = await calculateStagingPrice(input.configuration);
     if (calculation.fabricMetres === null || calculation.fabricWidths === null) return blocked({action:"SUBMIT_PROJECT",blockers:["PRICE_INVALID","TECHNICAL_CONFIGURATION_INVALID","REVIEW_NOT_READY"]});
+    if (!verifyReviewSubmission({
+      configuration: input.configuration,
+      configurationId: input.configurationId!,
+      outcome: calculation.outcome,
+      totalAmountMinor: calculation.totalAmountMinor,
+    }, input.priceConfirmationToken)) throw new Error("CHECKOUT_PRICE_RECONFIRM_REQUIRED");
     const record = await fabricMasterRecordById(input.configuration.fabricId);
     if (!record) throw new Error("CHECKOUT_FABRIC_IDENTITY_INVALID");
     configurationId = input.configurationId!;

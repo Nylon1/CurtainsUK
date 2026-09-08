@@ -2,6 +2,14 @@
 
 The owner's catalogue-first activation rule remains governing. This amendment changes imagery discovery and matching, not lifecycle, price or stock eligibility. Dawn remains unpublished; production Minimal, payment settings and ordering are untouched.
 
+## Governing SDG source priority
+
+Authenticated trade-catalogue fabric/collection listings are the primary exact-colourway image source for Sanderson, Morris & Co., Harlequin, Zoffany, Scion and Clarke & Clarke. Locate the exact Master SKU, read the image from that same product card, and confirm brand, design, colour and fabric type. Open the product when a higher-quality copy or identity detail is needed. Capture the supplier's explicit Live/discontinued label when shown; an absent label remains UNKNOWN and does not block browsing.
+
+Filecamp and digital books are optional sources for additional ROOM/lifestyle/design imagery. Their login, availability or reconciliation must never delay a verified trade-catalogue colourway import. Upload approved colourway files immediately through the existing hash-deduplicated Shopify Files pipeline; retain customer-safe Shopify references in Fabric Master. Do not hotlink supplier files permanently.
+
+SDG scheduling starts with exact-SKU search and fabric listings, followed by exact product/variant/collection checks. Additional-media routes follow. All ten route identities and existing checkpoints remain compatible; priority changes do not invalidate completed observations. A failed search is unresolved discovery, not proof of discontinued status or unavailable imagery.
+
 ## What the portal inspection established
 
 Checked 8 September 2026 in the existing authorised browser session:
@@ -12,16 +20,20 @@ Checked 8 September 2026 in the existing authorised browser session:
 | SDG product/variants | Selected colourway, other variants, recommendations and corporate images coexist in the DOM. Recommendations include wallpaper. Whole-page image extraction is unsafe. |
 | SDG search mismatch | DARP222519 returned DARP222529, a different fabric. The result remains withheld. A search hit is not an exact match. |
 | SDG Document Browser | General Documents has New Collection Details, Digital Design Books and Product Data File. Digital Design Books exposes all six target-brand folders. Morris & Co contains 17 PDFs, including fabric, wallpaper and rug books. |
-| SDG media store | File Camp Media Store is separate from the main trade session. Its Filecamp login currently blocks inspection. The shared capability link is deliberately not recorded. |
+| SDG media store | Filecamp's separate login blocks only inspection of optional additional media. It does not block trade-catalogue colourway imports. Capability links are not recorded. |
 | Prestigious public catalogue | Product, design, collection and fabric listing routes exist. Genuine product thumbnails must not be discarded just because a larger copy is unavailable. |
 | Prestigious resources | Seasonal brochures from 2021 to Autumn/Winter 2026 are listed. A brochure's presence does not prove any particular colourway image. |
-| Prestigious trade/library | Webtex shows its login page; SharePoint Lifestyle Imagery requires Microsoft sign-in. Neither location has been exhausted. |
+| Prestigious trade/library | Webtex and SharePoint were accessible during the subsequent discovery pass. Webtex exposes exact codes/full-size images; SharePoint contains seasonal collection libraries. Individual media routes remain incomplete. |
+
+Bounded SKU-family searches HIOV, MWAR, DSTR, NSCD and F0753 yielded exact fabric cards for five SDG brands. Pattern books in the same results were excluded. A prefix search only supplies candidates: every association must still reconcile the complete SKU, brand and colour.
+
+Two Zoffany brand-product cards explicitly link newer product identifiers to media filenames carrying the existing Master SKU: ZOF0223-02 → ZINF322785, and ZOF0236-04 → ZINF322800. Each also agrees on exact brand/design/colour and existing fabric identity. These observed relationships are recorded in a reconciliation table; do not generalise a renumbering formula. ZOW wallpaper cards are excluded. Exact-SKU searches without results remain recorded even when an alternative verified catalogue association succeeds.
 
 The reusable, versioned recipes are in `lib/fabric-master/portal-discovery-maps.ts`. OBSERVED means the location/control was seen; it does not mean every fabric has been searched there. PARTIALLY_OBSERVED and ACCESS_BLOCKED locations still require work. The authorised UI adapter follows actual links and re-reads page identity after navigation; it must not fabricate product URLs or export sessions.
 
 ## Ordered work and honest failure reporting
 
-Each fabric has ten route observations: exact product, SKU search, design, colourway, collection, fabric listing, gallery, lifestyle, resources, and exact design-plus-colour search. Checkpoints are bound to the identity and map version, written atomically and resumed independently of uploads. Finish all pagination and all locations within a route before marking it EXHAUSTED. For example, SDG Resources includes both the document folders and Filecamp: inspecting one is insufficient.
+Each fabric retains ten route observations. `orderedDiscoveryRoutes` gives SDG its catalogue-first priority while retaining the Prestigious order. Checkpoints are bound to identity and map version and resumed independently of uploads. Finish all pagination and locations within a route before marking it EXHAUSTED. SDG Resources includes document folders and Filecamp, but completion of that optional route is not required to import or activate an already verified colourway image.
 
 The scheduler continues looking for additional media even after finding a main image. An unfinished route resumes before later routes. An access failure remains incomplete. NOT_APPLICABLE needs an actual page inspection establishing that a location is not exposed; it cannot be used to bypass an inaccessible library.
 
@@ -56,10 +68,13 @@ Failed assets are skipped on subsequent batches so they cannot starve later colo
 
 `fabric:apply:media -- --fabric-ids=...` now applies all approved mappings for those fabrics. Location, scope and match method survive in the private `source_reference`; customers receive Shopify URLs only. Shared design/collection assets are kept in typed mappings, do not replace the primary legacy image, and do not activate an otherwise image-less fabric. No pricing fields are written.
 
-## Validation and remaining work
+## Initial structure-only pass (historical)
 
 - Two real SDG discovery ledgers saved and resumed. Astraea has exact colourway media but eight other routes remain unfinished; DARP222519 has an exact-search mismatch and blocked resources. Neither is confirmed missing.
 - The expanded Astraea manifest reused its existing mapping: one already-mapped asset skipped, zero downloads/uploads/new mappings. Total existing uploaded assets remain 265.
 - All 37 Fabric Master tests pass, covering route exhaustion, pagination, resume order, wrong SKU/colour/product type, shared ROOM restrictions, additional-media resume, metadata stripping and source safety.
-- Remaining operational blockers: Prestigious Webtex login, Prestigious SharePoint access, SDG Filecamp login; complete and validate recipes within those areas before unattended scale-out. Main SDG trade and document-browser access work.
-- No bulk discovery or new supplier image import was performed in this structure-learning pass. No storefront runtime or theme deployment was necessary.
+- That initial pass did not import new images. Its access observations and 265-asset count are historical, not current operational gates.
+
+## Current evidence and remaining work
+
+`artifacts/portal-discovery/REPORT.md` records the later 260-image pass. `artifacts/trade-listings-primary/` records the subsequent catalogue-first batches, exact identity reconciliation, Shopify mappings and QA. Remaining work is continued bounded catalogue mapping, resolution of specific contradictory identities and optional additional media. Filecamp/digital books are not colourway-activation blockers. No storefront runtime or theme deployment is required for these data operations.

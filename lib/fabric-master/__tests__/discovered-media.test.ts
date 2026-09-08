@@ -45,7 +45,9 @@ test("shared room images deduplicate within an exactly established design, never
  assert.throws(()=>approvedMediaJob(target,{...room,evidence:{...room.evidence,imageType:"MAIN"}}),/IDENTITY_MISMATCH/);
 });
 test("both supplier maps cover ten ordered routes without confusing access with completed discovery",()=>{
- for(const supplier of ["prestigious-textiles","sanderson-design-group"]){const plan=portalDiscoveryPlan(supplier);assert.equal(plan.length,10);assert.equal(plan[0].route,"EXACT_PRODUCT");assert.equal(plan[9].route,"DESIGN_COLOUR_SEARCH");assert.ok(plan.every(p=>p.steps.length));}
+ for(const supplier of ["prestigious-textiles","sanderson-design-group"]){const plan=portalDiscoveryPlan(supplier);assert.equal(plan.length,10);assert.ok(plan.every(p=>p.steps.length));}
+ assert.deepEqual(portalDiscoveryPlan("sanderson-design-group").slice(0,2).map(p=>p.route),["SKU_SEARCH","FABRIC_LISTING"]);
+ assert.equal(portalDiscoveryPlan("prestigious-textiles")[0].route,"EXACT_PRODUCT");
  assert.equal(portalDiscoveryPlan("prestigious-textiles",["EXACT_PRODUCT"])[0].status,"OBSERVED");
  assert.equal(portalDiscoveryPlan("prestigious-textiles",["SKU_SEARCH"])[0].status,"PARTIALLY_OBSERVED");
  assert.equal(portalDiscoveryPlan("sanderson-design-group",["RESOURCES"])[0].status,"PARTIALLY_OBSERVED");

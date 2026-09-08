@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-08",
+  "themeId": "182264234363",
+  "themeState": "UNPUBLISHED",
+  "fabricId": "sdg-hiov134129",
+  "desktopViewport": [
+    1229,
+    539
+  ],
+  "mobileViewport": [
+    390,
+    844
+  ],
+  "loadedShopifyImage": {
+    "width": 1366,
+    "height": 1366
+  },
+  "horizontalOverflow": false,
+  "fileInputs": 0,
+  "detailCheckoutLinks": 0,
+  "makeCurtainsHandoff": "?fabric=sdg-hiov134129&window=bay-window",
+  "configurationPriceCheckStatePresent": true,
+  "sampleAction": "DISABLED_UNCONFIRMED",
+  "screenshots": "Captured and visually reviewed in browser tool; no screenshot files exported",
+  "viewportRestored": true,
+  "physicalMobileDeviceTested": false,
+  "supplierProductGallery": {
+    "displayedSku": "HIOV134129",
+    "portalProductId": "HAF0562-01",
+    "selectedColour": "Nectar",
+    "mainAsset": "H/I/HIOV134129_4b56.jpg",
+    "additionalMedia": "Additional product-gallery images observed; some contain multiple colours. Not automatically assigned as exact-colourway media."
+  },
+  "morrisGrid": {
+    "records": 30,
+    "pages": 2,
+    "cardsPerPage": 24,
+    "shopifyImagesInitiallyLoaded": 6,
+    "horizontalOverflow": false,
+    "bayContextPreservedInDetailLinks": true,
+    "visualReview": "Real Artichoke colourway images in three-column desktop grid"
+  },
+  "zoffanyGrid": {
+    "records": 2,
+    "pages": 1,
+    "cardsLoaded": 2,
+    "thumbnailSize": [
+      307,
+      307
+    ],
+    "lazy": true,
+    "overflow": false,
+    "bayContextPreserved": true
+  }
+}

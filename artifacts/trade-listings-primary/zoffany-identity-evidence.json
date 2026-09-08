@@ -1,0 +1,57 @@
+{
+  "sourceLocation": "sdg.brand-products",
+  "sourcePage": "https://trade.sandersondesigngroup.com/all-brands/zoffany",
+  "checkedAt": "2026-09-08T09:51:14Z",
+  "lifecycle": "UNKNOWN",
+  "productTypeBasis": "Existing exact-SKU fabric Master identity, corresponding supplier ZOF product card, exact legacy SKU in that card's image filename, exact brand/design/colour. Adjacent ZOW wallpaper cards excluded.",
+  "rows": [
+    {
+      "master_id": "sdg-zinf322785",
+      "workbook_sku": "ZINF322785",
+      "portal_product_id": "ZOF0223-02",
+      "brand": "Zoffany",
+      "design": "Artisan Palampore",
+      "colour": "Chintz",
+      "collection": "Indienne Fabrics",
+      "portal_title": "Artisan Palampore Chintz",
+      "image_path": "Z/I/ZINF322785_3c1b.jpg",
+      "match_method": "EXACT_LEGACY_IMAGE_SKU_AND_BRAND_DESIGN_COLOUR",
+      "resolution": "VERIFIED",
+      "width": 1366,
+      "height": 1366,
+      "visual_review": "Genuine floral fabric image; no placeholder",
+      "confidence": "HIGH"
+    },
+    {
+      "master_id": "sdg-zinf322800",
+      "workbook_sku": "ZINF322800",
+      "portal_product_id": "ZOF0236-04",
+      "brand": "Zoffany",
+      "design": "Sanganeri Block Print",
+      "colour": "Indigo/Madder",
+      "collection": "Indienne Fabrics",
+      "portal_title": "Sanganeri Block Print Indigo/Madder",
+      "image_path": "Z/I/ZINF322800_c6fe.jpg",
+      "match_method": "EXACT_LEGACY_IMAGE_SKU_AND_BRAND_DESIGN_COLOUR",
+      "resolution": "VERIFIED",
+      "width": 1366,
+      "height": 1366,
+      "visual_review": "Genuine red/indigo botanical fabric image; no placeholder",
+      "confidence": "HIGH"
+    }
+  ],
+  "searchesWithoutExactResult": [
+    "ZP1C",
+    "ZDEV333315",
+    "333315",
+    "ZCHE333522",
+    "ZCUR331092",
+    "ZOF0223-02",
+    "ZINF322800",
+    "ZINF322785"
+  ],
+  "collectionRouteWithoutResults": "/brands/zoffany/fabric/collection/suffolk-damasks-and-stripes",
+  "remainingRecords": "UNMAPPED, not unavailable",
+  "commercialVerification": "NOT_PERFORMED",
+  "exactMasterSearchCheckedAt": "2026-09-08T09:56:15.622034+00:00"
+}

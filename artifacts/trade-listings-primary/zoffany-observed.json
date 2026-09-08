@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-09-08T09:51:14Z",
+  "brand": "Zoffany",
+  "productType": "FABRIC",
+  "status": "UNKNOWN",
+  "route": "COLLECTION",
+  "location": "sdg.brand-products",
+  "skuEvidence": "Exact legacy Master SKU in supplier image filename, corroborated by the same brand/design/colour product card; see zoffany-identity-evidence.json",
+  "rows": [
+    [
+      "ZINF322785",
+      "Artisan Palampore Chintz",
+      "Z/I/ZINF322785_3c1b.jpg"
+    ],
+    [
+      "ZINF322800",
+      "Sanganeri Block Print Indigo/Madder",
+      "Z/I/ZINF322800_c6fe.jpg"
+    ]
+  ]
+}

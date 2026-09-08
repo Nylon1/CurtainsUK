@@ -3,6 +3,17 @@ import type { SupplierImageType } from "./supplier-media";
 
 export const DISCOVERY_ROUTES = ["EXACT_PRODUCT", "SKU_SEARCH", "DESIGN", "COLOURWAY", "COLLECTION", "FABRIC_LISTING", "GALLERY", "LIFESTYLE", "RESOURCES", "DESIGN_COLOUR_SEARCH"] as const;
 export type DiscoveryRoute = typeof DISCOVERY_ROUTES[number];
+// SDG's authenticated listings are the primary exact-colourway source.
+// Optional lifestyle libraries never gate a verified listing image.
+export function orderedDiscoveryRoutes(supplier: string): readonly DiscoveryRoute[] {
+  return supplier === "sanderson-design-group"
+    ? ["SKU_SEARCH", "FABRIC_LISTING", "EXACT_PRODUCT", "COLOURWAY", "COLLECTION", "DESIGN", "DESIGN_COLOUR_SEARCH", "GALLERY", "LIFESTYLE", "RESOURCES"]
+    : DISCOVERY_ROUTES;
+}
+/** Display formatting only; use alongside an exact SKU and brand check. */
+export function normalisePortalDisplay(value: string) {
+  return value.normalize("NFKC").trim().replace(/\s+/g," ").replace(/[’'`]s\b/gi,"s").replace(/\s*\/\s*/g,"/").toLowerCase();
+}
 export type MediaScope = "COLOURWAY" | "DESIGN" | "COLLECTION";
 export interface DiscoveryIdentity {
   supplier: string; fabricId: string; sku: string; brand: string; design: string; colour: string; collection: string;
@@ -99,7 +110,8 @@ export async function discoverPortalMedia(identity: DiscoveryIdentity, mapVersio
   if (!Number.isInteger(maxRoutes) || maxRoutes < 1 || maxRoutes > 10) throw new Error("DISCOVERY_BUDGET_INVALID");
   const fresh = newDiscoveryCheckpoint(identity, mapVersion), prior = await ports.load();
   let checkpoint = prior?.identityKey === fresh.identityKey && prior.mapVersion === mapVersion ? prior : fresh;
-  const pending = discoverySummary(checkpoint).remainingRoutes;
+  const remaining = discoverySummary(checkpoint).remainingRoutes;
+  const pending = orderedDiscoveryRoutes(identity.supplier).filter(route => remaining.includes(route));
   for (const route of pending.slice(0,maxRoutes)) {
     const observation = await ports.inspect(route, checkpoint.observations.find(o => o.route === route));
     if (observation.route !== route) throw new Error("DISCOVERY_ROUTE_MISMATCH");

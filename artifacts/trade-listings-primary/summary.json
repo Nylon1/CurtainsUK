@@ -1,0 +1,108 @@
+{
+  "checkedAt": "2026-09-08 10:09:23 UTC",
+  "branch": "feature/curtainsuk-phase-5a-prelaunch",
+  "newUploads": 260,
+  "approvedMappings": 261,
+  "existingMappingReused": 1,
+  "resumeSkipped": 261,
+  "newContentDuplicates": 0,
+  "acceptedMismatches": 0,
+  "currentBatchUnresolved": 0,
+  "historicalWrongColourwayCandidatesWithheld": 2,
+  "totalFabrics": 9938,
+  "browsable": 785,
+  "knownDiscontinuedHidden": 35,
+  "unmapped": 9153,
+  "eligibleUnmapped": 9118,
+  "genuinelyMissingConfirmed": 0,
+  "priceReady": 251,
+  "orderReady": 0,
+  "newSelectedPriceBlocked": 261,
+  "byBrand": [
+    {
+      "brand": "Clarke & Clarke",
+      "total": 3302,
+      "browsable": 361,
+      "unmapped": 2941,
+      "discontinued": 0,
+      "newImages": 100
+    },
+    {
+      "brand": "Harlequin",
+      "total": 2428,
+      "browsable": 52,
+      "unmapped": 2376,
+      "discontinued": 34,
+      "newImages": 50
+    },
+    {
+      "brand": "Morris & Co.",
+      "total": 830,
+      "browsable": 30,
+      "unmapped": 800,
+      "discontinued": 0,
+      "newImages": 29
+    },
+    {
+      "brand": "Prestigious Textiles",
+      "total": 258,
+      "browsable": 258,
+      "unmapped": 0,
+      "discontinued": 0,
+      "newImages": 0
+    },
+    {
+      "brand": "Sanderson",
+      "total": 1762,
+      "browsable": 35,
+      "unmapped": 1727,
+      "discontinued": 0,
+      "newImages": 33
+    },
+    {
+      "brand": "Scion",
+      "total": 464,
+      "browsable": 47,
+      "unmapped": 417,
+      "discontinued": 1,
+      "newImages": 46
+    },
+    {
+      "brand": "Zoffany",
+      "total": 894,
+      "browsable": 2,
+      "unmapped": 892,
+      "discontinued": 0,
+      "newImages": 2
+    }
+  ],
+  "quality": {
+    "minImageWidth": 1366,
+    "minImageHeight": 1366,
+    "testsPassed": 40,
+    "typeScript": "PASS",
+    "lint": "PASS",
+    "publicAudit": "PASS",
+    "browseMedianMs": 661,
+    "searchMedianMs": 689,
+    "detailMedianMs": 516,
+    "maxPageRecords": 24,
+    "publicPages": 33,
+    "maxPayloadBytes": 56212,
+    "commercialLeaks": 0
+  },
+  "constraints": {
+    "dawnUnpublished": true,
+    "minimalUnchanged": true,
+    "paymentsUnchanged": true,
+    "merchantCenterUnchanged": true,
+    "supplierOrderingUnchanged": true,
+    "newCatalogueArchitecture": false
+  },
+  "remainingWork": [
+    "Continue controlled exact-SKU discovery/import for remaining eligible records.",
+    "Zoffany needs further verified new/legacy identifier relationships; no renumbering formula is assumed.",
+    "One F0753 listing colourway remains outside this selected batch.",
+    "Filecamp/digital books are optional additional-media work, never colourway-import prerequisites."
+  ]
+}

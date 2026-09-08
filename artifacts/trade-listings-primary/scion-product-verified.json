@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-08 10:02:30 UTC",
+  "brand": "Scion",
+  "productType": "FABRIC",
+  "status": "Live",
+  "route": "EXACT_PRODUCT",
+  "location": "sdg.product",
+  "portalProductId": "SCF0138-02",
+  "listingSpelling": "Seaglas",
+  "productPageColour": "Seaglass",
+  "productPageDesign": "Falling Foss Weave",
+  "resolution": "Product page confirms existing Master colour; listing spelling is truncated. No canonical colour change.",
+  "rows": [
+    [
+      "NSCD134679",
+      "Falling Foss Weave Seaglass",
+      "N/S/NSCD134679_9476.jpg"
+    ]
+  ]
+}

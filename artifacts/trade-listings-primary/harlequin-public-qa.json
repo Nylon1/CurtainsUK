@@ -1,0 +1,154 @@
+{
+  "publicRecords": 575,
+  "publicPriceReady": 251,
+  "publicOrderReady": 0,
+  "canaryRecords": 50,
+  "canaryPriceBlocked": 50,
+  "sampleKnownAvailable": 0,
+  "pages": 24,
+  "maxRecordsPerPayload": 24,
+  "largestRawResponseBytes": 55986,
+  "commercialOrCredentialLeaks": 0,
+  "imageHost": "Shopify CDN",
+  "robots": "noindex, nofollow",
+  "filterSemantics": "PASS",
+  "testedCollection": "Performance Velvet",
+  "timings": {
+    "browse": {
+      "medianMs": 692,
+      "measurements": [
+        {
+          "ms": 828,
+          "bytes": 49866
+        },
+        {
+          "ms": 692,
+          "bytes": 49866
+        },
+        {
+          "ms": 626,
+          "bytes": 49866
+        }
+      ]
+    },
+    "search": {
+      "medianMs": 850,
+      "measurements": [
+        {
+          "ms": 850,
+          "bytes": 7395
+        },
+        {
+          "ms": 899,
+          "bytes": 7395
+        },
+        {
+          "ms": 650,
+          "bytes": 7395
+        }
+      ]
+    },
+    "brand": {
+      "medianMs": 675,
+      "measurements": [
+        {
+          "ms": 659,
+          "bytes": 49866
+        },
+        {
+          "ms": 702,
+          "bytes": 49866
+        },
+        {
+          "ms": 675,
+          "bytes": 49866
+        }
+      ]
+    },
+    "colour": {
+      "medianMs": 690,
+      "measurements": [
+        {
+          "ms": 690,
+          "bytes": 54655
+        },
+        {
+          "ms": 641,
+          "bytes": 54655
+        },
+        {
+          "ms": 736,
+          "bytes": 54655
+        }
+      ]
+    },
+    "pattern": {
+      "medianMs": 648,
+      "measurements": [
+        {
+          "ms": 768,
+          "bytes": 55917
+        },
+        {
+          "ms": 648,
+          "bytes": 55917
+        },
+        {
+          "ms": 614,
+          "bytes": 55917
+        }
+      ]
+    },
+    "collection": {
+      "medianMs": 666,
+      "measurements": [
+        {
+          "ms": 666,
+          "bytes": 44458
+        },
+        {
+          "ms": 829,
+          "bytes": 44458
+        },
+        {
+          "ms": 642,
+          "bytes": 44458
+        }
+      ]
+    },
+    "detail": {
+      "medianMs": 470,
+      "measurements": [
+        {
+          "ms": 459,
+          "bytes": 1810
+        },
+        {
+          "ms": 470,
+          "bytes": 1810
+        },
+        {
+          "ms": 535,
+          "bytes": 1810
+        }
+      ]
+    },
+    "page2": {
+      "medianMs": 869,
+      "measurements": [
+        {
+          "ms": 1595,
+          "bytes": 47602
+        },
+        {
+          "ms": 869,
+          "bytes": 47602
+        },
+        {
+          "ms": 849,
+          "bytes": 47602
+        }
+      ]
+    }
+  }
+}

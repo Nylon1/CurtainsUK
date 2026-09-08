@@ -1,0 +1,21 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "verifiedAt": "2026-09-08 10:01:24 UTC",
+  "source": "Exact authenticated listing and product page; current supplier identity",
+  "actor": "Codex operator under owner catalogue activation rule",
+  "rows": [
+    {
+      "master_id": "sdg-f0753-19",
+      "workbook_sku": "F0753/19",
+      "portal_sku": "F0753/19",
+      "brand": "Clarke & Clarke",
+      "design": "Alvar",
+      "workbook_colour": "Agean",
+      "portal_colour": "Aegean",
+      "expected_revision": "2026-09-07 20:33:38.780221+00",
+      "workbook_effective_date": "2026-02-24",
+      "product_reference": "CCF0370-19",
+      "product_image": "F/0/F0753_19_46f3.jpg"
+    }
+  ]
+}

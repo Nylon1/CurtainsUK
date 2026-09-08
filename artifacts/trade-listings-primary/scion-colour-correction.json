@@ -1,0 +1,22 @@
+{
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "verifiedAt": "2026-09-08 10:01:24 UTC",
+  "source": "Exact authenticated listing and product page; current supplier identity",
+  "actor": "Codex operator under owner catalogue activation rule",
+  "rows": [
+    {
+      "master_id": "sdg-nscd134678",
+      "workbook_sku": "NSCD134678",
+      "portal_sku": "NSCD134678",
+      "brand": "Scion",
+      "design": "Falling Foss Weave",
+      "portal_design": "Falling Foss",
+      "workbook_colour": "Moss",
+      "portal_colour": "Dawn",
+      "expected_revision": "2026-09-07 20:33:49.91009+00",
+      "workbook_effective_date": "2026-02-24",
+      "product_reference": "SCF0138-01",
+      "product_image": "N/S/NSCD134678_b4a2.jpg"
+    }
+  ]
+}

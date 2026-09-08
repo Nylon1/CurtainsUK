@@ -1,0 +1,62 @@
+{
+  "checkedDate": "2026-09-08",
+  "primarySource": "Authenticated SDG trade fabric/collection/product listings",
+  "optionalAdditionalMedia": [
+    "Filecamp",
+    "Digital books"
+  ],
+  "optionalMediaBlocksColourwayImport": false,
+  "candidateQueries": {
+    "Harlequin": "HIOV",
+    "Morris & Co.": "MWAR",
+    "Sanderson": "DSTR",
+    "Scion": "NSCD",
+    "Clarke & Clarke": "F0753"
+  },
+  "queryMatchingRule": "Each candidate requires complete exact SKU, brand, design and colour reconciliation; a prefix search is not identity evidence.",
+  "Zoffany": {
+    "primaryExactSearches": "Recorded in zoffany-identity-evidence.json",
+    "verifiedAlternative": "Same brand-product card links a new product identifier to an exact legacy Master SKU in the image filename, with exact brand/design/colour. No formula is inferred.",
+    "pairs": [
+      [
+        "ZINF322785",
+        "ZOF0223-02"
+      ],
+      [
+        "ZINF322800",
+        "ZOF0236-04"
+      ]
+    ]
+  },
+  "clarkeListingProgress": {
+    "viewing": 101,
+    "selected": 100,
+    "lastSelectedSku": "F0753/98",
+    "remainingUnselected": 1
+  },
+  "genuinelyUnavailableConfirmed": 0,
+  "customerImageHost": "Shopify CDN",
+  "initialColourConflicts": [
+    {
+      "sku": "NSCD134678",
+      "master": "Moss",
+      "portal": "Dawn"
+    },
+    {
+      "sku": "NSCD134679",
+      "master": "Seaglass",
+      "portal": "Seaglas"
+    },
+    {
+      "sku": "F0753/19",
+      "master": "Agean",
+      "portal": "Aegean"
+    }
+  ],
+  "remainingColourConflicts": 0,
+  "resolutions": [
+    "NSCD134678: exact product confirms Dawn; guarded correction preserves original Moss observation",
+    "F0753/19: exact product/listing confirms Aegean; guarded correction preserves original Agean observation",
+    "NSCD134679: exact product says Seaglass; canonical colour retained and product image approved"
+  ]
+}

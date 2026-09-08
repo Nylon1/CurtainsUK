@@ -1,0 +1,35 @@
+{
+  "observed": 2,
+  "exactIdentityMatches": 2,
+  "withheld": [],
+  "databaseWrites": 0,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-zinf322785",
+      "workbook_sku": "ZINF322785",
+      "portal_sku": "ZINF322785",
+      "master_design": "Artisan Palampore",
+      "master_colour": "Chintz",
+      "portal_title": "Artisan Palampore Chintz",
+      "portal_status": "UNKNOWN",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T09:51:14Z"
+    },
+    {
+      "master_id": "sdg-zinf322800",
+      "workbook_sku": "ZINF322800",
+      "portal_sku": "ZINF322800",
+      "master_design": "Sanganeri Block Print",
+      "master_colour": "Indigo/Madder",
+      "portal_title": "Sanganeri Block Print Indigo/Madder",
+      "portal_status": "UNKNOWN",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08T09:51:14Z"
+    }
+  ]
+}

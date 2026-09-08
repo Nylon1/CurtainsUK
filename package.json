@@ -29,6 +29,7 @@
     "fabric:collect:prestigious-public": "tsx scripts/curtainsuk-collect-prestigious-public.ts",
     "fabric:import:prestigious-public": "tsx scripts/curtainsuk-apply-prestigious-public.ts",
     "fabric:import:media": "tsx scripts/curtainsuk-import-supplier-media.ts",
+    "fabric:discover:plan": "tsx scripts/curtainsuk-plan-portal-discovery.ts",
     "fabric:apply:media": "tsx scripts/curtainsuk-apply-media-mappings.ts",
     "fabric:preview:retail": "tsx scripts/curtainsuk-retail-local-preview.ts"
   },

@@ -9,6 +9,8 @@ export interface MediaCandidate {
   sourceReference: string;
   rightsState: "APPROVED" | "PENDING" | "REJECTED";
   mappingState: "VERIFIED" | "UNRESOLVED";
+  mediaScope?: "COLOURWAY" | "DESIGN" | "COLLECTION";
+  discoveryLocation?: string;
 }
 export interface ImportedMedia extends MediaCandidate {
   contentHash: string; width: number; height: number; importedAt: string;
@@ -17,6 +19,10 @@ export interface ImportedMedia extends MediaCandidate {
 export function validateMediaCandidate(candidate: MediaCandidate) {
   if (!IMAGE_TYPES.includes(candidate.imageType) || !candidate.supplier || !candidate.supplierSku || !candidate.fabricId) throw new Error("MEDIA_IDENTITY_REQUIRED");
   if (candidate.rightsState !== "APPROVED" || candidate.mappingState !== "VERIFIED") throw new Error("MEDIA_APPROVAL_REQUIRED");
+  if (candidate.mediaScope && !["COLOURWAY", "DESIGN", "COLLECTION"].includes(candidate.mediaScope)) throw new Error("MEDIA_SCOPE_INVALID");
+  if (candidate.mediaScope === "DESIGN" && candidate.imageType !== "ROOM") throw new Error("DESIGN_MEDIA_CANNOT_BE_COLOURWAY");
+  if (candidate.mediaScope === "COLLECTION" && candidate.imageType !== "ADDITIONAL") throw new Error("COLLECTION_MEDIA_CANNOT_BE_COLOURWAY");
+  if (candidate.discoveryLocation && (!/^[A-Z_]+:[a-zA-Z0-9_.:-]{1,120}$/.test(candidate.discoveryLocation) || /token|cookie|password|authorization|secret/i.test(candidate.discoveryLocation))) throw new Error("MEDIA_LOCATION_INVALID");
   if (!/^[a-zA-Z0-9 /_.:-]{1,200}$/.test(candidate.sourceReference) || /https?:|token|cookie|password|authorization/i.test(candidate.sourceReference)) throw new Error("MEDIA_SOURCE_REFERENCE_UNSAFE");
 }
 export function isShopifyCdnUrl(value: string) {

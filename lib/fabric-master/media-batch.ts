@@ -18,7 +18,8 @@ export interface MediaBatchPorts {
 }
 export async function importSupplierMediaBatch(candidates: MediaCandidate[], ports: MediaBatchPorts, batchSize = 100) {
   if (!Number.isInteger(batchSize) || batchSize < 100 || batchSize > 250) throw new Error("MEDIA_BATCH_SIZE_INVALID");
-  let uploaded = 0, duplicatesAvoided = 0, failed = 0, missing = 0;
+  let uploaded = 0, duplicatesAvoided = 0, failed = 0;
+  const missing = 0; // Only the complete portal-discovery ledger can establish this.
   for (const candidate of candidates.slice(0, batchSize)) {
     validateMediaCandidate(candidate);
     const prior = await ports.checkpoint(candidate);
@@ -29,7 +30,8 @@ export async function importSupplierMediaBatch(candidates: MediaCandidate[], por
       if (prior?.contentHash) { image = await ports.cachedImage(prior.contentHash); duplicatesAvoided++; }
       else {
         const bytes = await ports.download(candidate);
-        if (!bytes) { missing++; await ports.saveCheckpoint({ ...checkpoint, state: "MISSING" }); continue; }
+        // An absent asset at one location is not an exhausted portal search.
+        if (!bytes) { failed++; await ports.saveCheckpoint({ ...checkpoint, state: "FAILED", failureReason: "DISCOVERY_INCOMPLETE" }); continue; }
         image = await prepareSupplierImage(bytes);
         await ports.cacheImage(image);
       }

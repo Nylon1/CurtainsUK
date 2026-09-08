@@ -9,8 +9,10 @@ async function main() {
   if (new URL(url).hostname !== "hqysjumypgeapgmqkcrx.supabase.co" || !process.argv.includes("--confirm-project=hqysjumypgeapgmqkcrx")) throw new Error("STAGING_DATABASE_REQUIRED");
   const state = JSON.parse(await readFile("artifacts/phase5f/checkpoints/supplier-media.json", "utf8")) as { mappings: Record<string, ImportedMedia> };
   const requested = process.argv.find(arg => arg.startsWith("--fabric-ids="))?.slice("--fabric-ids=".length).split(",");
-  if (requested && (!requested.length || requested.length > 250 || new Set(requested).size !== requested.length || requested.some(id => !/^[a-z0-9-]{1,150}$/.test(id) || !state.mappings[id]))) throw new Error("MEDIA_BATCH_INVALID");
-  const batch = requested ? requested.map(id => state.mappings[id]) : Object.values(state.mappings);
+  const all = Object.values(state.mappings);
+  if (requested && (!requested.length || requested.length > 250 || new Set(requested).size !== requested.length || requested.some(id => !/^[a-z0-9-]{1,150}$/.test(id) || !all.some(m => m.fabricId === id)))) throw new Error("MEDIA_BATCH_INVALID");
+  // A fabric can now have several resumable image jobs rather than one fabric-id key.
+  const batch = (requested ? all.filter(m => requested.includes(m.fabricId)) : all).sort((a,b) => Number(b.imageType === "MAIN") - Number(a.imageType === "MAIN"));
   const db = createSupplierServiceClient();
   let count = 0, visibilityChanges = 0;
   for (const mapping of batch) {
@@ -25,9 +27,13 @@ async function main() {
     const approved = await db.from("fabric_media_mappings").select("rights_state,mapping_state").eq("fabric_id", mapping.fabricId).eq("content_hash", mapping.contentHash).eq("image_type", mapping.imageType).single();
     if (approved.error || approved.data.rights_state !== "APPROVED" || approved.data.mapping_state !== "VERIFIED") throw new Error("MEDIA_MAPPING_APPROVAL_WITHHELD");
     // Replace portal hotlinks only after the verified Shopify copy exists.
-    const imagery = [...new Set([mapping.shopifyCdnUrl, ...((row.imagery ?? []) as string[]).filter(isShopifyCdnUrl)])];
+    const exactColourway = !mapping.mediaScope || mapping.mediaScope === "COLOURWAY";
+    const oldImagery = ((row.imagery ?? []) as string[]).filter(isShopifyCdnUrl);
+    // Shared ROOM/collection assets stay in typed mappings. They never replace the
+    // exact-colourway image in legacy projections or activate an image-less fabric.
+    const imagery = exactColourway ? [...new Set(mapping.imageType === "MAIN" ? [mapping.shopifyCdnUrl,...oldImagery] : [...oldImagery,mapping.shopifyCdnUrl])] : oldImagery;
     // Approved exact-identity media activates browsing without a commercial check.
-    const staging_catalog_visible = row.lifecycle_state !== "DISCONTINUED" && Boolean(row.brand_id && row.design_id && row.colour_name?.trim());
+    const staging_catalog_visible = row.lifecycle_state !== "DISCONTINUED" && Boolean(row.brand_id && row.design_id && row.colour_name?.trim()) && (exactColourway || row.staging_catalog_visible);
     const update = await db.from("fabric_colourways").update({ imagery, staging_catalog_visible }).eq("fabric_id", mapping.fabricId).eq("updated_at", row.updated_at).select("fabric_id");
     if (update.error || !update.data?.length) throw new Error("MEDIA_MASTER_REVISION_CHANGED");
     if (row.staging_catalog_visible !== staging_catalog_visible) visibilityChanges++;

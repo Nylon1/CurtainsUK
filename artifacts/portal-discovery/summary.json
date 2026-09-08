@@ -1,0 +1,30 @@
+{
+  "checkedDate": "2026-09-08",
+  "mapVersion": "supplier-portals-2026-09-08-v1",
+  "supplierMaps": 2,
+  "routesPerMap": 10,
+  "mapStatus": "PARTIAL_PENDING_AUTHORISED_ACCESS_AND_ROUTE_VALIDATION",
+  "observedSdgDigitalBookBrandFolders": 6,
+  "observedMorrisDigitalBookPdfs": 17,
+  "realDiscoveryLedgers": 2,
+  "fullyExhaustedFabricDiscoveries": 0,
+  "genuinelyMissingConfirmed": 0,
+  "existingUnmappedImageryCount": 9673,
+  "existingUnmappedCountSource": "artifacts/catalogue-activation/counts.json; no canonical data changed in this pass",
+  "withheldMismatchedCandidates": 2,
+  "existingUploadedAssets": 265,
+  "canaryAlreadyMappedAssetsSkipped": 1,
+  "newDownloads": 0,
+  "newShopifyUploads": 0,
+  "newMasterMappings": 0,
+  "fabricMasterTestsPassed": 37,
+  "blockers": [
+    "Prestigious Webtex login",
+    "Prestigious SharePoint Lifestyle Imagery access",
+    "SDG Filecamp login",
+    "Complete and validate partially observed recipes before unattended scale-out"
+  ],
+  "dawnPublished": false,
+  "themeOrRuntimeDeployment": false,
+  "paymentOrOrderingChanges": false
+}

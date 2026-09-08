@@ -27,8 +27,10 @@ export function parsePrestigiousPublicProduct(html: string, sourceReference: str
   const mm = (label: string) => { const raw = text(label); const n = Number.parseFloat(raw); return raw && Number.isFinite(n) && n >= 0 ? Math.round(n * 10) : null; };
   const composition = [...text("Composition:").matchAll(/(\d+(?:\.\d+)?)\s*%\s*([a-z][a-z -]*?)(?=\d|$)/gi)]
     .map((m) => ({ percentage: Number(m[1]), material: m[2].trim().toLowerCase() }));
-  const images = [...new Set($("img").map((_, e) => $(e).attr("data-src") || $(e).attr("src") || "").get())]
-    .filter((url) => url.startsWith("https://www.prestigious.co.uk/wp-content/uploads/product_images/") && !url.includes("/thumbs/") && decodeURIComponent(url).includes(`${designCode}-${colourCode} `));
+  const availableImages = [...new Set($("img").map((_, e) => $(e).attr("data-src") || $(e).attr("src") || "").get())]
+    .filter((url) => url.startsWith("https://www.prestigious.co.uk/wp-content/uploads/product_images/") && decodeURIComponent(url).includes(`${designCode}-${colourCode} `));
+  const fullImages = availableImages.filter(url => !url.includes("/thumbs/"));
+  const images = fullImages.length ? fullImages : availableImages;
   const record: Omit<FabricMasterRecord, "supplier_name"> = {
     fabric_id: `pt-${designCode}-${colourCode}`, supplier_id: "prestigious-textiles", brand_id: "prestigious-textiles", brand_name: "Prestigious Textiles",
     collection_id: `pt-collection-${stableSlug(collection)}`, collection_name: collection, supplier_collection_code: null,
@@ -40,5 +42,5 @@ export function parsePrestigiousPublicProduct(html: string, sourceReference: str
     lifecycle_state: "UNKNOWN", price_verification_status: "PRICE_REQUIRES_VERIFICATION", storefront_selectable: false, staging_catalog_visible: false,
     source_type: "AUTHORISED_PUBLIC_PRODUCT", source_name: "Prestigious current public product specification", source_reference: sourceReference, source_effective_date: checkedAt.slice(0, 10),
   };
-  return { record, images, checkedAt, supplierColourClassification: text("Colour:"), supplierFabricCharacter: text("Fabric:"), careCodes: field("Care Instructions:").find("img[alt]").map((_, e) => $(e).attr("alt")!).get() };
+  return { record, images, availableImages, checkedAt, supplierColourClassification: text("Colour:"), supplierFabricCharacter: text("Fabric:"), careCodes: field("Care Instructions:").find("img[alt]").map((_, e) => $(e).attr("alt")!).get() };
 }

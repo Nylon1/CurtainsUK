@@ -61,6 +61,18 @@ test("browse readiness requires genuine imagery but not commercial or editorial 
   assert.equal(retailLaunchBlockers(record, profile, [{ imageType: "MAIN", approved: true, width: 800, height: 800, url: "https://cdn.shopify.com/f.jpg" }]).length, 0);
 });
 
+test("no bytes at one portal location never establishes missing supplier imagery", async () => {
+  const saved: MediaCheckpoint[] = [];
+  const unexpected = async (): Promise<never> => { throw new Error("UNEXPECTED_ASSET_OPERATION"); };
+  const result = await importSupplierMediaBatch([candidate], {
+    checkpoint: async () => null, saveCheckpoint: async c => { saved.push(c); },
+    download: async () => null, cacheImage: unexpected, cachedImage: unexpected,
+    existingAsset: unexpected, upload: unexpected, saveMapping: unexpected,
+  });
+  assert.equal(result.missing,0); assert.equal(result.failed,1);
+  assert.equal(saved[0].state,"FAILED"); assert.equal(saved[0].failureReason,"DISCOVERY_INCOMPLETE");
+});
+
 test("portal media cannot cross-match adjacent colourway SKUs", () => {
   assert.equal(sourceImageMatchesSku("https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1787_01_314f.jpg", "sanderson-design-group", "F1787/01"), true);
   assert.equal(sourceImageMatchesSku("https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DARP222529_hash.jpg", "sanderson-design-group", "DARP222519"), false);

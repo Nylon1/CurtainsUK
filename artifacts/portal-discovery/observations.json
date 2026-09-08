@@ -1,0 +1,97 @@
+[
+  {
+    "identity": {
+      "supplier": "sanderson-design-group",
+      "fabricId": "sdg-f1787-01",
+      "sku": "F1787/01",
+      "brand": "Clarke & Clarke",
+      "design": "Astraea",
+      "colour": "Dove",
+      "collection": "Aqueous Performance",
+      "verifiedPortalProductId": "CCF0795-01"
+    },
+    "observations": [
+      {
+        "route": "EXACT_PRODUCT",
+        "location": "sdg.product",
+        "state": "EXHAUSTED",
+        "checkedAt": "2026-09-08T07:43:11Z",
+        "pagesVisited": 1,
+        "paginationExhausted": true,
+        "productFound": true,
+        "exactSkuFound": true,
+        "colourwayMedia": 1,
+        "designMedia": 0,
+        "ambiguous": false
+      },
+      {
+        "route": "SKU_SEARCH",
+        "location": "sdg.search",
+        "state": "EXHAUSTED",
+        "checkedAt": "2026-09-08T07:43:11Z",
+        "pagesVisited": 1,
+        "paginationExhausted": true,
+        "productFound": true,
+        "exactSkuFound": true,
+        "colourwayMedia": 1,
+        "designMedia": 0,
+        "ambiguous": false
+      },
+      {
+        "route": "RESOURCES",
+        "location": "sdg.resources",
+        "state": "ACCESS_BLOCKED",
+        "checkedAt": "2026-09-08T07:43:11Z",
+        "pagesVisited": 3,
+        "paginationExhausted": false,
+        "productFound": false,
+        "exactSkuFound": false,
+        "colourwayMedia": 0,
+        "designMedia": 0,
+        "ambiguous": false,
+        "reason": "AUTHENTICATION_ACCESS_ISSUE"
+      }
+    ]
+  },
+  {
+    "identity": {
+      "supplier": "sanderson-design-group",
+      "fabricId": "sdg-darp222519",
+      "sku": "DARP222519",
+      "brand": "Morris & Co.",
+      "design": "Love is Enough",
+      "colour": "China Blue/Vellum",
+      "collection": "Archive II Prints"
+    },
+    "observations": [
+      {
+        "route": "SKU_SEARCH",
+        "location": "sdg.search",
+        "state": "EXHAUSTED",
+        "checkedAt": "2026-09-08T07:43:11Z",
+        "pagesVisited": 1,
+        "paginationExhausted": true,
+        "productFound": false,
+        "exactSkuFound": false,
+        "colourwayMedia": 0,
+        "designMedia": 0,
+        "ambiguous": false,
+        "reason": "NO_EXACT_SKU_RESULT"
+      },
+      {
+        "route": "RESOURCES",
+        "location": "sdg.resources",
+        "state": "ACCESS_BLOCKED",
+        "checkedAt": "2026-09-08T07:43:11Z",
+        "pagesVisited": 3,
+        "paginationExhausted": false,
+        "productFound": false,
+        "exactSkuFound": false,
+        "colourwayMedia": 0,
+        "designMedia": 0,
+        "ambiguous": false,
+        "reason": "AUTHENTICATION_ACCESS_ISSUE"
+      }
+    ]
+  }
+]

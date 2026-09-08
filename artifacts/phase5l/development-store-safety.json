@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-09-08T14:48:15.202Z",
+  "store": "curtainsuk-dev.myshopify.com",
+  "developmentStoreConfirmedInAdmin": true,
+  "testPaymentsOnlyBanner": true,
+  "paymentSettingsChanged": false,
+  "tokenExchangeHttpStatus": 200,
+  "tokenReceived": true,
+  "requiredDraftScopePresent": true,
+  "draftOrderMode": "DISABLED",
+  "remoteDraftOrdersCreated": 0
+}

@@ -13,14 +13,14 @@ export async function buildDatabaseShopifyCatalogPayload(fabricId?: string) {
   const fabrics = records.map((record) => {
     const fabric = projectCustomerSafeFabric(record);
     delete fabric.supplierSku;
-    return fabric;
+    return { ...fabric, selectableForReview: true };
   });
   // One selected browse-ready fabric may enter measurements without a price.
   // Server pricing still requires a current approved cut-price snapshot, and
   // checkout separately checks stock for the actual calculated metres.
   if (fabricId && !fabrics.some((fabric) => fabric.id === fabricId)) {
     const selected = await retailFabricDetail(fabricId);
-    if (selected) fabrics.push({ ...selected, configurable: true, feedEligible: false });
+    if (selected) fabrics.push({ ...selected, selectableForReview: true, feedEligible: false });
   }
   assertCustomerSafeProjection(fabrics);
   return {

@@ -1,0 +1,36 @@
+
+> apex-curtains-site@0.1.0 test:decision-engine
+> tsx --test lib/decision-engine/__tests__/*.test.ts
+
+✔ Window Type Master contains the 21 agreed unique types and customer width bases (3.9643ms)
+✔ FabricSpec fixtures are structurally valid, synthetic and feed-ineligible (0.7265ms)
+✔ number of widths and pair/single allocation remain deterministic (0.6184ms)
+✔ straight match rounds upward while random match does not (1.1064ms)
+✔ pricing calculates VAT at full precision and rounds only the final gross total (7.6604ms)
+✔ random match fabric usage uses drop plus separate allowances (1.331ms)
+✔ minimum charge is applied before shipping, with samples exempt (0.6528ms)
+✔ draft width/drop thresholds preserve exact boundary semantics (0.9758ms)
+✔ unknown supplier fabric weight does not force a standard curtain into technical review (1.2165ms)
+✔ complete simple apex gets provisional review pricing but never direct manufacture (1.216ms)
+✔ specialist geometry validation rejects non-positive, impossible and inconsistent dimensions (2.05ms)
+✔ Bay geometry derives from section widths without requiring customer-entered angles (0.8911ms)
+✔ Corner geometry requires two sections, one angle and matching derived coverage (0.9243ms)
+✔ Awkward window master requires rough dimensions, a photo and a drawing (0.3384ms)
+✔ incomplete specialist geometry routes to manual quote (0.5459ms)
+✔ discontinued fabrics cannot start new configurations but remain representable historically (0.8593ms)
+✔ compatibility engine blocks invalid combinations (1.3477ms)
+✔ Phase 2 decision registry is valid and draft decisions block activation (1.928ms)
+✔ only an authorised admin can activate a fully validated version (4.4352ms)
+✔ pricing registry snapshots versions and resolves effective ACTIVE rules (4.5551ms)
+✔ invalid or incomplete measurements are rejected before pricing (0.4427ms)
+✔ Google feed governance rejects quote-only, mismatched or inactive pricing (0.6303ms)
+✔ Pricing Ruleset v1 locks the commercial calibration inputs but remains non-production (0.296ms)
+✔ the five competitor benchmarks run through the pricing engine without job-specific tuning (3.8475ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 649.3669

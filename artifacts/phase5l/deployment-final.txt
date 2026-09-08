@@ -1,0 +1,226 @@
+Vercel CLI 59.5.0 (Node.js 24.14.0)
+Deploying curtainsuk-staging-api
+Uploading [--------------------] (0.0B/231.1KB)
+Uploading [======--------------] (73.5KB/231.1KB)
+Uploading [==========----------] (121.5KB/231.1KB)
+Uploading [================----] (185.5KB/231.1KB)
+Uploading [====================] (231.1KB/231.1KB)
+  Inspect         https://vercel.com/hamzas-projects-4ef62f35/curtainsuk-staging-api/6kZjMsfnQSXKqJswyqcuyAMWEtAW
+  Preview         https://curtainsuk-staging-pk6p7cqrb-hamzas-projects-4ef62f35.vercel.app
+Building…
+Building…
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 4 cores, 8 GB
+Retrieving list of deployment files...
+Downloading 546 deployment files...
+Restored build cache from previous deployment (F64NP5gAxw9D1eD9h4RB1NFxE1vQ)
+Running "vercel build"
+Vercel CLI 59.11.7
+Installing dependencies...
+up to date in 1s
+261 packages are looking for funding
+run `npm fund` for details
+npm warn allow-scripts 4 packages have install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn allow-scripts   msw@2.12.10 (postinstall: node -e "import('./config/scripts/postinstall.js').catch(() => void 0)")
+npm warn allow-scripts   sharp@0.34.5 (install: node install/check.js || npm run build)
+npm warn allow-scripts   unrs-resolver@1.11.1 (postinstall: napi-postinstall unrs-resolver 1.11.1 check)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+Detected Next.js version: 16.1.6
+Running "npm run build"
+> apex-curtains-site@0.1.0 build
+> next build
+▲ Next.js 16.1.6 (Turbopack)
+Creating an optimized production build ...
+✓ Compiled successfully in 13.3s
+Running TypeScript ...
+Collecting page data using 3 workers ...
+Generating static pages using 3 workers (0/179) ...
+Generating static pages using 3 workers (44/179)
+Generating static pages using 3 workers (89/179)
+Generating static pages using 3 workers (134/179)
+✓ Generating static pages using 3 workers (179/179) in 1670.7ms
+Finalizing page optimization ...
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about-apex-curtains
+├ ○ /admin
+├ ○ /admin/catalogue-readiness
+├ ○ /admin/login
+├ ○ /admin/posts
+├ ○ /admin/prestigious-stock
+├ ○ /admin/projects
+├ ○ /admin/reviews
+├ ○ /admin/shipping-rates
+├ ○ /admin/supplier-imports
+├ ○ /admin/supplier-intelligence
+├ ƒ /advice
+├ ƒ /advice/[slug]
+├ ○ /advice/curtain-consultation-questions
+├ ○ /advice/curtain-measurements-apex-windows
+├ ○ /advice/curtain-pricing-apex-windows
+├ ○ /advice/curtains-discussing-fabrics
+├ ○ /apex-blinds
+├ ○ /apex-curtains
+├ ƒ /api/admin/catalogue-readiness
+├ ƒ /api/admin/prestigious-prices
+├ ƒ /api/admin/prestigious-stock
+├ ƒ /api/admin/review-evidence/[evidenceId]/access-token
+├ ƒ /api/admin/review-evidence/[evidenceId]/deletion-complete
+├ ƒ /api/admin/review-evidence/[evidenceId]/deletion-request
+├ ƒ /api/admin/review-evidence/[evidenceId]/download
+├ ƒ /api/admin/review-evidence/maintenance
+├ ƒ /api/admin/reviews
+├ ƒ /api/admin/reviews/[requestId]
+├ ƒ /api/admin/reviews/[requestId]/amend
+├ ƒ /api/admin/reviews/[requestId]/checkout
+├ ƒ /api/admin/reviews/[requestId]/email-evidence
+├ ƒ /api/admin/reviews/[requestId]/transition
+├ ƒ /api/admin/shipping-rates
+├ ƒ /api/admin/supplier-imports/apply
+├ ƒ /api/admin/supplier-imports/preview
+├ ƒ /api/admin/supplier-intelligence/decision
+├ ƒ /api/admin/supplier-intelligence/health
+├ ƒ /api/admin/supplier-intelligence/projection
+├ ƒ /api/send-lead
+├ ƒ /api/staging/curtains-price
+├ ƒ /api/staging/shopify-proxy/[operation]
+├ ƒ /api/staging/shopify/catalog
+├ ƒ /api/staging/shopify/price
+├ ƒ /api/staging/shopify/review-request
+├ ƒ /api/staging/shopify/specialist-review
+├ ƒ /api/staging/specialist-review
+├ ○ /areas
+├ ƒ /areas/[city]
+├ ○ /arlo-curtain-advisor
+├ ○ /auth/callback
+├ ○ /barn-conversion-curtains
+├ ○ /commercial-curtain-track-installation
+├ ƒ /configure
+├ ○ /contact
+├ ○ /cookies
+├ ○ /curtain-accessories
+├ ○ /curtain-design-guide
+├ ○ /curtain-fabrics
+├ ○ /curtain-headings
+├ ○ /curtain-linings
+├ ○ /curtain-solutions
+├ ○ /curtain-tracks
+├ ○ /data-request
+├ ƒ /fabrics
+├ ○ /faq
+├ ○ /gable-end-curtains
+├ ƒ /gallery
+├ ƒ /gallery/[slug]
+├ ○ /get-curtain-quote
+├ ● /journey/[slug]
+│ ├ /journey/show-us-your-window
+│ ├ /journey/we-decode-the-shape
+│ ├ /journey/we-shape-the-design
+│ └ [+2 more paths]
+├ ○ /large-window-curtains
+├ ○ /made-in-uk-curtains
+├ ○ /measure
+├ ○ /press
+├ ○ /price-promise
+├ ○ /privacy-policy
+├ ○ /professionals
+├ ○ /professionals/architects
+├ ○ /professionals/contractors-fit-out
+├ ○ /professionals/developers-housebuilders
+├ ○ /professionals/interior-designers
+├ ○ /professionals/project-review
+├ ○ /professionals/specifier-resources
+├ ○ /professionals/specifier-resources/project-information-checklist
+├ ○ /professionals/workspace
+├ ƒ /professionals/workspace/invitations/[token]
+├ ƒ /professionals/workspace/live
+├ ƒ /professionals/workspace/live/new-project
+├ ƒ /professionals/workspace/live/projects/[id]
+├ ƒ /professionals/workspace/live/projects/[id]/actions/new
+├ ƒ /professionals/workspace/live/projects/[id]/activity
+├ ƒ /professionals/workspace/live/projects/[id]/apertures/[apertureId]
+├ ƒ /professionals/workspace/live/projects/[id]/apertures/new
+├ ƒ /professionals/workspace/live/projects/[id]/approvals
+├ ƒ /professionals/workspace/live/projects/[id]/documents
+├ ƒ /professionals/workspace/live/projects/[id]/documents/[documentId]/open
+├ ƒ /professionals/workspace/live/projects/[id]/documents/new
+├ ƒ /professionals/workspace/live/projects/[id]/documents/upload
+├ ƒ /professionals/workspace/live/projects/[id]/drawing-review
+├ ƒ /professionals/workspace/live/projects/[id]/exports
+├ ƒ /professionals/workspace/live/projects/[id]/exports/[exportId]
+├ ƒ /professionals/workspace/live/projects/[id]/handover
+├ ƒ /professionals/workspace/live/projects/[id]/members
+├ ƒ /professionals/workspace/live/projects/[id]/programme
+├ ƒ /professionals/workspace/live/projects/[id]/schedule
+├ ƒ /professionals/workspace/live/projects/[id]/specification
+├ ƒ /professionals/workspace/live/projects/[id]/specification/items
+├ ƒ /professionals/workspace/live/templates
+├ ○ /professionals/workspace/login
+├ ○ /professionals/workspace/new-project
+├ ○ /professionals/workspace/projects/apx-demo-001
+├ ○ /professionals/workspace/projects/apx-demo-001/review
+├ ○ /professionals/workspace/projects/apx-demo-001/specification
+├ ○ /professionals/workspace/set-password
+├ ○ /reviews
+├ ○ /robots.txt
+├ ○ /samples
+├ ○ /seen-on-tv
+├ ○ /services
+├ ○ /services/design-make-curtains
+├ ○ /services/measure-consultation
+├ ○ /services/premium-installation
+├ ○ /shop-by-window
+├ ● /shop-by-window/[slug]
+│ ├ /shop-by-window/standard-window
+│ ├ /shop-by-window/bay-window
+│ ├ /shop-by-window/apex-window
+│ └ [+11 more paths]
+├ ƒ /sitemap-advice.xml
+├ ƒ /sitemap-areas.xml
+├ ƒ /sitemap-gallery.xml
+├ ƒ /sitemap-pages.xml
+├ ○ /sitemap.xml
+├ ƒ /start-designing
+├ ○ /terms
+├ ○ /triangular-window-curtains
+└ ○ /window-types
+ƒ Proxy (Middleware)
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+Traced Next.js server files in: 43.657ms
+Created all serverless functions in: 417.423ms
+Collected static files (public/, static/, .next/static): 6.815ms
+Build Completed in /vercel/output [36s]
+Deploying outputs...
+[2K[1A[2K[G  Preview         https://curtainsuk-staging-pk6p7cqrb-hamzas-projects-4ef62f35.vercel.app
+Completing…
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_6kZjMsfnQSXKqJswyqcuyAMWEtAW",
+    "url": "https://curtainsuk-staging-pk6p7cqrb-hamzas-projects-4ef62f35.vercel.app",
+    "inspectorUrl": "https://vercel.com/hamzas-projects-4ef62f35/curtainsuk-staging-api/6kZjMsfnQSXKqJswyqcuyAMWEtAW",
+    "readyState": "READY",
+    "target": null,
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_6kZjMsfnQSXKqJswyqcuyAMWEtAW"
+  },
+  "message": "Deployment curtainsuk-staging-pk6p7cqrb-hamzas-projects-4ef62f35.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel curl https://curtainsuk-staging-pk6p7cqrb-hamzas-projects-4ef62f35.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect curtainsuk-staging-pk6p7cqrb-hamzas-projects-4ef62f35.vercel.app",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod",
+      "when": "Promote to production"
+    }
+  ]
+}

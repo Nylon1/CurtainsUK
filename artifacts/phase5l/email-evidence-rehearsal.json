@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-09-08T14:27:54.738Z",
+  "environment": "LOCAL_APP_WITH_STAGING_DATABASE",
+  "remoteShopifyWrites": 0,
+  "checks": [
+    {
+      "name": "anonymous denied; reviewer queue allowed; commercial and maintenance routes denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary customer denied and synthetic customer disabled after test",
+      "status": "PASS"
+    },
+    {
+      "name": "No new stored files; legacy upload RPC disabled; actual email not sent",
+      "status": "PASS"
+    }
+  ],
+  "cases": [
+    {
+      "name": "Standard pt-4270-147",
+      "priceGrossMinor": 61400,
+      "fabricMetres": 12.6,
+      "checkout": "BLOCKED",
+      "blockers": [
+        "AVAILABILITY_NOT_ACCEPTABLE",
+        "SHIPPING_NOT_READY"
+      ]
+    },
+    {
+      "name": "Standard pt-4269-147",
+      "priceGrossMinor": 83400,
+      "fabricMetres": 10.2,
+      "checkout": "BLOCKED",
+      "blockers": [
+        "AVAILABILITY_NOT_ACCEPTABLE",
+        "SHIPPING_NOT_READY"
+      ]
+    },
+    {
+      "name": "Standard sdg-dapgpa203",
+      "priceGrossMinor": 110500,
+      "fabricMetres": 10.6,
+      "checkout": "BLOCKED",
+      "blockers": [
+        "AVAILABILITY_NOT_ACCEPTABLE",
+        "SHIPPING_NOT_READY"
+      ]
+    },
+    {
+      "name": "Bay",
+      "requestId": "10bd84a3-d88f-4d02-9ce1-1e62bf1d4beb",
+      "staffApproval": "PASS",
+      "checkout": "BLOCKED",
+      "blockers": [
+        "Owner-confirmed delivery policy is required",
+        "Fabric availability must be confirmed"
+      ],
+      "originalImmutable": true
+    },
+    {
+      "name": "Manual Quote",
+      "requestId": "f9f8e760-fcce-4331-90b0-a897a55d5c3a",
+      "staffApproval": "PASS",
+      "checkout": "BLOCKED",
+      "blockers": [
+        "Owner-confirmed delivery policy is required",
+        "Fabric availability must be confirmed"
+      ],
+      "originalImmutable": true
+    },
+    {
+      "name": "apex-window",
+      "requestId": "7e50374c-64a0-48b2-824b-bfa5b0454175",
+      "reference": "CUK-7E50374C-64A0-48B2-824B-BFA5B0454175",
+      "status": "APPROVED",
+      "emailEvidence": "EVIDENCE_REVIEWED",
+      "eventCount": 4,
+      "originalImmutable": true,
+      "staleRevisionBlocked": true,
+      "noUpload": true,
+      "remainingBlockers": [
+        "Owner-confirmed delivery policy is required",
+        "Fabric availability must be confirmed"
+      ]
+    },
+    {
+      "name": "gable-end-window",
+      "requestId": "cfbaee94-17de-40f7-990f-3e62edb477f2",
+      "reference": "CUK-CFBAEE94-17DE-40F7-990F-3E62EDB477F2",
+      "status": "APPROVED",
+      "emailEvidence": "EVIDENCE_REVIEWED",
+      "eventCount": 4,
+      "originalImmutable": true,
+      "staleRevisionBlocked": true,
+      "noUpload": true,
+      "remainingBlockers": [
+        "Owner-confirmed delivery policy is required",
+        "Fabric availability must be confirmed"
+      ]
+    }
+  ]
+}

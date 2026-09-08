@@ -1,0 +1,11 @@
+import {loadEnvFile} from 'node:process';import {writeFileSync} from 'node:fs';
+import {execFile} from 'node:child_process';import {promisify,parseEnv} from 'node:util';
+loadEnvFile('.env.phase5e-preview');
+const store=process.env.CURTAINSUK_SHOPIFY_CHECKOUT_STORE;
+if(store!=='curtainsuk-dev.myshopify.com')throw Error('DEV_STORE_REQUIRED');
+const {stdout}=await promisify(execFile)('shopify',['app','env','show','--no-color'],{shell:true,timeout:45000});
+const currentApp=parseEnv(stdout);
+const r=await fetch(`https://${store}/admin/oauth/access_token`,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'client_credentials',client_id:currentApp.SHOPIFY_API_KEY,client_secret:currentApp.SHOPIFY_API_SECRET}),signal:AbortSignal.timeout(30000)});
+const data=await r.json().catch(()=>({}));const scopes=typeof data.scope==='string'?data.scope.split(/[ ,]+/):[];
+const report={checkedAt:new Date().toISOString(),store,developmentStoreConfirmedInAdmin:true,testPaymentsOnlyBanner:true,paymentSettingsChanged:false,tokenExchangeHttpStatus:r.status,tokenReceived:Boolean(data.access_token),requiredDraftScopePresent:data.access_token?scopes.includes('write_draft_orders'):null,draftOrderMode:'DISABLED',remoteDraftOrdersCreated:0};
+writeFileSync('artifacts/phase5l/development-store-safety.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

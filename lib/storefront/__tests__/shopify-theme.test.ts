@@ -44,7 +44,7 @@ test("manual quote results suppress numeric prices and expose review submission 
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
   assert.match(script, /response\.outcome === "MANUAL_QUOTE"/);
-  assert.match(script, /isManualQuote\s*\?\s*"Price confirmed after technical review"/);
+  assert.match(script, /isManualQuote\s*\?\s*response.commercialState === "PRICE_CONFIRMATION_REQUIRED" \? "Price confirmation required" : "Price confirmed after technical review"/);
   assert.match(script, /routeStatus\.textContent = isManualQuote \? "Manual quote"/);
   assert.match(script, /endpoint\(root\.dataset\.engineBase, root\.dataset\.reviewPath \|\| "review-request"\)/);
   assert.match(script, /payload\.set\("configuration", JSON\.stringify\(lastEvaluation\.configuration\)\)/);

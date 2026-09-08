@@ -225,6 +225,7 @@ export async function prepareServerStagingCheckoutHandoff(
   } else {
     if (!input.configuration) throw new Error("CHECKOUT_CONFIGURATION_REQUIRED");
     const calculation = await calculateStagingPrice(input.configuration);
+    if (calculation.fabricMetres === null || calculation.fabricWidths === null) return blocked({action:"SUBMIT_PROJECT",blockers:["PRICE_INVALID","TECHNICAL_CONFIGURATION_INVALID","REVIEW_NOT_READY"]});
     const record = await fabricMasterRecordById(input.configuration.fabricId);
     if (!record) throw new Error("CHECKOUT_FABRIC_IDENTITY_INVALID");
     configurationId = input.configurationId!;

@@ -197,17 +197,11 @@ export function determinePackagingClass(input: PackagingClassificationInput, rul
   return "SPECIALIST";
 }
 
-export function calculatePrice(input: CalculatePriceInput): CalculationResult {
-  const { configuration, fabric, rules, windowType } = input;
+/** Manufacturing quantity is independent of supplier price and stock. */
+export function calculateFabricRequirement(input: Pick<CalculatePriceInput, "configuration" | "fabric" | "rules" | "windowType">) {
+  const {configuration, fabric, rules, windowType} = input;
   assertValidConfiguration(configuration, windowType, fabric, rules.measurementValidation);
-  if (input.mode === "PRODUCTION") {
-    if (rules.lifecycle !== "ACTIVE" || !input.decisionRegistry) throw new Error("Production pricing requires an ACTIVE ruleset and decision registry");
-    const validation = validatePricingRuleActivation(rules, input.decisionRegistry);
-    if (!validation.valid) throw new Error(`Production pricing blocked: ${validation.issues.map((item) => item.code).join(", ")}`);
-  }
   if (fabric.patternCentringRequirement === "REQUIRED" || fabric.patternCentringRequirement === "WORKROOM_CONFIRMATION_REQUIRED") throw new MissingCommercialRuleError("patternRules.exactCentringAndJoining");
-  const vatRate = rules.vat.rateBasisPoints;
-  if (vatRate === null) throw new MissingCommercialRuleError("vat.rateBasisPoints");
   const { widthMm, dropMm } = coverageAndDrop(configuration);
   const coverageWidthMm = adjustedCoverageWidth(configuration, widthMm, rules);
   const fullness = resolveFullness(configuration, fabric, rules, coverageWidthMm);
@@ -219,6 +213,21 @@ export function calculatePrice(input: CalculatePriceInput): CalculationResult {
     + requiredGoverned(rules.constructionAllowances.bottomHemAllowanceMm, "constructionAllowances.bottomHemAllowanceMm");
   const adjustedCutLengthMm = adjustCutLengthForPattern(cutLengthMm, fabric.verticalRepeatMm, fabric.patternMatchType);
   const fabricMetres = roundMetresUp(fabricWidths.totalWidths * adjustedCutLengthMm / 1000, rules.fabricOrderingIncrementMetres);
+  return {widthMm, dropMm, coverageWidthMm, fullness, fabricWidths, cutLengthMm, adjustedCutLengthMm, fabricMetres};
+}
+
+export function calculatePrice(input: CalculatePriceInput): CalculationResult {
+  const { configuration, fabric, rules, windowType } = input;
+  assertValidConfiguration(configuration, windowType, fabric, rules.measurementValidation);
+  if (input.mode === "PRODUCTION") {
+    if (rules.lifecycle !== "ACTIVE" || !input.decisionRegistry) throw new Error("Production pricing requires an ACTIVE ruleset and decision registry");
+    const validation = validatePricingRuleActivation(rules, input.decisionRegistry);
+    if (!validation.valid) throw new Error(`Production pricing blocked: ${validation.issues.map((item) => item.code).join(", ")}`);
+  }
+  if (fabric.patternCentringRequirement === "REQUIRED" || fabric.patternCentringRequirement === "WORKROOM_CONFIRMATION_REQUIRED") throw new MissingCommercialRuleError("patternRules.exactCentringAndJoining");
+  const vatRate = rules.vat.rateBasisPoints;
+  if (vatRate === null) throw new MissingCommercialRuleError("vat.rateBasisPoints");
+  const {dropMm, coverageWidthMm, fullness, fabricWidths, cutLengthMm, adjustedCutLengthMm, fabricMetres} = calculateFabricRequirement(input);
   const fabricRateSnapshot = resolveFabricCost(fabric);
   const baseLabour = requiredMoney(rules.baseMakeupLabourNetPerWidth, "baseMakeupLabourNetPerWidth");
   const headingRule = rules.headingRules[configuration.heading]!;

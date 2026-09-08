@@ -182,7 +182,9 @@ export function validateCornerGeometry(configuration: CurtainConfiguration, wind
   return { valid: issues.length === 0, issues };
 }
 
-export function validateConfiguration(configuration: CurtainConfiguration, windowType: WindowTypeMaster, fabric: FabricSpec, measurementRules?: MeasurementValidationRules): ValidationResult {
+export type ConfigurationFabricIdentity = Pick<FabricSpec, "id" | "colour" | "recordLifecycle" | "supplierAvailability" | "allowedHeadings" | "allowedLinings" | "suitableWindowTypeSlugs">;
+
+export function validateConfiguration(configuration: CurtainConfiguration, windowType: WindowTypeMaster, fabric: ConfigurationFabricIdentity, measurementRules?: MeasurementValidationRules): ValidationResult {
   const issues = windowType.requiredMeasurements.flatMap((requirement) => validateMeasurement(requirement, configuration.measurements[requirement.key]));
   if (configuration.customerLengthUnit !== "CM") issues.push(issue("CUSTOMER_UNIT_INVALID", "customerLengthUnit", "Customer measurements must be recorded in centimetres"));
   if (!windowType.allowedMeasurementBases.includes(configuration.measurementBasis)) issues.push(issue("MEASUREMENT_BASIS_NOT_ALLOWED", "measurementBasis", "Measurement basis is not allowed for this window type"));
@@ -196,6 +198,7 @@ export function validateConfiguration(configuration: CurtainConfiguration, windo
   if (!windowType.allowedLiningOptions.includes(configuration.lining)) issues.push(issue("LINING_NOT_ALLOWED_FOR_WINDOW", "lining", "Lining is not allowed for this window type"));
   if (!fabric.allowedLinings.includes(configuration.lining)) issues.push(issue("LINING_NOT_ALLOWED_FOR_FABRIC", "lining", "Lining is not allowed for this fabric"));
   if (!windowType.pairSingleAvailability.includes(configuration.construction)) issues.push(issue("CONSTRUCTION_NOT_ALLOWED", "construction", "Pair/single selection is not allowed"));
+  if (!["NONE", "INTERLINING"].includes(configuration.interlining)) issues.push(issue("INTERLINING_NOT_CONFIRMED", "interlining", "The interlining specification requires confirmation"));
   if (!fabric.suitableWindowTypeSlugs.includes("*") && !fabric.suitableWindowTypeSlugs.includes(windowType.slug)) issues.push(issue("FABRIC_NOT_SUITABLE_FOR_WINDOW", "fabricSpecId", "Fabric is not approved for this window type"));
   if (!Number.isInteger(configuration.numberOfSegments) || configuration.numberOfSegments < 1) issues.push(issue("SEGMENT_COUNT_INVALID", "numberOfSegments", "Number of segments must be a positive integer"));
   issues.push(...validateSegmentedBayGeometry(configuration, windowType).issues);
@@ -205,7 +208,7 @@ export function validateConfiguration(configuration: CurtainConfiguration, windo
   return { valid: issues.length === 0, issues };
 }
 
-export function assertValidConfiguration(configuration: CurtainConfiguration, windowType: WindowTypeMaster, fabric: FabricSpec, measurementRules?: MeasurementValidationRules): void {
+export function assertValidConfiguration(configuration: CurtainConfiguration, windowType: WindowTypeMaster, fabric: ConfigurationFabricIdentity, measurementRules?: MeasurementValidationRules): void {
   const result = validateConfiguration(configuration, windowType, fabric, measurementRules);
   if (!result.valid) throw new DecisionEngineValidationError("Curtain configuration is incomplete or invalid", result.issues);
 }

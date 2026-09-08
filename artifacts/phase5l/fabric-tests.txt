@@ -1,0 +1,59 @@
+
+> apex-curtains-site@0.1.0 test:fabric-master
+> tsx --test lib/fabric-master/__tests__/*.test.ts
+
+✔ catalogue completion keeps private QA, pricing eligibility and launch projection separate (3.9083ms)
+✔ catalogue completion rejects duplicate supplier SKUs case-insensitively (1.8841ms)
+✔ Prestigious preview ignores Shopify placeholder price and retired image URL (44.7523ms)
+✔ Prestigious preview preserves a newer approved record instead of downgrading it (10.7631ms)
+✔ full Sanderson preview remains private QA data until an explicit canary projection (10.3121ms)
+✔ catalogue import carries protected-field evidence into the atomic batch (24.3706ms)
+✔ observed Webtex public image route is allowed without admitting session URLs or other endpoints (3.9087ms)
+✔ expanded manifest admits exact colourway media from any discovery route, rejecting wrong products and unsafe sources (3.8438ms)
+✔ a completed main image does not skip other media, while repeated assets resume without download (1.086ms)
+✔ shared room images deduplicate within an exactly established design, never as main or across unrelated designs (1.6071ms)
+✔ both supplier maps cover ten ordered routes without confusing access with completed discovery (1.947ms)
+✔ Prestigious catalogue normalization preserves permanent IDs and corrected public specifications (3.8015ms)
+✔ Prestigious imagery is derived from the stable SKU/design/colour mapping (0.5947ms)
+✔ Sanderson uses the same normalized Fabric Master contract without supplier-specific storage (0.7761ms)
+✔ the authorised Sanderson pilot fixture maps into the shared contract (1.5898ms)
+✔ catalogue preview counts inserts and updates deterministically (24.4928ms)
+✔ customer projection strips supplier-commercial intelligence (1.1419ms)
+✔ a staging-visible unverified canary is customer-visible but cannot enter configuration (0.5277ms)
+✔ decision engine adapter accepts either supplier through the same FabricSpec contract (0.6482ms)
+✔ Sanderson all-brands catalogue maps identity/specification fields but ignores stale operations (49.144ms)
+✔ Sanderson catalogue supports exactly the six approved brands through one Fabric Master (12.6337ms)
+✔ catalogue protection keeps newer verified pilot data instead of applying a stale bulk row (7.6374ms)
+✔ Sanderson canary selects exactly 50 new records across six brands and leaves DAPGPA203 untouched (41.1236ms)
+✔ catalogue protection enriches newer specs without erasing independently verified fields (1.2391ms)
+✔ unsupported or absent Sanderson match data remains unknown (8.6579ms)
+✔ No Pattern Match and shifted trailing cells stay blocked for review (6.4791ms)
+✔ bulk supplier expansion fails closed until every dated gate has evidence (1.3143ms)
+✔ verified cut pricing requires a current expiry and the latest promotion to remain approved (0.6812ms)
+✔ bounded workers process every record exactly once (24.3021ms)
+✔ same-hash work remains serialized and locks recover after failure (3.4329ms)
+✔ workers finish before the shared import lock can be released on failure (2.9155ms)
+✔ temporary Windows rename contention recovers without replaying an upload (3.6771ms)
+✔ checkpoint retry remains bounded and does not hide other filesystem errors (2.4493ms)
+✔ all ten routes must be exhausted before imagery is genuinely missing (5.4918ms)
+✔ pagination, applicability and evidence cannot be silently skipped (2.3892ms)
+✔ matching uses exact identity and never fuzzy product names (3.0222ms)
+✔ resumable discovery follows route order and collects other media after main is found (4.5416ms)
+✔ verified trade listing media stays found when optional lifestyle libraries are inaccessible (0.924ms)
+✔ display reconciliation permits possessive/slash formatting but preserves colour identity (0.8463ms)
+✔ exact supplier SKU display tokens do not block ordinary media matching (3.736ms)
+✔ observed title formatting preserves the exact colour and product words (2.7053ms)
+✔ media requires rights and stable mapping and rejects authentication-bearing provenance (2.7608ms)
+✔ media strips metadata and rejects tiny images (116.8662ms)
+✔ interrupted upload resumes cached content without fetching again; credentials never enter failures (29.5269ms)
+✔ browse readiness requires genuine imagery but not commercial or editorial completeness (3.6279ms)
+✔ no bytes at one portal location never establishes missing supplier imagery (0.831ms)
+✔ portal media cannot cross-match adjacent colourway SKUs (0.5964ms)
+ℹ tests 47
+ℹ suites 0
+ℹ pass 47
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1672.956

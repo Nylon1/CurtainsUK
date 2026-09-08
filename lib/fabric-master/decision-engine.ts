@@ -1,7 +1,21 @@
 import type { FabricSpec } from "@/lib/decision-engine/types";
 import type { FabricMasterRecord } from "./types";
+import type { ConfigurationFabricIdentity } from "@/lib/decision-engine/validation";
 
-export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor: number, effectiveDate: string): FabricSpec {
+/** Identity-only review does not invent missing width, repeat or commercial data. */
+export function toReviewFabricIdentity(record: FabricMasterRecord): ConfigurationFabricIdentity & Pick<FabricSpec, "supplier" | "collection" | "design"> {
+  return {
+    id: record.fabric_id, colour: record.colour_name, supplier: record.supplier_name,
+    collection: record.collection_name, design: record.design_name,
+    recordLifecycle: record.lifecycle_state === "DISCONTINUED" ? "RETIRED" : "ACTIVE",
+    supplierAvailability: "UNKNOWN",
+    allowedHeadings: ["PENCIL_PLEAT", "WAVE", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET"],
+    allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"],
+    suitableWindowTypeSlugs: ["*"],
+  };
+}
+
+export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor: number | null, effectiveDate: string): FabricSpec {
   if (!record.usable_width_mm || !record.pattern_match_type) throw new Error("FABRIC_SPECIFICATION_INCOMPLETE");
   return {
     id: record.fabric_id,
@@ -20,7 +34,7 @@ export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor:
     careInstructions: record.care_instructions,
     usageSuitability: record.usage_suitability,
     fabricWeightGsm: record.weight_gsm,
-    supplierCostPerMetre: { amountMinor: cutCostMinor, currency: "GBP" },
+    supplierCostPerMetre: cutCostMinor === null ? null : { amountMinor: cutCostMinor, currency: "GBP" },
     supplierCostEffectiveFrom: effectiveDate,
     sellingPricePolicy: {
       supplierRrpPerMetre: null,

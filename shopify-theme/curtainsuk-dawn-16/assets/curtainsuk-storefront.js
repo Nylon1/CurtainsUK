@@ -325,6 +325,8 @@
     url.searchParams.set("window", form.elements.windowSlug.value);
     if (form.elements.fabricId.value) url.searchParams.set("fabric", form.elements.fabricId.value);
     history.replaceState(history.state, "", url);
+    const browseLink = form.querySelector("[data-cuk-browse-fabrics]");
+    if (browseLink) browseLink.href = `/pages/fabric-library?window=${encodeURIComponent(form.elements.windowSlug.value)}`;
   }
 
   function replaceOptions(select, values, labels) {
@@ -511,7 +513,8 @@
       const requested = params.get("fabric") || readJson(PROJECT_KEY, {}).fabricId;
       catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog") + (requested ? `?fabric=${encodeURIComponent(requested)}` : ""));
       catalog.windows.forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
-      catalog.fabrics.filter((item) => item.configurable === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} — ${item.colour}`, item.id)));
+      fabricSelect.replaceChildren(option("Choose a fabric", ""));
+      catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} — ${item.colour}`, item.id)));
     } catch (error) {
       errorBox.textContent = error.message;
       errorBox.hidden = false;
@@ -523,7 +526,7 @@
     restoreProject(form, remembered);
     windowSelect.value = params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window";
     const requestedFabric = params.get("fabric") || remembered.fabricId;
-    const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true);
+    const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true);
     fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric) ? requestedFabric : configurableFabrics[0]?.id;
     if (requestedFabric && fabricSelect.value !== requestedFabric) {
       fabricSelect.appendChild(option("Your selected fabric — price to be confirmed", requestedFabric));
@@ -534,6 +537,7 @@
     }
     renderBaySections(root, remembered.baySectionCount || 3, remembered.baySectionWidthsCm || []);
     setJourneyFields(root, catalog.windows.find((item) => item.slug === windowSelect.value));
+    rememberProject(projectSnapshot(form, root));
     syncConfiguratorUrl(form);
     emit("configurator_started", { window_type: windowSelect.value, surface: "shopify_dawn" });
 
@@ -693,13 +697,13 @@
         const price = result.querySelector("[data-cuk-result-price]");
         price.classList.toggle("cuk-result__price--message", isManualQuote);
         price.textContent = isManualQuote
-          ? "Price confirmed after technical review"
+          ? response.commercialState === "PRICE_CONFIRMATION_REQUIRED" ? "Price confirmation required" : "Price confirmed after technical review"
           : Number.isFinite(response.totalAmountMinor)
             ? `${isPriceWithReview ? "Provisional price " : ""}${money(response.totalAmountMinor, response.currency)}`
             : "Technical review required";
         result.querySelector("[data-cuk-result-message]").textContent = [
           response.message,
-          "VAT included.",
+          Number.isFinite(response.totalAmountMinor) ? "VAT included." : null,
           response.availability || "Availability to be confirmed",
           response.delivery || "Delivery shown separately.",
         ].filter(Boolean).join(" · ");

@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-09-08T14:49:00Z",
+  "themeId": 182264234363,
+  "themeRole": "unpublished",
+  "catalogueCount": 6328,
+  "desktop": {
+    "pagination": "Page 1 to page 2 verified",
+    "search": "Painters Garden exact result",
+    "detail": "Sanderson Painters Garden Violet/Crimson",
+    "sample": "Identity and Bay context retained; existing samples preserved",
+    "priceGrossMinor": 110500,
+    "availability": "Fabric available",
+    "checkout": "SHIPPING_NOT_READY"
+  },
+  "mobile": {
+    "requestedViewport": {
+      "width": 390,
+      "height": 844
+    },
+    "observedCssWidth": 312,
+    "documentWidth": 300,
+    "unpricedFabric": "sdg-nmel130352",
+    "customerPrice": null,
+    "reviewSubmission": "Saved with unique CUK reference",
+    "reviewEmailRendered": "enquiries@drapesey.com",
+    "combinedFilters": {
+      "brand": "Prestigious Textiles",
+      "collection": "Formation",
+      "colour": "brown",
+      "results": 5
+    },
+    "windowFirst": "Bay -> browse all fabrics -> exact fabric link retains window=bay-window",
+    "viewportReset": true
+  },
+  "bugsFixed": [
+    "Unpriced fabrics selectable for review without pricing eligibility",
+    "Missing specifications do not create invented metres or prices",
+    "Initial window selection persisted before entering library"
+  ],
+  "remoteDraftOrdersCreated": 0,
+  "supplierOrders": 0,
+  "emailsSent": 0
+}

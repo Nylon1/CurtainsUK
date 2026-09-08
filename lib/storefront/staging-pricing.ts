@@ -1,13 +1,14 @@
 import { classifyComplexity } from "@/lib/decision-engine/complexity";
 import { createCurtainConfiguration } from "@/lib/decision-engine/curtain-configuration";
-import { calculatePrice } from "@/lib/decision-engine/pricing-engine";
-import { assertValidConfiguration } from "@/lib/decision-engine/validation";
+import { calculatePrice, calculateFabricRequirement } from "@/lib/decision-engine/pricing-engine";
+import { assertValidConfiguration, type ConfigurationFabricIdentity } from "@/lib/decision-engine/validation";
 import { DRAFT_PRICING_RULE_SET, INITIAL_COMPLEXITY_RULE_SET } from "@/lib/decision-engine/seed/pricing-rules";
 import { WINDOW_TYPES_BY_SLUG } from "@/lib/decision-engine/seed/window-types";
 import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, FabricSpec, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
 import { STOREFRONT_FABRICS_BY_ID } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
 import { allocateVatInclusiveRetailTotal } from "./checkout-gates";
+import { MissingCommercialRuleError } from "@/lib/decision-engine/errors";
 
 export interface StagingPriceRequest {
   windowSlug: string;
@@ -35,8 +36,9 @@ export interface StagingPriceResponse {
   pricingConfidence: "HIGH" | "MEDIUM" | "LOW";
   technicalReviewRequired: boolean;
   reasons: string[];
-  fabricWidths: number;
-  fabricMetres: number;
+  fabricWidths: number | null;
+  fabricMetres: number | null;
+  commercialState?: "PRICE_CONFIRMATION_REQUIRED" | "PRICE_READY" | "ORDER_READY";
   selectedFabric: { id: string; supplier: string; collection: string; design: string; colour: string };
   heading: HeadingType;
   lining: LiningType;
@@ -127,7 +129,7 @@ function cornerMeasurements(input: StagingPriceRequest) {
   };
 }
 
-function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabric: FabricSpec, availability: string): StagingPriceResponse {
+export function prepareStagingConfiguration(input: StagingPriceRequest, pricedFabric: ConfigurationFabricIdentity) {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow) throw new Error("Unknown window type");
   if (storefrontWindow.journey === "SPECIALIST") throw new Error("Specialist shapes require the review journey");
@@ -179,6 +181,12 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
         : scalarMeasurementsFor(masterSlug, widthCm, input.dropCm);
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
+  assertValidConfiguration(configuration, windowType, pricedFabric, buildStagingRuleSet().measurementValidation);
+  return {configuration, windowType, widthCm, bay};
+}
+
+function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabric: FabricSpec, availability: string): StagingPriceResponse & {fabricWidths:number;fabricMetres:number} {
+  const {configuration, windowType, widthCm, bay} = prepareStagingConfiguration(input, pricedFabric);
   const rules = buildStagingRuleSet();
   const calculation = calculatePrice({ configuration, windowType, fabric: pricedFabric, rules, shippingZone: "UK_MAINLAND", mode: "CALIBRATION" });
   const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, {
@@ -227,6 +235,35 @@ export function calculateStagingPriceForTest(input: StagingPriceRequest, pricedF
   return calculateStagingPriceWithFabric(input, pricedFabric, "Availability to be confirmed");
 }
 
+/** Reuses the ordinary canonical configuration and existing manual review queue. */
+export function calculatePriceConfirmationReview(
+  input: StagingPriceRequest,
+  identity: ConfigurationFabricIdentity & Pick<FabricSpec, "supplier" | "collection" | "design">,
+  manufacturingFabric: FabricSpec | null,
+): StagingPriceResponse & {outcome:"MANUAL_QUOTE"} {
+  const {configuration, windowType, widthCm, bay} = prepareStagingConfiguration(input, identity);
+  const rules = buildStagingRuleSet();
+  let requirement: ReturnType<typeof calculateFabricRequirement> | null = null;
+  if(manufacturingFabric) {
+    try { requirement = calculateFabricRequirement({configuration, windowType, fabric: manufacturingFabric, rules}); }
+    catch(error) { if(!(error instanceof MissingCommercialRuleError))throw error; }
+  }
+  return {
+    configurationId: configuration.id, calculationVersion: rules.version,
+    outcome: "MANUAL_QUOTE", pricingConfidence: "LOW", technicalReviewRequired: true,
+    commercialState: "PRICE_CONFIRMATION_REQUIRED",
+    reasons: ["PRICE_CONFIRMATION_REQUIRED", ...(!requirement ? ["FABRIC_REQUIREMENT_CONFIRMATION_REQUIRED"] : [])],
+    fabricWidths: requirement?.fabricWidths.totalWidths ?? null,
+    fabricMetres: requirement?.fabricMetres ?? null,
+    selectedFabric: {id:identity.id,supplier:identity.supplier,collection:identity.collection,design:identity.design,colour:identity.colour},
+    heading:input.heading,lining:input.lining,construction:input.construction,
+    netAmountMinor:null,vatAmountMinor:null,totalAmountMinor:null,vatRateBasisPoints:null,currency:"GBP",
+    totalCoverageWidthCm:widthCm,bayTrackOrPoleFitted:bay ? input.bayTrackOrPoleFitted! : null,
+    delivery:"Delivery charge requires confirmation",availability:"Availability to be confirmed",
+    message:"Price confirmation required. Submit your curtain details for supplier price and availability verification.",
+  };
+}
+
 export interface SpecialistReviewRequest {
   windowSlug: string;
   measurements: Record<string, number>;
@@ -240,7 +277,7 @@ export interface SpecialistReviewRequest {
   drawingName?: string;
 }
 
-export function classifySpecialistReview(input: SpecialistReviewRequest, suppliedFabric?: FabricSpec) {
+export function classifySpecialistReview(input: SpecialistReviewRequest, suppliedFabric?: ConfigurationFabricIdentity) {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow || storefrontWindow.journey !== "SPECIALIST") throw new Error("A specialist window type is required");
   if (typeof input.fixingPosition !== "string" || input.fixingPosition.trim().length < 3 || input.fixingPosition.trim().length > 200) {
@@ -267,7 +304,7 @@ export function classifySpecialistReview(input: SpecialistReviewRequest, supplie
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
   configuration.attachments.drawingReferences = input.drawingName ? [`staging-local://${input.drawingName}`] : [];
   assertValidConfiguration(configuration, windowType, fabric, buildStagingRuleSet().measurementValidation);
-  const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, { fabric });
+  const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, "usableWidthMm" in fabric ? {fabric: fabric as FabricSpec} : {});
   return {
     ...complexity,
     configurationId: configuration.id,

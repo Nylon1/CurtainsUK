@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-09-08T14:39:08Z",
+  "checks": [
+    {
+      "case": "initial",
+      "seconds": 2.186,
+      "bytes": 50725,
+      "records": 24,
+      "total": 6328,
+      "status": "PASS"
+    },
+    {
+      "case": "page2",
+      "seconds": 1.665,
+      "bytes": 48462,
+      "records": 24,
+      "total": 6328,
+      "status": "PASS"
+    },
+    {
+      "case": "lastPage",
+      "seconds": 1.54,
+      "bytes": 34900,
+      "records": 16,
+      "total": 6328,
+      "status": "PASS"
+    },
+    {
+      "case": "search",
+      "seconds": 2.185,
+      "bytes": 7255,
+      "records": 1,
+      "total": 1,
+      "status": "PASS"
+    },
+    {
+      "case": "brand",
+      "seconds": 1.486,
+      "bytes": 51209,
+      "records": 24,
+      "total": 1187,
+      "status": "PASS"
+    },
+    {
+      "case": "collection",
+      "seconds": 1.463,
+      "bytes": 48862,
+      "records": 24,
+      "total": 41,
+      "status": "PASS"
+    },
+    {
+      "case": "colour",
+      "seconds": 1.514,
+      "bytes": 58479,
+      "records": 24,
+      "total": 58,
+      "status": "PASS"
+    },
+    {
+      "case": "pattern",
+      "seconds": 1.199,
+      "bytes": 25662,
+      "records": 9,
+      "total": 9,
+      "status": "PASS"
+    },
+    {
+      "case": "detail",
+      "seconds": 0.967,
+      "bytes": 2289,
+      "records": 1,
+      "total": null,
+      "status": "PASS"
+    }
+  ],
+  "maxRecordsPerPayload": 24,
+  "commercialOrCredentialLeaks": 0
+}

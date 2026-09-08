@@ -1,0 +1,107 @@
+{
+  "ruleVersion": "PT_EDITORIAL_5G_1",
+  "reviewer": "Codex — owner-authorised Phase 5G editorial sample review",
+  "reviewedAt": "2026-09-08",
+  "scope": "50-record canary only; approval is independent of lifecycle and pricing",
+  "designs": [
+    {
+      "designId": "pt-design-4270",
+      "design": "Dali",
+      "sampleFabricId": "pt-4270-147",
+      "pattern": "botanical",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Overlapping pointed leaves create a flowing botanical pattern, with fine lines adding a woven, layered appearance."
+    },
+    {
+      "designId": "pt-design-4271",
+      "design": "Diez",
+      "sampleFabricId": "pt-4271-147",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Interlocking angular shapes form a compact geometric pattern, with stitched lines giving the surface visible depth."
+    },
+    {
+      "designId": "pt-design-4272",
+      "design": "Sarcone",
+      "sampleFabricId": "pt-4272-147",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Fine diagonal lines meet in angular blocks, creating a geometric pattern that changes direction across the fabric."
+    },
+    {
+      "designId": "pt-design-7248",
+      "design": "Cord",
+      "sampleFabricId": "pt-7248-032",
+      "pattern": "textured plain",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Closely spaced ribs give this plain fabric its visible texture, offering interest without a large patterned motif."
+    },
+    {
+      "designId": "pt-design-7247",
+      "design": "Java",
+      "sampleFabricId": "pt-7247-009",
+      "pattern": "textured plain",
+      "character": "textured",
+      "style": "minimalist",
+      "visualDescription": "Fine horizontal striations give this plain fabric a gently varied surface, making it a quiet companion to patterned furnishings."
+    },
+    {
+      "designId": "pt-design-4295",
+      "design": "Chiara",
+      "sampleFabricId": "pt-4295-137",
+      "pattern": "stripe",
+      "character": "structured",
+      "style": "classic",
+      "visualDescription": "Bands of different widths form a crisp stripe, with fine accent lines adding definition between the broader bands."
+    },
+    {
+      "designId": "pt-design-4292",
+      "design": "Donata",
+      "sampleFabricId": "pt-4292-030",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Small repeated oval motifs make an orderly geometric pattern, adding close-up detail to the woven ground."
+    },
+    {
+      "designId": "pt-design-4265",
+      "design": "Amir",
+      "sampleFabricId": "pt-4265-162",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "country",
+      "visualDescription": "Small diamond motifs repeat across a gently mottled ground, giving the design a relaxed geometric character."
+    },
+    {
+      "designId": "pt-design-4277",
+      "design": "Habitat",
+      "sampleFabricId": "pt-4277-543",
+      "pattern": "check",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Alternating blocks of fine horizontal and vertical lines create a basket-like checked pattern with a layered woven appearance."
+    },
+    {
+      "designId": "pt-design-8837",
+      "design": "Wilfred",
+      "sampleFabricId": "pt-8837-192",
+      "pattern": "geometric",
+      "character": "matte",
+      "style": "country",
+      "visualDescription": "Repeated flower-like geometric motifs sit in a diamond arrangement, with softly broken outlines lending the print an informal character."
+    },
+    {
+      "designId": "pt-design-4254",
+      "design": "Grayson",
+      "sampleFabricId": "pt-4254-076",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Stepped, interlocking lines form a bold geometric repeat, with a softly textured ground tempering the angular design."
+    }
+  ]
+}

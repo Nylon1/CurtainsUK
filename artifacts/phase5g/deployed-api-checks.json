@@ -1,0 +1,83 @@
+[
+  {
+    "case": "browse",
+    "status": 200,
+    "latency_ms": 1468,
+    "bytes": 34935,
+    "total": 15,
+    "returned": 15,
+    "commercial_or_credential_fields": false,
+    "all_images_shopify": true,
+    "all_browse_ready": true
+  },
+  {
+    "case": "keyword",
+    "status": 200,
+    "latency_ms": 1310,
+    "bytes": 12106,
+    "total": 5,
+    "returned": 5,
+    "commercial_or_credential_fields": false,
+    "all_images_shopify": true,
+    "all_browse_ready": true
+  },
+  {
+    "case": "pattern",
+    "status": 200,
+    "latency_ms": 1379,
+    "bytes": 23504,
+    "total": 10,
+    "returned": 10,
+    "commercial_or_credential_fields": false,
+    "all_images_shopify": true,
+    "all_browse_ready": true
+  },
+  {
+    "case": "colour",
+    "status": 200,
+    "latency_ms": 894,
+    "bytes": 7568,
+    "total": 3,
+    "returned": 3,
+    "commercial_or_credential_fields": false,
+    "all_images_shopify": true,
+    "all_browse_ready": true
+  },
+  {
+    "case": "sample",
+    "status": 200,
+    "latency_ms": 786,
+    "bytes": 34935,
+    "total": 15,
+    "returned": 15,
+    "commercial_or_credential_fields": false,
+    "all_images_shopify": true,
+    "all_browse_ready": true
+  },
+  {
+    "case": "empty-page",
+    "status": 200,
+    "latency_ms": 481,
+    "bytes": 677,
+    "total": 15,
+    "returned": 0,
+    "commercial_or_credential_fields": false,
+    "all_images_shopify": true,
+    "all_browse_ready": true
+  },
+  {
+    "case": "detail",
+    "status": 200,
+    "latency_ms": 701,
+    "bytes": 2243,
+    "total": null,
+    "returned": 1,
+    "commercial_or_credential_fields": false,
+    "all_images_shopify": true,
+    "all_browse_ready": true
+  },
+  {
+    "case": "blocked-detail",
+    "status": 404
+  }
+]

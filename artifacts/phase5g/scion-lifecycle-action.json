@@ -1,0 +1,12 @@
+{
+  "sourceReference": "sdg-product:NESF120872",
+  "supplierStatus": "Discontinued",
+  "checkedAt": "2026-09-08T04:01:21.126Z",
+  "result": [
+    {
+      "fabric_id": "sdg-nesf120872",
+      "lifecycle_state": "DISCONTINUED",
+      "staging_catalog_visible": false
+    }
+  ]
+}

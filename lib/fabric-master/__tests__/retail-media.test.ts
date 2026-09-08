@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import sharp from "sharp";
-import { validateMediaCandidate, prepareSupplierImage, isShopifyCdnUrl } from "../supplier-media";
+import { validateMediaCandidate, prepareSupplierImage, isShopifyCdnUrl, sourceImageMatchesSku } from "../supplier-media";
 import { importSupplierMediaBatch, type MediaCheckpoint } from "../media-batch";
 import { retailLaunchBlockers, validTaxonomy } from "../retail";
 import { normalizePrestigiousFormationRows } from "../prestigious";
@@ -52,4 +52,11 @@ test("a catalogue record cannot become launch-ready without real approved imager
   assert.ok(retailLaunchBlockers(record, profile, []).includes("APPROVED_MAIN_IMAGE_REQUIRED"));
   assert.ok(retailLaunchBlockers({ ...record, lifecycle_state: "UNKNOWN" }, profile, []).includes("CURRENT_LIFECYCLE_UNCONFIRMED"));
   assert.equal(retailLaunchBlockers(record, profile, [{ imageType: "MAIN", approved: true, width: 800, height: 800, url: "https://cdn.shopify.com/f.jpg" }]).length, 0);
+});
+
+test("portal media cannot cross-match adjacent colourway SKUs", () => {
+  assert.equal(sourceImageMatchesSku("https://trade.sandersondesigngroup.com/static/media/catalog/product/F/1/F1787_01_314f.jpg", "sanderson-design-group", "F1787/01"), true);
+  assert.equal(sourceImageMatchesSku("https://trade.sandersondesigngroup.com/static/media/catalog/product/D/A/DARP222529_hash.jpg", "sanderson-design-group", "DARP222519"), false);
+  assert.equal(sourceImageMatchesSku("https://www.prestigious.co.uk/wp-content/uploads/product_images/4270-147%20dali.jpg", "prestigious-textiles", "4270/147"), true);
+  assert.equal(sourceImageMatchesSku("https://www.prestigious.co.uk/wp-content/uploads/product_images/4270-147%20dali.jpg", "prestigious-textiles", "4270/217"), false);
 });

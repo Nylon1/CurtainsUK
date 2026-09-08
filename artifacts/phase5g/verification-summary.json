@@ -1,0 +1,17 @@
+{
+  "checkedDate": "2026-09-08",
+  "phaseStatus": "PARTIAL_CANARY_BLOCKED",
+  "shopifyFilesPermission": "GRANTED",
+  "uploadedThisPhase": {"prestigious": 50, "sandersonDesignGroup": 2},
+  "explicitReplay": {"processed": 0, "alreadyMappedSkipped": 50, "newMappings": 0},
+  "prestigious": {"masterRecords": 258, "canaryMediaReady": 50, "descriptionsApproved": 50, "browseReady": 15, "lifecycleBlocked": 35, "existingPriceVerifiedFlags": 3, "priceVerifiedAmongBrowseReady": 2, "newPriceVerifications": 0},
+  "sandersonDesignGroup": {"masterRecords": 9680, "brandsProbed": 6, "exactMediaMatchesUploaded": 2, "newBrowseActivations": 0},
+  "browser": {"desktopChecked": true, "mobileCssViewport": {"width": 390, "height": 844}, "horizontalOverflow": false, "hiddenPanelsVisible": 0, "sampleResumeContextPreserved": true, "bayFabricHandoffPreserved": true, "customerFileInputs": 0, "screenshots": "Displayed in task; no filesystem exports"},
+  "performance": {"actualBrowseRecords": 15, "browseLatencyMs": 1468, "browseBytes": 34935, "records50": "BLOCKED", "records250": "BLOCKED", "records1000": "BLOCKED"},
+  "checks": {"targetedTestsPassed": 23, "typecheck": "PASS", "changedFileEslint": "PASS", "previewBuild": "PASS", "credentialScanTextFiles": 856, "credentialPatternCandidates": 0},
+  "stagingDeployment": {"id": "dpl_8dSmXg671qBLTzSSBkgbuoxEQqTR", "alias": "https://curtainsuk-staging-gateway.vercel.app", "themeId": "182264234363", "themeRole": "unpublished"},
+  "livePaymentEnabled": false,
+  "merchantCenterActivated": false,
+  "supplierOrderingEnabled": false,
+  "productionMinimalModified": false
+}

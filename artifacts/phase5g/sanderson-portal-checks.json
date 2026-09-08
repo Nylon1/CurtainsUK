@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-09-08",
+  "session": "AUTHORISED_SESSION_RECONNECTED",
+  "method": "Exact SKU search and product-details dialog in authorised Chrome session; no cookies, tokens or headers exported",
+  "results": [
+    {
+      "supplierSku": "DAPGPA203",
+      "fabricId": "sdg-dapgpa203",
+      "brand": "Sanderson",
+      "design": "Painters Garden",
+      "colour": "Violet/Crimson",
+      "supplierStatus": "Live",
+      "media": "UPLOADED_AND_MAPPED",
+      "sourceReference": "sdg-product:DAPGPA203",
+      "collectionObserved": "Sanderson One Sixty Fabrics",
+      "collectionMaster": "A Painters Garden Fabrics",
+      "blocker": "COLLECTION_RECONCILIATION_REQUIRED"
+    },
+    {
+      "supplierSku": "F1787/01",
+      "fabricId": "sdg-f1787-01",
+      "brand": "Clarke & Clarke",
+      "design": "Astraea",
+      "colour": "Dove",
+      "supplierStatus": "Live",
+      "media": "UPLOADED_AND_MAPPED",
+      "sourceReference": "sdg-product:F1787/01",
+      "collectionObserved": "Aqueous Performance",
+      "usableWidthMmObserved": 1400,
+      "blocker": "CURRENT_SPECIFICATION_MERGE_AND_EDITORIAL_REQUIRED"
+    },
+    {
+      "supplierSku": "DARP222519",
+      "brand": "Morris & Co.",
+      "media": "WITHHELD",
+      "returnedSkus": [
+        "DARP222529"
+      ],
+      "blocker": "EXACT_COLOURWAY_NOT_RETURNED"
+    },
+    {
+      "supplierSku": "EAZU132713",
+      "brand": "Harlequin",
+      "media": "WITHHELD",
+      "returnedSkus": [
+        "EAZU132714",
+        "EAZU132715",
+        "EAZU132716",
+        "EAZU132717"
+      ],
+      "blocker": "EXACT_COLOURWAY_NOT_RETURNED"
+    },
+    {
+      "supplierSku": "NESF120872",
+      "fabricId": "sdg-nesf120872",
+      "brand": "Scion",
+      "supplierStatus": "Discontinued",
+      "media": "WITHHELD",
+      "action": "DISCONTINUED_AND_HIDDEN"
+    },
+    {
+      "supplierSku": "ZALD332700",
+      "brand": "Zoffany",
+      "media": "WITHHELD",
+      "blocker": "NO_PORTAL_SEARCH_RESULT"
+    }
+  ]
+}

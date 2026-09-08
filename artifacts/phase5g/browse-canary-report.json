@@ -1,0 +1,473 @@
+[
+  {
+    "fabricId": "pt-4270-147",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4270-217",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4270-658",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4270-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4270-975",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4271-147",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4271-217",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4271-658",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4271-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4271-975",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4272-147",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4272-217",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4272-658",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4272-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4272-975",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-08-01",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-032",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-074",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-110",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-126",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-191",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-009",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-031",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-044",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-106",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-120",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4295-137",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4295-412",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4295-517",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4295-618",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4295-765",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4292-030",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4292-137",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4292-412",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4292-618",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4292-765",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4265-162",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4265-247",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4265-405",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4265-770",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4277-543",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4277-681",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4277-925",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4277-928",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8837-192",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8837-201",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED",
+      "SAMPLE_STATE_UNKNOWN"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8837-421",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8837-768",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4254-076",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4254-116",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4254-513",
+    "blockers": [
+      "CURRENT_LIFECYCLE_UNCONFIRMED"
+    ],
+    "activated": false,
+    "browseReady": false,
+    "lifecycleSourceDate": null,
+    "previouslyVisible": false
+  }
+]

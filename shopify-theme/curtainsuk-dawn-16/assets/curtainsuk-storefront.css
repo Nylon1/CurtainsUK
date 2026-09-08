@@ -155,3 +155,6 @@
 .cuk-filter-options summary { min-height:44px; padding:1rem 0; cursor:pointer; }
 .cuk-filter-options__grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.5rem; }
 @media(max-width:749px) { .cuk-filter-options__grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; } }
+
+/* Dawn display rules must not reveal the inactive browser/detail panels. */
+[data-cuk-fabric-browser] [hidden] { display: none !important; }

@@ -2,13 +2,13 @@ import { execFile } from "node:child_process";
 import { promisify, parseEnv } from "node:util";
 import { mkdir, readFile, rename, writeFile, open, unlink } from "node:fs/promises";
 import { resolve } from "node:path";
-import { prepareSupplierImage, ShopifyMediaClient, validateMediaCandidate, type ImportedMedia } from "../lib/fabric-master/supplier-media";
+import { prepareSupplierImage, ShopifyMediaClient, validateMediaCandidate, sourceImageMatchesSku, type ImportedMedia } from "../lib/fabric-master/supplier-media";
 import type { parsePrestigiousPublicProduct } from "../lib/fabric-master/prestigious-public";
 
 const arg = (name: string) => process.argv.find((v) => v.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
 const limit = Number(arg("batch-size") ?? 100);
 const collection = arg("collection") ?? "rustic-persian";
-if (!Number.isInteger(limit) || limit < 100 || limit > 250 || !/^[a-z0-9-]+$/.test(collection)) throw new Error("BATCH_ARGUMENTS_INVALID");
+if (!Number.isInteger(limit) || limit < 50 || limit > 250 || !/^[a-z0-9-]+$/.test(collection)) throw new Error("BATCH_ARGUMENTS_INVALID");
 const root = resolve("artifacts/phase5f/checkpoints");
 const mediaRoot = resolve("artifacts/phase5f/media");
 type MediaState = { supplier: string; lastSku: string | null; sources: Record<string, { hash: string; width: number; height: number }>; assets: Record<string, { shopifyFileId: string; shopifyCdnUrl: string }>; mappings: Record<string, ImportedMedia>; failures: Record<string, string>; duplicatesAvoided: number };
@@ -20,7 +20,9 @@ async function main() {
     const path = resolve(root, "supplier-media.json");
     let state: MediaState;
     try { state = JSON.parse(await readFile(path, "utf8")); } catch (e) { if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e; state = { supplier: "prestigious-textiles", lastSku: null, sources: {}, assets: {}, mappings: {}, failures: {}, duplicatesAvoided: 0 }; }
-    const source = JSON.parse(await readFile(resolve(root, `pt-${collection}.json`), "utf8")) as { results: Record<string, ReturnType<typeof parsePrestigiousPublicProduct>> };
+    const source = JSON.parse(await readFile(arg("source-file") ? resolve(arg("source-file")!) : resolve(root, `pt-${collection}.json`), "utf8")) as { results: Record<string, ReturnType<typeof parsePrestigiousPublicProduct>> };
+    const mappedBefore = Object.keys(state.mappings).length;
+    const completeSkipped = Object.values(source.results).filter((r) => state.mappings[r.record.fabric_id]).length;
     let client: ShopifyMediaClient | null = null;
     if (process.argv.includes("--upload")) {
       if (arg("confirm-store") !== "carpetup.myshopify.com") throw new Error("MEDIA_STORE_CONFIRMATION_REQUIRED");
@@ -37,11 +39,16 @@ async function main() {
     for (const product of pending) {
       const record = product.record;
       try {
-        const candidate = { supplier: record.supplier_id, supplierSku: record.supplier_sku, fabricId: record.fabric_id, imageType: "MAIN" as const, sourceReference: `prestigious-product:${record.supplier_sku}`, rightsState: "APPROVED" as const, mappingState: "VERIFIED" as const };
+        const candidate = { supplier: record.supplier_id, supplierSku: record.supplier_sku, fabricId: record.fabric_id, imageType: "MAIN" as const, sourceReference: `${record.supplier_id === "prestigious-textiles" ? "prestigious" : "sdg"}-product:${record.supplier_sku}`, rightsState: "APPROVED" as const, mappingState: "VERIFIED" as const };
         validateMediaCandidate(candidate);
         if (product.images.length !== 1) throw new Error(product.images.length ? "MAIN_IMAGE_AMBIGUOUS" : "MAIN_IMAGE_MISSING");
         const url = product.images[0];
-        if (!/^https:\/\/www\.prestigious\.co\.uk\/wp-content\/uploads\/product_images\//.test(url) || /placeholder|no-image|default-image/i.test(url)) throw new Error("IMAGE_SOURCE_DENIED");
+        if (!sourceImageMatchesSku(url, record.supplier_id, record.supplier_sku)) throw new Error("IMAGE_SKU_MISMATCH");
+        const sourceUrl = new URL(url);
+        const allowedSource = record.supplier_id === "prestigious-textiles"
+          ? /^https:\/\/www\.prestigious\.co\.uk\/wp-content\/uploads\/product_images\//.test(url)
+          : record.supplier_id === "sanderson-design-group" && sourceUrl.origin === "https://trade.sandersondesigngroup.com" && /^\/static\/media\/catalog\/product\//.test(sourceUrl.pathname);
+        if (!allowedSource || sourceUrl.search || sourceUrl.hash || sourceUrl.username || sourceUrl.password || /placeholder|no-image|default-image/i.test(url)) throw new Error("IMAGE_SOURCE_DENIED");
         let known = state.sources[url];
         if (!known) {
           const response = await fetch(url, { redirect: "error", signal: AbortSignal.timeout(30_000) });
@@ -72,6 +79,7 @@ async function main() {
       console.log(JSON.stringify({ sku: state.lastSku, downloaded: Object.keys(state.sources).length, uploaded: Object.keys(state.assets).length, mapped: Object.keys(state.mappings).length, failed: Object.keys(state.failures).length }));
       await new Promise((r) => setTimeout(r, 500));
     }
+    console.log(JSON.stringify({ batchComplete: true, processed: pending.length, alreadyMappedSkipped: completeSkipped, newMappings: Object.keys(state.mappings).length - mappedBefore, totalUploadedAssets: Object.keys(state.assets).length }));
   } finally { await lock.close(); await unlink(lockPath); }
 }
 main().catch((error) => { const message = error instanceof Error ? error.message : "MEDIA_IMPORT_FAILED"; console.error(/^[A-Z0-9_]+$/.test(message) ? message : "MEDIA_IMPORT_FAILED"); process.exitCode = 1; });

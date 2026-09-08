@@ -24,6 +24,7 @@ async function hydrateRetailFabrics(ids: string[]) {
     const asset = row.fabric_media_assets as unknown as { shopify_cdn_url: string; width: number; height: number };
     return { imageType: String(row.image_type), url: asset.shopify_cdn_url, width: asset.width, height: asset.height, approved: true };
   }).filter((i) => /^https:\/\/cdn\.shopify\.com\/[^?#]+$/.test(i.url)).sort((a, b) => Number(b.imageType === "MAIN") - Number(a.imageType === "MAIN"));
+  if (retailLaunchBlockers(record, profile ?? null, images).length) return [];
   const safe = projectCustomerSafeFabric(record);
   // Explicit public shape: supplier SKU remains in canonical server records.
   const result = {

@@ -22,6 +22,14 @@ export function validateMediaCandidate(candidate: MediaCandidate) {
 export function isShopifyCdnUrl(value: string) {
   try { const u = new URL(value); return u.protocol === "https:" && u.hostname === "cdn.shopify.com" && !u.username && !u.password && !u.search && !u.hash; } catch { return false; }
 }
+export function sourceImageMatchesSku(url: string, supplier: string, sku: string) {
+  try {
+    const filename = decodeURIComponent(new URL(url).pathname).split("/").pop() ?? "";
+    if (supplier === "prestigious-textiles") return filename.toLowerCase().startsWith(sku.replace("/", "-").toLowerCase() + " ");
+    if (supplier === "sanderson-design-group") return filename.toUpperCase().startsWith(sku.replaceAll("/", "_").toUpperCase() + "_");
+    return false;
+  } catch { return false; }
+}
 export async function prepareSupplierImage(bytes: Uint8Array) {
   if (bytes.length > 20 * 1024 * 1024 || bytes.length < 100) throw new Error("IMAGE_SIZE_INVALID");
   const metadata = await sharp(bytes, { limitInputPixels: 40_000_000, animated: false }).metadata();

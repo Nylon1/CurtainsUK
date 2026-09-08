@@ -1,0 +1,230 @@
+{
+  "mode": "LOOPBACK_REAL_IDENTITY_FIXTURE",
+  "count": 1000,
+  "cases": [
+    {
+      "case": "browse",
+      "medianMs": 23,
+      "measurements": [
+        {
+          "ms": 116,
+          "bytes": 46163,
+          "status": 200,
+          "total": 1000,
+          "returned": 24
+        },
+        {
+          "ms": 9,
+          "bytes": 46163,
+          "status": 200,
+          "total": 1000,
+          "returned": 24
+        },
+        {
+          "ms": 23,
+          "bytes": 46163,
+          "status": 200,
+          "total": 1000,
+          "returned": 24
+        }
+      ]
+    },
+    {
+      "case": "search",
+      "medianMs": 6,
+      "measurements": [
+        {
+          "ms": 17,
+          "bytes": 53476,
+          "status": 200,
+          "total": 29,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 53476,
+          "status": 200,
+          "total": 29,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 53476,
+          "status": 200,
+          "total": 29,
+          "returned": 24
+        }
+      ]
+    },
+    {
+      "case": "colour",
+      "medianMs": 6,
+      "measurements": [
+        {
+          "ms": 18,
+          "bytes": 55622,
+          "status": 200,
+          "total": 57,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 55622,
+          "status": 200,
+          "total": 57,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 55622,
+          "status": 200,
+          "total": 57,
+          "returned": 24
+        }
+      ]
+    },
+    {
+      "case": "pattern",
+      "medianMs": 6,
+      "measurements": [
+        {
+          "ms": 7,
+          "bytes": 56853,
+          "status": 200,
+          "total": 85,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 56853,
+          "status": 200,
+          "total": 85,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 56853,
+          "status": 200,
+          "total": 85,
+          "returned": 24
+        }
+      ]
+    },
+    {
+      "case": "brand",
+      "medianMs": 6,
+      "measurements": [
+        {
+          "ms": 6,
+          "bytes": 56246,
+          "status": 200,
+          "total": 250,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 56246,
+          "status": 200,
+          "total": 250,
+          "returned": 24
+        },
+        {
+          "ms": 6,
+          "bytes": 56246,
+          "status": 200,
+          "total": 250,
+          "returned": 24
+        }
+      ]
+    },
+    {
+      "case": "collection",
+      "medianMs": 5,
+      "measurements": [
+        {
+          "ms": 29,
+          "bytes": 53476,
+          "status": 200,
+          "total": 29,
+          "returned": 24
+        },
+        {
+          "ms": 5,
+          "bytes": 53476,
+          "status": 200,
+          "total": 29,
+          "returned": 24
+        },
+        {
+          "ms": 5,
+          "bytes": 53476,
+          "status": 200,
+          "total": 29,
+          "returned": 24
+        }
+      ]
+    },
+    {
+      "case": "detail",
+      "medianMs": 17,
+      "measurements": [
+        {
+          "ms": 17,
+          "bytes": 2141,
+          "status": 200,
+          "total": null,
+          "returned": 1
+        },
+        {
+          "ms": 3,
+          "bytes": 2141,
+          "status": 200,
+          "total": null,
+          "returned": 1
+        },
+        {
+          "ms": 28,
+          "bytes": 2141,
+          "status": 200,
+          "total": null,
+          "returned": 1
+        }
+      ]
+    },
+    {
+      "case": "page2",
+      "medianMs": 18,
+      "measurements": [
+        {
+          "ms": 18,
+          "bytes": 45691,
+          "status": 200,
+          "total": 1000,
+          "returned": 24
+        },
+        {
+          "ms": 30,
+          "bytes": 45691,
+          "status": 200,
+          "total": 1000,
+          "returned": 24
+        },
+        {
+          "ms": 15,
+          "bytes": 45691,
+          "status": 200,
+          "total": 1000,
+          "returned": 24
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "pages": 42,
+    "records": 1000,
+    "unique": 1000,
+    "largestRawResponseBytes": 57081
+  },
+  "publicLeakScan": "PASS",
+  "imageHosts": "SHOPIFY_CDN_ONLY"
+}

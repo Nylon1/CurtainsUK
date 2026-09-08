@@ -1,30 +1,181 @@
 {
-  "checkedDate": "2026-09-08",
-  "mapVersion": "supplier-portals-2026-09-08-v1",
-  "supplierMaps": 2,
-  "routesPerMap": 10,
-  "mapStatus": "PARTIAL_PENDING_AUTHORISED_ACCESS_AND_ROUTE_VALIDATION",
-  "observedSdgDigitalBookBrandFolders": 6,
-  "observedMorrisDigitalBookPdfs": 17,
-  "realDiscoveryLedgers": 2,
-  "fullyExhaustedFabricDiscoveries": 0,
-  "genuinelyMissingConfirmed": 0,
-  "existingUnmappedImageryCount": 9673,
-  "existingUnmappedCountSource": "artifacts/catalogue-activation/counts.json; no canonical data changed in this pass",
-  "withheldMismatchedCandidates": 2,
-  "existingUploadedAssets": 265,
-  "canaryAlreadyMappedAssetsSkipped": 1,
-  "newDownloads": 0,
-  "newShopifyUploads": 0,
-  "newMasterMappings": 0,
-  "fabricMasterTestsPassed": 37,
-  "blockers": [
-    "Prestigious Webtex login",
-    "Prestigious SharePoint Lifestyle Imagery access",
-    "SDG Filecamp login",
-    "Complete and validate partially observed recipes before unattended scale-out"
+  "checkedAt": "2026-09-08 09:19:33 UTC",
+  "mapVersion": "supplier-portals-2026-09-08-v2",
+  "sessions": {
+    "webtex": "ACCESSIBLE",
+    "sharePoint": "ACCESSIBLE",
+    "sdgTrade": "AUTHENTICATED",
+    "filecamp": "SIGN_IN_REQUIRED",
+    "digitalBookContents": "BROWSER_SECURITY_BLOCKED"
+  },
+  "counts": {
+    "total": 9938,
+    "knownDiscontinuedHidden": 35,
+    "browsable": 525,
+    "unmapped": 9413,
+    "eligibleUnmapped": 9378,
+    "genuinelyMissingConfirmed": 0,
+    "priceReady": 251,
+    "orderReady": 0
+  },
+  "byBrand": [
+    {
+      "brand": "Prestigious Textiles",
+      "total": 258,
+      "browsable": 258,
+      "unmapped": 0,
+      "discontinued": 0
+    },
+    {
+      "brand": "Clarke & Clarke",
+      "total": 3302,
+      "browsable": 261,
+      "unmapped": 3041,
+      "discontinued": 0
+    },
+    {
+      "brand": "Harlequin",
+      "total": 2428,
+      "browsable": 2,
+      "unmapped": 2426,
+      "discontinued": 34
+    },
+    {
+      "brand": "Morris & Co.",
+      "total": 830,
+      "browsable": 1,
+      "unmapped": 829,
+      "discontinued": 0
+    },
+    {
+      "brand": "Sanderson",
+      "total": 1762,
+      "browsable": 2,
+      "unmapped": 1760,
+      "discontinued": 0
+    },
+    {
+      "brand": "Scion",
+      "total": 464,
+      "browsable": 1,
+      "unmapped": 463,
+      "discontinued": 1
+    },
+    {
+      "brand": "Zoffany",
+      "total": 894,
+      "browsable": 0,
+      "unmapped": 894,
+      "discontinued": 0
+    }
   ],
-  "dawnPublished": false,
-  "themeOrRuntimeDeployment": false,
-  "paymentOrOrderingChanges": false
+  "batches": [
+    {
+      "scope": "50 SDG canary",
+      "exactImages": 50,
+      "roomImages": 0,
+      "uploadsCumulative": 50,
+      "contentDuplicates": 0,
+      "unmappedSelected": 0,
+      "status": "PASS"
+    },
+    {
+      "scope": "250 SDG canary cumulative",
+      "exactImages": 250,
+      "roomImages": 0,
+      "uploadsCumulative": 250,
+      "contentDuplicates": 0,
+      "unmappedSelected": 0,
+      "status": "PASS"
+    },
+    {
+      "scope": "1000 real identities in local fixture",
+      "exactImages": 344,
+      "roomImages": 0,
+      "uploadsForTest": 0,
+      "unmappedInFixture": 656,
+      "status": "PASS_FOR_LOCAL_SCALE_ONLY",
+      "full1000ImageImport": "NOT_COMPLETED"
+    },
+    {
+      "scope": "10 reconciled tail records",
+      "exactImages": 10,
+      "roomImages": 0,
+      "uploads": 10,
+      "contentDuplicates": 0,
+      "unmappedSelected": 0,
+      "status": "PASS"
+    }
+  ],
+  "media": {
+    "newUploads": 260,
+    "totalShopifyAssets": 525,
+    "newContentDuplicates": 0,
+    "resumeJobsSkipped": 250,
+    "acceptedMismatches": 0,
+    "historicalWrongColourwayCandidatesWithheld": 2,
+    "displayAliasesReconciled": 10,
+    "colourCorrections": 2
+  },
+  "discovery": {
+    "digitalBookCounts": {
+      "Clarke & Clarke": 19,
+      "Harlequin": 25,
+      "Morris & Co.": 17,
+      "Sanderson": 19,
+      "Scion": 15,
+      "Zoffany": 13
+    },
+    "digitalBookTotal": 108,
+    "prestigiousSeasonalFolders": 22,
+    "prestigiousCollectionOnlyJpegsObserved": 12,
+    "allRoutesExhaustedForUnmappedRecords": 0
+  },
+  "validation": {
+    "publicPages": 22,
+    "maxPageRecords": 24,
+    "commercialLeaks": 0,
+    "newFabricsPriceBlocked": 260,
+    "newFabricsSampleUnconfirmed": 260,
+    "publicBrowseMedianMs": 609,
+    "publicSearchMedianMs": 612,
+    "local1000BrowseMedianMs": 23,
+    "sql1000ExecutionMs": 381.021,
+    "sqlTempBlocks": 0,
+    "browserHeap": "UNAVAILABLE",
+    "desktopCssViewport": [
+      1229,
+      539
+    ],
+    "mobileCssViewport": [
+      390,
+      844
+    ],
+    "mobileNetwork": "Desktop network; no physical handset or throttling",
+    "targetedTestsPassed": 9,
+    "webtexPublicImage": {
+      "httpStatus": 200,
+      "width": 1400,
+      "height": 1400,
+      "bytes": 1121640,
+      "credentialsUsed": false,
+      "narrowImporterRouteValidated": true
+    }
+  },
+  "constraints": {
+    "dawnPublished": false,
+    "minimalChanged": false,
+    "paymentsChanged": false,
+    "merchantCenterChanged": false,
+    "supplierOrderingChanged": false,
+    "newCatalogueArchitecture": false,
+    "themeOrRuntimeDeployment": false
+  },
+  "blockers": [
+    "Filecamp sign-in remains required; no saved sign-in was available.",
+    "PDF preview was blocked by browser security; contents/captions remain uninspected.",
+    "Tested Zoffany SKU/design searches and Luxury Plains collection returned no match; a linked product redirected to the homepage. These are route/identity gaps, not proof of unavailable imagery.",
+    "Remaining eligible records need exact media mapping. A 1000-image import has not been completed.",
+    "Sample availability and commercial pricing remain unverified for the new fabrics; browsing remains enabled."
+  ]
 }

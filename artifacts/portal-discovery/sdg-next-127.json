@@ -1,0 +1,643 @@
+{
+  "checkedAt": "2026-09-08 08:38:56 UTC",
+  "brand": "Clarke & Clarke",
+  "productType": "FABRIC",
+  "status": "Live",
+  "rows": [
+    [
+      "CCF0879-02",
+      "Silvan Weave Ink",
+      "C/C/CCF0879_02_0bbf.jpg"
+    ],
+    [
+      "CCF0879-03",
+      "Silvan Weave Linen",
+      "C/C/CCF0879_03_ff46.jpg"
+    ],
+    [
+      "CCF0879-04",
+      "Silvan Weave Charcoal",
+      "C/C/CCF0879_04_85e5.jpg"
+    ],
+    [
+      "CCF0880-01",
+      "Striatus Ivory",
+      "C/C/CCF0880_01_8766.jpg"
+    ],
+    [
+      "CCF0880-02",
+      "Striatus Ink",
+      "C/C/CCF0880_02_505b.jpg"
+    ],
+    [
+      "CCF0880-03",
+      "Striatus Charcoal",
+      "C/C/CCF0880_03_59c3.jpg"
+    ],
+    [
+      "CCF0881-01",
+      "Virgata Cinnamon",
+      "C/C/CCF0881_01_dfd5.jpg"
+    ],
+    [
+      "CCF0881-02",
+      "Virgata Fern",
+      "C/C/CCF0881_02_04e3.jpg"
+    ],
+    [
+      "CCF0881-03",
+      "Virgata Ink",
+      "C/C/CCF0881_03_dfc6.jpg"
+    ],
+    [
+      "CCF0881-04",
+      "Virgata Linen",
+      "C/C/CCF0881_04_5965.jpg"
+    ],
+    [
+      "CCF0881-05",
+      "Virgata Ivory",
+      "C/C/CCF0881_05_033f.jpg"
+    ],
+    [
+      "CCF0882-01",
+      "Volu Maize",
+      "C/C/CCF0882_01_7079.jpg"
+    ],
+    [
+      "CCF0882-02",
+      "Volu Ink",
+      "C/C/CCF0882_02_bec3.jpg"
+    ],
+    [
+      "CCF0882-03",
+      "Volu Linen",
+      "C/C/CCF0882_03_d991.jpg"
+    ],
+    [
+      "CCF0882-04",
+      "Volu Charcoal",
+      "C/C/CCF0882_04_b7d3.jpg"
+    ],
+    [
+      "CCF0883-01",
+      "Boschetto Print Forest",
+      "C/C/CCF0883_01_303b.jpg"
+    ],
+    [
+      "CCF0883-02",
+      "Boschetto Print Ink",
+      "C/C/CCF0883_02_8f40.jpg"
+    ],
+    [
+      "CCF0883-03",
+      "Boschetto Print Teal",
+      "C/C/CCF0883_03_7c30.jpg"
+    ],
+    [
+      "CCF0884-01",
+      "Cityscape Print Denim",
+      "C/C/CCF0884_01_6c15.jpg"
+    ],
+    [
+      "CCF0884-02",
+      "Cityscape Print Glade",
+      "C/C/CCF0884_02_ed4d.jpg"
+    ],
+    [
+      "CCF0884-03",
+      "Cityscape Print Linen",
+      "C/C/CCF0884_03_2b11.jpg"
+    ],
+    [
+      "CCF0885-01",
+      "Earthscape Print Antique",
+      "C/C/CCF0885_01_a3c1.jpg"
+    ],
+    [
+      "CCF0885-02",
+      "Earthscape Print Denim",
+      "C/C/CCF0885_02_7db1.jpg"
+    ],
+    [
+      "CCF0886-01",
+      "Floresta Embroidery Ivory/linen",
+      "C/C/CCF0886_01_b426.jpg"
+    ],
+    [
+      "CCF0886-02",
+      "Floresta Embroidery Midnight/antique",
+      "C/C/CCF0886_02_09d5.jpg"
+    ],
+    [
+      "CCF0886-03",
+      "Floresta Embroidery Mineral/spice",
+      "C/C/CCF0886_03_701a.jpg"
+    ],
+    [
+      "CCF0887-01",
+      "Ignis Weave Denim",
+      "C/C/CCF0887_01_389a.jpg"
+    ],
+    [
+      "CCF0887-02",
+      "Ignis Weave Ivory/linen",
+      "C/C/CCF0887_02_f0c6.jpg"
+    ],
+    [
+      "CCF0887-03",
+      "Ignis Weave Teal/blush",
+      "C/C/CCF0887_03_47d4.jpg"
+    ],
+    [
+      "CCF0888-01",
+      "Kalia Print Natural",
+      "C/C/CCF0888_01_5ee3.jpg"
+    ],
+    [
+      "CCF0888-02",
+      "Kalia Print Midnight",
+      "C/C/CCF0888_02_0ed3.jpg"
+    ],
+    [
+      "CCF0888-03",
+      "Kalia Print Mineral/blush",
+      "C/C/CCF0888_03_aee3.jpg"
+    ],
+    [
+      "CCF0889-01",
+      "Oceana Print Coral",
+      "C/C/CCF0889_01_b9bb.jpg"
+    ],
+    [
+      "CCF0889-02",
+      "Oceana Print Denim",
+      "C/C/CCF0889_02_5aab.jpg"
+    ],
+    [
+      "CCF0889-03",
+      "Oceana Print Seafoam",
+      "C/C/CCF0889_03_b605.jpg"
+    ],
+    [
+      "CCF0890-01",
+      "Trueno Print Denim",
+      "C/C/CCF0890_01_d591.jpg"
+    ],
+    [
+      "CCF0890-02",
+      "Trueno Print Mineral",
+      "C/C/CCF0890_02_40c3.jpg"
+    ],
+    [
+      "CCF0890-03",
+      "Trueno Print Multi",
+      "C/C/CCF0890_03_8dd7.jpg"
+    ],
+    [
+      "CCF0890-04",
+      "Trueno Print Spice",
+      "C/C/CCF0890_04_3e55.jpg"
+    ],
+    [
+      "CCF0891-01",
+      "Viento Print Denim",
+      "C/C/CCF0891_01_f911.jpg"
+    ],
+    [
+      "CCF0892-01",
+      "Wildbloom Print Mineral",
+      "C/C/CCF0892_01_55a7.jpg"
+    ],
+    [
+      "CCF0892-02",
+      "Wildbloom Print Mineral/blush",
+      "C/C/CCF0892_02_5253.jpg"
+    ],
+    [
+      "CCF0892-03",
+      "Wildbloom Print Summer",
+      "C/C/CCF0892_03_4e64.jpg"
+    ],
+    [
+      "F1807/01",
+      "Barmeri Cobalt",
+      "F/1/F1807_01_95f3.jpg"
+    ],
+    [
+      "F1807/02",
+      "Barmeri Natural",
+      "F/1/F1807_02_3750.jpg"
+    ],
+    [
+      "F1807/03",
+      "Barmeri Sage/Blush",
+      "F/1/F1807_03_c862.jpg"
+    ],
+    [
+      "F1807/04",
+      "Barmeri Teal",
+      "F/1/F1807_04_3426.jpg"
+    ],
+    [
+      "F1809/01",
+      "Buta Embroidery Ink",
+      "F/1/F1809_01_24e4.jpg"
+    ],
+    [
+      "F1809/02",
+      "Buta Embroidery Natural",
+      "F/1/F1809_02_492b.jpg"
+    ],
+    [
+      "F1809/03",
+      "Buta Embroidery Sage/Blush",
+      "F/1/F1809_03_1482.jpg"
+    ],
+    [
+      "F1809/04",
+      "Buta Embroidery Spice",
+      "F/1/F1809_04_d932.jpg"
+    ],
+    [
+      "F1809/05",
+      "Buta Embroidery Teal",
+      "F/1/F1809_05_9159.jpg"
+    ],
+    [
+      "F1808/01",
+      "Buta Apple",
+      "F/1/F1808_01_8a8c.jpg"
+    ],
+    [
+      "F1808/02",
+      "Buta Cobalt",
+      "F/1/F1808_02_b928.jpg"
+    ],
+    [
+      "F1808/03",
+      "Buta Sage",
+      "F/1/F1808_03_4516.jpg"
+    ],
+    [
+      "F1800/01",
+      "Camino Camel/Spice",
+      "F/1/F1800_01_8f3d.jpg"
+    ],
+    [
+      "F1800/02",
+      "Camino Denim",
+      "F/1/F1800_02_6100.jpg"
+    ],
+    [
+      "F1800/03",
+      "Camino Dove",
+      "F/1/F1800_03_d10d.jpg"
+    ],
+    [
+      "F1800/04",
+      "Camino Palm",
+      "F/1/F1800_04_4821.jpg"
+    ],
+    [
+      "F1800/05",
+      "Camino Teal",
+      "F/1/F1800_05_1013.jpg"
+    ],
+    [
+      "F1801/01",
+      "Muro Camel",
+      "F/1/F1801_01_0490.jpg"
+    ],
+    [
+      "F1801/02",
+      "Muro Denim",
+      "F/1/F1801_02_6f42.jpg"
+    ],
+    [
+      "F1801/03",
+      "Muro Ivory",
+      "F/1/F1801_03_b9be.jpg"
+    ],
+    [
+      "F1801/04",
+      "Muro Linen",
+      "F/1/F1801_04_d03b.jpg"
+    ],
+    [
+      "F1802/01",
+      "Rambla Denim",
+      "F/1/F1802_01_f8c2.jpg"
+    ],
+    [
+      "F1802/02",
+      "Rambla Ivory",
+      "F/1/F1802_02_d10e.jpg"
+    ],
+    [
+      "F1802/03",
+      "Rambla Multi",
+      "F/1/F1802_03_294c.jpg"
+    ],
+    [
+      "F1802/04",
+      "Rambla Noir",
+      "F/1/F1802_04_d6d6.jpg"
+    ],
+    [
+      "F1802/05",
+      "Rambla Teal",
+      "F/1/F1802_05_28f3.jpg"
+    ],
+    [
+      "F1803/01",
+      "Sotano Camel",
+      "F/1/F1803_01_2426.jpg"
+    ],
+    [
+      "F1803/02",
+      "Sotano Cinnamon/Teal",
+      "F/1/F1803_02_32fd.jpg"
+    ],
+    [
+      "F1803/03",
+      "Sotano Denim",
+      "F/1/F1803_03_3bea.jpg"
+    ],
+    [
+      "F1803/04",
+      "Sotano Noir",
+      "F/1/F1803_04_44fb.jpg"
+    ],
+    [
+      "F1803/05",
+      "Sotano Palm",
+      "F/1/F1803_05_800f.jpg"
+    ],
+    [
+      "F1803/06",
+      "Sotano Rust",
+      "F/1/F1803_06_e50a.jpg"
+    ],
+    [
+      "F1804/01",
+      "Torre Camel",
+      "F/1/F1804_01_a70f.jpg"
+    ],
+    [
+      "F1804/02",
+      "Torre Denim",
+      "F/1/F1804_02_f591.jpg"
+    ],
+    [
+      "F1804/03",
+      "Torre Denim/Rust",
+      "F/1/F1804_03_da62.jpg"
+    ],
+    [
+      "F1804/04",
+      "Torre Dove/Noir",
+      "F/1/F1804_04_64ff.jpg"
+    ],
+    [
+      "F1804/05",
+      "Torre Ivory",
+      "F/1/F1804_05_5d93.jpg"
+    ],
+    [
+      "F1804/06",
+      "Torre Peacock",
+      "F/1/F1804_06_1968.jpg"
+    ],
+    [
+      "F1805/01",
+      "Zocalo Cinnamon/Teal",
+      "F/1/F1805_01_2ac0.jpg"
+    ],
+    [
+      "F1805/02",
+      "Zocalo Denim/Rust",
+      "F/1/F1805_02_3fe4.jpg"
+    ],
+    [
+      "F1805/03",
+      "Zocalo Linen",
+      "F/1/F1805_03_e342.jpg"
+    ],
+    [
+      "F1805/04",
+      "Zocalo Marine",
+      "F/1/F1805_04_1d9a.jpg"
+    ],
+    [
+      "F1805/05",
+      "Zocalo Noir/Linen",
+      "F/1/F1805_05_fdfc.jpg"
+    ],
+    [
+      "F1805/06",
+      "Zocalo Peacock",
+      "F/1/F1805_06_41ad.jpg"
+    ],
+    [
+      "F1806/01",
+      "Jaipur Aegean",
+      "F/1/F1806_01_4e16.jpg"
+    ],
+    [
+      "F1806/02",
+      "Jaipur Antique",
+      "F/1/F1806_02_0d22.jpg"
+    ],
+    [
+      "F1806/03",
+      "Jaipur Bark",
+      "F/1/F1806_03_fca8.jpg"
+    ],
+    [
+      "F1806/04",
+      "Jaipur Birch",
+      "F/1/F1806_04_3519.jpg"
+    ],
+    [
+      "F1806/05",
+      "Jaipur Blush",
+      "F/1/F1806_05_979a.jpg"
+    ],
+    [
+      "F1806/06",
+      "Jaipur Camel",
+      "F/1/F1806_06_11e4.jpg"
+    ],
+    [
+      "F1806/07",
+      "Jaipur Celadon",
+      "F/1/F1806_07_8a7a.jpg"
+    ],
+    [
+      "F1806/08",
+      "Jaipur Charcoal",
+      "F/1/F1806_08_0b73.jpg"
+    ],
+    [
+      "F1806/09",
+      "Jaipur Cinnamon",
+      "F/1/F1806_09_f39d.jpg"
+    ],
+    [
+      "F1806/10",
+      "Jaipur Cobalt",
+      "F/1/F1806_10_95bd.jpg"
+    ],
+    [
+      "F1806/11",
+      "Jaipur Denim",
+      "F/1/F1806_11_cedb.jpg"
+    ],
+    [
+      "F1806/12",
+      "Jaipur Emerald",
+      "F/1/F1806_12_7f1a.jpg"
+    ],
+    [
+      "F1806/13",
+      "Jaipur Espresso",
+      "F/1/F1806_13_fc26.jpg"
+    ],
+    [
+      "F1806/14",
+      "Jaipur Forest",
+      "F/1/F1806_14_d1b7.jpg"
+    ],
+    [
+      "F1806/15",
+      "Jaipur Fossil",
+      "F/1/F1806_15_9865.jpg"
+    ],
+    [
+      "F1806/16",
+      "Jaipur Herb",
+      "F/1/F1806_16_db08.jpg"
+    ],
+    [
+      "F1806/17",
+      "Jaipur Ink",
+      "F/1/F1806_17_a152.jpg"
+    ],
+    [
+      "F1806/18",
+      "Jaipur Ivory",
+      "F/1/F1806_18_90c6.jpg"
+    ],
+    [
+      "F1806/19",
+      "Jaipur Linen",
+      "F/1/F1806_19_06ef.jpg"
+    ],
+    [
+      "F1806/20",
+      "Jaipur Midnight",
+      "F/1/F1806_20_0e29.jpg"
+    ],
+    [
+      "F1806/21",
+      "Jaipur Mineral",
+      "F/1/F1806_21_0a29.jpg"
+    ],
+    [
+      "F1806/22",
+      "Jaipur Moss",
+      "F/1/F1806_22_6b14.jpg"
+    ],
+    [
+      "F1806/23",
+      "Jaipur Navy",
+      "F/1/F1806_23_400e.jpg"
+    ],
+    [
+      "F1806/24",
+      "Jaipur Noir",
+      "F/1/F1806_24_0f41.jpg"
+    ],
+    [
+      "F1806/25",
+      "Jaipur Ocean",
+      "F/1/F1806_25_f401.jpg"
+    ],
+    [
+      "F1806/26",
+      "Jaipur Otter",
+      "F/1/F1806_26_0139.jpg"
+    ],
+    [
+      "F1806/27",
+      "Jaipur Parchment",
+      "F/1/F1806_27_9055.jpg"
+    ],
+    [
+      "F1806/28",
+      "Jaipur Pebble",
+      "F/1/F1806_28_fb76.jpg"
+    ],
+    [
+      "F1806/29",
+      "Jaipur Putty",
+      "F/1/F1806_29_cd63.jpg"
+    ],
+    [
+      "F1806/30",
+      "Jaipur Rose",
+      "F/1/F1806_30_b1be.jpg"
+    ],
+    [
+      "F1806/31",
+      "Jaipur Ruby",
+      "F/1/F1806_31_0f20.jpg"
+    ],
+    [
+      "F1806/32",
+      "Jaipur Russet",
+      "F/1/F1806_32_c5f4.jpg"
+    ],
+    [
+      "F1806/33",
+      "Jaipur Shale",
+      "F/1/F1806_33_7265.jpg"
+    ],
+    [
+      "F1806/34",
+      "Jaipur Shingle",
+      "F/1/F1806_34_5f7e.jpg"
+    ],
+    [
+      "F1806/35",
+      "Jaipur Silver",
+      "F/1/F1806_35_71f9.jpg"
+    ],
+    [
+      "F1806/36",
+      "Jaipur Spice",
+      "F/1/F1806_36_a29a.jpg"
+    ],
+    [
+      "F1806/37",
+      "Jaipur Storm",
+      "F/1/F1806_37_6be0.jpg"
+    ],
+    [
+      "F1806/38",
+      "Jaipur Surf",
+      "F/1/F1806_38_6007.jpg"
+    ],
+    [
+      "F1806/39",
+      "Jaipur Taupe",
+      "F/1/F1806_39_221e.jpg"
+    ],
+    [
+      "F1806/40",
+      "Jaipur Teal",
+      "F/1/F1806_40_cd32.jpg"
+    ]
+  ]
+}

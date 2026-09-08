@@ -5,6 +5,7 @@ from pathlib import Path
 p = argparse.ArgumentParser()
 p.add_argument('--count', type=int, required=True)
 p.add_argument('--local', action='store_true')
+p.add_argument('--report')
 a = p.parse_args()
 base = 'http://127.0.0.1:3217/api/catalog' if a.local else 'https://www.curtainsuk.com/apps/curtainsuk-decision/catalog'
 common = {'view': 'retail'} if a.local else {'view': 'retail', 'brand': 'Prestigious Textiles'}
@@ -40,5 +41,5 @@ for page in range(1,first['pages']+1):
     data, metric=probe({'page':page}); ids.extend(f['id'] for f in data['fabrics']); largest=max(largest,metric['bytes'])
 assert len(ids)==len(set(ids))==a.count
 output={'mode':'LOOPBACK_REAL_IDENTITY_FIXTURE' if a.local else 'UNPUBLISHED_DAWN_SHOPIFY_PROXY','count':a.count,'cases':report,'pagination':{'pages':first['pages'],'records':len(ids),'unique':len(set(ids)),'largestRawResponseBytes':largest},'publicLeakScan':'PASS','imageHosts':'SHOPIFY_CDN_ONLY'}
-Path(f'artifacts/phase5h/performance-{a.count}{"-local" if a.local else "-verified"}.json').write_text(json.dumps(output,indent=2)+'\n',encoding='utf-8')
+Path(a.report or f'artifacts/phase5h/performance-{a.count}{"-local" if a.local else "-verified"}.json').write_text(json.dumps(output,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({'count':a.count,'medians':{r['case']:r['medianMs'] for r in report},'pages':first['pages'],'unique':len(set(ids)),'largestRawResponseBytes':largest}))

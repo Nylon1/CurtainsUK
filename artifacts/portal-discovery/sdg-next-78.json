@@ -1,0 +1,398 @@
+{
+  "checkedAt": "2026-09-08 08:41:38 UTC",
+  "brand": "Clarke & Clarke",
+  "productType": "FABRIC",
+  "status": "Live",
+  "rows": [
+    [
+      "F1793/01",
+      "Arcata Aquamarine",
+      "F/1/F1793_01_e06b.jpg"
+    ],
+    [
+      "F1793/02",
+      "Arcata Cobalt",
+      "F/1/F1793_02_c8bc.jpg"
+    ],
+    [
+      "F1793/03",
+      "Arcata Ebony",
+      "F/1/F1793_03_ba67.jpg"
+    ],
+    [
+      "F1793/04",
+      "Arcata Gold",
+      "F/1/F1793_04_6bd4.jpg"
+    ],
+    [
+      "F1793/05",
+      "Arcata Linen",
+      "F/1/F1793_05_4de4.jpg"
+    ],
+    [
+      "F1793/06",
+      "Arcata Spice",
+      "F/1/F1793_06_b5a7.jpg"
+    ],
+    [
+      "F1794/01",
+      "Cameron Cobalt",
+      "F/1/F1794_01_bc8e.jpg"
+    ],
+    [
+      "F1794/02",
+      "Cameron Ebony",
+      "F/1/F1794_02_b81c.jpg"
+    ],
+    [
+      "F1794/03",
+      "Cameron Forest",
+      "F/1/F1794_03_b691.jpg"
+    ],
+    [
+      "F1794/04",
+      "Cameron Midnight",
+      "F/1/F1794_04_6bb9.jpg"
+    ],
+    [
+      "F1794/05",
+      "Cameron Sunset",
+      "F/1/F1794_05_b293.jpg"
+    ],
+    [
+      "F1795/01",
+      "Coronado Aquamarine",
+      "F/1/F1795_01_0045.jpg"
+    ],
+    [
+      "F1795/02",
+      "Coronado Cobalt",
+      "F/1/F1795_02_c518.jpg"
+    ],
+    [
+      "F1795/03",
+      "Coronado Dolphin",
+      "F/1/F1795_03_7d1d.jpg"
+    ],
+    [
+      "F1795/04",
+      "Coronado Forest",
+      "F/1/F1795_04_cbd5.jpg"
+    ],
+    [
+      "F1795/05",
+      "Coronado Linen",
+      "F/1/F1795_05_34d0.jpg"
+    ],
+    [
+      "F1796/01",
+      "Kaleia Cobalt",
+      "F/1/F1796_01_e2cc.jpg"
+    ],
+    [
+      "F1796/02",
+      "Kaleia Dolphin",
+      "F/1/F1796_02_17c8.jpg"
+    ],
+    [
+      "F1796/03",
+      "Kaleia Ebony",
+      "F/1/F1796_03_5221.jpg"
+    ],
+    [
+      "F1796/04",
+      "Kaleia Forest",
+      "F/1/F1796_04_f934.jpg"
+    ],
+    [
+      "F1796/05",
+      "Kaleia Midnight",
+      "F/1/F1796_05_cae9.jpg"
+    ],
+    [
+      "F1796/06",
+      "Kaleia Sunset",
+      "F/1/F1796_06_f4c1.jpg"
+    ],
+    [
+      "F1797/01",
+      "Morro Aquamarine",
+      "F/1/F1797_01_9bac.jpg"
+    ],
+    [
+      "F1797/02",
+      "Morro Cobalt",
+      "F/1/F1797_02_97df.jpg"
+    ],
+    [
+      "F1797/03",
+      "Morro Dolphin",
+      "F/1/F1797_03_d805.jpg"
+    ],
+    [
+      "F1797/04",
+      "Morro Ebony",
+      "F/1/F1797_04_f9b0.jpg"
+    ],
+    [
+      "F1797/05",
+      "Morro Forest",
+      "F/1/F1797_05_2fb0.jpg"
+    ],
+    [
+      "F1797/06",
+      "Morro Linen",
+      "F/1/F1797_06_a9bc.jpg"
+    ],
+    [
+      "F1797/07",
+      "Morro Midnight",
+      "F/1/F1797_07_62d0.jpg"
+    ],
+    [
+      "F1790/01",
+      "Pontus Blush",
+      "F/1/F1790_01_37b9.jpg"
+    ],
+    [
+      "F1790/02",
+      "Pontus Dove",
+      "F/1/F1790_02_09e8.jpg"
+    ],
+    [
+      "F1790/03",
+      "Pontus Ivory",
+      "F/1/F1790_03_f437.jpg"
+    ],
+    [
+      "F1790/04",
+      "Pontus Mineral",
+      "F/1/F1790_04_9d30.jpg"
+    ],
+    [
+      "F1790/05",
+      "Pontus Sahara",
+      "F/1/F1790_05_f1c5.jpg"
+    ],
+    [
+      "F1791/01",
+      "Tergo Blush",
+      "F/1/F1791_01_b7c9.jpg"
+    ],
+    [
+      "F1791/02",
+      "Tergo Dove",
+      "F/1/F1791_02_c10a.jpg"
+    ],
+    [
+      "F1791/03",
+      "Tergo Ivory",
+      "F/1/F1791_03_52ed.jpg"
+    ],
+    [
+      "F1791/04",
+      "Tergo Linen",
+      "F/1/F1791_04_0cb3.jpg"
+    ],
+    [
+      "F1791/05",
+      "Tergo Mineral",
+      "F/1/F1791_05_024c.jpg"
+    ],
+    [
+      "F1791/06",
+      "Tergo Parchment",
+      "F/1/F1791_06_1e00.jpg"
+    ],
+    [
+      "F1791/07",
+      "Tergo Pebble",
+      "F/1/F1791_07_833f.jpg"
+    ],
+    [
+      "F1791/08",
+      "Tergo Sahara",
+      "F/1/F1791_08_db68.jpg"
+    ],
+    [
+      "F1798/01",
+      "Waikiki Aquamarine",
+      "F/1/F1798_01_2fb4.jpg"
+    ],
+    [
+      "F1798/02",
+      "Waikiki Cobalt",
+      "F/1/F1798_02_2ffb.jpg"
+    ],
+    [
+      "F1798/03",
+      "Waikiki Ebony",
+      "F/1/F1798_03_3dd7.jpg"
+    ],
+    [
+      "F1798/04",
+      "Waikiki Forest",
+      "F/1/F1798_04_abc1.jpg"
+    ],
+    [
+      "F1798/05",
+      "Waikiki Gold",
+      "F/1/F1798_05_33f0.jpg"
+    ],
+    [
+      "F1798/06",
+      "Waikiki Linen",
+      "F/1/F1798_06_fdbf.jpg"
+    ],
+    [
+      "F1798/07",
+      "Waikiki Midnight",
+      "F/1/F1798_07_ce26.jpg"
+    ],
+    [
+      "F1815/01",
+      "Atrio Dove/Noir",
+      "F/1/F1815_01_e03c.jpg"
+    ],
+    [
+      "F1815/02",
+      "Atrio Linen",
+      "F/1/F1815_02_e4e3.jpg"
+    ],
+    [
+      "F1815/03",
+      "Atrio Marine/Spice",
+      "F/1/F1815_03_f383.jpg"
+    ],
+    [
+      "F1815/04",
+      "Atrio Multi",
+      "F/1/F1815_04_8fcb.jpg"
+    ],
+    [
+      "F1815/05",
+      "Atrio Peacock",
+      "F/1/F1815_05_bb20.jpg"
+    ],
+    [
+      "F1810/01",
+      "Kalpa Antique",
+      "F/1/F1810_01_2f21.jpg"
+    ],
+    [
+      "F1810/02",
+      "Kalpa Apple",
+      "F/1/F1810_02_cd3b.jpg"
+    ],
+    [
+      "F1810/03",
+      "Kalpa Cobalt",
+      "F/1/F1810_03_5027.jpg"
+    ],
+    [
+      "F1810/04",
+      "Kalpa Ink",
+      "F/1/F1810_04_5e64.jpg"
+    ],
+    [
+      "F1810/05",
+      "Kalpa Natural",
+      "F/1/F1810_05_7e30.jpg"
+    ],
+    [
+      "F1810/06",
+      "Kalpa Sage",
+      "F/1/F1810_06_e0e0.jpg"
+    ],
+    [
+      "F1810/07",
+      "Kalpa Spice",
+      "F/1/F1810_07_cc80.jpg"
+    ],
+    [
+      "F1810/08",
+      "Kalpa Teal",
+      "F/1/F1810_08_d157.jpg"
+    ],
+    [
+      "F1811/01",
+      "Gamthi Blush",
+      "F/1/F1811_01_581a.jpg"
+    ],
+    [
+      "F1811/02",
+      "Gamthi Cobalt",
+      "F/1/F1811_02_2f50.jpg"
+    ],
+    [
+      "F1811/03",
+      "Gamthi Sage/Blush",
+      "F/1/F1811_03_abd0.jpg"
+    ],
+    [
+      "F1811/04",
+      "Gamthi Teal",
+      "F/1/F1811_04_4ea8.jpg"
+    ],
+    [
+      "F1813/01",
+      "Hathi Embroidery Cobalt",
+      "F/1/F1813_01_2f54.jpg"
+    ],
+    [
+      "F1813/02",
+      "Hathi Embroidery Raspberry",
+      "F/1/F1813_02_2680.jpg"
+    ],
+    [
+      "F1813/03",
+      "Hathi Embroidery Teal",
+      "F/1/F1813_03_89c4.jpg"
+    ],
+    [
+      "F1812/01",
+      "Hathi Cobalt",
+      "F/1/F1812_01_0ca5.jpg"
+    ],
+    [
+      "F1812/02",
+      "Hathi Natural",
+      "F/1/F1812_02_f7ac.jpg"
+    ],
+    [
+      "F1812/03",
+      "Hathi Sage",
+      "F/1/F1812_03_a513.jpg"
+    ],
+    [
+      "F1812/04",
+      "Hathi Sage/Blush",
+      "F/1/F1812_04_955c.jpg"
+    ],
+    [
+      "F1812/05",
+      "Hathi Teal",
+      "F/1/F1812_05_bedf.jpg"
+    ],
+    [
+      "F1814/01",
+      "Kalamkari Antique",
+      "F/1/F1814_01_3d3a.jpg"
+    ],
+    [
+      "F1814/02",
+      "Kalamkari Cobalt",
+      "F/1/F1814_02_8b7b.jpg"
+    ],
+    [
+      "F1814/03",
+      "Kalamkari Sage",
+      "F/1/F1814_03_1f13.jpg"
+    ],
+    [
+      "F1814/04",
+      "Kalamkari Teal",
+      "F/1/F1814_04_1d6d.jpg"
+    ]
+  ]
+}

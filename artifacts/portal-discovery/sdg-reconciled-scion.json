@@ -1,0 +1,21 @@
+{
+  "observed": 1,
+  "exactIdentityMatches": 1,
+  "withheld": [],
+  "databaseWrites": 0,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-nzac132942",
+      "workbook_sku": "NZAC132942",
+      "portal_sku": "NZAC132942",
+      "master_design": "Samaki",
+      "master_colour": "Indigo",
+      "portal_title": "Samaki Indigo",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08 08:48:34 UTC"
+    }
+  ]
+}

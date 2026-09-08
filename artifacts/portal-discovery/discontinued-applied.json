@@ -1,0 +1,512 @@
+[
+  {
+    "fabricId": "sdg-hpol440388",
+    "sku": "HPOL440388",
+    "observedTitle": "Deflect Basil",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440446",
+    "sku": "HPOL440446",
+    "observedTitle": "Deflect Acorn",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440456",
+    "sku": "HPOL440456",
+    "observedTitle": "Deflect Cocoa",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440500",
+    "sku": "HPOL440500",
+    "observedTitle": "Deflect Aurora",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440572",
+    "sku": "HPOL440572",
+    "observedTitle": "Deflect Surf",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440621",
+    "sku": "HPOL440621",
+    "observedTitle": "Deflect Swedish Grey",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440629",
+    "sku": "HPOL440629",
+    "observedTitle": "Deflect Driftwood",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440674",
+    "sku": "HPOL440674",
+    "observedTitle": "Deflect Sediment",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440700",
+    "sku": "HPOL440700",
+    "observedTitle": "Deflect Willow",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440368",
+    "sku": "HPOL440368",
+    "observedTitle": "Electron Fresh Lime",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440391",
+    "sku": "HPOL440391",
+    "observedTitle": "Electron Peppermint",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440498",
+    "sku": "HPOL440498",
+    "observedTitle": "Electron Fuchsia",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440544",
+    "sku": "HPOL440544",
+    "observedTitle": "Electron Radiance",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440569",
+    "sku": "HPOL440569",
+    "observedTitle": "Electron Fog",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440596",
+    "sku": "HPOL440596",
+    "observedTitle": "Electron Indigo",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440623",
+    "sku": "HPOL440623",
+    "observedTitle": "Electron Nickel",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440683",
+    "sku": "HPOL440683",
+    "observedTitle": "Electron Chinchilla",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440698",
+    "sku": "HPOL440698",
+    "observedTitle": "Electron Sand",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440701",
+    "sku": "HPOL440701",
+    "observedTitle": "Electron Parchment",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440415",
+    "sku": "HPOL440415",
+    "observedTitle": "Laminar Chartreuse",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440524",
+    "sku": "HPOL440524",
+    "observedTitle": "Laminar Bellflower",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440627",
+    "sku": "HPOL440627",
+    "observedTitle": "Laminar Birch",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440634",
+    "sku": "HPOL440634",
+    "observedTitle": "Laminar Lead",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440636",
+    "sku": "HPOL440636",
+    "observedTitle": "Laminar Anchor Grey",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440653",
+    "sku": "HPOL440653",
+    "observedTitle": "Metamorphic Sugarcane",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440551",
+    "sku": "HPOL440551",
+    "observedTitle": "Spectro Eucalyptus",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440616",
+    "sku": "HPOL440616",
+    "observedTitle": "Spectro Pearl",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440625",
+    "sku": "HPOL440625",
+    "observedTitle": "Spectro Shale",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440694",
+    "sku": "HPOL440694",
+    "observedTitle": "Spectro Maize",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440696",
+    "sku": "HPOL440696",
+    "observedTitle": "Spectro Cashew",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440690",
+    "sku": "HPOL440690",
+    "observedTitle": "Velocity Raisin",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hpol440692",
+    "sku": "HPOL440692",
+    "observedTitle": "Velocity Sandstone",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:47.691829+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hzap132641",
+    "sku": "HZAP132641",
+    "observedTitle": "Bora Indigo/Zest/Cerise",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:48.573332+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  },
+  {
+    "fabricId": "sdg-hzap132644",
+    "sku": "HZAP132644",
+    "observedTitle": "Zapara Cerise/Kiwi",
+    "source": "sdg.fabric-listing:HPOL-and-HZAP132648-search",
+    "observedDate": "2026-09-08",
+    "actor": "Codex operator under owner catalogue activation rule",
+    "before": {
+      "lifecycle": "UNKNOWN",
+      "visible": false,
+      "revision": "2026-09-07T20:33:48.573332+00:00"
+    },
+    "resolution": "DISCONTINUED_HIDDEN",
+    "commercialChanges": 0
+  }
+]

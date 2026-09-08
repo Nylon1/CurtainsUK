@@ -1,0 +1,56 @@
+{
+  "observed": 127,
+  "exactIdentityMatches": 115,
+  "withheld": [
+    {
+      "sku": "CCF0887-01",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0887-02",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0887-03",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0888-01",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0888-02",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0888-03",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0891-01",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0892-01",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0892-02",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "CCF0892-03",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1803/01",
+      "reason": "IDENTITY_MISMATCH"
+    },
+    {
+      "sku": "F1805/02",
+      "reason": "IDENTITY_MISMATCH"
+    }
+  ],
+  "databaseWrites": 0,
+  "pricingChanges": 0
+}

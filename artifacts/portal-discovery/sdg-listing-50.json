@@ -1,0 +1,366 @@
+{
+  "checkedAt": "2026-09-08T08:23:06Z",
+  "brand": "Clarke & Clarke",
+  "productType": "FABRIC",
+  "route": "FABRIC_LISTING",
+  "location": "sdg.fabric-listing",
+  "columns": [
+    "sku",
+    "title",
+    "status",
+    "imagePath",
+    "productSlug"
+  ],
+  "rows": [
+    [
+      "F0063/02",
+      "Dotty Charcoal",
+      "Live",
+      "F/0/F0063_02_70ef.jpg",
+      "dotty-charcoal-ccf0001-01"
+    ],
+    [
+      "F0063/16",
+      "Dotty Smoke",
+      "Live",
+      "F/0/F0063_16_36d5.jpg",
+      "dotty-smoke-ccf0001-02"
+    ],
+    [
+      "F0063/13",
+      "Dotty Grey",
+      "Live",
+      "F/0/F0063_13_15d9.jpg",
+      "dotty-grey-ccf0001-03"
+    ],
+    [
+      "F0063/06",
+      "Dotty Multi",
+      "Live",
+      "F/0/F0063_06_a73c.jpg",
+      "dotty-multi-ccf0001-04"
+    ],
+    [
+      "F0063/07",
+      "Dotty Natural",
+      "Live",
+      "F/0/F0063_07_7460.jpg",
+      "dotty-natural-ccf0001-05"
+    ],
+    [
+      "F0063/08",
+      "Dotty Powder Blue",
+      "Live",
+      "F/0/F0063_08_a73a.jpg",
+      "dotty-powder-blue-ccf0001-06"
+    ],
+    [
+      "F0063/09",
+      "Dotty Rose",
+      "Live",
+      "F/0/F0063_09_ba3e.jpg",
+      "dotty-rose-ccf0001-07"
+    ],
+    [
+      "F0063/12",
+      "Dotty Taupe",
+      "Live",
+      "F/0/F0063_12_7709.jpg",
+      "dotty-taupe-ccf0001-08"
+    ],
+    [
+      "F0370/01",
+      "Dotty Duckegg",
+      "Live",
+      "F/0/F0370_01_d17a.jpg",
+      "dotty-duckegg-ccf0001-09"
+    ],
+    [
+      "F0293/02",
+      "Bird Trail Grey",
+      "Live",
+      "F/0/F0293_02_e17c.jpg",
+      "bird-trail-grey-ccf0002-01"
+    ],
+    [
+      "F0299/04",
+      "Rosebud Sage",
+      "Live",
+      "F/0/F0299_04_6185.jpg",
+      "rosebud-sage-ccf0003-01"
+    ],
+    [
+      "F0063/10",
+      "Dotty Sage",
+      "Live",
+      "F/0/F0063_10_b588.jpg",
+      "dotty-sage-ccf0004-01"
+    ],
+    [
+      "F1781/01",
+      "Dotty Blush",
+      "Live",
+      "F/1/F1781_01_42b7.jpg",
+      "dotty-blush-ccf0004-02"
+    ],
+    [
+      "F1781/02",
+      "Dotty Cobalt",
+      "Live",
+      "F/1/F1781_02_bb42.jpg",
+      "dotty-cobalt-ccf0004-03"
+    ],
+    [
+      "F1781/03",
+      "Dotty Jade",
+      "Live",
+      "F/1/F1781_03_ca29.jpg",
+      "dotty-jade-ccf0004-04"
+    ],
+    [
+      "F1781/04",
+      "Dotty Sunset",
+      "Live",
+      "F/1/F1781_04_0dd9.jpg",
+      "dotty-sunset-ccf0004-05"
+    ],
+    [
+      "F0408/01",
+      "Sail Stripe Marine",
+      "Live",
+      "F/0/F0408_01_e402.jpg",
+      "sail-stripe-marine-ccf0010-01"
+    ],
+    [
+      "F0408/02",
+      "Sail Stripe Cloud",
+      "Live",
+      "F/0/F0408_02_3d47.jpg",
+      "sail-stripe-cloud-ccf0010-02"
+    ],
+    [
+      "F0408/03",
+      "Sail Stripe Mineral",
+      "Live",
+      "F/0/F0408_03_f786.jpg",
+      "sail-stripe-mineral-ccf0010-03"
+    ],
+    [
+      "F0409/01",
+      "Skipper Marine",
+      "Live",
+      "F/0/F0409_01_8b64.jpg",
+      "skipper-marine-ccf0011-01"
+    ],
+    [
+      "F0415/02",
+      "Gino Ivory",
+      "Limited Stock",
+      "F/0/F0415_02_77c8.jpg",
+      "gino-ivory-ccf0017-01"
+    ],
+    [
+      "F0419/04",
+      "Oxford Red",
+      "Limited Stock",
+      "F/0/F0419_04_e3e4.jpg",
+      "oxford-red-ccf0021-02"
+    ],
+    [
+      "F0420/01",
+      "Sutton Charcoal",
+      "Limited Stock",
+      "F/0/F0420_01_e172.jpg",
+      "sutton-charcoal-ccf0024-01"
+    ],
+    [
+      "F0420/06",
+      "Sutton Red",
+      "Limited Stock",
+      "F/0/F0420_06_d7a6.jpg",
+      "sutton-red-ccf0024-03"
+    ],
+    [
+      "F0498/04",
+      "Hartford Denim",
+      "Limited Stock",
+      "F/0/F0498_04_29a9.jpg",
+      "hartford-denim-ccf0028-01"
+    ],
+    [
+      "F0501/04",
+      "Stamford Denim",
+      "Limited Stock",
+      "F/0/F0501_04_5e99.jpg",
+      "stamford-denim-ccf0029-01"
+    ],
+    [
+      "F0519/01",
+      "Etoile Denim",
+      "Live",
+      "F/0/F0519_01_c8bf.jpg",
+      "etoile-denim-ccf0030-01"
+    ],
+    [
+      "F0519/03",
+      "Etoile Linen",
+      "Live",
+      "F/0/F0519_03_19cb.jpg",
+      "etoile-linen-ccf0030-02"
+    ],
+    [
+      "F0519/06",
+      "Etoile Smoke",
+      "Live",
+      "F/0/F0519_06_bebe.jpg",
+      "etoile-smoke-ccf0030-03"
+    ],
+    [
+      "F0521/03",
+      "Moorland Duckegg",
+      "Live",
+      "F/0/F0521_03_b6ef.jpg",
+      "moorland-duckegg-ccf0031-01"
+    ],
+    [
+      "F0521/04",
+      "Moorland Green",
+      "Live",
+      "F/0/F0521_04_685e.jpg",
+      "moorland-green-ccf0031-02"
+    ],
+    [
+      "F0521/05",
+      "Moorland Taupe",
+      "Live",
+      "F/0/F0521_05_3b76.jpg",
+      "moorland-taupe-ccf0031-03"
+    ],
+    [
+      "F0620/01",
+      "Belle Chambray",
+      "Live",
+      "F/0/F0620_01_a724.jpg",
+      "belle-chambray-ccf0035-01"
+    ],
+    [
+      "F0620/02",
+      "Belle Mineral",
+      "Live",
+      "F/0/F0620_02_349f.jpg",
+      "belle-mineral-ccf0035-02"
+    ],
+    [
+      "F0622/04",
+      "Genevieve Old Rose",
+      "Live",
+      "F/0/F0622_04_0455.jpg",
+      "genevieve-old-rose-ccf0042-01"
+    ],
+    [
+      "F0585/02",
+      "Kinburn Denim",
+      "Live",
+      "F/0/F0585_02_72e3.jpg",
+      "kinburn-denim-ccf0043-01"
+    ],
+    [
+      "F0612/02",
+      "Martinique Ivory",
+      "Live",
+      "F/0/F0612_02_b345.jpg",
+      "martinique-ivory-ccf0044-01"
+    ],
+    [
+      "F0612/04",
+      "Martinique Natural",
+      "Live",
+      "F/0/F0612_04_d200.jpg",
+      "martinique-natural-ccf0044-02"
+    ],
+    [
+      "F0612/05",
+      "Martinique Pebble",
+      "Live",
+      "F/0/F0612_05_1610.jpg",
+      "martinique-pebble-ccf0044-03"
+    ],
+    [
+      "F0612/06",
+      "Martinique Pewter",
+      "Live",
+      "F/0/F0612_06_aeda.jpg",
+      "martinique-pewter-ccf0044-04"
+    ],
+    [
+      "F0612/07",
+      "Martinique Sand",
+      "Live",
+      "F/0/F0612_07_d409.jpg",
+      "martinique-sand-ccf0044-05"
+    ],
+    [
+      "F0599/01",
+      "Mellor Citrus",
+      "Live",
+      "F/0/F0599_01_cfe2.jpg",
+      "mellor-citrus-ccf0046-01"
+    ],
+    [
+      "F0599/02",
+      "Mellor Heather",
+      "Live",
+      "F/0/F0599_02_a56f.jpg",
+      "mellor-heather-ccf0046-02"
+    ],
+    [
+      "F0599/03",
+      "Mellor Mineral",
+      "Live",
+      "F/0/F0599_03_cf86.jpg",
+      "mellor-mineral-ccf0046-03"
+    ],
+    [
+      "F0599/04",
+      "Mellor Natural",
+      "Live",
+      "F/0/F0599_04_dcac.jpg",
+      "mellor-natural-ccf0046-04"
+    ],
+    [
+      "F0599/05",
+      "Mellor Raspberry",
+      "Live",
+      "F/0/F0599_05_5cbc.jpg",
+      "mellor-raspberry-ccf0046-05"
+    ],
+    [
+      "F0599/06",
+      "Mellor Spice",
+      "Live",
+      "F/0/F0599_06_0104.jpg",
+      "mellor-spice-ccf0046-06"
+    ],
+    [
+      "F0600/01",
+      "Mitton Ivory",
+      "Live",
+      "F/0/F0600_01_e992.jpg",
+      "mitton-ivory-ccf0047-01"
+    ],
+    [
+      "F0600/02",
+      "Mitton Natural",
+      "Live",
+      "F/0/F0600_02_48aa.jpg",
+      "mitton-natural-ccf0047-02"
+    ],
+    [
+      "F0636/02",
+      "Melodie Natural",
+      "Live",
+      "F/0/F0636_02_2f90.jpg",
+      "melodie-natural-ccf0052-01"
+    ]
+  ]
+}

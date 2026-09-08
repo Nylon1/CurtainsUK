@@ -42,7 +42,8 @@ export function validateDownloadSource(url: string, supplier: string) {
   if (/^local-sha256:[a-f0-9]{64}$/.test(url) && ["prestigious-textiles","sanderson-design-group"].includes(supplier)) return;
   const source = new URL(url);
   const allowed = supplier === "prestigious-textiles"
-    ? source.origin === "https://www.prestigious.co.uk" && source.pathname.startsWith("/wp-content/uploads/")
+    ? (source.origin === "https://www.prestigious.co.uk" && source.pathname.startsWith("/wp-content/uploads/"))
+      || (source.origin === "https://www.prestigiousonline.co.uk" && source.pathname.startsWith("/images/images/") && /\.(?:jpe?g|png|webp)$/i.test(source.pathname))
     : supplier === "sanderson-design-group" && source.origin === "https://trade.sandersondesigngroup.com" && source.pathname.startsWith("/static/media/catalog/product/");
   if (!allowed || source.search || source.hash || source.username || source.password || /placeholder|no-image|default-image/i.test(url)) throw new Error("IMAGE_SOURCE_DENIED");
 }

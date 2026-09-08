@@ -1,0 +1,154 @@
+{
+  "publicRecords": 525,
+  "publicPriceReady": 251,
+  "publicOrderReady": 0,
+  "canaryRecords": 260,
+  "canaryPriceBlocked": 260,
+  "sampleKnownAvailable": 0,
+  "pages": 22,
+  "maxRecordsPerPayload": 24,
+  "largestRawResponseBytes": 55923,
+  "commercialOrCredentialLeaks": 0,
+  "imageHost": "Shopify CDN",
+  "robots": "noindex, nofollow",
+  "filterSemantics": "PASS",
+  "testedCollection": "Alfresco Indoor Outdoor Weaves",
+  "timings": {
+    "browse": {
+      "medianMs": 609,
+      "measurements": [
+        {
+          "ms": 608,
+          "bytes": 49845
+        },
+        {
+          "ms": 609,
+          "bytes": 49845
+        },
+        {
+          "ms": 861,
+          "bytes": 49845
+        }
+      ]
+    },
+    "search": {
+      "medianMs": 612,
+      "measurements": [
+        {
+          "ms": 731,
+          "bytes": 7374
+        },
+        {
+          "ms": 602,
+          "bytes": 7374
+        },
+        {
+          "ms": 612,
+          "bytes": 7374
+        }
+      ]
+    },
+    "brand": {
+      "medianMs": 647,
+      "measurements": [
+        {
+          "ms": 666,
+          "bytes": 49845
+        },
+        {
+          "ms": 612,
+          "bytes": 49845
+        },
+        {
+          "ms": 647,
+          "bytes": 49845
+        }
+      ]
+    },
+    "colour": {
+      "medianMs": 630,
+      "measurements": [
+        {
+          "ms": 647,
+          "bytes": 54634
+        },
+        {
+          "ms": 630,
+          "bytes": 54634
+        },
+        {
+          "ms": 615,
+          "bytes": 54634
+        }
+      ]
+    },
+    "pattern": {
+      "medianMs": 658,
+      "measurements": [
+        {
+          "ms": 658,
+          "bytes": 55896
+        },
+        {
+          "ms": 935,
+          "bytes": 55896
+        },
+        {
+          "ms": 649,
+          "bytes": 55896
+        }
+      ]
+    },
+    "collection": {
+      "medianMs": 630,
+      "measurements": [
+        {
+          "ms": 658,
+          "bytes": 47215
+        },
+        {
+          "ms": 630,
+          "bytes": 47215
+        },
+        {
+          "ms": 612,
+          "bytes": 47215
+        }
+      ]
+    },
+    "detail": {
+      "medianMs": 498,
+      "measurements": [
+        {
+          "ms": 498,
+          "bytes": 2091
+        },
+        {
+          "ms": 489,
+          "bytes": 2091
+        },
+        {
+          "ms": 521,
+          "bytes": 2091
+        }
+      ]
+    },
+    "page2": {
+      "medianMs": 623,
+      "measurements": [
+        {
+          "ms": 623,
+          "bytes": 47581
+        },
+        {
+          "ms": 626,
+          "bytes": 47581
+        },
+        {
+          "ms": 617,
+          "bytes": 47581
+        }
+      ]
+    }
+  }
+}

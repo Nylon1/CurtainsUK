@@ -1,0 +1,33 @@
+{
+  "observed": 2,
+  "exactIdentityMatches": 2,
+  "withheld": [],
+  "databaseWrites": 0,
+  "pricingChanges": 0,
+  "reconciliation": [
+    {
+      "master_id": "sdg-hzap132646",
+      "workbook_sku": "HZAP132646",
+      "portal_sku": "HZAP132646",
+      "master_design": "Kelapa",
+      "master_colour": "Lagoon/Cerise",
+      "portal_title": "Kelapa Lagoon/Cerise",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08 08:48:34 UTC"
+    },
+    {
+      "master_id": "sdg-hzap132647",
+      "workbook_sku": "HZAP132647",
+      "portal_sku": "HZAP132647",
+      "master_design": "Kelapa",
+      "master_colour": "Emerald/Zest",
+      "portal_title": "Kelapa Emerald/Zest",
+      "match_method": "EXACT_SKU_BRAND_DESIGN_COLOUR",
+      "confidence": "HIGH",
+      "resolution": "APPROVED_MEDIA_ONLY",
+      "verified_at": "2026-09-08 08:48:34 UTC"
+    }
+  ]
+}

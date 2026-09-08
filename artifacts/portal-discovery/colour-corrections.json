@@ -1,0 +1,32 @@
+{
+  "evidence": "sdg-next-127.json",
+  "matchMethod": "EXACT_SKU_BRAND_DESIGN_FABRIC_CURRENT_PORTAL_COLOUR",
+  "source": "sdg.fabric-listing:F180",
+  "resolution": "APPLIED_GUARDED_COLOUR_CORRECTION",
+  "pricingChanges": 0,
+  "configurationSnapshotChanges": 0,
+  "rows": [
+    {
+      "master_id": "sdg-f1803-01",
+      "workbook_sku": "F1803/01",
+      "portal_sku": "F1803/01",
+      "brand": "Clarke & Clarke",
+      "design": "Sotano",
+      "workbook_colour": "Sotano",
+      "portal_colour": "Camel",
+      "expected_revision": "2026-09-07 20:33:43.581225+00",
+      "workbook_effective_date": "2026-02-24"
+    },
+    {
+      "master_id": "sdg-f1805-02",
+      "workbook_sku": "F1805/02",
+      "portal_sku": "F1805/02",
+      "brand": "Clarke & Clarke",
+      "design": "Zocalo",
+      "workbook_colour": "Rust",
+      "portal_colour": "Denim/Rust",
+      "expected_revision": "2026-09-07 20:33:44.045353+00",
+      "workbook_effective_date": "2026-02-24"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-08",
+  "dawnDesktop": {
+    "cssViewport": [
+      1229,
+      539
+    ],
+    "fabric": "sdg-mwar237305",
+    "image": [
+      1366,
+      1366
+    ],
+    "loaded": true,
+    "overflow": false,
+    "twoColumnLayout": true
+  },
+  "dawnMobile": {
+    "cssViewport": [
+      390,
+      844
+    ],
+    "fabric": "sdg-ccf0864-03",
+    "image": [
+      1366,
+      1366
+    ],
+    "loaded": true,
+    "overflow": false,
+    "search": "Audubon: 3 fabrics, Page 1 of 1",
+    "allCardsLazy": true,
+    "bayHandoffPreserved": true,
+    "exactFabricPreserved": true,
+    "priceCheckBlocked": true,
+    "sampleUnconfirmed": true,
+    "fileInputs": 0
+  },
+  "local1000": {
+    "cssViewport": [
+      390,
+      844
+    ],
+    "firstPageImages": 24,
+    "initiallyLoaded": 9,
+    "allLazy": true,
+    "page2Cards": 24,
+    "page42Cards": 16,
+    "page42Images": 0,
+    "page42NextDisabled": true,
+    "search": "Java: 29 fabrics, Page 1 of 2",
+    "overflow": false,
+    "browserStableDuringNavigation": true,
+    "heapMeasurement": null
+  },
+  "screenshots": "Captured and visually inspected in the browser tool; no screenshot files exported.",
+  "viewportOverrideReset": true,
+  "limitations": [
+    "Desktop network, not a physical handset or throttled connection.",
+    "Browser heap measurement unavailable.",
+    "Local fixture does not represent 1000 mapped or activated fabrics."
+  ]
+}

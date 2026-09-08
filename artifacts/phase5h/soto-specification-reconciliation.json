@@ -1,0 +1,24 @@
+{
+  "before": {
+    "design_id": "pt-design-4275",
+    "vertical_repeat_mm": 140,
+    "horizontal_repeat_mm": null,
+    "source_effective_date": "2026-08-01",
+    "updated_at": "2026-09-07T12:15:12.566373+00:00"
+  },
+  "after": {
+    "design_id": "pt-design-4275",
+    "vertical_repeat_mm": 14,
+    "horizontal_repeat_mm": 14,
+    "updated_at": "2026-09-08T04:56:11.361+00:00"
+  },
+  "evidence": {
+    "source": "prestigious-webtex:product:4275-130",
+    "checkedAt": "2026-09-08T04:56:11.361Z",
+    "operator": "Codex operator under owner Phase 5H authority",
+    "visibleVerticalRepeatCm": 1.4,
+    "visibleHorizontalRepeatCm": 1.4,
+    "corroboration": "Current public exact-SKU specifications for 4275/130, 4275/934 and 4275/975 also give 1.4 cm."
+  },
+  "configurationWrites": 0
+}

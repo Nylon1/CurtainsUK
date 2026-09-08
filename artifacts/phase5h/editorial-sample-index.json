@@ -1,0 +1,522 @@
+[
+  {
+    "design": "Oakley",
+    "fabricId": "pt-4256-513",
+    "sku": "4256/513",
+    "collection": "Brodie",
+    "hash": "d2fb9e33ff3cd1b857cc2c4381ab71741d38522e76ba792c241ae8359256aa42",
+    "character": "Weave"
+  },
+  {
+    "design": "Harlow",
+    "fabricId": "pt-4242-513",
+    "sku": "4242/513",
+    "collection": "Brodie",
+    "hash": "dbade44737d57cd3f85e9049302eea209c13d209ca1dbae596b211c400400702",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Kaden",
+    "fabricId": "pt-4255-513",
+    "sku": "4255/513",
+    "collection": "Brodie",
+    "hash": "7315db4e51e1daaae9c300ff9ac31b4d9b2393a2a40410520e8488e7445b7f22",
+    "character": "Weave"
+  },
+  {
+    "design": "Marco",
+    "fabricId": "pt-4243-513",
+    "sku": "4243/513",
+    "collection": "Brodie",
+    "hash": "53ae99016ac73249cadf44f16a70ba60e1a1d5f4bb5841327b852d63276eb040",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Eliana",
+    "fabricId": "pt-4253-076",
+    "sku": "4253/076",
+    "collection": "Brodie",
+    "hash": "01840842c2ea27cb6bb18912d23af7cc85bb25c7406f019e7d405c424e9e56d3",
+    "character": "Sheers"
+  },
+  {
+    "design": "Dara",
+    "fabricId": "pt-4241-513",
+    "sku": "4241/513",
+    "collection": "Brodie",
+    "hash": "33a3ab294ec87ba80d7099f346b65280a75a5c94d0cfaf71c8c6913514fdb268",
+    "character": "Chenille"
+  },
+  {
+    "design": "Sabrina",
+    "fabricId": "pt-4258-076",
+    "sku": "4258/076",
+    "collection": "Brodie",
+    "hash": "daf3ad9e94bd29edb369a182a7f6267360d128f0abcaeced193442f62c6e18cd",
+    "character": "Sheers"
+  },
+  {
+    "design": "Grayson",
+    "fabricId": "pt-4254-513",
+    "sku": "4254/513",
+    "collection": "Brodie",
+    "hash": "4af5094556b61f3b238a53b0d2677bbf8a01714082f11afb888d615e2d2165ca",
+    "character": "Jacquard"
+  },
+  {
+    "design": "Braxton",
+    "fabricId": "pt-4240-513",
+    "sku": "4240/513",
+    "collection": "Brodie",
+    "hash": "aadbff48891579fb81877491c72973671efed95532ab7d6c622a53eab892981f",
+    "character": "Jacquard"
+  },
+  {
+    "design": "Ava",
+    "fabricId": "pt-4238-513",
+    "sku": "4238/513",
+    "collection": "Brodie",
+    "hash": "34bec5723d0f4f2dba5b739fc5b240838fb0fbc5ed69dac9c323b8ec2346ceca",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Rowan",
+    "fabricId": "pt-4244-513",
+    "sku": "4244/513",
+    "collection": "Brodie",
+    "hash": "6faee3099244406ae4c7fbd31f7dda3b7965ebf9d1a63b3d1cd38a9db79b560e",
+    "character": "Jacquard"
+  },
+  {
+    "design": "River",
+    "fabricId": "pt-4257-513",
+    "sku": "4257/513",
+    "collection": "Brodie",
+    "hash": "3488671e20b21944cd1f66d1beba1bfe52410002d20418f3e68eed3305b8b8ae",
+    "character": "Weave"
+  },
+  {
+    "design": "Bowe",
+    "fabricId": "pt-4239-655",
+    "sku": "4239/655",
+    "collection": "Brodie",
+    "hash": "dcdb36c25c64f3e357b81bdd2ca4b3b359e72a3396ad108c4c07a470682e8426",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Cord",
+    "fabricId": "pt-7248-670",
+    "sku": "7248/670",
+    "collection": "Cord",
+    "hash": "2ab9fd0ab1fd9fdc2f4f244b27657088984432eae7947468d947612a432ec8af",
+    "character": "Chenille"
+  },
+  {
+    "design": "Spotlight",
+    "fabricId": "pt-7895-038",
+    "sku": "7895/038",
+    "collection": "Spotlight",
+    "hash": "2b66e0a47906e95f891eeab6db06d1b7d9c6f9db94807f06a74d0d8bb608cfa4",
+    "character": "Sheers, Wide Width"
+  },
+  {
+    "design": "Soto",
+    "fabricId": "pt-4275-130",
+    "sku": "4275/130",
+    "collection": "Formation",
+    "hash": "582155c5e48da7e12cde1f6316427243f64967af2c97be19708520ccd4fecc63",
+    "character": "Sheers"
+  },
+  {
+    "design": "Escher",
+    "fabricId": "pt-4269-147",
+    "sku": "4269/147",
+    "collection": "Formation",
+    "hash": "34d1f0437d8f05265f7aff88d9734b3a54a39c0730d8b459e0a3180fc734e449",
+    "character": "Velvet"
+  },
+  {
+    "design": "Varini",
+    "fabricId": "pt-4273-147",
+    "sku": "4273/147",
+    "collection": "Formation",
+    "hash": "63713717be2bc134b233f4c0a08d2ecc0fc50e47a6bbded027bbd854c114d0bd",
+    "character": "Print"
+  },
+  {
+    "design": "Sarcone",
+    "fabricId": "pt-4272-147",
+    "sku": "4272/147",
+    "collection": "Formation",
+    "hash": "f13066aa4831c9c1d105f09d9b8a88b84d3d10aaec1df51b1a21fa0d49654ce3",
+    "character": "Jacquard"
+  },
+  {
+    "design": "Diez",
+    "fabricId": "pt-4271-147",
+    "sku": "4271/147",
+    "collection": "Formation",
+    "hash": "2e9de45cb1c9284dda39291f86a5b787569e24b353e71f928b874cb81a7f2c7c",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Dali",
+    "fabricId": "pt-4270-147",
+    "sku": "4270/147",
+    "collection": "Formation",
+    "hash": "be96feee7c6a5f4f9bdff4eab8cfa5cf1798a06afdcbc3c30a7f22f5405afe2a",
+    "character": "Jacquard"
+  },
+  {
+    "design": "Velour",
+    "fabricId": "pt-7150-168",
+    "sku": "7150/168",
+    "collection": "Velour",
+    "hash": "d04905e975fcefa2e9e7b41157c23c650bd8e9eb69485c3094dcfd1efc1853f6",
+    "character": "Velvet"
+  },
+  {
+    "design": "Felice",
+    "fabricId": "pt-4274-975",
+    "sku": "4274/975",
+    "collection": "Formation",
+    "hash": "cfddc82d8e2c5c1f598b9b783e6e535cc020cbfb2b0fc74bc5d8870d51e9b00a",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Zorro",
+    "fabricId": "pt-4284-681",
+    "sku": "4284/681",
+    "collection": "Instinct",
+    "hash": "43445e102ddfd301aa251e781b116c99af9601fcb48dd6f8d62ff0eb1ec76fd8",
+    "character": "Velvet"
+  },
+  {
+    "design": "Habitat",
+    "fabricId": "pt-4277-681",
+    "sku": "4277/681",
+    "collection": "Instinct",
+    "hash": "5fa88d635be355d619218386d842814c1c45602a666240a681209de0929b2eaa",
+    "character": "Weave"
+  },
+  {
+    "design": "Escala",
+    "fabricId": "pt-4283-681",
+    "sku": "4283/681",
+    "collection": "Instinct",
+    "hash": "e794d5f652a5491299a6ac7e74cecc3f74bbfa9a119460523193996dc3a4e182",
+    "character": "Velvet"
+  },
+  {
+    "design": "Embalar",
+    "fabricId": "pt-4276-681",
+    "sku": "4276/681",
+    "collection": "Instinct",
+    "hash": "635842982a768567f2c451ab20c6b112ca4190c0d98987a683b02aaaa3762de7",
+    "character": "Print"
+  },
+  {
+    "design": "Caza",
+    "fabricId": "pt-4280-681",
+    "sku": "4280/681",
+    "collection": "Instinct",
+    "hash": "b4401b4d56904b81bc98ac4bd6afd644f1c820faefb346cb16fe25c03f32731f",
+    "character": "Jacquard"
+  },
+  {
+    "design": "Pluma",
+    "fabricId": "pt-4281-681",
+    "sku": "4281/681",
+    "collection": "Instinct",
+    "hash": "80ed83d6a044173dd3d6228a934b0028c0ebfbb7eaf824042ab7e137b3352acd",
+    "character": "Jacquard"
+  },
+  {
+    "design": "Pavon",
+    "fabricId": "pt-4278-681",
+    "sku": "4278/681",
+    "collection": "Instinct",
+    "hash": "362343f9d1402a0681ae6f25c66297ce725e22598c22c684d7a0486ee12ff570",
+    "character": "Print"
+  },
+  {
+    "design": "Cabello",
+    "fabricId": "pt-4282-681",
+    "sku": "4282/681",
+    "collection": "Instinct",
+    "hash": "d42971de12b2fd2ef8ba565e21329fbd6e2c6623336d76f2eed26e2f302e5ceb",
+    "character": "Velvet"
+  },
+  {
+    "design": "Trenzado",
+    "fabricId": "pt-4279-681",
+    "sku": "4279/681",
+    "collection": "Instinct",
+    "hash": "ab5403948495e696279e5ac9e2586fa86e301bd4a7eb3409c9b55c6dae991dc5",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Java",
+    "fabricId": "pt-7247-625",
+    "sku": "7247/625",
+    "collection": "Java",
+    "hash": "f92bb1edffa0bf9d19b8931930754e627ad512c11d33f0b09f50d1e02a8e189e",
+    "character": "Weave"
+  },
+  {
+    "design": "June",
+    "fabricId": "pt-8835-201",
+    "sku": "8835/201",
+    "collection": "Pippin",
+    "hash": "30a605b2d016b9e9fbca9dd37c692e688dcdc86730257d24474f7fe5975cbe93",
+    "character": "Print"
+  },
+  {
+    "design": "Dory",
+    "fabricId": "pt-8833-201",
+    "sku": "8833/201",
+    "collection": "Pippin",
+    "hash": "8ea05dbf72f43cd39f7c609baeb6789154aa523240c2a1a0bc474555ed27cbeb",
+    "character": "Print"
+  },
+  {
+    "design": "Cecil",
+    "fabricId": "pt-4228-511",
+    "sku": "4228/511",
+    "collection": "Pippin",
+    "hash": "2b75a05af26d59f99958b94f1188e5d0f4f34676c22c384709947ebcba48c712",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Lili",
+    "fabricId": "pt-8836-201",
+    "sku": "8836/201",
+    "collection": "Pippin",
+    "hash": "1ebd5d51eabfd2929843b212b3ae1ca292b713205925c54c65606099bab1a795",
+    "character": "Print"
+  },
+  {
+    "design": "Alwin",
+    "fabricId": "pt-4227-421",
+    "sku": "4227/421",
+    "collection": "Pippin",
+    "hash": "d10820119ab0fdc8f7aa04cead82b65b0eb886b133ae07341ae036a8cfa2ec6c",
+    "character": "Weave"
+  },
+  {
+    "design": "Wilfred",
+    "fabricId": "pt-8837-201",
+    "sku": "8837/201",
+    "collection": "Pippin",
+    "hash": "96145ded04ec1097666e045fc7bf5062cb3dd7ea3e551384637ab0dbfd7116e9",
+    "character": "Print"
+  },
+  {
+    "design": "Barbara",
+    "fabricId": "pt-8830-779",
+    "sku": "8830/779",
+    "collection": "Pippin",
+    "hash": "66a66ce2b8a8d215f701374b4e96cbe5e2ec9a64c170fb0b2430000214d14852",
+    "character": "Print"
+  },
+  {
+    "design": "Delilah",
+    "fabricId": "pt-8832-421",
+    "sku": "8832/421",
+    "collection": "Pippin",
+    "hash": "e7ac8fc22098a1742616b914682e6f23176016ed00a534bb736d0b7dcd5a520f",
+    "character": "Print"
+  },
+  {
+    "design": "Eric",
+    "fabricId": "pt-8834-948",
+    "sku": "8834/948",
+    "collection": "Pippin",
+    "hash": "ba393a948f35e2128ba4edc92f2f9914b692e3b0fe6fe5e8e9cecdd379e233e6",
+    "character": "Print"
+  },
+  {
+    "design": "Mary",
+    "fabricId": "pt-8839-142",
+    "sku": "8839/142",
+    "collection": "Pippin",
+    "hash": "e5a94d63cf0fcbf48ee68fee3e9e427292f59daa982344740c2b1f2b63968975",
+    "character": "Print"
+  },
+  {
+    "design": "Jack",
+    "fabricId": "pt-4229-201",
+    "sku": "4229/201",
+    "collection": "Pippin",
+    "hash": "635fa8315b646803b612e4206fa27d4a96762de751e58b7bd6f4c033922bcab0",
+    "character": "Weave"
+  },
+  {
+    "design": "Billy",
+    "fabricId": "pt-8831-779",
+    "sku": "8831/779",
+    "collection": "Pippin",
+    "hash": "922474670b5f61c8df444f7fc15c1869fc2e9e9e0df2f24b8c4f59cd02c3cbbd",
+    "character": "Print"
+  },
+  {
+    "design": "Sadira",
+    "fabricId": "pt-4262-641",
+    "sku": "4262/641",
+    "collection": "Rustic Persian",
+    "hash": "c1d75e4c2844764bf8f151ecac76bcbd13b5502ce4d5bdbc9ae63062211e52e8",
+    "character": "Print"
+  },
+  {
+    "design": "Amir",
+    "fabricId": "pt-4265-405",
+    "sku": "4265/405",
+    "collection": "Rustic Persian",
+    "hash": "b76722ce6290532fe358c0c304e1d71898a16acbb236b013edffc9c173fbdf6f",
+    "character": "Weave"
+  },
+  {
+    "design": "Cyrus",
+    "fabricId": "pt-4264-641",
+    "sku": "4264/641",
+    "collection": "Rustic Persian",
+    "hash": "379ea5f050d2284d12daa017da22f6240d0660ffebad1d177373dd05253a26c5",
+    "character": "Weave"
+  },
+  {
+    "design": "Roxy",
+    "fabricId": "pt-4261-641",
+    "sku": "4261/641",
+    "collection": "Rustic Persian",
+    "hash": "f05365cb7b33626c469699d4606516d542d98f64a889eadc3a3c445262462933",
+    "character": "Print"
+  },
+  {
+    "design": "Leila",
+    "fabricId": "pt-4266-641",
+    "sku": "4266/641",
+    "collection": "Rustic Persian",
+    "hash": "64975eddf96a24e957a8da8524d35ada1defa83a6680658843170597b2ce50d7",
+    "character": "Embroidery"
+  },
+  {
+    "design": "Kashana",
+    "fabricId": "pt-4260-641",
+    "sku": "4260/641",
+    "collection": "Rustic Persian",
+    "hash": "583963053791f6b8c56edefd758ed0457465a26c52a93ec158dc8d4dd11879ac",
+    "character": "Weave"
+  },
+  {
+    "design": "Tazz",
+    "fabricId": "pt-4263-641",
+    "sku": "4263/641",
+    "collection": "Rustic Persian",
+    "hash": "01bfc3174812d2b4df54a95759e4f0bd425e7a9a15b9baf95c539f55be072d50",
+    "character": "Print"
+  },
+  {
+    "design": "Zari",
+    "fabricId": "pt-4268-405",
+    "sku": "4268/405",
+    "collection": "Rustic Persian",
+    "hash": "a1db72a6fc820f8bd2941adb4092d6f7422b3e2bccb21bf7bd200194743f4aac",
+    "character": "Weave"
+  },
+  {
+    "design": "Esther",
+    "fabricId": "pt-4259-247",
+    "sku": "4259/247",
+    "collection": "Rustic Persian",
+    "hash": "3b7ad23fbbc7b048dcb26b22b53d88de947f20f12e7869c002277e8ef93a6ec2",
+    "character": "Print"
+  },
+  {
+    "design": "Shayan",
+    "fabricId": "pt-4267-770",
+    "sku": "4267/770",
+    "collection": "Rustic Persian",
+    "hash": "e148b0d19eb3ab4b9803165e5a114cf0d14cfe3f9cf8230deceffedeae5764c3",
+    "character": "Chenille"
+  },
+  {
+    "design": "Raffaella",
+    "fabricId": "pt-4294-137",
+    "sku": "4294/137",
+    "collection": "Tuscany",
+    "hash": "e0c498e80b4b274e3a6068706293bd3ee0e077b97ec889e4b84be15e953ba676",
+    "character": "Weave"
+  },
+  {
+    "design": "Georgia",
+    "fabricId": "pt-4300-137",
+    "sku": "4300/137",
+    "collection": "Tuscany",
+    "hash": "b8ad367ab64030a179281fc1061e1f584654dbdf3fc8abdf2eb485adde7452a6",
+    "character": "Weave"
+  },
+  {
+    "design": "Bettina",
+    "fabricId": "pt-4291-137",
+    "sku": "4291/137",
+    "collection": "Tuscany",
+    "hash": "4bfa3edfa9651b9ea10e832e5dcb8f0c7459208fbc30efa9036f25962824b445",
+    "character": "Weave"
+  },
+  {
+    "design": "Giovanna",
+    "fabricId": "pt-4293-618",
+    "sku": "4293/618",
+    "collection": "Tuscany",
+    "hash": "847ed3b9a0d10c2c3bbc7213881f30eebc261dc5942f54b8c919ed09d6882f65",
+    "character": "Weave"
+  },
+  {
+    "design": "Felicia",
+    "fabricId": "pt-4299-137",
+    "sku": "4299/137",
+    "collection": "Tuscany",
+    "hash": "fd13775a4b64c0c2e5e00794d02beecb156ee79a25384a2fb90ab3a4a4b8ee93",
+    "character": "Weave"
+  },
+  {
+    "design": "Chiara",
+    "fabricId": "pt-4295-137",
+    "sku": "4295/137",
+    "collection": "Tuscany",
+    "hash": "bebafeefa548da94e7b44465950e85d8a9fb5e0ad9a0973d1c0746d570c3e917",
+    "character": "Weave"
+  },
+  {
+    "design": "Leonardo",
+    "fabricId": "pt-4296-137",
+    "sku": "4296/137",
+    "collection": "Tuscany",
+    "hash": "fc9dc5b36ae57823eb04bc9de4b79890bd690bd37b2307c5c9736a6f72ad07cb",
+    "character": "Weave"
+  },
+  {
+    "design": "Donata",
+    "fabricId": "pt-4292-137",
+    "sku": "4292/137",
+    "collection": "Tuscany",
+    "hash": "55ad4d56c469ac1d919d65bd83151832b340f31af4844afe44c965b6058a2408",
+    "character": "Weave"
+  },
+  {
+    "design": "Antonia",
+    "fabricId": "pt-4297-618",
+    "sku": "4297/618",
+    "collection": "Tuscany",
+    "hash": "33f11b9afd6f28408c752889ee4263ca6d6556d5a14f5f33910239d54d0da955",
+    "character": "Weave"
+  },
+  {
+    "design": "Cortona",
+    "fabricId": "pt-4298-503",
+    "sku": "4298/503",
+    "collection": "Tuscany",
+    "hash": "6b2b88bfe61f7455afa5b9ee9e03c4e6ae43490044ff53524bd46f09150ad3e4",
+    "character": "Weave"
+  }
+]

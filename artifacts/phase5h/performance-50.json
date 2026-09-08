@@ -1,0 +1,245 @@
+[
+  {
+    "case": "browse",
+    "medianMs": 1226,
+    "measurements": [
+      {
+        "ms": 1413,
+        "bytes": 52786,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      },
+      {
+        "ms": 880,
+        "bytes": 52786,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      },
+      {
+        "ms": 1226,
+        "bytes": 52786,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      }
+    ]
+  },
+  {
+    "case": "search",
+    "medianMs": 820,
+    "measurements": [
+      {
+        "ms": 866,
+        "bytes": 11295,
+        "status": 200,
+        "total": 5,
+        "returned": 5
+      },
+      {
+        "ms": 820,
+        "bytes": 11295,
+        "status": 200,
+        "total": 5,
+        "returned": 5
+      },
+      {
+        "ms": 800,
+        "bytes": 11295,
+        "status": 200,
+        "total": 5,
+        "returned": 5
+      }
+    ]
+  },
+  {
+    "case": "colour",
+    "medianMs": 831,
+    "measurements": [
+      {
+        "ms": 923,
+        "bytes": 18280,
+        "status": 200,
+        "total": 8,
+        "returned": 8
+      },
+      {
+        "ms": 831,
+        "bytes": 18280,
+        "status": 200,
+        "total": 8,
+        "returned": 8
+      },
+      {
+        "ms": 828,
+        "bytes": 18280,
+        "status": 200,
+        "total": 8,
+        "returned": 8
+      }
+    ]
+  },
+  {
+    "case": "pattern",
+    "medianMs": 818,
+    "measurements": [
+      {
+        "ms": 980,
+        "bytes": 54493,
+        "status": 200,
+        "total": 26,
+        "returned": 24
+      },
+      {
+        "ms": 662,
+        "bytes": 54493,
+        "status": 200,
+        "total": 26,
+        "returned": 24
+      },
+      {
+        "ms": 818,
+        "bytes": 54493,
+        "status": 200,
+        "total": 26,
+        "returned": 24
+      }
+    ]
+  },
+  {
+    "case": "brand",
+    "medianMs": 1003,
+    "measurements": [
+      {
+        "ms": 744,
+        "bytes": 52786,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      },
+      {
+        "ms": 1003,
+        "bytes": 52786,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      },
+      {
+        "ms": 1174,
+        "bytes": 52786,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      }
+    ]
+  },
+  {
+    "case": "collection",
+    "medianMs": 820,
+    "measurements": [
+      {
+        "ms": 820,
+        "bytes": 11295,
+        "status": 200,
+        "total": 5,
+        "returned": 5
+      },
+      {
+        "ms": 779,
+        "bytes": 11295,
+        "status": 200,
+        "total": 5,
+        "returned": 5
+      },
+      {
+        "ms": 842,
+        "bytes": 11295,
+        "status": 200,
+        "total": 5,
+        "returned": 5
+      }
+    ]
+  },
+  {
+    "case": "detail",
+    "medianMs": 691,
+    "measurements": [
+      {
+        "ms": 736,
+        "bytes": 2103,
+        "status": 200,
+        "total": null,
+        "returned": 1
+      },
+      {
+        "ms": 470,
+        "bytes": 2103,
+        "status": 200,
+        "total": null,
+        "returned": 1
+      },
+      {
+        "ms": 691,
+        "bytes": 2103,
+        "status": 200,
+        "total": null,
+        "returned": 1
+      }
+    ]
+  },
+  {
+    "case": "page2",
+    "medianMs": 658,
+    "measurements": [
+      {
+        "ms": 779,
+        "bytes": 53668,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      },
+      {
+        "ms": 658,
+        "bytes": 53668,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      },
+      {
+        "ms": 629,
+        "bytes": 53668,
+        "status": 200,
+        "total": 50,
+        "returned": 24
+      }
+    ]
+  },
+  {
+    "case": "page3",
+    "medianMs": 621,
+    "measurements": [
+      {
+        "ms": 605,
+        "bytes": 5264,
+        "status": 200,
+        "total": 50,
+        "returned": 2
+      },
+      {
+        "ms": 621,
+        "bytes": 5264,
+        "status": 200,
+        "total": 50,
+        "returned": 2
+      },
+      {
+        "ms": 788,
+        "bytes": 5264,
+        "status": 200,
+        "total": 50,
+        "returned": 2
+      }
+    ]
+  }
+]

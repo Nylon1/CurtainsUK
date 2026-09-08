@@ -1,0 +1,97 @@
+{
+  "dataset": "Read-only internal projection of 1000 actual master identities; readiness never changed. SQL query uses the existing search predicates/order/pagination against a bounded CTE. This isolates Postgres and excludes Shopify proxy/frontend time.",
+  "results": [
+    {
+      "case": "browse",
+      "samples": [
+        {
+          "executionMs": 78.174,
+          "planningMs": 7.798,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 92.357,
+          "planningMs": 6.133,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 79.307,
+          "planningMs": 5.587,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        }
+      ]
+    },
+    {
+      "case": "search",
+      "samples": [
+        {
+          "executionMs": 83.866,
+          "planningMs": 11.497,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 87.523,
+          "planningMs": 9.424,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 83.807,
+          "planningMs": 7.454,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        }
+      ]
+    },
+    {
+      "case": "colour",
+      "samples": [
+        {
+          "executionMs": 72.389,
+          "planningMs": 4.782,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 78.022,
+          "planningMs": 5.251,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 76.559,
+          "planningMs": 4.943,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        }
+      ]
+    },
+    {
+      "case": "brand",
+      "samples": [
+        {
+          "executionMs": 73.419,
+          "planningMs": 4.59,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 70.947,
+          "planningMs": 5.059,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        },
+        {
+          "executionMs": 71.376,
+          "planningMs": 5.082,
+          "sharedHitBlocks": 1711,
+          "sharedReadBlocks": 0
+        }
+      ]
+    }
+  ]
+}

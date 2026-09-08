@@ -1,4 +1,4 @@
-/** Apply the sampled Phase 5G editorial rules to the fixed 50-colourway canary. */
+/** Apply sampled editorial rules to a bounded, explicitly selected staging batch. */
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { loadEnvConfig } from "@next/env";
@@ -14,11 +14,13 @@ const colours: Record<string, string> = {
   ruby: "red", crimson: "red", postbox: "red", pink: "pink", rose: "pink", orange: "orange", rust: "orange", purple: "purple", mauve: "purple",
 };
 async function main() {
-  const reviewText = await readFile("artifacts/phase5g/editorial-design-review.json", "utf8");
+  const arg = (key: string, fallback: string) => process.argv.find(v => v.startsWith(`--${key}=`))?.slice(key.length + 3) ?? fallback;
+  const reportDir = arg("report-dir", "artifacts/phase5g");
+  const reviewText = await readFile(arg("review", "artifacts/phase5g/editorial-design-review.json"), "utf8");
   const review = JSON.parse(reviewText) as { ruleVersion: string; reviewer: string; designs: { designId: string; design: string; sampleFabricId: string; pattern: string; character: string; style: string; visualDescription: string }[] };
-  const manifest = JSON.parse(await readFile("artifacts/phase5g/prestigious-canary-50.json", "utf8")) as { fabric_id: string; supplier_sku: string; content_hash: string }[];
-  if (manifest.length !== 50 || new Set(manifest.map((r) => r.fabric_id)).size !== 50) throw new Error("CANARY_MANIFEST_INVALID");
-  const source = JSON.parse(await readFile("artifacts/phase5f/checkpoints/pt-phaseg-canary.json", "utf8")) as { results: Record<string, ReturnType<typeof parsePrestigiousPublicProduct>> };
+  const manifest = JSON.parse(await readFile(arg("manifest", "artifacts/phase5g/prestigious-canary-50.json"), "utf8")) as { fabric_id: string; supplier_sku: string; content_hash: string }[];
+  if (!manifest.length || manifest.length > 250 || new Set(manifest.map((r) => r.fabric_id)).size !== manifest.length) throw new Error("CANARY_MANIFEST_INVALID");
+  const source = JSON.parse(await readFile(arg("source-file", "artifacts/phase5f/checkpoints/pt-phaseg-canary.json"), "utf8")) as { results: Record<string, ReturnType<typeof parsePrestigiousPublicProduct>> };
   const products = Object.values(source.results);
   const profiles = manifest.map((item) => {
     const product = products.find((p) => p.record.fabric_id === item.fabric_id);
@@ -35,7 +37,7 @@ async function main() {
     if (!validTaxonomy(profile) || /blackout|thermal|acoustic|stain.resistan|fire.retardan/i.test(description)) throw new Error("EDITORIAL_CLAIM_REJECTED");
     return profile;
   });
-  await writeFile("artifacts/phase5g/editorial-canary-50.json", JSON.stringify(profiles, null, 2) + "\n", "utf8");
+  await writeFile(`${reportDir}/editorial-profiles.json`, JSON.stringify(profiles, null, 2) + "\n", "utf8");
   if (!process.argv.includes("--apply")) { console.log(JSON.stringify({ prepared: profiles.length, applied: 0 })); return; }
   loadEnvConfig(process.cwd());
   if (new URL(process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL ?? "").hostname !== "hqysjumypgeapgmqkcrx.supabase.co" || !process.argv.includes("--confirm-project=hqysjumypgeapgmqkcrx")) throw new Error("STAGING_DATABASE_REQUIRED");
@@ -61,7 +63,7 @@ async function main() {
     approved++;
   }
   const report = { approved, unchanged, blocked, visibilityChanges: 0, pricingChanges: 0 };
-  await writeFile("artifacts/phase5g/editorial-apply-report.json", JSON.stringify(report, null, 2) + "\n", "utf8");
+  await writeFile(`${reportDir}/editorial-apply-report.json`, JSON.stringify(report, null, 2) + "\n", "utf8");
   console.log(JSON.stringify(report));
 }
 main().catch(() => { console.error("EDITORIAL_APPROVAL_FAILED"); process.exitCode = 1; });

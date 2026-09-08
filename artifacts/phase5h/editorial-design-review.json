@@ -1,0 +1,626 @@
+{
+  "ruleVersion": "PT_EDITORIAL_5H_1",
+  "reviewer": "Codex operator — owner-authorised Phase 5H sampled editorial review",
+  "method": "65 design representatives inspected on six contact sheets; previously approved canary copy protected. Unverified Spotlight and Velour excluded from activation. No colours inferred from names and no performance claims.",
+  "designs": [
+    {
+      "designId": "pt-design-4270",
+      "design": "Dali",
+      "sampleFabricId": "pt-4270-147",
+      "pattern": "botanical",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Overlapping pointed leaves create a flowing botanical pattern, with fine lines adding a woven, layered appearance."
+    },
+    {
+      "designId": "pt-design-4271",
+      "design": "Diez",
+      "sampleFabricId": "pt-4271-147",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Interlocking angular shapes form a compact geometric pattern, with stitched lines giving the surface visible depth."
+    },
+    {
+      "designId": "pt-design-4272",
+      "design": "Sarcone",
+      "sampleFabricId": "pt-4272-147",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Fine diagonal lines meet in angular blocks, creating a geometric pattern that changes direction across the fabric."
+    },
+    {
+      "designId": "pt-design-7248",
+      "design": "Cord",
+      "sampleFabricId": "pt-7248-032",
+      "pattern": "textured plain",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Closely spaced ribs give this plain fabric its visible texture, offering interest without a large patterned motif."
+    },
+    {
+      "designId": "pt-design-7247",
+      "design": "Java",
+      "sampleFabricId": "pt-7247-009",
+      "pattern": "textured plain",
+      "character": "textured",
+      "style": "minimalist",
+      "visualDescription": "Fine horizontal striations give this plain fabric a gently varied surface, making it a quiet companion to patterned furnishings."
+    },
+    {
+      "designId": "pt-design-4295",
+      "design": "Chiara",
+      "sampleFabricId": "pt-4295-137",
+      "pattern": "stripe",
+      "character": "structured",
+      "style": "classic",
+      "visualDescription": "Bands of different widths form a crisp stripe, with fine accent lines adding definition between the broader bands."
+    },
+    {
+      "designId": "pt-design-4292",
+      "design": "Donata",
+      "sampleFabricId": "pt-4292-030",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Small repeated oval motifs make an orderly geometric pattern, adding close-up detail to the woven ground."
+    },
+    {
+      "designId": "pt-design-4265",
+      "design": "Amir",
+      "sampleFabricId": "pt-4265-162",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "country",
+      "visualDescription": "Small diamond motifs repeat across a gently mottled ground, giving the design a relaxed geometric character."
+    },
+    {
+      "designId": "pt-design-4277",
+      "design": "Habitat",
+      "sampleFabricId": "pt-4277-543",
+      "pattern": "check",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Alternating blocks of fine horizontal and vertical lines create a basket-like checked pattern with a layered woven appearance."
+    },
+    {
+      "designId": "pt-design-8837",
+      "design": "Wilfred",
+      "sampleFabricId": "pt-8837-192",
+      "pattern": "geometric",
+      "character": "matte",
+      "style": "country",
+      "visualDescription": "Repeated flower-like geometric motifs sit in a diamond arrangement, with softly broken outlines lending the print an informal character."
+    },
+    {
+      "designId": "pt-design-4254",
+      "design": "Grayson",
+      "sampleFabricId": "pt-4254-076",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Stepped, interlocking lines form a bold geometric repeat, with a softly textured ground tempering the angular design."
+    },
+    {
+      "designId": "pt-design-4256",
+      "design": "Oakley",
+      "sampleFabricId": "pt-4256-513",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Fine interlocking angular lines create a compact maze-like repeat. The small motif adds detail without a single dominant focal shape.",
+      "sampleImageHash": "d2fb9e33ff3cd1b857cc2c4381ab71741d38522e76ba792c241ae8359256aa42"
+    },
+    {
+      "designId": "pt-design-4242",
+      "design": "Harlow",
+      "sampleFabricId": "pt-4242-513",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Linked oval motifs form slim vertical chains on a quieter ground. Their regular spacing gives the design an orderly rhythm.",
+      "sampleImageHash": "dbade44737d57cd3f85e9049302eea209c13d209ca1dbae596b211c400400702"
+    },
+    {
+      "designId": "pt-design-4255",
+      "design": "Kaden",
+      "sampleFabricId": "pt-4255-513",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Closely drawn lines change direction within a grid of triangles and diamonds. The shifting angles give this woven geometric a layered appearance.",
+      "sampleImageHash": "7315db4e51e1daaae9c300ff9ac31b4d9b2393a2a40410520e8488e7445b7f22"
+    },
+    {
+      "designId": "pt-design-4243",
+      "design": "Marco",
+      "sampleFabricId": "pt-4243-513",
+      "pattern": "check",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Small alternating blocks form an even checkerboard pattern. Subtle changes within the squares soften the rigid grid.",
+      "sampleImageHash": "53ae99016ac73249cadf44f16a70ba60e1a1d5f4bb5841327b852d63276eb040"
+    },
+    {
+      "designId": "pt-design-4253",
+      "design": "Eliana",
+      "sampleFabricId": "pt-4253-076",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Short groups of horizontal and vertical strokes form open rectangular blocks. The supplier identifies this as a sheer fabric, suited to a lighter layered curtain treatment.",
+      "sampleImageHash": "01840842c2ea27cb6bb18912d23af7cc85bb25c7406f019e7d405c424e9e56d3"
+    },
+    {
+      "designId": "pt-design-4241",
+      "design": "Dara",
+      "sampleFabricId": "pt-4241-513",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "A low-contrast diamond lattice sits across the textured ground. The restrained repeat keeps the overall effect quieter than a strongly outlined pattern.",
+      "sampleImageHash": "33a3ab294ec87ba80d7099f346b65280a75a5c94d0cfaf71c8c6913514fdb268"
+    },
+    {
+      "designId": "pt-design-4258",
+      "design": "Sabrina",
+      "sampleFabricId": "pt-4258-076",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Fine broken vertical lines and small linked shapes create an irregular stripe. The supplier identifies this as a sheer, offering another layer alongside the main curtains.",
+      "sampleImageHash": "daf3ad9e94bd29edb369a182a7f6267360d128f0abcaeced193442f62c6e18cd"
+    },
+    {
+      "designId": "pt-design-4240",
+      "design": "Braxton",
+      "sampleFabricId": "pt-4240-513",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Repeated triangular segments meet in small pinwheel-like forms. The crisp tessellation gives the design a lively, evenly distributed pattern.",
+      "sampleImageHash": "aadbff48891579fb81877491c72973671efed95532ab7d6c622a53eab892981f"
+    },
+    {
+      "designId": "pt-design-4238",
+      "design": "Ava",
+      "sampleFabricId": "pt-4238-513",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "minimalist",
+      "visualDescription": "Tiny evenly spaced dots punctuate an otherwise quiet ground. This restrained repeat can add detail beside larger patterns elsewhere in the room.",
+      "sampleImageHash": "34bec5723d0f4f2dba5b739fc5b240838fb0fbc5ed69dac9c323b8ec2346ceca"
+    },
+    {
+      "designId": "pt-design-4244",
+      "design": "Rowan",
+      "sampleFabricId": "pt-4244-513",
+      "pattern": "abstract",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Loose wavy lines travel vertically across the fabric, crossing and separating like fine branches. Their irregular paths soften the strong direction of the design.",
+      "sampleImageHash": "6faee3099244406ae4c7fbd31f7dda3b7965ebf9d1a63b3d1cd38a9db79b560e"
+    },
+    {
+      "designId": "pt-design-4257",
+      "design": "River",
+      "sampleFabricId": "pt-4257-513",
+      "pattern": "textured plain",
+      "character": "textured",
+      "style": "minimalist",
+      "visualDescription": "Fine horizontal striations give this near-plain fabric a subtle layered appearance. It offers visual texture without a prominent pictorial motif.",
+      "sampleImageHash": "3488671e20b21944cd1f66d1beba1bfe52410002d20418f3e68eed3305b8b8ae"
+    },
+    {
+      "designId": "pt-design-4239",
+      "design": "Bowe",
+      "sampleFabricId": "pt-4239-655",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Small linked bar-and-dot motifs are spaced evenly across a quiet ground. The open arrangement makes the pattern feel less dense than an all-over lattice.",
+      "sampleImageHash": "dcdb36c25c64f3e357b81bdd2ca4b3b359e72a3396ad108c4c07a470682e8426"
+    },
+    {
+      "designId": "pt-design-4275",
+      "design": "Soto",
+      "sampleFabricId": "pt-4275-130",
+      "pattern": "geometric",
+      "character": "UNKNOWN",
+      "style": "minimalist",
+      "visualDescription": "Tiny repeated marks sit in a regular grid across a pale-looking ground. The supplier identifies this as a sheer fabric for a lighter curtain layer.",
+      "sampleImageHash": "582155c5e48da7e12cde1f6316427243f64967af2c97be19708520ccd4fecc63"
+    },
+    {
+      "designId": "pt-design-4269",
+      "design": "Escher",
+      "sampleFabricId": "pt-4269-147",
+      "pattern": "geometric",
+      "character": "velvet",
+      "style": "contemporary",
+      "visualDescription": "Narrow irregular bars overlap in a layered rectangular pattern. The supplier identifies the fabric as velvet, adding a different surface character to the graphic design.",
+      "sampleImageHash": "34d1f0437d8f05265f7aff88d9734b3a54a39c0730d8b459e0a3180fc734e449"
+    },
+    {
+      "designId": "pt-design-4273",
+      "design": "Varini",
+      "sampleFabricId": "pt-4273-147",
+      "pattern": "abstract",
+      "character": "UNKNOWN",
+      "style": "contemporary",
+      "visualDescription": "Clouded, irregular patches merge into an all-over abstract print. The edges are soft and varied rather than arranged in a rigid grid.",
+      "sampleImageHash": "63713717be2bc134b233f4c0a08d2ecc0fc50e47a6bbded027bbd854c114d0bd"
+    },
+    {
+      "designId": "pt-design-4274",
+      "design": "Felice",
+      "sampleFabricId": "pt-4274-975",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Closely spaced undulating lines form a continuous wave pattern. The repeated curves give the fabric movement without a large isolated motif.",
+      "sampleImageHash": "cfddc82d8e2c5c1f598b9b783e6e535cc020cbfb2b0fc74bc5d8870d51e9b00a"
+    },
+    {
+      "designId": "pt-design-4284",
+      "design": "Zorro",
+      "sampleFabricId": "pt-4284-681",
+      "pattern": "geometric",
+      "character": "velvet",
+      "style": "bold",
+      "visualDescription": "Broad broken zigzags combine irregular edges with smaller contrasting marks. The supplier identifies this as velvet, pairing a graphic pattern with a pile surface.",
+      "sampleImageHash": "43445e102ddfd301aa251e781b116c99af9601fcb48dd6f8d62ff0eb1ec76fd8"
+    },
+    {
+      "designId": "pt-design-4283",
+      "design": "Escala",
+      "sampleFabricId": "pt-4283-681",
+      "pattern": "geometric",
+      "character": "velvet",
+      "style": "classic",
+      "visualDescription": "An irregular linked trellis forms repeating pointed oval shapes. The supplier identifies this as velvet; the open lattice gives it a clear decorative rhythm.",
+      "sampleImageHash": "e794d5f652a5491299a6ac7e74cecc3f74bbfa9a119460523193996dc3a4e182"
+    },
+    {
+      "designId": "pt-design-4276",
+      "design": "Embalar",
+      "sampleFabricId": "pt-4276-681",
+      "pattern": "geometric",
+      "character": "UNKNOWN",
+      "style": "bold",
+      "visualDescription": "Repeated chevrons have uneven, painterly edges rather than perfectly straight lines. The layered bands create a strong directional pattern.",
+      "sampleImageHash": "635842982a768567f2c451ab20c6b112ca4190c0d98987a683b02aaaa3762de7"
+    },
+    {
+      "designId": "pt-design-4280",
+      "design": "Caza",
+      "sampleFabricId": "pt-4280-681",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "minimalist",
+      "visualDescription": "A fine low-contrast diagonal lattice lies across a near-plain ground. The detail becomes more apparent at close range, making it a restrained geometric option.",
+      "sampleImageHash": "b4401b4d56904b81bc98ac4bd6afd644f1c820faefb346cb16fe25c03f32731f"
+    },
+    {
+      "designId": "pt-design-4281",
+      "design": "Pluma",
+      "sampleFabricId": "pt-4281-681",
+      "pattern": "abstract",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Many small elongated marks form softly swirling clusters across the surface. The changing directions create an organic all-over texture.",
+      "sampleImageHash": "80ed83d6a044173dd3d6228a934b0028c0ebfbb7eaf824042ab7e137b3352acd"
+    },
+    {
+      "designId": "pt-design-4278",
+      "design": "Pavon",
+      "sampleFabricId": "pt-4278-681",
+      "pattern": "abstract",
+      "character": "UNKNOWN",
+      "style": "bold",
+      "visualDescription": "Irregular oval and diamond-like motifs repeat in offset rows. Their blurred edges give the pattern an expressive, painterly quality.",
+      "sampleImageHash": "362343f9d1402a0681ae6f25c66297ce725e22598c22c684d7a0486ee12ff570"
+    },
+    {
+      "designId": "pt-design-4282",
+      "design": "Cabello",
+      "sampleFabricId": "pt-4282-681",
+      "pattern": "geometric",
+      "character": "velvet",
+      "style": "contemporary",
+      "visualDescription": "Fine irregular strokes gather into repeated chevron bands. The supplier identifies the fabric as velvet, combining visible pile with a directional design.",
+      "sampleImageHash": "d42971de12b2fd2ef8ba565e21329fbd6e2c6623336d76f2eed26e2f302e5ceb"
+    },
+    {
+      "designId": "pt-design-4279",
+      "design": "Trenzado",
+      "sampleFabricId": "pt-4279-681",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Long uneven vertical marks overlap to form a loose stripe. Variations in thickness break up the regularity and give the surface a layered appearance.",
+      "sampleImageHash": "ab5403948495e696279e5ac9e2586fa86e301bd4a7eb3409c9b55c6dae991dc5"
+    },
+    {
+      "designId": "pt-design-8835",
+      "design": "June",
+      "sampleFabricId": "pt-8835-201",
+      "pattern": "floral",
+      "character": "UNKNOWN",
+      "style": "country",
+      "visualDescription": "Small stylised flower sprigs repeat in neat rows with generous space between them. The compact motif brings a gentle decorative accent to the curtains.",
+      "sampleImageHash": "30a605b2d016b9e9fbca9dd37c692e688dcdc86730257d24474f7fe5975cbe93"
+    },
+    {
+      "designId": "pt-design-8833",
+      "design": "Dory",
+      "sampleFabricId": "pt-8833-201",
+      "pattern": "geometric",
+      "character": "UNKNOWN",
+      "style": "classic",
+      "visualDescription": "Small rounded motifs join into a dense, regular geometric repeat. The closely spaced pattern provides detail across the whole fabric rather than one large focal motif.",
+      "sampleImageHash": "8ea05dbf72f43cd39f7c609baeb6789154aa523240c2a1a0bc474555ed27cbeb"
+    },
+    {
+      "designId": "pt-design-4228",
+      "design": "Cecil",
+      "sampleFabricId": "pt-4228-511",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Slender diagonal lines cross to create an open diamond trellis. Small variations along the lines give the lattice a stitched appearance.",
+      "sampleImageHash": "2b75a05af26d59f99958b94f1188e5d0f4f34676c22c384709947ebcba48c712"
+    },
+    {
+      "designId": "pt-design-8836",
+      "design": "Lili",
+      "sampleFabricId": "pt-8836-201",
+      "pattern": "botanical",
+      "character": "UNKNOWN",
+      "style": "country",
+      "visualDescription": "Upright stems with paired leaves form repeated vertical bands. The simple stylised foliage combines a botanical motif with the order of a stripe.",
+      "sampleImageHash": "1ebd5d51eabfd2929843b212b3ae1ca292b713205925c54c65606099bab1a795"
+    },
+    {
+      "designId": "pt-design-4227",
+      "design": "Alwin",
+      "sampleFabricId": "pt-4227-421",
+      "pattern": "check",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Very small repeated checks form a tightly spaced grid. The compact scale makes the pattern read more quietly from a distance.",
+      "sampleImageHash": "d10820119ab0fdc8f7aa04cead82b65b0eb886b133ae07341ae036a8cfa2ec6c"
+    },
+    {
+      "designId": "pt-design-8830",
+      "design": "Barbara",
+      "sampleFabricId": "pt-8830-779",
+      "pattern": "botanical",
+      "character": "UNKNOWN",
+      "style": "country",
+      "visualDescription": "Fine curling stems, leaves and small flower-like marks fill the ground. The scattered arrangement creates an informal garden-inspired pattern.",
+      "sampleImageHash": "66a66ce2b8a8d215f701374b4e96cbe5e2ec9a64c170fb0b2430000214d14852"
+    },
+    {
+      "designId": "pt-design-8832",
+      "design": "Delilah",
+      "sampleFabricId": "pt-8832-421",
+      "pattern": "botanical",
+      "character": "UNKNOWN",
+      "style": "country",
+      "visualDescription": "Small leaf sprigs are scattered in changing directions across the ground. Their loose arrangement creates a lively all-over foliage print.",
+      "sampleImageHash": "e7ac8fc22098a1742616b914682e6f23176016ed00a534bb736d0b7dcd5a520f"
+    },
+    {
+      "designId": "pt-design-8834",
+      "design": "Eric",
+      "sampleFabricId": "pt-8834-948",
+      "pattern": "geometric",
+      "character": "UNKNOWN",
+      "style": "contemporary",
+      "visualDescription": "Nested angular lines form a repeated diamond and chevron pattern. The fine broken strokes add detail within the larger geometric structure.",
+      "sampleImageHash": "ba393a948f35e2128ba4edc92f2f9914b692e3b0fe6fe5e8e9cecdd379e233e6"
+    },
+    {
+      "designId": "pt-design-8839",
+      "design": "Mary",
+      "sampleFabricId": "pt-8839-142",
+      "pattern": "geometric",
+      "character": "UNKNOWN",
+      "style": "classic",
+      "visualDescription": "Small rounded flower-like marks sit in an evenly spaced repeat. The modest scale creates a gentle decorative pattern across the fabric.",
+      "sampleImageHash": "e5a94d63cf0fcbf48ee68fee3e9e427292f59daa982344740c2b1f2b63968975"
+    },
+    {
+      "designId": "pt-design-4229",
+      "design": "Jack",
+      "sampleFabricId": "pt-4229-201",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Alternating slim and broader vertical bands form a balanced stripe. Fine lines within the bands add another level of detail.",
+      "sampleImageHash": "635fa8315b646803b612e4206fa27d4a96762de751e58b7bd6f4c033922bcab0"
+    },
+    {
+      "designId": "pt-design-8831",
+      "design": "Billy",
+      "sampleFabricId": "pt-8831-779",
+      "pattern": "geometric",
+      "character": "UNKNOWN",
+      "style": "classic",
+      "visualDescription": "A compact linked lattice makes an even all-over repeat. The small open shapes give the print a tidy, regular character.",
+      "sampleImageHash": "922474670b5f61c8df444f7fc15c1869fc2e9e9e0df2f24b8c4f59cd02c3cbbd"
+    },
+    {
+      "designId": "pt-design-4262",
+      "design": "Sadira",
+      "sampleFabricId": "pt-4262-641",
+      "pattern": "traditional",
+      "character": "UNKNOWN",
+      "style": "country",
+      "visualDescription": "Decorative medallions and small floral motifs form a dense ornamental print. The varied shapes make this a useful focal fabric beside simpler finishes.",
+      "sampleImageHash": "c1d75e4c2844764bf8f151ecac76bcbd13b5502ce4d5bdbc9ae63062211e52e8"
+    },
+    {
+      "designId": "pt-design-4264",
+      "design": "Cyrus",
+      "sampleFabricId": "pt-4264-641",
+      "pattern": "check",
+      "character": "textured",
+      "style": "country",
+      "visualDescription": "Broad crossing bands and finer companion lines create a traditional plaid. The clear grid gives the fabric a structured, familiar pattern.",
+      "sampleImageHash": "379ea5f050d2284d12daa017da22f6240d0660ffebad1d177373dd05253a26c5"
+    },
+    {
+      "designId": "pt-design-4261",
+      "design": "Roxy",
+      "sampleFabricId": "pt-4261-641",
+      "pattern": "traditional",
+      "character": "UNKNOWN",
+      "style": "bold",
+      "visualDescription": "Layered oval medallions repeat in close rows, with smaller shapes nested inside each motif. The busy ornamental print makes a distinct decorative statement.",
+      "sampleImageHash": "f05365cb7b33626c469699d4606516d542d98f64a889eadc3a3c445262462933"
+    },
+    {
+      "designId": "pt-design-4266",
+      "design": "Leila",
+      "sampleFabricId": "pt-4266-641",
+      "pattern": "floral",
+      "character": "textured",
+      "style": "traditional",
+      "visualDescription": "Large stylised floral medallions connect through curling stems and smaller leaves. The open ornamental arrangement gives each motif room to stand out.",
+      "sampleImageHash": "64975eddf96a24e957a8da8524d35ada1defa83a6680658843170597b2ce50d7"
+    },
+    {
+      "designId": "pt-design-4260",
+      "design": "Kashana",
+      "sampleFabricId": "pt-4260-641",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Alternating vertical bands are separated by groups of fine lines. The regular stripe offers a clear sense of direction across the curtain fabric.",
+      "sampleImageHash": "583963053791f6b8c56edefd758ed0457465a26c52a93ec158dc8d4dd11879ac"
+    },
+    {
+      "designId": "pt-design-4263",
+      "design": "Tazz",
+      "sampleFabricId": "pt-4263-641",
+      "pattern": "botanical",
+      "character": "UNKNOWN",
+      "style": "country",
+      "visualDescription": "Dense stylised leaves and small floral forms create a compact all-over print. The repeated foliage provides a decorative layer without one dominant flower.",
+      "sampleImageHash": "01bfc3174812d2b4df54a95759e4f0bd425e7a9a15b9baf95c539f55be072d50"
+    },
+    {
+      "designId": "pt-design-4268",
+      "design": "Zari",
+      "sampleFabricId": "pt-4268-405",
+      "pattern": "botanical",
+      "character": "textured",
+      "style": "traditional",
+      "visualDescription": "Small stylised leaf motifs sit in orderly offset rows. The generous ground between them keeps this ornamental repeat relatively open.",
+      "sampleImageHash": "a1db72a6fc820f8bd2941adb4092d6f7422b3e2bccb21bf7bd200194743f4aac"
+    },
+    {
+      "designId": "pt-design-4259",
+      "design": "Esther",
+      "sampleFabricId": "pt-4259-247",
+      "pattern": "floral",
+      "character": "UNKNOWN",
+      "style": "country",
+      "visualDescription": "Loose flowers, leaves and curling stems spread across the ground in varied directions. The open garden-inspired composition gives the print an informal character.",
+      "sampleImageHash": "3b7ad23fbbc7b048dcb26b22b53d88de947f20f12e7869c002277e8ef93a6ec2"
+    },
+    {
+      "designId": "pt-design-4267",
+      "design": "Shayan",
+      "sampleFabricId": "pt-4267-770",
+      "pattern": "textured plain",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Broken horizontal streaks create a strongly striated near-plain surface. The irregular marks add visual depth without a recognisable floral or geometric motif.",
+      "sampleImageHash": "e148b0d19eb3ab4b9803165e5a114cf0d14cfe3f9cf8230deceffedeae5764c3"
+    },
+    {
+      "designId": "pt-design-4294",
+      "design": "Raffaella",
+      "sampleFabricId": "pt-4294-137",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Parallel bands of varying widths run across the supplier image. Confirm the stripe direction when planning the curtain layout and fabric cutting.",
+      "sampleImageHash": "e0c498e80b4b274e3a6068706293bd3ee0e077b97ec889e4b84be15e953ba676"
+    },
+    {
+      "designId": "pt-design-4300",
+      "design": "Georgia",
+      "sampleFabricId": "pt-4300-137",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Broad vertical bands are bordered by fine paired lines. The clear spacing produces a calm, traditional striped arrangement.",
+      "sampleImageHash": "b8ad367ab64030a179281fc1061e1f584654dbdf3fc8abdf2eb485adde7452a6"
+    },
+    {
+      "designId": "pt-design-4291",
+      "design": "Bettina",
+      "sampleFabricId": "pt-4291-137",
+      "pattern": "geometric",
+      "character": "textured",
+      "style": "traditional",
+      "visualDescription": "Closely repeated rounded arches contain small nested details. The dense scalloped rhythm gives this geometric fabric an ornamental character.",
+      "sampleImageHash": "4bfa3edfa9651b9ea10e832e5dcb8f0c7459208fbc30efa9036f25962824b445"
+    },
+    {
+      "designId": "pt-design-4293",
+      "design": "Giovanna",
+      "sampleFabricId": "pt-4293-618",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Groups of fine vertical lines alternate with wider bands. The change in line weight adds detail to an otherwise regular stripe.",
+      "sampleImageHash": "847ed3b9a0d10c2c3bbc7213881f30eebc261dc5942f54b8c919ed09d6882f65"
+    },
+    {
+      "designId": "pt-design-4299",
+      "design": "Felicia",
+      "sampleFabricId": "pt-4299-137",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "contemporary",
+      "visualDescription": "Many narrow vertical lines repeat at close intervals. The fine spacing creates a more detailed striped surface than a broad block stripe.",
+      "sampleImageHash": "fd13775a4b64c0c2e5e00794d02beecb156ee79a25384a2fb90ab3a4a4b8ee93"
+    },
+    {
+      "designId": "pt-design-4296",
+      "design": "Leonardo",
+      "sampleFabricId": "pt-4296-137",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Slim line groups and wider vertical bands alternate in a measured rhythm. The variation in stripe width gives the design a balanced decorative structure.",
+      "sampleImageHash": "fc9dc5b36ae57823eb04bc9de4b79890bd690bd37b2307c5c9736a6f72ad07cb"
+    },
+    {
+      "designId": "pt-design-4297",
+      "design": "Antonia",
+      "sampleFabricId": "pt-4297-618",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "country",
+      "visualDescription": "Broad vertical bands alternate across a visibly woven ground. The straightforward stripe leaves room for more intricate patterns elsewhere in the room.",
+      "sampleImageHash": "33f11b9afd6f28408c752889ee4263ca6d6556d5a14f5f33910239d54d0da955"
+    },
+    {
+      "designId": "pt-design-4298",
+      "design": "Cortona",
+      "sampleFabricId": "pt-4298-503",
+      "pattern": "stripe",
+      "character": "textured",
+      "style": "classic",
+      "visualDescription": "Fine vertical lines sit beside broader shaded bands. The contrasting widths give this woven stripe a layered but orderly appearance.",
+      "sampleImageHash": "6b2b88bfe61f7455afa5b9ee9e03c4e6ae43490044ff53524bd46f09150ad3e4"
+    }
+  ]
+}

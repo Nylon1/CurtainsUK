@@ -1,0 +1,1802 @@
+[
+  {
+    "fabric_id": "pt-4227-192",
+    "supplier_sku": "4227/192",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Alwin",
+    "colour_name": "Bear",
+    "content_hash": "b809719ccdec52720cfcada7c3bff62dbb2ce576d8f9e6fd27acf9c20697fcba"
+  },
+  {
+    "fabric_id": "pt-4227-421",
+    "supplier_sku": "4227/421",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Alwin",
+    "colour_name": "Pumpkin",
+    "content_hash": "d10820119ab0fdc8f7aa04cead82b65b0eb886b133ae07341ae036a8cfa2ec6c"
+  },
+  {
+    "fabric_id": "pt-4227-779",
+    "supplier_sku": "4227/779",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Alwin",
+    "colour_name": "Cucumber",
+    "content_hash": "e76e7776adb63d8166be374e8d070a9ea66b835395632b7dad744305228770df"
+  },
+  {
+    "fabric_id": "pt-4228-192",
+    "supplier_sku": "4228/192",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Cecil",
+    "colour_name": "Bear",
+    "content_hash": "78bc5b76d102549ffe7b6979c2888b0fe33f3f33e2d13db441250d67ee16470a"
+  },
+  {
+    "fabric_id": "pt-4228-421",
+    "supplier_sku": "4228/421",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Cecil",
+    "colour_name": "Pumpkin",
+    "content_hash": "0e9730e3d6cf1daa60b3120049ab7a8a5c494516a552b55eb8e5424aa3f287ba"
+  },
+  {
+    "fabric_id": "pt-4228-511",
+    "supplier_sku": "4228/511",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Cecil",
+    "colour_name": "Honey",
+    "content_hash": "2b75a05af26d59f99958b94f1188e5d0f4f34676c22c384709947ebcba48c712"
+  },
+  {
+    "fabric_id": "pt-4228-768",
+    "supplier_sku": "4228/768",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Cecil",
+    "colour_name": "Bluebell",
+    "content_hash": "bc06bbe2c20e6cb70b69a35f8ced6393e755ea851b6d631469530899ff9dcfc9"
+  },
+  {
+    "fabric_id": "pt-4229-201",
+    "supplier_sku": "4229/201",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Jack",
+    "colour_name": "Raspberry",
+    "content_hash": "635fa8315b646803b612e4206fa27d4a96762de751e58b7bd6f4c033922bcab0"
+  },
+  {
+    "fabric_id": "pt-4229-768",
+    "supplier_sku": "4229/768",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Jack",
+    "colour_name": "Bluebell",
+    "content_hash": "2e4a4813f8bb174e4cac147e244d851d6a1a05cd7501f1bdce8bf1cf164bf4a2"
+  },
+  {
+    "fabric_id": "pt-4238-116",
+    "supplier_sku": "4238/116",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Ava",
+    "colour_name": "Earth",
+    "content_hash": "6c1cfe9a50081641a1076d04ed8ef977bed8d7c217cd2903e0bb153d2bbe18a4"
+  },
+  {
+    "fabric_id": "pt-4238-513",
+    "supplier_sku": "4238/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Ava",
+    "colour_name": "Butterscotch",
+    "content_hash": "34bec5723d0f4f2dba5b739fc5b240838fb0fbc5ed69dac9c323b8ec2346ceca"
+  },
+  {
+    "fabric_id": "pt-4238-655",
+    "supplier_sku": "4238/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Ava",
+    "colour_name": "Mist",
+    "content_hash": "a896efcf97f33f2bad556eda1c8ff072a0fdf557f2dbe9e2d0fb04ff26f87d58"
+  },
+  {
+    "fabric_id": "pt-4239-076",
+    "supplier_sku": "4239/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Bowe",
+    "colour_name": "Chalk",
+    "content_hash": "8323de452d5f4cbf041dea207bb2d5402231c5f403c2f453e998561b7b89b194"
+  },
+  {
+    "fabric_id": "pt-4239-655",
+    "supplier_sku": "4239/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Bowe",
+    "colour_name": "Mist",
+    "content_hash": "dcdb36c25c64f3e357b81bdd2ca4b3b359e72a3396ad108c4c07a470682e8426"
+  },
+  {
+    "fabric_id": "pt-4240-076",
+    "supplier_sku": "4240/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Braxton",
+    "colour_name": "Chalk",
+    "content_hash": "819f6f4e8f10fea26e466e833e38b46a3ce96af7d3b33ef50ada02f6693fb6f0"
+  },
+  {
+    "fabric_id": "pt-4240-513",
+    "supplier_sku": "4240/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Braxton",
+    "colour_name": "Butterscotch",
+    "content_hash": "aadbff48891579fb81877491c72973671efed95532ab7d6c622a53eab892981f"
+  },
+  {
+    "fabric_id": "pt-4240-655",
+    "supplier_sku": "4240/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Braxton",
+    "colour_name": "Mist",
+    "content_hash": "21b9dfa1ab3ee158d580fb0ae7b1af5ae628c4839b987a79919a2c5d2b64072f"
+  },
+  {
+    "fabric_id": "pt-4241-076",
+    "supplier_sku": "4241/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Dara",
+    "colour_name": "Chalk",
+    "content_hash": "f8f901666b80a9d8b935d570ad1100014e030f1c4f45c54e45259ab07fdbfc3d"
+  },
+  {
+    "fabric_id": "pt-4241-116",
+    "supplier_sku": "4241/116",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Dara",
+    "colour_name": "Earth",
+    "content_hash": "3ca8465867c8fd39a84eb1efb8b8340eb38e85a70a0b8bd1bce3bd81377ffe3c"
+  },
+  {
+    "fabric_id": "pt-4241-513",
+    "supplier_sku": "4241/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Dara",
+    "colour_name": "Butterscotch",
+    "content_hash": "33a3ab294ec87ba80d7099f346b65280a75a5c94d0cfaf71c8c6913514fdb268"
+  },
+  {
+    "fabric_id": "pt-4241-655",
+    "supplier_sku": "4241/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Dara",
+    "colour_name": "Mist",
+    "content_hash": "6de7fda46c6077c328ba0406f24fc8a913daa1625fb69a7723de218fb84732e6"
+  },
+  {
+    "fabric_id": "pt-4242-076",
+    "supplier_sku": "4242/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Harlow",
+    "colour_name": "Chalk",
+    "content_hash": "e61154d410dc77a451a3f27b44452979b4a25829e4a6fcd8b137e0a3a7b5124e"
+  },
+  {
+    "fabric_id": "pt-4242-116",
+    "supplier_sku": "4242/116",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Harlow",
+    "colour_name": "Earth",
+    "content_hash": "885ffbd008051bd2e3b8f2b5a74e07abb8d22f335d5173805c234934ffce9e7b"
+  },
+  {
+    "fabric_id": "pt-4242-513",
+    "supplier_sku": "4242/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Harlow",
+    "colour_name": "Butterscotch",
+    "content_hash": "dbade44737d57cd3f85e9049302eea209c13d209ca1dbae596b211c400400702"
+  },
+  {
+    "fabric_id": "pt-4243-076",
+    "supplier_sku": "4243/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Marco",
+    "colour_name": "Chalk",
+    "content_hash": "0c6e11b1debaad3c1c20e6555f5a1d9077533991dfc0c15a7bb4b6b3a25d7da3"
+  },
+  {
+    "fabric_id": "pt-4243-116",
+    "supplier_sku": "4243/116",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Marco",
+    "colour_name": "Earth",
+    "content_hash": "0512a039f9a382a34a212d70705206738d987fceb767b32b644abef386ff21bd"
+  },
+  {
+    "fabric_id": "pt-4243-513",
+    "supplier_sku": "4243/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Marco",
+    "colour_name": "Butterscotch",
+    "content_hash": "53ae99016ac73249cadf44f16a70ba60e1a1d5f4bb5841327b852d63276eb040"
+  },
+  {
+    "fabric_id": "pt-4244-076",
+    "supplier_sku": "4244/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Rowan",
+    "colour_name": "Chalk",
+    "content_hash": "8f218e45d1280d45d9ff34d6b7fd94f3fe17c80f4d6821d883023316f2c1a9a9"
+  },
+  {
+    "fabric_id": "pt-4244-116",
+    "supplier_sku": "4244/116",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Rowan",
+    "colour_name": "Earth",
+    "content_hash": "3ca3f91b17da3173174f7c689c7c67abcf352ecbe9943749b1a12946bd189ccc"
+  },
+  {
+    "fabric_id": "pt-4244-513",
+    "supplier_sku": "4244/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Rowan",
+    "colour_name": "Butterscotch",
+    "content_hash": "6faee3099244406ae4c7fbd31f7dda3b7965ebf9d1a63b3d1cd38a9db79b560e"
+  },
+  {
+    "fabric_id": "pt-4244-655",
+    "supplier_sku": "4244/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Rowan",
+    "colour_name": "Mist",
+    "content_hash": "11dfc5616088bbbc13306c211e15d62b6c7a94cb2d893d1c0fe96481e537bee0"
+  },
+  {
+    "fabric_id": "pt-4253-076",
+    "supplier_sku": "4253/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Eliana",
+    "colour_name": "Chalk",
+    "content_hash": "01840842c2ea27cb6bb18912d23af7cc85bb25c7406f019e7d405c424e9e56d3"
+  },
+  {
+    "fabric_id": "pt-4254-655",
+    "supplier_sku": "4254/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Grayson",
+    "colour_name": "Mist",
+    "content_hash": "85bb48bd0303bd156cc8ba955e3602c07cb47f88ae6e1aa87aae5447e5584d88"
+  },
+  {
+    "fabric_id": "pt-4255-513",
+    "supplier_sku": "4255/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Kaden",
+    "colour_name": "Butterscotch",
+    "content_hash": "7315db4e51e1daaae9c300ff9ac31b4d9b2393a2a40410520e8488e7445b7f22"
+  },
+  {
+    "fabric_id": "pt-4255-655",
+    "supplier_sku": "4255/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Kaden",
+    "colour_name": "Mist",
+    "content_hash": "310262ba19f9775545f8cf8735c2da356b86f918b95fc3cccfc571a2a4250ae5"
+  },
+  {
+    "fabric_id": "pt-4256-116",
+    "supplier_sku": "4256/116",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Oakley",
+    "colour_name": "Earth",
+    "content_hash": "f11bdca76a65529ef74d84efd065341677eb90a67807834c06f31623c8d03a76"
+  },
+  {
+    "fabric_id": "pt-4256-513",
+    "supplier_sku": "4256/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Oakley",
+    "colour_name": "Butterscotch",
+    "content_hash": "d2fb9e33ff3cd1b857cc2c4381ab71741d38522e76ba792c241ae8359256aa42"
+  },
+  {
+    "fabric_id": "pt-4257-076",
+    "supplier_sku": "4257/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "River",
+    "colour_name": "Chalk",
+    "content_hash": "62ac88b973fbe6ad53748108bdd73dc5e4ae7eeb0d467a55393bbe6002082248"
+  },
+  {
+    "fabric_id": "pt-4257-116",
+    "supplier_sku": "4257/116",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "River",
+    "colour_name": "Earth",
+    "content_hash": "deb73ffd2fffdb3f9c469eb182c8374c5eb09beac13d20ced8f505d7bc6697f7"
+  },
+  {
+    "fabric_id": "pt-4257-513",
+    "supplier_sku": "4257/513",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "River",
+    "colour_name": "Butterscotch",
+    "content_hash": "3488671e20b21944cd1f66d1beba1bfe52410002d20418f3e68eed3305b8b8ae"
+  },
+  {
+    "fabric_id": "pt-4257-655",
+    "supplier_sku": "4257/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "River",
+    "colour_name": "Mist",
+    "content_hash": "d42f6688a86b8d4777d5557fdc17989c2d120ca5b3062aa1adf6ecaf5585ad99"
+  },
+  {
+    "fabric_id": "pt-4258-076",
+    "supplier_sku": "4258/076",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Sabrina",
+    "colour_name": "Chalk",
+    "content_hash": "daf3ad9e94bd29edb369a182a7f6267360d128f0abcaeced193442f62c6e18cd"
+  },
+  {
+    "fabric_id": "pt-4258-655",
+    "supplier_sku": "4258/655",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Brodie",
+    "design_name": "Sabrina",
+    "colour_name": "Mist",
+    "content_hash": "89ac7dece0126f8df61c6be29c1c78d65cc3b490dd10fd3ae86cd08c38ceafe0"
+  },
+  {
+    "fabric_id": "pt-4259-247",
+    "supplier_sku": "4259/247",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Esther",
+    "colour_name": "Lotus",
+    "content_hash": "3b7ad23fbbc7b048dcb26b22b53d88de947f20f12e7869c002277e8ef93a6ec2"
+  },
+  {
+    "fabric_id": "pt-4259-770",
+    "supplier_sku": "4259/770",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Esther",
+    "colour_name": "Lagoon",
+    "content_hash": "5ffde24c7839d75babbcf495f2f80c2fb2645005c01dcc54f488968e62ce93c0"
+  },
+  {
+    "fabric_id": "pt-4260-162",
+    "supplier_sku": "4260/162",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Kashana",
+    "colour_name": "Oasis",
+    "content_hash": "3362b5fd24f311c1e57907aea683a61ca7cd7f488db1ef41961ea6439b5618e3"
+  },
+  {
+    "fabric_id": "pt-4260-247",
+    "supplier_sku": "4260/247",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Kashana",
+    "colour_name": "Lotus",
+    "content_hash": "88b0f3f84a9ba61744333efc4eb94f4b64487cc60a9a2cdf5f5db9433ffe14e3"
+  },
+  {
+    "fabric_id": "pt-4260-641",
+    "supplier_sku": "4260/641",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Kashana",
+    "colour_name": "Dragonfly",
+    "content_hash": "583963053791f6b8c56edefd758ed0457465a26c52a93ec158dc8d4dd11879ac"
+  },
+  {
+    "fabric_id": "pt-4260-770",
+    "supplier_sku": "4260/770",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Kashana",
+    "colour_name": "Lagoon",
+    "content_hash": "e2f107a552e451245d7e98f082136c4a8050ec1348bc9f1a6c24133aebec872d"
+  },
+  {
+    "fabric_id": "pt-4261-162",
+    "supplier_sku": "4261/162",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Roxy",
+    "colour_name": "Oasis",
+    "content_hash": "9245e722963288f4b2b551f2a84694fd6eacdf8498521f8646bda04e7aeb9c1c"
+  },
+  {
+    "fabric_id": "pt-4261-641",
+    "supplier_sku": "4261/641",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Roxy",
+    "colour_name": "Dragonfly",
+    "content_hash": "f05365cb7b33626c469699d4606516d542d98f64a889eadc3a3c445262462933"
+  },
+  {
+    "fabric_id": "pt-4262-162",
+    "supplier_sku": "4262/162",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Sadira",
+    "colour_name": "Oasis",
+    "content_hash": "65b8133ef13f8cef6bc2b2e12a8f3e78bf0d66c87bc6a006c8d9326794b78b28"
+  },
+  {
+    "fabric_id": "pt-4262-247",
+    "supplier_sku": "4262/247",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Sadira",
+    "colour_name": "Lotus",
+    "content_hash": "9bc74438c3007c4a50b2a7d6c467a63b58e54946886faeb859095ae95347186a"
+  },
+  {
+    "fabric_id": "pt-4262-641",
+    "supplier_sku": "4262/641",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Sadira",
+    "colour_name": "Dragonfly",
+    "content_hash": "c1d75e4c2844764bf8f151ecac76bcbd13b5502ce4d5bdbc9ae63062211e52e8"
+  },
+  {
+    "fabric_id": "pt-4262-770",
+    "supplier_sku": "4262/770",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Sadira",
+    "colour_name": "Lagoon",
+    "content_hash": "46d0f16c9867f6722a4f126b2ea612b34b94920b185fc7b49ea176008f60d9b5"
+  },
+  {
+    "fabric_id": "pt-4263-162",
+    "supplier_sku": "4263/162",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Tazz",
+    "colour_name": "Oasis",
+    "content_hash": "82184f01c8b83a8e50ea04c416447c09b867bfad40c2cb72ecde7769e0ee0c22"
+  },
+  {
+    "fabric_id": "pt-4263-641",
+    "supplier_sku": "4263/641",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Tazz",
+    "colour_name": "Dragonfly",
+    "content_hash": "01bfc3174812d2b4df54a95759e4f0bd425e7a9a15b9baf95c539f55be072d50"
+  },
+  {
+    "fabric_id": "pt-4264-162",
+    "supplier_sku": "4264/162",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Cyrus",
+    "colour_name": "Oasis",
+    "content_hash": "e692481159f459560b63b63e7860a4ebb86ecb15b1a791b15523d40ca7a27cb7"
+  },
+  {
+    "fabric_id": "pt-4264-641",
+    "supplier_sku": "4264/641",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Cyrus",
+    "colour_name": "Dragonfly",
+    "content_hash": "379ea5f050d2284d12daa017da22f6240d0660ffebad1d177373dd05253a26c5"
+  },
+  {
+    "fabric_id": "pt-4264-770",
+    "supplier_sku": "4264/770",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Cyrus",
+    "colour_name": "Lagoon",
+    "content_hash": "3ed0ba9017f42ac8bd2af67bb253012d4c5296eddafc2822e88722c1c39813df"
+  },
+  {
+    "fabric_id": "pt-4266-162",
+    "supplier_sku": "4266/162",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Leila",
+    "colour_name": "Oasis",
+    "content_hash": "0ff88aa7d63e2cc9b107674db0bd9a5a308f66f76d304711599f47e8ce5ae936"
+  },
+  {
+    "fabric_id": "pt-4266-247",
+    "supplier_sku": "4266/247",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Leila",
+    "colour_name": "Lotus",
+    "content_hash": "8fdefe3d3c87d59fdb57e910507e77450b87585e9a6810680c6de676356c94c9"
+  },
+  {
+    "fabric_id": "pt-4266-641",
+    "supplier_sku": "4266/641",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Leila",
+    "colour_name": "Dragonfly",
+    "content_hash": "64975eddf96a24e957a8da8524d35ada1defa83a6680658843170597b2ce50d7"
+  },
+  {
+    "fabric_id": "pt-4266-770",
+    "supplier_sku": "4266/770",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Leila",
+    "colour_name": "Lagoon",
+    "content_hash": "cfddf5105d954a3ee2fb2d0f892cf9a8ebb08bbeb44fb155937656b41893283e"
+  },
+  {
+    "fabric_id": "pt-4267-162",
+    "supplier_sku": "4267/162",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Shayan",
+    "colour_name": "Oasis",
+    "content_hash": "c2ff4ac8984100a8ba108fb80b6f6b3e51ddf8c6c9705d827fadf8f07be96b39"
+  },
+  {
+    "fabric_id": "pt-4267-247",
+    "supplier_sku": "4267/247",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Shayan",
+    "colour_name": "Lotus",
+    "content_hash": "c024d16f1938bf3bef90ba6e4b4d536ca74f7992fe39a2a51dc1463e32fb7a51"
+  },
+  {
+    "fabric_id": "pt-4267-770",
+    "supplier_sku": "4267/770",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Shayan",
+    "colour_name": "Lagoon",
+    "content_hash": "e148b0d19eb3ab4b9803165e5a114cf0d14cfe3f9cf8230deceffedeae5764c3"
+  },
+  {
+    "fabric_id": "pt-4268-405",
+    "supplier_sku": "4268/405",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Zari",
+    "colour_name": "Tangerine",
+    "content_hash": "a1db72a6fc820f8bd2941adb4092d6f7422b3e2bccb21bf7bd200194743f4aac"
+  },
+  {
+    "fabric_id": "pt-4268-770",
+    "supplier_sku": "4268/770",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Rustic Persian",
+    "design_name": "Zari",
+    "colour_name": "Lagoon",
+    "content_hash": "e1d74cfaa247edd75794c919e0063b4db6656532014cc3d23800798d865c20df"
+  },
+  {
+    "fabric_id": "pt-4269-147",
+    "supplier_sku": "4269/147",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Escher",
+    "colour_name": "Mocha",
+    "content_hash": "34d1f0437d8f05265f7aff88d9734b3a54a39c0730d8b459e0a3180fc734e449"
+  },
+  {
+    "fabric_id": "pt-4269-658",
+    "supplier_sku": "4269/658",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Escher",
+    "colour_name": "Canopy",
+    "content_hash": "ac8bd404e99e0805db615222c450eaf41d14d47bee3d625c8687e4da3f7a5631"
+  },
+  {
+    "fabric_id": "pt-4269-934",
+    "supplier_sku": "4269/934",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Escher",
+    "colour_name": "Mercury",
+    "content_hash": "b7bd8177a6403c25d2e2f588e4fc0a19c2aa847afa3f45650890c5094c7196dd"
+  },
+  {
+    "fabric_id": "pt-4269-975",
+    "supplier_sku": "4269/975",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Escher",
+    "colour_name": "Angora",
+    "content_hash": "07bfdff313866b1bfb252ad455ac7169744d91094c37bf5593d9019653e6814e"
+  },
+  {
+    "fabric_id": "pt-4273-147",
+    "supplier_sku": "4273/147",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Varini",
+    "colour_name": "Mocha",
+    "content_hash": "63713717be2bc134b233f4c0a08d2ecc0fc50e47a6bbded027bbd854c114d0bd"
+  },
+  {
+    "fabric_id": "pt-4273-217",
+    "supplier_sku": "4273/217",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Varini",
+    "colour_name": "Woodrose",
+    "content_hash": "98ba82981faa461ccf53e9126442d808fe6abb0aae4917d9489a0c0869a9274a"
+  },
+  {
+    "fabric_id": "pt-4273-934",
+    "supplier_sku": "4273/934",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Varini",
+    "colour_name": "Mercury",
+    "content_hash": "c6fc1b181bb63983e6b6cd70b5040300421e89ceed431db609c874bc17aab6bb"
+  },
+  {
+    "fabric_id": "pt-4273-975",
+    "supplier_sku": "4273/975",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Varini",
+    "colour_name": "Angora",
+    "content_hash": "f49214200dd7522e90c90bc42893c8fd24e7c39c0dbfaa831519e4c556965ce9"
+  },
+  {
+    "fabric_id": "pt-4274-217",
+    "supplier_sku": "4274/217",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Felice",
+    "colour_name": "Woodrose",
+    "content_hash": "b2ddbbfbeacd77969ba16d96d07d9e9039651c803f7688ed02e6b89dd6482b13"
+  },
+  {
+    "fabric_id": "pt-4274-658",
+    "supplier_sku": "4274/658",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Felice",
+    "colour_name": "Canopy",
+    "content_hash": "08f6244c1c71a0dcf91233e14182d9a6e6b85e99b38e9fb63b477e60497010bf"
+  },
+  {
+    "fabric_id": "pt-4274-934",
+    "supplier_sku": "4274/934",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Felice",
+    "colour_name": "Mercury",
+    "content_hash": "2ef893c13fab5088f048cd8974bb32388e6bc608a98e68f9d9bdeedcb696dd29"
+  },
+  {
+    "fabric_id": "pt-4274-975",
+    "supplier_sku": "4274/975",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Felice",
+    "colour_name": "Angora",
+    "content_hash": "cfddc82d8e2c5c1f598b9b783e6e535cc020cbfb2b0fc74bc5d8870d51e9b00a"
+  },
+  {
+    "fabric_id": "pt-4275-130",
+    "supplier_sku": "4275/130",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Soto",
+    "colour_name": "Biscotti",
+    "content_hash": "582155c5e48da7e12cde1f6316427243f64967af2c97be19708520ccd4fecc63"
+  },
+  {
+    "fabric_id": "pt-4275-934",
+    "supplier_sku": "4275/934",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Soto",
+    "colour_name": "Mercury",
+    "content_hash": "8579eca6bd8ac1f16e546d7cc603cd82c8229b606da10ee0b5bb17afe3483883"
+  },
+  {
+    "fabric_id": "pt-4275-975",
+    "supplier_sku": "4275/975",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Formation",
+    "design_name": "Soto",
+    "colour_name": "Angora",
+    "content_hash": "eff830fe6ecfe6d6dc4e749477334f67362ab36ab69bb25390e422082095a577"
+  },
+  {
+    "fabric_id": "pt-4276-543",
+    "supplier_sku": "4276/543",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Embalar",
+    "colour_name": "Desert",
+    "content_hash": "beb51fa96961e44bd0070f30358acf974b6c2c04fa53422b2f6ed9cd9cae67c5"
+  },
+  {
+    "fabric_id": "pt-4276-681",
+    "supplier_sku": "4276/681",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Embalar",
+    "colour_name": "Grassland",
+    "content_hash": "635842982a768567f2c451ab20c6b112ca4190c0d98987a683b02aaaa3762de7"
+  },
+  {
+    "fabric_id": "pt-4276-925",
+    "supplier_sku": "4276/925",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Embalar",
+    "colour_name": "Dusk",
+    "content_hash": "aee44bb0b467eef5a892e76a19d1b0fc36ec513315dd529d3c4354696154a73a"
+  },
+  {
+    "fabric_id": "pt-4276-928",
+    "supplier_sku": "4276/928",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Embalar",
+    "colour_name": "Storm",
+    "content_hash": "195c55609168e7d8baaf5b6fdf178596cd9fadcfc76f3d1c30f3a526d4a73400"
+  },
+  {
+    "fabric_id": "pt-4278-543",
+    "supplier_sku": "4278/543",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pavon",
+    "colour_name": "Desert",
+    "content_hash": "087b24823cefa98de826c60326ecdbdfca1fae491741c3ee008297a19293661a"
+  },
+  {
+    "fabric_id": "pt-4278-681",
+    "supplier_sku": "4278/681",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pavon",
+    "colour_name": "Grassland",
+    "content_hash": "362343f9d1402a0681ae6f25c66297ce725e22598c22c684d7a0486ee12ff570"
+  },
+  {
+    "fabric_id": "pt-4278-925",
+    "supplier_sku": "4278/925",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pavon",
+    "colour_name": "Dusk",
+    "content_hash": "0efe1705457719893b4c5b3ffaa87a9baaf0f3942dd2154692bea133f0cdfaf1"
+  },
+  {
+    "fabric_id": "pt-4278-928",
+    "supplier_sku": "4278/928",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pavon",
+    "colour_name": "Storm",
+    "content_hash": "6f41ddf42c4e9f9489fc7f1438ec21157260a380a83bf4ac355a6e5256e34c35"
+  },
+  {
+    "fabric_id": "pt-4279-543",
+    "supplier_sku": "4279/543",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Trenzado",
+    "colour_name": "Desert",
+    "content_hash": "7fbef293fe27e6fd3ccff999ae044e5feb6db52134e6a81e3e2db9786c4103b8"
+  },
+  {
+    "fabric_id": "pt-4279-681",
+    "supplier_sku": "4279/681",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Trenzado",
+    "colour_name": "Grassland",
+    "content_hash": "ab5403948495e696279e5ac9e2586fa86e301bd4a7eb3409c9b55c6dae991dc5"
+  },
+  {
+    "fabric_id": "pt-4279-925",
+    "supplier_sku": "4279/925",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Trenzado",
+    "colour_name": "Dusk",
+    "content_hash": "0c909c4747b412926256403589812c5bc3597bc7c84d426f7e19c3acf4f58fde"
+  },
+  {
+    "fabric_id": "pt-4279-928",
+    "supplier_sku": "4279/928",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Trenzado",
+    "colour_name": "Storm",
+    "content_hash": "f1fe652ef234355726f4d519b70c8693a5f0235f5a0f7a6348141a3b6f08bdec"
+  },
+  {
+    "fabric_id": "pt-4280-543",
+    "supplier_sku": "4280/543",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Caza",
+    "colour_name": "Desert",
+    "content_hash": "0808c213ef7c6c089b43348ae539c72fad808788dc30515d14bfb23d51b2fdd4"
+  },
+  {
+    "fabric_id": "pt-4280-681",
+    "supplier_sku": "4280/681",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Caza",
+    "colour_name": "Grassland",
+    "content_hash": "b4401b4d56904b81bc98ac4bd6afd644f1c820faefb346cb16fe25c03f32731f"
+  },
+  {
+    "fabric_id": "pt-4280-925",
+    "supplier_sku": "4280/925",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Caza",
+    "colour_name": "Dusk",
+    "content_hash": "a82da49dedb643ac8a62474f6e563fd45d6630a1744554fa97da319d710b33aa"
+  },
+  {
+    "fabric_id": "pt-4280-928",
+    "supplier_sku": "4280/928",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Caza",
+    "colour_name": "Storm",
+    "content_hash": "915593abcc73dd3e0c64a8b87af1d49cc22d182ce50eb597114d346436112796"
+  },
+  {
+    "fabric_id": "pt-4281-543",
+    "supplier_sku": "4281/543",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pluma",
+    "colour_name": "Desert",
+    "content_hash": "f7b2f1ac0316280c023544c70a735bcd1ad5f576d69f3b9e8b0dec1f84fcb9e2"
+  },
+  {
+    "fabric_id": "pt-4281-681",
+    "supplier_sku": "4281/681",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pluma",
+    "colour_name": "Grassland",
+    "content_hash": "80ed83d6a044173dd3d6228a934b0028c0ebfbb7eaf824042ab7e137b3352acd"
+  },
+  {
+    "fabric_id": "pt-4281-925",
+    "supplier_sku": "4281/925",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pluma",
+    "colour_name": "Dusk",
+    "content_hash": "570e79cdd714561aacfefa8f9540e6e201bb13e8f4dd0fd816aeb84484165f2d"
+  },
+  {
+    "fabric_id": "pt-4281-928",
+    "supplier_sku": "4281/928",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Pluma",
+    "colour_name": "Storm",
+    "content_hash": "cb5d61d871f14ee956b753698a79b567d5daba9b064e57e6a509e641903385c4"
+  },
+  {
+    "fabric_id": "pt-4283-681",
+    "supplier_sku": "4283/681",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Escala",
+    "colour_name": "Grassland",
+    "content_hash": "e794d5f652a5491299a6ac7e74cecc3f74bbfa9a119460523193996dc3a4e182"
+  },
+  {
+    "fabric_id": "pt-4283-925",
+    "supplier_sku": "4283/925",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Escala",
+    "colour_name": "Dusk",
+    "content_hash": "bf7170c131f322899b04397ff6e562fb32ba95849e5c21239cb01f5ab5a97154"
+  },
+  {
+    "fabric_id": "pt-4283-928",
+    "supplier_sku": "4283/928",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Escala",
+    "colour_name": "Storm",
+    "content_hash": "a1f27e0f375cfa8ecda35632e6d5e464e58546f9ffecc375c3ae022370936d56"
+  },
+  {
+    "fabric_id": "pt-4284-543",
+    "supplier_sku": "4284/543",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Zorro",
+    "colour_name": "Desert",
+    "content_hash": "627e626ca3b47db05451ad09de8771efea71acc226d8e267dc8bc3ade6cb1c72"
+  },
+  {
+    "fabric_id": "pt-4284-681",
+    "supplier_sku": "4284/681",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Zorro",
+    "colour_name": "Grassland",
+    "content_hash": "43445e102ddfd301aa251e781b116c99af9601fcb48dd6f8d62ff0eb1ec76fd8"
+  },
+  {
+    "fabric_id": "pt-4284-925",
+    "supplier_sku": "4284/925",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Instinct",
+    "design_name": "Zorro",
+    "colour_name": "Dusk",
+    "content_hash": "8b85b40d87b613a1a32af0a27a666108420dc17f7c053210a524b1c556def50a"
+  },
+  {
+    "fabric_id": "pt-4291-137",
+    "supplier_sku": "4291/137",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Bettina",
+    "colour_name": "Fig",
+    "content_hash": "4bfa3edfa9651b9ea10e832e5dcb8f0c7459208fbc30efa9036f25962824b445"
+  },
+  {
+    "fabric_id": "pt-4291-503",
+    "supplier_sku": "4291/503",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Bettina",
+    "colour_name": "Sunshine",
+    "content_hash": "8ee9835bbf4561ca847b7b7a4e5fa09c3369feb8e58d972fcf968647576d1629"
+  },
+  {
+    "fabric_id": "pt-4291-618",
+    "supplier_sku": "4291/618",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Bettina",
+    "colour_name": "Olive",
+    "content_hash": "fa1bcb278115d74782fb2d9ebc629e320f40517b751748c24723bc60bc2ccf0f"
+  },
+  {
+    "fabric_id": "pt-4293-412",
+    "supplier_sku": "4293/412",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Giovanna",
+    "colour_name": "Sienna",
+    "content_hash": "4cbaee4237afe91600bab2987c0d577609c9ac67dee2578a3630459672c9318f"
+  },
+  {
+    "fabric_id": "pt-4293-618",
+    "supplier_sku": "4293/618",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Giovanna",
+    "colour_name": "Olive",
+    "content_hash": "847ed3b9a0d10c2c3bbc7213881f30eebc261dc5942f54b8c919ed09d6882f65"
+  },
+  {
+    "fabric_id": "pt-4293-765",
+    "supplier_sku": "4293/765",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Giovanna",
+    "colour_name": "Chambray",
+    "content_hash": "35010445a58eb15ef16ceaed76c3a0ce06399b092bf4dd6bfbc1eb8a0492450a"
+  },
+  {
+    "fabric_id": "pt-4294-137",
+    "supplier_sku": "4294/137",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Raffaella",
+    "colour_name": "Fig",
+    "content_hash": "e0c498e80b4b274e3a6068706293bd3ee0e077b97ec889e4b84be15e953ba676"
+  },
+  {
+    "fabric_id": "pt-4294-412",
+    "supplier_sku": "4294/412",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Raffaella",
+    "colour_name": "Sienna",
+    "content_hash": "45bf0b602a0ba21b287cc0d2d9c1c4ba46568361219039a2051d7bbb680b756d"
+  },
+  {
+    "fabric_id": "pt-4294-503",
+    "supplier_sku": "4294/503",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Raffaella",
+    "colour_name": "Sunshine",
+    "content_hash": "99a93a218676fb4b9240dc7b785eba51cac08f344d7eda755c9e2abdc56c00b2"
+  },
+  {
+    "fabric_id": "pt-4296-137",
+    "supplier_sku": "4296/137",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Leonardo",
+    "colour_name": "Fig",
+    "content_hash": "fc9dc5b36ae57823eb04bc9de4b79890bd690bd37b2307c5c9736a6f72ad07cb"
+  },
+  {
+    "fabric_id": "pt-4296-412",
+    "supplier_sku": "4296/412",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Leonardo",
+    "colour_name": "Sienna",
+    "content_hash": "a2b0419b866d2128034db00fca5ec7e61cc77d19fce93e960b91a9441f1dccc2"
+  },
+  {
+    "fabric_id": "pt-4296-517",
+    "supplier_sku": "4296/517",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Leonardo",
+    "colour_name": "Sunset",
+    "content_hash": "cc2aab9795a3d3db8c166ede4271e3c4b5807a3abab25e97e5c38dfbf66e535c"
+  },
+  {
+    "fabric_id": "pt-4296-618",
+    "supplier_sku": "4296/618",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Leonardo",
+    "colour_name": "Olive",
+    "content_hash": "17e0d4c8a72e3515262d9a496699002a34451af7962bdc48226a634cca7ff6ba"
+  },
+  {
+    "fabric_id": "pt-4296-765",
+    "supplier_sku": "4296/765",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Leonardo",
+    "colour_name": "Chambray",
+    "content_hash": "378438826543336cb58e462acc69a518c02c45d8f90d2b653454059cdb74d67b"
+  },
+  {
+    "fabric_id": "pt-4297-030",
+    "supplier_sku": "4297/030",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Antonia",
+    "colour_name": "Pebble",
+    "content_hash": "efb20f3c35aa376139b3ecdcb4f3be78c8d267047f0d5417d37204d77ed864ed"
+  },
+  {
+    "fabric_id": "pt-4297-618",
+    "supplier_sku": "4297/618",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Antonia",
+    "colour_name": "Olive",
+    "content_hash": "33f11b9afd6f28408c752889ee4263ca6d6556d5a14f5f33910239d54d0da955"
+  },
+  {
+    "fabric_id": "pt-4297-765",
+    "supplier_sku": "4297/765",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Antonia",
+    "colour_name": "Chambray",
+    "content_hash": "a1e1b80f846f70969b279df3539aaf731aa44fd1e06b60207b1dd4bb07fc23be"
+  },
+  {
+    "fabric_id": "pt-4298-503",
+    "supplier_sku": "4298/503",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Cortona",
+    "colour_name": "Sunshine",
+    "content_hash": "6b2b88bfe61f7455afa5b9ee9e03c4e6ae43490044ff53524bd46f09150ad3e4"
+  },
+  {
+    "fabric_id": "pt-4298-765",
+    "supplier_sku": "4298/765",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Cortona",
+    "colour_name": "Chambray",
+    "content_hash": "cf710312e88783a0c77ced3c45157dc32ef2181b5598e56130935ea561771b07"
+  },
+  {
+    "fabric_id": "pt-4299-137",
+    "supplier_sku": "4299/137",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Felicia",
+    "colour_name": "Fig",
+    "content_hash": "fd13775a4b64c0c2e5e00794d02beecb156ee79a25384a2fb90ab3a4a4b8ee93"
+  },
+  {
+    "fabric_id": "pt-4299-618",
+    "supplier_sku": "4299/618",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Felicia",
+    "colour_name": "Olive",
+    "content_hash": "180bc6b4089bd3ce029a09685f4a931fd542e33aa5c8ae3509091d2c2c5aa0a8"
+  },
+  {
+    "fabric_id": "pt-4300-137",
+    "supplier_sku": "4300/137",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Georgia",
+    "colour_name": "Fig",
+    "content_hash": "b8ad367ab64030a179281fc1061e1f584654dbdf3fc8abdf2eb485adde7452a6"
+  },
+  {
+    "fabric_id": "pt-4300-412",
+    "supplier_sku": "4300/412",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Georgia",
+    "colour_name": "Sienna",
+    "content_hash": "c1a08ebd782d5c9e595d08dd90d90730a2b8a1ea71e59de0d37ddaecaf219bb7"
+  },
+  {
+    "fabric_id": "pt-4300-503",
+    "supplier_sku": "4300/503",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Georgia",
+    "colour_name": "Sunshine",
+    "content_hash": "ba510477eb3aa0cee90ef5bfda5f87ce6d0e4c3b6403e811a9810f8b0bcae82d"
+  },
+  {
+    "fabric_id": "pt-4300-618",
+    "supplier_sku": "4300/618",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Georgia",
+    "colour_name": "Olive",
+    "content_hash": "74b781a69efc998257d348f73bbe9f7caaf9738a53351647cf4448553bbb6f4e"
+  },
+  {
+    "fabric_id": "pt-4300-765",
+    "supplier_sku": "4300/765",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Tuscany",
+    "design_name": "Georgia",
+    "colour_name": "Chambray",
+    "content_hash": "1668df49fcee5514656f265ccc21682be4cd721fceaabc6ecf4f981cd2bbb252"
+  },
+  {
+    "fabric_id": "pt-7247-121",
+    "supplier_sku": "7247/121",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Ginger",
+    "content_hash": "d81e23e38f90bf8c7d9fbb86efec2b950468bf3362706accf10368d5c2872a2b"
+  },
+  {
+    "fabric_id": "pt-7247-125",
+    "supplier_sku": "7247/125",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Bronze",
+    "content_hash": "3f1b2fd5ee65b449960cf4a8c54cbaec6cffc73114d35ad6d114e4af67a395d7"
+  },
+  {
+    "fabric_id": "pt-7247-145",
+    "supplier_sku": "7247/145",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Wheat",
+    "content_hash": "d14a260dcf1fdbc497c43493ee0522286d18c60cacf44efc89cd19bd17ff08f5"
+  },
+  {
+    "fabric_id": "pt-7247-158",
+    "supplier_sku": "7247/158",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Hessian",
+    "content_hash": "52e3f8ea4a7505703d9842cb9e7daa0fe7cd65e906e9d4a27d88ea9ec8597f02"
+  },
+  {
+    "fabric_id": "pt-7247-237",
+    "supplier_sku": "7247/237",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Shell",
+    "content_hash": "75aafb03a8a2f171b75ed1ecf8c0a49d3990728800a424638e5e988e8dba830d"
+  },
+  {
+    "fabric_id": "pt-7247-257",
+    "supplier_sku": "7247/257",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Iris",
+    "content_hash": "3d8edae0255049df36beb5893d2397a55f1e7409cc8194f6ce515e1ca7caa5cc"
+  },
+  {
+    "fabric_id": "pt-7247-281",
+    "supplier_sku": "7247/281",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Fennel",
+    "content_hash": "8613d1d2ae226226a6c05584f4013ee7740e3f9cb80e6eb3842d87a0fb044f6d"
+  },
+  {
+    "fabric_id": "pt-7247-288",
+    "supplier_sku": "7247/288",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Samba",
+    "content_hash": "b421e8c51948d92ab91f54cdb0cd4e830e99f7dbe0f487d587746aa2c2b2af33"
+  },
+  {
+    "fabric_id": "pt-7247-321",
+    "supplier_sku": "7247/321",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Clay",
+    "content_hash": "55d4a07cb368750ab3034e795b467a05936f69b15f1868d56eca84f6bdf4b78a"
+  },
+  {
+    "fabric_id": "pt-7247-397",
+    "supplier_sku": "7247/397",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Cactus",
+    "content_hash": "cfd37ae2df54080a279f891fcdb63cf7084363b72bc96679fcaca01813426fe1"
+  },
+  {
+    "fabric_id": "pt-7247-406",
+    "supplier_sku": "7247/406",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Coral",
+    "content_hash": "4c19702f89d0f449288abd7cbf1e077596efceacaf68241fb67f6b102ec3abf8"
+  },
+  {
+    "fabric_id": "pt-7247-482",
+    "supplier_sku": "7247/482",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Otter",
+    "content_hash": "b127ad4cb88fc51a2a2c59aa5e226d98e6569e7453cff0ac78ae07a9f8eafaaa"
+  },
+  {
+    "fabric_id": "pt-7247-604",
+    "supplier_sku": "7247/604",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Aqua",
+    "content_hash": "e1a8a6a8d5b3433c73b7b4202d7a42e37e1759c1d5e55c81d28e5acaf74f7732"
+  },
+  {
+    "fabric_id": "pt-7247-620",
+    "supplier_sku": "7247/620",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Fern",
+    "content_hash": "54f6496a43a1c3a1a9adf67348f838cadd469bc30097315e560ad8a6f2a4941c"
+  },
+  {
+    "fabric_id": "pt-7247-625",
+    "supplier_sku": "7247/625",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Clover",
+    "content_hash": "f92bb1edffa0bf9d19b8931930754e627ad512c11d33f0b09f50d1e02a8e189e"
+  },
+  {
+    "fabric_id": "pt-7247-627",
+    "supplier_sku": "7247/627",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Palm",
+    "content_hash": "ad4edcfef327ea4b21320c06632298a802a9e8c743e46dd23eb134012dd34fc3"
+  },
+  {
+    "fabric_id": "pt-7247-629",
+    "supplier_sku": "7247/629",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Willow",
+    "content_hash": "0a7687dbf1c69423a6f85c4acccc02dd3fdb9e9bfc711eda9439fe2be1e0c8e7"
+  },
+  {
+    "fabric_id": "pt-7247-682",
+    "supplier_sku": "7247/682",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Nile",
+    "content_hash": "f933fd6daffc9d397b4545b85c4b128e3b03425096440a9c93e06b70979fbc63"
+  },
+  {
+    "fabric_id": "pt-7247-711",
+    "supplier_sku": "7247/711",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Ocean",
+    "content_hash": "488c311e27a2a13e22543b7123b53fe1fb2fb0b4ff6154452c9b3d9f51d788a0"
+  },
+  {
+    "fabric_id": "pt-7247-714",
+    "supplier_sku": "7247/714",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Sky",
+    "content_hash": "4bfe8076bd26aaaadd743bc1d864e7b03cd3144631957e864d7da879c4f6db04"
+  },
+  {
+    "fabric_id": "pt-7247-723",
+    "supplier_sku": "7247/723",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Seafoam",
+    "content_hash": "3d02123cbe21ae23f48c92f85822e3335ae16898bc23f5e9fcbe4d04d8548e9c"
+  },
+  {
+    "fabric_id": "pt-7247-934",
+    "supplier_sku": "7247/934",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Mercury",
+    "content_hash": "67b5c1511484859751e801ffd3044b1a9c604309ddcea2fb5bcec9ba856a7c9c"
+  },
+  {
+    "fabric_id": "pt-7247-940",
+    "supplier_sku": "7247/940",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Fog",
+    "content_hash": "65550a634525c6a1ac60f61aef39f7606d73e67c435742d929bbc4553968ab99"
+  },
+  {
+    "fabric_id": "pt-7247-957",
+    "supplier_sku": "7247/957",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Java",
+    "design_name": "Java",
+    "colour_name": "Flint",
+    "content_hash": "db9b79c672e47cc0bfc30503e95bad66826c241a04b05289aba7af5353f6a8dc"
+  },
+  {
+    "fabric_id": "pt-7248-213",
+    "supplier_sku": "7248/213",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Petal",
+    "content_hash": "74f339457f72bd604e07fc33f936fbbc51ebe758f32eae8aebb30be4ee8e0c03"
+  },
+  {
+    "fabric_id": "pt-7248-217",
+    "supplier_sku": "7248/217",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Woodrose",
+    "content_hash": "30a02ad35f2f46ea79174abde197acf4c4e6af9d0295058165904a4e7c945fd2"
+  },
+  {
+    "fabric_id": "pt-7248-313",
+    "supplier_sku": "7248/313",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Burgundy",
+    "content_hash": "918182891d47a6264c7702560145269a3c2ef1cfe0a27ea5729cb42c6eb09ec9"
+  },
+  {
+    "fabric_id": "pt-7248-389",
+    "supplier_sku": "7248/389",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Spruce",
+    "content_hash": "cee9e928c099b876a04b5b999a9e7f77939b933aed4c9a1c62edc876c5d43bfb"
+  },
+  {
+    "fabric_id": "pt-7248-480",
+    "supplier_sku": "7248/480",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Hazel",
+    "content_hash": "52c013d23941c8da160b931232c0abf7cf03f2aa6350c87d12d76d3bb80dfd8b"
+  },
+  {
+    "fabric_id": "pt-7248-504",
+    "supplier_sku": "7248/504",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Sand",
+    "content_hash": "7b609e672e84ecd429f0a17c1578b6128aff3e2d9b61a6393a496cfa6478a27a"
+  },
+  {
+    "fabric_id": "pt-7248-508",
+    "supplier_sku": "7248/508",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Mustard",
+    "content_hash": "735f57a28c5d297b6d7c1f0f3457259c92d38a89fc67c88b625f7a320cf1a5cb"
+  },
+  {
+    "fabric_id": "pt-7248-590",
+    "supplier_sku": "7248/590",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Breeze",
+    "content_hash": "a42c34ebddb1379a6db3b6c857a98cd321b73afebddf89717b04829b089b9ab4"
+  },
+  {
+    "fabric_id": "pt-7248-629",
+    "supplier_sku": "7248/629",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Willow",
+    "content_hash": "bf0031b5aee8be7add0fa884e13a004320146c897113d8a8cb0f05c8f3998ccd"
+  },
+  {
+    "fabric_id": "pt-7248-633",
+    "supplier_sku": "7248/633",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Khaki",
+    "content_hash": "cdfa3c8e9c7dc009aecc14cd64e4f79e5e8d9001e27f8e2c005205cdba467fec"
+  },
+  {
+    "fabric_id": "pt-7248-670",
+    "supplier_sku": "7248/670",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Pampas",
+    "content_hash": "2ab9fd0ab1fd9fdc2f4f244b27657088984432eae7947468d947612a432ec8af"
+  },
+  {
+    "fabric_id": "pt-7248-703",
+    "supplier_sku": "7248/703",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Denim",
+    "content_hash": "675f77922b1daff3892e6a59d02f89f413c1405a2001c5a31645417f22aa4e1f"
+  },
+  {
+    "fabric_id": "pt-7248-706",
+    "supplier_sku": "7248/706",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Navy",
+    "content_hash": "9b5713e1c7e58c4424efb3c0a870bcbb8c051401caa764b22a1cf764e2fffeed"
+  },
+  {
+    "fabric_id": "pt-7248-721",
+    "supplier_sku": "7248/721",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Marine",
+    "content_hash": "32fbd838e5aff42e21b4fc23b82d17955614d0488216543a175248df9380c455"
+  },
+  {
+    "fabric_id": "pt-7248-760",
+    "supplier_sku": "7248/760",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Ink",
+    "content_hash": "a173220bcdd0117005d4ae162e1e15c82264180bfe513bfb890b96c7cf192ca9"
+  },
+  {
+    "fabric_id": "pt-7248-767",
+    "supplier_sku": "7248/767",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Lake",
+    "content_hash": "5a46c5fd0f4293d8e753591a7f9a099fc0341082819a9567581426a2932ed0ca"
+  },
+  {
+    "fabric_id": "pt-7248-801",
+    "supplier_sku": "7248/801",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Plum",
+    "content_hash": "96bb6b6e8698d6cbca2688065b610203facac86148b94fe8ab60781582b47a61"
+  },
+  {
+    "fabric_id": "pt-7248-893",
+    "supplier_sku": "7248/893",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Nickel",
+    "content_hash": "d5bd6d228e6530b07636df42fc7a3180cbea82b983801682835f9fc0c9f80d41"
+  },
+  {
+    "fabric_id": "pt-7248-930",
+    "supplier_sku": "7248/930",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Jet",
+    "content_hash": "eb19975402028fa43b0bb380fbea021ac49e87695a0dbda91b6346879835f39b"
+  },
+  {
+    "fabric_id": "pt-7248-936",
+    "supplier_sku": "7248/936",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Zinc",
+    "content_hash": "9c4bb0c1fd67ed50f2281af5519d439f00b274dc528e92e354a57d5a0f56cabf"
+  },
+  {
+    "fabric_id": "pt-7248-957",
+    "supplier_sku": "7248/957",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Cord",
+    "design_name": "Cord",
+    "colour_name": "Flint",
+    "content_hash": "f88525d2060c7713cd5582e1de75a30e47e7339474b5c3e62995f6907c73718b"
+  },
+  {
+    "fabric_id": "pt-8830-779",
+    "supplier_sku": "8830/779",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Barbara",
+    "colour_name": "Cucumber",
+    "content_hash": "66a66ce2b8a8d215f701374b4e96cbe5e2ec9a64c170fb0b2430000214d14852"
+  },
+  {
+    "fabric_id": "pt-8831-768",
+    "supplier_sku": "8831/768",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Billy",
+    "colour_name": "Bluebell",
+    "content_hash": "d9f7a41311236f499d4f012d9d083c7a7805582463469be88be6f486b57d27a3"
+  },
+  {
+    "fabric_id": "pt-8831-779",
+    "supplier_sku": "8831/779",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Billy",
+    "colour_name": "Cucumber",
+    "content_hash": "922474670b5f61c8df444f7fc15c1869fc2e9e9e0df2f24b8c4f59cd02c3cbbd"
+  },
+  {
+    "fabric_id": "pt-8832-192",
+    "supplier_sku": "8832/192",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Delilah",
+    "colour_name": "Bear",
+    "content_hash": "5c817737d9d7c77bc56ca6442490453ad94ef0c03a5da0f4abad6af1ee73b36d"
+  },
+  {
+    "fabric_id": "pt-8832-421",
+    "supplier_sku": "8832/421",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Delilah",
+    "colour_name": "Pumpkin",
+    "content_hash": "e7ac8fc22098a1742616b914682e6f23176016ed00a534bb736d0b7dcd5a520f"
+  },
+  {
+    "fabric_id": "pt-8832-779",
+    "supplier_sku": "8832/779",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Delilah",
+    "colour_name": "Cucumber",
+    "content_hash": "c8030c6cdd862553dee7e0e0837f81cc47822efedbb0b54d5aae1d03e8bd1c14"
+  },
+  {
+    "fabric_id": "pt-8833-031",
+    "supplier_sku": "8833/031",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Dory",
+    "colour_name": "Linen",
+    "content_hash": "1006bb78784796da557bb315dce7aaff8112ea8aa94f51026854654bda81ad75"
+  },
+  {
+    "fabric_id": "pt-8833-201",
+    "supplier_sku": "8833/201",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Dory",
+    "colour_name": "Raspberry",
+    "content_hash": "8ea05dbf72f43cd39f7c609baeb6789154aa523240c2a1a0bc474555ed27cbeb"
+  },
+  {
+    "fabric_id": "pt-8833-421",
+    "supplier_sku": "8833/421",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Dory",
+    "colour_name": "Pumpkin",
+    "content_hash": "2143efbe2ec3f5bab052832710d717b0620339a6743a2b422b5f9c7029698f7d"
+  },
+  {
+    "fabric_id": "pt-8834-948",
+    "supplier_sku": "8834/948",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Eric",
+    "colour_name": "Moon",
+    "content_hash": "ba393a948f35e2128ba4edc92f2f9914b692e3b0fe6fe5e8e9cecdd379e233e6"
+  },
+  {
+    "fabric_id": "pt-8835-192",
+    "supplier_sku": "8835/192",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "June",
+    "colour_name": "Bear",
+    "content_hash": "325a28a6391f34e9b16e8d96c9c198f4bc0999770ecbdb80bcddd2784160462c"
+  },
+  {
+    "fabric_id": "pt-8835-201",
+    "supplier_sku": "8835/201",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "June",
+    "colour_name": "Raspberry",
+    "content_hash": "30a605b2d016b9e9fbca9dd37c692e688dcdc86730257d24474f7fe5975cbe93"
+  },
+  {
+    "fabric_id": "pt-8836-192",
+    "supplier_sku": "8836/192",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Lili",
+    "colour_name": "Bear",
+    "content_hash": "91969cc955b7b6d272eff8e5cbf87a69a98b062de90cb7eb621faa88c0b9916e"
+  },
+  {
+    "fabric_id": "pt-8836-201",
+    "supplier_sku": "8836/201",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Lili",
+    "colour_name": "Raspberry",
+    "content_hash": "1ebd5d51eabfd2929843b212b3ae1ca292b713205925c54c65606099bab1a795"
+  },
+  {
+    "fabric_id": "pt-8836-421",
+    "supplier_sku": "8836/421",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Lili",
+    "colour_name": "Pumpkin",
+    "content_hash": "95f0a43852d34f62165b90d78d0984b519a00d037393c430854134ebb641b926"
+  },
+  {
+    "fabric_id": "pt-8836-779",
+    "supplier_sku": "8836/779",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Lili",
+    "colour_name": "Cucumber",
+    "content_hash": "c9ad1e399085184fc2e8b7a4b6884fd7773c41d42aff5e20f804a720df3f969d"
+  },
+  {
+    "fabric_id": "pt-8837-779",
+    "supplier_sku": "8837/779",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Wilfred",
+    "colour_name": "Cucumber",
+    "content_hash": "153584fe70a896a6f8495f2cd42afce52310cd90dce43ec07bf1d87de6141047"
+  },
+  {
+    "fabric_id": "pt-8837-948",
+    "supplier_sku": "8837/948",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Wilfred",
+    "colour_name": "Moon",
+    "content_hash": "936964120c4e1cd86ed50b2e55e97eeac683c8a6d266b52d139b5f04d07441e5"
+  },
+  {
+    "fabric_id": "pt-8839-142",
+    "supplier_sku": "8839/142",
+    "brand_name": "Prestigious Textiles",
+    "collection_name": "Pippin",
+    "design_name": "Mary",
+    "colour_name": "Canvas",
+    "content_hash": "e5a94d63cf0fcbf48ee68fee3e9e427292f59daa982344740c2b1f2b63968975"
+  }
+]

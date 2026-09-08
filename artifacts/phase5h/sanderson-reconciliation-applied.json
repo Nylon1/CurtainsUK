@@ -1,0 +1,54 @@
+[
+  {
+    "fabricId": "sdg-dapgpa203",
+    "supplierSku": "DAPGPA203",
+    "portalId": "SAF0034-01",
+    "before": {
+      "design_id": "sdg-sanderson-design-dapgpa",
+      "collection_id": "sdg-sanderson-collection-a-painters-garden-fabrics",
+      "usable_width_mm": 1370,
+      "usage_suitability": [
+        "Curtains",
+        "Blinds",
+        "Cushions"
+      ],
+      "weight_gsm": 131,
+      "updated_at": "2026-09-07T11:57:09.609633+00:00"
+    },
+    "specificationChanges": {
+      "collection_id": "sdg-sanderson-collection-sanderson-one-sixty-fabrics"
+    },
+    "checkedAt": "2026-09-08T05:00:51.187Z",
+    "browseReady": true,
+    "commercialWrites": 0,
+    "orderWrites": 0,
+    "imageReused": true
+  },
+  {
+    "fabricId": "sdg-f1787-01",
+    "supplierSku": "F1787/01",
+    "portalId": "CCF0795-01",
+    "before": {
+      "design_id": "sdg-clarke-clarke-design-catalogue-clarke-and-clarke-aqueous-performance-astraea",
+      "collection_id": "sdg-clarke-clarke-collection-aqueous-performance",
+      "usable_width_mm": null,
+      "usage_suitability": [],
+      "weight_gsm": 332,
+      "updated_at": "2026-09-07T20:33:43.581225+00:00"
+    },
+    "specificationChanges": {
+      "usable_width_mm": 1400,
+      "usage_suitability": [
+        "Curtains",
+        "Blinds",
+        "Cushions"
+      ],
+      "weight_gsm": 332
+    },
+    "checkedAt": "2026-09-08T05:00:51.187Z",
+    "browseReady": true,
+    "commercialWrites": 0,
+    "orderWrites": 0,
+    "imageReused": true
+  }
+]

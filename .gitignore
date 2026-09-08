@@ -57,3 +57,6 @@ next-env.d.ts
 /artifacts/phase5f/*.html
 /artifacts/phase5f/checkpoints/
 /artifacts/phase5f/media/
+
+# Authorised supplier verification includes private commercial observations.
+/artifacts/phase5h/private/

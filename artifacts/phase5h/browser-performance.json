@@ -1,0 +1,89 @@
+{
+  "desktop250": {
+    "viewport": [
+      1440,
+      1000
+    ],
+    "visibleCatalogueTotal": 252,
+    "ttfbMs": 112.6,
+    "domInteractiveMs": 374.2,
+    "loadEventMs": 689.4,
+    "catalogProxyMs": 818.8,
+    "catalogTransferBytes": 6004,
+    "imageNodes": 24,
+    "imagesInitiallyLoaded": 9,
+    "imagesDeferred": 15,
+    "allImagesLazy": true,
+    "heapBytes": 22738627
+  },
+  "mobile250": {
+    "viewport": [
+      390,
+      844
+    ],
+    "visibleCatalogueTotal": 252,
+    "catalogProxyMs": 1291.7,
+    "catalogTransferBytes": 6004,
+    "imageNodes": 24,
+    "imagesLoadedAfterReading": 12,
+    "heapBytes": 30514414,
+    "horizontalOverflow": false,
+    "greenFilterResults": 57
+  },
+  "filters250": {
+    "brandPrestigious": 250,
+    "collectionJava": 29,
+    "geometric": 85,
+    "green": 57,
+    "searchSoto": 3
+  },
+  "sotoJourney": {
+    "id": "pt-4275-130",
+    "verticalRepeatMm": 14,
+    "horizontalRepeatMm": 14,
+    "sampleSaved": true,
+    "makeCurtainsHandoff": "/pages/curtain-visualiser?fabric=pt-4275-130&window=bay-window",
+    "selectedFabric": "pt-4275-130",
+    "window": "bay-window",
+    "fileInputs": 0
+  },
+  "local1000": {
+    "viewport": [
+      390,
+      844
+    ],
+    "records": 1000,
+    "pages": 42,
+    "initialImageNodes": 24,
+    "initialLoadedImages": 3,
+    "allImagesLazy": true,
+    "initialHeapBytes": 1845574,
+    "apiMs": 3.3,
+    "apiTransferBytes": 55611,
+    "afterEightNextClicks": {
+      "page": 9,
+      "cards": 24,
+      "images": 24,
+      "heapBytes": 2096687,
+      "horizontalOverflow": false
+    },
+    "realMasterIdentities": true,
+    "approvedImageRecords": 251,
+    "allPricingDisabled": true,
+    "publicActivationWrites": 0
+  },
+  "limitations": [
+    "Browser timings are individual desktop-machine observations using a 390px viewport, not measurements from a physical mobile handset.",
+    "The loopback 1,000-record harness reuses Dawn assets and pagination but does not include the Shopify proxy. Postgres measurements are recorded separately.",
+    "749 internal fixture identities have no approved image; no placeholder is misrepresented as supplier imagery. This is a scale test, not approval to publish 1,000 fabrics.",
+    "The desktop and mobile Shopify sessions were warm by the 250-record check; use repeated API medians for the fairest available comparison."
+  ],
+  "finalAstraeaBatch": {
+    "publicTotal": 257,
+    "tealSampleListed": true,
+    "resume": "/pages/curtain-visualiser?window=bay-window&fabric=sdg-f1787-06",
+    "makeCurtainsLinks": 0,
+    "numericPrice": false,
+    "mobileOverflow": false
+  }
+}

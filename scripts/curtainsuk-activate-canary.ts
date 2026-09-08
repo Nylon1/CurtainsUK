@@ -8,8 +8,9 @@ import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 async function main() {
   loadEnvConfig(process.cwd());
   if (new URL(process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL ?? "").hostname !== "hqysjumypgeapgmqkcrx.supabase.co" || !process.argv.includes("--confirm-project=hqysjumypgeapgmqkcrx")) throw new Error("STAGING_DATABASE_REQUIRED");
-  const manifest = JSON.parse(await readFile("artifacts/phase5g/prestigious-canary-50.json", "utf8")) as { fabric_id: string; supplier_sku: string }[];
-  if (manifest.length !== 50 || new Set(manifest.map((r) => r.fabric_id)).size !== 50) throw new Error("CANARY_MANIFEST_INVALID");
+  const manifestPath = process.argv.find(arg => arg.startsWith("--manifest="))?.slice("--manifest=".length) ?? "artifacts/phase5g/prestigious-canary-50.json";
+  const manifest = JSON.parse(await readFile(manifestPath, "utf8")) as { fabric_id: string; supplier_sku: string }[];
+  if (!manifest.length || manifest.length > 250 || new Set(manifest.map((r) => r.fabric_id)).size !== manifest.length) throw new Error("CANARY_MANIFEST_INVALID");
   const rows = await listExistingCatalogueRecords("prestigious-textiles");
   const db = createSupplierServiceClient();
   const ids = manifest.map((r) => r.fabric_id);
@@ -36,7 +37,8 @@ async function main() {
     }
     report.push({ fabricId: item.fabric_id, blockers, activated, browseReady: !blockers.length, lifecycleSourceDate: current.record.source_effective_date, previouslyVisible: current.record.staging_catalog_visible });
   }
-  await writeFile("artifacts/phase5g/browse-canary-report.json", JSON.stringify(report, null, 2) + "\n", "utf8");
+  const reportPath = process.argv.find(arg => arg.startsWith("--report="))?.slice("--report=".length) ?? "artifacts/phase5g/browse-canary-report.json";
+  await writeFile(reportPath, JSON.stringify(report, null, 2) + "\n", "utf8");
   console.log(JSON.stringify({ browseReady: report.filter((r) => r.browseReady).length, newlyVisible: report.filter((r) => r.activated).length, blocked: report.filter((r) => r.blockers.length).length, commercialChanges: 0 }));
 }
 main().catch(() => { console.error("CANARY_ACTIVATION_FAILED"); process.exitCode = 1; });

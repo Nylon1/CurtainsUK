@@ -1,0 +1,24 @@
+{
+  "publicRecords": 257,
+  "byBrand": {
+    "Clarke & Clarke": 6,
+    "Prestigious Textiles": 250,
+    "Sanderson": 1
+  },
+  "pages": 11,
+  "maxRecordsPerPayload": 24,
+  "commercialOrCredentialLeaks": 0,
+  "approvedImageHost": "Shopify CDN",
+  "unverifiedPriceBrowseOnly": 6,
+  "heldDeepLinksBlocked": [
+    "sdg-darp222519",
+    "sdg-eazu132713",
+    "sdg-zald332700",
+    "sdg-nesf120872",
+    "pt-4282-543",
+    "pt-7150-168",
+    "pt-7895-038"
+  ],
+  "feedEligible": false,
+  "metadataNoindex": true
+}

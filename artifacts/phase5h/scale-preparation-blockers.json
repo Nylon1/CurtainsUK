@@ -1,0 +1,26 @@
+[
+  {
+    "fabricId": "pt-7895-038",
+    "reason": "NO_CURRENT_WEBTEX_OBSERVATION"
+  },
+  {
+    "fabricId": "pt-7150-168",
+    "reason": "NO_CURRENT_WEBTEX_OBSERVATION"
+  },
+  {
+    "fabricId": "pt-4282-681",
+    "reason": "COMPOSITION_INCOMPLETE"
+  },
+  {
+    "fabricId": "pt-7150-602",
+    "reason": "NO_CURRENT_WEBTEX_OBSERVATION"
+  },
+  {
+    "fabricId": "pt-4282-928",
+    "reason": "COMPOSITION_INCOMPLETE"
+  },
+  {
+    "fabricId": "pt-4282-543",
+    "reason": "COMPOSITION_INCOMPLETE"
+  }
+]

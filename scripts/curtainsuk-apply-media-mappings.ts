@@ -8,9 +8,12 @@ async function main() {
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
   if (new URL(url).hostname !== "hqysjumypgeapgmqkcrx.supabase.co" || !process.argv.includes("--confirm-project=hqysjumypgeapgmqkcrx")) throw new Error("STAGING_DATABASE_REQUIRED");
   const state = JSON.parse(await readFile("artifacts/phase5f/checkpoints/supplier-media.json", "utf8")) as { mappings: Record<string, ImportedMedia> };
+  const requested = process.argv.find(arg => arg.startsWith("--fabric-ids="))?.slice("--fabric-ids=".length).split(",");
+  if (requested && (!requested.length || requested.length > 250 || new Set(requested).size !== requested.length || requested.some(id => !/^[a-z0-9-]{1,150}$/.test(id) || !state.mappings[id]))) throw new Error("MEDIA_BATCH_INVALID");
+  const batch = requested ? requested.map(id => state.mappings[id]) : Object.values(state.mappings);
   const db = createSupplierServiceClient();
   let count = 0;
-  for (const mapping of Object.values(state.mappings)) {
+  for (const mapping of batch) {
     validateMediaCandidate(mapping);
     if (!isShopifyCdnUrl(mapping.shopifyCdnUrl) || !/^[a-f0-9]{64}$/.test(mapping.contentHash)) throw new Error("MEDIA_ASSET_INVALID");
     const { data: row, error } = await db.from("fabric_colourways").select("supplier_id,supplier_sku,updated_at,imagery").eq("fabric_id", mapping.fabricId).single();

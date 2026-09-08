@@ -1,0 +1,10 @@
+{
+  "scope":"50 Prestigious records in unpublished Dawn; later Sanderson detail checks use the two separately reconciled records",
+  "desktop":{"searchCord":5,"collectionJava":5,"colourGreen":8,"patternGeometric":26,"brandFilter":"Prestigious Textiles only","detail":"Cord Mushroom image and approved specification/description displayed","sample":"Saved exact fabric and Bay window context","resume":"Returned to same canonical fabric and Bay configuration"},
+  "mobile":{"cssViewport":[390,844],"colourGreen":8,"patternGeometric":26,"collectionJava":5,"horizontalOverflow":false,"standardWindowHandoff":"Standard Window selected; Cord Mushroom, 200 cm width, 220 cm drop, Wave heading, blackout lining and pair retained","bayHandoff":"Cord Mushroom remains selected; Price with review route; no customer file input"},
+  "unverifiedPrice":{"fabricId":"sdg-f1787-01","browseReady":true,"sampleButton":true,"numericPrice":false,"makeCurtainsLink":false,"message":"Curtain pricing is being confirmed. You can save a sample request while we check."},
+  "initialDesktopBrowser":{"ttfbMs":343.1,"domInteractiveMs":1379.7,"loadMs":2692.6,"catalogProxyMs":955.5,"catalogTransferBytes":5024,"imageNodes":24,"loadedImages":6,"deferredImages":18,"lazyImages":24,"usedHeapBytes":8931620},
+  "livePaymentControlsEnabled":false,
+  "remoteOrdersCreated":0,
+  "note":"The agent-browser select command changed select values without firing the input listener; filter results were therefore verified through CUA selectOption, which triggers actual input events. No production fix was inferred from that automation artefact."
+}

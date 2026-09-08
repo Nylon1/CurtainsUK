@@ -1,0 +1,72 @@
+[
+  {
+    "brand": "Clarke & Clarke",
+    "master_records": 3302,
+    "lifecycle_verified": 6,
+    "description_approved": 6,
+    "browse_ready": 6,
+    "sample_ready": 6,
+    "imagery_ready": 6,
+    "price_ready": 0
+  },
+  {
+    "brand": "Harlequin",
+    "master_records": 2428,
+    "lifecycle_verified": 0,
+    "description_approved": 0,
+    "browse_ready": 0,
+    "sample_ready": 0,
+    "imagery_ready": 0,
+    "price_ready": 0
+  },
+  {
+    "brand": "Morris & Co.",
+    "master_records": 830,
+    "lifecycle_verified": 0,
+    "description_approved": 0,
+    "browse_ready": 0,
+    "sample_ready": 0,
+    "imagery_ready": 0,
+    "price_ready": 0
+  },
+  {
+    "brand": "Prestigious Textiles",
+    "master_records": 258,
+    "lifecycle_verified": 250,
+    "description_approved": 250,
+    "browse_ready": 250,
+    "sample_ready": 250,
+    "imagery_ready": 250,
+    "price_ready": 250
+  },
+  {
+    "brand": "Sanderson",
+    "master_records": 1762,
+    "lifecycle_verified": 1,
+    "description_approved": 1,
+    "browse_ready": 1,
+    "sample_ready": 1,
+    "imagery_ready": 1,
+    "price_ready": 1
+  },
+  {
+    "brand": "Scion",
+    "master_records": 464,
+    "lifecycle_verified": 0,
+    "description_approved": 0,
+    "browse_ready": 0,
+    "sample_ready": 0,
+    "imagery_ready": 0,
+    "price_ready": 0
+  },
+  {
+    "brand": "Zoffany",
+    "master_records": 894,
+    "lifecycle_verified": 0,
+    "description_approved": 0,
+    "browse_ready": 0,
+    "sample_ready": 0,
+    "imagery_ready": 0,
+    "price_ready": 0
+  }
+]

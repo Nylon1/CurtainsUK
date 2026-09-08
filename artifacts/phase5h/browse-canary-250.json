@@ -1,0 +1,2002 @@
+[
+  {
+    "fabricId": "pt-4254-076",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4254-116",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4254-513",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4265-162",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4265-247",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4265-405",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4265-770",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4270-147",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4270-217",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4270-658",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4270-934",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4270-975",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4271-147",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4271-217",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4271-658",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4271-934",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4271-975",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4272-147",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4272-217",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4272-658",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4272-934",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4272-975",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4277-543",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4277-681",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4277-925",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4277-928",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4292-030",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4292-137",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4292-412",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4292-618",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4292-765",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4295-137",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4295-412",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4295-517",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4295-618",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4295-765",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7247-009",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7247-031",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7247-044",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7247-106",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7247-120",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7248-032",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7248-074",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7248-110",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7248-126",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-7248-191",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-8837-192",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-8837-201",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-8837-421",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-8837-768",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4227-192",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4227-421",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4227-779",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4228-192",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4228-421",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4228-511",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4228-768",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4229-201",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4229-768",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4238-116",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4238-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4238-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4239-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4239-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4240-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4240-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4240-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4241-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4241-116",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4241-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4241-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4242-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4242-116",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4242-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4243-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4243-116",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4243-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4244-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4244-116",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4244-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4244-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4253-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4254-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4255-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4255-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4256-116",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4256-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4257-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4257-116",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4257-513",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4257-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4258-076",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4258-655",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4259-247",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4259-770",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4260-162",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4260-247",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4260-641",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4260-770",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4261-162",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4261-641",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4262-162",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4262-247",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4262-641",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4262-770",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4263-162",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4263-641",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4264-162",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4264-641",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4264-770",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4266-162",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4266-247",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4266-641",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4266-770",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4267-162",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4267-247",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4267-770",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4268-405",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4268-770",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4269-147",
+    "blockers": [],
+    "activated": false,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": true
+  },
+  {
+    "fabricId": "pt-4269-658",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4269-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4269-975",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4273-147",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4273-217",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4273-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4273-975",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4274-217",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4274-658",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4274-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4274-975",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4275-130",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4275-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4275-975",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4276-543",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4276-681",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4276-925",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4276-928",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4278-543",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4278-681",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4278-925",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4278-928",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4279-543",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4279-681",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4279-925",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4279-928",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4280-543",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4280-681",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4280-925",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4280-928",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4281-543",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4281-681",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4281-925",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4281-928",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4283-681",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4283-925",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4283-928",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4284-543",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4284-681",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4284-925",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4291-137",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4291-503",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4291-618",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4293-412",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4293-618",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4293-765",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4294-137",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4294-412",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4294-503",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4296-137",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4296-412",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4296-517",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4296-618",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4296-765",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4297-030",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4297-618",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4297-765",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4298-503",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4298-765",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4299-137",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4299-618",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4300-137",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4300-412",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4300-503",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4300-618",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-4300-765",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-121",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-125",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-145",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-158",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-237",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-257",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-281",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-288",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-321",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-397",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-406",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-482",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-604",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-620",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-625",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-627",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-629",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-682",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-711",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-714",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-723",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-934",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-940",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7247-957",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-213",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-217",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-313",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-389",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-480",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-504",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-508",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-590",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-629",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-633",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-670",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-703",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-706",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-721",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-760",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-767",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-801",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-893",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-930",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-936",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-7248-957",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8830-779",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8831-768",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8831-779",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8832-192",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8832-421",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8832-779",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8833-031",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8833-201",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8833-421",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8834-948",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8835-192",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8835-201",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8836-192",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8836-201",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8836-421",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8836-779",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8837-779",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8837-948",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  },
+  {
+    "fabricId": "pt-8839-142",
+    "blockers": [],
+    "activated": true,
+    "browseReady": true,
+    "lifecycleSourceDate": "2026-09-08",
+    "previouslyVisible": false
+  }
+]

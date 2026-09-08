@@ -35,14 +35,14 @@ const packagingClasses = ["SMALL", "STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"
 /** Draft-only. Null commercial inputs and registry blockers make activation impossible. */
 export const DRAFT_PRICING_RULE_SET: PricingRuleSet = {
   id: "curtainsuk-pricing-v1-shopify-integration-draft",
-  version: "2.2.0-draft.1",
+  version: "2.3.0-draft.1",
   commercialModelId: "CURTAINSUK_PRICING_RULESET_V1",
   lifecycle: "DRAFT",
   currency: "GBP",
   effectiveFrom: null,
   effectiveTo: null,
-  supersedesVersion: "2.1.0-draft.1",
-  decisionRegistryVersion: "2.2.0-draft.1",
+  supersedesVersion: "2.2.0-draft.1",
+  decisionRegistryVersion: "2.3.0-draft.1",
   allowedCustomerWidthBases: governed("CUSTOMER_WIDTH_BASIS", "LOCKED", ["TRACK_WIDTH", "POLE_USABLE_WIDTH"]),
   headingRules: {
     PENCIL_PLEAT: heading("PENCIL_PLEAT", 2, 1),
@@ -82,6 +82,8 @@ export const DRAFT_PRICING_RULE_SET: PricingRuleSet = {
   liningRules: {
     UNLINED: { ...material(), usableWidthMm: 1, materialRateNetPerMetre: { amountMinor: 0, currency: "GBP" }, topAllowanceMm: 0, bottomAllowanceMm: 0, labourNetPerWidth: { amountMinor: 0, currency: "GBP" }, compatibleHeadings: ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET", "TAB_TOP"], compatibleWindowTypes: ["*"] },
     STANDARD: material(400), BLACKOUT: material(600), THERMAL: material(600),
+    // Owner-approved complete combined layer: ordinary lining must not be added.
+    BONDED: material(500),
   },
   interliningRules: {
     NONE: { ...material(), usableWidthMm: 1, materialRateNetPerMetre: { amountMinor: 0, currency: "GBP" }, topAllowanceMm: 0, bottomAllowanceMm: 0, labourNetPerWidth: { amountMinor: 0, currency: "GBP" }, compatibleHeadings: ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET", "TAB_TOP"], compatibleWindowTypes: ["*"] },

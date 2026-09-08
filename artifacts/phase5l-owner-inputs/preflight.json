@@ -1,0 +1,82 @@
+{
+  "checkedAt": "2026-09-08T15:47:46.210Z",
+  "pricingVersion": "2.3.0-draft.1",
+  "fabric": "sdg-dapgpa203",
+  "cases": [
+    {
+      "window": "standard-window",
+      "lining": "STANDARD",
+      "fabricId": "sdg-dapgpa203",
+      "metres": 10.6,
+      "fabricWidths": 4,
+      "price": {
+        "netAmountMinor": 92083,
+        "vatAmountMinor": 18417,
+        "grossAmountMinor": 110500,
+        "vatRateBasisPoints": 2000,
+        "currency": "GBP"
+      },
+      "availability": "FABRIC_AVAILABLE",
+      "shippingStatus": "RATE_REQUIRES_CONFIRMATION",
+      "shippingGrossAmountMinor": null,
+      "calculationImmutability": "PASS",
+      "newConfigurationUsesSimulatedPrice": true
+    },
+    {
+      "window": "standard-window",
+      "lining": "BONDED",
+      "fabricId": "sdg-dapgpa203",
+      "metres": 10.6,
+      "fabricWidths": 4,
+      "price": {
+        "netAmountMinor": 93667,
+        "vatAmountMinor": 18733,
+        "grossAmountMinor": 112400,
+        "vatRateBasisPoints": 2000,
+        "currency": "GBP"
+      },
+      "availability": "FABRIC_AVAILABLE",
+      "shippingStatus": "RATE_REQUIRES_CONFIRMATION",
+      "shippingGrossAmountMinor": null,
+      "calculationImmutability": "PASS",
+      "newConfigurationUsesSimulatedPrice": true
+    },
+    {
+      "window": "bay-window",
+      "lining": "STANDARD",
+      "fabricId": "sdg-dapgpa203",
+      "metres": 15.9,
+      "fabricWidths": 6,
+      "price": {
+        "netAmountMinor": 138083,
+        "vatAmountMinor": 27617,
+        "grossAmountMinor": 165700,
+        "vatRateBasisPoints": 2000,
+        "currency": "GBP"
+      },
+      "availability": "FABRIC_AVAILABLE",
+      "shippingStatus": "RATE_REQUIRES_CONFIRMATION",
+      "shippingGrossAmountMinor": null,
+      "calculationImmutability": "PASS",
+      "newConfigurationUsesSimulatedPrice": true
+    }
+  ],
+  "manualQuoteInitialPrice": null,
+  "shippingBlockers": [
+    "SHIPPING_OWNER_APPROVAL_REQUIRED",
+    "POSTCODE_MAPPING_REQUIRED",
+    "PARCEL_THRESHOLDS_REQUIRED",
+    "MAXIMUM_PARCEL_REQUIRED"
+  ],
+  "routes": {
+    "INSTANT_PRICE": "BLOCKED",
+    "PRICE_WITH_REVIEW": "BLOCKED",
+    "MANUAL_QUOTE": "BLOCKED"
+  },
+  "reason": "Shipping matrix and operational rules are absent; staff approval/remote order steps not repeated past this prerequisite.",
+  "remoteDraftOrdersCreated": 0,
+  "remoteOrderImmutability": "BLOCKED",
+  "supplierPriceWrites": 0,
+  "supplierOrders": 0,
+  "stagingDatabaseWrites": 0
+}

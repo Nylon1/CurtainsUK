@@ -69,7 +69,7 @@ export function classifyComplexity(
   // into a review job. Known heavy fabrics can be routed by an explicit,
   // versioned threshold once the workroom approves one; unknown weight remains
   // a separate fabric-data/availability concern.
-  if (configuration.interlining === "INTERLINING") reasons.push("Interlining is a complexity factor");
+  if (configuration.interlining === "INTERLINING" || configuration.lining === "BONDED") reasons.push("Interlining is a complexity factor");
   if (context.calculatedFabricWidths !== undefined) reasons.push(`Calculated construction uses ${context.calculatedFabricWidths} fabric widths`);
 
   if (reasons.length) return decision("PRICE_WITH_REVIEW", "MEDIUM", false, reasons, rules.version);

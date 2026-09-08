@@ -198,6 +198,7 @@ export function validateConfiguration(configuration: CurtainConfiguration, windo
   if (!windowType.allowedLiningOptions.includes(configuration.lining)) issues.push(issue("LINING_NOT_ALLOWED_FOR_WINDOW", "lining", "Lining is not allowed for this window type"));
   if (!fabric.allowedLinings.includes(configuration.lining)) issues.push(issue("LINING_NOT_ALLOWED_FOR_FABRIC", "lining", "Lining is not allowed for this fabric"));
   if (!windowType.pairSingleAvailability.includes(configuration.construction)) issues.push(issue("CONSTRUCTION_NOT_ALLOWED", "construction", "Pair/single selection is not allowed"));
+  if (configuration.lining === "BONDED" && configuration.interlining !== "NONE") issues.push(issue("BONDED_COMBINED_LAYER", "interlining", "Bonded is a complete combined layer; additional interlining is not allowed"));
   if (!["NONE", "INTERLINING"].includes(configuration.interlining)) issues.push(issue("INTERLINING_NOT_CONFIRMED", "interlining", "The interlining specification requires confirmation"));
   if (!fabric.suitableWindowTypeSlugs.includes("*") && !fabric.suitableWindowTypeSlugs.includes(windowType.slug)) issues.push(issue("FABRIC_NOT_SUITABLE_FOR_WINDOW", "fabricSpecId", "Fabric is not approved for this window type"));
   if (!Number.isInteger(configuration.numberOfSegments) || configuration.numberOfSegments < 1) issues.push(issue("SEGMENT_COUNT_INVALID", "numberOfSegments", "Number of segments must be a positive integer"));
@@ -302,7 +303,7 @@ export function validatePricingRuleActivation(rules: PricingRuleSet, registry: D
   }
   validateMoney(rules.baseMakeupLabourNetPerWidth, "baseMakeupLabourNetPerWidth", true, issues);
   validateMoney(rules.patternMatchLabourNetPerWidth, "patternMatchLabourNetPerWidth", true, issues);
-  for (const key of ["STANDARD", "BLACKOUT", "THERMAL"] as const) {
+  for (const key of ["STANDARD", "BLACKOUT", "THERMAL", "BONDED"] as const) {
     const rule = rules.liningRules[key];
     if (rule.usableWidthMm === null || rule.topAllowanceMm === null || rule.bottomAllowanceMm === null) issues.push(issue("LINING_RULE_INCOMPLETE", `liningRules.${key}`, "Lining dimensions and allowances are required"));
     validateMoney(rule.materialRateNetPerMetre, `liningRules.${key}.materialRateNetPerMetre`, true, issues);

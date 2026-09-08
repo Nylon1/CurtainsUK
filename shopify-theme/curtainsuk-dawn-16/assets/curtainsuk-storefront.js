@@ -372,7 +372,7 @@
       PENCIL_PLEAT: "Pencil pleat", WAVE: "Wave", EYELET: "Eyelet", DOUBLE_PINCH: "Double pinch pleat", TRIPLE_PINCH: "Triple pinch pleat", TAB_TOP: "Tab top",
     });
     replaceOptions(form?.elements.lining, windowType?.linings, {
-      UNLINED: "Unlined", STANDARD: "Standard lining", BLACKOUT: "Blackout lining", THERMAL: "Thermal lining",
+      UNLINED: "Unlined", STANDARD: "Standard lining", BLACKOUT: "Blackout lining", THERMAL: "Thermal lining", BONDED: "Bonded lining / interlining",
     });
     const status = root.querySelector("[data-cuk-route-status]");
     status.textContent = isSpecialist ? "Technical review" : isReview ? "Price with review" : "Instant staging price";

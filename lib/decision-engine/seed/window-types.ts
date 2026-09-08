@@ -34,7 +34,7 @@ const SLOPE_ANGLES: MeasurementRequirement[] = [
 
 const DEFAULT_HEADINGS: HeadingType[] = ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET"];
 const TRACK_HEADINGS: HeadingType[] = DEFAULT_HEADINGS.filter((heading) => heading !== "EYELET");
-const DEFAULT_LININGS: LiningType[] = ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"];
+const DEFAULT_LININGS: LiningType[] = ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "BONDED"];
 
 type WindowSeed = Pick<WindowTypeMaster, "canonicalName" | "slug" | "family" | "geometryType" | "complexityClass"> &
   Partial<Omit<WindowTypeMaster, "canonicalName" | "slug" | "family" | "geometryType" | "complexityClass">>;

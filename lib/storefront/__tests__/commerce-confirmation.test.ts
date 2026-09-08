@@ -27,7 +27,7 @@ test("missing specifications and ungoverned half-drop allowances remain unknown 
   }
 });
 
-test("price confirmation cannot bypass measurement or unsupported bonded-interlining validation",()=>{
+test("price confirmation cannot bypass measurements or use BONDED as a separate interlining layer",()=>{
   assert.throws(()=>calculatePriceConfirmationReview({...request,widthCm:-1},fabric,null),/invalid/);
   assert.throws(()=>calculatePriceConfirmationReview({...request,interlining:"BONDED"} as unknown as StagingPriceRequest,fabric,fabric),/invalid/);
 });

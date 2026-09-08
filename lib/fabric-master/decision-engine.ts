@@ -10,7 +10,7 @@ export function toReviewFabricIdentity(record: FabricMasterRecord): Configuratio
     recordLifecycle: record.lifecycle_state === "DISCONTINUED" ? "RETIRED" : "ACTIVE",
     supplierAvailability: "UNKNOWN",
     allowedHeadings: ["PENCIL_PLEAT", "WAVE", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET"],
-    allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"],
+    allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "BONDED"],
     suitableWindowTypeSlugs: ["*"],
   };
 }
@@ -57,7 +57,7 @@ export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor:
     supplierAvailability: "UNKNOWN",
     imageReferences: record.imagery,
     allowedHeadings: ["PENCIL_PLEAT", "WAVE", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET"],
-    allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"],
+    allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "BONDED"],
     suitableWindowTypeSlugs: ["*"],
     googleFeedEligibility: {
       eligible: false,

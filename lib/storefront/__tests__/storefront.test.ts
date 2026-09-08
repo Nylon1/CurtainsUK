@@ -89,7 +89,7 @@ test("a real Dali bay is priced with review at the unchanged 35% rule", () => {
 test("the Phase 4A Bay gate preserves the auditable component breakdown", () => {
   const result = runPhase4ABayPricingGate();
   assert.deepEqual({ ...result, headingAdjustmentNetMinor: 1_500, vatMinor: 19_273.846153846156 }, {
-    calculationVersion: "2.2.0-draft.1",
+    calculationVersion: "2.3.0-draft.1",
     enteredWidthCm: 340,
     centreOverlapCm: 5,
     effectiveWidthCm: 345,

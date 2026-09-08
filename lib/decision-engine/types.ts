@@ -35,7 +35,7 @@ export type GeometryType =
 export type CoverageMeasurementBasis = "TRACK_WIDTH" | "POLE_USABLE_WIDTH";
 export type CustomerLengthUnit = "CM";
 export type HeadingType = "WAVE" | "PENCIL_PLEAT" | "DOUBLE_PINCH" | "TRIPLE_PINCH" | "EYELET" | "TAB_TOP";
-export type LiningType = "UNLINED" | "STANDARD" | "BLACKOUT" | "THERMAL";
+export type LiningType = "UNLINED" | "STANDARD" | "BLACKOUT" | "THERMAL" | "BONDED";
 export type InterliningType = "NONE" | "INTERLINING";
 
 export type TrackType =

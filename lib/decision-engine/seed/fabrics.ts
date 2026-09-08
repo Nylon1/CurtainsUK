@@ -47,8 +47,8 @@ function fixture(id: string, match: PatternMatchType): FabricSpec {
       ? ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH"]
       : ["WAVE", "PENCIL_PLEAT", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET"],
     allowedLinings: patterned
-      ? ["STANDARD", "BLACKOUT", "THERMAL"]
-      : ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"],
+      ? ["STANDARD", "BLACKOUT", "THERMAL", "BONDED"]
+      : ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "BONDED"],
     suitableWindowTypeSlugs: patterned
       ? ["standard-window", "bay-window", "french-doors"]
       : ["standard-window", "patio-doors"],

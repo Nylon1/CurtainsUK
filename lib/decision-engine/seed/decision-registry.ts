@@ -1,6 +1,6 @@
 import type { DecisionRecord, DecisionRegistry, RuleImplementationStatus } from "../types";
 
-const VERSION = "2.2.0-draft.1";
+const VERSION = "2.3.0-draft.1";
 const DATE = "2026-09-06";
 
 function decision(
@@ -42,8 +42,8 @@ export const PHASE_2_DECISION_REGISTRY: DecisionRegistry = {
     decision("LABOUR_MODEL_STRUCTURE", "Component labour model", "LOCKED", ["BASE_PER_WIDTH", "HEADING_PER_WIDTH", "LINING_PER_WIDTH", "PATTERN_MATCH", "COMPLEXITY"], "Prevents an untraceable flat make-up fee.", "Commercial owner"),
     decision("BASE_MAKEUP_RATE", "Base make-up rate", "LOCKED", { netPerFabricWidthMinor: 2500, currency: "GBP", includesLiningConstructionLabour: true }, "Pricing Ruleset v1 uses a single base make-up cost per face-fabric width before the heading adjustment.", "Commercial owner"),
     decision("PATTERN_MATCH_LABOUR_RATE", "Pattern-match labour rate", "DRAFT", null, "No additional pattern-match labour rate was supplied for v1; calibration therefore applies no separate charge.", "Commercial owner"),
-    decision("LINING_INTERLINING_STRUCTURE", "Lining and interlining structure", "LOCKED", ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "INTERLINING"], "Each material retains its own width, rate, allowances, labour and compatibility.", "Workroom lead"),
-    decision("LINING_MATERIAL_RATES", "Lining and interlining material rates", "LOCKED", { STANDARD: { netPerMetreMinor: 400 }, BLACKOUT: { netPerMetreMinor: 600 }, THERMAL: { netPerMetreMinor: 600 }, INTERLINING: { netPerMetreMinor: 500 }, currency: "GBP" }, "These are direct material costs used before target-margin pricing.", "Commercial owner"),
+    decision("LINING_INTERLINING_STRUCTURE", "Lining and interlining structure", "LOCKED", ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "BONDED", "INTERLINING"], "BONDED is one complete combined lining/interlining layer and cannot add ordinary lining or separate interlining. Historical separate interlining remains a distinct selection.", "Workroom lead"),
+    decision("LINING_MATERIAL_RATES", "Lining and interlining material rates", "LOCKED", { STANDARD: { netPerMetreMinor: 400 }, BLACKOUT: { netPerMetreMinor: 600 }, THERMAL: { netPerMetreMinor: 600 }, INTERLINING: { netPerMetreMinor: 500 }, BONDED: { netPerMetreMinor: 500, replacesLining: true, additionalInterliningAllowed: false }, currency: "GBP" }, "These are direct material costs used before target-margin pricing.", "Commercial owner"),
     decision("LINING_MANUFACTURING_ASSUMPTIONS", "Lining and interlining manufacturing assumptions", "DRAFT", { usableWidthMm: 1380, topAllowanceMm: 150, bottomAllowanceMm: 200, separateLabourPerWidthMinor: 0 }, "The benchmark needs executable quantities; lining width, allowances and inclusion of lining labour in base make-up still require workroom calibration.", "Workroom lead"),
     decision("FABRIC_SELLING_PRICE_STRUCTURE", "Fabric selling-price policy", "LOCKED", ["SUPPLIER_COST", "SUPPLIER_RRP", "CURTAINSUK_RATE", "BAND", "MARGIN_FLOOR", "EFFECTIVE_DATE", "OVERRIDE"], "Supports rate snapshots without a universal multiplier.", "Commercial owner"),
     decision("TARGET_GROSS_MARGIN", "Direct-cost target gross margin", "LOCKED", { basis: "DIRECT_COST_TARGET_GROSS_MARGIN", basisPoints: 3500 }, "Net selling price is total direct cost divided by 0.65; no job-specific tuning is permitted.", "Commercial owner"),

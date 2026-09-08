@@ -41,7 +41,7 @@ export function createCurtainConfiguration(input: NewCurtainConfigurationInput):
       includeLeftReturn: false,
       includeRightReturn: false,
     },
-    minimumOrderClass: input.minimumOrderClass ?? (interlining === "INTERLINING" ? "PREMIUM_INTERLINED" : "STANDARD_MTM"),
+    minimumOrderClass: input.minimumOrderClass ?? (interlining === "INTERLINING" || input.lining === "BONDED" ? "PREMIUM_INTERLINED" : "STANDARD_MTM"),
     measurements: {},
     accessories: [],
     attachments: { photoReferences: [], drawingReferences: [] },

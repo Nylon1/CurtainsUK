@@ -21,7 +21,7 @@ export interface StorefrontWindowType {
 
 const compactHeadings: HeadingType[] = ["PENCIL_PLEAT", "WAVE", "DOUBLE_PINCH", "EYELET"];
 const trackHeadings: HeadingType[] = ["PENCIL_PLEAT", "WAVE", "DOUBLE_PINCH"];
-const allLinings: LiningType[] = ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"];
+const allLinings: LiningType[] = ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "BONDED"];
 
 function entry(value: Omit<StorefrontWindowType, "faqs">): StorefrontWindowType {
   const primary = WINDOW_TYPES_BY_SLUG.get(value.masterSlugs[0]);

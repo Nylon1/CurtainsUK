@@ -93,7 +93,7 @@ function buildFabric(row: (typeof COLOURWAYS)[number]): PrestigiousPublicFabric 
     supplierAvailability: "UNKNOWN",
     imageReferences: [image],
     allowedHeadings: ["PENCIL_PLEAT", "WAVE", "DOUBLE_PINCH", "TRIPLE_PINCH", "EYELET"],
-    allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL"],
+    allowedLinings: ["UNLINED", "STANDARD", "BLACKOUT", "THERMAL", "BONDED"],
     suitableWindowTypeSlugs: ["*"],
     googleFeedEligibility: { eligible: false, reason: "Unpublished Phase 4C pilot; production pricing and stock approval required", identifierExists: true },
     fixtureOnly: false,

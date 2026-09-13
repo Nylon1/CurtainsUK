@@ -449,3 +449,46 @@ footer {
     padding: 20px;
   }
 }
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 20px;
+}
+.palette-row {
+  padding: 14px 0;
+  border-bottom: 1px solid #ddd;
+}
+.palette-row label {
+  display: block;
+}
+button,
+select,
+input {
+  min-height: 44px;
+}
+fieldset {
+  margin: 16px 0;
+  padding: 12px;
+  min-width: 0;
+}
+button[aria-pressed="true"] {
+  background: #263b32;
+  color: white;
+}
+.cards img {
+  max-width: 100%;
+}
+[aria-busy="true"] button {
+  pointer-events: none;
+  opacity: 0.7;
+}
+#notice {
+  position: sticky;
+  top: 0;
+  background: #f7f4ed;
+  z-index: 10;
+  padding: 16px;
+}
+.palette-grid select {
+  max-width: 100%;
+}

@@ -38,6 +38,10 @@
             sessionId: value.sessionId,
             profileSummary: value.profileSummary,
             fabricMasterId: String(value.fabricMasterId || '').slice(0, 100),
+            supplierSku: String(value.supplierSku || '').slice(0, 100),
+            strategyId: String(value.strategyId || '').slice(0, 100),
+            refinementDigest: String(value.refinementDigest || '').slice(0, 100),
+            windowSlug: String(value.windowSlug || '').slice(0, 60),
             returnOrigin: ['http://127.0.0.1:3260', 'https://curtainsuk-staging-gateway.vercel.app'].includes(
               value.returnOrigin,
             )
@@ -67,7 +71,7 @@
         text.textContent = `Your consultation · ${context.profileSummary}`;
         const link = document.createElement('a');
         link.textContent = 'Return to my shortlist';
-        link.href = `${context.returnOrigin || (location.hostname === '127.0.0.1' ? '' : 'https://curtainsuk-staging-gateway.vercel.app')}/admin/curtain-consultation`;
+        link.href = `${context.returnOrigin || (location.hostname === '127.0.0.1' ? '' : 'https://curtainsuk-staging-gateway.vercel.app')}/admin/curtain-consultation?session=${encodeURIComponent(context.sessionId)}`;
         const details = document.createElement('details'),
           summary = document.createElement('summary');
         summary.textContent = 'Your profile';

@@ -9,14 +9,22 @@ export async function GET(
   const identity = await requireReviewAdmin();
   if (identity.response) return identity.response;
   const { asset } = await params;
-  if (!["consultation.css", "consultation.js"].includes(asset))
+  const visual = /^[a-zA-Z0-9_-]+\.svg$/.test(asset);
+  if (!visual && !["consultation.css", "consultation.js"].includes(asset))
     return new Response(null, { status: 404 });
   return new Response(
-    await readFile(resolve("lib/storefront/hci", asset), "utf8"),
+    await readFile(
+      resolve("lib/storefront/hci", ...(visual ? ["visuals", asset] : [asset])),
+      "utf8",
+    ),
     {
       headers: {
         ...PRIVATE_NO_STORE_HEADERS,
-        "Content-Type": asset.endsWith("css") ? "text/css" : "text/javascript",
+        "Content-Type": visual
+          ? "image/svg+xml"
+          : asset.endsWith("css")
+            ? "text/css"
+            : "text/javascript",
       },
     },
   );

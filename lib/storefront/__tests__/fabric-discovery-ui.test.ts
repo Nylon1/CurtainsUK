@@ -3,163 +3,129 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { runInNewContext } from "node:vm";
 import { randomUUID } from "node:crypto";
-
-function harness(entry: string) {
-  type Element = {
-    innerHTML: string;
-    hidden: boolean;
-    textContent: string;
-    value: string;
-    files?: unknown[];
-    onchange?: () => Promise<void>;
-    onload?: () => void;
-    onclick?: () => void;
-    naturalWidth: number;
-    naturalHeight: number;
-    append: (...args: unknown[]) => void;
-  };
-  const nodes = new Map<string, Element>();
-  const node = (selector: string): Element => {
-    if (!nodes.has(selector))
-      nodes.set(selector, {
+function harness(entry: string, directions = false) {
+  const nodes = new Map<string, Record<string, unknown>>();
+  const node = (key: string): Record<string, unknown> => {
+    if (!nodes.has(key))
+      nodes.set(key, {
         innerHTML: "",
         hidden: false,
         textContent: "",
         value: "",
-        naturalWidth: 100,
-        naturalHeight: 100,
         append() {},
+        setAttribute() {},
+        removeAttribute() {},
+        focus() {},
+        querySelector: node,
+        querySelectorAll: () => [],
       });
-    return nodes.get(selector)!;
+    return nodes.get(key)!;
   };
-  let click: (event: unknown) => void = () => {};
-  const stage = Object.assign(node("#stage"), {
-    classList: { add() {}, remove() {} },
-    setAttribute() {},
-    removeAttribute() {},
-    focus() {},
-    querySelector: node,
-    addEventListener(_name: string, callback: typeof click) {
-      click = callback;
-    },
-  });
-  const stored = new Map<string, string>(),
-    requests: { url: string; body: Record<string, unknown> }[] = [],
-    revoked: string[] = [];
+  const requests: { url: string; body: Record<string, unknown> }[] = [],
+    stored = new Map<string, string>();
+  const storage = {
+    getItem: (k: string) => stored.get(k) ?? null,
+    setItem: (k: string, v: string) => stored.set(k, v),
+    removeItem: (k: string) => stored.delete(k),
+  };
   const sessionId = randomUUID();
   runInNewContext(readFileSync("lib/storefront/hci/consultation.js", "utf8"), {
-    URL: {
-      createObjectURL: () => "blob:reference-test",
-      revokeObjectURL: (url: string) => revoked.push(url),
-    },
+    URL,
     URLSearchParams,
     location: {
-      search: `?entry=${entry}`,
+      search: "?entry=" + entry,
       origin: "https://staging.example.test",
-      reload() {},
     },
-    document: {
-      querySelector: node,
-      querySelectorAll: () => [],
-      createElement: () => node("created"),
-    },
-    window: { addEventListener() {} },
+    document: { querySelector: node, createElement: () => node("created") },
     crypto: { randomUUID },
-    localStorage: {
-      getItem: (key: string) => stored.get(key) ?? null,
-      setItem: (key: string, value: string) => stored.set(key, value),
-      removeItem: (key: string) => stored.delete(key),
-    },
-    fetch: async (url: string, init: { body: string }) => {
-      requests.push({ url, body: JSON.parse(init.body) });
+    localStorage: storage,
+    sessionStorage: storage,
+    fetch: async (url: string, init?: { body: string }) => {
+      if (!init) {
+        requests.push({ url, body: {} });
+        return { ok: true, json: async () => ({ fabric: {
+          id: "pt-4262-770", browseReady: true, brand: "Prestigious", design: "Real design", colour: "Lagoon",
+          images: [{ url: "https://cdn.shopify.com/test.jpg" }], sampleAvailable: true,
+        } }) };
+      }
+      const body = JSON.parse(init.body);
+      requests.push({ url, body });
       return {
         ok: true,
         json: async () => ({
           sessionId,
           revision: requests.length,
-          phase: "complete",
-          profileSummary: "A calm room",
-          question: null,
-          shortlist: [],
+          phase:
+            directions || body.action?.type === "recommend"
+              ? "directions"
+              : entry === "match"
+                ? "discovery"
+                : "complete",
+          question: { prompt: "Your room?", answers: [] },
+          palette: null,
+          profileSummary: "Calm",
+          directions: directions ? [{ id: "complementary", label: "Complementary", purpose: "Balanced colours", cards: [{ fabricMasterId: "pt-4262-770", supplierSku: "4262/770", reactionId: "canonical-reaction-id", explanation: ["Lagoon adds colour."] }] }] : [],
         }),
       };
     },
   });
-  return {
-    stage,
-    node,
-    requests,
-    stored,
-    revoked,
-    sessionId,
-    click: (id: string) =>
-      click({
-        target: {
-          closest: () => ({ id, dataset: {}, hasAttribute: () => false }),
-        },
-      }),
-  };
+  return { node, requests, stored, sessionId };
 }
-const settle = () => new Promise((resolve) => setImmediate(resolve));
-
-test("room-first reference remains optional and cannot silently become analysed HCI evidence", async () => {
+const settle = () => new Promise((r) => setImmediate(r));
+const click = async (ui: ReturnType<typeof harness>, selector: string) => {
+  await (ui.node(selector).onclick as () => Promise<void>)();
+  await settle();
+};
+test("room-first creates one server session, then offers an optional image before questions", async () => {
   const ui = harness("match");
-  assert.match(ui.stage.innerHTML, /Show us your starting point/);
-  assert.match(ui.stage.innerHTML, /not uploaded or analysed/);
-  assert.equal(ui.requests.length, 0);
-  const input = ui.node("#reference-file");
-  input.files = [{ type: "image/jpeg", size: 100 }];
-  await input.onchange!();
-  ui.node("#reference-preview").onload!();
-  assert.equal(ui.requests.length, 0);
-  assert.equal(
-    ui.stored.size,
-    0,
-    "no reference bytes or file metadata persisted",
-  );
-  ui.click("reference-skip");
   await settle();
   assert.equal(ui.requests.length, 1);
-  assert.equal(ui.requests[0].url, "/api/admin/curtain-consultation");
-  assert.equal(ui.requests[0].body.action, undefined);
-  assert.deepEqual(ui.revoked, ["blob:reference-test"]);
-  assert.doesNotMatch(
-    JSON.stringify(ui.requests),
-    /blob:|image\/|reference-test/,
-  );
+  assert.match(String(ui.node("#stage").innerHTML), /One image is enough/);
+  await click(ui, "#skip");
+  assert.equal(ui.requests.length, 1);
+  assert.match(String(ui.node("#stage").innerHTML), /Your room\?/);
+  assert.doesNotMatch(JSON.stringify(ui.requests), /bytes|owner|commands/);
 });
-
-test("guided discovery offers references before ranking and skip uses the same canonical session", async () => {
+test("guided optional image skip recommends using the same session and revision", async () => {
   const ui = harness("guided");
   await settle();
-  assert.equal(ui.requests.length, 1);
   assert.match(
-    ui.stage.innerHTML,
-    /Have something you’d like us to match with/,
+    String(ui.node("#stage").innerHTML),
+    /Skip — show my recommendations/,
   );
-  assert.match(ui.stage.innerHTML, /Skip — show my recommendations/);
-  ui.click("reference-skip");
-  await settle();
+  await click(ui, "#skip");
   assert.equal(ui.requests.length, 2);
   assert.equal(ui.requests[1].body.sessionId, ui.sessionId);
-  assert.deepEqual(ui.requests[1].body.action, { type: "recommend" });
   assert.equal(ui.requests[1].body.revision, 1);
-  assert.equal(ui.requests[0].url, ui.requests[1].url);
+  assert.deepEqual(ui.requests[1].body.action, { type: "recommend" });
+  assert(ui.requests.every((r) => r.url === "/api/admin/curtain-consultation"));
 });
-
-test("invalid reference files do not block skipping or initiate an upload", async () => {
+test("invalid/oversized images are not uploaded and skip remains functional", async () => {
   for (const file of [
     { type: "image/svg+xml", size: 20 },
-    { type: "image/jpeg", size: 9 * 1024 * 1024 },
+    { type: "image/jpeg", size: 3 * 1024 * 1024 },
   ]) {
-    const ui = harness("match"),
-      input = ui.node("#reference-file");
-    input.files = [file];
-    await input.onchange!();
-    assert.match(ui.node("#reference-status").textContent, /or skip/);
-    assert.equal(ui.requests.length, 0);
-    ui.click("reference-skip");
+    const ui = harness("match");
     await settle();
+    ui.node("#reference-file").files = [file];
+    await click(ui, "#upload");
     assert.equal(ui.requests.length, 1);
+    assert.match(String(ui.node("#notice").textContent), /or skip/);
+    await click(ui, "#skip");
+    assert.match(String(ui.node("#stage").innerHTML), /Your room\?/);
   }
+});
+
+test("real recommendation cards hydrate exact identity through the staff catalogue projection and retain handoff context", async () => {
+  const ui = harness("guided", true);
+  await settle();
+  await settle();
+  assert.equal(ui.requests[1].url, "/api/admin/curtain-consultation?fabric=pt-4262-770");
+  const html = String(ui.node(".cards").innerHTML);
+  assert.match(html, /Real design/);
+  assert.match(html, /Order Sample/);
+  assert.match(html, /Make Curtains/);
+  assert.match(html, /preview_theme_id=182264234363/);
+  assert.match(decodeURIComponent(html), /"fabricMasterId":"pt-4262-770"/);
+  assert.match(decodeURIComponent(html), /"strategyId":"complementary"/);
 });

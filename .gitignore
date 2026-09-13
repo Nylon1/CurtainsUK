@@ -68,3 +68,5 @@ next-env.d.ts
 /artifacts/phase6b/private/
 
 /artifacts/phase6-discovery/private/
+
+/artifacts/hci-integration/private/

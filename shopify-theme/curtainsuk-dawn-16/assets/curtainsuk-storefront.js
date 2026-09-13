@@ -129,10 +129,13 @@
 
   function addSample(fabric, windowSlug) {
     const samples = readJson(SAMPLE_KEY, []);
+    const hci = readJson("curtainsuk_hci_context_v1", null);
+    const consultationContext = hci?.fabricMasterId === fabric.id ? hci : null;
     const existing = samples.find((item) => item.fabricId === fabric.id);
     if (existing) {
       if (windowSlug) existing.windowSlug = windowSlug;
-    } else samples.push({ fabricId: fabric.id, supplier: fabric.supplier, brand: fabric.brand, design: fabric.design, colour: fabric.colour, windowSlug, addedAt: new Date().toISOString() });
+      if (consultationContext) existing.consultationContext = consultationContext;
+    } else samples.push({ fabricId: fabric.id, supplier: fabric.supplier, brand: fabric.brand, design: fabric.design, colour: fabric.colour, windowSlug, consultationContext, addedAt: new Date().toISOString() });
     localStorage.setItem(SAMPLE_KEY, JSON.stringify(samples));
     rememberProject({ fabricId: fabric.id, windowSlug: windowSlug || "standard-window" });
     emit("sample_intent", { fabric_id: fabric.id, window_type: windowSlug || null });

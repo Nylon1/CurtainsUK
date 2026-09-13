@@ -3,33 +3,42 @@ import {
   assertPrivateJsonMutation,
   reviewResponse,
 } from "../reviews/_shared";
-import { hostedHciConsultation } from "@/lib/storefront/hci-service-server";
+import { stagingHciIntegration, integrationEnabled } from "@/lib/storefront/hci-integration-server";
 import { readBoundedJson } from "@/lib/storefront/staging-api";
+import { retailFabricDetail } from "@/lib/fabric-master/retail-repository";
+export const maxDuration = 30;
+export async function GET(request: Request) {
+  const identity = await requireReviewAdmin();
+  if (identity.response) return identity.response;
+  if (!integrationEnabled(process.env)) return reviewResponse({ error: "Unavailable" }, 404);
+  try {
+    const fabric = await retailFabricDetail(new URL(request.url).searchParams.get("fabric") ?? "");
+    return reviewResponse({ fabric }, fabric ? 200 : 404);
+  } catch {
+    return reviewResponse({ error: "Fabric temporarily unavailable" }, 503);
+  }
+}
 export async function POST(request: Request) {
   const identity = await requireReviewAdmin();
   if (identity.response) return identity.response;
   try {
     assertPrivateJsonMutation(request);
-  } catch {
-    return reviewResponse({ error: "Invalid consultation request." }, 400);
-  }
-  try {
     return reviewResponse(
-      await hostedHciConsultation(
+      await stagingHciIntegration(
         identity.admin.id,
-        await readBoundedJson(request, 16_384),
+        await readBoundedJson(request, 3_000_000),
       ),
     );
   } catch (error) {
-    const code = error instanceof Error ? error.message : "";
+    const conflict =
+      error instanceof Error && error.message === "HCI_SESSION_CONFLICT";
     return reviewResponse(
       {
-        error:
-          code === "HCI_SESSION_CONFLICT"
-            ? "Your consultation has changed. Reload it before continuing."
-            : "The hosted consultation is currently unavailable. You can still explore the fabric library or shop by window.",
+        error: conflict
+          ? "This consultation changed. Resume the saved consultation before continuing."
+          : "The consultation is paused. Your accepted choices are saved. You can retry, browse fabrics or shop by window independently.",
       },
-      code === "HCI_SESSION_CONFLICT" ? 409 : 503,
+      conflict ? 409 : 503,
     );
   }
 }

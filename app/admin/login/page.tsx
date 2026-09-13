@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { consultationResumePath } from "@/lib/storefront/consultation-entry";
 
 function getErrorMessage(error: unknown) {
   return error instanceof Error ? error.message : "Sign in failed.";
@@ -27,7 +28,7 @@ export default function AdminLoginPage() {
       });
 
       if (error) throw error;
-      router.push("/admin/");
+      router.push(consultationResumePath(new URLSearchParams(window.location.search)) ?? "/admin/");
       router.refresh();
     } catch (error: unknown) {
       alert(getErrorMessage(error));

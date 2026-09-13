@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { consultationResumePath } from "@/lib/storefront/consultation-entry";
 import { hasStagingReviewRole } from "@/lib/storefront/review-authz";
 import { hasSupplierAdminRole } from "@/lib/supplier-intelligence/authz";
 
@@ -66,6 +67,8 @@ export async function proxy(request: NextRequest) {
   }
 
   if (isLoginRoute && user) {
+    const consultationPath = consultationResumePath(request.nextUrl.searchParams);
+    if (consultationPath) return privateAdminResponse(NextResponse.redirect(new URL(consultationPath, request.url)));
     const adminUrl = request.nextUrl.clone();
     adminUrl.pathname = reviewer ? "/admin/reviews" : "/admin";
     adminUrl.search = "";

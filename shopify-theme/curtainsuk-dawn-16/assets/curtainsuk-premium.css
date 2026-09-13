@@ -452,3 +452,17 @@
     line-height: 1.65;
   }
 }
+
+/* Three entrances into one fabric journey. */
+.cuk-discovery { padding-top:48px; padding-bottom:48px; }
+.cuk-discovery__choices { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:28px; }
+.cuk-discovery__choice { display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:28px; color:inherit; text-decoration:none; border:1px solid #d9d6ca; background:#fbf9f4; }
+.cuk-discovery__choice h3 { font-family:Georgia,serif; font-size:28px; margin:0; }
+.cuk-discovery__choice p { margin:0 0 16px; }
+.cuk-discovery__choice small { font-size:12px; line-height:1.5; color:#646459; }
+.cuk-discovery__choice .cuk-text-link { margin-top:auto; min-height:44px; }
+.cuk-discovery__choice:focus-visible { outline:3px solid #556b57; outline-offset:4px; }
+#cuk-fabric-library-search { scroll-margin-top:80px; }
+@media(max-width:749px) { .cuk-discovery__choices { grid-template-columns:1fr; gap:12px; } .cuk-discovery__choice { padding:22px; } .cuk-discovery__choice h3 { font-size:25px; } }
+
+.cuk-discovery[hidden] { display:none!important; }

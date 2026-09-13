@@ -1,0 +1,37 @@
+{
+  "themeId": 182264234363,
+  "themeRole": "unpublished",
+  "minimalChanged": false,
+  "paymentsChanged": false,
+  "hciServiceDeployed": false,
+  "hciQualityGate": "BLOCKED",
+  "entryRoutes": [
+    "BROWSE",
+    "IMAGE_FIRST",
+    "QUESTIONS_FIRST"
+  ],
+  "browseJourney": "PASS: full library search \u2192 exact detail \u2192 configurator sdg-dapgpa203",
+  "referenceWorkflow": "Local preview only; not uploaded, analysed or included in HCI evidence",
+  "guidedOptionalStep": "PASS in production UI controller tests using a presentation fixture; live HCI continuation blocked",
+  "sessionContract": "Same existing endpoint/session/revision/recommend/react commands for both assisted routes",
+  "freshStaffLogin": "PASS: entry=match and window=bay-window preserved",
+  "viewports": [
+    1440,
+    390,
+    412
+  ],
+  "tests": {
+    "fullSuite": "PASS",
+    "storefront": 138,
+    "newRegressionTests": 5,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "lint": "PASS",
+    "secretScan": "PASS"
+  },
+  "remainingBlockers": [
+    "HCI authenticated customer reference-image ingestion and analysis contract",
+    "Reliable image-evidence integration and adaptive question selection in HCI",
+    "Human-quality READY verdict and verified hosted service contract"
+  ]
+}

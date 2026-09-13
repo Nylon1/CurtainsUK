@@ -5,11 +5,12 @@
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
+{% render 'curtainsuk-fabric-discovery' %}
 <section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser data-engine-base="{{ engine_base | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>
     <div class="cuk-error" data-cuk-error hidden></div>
-    <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search">
+    <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search" id="cuk-fabric-library-search">
       <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Design, colour or collection"></div>
       <details class="cuk-filter-options" data-cuk-filter-options open><summary>Refine by brand, colour and style</summary><div class="cuk-filter-options__grid">
       <div class="cuk-field"><label for="CukFabricBrand-{{ section.id }}">Brand</label><select id="CukFabricBrand-{{ section.id }}" name="brand"><option value="">All brands</option></select></div>

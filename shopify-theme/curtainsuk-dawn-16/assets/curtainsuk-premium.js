@@ -1,6 +1,17 @@
 (() => {
   if (window.__curtainsukPremiumReady) return;
   window.__curtainsukPremiumReady = true;
+  document.querySelectorAll("[data-cuk-discovery]").forEach(section => {
+    const query = new URLSearchParams(location.search);
+    if (query.has("fabric")) section.hidden = true;
+    section.querySelectorAll("[data-cuk-assisted-entry]").forEach(link => {
+      const windowType = query.get("window");
+      if (windowType && /^[a-z-]{1,60}$/.test(windowType)) {
+        const target = new URL(link.href); target.searchParams.set("window", windowType); link.href = target.href;
+      }
+    });
+  });
+
   const KEY = 'curtainsuk_hci_context_v1';
   const read = (key) => {
     try {

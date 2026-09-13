@@ -5,7 +5,7 @@
     <p class="cuk-eyebrow">A home that feels like you</p>
     <h1>Beautiful curtains.<br><em>Considered for you.</em></h1>
     <p class="cuk-lede">The right fabric changes how a room feels. Discover your favourites, find your finish, and make something entirely your own.</p>
-    <a class="cuk-button" href="{{ section.settings.consultation_url | default: 'https://curtainsuk-staging-gateway.vercel.app/admin/curtain-consultation' }}">Help me find the perfect curtains <span aria-hidden="true">↗</span></a>
+    <a class="cuk-button" href="#cuk-fabric-discovery">Help me find the perfect curtains <span aria-hidden="true">↗</span></a>
     <p class="cuk-editorial-note">Private preview · Our guided consultation is currently for internal review.</p>
     <a class="cuk-text-link" href="#cuk-shop-your-way">I know what I want <span aria-hidden="true">↓</span></a>
   </div>
@@ -14,6 +14,7 @@
     <figcaption>THE FABRIC EDIT <span>Sanderson · Painters Garden</span></figcaption>
   </figure>
 </section>
+<div id="cuk-fabric-discovery">{% render 'curtainsuk-fabric-discovery' %}</div>
 <section id="cuk-shop-your-way" class="cuk-shell cuk-shop-your-way cuk-wrap">
   <div><p class="cuk-eyebrow">Your home. Your starting point.</p><h2>Find your own way in.</h2></div>
   <a href="/pages/solve-my-window"><span class="cuk-route-number">01</span><h3>Start with your window</h3><p>From a simple pair to a beautiful bay.</p><span class="cuk-text-link">Shop by Window ↗</span></a>

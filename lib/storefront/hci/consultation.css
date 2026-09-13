@@ -1,0 +1,399 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  color: #293b32;
+  background: #fbf9f4;
+  font:
+    16px/1.7 Arial,
+    sans-serif;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #a07c50;
+  outline-offset: 4px;
+}
+[hidden] {
+  display: none !important;
+}
+header {
+  min-height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5%;
+  border-bottom: 1px solid #dcded3;
+  gap: 20px;
+}
+.wordmark {
+  font:
+    30px Georgia,
+    serif;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+.wordmark span {
+  font-style: italic;
+}
+.internal {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.quiet {
+  background: transparent;
+  border: 0;
+  padding: 10px 0;
+  font-size: 13px;
+  text-decoration: underline;
+  min-height: 44px;
+  color: #405340;
+}
+main {
+  max-width: 1240px;
+  margin: auto;
+  padding: 30px 40px 70px;
+  min-height: 80vh;
+}
+.progress {
+  display: flex;
+  gap: 36px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #828876;
+  border-bottom: 1px solid #dcded3;
+  padding-bottom: 18px;
+  margin-bottom: 64px;
+}
+.progress .active {
+  color: #293b32;
+  font-weight: bold;
+}
+#stage {
+  max-width: 960px;
+  margin: auto;
+}
+#stage > h1 {
+  max-width: 830px;
+  font:
+    clamp(38px, 5vw, 68px)/1.08 Georgia,
+    serif;
+  letter-spacing: -2px;
+  margin: 16px 0 24px;
+}
+h1 em {
+  color: #75816a;
+  font-weight: 400;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #66765e;
+}
+.intro {
+  max-width: 530px;
+  line-height: 1.8;
+  color: #586354;
+  font-size: 17px;
+}
+.primary,
+.secondary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #344d3e;
+  border-radius: 2px;
+  padding: 16px 26px;
+  background: #344d3e;
+  color: #fff;
+  min-height: 54px;
+  font-size: 14px;
+  text-decoration: none;
+}
+.secondary {
+  background: transparent;
+  color: #344d3e;
+}
+.fine {
+  font-size: 12px;
+  color: #6d7567;
+  line-height: 1.6;
+}
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 34px 0;
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  background: #f4f2eb;
+  border: 1px solid #d9ddd0;
+  padding: 22px;
+  min-height: 96px;
+  color: #293b32;
+  transition: background 0.15s;
+}
+.option:hover {
+  background: #e9eddf;
+}
+.option span {
+  font:
+    24px Georgia,
+    serif;
+  color: #77846c;
+}
+.option strong {
+  font-weight: 400;
+  font-size: 17px;
+}
+.calibration {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 800/430;
+  background: #e7e6de;
+  border: none;
+  display: block;
+}
+.reactions {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.reactions button {
+  border: 1px solid #b9c1b0;
+  min-height: 48px;
+  min-width: 90px;
+  border-radius: 2px;
+  background: #fbf9f4;
+  color: #344d3e;
+  padding: 10px 16px;
+}
+.reactions button:hover {
+  background: #e8edde;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 50px 28px;
+  margin-top: 40px;
+}
+.card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+.card h2 {
+  font:
+    34px/1.15 Georgia,
+    serif;
+  margin: 12px 0;
+}
+.card .colour {
+  font-size: 18px;
+  margin: 0 0 20px;
+}
+.why {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.why b {
+  display: block;
+  letter-spacing: 1px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.card .actions {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+}
+.card .reactions {
+  gap: 6px;
+}
+.card .reactions button {
+  min-width: 0;
+  flex: 1;
+  font-size: 12px;
+  padding: 8px;
+}
+.colour-note {
+  font-size: 12px;
+  color: #6c715f;
+}
+.card .eyebrow {
+  margin-top: 20px;
+}
+#notice {
+  padding: 18px;
+  background: #f5e9da;
+  color: #6d4827;
+  margin: 0 0 20px;
+}
+#review {
+  border-top: 1px solid #ccc;
+  margin-top: 50px;
+  padding-top: 30px;
+}
+#review h2 {
+  font:
+    32px Georgia,
+    serif;
+}
+#review label {
+  display: block;
+  margin: 12px 0;
+}
+#review select,
+#review textarea {
+  padding: 12px;
+  border: 1px solid #bbc3b3;
+  width: 100%;
+  background: white;
+}
+#review textarea {
+  min-height: 100px;
+}
+#review .ratings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+footer {
+  padding: 24px 5%;
+  border-top: 1px solid #dcded3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  gap: 20px;
+}
+.busy {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.sample-notice {
+  padding: 15px;
+  background: #e7eddf;
+  font-size: 13px;
+}
+.sample-notice a {
+  display: block;
+  min-height: 44px;
+  padding-top: 8px;
+}
+@media (max-width: 749px) {
+  header {
+    min-height: 76px;
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .wordmark {
+    font-size: 26px;
+  }
+  .internal {
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 8px;
+  }
+  .quiet {
+    font-size: 11px;
+  }
+  main {
+    padding: 24px 20px 50px;
+  }
+  .progress {
+    gap: 0;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    font-size: 10px;
+  }
+  .options {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .option {
+    min-height: 82px;
+    padding: 16px;
+  }
+  .option strong {
+    font-size: 15px;
+  }
+  #stage > h1 {
+    font-size: 43px;
+    letter-spacing: -1.5px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .card h2 {
+    font-size: 34px;
+  }
+  .card .actions {
+    padding: 10px 0;
+  }
+  .reactions {
+    position: sticky;
+    bottom: 0;
+    background: #fbf9f4f5;
+    padding: 12px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .reactions button {
+    min-width: 0;
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+  .card .reactions {
+    position: static;
+    display: flex;
+  }
+  .intro {
+    font-size: 16px;
+  }
+  #review .ratings {
+    grid-template-columns: 1fr;
+  }
+  footer {
+    align-items: start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .primary {
+    width: 100%;
+  }
+}

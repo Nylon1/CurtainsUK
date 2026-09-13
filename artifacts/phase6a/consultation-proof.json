@@ -1,0 +1,25 @@
+{
+  "source": "HCI PR #24",
+  "pinnedCommit": "c7059b0bd2949957b17d887e238dbf3c683efa67",
+  "humanRatings": 0,
+  "personaLabels": 24,
+  "localOnly": true,
+  "sessions": [
+    {
+      "session": "6be0e729-b554-4d92-a104-3d23f91e953e",
+      "phase": "complete",
+      "answers": 7,
+      "calibration": 22,
+      "cards": 5,
+      "publicPayloadBytes": 2174
+    },
+    {
+      "session": "8cffd28b-faca-4850-a640-7109fd751251",
+      "phase": "complete",
+      "answers": 7,
+      "calibration": 22,
+      "cards": 5,
+      "publicPayloadBytes": 2179
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "developmentStore": "curtainsuk-dev.myshopify.com",
+  "partnerDevelopment": true,
+  "existingDraftsUnchanged": 8,
+  "newDraft": "#D10",
+  "goodsGross": "1657.00",
+  "deliveryGross": "12.95",
+  "totalGross": "1669.95",
+  "vat": "278.33",
+  "checkoutBrowserPaymentDisabled": true,
+  "configuration": [
+    {
+      "key": "curtainsuk_handoff_id",
+      "value": "d7eb97c5-d838-5d05-83c1-9a2c1345a30e"
+    },
+    {
+      "key": "curtainsuk_configuration_id",
+      "value": "d0d6b9d7-0c83-49f0-80c6-18583e9c0adb"
+    },
+    {
+      "key": "curtainsuk_pricing_rule_version",
+      "value": "2.3.0-draft.1"
+    }
+  ],
+  "noRealPayment": true
+}

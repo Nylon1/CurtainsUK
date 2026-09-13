@@ -1,15 +1,16 @@
 {
   "sections": {
-    "curtainsuk-hero": { "type": "curtainsuk-home-hero", "settings": {} },
-    "curtainsuk-windows": {
-      "type": "curtainsuk-window-grid",
-      "settings": {
-        "heading": "Choose the window before the fabric",
-        "intro": "Start with shape and use. The correct measurements, compatible specification and price or review route follow from there."
-      }
+    "curtainsuk-hero": {
+      "type": "curtainsuk-home-hero",
+      "settings": {}
     },
-    "curtainsuk-fabrics": { "type": "curtainsuk-fabric-browser", "settings": { "engine_base": "/apps/curtainsuk-decision" } },
-    "curtainsuk-inspiration-help": { "type": "curtainsuk-inspiration-help", "settings": {} }
+    "curtainsuk-inspiration-help": {
+      "type": "curtainsuk-inspiration-help",
+      "settings": {}
+    }
   },
-  "order": ["curtainsuk-hero", "curtainsuk-windows", "curtainsuk-fabrics", "curtainsuk-inspiration-help"]
+  "order": [
+    "curtainsuk-hero",
+    "curtainsuk-inspiration-help"
+  ]
 }

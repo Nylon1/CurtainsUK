@@ -1,6 +1,8 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
 
 {% if page.handle == 'shop-by-fabric' or page.handle == 'fabric-library' %}
+<script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
 <section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser data-engine-base="{{ engine_base | escape }}">

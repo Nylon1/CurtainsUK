@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
+  outputFileTracingIncludes: { "/admin/curtain-consultation": ["./lib/storefront/hci/consultation.html"], "/api/admin/curtain-consultation/assets/*": ["./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js"] },
   // Shopify app proxies can forward a trailing slash. Serving both forms
   // directly avoids a redirect back onto the storefront host.
   skipTrailingSlashRedirect: true,

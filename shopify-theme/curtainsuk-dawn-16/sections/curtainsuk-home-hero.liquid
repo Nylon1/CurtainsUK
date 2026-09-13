@@ -1,34 +1,25 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
-
-{% liquid
-  assign window_url = section.settings.window_url | default: '/pages/solve-my-window'
-  assign fabric_url = section.settings.fabric_url | default: '/pages/fabric-library'
-%}
-
-<section class="cuk-shell cuk-hero">
-  <div class="cuk-wrap cuk-hero__grid">
-    <div>
-      <p class="cuk-eyebrow">Made for the shape of your home</p>
-      <h1 class="cuk-title">Curtains for every window</h1>
-      <p class="cuk-lede">Made-to-measure curtains for standard, bay, apex, triangular, gable, tall, wide and unusual windows.</p>
-      <div class="cuk-actions">
-        <a class="cuk-button" href="{{ window_url }}">Shop by Window</a>
-        <a class="cuk-button cuk-button--secondary" href="{{ fabric_url }}">Shop by Fabric</a>
-      </div>
-    </div>
-    <div class="cuk-window-art" role="img" aria-label="Architectural window framed by full-length curtains"></div>
+{{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
+<section class="cuk-shell cuk-editorial-hero">
+  <div class="cuk-editorial-hero__copy">
+    <p class="cuk-eyebrow">A home that feels like you</p>
+    <h1>Beautiful curtains.<br><em>Considered for you.</em></h1>
+    <p class="cuk-lede">The right fabric changes how a room feels. Discover your favourites, find your finish, and make something entirely your own.</p>
+    <a class="cuk-button" href="{{ section.settings.consultation_url | default: 'https://curtainsuk-staging-gateway.vercel.app/admin/curtain-consultation' }}">Help me find the perfect curtains <span aria-hidden="true">↗</span></a>
+    <p class="cuk-editorial-note">Private preview · Our guided consultation is currently for internal review.</p>
+    <a class="cuk-text-link" href="#cuk-shop-your-way">I know what I want <span aria-hidden="true">↓</span></a>
   </div>
+  <figure class="cuk-editorial-hero__image">
+    <img src="https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-89269d7f5a0afea8751ad4b927605c077bd71460e879dafbaf96c2dba1092a44.jpg?width=1200" width="1200" height="1200" alt="Painterly flowers and garden vases in Sanderson Painters Garden, Violet/Crimson" fetchpriority="high" sizes="(max-width:749px) 100vw, 55vw">
+    <figcaption>THE FABRIC EDIT <span>Sanderson · Painters Garden</span></figcaption>
+  </figure>
 </section>
-
+<section id="cuk-shop-your-way" class="cuk-shell cuk-shop-your-way cuk-wrap">
+  <div><p class="cuk-eyebrow">Your home. Your starting point.</p><h2>Find your own way in.</h2></div>
+  <a href="/pages/solve-my-window"><span class="cuk-route-number">01</span><h3>Start with your window</h3><p>From a simple pair to a beautiful bay.</p><span class="cuk-text-link">Shop by Window ↗</span></a>
+  <a href="/pages/fabric-library"><span class="cuk-route-number">02</span><h3>Fall for a fabric</h3><p>Explore colour, texture and pattern from the brands you love.</p><span class="cuk-text-link">Shop by Fabric ↗</span></a>
+</section>
+<section class="cuk-shell cuk-reassurance cuk-wrap" aria-label="Made for your home"><span>Made to your measurements</span><span>Sample in your own light</span><span>Specialist help when you need it</span></section>
 {% schema %}
-{
-  "name": "CurtainsUK home hero",
-  "tag": "section",
-  "class": "section",
-  "settings": [
-    { "type": "url", "id": "window_url", "label": "Shop by Window URL" },
-    { "type": "url", "id": "fabric_url", "label": "Shop by Fabric URL" }
-  ],
-  "presets": [{ "name": "CurtainsUK home hero" }]
-}
+{"name":"CurtainsUK home hero","tag":"section","class":"section","settings":[{"type":"url","id":"consultation_url","label":"Private staging consultation URL"}],"presets":[{"name":"CurtainsUK home hero"}]}
 {% endschema %}

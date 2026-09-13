@@ -1,0 +1,30 @@
+
+> apex-curtains-site@0.1.0 test:shopify-theme
+> tsx --test lib/storefront/__tests__/shopify-theme.test.ts
+
+✔ Dawn contains the 14 unique Window Type route definitions (4.1109ms)
+✔ Dawn delegates decisions to the signed app proxy and exposes only a development-store test handoff with real payment disabled (7.068ms)
+✔ the specialist workflow has no upload requirement and never renders a payment control (1.8533ms)
+✔ manual quote results suppress numeric prices and expose review submission without checkout (2.4532ms)
+✔ Bay UI derives coverage from section widths and never asks for angles (3.6933ms)
+✔ Curved, corner and awkward advertised routes collect their required review measurements (3.865ms)
+✔ review routes explain email evidence without file inputs (2.1701ms)
+✔ task navigation uses resolvable theme-owned inspiration, help and sample anchors (4.6845ms)
+✔ the Dawn header uses the task navigation instead of the production main menu (1.6652ms)
+✔ Dawn uses paginated retail imagery and retains canonical sample identity without commercial fields (3.2816ms)
+✔ an unverified fabric deep link is explained instead of silently substituted (1.3257ms)
+✔ Dawn staging mode hides commerce controls and fixes the preview market label without changing Shopify Markets (2.4221ms)
+✔ all inherited Dawn commerce controls are disabled in the unpublished staging theme (6.3942ms)
+✔ results always show VAT, availability and delivery while standard results avoid specialist warnings (2.1328ms)
+✔ reviewed configurations resume through a fragment capability and revalidate the exact revision server-side (1.8525ms)
+✔ Dawn emits the launch funnel without supplier-commercial analytics fields (1.7322ms)
+✔ mobile controls meet the 44px staging target and avoid iOS input zoom (1.7143ms)
+✔ persistent task, logo and footer navigation meet the 44px staging target (1.0321ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 504.9244

@@ -1,14 +1,16 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
 
 {% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
+<script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
 <section class="cuk-shell cuk-section" data-cuk-configurator data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
-        <p class="cuk-eyebrow">Window-first configurator · staging only</p>
-        <h1>Build your curtain specification</h1>
+        <p class="cuk-eyebrow">Made for your window · private preview</p>
+        <h1>Make it yours.</h1>
       </div>
       <span class="cuk-status" data-cuk-route-status>Loading route…</span>
     </div>

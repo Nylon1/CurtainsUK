@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-09-13T05:17:13.687Z",
+  "supplierPriceWrites": 0,
+  "supplierOrders": 0,
+  "databaseWrites": 0,
+  "simulatedChange": "In-memory only; not a supplier observation",
+  "routes": [
+    {
+      "draft": "#D6",
+      "configurationId": "2e53f5a8-c300-4f5a-98d7-77a35f695e16",
+      "goodsMinor": 110500,
+      "deliveryMinor": 1295,
+      "newSimulatedGoodsMinor": 112400,
+      "immutableSnapshotHash": "1d7ac6ffd5c602bb82f56bbbf3e0053083b18f6cbec1a68cef00b35431b5eb83",
+      "status": "PASS"
+    },
+    {
+      "draft": "#D7",
+      "configurationId": "a00a52b1-5fc5-404d-9e8e-abdd3ba670ca",
+      "goodsMinor": 165700,
+      "deliveryMinor": 1995,
+      "newSimulatedGoodsMinor": 168600,
+      "immutableSnapshotHash": "c3ed43562563045e5f3e0494cf481bbb638d5dbf1f5efbafed64472d19966bb9",
+      "status": "PASS"
+    },
+    {
+      "draft": "#D8",
+      "configurationId": "b40911dc-8c15-41f2-82e0-b66972d9feba",
+      "goodsMinor": 336300,
+      "deliveryMinor": 1995,
+      "newSimulatedGoodsMinor": 342100,
+      "immutableSnapshotHash": "9697d473c2e16de56ccbc9e2676ffa73c8293e22df644361ae759985cf9480fe",
+      "status": "PASS"
+    }
+  ]
+}

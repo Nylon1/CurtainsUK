@@ -123,6 +123,12 @@ function financialNode(contract: ShopifyDraftOrderContract) {
   };
 }
 
+test("reserved invalid rehearsal email stays out of Shopify while real contact handling is unchanged", () => {
+  const handoff = approvedHandoff();
+  assert.equal(buildShopifyDraftOrderContract({ handoff, customerEmail: "pilot@curtainsuk.invalid" }).input.email, undefined);
+  assert.equal(buildShopifyDraftOrderContract({ handoff, customerEmail: "Customer@Example.com" }).input.email, "customer@example.com");
+});
+
 test("Shopify test Draft Order contract carries exact immutable goods, VAT, delivery and configuration references", () => {
   const handoff = approvedHandoff();
   const contract = buildShopifyDraftOrderContract({

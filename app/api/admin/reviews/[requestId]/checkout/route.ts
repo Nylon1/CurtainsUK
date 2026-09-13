@@ -6,6 +6,7 @@ import {
 import { parseReviewCheckoutInput, parseReviewRequestId } from "@/lib/storefront/review-admin-validation";
 import { readBoundedJson } from "@/lib/storefront/staging-api";
 import { createReviewAcceptanceToken } from "@/lib/storefront/review-acceptance-token";
+import { canIssueReviewAcceptanceLink } from "@/lib/storefront/review-workflow";
 import { buildStagingReviewResumeUrl } from "@/lib/storefront/review-resume-link-core";
 import { assertPrivateJsonMutation, requireReviewAdmin, reviewErrorResponse, reviewResponse } from "../../_shared";
 
@@ -48,8 +49,9 @@ export async function POST(request: Request, context: { params: Promise<{ reques
     ]);
     if (!current || !dashboard) throw new Error("REVIEW_NOT_FOUND");
     const latest = current.revisions.at(-1);
-    if (current.request.review_state !== input.expectedState || !latest || latest.revision_id !== input.revisionId) throw new Error("REVIEW_CONFLICT");
-    if (!dashboard.checkout.eligible) throw new Error("REVIEW_CHECKOUT_BLOCKED");
+    const recovering = current.request.review_state === "READY_FOR_CHECKOUT";
+    if ((!recovering && current.request.review_state !== input.expectedState) || !latest || latest.revision_id !== input.revisionId) throw new Error("REVIEW_CONFLICT");
+    if (!canIssueReviewAcceptanceLink(current.request.review_state, dashboard.checkout.blockedReasons)) throw new Error("REVIEW_CHECKOUT_BLOCKED");
     const token = createReviewAcceptanceToken({
       reviewRequestId: requestId,
       reviewRevisionId: input.revisionId,
@@ -61,7 +63,7 @@ export async function POST(request: Request, context: { params: Promise<{ reques
       reviewRevisionId: input.revisionId,
       token,
     });
-    await transitionStaffReviewRequest({
+    if (!recovering) await transitionStaffReviewRequest({
       requestId,
       state: "READY_FOR_CHECKOUT",
       actorId: auth.admin.id,

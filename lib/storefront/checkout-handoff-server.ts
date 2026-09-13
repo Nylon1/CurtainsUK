@@ -18,7 +18,7 @@ import {
 import { persistShopifyDraftOrderExecution } from "./shopify-draft-order-repository";
 import { executeStagingShopifyDraftOrder } from "./shopify-draft-order-server";
 import { loadStagingUkShippingRules } from "./shipping-repository";
-import { quoteOwnerApprovedCurtainShipping, type PackedParcel } from "./shipping-owner-inputs";
+import { quoteOwnerApprovedCurtainShipping, deliveryRequiresReview, approvedDeliveryConfirmation, STAGING_SHIPPING_OWNER_INPUTS, type PackedParcel } from "./shipping-owner-inputs";
 import { normalizeAvailabilityState } from "./review-request";
 import { verifyReviewSubmission } from "./review-token";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
@@ -40,7 +40,7 @@ export interface ServerStagingCheckoutHandoffInput {
   customerAccepted: boolean;
   shippingRegion: string;
   shippingPostcode?: string;
-  parcelClass: ShippingParcelClass;
+  parcelClass?: ShippingParcelClass;
 }
 
 export type ServerStagingCheckoutHandoffResult = {
@@ -79,7 +79,7 @@ function blocked(input: {
     shopifyWritePerformed: false,
     checkoutUrl: null,
     message: input.blockers.includes("SHIPPING_NOT_READY")
-      ? "Delivery must be confirmed before the staging checkout handoff"
+      ? "Delivery confirmed after review"
       : "This configuration is not ready for checkout",
   };
 }
@@ -119,7 +119,7 @@ async function currentAvailability(input: {
 /**
  * Signed-proxy controller. It recalculates instant prices or reads the immutable
  * approved staff revision; browser totals are never accepted. It writes only a
- * staging snapshot/handoff and can never create a Shopify checkout or payment.
+ * staging snapshot/handoff and an allowlisted development-store test Draft Order.
  */
 export async function prepareServerStagingCheckoutHandoff(
   input: ServerStagingCheckoutHandoffInput,
@@ -127,7 +127,7 @@ export async function prepareServerStagingCheckoutHandoff(
   if (!input || typeof input !== "object"
       || typeof input.customerAccepted !== "boolean"
       || typeof input.shippingRegion !== "string"
-      || !["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(input.parcelClass)
+      || (input.parcelClass !== undefined && !["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(input.parcelClass))
       || Boolean(input.reviewRequestId) === Boolean(input.configuration)
       || Boolean(input.configuration) !== Boolean(input.configurationId)
       || (input.configurationId && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.configurationId))
@@ -155,6 +155,8 @@ export async function prepareServerStagingCheckoutHandoff(
   let fabricPricingEligible: boolean;
   let customerSummary: Record<string, unknown>;
   let shippingParcelClass: ShippingParcelClass | null = null;
+  let approvedDelivery: ReturnType<typeof approvedDeliveryConfirmation>;
+  let deliverySpecification: Record<string, unknown> = {};
   let packedParcel: PackedParcel | undefined;
   let customerEmail: string | null = null;
   let fabricLabel: string | null = null;
@@ -199,7 +201,9 @@ export async function prepareServerStagingCheckoutHandoff(
     heading = String(spec.heading ?? request.heading);
     lining = String(spec.lining ?? request.lining);
     construction = String(spec.construction ?? request.construction) as "PAIR" | "SINGLE";
-    shippingParcelClass = approvedReviewParcelClass(spec.shipping_parcel_class);
+    shippingParcelClass = STAGING_SHIPPING_OWNER_INPUTS.launchMode === "SINGLE_RATE" ? "STANDARD" : approvedReviewParcelClass(spec.shipping_parcel_class);
+    deliverySpecification = spec;
+    approvedDelivery = approvedDeliveryConfirmation(spec.delivery_confirmation);
     if (spec.packed_parcel && typeof spec.packed_parcel === "object" && !Array.isArray(spec.packed_parcel)) {
       packedParcel = spec.packed_parcel as PackedParcel;
     }
@@ -283,6 +287,8 @@ export async function prepareServerStagingCheckoutHandoff(
 
   const shipping = quoteOwnerApprovedCurtainShipping({
       packedParcel,
+      requiresDeliveryReview: deliveryRequiresReview(windowType, measurements, deliverySpecification),
+      approvedDelivery,
       selectedRegion: input.shippingRegion, postcode: input.shippingPostcode,
       fabricMetres: calculatedFabricMetres,
       maximumDropCm: Math.max(0, ...Object.entries(measurements)
@@ -291,7 +297,7 @@ export async function prepareServerStagingCheckoutHandoff(
       rules: await loadStagingUkShippingRules(),
     });
 
-  if (reviewRequestId && shipping.status === "READY" && shipping.parcelClass !== shippingParcelClass) {
+  if (STAGING_SHIPPING_OWNER_INPUTS.launchMode !== "SINGLE_RATE" && reviewRequestId && shipping.status === "READY" && shipping.parcelClass !== shippingParcelClass) {
     return blocked({action:"BLOCKED",blockers:["SHIPPING_NOT_READY"]});
   }
 

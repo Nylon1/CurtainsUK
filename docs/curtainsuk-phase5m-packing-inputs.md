@@ -1,3 +1,5 @@
+> Superseded for ordinary launch orders by the owner-approved single-rate policy. Packing measurements below are future operational research, not a launch or checkout requirement. See [single-rate launch shipping](curtainsuk-single-rate-launch-shipping.md).
+
 # CurtainsUK packing evidence — owner input
 
 Status: OWNER INPUT REQUIRED. No genuine packing measurements have been supplied. Previous rehearsal parcels are synthetic fixtures and must not be promoted to operational evidence.

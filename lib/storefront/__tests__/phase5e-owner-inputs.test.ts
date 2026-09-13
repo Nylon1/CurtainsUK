@@ -3,7 +3,7 @@ import test from "node:test";
 import { hasStagingReviewRole } from "../review-authz";
 import { hasSupplierAdminRole } from "../../supplier-intelligence/authz";
 import { STAGING_UK_SHIPPING_RULES, quoteUkShipping } from "../shipping";
-import { STAGING_SHIPPING_OWNER_INPUTS, shippingPolicyBlockers, resolveOwnerShipping, quoteOwnerApprovedCurtainShipping, type ShippingOwnerInputs } from "../shipping-owner-inputs";
+import { STAGING_SHIPPING_OWNER_INPUTS, shippingPolicyBlockers, resolveOwnerShipping, quoteOwnerApprovedCurtainShipping, deliveryRequiresReview, approvedDeliveryConfirmation, type ShippingOwnerInputs } from "../shipping-owner-inputs";
 
 test("the review-only identity is denied outside staging, for customers and for anonymous users", () => {
   const input = { appMetadata: { roles: ["CURTAINSUK_STAGING_REVIEWER"], curtainsuk_environment: "STAGING" }, authUrl: "https://hqysjumypgeapgmqkcrx.supabase.co", environment: "preview" };
@@ -65,12 +65,36 @@ test("owner postcode ranges and inclusive packed length/weight boundaries", () =
 
 test("delivery uses trusted packed measurements and blocks missing or ambiguous classification", () => {
   const rules = STAGING_SHIPPING_OWNER_INPUTS.rates.map(r => ({...r,region:r.region as "UK_MAINLAND",parcelClass:r.parcelClass as "STANDARD",currency:"GBP" as const,enabled:true,status:"VALIDATED" as const}));
-  const input = {postcode:"BT1 1AA",selectedRegion:"NORTHERN_IRELAND",fabricMetres:10.6,maximumDropCm:220,rules};
+  const policy=structuredClone(STAGING_SHIPPING_OWNER_INPUTS);policy.launchMode="PARCEL_CLASSES";
+  const input = {policy,postcode:"BT1 1AA",selectedRegion:"NORTHERN_IRELAND",fabricMetres:10.6,maximumDropCm:220,rules};
   assert.equal(quoteOwnerApprovedCurtainShipping(input).status,"RATE_REQUIRES_CONFIRMATION");
   const packedParcel = {lengthMm:1800,weightGrams:20000};
   assert.equal(quoteOwnerApprovedCurtainShipping({...input,packedParcel}).grossAmountMinor,2995);
   assert.equal(quoteOwnerApprovedCurtainShipping({...input,packedParcel,selectedRegion:"UK_MAINLAND"}).status,"RATE_REQUIRES_CONFIRMATION");
   assert.equal(quoteOwnerApprovedCurtainShipping({...input,packedParcel:{...packedParcel,weightGrams:0}}).status,"RATE_REQUIRES_CONFIRMATION");
-  const policy=structuredClone(STAGING_SHIPPING_OWNER_INPUTS);policy.parcelThresholds.LARGE.maxLengthMm=100;
+  policy.parcelThresholds.LARGE.maxLengthMm=100;
   assert.ok(shippingPolicyBlockers(policy).includes("PARCEL_THRESHOLDS_INVALID"));
+});
+
+
+test("launch delivery needs only the postcode, not packing evidence", () => {
+  const rules = STAGING_SHIPPING_OWNER_INPUTS.rates.map(r => ({...r,region:r.region as "UK_MAINLAND",parcelClass:r.parcelClass as "STANDARD",currency:"GBP" as const,enabled:true,status:"VALIDATED" as const}));
+  for (const [postcode, selectedRegion, expected] of [["SW1A 1AA","UK_MAINLAND",1295],["BT1 1AA","NORTHERN_IRELAND",1995],["IV1 1AA","HIGHLANDS_ISLANDS",1995],["HS1 1AA","HIGHLANDS_ISLANDS",1995]] as const) {
+    const quote = quoteOwnerApprovedCurtainShipping({postcode,selectedRegion,fabricMetres:10.6,maximumDropCm:220,rules});
+    assert.equal(quote.status,"READY"); assert.equal(quote.grossAmountMinor,expected);
+  }
+});
+
+test("specialist delivery requires an exact staff quote bound to destination; Bay alone is ordinary", () => {
+  assert.equal(deliveryRequiresReview("bay-window",{coverage_width:340,finished_drop:220}),false);
+  assert.equal(deliveryRequiresReview("standard-window",{coverage_width:700,finished_drop:220}),true);
+  assert.equal(deliveryRequiresReview("apex-window",{coverage_width:200,finished_drop:220}),true);
+  assert.equal(deliveryRequiresReview("standard-window",{}, {commercial_order:true}),true);
+  assert.equal(deliveryRequiresReview("standard-window",{}, {unusually_heavy:true}),true);
+  const input = {postcode:"BT1 1AA",selectedRegion:"NORTHERN_IRELAND",fabricMetres:31.7,maximumDropCm:220,rules:[],requiresDeliveryReview:true};
+  assert.equal(quoteOwnerApprovedCurtainShipping(input).status,"RATE_REQUIRES_CONFIRMATION");
+  const approvedDelivery=approvedDeliveryConfirmation({postcode:"BT1 1AA",region:"NORTHERN_IRELAND",gross_amount_minor:4495,reason:"Synthetic staff quote test"});
+  assert.equal(quoteOwnerApprovedCurtainShipping({...input,approvedDelivery}).grossAmountMinor,4495);
+  assert.equal(quoteOwnerApprovedCurtainShipping({...input,approvedDelivery,postcode:"BT2 1AA"}).status,"RATE_REQUIRES_CONFIRMATION");
+  assert.equal(approvedDeliveryConfirmation({postcode:"BT1 1AA",region:"NORTHERN_IRELAND",gross_amount_minor:0,reason:"No free delivery"}),undefined);
 });

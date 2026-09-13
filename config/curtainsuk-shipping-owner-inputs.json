@@ -1,8 +1,8 @@
 {
   "environment": "STAGING",
-  "version": "phase5l-owner-shipping-v2",
+  "version": "phase5m-single-rate-shipping-v3",
   "status": "VALIDATED",
-  "approvedBy": "CurtainsUK owner \u2014 explicit staging shipping instruction",
+  "approvedBy": "CurtainsUK owner — single-rate staging launch instruction",
   "approvedAt": "2026-09-08T15:56:37.711926+00:00",
   "currency": "GBP",
   "ratesIncludeVat": true,
@@ -154,5 +154,6 @@
     "carrierService": null,
     "status": "VALIDATED"
   },
-  "specialistHandlingClass": "OVERSIZE"
+  "specialistHandlingClass": "OVERSIZE",
+  "launchMode": "SINGLE_RATE"
 }

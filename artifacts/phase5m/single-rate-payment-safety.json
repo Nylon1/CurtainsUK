@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-09-09T17:20:22.342Z",
+  "shop": {
+    "name": "curtainsuk-dev",
+    "currencyCode": "GBP",
+    "taxesIncluded": true,
+    "plan": {
+      "partnerDevelopment": true,
+      "displayName": "Basic App Development"
+    }
+  },
+  "testOnlyBannerVerified": true,
+  "checkoutCredentialsIsolated": true,
+  "draftScopeAtFirstAttempt": "MISSING"
+}

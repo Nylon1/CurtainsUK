@@ -220,7 +220,7 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     currency: "GBP",
     totalCoverageWidthCm: widthCm,
     bayTrackOrPoleFitted: bay ? input.bayTrackOrPoleFitted! : null,
-    delivery: "UK delivery shown separately; postcode and packed parcel confirmation required",
+    delivery: "UK delivery shown separately after postcode confirmation. Specialist delivery confirmed after review",
     availability,
     message: manualQuote
       ? "Price confirmed after technical review"

@@ -8,7 +8,7 @@ import type {
 } from "@/app/admin/reviews/contracts";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import { reviewReference, summarizeEmailEvidence, emailEvidenceReady, type EmailEvidenceEvent } from "./email-evidence";
-import { shippingPolicyBlockers } from "./shipping-owner-inputs";
+import { shippingPolicyBlockers, STAGING_SHIPPING_OWNER_INPUTS, deliveryRequiresReview, approvedDeliveryConfirmation } from "./shipping-owner-inputs";
 import type { ImmutableConfigurationSnapshot } from "./checkout-gates";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "./window-catalog";
 import { REVIEW_STATES, type ReviewState } from "./review-workflow";
@@ -416,10 +416,13 @@ export async function getStaffReviewDashboard(requestId: string): Promise<Review
   if (!Number.isFinite(calculatedMetres) || calculatedMetres <= 0) {
     blockedReasons.push("Calculated fabric metres are required");
   }
-  const shippingParcelClass = ["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(String(specification.shipping_parcel_class))
+  const shippingParcelClass = STAGING_SHIPPING_OWNER_INPUTS.launchMode === "SINGLE_RATE" ? "STANDARD" : ["STANDARD", "LARGE", "OVERSIZE", "SPECIALIST"].includes(String(specification.shipping_parcel_class))
     ? String(specification.shipping_parcel_class) as ReviewDetail["configuration"]["shippingParcelClass"]
     : null;
   if (!shippingParcelClass) blockedReasons.push("A shipping parcel class is required");
+  const deliveryMeasurements = (specification.measurements ?? detail.request.measurements) as Record<string, unknown>;
+  if (deliveryRequiresReview(String(specification.window_type_slug ?? detail.request.window_type_slug), deliveryMeasurements, specification)
+    && !approvedDeliveryConfirmation(specification.delivery_confirmation)) blockedReasons.push("Delivery confirmed after review: record an exact VAT-inclusive delivery quote and postcode in the staff revision");
   let previousState: ReviewState | null = null;
   const audit = detail.events.map((row) => {
     assertReviewState(row.review_state);

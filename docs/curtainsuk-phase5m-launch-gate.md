@@ -1,90 +1,77 @@
-# CurtainsUK Phase 5M â€” launch gate
+# CurtainsUK Phase 5M — final staging launch gate
 
-Baseline: `0b73d04c494644857c87862b55f4c57bfc67e506`. Branch: `feature/curtainsuk-phase-5a-prelaunch`.
-
-Phase 5M is BLOCKED at the complete browser-to-Draft-Order gate. The Phase 5L service-level Draft Order baseline remains PASS. No new Draft Order was created in Phase 5M. Do not interpret those existing drafts as proof that the complete Phase 5M browser journeys passed.
+Verified 13 September 2026 on `feature/curtainsuk-phase-5a-prelaunch`, continuing baseline `0b73d04c494644857c87862b55f4c57bfc67e506`. This report supersedes the earlier packing/classification gate; that report is retained in `curtainsuk-phase5m-launch-gate-september8-history.md` as historical evidence.
 
 | Area | Status |
-| --- | --- |
+|---|---|
 | Catalogue | PASS |
 | Real fabric configuration | PASS |
 | Pricing | PASS |
 | Stock verification | PASS |
 | Bonded interlining | PASS |
-| Shipping | OWNER INPUT REQUIRED |
-| Instant Price | BLOCKED |
-| Bay Review | BLOCKED |
-| Manual Quote | BLOCKED |
+| Shipping | PASS |
+| Instant Price | PASS |
+| Bay Review | PASS |
+| Manual Quote | PASS |
 | Draft Order | PASS |
 | Price immutability | PASS |
-| Desktop browser journey | BLOCKED |
-| Mobile browser journey | BLOCKED |
+| Desktop browser journey | PASS |
+| Mobile browser journey | PASS |
 | Concurrency/idempotency | PASS |
 | Failure recovery | PASS |
 | Samples/resume | PASS |
 | Review email | PASS |
 
-## Evidence and limits
+## Actual browser handoffs
 
-Unpublished Dawn: https://www.curtainsuk.com/pages/fabric-library?preview_theme_id=182264234363
+All three routes used real Sanderson Painters Garden, Violet/Crimson, internal SKU DAPGPA203. Fresh authorised supplier evidence was captured at 2026-09-13T04:50:04Z, including the current cut-price basis and one suitable stock piece exceeding the largest rehearsal requirement. The stock approval expires 2026-09-14T04:50:04Z; this is a point-in-time verification, not a reservation. No supplier order was placed.
 
-Staging API preview: https://curtainsuk-staging-b0r3h2k2g-hamzas-projects-4ef62f35.vercel.app (Vercel target null; stable staging gateway alias updated). Dawn theme 182264234363 remains unpublished. Production Minimal 79650455661, store email settings, payments, Merchant Center and supplier ordering were not changed.
+| Route | Configuration | Development draft | Goods | Delivery | VAT included | Total |
+|---|---|---|---:|---:|---:|---:|
+| Instant | 201 × 220 cm, pencil, standard, pair | #D6 | £1,105.00 | £12.95 | £186.33 | £1,117.95 |
+| Bay reviewed | 80/181/80 cm sections, 220 cm drop, pencil, standard, pair | #D7 | £1,657.00 | £19.95 | £279.50 | £1,676.95 |
+| Manual Quote | 700 × 220 cm, pencil, bonded, pair | #D8 | £3,363.00 | £19.95 | £563.83 | £3,382.95 |
 
-The actual Dawn catalogue displayed 6,328 fabrics, 24 records per page. Desktop search found Painters Garden â€” Violet/Crimson, its real image and description, and the sample and Make Curtains actions. Sample return preserved the fabric and window. Desktop was 1,229 px wide; mobile 344 px. Both configurators had no horizontal overflow in inspected states.
+Instant used SW1A 1AA. Bay used IV1 1AA. Manual used BT1 1AA. The Manual Quote delivery amount was an explicit **synthetic staging quote** in the approved revision using the owner-configured NI amount. It is not an operational carrier quote for a large/heavy order. Actual specialist orders still require a destination-specific reviewed delivery quote; they cannot automatically take an ordinary rate.
 
-Desktop Instant Price produced Â£1,105.00 goods for the real Sanderson pilot, 200 x 220 cm, pencil pleat, standard lining, pair. Clicking Prepare test checkout stops with delivery confirmation required. Mainland SW1A 1AA, BT1 1AA, IV1 1AA, HS1 1AA and invalid postcode all remained blocked without packing evidence. Region and parcel boundaries plus all nine VAT-inclusive rates passed automated tests. The browser did not reach a confirmed delivery quote or Draft Order for any parcel class; those integrated checks remain outstanding.
+Customer pages showed the exact delivered totals, and the development Shopify readback confirmed them. Line items retained configuration, fabric/design/colour, measurements, heading, lining, pair/single and pricing-version references. Public checkout had no trade cost, margin, stock metres or dye-lot data. Bonded remains one combined £5/m layer without an extra lining charge.
 
-Desktop Bay was submitted through Dawn, reviewed in the real staging staff browser, revised and approved at Â£1,657 goods. Reference CUK-C0C3F6F1-B376-4DBA-A9B1-2756E40F3E30; configuration fd3ce590-a48f-4df4-ae28-4c3aed6e2d11. Database readback: two immutable revisions (original plus staff revision), one approval event. Packing/class is unconfirmed, so readiness/link issuance remains blocked.
+Bay reference: CUK-4C4CF8F2-3245-4C51-8B4D-3A92ADEA97FB. Manual reference: CUK-9DBA4BDE-EA44-45BC-A8C3-400BC5E344A5. Both were submitted through Dawn, revised and approved through the authenticated staff interface, and accepted through the customer interface. Manual initially showed no numeric price. No false evidence-received status or emailed evidence was recorded. Synthetic contact addresses were used and no emails sent.
 
-Mobile specialist Awkward/Unusual showed no numeric price and no checkout control. The mobile Manual Quote rehearsal used the baseline 700 x 220 cm bonded pair: no initial numeric price, then customer submission, staff quote Â£3,363 goods and approval. Reference CUK-D20588FC-8BC1-437A-BF91-31FC3D18B70B; configuration 2add581b-8b97-4819-808d-b2742d88bc23. Two immutable revisions, one approval event. Delivery and customer acceptance of a final delivered amount remain outstanding. No false receipt/review of emailed evidence was recorded.
+Desktop and mobile checks covered configuration, customer review/acceptance and Shopify handoff. Staff administration used its authenticated browser. Screenshots in `artifacts/phase5m/final-{instant,bay,manual}-{desktop,mobile}.png` show the final remote states. Mobile refresh preserved the Manual project reference and selected configuration. Instant refresh/retry recovered the same #D6 handoff and created no duplicate. Earlier sample, back-button and close/reopen checks remain in the historical report; they were not all repeated in this final pass.
 
-Both browser cases used synthetic staging contact details and explicit do-not-fulfil notes. No emails were sent. The correct enquiries@curtainsuk.com address was visible in submissions, staff guidance and Bay/Apex/Triangular/Gable/Manual instructions. No Drapesey references or supplier-commercial terms were found in the inspected customer review states; the CurtainsUK theme source scan also found no drapesey.com references.
+## Shipping and safety
 
-Mobile refresh and recheck retained the submitted Manual Quote reference and selected configuration. A close/reopen rehearsal retained the selected fabric, specialist window, dimensions, heading, lining and pair. Back navigation and sample-return were inspected. This is pre-checkout state/resume proof; resuming a completed test checkout/accepted delivery still needs the blocked full-route rehearsal.
+Ordinary launch delivery is one owner-editable VAT-inclusive regional rate: Mainland £12.95, Highlands/Islands £19.95, NI £19.95. No ordinary packing evidence or parcel class is required. Existing postcode routing, invalid-postcode/manual confirmation and genuine specialist-review conditions remain. Legacy parcel rates remain dormant future configuration. See `curtainsuk-single-rate-launch-shipping.md`.
 
-## Demonstrated defects fixed
+Dawn preview: https://www.curtainsuk.com/pages/fabric-library?preview_theme_id=182264234363
 
-1. The original concurrency regression made two remote create attempts for one handoff. A permanent, private, database-unique creation claim now allows one attempt. A saved receipt is recovered by ID; otherwise an exact tag lookup can recover a previously accepted draft. Empty search results never release a claim after an ambiguous response. The existing snapshot, pricing, shipping and Draft Order contracts are retained.
-2. Reopening a submitted review lost its project reference from the customer page. A customer-safe local receipt now restores it and suppresses repeated submission of the same saved project. Cached signed calculations retain configuration identity when rechecking the unchanged project within their validity period. No contact details are added to this cache.
-3. Instant checkout now verifies the existing signed price-confirmation mechanism against the configuration ID, measurements and current recalculated price. If price changes or confirmation expires, purchase stops for reconfirmation rather than silently accepting a different amount. An ambiguous previous checkout attempt cannot silently turn into a fresh configuration after token expiry; it stays pending for reconciliation.
-4. Handoff confirmation displays goods, delivery and VAT-inclusive total to two decimal places, avoiding rounding away delivery pence. Browser-to-Draft visual comparison of those delivered totals is still blocked by packing.
+Staging gateway: https://curtainsuk-staging-gateway.vercel.app
 
-## Concurrency and recovery proof
+Latest API preview: https://curtainsuk-staging-ljzzsaoj4-hamzas-projects-4ef62f35.vercel.app (preview, target null).
 
-- Real staging database: 20 concurrent claims for the already completed D1 handoff yielded one initial claim; later runs yielded none. No Shopify mutation was invoked by this test.
-- Browser double-click exercised checkout and staff approval. Database readback showed one Manual Quote approval event. Eight concurrent stale approval retries were rejected with no added revision/event and an unchanged original submission.
-- Six concurrent current supplier availability projections for the actual maximum pilot requirement returned the same available state. No supplier reservation/order was made.
-- Controlled Shopify transport test: accepted create with response lost, concurrent request, immediate retry while tag lookup remains empty, eventual exact-tag recovery. One create attempt total. Database claim failure prevents creation. Saved receipt retrieval avoids eventual search-index lag.
-- Controlled supplier test: failed sync/availability run appends no stock observation and retains the approved state; temporary database timeout throws rather than inventing out-of-stock; restoration reads the identical approved snapshot and promotion history.
-- Existing price-confirmation tests: unverified commercial basis yields Manual Quote/Price confirmation required with null customer price; no fabricated amount. New signed-price tests reject changed amount, measurements, identity and expired confirmation.
+The development store is `curtainsuk-dev.myshopify.com`, confirmed partner-development, GBP, taxes included. Its customer checkout explicitly displays “This store can’t accept payments right now”; Pay now is disabled. Drafts remain OPEN, unfulfilled and unpaid. Dawn 182264234363 remains unpublished. Minimal, live payment settings, store email, Merchant Center, supplier ordering and HCI PR #21 were not changed.
 
-These are controlled fault simulations, not induced outages in the shared remote services. They are not a claim that the blocked browser checkout handoffs completed.
+## Demonstrated defects corrected
 
-## Immutable baseline readback
+- Staff detail refresh unmounted the acceptance-link result. The same review workspace now stays mounted; READY_FOR_CHECKOUT can recover a link for its current approved revision without adding another approval/revision. Other blockers and stale revisions still reject.
+- Shopify rejects reserved `.invalid` synthetic email domains even in development calculation. Synthetic contacts remain in the private review; the Draft Order payload omits those addresses. Ordinary valid emails are preserved.
+- Bay section count was displayed with a centimetre suffix. The customer measurement summary now shows the count without a length unit.
 
-Fresh development Shopify API readback confirmed OPEN drafts and exact original financials:
+The existing concurrent creation-claim, exact receipt/tag recovery and signed-price protections remain. Full tests reran controlled response-loss, duplicate request, database failure and unavailable verification scenarios. These are controlled simulations, not deliberately induced remote outages. The earlier real concurrency evidence is retained in the historical report. The final fresh browser retry and Shopify readback found no extra duplicate Draft Orders.
 
-| Draft | Goods | Delivery | VAT within total | Total |
-| --- | --- | --- | --- | --- |
-| #D1 | Â£1,105.00 | Â£12.95 | Â£186.33 | Â£1,117.95 |
-| #D3 | Â£1,657.00 | Â£19.95 | Â£279.50 | Â£1,676.95 |
-| #D4 | Â£3,363.00 | Â£44.95 | Â£567.99 | Â£3,407.95 |
+## Price immutability
 
-The prior real-fabric simulated supplier-price change proof remains intact; the pricing-engine immutability regression was rerun. Bonded remains Â£5/m for one combined layer, with no additional lining charge. No supplier price history or approved order price was changed.
+An in-memory £1/m supplier-cost increase was used to calculate three new configurations. New goods totals were £1,124, £1,686 and £3,421 respectively. No supplier observation/history was changed. The approved snapshot hashes stayed identical. Subsequent Shopify readback matched all existing drafts before and after the simulation, including #D1/#D3/#D4 and new #D6/#D7/#D8. See `artifacts/phase5m/final-immutability.json` and `single-rate-fresh-readback.json`.
 
-## Recovery procedure
+## Validation and limits
 
-For a pending creation, retry the same handoff. Recover the saved Draft Order ID if available; otherwise reconcile the exact CUK_H_ tag, immutable configuration reference and financials in the development store. If Shopify has not indexed it yet, leave it pending. If the outcome remains unknown, staff investigate before authorising any replacement. Never delete/reset a creation claim merely because a request timed out or search returned zero results. Claims have no automatic expiry. Database permissions allow server insert/read only, deny browser roles, and prevent update/delete.
+Full `npm test` passed, including 119 storefront tests and 18 theme tests. TypeScript, changed-file ESLint and Vercel preview builds passed. Repository-wide lint retains pre-existing failures; it is not reported as green. Regression tests were added before the acceptance-link and synthetic-email fixes. A final secret scan and theme verification are recorded with the commit artifacts. Customer review guidance remains enquiries@curtainsuk.com; no upload/scanning dependency was added.
 
-## Validation
+Catalogue remains 6,328 browsable with 24-record pagination. Remaining supplier image reconciliation is not a launch gate. This rehearsal verifies one real supplier fabric across three routes; it does not grant blanket current stock or price approval to the catalogue.
 
-Full npm test passed. Updated supplier failure suite (12 tests) and storefront suite (115 tests) passed; final theme suite passed. TypeScript and ESLint for changed TypeScript files passed. Vercel preview build passed. Secret scan found no actual environment credentials in changed files. Supabase verification confirmed RLS enabled and no anon/authenticated access to the new private claim table. The pre-existing leaked-password-protection advisory remains unchanged: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection . Private service-only tables intentionally have no browser RLS policies.
+## Minimum actions before publication
 
-## Minimum remaining actions before publication
-
-1. Workroom supplies real packed length/width/depth/weight for a normal pair, larger pair and heavy/specialist order, plus carrier limits/manual-confirmation criteria, using `curtainsuk-phase5m-packing-inputs.md`. No dimensions or weights were invented or promoted from synthetic fixtures. Approved rates stay unchanged.
-2. Apply that operational evidence through the existing packing configuration / approved review specification. Preserve manual confirmation for anything ambiguous. The current controller requires packing evidence; the existing staff class field alone does not supply it. Verify that the chosen manual delivery process is usable before launch.
-3. Finish the actual desktop and mobile customer acceptance â†’ delivery â†’ development Draft Order handoffs for all three routes, including all three parcel classes and exact goods/delivery/VAT comparison. The staging API Draft Order mode remains disabled; configure/enable only its allowlisted development-store test mode for that rehearsal after payment safety is checked. This is Codex operational work, not another owner pricing decision.
-4. Recheck completed-checkout resume/recovery, then obtain explicit publication/live-payment approval. No publication or payment activation is authorised by this report.
-
-Evidence: `artifacts/phase5m/operational-checks.json`, `browser-postcodes.json`, `review-email.json`, `close-reopen.json`, test logs, theme-role confirmation and desktop/mobile PNGs.
+1. Continue current price and quantity-specific stock verification at purchase; refresh expired evidence. The rehearsal stock check is not a permanent order-ready grant.
+2. For an actual specialist/large/heavy/commercial order, staff must obtain and approve its real delivery amount. The synthetic Manual Quote delivery is rehearsal evidence only. Ordinary orders need no packing input.
+3. Owner explicitly authorises Dawn publication and a separately controlled live-payment activation. Neither action is performed or authorised by this report.

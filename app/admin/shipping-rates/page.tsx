@@ -89,7 +89,7 @@ export default function ShippingRatesPage() {
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-[#f1cf8a]">Private fulfilment control</p>
             <h1 className="mt-3 text-4xl font-semibold">UK staging delivery rates</h1>
-            <p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">Delivery stays separate from curtain goods. A blank or unconfirmed rate blocks checkout and is never treated as free.</p>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">Launch uses one regional rate (the Standard entry), without parcel measurements. Large/Oversize entries are retained for future configuration only. Specialist delivery is confirmed after review. Delivery stays separate from curtain goods. A blank or unconfirmed rate blocks checkout and is never treated as free.</p>
           </div>
           <Link href="/admin" className="flex min-h-11 items-center rounded-full border border-white/15 px-5 py-3 text-sm">Admin home</Link>
         </div>

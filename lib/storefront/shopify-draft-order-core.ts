@@ -195,6 +195,9 @@ function optionalEmail(value: string | null | undefined): string | undefined {
   if (email.length > 320 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_EMAIL_INVALID");
   }
+  // Reserved synthetic review contacts cannot receive mail and Shopify rejects
+  // their domain even during calculation. Keep them only in our staging review.
+  if (email.endsWith(".invalid")) return undefined;
   return email;
 }
 

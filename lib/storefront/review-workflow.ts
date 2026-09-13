@@ -12,6 +12,12 @@ export const REVIEW_STATES = [
 
 export type ReviewState = (typeof REVIEW_STATES)[number];
 
+/** Recovery issues a capability for the same revision; it is not another approval. */
+export function canIssueReviewAcceptanceLink(state: ReviewState, blockedReasons: readonly string[]) {
+  return (state === 'APPROVED' || state === 'READY_FOR_CHECKOUT')
+    && blockedReasons.every(reason => state === 'READY_FOR_CHECKOUT' && reason === 'Checkout readiness is already recorded');
+}
+
 const ALLOWED_TRANSITIONS: Readonly<Record<ReviewState, readonly ReviewState[]>> = {
   PENDING: ["NEEDS_INFORMATION", "UNDER_REVIEW", "REJECTED"],
   NEEDS_INFORMATION: ["UNDER_REVIEW", "REJECTED"],

@@ -175,7 +175,7 @@ test("results always show VAT, availability and delivery while standard results 
   const section = read("sections", "curtainsuk-configurator.liquid");
   assert.match(script, /"VAT included\."/);
   assert.match(script, /response\.availability \|\| "Availability to be confirmed"/);
-  assert.match(script, /response\.delivery \|\| "Delivery shown separately\."/);
+  assert.match(script, /response\.delivery.*"Delivery shown separately"/);
   assert.match(script, /Shopify test checkout is available only when every launch gate passes; real payment remains disabled/);
   assert.match(section, /data-cuk-result-notice>Staging only\. Shopify test checkout remains gated; real payment is disabled/);
   for (const field of ["window", "dimensions", "fabric", "heading", "lining", "construction", "availability", "price", "delivery", "review"]) {

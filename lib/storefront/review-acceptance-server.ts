@@ -1,5 +1,6 @@
 import { emailEvidenceReady } from "./email-evidence";
 import "server-only";
+import { approvedDeliveryConfirmation } from "./shipping-owner-inputs";
 import { getStaffReviewDashboard, getStaffReviewRequest } from "./review-operations-repository";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
 
@@ -74,11 +75,11 @@ export async function getCustomerReviewAcceptance(
     ?? positiveNumber(persisted.request.calculated_fabric_metres);
   if (!calculatedFabricMetres
       || !latest.pricingRuleVersion
-      || !review.configuration.shippingParcelClass
       || !emailEvidenceReady(review.emailEvidence)) {
     throw new Error("REVIEW_ACCEPTANCE_NOT_READY");
   }
 
+  const delivery = approvedDeliveryConfirmation(latest.specification.delivery_confirmation);
   return {
     reviewRequestId: review.requestId,
     reviewRevisionId: latest.revisionId,
@@ -111,7 +112,7 @@ export async function getCustomerReviewAcceptance(
     shippingParcelClass: review.configuration.shippingParcelClass,
     delivery: {
       status: "SELECT_DELIVERY_AREA_AT_HANDOFF" as const,
-      label: "Delivery is calculated separately after you choose your delivery area.",
+      label: delivery ? `Delivery confirmed after review: £${(delivery.grossAmountMinor / 100).toFixed(2)} including VAT for ${delivery.postcode}.` : "Regional delivery is calculated separately after postcode confirmation.",
     },
     paymentEnabled: false as const,
     supplierCommercialDataIncluded: false as const,

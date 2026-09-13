@@ -59,6 +59,7 @@ export function stagingOptions(request: Request) {
 export function customerSafeApiError(error: unknown, fallback: string) {
   const message = error instanceof Error ? error.message : fallback;
   const customerMessages: Record<string, string> = {
+    SHOPIFY_DRAFT_ORDER_SCOPE_MISSING: "The test checkout connection needs staff attention. Your configuration is retained; please retry once the connection is restored.",
     SHOPIFY_DRAFT_ORDER_PENDING: "Your test order is being confirmed. Retry shortly to recover it; if it remains pending, contact the curtain team. Do not start a replacement order.",
     SHOPIFY_ADMIN_REQUEST_FAILED: "The test checkout service did not respond. Your configuration is retained. Retry to check the same order.",
     SHOPIFY_DRAFT_ORDER_CLAIM_UNAVAILABLE: "Test checkout is temporarily unavailable. Your configuration is retained; please retry later.",

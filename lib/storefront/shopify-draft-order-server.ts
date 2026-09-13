@@ -156,8 +156,8 @@ export function shopifyDraftOrderConfigFromEnvironment(
     throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
   }
   const shopDomain = environment.CURTAINSUK_SHOPIFY_CHECKOUT_STORE?.trim().toLowerCase() ?? "";
-  const clientId = environment.CURTAINSUK_SHOPIFY_CLIENT_ID?.trim() ?? "";
-  const clientSecret = environment.CURTAINSUK_SHOPIFY_APP_SECRET?.trim() ?? "";
+  const clientId = (environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_ID ?? environment.CURTAINSUK_SHOPIFY_CLIENT_ID)?.trim() ?? "";
+  const clientSecret = (environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_SECRET ?? environment.CURTAINSUK_SHOPIFY_APP_SECRET)?.trim() ?? "";
   if (!validShopDomain(shopDomain) || shopDomain !== PHASE5D_ALLOWED_CHECKOUT_STORE) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_STORE_DENIED");
   }

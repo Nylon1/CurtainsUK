@@ -105,7 +105,7 @@
     if (!measurements || typeof measurements !== "object" || Array.isArray(measurements)) return "Measurements held in the approved revision";
     return Object.entries(measurements)
       .filter(([, value]) => ["string", "number", "boolean"].includes(typeof value))
-      .map(([key, value]) => `${humanise(key)}: ${value}${typeof value === "number" ? " cm" : ""}`)
+      .map(([key, value]) => `${humanise(key)}: ${value}${typeof value === "number" && key !== "number_of_sections" ? " cm" : ""}`)
       .join(" · ") || "Measurements held in the approved revision";
   }
 
@@ -465,7 +465,6 @@
               customerAccepted: form.elements.customerAccepted.checked,
               shippingRegion: form.elements.shippingRegion.value,
               shippingPostcode: form.elements.shippingPostcode.value,
-              parcelClass: summary.shippingParcelClass,
             }),
           });
           if (!handoff.prepared) {
@@ -698,6 +697,10 @@
         const response = matchingSaved && tokenExpiry > Date.now() / 1000 + 30
           ? savedEvaluation.calculation
           : await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body) });
+        // Refresh retired presentation copy without changing a resumed price or identity.
+        const deliveryLabel = response.delivery === "UK delivery shown separately; postcode and packed parcel confirmation required"
+          ? "UK delivery shown separately after postcode confirmation. Specialist delivery confirmed after review"
+          : response.delivery || "Delivery shown separately";
         localStorage.setItem(EVALUATION_KEY, JSON.stringify({configuration: body, calculation: response, checkoutAttempted: matchingSaved && savedEvaluation.checkoutAttempted === true}));
         const isManualQuote = response.outcome === "MANUAL_QUOTE";
         const isPriceWithReview = response.outcome === "PRICE_WITH_REVIEW";
@@ -740,7 +743,7 @@
           response.message,
           Number.isFinite(response.totalAmountMinor) ? "VAT included." : null,
           response.availability || "Availability to be confirmed",
-          response.delivery || "Delivery shown separately.",
+          deliveryLabel,
         ].filter(Boolean).join(" · ");
         const priceLabel = isManualQuote
           ? "Confirmed after technical review"
@@ -757,7 +760,7 @@
         result.querySelector("[data-cuk-summary-construction]").textContent = form.elements.construction.selectedOptions[0]?.textContent || form.elements.construction.value;
         result.querySelector("[data-cuk-summary-availability]").textContent = response.availability || "Availability to be confirmed";
         result.querySelector("[data-cuk-summary-price]").textContent = priceLabel;
-        result.querySelector("[data-cuk-summary-delivery]").textContent = response.delivery || "Delivery shown separately";
+        result.querySelector("[data-cuk-summary-delivery]").textContent = deliveryLabel;
         result.querySelector("[data-cuk-summary-review]").textContent = needsReview ? "Required before checkout" : "Not required";
         result.querySelector("[data-cuk-result-spec]").textContent = [
           selected.name,
@@ -857,7 +860,6 @@
             customerAccepted: checkoutForm.elements.customerAccepted.checked,
             shippingRegion: checkoutForm.elements.shippingRegion.value,
             shippingPostcode: checkoutForm.elements.shippingPostcode.value,
-            parcelClass: lastEvaluation.calculation.fabricWidths > 6 ? "OVERSIZE" : "STANDARD",
           }),
         });
         if (!handoff.prepared) {

@@ -55,10 +55,11 @@ async function main(){
  const cost=await verifiedCutCostMinor(record.supplier_id,record.supplier_sku);const fabric=toDecisionEngineFabric(record,cost,record.source_effective_date??'');const rules=buildStagingRuleSet();
  const stockService=new SupplierIntelligenceService(new SupabaseSupplierIntelligenceRepository());
  const base:StagingPriceRequest={windowSlug:'standard-window',measurementBasis:'TRACK_WIDTH',widthCm:200,dropCm:220,fabricId:record.fabric_id,heading:'PENCIL_PLEAT',lining:'STANDARD',construction:'PAIR',stackDirection:'SPLIT'};
- const cases=[{name:'INSTANT_PRICE',request:base,postcode:'SW1A 1AA',region:'UK_MAINLAND',parcel:{lengthMm:1200,weightGrams:10000}},
- {name:'PRICE_WITH_REVIEW',request:{...base,windowSlug:'bay-window',bayTrackOrPoleFitted:true,bayNumberOfSections:3,baySegmentWidthsCm:[80,180,80]},postcode:'IV1 1AA',region:'HIGHLANDS_ISLANDS',parcel:{lengthMm:1200,weightGrams:10000}},
- {name:'MANUAL_QUOTE',request:{...base,widthCm:700,lining:'BONDED' as const},postcode:'BT1 1AA',region:'NORTHERN_IRELAND',parcel:{lengthMm:1900,weightGrams:21000,specialistHandling:true}}];
- for(const c of cases){
+const singleRateRatesByRegion:Record<string,number> = { UK_MAINLAND:1295, HIGHLANDS_ISLANDS:1995, NORTHERN_IRELAND:1995 };
+const cases=[{name:'INSTANT_PRICE',request:base,postcode:'SW1A 1AA',region:'UK_MAINLAND',parcel:{lengthMm:1200,weightGrams:10000},requiresDeliveryReview:false},
+ {name:'PRICE_WITH_REVIEW',request:{...base,windowSlug:'bay-window',bayTrackOrPoleFitted:true,bayNumberOfSections:3,baySegmentWidthsCm:[80,180,80]},postcode:'IV1 1AA',region:'HIGHLANDS_ISLANDS',parcel:{lengthMm:1200,weightGrams:10000},requiresDeliveryReview:false},
+ {name:'MANUAL_QUOTE',request:{...base,widthCm:700,lining:'BONDED' as const},postcode:'BT1 1AA',region:'NORTHERN_IRELAND',parcel:{lengthMm:1900,weightGrams:21000,specialistHandling:true},requiresDeliveryReview:true}];
+for(const c of cases){
   let saved=report.routes.find((r:any)=>r.route===c.name);if(!saved){saved={route:c.name,configurationId:randomUUID(),status:'BLOCKED'};report.routes.push(saved);await save();}
   const initial=await calculateStagingPrice(c.request);assert.equal(initial.outcome,c.name);
   const prepared=prepareStagingConfiguration(c.request,fabric);const calculation=calculatePrice({...prepared,fabric,rules,mode:'CALIBRATION',shippingZone:'UK_MAINLAND'});
@@ -67,7 +68,15 @@ async function main(){
   const stock=await stockService.projection({supplierId:record.supplier_id,supplierSku:record.supplier_sku,requirement:{quantity:calculation.fabricMetres,stock_unit:'METRE'}});
   saved.metres=calculation.fabricMetres;saved.stock=stock.availability;saved.initialPrice=initial.totalAmountMinor;saved.price=price;await save();
   assert.ok(['FABRIC_AVAILABLE','LIMITED_AVAILABILITY'].includes(stock.availability),'QUANTITY_SPECIFIC_STOCK_NOT_CONFIRMED');
-  const shipping=quoteOwnerApprovedCurtainShipping({postcode:c.postcode,selectedRegion:c.region,fabricMetres:calculation.fabricMetres,maximumDropCm:220,packedParcel:c.parcel,rules:await loadStagingUkShippingRules()});assert.equal(shipping.status,'READY');
+  const approvedDelivery = c.requiresDeliveryReview
+    ? {
+        postcode: c.postcode.replace(/\s/g, ""),
+        region: c.region as "UK_MAINLAND" | "HIGHLANDS_ISLANDS" | "NORTHERN_IRELAND",
+        grossAmountMinor: singleRateRatesByRegion[c.region],
+        reason: "Owner-approved delivery confirmation for specialist/heavy configuration.",
+      }
+    : undefined;
+  const shipping=quoteOwnerApprovedCurtainShipping({postcode:c.postcode,selectedRegion:c.region,fabricMetres:calculation.fabricMetres,maximumDropCm:220,packedParcel:c.parcel,requiresDeliveryReview:c.requiresDeliveryReview,approvedDelivery, rules:await loadStagingUkShippingRules()});assert.equal(shipping.status,'READY');
   saved.shipping=shipping;saved.parcelEvidence={kind:'SYNTHETIC_STAGING_PACKED_PARCEL',...c.parcel};await save();
   let reviewState:null|'READY_FOR_CHECKOUT'=null;let revisionId:string|null=null;let requestId:string|null=saved.reviewRequestId??null;
   let measurements:Record<string,unknown>={coverage_width:initial.totalCoverageWidthCm,finished_drop:220,...(c.request.baySegmentWidthsCm?{bay_segment_widths:c.request.baySegmentWidthsCm,number_of_sections:3,track_or_pole_fitted:true}:{})};

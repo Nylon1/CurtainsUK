@@ -1,16 +1,16 @@
 {
-  "checkedAt": "2026-09-08T14:34:25.9324334Z",
+  "checkedAt": "2026-09-13T04:50:04.9193625Z",
   "fabricId": "sdg-dapgpa203",
-  "configurationId": "25f6aaee-3b16-458b-8ce0-d6c0bcd3dbd6",
+  "configurationId": "4e6f9bf0-9a02-4d37-80a9-826c87c468f2",
   "requiredMetres": 10.6,
   "customerGrossMinor": 110500,
   "priceBasisMatches": true,
   "suitableSinglePiece": true,
-  "snapshotId": "phase5l:DAPGPA203:2da62ebe5a1231ae",
-  "stockExpiresAt": "2026-09-09T14:34:25.932+00:00",
+  "snapshotId": "phase5l:DAPGPA203:4f0ce52066d61f11",
+  "stockExpiresAt": "2026-09-14T04:50:04.919+00:00",
   "availability": "FABRIC_AVAILABLE",
   "applied": true,
   "supplierOrders": 0,
   "reservations": 0,
-  "shipping": "OWNER_DECISION_REQUIRED"
+  "shipping": "SINGLE_RATE_LAUNCH"
 }

@@ -64,3 +64,5 @@ next-env.d.ts
 
 # Local HCI rehearsal command history and generated presentation assets.
 /artifacts/phase6a/private/
+
+/artifacts/phase6b/private/

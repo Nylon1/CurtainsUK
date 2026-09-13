@@ -1,0 +1,112 @@
+{
+  "baselineCommit": "3ed510cf30dc8c495620ef7f5bb741acdbc1ee14",
+  "checkedAt": "2026-09-13T12:11:24.141Z",
+  "checkoutStore": {
+    "myshopifyDomain": "curtainsuk-dev.myshopify.com",
+    "taxesIncluded": true,
+    "currencyCode": "GBP",
+    "plan": {
+      "partnerDevelopment": true,
+      "displayName": "Basic App Development"
+    }
+  },
+  "oldDraftsUnchanged": 9,
+  "paymentSettingsChanged": false,
+  "hciDeployed": false,
+  "dawnChanged": false,
+  "hciHumanQuality": "BLOCKED",
+  "desktop": {
+    "width": 1440,
+    "journey": "Shop by Fabric \u2192 search \u2192 exact detail \u2192 standard configuration \u2192 price \u2192 delivery \u2192 development checkout",
+    "hciRequests": 0,
+    "hasHciContext": false,
+    "status": "PASS"
+  },
+  "mobile": {
+    "widths": [
+      390,
+      412
+    ],
+    "journey": "Shop by Window \u2192 Bay \u2192 measurements \u2192 full fabric library \u2192 exact detail \u2192 configurator \u2192 refresh \u2192 price \u2192 NI delivery \u2192 development checkout",
+    "hciRequests": 0,
+    "hasHciContext": false,
+    "status": "PASS",
+    "previewOverlayNote": "Some controls were activated by keyboard focus/Enter because the Shopify preview toolbar iframe intercepted automated pointer clicks. No DOM obstruction was removed."
+  },
+  "drafts": [
+    {
+      "name": "#D12",
+      "status": "OPEN",
+      "goods": "1657.0",
+      "shipping": {
+        "shopMoney": {
+          "amount": "19.95",
+          "currencyCode": "GBP"
+        }
+      },
+      "vat": {
+        "shopMoney": {
+          "amount": "279.5",
+          "currencyCode": "GBP"
+        }
+      },
+      "total": {
+        "shopMoney": {
+          "amount": "1676.95",
+          "currencyCode": "GBP"
+        }
+      },
+      "configurationId": "3afc7496-e9dd-4f1e-b65f-65dd4e0a944a",
+      "handoffId": "f8b7f695-60d5-5508-86f7-c71191e48f46",
+      "pricingVersion": "2.3.0-draft.1",
+      "paymentDisabledInBrowser": true
+    },
+    {
+      "name": "#D11",
+      "status": "OPEN",
+      "goods": "1105.0",
+      "shipping": {
+        "shopMoney": {
+          "amount": "12.95",
+          "currencyCode": "GBP"
+        }
+      },
+      "vat": {
+        "shopMoney": {
+          "amount": "186.33",
+          "currencyCode": "GBP"
+        }
+      },
+      "total": {
+        "shopMoney": {
+          "amount": "1117.95",
+          "currencyCode": "GBP"
+        }
+      },
+      "configurationId": "f15a1c68-70c4-475b-bd81-5d57db88a105",
+      "handoffId": "f420eb52-acd8-57e4-8e15-0eba5ff0c050",
+      "pricingVersion": "2.3.0-draft.1",
+      "paymentDisabledInBrowser": true
+    }
+  ],
+  "historicFailure": {
+    "status": "BLOCKED",
+    "boundary": "Before successful handoff persistence; exact original exception not retained",
+    "shopifyCreateExcluded": true
+  },
+  "operationalReliability": {
+    "status": "BLOCKED",
+    "observed": [
+      "ENDPOINT_RATE_LIMIT_UNAVAILABLE on price/catalogue; fail closed; retry recovered",
+      "FABRIC_MASTER_DATABASE_OPERATION_FAILED on catalogue; reload recovered"
+    ]
+  },
+  "tests": {
+    "fullSuite": "PASS",
+    "storefront": 133,
+    "focusedHardening": 7,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "targetedLint": "PASS"
+  }
+}

@@ -1,3 +1,4 @@
+import { traceCheckout, type CheckoutBoundary } from "./checkout-diagnostics";
 import { emailEvidenceReady, summarizeEmailEvidence } from "./email-evidence";
 import "server-only";
 import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
@@ -123,6 +124,16 @@ async function currentAvailability(input: {
 export async function prepareServerStagingCheckoutHandoff(
   input: ServerStagingCheckoutHandoffInput,
 ): Promise<ServerStagingCheckoutHandoffResult> {
+  return traceCheckout(
+    (enter) => prepareCheckout(input, enter),
+    (event) => { if (process.env.VERCEL_ENV === "preview") console.error(JSON.stringify(event)); },
+  );
+}
+
+async function prepareCheckout(
+  input: ServerStagingCheckoutHandoffInput,
+  enter: (boundary: CheckoutBoundary) => void,
+): Promise<ServerStagingCheckoutHandoffResult> {
   if (!input || typeof input !== "object"
       || typeof input.customerAccepted !== "boolean"
       || typeof input.shippingRegion !== "string"
@@ -161,6 +172,7 @@ export async function prepareServerStagingCheckoutHandoff(
   let fabricLabel: string | null = null;
 
   if (input.reviewRequestId) {
+    enter("REVIEW_STATE");
     const detail = await getStaffReviewRequest(input.reviewRequestId);
     if (!detail) throw new Error("CHECKOUT_REVIEW_NOT_FOUND");
     const request = detail.request;
@@ -210,9 +222,11 @@ export async function prepareServerStagingCheckoutHandoff(
     reviewState = request.review_state;
     customerEmail = request.customer_email;
     fabricPricingEligible = fabricIsConfigurationEligible(record);
+    enter("COMMERCIAL_VERIFICATION");
     // Recheck current supplier cost eligibility without repricing the immutable
     // customer-approved revision.
     if (fabricPricingEligible) await verifiedCutCostMinor(record.supplier_id, record.supplier_sku);
+    enter("STOCK_SNAPSHOT");
     availability = calculatedFabricMetres > 0
       ? await currentAvailability({ supplierId: record.supplier_id, supplierSku: record.supplier_sku, metres: calculatedFabricMetres })
       : "AVAILABILITY_TO_BE_CONFIRMED";
@@ -231,14 +245,17 @@ export async function prepareServerStagingCheckoutHandoff(
     fabricLabel = [record.brand_name, record.design_name, record.colour_name].filter(Boolean).join(" — ");
   } else {
     if (!input.configuration) throw new Error("CHECKOUT_CONFIGURATION_REQUIRED");
+    enter("PRICE_AND_STOCK");
     const calculation = await calculateStagingPrice(input.configuration);
     if (calculation.fabricMetres === null || calculation.fabricWidths === null) return blocked({action:"SUBMIT_PROJECT",blockers:["PRICE_INVALID","TECHNICAL_CONFIGURATION_INVALID","REVIEW_NOT_READY"]});
+    enter("PRICE_CONFIRMATION");
     if (!verifyReviewSubmission({
       configuration: input.configuration,
       configurationId: input.configurationId!,
       outcome: calculation.outcome,
       totalAmountMinor: calculation.totalAmountMinor,
     }, input.priceConfirmationToken)) throw new Error("CHECKOUT_PRICE_RECONFIRM_REQUIRED");
+    enter("FABRIC_IDENTITY");
     const record = await fabricMasterRecordById(input.configuration.fabricId);
     if (!record) throw new Error("CHECKOUT_FABRIC_IDENTITY_INVALID");
     configurationId = input.configurationId!;
@@ -284,6 +301,7 @@ export async function prepareServerStagingCheckoutHandoff(
     ].filter(Boolean).join(" — ");
   }
 
+  enter("SHIPPING");
   const shipping = quoteOwnerApprovedCurtainShipping({
       packedParcel,
       requiresDeliveryReview: deliveryRequiresReview(windowType, measurements, deliverySpecification),
@@ -300,6 +318,7 @@ export async function prepareServerStagingCheckoutHandoff(
     return blocked({action:"BLOCKED",blockers:["SHIPPING_NOT_READY"]});
   }
 
+  enter("CHECKOUT_GATE");
   const gate = evaluateCheckoutGate({
     outcome,
     price,
@@ -312,6 +331,7 @@ export async function prepareServerStagingCheckoutHandoff(
   });
   if (!gate.eligible) return blocked({ action: gate.action as "SUBMIT_FOR_REVIEW" | "SUBMIT_PROJECT" | "BLOCKED", blockers: gate.blockers });
 
+  enter("SNAPSHOT");
   const checkoutIdentity = stagingCheckoutIdentity(configurationId);
   const snapshot = createImmutableConfigurationSnapshot({
     snapshotId: checkoutIdentity.snapshotId,
@@ -342,18 +362,21 @@ export async function prepareServerStagingCheckoutHandoff(
     gate,
   });
   const handoff = prepareStagingCheckoutHandoff({ handoffId: checkoutIdentity.handoffId, snapshot, preparedAt: now });
+  enter("HANDOFF_PERSISTENCE");
   const persisted = await persistStagingCheckoutSnapshotAndHandoff({
     snapshot,
     customerSummary,
     handoffId: handoff.handoffId,
     preparedBy: "SHOPIFY_APP_PROXY_CUSTOMER",
   });
+  enter("SHOPIFY_EXECUTION");
   const shopifyExecution = await executeStagingShopifyDraftOrder({
     handoff,
     customerEmail,
     fabricLabel,
   });
   if (shopifyExecution.status !== "DISABLED") {
+    enter("EXECUTION_RECEIPT");
     await persistShopifyDraftOrderExecution({
       handoff,
       execution: shopifyExecution,

@@ -244,6 +244,21 @@
     const summary = document.createElement('p');
     summary.className = 'cuk-wizard-summary';
     panes[6].prepend(summary);
+    const summaryFields = ['windowSlug', 'fabricId', 'heading', 'lining', 'construction'];
+    const updateSummary = () => {
+      summary.textContent = summaryFields
+        .map((name) => form.elements[name]?.selectedOptions?.[0]?.textContent)
+        .filter(Boolean)
+        .join(' · ');
+    };
+    // Catalogue options arrive asynchronously, including when resuming the Price step.
+    // Observe only select contents; do not move the customer's current step or focus.
+    const summaryObserver = new MutationObserver(updateSummary);
+    summaryFields.forEach((name) => {
+      if (form.elements[name]) summaryObserver.observe(form.elements[name], { childList: true, subtree: true, characterData: true });
+    });
+    form.addEventListener('change', updateSummary);
+    updateSummary();
     const nav = document.createElement('nav');
     nav.className = 'cuk-wizard-nav';
     nav.setAttribute('aria-label', 'Curtain configuration steps');
@@ -270,10 +285,7 @@
       });
       back.hidden = step === 0;
       next.hidden = step === 6;
-      summary.textContent = ['windowSlug', 'fabricId', 'heading', 'lining', 'construction']
-        .map((name) => form.elements[name]?.selectedOptions?.[0]?.textContent)
-        .filter(Boolean)
-        .join(' · ');
+      updateSummary();
       if (focus) {
         panes[step].tabIndex = -1;
         panes[step].focus({ preventScroll: true });

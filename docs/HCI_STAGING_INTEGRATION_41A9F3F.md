@@ -2,6 +2,8 @@
 
 Status: **BLOCKED for the complete requested browser/Draft Order rehearsal.**
 
+Deployed CurtainsUK code: `f8b6e9da50992b93c9b5cd5ed38719971c07ab61`. Isolated HCI adapter: `0e59870f25bbb80325557301c1fd142d7cf5f3e5`, based on the unchanged `41a9f3f` intelligence. Gateway deployment: `curtainsuk-staging-973pjorrb-hamzas-projects-4ef62f35.vercel.app`; upstream: `hci-strategy-performance-staging-drk2k98rz.vercel.app`. Both are previews.
+
 Intelligence baseline: HCI `41a9f3f4a878a81cfed83ebeca47aa968e0744c7`. CurtainsUK branch: `feature/curtainsuk-phase-5a-prelaunch`. Gateway: https://curtainsuk-staging-gateway.vercel.app/admin/curtain-consultation. Dawn remains unpublished, theme `182264234363`; Minimal is untouched. No payment, Merchant Center, supplier ordering or HCI customer activation was enabled. PR #24 remains draft/unmerged.
 
 ## Implemented
@@ -30,6 +32,8 @@ The older `hci-release.ts` quality-blocked provider remains unchanged for its le
 | 390px guided without image | All questions/calibration; prominent Skip; strategies and one refinement; Wilfred Bluebell exact fabric; Standard window; 180 × 210 cm, pencil pleat, bonded combined layer, pair; safe confirmation outcome | Manufacturing pattern-match evidence missing; no numeric price/order |
 | 412px guided with image | Guided questions/calibration; one licensed image; unchanged palette accepted; same session; directions; separate reactions; final shortlist | Sample/checkout handoff with latest theme assets and complete viewport matrix outstanding |
 
+After the final deployment, an explicit older-session return restored the original image-first shortlist despite a newer consultation having been created. Its Make Curtains link correctly carried `pt-4262-770` and `standard-window`. The desktop configurator retained Sadira Lagoon at 180 × 210 cm, pencil pleat, bonded combined layer and pair; the commerce engine safely returned confirmation required due to missing pattern-match evidence. No order was created. Advancing the pre-existing configurator before catalogue hydration briefly left a stale loading summary; returning to the Window step after hydration refreshed it. Fast-load navigation deserves another check after the prepared theme assets are uploaded.
+
 Screenshots were inspected in the browser at desktop, 390px and 412px. These are functional staging checks, not a human aesthetic-quality verdict. One return request temporarily reported authentication required; a reload restored the saved session without a new revision or data loss. No authentication safeguard was weakened.
 
 ## Performance
@@ -38,6 +42,8 @@ Real desktop initial strategy generation including gateway persistence and fabri
 
 HCI-only protected hosted benchmark: 24/24 successful requests over 12 frozen histories. Warm strategy p50/p95: 966/1,167 ms (11 warm requests); warm refinement: 945/1,186 ms (11). Including cold starts: strategy p95 7,472 ms; refinement p95 6,672 ms. Catalogue initialization accounted for 5.08–5.46 seconds on the two cold requests. All 24 output digests matched the preceding adapter deployment. No warm ranking optimization was made.
 
+The final isolated `41a9f3f` deployment was benchmarked again: 24/24 output digests still matched; warm strategy p50/p95 848/1,027 ms, refinement 879/1,076 ms. Two cold requests took 7,222 and 5,967 ms. This confirms isolation excluded the concurrent quality-refinement changes; it does not replace the outstanding full integrated timing distribution.
+
 ## Validation
 
 - Latest storefront suite: 145/145 passed, including existing commerce safeguards. The full CurtainsUK suite was rerun after the final fixes.
@@ -45,6 +51,7 @@ HCI-only protected hosted benchmark: 24/24 successful requests over 12 frozen hi
 - Changed TypeScript lint and staging builds passed. The isolated pinned HCI suite passed 854 tests. Concurrent quality work in the original HCI checkout is excluded: the final adapter lives on `codex/curtainsuk-integration-41a9f3f`, based directly on the requested `41a9f3f`. This integration does not update or merge PR #24.
 - SQL rollback rehearsal: duplicate request creates exactly one revision, stale revision rejected, another owner cannot read the session. Browser roles have no access to private state.
 - No pricing, daily stock, 30m floor, shipping, bonded-layer costing or Draft Order engine files changed.
+- Staged-file scan checked the 54 CurtainsUK and 8 HCI files for the actual service/platform secrets, private data paths and common credential/private-key patterns: zero findings. Anonymous remote requests to consultation catalogue and assets returned HTTP 401.
 
 ## Exact remaining blockers
 

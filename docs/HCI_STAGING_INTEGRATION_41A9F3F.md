@@ -22,17 +22,28 @@ The older `hci-release.ts` quality-blocked provider remains unchanged for its le
 1. HCI's colour question returned 18 options; the gateway accepted only 12. It now accepts a bounded 24 and has regression coverage. The previously rejected answer retried successfully with its saved request identity.
 2. Staff-preview cards incorrectly called `/catalog`, a Shopify-proxy-only route. They now use an authenticated CurtainsUK GET endpoint delegating to the same safe retail projection. Exact-ID/CTA regression passed.
 3. A new Standard consultation inherited an old Apex project during handoff because no explicit window query was carried. Explicit Standard/Bay answers now produce a safe window handoff hint, retained on resume. No ranking logic is copied.
-4. Returning from an older sample could open the newest consultation. The theme return URL now carries the exact session, with a validated sign-in/resume path. These newest theme assets still require remote upload.
+4. Returning from an older sample could open the newest consultation. The theme return URL now carries the exact session, with a validated sign-in/resume path. Both assets are now uploaded and the remote return restored the original shortlist.
+5. Resuming the configurator at Price displayed a stale loading summary after catalogue hydration. Theme commit `7f883fc0574ec44cb360cd328c0e2e7fe4c11496` observes only the summary's select contents and updates the text without moving the current step/focus or changing commerce. A regression failed before implementation and passed afterward; all 146 storefront tests, changed-test lint and JavaScript syntax checks passed.
 
 ## Browser evidence
 
 | Journey | Evidence | Remaining |
 | --- | --- | --- |
-| Desktop image-first | Room 20 upload; grey removed, cream added, beige moved, white kept; palette confirmed; 14 questions/22 calibration reactions; four available directions and one honestly unavailable; separate feedback; final shortlist; Sadira Lagoon saved in Dawn samples | Latest theme context fields not deployed; no successful integrated Draft Order |
+| Desktop image-first | Room 20 upload; grey removed, cream added, beige moved, white kept; palette confirmed; 14 questions/22 calibration reactions; four available directions and one honestly unavailable; separate feedback; final shortlist; Sadira Lagoon saved in Dawn samples; latest assets preserve Standard window and return to exact original shortlist | No successful integrated Draft Order |
 | 390px guided without image | All questions/calibration; prominent Skip; strategies and one refinement; Wilfred Bluebell exact fabric; Standard window; 180 × 210 cm, pencil pleat, bonded combined layer, pair; safe confirmation outcome | Manufacturing pattern-match evidence missing; no numeric price/order |
 | 412px guided with image | Guided questions/calibration; one licensed image; unchanged palette accepted; same session; directions; separate reactions; final shortlist | Sample/checkout handoff with latest theme assets and complete viewport matrix outstanding |
 
 After the final deployment, an explicit older-session return restored the original image-first shortlist despite a newer consultation having been created. Its Make Curtains link correctly carried `pt-4262-770` and `standard-window`. The desktop configurator retained Sadira Lagoon at 180 × 210 cm, pencil pleat, bonded combined layer and pair; the commerce engine safely returned confirmation required due to missing pattern-match evidence. No order was created. Advancing the pre-existing configurator before catalogue hydration briefly left a stale loading summary; returning to the Window step after hydration refreshed it. Fast-load navigation deserves another check after the prepared theme assets are uploaded.
+
+### Remote Dawn verification after Shopify sign-in
+
+On 13 September, Shopify CLI sign-in completed and only `assets/curtainsuk-premium.js` and `assets/curtainsuk-storefront.js` were pushed to existing theme `182264234363`. Shopify returned role `unpublished`. Readback of both initially uploaded assets matched local SHA-256 exactly. The subsequent summary-only fix above was uploaded to the same theme and verified remotely.
+
+Desktop: Order Sample for Sadira Lagoon updated the existing saved sample without adding a duplicate. After hydration, Resume my curtains linked to exact `pt-4262-770` with `standard-window`. Return to my shortlist included the original consultation ID and restored that original final shortlist.
+
+390px: Make Curtains preserved the same exact consultation/fabric/window. Reload at the saved Price step now updated the summary automatically to Standard Window / Sadira Lagoon / Pencil pleat / Bonded lining-interlining / Pair after hydration, without navigating back. Screenshot inspected.
+
+412px: Price check retained 180 × 210 cm and all those selections, returned confirmation required, showed `enquiries@curtainsuk.com`, and kept checkout unavailable. No numeric price was invented and no Draft Order was created. The full viewport/checkout matrix remains incomplete; these checks resolve the asset deployment and summary-hydration blockers only.
 
 Screenshots were inspected in the browser at desktop, 390px and 412px. These are functional staging checks, not a human aesthetic-quality verdict. One return request temporarily reported authentication required; a reload restored the saved session without a new revision or data loss. No authentication safeguard was weakened.
 
@@ -55,7 +66,7 @@ The final isolated `41a9f3f` deployment was benchmarked again: 24/24 output dige
 
 ## Exact remaining blockers
 
-1. **Shopify CLI authentication:** two device codes expired. Upload the two prepared theme assets only to unpublished Dawn, then verify their context-preserving behaviour remotely. Do not publish or change store settings.
+1. **Shopify CLI authentication and theme upload: resolved.** Both context assets and the small summary fix are on unpublished Dawn. Remote sample, exact-session return and mobile configuration checks are recorded above.
 2. **Manufacturing data for recommended test fabrics:** `pt-8837-768` (Wilfred Bluebell), `pt-4262-770` (Sadira Lagoon) and `pt-7247-711` (Java Ocean) all have `pattern_match_type = null`. Their current supplier price snapshots are approved and expire on 15 September; the price is not the missing datum. The existing combined confirmation message masks this specification boundary. Obtain real pattern-match evidence or use a genuinely recommended, fully specified, stock-eligible fabric; do not invent metadata, change ranking or bypass commerce to manufacture a passing order.
 3. **Full browser checkout matrix:** no new Draft Order was created in this integration run. Complete image-first → price → availability → delivery → test Draft Order and all requested desktop/390/412 handoffs after the above gates. Recheck development-store payment safety before creation.
 4. **Shortened questions:** pinned HCI still asks normal questions after image confirmation. Palette-aware suppression needs an approved intelligence-contract change; no guessed answers were injected.

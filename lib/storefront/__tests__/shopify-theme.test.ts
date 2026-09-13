@@ -58,10 +58,10 @@ test("Bay UI derives coverage from section widths and never asks for angles", ()
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
   const guide = read("sections", "curtainsuk-measure-guide.liquid");
-  assert.match(section, /name="trackOrPoleFitted"/);
+  assert.doesNotMatch(section, /name="trackOrPoleFitted"/);
   assert.match(section, /name="baySectionCount"[^>]*min="2"[^>]*max="8"/);
   assert.match(section, /data-cuk-bay-sections/);
-  assert.match(script, /bayTrackOrPoleFitted/);
+  assert.doesNotMatch(script, /bayTrackOrPoleFitted:/);
   assert.match(script, /bayNumberOfSections/);
   assert.match(script, /segments\.reduce\(\(total, width\) => total \+ width, 0\)/);
   assert.equal(/bayAngles|BayAngles|angles between segments/i.test(script + section + guide), false);

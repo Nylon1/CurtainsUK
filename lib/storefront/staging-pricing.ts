@@ -38,6 +38,7 @@ export interface StagingPriceResponse {
   reasons: string[];
   fabricWidths: number | null;
   fabricMetres: number | null;
+  stockSnapshotStale?: boolean;
   commercialState?: "PRICE_CONFIRMATION_REQUIRED" | "PRICE_READY" | "ORDER_READY";
   selectedFabric: { id: string; supplier: string; collection: string; design: string; colour: string };
   heading: HeadingType;
@@ -91,7 +92,6 @@ function newConfigurationId() {
 }
 
 function bayMeasurements(input: StagingPriceRequest) {
-  if (typeof input.bayTrackOrPoleFitted !== "boolean") throw new Error("Bay track or pole status is required");
   if (!Number.isInteger(input.bayNumberOfSections) || input.bayNumberOfSections! < 2 || input.bayNumberOfSections! > 8) {
     throw new Error("Bay section count must be between 2 and 8");
   }
@@ -219,7 +219,7 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     vatRateBasisPoints: retailPrice?.vatRateBasisPoints ?? null,
     currency: "GBP",
     totalCoverageWidthCm: widthCm,
-    bayTrackOrPoleFitted: bay ? input.bayTrackOrPoleFitted! : null,
+    bayTrackOrPoleFitted: bay ? input.bayTrackOrPoleFitted ?? null : null,
     delivery: "UK delivery shown separately after postcode confirmation. Specialist delivery confirmed after review",
     availability,
     message: manualQuote
@@ -258,7 +258,7 @@ export function calculatePriceConfirmationReview(
     selectedFabric: {id:identity.id,supplier:identity.supplier,collection:identity.collection,design:identity.design,colour:identity.colour},
     heading:input.heading,lining:input.lining,construction:input.construction,
     netAmountMinor:null,vatAmountMinor:null,totalAmountMinor:null,vatRateBasisPoints:null,currency:"GBP",
-    totalCoverageWidthCm:widthCm,bayTrackOrPoleFitted:bay ? input.bayTrackOrPoleFitted! : null,
+    totalCoverageWidthCm:widthCm,bayTrackOrPoleFitted:bay ? input.bayTrackOrPoleFitted ?? null : null,
     delivery:"Delivery charge requires confirmation",availability:"Availability to be confirmed",
     message:"Price confirmation required. Submit your curtain details for supplier price and availability verification.",
   };

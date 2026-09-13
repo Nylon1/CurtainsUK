@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "configurationId": "c26c4c36-509d-4e5c-ad70-834bd2a87f4c",
+  "draft": "#D9",
+  "outcome": "INSTANT_PRICE",
+  "approvalRequired": false,
+  "goods": "1657.00",
+  "shipping": "12.95",
+  "total": "1669.95",
+  "vatIncluded": "278.33",
+  "desktopViewport": [
+    1280,
+    900
+  ],
+  "mobileViewport": [
+    390,
+    844
+  ],
+  "mobileHorizontalOverflow": false,
+  "retry": "SAME_HANDOFF_RECOVERED",
+  "previousDraftsUnchanged": 7,
+  "paymentEnabled": false
+}

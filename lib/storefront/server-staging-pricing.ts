@@ -3,8 +3,7 @@ import { MissingCommercialRuleError } from "@/lib/decision-engine/errors";
 import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
 import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
 import { toDecisionEngineFabric, toReviewFabricIdentity } from "@/lib/fabric-master/decision-engine";
-import { SupplierIntelligenceService } from "@/lib/supplier-intelligence/service";
-import { SupabaseSupplierIntelligenceRepository } from "@/lib/supplier-intelligence/supabase-repository";
+import { dailyStockProjection } from "./daily-stock-server";
 import { calculateStagingPriceForTest, calculatePriceConfirmationReview, classifySpecialistReview, type SpecialistReviewRequest, type StagingPriceRequest, type StagingPriceResponse } from "./staging-pricing";
 import { signReviewSubmission } from "./review-token";
 
@@ -28,7 +27,7 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
   let provisional: ReturnType<typeof calculateStagingPriceForTest>;
   try { provisional = calculateStagingPriceForTest(input, pricedFabric); }
   catch(error) { if(error instanceof MissingCommercialRuleError) return priceConfirmation(); throw error; }
-  const projection = await new SupplierIntelligenceService(new SupabaseSupplierIntelligenceRepository()).projection({
+  const projection = await dailyStockProjection({
     supplierId: record.supplier_id,
     supplierSku: record.supplier_sku,
     requirement: provisional.fabricMetres === null ? null : { quantity: provisional.fabricMetres, stock_unit: "METRE" },
@@ -38,11 +37,12 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
     LIMITED_AVAILABILITY: "Limited availability",
     AVAILABLE_SOON: "Available soon",
     AVAILABILITY_TO_BE_CONFIRMED: "Availability to be confirmed",
-    TEMPORARILY_UNAVAILABLE: "Temporarily unavailable",
+    TEMPORARILY_UNAVAILABLE: "Currently unavailable",
     NO_LONGER_AVAILABLE: "No longer available",
   };
   return {
     ...provisional,
+    stockSnapshotStale: projection.stale,
     commercialState: ["FABRIC_AVAILABLE", "LIMITED_AVAILABILITY"].includes(projection.availability) ? "ORDER_READY" : "PRICE_READY",
     availability: labels[projection.availability] ?? "Availability to be confirmed",
     reviewSubmissionToken: signReviewSubmission({

@@ -2,8 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { fabricMasterRecordById } from "@/lib/fabric-master/repository";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
-import { SupplierIntelligenceService } from "@/lib/supplier-intelligence/service";
-import { SupabaseSupplierIntelligenceRepository } from "@/lib/supplier-intelligence/supabase-repository";
+import { dailyStockProjection } from "./daily-stock-server";
 import type { PublicSupplierAvailability } from "@/lib/supplier-intelligence/types";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "./window-catalog";
 import { calculateStagingPrice, classifyServerSpecialistReview } from "./server-staging-pricing";
@@ -52,7 +51,7 @@ function normalizedMeasurements(configuration: ReviewConfiguration) {
 }
 
 async function specialistAvailability(supplierId: string, supplierSku: string): Promise<PublicSupplierAvailability> {
-  const projection = await new SupplierIntelligenceService(new SupabaseSupplierIntelligenceRepository()).projection({
+  const projection = await dailyStockProjection({
     supplierId,
     supplierSku,
     requirement: null,

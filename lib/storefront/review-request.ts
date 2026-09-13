@@ -33,6 +33,7 @@ const AVAILABILITY_BY_LABEL: Record<string, PublicSupplierAvailability> = {
   "Limited availability": "LIMITED_AVAILABILITY",
   "Available soon": "AVAILABLE_SOON",
   "Availability to be confirmed": "AVAILABILITY_TO_BE_CONFIRMED",
+  "Currently unavailable": "TEMPORARILY_UNAVAILABLE",
   "Temporarily unavailable": "TEMPORARILY_UNAVAILABLE",
   "No longer available": "NO_LONGER_AVAILABLE",
 };

@@ -59,22 +59,23 @@ export function classifyComplexity(
     return decision("MANUAL_QUOTE", "LOW", true, ["Window type normally requires a manual quote"], rules.version);
   }
 
+  const ordinaryBay = windowType.slug === "bay-window";
   const exceedsInstant = width !== null && width > rules.instantMaximumWidthCm || drop !== null && drop > rules.instantMaximumDropCm;
   if (exceedsInstant) reasons.push("Width or drop falls within the draft technical-review band");
-  if (rules.usuallyReviewWindowTypes.includes(windowType.slug) || windowType.technicalReviewRequired) reasons.push("Window type normally requires technical review");
-  if (configuration.trackComplexity !== "SIMPLE_STRAIGHT") reasons.push("Track complexity requires review");
-  if (configuration.numberOfSegments > 1) reasons.push("Multi-segment construction requires review");
+  if (!ordinaryBay && (rules.usuallyReviewWindowTypes.includes(windowType.slug) || windowType.technicalReviewRequired)) reasons.push("Window type normally requires technical review");
+  if (!ordinaryBay && configuration.trackComplexity !== "SIMPLE_STRAIGHT") reasons.push("Track complexity requires review");
+  if (!ordinaryBay && configuration.numberOfSegments > 1) reasons.push("Multi-segment construction requires review");
   if (context.fabric?.patternMatchType === "HALF_DROP_MATCH" || context.fabric?.patternCentringRequirement === "WORKROOM_CONFIRMATION_REQUIRED") reasons.push("Pattern handling requires workroom review");
   // Missing supplier metadata must not change a technically standard curtain
   // into a review job. Known heavy fabrics can be routed by an explicit,
   // versioned threshold once the workroom approves one; unknown weight remains
   // a separate fabric-data/availability concern.
-  if (configuration.interlining === "INTERLINING" || configuration.lining === "BONDED") reasons.push("Interlining is a complexity factor");
+  if (!ordinaryBay && (configuration.interlining === "INTERLINING" || configuration.lining === "BONDED")) reasons.push("Interlining is a complexity factor");
   if (context.calculatedFabricWidths !== undefined) reasons.push(`Calculated construction uses ${context.calculatedFabricWidths} fabric widths`);
 
-  if (reasons.length) return decision("PRICE_WITH_REVIEW", "MEDIUM", false, reasons, rules.version);
+  if (reasons.length) return decision(ordinaryBay ? "MANUAL_QUOTE" : "PRICE_WITH_REVIEW", "MEDIUM", false, reasons, rules.version);
   if (rules.usuallyInstantWindowTypes.includes(windowType.slug) && windowType.instantPricingAllowed) {
-    return decision("INSTANT_PRICE", "HIGH", false, ["Eligible rectangular job is within the draft size thresholds"], rules.version);
+    return decision("INSTANT_PRICE", "HIGH", false, ["Eligible curtain configuration is within the size thresholds"], rules.version);
   }
   return decision("MANUAL_QUOTE", "LOW", windowType.technicalReviewRequired, ["No approved instant-pricing path exists"], rules.version);
 }

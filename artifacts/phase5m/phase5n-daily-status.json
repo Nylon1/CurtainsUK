@@ -1,0 +1,23 @@
+{
+  "privateRls": "PASS",
+  "confirmedUsageRows": 0,
+  "pilotState": "AVAILABLE",
+  "checkedAt": "2026-09-13T06:07:29.861Z",
+  "runs": [
+    {
+      "supplier_id": "prestigious-textiles",
+      "snapshot_date": "2026-09-13",
+      "status": "FAILED",
+      "imported": 0,
+      "error_code": "NO_CURRENT_SUPPLIER_OBSERVATIONS"
+    },
+    {
+      "supplier_id": "sanderson-design-group",
+      "snapshot_date": "2026-09-13",
+      "status": "SUCCESS",
+      "imported": 1,
+      "error_code": null
+    }
+  ],
+  "upstreamRefresh": "BLOCKED: unattended supplier stock sources not configured"
+}

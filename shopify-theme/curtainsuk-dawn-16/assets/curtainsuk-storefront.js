@@ -342,7 +342,7 @@
   }
 
   function setJourneyFields(root, windowType) {
-    const isBay = windowType?.journey === "REVIEW" && windowType.slug === "bay-window";
+    const isBay = windowType?.slug === "bay-window";
     const isCorner = windowType?.journey === "REVIEW" && windowType.slug === "corner-window";
     const isCurved = windowType?.journey === "REVIEW" && windowType.slug === "curved-bow-window";
     const isSpecialist = windowType?.journey === "SPECIALIST";
@@ -669,7 +669,7 @@
           measurementBasis: isBay || isCorner || isCurved ? "TRACK_WIDTH" : form.elements.measurementBasis.value,
           widthCm: isBay || isCorner ? derivedWidth : Number(form.elements.widthCm.value),
           dropCm: Number(form.elements.dropCm.value),
-          bayTrackOrPoleFitted: isBay ? form.elements.trackOrPoleFitted.value === "YES" : undefined,
+
           bayNumberOfSections: isBay ? segments.length : undefined,
           baySegmentWidthsCm: isBay ? segments : undefined,
           cornerSectionWidthsCm: isCorner ? cornerSections : undefined,

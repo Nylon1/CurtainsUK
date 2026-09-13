@@ -59,7 +59,7 @@ test("a normal standard curtain receives a server-authoritative instant price", 
   assert.ok(!Object.hasOwn(result, "directCostNet"), "public response must not expose internal cost");
 });
 
-test("a real Dali bay is priced with review at the unchanged 35% rule", () => {
+test("a real Dali bay is priced instantly at the unchanged 35% rule", () => {
   const fabric = { ...STOREFRONT_FABRICS.find((item) => item.id === "pt-4270-147")!, supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
   const result = calculateStagingPriceForTest({
     windowSlug: "bay-window",
@@ -75,14 +75,14 @@ test("a real Dali bay is priced with review at the unchanged 35% rule", () => {
     stackDirection: "SPLIT",
     photoNames: ["bay-room.jpg"],
   }, fabric);
-  assert.equal(result.outcome, "PRICE_WITH_REVIEW");
-  assert.equal(result.technicalReviewRequired, true);
+  assert.equal(result.outcome, "INSTANT_PRICE");
+  assert.equal(result.technicalReviewRequired, false);
   assert.equal(result.totalCoverageWidthCm, 340);
   assert.equal(result.bayTrackOrPoleFitted, true);
   assert.equal(result.fabricWidths, 6);
   assert.ok(result.fabricMetres > 0);
   assert.ok(result.totalAmountMinor !== null && result.totalAmountMinor > 0);
-  assert.equal(result.message, "Provisional price subject to technical review");
+  assert.equal(result.message, "Your made-to-measure price is ready");
   assert.ok(!Object.hasOwn(result, "directCostNet"), "public response must not expose internal cost");
 });
 
@@ -189,14 +189,14 @@ test("Bay coverage is derived from section widths and angles are not part of the
   };
   const result = calculateStagingPriceForTest(base, fabric);
   assert.equal(result.totalCoverageWidthCm, 340);
-  assert.equal(result.outcome, "PRICE_WITH_REVIEW");
+  assert.equal(result.outcome, "INSTANT_PRICE");
   assert.notEqual(result.totalAmountMinor, null);
   assert.equal(WINDOW_TYPES_BY_SLUG.get("bay-window")!.requiredMeasurements.some((item) => item.key === "bay_angles_degrees"), false);
 
   assert.throws(() => calculateStagingPriceForTest({ ...base, bayNumberOfSections: 4 }, fabric), /must match the section count/);
   assert.throws(() => calculateStagingPriceForTest({ ...base, baySegmentWidthsCm: [80, 9.9, 180] }, fabric), /between 10 cm and 600 cm/);
   assert.throws(() => calculateStagingPriceForTest({ ...base, baySegmentWidthsCm: [80, 600.1, 180] }, fabric), /between 10 cm and 600 cm/);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, bayTrackOrPoleFitted: undefined }, fabric), /status is required/);
+  assert.equal(calculateStagingPriceForTest({ ...base, bayTrackOrPoleFitted: undefined }, fabric).outcome, "INSTANT_PRICE");
 });
 
 test("Bay section-count and per-section launch boundaries are server-authoritative", () => {

@@ -56,8 +56,8 @@ test("real Escher standard and Dali bay configurations use verified cut costs", 
   assert.equal(standard.outcome, "INSTANT_PRICE");
   assert.ok(standard.totalAmountMinor !== null && standard.totalAmountMinor > 0);
   const bay = calculateStagingPriceForTest({ windowSlug: "bay-window", measurementBasis: "TRACK_WIDTH", dropCm: 220, bayTrackOrPoleFitted: true, bayNumberOfSections: 3, baySegmentWidthsCm: [80, 180, 80], fabricId: "pt-4270-147", heading: "WAVE", lining: "BLACKOUT", construction: "PAIR", stackDirection: "SPLIT", photoNames: ["bay.jpg"] }, dali);
-  assert.equal(bay.outcome, "PRICE_WITH_REVIEW");
-  assert.equal(bay.technicalReviewRequired, true);
+  assert.equal(bay.outcome, "INSTANT_PRICE");
+  assert.equal(bay.technicalReviewRequired, false);
 });
 
 test("real Prestigious fabric never bypasses apex technical review", () => {

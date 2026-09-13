@@ -2,8 +2,7 @@ import { emailEvidenceReady, summarizeEmailEvidence } from "./email-evidence";
 import "server-only";
 import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
 import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
-import { SupplierIntelligenceService } from "@/lib/supplier-intelligence/service";
-import { SupabaseSupplierIntelligenceRepository } from "@/lib/supplier-intelligence/supabase-repository";
+import { dailyStockProjection } from "./daily-stock-server";
 import type { PublicSupplierAvailability } from "@/lib/supplier-intelligence/types";
 import {
   createImmutableConfigurationSnapshot,
@@ -108,7 +107,7 @@ async function currentAvailability(input: {
   supplierSku: string;
   metres: number;
 }): Promise<PublicSupplierAvailability> {
-  const projection = await new SupplierIntelligenceService(new SupabaseSupplierIntelligenceRepository()).projection({
+  const projection = await dailyStockProjection({
     supplierId: input.supplierId,
     supplierSku: input.supplierSku,
     requirement: { quantity: input.metres, stock_unit: "METRE" },
@@ -249,7 +248,7 @@ export async function prepareServerStagingCheckoutHandoff(
       measurement_basis: input.configuration.measurementBasis,
       coverage_width: calculation.totalCoverageWidthCm,
       finished_drop: input.configuration.dropCm,
-      ...(input.configuration.baySegmentWidthsCm ? { bay_segment_widths: input.configuration.baySegmentWidthsCm } : {}),
+      ...(input.configuration.baySegmentWidthsCm ? { bay_segment_widths: input.configuration.baySegmentWidthsCm, number_of_sections: input.configuration.bayNumberOfSections } : {}),
     };
     fabricMasterId = record.fabric_id;
     supplierSku = record.supplier_sku;

@@ -85,13 +85,6 @@
             <div class="cuk-field" data-cuk-width><label for="CukWidth-{{ section.id }}" data-cuk-width-label>Width (cm)</label><input id="CukWidth-{{ section.id }}" name="widthCm" type="number" min="30" max="1200" step="0.1" value="200" required><p class="cuk-hint cuk-hidden" data-cuk-width-hint>Measure along the complete curved track, not straight across the opening.</p></div>
             <div class="cuk-field"><label for="CukDrop-{{ section.id }}">Drop (cm)</label><input id="CukDrop-{{ section.id }}" name="dropCm" type="number" min="30" max="600" step="0.1" value="220" required></div>
             <div class="cuk-field cuk-hidden" data-cuk-bay>
-              <label for="CukBayTrackFitted-{{ section.id }}">Is the track or pole already fitted?</label>
-              <select id="CukBayTrackFitted-{{ section.id }}" name="trackOrPoleFitted" required>
-                <option value="YES">Yes</option>
-                <option value="NO">No</option>
-              </select>
-            </div>
-            <div class="cuk-field cuk-hidden" data-cuk-bay>
               <label for="CukBaySectionCount-{{ section.id }}">Number of bay sections</label>
               <input id="CukBaySectionCount-{{ section.id }}" name="baySectionCount" type="number" min="2" max="8" step="1" value="3" required>
             </div>

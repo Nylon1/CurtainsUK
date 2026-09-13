@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-13T05:24:49.956Z",
+  "checkedAt": "2026-09-13T06:08:25.081Z",
   "shop": {
     "myshopifyDomain": "curtainsuk-dev.myshopify.com",
     "taxesIncluded": true,
@@ -11,6 +11,127 @@
   },
   "draftOrders": {
     "nodes": [
+      {
+        "id": "gid://shopify/DraftOrder/1611314758006",
+        "name": "#D9",
+        "status": "OPEN",
+        "taxesIncluded": true,
+        "shippingAddress": {
+          "countryCodeV2": "GB",
+          "zip": "SW1A 1AA"
+        },
+        "lineItems": {
+          "nodes": [
+            {
+              "title": "Made-to-measure curtains — Bay Window",
+              "sku": "CUK-c26c4c36-509d-4e5c-ad70-834bd2a87f4c",
+              "quantity": 1,
+              "taxable": true,
+              "requiresShipping": true,
+              "customAttributes": [
+                {
+                  "key": "Configuration",
+                  "value": "c26c4c36-509d-4e5c-ad70-834bd2a87f4c"
+                },
+                {
+                  "key": "Window type",
+                  "value": "Bay Window"
+                },
+                {
+                  "key": "Measurements",
+                  "value": "Bay Segment Widths: 80 cm / 182 cm / 80 cm; Coverage Width: 342 cm; Finished Drop: 220 cm; Measurement Basis: TRACK_WIDTH; Number Of Sections: 3 cm"
+                },
+                {
+                  "key": "Fabric",
+                  "value": "Sanderson Design Group — Painters Garden — Violet/Crimson"
+                },
+                {
+                  "key": "Heading",
+                  "value": "PENCIL PLEAT"
+                },
+                {
+                  "key": "Lining",
+                  "value": "STANDARD"
+                },
+                {
+                  "key": "Pair / single",
+                  "value": "PAIR"
+                },
+                {
+                  "key": "Fabric required",
+                  "value": "15.9 m"
+                },
+                {
+                  "key": "Availability",
+                  "value": "Fabric available"
+                },
+                {
+                  "key": "Pricing rules",
+                  "value": "2.3.0-draft.1"
+                },
+                {
+                  "key": "Review / quote",
+                  "value": "Instant-price configuration"
+                },
+                {
+                  "key": "VAT",
+                  "value": "Included"
+                }
+              ]
+            }
+          ]
+        },
+        "subtotalPriceSet": {
+          "shopMoney": {
+            "amount": "1657.0",
+            "currencyCode": "GBP"
+          }
+        },
+        "totalShippingPriceSet": {
+          "shopMoney": {
+            "amount": "12.95",
+            "currencyCode": "GBP"
+          }
+        },
+        "totalTaxSet": {
+          "shopMoney": {
+            "amount": "278.33",
+            "currencyCode": "GBP"
+          }
+        },
+        "totalPriceSet": {
+          "shopMoney": {
+            "amount": "1669.95",
+            "currencyCode": "GBP"
+          }
+        },
+        "customAttributes": [
+          {
+            "key": "curtainsuk_handoff_id",
+            "value": "137db700-eee6-55ef-8144-ac20e1aa9480"
+          },
+          {
+            "key": "curtainsuk_snapshot_id",
+            "value": "2ef6cea1-1805-5546-8f88-d46675556d73"
+          },
+          {
+            "key": "curtainsuk_configuration_id",
+            "value": "c26c4c36-509d-4e5c-ad70-834bd2a87f4c"
+          },
+          {
+            "key": "curtainsuk_review_request_id",
+            "value": ""
+          },
+          {
+            "key": "curtainsuk_review_revision_id",
+            "value": ""
+          },
+          {
+            "key": "curtainsuk_pricing_rule_version",
+            "value": "2.3.0-draft.1"
+          }
+        ]
+      },
       {
         "id": "gid://shopify/DraftOrder/1611312497014",
         "name": "#D8",

@@ -186,8 +186,8 @@ export default function ReviewDashboard() {
     <main className="min-h-screen bg-[#102c26] text-white">
       <div className="mx-auto max-w-[1500px] px-4 py-8 sm:px-6 lg:px-8">
         <header className="flex flex-wrap items-start justify-between gap-5">
-          <div><p className="text-xs uppercase tracking-[0.2em] text-[#f1cf8a]">Private curtain operations</p><h1 className="mt-3 text-4xl font-semibold">Technical review queue</h1><p className="mt-3 max-w-3xl text-sm leading-6 text-white/60">Review customer projects, evidence and pricing revisions. Payment remains disabled; readiness is recorded for a later controlled checkout phase.</p></div>
-          <div className="flex flex-wrap gap-3"><Link href="/admin" className={`${BUTTON} border border-white/15 text-white hover:bg-white/5`}>Admin home</Link><button type="button" onClick={() => void refresh()} disabled={listBusy || detailBusy} className={`${BUTTON} bg-[#f1cf8a] text-[#102c26] hover:bg-[#f7dda5]`}>Refresh queue</button></div>
+          <div><p className="text-xs uppercase tracking-[0.2em] text-[#f1cf8a]">Private curtain operations</p><h1 className="mt-3 text-4xl font-semibold">Technical review queue</h1><p className="mt-3 max-w-3xl text-sm leading-6 text-white/60">Review specialist projects and genuine exceptions. Ordinary Bay orders now use automatic pricing. Payment remains disabled; readiness is recorded for a later controlled checkout phase.</p></div>
+          <div className="flex flex-wrap gap-3"><Link href="/admin/daily-stock" className={`${BUTTON} border border-white/15 text-white`}>Daily stock and usage</Link><Link href="/admin" className={`${BUTTON} border border-white/15 text-white hover:bg-white/5`}>Admin home</Link><button type="button" onClick={() => void refresh()} disabled={listBusy || detailBusy} className={`${BUTTON} bg-[#f1cf8a] text-[#102c26] hover:bg-[#f7dda5]`}>Refresh queue</button></div>
         </header>
 
         <div aria-live="polite" aria-atomic="true" className="mt-5">

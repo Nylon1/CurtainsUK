@@ -124,11 +124,11 @@ export const DRAFT_PRICING_RULE_SET: PricingRuleSet = {
 };
 
 export const INITIAL_COMPLEXITY_RULE_SET: ComplexityRuleSet = {
-  id: "curtainsuk-complexity-v2-draft", version: "2.0.0-draft.1", status: "DRAFT", thresholdsStatus: "DRAFT",
+  id: "curtainsuk-complexity-v3-bay-instant", version: "3.0.0-bay-instant", status: "DRAFT", thresholdsStatus: "DRAFT",
   instantMaximumWidthCm: 400, instantMaximumDropCm: 300,
   reviewMaximumWidthCm: 600, reviewMaximumDropCm: 350,
-  usuallyInstantWindowTypes: ["standard-window", "french-doors", "patio-doors", "sliding-doors", "bifold-doors", "extra-wide-window", "floor-to-ceiling-window"],
-  usuallyReviewWindowTypes: ["bay-window", "bow-window", "dormer-window", "corner-window", "tall-window", "double-height-window", "curved-window", "conservatory"],
+  usuallyInstantWindowTypes: ["bay-window", "standard-window", "french-doors", "patio-doors", "sliding-doors", "bifold-doors", "extra-wide-window", "floor-to-ceiling-window"],
+  usuallyReviewWindowTypes: ["bow-window", "dormer-window", "corner-window", "tall-window", "double-height-window", "curved-window", "conservatory"],
   usuallyManualQuoteWindowTypes: ["apex-window", "triangular-window", "gable-end-window", "angled-window", "arched-window", "awkward-unusual-window"],
   provisionalSpecialistGeometries: ["SYMMETRICAL_APEX", "TRIANGLE", "GABLE"],
   complexityFactors: { fabricWidths: true, fabricWeight: true, patternMatching: true, liningAndInterlining: true, headingType: true, windowType: true, trackComplexity: true, numberOfSegments: true },

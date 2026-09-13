@@ -45,7 +45,8 @@ export async function proxy(request: NextRequest) {
   const isCurtainsStaging = process.env.NEXT_PUBLIC_SUPABASE_URL === "https://hqysjumypgeapgmqkcrx.supabase.co"
     && process.env.VERCEL_ENV === "preview";
   if (isCurtainsStaging && !isLoginRoute && (user || pathname.startsWith("/api/admin/"))) {
-    const reviewPath = /^\/admin\/reviews(?:\/|$)/.test(pathname)
+    const reviewPath = pathname === "/admin/daily-stock" || pathname === "/api/admin/daily-stock"
+      || /^\/admin\/reviews(?:\/|$)/.test(pathname)
       || /^\/api\/admin\/reviews(?:\/|$)/.test(pathname)
       || /^\/api\/admin\/review-evidence\/[^/]+\/(access-token|download)$/.test(pathname);
     if (!user || user.is_anonymous || (!hasSupplierAdminRole(user.app_metadata) && !(reviewer && reviewPath))) {

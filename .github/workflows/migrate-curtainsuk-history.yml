@@ -1,0 +1,54 @@
+name: One-time CurtainsUK history migration
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/migrate-curtainsuk-history.yml
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone CurtainsUK source branch with full history
+        run: |
+          git clone --branch feature/curtainsuk-phase-5a-prelaunch --single-branch https://github.com/Nylon1/Apexcurtains.git source
+          cd source
+          echo "Source commit before filtering: $(git rev-parse HEAD)"
+          git status --short
+
+      - name: Remove Apex-only workflow from migrated history
+        working-directory: source
+        run: |
+          git config user.name "CurtainsUK migration"
+          git config user.email "actions@users.noreply.github.com"
+          FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force \
+            --index-filter 'git rm --cached --ignore-unmatch .github/workflows/seo-foundation.yml' \
+            --prune-empty \
+            --tag-name-filter cat \
+            -- --all
+          if git log HEAD --format=%H -- .github/workflows/seo-foundation.yml | grep -q .; then
+            echo "Apex workflow still exists in rewritten branch history"
+            exit 1
+          fi
+
+      - name: Preserve this migration workflow at imported tip
+        working-directory: source
+        run: |
+          mkdir -p .github/workflows
+          curl -fsSL "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/.github/workflows/migrate-curtainsuk-history.yml" \
+            -o .github/workflows/migrate-curtainsuk-history.yml
+          git add .github/workflows/migrate-curtainsuk-history.yml
+          git commit -m "Preserve one-time CurtainsUK migration workflow"
+          echo "Migration head: $(git rev-parse HEAD)"
+
+      - name: Replace target main with CurtainsUK history
+        working-directory: source
+        env:
+          TARGET_TOKEN: ${{ github.token }}
+        run: |
+          git remote add curtainsuk "https://x-access-token:${TARGET_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push curtainsuk HEAD:main --force

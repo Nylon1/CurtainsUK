@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { assertNoRawReferenceMedia } from "./hci-image-privacy";
 import { signHciCommerceContext } from "./hci-commerce-context";
 import { acceptedHciFeedback } from "./hci-feedback";
+import { customerHciEnabled } from './customer-hci-session';
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import {
   integrationCommand,
@@ -21,9 +22,9 @@ export function integrationEnabled(env = process.env) {
 function handoffView(view: ReturnType<typeof integrationView> & {windowSlug?:string | null;revision?:number}) {
   return {...view, directions:view.directions.map(d => ({...d, cards:d.cards.map(c => ({...c, commerceToken:signHciCommerceContext({sessionId:view.sessionId,strategyId:d.id,fabricMasterId:c.fabricMasterId,policyVersion:HCI_INTEGRATION_BASELINE,recommendationVersion:view.refinementDigest ?? `initial:${view.sessionId}`},process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? "")}))}))};
 }
-/** Called only after authenticated staff authorization and same-origin checks. */
-export async function stagingHciIntegration(staffId: string, value: unknown) {
-  if (!integrationEnabled()) throw Error("HCI_DISABLED");
+/** Called after staff authorization or signed customer-session and origin checks. */
+export async function stagingHciIntegration(staffId: string, value: unknown, audience: 'staff'|'customer' = 'staff') {
+  if (!(audience === 'customer' ? customerHciEnabled() : integrationEnabled())) throw Error("HCI_DISABLED");
   const command = integrationCommand(value),
     db = createSupplierServiceClient();
   const digest = createHash("sha256")
@@ -35,6 +36,8 @@ export async function stagingHciIntegration(staffId: string, value: unknown) {
     p_request: command.requestId,
   });
   if (readError) throw Error("HCI_STORAGE_UNAVAILABLE");
+  // A customer cannot adopt a guessed or expired consultation ID as a new session.
+  if (audience === 'customer' && !prior && value && typeof value === 'object' && 'sessionId' in value && value.sessionId) throw Error('HCI_SESSION_CONFLICT');
   if (prior?.request_id === command.requestId) {
     if (prior.request_digest !== digest) throw Error("HCI_SESSION_CONFLICT");
     return handoffView({ ...prior.presentation, windowSlug: integrationWindowContext(prior.private_state) });
@@ -70,7 +73,7 @@ export async function stagingHciIntegration(staffId: string, value: unknown) {
   )
     throw Error("HCI_CONFIGURATION_INVALID");
   const owner = createHash("sha256")
-    .update(`curtainsuk:staff:${staffId}`)
+    .update(`curtainsuk:${audience}:${staffId}`)
     .digest("hex");
   const upstream = await fetch(endpoint, {
     method: "POST",

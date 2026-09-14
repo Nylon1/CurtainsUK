@@ -1,4 +1,5 @@
 import "server-only";
+import { allowedCheckoutStore } from './checkout-store-policy';
 import { claimShopifyDraftOrderCreation, persistedShopifyDraftOrderId } from "./shopify-draft-order-repository";
 import { createHash } from "node:crypto";
 import {
@@ -21,6 +22,7 @@ export interface ShopifyDraftOrderRuntimeConfig {
   clientId: string;
   clientSecret: string;
   realPaymentsDisabledConfirmed: boolean;
+  productionTestConfirmed?: boolean;
   requestTimeoutMs: number;
 }
 
@@ -60,7 +62,6 @@ type ClientCredentialsToken = {
   grantedScopes: ReadonlySet<string>;
 };
 
-const PHASE5D_ALLOWED_CHECKOUT_STORE = "curtainsuk-dev.myshopify.com";
 const TOKEN_REFRESH_MARGIN_MS = 5 * 60 * 1_000;
 let cachedClientCredentialsToken: (ClientCredentialsToken & { cacheKey: string }) | null = null;
 
@@ -156,9 +157,11 @@ export function shopifyDraftOrderConfigFromEnvironment(
     throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
   }
   const shopDomain = environment.CURTAINSUK_SHOPIFY_CHECKOUT_STORE?.trim().toLowerCase() ?? "";
-  const clientId = (environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_ID ?? environment.CURTAINSUK_SHOPIFY_CLIENT_ID)?.trim() ?? "";
-  const clientSecret = (environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_SECRET ?? environment.CURTAINSUK_SHOPIFY_APP_SECRET)?.trim() ?? "";
-  if (!validShopDomain(shopDomain) || shopDomain !== PHASE5D_ALLOWED_CHECKOUT_STORE) {
+  const productionStore = shopDomain === 'carpetup.myshopify.com';
+  const clientId = (productionStore ? environment.CURTAINSUK_SHOPIFY_CLIENT_ID : environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_ID ?? environment.CURTAINSUK_SHOPIFY_CLIENT_ID)?.trim() ?? "";
+  const clientSecret = (productionStore ? environment.CURTAINSUK_SHOPIFY_APP_SECRET : environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_SECRET ?? environment.CURTAINSUK_SHOPIFY_APP_SECRET)?.trim() ?? "";
+  const productionTestConfirmed = environment.CURTAINSUK_SHOPIFY_PRODUCTION_TEST_MODE_VERIFIED === 'true';
+  if (!validShopDomain(shopDomain) || !allowedCheckoutStore(shopDomain,mode,productionTestConfirmed)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_STORE_DENIED");
   }
   if (clientId.length < 8 || clientSecret.length < 16) {
@@ -175,6 +178,7 @@ export function shopifyDraftOrderConfigFromEnvironment(
     clientId,
     clientSecret,
     realPaymentsDisabledConfirmed,
+    productionTestConfirmed,
     requestTimeoutMs: 10_000,
   };
 }
@@ -426,7 +430,7 @@ export async function executeShopifyDraftOrder(input: {
     throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
   }
   if (!validShopDomain(input.config.shopDomain)
-      || input.config.shopDomain !== PHASE5D_ALLOWED_CHECKOUT_STORE) {
+      || !allowedCheckoutStore(input.config.shopDomain,input.config.mode,input.config.productionTestConfirmed)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_STORE_DENIED");
   }
   const fetchImpl = input.fetchImpl ?? fetch;

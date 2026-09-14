@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
-    {%- if settings.curtainsuk_staging_mode -%}
+    {%- if settings.curtainsuk_staging_mode or theme.role != 'main' or request.design_mode or request.visual_preview_mode -%}
       <meta name="robots" content="noindex, nofollow, noarchive">
     {%- endif -%}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
-    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="canonical" href="{{ canonical_url | split: '?' | first | replace: request.origin, 'https://www.curtainsuk.com' }}">
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">

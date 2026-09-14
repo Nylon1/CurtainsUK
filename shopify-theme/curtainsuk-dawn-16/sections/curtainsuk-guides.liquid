@@ -1,6 +1,6 @@
 {% if page.handle contains 'how-to-measure' or page.handle contains 'how-to-fit' %}
   {% render 'curtainsuk-guide-content', guide_handle: page.handle %}
-{% elsif request.page_type == '404' and settings.curtainsuk_staging_mode %}
+{% elsif request.page_type == '404' and theme.role != 'main' %}
   {% comment %}Hidden pages are not resolvable in Shopify Liquid. In unpublished staging only, select the exact guide template in the browser. Publication must make the page records visible for HTTP 200 routes.{% endcomment %}
   {% assign guide_handles = 'how-to-measure|how-to-measure-standard|how-to-measure-doors|how-to-measure-bay|how-to-measure-apex|how-to-fit|how-to-fit-standard|how-to-fit-doors|how-to-fit-bay|how-to-fit-apex' | split: '|' %}
   {% for guide_handle in guide_handles %}<template data-cuk-hidden-guide="/pages/{{ guide_handle }}">{% render 'curtainsuk-guide-content', guide_handle: guide_handle %}</template>{% endfor %}

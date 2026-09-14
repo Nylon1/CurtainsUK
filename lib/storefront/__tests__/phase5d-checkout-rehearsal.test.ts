@@ -242,7 +242,7 @@ test("server adapter is calculate-first, idempotent by handoff tag and contains 
   assert.match(source, /CURTAINSUK_DEPLOYMENT_STAGE/);
   assert.match(source, /CURTAINSUK_SHOPIFY_REAL_PAYMENTS_DISABLED_CONFIRMED/);
   assert.match(source, /CURTAINSUK_SHOPIFY_CHECKOUT_STORE/);
-  assert.match(source, /curtainsuk-dev\.myshopify\.com/);
+  assert.match(source, /allowedCheckoutStore/);
   assert.match(source, /CURTAINSUK_SHOPIFY_CLIENT_ID/);
   assert.match(source, /CURTAINSUK_SHOPIFY_APP_SECRET/);
   assert.match(source, /client_credentials/);

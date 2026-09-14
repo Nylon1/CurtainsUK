@@ -1,5 +1,11 @@
 # Production transition — 14 September 2026
 
+## Latest owner confirmation and sample transaction gate
+
+Daily operator is confirmed as **CurtainsUK owner/admin**, every trading day until unattended supplier retrieval exists. Today's successful genuine snapshot is mandatory; no pre-06:00 stale-stock grace period is allowed. Manual refresh now has a private append-only operator/date/time log; historical operator identities are not invented.
+
+The controlled purchase is one genuine fabric sample, maximum **£25 including VAT/delivery**. No full curtain purchase, price change or special test product is permitted. Inspection found one active published £1 `fabric-sample` product (variant `56120226873723`) with no SKU or established Fabric Master mapping. `/pages/samples` returned 404; the current fabric sample action only retains sample intent, and the generic product purchase action is disabled. These are not a completed sample checkout. Exact association/eligible sample selection must be established before spending. Purchase controls remain OFF; no payment/order/sample-purchased event has been fabricated. Earlier operator/amount questions below are superseded by this owner confirmation.
+
 ## Purchase activation preparation — owner approved, controls still OFF
 
 Code commit `078aa93f7d430e80c10019adb7fd36480fa374d2` is pushed. Gateway deployment `dpl_52bwoMQdeshjwfvA6TFcWkJqrJSK` (`https://curtainsuk-staging-9u7nnyxkw-hamzas-projects-4ef62f35.vercel.app`) is on the existing gateway alias with explicit `CURTAINSUK_PRODUCTION_PURCHASES_APPROVED=false` and `CALCULATE_ONLY`. The first CLI attempt lacked the required explicit team scope and failed authorization; using the verified team succeeded. Only the storefront JS and configurator section were uploaded to live Dawn; its purchase setting was not changed. Production markup confirms production checkout presentation true, purchases false, and the www canonical. Standard Sadira 180 × 211 cm / pencil pleat / standard lining / pair returned £605 VAT-inclusive goods and Fabric available in the actual browser. Desktop and 390/412px retained exact `pt-4262-770`, no overflow and no visible checkout action. This was a pricing check, not a paid transaction or a claim that it reproduced the earlier £601 configuration.

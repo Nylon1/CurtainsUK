@@ -1,5 +1,17 @@
 # CurtainsUK daily stock and Bay instant orders
 
+## Launch operation update — 14 September 2026
+
+The **CurtainsUK owner/admin** is responsible for the morning supplier refresh every trading day until unattended retrieval is implemented. Obtain genuine current source data, import and approve it, then apply it at `/admin/daily-stock`. Inspect coverage per supplier/SKU; a partial successful supplier run does not establish stock for unrefreshed fabrics.
+
+Manual application records the authenticated operator UUID, UK snapshot date, completion timestamp and per-supplier success/failure/coverage in private append-only `daily_stock_refresh_events`. Original supplier checked timestamps remain separate. Historical runs are not assigned an invented operator. Scheduled materialization is not a supplier login or retrieval.
+
+Purchases fail closed unless the fabric has a successful genuine snapshot dated **today in Europe/London**, including before 06:00. Yesterday, future dates, missing data and failed refreshes cannot authorize purchase. Last successful source data is retained; a failure is not out-of-stock. The strict aggregate >30m floor and confirmed-order deductions remain unchanged.
+
+Validation: regression reproduced the pre-06:00 defect before correction; current-date/future-date/failed-refresh and floor/Bay tests pass. Full npm tests pass. Database rollback test verifies operator/time logging, null-operator rejection, append-only history, denied anonymous/customer access and unchanged existing snapshots. No synthetic refresh/operator record is retained.
+
+The historical report below describes its original staging phase, not current theme publication or operational ownership.
+
 13 September 2026. Same branch: `feature/curtainsuk-phase-5a-prelaunch`.
 
 The branch was pushed before implementation. Initial remote HEAD was `3df343b5397c95956f13abc7d5dad7780ef8bba3` at https://github.com/Nylon1/Apexcurtains/tree/feature/curtainsuk-phase-5a-prelaunch . No additional PR was created and nothing was merged.

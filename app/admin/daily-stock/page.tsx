@@ -71,6 +71,7 @@ export default function DailyStock() {
       </pre>
       <section className="my-8 rounded border p-5">
         <h2 className="text-2xl">Morning supplier refresh</h2>
+        <p className="my-3">Responsible operator: CurtainsUK owner/admin. This is required every trading day until unattended supplier retrieval is connected. Purchases require a successful genuine snapshot dated today in UK time, including before 06:00. Your signed-in operator ID and completion time are recorded with each refresh result.</p>
         <p className="my-3">At approximately 06:00 UK time, obtain a current supplier export or authorised portal observation. Unattended supplier retrieval is not connected.</p>
         <ol className="list-decimal pl-6 leading-8">
           <li><Link className="underline" href="/admin/supplier-imports">Import and preview genuine current supplier data</Link>. Include exact SKU, aggregate stock metres, checked timestamp, source and current cut price where available. Do not enter batches or dye lots.</li>

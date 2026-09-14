@@ -20,7 +20,12 @@ export async function GET() {
     .select("supplier_id,snapshot_date,attempted_at,status,imported,error_code")
     .order("snapshot_date", { ascending: false })
     .limit(20);
-  return error
+  const { data: refreshEvents, error: auditError } = await createSupplierServiceClient()
+    .from("daily_stock_refresh_events")
+    .select("event_id,operator_id,snapshot_date,completed_at,supplier_results")
+    .order("completed_at", { ascending: false })
+    .limit(20);
+  return error || auditError
     ? NextResponse.json(
         { error: "SNAPSHOT_STATUS_UNAVAILABLE" },
         { status: 503, headers },
@@ -28,6 +33,8 @@ export async function GET() {
     : NextResponse.json(
         {
           runs: data,
+          refreshEvents,
+          responsibleOperator: "CurtainsUK owner/admin",
           upstreamRefresh: "UNATTENDED_SUPPLIER_SOURCE_NOT_CONFIGURED",
         },
         { headers },
@@ -53,7 +60,7 @@ export async function POST(request: Request) {
       if (process.env.CURTAINSUK_DEPLOYMENT_STAGE !== "STAGING" || !(await supplierAdminIdentity()))
         return NextResponse.json({error:"SUPPLIER_ADMIN_REQUIRED"},{status:403,headers});
       if (input.confirmedCurrentSource !== true) throw Error("CURRENT_SOURCE_REQUIRED");
-      const {data,error} = await createSupplierServiceClient().rpc("materialize_daily_stock");
+      const {data,error} = await createSupplierServiceClient().rpc("materialize_daily_stock_for_operator", {p_operator: actor.id});
       if (error) return NextResponse.json({error:"Refresh pending. Last successful snapshots remain unchanged. Retry after recovery."},{status:503,headers});
       return NextResponse.json({runs:data,message:"Only today's approved observations were added. Existing daily snapshots and confirmed usage were preserved. Check supplier coverage below; this does not retrieve supplier data."},{headers});
     }

@@ -37,8 +37,7 @@ export function dailyStockDecision(
 ) {
   const stale =
     input.refreshFailed === true ||
-    input.snapshotDate === null ||
-    (input.snapshotDate < ukDate(now) && morningDue(now));
+    input.snapshotDate !== ukDate(now);
   if (input.discontinued)
     return {
       status: "DISCONTINUED" as const,

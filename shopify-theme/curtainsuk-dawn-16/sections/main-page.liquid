@@ -1,4 +1,4 @@
-{% unless page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' or page.handle == 'shop-by-window' or page.handle == 'solve-my-window' or page.handle == 'shop-by-fabric' or page.handle == 'fabric-library' or page.handle == 'measure' or page.handle == 'measure-guide' or page.handle == 'samples' or page.handle contains 'curtains-for-' or page.handle == 'standard-window' or page.handle == 'bay-window' or page.handle == 'apex-window-curtains' or page.handle == 'patio-door-curtains' %}
+{% unless page.handle contains 'how-to-measure' or page.handle contains 'how-to-fit' or page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' or page.handle == 'shop-by-window' or page.handle == 'solve-my-window' or page.handle == 'shop-by-fabric' or page.handle == 'fabric-library' or page.handle == 'measure' or page.handle == 'measure-guide' or page.handle == 'samples' or page.handle contains 'curtains-for-' or page.handle == 'standard-window' or page.handle == 'bay-window' or page.handle == 'apex-window-curtains' or page.handle == 'patio-door-curtains' %}
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}

@@ -1,5 +1,11 @@
 /** Private business policy. Never serialize inputs or effective metres publicly. */
 export const DAILY_STOCK_POLICY = "curtainsuk-daily-aggregate-30m-v1";
+/** Retain the last known position privately, but never sell from a stale morning check. */
+export function currentDailyStockAvailability(decision: ReturnType<typeof dailyStockDecision>) {
+  return decision.stale && decision.status !== 'DISCONTINUED'
+    ? 'AVAILABILITY_TO_BE_CONFIRMED' as const
+    : decision.availability;
+}
 export function ukDate(now = new Date()) {
   return new Intl.DateTimeFormat("en-CA", {
     timeZone: "Europe/London",

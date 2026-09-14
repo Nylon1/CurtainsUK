@@ -1,5 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
+import { assertNoRawReferenceMedia } from "./hci-image-privacy";
 import { signHciCommerceContext } from "./hci-commerce-context";
 import { acceptedHciFeedback } from "./hci-feedback";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
@@ -111,6 +112,8 @@ export async function stagingHciIntegration(staffId: string, value: unknown) {
     reader.releaseLock();
   }
   const result = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+  // Raw bytes remain request-local at both services; retained state contains derived evidence only.
+  assertNoRawReferenceMedia(result.state);
   const view = { ...integrationView(result.view), windowSlug: integrationWindowContext(result.state), revision: expected + 1 };
   if (
     view.sessionId !== command.sessionId ||

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { reviewStaffIdentity } from "@/lib/storefront/review-auth";
+import { supplierAdminIdentity } from "@/lib/supplier-intelligence/server-auth";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import { readBoundedJson } from "@/lib/storefront/staging-api";
 import {
@@ -48,6 +49,14 @@ export async function POST(request: Request) {
       policy: { limit: 30, windowSeconds: 3600 },
     });
     const input = await readBoundedJson<Record<string, unknown>>(request, 2048);
+    if (input.action === "MORNING_REFRESH") {
+      if (process.env.CURTAINSUK_DEPLOYMENT_STAGE !== "STAGING" || !(await supplierAdminIdentity()))
+        return NextResponse.json({error:"SUPPLIER_ADMIN_REQUIRED"},{status:403,headers});
+      if (input.confirmedCurrentSource !== true) throw Error("CURRENT_SOURCE_REQUIRED");
+      const {data,error} = await createSupplierServiceClient().rpc("materialize_daily_stock");
+      if (error) return NextResponse.json({error:"Refresh pending. Last successful snapshots remain unchanged. Retry after recovery."},{status:503,headers});
+      return NextResponse.json({runs:data,message:"Only today's approved observations were added. Existing daily snapshots and confirmed usage were preserved. Check supplier coverage below; this does not retrieve supplier data."},{headers});
+    }
     if (
       input.confirmedOrder !== true ||
       typeof input.configurationId !== "string" ||

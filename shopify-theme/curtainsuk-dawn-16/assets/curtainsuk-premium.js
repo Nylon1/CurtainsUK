@@ -189,6 +189,21 @@
         else panes[6].append(node);
       });
     panes.forEach((pane) => form.append(pane));
+    const measureHelp = document.createElement('a');
+    measureHelp.className = 'cuk-measure-help';
+    measureHelp.textContent = 'Need help measuring?';
+    const updateMeasureHelp = () => {
+      const windowSlug = form.elements.windowSlug.value;
+      const guide = windowSlug === 'bay-window' ? 'bay' : ['apex-window','gable-end-window','triangular-window'].includes(windowSlug) ? 'apex' : ['french-doors','patio-sliding-doors','bifold-doors'].includes(windowSlug) ? 'doors' : 'standard';
+      const target = new URL(`/pages/how-to-measure-${guide}`, location.origin);
+      target.searchParams.set('window', windowSlug);
+      if (form.elements.fabricId.value) target.searchParams.set('fabric', form.elements.fabricId.value);
+      measureHelp.href = target.href;
+    };
+    form.addEventListener('change', updateMeasureHelp);
+    measureHelp.addEventListener('click', updateMeasureHelp);
+    updateMeasureHelp();
+    panes[1].prepend(measureHelp);
     const fabricPreview = document.createElement('div');
     fabricPreview.className = 'cuk-config-fabric';
     panes[2].prepend(fabricPreview);
@@ -247,6 +262,7 @@
     panes[6].prepend(summary);
     const summaryFields = ['windowSlug', 'fabricId', 'heading', 'lining', 'construction'];
     const updateSummary = () => {
+      updateMeasureHelp();
       summary.textContent = summaryFields
         .map((name) => form.elements[name]?.selectedOptions?.[0]?.textContent)
         .filter(Boolean)

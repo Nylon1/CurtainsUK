@@ -5,6 +5,16 @@ export default function DailyStock() {
   const [status, setStatus] = useState("Loading daily snapshot status...");
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  async function morningRefresh(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();setBusy(true);setMessage("");
+    try {
+      const response = await fetch('/api/admin/daily-stock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'MORNING_REFRESH',confirmedCurrentSource:true})});
+      const body = await response.json();setMessage(response.ok ? body.message : body.error);
+      const statusResponse = await fetch('/api/admin/daily-stock',{cache:'no-store'});
+      if(statusResponse.ok) setStatus(JSON.stringify(await statusResponse.json(),null,2));
+    } catch {setMessage('Refresh pending. Last successful snapshots are retained. Retry when the service is available.');}
+    finally {setBusy(false);}
+  }
   useEffect(() => {
     void fetch("/api/admin/daily-stock", { cache: "no-store" })
       .then(async (r) => {
@@ -59,6 +69,20 @@ export default function DailyStock() {
       <pre className="overflow-auto rounded bg-slate-100 p-4 text-xs">
         {status}
       </pre>
+      <section className="my-8 rounded border p-5">
+        <h2 className="text-2xl">Morning supplier refresh</h2>
+        <p className="my-3">At approximately 06:00 UK time, obtain a current supplier export or authorised portal observation. Unattended supplier retrieval is not connected.</p>
+        <ol className="list-decimal pl-6 leading-8">
+          <li><Link className="underline" href="/admin/supplier-imports">Import and preview genuine current supplier data</Link>. Include exact SKU, aggregate stock metres, checked timestamp, source and current cut price where available. Do not enter batches or dye lots.</li>
+          <li><Link className="underline" href="/admin/supplier-intelligence">Review the governed approval queue</Link>. Resolve validation errors; missing price stays unknown. Approval never means placing a supplier order.</li>
+          <li>Apply approved observations below, then inspect the supplier status and coverage. Records not checked today remain stale or missing; no failed refresh turns them into out-of-stock.</li>
+        </ol>
+        <form onSubmit={morningRefresh} className="mt-5 grid gap-4">
+          <label><input type="checkbox" required /> I have imported and reviewed the current supplier source. This action will only materialize approved observations checked today.</label>
+          <button disabled={busy} className="min-h-11 rounded bg-slate-900 p-3 text-white">Apply morning snapshot</button>
+        </form>
+        <p className="mt-3 text-sm">A partial refresh may be completed later that day. Existing daily baselines are never replaced. The next successful morning snapshot recalculates availability.</p>
+      </section>
       <h2 className="my-4 text-xl">Record a confirmed order</h2>
       <p>
         Confirm only an actual order, using its Shopify Order ID. Do not enter

@@ -18,7 +18,9 @@
       {% if page.content != blank %}<div class="cuk-lede">{{ page.content }}</div>{% else %}<p class="cuk-lede">Made-to-measure curtains planned around the shape, scale and practical use of your window.</p>{% endif %}
       <div class="cuk-actions">
         <a class="cuk-button" href="/pages/curtain-visualiser?window={{ window_slug | url_encode }}">Start My Curtains</a>
-        <a class="cuk-button cuk-button--secondary" href="/pages/measure-guide">Measurement guidance</a>
+        {% assign guide = 'standard' %}{% if window_slug == 'bay-window' %}{% assign guide = 'bay' %}{% elsif is_specialist %}{% assign guide = 'apex' %}{% elsif window_slug == 'french-doors' or window_slug == 'patio-sliding-doors' or window_slug == 'bifold-doors' %}{% assign guide = 'doors' %}{% endif %}
+        <a class="cuk-button cuk-button--secondary" href="/pages/how-to-measure-{{ guide }}?window={{ window_slug | url_encode }}">Need help measuring?</a>
+        <a class="cuk-button cuk-button--secondary" href="/pages/how-to-fit-{{ guide }}?window={{ window_slug | url_encode }}">How to Fit</a>
       </div>
     </div>
     <aside class="cuk-panel">

@@ -30,6 +30,10 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "guides": {
+      "settings": {},
+      "type": "curtainsuk-guides"
     }
   },
   "order": [
@@ -39,6 +43,7 @@
     "curtainsuk_measure_guide",
     "curtainsuk_sample_basket",
     "curtainsuk_window_page",
-    "main"
+    "main",
+    "guides"
   ]
 }

@@ -103,8 +103,10 @@ test("task navigation uses resolvable theme-owned inspiration, help and sample a
   const fabricTemplate = read("templates", "page.shop-by-fabric.json");
   assert.match(nav, /href="\/#curtainsuk-inspiration"/);
   assert.match(nav, /href="\/#curtainsuk-help"/);
-  assert.match(nav, /href="\/pages\/fabric-library#samples"/);
-  assert.equal(/\/blogs\/inspiration|\/pages\/contact/.test(nav), false);
+  assert.match(nav, /href="\/pages\/samples"/);
+  assert.match(nav, /href="\/pages\/how-to-measure"/);
+  assert.match(nav, /href="\/pages\/how-to-fit"/);
+  assert.equal(/\/blogs\/inspiration/.test(nav), false);
   assert.match(support, /id="curtainsuk-inspiration"/);
   assert.match(support, /id="curtainsuk-help"/);
   assert.match(index, /"type": "curtainsuk-inspiration-help"/);

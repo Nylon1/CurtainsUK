@@ -1,6 +1,6 @@
 import "server-only";
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
-import { dailyStockDecision } from "./daily-stock";
+import { dailyStockDecision, currentDailyStockAvailability } from "./daily-stock";
 export async function dailyStockPosition(
   supplierId: string,
   supplierSku: string,
@@ -39,7 +39,7 @@ export async function dailyStockProjection(input: {
 }) {
   const result = await dailyStockPosition(input.supplierId, input.supplierSku);
   return {
-    availability: result.decision.availability,
+    availability: currentDailyStockAvailability(result.decision),
     stale: result.decision.stale,
   };
 }

@@ -1,0 +1,31 @@
+<svg viewBox="0 0 600 390" role="img" aria-label="{% case kind %}{% when 'bay' %}Bay: numbered section widths one, two and three; finished drop four.{% when 'apex' %}Apex: base one, peak height two, left and right verticals three and four, left and right slopes five and six.{% when 'fitting' %}Wall and ceiling bracket positions, aligned track and curtain clearance.{% else %}Full usable coverage width one and finished drop two.{% endcase %}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="390" rx="16" fill="#f2eee7"/>
+  <g fill="none" stroke="#4f635b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    {% case kind %}
+      {% when 'bay' %}
+        <path d="M90 130L205 65H395L510 130V300L395 235H205L90 300Z" fill="#e1e4da"/>
+        <path d="M205 65V235M395 65V235M90 130V300"/><path d="M90 330L205 265H395L510 330" stroke="#a35e39" stroke-dasharray="6 7"/>
+      {% when 'apex' %}
+        <path d="M140 300V175L300 65L460 175V300Z" fill="#e1e4da"/>
+        <path d="M140 333H460M300 300V65M110 300V175M490 300V175M135 145L280 47M320 47L465 145" stroke="#a35e39"/>
+      {% when 'fitting' %}
+        <path d="M80 45H520M80 45V340" stroke="#a99c87"/>
+        <path d="M80 115H140V140M310 45V100H340V140M130 140H485"/>
+        <path d="M150 150V305M180 150V305M210 150V305M400 150V305M430 150V305M460 150V305" stroke="#a99c87"/>
+        <path d="M110 330H510" stroke="#a35e39" stroke-dasharray="6 7"/>
+      {% else %}
+        <path d="M150 110H450V{% if kind == 'doors' %}300{% else %}250{% endif %}H150Z" fill="#e1e4da"/>
+        <path d="M300 110V{% if kind == 'doors' %}300{% else %}250{% endif %}M110 85H490"/>
+        <path d="M130 95V310M160 95V310M440 95V310M470 95V310" stroke="#a99c87"/>
+        <path d="M110 50H490M520 95V310M90 330H535" stroke="#a35e39"/>
+    {% endcase %}
+  </g>
+  <g fill="#253d33" font-family="Arial,sans-serif" font-size="24" text-anchor="middle">
+    {% case kind %}
+      {% when 'bay' %}<text x="137" y="104">1</text><text x="300" y="53">2</text><text x="464" y="104">3</text><text x="541" y="218">4 ↕</text>
+      {% when 'apex' %}<text x="300" y="365">1</text><text x="324" y="216">2</text><text x="88" y="245">3</text><text x="515" y="245">4</text><text x="193" y="91">5</text><text x="407" y="91">6</text>
+      {% when 'fitting' %}<text x="162" y="90">Wall</text><text x="398" y="83">Ceiling</text><text x="310" y="367">Hem clearance</text>
+      {% else %}<text x="300" y="39">1 · Coverage width</text><text x="550" y="214">2</text><text x="300" y="365">2 · Finished drop</text>
+    {% endcase %}
+  </g>
+</svg>

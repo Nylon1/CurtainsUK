@@ -45,6 +45,9 @@ export async function consumeEndpointRateLimit(
     p_limit: policy.limit,
     p_window_seconds: policy.windowSeconds,
   });
+  if (error) {
+    console.error("CURTAINSUK_RATE_LIMIT_RPC_FAILED", /^[A-Z0-9_]{1,20}$/.test(error.code ?? "") ? error.code : "TRANSPORT_OR_UNKNOWN");
+  }
   const decision = data as EndpointRateLimitDecision | null;
   if (error || typeof decision?.accepted !== "boolean"
     || !Number.isInteger(decision.retry_after_seconds)

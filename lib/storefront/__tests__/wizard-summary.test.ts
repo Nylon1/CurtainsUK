@@ -10,7 +10,9 @@ test("resumed price summary follows asynchronous catalogue hydration without cha
   const elements = Object.fromEntries(Object.entries({ windowSlug: "Choose a window", fabricId: "Loading fabrics…", heading: "Pencil pleat", lining: "Standard lining", construction: "Pair" }).map(([key, textContent]) => [key, { selectedOptions: [{ textContent }] }]));
   const observers: (() => void)[] = [];
   const events: Record<string, () => void> = {};
+  let guideUpdates = 0;
   runInNewContext(block, {
+    updateMeasureHelp: () => { guideUpdates++; },
     document: { createElement: () => summary },
     panes: Array.from({ length: 7 }, () => ({ prepend() {} })),
     form: { elements, addEventListener: (event: string, fn: () => void) => { events[event] = fn; } },
@@ -23,4 +25,5 @@ test("resumed price summary follows asynchronous catalogue hydration without cha
   elements.lining.selectedOptions[0].textContent = "Bonded lining / interlining";
   events.change();
   assert.match(summary.textContent, /Bonded lining/);
+  assert.equal(guideUpdates, 3);
 });

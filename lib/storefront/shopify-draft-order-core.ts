@@ -171,7 +171,7 @@ function measurementValue(key: string, value: unknown): string {
     return value.map((item) => measurementValue(key, item)).join(" / ");
   }
   if (typeof value === "number" && Number.isFinite(value)) {
-    return /(width|drop|height|vertical|slope|coverage|section)/i.test(key)
+    return /(width|drop|height|vertical|slope|coverage)/i.test(key)
       ? `${value} cm`
       : String(value);
   }

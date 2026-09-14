@@ -91,10 +91,11 @@ test("admin review routes use private auth, no-store responses and optimistic re
   const root = new URL("../../..", import.meta.url);
   const shared = readFileSync(new URL("app/api/admin/reviews/_shared.ts", root), "utf8");
   const repository = readFileSync(new URL("lib/storefront/review-operations-repository.ts", root), "utf8");
-  assert.match(shared, /reviewStaffIdentity/);
+  assert.match(shared, /reviewStaffAccess/);
   assert.match(shared, /PRIVATE_NO_STORE_HEADERS/);
-  assert.match(shared, /AUTHENTICATION_REQUIRED/);
-  assert.match(shared, /STAFF_ROLE_REQUIRED/);
+  const authorization = readFileSync(new URL("lib/storefront/review-authz.ts", root), "utf8");
+  assert.match(authorization, /AUTHENTICATION_REQUIRED/);
+  assert.match(authorization, /STAFF_ROLE_REQUIRED/);
   assert.match(repository, /expected_state: input\.expectedState/);
   assert.match(repository, /p_expected_latest_revision_id: input\.expectedLatestRevisionId/);
   assert.match(repository, /calculated_fabric_metres/);

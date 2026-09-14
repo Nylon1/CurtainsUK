@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
-import { reviewStaffIdentity } from "@/lib/storefront/review-auth";
+import { reviewStaffAccess } from "@/lib/storefront/review-auth";
 import { PRIVATE_NO_STORE_HEADERS } from "@/lib/storefront/security/http";
 
 export function reviewResponse(body: unknown, status = 200) {
@@ -9,13 +8,10 @@ export function reviewResponse(body: unknown, status = 200) {
 
 export async function requireReviewAdmin() {
   try {
-    const admin = await reviewStaffIdentity();
-    if (admin) return { admin, response: null } as const;
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    return user
-      ? { admin: null, response: reviewResponse({ error: "STAFF_ROLE_REQUIRED" }, 403) } as const
-      : { admin: null, response: reviewResponse({ error: "AUTHENTICATION_REQUIRED" }, 401) } as const;
+    const access = await reviewStaffAccess();
+    return access.status === 200
+      ? {admin:access.identity,response:null} as const
+      : {admin:null,response:reviewResponse({error:access.error},access.status)} as const;
   } catch {
     return { admin: null, response: reviewResponse({ error: "STAFF_AUTH_UNAVAILABLE" }, 503) } as const;
   }

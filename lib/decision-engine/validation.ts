@@ -232,7 +232,11 @@ export function validateFabricSpec(fabric: FabricSpec): ValidationResult {
   if (!fabric.uniqueSku.trim()) issues.push(issue("FABRIC_SKU_REQUIRED", "uniqueSku", "A unique SKU is required"));
   if (!Number.isFinite(fabric.usableWidthMm) || fabric.usableWidthMm <= 0) issues.push(issue("FABRIC_WIDTH_INVALID", "usableWidthMm", "Usable fabric width must be positive"));
   if (Math.abs(fabric.composition.reduce((sum, part) => sum + part.percentage, 0) - 100) > 0.001) issues.push(issue("FABRIC_COMPOSITION_INVALID", "composition", "Fabric composition must total 100 percent"));
-  if (fabric.patternMatchType !== "RANDOM_MATCH" && (!fabric.verticalRepeatMm || fabric.verticalRepeatMm <= 0)) issues.push(issue("VERTICAL_REPEAT_REQUIRED", "verticalRepeatMm", "Patterned fabric requires a vertical repeat"));
+  const permittedAllowance = fabric.patternMatchType !== "HALF_DROP_MATCH"
+    && fabric.patternAllowance?.policyVersion === "curtainsuk-pattern-allowance-v1"
+    && ((fabric.patternAllowance.provenance === "DEFAULT_PATTERN_ALLOWANCE" && fabric.patternAllowance.allowanceMm === 500)
+      || (fabric.patternAllowance.provenance === "PLAIN_NO_MATCH_REQUIRED" && fabric.patternAllowance.allowanceMm === 0 && fabric.verticalRepeatMm === 0));
+  if (fabric.patternMatchType !== "RANDOM_MATCH" && (!fabric.verticalRepeatMm || fabric.verticalRepeatMm <= 0) && !permittedAllowance) issues.push(issue("VERTICAL_REPEAT_REQUIRED", "verticalRepeatMm", "Patterned fabric requires a vertical repeat or governed consumption allowance"));
   if (fabric.fixtureOnly && fabric.googleFeedEligibility.eligible) issues.push(issue("FIXTURE_CANNOT_ENTER_GOOGLE_FEED", "googleFeedEligibility.eligible", "Fixture fabrics cannot be feed eligible"));
   return { valid: issues.length === 0, issues };
 }

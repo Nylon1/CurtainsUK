@@ -179,7 +179,13 @@ export interface FabricSpec {
   usableWidthMm: number;
   verticalRepeatMm: number | null;
   horizontalRepeatMm: number | null;
-  patternMatchType: PatternMatchType;
+  patternMatchType: PatternMatchType | null;
+  /** CurtainsUK consumption policy, never a manufacturer match-type claim. */
+  patternAllowance?: {
+    provenance: "DEFAULT_PATTERN_ALLOWANCE" | "PLAIN_NO_MATCH_REQUIRED";
+    allowanceMm: 500 | 0;
+    policyVersion: "curtainsuk-pattern-allowance-v1";
+  };
   patternCentringRequirement: PatternCentringRequirement;
   composition: FabricCompositionPart[];
   careInstructions: string[];

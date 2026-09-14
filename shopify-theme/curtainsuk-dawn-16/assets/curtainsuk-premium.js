@@ -41,6 +41,7 @@
             supplierSku: String(value.supplierSku || '').slice(0, 100),
             strategyId: String(value.strategyId || '').slice(0, 100),
             refinementDigest: String(value.refinementDigest || '').slice(0, 100),
+            commerceToken: String(value.commerceToken || '').slice(0, 2000),
             windowSlug: String(value.windowSlug || '').slice(0, 60),
             returnOrigin: ['http://127.0.0.1:3260', 'https://curtainsuk-staging-gateway.vercel.app'].includes(
               value.returnOrigin,

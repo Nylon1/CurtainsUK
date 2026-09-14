@@ -16,7 +16,12 @@ export function toReviewFabricIdentity(record: FabricMasterRecord): Configuratio
 }
 
 export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor: number | null, effectiveDate: string): FabricSpec {
-  if (!record.usable_width_mm || !record.pattern_match_type) throw new Error("FABRIC_SPECIFICATION_INCOMPLETE");
+  if (!record.usable_width_mm || !Number.isFinite(record.usable_width_mm) || record.usable_width_mm <= 0) throw new Error("FABRIC_SPECIFICATION_INCOMPLETE");
+  const verifiedPattern = record.pattern_match_type === "RANDOM_MATCH"
+    || (record.pattern_match_type !== null && (record.vertical_repeat_mm ?? 0) > 0);
+  // An explicit specialist match stays authoritative even when its repeat is missing.
+  const fallback = !verifiedPattern && record.pattern_match_type !== "HALF_DROP_MATCH";
+  const noMatchRequired = record.pattern_match_type === null && record.vertical_repeat_mm === 0;
   return {
     id: record.fabric_id,
     supplier: record.supplier_name,
@@ -29,6 +34,11 @@ export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor:
     verticalRepeatMm: record.vertical_repeat_mm,
     horizontalRepeatMm: record.horizontal_repeat_mm,
     patternMatchType: record.pattern_match_type,
+    ...(fallback ? { patternAllowance: {
+      provenance: noMatchRequired ? "PLAIN_NO_MATCH_REQUIRED" as const : "DEFAULT_PATTERN_ALLOWANCE" as const,
+      allowanceMm: noMatchRequired ? 0 as const : 500 as const,
+      policyVersion: "curtainsuk-pattern-allowance-v1" as const,
+    } } : {}),
     patternCentringRequirement: record.pattern_match_type === "RANDOM_MATCH" ? "NONE" : "PREFERRED",
     composition: record.composition,
     careInstructions: record.care_instructions,

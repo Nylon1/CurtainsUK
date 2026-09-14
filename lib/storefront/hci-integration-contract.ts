@@ -58,6 +58,10 @@ export function integrationCommand(value: unknown) {
       if (!reactions.includes(String(a.reaction)))
         throw Error("HCI_CONTRACT_INVALID");
       action.reaction = a.reaction;
+    } else if (type === "outcome") {
+      keys(a, ["type", "event", "fabricMasterId", "strategyId"]);
+      if (!["SAMPLE_INTENT", "FABRIC_SELECTED"].includes(String(a.event))) throw Error("HCI_CONTRACT_INVALID");
+      action = { type, event:a.event, fabricMasterId:str(a.fabricMasterId), strategyId:str(a.strategyId) };
     } else if (type === "recommend") {
       keys(a, ["type"]);
     } else if (type === "image") {

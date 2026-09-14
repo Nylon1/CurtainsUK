@@ -1,7 +1,7 @@
 import "server-only";
 import { MissingCommercialRuleError } from "@/lib/decision-engine/errors";
 import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
-import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
+import { fabricIsPriceEligible } from "@/lib/fabric-master/projection";
 import { toDecisionEngineFabric, toReviewFabricIdentity } from "@/lib/fabric-master/decision-engine";
 import { dailyStockProjection } from "./daily-stock-server";
 import { calculateStagingPriceForTest, calculatePriceConfirmationReview, classifySpecialistReview, type SpecialistReviewRequest, type StagingPriceRequest, type StagingPriceResponse } from "./staging-pricing";
@@ -12,11 +12,11 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
   const record = await fabricMasterRecordById(input.fabricId);
   if (!record || !record.staging_catalog_visible || record.lifecycle_state === "DISCONTINUED") throw new Error("Window type or fabric is unavailable");
   let cutCostMinor: number | null = null;
-  if(fabricIsConfigurationEligible(record)) {
+  if(fabricIsPriceEligible(record)) {
     try { cutCostMinor = await verifiedCutCostMinor(record.supplier_id, record.supplier_sku); }
     catch(error) { if(!(error instanceof Error) || error.message !== "PRICE_REQUIRES_VERIFICATION")throw error; }
   }
-  const specificationsKnown = Boolean(record.usable_width_mm && record.pattern_match_type && (record.pattern_match_type === "RANDOM_MATCH" || (record.vertical_repeat_mm ?? 0)>0));
+  const specificationsKnown = Boolean(record.usable_width_mm && Number.isFinite(record.usable_width_mm) && record.usable_width_mm > 0);
   const priceConfirmation = () => {
     const manufacturingFabric = specificationsKnown ? toDecisionEngineFabric(record, null, record.source_effective_date ?? "") : null;
     const result = calculatePriceConfirmationReview(input, toReviewFabricIdentity(record), manufacturingFabric);

@@ -59,10 +59,18 @@ export function allocateWidths(calculatedWidths: number, construction: Construct
   return { totalWidths: balancedTotal, curtainWidths: [balancedTotal / 2, balancedTotal / 2] };
 }
 
-export function adjustCutLengthForPattern(cutLengthMm: number, verticalRepeatMm: number | null, patternMatchType: PatternMatchType): number {
+export function adjustCutLengthForPattern(cutLengthMm: number, verticalRepeatMm: number | null, patternMatchType: PatternMatchType | null, allowance?: FabricSpec["patternAllowance"]): number {
   if (!Number.isFinite(cutLengthMm) || cutLengthMm <= 0) throw new RangeError("Cut length must be positive");
   if (patternMatchType === "RANDOM_MATCH") return cutLengthMm;
   if (patternMatchType === "HALF_DROP_MATCH") throw new MissingCommercialRuleError("patternRules.halfDropMatch");
+  if (patternMatchType === null || !verticalRepeatMm) {
+    if (allowance?.policyVersion === "curtainsuk-pattern-allowance-v1"
+      && ((allowance.provenance === "DEFAULT_PATTERN_ALLOWANCE" && allowance.allowanceMm === 500)
+        || (allowance.provenance === "PLAIN_NO_MATCH_REQUIRED" && allowance.allowanceMm === 0 && verticalRepeatMm === 0))) {
+      return cutLengthMm + allowance.allowanceMm;
+    }
+    throw new MissingCommercialRuleError("patternRules.patternAllowance");
+  }
   if (!verticalRepeatMm || !Number.isFinite(verticalRepeatMm) || verticalRepeatMm <= 0) throw new RangeError("Straight-match fabric requires a positive vertical repeat");
   return Math.ceil(cutLengthMm / verticalRepeatMm) * verticalRepeatMm;
 }
@@ -211,7 +219,7 @@ export function calculateFabricRequirement(input: Pick<CalculatePriceInput, "con
   const cutLengthMm = dropMm
     + requiredGoverned(rules.constructionAllowances.topAllowanceMm, "constructionAllowances.topAllowanceMm")
     + requiredGoverned(rules.constructionAllowances.bottomHemAllowanceMm, "constructionAllowances.bottomHemAllowanceMm");
-  const adjustedCutLengthMm = adjustCutLengthForPattern(cutLengthMm, fabric.verticalRepeatMm, fabric.patternMatchType);
+  const adjustedCutLengthMm = adjustCutLengthForPattern(cutLengthMm, fabric.verticalRepeatMm, fabric.patternMatchType, fabric.patternAllowance);
   const fabricMetres = roundMetresUp(fabricWidths.totalWidths * adjustedCutLengthMm / 1000, rules.fabricOrderingIncrementMetres);
   return {widthMm, dropMm, coverageWidthMm, fullness, fabricWidths, cutLengthMm, adjustedCutLengthMm, fabricMetres};
 }

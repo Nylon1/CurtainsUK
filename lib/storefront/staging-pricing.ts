@@ -38,6 +38,7 @@ export interface StagingPriceResponse {
   reasons: string[];
   fabricWidths: number | null;
   fabricMetres: number | null;
+  patternAllowance?: FabricSpec["patternAllowance"];
   stockSnapshotStale?: boolean;
   commercialState?: "PRICE_CONFIRMATION_REQUIRED" | "PRICE_READY" | "ORDER_READY";
   selectedFabric: { id: string; supplier: string; collection: string; design: string; colour: string };
@@ -202,13 +203,14 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     : allocateVatInclusiveRetailTotal(calculation.total.amountMinor, rules.vat.rateBasisPoints!);
   return {
     configurationId: configuration.id,
-    calculationVersion: calculation.calculationVersion,
+    calculationVersion: pricedFabric.patternAllowance ? `${calculation.calculationVersion}:${pricedFabric.patternAllowance.policyVersion}` : calculation.calculationVersion,
     outcome: complexity.outcome,
     pricingConfidence: complexity.pricingConfidence,
     technicalReviewRequired: complexity.outcome !== "INSTANT_PRICE" || complexity.technicalApprovalRequiredBeforePayment,
     reasons: complexity.reasons,
     fabricWidths: calculation.fabricWidths.totalWidths,
     fabricMetres: calculation.fabricMetres,
+    ...(pricedFabric.patternAllowance ? { patternAllowance: {...pricedFabric.patternAllowance} } : {}),
     selectedFabric: { id: pricedFabric.id, supplier: pricedFabric.supplier, collection: pricedFabric.collection, design: pricedFabric.design, colour: pricedFabric.colour },
     heading: input.heading,
     lining: input.lining,

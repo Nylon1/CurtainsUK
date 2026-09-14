@@ -1,6 +1,14 @@
 import type { CustomerSafeFabricProjection, FabricMasterRecord } from "./types";
 
 export function fabricIsConfigurationEligible(record: FabricMasterRecord) {
+  return Boolean((record.staging_catalog_visible || record.storefront_selectable)
+    && record.lifecycle_state !== "DISCONTINUED"
+    && record.usable_width_mm && Number.isFinite(record.usable_width_mm) && record.usable_width_mm > 0
+    && record.pattern_match_type !== "HALF_DROP_MATCH");
+}
+
+/** Commercial approval is independent from manufacturing/configuration eligibility. */
+export function fabricIsPriceEligible(record: FabricMasterRecord) {
   return record.storefront_selectable
     && record.price_verification_status === "VERIFIED"
     && record.lifecycle_state !== "DISCONTINUED";
@@ -10,7 +18,7 @@ export function projectCustomerSafeFabric(record: FabricMasterRecord): CustomerS
   const configurable = fabricIsConfigurationEligible(record);
   const configurationMessage = record.lifecycle_state === "DISCONTINUED"
     ? "No longer available"
-    : configurable
+    : configurable && fabricIsPriceEligible(record)
       ? "Ready to configure"
       : "Price and availability to be confirmed";
   return {

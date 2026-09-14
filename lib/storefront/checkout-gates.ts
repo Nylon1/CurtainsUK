@@ -143,6 +143,7 @@ export interface ImmutableConfigurationSnapshot {
   availability: PublicSupplierAvailability;
   shipping: Readonly<ShippingQuote>;
   customerAcceptedAt: string;
+  patternAllowance?: import("@/lib/decision-engine/types").FabricSpec["patternAllowance"];
   recordedAt: string;
 }
 

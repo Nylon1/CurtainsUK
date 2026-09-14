@@ -1,7 +1,7 @@
 import { traceCheckout, type CheckoutBoundary } from "./checkout-diagnostics";
 import { emailEvidenceReady, summarizeEmailEvidence } from "./email-evidence";
 import "server-only";
-import { fabricIsConfigurationEligible } from "@/lib/fabric-master/projection";
+import { fabricIsPriceEligible } from "@/lib/fabric-master/projection";
 import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
 import { dailyStockProjection } from "./daily-stock-server";
 import type { PublicSupplierAvailability } from "@/lib/supplier-intelligence/types";
@@ -24,6 +24,7 @@ import { verifyReviewSubmission } from "./review-token";
 import { verifyReviewAcceptanceToken } from "./review-acceptance-token";
 import { stagingCheckoutIdentity } from "./checkout-idempotency";
 import { calculateStagingPrice } from "./server-staging-pricing";
+import { verifyHciCommerceContext } from "./hci-commerce-context";
 import {
   approvedReviewParcelClass,
   type ShippingParcelClass,
@@ -41,6 +42,7 @@ export interface ServerStagingCheckoutHandoffInput {
   shippingRegion: string;
   shippingPostcode?: string;
   parcelClass?: ShippingParcelClass;
+  hciCommerceToken?: string;
 }
 
 export type ServerStagingCheckoutHandoffResult = {
@@ -170,6 +172,7 @@ async function prepareCheckout(
   let packedParcel: PackedParcel | undefined;
   let customerEmail: string | null = null;
   let fabricLabel: string | null = null;
+  let patternAllowance: import("@/lib/decision-engine/types").FabricSpec["patternAllowance"];
 
   if (input.reviewRequestId) {
     enter("REVIEW_STATE");
@@ -221,7 +224,7 @@ async function prepareCheckout(
     pricingRuleVersion = String(latest.pricing_rule_version ?? "");
     reviewState = request.review_state;
     customerEmail = request.customer_email;
-    fabricPricingEligible = fabricIsConfigurationEligible(record);
+    fabricPricingEligible = fabricIsPriceEligible(record);
     enter("COMMERCIAL_VERIFICATION");
     // Recheck current supplier cost eligibility without repricing the immutable
     // customer-approved revision.
@@ -247,6 +250,7 @@ async function prepareCheckout(
     if (!input.configuration) throw new Error("CHECKOUT_CONFIGURATION_REQUIRED");
     enter("PRICE_AND_STOCK");
     const calculation = await calculateStagingPrice(input.configuration);
+    patternAllowance = calculation.patternAllowance;
     if (calculation.fabricMetres === null || calculation.fabricWidths === null) return blocked({action:"SUBMIT_PROJECT",blockers:["PRICE_INVALID","TECHNICAL_CONFIGURATION_INVALID","REVIEW_NOT_READY"]});
     enter("PRICE_CONFIRMATION");
     if (!verifyReviewSubmission({
@@ -281,7 +285,7 @@ async function prepareCheckout(
       vatRateBasisPoints: calculation.vatRateBasisPoints,
       currency: "GBP",
     };
-    fabricPricingEligible = fabricIsConfigurationEligible(record);
+    fabricPricingEligible = fabricIsPriceEligible(record);
     availability = normalizeAvailabilityState(calculation.availability);
     customerSummary = {
       windowType,
@@ -348,6 +352,7 @@ async function prepareCheckout(
     construction,
     calculatedFabricMetres,
     pricingRuleVersion,
+    ...(patternAllowance ? { patternAllowance } : {}),
     customerPrice: {
       netAmountMinor: price.netAmountMinor!,
       vatAmountMinor: price.vatAmountMinor!,
@@ -363,6 +368,9 @@ async function prepareCheckout(
   });
   const handoff = prepareStagingCheckoutHandoff({ handoffId: checkoutIdentity.handoffId, snapshot, preparedAt: now });
   enter("HANDOFF_PERSISTENCE");
+  // The existing immutable JSON snapshot retains policy provenance without rewriting Fabric Master.
+  if (patternAllowance) customerSummary.patternAllowance = { ...patternAllowance };
+  if (input.hciCommerceToken) customerSummary.consultationContext = verifyHciCommerceContext(input.hciCommerceToken, fabricMasterId, process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? "");
   const persisted = await persistStagingCheckoutSnapshotAndHandoff({
     snapshot,
     customerSummary,

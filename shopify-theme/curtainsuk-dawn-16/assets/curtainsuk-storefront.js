@@ -854,12 +854,14 @@
       });
       try {
         localStorage.setItem(EVALUATION_KEY, JSON.stringify({...lastEvaluation, checkoutAttempted: true}));
+        const hciContext = readJson('curtainsuk_hci_context_v1', null);
         const handoff = await fetchJson(endpoint(root.dataset.engineBase, "checkout-handoff"), {
           method: "POST",
           body: JSON.stringify({
             configuration: lastEvaluation.configuration,
             configurationId: lastEvaluation.calculation.configurationId,
             priceConfirmationToken: lastEvaluation.calculation.reviewSubmissionToken,
+            ...(hciContext?.fabricMasterId === lastEvaluation.configuration.fabricId && hciContext.commerceToken ? {hciCommerceToken:hciContext.commerceToken} : {}),
             customerAccepted: checkoutForm.elements.customerAccepted.checked,
             shippingRegion: checkoutForm.elements.shippingRegion.value,
             shippingPostcode: checkoutForm.elements.shippingPostcode.value,

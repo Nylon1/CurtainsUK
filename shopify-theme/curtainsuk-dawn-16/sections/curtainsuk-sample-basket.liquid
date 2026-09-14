@@ -1,20 +1,22 @@
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-sample-checkout.js' | asset_url }}" defer="defer"></script>
 
 {% if page.handle == 'samples' or page.handle == 'fabric-library' %}
 {% if page.handle == 'samples' %}<script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>{% endif %}
 <section id="samples" class="cuk-shell cuk-section">
   <div class="cuk-wrap cuk-layout">
     <div>
-      <p class="cuk-eyebrow">Staging sample journey</p>
+      <p class="cuk-eyebrow">Fabric samples</p>
       <h1>Bring the shortlist home</h1>
       <p class="cuk-lede">Save several exact colourways and resume the curtain project with the remembered Window Type.</p>
       <div class="cuk-actions"><a class="cuk-button" href="/pages/fabric-library">Browse fabrics</a><a class="cuk-button cuk-button--secondary" href="/pages/curtain-visualiser" data-cuk-resume>Resume my curtains</a></div>
     </div>
-    <aside class="cuk-basket" data-cuk-sample-basket>
+    <aside class="cuk-basket" data-cuk-sample-basket data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-engine-base="{{ settings.curtainsuk_staging_api_base | escape }}">
       <h2>Saved samples</h2>
-      <p class="cuk-empty" data-cuk-sample-empty>No staging samples saved yet.</p>
+      <p class="cuk-empty" data-cuk-sample-empty>Choose a fabric to save your first sample.</p>
       <ul data-cuk-sample-list></ul>
-      <p class="cuk-hint">No order or payment is created. Live sample price, postage and credit policy remain configurable.</p>
+      <p class="cuk-hint">Each sample keeps your exact fabric and colourway. Review delivery and the final total at checkout before paying.</p>
+      <p role="status" data-cuk-sample-status></p>
     </aside>
   </div>
 </section>

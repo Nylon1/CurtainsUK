@@ -1,4 +1,5 @@
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-sample-checkout.js' | asset_url }}" defer="defer"></script>
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
@@ -105,15 +106,27 @@
               </div>
             {%- else -%}
               <div class="cart__ctas" {{ block.shopify_attributes }}>
+                {% liquid
+                  assign sample_cart_ready = settings.curtainsuk_purchase_controls_enabled
+                  if cart.empty?
+                    assign sample_cart_ready = false
+                  endif
+                  for item in cart.items
+                    if item.variant_id != 56120226873723 or item.properties['Fabric Master ID'] == blank or item.properties['Supplier SKU'] == blank or item.properties['_CurtainsUK identity signature'] == blank
+                      assign sample_cart_ready = false
+                    endif
+                  endfor
+                %}
                 <button
                   type="submit"
                   id="checkout"
+                  data-cuk-sample-checkout
                   class="cart__checkout-button button"
                   name="checkout"
-                  disabled
+                  {% unless sample_cart_ready %}disabled{% endunless %}
                   form="cart"
                 >
-                  Checkout disabled in this staging preview
+                  {% if sample_cart_ready %}Continue to secure checkout{% else %}Checkout is not yet available for this basket{% endif %}
                 </button>
               </div>
 

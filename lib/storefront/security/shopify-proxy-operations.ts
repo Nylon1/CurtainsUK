@@ -1,4 +1,4 @@
-export const SHOPIFY_PROXY_OPERATIONS = ["catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff"] as const;
+export const SHOPIFY_PROXY_OPERATIONS = ["catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff", "sample-order"] as const;
 export type ShopifyProxyOperation = typeof SHOPIFY_PROXY_OPERATIONS[number];
 
 export function isShopifyProxyOperation(value: string): value is ShopifyProxyOperation {
@@ -13,6 +13,7 @@ export const SHOPIFY_PROXY_OPERATION_POLICY: Record<ShopifyProxyOperation, {
   // Per signed-shop, operation and platform-forwarded client address. These
   // application limits sit behind the much more generous WAF log thresholds.
   catalog: { methods: ["GET"], maximumBytes: 0, rateLimit: { limit: 120, windowSeconds: 60 } },
+  "sample-order": { methods: ["POST"], maximumBytes: 4096, rateLimit: { limit: 20, windowSeconds: 900 } },
   price: { methods: ["POST"], maximumBytes: 64 * 1024, rateLimit: { limit: 60, windowSeconds: 60 } },
   "specialist-review": { methods: ["POST"], maximumBytes: 64 * 1024, rateLimit: { limit: 30, windowSeconds: 60 } },
   "review-request": { methods: ["POST"], maximumBytes: 128_000, rateLimit: { limit: 6, windowSeconds: 3_600 } },

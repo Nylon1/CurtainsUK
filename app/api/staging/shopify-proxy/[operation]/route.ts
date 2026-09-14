@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { prepareSampleOrder } from "@/lib/storefront/sample-order-server";
 import { buildDatabaseShopifyCatalogPayload } from "@/lib/storefront/shopify-database-contract";
 import { calculateStagingPrice, classifyServerSpecialistReview } from "@/lib/storefront/server-staging-pricing";
 import type { SpecialistReviewRequest, StagingPriceRequest } from "@/lib/storefront/staging-pricing";
@@ -103,6 +104,9 @@ export async function POST(request: Request, context: { params: Promise<{ operat
       return NextResponse.json(await calculateStagingPrice(await readBoundedJson<StagingPriceRequest>(request)), {
         headers: PUBLIC_NO_STORE_HEADERS,
       });
+    }
+    if (selected === "sample-order") {
+      return NextResponse.json(await prepareSampleOrder(await readBoundedJson(request,4096)), {headers:PUBLIC_NO_STORE_HEADERS});
     }
     if (selected === "specialist-review") {
       return NextResponse.json(await classifyServerSpecialistReview(await readBoundedJson<SpecialistReviewRequest>(request)), {

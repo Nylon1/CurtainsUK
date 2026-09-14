@@ -156,6 +156,11 @@
       samples.forEach((sample) => {
         const item = document.createElement("li");
         item.textContent = `${sample.design} — ${sample.colour}`;
+        const button = document.createElement('button');
+        button.type = 'button'; button.className = 'cuk-button cuk-button--secondary';
+        button.textContent = root.dataset.purchaseControlsEnabled === 'true' ? 'Add sample to basket' : 'Check sample availability';
+        button.addEventListener('click', () => window.dispatchEvent(new CustomEvent('curtainsuk:sample-add',{detail:{root,sample,button}})));
+        item.appendChild(document.createElement('br')); item.appendChild(button);
         list.appendChild(item);
       });
     });

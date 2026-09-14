@@ -575,16 +575,7 @@
         <!-- CTAs -->
 
         <div class="cart__ctas" {{ block.shopify_attributes }}>
-          <button
-            type="submit"
-            id="CartDrawer-Checkout"
-            class="cart__checkout-button button"
-            name="checkout"
-            form="CartDrawer-Form"
-            disabled
-          >
-            Checkout disabled in this staging preview
-          </button>
+          <a href="{{ routes.cart_url }}" id="CartDrawer-Checkout" class="cart__checkout-button button">Review basket and delivery</a>
         </div>
       </div>
     </div>

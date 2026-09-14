@@ -167,8 +167,14 @@ test("all inherited Dawn commerce controls are disabled in the unpublished stagi
   assert.equal(/assign show_dynamic_checkout = true/.test(buyButtons), false);
   assert.match(buyButtons, /name="add"[\s\S]{0,300}disabled/);
   assert.match(cards, /assign quick_add = false/);
-  for (const source of [cartFooter, cartDrawer, cartNotification]) {
+  for (const source of [cartFooter]) {
     assert.match(source, /name="checkout"[^>]*disabled|disabled[^>]*name="checkout"/);
+  }
+  // Drawer/notification route through the validated basket; neither can submit checkout.
+  for (const source of [cartDrawer, cartNotification]) {
+    assert.doesNotMatch(source, /name="checkout"/);
+    assert.match(source, /href="\{\{ routes.cart_url \}\}"/);
+    assert.doesNotMatch(source, /Checkout disabled in this staging preview/);
   }
   assert.match(cartFooter, /if false and additional_checkout_buttons/);
 });

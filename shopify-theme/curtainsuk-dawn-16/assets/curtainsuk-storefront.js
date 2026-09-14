@@ -60,6 +60,7 @@
   }
 
   function checkoutUrlFor(root, handoff) {
+    if (root.dataset.purchaseControlsEnabled !== "true") return null;
     if (!handoff
         || handoff.paymentEnabled !== false
         || !["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED"].includes(handoff.testCheckoutStatus)
@@ -448,6 +449,7 @@
       const form = panel.querySelector("[data-cuk-reviewed-checkout-form]");
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        if (root.dataset.purchaseControlsEnabled !== "true") return;
         const error = form.querySelector("[data-cuk-reviewed-error]");
         error.hidden = true;
         if (!form.reportValidity()) return;
@@ -840,6 +842,7 @@
 
     checkoutForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      if (root.dataset.purchaseControlsEnabled !== "true") return;
       const checkoutError = checkoutForm.querySelector("[data-cuk-checkout-error]");
       checkoutError.hidden = true;
       if (!checkoutForm.reportValidity() || !lastEvaluation || lastEvaluation.calculation.outcome !== "INSTANT_PRICE") return;

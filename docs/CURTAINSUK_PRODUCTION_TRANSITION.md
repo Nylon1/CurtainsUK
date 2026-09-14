@@ -1,5 +1,19 @@
 # Production transition — 14 September 2026
 
+## Final gate closure update (supersedes the earlier blockers below)
+
+The owner authorized one server-side production TEST Draft rehearsal without changing active payment providers. The actual installation now has `write_draft_orders`, verified by `currentAppInstallation.accessScopes`. No unrelated scopes were added. Store identity is `gid://shopify/Shop/25645514861`, `carpetup.myshopify.com`, primary host `www.curtainsuk.com`.
+
+Indexing and purchases are independent: `curtainsuk_staging_mode=false` prepares production indexing; `curtainsuk_purchase_controls_enabled=false` suppresses cart access and both ordinary/reviewed checkout forms and handlers. Unpublished/editor previews still receive noindex from theme role. Existing inherited purchase buttons remain disabled. The server remains calculate-only and cannot return a payment handoff. These theme changes were uploaded only to Dawn `182264234363`; Minimal `79650455661` remains live.
+
+Remote desktop/390px/412px checks confirmed canonical `https://www.curtainsuk.com`, preview noindex, no mobile overflow, and no visible checkout form even after Sadira produced its £601 price. Anonymous HCI and the isolation/origin/forged-cookie/staff-auth checks passed again. Full npm tests, targeted tests, changed-file lint and typecheck passed.
+
+The operator-only `scripts/curtainsuk-production-draft-rehearsal.mjs` reads the existing immutable Sadira snapshot, uses the existing contract and exact-financial checks, and never requests an invoice URL. Its default is calculate-only. `--create` is allowed only after exact tax/total validation, uses a private durable claim to prevent duplicate retries, verifies repeated reads and immutable snapshot contents, then deletes only its exact labelled still-open test draft. It attaches no customer/email, sends no invoice and cannot complete an order. No customer route imports this script.
+
+**Remaining blocker: production VAT configuration.** Actual Shopify calculation returns goods £601, shipping £12.95, total £613.95, `taxesIncluded=false`, VAT £0. The approved immutable configuration requires VAT £102.33 (£100.17 goods + £2.16 delivery). Production admin independently shows United Kingdom “Not collecting”, “Include sales tax in product price and shipping rate” OFF, and “Charge sales tax on shipping” OFF. The exact-financial guard stopped before creation. Therefore production Draft creation/idempotency/cleanup are NOT yet reported PASS; no production test draft was created or invoice sent.
+
+Owner confirmation of the business's actual VAT registration/treatment and authorization for any store-wide tax changes is pending. Those changes would also affect live Minimal. Do not invent registration details, manufacture tax lines, relabel zero VAT as included VAT, or weaken the guard to produce a passing rehearsal. Payment providers remain unchanged. Publication and purchase activation remain prohibited.
+
 ## Scope and deployment
 
 No theme publication, payment-setting change, order creation, Merchant Center activation or supplier ordering was performed.

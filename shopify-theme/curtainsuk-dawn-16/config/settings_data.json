@@ -1,7 +1,8 @@
 {
   "current": {
     "curtainsuk_review_email": "enquiries@curtainsuk.com",
-    "curtainsuk_staging_mode": true,
+    "curtainsuk_staging_mode": false,
+    "curtainsuk_purchase_controls_enabled": false,
     "curtainsuk_staging_api_base": "/apps/curtainsuk-decision",
     "curtainsuk_staging_market_label": "United Kingdom | GBP",
     "logo_width": 90,

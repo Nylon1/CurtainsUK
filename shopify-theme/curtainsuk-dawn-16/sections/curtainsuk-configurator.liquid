@@ -5,7 +5,7 @@
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
-<section class="cuk-shell cuk-section" data-cuk-configurator data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
+<section class="cuk-shell cuk-section" data-cuk-configurator data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
@@ -35,7 +35,7 @@
           <div><dt>Delivery</dt><dd data-cuk-reviewed-delivery>Shown separately</dd></div>
           <div><dt>Review status</dt><dd>Approved by the curtain team</dd></div>
         </dl>
-        <form class="cuk-checkout-handoff" data-cuk-reviewed-checkout-form>
+        <form class="cuk-checkout-handoff" data-cuk-reviewed-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h3>Prepare your Shopify test checkout</h3>
           <p>The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.</p>
           <div class="cuk-field">
@@ -163,7 +163,7 @@
           <div><dt>Review status</dt><dd data-cuk-summary-review>Not required</dd></div>
         </dl>
         <p class="cuk-hint" data-cuk-result-spec></p>
-        <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form>
+        <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h2>Prepare a Shopify test checkout</h2>
           <p>This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.</p>
           <div class="cuk-field">

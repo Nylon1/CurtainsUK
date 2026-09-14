@@ -1479,8 +1479,14 @@
       {
         "type": "checkbox",
         "id": "curtainsuk_staging_mode",
-        "label": "Keep CurtainsUK commerce disabled",
+        "label": "Keep staging noindex (independent of purchases)",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "curtainsuk_purchase_controls_enabled",
+        "label": "Enable CurtainsUK purchase controls",
+        "default": false
       },
       {
         "type": "text",

@@ -147,13 +147,14 @@ test("an unverified fabric deep link is explained instead of silently substitute
   assert.match(script, /fabricSelect\.value !== requestedFabric/);
 });
 
-test("Dawn staging mode hides commerce controls and fixes the preview market label without changing Shopify Markets", () => {
+test("Dawn purchase controls stay off independently of production indexing and Shopify Markets", () => {
   const settings = JSON.parse(read("config", "settings_data.json")) as { current: Record<string, unknown> };
   const header = read("sections", "header.liquid");
-  assert.equal(settings.current.curtainsuk_staging_mode, true);
+  assert.equal(settings.current.curtainsuk_staging_mode, false);
+  assert.equal(settings.current.curtainsuk_purchase_controls_enabled, false);
   assert.equal(settings.current.curtainsuk_staging_market_label, "United Kingdom | GBP");
-  assert.match(header, /unless settings\.curtainsuk_staging_mode/);
-  assert.match(header, /settings\.curtainsuk_staging_mode == false/);
+  assert.doesNotMatch(header, /settings\.curtainsuk_staging_mode/);
+  assert.match(header, /settings\.curtainsuk_purchase_controls_enabled == true/);
 });
 
 test("all inherited Dawn commerce controls are disabled in the unpublished staging theme", () => {

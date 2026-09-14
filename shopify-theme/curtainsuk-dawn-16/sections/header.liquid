@@ -282,7 +282,7 @@
       </div>
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
-      {%- if shop.customer_accounts_enabled and settings.curtainsuk_staging_mode == false -%}
+      {%- if shop.customer_accounts_enabled and settings.curtainsuk_purchase_controls_enabled == true -%}
         <shopify-account
           menu="{{ settings.customer_account_menu | default: 'customer-account-main-menu' }}"
           class="header__icon header__icon--account link focus-inset"
@@ -299,7 +299,7 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      {%- unless settings.curtainsuk_staging_mode -%}
+      {%- if settings.curtainsuk_purchase_controls_enabled == true -%}
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
@@ -316,12 +316,12 @@
           </div>
         {%- endif -%}
       </a>
-      {%- endunless -%}
+      {%- endif -%}
     </div>
   </header>
 </{{ header_tag }}>
 
-{%- if settings.cart_type == 'notification' and settings.curtainsuk_staging_mode == false -%}
+{%- if settings.cart_type == 'notification' and settings.curtainsuk_purchase_controls_enabled == true -%}
   {%- render 'cart-notification',
     color_scheme: section.settings.color_scheme,
     desktop_menu_type: section.settings.menu_type_desktop

@@ -79,7 +79,7 @@
     const checkoutUrl = checkoutUrlFor(root, handoff);
     confirmation.replaceChildren();
     const message = document.createElement("p");
-    message.textContent = handoff.message || "Staging checkout handoff prepared.";
+    message.textContent = handoff.message || "Checkout handoff prepared.";
     const reference = document.createElement("p");
     reference.className = "cuk-hint";
     reference.textContent = handoff.paymentEnabled ? `Reference ${handoff.handoffId}` : `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;
@@ -120,7 +120,7 @@
       ...options,
     });
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.error || "The staging service could not complete this request.");
+    if (!response.ok) throw new Error(data.error || "This request could not be completed.");
     return data;
   }
 
@@ -389,7 +389,7 @@
       UNLINED: "Unlined", STANDARD: "Standard lining", BLACKOUT: "Blackout lining", THERMAL: "Thermal lining", BONDED: "Bonded lining / interlining",
     });
     const status = root.querySelector("[data-cuk-route-status]");
-    status.textContent = isSpecialist ? "Technical review" : isReview ? "Price with review" : "Instant staging price";
+    status.textContent = isSpecialist ? "Technical review" : isReview ? "Price with review" : "Instant price";
     status.classList.toggle("cuk-status--review", isReview || isSpecialist);
     const submit = root.querySelector(".cuk-form > button[type=submit]");
     if (submit) submit.textContent = isSpecialist ? "Prepare my review" : "Check my price or review route";
@@ -435,7 +435,7 @@
           || !Number.isInteger(summary.price.grossAmountMinor)
           || summary.price.grossAmountMinor <= 0
           || summary.price.currency !== "GBP") {
-        throw new Error("The approved review summary failed its staging safety checks.");
+        throw new Error("The approved review summary failed its safety checks.");
       }
       loading.hidden = true;
       panel.querySelector("[data-cuk-reviewed-content]").classList.remove("cuk-hidden");
@@ -479,7 +479,7 @@
             }),
           });
           if (!handoff.prepared) {
-            const blockers = Array.isArray(handoff.blockers) ? handoff.blockers.map((item) => humanise(item)).join(", ") : "a staging launch gate";
+            const blockers = Array.isArray(handoff.blockers) ? handoff.blockers.map((item) => humanise(item)).join(", ") : "a required checkout check";
             throw new Error(`${handoff.message || "This reviewed configuration is not ready for checkout"} (${blockers}).`);
           }
           renderHandoffConfirmation(root, form.querySelector("[data-cuk-reviewed-confirmation]"), handoff);
@@ -717,7 +717,7 @@
         const isPriceWithReview = response.outcome === "PRICE_WITH_REVIEW";
         const needsReview = isManualQuote || isPriceWithReview;
         const routeStatus = root.querySelector("[data-cuk-route-status]");
-        routeStatus.textContent = isManualQuote ? "Manual quote" : isPriceWithReview ? "Price with review" : "Instant staging price";
+        routeStatus.textContent = isManualQuote ? "Manual quote" : isPriceWithReview ? "Price with review" : "Instant price";
         routeStatus.classList.toggle("cuk-status--review", needsReview);
         const evidence = root.querySelector("[data-cuk-review-evidence]");
         if (needsReview && evidence) {
@@ -883,7 +883,7 @@
         }
         const confirmation = checkoutForm.querySelector("[data-cuk-checkout-confirmation]");
         renderHandoffConfirmation(root, confirmation, handoff);
-        submit.textContent = handoff.checkoutUrl ? "Test checkout prepared" : "Staging total validated";
+        submit.textContent = handoff.paymentEnabled ? "Secure checkout prepared" : handoff.checkoutUrl ? "Test checkout prepared" : "Total validated";
         result.querySelector("[data-cuk-summary-review]").textContent = handoff.paymentEnabled ? "Secure checkout ready" : handoff.checkoutUrl ? "Shopify test checkout ready" : "Validated for staging";
         emit("checkout_handoff_reached", {
           window_type: lastEvaluation.configuration.windowSlug,

@@ -15,13 +15,13 @@
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
-        <p class="cuk-eyebrow">Made for your window · private preview</p>
+        <p class="cuk-eyebrow">Made for your window{% unless production_checkout %} · private preview{% endunless %}</p>
         <h1>Make it yours.</h1>
       </div>
       <span class="cuk-status" data-cuk-route-status>Loading route…</span>
     </div>
     <section class="cuk-panel cuk-reviewed-resume cuk-hidden" data-cuk-reviewed-resume tabindex="-1" aria-live="polite">
-      <p class="cuk-eyebrow">Staff-reviewed curtain · staging only</p>
+      <p class="cuk-eyebrow">Staff-reviewed curtain{% unless production_checkout %} · staging only{% endunless %}</p>
       <h2>Review and accept your final curtain specification</h2>
       <p data-cuk-reviewed-loading>Securely checking the approved revision…</p>
       <div class="cuk-hidden" data-cuk-reviewed-content>

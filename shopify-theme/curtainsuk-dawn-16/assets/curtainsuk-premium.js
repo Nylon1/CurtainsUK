@@ -43,11 +43,7 @@
             refinementDigest: String(value.refinementDigest || '').slice(0, 100),
             commerceToken: String(value.commerceToken || '').slice(0, 2000),
             windowSlug: String(value.windowSlug || '').slice(0, 60),
-            returnOrigin: ['http://127.0.0.1:3260', 'https://curtainsuk-staging-gateway.vercel.app'].includes(
-              value.returnOrigin,
-            )
-              ? value.returnOrigin
-              : 'https://curtainsuk-staging-gateway.vercel.app',
+            returnOrigin: location.origin,
           }),
         );
       }
@@ -72,7 +68,7 @@
         text.textContent = `Your consultation · ${context.profileSummary}`;
         const link = document.createElement('a');
         link.textContent = 'Return to my shortlist';
-        link.href = `${context.returnOrigin || (location.hostname === '127.0.0.1' ? '' : 'https://curtainsuk-staging-gateway.vercel.app')}/curtain-consultation?session=${encodeURIComponent(context.sessionId)}`;
+        link.href = `/apps/curtainsuk-decision/consultation?session=${encodeURIComponent(context.sessionId)}`;
         const details = document.createElement('details'),
           summary = document.createElement('summary');
         summary.textContent = 'Your profile';

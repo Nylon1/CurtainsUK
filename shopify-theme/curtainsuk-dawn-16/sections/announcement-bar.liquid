@@ -1,3 +1,4 @@
+{% capture cuk_environment %}{% render 'curtainsuk-environment' %}{% endcapture %}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
@@ -40,7 +41,7 @@
             >
           {%- endif -%}
           <p class="announcement-bar__message h5">
-            <span>{{ section.blocks.first.settings.text | escape }}</span>
+            <span>{% if cuk_environment contains 'production' %}Made-to-measure curtains · UK delivery{% else %}{{ section.blocks.first.settings.text | escape }}{% endif %}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {{- 'icon-arrow.svg' | inline_asset_content -}}
             {%- endif -%}
@@ -100,7 +101,7 @@
                       >
                     {%- endif -%}
                     <p class="announcement-bar__message h5">
-                      <span>{{ block.settings.text | escape }}</span>
+                      <span>{% if cuk_environment contains 'production' %}Made-to-measure curtains · UK delivery{% else %}{{ block.settings.text | escape }}{% endif %}</span>
                       {%- if block.settings.link != blank -%}
                         {{- 'icon-arrow.svg' | inline_asset_content -}}
                       {%- endif -%}

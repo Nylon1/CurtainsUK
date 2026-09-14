@@ -1,3 +1,4 @@
+{% capture cuk_environment %}{% render 'curtainsuk-environment' %}{% endcapture %}
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 {{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
 <section class="cuk-shell cuk-editorial-hero">
@@ -6,7 +7,7 @@
     <h1>Beautiful curtains.<br><em>Considered for you.</em></h1>
     <p class="cuk-lede">The right fabric changes how a room feels. Discover your favourites, find your finish, and make something entirely your own.</p>
     <a class="cuk-button" href="#cuk-fabric-discovery">Help me find the perfect curtains <span aria-hidden="true">↗</span></a>
-    <p class="cuk-editorial-note">Private preview · Our guided consultation is currently for internal review.</p>
+    {% unless cuk_environment contains 'production' %}<p class="cuk-editorial-note">Private preview · Our guided consultation is currently for internal review.</p>{% endunless %}
     <a class="cuk-text-link" href="#cuk-shop-your-way">I know what I want <span aria-hidden="true">↓</span></a>
   </div>
   <figure class="cuk-editorial-hero__image">

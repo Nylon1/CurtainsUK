@@ -1,7 +1,8 @@
+{% capture cuk_environment %}{% render 'curtainsuk-environment' %}{% endcapture %}
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 <nav class="cuk-shell cuk-task-nav" aria-label="CurtainsUK tasks">
   <div class="cuk-wrap">
-    <p class="cuk-task-nav__market">{{ settings.curtainsuk_staging_market_label | default: 'United Kingdom | GBP' }} · Supply-only staging · Checkout disabled</p>
+    <p class="cuk-task-nav__market">{{ settings.curtainsuk_staging_market_label | default: 'United Kingdom | GBP' }}{% unless cuk_environment contains 'production' %} · Supply-only staging · Checkout disabled{% endunless %}</p>
     <ul class="cuk-task-nav__list">
       <li><a href="/#cuk-fabric-discovery">Find My Fabric</a></li>
       <li><a href="/pages/solve-my-window">Shop by Window</a></li>

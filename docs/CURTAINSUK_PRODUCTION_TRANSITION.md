@@ -1,5 +1,13 @@
 # Production transition — 14 September 2026
 
+## Republication — storefront live, purchases disabled
+
+On the owner's subsequent “Publish” instruction, Dawn `182264234363` was republished from clean tracked branch state `2c0c296de7c6db3b6f99c56d25144d1008406a69`. Shopify confirmed it live; Minimal `79650455661` remains the unpublished rollback reference. No application, payment-provider or purchase-control change accompanied publication.
+
+Immediate cookie-free checks returned 200 with the live Dawn identity and no noindex on the homepage, Fabric Library, configurator and all ten measuring/fitting routes. The configurator server markup still sets purchase controls false. Browser checks confirmed the real measuring/fitting hubs at 390/412px without overflow and no preview bar. Live catalogue search returned the four Sadira colourways on one page. Fresh anonymous HCI initialization returned 200 (7.05s on this sample); cross-owner, foreign-origin, forged-cookie and anonymous-staff probes retained their expected 409/403/401/401 boundaries. No 504/520 occurred in these sampled checks. Earlier image/palette/five-direction/refinement/sample/Standard/Bay smoke results are recorded below; they were not misrepresented as a second full HCI run. The guide-specific publication defect is resolved.
+
+STOREFRONT LIVE — PASS. HCI LIVE — PASS. SUPABASE — HEALTHY during the sampled checks. PURCHASE CONTROLS — DISABLED. Legacy staging copy remains the previously recorded non-blocking content issue. Real checkout still requires separate owner approval; no invoice, charge or supplier order was created. Local evidence: `Downloads/republish-route-checks.json`, `republish-auth-checks.txt`, `republish-theme-roles.json`.
+
 ## Guide routing closure — READY TO REPUBLISH
 
 The production defect was **hidden Shopify Page records**, not missing pages, wrong handles or missing Dawn templates. All ten existing guide records were Hidden. `sections/curtainsuk-guides.liquid` contains a deliberately unpublished-only 404 fallback (`request.page_type == '404' and theme.role != 'main'`): it displayed guide content in preview without making the underlying route HTTP 200. On publication that fallback correctly stopped, exposing the hidden-page 404. Navigation used the correct URLs. The pages inspected in admin used Default page; Dawn's existing `templates/page.json` includes the guides section and routes by `page.handle`.

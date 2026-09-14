@@ -9,7 +9,8 @@ export const SHOPIFY_DRAFT_ORDER_API_VERSION = "2026-07" as const;
 export type ShopifyDraftOrderMode =
   | "DISABLED"
   | "CALCULATE_ONLY"
-  | "CREATE_TEST_DRAFT";
+  | "CREATE_TEST_DRAFT"
+  | "CREATE_PRODUCTION_DRAFT";
 
 export interface ShopifyMoneyInput {
   amount: string;
@@ -61,7 +62,7 @@ export interface ShopifyDraftOrderExpectedFinancials {
 
 export interface ShopifyDraftOrderContract {
   apiVersion: typeof SHOPIFY_DRAFT_ORDER_API_VERSION;
-  environment: "STAGING";
+  environment: "STAGING" | "PRODUCTION";
   handoffId: string;
   snapshotId: string;
   configurationId: string;
@@ -69,7 +70,7 @@ export interface ShopifyDraftOrderContract {
   requiredScopes: typeof SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES;
   input: ShopifyDraftOrderInput;
   expected: ShopifyDraftOrderExpectedFinancials;
-  paymentEnabled: false;
+  paymentEnabled: boolean;
   completionMutationAllowed: false;
   invoiceSendAllowed: false;
 }
@@ -349,6 +350,22 @@ export function buildShopifyDraftOrderContract(input: {
   return immutableClone(contract);
 }
 
+/** Promote execution only; the approved configuration and all financial inputs stay immutable. */
+export function asProductionDraftOrderContract(contract: Readonly<ShopifyDraftOrderContract>, fabricMasterId: string): Readonly<ShopifyDraftOrderContract> {
+  if (!/^[a-zA-Z0-9_-]{1,200}$/.test(fabricMasterId)) throw new Error("SHOPIFY_FABRIC_ID_INVALID");
+  return immutableClone({
+    ...contract,
+    environment: "PRODUCTION" as const,
+    paymentEnabled: true,
+    input: {
+      ...contract.input,
+      note: `CurtainsUK made-to-measure configuration ${contract.configurationId}. Supplier ordering remains manual.`,
+      tags: ["CURTAINSUK_PRODUCTION", contract.idempotencyTag],
+      customAttributes: [...contract.input.customAttributes, {key:"curtainsuk_fabric_master_id",value:fabricMasterId}],
+    },
+  });
+}
+
 export function parseShopifyMoneyMinor(value: unknown): number {
   if (typeof value !== "string" || !/^\d+(?:\.\d{1,2})?$/.test(value)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_MONEY_RESPONSE_INVALID");
@@ -429,6 +446,14 @@ export function validateShopifyDraftOrderNode(
   if (handoffAttribute?.value !== contract.handoffId) {
     throw new Error("SHOPIFY_DRAFT_ORDER_IDEMPOTENCY_MISMATCH");
   }
+  if (contract.environment === "PRODUCTION") {
+    if (!node.tags.includes("CURTAINSUK_PRODUCTION") || node.tags.some(tag => ["CURTAINSUK_STAGING","DO_NOT_FULFIL","NO_REAL_PAYMENT"].includes(String(tag)))) {
+      throw new Error("SHOPIFY_DRAFT_ORDER_ENVIRONMENT_MISMATCH");
+    }
+    for (const expected of contract.input.customAttributes) {
+      if (!attributes(node.customAttributes).some(actual => actual.key === expected.key && actual.value === expected.value)) throw new Error("SHOPIFY_DRAFT_ORDER_IDEMPOTENCY_MISMATCH");
+    }
+  }
   if (typeof node.invoiceUrl !== "string") {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_URL_INVALID");
   }
@@ -438,7 +463,8 @@ export function validateShopifyDraftOrderNode(
   } catch {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_URL_INVALID");
   }
-  if (checkoutUrl.protocol !== "https:") {
+  if (checkoutUrl.protocol !== "https:" || checkoutUrl.username || checkoutUrl.password || checkoutUrl.port
+      || (contract.environment === "PRODUCTION" && !["www.curtainsuk.com","carpetup.myshopify.com"].includes(checkoutUrl.hostname))) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_URL_INVALID");
   }
   return Object.freeze({

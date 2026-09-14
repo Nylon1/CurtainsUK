@@ -12,6 +12,7 @@ import {
   assertShopifyDraftOrderFinancials,
   allocateVatFromGross,
   buildShopifyDraftOrderContract,
+  asProductionDraftOrderContract,
   parseShopifyMoneyMinor,
   SHOPIFY_DRAFT_ORDER_API_VERSION,
   SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES,
@@ -41,6 +42,27 @@ const IDS = {
   event2: "88888888-8888-4888-8888-888888888888",
   event3: "99999999-9999-4999-8999-999999999999",
 };
+
+test('production contract preserves exact price and identity without labelling real orders as tests',()=>{
+ const handoff=approvedHandoff('INSTANT_PRICE');
+ const original=buildShopifyDraftOrderContract({handoff});
+ const production=asProductionDraftOrderContract(original,handoff.snapshot.fabricMasterId);
+ assert.deepEqual(production.expected,original.expected);
+ assert.deepEqual(production.input.lineItems,original.input.lineItems);
+ assert.equal(production.paymentEnabled,true);
+ assert.equal(production.environment,'PRODUCTION');
+ assert.equal(original.paymentEnabled,false);
+ assert.equal(production.completionMutationAllowed,false);
+ assert.equal(production.invoiceSendAllowed,false);
+ assert.doesNotMatch(production.input.note,/TEST|STAGING|DO NOT/i);
+ assert.ok(production.input.tags.includes('CURTAINSUK_PRODUCTION'));
+ assert.ok(!production.input.tags.includes('DO_NOT_FULFIL'));
+ const node={...financialNode(production),id:'gid://shopify/DraftOrder/789',name:'#D-production-test',status:'OPEN',invoiceUrl:'https://www.curtainsuk.com/invoices/test',tags:production.input.tags,customAttributes:production.input.customAttributes};
+ assert.equal(validateShopifyDraftOrderNode(node,production).id,node.id);
+ assert.throws(()=>validateShopifyDraftOrderNode({...node,invoiceUrl:'https://evil.example/invoice'},production),/CHECKOUT_URL_INVALID/);
+ assert.throws(()=>validateShopifyDraftOrderNode({...node,tags:original.input.tags},production),/ENVIRONMENT_MISMATCH/);
+ assert.throws(()=>validateShopifyDraftOrderNode({...node,customAttributes:[]},production),/IDEMPOTENCY_MISMATCH/);
+});
 
 const PRICE = Object.freeze({
   netAmountMinor: 104_417,
@@ -659,4 +681,47 @@ test("concurrent creation and a lost accepted response never issue a second crea
     await assert.rejects(executeShopifyDraftOrder({...request,claimCreate:async()=>{throw new Error("DATABASE_UNAVAILABLE");}}),/DATABASE_UNAVAILABLE/);
     assert.equal(creates,1,"database failure must prevent creation");
   } finally { hooks.deregister(); }
+});
+
+
+test("production checkout preserves recovery, one-shot creation and explicit activation gates", async () => {
+  const {serverScriptHooks: hooks} = await import("../../../scripts/curtainsuk-server-script-loader.mjs");
+  try {
+    const {executeShopifyDraftOrder,shopifyDraftOrderConfigFromEnvironment} = await import("../shopify-draft-order-server");
+    const handoff=approvedHandoff("INSTANT_PRICE");
+    const contract=asProductionDraftOrderContract(buildShopifyDraftOrderContract({handoff}),handoff.snapshot.fabricMasterId);
+    const env={NODE_ENV:"test" as const,CURTAINSUK_DEPLOYMENT_STAGE:"STAGING",CURTAINSUK_SHOPIFY_CHECKOUT_STORE:"carpetup.myshopify.com",CURTAINSUK_SHOPIFY_CLIENT_ID:"production-test-client",CURTAINSUK_SHOPIFY_APP_SECRET:"production-test-secret-not-real",CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:"CREATE_PRODUCTION_DRAFT",CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:"true",CURTAINSUK_SHOPIFY_REAL_PAYMENTS_DISABLED_CONFIRMED:"false"};
+    assert.throws(()=>shopifyDraftOrderConfigFromEnvironment({...env,CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:"false"}),/STORE_DENIED/);
+    assert.throws(()=>shopifyDraftOrderConfigFromEnvironment({...env,CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:"CREATE_TEST_DRAFT",CURTAINSUK_SHOPIFY_PRODUCTION_TEST_MODE_VERIFIED:"true"}),/PAYMENT_SAFETY_NOT_CONFIRMED/);
+    const config=shopifyDraftOrderConfigFromEnvironment(env)!;
+    let claimed=false,creates=0,indexed=false;
+    const claimCreate=async()=>{if(claimed)return false;claimed=true;return true;};
+    const node={...financialNode(contract),id:"gid://shopify/DraftOrder/987",name:"#D-fixture",status:"OPEN",invoiceUrl:"https://www.curtainsuk.com/invoices/fixture",tags:contract.input.tags,customAttributes:contract.input.customAttributes};
+    const fetchImpl:typeof fetch=async(url,init)=>{
+      if(String(url).endsWith("/access_token"))return Response.json({access_token:"production-fixture-token",expires_in:3600,scope:"write_draft_orders"});
+      const {query,variables}=JSON.parse(String(init?.body));
+      assert.doesNotMatch(query,/draftOrderComplete|draftOrderInvoiceSend/);
+      if(query.includes("currentAppInstallation"))return Response.json({data:{currentAppInstallation:{accessScopes:[{handle:"write_draft_orders"}]}}});
+      if(query.includes("draftOrders("))return Response.json({data:{draftOrders:{nodes:indexed?[node]:[]}}});
+      if(query.includes("draftOrder(id:"))return Response.json({data:{draftOrder:node}});
+      if(query.includes("draftOrderCalculate("))return Response.json({data:{draftOrderCalculate:{calculatedDraftOrder:financialNode(contract),userErrors:[]}}});
+      assert.ok(query.includes("draftOrderCreate("));
+      assert.deepEqual(variables.input,contract.input);
+      creates++;throw Error("REMOTE_ACCEPTED_RESPONSE_LOST");
+    };
+    const request={contract,config,claimCreate,fetchImpl};
+    await assert.rejects(executeShopifyDraftOrder({...request,contract:buildShopifyDraftOrderContract({handoff})}),/CONTRACT_MODE_MISMATCH/);
+    const results=await Promise.allSettled([executeShopifyDraftOrder(request),executeShopifyDraftOrder(request)]);
+    assert.ok(results.every(r=>r.status==='rejected'));
+    assert.equal(creates,1);
+    await assert.rejects(executeShopifyDraftOrder(request),/PENDING/);
+    indexed=true;
+    const recovered=await executeShopifyDraftOrder(request);
+    assert.equal(recovered.status,"EXISTING_PRODUCTION_DRAFT_REUSED");
+    assert.equal(recovered.paymentEnabled,true);
+    assert.equal(recovered.shopifyWritePerformed,false);
+    assert.equal(creates,1);
+    const direct=await executeShopifyDraftOrder({...request,existingDraftOrderId:node.id});
+    assert.deepEqual(direct,recovered);
+  } finally {hooks.deregister();}
 });

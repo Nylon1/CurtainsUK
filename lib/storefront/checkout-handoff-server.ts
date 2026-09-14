@@ -62,10 +62,10 @@ export type ServerStagingCheckoutHandoffResult = {
   goodsPriceGrossAmountMinor: number;
   shippingGrossAmountMinor: number;
   currency: "GBP";
-  paymentEnabled: false;
+  paymentEnabled: boolean;
   shopifyWritePerformed: boolean;
   checkoutUrl: string | null;
-  testCheckoutStatus: "DISABLED" | "CALCULATED" | "TEST_DRAFT_CREATED" | "EXISTING_TEST_DRAFT_REUSED";
+  testCheckoutStatus: "DISABLED" | "CALCULATED" | "TEST_DRAFT_CREATED" | "EXISTING_TEST_DRAFT_REUSED" | "PRODUCTION_DRAFT_CREATED" | "EXISTING_PRODUCTION_DRAFT_REUSED";
   message: string;
 };
 
@@ -400,11 +400,13 @@ async function prepareCheckout(
     goodsPriceGrossAmountMinor: handoff.goodsPriceGrossAmountMinor,
     shippingGrossAmountMinor: handoff.shippingGrossAmountMinor,
     currency: "GBP",
-    paymentEnabled: false,
+    paymentEnabled: shopifyExecution.paymentEnabled,
     shopifyWritePerformed: shopifyExecution.shopifyWritePerformed,
     checkoutUrl: shopifyExecution.checkoutUrl,
     testCheckoutStatus: shopifyExecution.status,
-    message: shopifyExecution.status === "TEST_DRAFT_CREATED"
+    message: shopifyExecution.paymentEnabled
+      ? "Your exact curtain price and delivery are ready. Continue to secure checkout to review and pay."
+      : shopifyExecution.status === "TEST_DRAFT_CREATED"
       ? "Shopify test checkout is ready. Real payment remains disabled."
       : shopifyExecution.status === "EXISTING_TEST_DRAFT_REUSED"
         ? "Existing Shopify test checkout recovered. Real payment remains disabled."

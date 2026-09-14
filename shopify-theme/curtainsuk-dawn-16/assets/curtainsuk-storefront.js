@@ -61,16 +61,17 @@
 
   function checkoutUrlFor(root, handoff) {
     if (root.dataset.purchaseControlsEnabled !== "true") return null;
-    if (!handoff
-        || handoff.paymentEnabled !== false
-        || !["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED"].includes(handoff.testCheckoutStatus)
-        || (handoff.testCheckoutStatus === "TEST_DRAFT_CREATED" && handoff.shopifyWritePerformed !== true)
-        || (handoff.testCheckoutStatus === "EXISTING_TEST_DRAFT_REUSED" && handoff.shopifyWritePerformed !== false)
+    const production = root.dataset.productionCheckout === "true";
+    const created = production ? "PRODUCTION_DRAFT_CREATED" : "TEST_DRAFT_CREATED";
+    const reused = production ? "EXISTING_PRODUCTION_DRAFT_REUSED" : "EXISTING_TEST_DRAFT_REUSED";
+    if (!handoff || handoff.paymentEnabled !== production
+        || ![created, reused].includes(handoff.testCheckoutStatus)
+        || handoff.shopifyWritePerformed !== (handoff.testCheckoutStatus === created)
         || typeof handoff.checkoutUrl !== "string") return null;
     let checkoutUrl;
     try { checkoutUrl = new URL(handoff.checkoutUrl); } catch { return null; }
-    const allowedHost = String(root.dataset.stagingCheckoutHost || "").trim().toLowerCase();
-    if (!allowedHost || checkoutUrl.protocol !== "https:" || checkoutUrl.hostname.toLowerCase() !== allowedHost || checkoutUrl.username || checkoutUrl.password) return null;
+    const allowedHosts = production ? ["www.curtainsuk.com", "carpetup.myshopify.com"] : [String(root.dataset.stagingCheckoutHost || "").trim().toLowerCase()];
+    if (checkoutUrl.protocol !== "https:" || !allowedHosts.includes(checkoutUrl.hostname.toLowerCase()) || checkoutUrl.username || checkoutUrl.password || checkoutUrl.port) return null;
     return checkoutUrl.toString();
   }
 
@@ -81,12 +82,12 @@
     message.textContent = handoff.message || "Staging checkout handoff prepared.";
     const reference = document.createElement("p");
     reference.className = "cuk-hint";
-    reference.textContent = `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;
+    reference.textContent = handoff.paymentEnabled ? `Reference ${handoff.handoffId}` : `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;
     const amounts = document.createElement("p");
     amounts.textContent = `Curtains ${money(handoff.goodsPriceGrossAmountMinor)} · Delivery ${money(handoff.shippingGrossAmountMinor)} · Total ${money(handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor)} (VAT included)`;
     confirmation.append(message, amounts, reference);
-    if (["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED"].includes(handoff.testCheckoutStatus) && !checkoutUrl) {
-      throw new Error("The Shopify test Draft Order was prepared, but its checkout URL did not match the configured CurtainsUK development store. Ask staff to check the staging checkout host before retrying.");
+    if (["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED", "PRODUCTION_DRAFT_CREATED", "EXISTING_PRODUCTION_DRAFT_REUSED"].includes(handoff.testCheckoutStatus) && !checkoutUrl) {
+      throw new Error("Your order reference was prepared, but its secure checkout address could not be verified. Please contact enquiries@curtainsuk.com quoting the reference. Do not create another configuration to retry.");
     }
     if (checkoutUrl) {
       const link = document.createElement("a");
@@ -94,8 +95,8 @@
       link.href = checkoutUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      link.textContent = "Continue to Shopify test checkout";
-      link.addEventListener("click", () => emit("test_checkout_opened", { handoff_id: handoff.handoffId }));
+      link.textContent = handoff.paymentEnabled ? "Continue to secure checkout" : "Continue to Shopify test checkout";
+      link.addEventListener("click", () => emit(handoff.paymentEnabled ? "checkout_opened" : "test_checkout_opened", { handoff_id: handoff.handoffId }));
       confirmation.append(link);
     }
     confirmation.classList.remove("cuk-hidden");
@@ -402,7 +403,7 @@
     if (!panel || (!resume.capability && !resume.error)) return false;
     panel.classList.remove("cuk-hidden");
     builder?.classList.add("cuk-hidden");
-    root.querySelector("[data-cuk-route-status]").textContent = "Staff-reviewed staging checkout";
+    root.querySelector("[data-cuk-route-status]").textContent = root.dataset.productionCheckout === "true" ? "Your approved curtains" : "Staff-reviewed staging checkout";
     root.querySelector("[data-cuk-reviewed-clear]")?.addEventListener("click", () => {
       sessionStorage.removeItem(REVIEW_RESUME_KEY);
     });
@@ -488,7 +489,7 @@
           error.textContent = caught.message;
           error.hidden = false;
           submit.disabled = false;
-          submit.textContent = "Prepare test checkout";
+          submit.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout";
         }
       });
       panel.focus();
@@ -601,7 +602,7 @@
         reviewForm.classList.add("cuk-hidden");
         checkoutForm.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare test checkout"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout"; }
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         reviewConfirmation.classList.add("cuk-hidden");
       }
@@ -786,11 +787,11 @@
         previousCheckoutError.textContent = "";
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = "Prepare test checkout"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout"; }
         const notice = result.querySelector("[data-cuk-result-notice]");
         if (notice) notice.textContent = needsReview
           ? "Checkout is unavailable. This project must be reviewed before payment or manufacture."
-          : "Staging price only. Shopify test checkout is available only when every launch gate passes; real payment remains disabled.";
+          : root.dataset.productionCheckout === "true" ? "VAT is included. Delivery and current availability are confirmed before checkout." : "Staging price only. Shopify test checkout is available only when every launch gate passes; real payment remains disabled.";
         reviewConfirmation.classList.add("cuk-hidden");
         result.hidden = false;
         const receipt = readJson(RECEIPT_KEY, null);
@@ -878,7 +879,7 @@
         const confirmation = checkoutForm.querySelector("[data-cuk-checkout-confirmation]");
         renderHandoffConfirmation(root, confirmation, handoff);
         submit.textContent = handoff.checkoutUrl ? "Test checkout prepared" : "Staging total validated";
-        result.querySelector("[data-cuk-summary-review]").textContent = handoff.checkoutUrl ? "Shopify test checkout ready" : "Validated for staging";
+        result.querySelector("[data-cuk-summary-review]").textContent = handoff.paymentEnabled ? "Secure checkout ready" : handoff.checkoutUrl ? "Shopify test checkout ready" : "Validated for staging";
         emit("checkout_handoff_reached", {
           window_type: lastEvaluation.configuration.windowSlug,
           outcome: lastEvaluation.calculation.outcome,
@@ -890,7 +891,7 @@
         checkoutError.textContent = error.message;
         checkoutError.hidden = false;
         submit.disabled = false;
-        submit.textContent = "Prepare test checkout";
+        submit.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout";
       }
     });
   }

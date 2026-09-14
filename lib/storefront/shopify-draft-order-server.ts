@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import {
   assertShopifyDraftOrderFinancials,
   buildShopifyDraftOrderContract,
+  asProductionDraftOrderContract,
   SHOPIFY_DRAFT_ORDER_API_VERSION,
   SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES,
   type ShopifyDraftOrderContract,
@@ -23,6 +24,7 @@ export interface ShopifyDraftOrderRuntimeConfig {
   clientSecret: string;
   realPaymentsDisabledConfirmed: boolean;
   productionTestConfirmed?: boolean;
+  productionApproved?: boolean;
   requestTimeoutMs: number;
 }
 
@@ -41,12 +43,12 @@ export type ShopifyDraftOrderExecutionResult = {
   draftOrderName: null;
   paymentEnabled: false;
 } | {
-  status: "TEST_DRAFT_CREATED" | "EXISTING_TEST_DRAFT_REUSED";
+  status: "TEST_DRAFT_CREATED" | "EXISTING_TEST_DRAFT_REUSED" | "PRODUCTION_DRAFT_CREATED" | "EXISTING_PRODUCTION_DRAFT_REUSED";
   shopifyWritePerformed: boolean;
   checkoutUrl: string;
   draftOrderId: string;
   draftOrderName: string;
-  paymentEnabled: false;
+  paymentEnabled: boolean;
 };
 
 type FetchLike = (input: string | URL | Request, init?: RequestInit) => Promise<Response>;
@@ -140,7 +142,7 @@ export const SHOPIFY_ACCESS_SCOPE_QUERY = `
 
 function parseMode(value: string | undefined): ShopifyDraftOrderMode {
   if (!value || value === "DISABLED") return "DISABLED";
-  if (value === "CALCULATE_ONLY" || value === "CREATE_TEST_DRAFT") return value;
+  if (value === "CALCULATE_ONLY" || value === "CREATE_TEST_DRAFT" || value === "CREATE_PRODUCTION_DRAFT") return value;
   throw new Error("SHOPIFY_DRAFT_ORDER_MODE_INVALID");
 }
 
@@ -161,7 +163,8 @@ export function shopifyDraftOrderConfigFromEnvironment(
   const clientId = (productionStore ? environment.CURTAINSUK_SHOPIFY_CLIENT_ID : environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_ID ?? environment.CURTAINSUK_SHOPIFY_CLIENT_ID)?.trim() ?? "";
   const clientSecret = (productionStore ? environment.CURTAINSUK_SHOPIFY_APP_SECRET : environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_SECRET ?? environment.CURTAINSUK_SHOPIFY_APP_SECRET)?.trim() ?? "";
   const productionTestConfirmed = environment.CURTAINSUK_SHOPIFY_PRODUCTION_TEST_MODE_VERIFIED === 'true';
-  if (!validShopDomain(shopDomain) || !allowedCheckoutStore(shopDomain,mode,productionTestConfirmed)) {
+  const productionApproved = environment.CURTAINSUK_PRODUCTION_PURCHASES_APPROVED === 'true';
+  if (!validShopDomain(shopDomain) || !allowedCheckoutStore(shopDomain,mode,productionTestConfirmed,productionApproved)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_STORE_DENIED");
   }
   if (clientId.length < 8 || clientSecret.length < 16) {
@@ -179,6 +182,7 @@ export function shopifyDraftOrderConfigFromEnvironment(
     clientSecret,
     realPaymentsDisabledConfirmed,
     productionTestConfirmed,
+    productionApproved,
     requestTimeoutMs: 10_000,
   };
 }
@@ -430,10 +434,14 @@ export async function executeShopifyDraftOrder(input: {
     throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
   }
   if (!validShopDomain(input.config.shopDomain)
-      || !allowedCheckoutStore(input.config.shopDomain,input.config.mode,input.config.productionTestConfirmed)) {
+      || !allowedCheckoutStore(input.config.shopDomain,input.config.mode,input.config.productionTestConfirmed,input.config.productionApproved)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_STORE_DENIED");
   }
   const fetchImpl = input.fetchImpl ?? fetch;
+  const production = input.config.mode === "CREATE_PRODUCTION_DRAFT";
+  if (production !== (input.contract.environment === "PRODUCTION" && input.contract.paymentEnabled)) {
+    throw new Error("SHOPIFY_DRAFT_ORDER_CONTRACT_MODE_MISMATCH");
+  }
   if (input.config.mode === "CREATE_TEST_DRAFT"
       && !input.config.realPaymentsDisabledConfirmed) {
     throw new Error("SHOPIFY_DRAFT_ORDER_PAYMENT_SAFETY_NOT_CONFIRMED");
@@ -450,24 +458,24 @@ export async function executeShopifyDraftOrder(input: {
       paymentEnabled: false,
     };
   }
-  if (input.config.mode !== "CREATE_TEST_DRAFT") {
+  if (input.config.mode !== "CREATE_TEST_DRAFT" && !production) {
     throw new Error("SHOPIFY_DRAFT_ORDER_PAYMENT_SAFETY_NOT_CONFIRMED");
   }
   if (input.existingDraftOrderId) {
     const data = await graphql({config:input.config,accessToken,fetchImpl,query:SHOPIFY_DRAFT_ORDER_BY_ID_QUERY,variables:{id:input.existingDraftOrderId}});
     if (!isRecord(data.draftOrder)) throw new Error("SHOPIFY_DRAFT_ORDER_RECEIPT_NOT_FOUND");
     const recovered = validateShopifyDraftOrderNode(data.draftOrder as ShopifyDraftOrderNode,input.contract);
-    return {status:"EXISTING_TEST_DRAFT_REUSED",shopifyWritePerformed:false,checkoutUrl:recovered.invoiceUrl,draftOrderId:recovered.id,draftOrderName:recovered.name,paymentEnabled:false};
+    return {status:production ? "EXISTING_PRODUCTION_DRAFT_REUSED" : "EXISTING_TEST_DRAFT_REUSED",shopifyWritePerformed:false,checkoutUrl:recovered.invoiceUrl,draftOrderId:recovered.id,draftOrderName:recovered.name,paymentEnabled:production};
   }
   const existing = await findExisting({ contract: input.contract, config: input.config, accessToken, fetchImpl });
   if (existing) {
     return {
-      status: "EXISTING_TEST_DRAFT_REUSED",
+      status: production ? "EXISTING_PRODUCTION_DRAFT_REUSED" : "EXISTING_TEST_DRAFT_REUSED",
       shopifyWritePerformed: false,
       checkoutUrl: existing.invoiceUrl,
       draftOrderId: existing.id,
       draftOrderName: existing.name,
-      paymentEnabled: false,
+      paymentEnabled: production,
     };
   }
   await calculate({ contract: input.contract, config: input.config, accessToken, fetchImpl });
@@ -479,12 +487,12 @@ export async function executeShopifyDraftOrder(input: {
   }
   const created = await create({ contract: input.contract, config: input.config, accessToken, fetchImpl });
   return {
-    status: "TEST_DRAFT_CREATED",
+    status: production ? "PRODUCTION_DRAFT_CREATED" : "TEST_DRAFT_CREATED",
     shopifyWritePerformed: true,
     checkoutUrl: created.invoiceUrl,
     draftOrderId: created.id,
     draftOrderName: created.name,
-    paymentEnabled: false,
+    paymentEnabled: production,
   };
 }
 
@@ -495,12 +503,15 @@ export async function executeStagingShopifyDraftOrder(input: {
   environment?: NodeJS.ProcessEnv;
   fetchImpl?: FetchLike;
 }): Promise<ShopifyDraftOrderExecutionResult> {
-  const contract = buildShopifyDraftOrderContract({
+  const baseContract = buildShopifyDraftOrderContract({
     handoff: input.handoff,
     customerEmail: input.customerEmail,
     fabricLabel: input.fabricLabel,
   });
   const config = shopifyDraftOrderConfigFromEnvironment(input.environment);
+  const contract = config?.mode === "CREATE_PRODUCTION_DRAFT"
+    ? asProductionDraftOrderContract(baseContract,input.handoff.snapshot.fabricMasterId)
+    : baseContract;
   return executeShopifyDraftOrder({
     contract,
     config,

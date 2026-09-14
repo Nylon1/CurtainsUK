@@ -15,7 +15,7 @@ test("Dawn contains the 14 unique Window Type route definitions", () => {
   assert.equal(manifest.publishState, "UNPUBLISHED_STAGING_ONLY");
 });
 
-test("Dawn delegates decisions to the signed app proxy and exposes only a development-store test handoff with real payment disabled", () => {
+test("Dawn delegates decisions to the signed app proxy and retains isolated test-checkout support", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
   const settings = JSON.parse(read("config", "settings_data.json")) as { current: Record<string, unknown> };
@@ -28,7 +28,7 @@ test("Dawn delegates decisions to the signed app proxy and exposes only a develo
   assert.match(section, /This flow cannot take real payment or release a job to manufacture/);
   assert.match(section, /Real payment and manufacture remain disabled/);
   assert.match(section, /data-staging-checkout-host/);
-  assert.match(script, /checkoutUrl\.hostname\.toLowerCase\(\) !== allowedHost/);
+  assert.match(script, /!allowedHosts\.includes\(checkoutUrl\.hostname\.toLowerCase\(\)\)/);
   assert.match(script, /Continue to Shopify test checkout/);
 });
 
@@ -180,7 +180,8 @@ test("results always show VAT, availability and delivery while standard results 
   assert.match(script, /response\.availability \|\| "Availability to be confirmed"/);
   assert.match(script, /response\.delivery.*"Delivery shown separately"/);
   assert.match(script, /Shopify test checkout is available only when every launch gate passes; real payment remains disabled/);
-  assert.match(section, /data-cuk-result-notice>Staging only\. Shopify test checkout remains gated; real payment is disabled/);
+  assert.match(section, /data-cuk-result-notice>\{% if production_checkout %\}VAT is included\./);
+  assert.match(section, /\{% else %\}Staging only\. Shopify test checkout remains gated; real payment is disabled/);
   for (const field of ["window", "dimensions", "fabric", "heading", "lining", "construction", "availability", "price", "delivery", "review"]) {
     assert.match(section, new RegExp(`data-cuk-summary-${field}`));
   }

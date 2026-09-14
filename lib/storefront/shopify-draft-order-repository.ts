@@ -25,13 +25,14 @@ export async function persistShopifyDraftOrderExecution(input: {
         snapshot_id: expected.snapshotId,
         execution_mode: input.execution.status === "CALCULATED"
           ? "CALCULATE_ONLY"
-          : "CREATE_TEST_DRAFT",
+          : input.execution.paymentEnabled ? "CREATE_PRODUCTION_DRAFT" : "CREATE_TEST_DRAFT",
         execution_status: input.execution.status,
         shopify_draft_order_gid: input.execution.draftOrderId,
         shopify_draft_order_name: input.execution.draftOrderName,
         shopify_write_performed: input.execution.shopifyWritePerformed,
         checkout_url_issued: input.execution.checkoutUrl !== null,
-        payment_enabled: false,
+        payment_enabled: input.execution.paymentEnabled,
+        shop_domain: input.execution.paymentEnabled ? "carpetup.myshopify.com" : null,
         financial_verification: {
           currency: "GBP",
           taxes_included: true,

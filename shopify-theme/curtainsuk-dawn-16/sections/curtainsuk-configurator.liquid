@@ -1,3 +1,9 @@
+{% liquid
+  assign production_checkout = false
+  if theme.role == 'main' and settings.curtainsuk_staging_mode == false
+    assign production_checkout = true
+  endif
+%}
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 {{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
 
@@ -5,7 +11,7 @@
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
-<section class="cuk-shell cuk-section" data-cuk-configurator data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
+<section class="cuk-shell cuk-section" data-cuk-configurator data-production-checkout="{{ production_checkout }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
@@ -36,8 +42,8 @@
           <div><dt>Review status</dt><dd>Approved by the curtain team</dd></div>
         </dl>
         <form class="cuk-checkout-handoff" data-cuk-reviewed-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
-          <h3>Prepare your Shopify test checkout</h3>
-          <p>The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.</p>
+          <h3>{% if production_checkout %}Your approved curtains{% else %}Prepare your Shopify test checkout{% endif %}</h3>
+          <p>{% if production_checkout %}We will confirm the exact approved specification, price, availability and delivery before secure checkout.{% else %}The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukReviewedShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukReviewedShippingRegion-{{ section.id }}" name="shippingRegion" required>
@@ -56,7 +62,7 @@
           </label>
           <div class="cuk-error" data-cuk-reviewed-error hidden></div>
           <div class="cuk-review-confirmation cuk-hidden" data-cuk-reviewed-confirmation tabindex="-1"></div>
-          <button class="cuk-button" type="submit">Prepare test checkout</button>
+          <button class="cuk-button" type="submit">{% if production_checkout %}Continue to secure checkout{% else %}Prepare test checkout{% endif %}</button>
           <p class="cuk-hint">No real payment can be taken and this does not release the job to manufacture.</p>
         </form>
       </div>
@@ -142,7 +148,7 @@
 
         <div class="cuk-error" data-cuk-error hidden></div>
         <button class="cuk-button" type="submit">Check my price or review route</button>
-        <p class="cuk-hint">Staging only. This flow cannot take real payment or release a job to manufacture.</p>
+        <p class="cuk-hint">{% if production_checkout %}Review your measurements and choices carefully before continuing.{% else %}Staging only. This flow cannot take real payment or release a job to manufacture.{% endif %}</p>
       </form>
 
       <aside class="cuk-panel cuk-result" data-cuk-result hidden aria-live="polite">
@@ -164,8 +170,8 @@
         </dl>
         <p class="cuk-hint" data-cuk-result-spec></p>
         <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
-          <h2>Prepare a Shopify test checkout</h2>
-          <p>This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.</p>
+          <h2>{% if production_checkout %}Your curtain order{% else %}Prepare a Shopify test checkout{% endif %}</h2>
+          <p>{% if production_checkout %}Your curtain specification and price are preserved. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukShippingRegion-{{ section.id }}" name="shippingRegion" required>
@@ -184,8 +190,8 @@
           </label>
           <div class="cuk-error" data-cuk-checkout-error hidden></div>
           <p class="cuk-review-confirmation cuk-hidden" data-cuk-checkout-confirmation tabindex="-1"></p>
-          <button class="cuk-button" type="submit">Prepare test checkout</button>
-          <p class="cuk-hint">Real payment and manufacture remain disabled.</p>
+          <button class="cuk-button" type="submit">{% if production_checkout %}Continue to secure checkout{% else %}Prepare test checkout{% endif %}</button>
+          <p class="cuk-hint">{% if production_checkout %}Your order is confirmed only after successful payment.{% else %}Real payment and manufacture remain disabled.{% endif %}</p>
         </form>
         <form class="cuk-review-submit cuk-hidden" data-cuk-review-form>
           <h2>Send this project for review</h2>
@@ -201,7 +207,7 @@
           <p class="cuk-hint">Submitting does not take payment or release anything to manufacture.</p>
         </form>
         <div class="cuk-review-confirmation cuk-hidden" data-cuk-review-confirmation tabindex="-1"></div>
-        <div class="cuk-notice" data-cuk-result-notice>Staging only. Shopify test checkout remains gated; real payment is disabled.</div>
+        <div class="cuk-notice" data-cuk-result-notice>{% if production_checkout %}VAT is included. Delivery and availability are confirmed before checkout.{% else %}Staging only. Shopify test checkout remains gated; real payment is disabled.{% endif %}</div>
       </aside>
     </div>
   </div>

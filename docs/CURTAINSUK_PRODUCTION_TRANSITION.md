@@ -1,5 +1,30 @@
 # Production transition — 14 September 2026
 
+## Guide routing closure — READY TO REPUBLISH
+
+The production defect was **hidden Shopify Page records**, not missing pages, wrong handles or missing Dawn templates. All ten existing guide records were Hidden. `sections/curtainsuk-guides.liquid` contains a deliberately unpublished-only 404 fallback (`request.page_type == '404' and theme.role != 'main'`): it displayed guide content in preview without making the underlying route HTTP 200. On publication that fallback correctly stopped, exposing the hidden-page 404. Navigation used the correct URLs. The pages inspected in admin used Default page; Dawn's existing `templates/page.json` includes the guides section and routes by `page.handle`.
+
+Only the following ten Page records were set Visible in Shopify admin. No title, handle, content, template, application code, theme asset, commerce setting or purchase control was changed:
+
+| Handle | Shopify Page ID | Dawn HTTP status |
+| --- | --- | --- |
+| how-to-measure | 693640298875 | 200 |
+| how-to-measure-standard | 693640331643 | 200 |
+| how-to-measure-doors | 693640364411 | 200 |
+| how-to-measure-bay | 693640397179 | 200 |
+| how-to-measure-apex | 693640429947 | 200 |
+| how-to-fit | 693640462715 | 200 |
+| how-to-fit-standard | 693640495483 | 200 |
+| how-to-fit-doors | 693640561019 | 200 |
+| how-to-fit-bay | 693640593787 | 200 |
+| how-to-fit-apex | 693640626555 | 200 |
+
+HTTP verification followed Shopify's preview redirect with its preview cookie held only in memory. Every final response identified Dawn `182264234363`, role `unpublished`, status 200, server-rendered guide markup, no hidden-guide fallback, correct real-domain canonical and preview noindex. Separate cookie-free requests also returned 200 and identified live Minimal `79650455661`. This confirms Page visibility is store-wide while the premium guide presentation remains Dawn's existing template. Evidence: local `Downloads/curtainsuk-guide-http-proof.json` (no credentials/cookies).
+
+Browser checks opened both hubs and all eight dedicated guides with the existing diagrams, cross-links and Make my curtains destinations. Configurator contextual help mapped Standard to standard; Patio/French Doors to doors; Bay to bay; Apex/Gable/Triangular to apex, preserving the exact window query and `pt-4273-217`. A Bay return rehearsal used 81/142/83 cm sections and 211 cm drop; after following Need help measuring and Make my curtains, every value and the exact fabric remained intact. Purchase controls remained `false`. No configuration submission or new price/order was needed.
+
+Minimal remains live; Dawn remains unpublished. This fixes only the guide-routing blocker. Publication still requires the owner's instruction; purchase activation is not authorized.
+
 ## Publication smoke check — rolled back
 
 Owner authorized publication of verified Dawn `182264234363` at branch commit `5d999c83fa2880c936f9409bf6c743e91dd8a28b`, with purchases disabled. The tracked working tree was clean; fresh remote settings confirmed indexing prepared and purchase controls false. Shopify publication succeeded and live theme roles were verified. Minimal `79650455661` was preserved.

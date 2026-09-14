@@ -1,0 +1,1432 @@
+{
+  "recordedAt": "2026-09-14T05:50:45.940Z",
+  "baseline": "41a9f3f",
+  "base": "https://curtainsuk-staging-gateway.vercel.app",
+  "summary": {
+    "session-start": {
+      "n": 5,
+      "p50": 845,
+      "p95": 8173
+    },
+    "image": {
+      "n": 5,
+      "p50": 2353,
+      "p95": 3455
+    },
+    "palette": {
+      "n": 15,
+      "p50": 962,
+      "p95": 2310
+    },
+    "answer": {
+      "n": 70,
+      "p50": 986,
+      "p95": 1442
+    },
+    "calibrate": {
+      "n": 110,
+      "p50": 1110,
+      "p95": 1396
+    },
+    "recommend": {
+      "n": 5,
+      "p50": 2218,
+      "p95": 2422
+    },
+    "refine": {
+      "n": 5,
+      "p50": 2491,
+      "p95": 3466
+    },
+    "fabric-detail-hydration": {
+      "n": 5,
+      "p50": 705,
+      "p95": 760
+    },
+    "outcome": {
+      "n": 5,
+      "p50": 1360,
+      "p95": 1461
+    }
+  },
+  "rows": [
+    {
+      "case": 0,
+      "operation": "session-start",
+      "ms": 8173,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "image",
+      "ms": 3455,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "palette",
+      "ms": 1266,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "palette",
+      "ms": 1249,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "palette",
+      "ms": 962,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 1062,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 1463,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 818,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 1442,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 1077,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 1036,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 900,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 989,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 984,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 928,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 993,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 1031,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 1210,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "answer",
+      "ms": 991,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1104,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1087,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1051,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1104,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1007,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1322,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1003,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1257,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1189,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1120,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1114,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1056,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1063,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1055,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1217,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1126,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1079,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1108,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 2831,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1183,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1114,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "calibrate",
+      "ms": 1275,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "recommend",
+      "ms": 2422,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "refine",
+      "ms": 2746,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "fabric-detail-hydration",
+      "ms": 695,
+      "status": 200
+    },
+    {
+      "case": 0,
+      "operation": "outcome",
+      "ms": 1376,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "session-start",
+      "ms": 845,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "image",
+      "ms": 2317,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "palette",
+      "ms": 939,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "palette",
+      "ms": 884,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "palette",
+      "ms": 983,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 871,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1069,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 878,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1083,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 997,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1088,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 946,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1297,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1119,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 923,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 916,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 917,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1027,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1084,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 942,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 994,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1203,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1076,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1204,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1006,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1060,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1112,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1020,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1115,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1003,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1243,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1042,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1046,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1098,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1174,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1158,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1185,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1146,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1135,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1158,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1083,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "recommend",
+      "ms": 2298,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "refine",
+      "ms": 3466,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "fabric-detail-hydration",
+      "ms": 760,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "outcome",
+      "ms": 1324,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "session-start",
+      "ms": 813,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "image",
+      "ms": 2524,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "palette",
+      "ms": 1090,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "palette",
+      "ms": 853,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "palette",
+      "ms": 1029,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1008,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 897,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 941,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1093,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 879,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 999,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1101,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 889,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 901,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 884,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 820,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 894,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 963,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1064,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1097,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 991,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1075,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1021,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1005,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1225,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1008,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1109,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1199,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1086,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1027,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1105,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1090,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1098,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1140,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1110,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1119,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1223,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1125,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1221,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1103,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1265,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "recommend",
+      "ms": 2199,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "refine",
+      "ms": 2375,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "fabric-detail-hydration",
+      "ms": 592,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "outcome",
+      "ms": 1461,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "session-start",
+      "ms": 911,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "image",
+      "ms": 2290,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "palette",
+      "ms": 2310,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "palette",
+      "ms": 1239,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "palette",
+      "ms": 868,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 861,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 888,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1046,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1105,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 965,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1100,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 899,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 874,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 810,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1036,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 858,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1049,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 908,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1058,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1118,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1002,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1016,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1073,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1214,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 946,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1151,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1100,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 988,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1016,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1075,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1135,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1117,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1028,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1148,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1011,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1108,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1066,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1087,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1126,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1045,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1189,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "recommend",
+      "ms": 2218,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "refine",
+      "ms": 2491,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "fabric-detail-hydration",
+      "ms": 708,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "outcome",
+      "ms": 1360,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "session-start",
+      "ms": 830,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "image",
+      "ms": 2353,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "palette",
+      "ms": 862,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "palette",
+      "ms": 904,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "palette",
+      "ms": 875,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 922,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 892,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 990,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 877,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 875,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 927,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 2307,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1950,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1346,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1085,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 928,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1124,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 972,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 986,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1164,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1337,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 978,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1099,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1083,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1134,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1254,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 2596,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1360,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1114,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1572,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1139,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1536,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1083,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1113,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1466,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1331,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1396,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1072,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1192,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1226,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1165,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "recommend",
+      "ms": 2080,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "refine",
+      "ms": 2481,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "fabric-detail-hydration",
+      "ms": 705,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "outcome",
+      "ms": 1100,
+      "status": 200
+    }
+  ],
+  "sessions": [
+    {
+      "sessionId": "3976a43a-fd1a-4e44-a6a2-5a4e58808a34",
+      "digest": "sha256:eae81ebc933d582ff9bd489a04da9a35210238399b677b2c1cd416fd44fdb56c",
+      "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
+    },
+    {
+      "sessionId": "9d63f35b-bf4c-47c9-8e88-9c1bbc21dcfb",
+      "digest": "sha256:b52fed898ca2c76d558a785304a9b7e095ba613a0645369ec3d0a8388948a751",
+      "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
+    },
+    {
+      "sessionId": "beddf7dc-053c-41ff-8b42-8bdf7ccea927",
+      "digest": "sha256:9d0d1dc53bd8d4fc42f76d5443ff6c62021dc3bf760b5455006e6fa7e178fc96",
+      "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
+    },
+    {
+      "sessionId": "b4a8a092-99b1-4a22-b4ed-dd3080b5fe27",
+      "digest": "sha256:9bf70d49c0385178bc5abeec5c53c6e608b9d38cb125221b992fee6f158d64bd",
+      "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
+    },
+    {
+      "sessionId": "a6533b02-dae9-46e6-9d69-1924f63561d3",
+      "digest": "sha256:fd272817f218f86238adba4eb303d093b277807e34f6402d57e6f9dcd0fbcd1b",
+      "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
+    }
+  ],
+  "limitations": "HTTP measurements include gateway persistence; exclude browser rendering and Shopify handoff. First request is cold-candidate, not a forced runtime cold start. Five repetitions use the same frozen answers and image, not five independent human reviews."
+}

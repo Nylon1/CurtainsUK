@@ -430,7 +430,9 @@
     display: flex !important;
     flex-wrap: nowrap !important;
     justify-content: flex-start !important;
-    overflow-x: auto;
+    /* Sections can load storefront.css later; keep horizontal scrolling local. */
+    overflow-x: auto !important;
+    max-width: 100%;
     gap: 2rem;
     padding: 0.4rem 0;
   }

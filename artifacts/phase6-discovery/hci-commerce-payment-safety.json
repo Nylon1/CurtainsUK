@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-09-14T05:58:25.520Z",
+  "store": "curtainsuk-dev.myshopify.com",
+  "shop": {
+    "name": "curtainsuk-dev",
+    "currencyCode": "GBP",
+    "taxesIncluded": true,
+    "plan": {
+      "partnerDevelopment": true,
+      "displayName": "Basic App Development"
+    }
+  },
+  "paymentSettingsChanged": false,
+  "draftOrdersCreated": 0
+}

@@ -1,8 +1,9 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { consultationResumePath } from "@/lib/storefront/consultation-entry";
-import { hasStagingReviewRole } from "@/lib/storefront/review-authz";
+import { hasStagingReviewRole, authServiceUnavailable } from "@/lib/storefront/review-authz";
 import { hasSupplierAdminRole } from "@/lib/supplier-intelligence/authz";
+import { observedSupabaseFetch } from '@/lib/supabase/observed-fetch';
 
 function privateAdminResponse(response: NextResponse) {
   response.headers.set("Cache-Control", "private, no-store, max-age=0");
@@ -18,6 +19,7 @@ export async function proxy(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      global: { fetch: observedSupabaseFetch('proxy-auth') },
       cookies: {
         getAll() {
           return request.cookies.getAll();
@@ -35,7 +37,12 @@ export async function proxy(request: NextRequest) {
 
   const {
     data: { user },
+    error: authError,
   } = await supabase.auth.getUser();
+
+  if (authServiceUnavailable(authError)) {
+    return privateAdminResponse(NextResponse.json({ error: 'STAFF_AUTH_UNAVAILABLE' }, { status: 503 }));
+  }
 
   const pathname = request.nextUrl.pathname;
   const isAdminRoute = pathname === "/admin" || pathname.startsWith("/admin/");

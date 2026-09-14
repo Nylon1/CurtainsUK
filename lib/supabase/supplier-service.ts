@@ -1,7 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
+import { observedSupabaseFetch } from './observed-fetch';
 
 function buildClient(url: string, secret: string) {
   return createClient(url, secret, {
+    global: { fetch: observedSupabaseFetch('database') },
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
     db: { schema: "curtainsuk_private" },
   });

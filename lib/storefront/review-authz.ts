@@ -1,4 +1,7 @@
 import { hasSupplierAdminRole } from "@/lib/supplier-intelligence/authz";
+export function authServiceUnavailable(error: {status?:number} | null) {
+  return Boolean(error && (!error.status || error.status >= 500));
+}
 /** Review permission is deliberately independent of supplier-commercial administration. */
 export function hasStagingReviewRole(input: {
   appMetadata: Record<string, unknown> | null | undefined;
@@ -23,7 +26,7 @@ export function reviewAuthorization(input: {
   environment: string | undefined;
 }): {status:200;identity:{id:string}} | {status:401|403|503;error:string} {
   if (input.error) {
-    return !input.error.status || input.error.status >= 500
+    return authServiceUnavailable(input.error)
       ? {status:503,error:'STAFF_AUTH_UNAVAILABLE'}
       : {status:401,error:'AUTHENTICATION_REQUIRED'};
   }

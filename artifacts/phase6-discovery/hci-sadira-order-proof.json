@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-14T09:00:20.272Z",
+  "checkedAt": "2026-09-14T10:31:53.551Z",
   "configurationId": "026eb64d-170b-445d-8c4c-1578c7337725",
   "fabricId": "pt-4262-770",
   "draftOrder": "#D13",
@@ -21,15 +21,15 @@
   "timings": [
     {
       "operation": "shopify-read",
-      "ms": 171
+      "ms": 167
     },
     {
       "operation": "shopify-read",
-      "ms": 174
+      "ms": 163
     },
     {
       "operation": "shopify-read",
-      "ms": 210
+      "ms": 175
     }
   ]
 }

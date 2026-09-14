@@ -30,6 +30,8 @@ export async function POST(request: Request) {
       ),
     );
   } catch (error) {
+    const code = error instanceof Error && /^[A-Z][A-Z0-9_]{2,80}$/.test(error.message) ? error.message : "UNCLASSIFIED_UPSTREAM_FAILURE";
+    console.error("CURTAINSUK_HCI_REQUEST_PAUSED", code);
     const conflict =
       error instanceof Error && error.message === "HCI_SESSION_CONFLICT";
     return reviewResponse(

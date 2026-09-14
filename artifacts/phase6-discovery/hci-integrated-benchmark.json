@@ -1,131 +1,131 @@
 {
-  "recordedAt": "2026-09-14T10:11:26.477Z",
+  "recordedAt": "2026-09-14T11:32:37.902Z",
   "baseline": "41a9f3f",
   "base": "https://curtainsuk-staging-gateway.vercel.app",
   "summary": {
     "session-start": {
       "n": 5,
-      "p50": 966,
-      "p95": 9785
+      "p50": 1014,
+      "p95": 7152
     },
     "image": {
       "n": 5,
-      "p50": 2424,
-      "p95": 3552
+      "p50": 2505,
+      "p95": 2921
     },
     "palette": {
       "n": 15,
-      "p50": 972,
-      "p95": 1365
+      "p50": 967,
+      "p95": 1582
     },
     "answer": {
       "n": 70,
-      "p50": 991,
-      "p95": 2129
+      "p50": 1017,
+      "p95": 1811
     },
     "calibrate": {
       "n": 110,
-      "p50": 1132,
-      "p95": 1517
+      "p50": 1110,
+      "p95": 1392
     },
     "recommend": {
       "n": 5,
-      "p50": 2295,
-      "p95": 2491
+      "p50": 2358,
+      "p95": 2673
     },
     "refine": {
       "n": 5,
-      "p50": 2778,
-      "p95": 3361
+      "p50": 2662,
+      "p95": 2717
     },
     "fabric-detail-hydration": {
       "n": 5,
-      "p50": 752,
-      "p95": 1053
+      "p50": 658,
+      "p95": 707
     },
     "outcome": {
       "n": 5,
-      "p50": 1407,
-      "p95": 1522
+      "p50": 1298,
+      "p95": 1343
     }
   },
   "rows": [
     {
       "case": 0,
       "operation": "session-start",
-      "ms": 9785,
+      "ms": 7152,
       "status": 200
     },
     {
       "case": 0,
       "operation": "image",
-      "ms": 3552,
+      "ms": 2921,
       "status": 200
     },
     {
       "case": 0,
       "operation": "palette",
-      "ms": 1365,
+      "ms": 1108,
       "status": 200
     },
     {
       "case": 0,
       "operation": "palette",
-      "ms": 1075,
+      "ms": 822,
       "status": 200
     },
     {
       "case": 0,
       "operation": "palette",
-      "ms": 1102,
+      "ms": 1359,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 2158,
+      "ms": 1153,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 952,
+      "ms": 989,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1117,
+      "ms": 1033,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1066,
+      "ms": 1361,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1142,
+      "ms": 947,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1272,
+      "ms": 1105,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 2129,
+      "ms": 1185,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1057,
+      "ms": 889,
       "status": 200
     },
     {
@@ -137,253 +137,283 @@
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1181,
+      "ms": 1077,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1212,
+      "ms": 870,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1159,
+      "ms": 921,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1215,
+      "ms": 1056,
       "status": 200
     },
     {
       "case": 0,
       "operation": "answer",
-      "ms": 1203,
+      "ms": 907,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1021,
+      "ms": 1098,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1113,
+      "ms": 1083,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1013,
+      "ms": 981,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1495,
+      "ms": 1146,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1108,
+      "ms": 1109,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1172,
+      "ms": 1055,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1319,
+      "ms": 1190,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1201,
+      "ms": 1029,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1142,
+      "ms": 1248,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1150,
+      "ms": 1066,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1101,
+      "ms": 1014,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1267,
+      "ms": 1141,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1363,
+      "ms": 1103,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1200,
+      "ms": 1089,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1268,
+      "ms": 1110,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1223,
+      "ms": 1211,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1249,
+      "ms": 1186,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1090,
+      "ms": 1112,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1156,
+      "ms": 1041,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1212,
+      "ms": 1047,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 7532,
+      "ms": 1055,
       "status": 200
     },
     {
       "case": 0,
       "operation": "calibrate",
-      "ms": 1265,
+      "ms": 1269,
       "status": 200
     },
     {
       "case": 0,
       "operation": "recommend",
-      "ms": 2359,
+      "ms": 2566,
       "status": 200
     },
     {
       "case": 0,
       "operation": "refine",
-      "ms": 2826,
+      "ms": 2662,
       "status": 200
     },
     {
       "case": 0,
       "operation": "fabric-detail-hydration",
-      "ms": 693,
+      "ms": 703,
       "status": 200
     },
     {
       "case": 0,
       "operation": "outcome",
-      "ms": 1407,
+      "ms": 1163,
       "status": 200
     },
     {
       "case": 1,
       "operation": "session-start",
-      "ms": 927,
+      "ms": 850,
       "status": 200
     },
     {
       "case": 1,
       "operation": "image",
-      "ms": 2422,
+      "ms": 2340,
       "status": 200
     },
     {
       "case": 1,
       "operation": "palette",
-      "ms": 819,
+      "ms": 885,
       "status": 200
     },
     {
       "case": 1,
       "operation": "palette",
-      "ms": 987,
+      "ms": 996,
       "status": 200
     },
     {
       "case": 1,
       "operation": "palette",
-      "ms": 1055,
+      "ms": 967,
       "status": 200
     },
     {
       "case": 1,
       "operation": "answer",
-      "ms": 976,
+      "ms": 1298,
       "status": 200
     },
     {
       "case": 1,
       "operation": "answer",
-      "ms": 1022,
+      "ms": 1127,
       "status": 200
     },
     {
       "case": 1,
       "operation": "answer",
-      "ms": 876,
+      "ms": 1094,
       "status": 200
     },
     {
       "case": 1,
       "operation": "answer",
-      "ms": 1360,
+      "ms": 1138,
       "status": 200
     },
     {
       "case": 1,
       "operation": "answer",
-      "ms": 2262,
+      "ms": 1077,
       "status": 200
     },
     {
       "case": 1,
       "operation": "answer",
-      "ms": 1504,
+      "ms": 917,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 891,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 907,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 1202,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 899,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "answer",
+      "ms": 887,
       "status": 200
     },
     {
@@ -395,901 +425,883 @@
     {
       "case": 1,
       "operation": "answer",
-      "ms": 1259,
+      "ms": 1046,
       "status": 200
     },
     {
       "case": 1,
       "operation": "answer",
-      "ms": 1055,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "answer",
-      "ms": 951,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "answer",
-      "ms": 925,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "answer",
-      "ms": 1086,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "answer",
-      "ms": 951,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "answer",
-      "ms": 1084,
+      "ms": 918,
       "status": 200
     },
     {
       "case": 1,
       "operation": "calibrate",
-      "ms": 1293,
+      "ms": 1106,
       "status": 200
     },
     {
       "case": 1,
       "operation": "calibrate",
-      "ms": 1115,
+      "ms": 1057,
       "status": 200
     },
     {
       "case": 1,
       "operation": "calibrate",
-      "ms": 1096,
+      "ms": 1143,
       "status": 200
     },
     {
       "case": 1,
       "operation": "calibrate",
-      "ms": 1011,
+      "ms": 1099,
       "status": 200
     },
     {
       "case": 1,
       "operation": "calibrate",
-      "ms": 1006,
+      "ms": 1068,
       "status": 200
     },
     {
       "case": 1,
       "operation": "calibrate",
-      "ms": 1245,
+      "ms": 946,
       "status": 200
     },
     {
       "case": 1,
       "operation": "calibrate",
-      "ms": 1150,
+      "ms": 1002,
       "status": 200
     },
     {
       "case": 1,
-      "operation": "calibrate",
-      "ms": 1076,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1096,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1041,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1078,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1135,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1072,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1038,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1058,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1155,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1154,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1156,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1149,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1161,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1123,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "calibrate",
-      "ms": 1071,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "recommend",
-      "ms": 2491,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "refine",
-      "ms": 2778,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "fabric-detail-hydration",
-      "ms": 685,
-      "status": 200
-    },
-    {
-      "case": 1,
-      "operation": "outcome",
-      "ms": 1521,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "session-start",
-      "ms": 930,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "image",
-      "ms": 2369,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "palette",
-      "ms": 951,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "palette",
-      "ms": 924,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "palette",
-      "ms": 954,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 882,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 803,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 905,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 952,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 1040,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 1008,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 1000,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 909,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 897,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 925,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 2268,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 1320,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 1062,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "answer",
-      "ms": 1340,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1122,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1065,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 927,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1100,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1012,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1064,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1145,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1000,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1005,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1091,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1379,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1090,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1104,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1149,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1053,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1138,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1105,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1260,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1120,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1053,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1184,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "calibrate",
-      "ms": 1253,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "recommend",
-      "ms": 2215,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "refine",
-      "ms": 2734,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "fabric-detail-hydration",
-      "ms": 752,
-      "status": 200
-    },
-    {
-      "case": 2,
-      "operation": "outcome",
-      "ms": 1308,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "session-start",
-      "ms": 966,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "image",
-      "ms": 2431,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "palette",
-      "ms": 853,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "palette",
-      "ms": 891,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "palette",
-      "ms": 972,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 950,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 887,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 936,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 924,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 973,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 1041,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 880,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 912,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 881,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 976,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 908,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 1047,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 991,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "answer",
-      "ms": 985,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 912,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 999,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1040,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1983,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 2245,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1694,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1120,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1120,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1310,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1139,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1155,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1574,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1151,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1078,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1032,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1194,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1105,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1062,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1364,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1517,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1198,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "calibrate",
-      "ms": 1158,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "recommend",
-      "ms": 2068,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "refine",
-      "ms": 3361,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "fabric-detail-hydration",
-      "ms": 859,
-      "status": 200
-    },
-    {
-      "case": 3,
-      "operation": "outcome",
-      "ms": 1365,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "session-start",
-      "ms": 1142,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "image",
-      "ms": 2424,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "palette",
-      "ms": 973,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "palette",
-      "ms": 958,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "palette",
-      "ms": 1019,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 1055,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 966,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 880,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 1113,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 884,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 882,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 973,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 1185,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 973,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 908,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 1110,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 969,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 958,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "answer",
-      "ms": 994,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "calibrate",
-      "ms": 1122,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "calibrate",
-      "ms": 1066,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "calibrate",
-      "ms": 1119,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "calibrate",
-      "ms": 1093,
-      "status": 200
-    },
-    {
-      "case": 4,
       "operation": "calibrate",
       "ms": 1101,
       "status": 200
     },
     {
-      "case": 4,
+      "case": 1,
       "operation": "calibrate",
-      "ms": 1150,
+      "ms": 1172,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1275,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1096,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1157,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1060,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1137,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1153,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1197,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1113,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1206,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1024,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1225,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1240,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "calibrate",
+      "ms": 1069,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "recommend",
+      "ms": 2358,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "refine",
+      "ms": 2708,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "fabric-detail-hydration",
+      "ms": 707,
+      "status": 200
+    },
+    {
+      "case": 1,
+      "operation": "outcome",
+      "ms": 1329,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "session-start",
+      "ms": 964,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "image",
+      "ms": 2523,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "palette",
+      "ms": 920,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "palette",
+      "ms": 971,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "palette",
+      "ms": 943,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 891,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1055,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1082,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 867,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 941,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 995,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 837,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 960,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 5235,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 2968,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1762,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1635,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 1189,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "answer",
+      "ms": 975,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1013,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1195,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1015,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1039,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1142,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1344,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1210,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1051,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1209,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1264,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1460,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1196,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1133,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1057,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1299,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1392,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1504,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1164,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1367,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1566,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1422,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "calibrate",
+      "ms": 1221,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "recommend",
+      "ms": 2673,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "refine",
+      "ms": 2717,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "fabric-detail-hydration",
+      "ms": 658,
+      "status": 200
+    },
+    {
+      "case": 2,
+      "operation": "outcome",
+      "ms": 1298,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "session-start",
+      "ms": 1196,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "image",
+      "ms": 2505,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "palette",
+      "ms": 1408,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "palette",
+      "ms": 1582,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "palette",
+      "ms": 1177,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1085,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1015,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 836,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1378,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 2446,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1811,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1068,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 974,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1470,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 969,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1640,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1068,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1427,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "answer",
+      "ms": 1134,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 996,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1146,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 977,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1020,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1433,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1255,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1018,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1003,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1023,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1356,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1131,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1338,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1021,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1038,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1042,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1129,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1083,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1327,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1117,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1072,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1099,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "calibrate",
+      "ms": 1189,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "recommend",
+      "ms": 2299,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "refine",
+      "ms": 2587,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "fabric-detail-hydration",
+      "ms": 656,
+      "status": 200
+    },
+    {
+      "case": 3,
+      "operation": "outcome",
+      "ms": 1343,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "session-start",
+      "ms": 1014,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "image",
+      "ms": 2402,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "palette",
+      "ms": 898,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "palette",
+      "ms": 937,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "palette",
+      "ms": 819,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 960,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 865,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 872,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 996,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 944,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 910,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1090,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 848,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1255,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 928,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 964,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1172,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1004,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "answer",
+      "ms": 1238,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1346,
+      "ms": 1148,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1231,
+      "ms": 1247,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1020,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1194,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1076,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1107,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1009,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 998,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1054,
+      "status": 200
+    },
+    {
+      "case": 4,
+      "operation": "calibrate",
+      "ms": 1096,
       "status": 200
     },
     {
@@ -1301,130 +1313,118 @@
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1222,
+      "ms": 1088,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1132,
+      "ms": 1108,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 959,
+      "ms": 1095,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1496,
+      "ms": 1091,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1066,
+      "ms": 1296,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1126,
+      "ms": 1225,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1043,
+      "ms": 1082,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1120,
+      "ms": 1117,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1063,
+      "ms": 1142,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1143,
+      "ms": 1038,
       "status": 200
     },
     {
       "case": 4,
       "operation": "calibrate",
-      "ms": 1270,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "calibrate",
-      "ms": 1179,
-      "status": 200
-    },
-    {
-      "case": 4,
-      "operation": "calibrate",
-      "ms": 1179,
+      "ms": 1157,
       "status": 200
     },
     {
       "case": 4,
       "operation": "recommend",
-      "ms": 2295,
+      "ms": 2217,
       "status": 200
     },
     {
       "case": 4,
       "operation": "refine",
-      "ms": 2510,
+      "ms": 2378,
       "status": 200
     },
     {
       "case": 4,
       "operation": "fabric-detail-hydration",
-      "ms": 1053,
+      "ms": 620,
       "status": 200
     },
     {
       "case": 4,
       "operation": "outcome",
-      "ms": 1522,
+      "ms": 1141,
       "status": 200
     }
   ],
   "sessions": [
     {
-      "sessionId": "ee0601d4-27b1-4d9e-8c95-e7c8211f1c57",
-      "digest": "sha256:91102f57431abb6aa24b09e9dba15c4b2b8f60eda6642c9c6d47606f479dfc04",
+      "sessionId": "8c565cee-fd05-4080-b4af-3f290e044a72",
+      "digest": "sha256:8b28b20826a9e03dd56eff538d3dcb4a0d99f4c2ac2a5a0fc7a722b6b22bf152",
       "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
     },
     {
-      "sessionId": "af962e7b-8fef-471f-8e8c-114cd6721405",
-      "digest": "sha256:62447ed3a8a6809d33aa5cd448b049ec642c16f4e0e0fdf45d7d6c2e543b9f68",
+      "sessionId": "1d1b4334-9ba4-4643-84d0-9524fbc9ecbb",
+      "digest": "sha256:f8eace685f10d12357f9bb3504464d0e64ab43aab26c183e9765b06e3e335e61",
       "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
     },
     {
-      "sessionId": "1198d993-e6de-4c23-be59-09af4e85309b",
-      "digest": "sha256:588b5b0b1f51efa0ab9d94ae1c4eaafa65923c84615d67eaaa1c000c07b6f4db",
+      "sessionId": "beb1c2eb-c34f-4d46-a468-eabf4ddf3eee",
+      "digest": "sha256:d938373dfcb8b8473bfb8f757e2bf25be3b902048642c7c50bf8beb6c8dc3db6",
       "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
     },
     {
-      "sessionId": "a18261fa-38c6-43c4-9801-4a6d8cd3db00",
-      "digest": "sha256:116e7d63878218e4bea0c4a936bb90e5bb2e37f42999e0ac849fac32f985c2f4",
+      "sessionId": "512b5afd-975d-47d9-ba51-257cd529b209",
+      "digest": "sha256:d9c56b5bea165c314f1e4f5e61e7e1c5060a9de529b787cc701d80a357767c7c",
       "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
     },
     {
-      "sessionId": "fc800354-0b2c-4cc5-9536-3cfaf5e6aeda",
-      "digest": "sha256:b3ca979a1f5d95cee58752838c4c58b4dde694811d4b43c3553ac60c2dbd657f",
+      "sessionId": "ab43f87b-f440-4d54-83a1-85589e230ba6",
+      "digest": "sha256:05e26f72aa999109adf94e1143e89478446e5a4a75c74999817bfd5b391fdddd",
       "selectionDigest": "5e20eca33b4f4b8a3eaf38cd8271099b6f708013c9312b098abb414af765f4e1"
     }
   ],

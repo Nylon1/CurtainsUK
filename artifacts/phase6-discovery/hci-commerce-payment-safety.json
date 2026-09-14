@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-14T05:58:25.520Z",
+  "checkedAt": "2026-09-14T08:50:26.975Z",
   "store": "curtainsuk-dev.myshopify.com",
   "shop": {
     "name": "curtainsuk-dev",
@@ -10,6 +10,7 @@
       "displayName": "Basic App Development"
     }
   },
+  "credentialSource": "current Shopify CLI app",
   "paymentSettingsChanged": false,
   "draftOrdersCreated": 0
 }

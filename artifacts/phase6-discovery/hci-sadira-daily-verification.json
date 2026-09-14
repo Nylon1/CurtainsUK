@@ -1,0 +1,11 @@
+{
+  "fabricId": "pt-4262-770",
+  "snapshotId": "hci-daily:4262/770:722ca4fda1b00f71a061",
+  "checkedAt": "2026-09-14T08:48:17.000Z",
+  "status": "AVAILABLE",
+  "availability": "FABRIC_AVAILABLE",
+  "stale": false,
+  "aggregateOnly": true,
+  "priceBasisUnchanged": true,
+  "supplierOrders": 0
+}

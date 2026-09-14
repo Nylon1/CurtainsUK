@@ -1,5 +1,7 @@
 # HCI commerce completion — staging rehearsal, 14 September 2026
 
+Follow-up: [Sadira transaction rehearsal](HCI_SADIRA_TRANSACTION_REHEARSAL.md) resolves the stock, Draft Order, immutability and downstream device blockers recorded below. This original report is retained as historical evidence.
+
 Branch: `feature/curtainsuk-phase-5a-prelaunch` in `Nylon1/Apexcurtains`.
 Gateway implementation: `6667905d91ac028920a8a6b2f9d427672d4d9607`.
 Pinned HCI intelligence: `41a9f3f`; no ranking, strategy or HCI deployment changes.

@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-09-14T09:00:20.272Z",
+  "configurationId": "026eb64d-170b-445d-8c4c-1578c7337725",
+  "fabricId": "pt-4262-770",
+  "draftOrder": "#D13",
+  "draftOrderId": "gid://shopify/DraftOrder/1611445469558",
+  "goodsMinor": 60100,
+  "shippingMinor": 1295,
+  "totalMinor": 61395,
+  "vatIncludedMinor": 10233,
+  "exactIdentity": "PASS",
+  "configurationDetails": "PASS",
+  "provenance": "PASS",
+  "privacy": "PASS",
+  "immutability": "PASS",
+  "newSimulatedConfigurationPriceMinor": 62300,
+  "priceSimulation": "IN_MEMORY_ONLY",
+  "supplierDataChanged": false,
+  "snapshotDigest": "64e408e8a6d59298a626d4dccdf27cedb8a17f6e93056da405df0dc358b73ecf",
+  "paymentEnabled": false,
+  "timings": [
+    {
+      "operation": "shopify-read",
+      "ms": 171
+    },
+    {
+      "operation": "shopify-read",
+      "ms": 174
+    },
+    {
+      "operation": "shopify-read",
+      "ms": 210
+    }
+  ]
+}

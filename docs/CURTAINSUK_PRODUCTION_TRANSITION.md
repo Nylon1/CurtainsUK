@@ -1,5 +1,17 @@
 # Production transition — 14 September 2026
 
+## Publication smoke check — rolled back
+
+Owner authorized publication of verified Dawn `182264234363` at branch commit `5d999c83fa2880c936f9409bf6c743e91dd8a28b`, with purchases disabled. The tracked working tree was clean; fresh remote settings confirmed indexing prepared and purchase controls false. Shopify publication succeeded and live theme roles were verified. Minimal `79650455661` was preserved.
+
+**BLOCKED: `https://www.curtainsuk.com/pages/how-to-measure` returned the storefront's 404 / Page not found when opened from Dawn's main navigation.** Following the owner's rollback instruction, Minimal `79650455661` was immediately republished. Shopify confirmed rollback and the real-domain homepage rendered the original Minimal navigation again. Dawn is no longer the live storefront. The remaining smoke matrix was stopped rather than claiming an uninterrupted pass.
+
+Before rollback, live checks passed for homepage/canonical (www domain, no production noindex), anonymous image-first HCI, licensed room-image analysis, adding white to the confirmed palette, questions/calibration, all five direction headings (Tonal & calm correctly unavailable for this evidence), one refinement, exact Varini Woodrose `pt-4273-217` sample/detail/configurator handoff, Standard £538 and Bay £806 VAT-inclusive goods calculations. Bay used 80/140/80 cm sections and no angles or staff approval. Availability remained honestly unconfirmed; checkout forms stayed hidden and purchase controls false. HCI shortlist rendered without overflow at 390/412px; configurator checks had no overflow. Fresh hosted auth probes returned 200 for anonymous initialization, 409 for cross-session adoption, 403 for foreign origin and 401 for forged cookie/anonymous staff. No 504/520 was observed during these sampled requests; this is not a claim of permanent provider stability.
+
+Other observed non-blocking content debt: the announcement, hero and configurator still display legacy staging/private-preview wording. No application changes or safeguard weakening were made during publication. No purchase activation, invoice, order, payment-provider change, Merchant Center activation or supplier automation occurred. The only writes during the smoke journey were test consultation/palette/reaction/sample-intent/configuration events; they are test activity, not customer quality feedback or sales.
+
+Next: resolve the production measuring-page 404 and check the fitting/Apex guide destinations, then rerun the bounded live smoke check under renewed publication instruction. Real checkout approval has not been requested because this run was not clean. The earlier READY status below describes the pre-publication gate and is superseded by this rollback result.
+
 ## Final gate closure update (supersedes the earlier blockers below)
 
 The owner authorized one server-side production TEST Draft rehearsal without changing active payment providers. The actual installation now has `write_draft_orders`, verified by `currentAppInstallation.accessScopes`. No unrelated scopes were added. Store identity is `gid://shopify/Shop/25645514861`, `carpetup.myshopify.com`, primary host `www.curtainsuk.com`.

@@ -16,10 +16,13 @@ function firstRelation(value: SupplierPriceSnapshotCandidate["prices"]) {
 }
 
 /**
- * Latest genuine approved cut price remains valid until superseded. Age-based
+ * PT uses genuine Standard Price ex VAT; other suppliers retain their approved
+ * cut-price basis. Neither field is derived from the other. The latest genuine
+ * approved price remains valid until superseded. Age-based
  * expiry fields are historical metadata, not a price gate. Explicit revocation remains authoritative.
  */
-export function selectCurrentApprovedCutCostMinor(input: {
+export function selectCurrentApprovedSupplierCostMinor(input: {
+  supplierId: string;
   snapshots: readonly SupplierPriceSnapshotCandidate[];
   promotionEvents: readonly SupplierPromotionObservation[];
   now?: Date;
@@ -33,16 +36,17 @@ export function selectCurrentApprovedCutCostMinor(input: {
   for (const snapshot of [...input.snapshots].sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at))) {
     const latestPromotion = latestPromotionBySnapshot.get(snapshot.snapshot_id);
     const price = firstRelation(snapshot.prices);
-    const cutTradePrice = Number(price?.cut_trade_price);
+    const basePrice = Number(input.supplierId === 'prestigious-textiles'
+      ? price?.standard_trade_price : price?.cut_trade_price);
     if (latestPromotion?.promotion_state !== "APPROVED_FOR_PROJECTION"
         || !Number.isFinite(Date.parse(snapshot.checked_at))
         || Date.parse(snapshot.checked_at) > now
         || price?.currency !== "GBP"
-        || !Number.isFinite(cutTradePrice)
-        || cutTradePrice <= 0) {
+        || !Number.isFinite(basePrice)
+        || basePrice <= 0) {
       continue;
     }
-    return Math.round(cutTradePrice * 100);
+    return Math.round(basePrice * 100);
   }
   return null;
 }

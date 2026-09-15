@@ -2,7 +2,7 @@ import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import type { FabricCatalogueImportItem, FabricCatalogueImportMetadata, FabricMasterRecord } from "./types";
 import type { ExistingCatalogueRecord } from "./catalogue-protection";
 import {
-  selectCurrentApprovedCutCostMinor,
+  selectCurrentApprovedSupplierCostMinor,
   type SupplierPriceSnapshotCandidate,
   type SupplierPromotionObservation,
 } from "./verified-supplier-price";
@@ -147,12 +147,12 @@ export async function fabricMasterRecordById(fabricId: string) {
   return row ? mapFabricMasterRow(row) : null;
 }
 
-export async function verifiedCutCostMinor(supplierId: string, supplierSku: string) {
+export async function verifiedSupplierCostMinor(supplierId: string, supplierSku: string) {
   const database = createSupplierServiceClient();
   // Walk bounded pages so repeated stock-only observations never age a genuine price out of the lookup.
   for (let from=0; ; from+=100) {
     const {data:snapshots,error:snapshotError}=await database.from("supplier_snapshots")
-      .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(cut_trade_price,currency)")
+      .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(standard_trade_price,cut_trade_price,currency)")
       .eq("supplier_id",supplierId).eq("supplier_sku",supplierSku).eq("validation_status","VALIDATED")
       .order("checked_at",{ascending:false}).order("snapshot_id",{ascending:false}).range(from,from+99);
     databaseError(snapshotError);
@@ -161,12 +161,15 @@ export async function verifiedCutCostMinor(supplierId: string, supplierSku: stri
     const {data:promotionEvents,error:promotionError}=await database.from("supplier_promotion_events")
       .select("snapshot_id,promotion_state,created_at").in("snapshot_id",candidates.map(s=>s.snapshot_id)).order("created_at",{ascending:false});
     databaseError(promotionError);
-    const price=selectCurrentApprovedCutCostMinor({snapshots:candidates,promotionEvents:(promotionEvents??[]) as SupplierPromotionObservation[]});
+    const price=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots:candidates,promotionEvents:(promotionEvents??[]) as SupplierPromotionObservation[]});
     if(price!==null) return price;
     if(candidates.length<100) break;
   }
   throw new Error("PRICE_REQUIRES_VERIFICATION");
 }
+
+/** Legacy script name; the supplier-specific approved base-price policy still applies. */
+export const verifiedCutCostMinor = verifiedSupplierCostMinor;
 
 /** Reuses the Phase 4E manual approval gate; this does not write to Shopify. */
 export async function promoteFabricForStagingProjection(input: { supplierId: string; supplierSku: string; snapshotId: string }) {

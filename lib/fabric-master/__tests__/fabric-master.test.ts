@@ -12,7 +12,7 @@ import { assertCustomerSafeProjection, fabricIsConfigurationEligible, projectCus
 import { previewSandersonAllBrandsCatalogue } from "../sanderson-catalogue-import";
 import { SANDERSON_CANARY_ALLOCATION, selectSandersonCanary } from "../sanderson-canary";
 import { normalizeSandersonRows } from "../sanderson";
-import { selectCurrentApprovedCutCostMinor } from "../verified-supplier-price";
+import { selectCurrentApprovedSupplierCostMinor } from "../verified-supplier-price";
 
 const prestigiousRows = [{
   Title: "ESCHER",
@@ -397,8 +397,8 @@ test("approved cut pricing does not expire by age; latest approval and rejection
     { snapshot_id: "snapshot-older", promotion_state: "APPROVED_FOR_PROJECTION", created_at: "2026-09-06T18:01:00.000Z" },
   ];
 
-  assert.equal(selectCurrentApprovedCutCostMinor({ snapshots, promotionEvents: approved, now }), 2_000);
-  assert.equal(selectCurrentApprovedCutCostMinor({
+  assert.equal(selectCurrentApprovedSupplierCostMinor({supplierId: "sanderson-design-group", snapshots, promotionEvents: approved, now }), 2_000);
+  assert.equal(selectCurrentApprovedSupplierCostMinor({supplierId: "sanderson-design-group",
     snapshots,
     promotionEvents: [...approved, {
       snapshot_id: "snapshot-current",
@@ -407,12 +407,12 @@ test("approved cut pricing does not expire by age; latest approval and rejection
     }],
     now,
   }), 1_900, "a later rejection invalidates that snapshot but preserves an older current approval");
-  assert.equal(selectCurrentApprovedCutCostMinor({
+  assert.equal(selectCurrentApprovedSupplierCostMinor({supplierId: "sanderson-design-group",
     snapshots: [{ ...snapshots[0], price_expires_at: "2026-09-07T18:59:59.000Z" }],
     promotionEvents: approved,
     now,
   }), 2_000);
-  assert.equal(selectCurrentApprovedCutCostMinor({
+  assert.equal(selectCurrentApprovedSupplierCostMinor({supplierId: "sanderson-design-group",
     snapshots: [{ ...snapshots[0], price_expires_at: null }],
     promotionEvents: approved,
     now,

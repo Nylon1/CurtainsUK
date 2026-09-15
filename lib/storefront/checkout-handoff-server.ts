@@ -2,7 +2,7 @@ import { traceCheckout, type CheckoutBoundary } from "./checkout-diagnostics";
 import { emailEvidenceReady, summarizeEmailEvidence } from "./email-evidence";
 import "server-only";
 import { fabricIsPriceEligible } from "@/lib/fabric-master/projection";
-import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
+import { fabricMasterRecordById, verifiedSupplierCostMinor } from "@/lib/fabric-master/repository";
 import { dailyStockProjection } from "./daily-stock-server";
 import type { PublicSupplierAvailability } from "@/lib/supplier-intelligence/types";
 import {
@@ -228,7 +228,7 @@ async function prepareCheckout(
     enter("COMMERCIAL_VERIFICATION");
     // Recheck current supplier cost eligibility without repricing the immutable
     // customer-approved revision.
-    if (fabricPricingEligible) await verifiedCutCostMinor(record.supplier_id, record.supplier_sku);
+    if (fabricPricingEligible) await verifiedSupplierCostMinor(record.supplier_id, record.supplier_sku);
     enter("STOCK_SNAPSHOT");
     availability = calculatedFabricMetres > 0
       ? await currentAvailability({ supplierId: record.supplier_id, supplierSku: record.supplier_sku, metres: calculatedFabricMetres })

@@ -1,6 +1,6 @@
 import "server-only";
 import { MissingCommercialRuleError } from "@/lib/decision-engine/errors";
-import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
+import { fabricMasterRecordById, verifiedSupplierCostMinor } from "@/lib/fabric-master/repository";
 import { fabricIsPriceEligible } from "@/lib/fabric-master/projection";
 import { calculationWidth } from '@/lib/fabric-master/readiness';
 import { toDecisionEngineFabric, toReviewFabricIdentity } from "@/lib/fabric-master/decision-engine";
@@ -12,9 +12,9 @@ import { signReviewSubmission } from "./review-token";
 export async function calculateStagingPrice(input: StagingPriceRequest): Promise<StagingPriceResponse> {
   const record = await fabricMasterRecordById(input.fabricId);
   if (!record || !record.staging_catalog_visible || record.lifecycle_state === "DISCONTINUED") throw new Error("Window type or fabric is unavailable");
-  let cutCostMinor: number | null = null;
+  let supplierCostMinor: number | null = null;
   if(fabricIsPriceEligible(record)) {
-    try { cutCostMinor = await verifiedCutCostMinor(record.supplier_id, record.supplier_sku); }
+    try { supplierCostMinor = await verifiedSupplierCostMinor(record.supplier_id, record.supplier_sku); }
     catch(error) { if(!(error instanceof Error) || error.message !== "PRICE_REQUIRES_VERIFICATION")throw error; }
   }
   const specificationsKnown = calculationWidth(record) !== null;
@@ -23,8 +23,8 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
     const result = calculatePriceConfirmationReview(input, toReviewFabricIdentity(record), manufacturingFabric);
     return {...result, reviewSubmissionToken:signReviewSubmission({configuration:input,configurationId:result.configurationId,outcome:result.outcome,totalAmountMinor:null})};
   };
-  if(cutCostMinor === null || !specificationsKnown) return priceConfirmation();
-  const pricedFabric = toDecisionEngineFabric(record, cutCostMinor, record.source_effective_date ?? new Date().toISOString().slice(0, 10));
+  if(supplierCostMinor === null || !specificationsKnown) return priceConfirmation();
+  const pricedFabric = toDecisionEngineFabric(record, supplierCostMinor, record.source_effective_date ?? new Date().toISOString().slice(0, 10));
   let provisional: ReturnType<typeof calculateStagingPriceForTest>;
   try { provisional = calculateStagingPriceForTest(input, pricedFabric); }
   catch(error) { if(error instanceof MissingCommercialRuleError) return priceConfirmation(); throw error; }

@@ -16,9 +16,8 @@ function firstRelation(value: SupplierPriceSnapshotCandidate["prices"]) {
 }
 
 /**
- * Selects the newest still-current price snapshot whose latest promotion event
- * remains approved. Historical approvals never override a later rejection or
- * expiry, and missing expiry is deliberately treated as unverified.
+ * Latest genuine approved cut price remains valid until superseded. Age-based
+ * expiry fields are historical metadata, not a price gate. Explicit revocation remains authoritative.
  */
 export function selectCurrentApprovedCutCostMinor(input: {
   snapshots: readonly SupplierPriceSnapshotCandidate[];
@@ -33,12 +32,11 @@ export function selectCurrentApprovedCutCostMinor(input: {
 
   for (const snapshot of [...input.snapshots].sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at))) {
     const latestPromotion = latestPromotionBySnapshot.get(snapshot.snapshot_id);
-    const expiresAt = snapshot.price_expires_at === null ? Number.NaN : Date.parse(snapshot.price_expires_at);
     const price = firstRelation(snapshot.prices);
     const cutTradePrice = Number(price?.cut_trade_price);
     if (latestPromotion?.promotion_state !== "APPROVED_FOR_PROJECTION"
-        || !Number.isFinite(expiresAt)
-        || expiresAt <= now
+        || !Number.isFinite(Date.parse(snapshot.checked_at))
+        || Date.parse(snapshot.checked_at) > now
         || price?.currency !== "GBP"
         || !Number.isFinite(cutTradePrice)
         || cutTradePrice <= 0) {

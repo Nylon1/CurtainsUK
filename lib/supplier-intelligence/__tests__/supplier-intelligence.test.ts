@@ -16,6 +16,24 @@ const checkedAt = "2026-09-07T10:00:00.000Z";
 const now = new Date("2026-09-07T12:00:00.000Z");
 const staffId = "00000000-0000-4000-8000-000000000001";
 
+test('genuine stock-only import can be approved without a cut price or sample flag',async()=>{
+  const repo=repository();const service=new SupplierIntelligenceService(repo);
+  const result=await service.ingest({run:run('stock-only'),snapshot:snapshot('stock-only',{standard_trade_price:null,cut_trade_price:null,currency:null,batches:null,aggregate_available_quantity:30,sample_available:null}),requiredPriceField:'CUT_TRADE_PRICE',now});
+  assert.equal(result.validation.status,'VALIDATED');
+  await service.manuallyApprove({snapshotId:'stock-only',approvedBy:staffId,reason:'Genuine stock-only check',approvedAt:now});
+  assert.equal((await service.projection({supplierId,supplierSku:sku,requirement:null,now})).availability,'FABRIC_AVAILABLE');
+});
+test('old approved price observation is retained without making old stock current',async()=>{
+  const repo=repository();const service=new SupplierIntelligenceService(repo);
+  const result=await service.ingest({run:run('annual-price'),snapshot:snapshot('annual-price',{checked_at:'2025-09-07T10:00:00Z',aggregate_available_quantity:null,batches:null}),requiredPriceField:'CUT_TRADE_PRICE',now});
+  assert.equal(result.validation.status,'VALIDATED');
+  assert.equal(result.validation.price_expires_at,null);
+  await service.manuallyApprove({snapshotId:'annual-price',approvedBy:staffId,reason:'Approved genuine annual price list',approvedAt:now});
+  const projection=await service.projection({supplierId,supplierSku:sku,requirement:null,now});
+  assert.equal(projection.promotion_state,'APPROVED_FOR_PROJECTION');
+  assert.equal(projection.availability,'AVAILABILITY_TO_BE_CONFIRMED');
+});
+
 const freshness: SupplierFreshnessPolicy[] = [
   { policy_id: "stock-v1", supplier_id: supplierId, source_type: "MANUAL_PORTAL", data_type: "STOCK", freshness_minutes: 1440, effective_from: "2026-01-01T00:00:00.000Z" },
   { policy_id: "price-v1", supplier_id: supplierId, source_type: "MANUAL_PORTAL", data_type: "PRICE", freshness_minutes: 10080, effective_from: "2026-01-01T00:00:00.000Z" },
@@ -52,7 +70,7 @@ function snapshot(id: string, overrides: Partial<NormalizedSupplierSnapshot> = {
     cut_trade_price: "21.75",
     currency: "GBP",
     stock_unit: "METRE",
-    aggregate_available_quantity: 20,
+    aggregate_available_quantity: 40,
     batches: [{ batch_reference: "LOT-A", batch_available_quantity: 20, pieces: 1 }],
     next_due_date: null,
     next_due_quantity: null,
@@ -133,10 +151,10 @@ test("expiration and stale supplier state project availability to be confirmed",
   await service.manuallyApprove({ snapshotId: "expiry", approvedBy: staffId, reason: "Fresh at approval", approvedAt: now });
   const fresh = await service.projection({ supplierId, supplierSku: sku, requirement: { quantity: 10, stock_unit: "METRE" }, now });
   assert.equal(fresh.availability, "FABRIC_AVAILABLE");
-  const expiredAt = new Date("2026-09-08T10:00:01.000Z");
+  const expiredAt = new Date("2026-09-10T10:00:01.000Z");
   const expired = await service.projection({ supplierId, supplierSku: sku, requirement: { quantity: 10, stock_unit: "METRE" }, now: expiredAt });
   assert.equal(expired.availability, "AVAILABILITY_TO_BE_CONFIRMED");
-  assert.equal(expired.promotion_state, "EXPIRED");
+  assert.equal(expired.promotion_state, "APPROVED_FOR_PROJECTION");
   assert.deepEqual((await service.health(supplierId, expiredAt)).stale_skus, [sku]);
 });
 
@@ -153,14 +171,14 @@ test("a failed sync preserves the previous approval until it expires", async () 
   assert.equal((await repo.dataset(supplierId)).snapshots.length, 1);
 });
 
-test("batch-level projection does not combine incompatible dye lots", async () => {
+test("aggregate availability does not require batch or piece eligibility", async () => {
   const repo = repository();
   const service = new SupplierIntelligenceService(repo);
-  const split = snapshot("split", { aggregate_available_quantity: 14, batches: [{ batch_reference: "A", batch_available_quantity: 7, pieces: 1 }, { batch_reference: "B", batch_available_quantity: 7, pieces: 1 }] });
+  const split = snapshot("split", { aggregate_available_quantity: 40, batches: [{ batch_reference: "A", batch_available_quantity: 7, pieces: 1 }, { batch_reference: "B", batch_available_quantity: 7, pieces: 1 }] });
   await service.ingest({ run: run("split-run"), snapshot: split, requiredPriceField: "CUT_TRADE_PRICE", now });
   await service.manuallyApprove({ snapshotId: "split", approvedBy: staffId, reason: "Valid data but split batches", approvedAt: now });
   const projection = await service.projection({ supplierId, supplierSku: sku, requirement: { quantity: 12, stock_unit: "METRE" }, now });
-  assert.equal(projection.availability, "AVAILABILITY_TO_BE_CONFIRMED");
+  assert.equal(projection.availability, "FABRIC_AVAILABLE");
 });
 
 test("health reports price, stock, due-date and lifecycle transitions", async () => {

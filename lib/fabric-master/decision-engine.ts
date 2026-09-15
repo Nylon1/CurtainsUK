@@ -1,6 +1,7 @@
 import type { FabricSpec } from "@/lib/decision-engine/types";
 import type { FabricMasterRecord } from "./types";
 import type { ConfigurationFabricIdentity } from "@/lib/decision-engine/validation";
+import { calculationWidth } from './readiness';
 
 /** Identity-only review does not invent missing width, repeat or commercial data. */
 export function toReviewFabricIdentity(record: FabricMasterRecord): ConfigurationFabricIdentity & Pick<FabricSpec, "supplier" | "collection" | "design"> {
@@ -16,7 +17,8 @@ export function toReviewFabricIdentity(record: FabricMasterRecord): Configuratio
 }
 
 export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor: number | null, effectiveDate: string): FabricSpec {
-  if (!record.usable_width_mm || !Number.isFinite(record.usable_width_mm) || record.usable_width_mm <= 0) throw new Error("FABRIC_SPECIFICATION_INCOMPLETE");
+  const width = calculationWidth(record);
+  if (width === null) throw new Error("FABRIC_SPECIFICATION_INCOMPLETE");
   const verifiedPattern = record.pattern_match_type === "RANDOM_MATCH"
     || (record.pattern_match_type !== null && (record.vertical_repeat_mm ?? 0) > 0);
   // An explicit specialist match stays authoritative even when its repeat is missing.
@@ -30,7 +32,7 @@ export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor:
     colour: record.colour_name,
     supplierReference: record.supplier_sku,
     uniqueSku: record.supplier_sku,
-    usableWidthMm: record.usable_width_mm,
+    usableWidthMm: width,
     verticalRepeatMm: record.vertical_repeat_mm,
     horizontalRepeatMm: record.horizontal_repeat_mm,
     patternMatchType: record.pattern_match_type,
@@ -57,7 +59,7 @@ export function toDecisionEngineFabric(record: FabricMasterRecord, cutCostMinor:
     },
     sample: {
       sku: `SAMPLE-${record.supplier_sku}`,
-      available: record.sample_available === true,
+      available: false, // Fulfilment availability is resolved from current stock by the commerce layer.
       price: null,
       postage: null,
       futureOrderCreditEligible: false,

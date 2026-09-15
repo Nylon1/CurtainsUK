@@ -2,6 +2,8 @@ import { createSupplierServiceClient } from "../supabase/supplier-service";
 import { fabricMasterRecordsByIds } from "./repository";
 import { projectCustomerSafeFabric, assertCustomerSafeProjection } from "./projection";
 import { RETAIL_TAXONOMY, factualRetailDescription, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
+import { commercialReadiness } from './readiness-server';
+import { calculationWidth } from './readiness';
 
 export async function retailFabricDetail(id: string) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
@@ -16,6 +18,8 @@ async function hydrateRetailFabrics(ids: string[]) {
     db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,image_type,fabric_media_assets!inner(shopify_cdn_url,width,height)").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
   ]);
   if (profileResult.error || imageResult.error) throw new Error("RETAIL_CATALOGUE_UNAVAILABLE");
+  // A stock service outage must not take browsing offline or imply available stock.
+  const readiness = await commercialReadiness(records).catch(()=>null);
   return ids.flatMap((id) => {
   const record = records.find((r) => r.fabric_id === id);
   if (!record?.staging_catalog_visible || record.lifecycle_state === "DISCONTINUED") return [];
@@ -26,16 +30,21 @@ async function hydrateRetailFabrics(ids: string[]) {
   }).filter((i) => /^https:\/\/cdn\.shopify\.com\/[^?#]+$/.test(i.url)).sort((a, b) => Number(b.imageType === "MAIN") - Number(a.imageType === "MAIN"));
   if (retailLaunchBlockers(record, profile ?? null, images).length) return [];
   const safe = projectCustomerSafeFabric(record);
+  const commercial = readiness?.get(id);
+  if(commercial?.commercialStockState==='DISCONTINUED') return [];
   // Explicit public shape: supplier SKU remains in canonical server records.
   const result = {
     id: safe.id, supplier: safe.supplier, brand: safe.brand, collection: safe.collection, design: safe.design, colour: safe.colour,
     composition: safe.composition, fullWidthMm: safe.fullWidthMm, usableWidthMm: safe.usableWidthMm, verticalRepeatMm: safe.verticalRepeatMm, horizontalRepeatMm: safe.horizontalRepeatMm,
     patternMatchType: safe.patternMatchType, weightGsm: record.weight_gsm, careInstructions: record.care_instructions,
-    sampleAvailable: safe.sampleAvailable, availability: safe.availability, configurable: safe.configurable, configurationMessage: safe.configurationMessage,
+    sampleAvailable: commercial?.sampleReady ?? false, availability: commercial?.stockMessage ?? 'Check availability' as const, configurable: safe.configurable, configurationMessage: commercial?.priceReady ? 'Ready to configure' as const : 'Price and availability to be confirmed' as const,
+    sampleEligible: true, calculationWidthMm: calculationWidth(record),
+    commercialStockState: commercial?.commercialStockState ?? 'CHECK_AVAILABILITY',
+    priceReady: commercial?.priceReady ?? false, currentStockConfirmed: commercial?.currentStockConfirmed ?? false,
     imageReferences: images.map((i) => i.url), images, description: profile?.description_validated && profile.description.trim() ? profile.description : factualRetailDescription(record),
     colourFamilies: profile?.colour_families ?? ["UNKNOWN"], patterns: profile?.patterns ?? ["UNKNOWN"], characters: profile?.characters ?? ["UNKNOWN"], styles: profile?.styles ?? ["UNKNOWN"],
     headings: profile?.headings ?? [], windowTypes: profile?.window_types ?? [], linings: profile?.linings ?? [], rooms: profile?.rooms ?? [],
-    browseReady: true, orderReady: false, launchReady: true, metadata: retailMetadata(record), feedEligible: false,
+    browseReady: true, orderReady: commercial?.orderReady ?? false, launchReady: true, metadata: retailMetadata(record), feedEligible: false,
   };
   assertCustomerSafeProjection(result); return [result];
   });

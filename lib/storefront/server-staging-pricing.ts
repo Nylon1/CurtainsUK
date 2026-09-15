@@ -2,6 +2,7 @@ import "server-only";
 import { MissingCommercialRuleError } from "@/lib/decision-engine/errors";
 import { fabricMasterRecordById, verifiedCutCostMinor } from "@/lib/fabric-master/repository";
 import { fabricIsPriceEligible } from "@/lib/fabric-master/projection";
+import { calculationWidth } from '@/lib/fabric-master/readiness';
 import { toDecisionEngineFabric, toReviewFabricIdentity } from "@/lib/fabric-master/decision-engine";
 import { dailyStockProjection } from "./daily-stock-server";
 import { calculateStagingPriceForTest, calculatePriceConfirmationReview, classifySpecialistReview, type SpecialistReviewRequest, type StagingPriceRequest, type StagingPriceResponse } from "./staging-pricing";
@@ -16,7 +17,7 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
     try { cutCostMinor = await verifiedCutCostMinor(record.supplier_id, record.supplier_sku); }
     catch(error) { if(!(error instanceof Error) || error.message !== "PRICE_REQUIRES_VERIFICATION")throw error; }
   }
-  const specificationsKnown = Boolean(record.usable_width_mm && Number.isFinite(record.usable_width_mm) && record.usable_width_mm > 0);
+  const specificationsKnown = calculationWidth(record) !== null;
   const priceConfirmation = () => {
     const manufacturingFabric = specificationsKnown ? toDecisionEngineFabric(record, null, record.source_effective_date ?? "") : null;
     const result = calculatePriceConfirmationReview(input, toReviewFabricIdentity(record), manufacturingFabric);
@@ -36,8 +37,8 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
     FABRIC_AVAILABLE: "Fabric available",
     LIMITED_AVAILABILITY: "Limited availability",
     AVAILABLE_SOON: "Available soon",
-    AVAILABILITY_TO_BE_CONFIRMED: "Availability to be confirmed",
-    TEMPORARILY_UNAVAILABLE: "Currently unavailable",
+    AVAILABILITY_TO_BE_CONFIRMED: "Check availability",
+    TEMPORARILY_UNAVAILABLE: "Out of stock \u2014 awaiting supplier stock",
     NO_LONGER_AVAILABLE: "No longer available",
   };
   return {

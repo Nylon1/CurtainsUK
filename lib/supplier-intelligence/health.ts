@@ -1,3 +1,4 @@
+import { stockObservationCurrent } from "@/lib/storefront/daily-stock";
 import { effectivePromotionState } from "./promotion";
 import type { DurableSupplierSnapshot, SupplierChange, SupplierHealthReport, SupplierIntelligenceDataset } from "./types";
 
@@ -60,7 +61,7 @@ export function buildSupplierHealthReport(
     if (current.lifecycle_state === "DISCONTINUED" && previous.lifecycle_state !== "DISCONTINUED") newlyDiscontinued.push(change(current, previous, previous.lifecycle_state, current.lifecycle_state));
   }
 
-  const staleSkus = latest.filter((snapshot) => snapshot.stock_expires_at !== null && Date.parse(snapshot.stock_expires_at) <= now.getTime()).map((snapshot) => snapshot.supplier_sku);
+  const staleSkus = latest.filter((snapshot) => !stockObservationCurrent(snapshot.checked_at,now)).map((snapshot) => snapshot.supplier_sku);
   const expiredSkus = latest.filter((snapshot) => effectivePromotionState(snapshot, dataset.promotion_events, now) === "EXPIRED").map((snapshot) => snapshot.supplier_sku);
   const awaitingApproval = latest.filter((snapshot) => ["RAW_SHADOW", "VALIDATED"].includes(effectivePromotionState(snapshot, dataset.promotion_events, now))).map((snapshot) => snapshot.supplier_sku);
 

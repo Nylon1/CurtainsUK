@@ -1,15 +1,13 @@
 import type { DurableSupplierSnapshot, PromotionEvent, PromotionState, SupplierValidationResult } from "./types";
 
-export function effectivePromotionState(snapshot: DurableSupplierSnapshot, events: readonly PromotionEvent[], now = new Date()): PromotionState {
+export function effectivePromotionState(snapshot: DurableSupplierSnapshot, events: readonly PromotionEvent[], _now = new Date()): PromotionState {
+  void _now; // Compatibility for callers; approval itself is no longer time-limited.
   const precedence: Record<PromotionState, number> = { RAW_SHADOW: 0, VALIDATED: 1, APPROVED_FOR_PROJECTION: 2, REJECTED: 3, EXPIRED: 4 };
   const latest = events
     .filter((event) => event.snapshot_id === snapshot.snapshot_id)
     .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at) || precedence[b.promotion_state] - precedence[a.promotion_state])[0];
   const state = latest?.promotion_state ?? snapshot.initial_promotion_state;
-  if (state === "APPROVED_FOR_PROJECTION") {
-    const expiries = [snapshot.stock_expires_at, snapshot.price_expires_at, snapshot.lifecycle_expires_at].filter((value): value is string => value !== null);
-    if (expiries.some((value) => Date.parse(value) <= now.getTime())) return "EXPIRED";
-  }
+  // Approval is evidence, not a timer. Stock freshness is evaluated separately.
   return state;
 }
 

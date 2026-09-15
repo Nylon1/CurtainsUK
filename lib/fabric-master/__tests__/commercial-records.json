@@ -1,0 +1,367 @@
+[
+  {
+    "fabric_id": "pt-4262-770",
+    "supplier_id": "prestigious-textiles",
+    "brand_id": "prestigious-textiles",
+    "design_id": "pt-design-4262",
+    "supplier_sku": "4262/770",
+    "colourway_code": "770",
+    "colour_name": "Lagoon",
+    "imagery": [
+      "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-46d0f16c9867f6722a4f126b2ea612b34b94920b185fc7b49ea176008f60d9b5.jpg"
+    ],
+    "sample_available": true,
+    "lifecycle_state": "CURRENT",
+    "price_verification_status": "VERIFIED",
+    "storefront_selectable": true,
+    "source_type": "MANUAL_PORTAL",
+    "source_name": "Phase 5H authorised Webtex lifecycle verification",
+    "source_reference": "prestigious-webtex:collection:Rustic Persian",
+    "source_effective_date": "2026-09-08",
+    "created_at": "2026-09-07 22:39:21.530881+00",
+    "updated_at": "2026-09-08 05:10:02.635+00",
+    "source_observed_at": "2026-09-07 22:31:31.267+00",
+    "staging_catalog_visible": true,
+    "brand_name": "Prestigious Textiles",
+    "design_name": "Sadira",
+    "collection_id": "pt-collection-rustic-persian",
+    "collection_name": "Rustic Persian",
+    "supplier_design_code": "4262",
+    "full_width_mm": 1470,
+    "usable_width_mm": 1400,
+    "vertical_repeat_mm": 335,
+    "horizontal_repeat_mm": 347,
+    "pattern_match_type": null,
+    "composition": [
+      {
+        "material": "polyester",
+        "percentage": 95
+      },
+      {
+        "material": "linen",
+        "percentage": 5
+      }
+    ],
+    "weight_gsm": null,
+    "care_instructions": [],
+    "usage_suitability": [
+      "Blinds",
+      "Curtains",
+      "Cushions",
+      "Upholstery"
+    ],
+    "supplier_name": "Prestigious Textiles",
+    "supplier_collection_code": null
+  },
+  {
+    "fabric_id": "pt-4269-147",
+    "supplier_id": "prestigious-textiles",
+    "brand_id": "prestigious-textiles",
+    "design_id": "pt-design-4269",
+    "supplier_sku": "4269/147",
+    "colourway_code": "147",
+    "colour_name": "MOCHA",
+    "imagery": [
+      "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-34d1f0437d8f05265f7aff88d9734b3a54a39c0730d8b459e0a3180fc734e449.jpg"
+    ],
+    "sample_available": true,
+    "lifecycle_state": "CURRENT",
+    "price_verification_status": "VERIFIED",
+    "storefront_selectable": true,
+    "source_type": "MANUAL_PORTAL",
+    "source_name": "Phase 5H authorised Webtex lifecycle verification",
+    "source_reference": "prestigious-webtex:collection:Formation",
+    "source_effective_date": "2026-09-08",
+    "created_at": "2026-09-07 11:45:44.243337+00",
+    "updated_at": "2026-09-08 04:52:33.462881+00",
+    "source_observed_at": "2026-08-01 00:00:00+00",
+    "staging_catalog_visible": true,
+    "brand_name": "Prestigious Textiles",
+    "design_name": "ESCHER",
+    "collection_id": "pt-collection-formation",
+    "collection_name": "Formation",
+    "supplier_design_code": "4269",
+    "full_width_mm": 1420,
+    "usable_width_mm": 1400,
+    "vertical_repeat_mm": null,
+    "horizontal_repeat_mm": null,
+    "pattern_match_type": "RANDOM_MATCH",
+    "composition": [
+      {
+        "material": "Polyester",
+        "percentage": 68
+      },
+      {
+        "material": "Viscose",
+        "percentage": 32
+      }
+    ],
+    "weight_gsm": null,
+    "care_instructions": [
+      "Prestigious care code 0CSpE"
+    ],
+    "usage_suitability": [
+      "Curtains",
+      "Prestigious usage code BCDU"
+    ],
+    "supplier_name": "Prestigious Textiles",
+    "supplier_collection_code": null
+  },
+  {
+    "fabric_id": "pt-4270-147",
+    "supplier_id": "prestigious-textiles",
+    "brand_id": "prestigious-textiles",
+    "design_id": "pt-design-4270",
+    "supplier_sku": "4270/147",
+    "colourway_code": "147",
+    "colour_name": "MOCHA",
+    "imagery": [
+      "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-be96feee7c6a5f4f9bdff4eab8cfa5cf1798a06afdcbc3c30a7f22f5405afe2a.jpg"
+    ],
+    "sample_available": true,
+    "lifecycle_state": "CURRENT",
+    "price_verification_status": "VERIFIED",
+    "storefront_selectable": true,
+    "source_type": "MANUAL_PORTAL",
+    "source_name": "Phase 5H authorised Webtex lifecycle verification",
+    "source_reference": "prestigious-webtex:collection:Formation",
+    "source_effective_date": "2026-09-08",
+    "created_at": "2026-09-07 11:45:44.243337+00",
+    "updated_at": "2026-09-08 04:34:55.457873+00",
+    "source_observed_at": "2026-08-01 00:00:00+00",
+    "staging_catalog_visible": true,
+    "brand_name": "Prestigious Textiles",
+    "design_name": "DALI",
+    "collection_id": "pt-collection-formation",
+    "collection_name": "Formation",
+    "supplier_design_code": "4270",
+    "full_width_mm": 1460,
+    "usable_width_mm": 1430,
+    "vertical_repeat_mm": 627,
+    "horizontal_repeat_mm": 237,
+    "pattern_match_type": "STRAIGHT_MATCH",
+    "composition": [
+      {
+        "material": "Polyester",
+        "percentage": 61
+      },
+      {
+        "material": "Cotton",
+        "percentage": 39
+      }
+    ],
+    "weight_gsm": null,
+    "care_instructions": [
+      "Prestigious care code 1CTpE"
+    ],
+    "usage_suitability": [
+      "Curtains",
+      "Prestigious usage code BCDU"
+    ],
+    "supplier_name": "Prestigious Textiles",
+    "supplier_collection_code": null
+  },
+  {
+    "fabric_id": "sdg-daeg222949",
+    "supplier_id": "sanderson-design-group",
+    "brand_id": "sdg-sanderson",
+    "design_id": "sdg-sanderson-design-catalogue-sanderson-aegean-fabrics-simi",
+    "supplier_sku": "DAEG222949",
+    "colourway_code": null,
+    "colour_name": "Spring",
+    "imagery": [],
+    "sample_available": null,
+    "lifecycle_state": "DISCONTINUED",
+    "price_verification_status": "PRICE_REQUIRES_VERIFICATION",
+    "storefront_selectable": false,
+    "source_type": "AUTHORISED_XLSX_CATALOGUE",
+    "source_name": "Sanderson Design Group authorised all-brands export",
+    "source_reference": "2fe72589-1d95-455d-91cd-d82d5ff8abda.xlsx#All Product Data;part=1/39",
+    "source_effective_date": "2026-02-24",
+    "created_at": "2026-09-07 20:33:33.711258+00",
+    "updated_at": "2026-09-08 11:57:24.848+00",
+    "source_observed_at": "2026-02-24 08:48:32+00",
+    "staging_catalog_visible": false,
+    "brand_name": "Sanderson",
+    "design_name": "Simi",
+    "collection_id": "sdg-sanderson-collection-aegean-fabrics",
+    "collection_name": "Aegean Fabrics",
+    "supplier_design_code": null,
+    "full_width_mm": 1380,
+    "usable_width_mm": null,
+    "vertical_repeat_mm": 635,
+    "horizontal_repeat_mm": 1380,
+    "pattern_match_type": "STRAIGHT_MATCH",
+    "composition": [
+      {
+        "material": "Viscose",
+        "percentage": 80
+      },
+      {
+        "material": "Linen",
+        "percentage": 20
+      }
+    ],
+    "weight_gsm": "300.00",
+    "care_instructions": [],
+    "usage_suitability": [],
+    "supplier_name": "Sanderson Design Group",
+    "supplier_collection_code": null
+  },
+  {
+    "fabric_id": "sdg-dapgpa203",
+    "supplier_id": "sanderson-design-group",
+    "brand_id": "sdg-sanderson",
+    "design_id": "sdg-sanderson-design-dapgpa",
+    "supplier_sku": "DAPGPA203",
+    "colourway_code": null,
+    "colour_name": "Violet/Crimson",
+    "imagery": [
+      "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-89269d7f5a0afea8751ad4b927605c077bd71460e879dafbaf96c2dba1092a44.jpg"
+    ],
+    "sample_available": true,
+    "lifecycle_state": "CURRENT",
+    "price_verification_status": "VERIFIED",
+    "storefront_selectable": true,
+    "source_type": "MANUAL_PORTAL",
+    "source_name": "Phase 5H exact-SKU authorised SDG lifecycle verification",
+    "source_reference": "sdg-product:DAPGPA203:SAF0034-01",
+    "source_effective_date": "2026-09-08",
+    "created_at": "2026-09-07 11:57:09.609633+00",
+    "updated_at": "2026-09-08 05:00:51.187+00",
+    "source_observed_at": "2026-09-07 00:00:00+00",
+    "staging_catalog_visible": true,
+    "brand_name": "Sanderson",
+    "design_name": "Painters Garden",
+    "collection_id": "sdg-sanderson-collection-sanderson-one-sixty-fabrics",
+    "collection_name": "Sanderson One Sixty Fabrics",
+    "supplier_design_code": "DAPGPA",
+    "full_width_mm": 1370,
+    "usable_width_mm": 1370,
+    "vertical_repeat_mm": 660,
+    "horizontal_repeat_mm": 1370,
+    "pattern_match_type": "STRAIGHT_MATCH",
+    "composition": [
+      {
+        "material": "Cotton",
+        "percentage": 100
+      }
+    ],
+    "weight_gsm": "131.00",
+    "care_instructions": [
+      "No machine wash",
+      "Cool iron",
+      "No bleach",
+      "No tumble dry"
+    ],
+    "usage_suitability": [
+      "Curtains",
+      "Blinds",
+      "Cushions"
+    ],
+    "supplier_name": "Sanderson Design Group",
+    "supplier_collection_code": null
+  },
+  {
+    "fabric_id": "sdg-dart236359",
+    "supplier_id": "sanderson-design-group",
+    "brand_id": "sdg-sanderson",
+    "design_id": "sdg-sanderson-design-catalogue-sanderson-art-of-the-garden-fabrics-baroque-trellis",
+    "supplier_sku": "DART236359",
+    "colourway_code": null,
+    "colour_name": "Daffodil/Linen",
+    "imagery": [],
+    "sample_available": null,
+    "lifecycle_state": "DISCONTINUED",
+    "price_verification_status": "PRICE_REQUIRES_VERIFICATION",
+    "storefront_selectable": false,
+    "source_type": "AUTHORISED_XLSX_CATALOGUE",
+    "source_name": "Sanderson Design Group authorised all-brands export",
+    "source_reference": "2fe72589-1d95-455d-91cd-d82d5ff8abda.xlsx#All Product Data;part=1/39",
+    "source_effective_date": "2026-02-24",
+    "created_at": "2026-09-07 20:33:33.711258+00",
+    "updated_at": "2026-09-08 11:57:26.537+00",
+    "source_observed_at": "2026-02-24 08:48:32+00",
+    "staging_catalog_visible": false,
+    "brand_name": "Sanderson",
+    "design_name": "Baroque Trellis",
+    "collection_id": "sdg-sanderson-collection-art-of-the-garden-fabrics",
+    "collection_name": "Art Of The Garden Fabrics",
+    "supplier_design_code": null,
+    "full_width_mm": 1380,
+    "usable_width_mm": null,
+    "vertical_repeat_mm": 160,
+    "horizontal_repeat_mm": 140,
+    "pattern_match_type": "STRAIGHT_MATCH",
+    "composition": [
+      {
+        "material": "Vis",
+        "percentage": 73
+      },
+      {
+        "material": "Linen",
+        "percentage": 23
+      },
+      {
+        "material": "Cotton",
+        "percentage": 4
+      }
+    ],
+    "weight_gsm": "375.00",
+    "care_instructions": [],
+    "usage_suitability": [],
+    "supplier_name": "Sanderson Design Group",
+    "supplier_collection_code": null
+  },
+  {
+    "fabric_id": "sdg-zald332700",
+    "supplier_id": "sanderson-design-group",
+    "brand_id": "sdg-zoffany",
+    "design_id": "sdg-zoffany-design-catalogue-zoffany-aldwych-leighton",
+    "supplier_sku": "ZALD332700",
+    "colourway_code": null,
+    "colour_name": "Ink",
+    "imagery": [],
+    "sample_available": null,
+    "lifecycle_state": "UNKNOWN",
+    "price_verification_status": "PRICE_REQUIRES_VERIFICATION",
+    "storefront_selectable": false,
+    "source_type": "AUTHORISED_XLSX_CATALOGUE",
+    "source_name": "Sanderson Design Group authorised all-brands export",
+    "source_reference": "2fe72589-1d95-455d-91cd-d82d5ff8abda.xlsx#All Product Data;part=36/39",
+    "source_effective_date": "2026-02-24",
+    "created_at": "2026-09-07 15:59:49.820535+00",
+    "updated_at": "2026-09-07 20:33:50.364412+00",
+    "source_observed_at": "2026-02-24 08:48:32+00",
+    "staging_catalog_visible": false,
+    "brand_name": "Zoffany",
+    "design_name": "Leighton",
+    "collection_id": "sdg-zoffany-collection-aldwych",
+    "collection_name": "Aldwych",
+    "supplier_design_code": null,
+    "full_width_mm": 1360,
+    "usable_width_mm": null,
+    "vertical_repeat_mm": 100,
+    "horizontal_repeat_mm": 75,
+    "pattern_match_type": "STRAIGHT_MATCH",
+    "composition": [
+      {
+        "material": "Viscose",
+        "percentage": 70
+      },
+      {
+        "material": "Cotton",
+        "percentage": 24
+      },
+      {
+        "material": "Polyester",
+        "percentage": 6
+      }
+    ],
+    "weight_gsm": "1200.00",
+    "care_instructions": [],
+    "usage_suitability": [],
+    "supplier_name": "Sanderson Design Group",
+    "supplier_collection_code": null
+  }
+]

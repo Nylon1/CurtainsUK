@@ -92,10 +92,10 @@ test("customer projection strips supplier-commercial intelligence", () => {
   assert.equal(/trade_price|batch_reference|aggregate_available_quantity|costing_price/i.test(serialised), false);
   assert.equal(/priceVerificationStatus|price_verification_status/.test(serialised), false);
   assert.equal(projection.configurable, true);
-  assert.equal(projection.configurationMessage, "Ready to configure");
+  assert.equal(projection.configurationMessage, "Price and availability to be confirmed");
 });
 
-test("a staging-visible unverified canary is customer-visible but cannot enter configuration", () => {
+test("a visible fabric with supplier width can configure while price remains unconfirmed", () => {
   const source = normalizeSandersonRows([{
     brand: "Sanderson", collection: "Canary", design: "Safe card", colour: "Blue",
     supplierSku: "CANARYSAFE101", supplierDesignCode: null, fullWidthMm: 1370, usableWidthMm: null,
@@ -109,11 +109,11 @@ test("a staging-visible unverified canary is customer-visible but cannot enter c
     staging_catalog_visible: true,
   });
 
-  assert.equal(projection.configurable, false);
+  assert.equal(projection.configurable, true);
   assert.equal(projection.configurationMessage, "Price and availability to be confirmed");
   assert.equal(projection.availability, "Availability to be confirmed");
   assert.equal(JSON.stringify(projection).includes("PRICE_REQUIRES_VERIFICATION"), false);
-  assert.equal(fabricIsConfigurationEligible({ ...source, supplier_name: "Sanderson Design Group", staging_catalog_visible: true }), false);
+  assert.equal(fabricIsConfigurationEligible({ ...source, supplier_name: "Sanderson Design Group", staging_catalog_visible: true }), true);
 });
 
 test("decision engine adapter accepts either supplier through the same FabricSpec contract", () => {
@@ -379,7 +379,7 @@ test("bulk supplier expansion fails closed until every dated gate has evidence",
   assert.deepEqual(blocked.unknownGates, ["AUTHORISED_IMAGERY"]);
 });
 
-test("verified cut pricing requires a current expiry and the latest promotion to remain approved", () => {
+test("approved cut pricing does not expire by age; latest approval and rejection govern it", () => {
   const now = new Date("2026-09-07T19:00:00.000Z");
   const snapshots = [{
     snapshot_id: "snapshot-current",
@@ -411,10 +411,10 @@ test("verified cut pricing requires a current expiry and the latest promotion to
     snapshots: [{ ...snapshots[0], price_expires_at: "2026-09-07T18:59:59.000Z" }],
     promotionEvents: approved,
     now,
-  }), null);
+  }), 2_000);
   assert.equal(selectCurrentApprovedCutCostMinor({
     snapshots: [{ ...snapshots[0], price_expires_at: null }],
     promotionEvents: approved,
     now,
-  }), null);
+  }), 2_000);
 });

@@ -65,13 +65,13 @@ test("strict aggregate floor, usage, stale retention and no private quantities",
   const base = {
     aggregateMetres: 100,
     confirmedUsageMetres: 0,
-    snapshotDate: "2026-09-13",
+    snapshotDate: "2026-09-13", checkedAt: "2026-09-13T06:00:00Z",
     discontinued: false,
   };
   for (const [stock, usage, available] of [
-    [30, 0, false],
+    [30, 0, true],
     [30.01, 0, true],
-    [100, 70, false],
+    [100, 70, true],
     [100, 69.99, true],
     [0, 0, false],
     [100, 120, false],
@@ -82,23 +82,23 @@ test("strict aggregate floor, usage, stale retention and no private quantities",
     );
     assert.equal(
       result.status,
-      available ? "AVAILABLE" : "OUT_OF_STOCK_FOR_CURTAINSUK",
+      available ? "AVAILABLE" : "OUT_OF_STOCK",
     );
     assert.equal(
       result.label,
-      available ? "Fabric available" : "Currently unavailable",
+      available ? "Fabric available" : "Out of stock — awaiting supplier stock",
     );
     assert.ok(!JSON.stringify(result).includes("Metres"));
   }
   const stale = dailyStockDecision(
-    { ...base, snapshotDate: "2026-09-12", refreshFailed: true },
+    { ...base, snapshotDate: "2026-09-09", checkedAt: "2026-09-09T06:00:00Z", refreshFailed: true },
     now,
   );
   assert.equal(stale.stale, true);
-  assert.equal(stale.status, "AVAILABLE");
+  assert.equal(stale.status, "CHECK_AVAILABILITY");
   assert.equal(
     dailyStockDecision({ ...base, aggregateMetres: null }, now).status,
-    "UNKNOWN",
+    "CHECK_AVAILABILITY",
   );
   assert.equal(
     dailyStockDecision({ ...base, discontinued: true }, now).status,
@@ -106,7 +106,7 @@ test("strict aggregate floor, usage, stale retention and no private quantities",
   );
   assert.equal(
     dailyStockDecision({ ...base, confirmedUsageMetres: 70 }, now).status,
-    "OUT_OF_STOCK_FOR_CURTAINSUK",
+    "AVAILABLE",
   );
   assert.equal(
     dailyStockDecision(
@@ -133,7 +133,7 @@ test("daily floor controls instant checkout; Bay requires no approval when stock
       {
         aggregateMetres: stock,
         confirmedUsageMetres: 0,
-        snapshotDate: "2026-09-13",
+        snapshotDate: "2026-09-13", checkedAt: "2026-09-13T06:00:00Z",
         discontinued: false,
       },
       now,
@@ -157,7 +157,7 @@ test("daily floor controls instant checkout; Bay requires no approval when stock
         message: "Delivery",
       },
     });
-    assert.equal(gate.eligible, stock > 30);
+    assert.equal(gate.eligible, stock >= 30);
     assert.equal(gate.paymentEnabled, false);
   }
 });

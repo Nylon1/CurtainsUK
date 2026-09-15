@@ -16,7 +16,7 @@ export function verifySampleProperties(properties: Record<string,string>, secret
 }
 export function sampleOrderProperties(fabric: FabricMasterRecord, secret: string, context?: HciCommerceContext) {
   if (secret.length < 32) throw Error('SAMPLE_SIGNING_UNAVAILABLE');
-  if (!fabric.staging_catalog_visible || fabric.lifecycle_state === 'DISCONTINUED' || fabric.sample_available !== true) throw Error('SAMPLE_NOT_AVAILABLE');
+  if (!fabric.staging_catalog_visible || fabric.lifecycle_state === 'DISCONTINUED') throw Error('SAMPLE_NOT_AVAILABLE');
   if (context && context.fabricMasterId !== fabric.fabric_id) throw Error('SAMPLE_CONTEXT_MISMATCH');
   const properties: Record<string,string> = {
     'Fabric': `${fabric.design_name} — ${fabric.colour_name}`,

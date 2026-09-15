@@ -3,6 +3,7 @@ import { fabricMasterRecordsByIds } from '../fabric-master/repository';
 import { dailyStockProjection } from './daily-stock-server';
 import { verifyHciCommerceContext } from './hci-commerce-context';
 import { SAMPLE_VARIANT_ID, sampleOrderProperties, verifySampleProperties } from './sample-order';
+import { fabricReadiness } from '../fabric-master/readiness';
 
 export async function prepareSampleOrder(input: {fabricId?: unknown; hciCommerceToken?: unknown; properties?: Record<string,string>}) {
   if (typeof input.fabricId !== 'string' || !/^[a-zA-Z0-9-]{1,150}$/.test(input.fabricId)) throw Error('SAMPLE_IDENTITY_INVALID');
@@ -16,7 +17,7 @@ export async function prepareSampleOrder(input: {fabricId?: unknown; hciCommerce
     for (const key of ['Fabric Master ID','Supplier SKU','Brand','Design','Colourway']) if(input.properties[key]!==properties[key]) throw Error('SAMPLE_IDENTITY_INVALID');
   }
   const stock = await dailyStockProjection({supplierId:fabric.supplier_id,supplierSku:fabric.supplier_sku});
-  if (stock.availability !== 'FABRIC_AVAILABLE' || stock.stale) throw Error('SAMPLE_CURRENT_AVAILABILITY_REQUIRED');
+  if (!fabricReadiness(fabric,{stock:stock.availability,stale:stock.stale}).sampleReady) throw Error('SAMPLE_CURRENT_AVAILABILITY_REQUIRED');
   // Use the actual existing Shopify price. Never derive sample price from curtain trade cost.
   const response = await fetch('https://www.curtainsuk.com/products/fabric-sample.js',{cache:'no-store',signal:AbortSignal.timeout(10000)});
   if (!response.ok) throw Error('SAMPLE_PRODUCT_UNAVAILABLE');

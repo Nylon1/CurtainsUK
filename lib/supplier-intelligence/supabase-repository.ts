@@ -73,7 +73,7 @@ export class SupabaseSupplierIntelligenceRepository implements SupplierIntellige
     const database = createSupplierServiceClient();
     const [supplier, sku, freshnessPolicies, validationPolicy] = await Promise.all([
       database.from("suppliers").select("supplier_id").eq("supplier_id", input.supplierId).maybeSingle(),
-      database.from("fabric_supplier_links").select("supplier_sku").eq("supplier_id", input.supplierId).eq("supplier_sku", input.supplierSku).maybeSingle(),
+      database.from("fabric_colourways").select("supplier_sku").eq("supplier_id", input.supplierId).eq("supplier_sku", input.supplierSku).maybeSingle(),
       database.from("supplier_freshness_policies").select("policy_id,supplier_id,source_type,data_type,freshness_minutes,effective_from").eq("supplier_id", input.supplierId).eq("source_type", input.sourceType),
       database.from("supplier_validation_policies").select("policy_id,supplier_id,allowed_currencies,allowed_stock_units,effective_from").eq("supplier_id", input.supplierId).order("effective_from", { ascending: false }).limit(1).maybeSingle(),
     ]);

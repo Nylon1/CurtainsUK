@@ -30,5 +30,5 @@ test("known no-repeat and verified match take precedence; missing width and half
     assert.equal(fabric.patternAllowance,undefined);
     if(match === "HALF_DROP_MATCH") assert.throws(()=>calculateStagingPriceForTest(request,fabric),/halfDropMatch/);
   }
-  assert.throws(()=>toDecisionEngineFabric({...record,usable_width_mm:null},2000,"2026-09-14"),/INCOMPLETE/);
+  assert.throws(()=>toDecisionEngineFabric({...record,usable_width_mm:null,full_width_mm:null},2000,"2026-09-14"),/INCOMPLETE/);
 });

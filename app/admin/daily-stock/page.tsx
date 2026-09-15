@@ -22,7 +22,7 @@ export default function DailyStock() {
         setStatus(
           r.ok
             ? JSON.stringify(b, null, 2)
-            : "Sign in with staging staff access to view daily stock.",
+            : "Sign in with authorised staff access to view daily stock.",
         );
       })
       .catch(() => setStatus("Daily stock status is temporarily unavailable."));
@@ -70,19 +70,19 @@ export default function DailyStock() {
         {status}
       </pre>
       <section className="my-8 rounded border p-5">
-        <h2 className="text-2xl">Morning supplier refresh</h2>
-        <p className="my-3">Responsible operator: CurtainsUK owner/admin. This is required every trading day until unattended supplier retrieval is connected. Purchases require a successful genuine snapshot dated today in UK time, including before 06:00. Your signed-in operator ID and completion time are recorded with each refresh result.</p>
+        <h2 className="text-2xl">Supplier import and stock materialisation</h2>
+        <p className="my-3">Responsible operator: CurtainsUK owner/admin. This is required every trading day until unattended supplier retrieval is connected. A genuine observation remains valid for 72 hours. A failed refresh does not invalidate evidence still within that window. Your signed-in operator ID and completion time are recorded with each refresh result.</p>
         <p className="my-3">At approximately 06:00 UK time, obtain a current supplier export or authorised portal observation. Unattended supplier retrieval is not connected.</p>
         <ol className="list-decimal pl-6 leading-8">
           <li><Link className="underline" href="/admin/supplier-imports">Import and preview genuine current supplier data</Link>. Include exact SKU, aggregate stock metres, checked timestamp, source and current cut price where available. Do not enter batches or dye lots.</li>
           <li><Link className="underline" href="/admin/supplier-intelligence">Review the governed approval queue</Link>. Resolve validation errors; missing price stays unknown. Approval never means placing a supplier order.</li>
-          <li>Apply approved observations below, then inspect the supplier status and coverage. Records not checked today remain stale or missing; no failed refresh turns them into out-of-stock.</li>
+          <li>Apply approved observations below, then inspect the supplier status and coverage. Records without a genuine observation in the last 72 hours require confirmation; no failed refresh turns them into out-of-stock.</li>
         </ol>
         <form onSubmit={morningRefresh} className="mt-5 grid gap-4">
-          <label><input type="checkbox" required /> I have imported and reviewed the current supplier source. This action will only materialize approved observations checked today.</label>
+          <label><input type="checkbox" required /> I have imported and reviewed the current supplier source. This action will only materialize approved observations checked within the last 72 hours.</label>
           <button disabled={busy} className="min-h-11 rounded bg-slate-900 p-3 text-white">Apply morning snapshot</button>
         </form>
-        <p className="mt-3 text-sm">A partial refresh may be completed later that day. Existing daily baselines are never replaced. The next successful morning snapshot recalculates availability.</p>
+        <p className="mt-3 text-sm">A partial refresh may be completed later that day. A newer approved observation can correct the operational stock position. Original observations, revision history and approved orders remain unchanged. FAILED or INCOMPLETE coverage requires operator attention; scheduler execution alone is not success.</p>
       </section>
       <h2 className="my-4 text-xl">Record a confirmed order</h2>
       <p>

@@ -25,7 +25,8 @@ export async function GET() {
     .select("event_id,operator_id,snapshot_date,completed_at,supplier_results")
     .order("completed_at", { ascending: false })
     .limit(20);
-  return error || auditError
+  const {data:coverage,error:coverageError}=await createSupplierServiceClient().rpc('daily_stock_health');
+  return error || auditError || coverageError
     ? NextResponse.json(
         { error: "SNAPSHOT_STATUS_UNAVAILABLE" },
         { status: 503, headers },
@@ -34,6 +35,8 @@ export async function GET() {
         {
           runs: data,
           refreshEvents,
+          coverage,
+          process: 'STOCK_MATERIALISATION_ONLY',
           responsibleOperator: "CurtainsUK owner/admin",
           upstreamRefresh: "UNATTENDED_SUPPLIER_SOURCE_NOT_CONFIGURED",
         },
@@ -57,12 +60,12 @@ export async function POST(request: Request) {
     });
     const input = await readBoundedJson<Record<string, unknown>>(request, 2048);
     if (input.action === "MORNING_REFRESH") {
-      if (process.env.CURTAINSUK_DEPLOYMENT_STAGE !== "STAGING" || !(await supplierAdminIdentity()))
+      if (!(await supplierAdminIdentity()))
         return NextResponse.json({error:"SUPPLIER_ADMIN_REQUIRED"},{status:403,headers});
       if (input.confirmedCurrentSource !== true) throw Error("CURRENT_SOURCE_REQUIRED");
       const {data,error} = await createSupplierServiceClient().rpc("materialize_daily_stock_for_operator", {p_operator: actor.id});
       if (error) return NextResponse.json({error:"Refresh pending. Last successful snapshots remain unchanged. Retry after recovery."},{status:503,headers});
-      return NextResponse.json({runs:data,message:"Only today's approved observations were added. Existing daily snapshots and confirmed usage were preserved. Check supplier coverage below; this does not retrieve supplier data."},{headers});
+      return NextResponse.json({runs:data,message:"Approved observations were materialised. Newer same-day observations supersede the operational position; original evidence and order snapshots remain unchanged. Check coverage: execution does not mean a complete supplier refresh."},{headers});
     }
     if (
       input.confirmedOrder !== true ||

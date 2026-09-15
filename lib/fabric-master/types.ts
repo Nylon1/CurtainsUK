@@ -92,8 +92,8 @@ export interface CustomerSafeFabricProjection {
   verticalRepeatMm: number | null;
   horizontalRepeatMm: number | null;
   patternMatchType: PatternMatchType | null;
-  sampleAvailable: boolean | null;
-  availability: "Fabric available" | "Limited availability" | "Available soon" | "Availability to be confirmed" | "Temporarily unavailable" | "No longer available";
+  sampleAvailable: boolean;
+  availability: "Fabric available" | "Limited availability" | "Available soon" | "Availability to be confirmed" | "Check availability" | "Currently unavailable" | "Out of stock — awaiting supplier stock" | "Temporarily unavailable" | "No longer available";
   /** Public action gate. The private reason/status is deliberately not projected. */
   configurable: boolean;
   configurationMessage: "Ready to configure" | "Price and availability to be confirmed" | "No longer available";

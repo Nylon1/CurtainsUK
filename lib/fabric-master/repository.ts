@@ -149,29 +149,23 @@ export async function fabricMasterRecordById(fabricId: string) {
 
 export async function verifiedCutCostMinor(supplierId: string, supplierSku: string) {
   const database = createSupplierServiceClient();
-  const { data: snapshots, error: snapshotError } = await database
-    .from("supplier_snapshots")
-    .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(cut_trade_price,currency)")
-    .eq("supplier_id", supplierId)
-    .eq("supplier_sku", supplierSku)
-    .eq("validation_status", "VALIDATED")
-    .order("checked_at", { ascending: false })
-    .limit(100);
-  databaseError(snapshotError);
-  const candidates = (snapshots ?? []) as SupplierPriceSnapshotCandidate[];
-  if (!candidates.length) throw new Error("PRICE_REQUIRES_VERIFICATION");
-  const { data: promotionEvents, error: promotionError } = await database
-    .from("supplier_promotion_events")
-    .select("snapshot_id,promotion_state,created_at")
-    .in("snapshot_id", candidates.map((snapshot) => snapshot.snapshot_id))
-    .order("created_at", { ascending: false });
-  databaseError(promotionError);
-  const price = selectCurrentApprovedCutCostMinor({
-    snapshots: candidates,
-    promotionEvents: (promotionEvents ?? []) as SupplierPromotionObservation[],
-  });
-  if (price === null) throw new Error("PRICE_REQUIRES_VERIFICATION");
-  return price;
+  // Walk bounded pages so repeated stock-only observations never age a genuine price out of the lookup.
+  for (let from=0; ; from+=100) {
+    const {data:snapshots,error:snapshotError}=await database.from("supplier_snapshots")
+      .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(cut_trade_price,currency)")
+      .eq("supplier_id",supplierId).eq("supplier_sku",supplierSku).eq("validation_status","VALIDATED")
+      .order("checked_at",{ascending:false}).order("snapshot_id",{ascending:false}).range(from,from+99);
+    databaseError(snapshotError);
+    const candidates=(snapshots??[]) as SupplierPriceSnapshotCandidate[];
+    if(!candidates.length) break;
+    const {data:promotionEvents,error:promotionError}=await database.from("supplier_promotion_events")
+      .select("snapshot_id,promotion_state,created_at").in("snapshot_id",candidates.map(s=>s.snapshot_id)).order("created_at",{ascending:false});
+    databaseError(promotionError);
+    const price=selectCurrentApprovedCutCostMinor({snapshots:candidates,promotionEvents:(promotionEvents??[]) as SupplierPromotionObservation[]});
+    if(price!==null) return price;
+    if(candidates.length<100) break;
+  }
+  throw new Error("PRICE_REQUIRES_VERIFICATION");
 }
 
 /** Reuses the Phase 4E manual approval gate; this does not write to Shopify. */

@@ -1,6 +1,11 @@
 /** Private business policy. Never serialize inputs or effective metres publicly. */
-export const DAILY_STOCK_POLICY = "curtainsuk-daily-aggregate-30m-v1";
-/** Retain the last known position privately, but never sell from a stale morning check. */
+export const DAILY_STOCK_POLICY = "curtainsuk-stock-72h-at-least-30m-v2";
+export const STOCK_VALIDITY_MS = 3 * 24 * 60 * 60 * 1000;
+export function stockObservationCurrent(checkedAt: string | null | undefined, now = new Date()) {
+  const checked = Date.parse(checkedAt ?? '');
+  return Number.isFinite(checked) && checked <= now.getTime() && now.getTime() - checked <= STOCK_VALIDITY_MS;
+}
+/** A failed retrieval does not invalidate a genuine observation still within 72 hours. */
 export function currentDailyStockAvailability(decision: ReturnType<typeof dailyStockDecision>) {
   return decision.stale && decision.status !== 'DISCONTINUED'
     ? 'AVAILABILITY_TO_BE_CONFIRMED' as const
@@ -30,14 +35,13 @@ export function dailyStockDecision(
     aggregateMetres: number | null;
     confirmedUsageMetres: number;
     snapshotDate: string | null;
+    checkedAt?: string | null;
     discontinued: boolean;
     refreshFailed?: boolean;
   },
   now = new Date(),
 ) {
-  const stale =
-    input.refreshFailed === true ||
-    input.snapshotDate !== ukDate(now);
+  const stale = !stockObservationCurrent(input.checkedAt, now);
   if (input.discontinued)
     return {
       status: "DISCONTINUED" as const,
@@ -45,7 +49,7 @@ export function dailyStockDecision(
       label: "Currently unavailable",
       stale,
     };
-  if (
+  if (stale ||
     input.aggregateMetres === null ||
     !Number.isFinite(input.aggregateMetres) ||
     input.aggregateMetres < 0 ||
@@ -53,20 +57,20 @@ export function dailyStockDecision(
     input.confirmedUsageMetres < 0
   )
     return {
-      status: "UNKNOWN" as const,
+      status: "CHECK_AVAILABILITY" as const,
       availability: "AVAILABILITY_TO_BE_CONFIRMED" as const,
-      label: "Availability to be confirmed",
+      label: "Check availability",
       stale,
     };
-  const available = input.aggregateMetres - input.confirmedUsageMetres > 30;
+  const available = input.aggregateMetres - input.confirmedUsageMetres >= 30;
   return {
     status: available
       ? ("AVAILABLE" as const)
-      : ("OUT_OF_STOCK_FOR_CURTAINSUK" as const),
+      : ("OUT_OF_STOCK" as const),
     availability: available
       ? ("FABRIC_AVAILABLE" as const)
       : ("TEMPORARILY_UNAVAILABLE" as const),
-    label: available ? "Fabric available" : "Currently unavailable",
+    label: available ? "Fabric available" : "Out of stock — awaiting supplier stock",
     stale,
   };
 }

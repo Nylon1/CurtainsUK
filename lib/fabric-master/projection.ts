@@ -1,16 +1,16 @@
 import type { CustomerSafeFabricProjection, FabricMasterRecord } from "./types";
+import { calculationWidth, fabricReadiness } from './readiness';
 
 export function fabricIsConfigurationEligible(record: FabricMasterRecord) {
   return Boolean((record.staging_catalog_visible || record.storefront_selectable)
     && record.lifecycle_state !== "DISCONTINUED"
-    && record.usable_width_mm && Number.isFinite(record.usable_width_mm) && record.usable_width_mm > 0
+    && calculationWidth(record) !== null
     && record.pattern_match_type !== "HALF_DROP_MATCH");
 }
 
 /** Commercial approval is independent from manufacturing/configuration eligibility. */
 export function fabricIsPriceEligible(record: FabricMasterRecord) {
-  return record.storefront_selectable
-    && record.price_verification_status === "VERIFIED"
+  return Boolean(record.staging_catalog_visible || record.storefront_selectable)
     && record.lifecycle_state !== "DISCONTINUED";
 }
 
@@ -18,9 +18,7 @@ export function projectCustomerSafeFabric(record: FabricMasterRecord): CustomerS
   const configurable = fabricIsConfigurationEligible(record);
   const configurationMessage = record.lifecycle_state === "DISCONTINUED"
     ? "No longer available"
-    : configurable && fabricIsPriceEligible(record)
-      ? "Ready to configure"
-      : "Price and availability to be confirmed";
+    : "Price and availability to be confirmed";
   return {
     id: record.fabric_id,
     supplierSku: record.supplier_sku,
@@ -36,7 +34,7 @@ export function projectCustomerSafeFabric(record: FabricMasterRecord): CustomerS
     verticalRepeatMm: record.vertical_repeat_mm,
     horizontalRepeatMm: record.horizontal_repeat_mm,
     patternMatchType: record.pattern_match_type,
-    sampleAvailable: record.sample_available,
+    sampleAvailable: fabricReadiness(record).sampleReady,
     availability: record.lifecycle_state === "DISCONTINUED" ? "No longer available" : "Availability to be confirmed",
     configurable,
     configurationMessage,

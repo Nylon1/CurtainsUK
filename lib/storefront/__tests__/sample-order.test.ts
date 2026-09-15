@@ -18,8 +18,11 @@ test('generic payable sample preserves exact deterministic colourway identity, n
   assert.ok(!/cost|margin|metres|stock/i.test(JSON.stringify(properties)));
 });
 test('sample eligibility fails closed; signed consultation context must match the selected fabric',()=>{
-  for(const change of [{sample_available:null},{sample_available:false},{staging_catalog_visible:false},{lifecycle_state:'DISCONTINUED'}]) assert.throws(()=>sampleOrderProperties({...fabric,...change} as FabricMasterRecord,secret));
+  for(const change of [{staging_catalog_visible:false},{lifecycle_state:'DISCONTINUED'}]) assert.throws(()=>sampleOrderProperties({...fabric,...change} as FabricMasterRecord,secret));
+  assert.doesNotThrow(()=>sampleOrderProperties({...fabric,sample_available:null},secret));
   const context={sessionId:'d8052224-4554-428c-9873-c94fefc665d4',strategyId:'overall',fabricMasterId:fabric.fabric_id,policyVersion:'41a9f3f',recommendationVersion:'test'};
   assert.equal(sampleOrderProperties(fabric,secret,context)['Consultation ID'],context.sessionId);
   assert.throws(()=>sampleOrderProperties(fabric,secret,{...context,fabricMasterId:'wrong'}));
 });
+
+test('legacy sample flags cannot override confirmed supplier availability policy',()=>{ assert.doesNotThrow(()=>sampleOrderProperties({...fabric,sample_available:false},secret)); });

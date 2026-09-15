@@ -219,9 +219,18 @@ async function fabricMetadata(fabricIds: readonly string[]): Promise<Map<string,
   if (fabricIds.length === 0) return new Map();
   const { data, error } = await createSupplierServiceClient()
     .from("fabric_colourways")
-    .select("fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,price_verification_status,storefront_selectable,suppliers!inner(display_name),supplier_brands!inner(display_name),fabric_designs!inner(display_name,fabric_collections!inner(display_name))")
+    .select("fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,price_verification_status,storefront_selectable,staging_catalog_visible,suppliers!inner(display_name),supplier_brands!inner(display_name),fabric_designs!inner(display_name,fabric_collections!inner(display_name))")
     .in("fabric_id", [...new Set(fabricIds)]);
   if (error) throw new Error("REVIEW_FABRIC_LOOKUP_FAILED");
+  const eligible=new Set<string>();
+  const ids=[...new Set(fabricIds)];
+  for(let from=0;from<ids.length;from+=48){
+    const {data:evidence,error:evidenceError}=await createSupplierServiceClient().rpc('fabric_commercial_evidence',{p_ids:ids.slice(from,from+48)});
+    if(evidenceError)throw Error('REVIEW_FABRIC_LOOKUP_FAILED');
+    for(const row of (evidence??[]) as {fabric_id:string;price_confirmed:boolean;stock:string}[]){
+      if(row.price_confirmed && row.stock!=='NO_LONGER_AVAILABLE')eligible.add(row.fabric_id);
+    }
+  }
   return new Map(((data ?? []) as Row[]).map((row) => {
     const supplier = firstRelation(row.suppliers);
     const brand = firstRelation(row.supplier_brands);
@@ -237,9 +246,9 @@ async function fabricMetadata(fabricIds: readonly string[]): Promise<Map<string,
       collection: collection?.display_name == null ? null : String(collection.display_name),
       design: String(design?.display_name ?? "Unknown design"),
       colour: String(row.colour_name),
-      configurationEligible: row.lifecycle_state === "CURRENT"
-        && row.price_verification_status === "VERIFIED"
-        && row.storefront_selectable === true,
+      configurationEligible: row.lifecycle_state !== "DISCONTINUED"
+        && eligible.has(fabricId)
+        && (row.storefront_selectable === true || row.staging_catalog_visible === true),
     } satisfies StaffFabricMetadata];
   }));
 }
@@ -254,8 +263,8 @@ function publicAvailabilityLabel(value: string) {
     FABRIC_AVAILABLE: "Fabric available",
     LIMITED_AVAILABILITY: "Limited availability",
     AVAILABLE_SOON: "Available soon",
-    AVAILABILITY_TO_BE_CONFIRMED: "Availability to be confirmed",
-    TEMPORARILY_UNAVAILABLE: "Temporarily unavailable",
+    AVAILABILITY_TO_BE_CONFIRMED: "Check availability",
+    TEMPORARILY_UNAVAILABLE: "Out of stock \u2014 awaiting supplier stock",
     NO_LONGER_AVAILABLE: "No longer available",
   };
   return labels[value] ?? "Availability to be confirmed";

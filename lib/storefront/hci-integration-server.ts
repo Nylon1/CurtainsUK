@@ -4,6 +4,8 @@ import { assertNoRawReferenceMedia } from "./hci-image-privacy";
 import { signHciCommerceContext } from "./hci-commerce-context";
 import { acceptedHciFeedback } from "./hci-feedback";
 import { customerHciEnabled } from './customer-hci-session';
+import { fabricMasterRecordsByIds } from '../fabric-master/repository';
+import { fabricReadiness } from '../fabric-master/readiness';
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
 import {
   integrationCommand,
@@ -19,8 +21,13 @@ export function integrationEnabled(env = process.env) {
     env.CURTAINSUK_HCI_INTEGRATION_ENABLED === "true"
   );
 }
-function handoffView(view: ReturnType<typeof integrationView> & {windowSlug?:string | null;revision?:number}) {
-  return {...view, directions:view.directions.map(d => ({...d, cards:d.cards.map(c => ({...c, commerceToken:signHciCommerceContext({sessionId:view.sessionId,strategyId:d.id,fabricMasterId:c.fabricMasterId,policyVersion:HCI_INTEGRATION_BASELINE,recommendationVersion:view.refinementDigest ?? `initial:${view.sessionId}`},process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? "")}))}))};
+async function handoffView(view: ReturnType<typeof integrationView> & {windowSlug?:string | null;revision?:number}) {
+  const ids=[...new Set(view.directions.flatMap(d=>d.cards.map(c=>c.fabricMasterId)))];
+  const records=await fabricMasterRecordsByIds(ids);
+  const eligible=new Set(records.filter(r=>fabricReadiness(r).recommendationEligible).map(r=>r.fabric_id));
+  // Suppress retired/withdrawn identities at presentation time, including replay.
+  // No stock-based re-ranking, substitution or mutation of the stored recommendation.
+  return {...view, directions:view.directions.map(d => ({...d, cards:d.cards.filter(c=>eligible.has(c.fabricMasterId)).map(c => ({...c, commerceToken:signHciCommerceContext({sessionId:view.sessionId,strategyId:d.id,fabricMasterId:c.fabricMasterId,policyVersion:HCI_INTEGRATION_BASELINE,recommendationVersion:view.refinementDigest ?? `initial:${view.sessionId}`},process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? "")}))}))};
 }
 /** Called after staff authorization or signed customer-session and origin checks. */
 export async function stagingHciIntegration(staffId: string, value: unknown, audience: 'staff'|'customer' = 'staff') {

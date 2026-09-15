@@ -51,6 +51,17 @@ export function mediaJobAlreadyMapped(job: MediaJob, mappings: ImportedMedia[], 
   return !!knownHash && mappings.some(m => m.fabricId === job.candidate.fabricId && m.imageType === job.candidate.imageType && m.contentHash === knownHash && (m.mediaScope ?? "COLOURWAY") === job.candidate.mediaScope);
 }
 export function sharedMediaCanReuse(candidate: MediaCandidate, other: ImportedMedia) {
-  // Both mappings independently passed exact design/collection evidence. Never reuse as colourway media.
-  return candidate.supplier === other.supplier && candidate.mediaScope !== "COLOURWAY" && !!candidate.mediaScope && candidate.mediaScope === other.mediaScope && candidate.imageType === other.imageType && candidate.sourceReference.split(":").at(-1) === other.sourceReference.split(":").at(-1);
+  if (candidate.supplier !== other.supplier || candidate.imageType !== other.imageType) return false;
+  if (candidate.mediaScope === "COLOURWAY" || other.mediaScope === "COLOURWAY") {
+    // A shared hash is not an identity conflict when the supplier explicitly
+    // associates the image with each exact SKU. approvedMediaJob records this
+    // provenance only after checking the product, brand, design and colour.
+    // Unproven legacy/name-only mappings still require review.
+    const exactAssociation = (media: MediaCandidate) => media.mediaScope === "COLOURWAY"
+      && media.rightsState === "APPROVED" && media.mappingState === "VERIFIED"
+      && /^COLOURWAY:[A-Z_]+:[a-zA-Z0-9_.-]+:EXACT_SKU:[a-f0-9]{24}$/.test(media.sourceReference);
+    return exactAssociation(candidate) && exactAssociation(other);
+  }
+  // Design/collection media still requires the same established context.
+  return !!candidate.mediaScope && candidate.mediaScope === other.mediaScope && candidate.sourceReference.split(":").at(-1) === other.sourceReference.split(":").at(-1);
 }

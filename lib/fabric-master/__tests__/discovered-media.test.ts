@@ -52,3 +52,21 @@ test("both supplier maps cover ten ordered routes without confusing access with 
  assert.equal(portalDiscoveryPlan("prestigious-textiles",["SKU_SEARCH"])[0].status,"PARTIALLY_OBSERVED");
  assert.equal(portalDiscoveryPlan("sanderson-design-group",["RESOURCES"])[0].status,"PARTIALLY_OBSERVED");
 });
+
+test("exact supplier product associations permit shared Chiltern standard/wide imagery",()=>{
+ const standard:DiscoveryIdentity={supplier:"prestigious-textiles",fabricId:"pt-2009-007",sku:"2009/007",brand:"Prestigious Textiles",design:"Chiltern",colour:"Ivory",collection:"Chiltern"};
+ const wide={...standard,fabricId:"pt-2010-007",sku:"2010/007",design:"Chiltern Wide"};
+ const source=(identity:DiscoveryIdentity):DiscoveredImage=>({url:`https://www.prestigiousonline.co.uk/images/images/${identity.sku.replace("/","-")}.jpg`,route:"EXACT_PRODUCT",location:"pt.webtex.product",rightsState:"APPROVED",evidence:{sku:identity.sku,brand:identity.brand,design:identity.design,colour:identity.colour,productType:"FABRIC",scope:"COLOURWAY",imageType:"MAIN",relationshipEstablished:true}});
+ const first=imported(approvedMediaJob(standard,source(standard)));
+ const second=approvedMediaJob(wide,source(wide));
+ assert.equal(sharedMediaCanReuse(second.candidate,first),true);
+ assert.equal(sharedMediaCanReuse(second.candidate,{...first,rightsState:"PENDING"}),false);
+ assert.equal(sharedMediaCanReuse(second.candidate,{...first,mappingState:"UNRESOLVED"}),false);
+ assert.equal(sharedMediaCanReuse(second.candidate,{...first,supplier:"sanderson-design-group"}),false);
+ assert.equal(sharedMediaCanReuse(second.candidate,{...first,sourceReference:"legacy-image"}),false);
+ const namesOnly=approvedMediaJob(wide,{...source(wide),evidence:{...source(wide).evidence,sku:undefined}});
+ assert.equal(sharedMediaCanReuse(namesOnly.candidate,first),false);
+ assert.throws(()=>approvedMediaJob(wide,{...source(wide),evidence:{...source(wide).evidence,sku:standard.sku}}),/IDENTITY_MISMATCH/);
+ assert.throws(()=>approvedMediaJob(wide,{...source(wide),evidence:{...source(wide).evidence,colour:"Pearl"}}),/IDENTITY_MISMATCH/);
+ assert.throws(()=>approvedMediaJob(wide,{...source(wide),evidence:{...source(wide).evidence,relationshipEstablished:false}}),/IDENTITY_MISMATCH/);
+});

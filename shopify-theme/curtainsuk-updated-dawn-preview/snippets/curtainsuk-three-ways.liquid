@@ -1,0 +1,87 @@
+{% doc %}
+  The three fabric-discovery entry points within the Fabric Intelligence homepage.
+  @example
+  {% render 'curtainsuk-three-ways' %}
+{% enddoc %}
+<section class="cukways" id="three-ways-to-find-your-fabric" aria-labelledby="cukways-heading">
+  <div class="cukways__wrap">
+    <header class="cukways__header">
+      <p class="cukways__eyebrow">{{ 'curtainsuk_three_ways.eyebrow' | t }}</p>
+      <h2 id="cukways-heading">{{ 'curtainsuk_three_ways.heading' | t }}</h2>
+      <p class="cukways__intro">{{ 'curtainsuk_three_ways.intro' | t }}</p>
+    </header>
+    <div class="cukways__panels">
+      {% assign approaches = 'room,direction,collection' | split: ',' %}
+      {% for approach in approaches %}
+        {% liquid
+          case approach
+            when 'room'
+              assign photo = images['prestigious-room-watercolour-dining.webp']
+              assign destination = '/apps/curtainsuk-decision/consultation?entry=match'
+            when 'direction'
+              assign photo = images['prestigious-room-blue-coordinated.webp']
+              assign destination = '/apps/curtainsuk-decision/consultation?entry=guided'
+            when 'collection'
+              assign photo = images['cuk-fabric-d42971de12b2fd2ef8ba565e21329fbd6e2c6623336d76f2eed26e2f302e5ceb.jpg']
+              assign destination = '/pages/fabric-library'
+          endcase
+          assign key = 'curtainsuk_three_ways.' | append: approach | append: '.'
+          assign image_alt = photo.alt
+          if approach == 'collection'
+            assign image_alt = 'Close-up of sage green and cream patterned woven fabric from Prestigious Textiles'
+          endif
+        %}
+        <article class="cukways__panel cukways__panel--{{ approach }}">
+          <div class="cukways__image">
+            {{ photo | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 900, 1100', sizes: '(min-width: 1500px) 422px, (min-width: 1000px) 28vw, 90vw', loading: 'lazy', alt: image_alt }}
+          </div>
+          <span class="cukways__number" aria-hidden="true">0{{ forloop.index }}</span>
+            <h3>{{ key | append: 'title' | t }}</h3>
+            <p class="cukways__subtitle">{{ key | append: 'subtitle' | t }}</p>
+            <p class="cukways__description">{{ key | append: 'copy' | t }}</p>
+            <a class="cukways__link" href="{{ destination }}">{{ key | append: 'cta' | t }} <span aria-hidden="true">→</span></a>
+        </article>
+      {% endfor %}
+    </div>
+    <p class="cukways__convergence">
+      <span>{{ 'curtainsuk_three_ways.room_label' | t }}</span><span class="cukways__symbol">+</span>
+      <span>{{ 'curtainsuk_three_ways.taste_label' | t }}</span><span class="cukways__symbol">+</span>
+      <span>{{ 'curtainsuk_three_ways.knowledge_label' | t }}</span><span class="cukways__arrow">→</span>
+      <strong>{{ 'curtainsuk_three_ways.result_label' | t }}</strong>
+    </p>
+  </div>
+</section>
+{% stylesheet %}
+  .cukways { background: #f0ede4; color: #20332e; padding: clamp(80px, 8vw, 120px) 0; font-family: var(--font-body-family); }
+  .cukways .cukways__wrap { box-sizing: border-box; max-width: 1500px; margin-inline: auto; padding-inline: clamp(24px, 5vw, 74px); }
+  .cukways .cukways__header { max-width: 920px; margin: 0 auto clamp(56px, 5.5vw, 84px); text-align: center; }
+  .cukways .cukways__eyebrow { color: #52614b; font-size: 11px; line-height: 1.6; letter-spacing: .18em; font-weight: 700; margin: 0 0 24px; }
+  .cukways h2 { font-family: var(--font-heading-family); font-size: clamp(34px, 4.2vw, 62px); font-weight: 400; line-height: 1.1; letter-spacing: -.035em; color: #173d35; margin: 0; text-wrap: balance; }
+  .cukways .cukways__intro { font-size: 17px; line-height: 1.7; color: #40534d; max-width: 660px; margin: 28px auto 0; text-wrap: pretty; }
+  .cukways .cukways__panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(24px, 3vw, 44px); row-gap: 0; }
+  .cukways .cukways__panel { min-width: 0; display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; }
+  .cukways .cukways__image { aspect-ratio: 1; overflow: hidden; background: #e1dbcd; }
+  .cukways .cukways__image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+  .cukways .cukways__number { display: block; margin: 28px 0 16px; font-size: 12px; font-weight: 500; line-height: 1.5; letter-spacing: .14em; color: #626c56; font-variant-numeric: tabular-nums; }
+  .cukways .cukways__panel h3 { font-family: var(--font-heading-family); font-size: clamp(28px, 2.4vw, 36px); font-weight: 400; line-height: 1.15; letter-spacing: -.025em; color: #173d35; margin: 0 0 16px; max-width: 12em; text-wrap: balance; }
+  .cukways .cukways__subtitle { font-size: 13px; font-weight: 600; line-height: 1.6; color: #626c56; margin: 0 0 20px; max-width: 30em; }
+  .cukways .cukways__description { font-size: 15px; line-height: 1.8; color: #40534d; margin: 0 0 24px; max-width: 36em; text-wrap: pretty; }
+  .cukways a.cukways__link { justify-self: start; align-self: end; display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 48px; border-bottom: 1px solid #879083; font-size: 14px; font-weight: 600; line-height: 1.5; color: #173d35; text-decoration: none; }
+  .cukways a.cukways__link:hover { border-bottom-color: #173d35; }
+  .cukways a.cukways__link:focus-visible { outline: 2px solid #173d35; outline-offset: 6px; }
+  .cukways .cukways__convergence { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px; padding-top: 40px; border-top: 1px solid #cbd0c2; margin: clamp(56px, 6vw, 88px) 0 0; font-size: 11px; font-weight: 500; letter-spacing: .11em; line-height: 1.8; color: #40534d; }
+  .cukways .cukways__symbol, .cukways .cukways__arrow { font-size: 20px; letter-spacing: 0; }
+  .cukways .cukways__convergence strong { color: #173d35; font-weight: 700; }
+  @media (max-width: 999px) {
+    .cukways .cukways__panels { grid-template-columns: minmax(0, 1fr); row-gap: 64px; }
+    .cukways .cukways__panel { display: block; grid-row: auto; }
+    .cukways .cukways__image { aspect-ratio: 1; }
+    .cukways .cukways__number { margin-top: 26px; }
+    .cukways .cukways__panel h3 { font-size: 32px; max-width: 16em; }
+    .cukways .cukways__subtitle { font-size: 14px; }
+    .cukways .cukways__intro { font-size: 16px; }
+    .cukways .cukways__convergence { gap: 10px; font-size: 10px; letter-spacing: .08em; }
+    .cukways .cukways__arrow { flex-basis: 100%; text-align: center; transform: rotate(90deg); }
+    .cukways .cukways__convergence strong { flex-basis: 100%; text-align: center; font-size: 12px; }
+  }
+{% endstylesheet %}

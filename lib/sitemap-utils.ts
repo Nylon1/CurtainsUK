@@ -1,4 +1,4 @@
-export const baseUrl = "https://www.apexcurtains.com";
+export const baseUrl = "https://www.curtainsuk.com";
 
 export type XmlUrlItem = {
   loc: string;

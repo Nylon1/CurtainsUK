@@ -1,85 +1,79 @@
 # CurtainsUK
 
-CurtainsUK is a made-to-measure curtain commerce and fabric-intelligence platform. This repository is the authoritative application source for CurtainsUK.
+CurtainsUK is a made-to-measure curtain commerce and fabric-intelligence platform. This repository is the authoritative application source.
 
-> **Critical rule:** Shopify is not the canonical fabric catalogue. Supplier evidence is validated into Fabric Master before it becomes CurtainsUK commercial truth.
+> **Critical:** Shopify is not the canonical fabric catalogue. Supplier evidence must pass through Fabric Master and CurtainsUK commercial rules.
 
-## Sources of truth
+## Authority map
 
 | Domain | Authority |
 | --- | --- |
-| Application code | `Nylon1/CurtainsUK` |
-| Production branch | `main` |
-| Canonical fabric catalogue | Supabase Fabric Master |
-| Operational schema | `curtainsuk_private` |
-| Prestigious evidence | Authenticated Webtex |
-| Sanderson evidence | Approved SDG catalogue/stock/price sources |
-| Commercial stock state | CurtainsUK stock materialisation |
-| Recommendation intelligence | Hybrid Curtain Intelligence (HCI) |
-| Commerce, payment and orders | Shopify |
-| Runtime | Vercel/runtime infrastructure; exact project linkage must be verified before changes |
+| Code | `Nylon1/CurtainsUK` / `main` |
+| Fabric catalogue | Supabase Fabric Master |
+| Schema | `curtainsuk_private` |
+| PT evidence | Authenticated Webtex |
+| SDG evidence | Approved SDG sources |
+| Commercial stock | CurtainsUK stock materialisation |
+| Recommendations | Hybrid Curtain Intelligence (HCI) |
+| Checkout/payment/orders | Shopify |
+| Runtime | Vercel/runtime; verify exact project before changes |
 
-A Git checkout is not a complete production backup. Runtime state also exists in Supabase, Shopify, supplier systems, HCI, deployment configuration and secrets.
+Git is not a complete production backup. State also exists in Supabase, Shopify, supplier systems, HCI, runtime configuration and secrets.
 
 ## Architecture
 
 ```text
-SUPPLIERS: Prestigious Webtex / Sanderson Design Group
+SUPPLIERS (Webtex / SDG)
         |
         v
 SUPPLIER INTELLIGENCE
 provenance -> validation -> approval -> freshness
         |
         v
-SUPABASE FABRIC MASTER
+FABRIC MASTER
 supplier -> brand -> collection -> design -> colourway
-media / retail profiles / stock materialisation
+media / retail profiles / stock
         |
-        +--------------------+
-        |                    |
-        v                    v
-CURTAINSUK COMMERCE <----> HYBRID CURTAIN INTELLIGENCE
-catalogue facts             consultation
-stock / price               customer understanding
-samples                     recommendation
-configuration               preference refinement
-        |                    |
-        +---------+----------+
-                  v
-          FABRIC INTELLIGENCE
-          discovery / shortlist / explanation
-                  |
-                  v
-          CURTAIN CONFIGURATION
-                  |
-                  v
-          CONFIGURATION SNAPSHOT
-                  |
-                  v
-          CONTROLLED SHOPIFY HANDOFF
-                  |
-                  v
-               SHOPIFY
-          checkout / payment / order
+        +------------------+
+        |                  |
+        v                  v
+CURTAINSUK COMMERCE <--> HCI
+facts / price / stock     consultation / recommendation
+        |                  |
+        +--------+---------+
+                 v
+        FABRIC INTELLIGENCE
+                 |
+                 v
+        CURTAIN CONFIGURATION
+                 |
+                 v
+        CONFIGURATION SNAPSHOT
+                 |
+                 v
+        CONTROLLED SHOPIFY HANDOFF
+                 |
+                 v
+              SHOPIFY
 ```
 
-The governing principle is simple: suppliers provide evidence; Fabric Master establishes catalogue truth; CurtainsUK rules establish commercial truth; HCI/Fabric Intelligence helps the customer decide; the configuration engine establishes what will be manufactured; Shopify executes commerce; humans remain authoritative for business policy.
+Suppliers provide evidence. Fabric Master establishes catalogue truth. Business rules establish commercial truth. HCI/Fabric Intelligence helps the customer decide. The configuration engine establishes what will be manufactured. Shopify executes commerce. Humans remain authoritative for business policy.
 
-## Repository and stack
+## Repository
 
 Current source: `Nylon1/CurtainsUK`, branch `main`.
 
-CurtainsUK was migrated from the historical `feature/curtainsuk-phase-5a-prelaunch` branch in `Nylon1/Apexcurtains`. That branch is historical. Some legacy Apex naming remains in migrated metadata; do not perform broad renames without checking runtime impact.
+CurtainsUK was migrated from `Nylon1/Apexcurtains` / `feature/curtainsuk-phase-5a-prelaunch`. That branch is historical. Legacy Apex naming may remain in migrated metadata; do not broadly rename identifiers without checking runtime impact.
 
-Current stack includes Next.js 16, React 19, TypeScript, Supabase, Shopify integration, Resend, Sharp, SheetJS/XLSX, PDF tooling and Tailwind/UI libraries.
+Stack: Next.js 16, React 19, TypeScript, Supabase, Shopify integration, Resend, Sharp, SheetJS/XLSX, PDF tooling and Tailwind/UI libraries.
 
 ## Fabric Master
 
-Production Supabase project: `CurtainsUK`  
+Supabase project: `CurtainsUK`  
 Project ref: `hqysjumypgeapgmqkcrx`  
-Primary schema: `curtainsuk_private`
+Schema: `curtainsuk_private`
 
-The private-schema boundary is deliberate. Privileged Fabric Master access belongs server-side.
+The private-schema boundary is deliberate; privileged access belongs server-side.
 
 Canonical hierarchy:
 
@@ -87,194 +81,165 @@ Canonical hierarchy:
 Supplier -> Brand -> Collection -> Design -> Colourway
 ```
 
-Principal catalogue infrastructure includes `suppliers`, `supplier_brands`, `fabric_collections`, `fabric_designs`, `fabric_colourways`, `fabric_retail_profiles` and `fabric_supplier_links`.
+Core tables include `suppliers`, `supplier_brands`, `fabric_collections`, `fabric_designs`, `fabric_colourways`, `fabric_retail_profiles` and `fabric_supplier_links`.
 
-Supplier observations are deliberately separate through `fabric_catalogue_import_runs`, `fabric_catalogue_observations` and `fabric_catalogue_merge_conflicts`. An observation is evidence about a canonical fabric; it is not automatically canonical truth.
+Observations/provenance are separate through `fabric_catalogue_import_runs`, `fabric_catalogue_observations` and `fabric_catalogue_merge_conflicts`. An observation is evidence, not automatically canonical truth.
 
-At the September 2026 infrastructure review Fabric Master contained approximately 13,148 canonical colourways, 3,354 designs, 582 collections and 9,463 media assets, including 9,680 SDG and 3,468 PT colourways. These are operational snapshots, not constants. Persisted database state takes precedence over old handover counts.
+September 2026 operational snapshot: ~13,148 colourways, 3,354 designs, 582 collections and 9,463 media assets; 9,680 SDG and 3,468 PT colourways. These are snapshots only. Newer persisted state wins.
 
 ## Supplier intelligence
 
-Current active supplier authorities are Prestigious Textiles and Sanderson Design Group.
+Active authorities: Prestigious Textiles and Sanderson Design Group.
 
-Supplier infrastructure includes `supplier_sync_runs`, `supplier_snapshots`, `supplier_snapshot_batches`, `supplier_snapshot_prices`, `supplier_approval_policies`, `supplier_freshness_policies`, `supplier_validation_policies` and `supplier_promotion_events`.
-
-The intended flow is:
+Infrastructure includes `supplier_sync_runs`, `supplier_snapshots`, `supplier_snapshot_batches`, `supplier_snapshot_prices`, `supplier_approval_policies`, `supplier_freshness_policies`, `supplier_validation_policies` and `supplier_promotion_events`.
 
 ```text
 supplier evidence -> validation/policy -> Fabric Master -> commercial interpretation -> storefront
 ```
 
-Never replace this with a direct uncontrolled `supplier -> Shopify` path.
+Never replace this with uncontrolled direct supplier-to-Shopify writes.
 
 ## Definitive business rules
 
-These rules come from the business owner. Do not invent additional restrictive rules without approval.
+These are owner-approved. Do not invent additional restrictions.
 
 ### Width
-
-Use supplier **Full Width** for curtain calculations. `Full Width 140cm` means calculator width `140cm`. Do not require `usable_width`.
+Use supplier **Full Width**. `140cm Full Width -> 140cm calculator width`. Do not require `usable_width`.
 
 ### Stock
-
-Genuine supplier stock evidence is current for **72 hours / 3 days**:
+Supplier stock evidence is current for **72 hours / 3 days**:
 
 - Free Stock >=30m -> `AVAILABLE`
 - Free Stock <30m -> `OUT OF STOCK — AWAITING SUPPLIER STOCK`
-- evidence older than 72 hours -> `CHECK AVAILABILITY`
-- absence from supplier evidence -> unknown, **not zero**
-- discontinued -> hidden from normal browsing/recommendations and not orderable
+- evidence >72h -> `CHECK AVAILABILITY`
+- absent supplier evidence -> unknown, **not zero**
+- discontinued -> hidden/not orderable
 
 Stock infrastructure includes `daily_stock_runs`, `daily_stock_snapshots`, `daily_stock_snapshot_history`, `daily_stock_usage`, `daily_stock_refresh_events` and `daily_stock_materialization_events`.
 
-### Samples and made-to-measure
-
-Any `AVAILABLE` fabric automatically has a sample available and is eligible for made-to-measure curtains, subject only to genuine configuration/manufacturing constraints. Do not invent independent fabric-level gates.
+### Samples / curtains
+Any `AVAILABLE` fabric automatically has a sample available and is eligible for made-to-measure curtains, subject only to genuine configuration/manufacturing constraints.
 
 ### Prices
+Approved supplier prices remain valid until superseded. They do not expire with stock freshness. Never invent a price.
 
-An approved supplier price remains valid until replaced by newer approved pricing. Price does not expire merely because time passed. Never invent a price.
-
-Prestigious Textiles uses **STANDARD PRICE EX VAT**, not Cut Price.
+PT uses **STANDARD PRICE EX VAT**, not Cut Price.
 
 ## Intelligence layer
 
-CurtainsUK separates factual commercial intelligence from customer recommendation intelligence.
+CurtainsUK separates factual commercial intelligence from recommendation intelligence.
 
-### Commercial intelligence
+**CurtainsUK/Fabric Master** determines supplier/SKU identity, discontinued state, stock/freshness, approved price, Full Width, retail/sample/curtain eligibility and the configuration being purchased. These are evidence/rule-driven facts, not generative guesses.
 
-CurtainsUK/Fabric Master determines factual questions: exact supplier/SKU identity, discontinued state, stock freshness and availability, approved price, Full Width, sample eligibility, made-to-measure eligibility and the actual configuration being purchased. These answers come from validated evidence and deterministic rules, not generative inference.
+**HCI** (`Nylon1/Hybrid-Curtain-Intelligence`) owns consultation: customer/room understanding, aesthetic and colour reasoning, practical requirements, shortlist generation and preference refinement. CurtainsUK has explicit HCI contract/context/session boundaries. HCI may recommend and explain; it must not override commercial truth.
 
-### Hybrid Curtain Intelligence
+**Fabric Intelligence™** is the customer-facing combination of catalogue intelligence and guided discovery: Three Ways to Find Your Fabric, Colour Intelligence, Tonal/Complement/Contrast, 60–30–10, inspiration-led discovery and conventional browsing.
 
-HCI is a separate system in `Nylon1/Hybrid-Curtain-Intelligence`. It owns consultation and recommendation reasoning: customer needs, room context, aesthetic direction, colour reasoning, practical requirements, shortlist generation and preference refinement.
-
-CurtainsUK contains an explicit integration boundary through HCI contracts, commerce context, customer HCI sessions and consultation entry. HCI may recommend and explain; it must not override catalogue, stock, pricing or checkout truth.
-
-### Fabric Intelligence™
-
-Fabric Intelligence is the customer-facing combination of validated catalogue intelligence and guided discovery. Current concepts include Three Ways to Find Your Fabric, Colour Intelligence, Tonal/Complement/Contrast, 60–30–10 colour principles, mood/inspiration-led discovery and conventional catalogue browsing.
-
-The objective is to turn thousands of fabrics into a manageable, explainable decision journey.
-
-## Intelligence learning loop
+## Learning loop
 
 ```text
 discover -> recommend -> react -> refine -> choose -> sample/configure -> purchase -> learn
 ```
 
-Learning may improve preference, relevance and decision-making. Explicit likes/dislikes and reasons are strong signals. Browsing, shortlisting, sampling, configuration and purchase are useful but weaker/contextual signals and must be interpreted conservatively.
+Explicit likes/dislikes and reasons are strong signals. Views, shortlists, samples, configurations and purchases are useful but contextual signals. Learn reusable characteristics—colour family/temperature, contrast direction, pattern character/scale, texture, sheen, formality, softness, luxury character, performance and budget sensitivity—not just SKUs.
 
-Preference learning should work on reusable characteristics such as colour family/temperature, tonal-vs-contrast direction, pattern character/scale, visual complexity, texture, sheen, formality, softness, luxury character, practical performance and budget sensitivity rather than merely memorising SKUs.
+Learning may change ranking, shortlist composition, alternatives, discovery order, explanations and follow-up questions.
 
-Learning may influence ranking, shortlist composition, alternatives, discovery order, explanations and follow-up questions.
+Learning must never independently change SKU/supplier/collection/design identity, Full Width, supplier stock/time, stock rules, approved price, tax logic, discontinued state, image identity, manufacturing formula, shipping, checkout totals or historical evidence.
 
-Learning must never independently change supplier/SKU/collection/design identity, Full Width, supplier stock or observation time, stock rules, approved price, tax logic, discontinued state, image-to-SKU identity, manufacturing formula, shipping rules, checkout totals or historical transaction evidence.
-
-Where practical distinguish evidence classes: `SUPPLIER VERIFIED`, `CURTAINSUK DERIVED`, `AI INTERPRETED`, `CUSTOMER STATED`, `BEHAVIOUR INFERRED`.
+Evidence classes should remain distinct where practical: `SUPPLIER VERIFIED`, `CURTAINSUK DERIVED`, `AI INTERPRETED`, `CUSTOMER STATED`, `BEHAVIOUR INFERRED`.
 
 **Learning may change what we recommend. Learning must not change what is true.**
 
-## Retail and media intelligence
+## Retail and media
 
-Canonical existence does not automatically mean storefront eligibility. `fabric_retail_profiles` separates known, browsable and commercially orderable fabrics.
+Canonical existence does not equal storefront eligibility. `fabric_retail_profiles` separates known, browsable and orderable fabrics.
 
-Media infrastructure includes `fabric_media_assets`, `fabric_media_mappings` and `fabric_media_checkpoints`.
+Media uses `fabric_media_assets`, `fabric_media_mappings` and `fabric_media_checkpoints`:
 
 ```text
-supplier source -> exact SKU validation -> permanent asset -> Fabric Master mapping -> customer experience
+supplier source -> exact SKU validation -> permanent asset -> Fabric Master mapping -> storefront
 ```
 
-Do not use temporary/session-dependent authenticated supplier URLs as permanent storefront imagery. Preserve verified existing images. Shared imagery across multiple SKUs is valid when the supplier explicitly makes that association; image uniqueness is not an SKU identity rule.
+Never hotlink temporary authenticated supplier URLs. Preserve verified images. One supplier image may legitimately map to multiple SKUs when the supplier explicitly associates it; image uniqueness is not an identity rule.
 
-## Prestigious Textiles / Webtex runbook
+## PT / Webtex runbook
 
 Authenticated Webtex is the authorised PT commercial source.
 
 ```text
-Webtex collection -> products/colourways -> exact SKU -> direct DOM fields -> validation -> checkpoint -> Fabric Master
+collection -> products/colourways -> exact SKU -> direct DOM fields -> validation -> checkpoint -> Fabric Master
 ```
 
-Required commercial evidence includes exact identity and, where supplied, collection/design/colourway, Full Width, Standard Price ex VAT, Free Stock, image and product/discontinued state.
+Capture exact identity and, where supplied, collection/design/colourway, Full Width, Standard Price ex VAT, Free Stock, image and discontinued/product state.
 
-Operational rules:
+Rules:
 
-- direct DOM reads of visible text/image attributes are the established extraction method;
-- use bounded readiness/retry logic for slow commercial fields;
-- established maximum concurrency is **3 workers**;
-- five workers previously caused browser-control timeouts and should not be retried casually;
+- direct DOM reads are the established method;
+- use bounded readiness/retry for slow fields;
+- maximum established concurrency: **3 workers**;
+- five workers previously caused browser-control timeouts;
 - checkpoint frequently;
-- resume from the newest persisted checkpoint, not an old chat/handover count;
-- never unnecessarily reprocess completed collections.
+- resume from newest persisted state, not old chat counts;
+- do not unnecessarily reprocess completed collections.
 
-Routine exceptions such as missing fields after bounded retry, missing/placeholder imagery, wallpaper/non-fabric products, discontinued products and isolated malformed records should be queued/skipped and processing should continue.
+Routine isolated failures, missing/placeholder images, wallpaper/non-fabric and discontinued products -> queue/skip and continue.
 
-Stop the whole PT run only for: (1) Webtex authentication/access failure; (2) systemic extraction failure across multiple records/collections; or (3) evidence of incorrect SKU-to-data association.
+Global stop only for: Webtex authentication/access failure; systemic extraction failure across multiple records/collections; or evidence of wrong SKU-to-data association.
 
-PT imagery rules: verified exact-SKU image -> KEEP; missing + exact image -> ADD; broken/unverified + exact image -> REPLACE; identity conflict/placeholder -> exception queue. Never hotlink temporary Webtex URLs.
+Image rules: verified exact-SKU -> KEEP; missing + exact source -> ADD; broken/unverified + exact source -> REPLACE; identity conflict/placeholder -> exception.
 
-Known regression controls:
+Regression controls:
 
-- **Heidi Graphite `3526/912`** — Annika, Full Width 140cm, Standard Price ex VAT £24.40/m, historical verified stock observation 101m.
-- **Demi Canvas `8838/142`** — Pippin, Full Width 144cm, Standard Price ex VAT £10.40/m, historical verified stock observation 260m.
+- Heidi Graphite `3526/912`: Annika, width 140cm, Standard Price ex VAT £24.40/m; historical verified stock observation 101m.
+- Demi Canvas `8838/142`: Pippin, width 144cm, Standard Price ex VAT £10.40/m; historical verified stock observation 260m.
 
-Historical stock values are regression examples, not permanently current stock claims.
+Historical stock is test evidence, not a current-stock claim.
 
-Recent authorised Webtex catalogue imports were persisted on 16 September 2026 with `shopify_writes = 0`, confirming the separation between supplier ingestion and Shopify commerce.
+Authorised Webtex catalogue imports were persisted on 16 Sep 2026 with `shopify_writes = 0`, confirming supplier ingestion is separated from Shopify commerce.
 
-## Sanderson Design Group
+## SDG
 
-SDG has already undergone substantial catalogue, stock and price ingestion. Do not redo completed bulk imports without new supplier evidence or a specifically identified data defect.
+SDG already has substantial catalogue/price/stock ingestion. Do not redo completed bulk work without new evidence or a defined defect. Historical stock ingestion included 7,071 exact records. Absence from a later file is not automatically zero. Approved prices remain valid until superseded.
 
-Historical SDG stock work included 7,071 exact stock records. Absence from a later supplier file must not automatically become zero unless the source format explicitly establishes that meaning. Approved SDG prices remain valid until superseded.
+## Catalogue protection
 
-## Catalogue protection and provenance
-
-Imports should retain enough provenance to establish supplier, source, observation time, import, SKU and what changed. Do not create duplicate canonical colourways merely because formatting, whitespace, ordering, collection spelling or imagery changed.
-
-Where supplier evidence genuinely conflicts with canonical identity, use conflict/merge handling rather than silently selecting the newest observation.
+Preserve provenance: supplier, source, observation time, import and SKU. Do not duplicate canonical colourways because formatting, whitespace, ordering, collection spelling or imagery changed. Genuine identity conflicts belong in merge/conflict handling, not silent newest-value-wins updates.
 
 ## Configuration and checkout
 
-CurtainsUK does not send arbitrary recommendation output directly to Shopify.
-
 ```text
-Fabric Master
--> validated commercial state
--> curtain configuration
--> configuration snapshot
--> checkout handoff
--> checkout execution
--> draft creation
--> Shopify
+Fabric Master -> validated commercial state -> configuration
+-> configuration snapshot -> checkout handoff -> execution
+-> draft creation -> Shopify
 ```
 
-Relevant persistence includes `staging_configuration_snapshots`, `staging_checkout_handoffs`, `staging_checkout_executions`, `staging_draft_creation_claims` and `staging_shopify_proxy_replay_receipts`.
+Persistence includes `staging_configuration_snapshots`, `staging_checkout_handoffs`, `staging_checkout_executions`, `staging_draft_creation_claims` and `staging_shopify_proxy_replay_receipts`.
 
-A configuration snapshot can retain canonical fabric identity and the supplier price snapshot used for the transaction. Checkout gates, server-side handoff and idempotency protections must not be bypassed.
+Snapshots can retain canonical fabric and supplier-price evidence. Never bypass checkout gates, server-side handoff or idempotency.
 
 ## Shopify themes
 
-Known theme state from the latest business handover:
+Latest handover state:
 
-- **CurtainsUK New Design – Live Base** — theme `182310502779`, UNPUBLISHED at handover; production-candidate development base created from the genuine live theme.
-- **Updated copy of Dawn** — theme `182264136059`; historical design donor/reference only. Do not continue development here.
+- **CurtainsUK New Design – Live Base** `182310502779`: UNPUBLISHED at handover; production-candidate base copied from genuine live theme.
+- **Updated copy of Dawn** `182264136059`: design donor/reference only; do not develop further.
 
-The currently published theme must not be replaced/published over without explicit approval. Reverify live Shopify theme state immediately before publication because Shopify changes independently of Git.
+Never replace/publish over the current live theme without explicit approval. Reverify Shopify state immediately before publication.
 
 ## Runtime, secrets and security
 
-Vercel/runtime infrastructure forms part of production, but the exact CurtainsUK Vercel project was not visible through the account connection used during the September 2026 review. Do not invent a project ID; verify the actual linkage before changing production settings.
+The exact CurtainsUK Vercel project was not visible through the account connection used during the Sep 2026 review. Do not invent a project ID; verify linkage before production changes.
 
-Never commit secret values. This includes Supabase privileged credentials, Shopify credentials, HCI secrets, supplier authentication and email/runtime credentials. Webtex credentials are operational secrets.
+Never commit Supabase privileged credentials, Shopify credentials, HCI secrets, supplier authentication, Webtex credentials or email/runtime secrets.
 
-Schema changes must be deliberate and migration-backed. Inspect existing schema/relationships before creating anything new; the primary application schema is `curtainsuk_private`, not `public`. Do not weaken access controls to solve development permission problems.
+Schema changes must be deliberate and migration-backed. Inspect `curtainsuk_private` before creating anything. Do not weaken access controls to fix development permission problems.
 
-One unusually heavy aggregate query during the September 2026 review returned a PostgreSQL `No space left on device` temporary-workspace error while smaller operations continued successfully. Treat recurrence as an operational warning: avoid unnecessary cross-products/retries and inspect resource health.
+One heavy aggregate query during the Sep 2026 review produced a PostgreSQL temporary-workspace `No space left on device` error while smaller queries continued. If it recurs, inspect resource health and query cost rather than repeatedly retrying expensive cross-products.
 
 ## Testing and release
 
-Automated suites cover decision engine, supplier sync, supplier intelligence, supplier import, Fabric Master, Prestigious, storefront and Shopify theme integration.
+Automated suites cover decision engine, supplier sync/intelligence/import, Fabric Master, Prestigious, storefront and Shopify theme integration.
 
 ```bash
 npm test
@@ -282,36 +247,34 @@ npm run build
 npm run lint
 ```
 
-Inspect current `package.json` before running supplier/catalogue scripts rather than relying on remembered command names.
-
-A passing build alone is not a complete release. Consider database compatibility, environment variables, Shopify/HCI integration, relevant tests, customer journey and rollback. Shopify theme publication is a separate production action.
+Inspect current `package.json` for supplier/catalogue scripts. A passing build alone is not a release: consider database compatibility, environment variables, Shopify/HCI integration, relevant tests, customer journey and rollback. Shopify theme publication is a separate production action.
 
 ## Recovery
 
-### Interrupted supplier import
+For an interrupted supplier import: inspect the newest persisted checkpoint and import runs; establish the last committed batch; resume after the confirmed point; rely on duplicate protection for unavoidable overlap; do not replay completed collections unnecessarily.
 
-1. Do not restart from the beginning automatically.
-2. Inspect the newest persisted checkpoint.
-3. Inspect recent import-run records.
-4. Establish the last successfully persisted batch and whether a partial batch committed.
-5. Resume after the last confirmed point.
-6. Use existing duplicate protection for unavoidable overlap.
-7. Do not replay completed collections unnecessarily.
+If authentication expires, stop, restore authorised access and resume. Do not substitute an unapproved source for commercial fields.
 
-If supplier authentication expires, stop authenticated extraction, restore authorised access and resume from checkpoint. Do not substitute an unapproved public source for commercial fields simply to keep processing.
+If price/stock/image data may be attached to the wrong SKU, **stop the run**, preserve checkpoint/log/import identifiers and investigate. Isolated bad records should instead be quarantined while healthy processing continues.
 
-If there is evidence that price, stock or imagery may be associated with the wrong SKU, **stop the run**, preserve checkpoint/log/import identifiers and investigate before resuming. This is different from an isolated missing record, which should be quarantined while healthy processing continues.
+Git restores code, not Fabric Master data, Shopify orders/state, supplier sessions, runtime secrets or all deployment configuration. Fabric Master recovery must preserve identity, observations, provenance, prices, stock history, media mappings, configuration snapshots and operational history—not merely re-scrape current supplier websites.
 
-### Production recovery boundaries
+For Shopify theme work, always preserve a rollback path to the known working theme.
 
-GitHub restores application source; it does not restore current Fabric Master data, Shopify runtime state/orders, supplier sessions, runtime secrets or all deployment configuration.
+## AI/Codex guardrails
 
-Fabric Master recovery should preserve canonical identity, observations, provenance, pricing evidence, stock history, media mappings, configuration snapshots and operational history. Recovery is not simply re-scraping supplier websites.
+Before changing anything, determine which system is authoritative and inspect persisted state.
 
-For Shopify theme work, preserve the ability to return to the known working theme. Do not destroy the functioning production theme while testing a replacement.
+Do not repeatedly re-audit settled rules without evidence they changed. Do not invent technical complexity such as mandatory `usable_width`, separate sample-stock gates, automatic price expiry or zero stock from missing evidence.
 
-## AI/Codex engineering guardrails
+Do not destructively “clean up” unknown tables, historical records, verified images, catalogue identities, migration history or operational identifiers before understanding why they exist.
 
-Future engineering sessions should first determine which system is authoritative for the thing being changed and inspect persisted state before broad rewrites.
+For individual bad supplier records: **quarantine and continue**. For systemic identity risk: **stop**.
 
-Do not repeatedly re-audit settled rules without evidence they changed. In particular: PT uses Standard Price ex VAT; Full Width is calculator width; samples and made-to-measure follow AVAILABLE; Shopify is not Fabric Master; three PT workers are the established safe maximum.
+Chat/handover counts may be historical. Newer persisted state wins.
+
+If an engineering choice changes business policy—stock threshold/freshness, price source, sample eligibility, exclusions, manufacturing calculations or live theme publication—ask the business owner rather than silently turning an assumption into company policy.
+
+## Operating principle
+
+**AI recommends. Fabric Master establishes facts. CurtainsUK rules establish what can be sold. The configuration engine establishes what will be manufactured. Shopify executes the transaction. Humans set business policy.**

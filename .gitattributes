@@ -1,0 +1,4 @@
+# Preserve the exact downloaded/captured bytes for these theme source snapshots.
+# Other repository paths retain their existing Git text handling.
+/shopify-theme/curtainsuk-new-design-live-base/** -text
+/shopify-theme/curtainsuk-updated-dawn-preview/** -text

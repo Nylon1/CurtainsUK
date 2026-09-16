@@ -1,0 +1,83 @@
+{{ 'curtainsuk-guides.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-guides.js' | asset_url }}" defer></script>
+{% liquid
+  assign mode = 'measure'
+  if guide_handle contains 'how-to-fit'
+    assign mode = 'fit'
+  endif
+  assign guide = ''
+  assign window = 'standard-window'
+  assign label = 'Standard Window'
+  if guide_handle contains '-standard'
+    assign guide = 'standard'
+  elsif guide_handle contains '-doors'
+    assign guide = 'doors'
+    assign window = 'patio-sliding-doors'
+    assign label = 'Patio / French Doors'
+  elsif guide_handle contains '-bay'
+    assign guide = 'bay'
+    assign window = 'bay-window'
+    assign label = 'Bay Window'
+  elsif guide_handle contains '-apex'
+    assign guide = 'apex'
+    assign window = 'apex-window'
+    assign label = 'Apex / Gable'
+  endif
+%}
+<section class="cuk-guides" data-cuk-guide data-window="{{ window }}" data-guide="{{ guide }}">
+  <div class="cuk-guide-wrap">
+    <p class="cuk-guide-eyebrow">CurtainsUK · Made for your home</p>
+    {% if guide == '' %}
+      <h1>How to {{ mode }}</h1>
+      <p class="cuk-guide-intro">{% if mode == 'measure' %}A beautiful fit starts with a few careful measurements. Choose your window and we’ll show you what to record.{% else %}The finishing touch, thoughtfully planned. Choose your window for practical fitting guidance.{% endif %}</p>
+      <div class="cuk-guide-grid">
+        {% assign types = 'standard|doors|bay|apex' | split: '|' %}
+        {% assign labels = 'Standard Window|Patio / French Doors|Bay Window|Apex / Gable' | split: '|' %}
+        {% assign descriptions = 'Straight tracks and poles.|Coverage, stacking and everyday access.|Numbered sections, one finished drop.|Specialist geometry and fitting support.' | split: '|' %}
+        {% for type in types %}
+          <a class="cuk-guide-tile" href="/pages/how-to-{{ mode }}-{{ type }}">
+            {% render 'curtainsuk-guide-diagram', kind: type, compact: true %}
+            <h2>{{ labels[forloop.index0] }}</h2><p>{{ descriptions[forloop.index0] }}</p><span>Open guide →</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <a class="cuk-guide-back" href="/pages/how-to-{{ mode }}">← All {{ mode }} guides</a>
+      <h1>{{ label }}<br><span>How to {{ mode }}</span></h1>
+      {% if mode == 'measure' %}
+        <p class="cuk-guide-intro">Record your measurements in centimetres. Measure the intended curtain coverage, then the finished drop. We calculate the fabric fullness for you.</p>
+        <figure class="cuk-guide-figure">{% render 'curtainsuk-guide-diagram', kind: guide %}<figcaption>Illustration only — use your own measurements, never scale from this drawing.</figcaption></figure>
+        {% case guide %}
+          {% when 'standard' %}
+            <ol class="cuk-guide-steps"><li><h2>1. Full coverage width</h2><p>Measure the full usable track length, or the usable pole span between the finials. Enter that width once, even when ordering a pair. Choose track width or pole usable width in the configurator.</p></li><li><h2>2. Finished drop</h2><p>Measure from the intended top of the finished curtain to the level where you want its bottom edge. The top position depends on your heading and track or pole. Confirm that position before measuring; do not use the ceiling as the start unless the curtain top will be there.</p><p>For floor length, check the floor at several points and allow your chosen clearance. For sill length, decide whether the curtain finishes above or below the sill. Keep radiators and handles clear.</p></li><li><h2>Check the fixing position</h2><p>Wall and ceiling brackets put the curtain in different positions. If your track or pole is not fitted, agree its intended location and usable coverage before entering your measurements.</p></li></ol>
+            <aside class="cuk-guide-note"><h2>A measurement example</h2><p>A usable track width of 180 cm and a desired finished drop of 210 cm are entered as 180 and 210. Do not double the width for fullness or halve it for a pair.</p></aside>
+          {% when 'doors' %}
+            <ol class="cuk-guide-steps"><li><h2>1. Total coverage width</h2><p>Measure the whole usable track or pole, including the planned space beside the doors for the curtain stack. Do not measure only the glass.</p></li><li><h2>2. Finished drop</h2><p>Measure from the intended curtain top to the chosen finished level. Check the floor along the full opening and keep the curtain clear of moving doors.</p></li><li><h2>Plan everyday access</h2><p>Check handles, inward-opening leaves and the sliding or folding route. A pair stacks at both sides; a single curtain needs enough space on its chosen stacking side. Do not add a guessed stacking allowance to an already measured track.</p></li></ol>
+            <label class="cuk-guide-choice">Your door type<select data-cuk-guide-window><option value="patio-sliding-doors">Patio / Sliding Doors</option><option value="french-doors">French Doors</option></select></label>
+          {% when 'bay' %}
+            <ol class="cuk-guide-steps"><li><h2>1–3. Number each section</h2><p>Start at the left and work around the bay. Enter the number of sections and the width of each section along the intended track route. The example shows three sections; use the actual number in your bay.</p></li><li><h2>4. Finished drop</h2><p>Measure from the intended curtain top to the chosen bottom edge. Check several positions around the bay. If different drops are needed, ask us to confirm the arrangement.</p></li><li><h2>Check the complete coverage</h2><p>We add your section widths to calculate total coverage. Do not add the same corner twice or enter the total again as another section. No Bay angles are needed for curtain pricing. Track manufacture and fitting may need their own survey.</p></li></ol>
+            <aside class="cuk-guide-note"><h2>A three-section example</h2><p>80 cm + 140 cm + 80 cm gives 300 cm total coverage. Enter three sections with those individual widths and your finished drop. Ordinary Bay curtains follow the instant-price route when price, availability and delivery can be confirmed.</p></aside>
+          {% when 'apex' %}
+            <ol class="cuk-guide-steps"><li><h2>1. Base width · 2. Overall peak height</h2><p>Measure the complete base and the vertical height from that baseline to the peak. Peak height is not the length of a slope.</p></li><li><h2>3–4. Left and right verticals</h2><p>From the same baseline, measure each vertical side to where its slope starts. Record both sides separately; do not assume they are equal.</p></li><li><h2>5–6. Left and right slopes</h2><p>Measure the actual lengths of both sloping sides. Describe the intended fixing position in the configurator.</p></li></ol>
+            <aside class="cuk-guide-note"><h2>Specialist support</h2><p>Do not climb or guess inaccessible measurements. Apex, triangular and gable projects require specialist review. If your shape has no vertical side, or the form does not describe it, contact us rather than enter an invented value.</p><p>After submission, email photos or drawings to <a href="mailto:enquiries@curtainsuk.com">enquiries@curtainsuk.com</a> quoting your project reference. Final geometry and fitting arrangements must be agreed before manufacture.</p></aside>
+            <label class="cuk-guide-choice">Your window type<select data-cuk-guide-window><option value="apex-window">Apex Window</option><option value="gable-end-window">Gable End Window</option><option value="triangular-window">Triangular Window</option></select></label>
+        {% endcase %}
+        <details class="cuk-guide-note"><summary>Common measuring mistakes</summary><p>Mixing millimetres and centimetres; measuring the glass instead of curtain coverage; adding fullness yourself; assuming the floor or two sides are level; measuring before deciding where the curtain top will sit.</p></details>
+      {% else %}
+        <p class="cuk-guide-intro">Fit to the instructions supplied with your chosen track, pole and brackets. These steps help you plan; fixing spacing and load limits come from the hardware manufacturer.</p>
+        <figure class="cuk-guide-figure">{% render 'curtainsuk-guide-diagram', kind: 'fitting' %}<figcaption>Wall or ceiling fixing: check the surface, alignment and clearance before drilling.</figcaption></figure>
+        <ol class="cuk-guide-steps"><li><h2>1. Check the surface and hardware</h2><p>Identify the fixing surface and use suitable fixings for it and the combined load. Check for concealed cables and pipes. Have the correct brackets, fixings, tape measure, pencil, level, suitable drill and safe access equipment ready. If the surface or load is uncertain, use a qualified installer.</p></li><li><h2>2. Mark and align</h2><p>Mark the intended curtain top and bracket positions. Check wall projection or ceiling clearance against handles, sills and radiators. Follow the track or pole instructions for support spacing; do not invent unsupported spans.</p></li><li><h2>3. Fit and check movement</h2><p>Secure the hardware, check alignment and test the running parts before hanging curtains. Use assistance for large or heavy curtains. Stop if fixings move or the track binds.</p></li><li><h2>4. Hang and dress</h2><p>Distribute hooks and heading folds evenly. Check the hem clearance and open and close the curtains gently. Let folds settle naturally; follow the fabric care instructions before steaming or ironing.</p></li></ol>
+        <aside class="cuk-guide-note"><h2>{{ label }} considerations</h2>
+          {% case guide %}
+            {% when 'standard' %}<p>Keep a straight track or pole level and allow the curtain to clear the window furniture. Wall and ceiling brackets are not interchangeable unless the manufacturer says so.</p>
+            {% when 'doors' %}<p>Check the complete door swing or sliding route with curtains open and closed. Place the stack where it will not obstruct access. Keep the hem clear of the floor and thresholds.</p>
+            {% when 'bay' %}<p>Follow the agreed track route around each numbered section. Joins and bends must allow runners to pass smoothly. Curtain section measurements are not a manufacturing template for a new Bay track; use the track supplier’s survey and fitting requirements.</p>
+            {% when 'apex' %}<p>This is a specialist installation, not routine DIY. Sloping tracks, curtain retention, opening direction, fixing loads and safe access need an agreed installation plan. Do not proceed until the specialist track and workroom specification are confirmed. Contact <a href="mailto:enquiries@curtainsuk.com">enquiries@curtainsuk.com</a> with your project reference.</p>
+          {% endcase %}
+        </aside>
+        <details class="cuk-guide-note"><summary>Common fitting mistakes</summary><p>Using unsuitable fixings; missing required supports; checking the level only at one point; ignoring door or handle clearance; hanging heavy curtains without help; treating a specialist sloping track like a straight track.</p></details>
+      {% endif %}
+      <div class="cuk-guide-end"><h2>Measurements ready?</h2><a class="cuk-guide-button" data-cuk-guide-continue href="/pages/curtain-visualiser?window={{ window }}">Make my curtains</a><a href="/pages/how-to-{% if mode == 'measure' %}fit{% else %}measure{% endif %}-{{ guide }}">{% if mode == 'measure' %}Read the fitting guide{% else %}Check your measurements{% endif %}</a></div>
+    {% endif %}
+  </div>
+</section>

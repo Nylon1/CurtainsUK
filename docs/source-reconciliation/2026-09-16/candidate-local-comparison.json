@@ -1,0 +1,98 @@
+[
+  {
+    "path": "COHESION.md",
+    "result": "LOCAL_DOCUMENTATION_ONLY",
+    "localSha256": "eca18119dc8840998abd7cabb21a49fff326ac56ec6e30c1c79b46d12d3aaa1b",
+    "shopifySha256": null
+  },
+  {
+    "path": "README.md",
+    "result": "LOCAL_DOCUMENTATION_ONLY",
+    "localSha256": "394d545e958033f7b5c3895d668b3e3f2821b6a132cbf3453c92994aec9ede22",
+    "shopifySha256": null
+  },
+  {
+    "path": "SERVICE_PANELS.md",
+    "result": "LOCAL_DOCUMENTATION_ONLY",
+    "localSha256": "7eef992b5918e0ca7928c5566bec24831b59278d3f5d7d7bfbd5d9660a835aaa",
+    "shopifySha256": null
+  },
+  {
+    "path": "assets/curtainsuk-header.css",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "8fcb7bb17b097353cbfa28b03da695e1fe22b03089b7b3d33812b5bb5bffbf85",
+    "shopifySha256": "8fcb7bb17b097353cbfa28b03da695e1fe22b03089b7b3d33812b5bb5bffbf85"
+  },
+  {
+    "path": "assets/curtainsuk-header.js",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "3964c204de5bfc820c2c5c46ab7fa811dc31bac7577b37ac55ea0beb23604b57",
+    "shopifySha256": "3964c204de5bfc820c2c5c46ab7fa811dc31bac7577b37ac55ea0beb23604b57"
+  },
+  {
+    "path": "assets/curtainsuk-home-editorial.css",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "71a742735459a243a73419de6346749af29fce6fa500c3617e6ee6bcac368010",
+    "shopifySha256": "71a742735459a243a73419de6346749af29fce6fa500c3617e6ee6bcac368010"
+  },
+  {
+    "path": "sections/curtainsuk-header.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "e848ead8f46c3fcb8d6d0b21215743d1b3652c7999e693cb21ce8e8444bc130e",
+    "shopifySha256": "e848ead8f46c3fcb8d6d0b21215743d1b3652c7999e693cb21ce8e8444bc130e"
+  },
+  {
+    "path": "sections/curtainsuk-help-footer.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "f911fb6732392a2566c24728a61536e66d038547da18804a12c132a22fc6691b",
+    "shopifySha256": "f911fb6732392a2566c24728a61536e66d038547da18804a12c132a22fc6691b"
+  },
+  {
+    "path": "sections/curtainsuk-home-editorial.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "9dd3e469fa51e7d40b52353495b352393e46ed3ff5090a2dbea72aedeb6129a7",
+    "shopifySha256": "9dd3e469fa51e7d40b52353495b352393e46ed3ff5090a2dbea72aedeb6129a7"
+  },
+  {
+    "path": "sections/curtainsuk-home-shopping.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "09c2de1d408e25bd6451a94326885c638306f0bdd7f3f866b34306bbeb6ab956",
+    "shopifySha256": "09c2de1d408e25bd6451a94326885c638306f0bdd7f3f866b34306bbeb6ab956"
+  },
+  {
+    "path": "sections/curtainsuk-inspiration-help.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "e7b99715ba22b2a1699743d2658165be62776198f42b138d568420874be9e4c6",
+    "shopifySha256": "e7b99715ba22b2a1699743d2658165be62776198f42b138d568420874be9e4c6"
+  },
+  {
+    "path": "sections/header-group.json",
+    "result": "SHOPIFY_GENERATED_HEADER_ONLY",
+    "localSha256": "2b90bd27ffe6ed8c787b212c7e84753e5f3062b75d10ec36cc04b44ee0d35b66",
+    "shopifySha256": "6d602b62049ed4e3d2c6949af1689769b48988c6391683c52ed7c90ee8adf555"
+  },
+  {
+    "path": "snippets/curtainsuk-colour-intelligence.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "dc9490b8737bbb20beb9beac24cec67c0e3ee8b541ebf207399c764d3220920b",
+    "shopifySha256": "dc9490b8737bbb20beb9beac24cec67c0e3ee8b541ebf207399c764d3220920b"
+  },
+  {
+    "path": "snippets/curtainsuk-header-navigation.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "1ecba3a149cd31418e949cf1c9af9f9bcde34d5ce6452273bed2ebca0cd82403",
+    "shopifySha256": "1ecba3a149cd31418e949cf1c9af9f9bcde34d5ce6452273bed2ebca0cd82403"
+  },
+  {
+    "path": "snippets/curtainsuk-three-ways.liquid",
+    "result": "BYTE_IDENTICAL",
+    "localSha256": "bdc4261e70c3d9a506f819d5d20e7192cd40f1f4a341dcc9508d07000c042421",
+    "shopifySha256": "bdc4261e70c3d9a506f819d5d20e7192cd40f1f4a341dcc9508d07000c042421"
+  },
+  {
+    "path": "templates/index.json",
+    "result": "SHOPIFY_GENERATED_HEADER_ONLY",
+    "localSha256": "b135c14e39269a71e39c2a334a45c49b7503865a26e31c375a064fca6f9155f1",
+    "shopifySha256": "8d10d5d6678677a1050615b5d65e55b38404855136203fe9a7b1dedaffceec78"
+  }
+]

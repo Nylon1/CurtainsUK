@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "template": "page.window-type",
+  "routes": [
+    "/pages/curtains-for-standard-window",
+    "/pages/curtains-for-bay-window",
+    "/pages/curtains-for-apex-window",
+    "/pages/curtains-for-triangular-window",
+    "/pages/curtains-for-gable-end-window",
+    "/pages/curtains-for-extra-wide-window",
+    "/pages/curtains-for-tall-floor-to-ceiling-window",
+    "/pages/curtains-for-french-doors",
+    "/pages/curtains-for-patio-sliding-doors",
+    "/pages/curtains-for-bifold-doors",
+    "/pages/curtains-for-dormer-window",
+    "/pages/curtains-for-curved-bow-window",
+    "/pages/curtains-for-corner-window",
+    "/pages/curtains-for-awkward-unusual-window"
+  ],
+  "shopifyPageRecordsRequired": true,
+  "publishState": "UNPUBLISHED_STAGING_ONLY"
+}

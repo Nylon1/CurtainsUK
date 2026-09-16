@@ -3,6 +3,8 @@
 CurtainsUK is a made-to-measure curtain commerce and fabric-intelligence platform. This repository is the authoritative application source.
 
 > **Critical:** Shopify is the current customer-facing storefront and commerce platform. Supabase Fabric Master is the canonical fabric catalogue. The Next.js/Vercel application is supporting intelligence/application infrastructure, not a second production storefront.
+>
+> **Before doing development work, read [`docs/CURTAINSUK_PROJECT_LEDGER_2026_09_16.md`](docs/CURTAINSUK_PROJECT_LEDGER_2026_09_16.md).** It records what is DONE + PROVEN, built but not fully proven, partial, superseded, and genuinely still outstanding. Do not rebuild or re-audit completed work without new evidence.
 
 ## Current architecture decision — September 2026
 
@@ -18,6 +20,21 @@ CurtainsUK remains **Shopify-first**.
 A headless Next.js/Vercel storefront was considered and remains a possible future architecture if Shopify becomes a genuine constraint. It is **not the current development direction**.
 
 Do not rebuild the customer storefront in Next.js/Vercel, replace Shopify checkout, or introduce a separate payment/order platform unless the business owner explicitly reopens that architectural decision.
+
+## Project status — do not restart completed systems
+
+As of the 16 September 2026 audit, CurtainsUK is already a functioning commerce system. In particular:
+
+- Fabric Master and its customer-safe retail projection exist;
+- Shopify already consumes the Fabric Master catalogue through the CurtainsUK integration;
+- Fabric Intelligence/HCI integration exists and has hosted rehearsals;
+- sample commerce uses a generic Shopify transaction product carrying exact Fabric Master identity;
+- **real paid sample order #1034 (£1) is proven**;
+- made-to-measure configuration, pricing, immutable handoff and Shopify Draft Order infrastructure are proven in staging rehearsals;
+- the premium development homepage exists and should not be rebuilt;
+- the full Fabric Master catalogue does **not** need to be duplicated as thousands of Shopify products.
+
+See the project ledger for the evidence boundaries, exact snapshot counts and remaining work. A historical test proves the version/boundary it recorded; do not automatically claim that every later catalogue addition or candidate-theme change has repeated that test.
 
 ## Authority map
 
@@ -43,7 +60,7 @@ CUSTOMER
    |
    v
 SHOPIFY STOREFRONT
-new premium theme / Fabric Library / samples / measuring
+premium theme / Fabric Library / samples / measuring
 cart / checkout / payments / customer commerce / orders
    |
    v
@@ -70,6 +87,8 @@ Current source: `Nylon1/CurtainsUK`, branch `main`.
 
 CurtainsUK was migrated from `Nylon1/Apexcurtains` / `feature/curtainsuk-phase-5a-prelaunch`. That branch is historical. Confirmed Apex-only public-route residue was removed from CurtainsUK in PR #2. Legacy Apex naming may still remain in harmless migrated metadata/assets; do not broadly rename identifiers without checking runtime impact.
 
+The 16 September audit found source drift between remote `main`, two local importer fixes, exact deployed gateway code and unpublished Shopify theme files. **Reconcile deliberately before another release; do not copy an entire local tree over remote or deploy merely to make versions match.** See the project ledger for audited SHAs.
+
 Stack: Next.js 16, React 19, TypeScript, Supabase, Shopify integration, Resend, Sharp, SheetJS/XLSX, PDF tooling and Tailwind/UI libraries.
 
 ## Fabric Master
@@ -90,7 +109,23 @@ Core tables include `suppliers`, `supplier_brands`, `fabric_collections`, `fabri
 
 Observations/provenance are separate through `fabric_catalogue_import_runs`, `fabric_catalogue_observations` and `fabric_catalogue_merge_conflicts`. An observation is evidence, not automatically canonical truth.
 
-September 2026 operational snapshot: ~13,148 colourways, 3,354 designs, 582 collections and 9,463 media assets; 9,680 SDG and 3,468 PT colourways. These are snapshots only. Newer persisted state wins.
+### Audited catalogue snapshot — 16 Sep 2026 ~16:12 UTC
+
+- canonical colourways: **13,148**
+- designs: **3,354**
+- collections: **582**
+- browsable: **9,248**
+- colourways with imagery: **9,531**
+- AVAILABLE: **8,388**
+- OUT OF STOCK: **1,681**
+- CHECK AVAILABILITY: **1,752**
+- DISCONTINUED / hidden: **1,327**
+- approved price-ready, non-discontinued: **9,882**
+- governed sample-ready: **7,694**
+- automatic MTM-ready before configuration/delivery: **7,436**
+- duplicate exact supplier/SKU identities: **0**
+
+These are snapshots only. Newer persisted state wins. Stock AVAILABLE is not equivalent to storefront-orderable: imagery, price and calculation constraints also matter.
 
 ## Supplier intelligence
 
@@ -103,6 +138,8 @@ supplier evidence -> validation/policy -> Fabric Master -> commercial interpreta
 ```
 
 Never replace this with uncontrolled direct supplier-to-Shopify writes.
+
+**Materialisation is not supplier retrieval.** A successful stock cron can materialise saved evidence without obtaining new supplier evidence. Do not treat cron success alone as fresh stock coverage.
 
 ## Definitive business rules
 
@@ -140,7 +177,7 @@ CurtainsUK separates factual commercial intelligence from recommendation intelli
 
 **Fabric Intelligence™** is the customer-facing combination of catalogue intelligence and guided discovery: Three Ways to Find Your Fabric, Colour Intelligence, Tonal/Complement/Contrast, 60–30–10, inspiration-led discovery and conventional browsing.
 
-The current implementation priority is to expose this intelligence cleanly through the Shopify customer journey rather than developing a parallel Next.js storefront.
+The Fabric Library/Fabric Master connection and HCI integration already exist. Do **not** rebuild them merely because they need current validation or UI refinement.
 
 ## Learning loop
 
@@ -180,15 +217,16 @@ collection -> products/colourways -> exact SKU -> direct DOM fields -> validatio
 
 Capture exact identity and, where supplied, collection/design/colourway, Full Width, Standard Price ex VAT, Free Stock, image and discontinued/product state.
 
-Rules:
+### Current audited PT checkpoint
 
-- direct DOM reads are the established method;
-- use bounded readiness/retry for slow fields;
-- maximum established concurrency: **3 workers**;
-- five workers previously caused browser-control timeouts;
-- checkpoint frequently;
-- resume from newest persisted state, not old chat counts;
-- do not unnecessarily reprocess completed collections.
+- **PAUSED by owner**
+- 186 collection entries completed through **Luna**
+- resume at **Madeira**
+- Madeira listing cached; detail/import not started at audit
+- processed-SKU, image and exception checkpoints preserved
+- stable audited extraction concurrency was **2**
+
+Do not restart from Annika, the original pilot or another completed collection. Inspect the newest persisted checkpoint before resuming; newer state wins.
 
 Routine isolated failures, missing/placeholder images, wallpaper/non-fabric and discontinued products -> queue/skip and continue.
 
@@ -203,11 +241,13 @@ Regression controls:
 
 Historical stock is test evidence, not a current-stock claim.
 
-Authorised Webtex catalogue imports were persisted on 16 Sep 2026 with `shopify_writes = 0`, confirming supplier ingestion is separated from Shopify commerce.
-
 ## SDG
 
-SDG already has substantial catalogue/price/stock ingestion. Do not redo completed bulk work without new evidence or a defined defect. Historical stock ingestion included 7,071 exact records. Absence from a later file is not automatically zero. Approved prices remain valid until superseded.
+SDG already has substantial catalogue/price/stock ingestion. Do not redo completed bulk work without new evidence or a defined defect.
+
+At the 16 September audit, **2,566 non-discontinued SDG records remained non-browsable and 1,936 lacked approved prices**. Zoffany was the largest price gap: only two browsable and all 775 non-discontinued records lacked approved price evidence.
+
+A preserved SDG exception artifact contained **195 identity conflicts**. Do not interpret a zero-row database merge-conflict table as proof that the artifact queue was resolved.
 
 ## Catalogue protection
 
@@ -227,22 +267,40 @@ Existing application persistence includes `staging_configuration_snapshots`, `st
 
 These structures are supporting infrastructure and do not mean Vercel is the production storefront. Snapshots can retain canonical fabric and supplier-price evidence. Never bypass checkout gates, server-side handoff or idempotency.
 
-A future headless architecture or alternative Shopify Draft Order bridge may be investigated only if there is a real business need. Do not make it the current development programme.
+### Proven commerce boundaries
+
+- Generic sample commerce carries exact Fabric Master identity/context through Shopify.
+- **Real paid Shopify sample order #1034 (£1) is proven. Do not repeat a payment merely to prove the unchanged architecture.**
+- Standard/Bay curtain pricing and Draft Order handoff are proven in staging rehearsals.
+- HCI/Sadira D15 reached a £613.95 staging Draft.
+- A real paid made-to-measure curtain order is **not** claimed.
+
+The full Fabric Master catalogue does **not** need to become thousands of Shopify products. Do not introduce per-fabric Shopify product proliferation without a new, explicit business requirement.
+
+A future headless architecture or alternative commerce bridge may be investigated only if there is a real business need. Do not make it the current development programme.
+
+## Half-drop boundary
+
+At the audit, **303 browsable fabrics were excluded from automatic calculation by the existing `HALF_DROP_MATCH` rule**. This is a manufacturing/calculation decision, not a stock rule. Do not silently loosen it. Obtain an explicit workroom/business decision before changing the calculation boundary.
 
 ## Shopify themes
 
-Latest handover state:
+Audited 16 September state:
 
-- **CurtainsUK New Design – Live Base** `182310502779`: UNPUBLISHED at handover; production-candidate base copied from genuine live theme.
-- **Updated copy of Dawn** `182264136059`: design donor/reference only; do not develop further.
+- **CurtainsUK Phase 4A Dawn 16** `182264234363`: MAIN / live.
+- **CurtainsUK New Design – Live Base** `182310502779`: UNPUBLISHED / sole development candidate.
+- **Updated copy of Dawn** `182264136059`: UNPUBLISHED / donor only.
+- **Minimal** `79650455661`: UNPUBLISHED / rollback.
 
-The current priority is to make the production-candidate Shopify experience excellent while preserving the existing live commercial infrastructure: Fabric Library, products/collections where used, samples, measuring, cart, search, account, apps, existing URLs and SEO structure.
+The candidate already contains Fabric Library/Fabric Master integration and premium Fabric Intelligence presentation. Do not rebuild those systems. Preserve the candidate theme source/evidence in the repository before relying on it for disaster recovery.
 
 Never replace/publish over the current live theme without explicit approval. Reverify Shopify state immediately before publication.
 
+Legacy Escher/Dali/Diez Shopify products remained active at the audit, including £0 Diez variants. Their Shopify inventory is not authoritative supplier stock. Verify actual customer bypass exposure narrowly before changing them; do not bulk-delete blindly.
+
 ## Runtime, secrets and security
 
-Vercel is supporting application/runtime infrastructure, not the current customer storefront. A visible Vercel project named `curtainsuk-staging-api` exists, but it was not GitHub-linked at the latest inspection. Other CurtainsUK-related preview activity has also appeared in Vercel Recents. Verify the exact project/repository linkage before production changes; do not infer it from a deployment label alone.
+Vercel is supporting application/runtime infrastructure, not the current customer storefront. Verify the exact project/repository/deployment linkage before production changes; do not infer it from labels alone.
 
 Never commit Supabase privileged credentials, Shopify credentials, HCI secrets, supplier authentication, Webtex credentials or email/runtime secrets.
 
@@ -252,63 +310,4 @@ One heavy aggregate query during the Sep 2026 review produced a PostgreSQL tempo
 
 ## Testing and release
 
-Automated suites cover decision engine, supplier sync/intelligence/import, Fabric Master, Prestigious, storefront and Shopify theme integration.
-
-```bash
-npm test
-npm run build
-npm run lint
-```
-
-Inspect current `package.json` for supplier/catalogue scripts. A passing build alone is not a release: consider database compatibility, environment variables, Shopify/HCI integration, relevant tests, customer journey and rollback. Shopify theme publication is a separate production action.
-
-## Recovery
-
-For an interrupted supplier import: inspect the newest persisted checkpoint and import runs; establish the last committed batch; resume after the confirmed point; rely on duplicate protection for unavoidable overlap; do not replay completed collections unnecessarily.
-
-If authentication expires, stop, restore authorised access and resume. Do not substitute an unapproved source for commercial fields.
-
-If price/stock/image data may be attached to the wrong SKU, **stop the run**, preserve checkpoint/log/import identifiers and investigate. Isolated bad records should instead be quarantined while healthy processing continues.
-
-Git restores code, not Fabric Master data, Shopify orders/state, supplier sessions, runtime secrets or all deployment configuration. Fabric Master recovery must preserve identity, observations, provenance, prices, stock history, media mappings, configuration snapshots and operational history—not merely re-scrape current supplier websites.
-
-For Shopify theme work, always preserve a rollback path to the known working theme.
-
-## AI/Codex guardrails
-
-Before changing anything, determine which system is authoritative and inspect persisted state.
-
-**Do not reopen the Shopify-vs-Vercel storefront decision unless the business owner explicitly asks to.** The current direction is Shopify-first.
-
-Do not spend execution time polishing or rebuilding the old Next.js storefront as a parallel customer site. Prioritise the Shopify customer experience and the intelligence/data services that support it.
-
-Do not repeatedly re-audit settled rules without evidence they changed. Do not invent technical complexity such as mandatory `usable_width`, separate sample-stock gates, automatic price expiry or zero stock from missing evidence.
-
-Do not destructively “clean up” unknown tables, historical records, verified images, catalogue identities, migration history or operational identifiers before understanding why they exist.
-
-For individual bad supplier records: **quarantine and continue**. For systemic identity risk: **stop**.
-
-Chat/handover counts may be historical. Newer persisted state wins.
-
-If an engineering choice changes business policy—stock threshold/freshness, price source, sample eligibility, exclusions, manufacturing calculations, storefront architecture or live theme publication—ask the business owner rather than silently turning an assumption into company policy.
-
-## Current execution priority
-
-Do not start another architecture project. The current business sequence is:
-
-```text
-complete PT catalogue
--> validate Fabric Library
--> integrate Fabric Intelligence into Shopify
--> validate samples
--> validate curtain calculator/configurator
--> validate cart
--> validate checkout/order journey
--> publish only with explicit approval
-```
-
-Keep the current live Shopify site safe while this work is completed.
-
-## Operating principle
-
-**Shopify is the storefront and transaction platform. Fabric Master establishes facts. CurtainsUK rules establish what can be sold. HCI/Fabric Intelligence helps the customer decide. Supporting application services make the intelligence work. Humans set business policy.**
+Automated suites cover decision engine, supplier sync/intelligence

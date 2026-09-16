@@ -2,68 +2,73 @@
 
 CurtainsUK is a made-to-measure curtain commerce and fabric-intelligence platform. This repository is the authoritative application source.
 
-> **Critical:** Shopify is not the canonical fabric catalogue. Supplier evidence must pass through Fabric Master and CurtainsUK commercial rules.
+> **Critical:** Shopify is the current customer-facing storefront and commerce platform. Supabase Fabric Master is the canonical fabric catalogue. The Next.js/Vercel application is supporting intelligence/application infrastructure, not a second production storefront.
+
+## Current architecture decision — September 2026
+
+CurtainsUK remains **Shopify-first**.
+
+- **Shopify** owns the customer-facing website/theme, cart, checkout, payments, customer commerce and orders.
+- **Supabase Fabric Master** owns canonical fabric identity and validated catalogue/commercial evidence.
+- **CurtainsUK Next.js/Vercel infrastructure** supports supplier intelligence, administration, APIs, decision/configuration services and other application capabilities. It is **not the current production customer storefront**.
+- **HCI / Fabric Intelligence** provides recommendation and decision intelligence.
+- The existing live Shopify site remains untouched while the new Shopify theme is developed and validated.
+- Production-candidate theme: **CurtainsUK New Design – Live Base**, theme ID `182310502779`; unpublished at the last verified checkpoint.
+
+A headless Next.js/Vercel storefront was considered and remains a possible future architecture if Shopify becomes a genuine constraint. It is **not the current development direction**.
+
+Do not rebuild the customer storefront in Next.js/Vercel, replace Shopify checkout, or introduce a separate payment/order platform unless the business owner explicitly reopens that architectural decision.
 
 ## Authority map
 
 | Domain | Authority |
 | --- | --- |
-| Code | `Nylon1/CurtainsUK` / `main` |
+| Customer-facing storefront/theme | Shopify |
+| Cart / checkout / payments / orders | Shopify |
+| Code / supporting application services | `Nylon1/CurtainsUK` / `main` |
 | Fabric catalogue | Supabase Fabric Master |
 | Schema | `curtainsuk_private` |
 | PT evidence | Authenticated Webtex |
 | SDG evidence | Approved SDG sources |
 | Commercial stock | CurtainsUK stock materialisation |
 | Recommendations | Hybrid Curtain Intelligence (HCI) |
-| Checkout/payment/orders | Shopify |
-| Runtime | Vercel/runtime; verify exact project before changes |
+| Supporting runtime | Next.js/Vercel/runtime; verify exact project before production changes |
 
 Git is not a complete production backup. State also exists in Supabase, Shopify, supplier systems, HCI, runtime configuration and secrets.
 
 ## Architecture
 
 ```text
-SUPPLIERS (Webtex / SDG)
-        |
-        v
+CUSTOMER
+   |
+   v
+SHOPIFY STOREFRONT
+new premium theme / Fabric Library / samples / measuring
+cart / checkout / payments / customer commerce / orders
+   |
+   v
+CURTAINSUK INTELLIGENCE + APPLICATION SERVICES
+   |
+   +--> Fabric Intelligence / HCI
+   +--> curtain decision + configuration services
+   +--> supplier intelligence / admin / APIs
+   |
+   v
+SUPABASE FABRIC MASTER
+canonical catalogue / media / retail profiles / commercial evidence
+   ^
+   |
 SUPPLIER INTELLIGENCE
-provenance -> validation -> approval -> freshness
-        |
-        v
-FABRIC MASTER
-supplier -> brand -> collection -> design -> colourway
-media / retail profiles / stock
-        |
-        +------------------+
-        |                  |
-        v                  v
-CURTAINSUK COMMERCE <--> HCI
-facts / price / stock     consultation / recommendation
-        |                  |
-        +--------+---------+
-                 v
-        FABRIC INTELLIGENCE
-                 |
-                 v
-        CURTAIN CONFIGURATION
-                 |
-                 v
-        CONFIGURATION SNAPSHOT
-                 |
-                 v
-        CONTROLLED SHOPIFY HANDOFF
-                 |
-                 v
-              SHOPIFY
+Webtex / SDG -> provenance -> validation -> approval -> freshness
 ```
 
-Suppliers provide evidence. Fabric Master establishes catalogue truth. Business rules establish commercial truth. HCI/Fabric Intelligence helps the customer decide. The configuration engine establishes what will be manufactured. Shopify executes commerce. Humans remain authoritative for business policy.
+Suppliers provide evidence. Fabric Master establishes catalogue truth. Business rules establish commercial truth. HCI/Fabric Intelligence helps the customer decide. The configuration engine establishes what will be manufactured. Shopify owns the customer-facing commerce journey and executes the transaction. Humans remain authoritative for business policy.
 
 ## Repository
 
 Current source: `Nylon1/CurtainsUK`, branch `main`.
 
-CurtainsUK was migrated from `Nylon1/Apexcurtains` / `feature/curtainsuk-phase-5a-prelaunch`. That branch is historical. Legacy Apex naming may remain in migrated metadata; do not broadly rename identifiers without checking runtime impact.
+CurtainsUK was migrated from `Nylon1/Apexcurtains` / `feature/curtainsuk-phase-5a-prelaunch`. That branch is historical. Confirmed Apex-only public-route residue was removed from CurtainsUK in PR #2. Legacy Apex naming may still remain in harmless migrated metadata/assets; do not broadly rename identifiers without checking runtime impact.
 
 Stack: Next.js 16, React 19, TypeScript, Supabase, Shopify integration, Resend, Sharp, SheetJS/XLSX, PDF tooling and Tailwind/UI libraries.
 
@@ -94,7 +99,7 @@ Active authorities: Prestigious Textiles and Sanderson Design Group.
 Infrastructure includes `supplier_sync_runs`, `supplier_snapshots`, `supplier_snapshot_batches`, `supplier_snapshot_prices`, `supplier_approval_policies`, `supplier_freshness_policies`, `supplier_validation_policies` and `supplier_promotion_events`.
 
 ```text
-supplier evidence -> validation/policy -> Fabric Master -> commercial interpretation -> storefront
+supplier evidence -> validation/policy -> Fabric Master -> commercial interpretation -> Shopify customer experience
 ```
 
 Never replace this with uncontrolled direct supplier-to-Shopify writes.
@@ -135,6 +140,8 @@ CurtainsUK separates factual commercial intelligence from recommendation intelli
 
 **Fabric Intelligence™** is the customer-facing combination of catalogue intelligence and guided discovery: Three Ways to Find Your Fabric, Colour Intelligence, Tonal/Complement/Contrast, 60–30–10, inspiration-led discovery and conventional browsing.
 
+The current implementation priority is to expose this intelligence cleanly through the Shopify customer journey rather than developing a parallel Next.js storefront.
+
 ## Learning loop
 
 ```text
@@ -158,7 +165,7 @@ Canonical existence does not equal storefront eligibility. `fabric_retail_profil
 Media uses `fabric_media_assets`, `fabric_media_mappings` and `fabric_media_checkpoints`:
 
 ```text
-supplier source -> exact SKU validation -> permanent asset -> Fabric Master mapping -> storefront
+supplier source -> exact SKU validation -> permanent asset -> Fabric Master mapping -> Shopify customer experience
 ```
 
 Never hotlink temporary authenticated supplier URLs. Preserve verified images. One supplier image may legitimately map to multiple SKUs when the supplier explicitly associates it; image uniqueness is not an identity rule.
@@ -206,17 +213,21 @@ SDG already has substantial catalogue/price/stock ingestion. Do not redo complet
 
 Preserve provenance: supplier, source, observation time, import and SKU. Do not duplicate canonical colourways because formatting, whitespace, ordering, collection spelling or imagery changed. Genuine identity conflicts belong in merge/conflict handling, not silent newest-value-wins updates.
 
-## Configuration and checkout
+## Configuration and Shopify commerce
+
+Shopify remains the current transaction and customer-commerce authority.
 
 ```text
 Fabric Master -> validated commercial state -> configuration
--> configuration snapshot -> checkout handoff -> execution
--> draft creation -> Shopify
+-> configuration snapshot -> controlled Shopify handoff
+-> Shopify cart/checkout/payment/order
 ```
 
-Persistence includes `staging_configuration_snapshots`, `staging_checkout_handoffs`, `staging_checkout_executions`, `staging_draft_creation_claims` and `staging_shopify_proxy_replay_receipts`.
+Existing application persistence includes `staging_configuration_snapshots`, `staging_checkout_handoffs`, `staging_checkout_executions`, `staging_draft_creation_claims` and `staging_shopify_proxy_replay_receipts`.
 
-Snapshots can retain canonical fabric and supplier-price evidence. Never bypass checkout gates, server-side handoff or idempotency.
+These structures are supporting infrastructure and do not mean Vercel is the production storefront. Snapshots can retain canonical fabric and supplier-price evidence. Never bypass checkout gates, server-side handoff or idempotency.
+
+A future headless architecture or alternative Shopify Draft Order bridge may be investigated only if there is a real business need. Do not make it the current development programme.
 
 ## Shopify themes
 
@@ -225,11 +236,13 @@ Latest handover state:
 - **CurtainsUK New Design – Live Base** `182310502779`: UNPUBLISHED at handover; production-candidate base copied from genuine live theme.
 - **Updated copy of Dawn** `182264136059`: design donor/reference only; do not develop further.
 
+The current priority is to make the production-candidate Shopify experience excellent while preserving the existing live commercial infrastructure: Fabric Library, products/collections where used, samples, measuring, cart, search, account, apps, existing URLs and SEO structure.
+
 Never replace/publish over the current live theme without explicit approval. Reverify Shopify state immediately before publication.
 
 ## Runtime, secrets and security
 
-The exact CurtainsUK Vercel project was not visible through the account connection used during the Sep 2026 review. Do not invent a project ID; verify linkage before production changes.
+Vercel is supporting application/runtime infrastructure, not the current customer storefront. A visible Vercel project named `curtainsuk-staging-api` exists, but it was not GitHub-linked at the latest inspection. Other CurtainsUK-related preview activity has also appeared in Vercel Recents. Verify the exact project/repository linkage before production changes; do not infer it from a deployment label alone.
 
 Never commit Supabase privileged credentials, Shopify credentials, HCI secrets, supplier authentication, Webtex credentials or email/runtime secrets.
 
@@ -265,6 +278,10 @@ For Shopify theme work, always preserve a rollback path to the known working the
 
 Before changing anything, determine which system is authoritative and inspect persisted state.
 
+**Do not reopen the Shopify-vs-Vercel storefront decision unless the business owner explicitly asks to.** The current direction is Shopify-first.
+
+Do not spend execution time polishing or rebuilding the old Next.js storefront as a parallel customer site. Prioritise the Shopify customer experience and the intelligence/data services that support it.
+
 Do not repeatedly re-audit settled rules without evidence they changed. Do not invent technical complexity such as mandatory `usable_width`, separate sample-stock gates, automatic price expiry or zero stock from missing evidence.
 
 Do not destructively “clean up” unknown tables, historical records, verified images, catalogue identities, migration history or operational identifiers before understanding why they exist.
@@ -273,8 +290,25 @@ For individual bad supplier records: **quarantine and continue**. For systemic i
 
 Chat/handover counts may be historical. Newer persisted state wins.
 
-If an engineering choice changes business policy—stock threshold/freshness, price source, sample eligibility, exclusions, manufacturing calculations or live theme publication—ask the business owner rather than silently turning an assumption into company policy.
+If an engineering choice changes business policy—stock threshold/freshness, price source, sample eligibility, exclusions, manufacturing calculations, storefront architecture or live theme publication—ask the business owner rather than silently turning an assumption into company policy.
+
+## Current execution priority
+
+Do not start another architecture project. The current business sequence is:
+
+```text
+complete PT catalogue
+-> validate Fabric Library
+-> integrate Fabric Intelligence into Shopify
+-> validate samples
+-> validate curtain calculator/configurator
+-> validate cart
+-> validate checkout/order journey
+-> publish only with explicit approval
+```
+
+Keep the current live Shopify site safe while this work is completed.
 
 ## Operating principle
 
-**AI recommends. Fabric Master establishes facts. CurtainsUK rules establish what can be sold. The configuration engine establishes what will be manufactured. Shopify executes the transaction. Humans set business policy.**
+**Shopify is the storefront and transaction platform. Fabric Master establishes facts. CurtainsUK rules establish what can be sold. HCI/Fabric Intelligence helps the customer decide. Supporting application services make the intelligence work. Humans set business policy.**

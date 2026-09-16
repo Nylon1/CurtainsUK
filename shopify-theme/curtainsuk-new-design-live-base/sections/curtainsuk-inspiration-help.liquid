@@ -1,0 +1,41 @@
+{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-home-editorial.css' | asset_url | stylesheet_tag }}
+
+<section class="cukhome-commercial cukhome__support">
+  <div class="cukhome__wrap cukhome__support-grid">
+    <article id="curtainsuk-inspiration" class="cukhome__support-column">
+      <div class="cukhome__support-image">
+        {{ images['curtainsuk-modern-luxury-interior.jpg'] | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 900, 1100', sizes: '(min-width: 1500px) 650px, (min-width: 1000px) 44vw, calc(100vw - 48px)', loading: 'lazy', alt: 'Tall curtained windows framing a contemporary interior with marble and upholstered seating' }}
+      </div>
+      <p class="cukhome__eyebrow">Ideas for every shape</p>
+      <h2>Find the right starting point.</h2>
+      <p>Explore standard, bay, tall, apex, gable and unusual windows, then see which measurements, headings and linings suit the job.</p>
+      <div class="cukhome__actions">
+        <a class="cukhome__text-link" href="/pages/solve-my-window">Browse window inspiration <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    <article class="cukhome__support-column">
+      <div class="cukhome__support-image cukhome__support-image--fitting">
+        {{ images['curtainsuk-layered-sheer-grey-curtains.jpg'] | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 900, 1100', sizes: '(min-width: 1500px) 650px, (min-width: 1000px) 44vw, calc(100vw - 48px)', loading: 'lazy', alt: 'Neatly fitted grey curtains and sheer layers showing the track and even curtain folds' }}
+      </div>
+      <p class="cukhome__eyebrow">Need a hand?</p>
+      <h2>Measure with confidence.</h2>
+      <p>Our guide explains full coverage width, finished drop and what to prepare for reviewed or specialist-shaped curtains.</p>
+      <div class="cukhome__actions">
+        <a class="cukhome__button" href="/pages/how-to-measure">How to measure <span aria-hidden="true">→</span></a>
+        <a class="cukhome__text-link" href="/pages/how-to-fit">How to fit <span aria-hidden="true">→</span></a>
+        <a class="cukhome__text-link cukhome__specialist" href="/pages/curtain-visualiser">Start and ask for review <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Inspiration and help",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [{ "name": "Inspiration and help" }]
+}
+{% endschema %}

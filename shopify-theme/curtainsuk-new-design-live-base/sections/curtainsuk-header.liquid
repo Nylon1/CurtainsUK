@@ -1,0 +1,172 @@
+{{ 'component-search.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-header.js' | asset_url }}" defer="defer"></script>
+{% liquid
+  assign room_url = '/apps/curtainsuk-decision/consultation?entry=match'
+  assign home_url = routes.root_url
+%}
+<curtainsuk-header class="cuknav" data-section-id="{{ section.id }}">
+  <header class="cuknav__header">
+    <div class="cuknav__bar">
+      <a class="cuknav__icon cuknav__menu-toggle" href="#CukMenu-{{ section.id }}" aria-label="Open menu" aria-controls="CukMenu-{{ section.id }}" aria-expanded="false" data-open="menu">
+        {{ 'icon-hamburger.svg' | inline_asset_content }}
+      </a>
+      <a href="{{ home_url }}" class="cuknav__brand" aria-label="CurtainsUK home">
+        {% if settings.logo != blank %}
+          {{ settings.logo | image_url: width: 420 | image_tag: widths: '180, 280, 420', sizes: '180px', loading: 'eager', alt: 'CurtainsUK' }}
+        {% else %}
+          <span>Curtains<span class="cuknav__brand-light">UK</span></span>
+        {% endif %}
+      </a>
+      <a class="cuknav__room-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
+      <div class="cuknav__tools">
+        <a href="{{ routes.search_url }}" class="cuknav__icon" aria-label="Search" aria-controls="CukSearch-{{ section.id }}" aria-expanded="false" data-open="search">
+          {{ 'icon-search.svg' | inline_asset_content }}
+        </a>
+      {%- if shop.customer_accounts_enabled and settings.curtainsuk_purchase_controls_enabled == true -%}
+        <shopify-account
+          menu="{{ settings.customer_account_menu | default: 'customer-account-main-menu' }}"
+          class="cuknav__icon cuknav__account"
+        >
+          <span slot="signed-out-avatar" class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+          <span slot="signed-out-avatar" class="visually-hidden">{{ 'customer.log_in' | t }}</span>
+        </shopify-account>
+      {%- endif -%}
+
+
+        {% if settings.curtainsuk_purchase_controls_enabled == true %}<a href="{{ routes.cart_url }}" class="cuknav__icon cuknav__cart" id="cart-icon-bubble">
+          {% if cart == empty %}{{ 'icon-cart-empty.svg' | inline_asset_content }}{% else %}{{ 'icon-cart.svg' | inline_asset_content }}{% endif %}
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {% if cart != empty %}
+            <div class="cart-count-bubble"><span aria-hidden="true">{{ cart.item_count }}</span><span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span></div>
+          {% endif %}
+        </a>
+        {% endif %}
+        {% for block in section.blocks %}{% render block %}{% endfor %}
+      </div>
+    </div>
+    <nav class="cuknav__desktop" aria-label="Main navigation">
+      {% render 'curtainsuk-header-navigation', location: 'desktop', section_id: section.id %}
+    </nav>
+  </header>
+  <dialog class="cuknav__dialog cuknav__mobile" id="CukMenu-{{ section.id }}" aria-labelledby="CukMenuTitle-{{ section.id }}" data-dialog="menu">
+    <div class="cuknav__dialog-top"><span class="cuknav__dialog-brand" id="CukMenuTitle-{{ section.id }}">CurtainsUK</span><button type="button" class="cuknav__icon" aria-label="Close menu" data-close>{{ 'icon-close.svg' | inline_asset_content }}</button></div>
+    <div class="cuknav__mobile-body">
+      <a class="cuknav__mobile-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
+      <nav aria-label="Mobile navigation">{% render 'curtainsuk-header-navigation', location: 'mobile', section_id: section.id %}</nav>
+      {% if shop.customer_accounts_enabled and settings.curtainsuk_purchase_controls_enabled == true %}<a class="cuknav__mobile-account" href="{{ routes.account_url }}">{{ 'customer.account.title' | t }} <span aria-hidden="true">→</span></a>{% endif %}
+    </div>
+  </dialog>
+  <dialog class="cuknav__dialog cuknav__search" id="CukSearch-{{ section.id }}" aria-labelledby="CukSearchTitle-{{ section.id }}" data-dialog="search">
+    <div class="cuknav__dialog-top"><span class="cuknav__dialog-brand" id="CukSearchTitle-{{ section.id }}">Search CurtainsUK</span><button type="button" class="cuknav__icon" aria-label="Close search" data-close>{{ 'icon-close.svg' | inline_asset_content }}</button></div>
+        {%- if settings.predictive_search_enabled -%}
+          <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+        {%- else -%}
+          <search-form class="search-modal__form">
+        {%- endif -%}
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+          <div class="field">
+            <input
+              class="search__input field__input"
+              id="CukSearchInput-{{ section.id }}"
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              placeholder="{{ 'general.search.search' | t }}"
+              {%- if settings.predictive_search_enabled -%}
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="predictive-search-results"
+                aria-controls="predictive-search-results"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+              {%- endif -%}
+            >
+            <label class="field__label" for="CukSearchInput-{{ section.id }}">{{ 'general.search.search' | t }}</label>
+            <input type="hidden" name="options[prefix]" value="last">
+            <button
+              type="reset"
+              class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+              aria-label="{{ 'general.search.reset' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-reset.svg' | inline_asset_content -}}
+              </span>
+            </button>
+            <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+              <span class="svg-wrapper">
+                {{- 'icon-search.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+
+          {%- if settings.predictive_search_enabled -%}
+            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+              {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+            </div>
+
+            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+          {%- endif -%}
+        </form>
+        {%- if settings.predictive_search_enabled -%}
+          </predictive-search>
+        {%- else -%}
+          </search-form>
+        {%- endif -%}
+
+  </dialog>
+  <noscript><nav class="cuknav__no-js" aria-label="Mobile navigation">{% render 'curtainsuk-header-navigation', location: 'fallback', section_id: section.id %}</nav></noscript>
+</curtainsuk-header>
+{% if settings.cart_type == 'notification' and settings.curtainsuk_purchase_controls_enabled == true %}
+  {{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+  {% render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: 'dropdown' %}
+{% endif %}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if settings.logo %}
+      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tiktok_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{"name": "CurtainsUK studio header", "class": "section-cuk-header section-header", "enabled_on": {"groups": ["header"]}, "settings": [{"type": "color_scheme", "id": "color_scheme", "label": "Cart notification colour scheme", "default": "scheme-1"}], "blocks": [{"type": "@app"}], "presets": [{"name": "CurtainsUK studio header"}]}
+{% endschema %}

@@ -1,0 +1,67 @@
+{
+  "schema": "curtainsuk-source-preservation-v1",
+  "theme": {
+    "id": 182264136059,
+    "name": "Updated copy of Dawn",
+    "role": "DONOR_REFERENCE_ONLY"
+  },
+  "capturedAt": "2026-09-16T16:40:05.306Z",
+  "source": "Existing local donor component overlay; not a complete theme export; not freshly compared to remote donor",
+  "files": [
+    {
+      "path": "IMAGE_REPAIR.md",
+      "bytes": 2226,
+      "sha256": "79a7cf4d8f7e34ecedc191f29f9124b7000cf00f8233f2ace5fb4dfa5ab0c13c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2507,
+      "sha256": "9a378c95dbc8c41a9b9a40f5a1c8b703e518e107e4c5c7997d09cc71d5109252"
+    },
+    {
+      "path": "assets/curtainsuk-header.css",
+      "bytes": 6568,
+      "sha256": "a831410d6e846f6f2d2c6d47e462c0d51a67a2677553787b7a4855281fc8259f"
+    },
+    {
+      "path": "assets/curtainsuk-header.js",
+      "bytes": 3932,
+      "sha256": "b5097bf0833d47b6bba8d18e9fb19484eacd684a76742460815e6ac1204a9ef6"
+    },
+    {
+      "path": "locales/en.default.json",
+      "bytes": 23907,
+      "sha256": "ccf3c0543bf3d779c6f46e09e8b0d02ec680878ec6caa2d13bd5bd2b02d1c0b6"
+    },
+    {
+      "path": "sections/curtainsuk-fabric-intelligence.liquid",
+      "bytes": 12936,
+      "sha256": "f65ff682cac574476d0dc6a58f975698b5936e92ee1303bdd58ff40a6ea0040c"
+    },
+    {
+      "path": "sections/curtainsuk-header.liquid",
+      "bytes": 6022,
+      "sha256": "3a7c265d326fc46a1faaec58bf1c7b384b8391003f8f2700af7551360f78d8fb"
+    },
+    {
+      "path": "sections/header-group.json",
+      "bytes": 2025,
+      "sha256": "18a2c6dd5d15ef93e560f752ecec0a72b0eda80ad12f1393f44264f23d641cc1"
+    },
+    {
+      "path": "snippets/curtainsuk-colour-intelligence.liquid",
+      "bytes": 10065,
+      "sha256": "65a69a37128fe77b163dc248ccaf98ef42903c78f7c538d134712ad0e7631a5a"
+    },
+    {
+      "path": "snippets/curtainsuk-header-navigation.liquid",
+      "bytes": 2772,
+      "sha256": "f42db082d5980af035ae17dcadec9f90d1a689485e8608b1a97e722302d8aaaa"
+    },
+    {
+      "path": "snippets/curtainsuk-three-ways.liquid",
+      "bytes": 6701,
+      "sha256": "3dd43504944aaa0b20eba31b541db86f26204cec69cc1a652085c935e6c334fd"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{% doc %}
+  Shared navigation for the independent CurtainsUK header.
+  Blank destinations deliberately render as non-clicking labels.
+  @param {object} header_settings - Settings from the new header section
+  @param {string} location - Unique desktop/mobile/fallback scope
+  @param {string} section_id - Parent section identifier
+{% enddoc %}
+<ul class="cuknav__list">
+  <li class="cuknav__item">
+    <details class="cuknav__disclosure">
+      <summary aria-expanded="false" aria-controls="CukIntelligence-{{ location }}-{{ section_id }}">Fabric Intelligence™ <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
+      <div class="cuknav__dropdown" id="CukIntelligence-{{ location }}-{{ section_id }}">
+        <p class="cuknav__overline">A considered fabric direction</p>
+        <ul>
+          <li><a href="/apps/curtainsuk-decision/consultation?entry=match">Let us read your room <span aria-hidden="true">→</span></a></li>
+          <li><a href="{{ routes.root_url }}#what-we-consider">How Fabric Intelligence works</a></li>
+          <li><a href="{{ routes.root_url }}#colour-intelligence">Colour Intelligence</a></li>
+        </ul>
+      </div>
+    </details>
+  </li>
+  <li class="cuknav__item">
+    {% if header_settings.fabrics_menu != blank %}
+      <details class="cuknav__disclosure">
+        <summary aria-expanded="false" aria-controls="CukFabrics-{{ location }}-{{ section_id }}">Fabrics <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
+        <div class="cuknav__dropdown" id="CukFabrics-{{ location }}-{{ section_id }}"><ul>{% for link in header_settings.fabrics_menu.links %}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{% endfor %}</ul></div>
+      </details>
+    {% elsif header_settings.fabrics_url != blank %}
+      <a href="{{ header_settings.fabrics_url }}">Fabrics</a>
+    {% else %}
+      <span class="cuknav__unavailable" aria-disabled="true" title="Fabric Library is not available in this preview">Fabrics</span>
+    {% endif %}
+  </li>
+  <li class="cuknav__item"><a href="{{ routes.root_url }}#colour-intelligence">Colours</a></li>
+  {% assign labels = 'Patterns,Interior Styles,Made to Measure,Inspiration' | split: ',' %}
+  {% assign keys = 'patterns_url,interiors_url,made_url,inspiration_url' | split: ',' %}
+  {% for label in labels %}
+    {% assign key = keys[forloop.index0] %}
+    {% assign destination = header_settings[key] %}
+    <li class="cuknav__item">{% if destination != blank %}<a href="{{ destination }}">{{ label }}</a>{% else %}<span class="cuknav__unavailable" aria-disabled="true" title="No verified destination is connected">{{ label }}</span>{% endif %}</li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "curtainsuk-hero": {
+      "type": "curtainsuk-home-hero",
+      "settings": {},
+      "disabled": true
+    },
+    "curtainsuk-inspiration-help": {
+      "type": "curtainsuk-inspiration-help",
+      "settings": {}
+    },
+    "curtainsuk-editorial": {
+      "type": "curtainsuk-home-editorial",
+      "settings": {}
+    },
+    "curtainsuk-shopping": {
+      "type": "curtainsuk-home-shopping",
+      "settings": {}
+    }
+  },
+  "order": [
+    "curtainsuk-hero",
+    "curtainsuk-editorial",
+    "curtainsuk-shopping",
+    "curtainsuk-inspiration-help"
+  ]
+}

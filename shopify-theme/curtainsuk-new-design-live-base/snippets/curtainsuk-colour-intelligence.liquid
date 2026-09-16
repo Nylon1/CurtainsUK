@@ -1,0 +1,133 @@
+{% doc %}
+  Editorial colour guidance within the CurtainsUK Fabric Intelligence homepage.
+  @example
+  {% render 'curtainsuk-colour-intelligence' %}
+{% enddoc %}
+<section class="cukcolour" id="colour-intelligence" aria-labelledby="cukcolour-heading">
+  <div class="cukcolour__wrap">
+    <header class="cukcolour__header">
+      <p class="cukcolour__eyebrow">COLOUR INTELLIGENCE</p>
+      <h2 id="cukcolour-heading">Should your curtains blend, complement or contrast?</h2>
+      <p class="cukcolour__intro">Your wall colour is only the beginning. We consider the colours already living in your room — and decide what role your curtains should play.</p>
+    </header>
+    <div class="cukcolour__directions">
+      {% assign directions = 'tonal,complement,contrast' | split: ',' %}
+      {% for direction in directions %}
+        {% liquid
+          case direction
+            when 'tonal'
+              assign direction_label = 'TONAL'
+              assign direction_heading = 'Create calm.'
+              assign direction_copy = 'Curtains stay within the wall’s colour family, using changes in tone, depth and texture to create a calm, cohesive interior.'
+              assign direction_alt = 'Soft white curtains, pale walls and cream upholstered furniture in a tonal living room'
+              assign photo = images['curtainsuk-luxury-sheer-living-room.jpg']
+            when 'complement'
+              assign direction_label = 'COMPLEMENT'
+              assign direction_heading = 'Build the palette.'
+              assign direction_copy = 'Curtains introduce a related supporting colour that works with the walls, furniture and accents to make the room feel considered and layered.'
+              assign direction_alt = 'Rose and green patterned curtains coordinated with green upholstery, checked furniture and patterned cushions'
+              assign photo = images['prestigious-room-rose-geometric.webp']
+            when 'contrast'
+              assign direction_label = 'CONTRAST'
+              assign direction_heading = 'Make a statement.'
+              assign direction_copy = 'Curtains deliberately move away from the dominant wall colour, creating a focal point and adding character, energy or drama.'
+              assign direction_alt = 'Ochre curtains standing out against bright white walls and a pale floor'
+              assign photo = images['curtainsuk-warm-accent-curtains.jpg']
+          endcase
+          assign image_alt = direction_alt
+        %}
+        <article class="cukcolour__direction cukcolour__direction--{{ direction }}">
+          <div class="cukcolour__image">
+            {{ photo | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 900, 1100', sizes: '(min-width: 1500px) 422px, (min-width: 1000px) 28vw, 90vw', loading: 'lazy', alt: image_alt }}
+          </div>
+          <p class="cukcolour__label"><span aria-hidden="true">0{{ forloop.index }}</span>{{ direction_label }}</p>
+          <h3>{{ direction_heading }}</h3>
+          <p class="cukcolour__explanation">{{ direction_copy }}</p>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="cukcolour__balance" aria-labelledby="cukcolour-balance-heading">
+      <h3 id="cukcolour-balance-heading">A balanced room is more than one colour.</h3>
+      <p class="cukcolour__balance-copy">The 60–30–10 principle is a useful starting point, not a fixed formula. Curtains often form the supporting layer that brings the room together.</p>
+      <div class="cukcolour__palette" aria-hidden="true"><span></span><span></span><span></span></div>
+      <dl class="cukcolour__layers">
+        <div class="cukcolour__layer cukcolour__layer--room">
+          <dt><span class="cukcolour__percentage">60%</span><span class="cukcolour__layer-title">The room</span></dt>
+          <dd>Walls + major furniture</dd>
+        </div>
+        <div class="cukcolour__layer cukcolour__layer--layer">
+          <dt><span class="cukcolour__percentage">30%</span><span class="cukcolour__layer-title">The supporting layer</span></dt>
+          <dd>Curtains + rugs + upholstery</dd>
+        </div>
+        <div class="cukcolour__layer cukcolour__layer--accent">
+          <dt><span class="cukcolour__percentage">10%</span><span class="cukcolour__layer-title">The accents</span></dt>
+          <dd>Cushions + artwork + accessories</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="cukcolour__intelligence">
+      <p class="cukcolour__inputs">
+<span>YOUR WALL COLOUR</span><span aria-hidden="true">+</span><span>ROOM PALETTE</span><span aria-hidden="true">+</span><span>LIGHT</span><span aria-hidden="true">+</span><span>FURNISHINGS</span><span aria-hidden="true">+</span><span>YOUR TASTE</span>
+      </p>
+      <span class="cukcolour__arrow" aria-hidden="true">↓</span>
+      <h3>Fabric Intelligence™</h3>
+      <span class="cukcolour__arrow" aria-hidden="true">↓</span>
+      <p class="cukcolour__result">A curtain colour that belongs in your room.</p>
+      <p class="cukcolour__confidence">You don’t need to understand colour theory. Show us your room and we’ll use it for you.</p>
+      <a class="cukcolour__cta" href="/apps/curtainsuk-decision/consultation?entry=match">Let us read my room <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+{% stylesheet %}
+  .cukcolour { background: #f0ede4; color: #20332e; padding: clamp(80px, 8vw, 120px) 0; font-family: var(--font-body-family); }
+  .cukcolour .cukcolour__wrap { box-sizing: border-box; max-width: 1500px; padding-inline: clamp(24px, 5vw, 74px); margin-inline: auto; }
+  .cukcolour .cukcolour__header { max-width: 920px; text-align: center; margin: 0 auto clamp(52px, 5.5vw, 84px); }
+  .cukcolour .cukcolour__eyebrow { font-size: 11px; line-height: 1.6; letter-spacing: .18em; font-weight: 700; color: #52614b; margin: 0 0 24px; }
+  .cukcolour .cukcolour__header h2 { font-family: var(--font-heading-family); font-size: clamp(34px, 4.2vw, 62px); font-weight: 400; line-height: 1.1; letter-spacing: -.035em; color: #173d35; margin: 0; text-wrap: balance; }
+  .cukcolour .cukcolour__intro { font-size: 17px; line-height: 1.7; color: #40534d; max-width: 700px; margin: 28px auto 0; text-wrap: pretty; }
+  .cukcolour .cukcolour__directions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(24px, 3vw, 44px); }
+  .cukcolour .cukcolour__direction { display: grid; grid-row: span 4; grid-template-rows: subgrid; min-width: 0; }
+  .cukcolour .cukcolour__image { aspect-ratio: 1; overflow: hidden; background: #e1dbcd; }
+  .cukcolour .cukcolour__image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .cukcolour .cukcolour__direction--tonal img { object-position: 50% 80%; }
+  .cukcolour .cukcolour__direction--contrast img { object-position: 15% 50%; }
+  .cukcolour .cukcolour__label { display: flex; gap: 20px; margin: 28px 0 16px; font-size: 11px; line-height: 1.6; letter-spacing: .15em; font-weight: 600; color: #52614b; }
+  .cukcolour .cukcolour__label span { font-weight: 400; font-variant-numeric: tabular-nums; }
+  .cukcolour .cukcolour__direction h3 { font-family: var(--font-heading-family); font-size: clamp(28px, 2.5vw, 38px); font-weight: 400; line-height: 1.15; letter-spacing: -.025em; color: #173d35; margin: 0 0 20px; }
+  .cukcolour .cukcolour__explanation { font-size: 15px; line-height: 1.8; color: #40534d; margin: 0; text-wrap: pretty; }
+  .cukcolour .cukcolour__balance { border-top: 1px solid #c7cbbd; margin-top: clamp(64px, 7vw, 104px); padding-top: clamp(48px, 5vw, 72px); }
+  .cukcolour .cukcolour__balance h3 { font-family: var(--font-heading-family); color: #173d35; font-size: clamp(30px, 3vw, 44px); line-height: 1.15; font-weight: 400; letter-spacing: -.025em; margin: 0; text-align: center; text-wrap: balance; }
+  .cukcolour .cukcolour__balance-copy { max-width: 700px; margin: 22px auto 40px; color: #40534d; text-align: center; font-size: 16px; line-height: 1.75; text-wrap: pretty; }
+  .cukcolour .cukcolour__palette { display: grid; grid-template-columns: 6fr 3fr 1fr; height: 30px; }
+  .cukcolour .cukcolour__palette span:nth-child(1) { background: #d7cdbb; }
+  .cukcolour .cukcolour__palette span:nth-child(2) { background: #687460; }
+  .cukcolour .cukcolour__palette span:nth-child(3) { background: #a56449; }
+  .cukcolour .cukcolour__layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 30px 0 0; }
+  .cukcolour .cukcolour__layer dt { display: flex; flex-direction: column; gap: 12px; }
+  .cukcolour .cukcolour__percentage { font-family: var(--font-heading-family); font-size: 52px; font-weight: 400; line-height: 1; letter-spacing: -.04em; color: #173d35; }
+  .cukcolour .cukcolour__layer-title { font-size: 17px; font-weight: 600; line-height: 1.5; }
+  .cukcolour .cukcolour__layer dd { margin: 6px 0 0; font-size: 14px; line-height: 1.7; color: #40534d; }
+  .cukcolour .cukcolour__intelligence { border-top: 1px solid #c7cbbd; margin-top: clamp(64px, 7vw, 104px); padding-top: clamp(48px, 5vw, 72px); text-align: center; }
+  .cukcolour .cukcolour__inputs { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; margin: 0; font-size: 10px; font-weight: 500; line-height: 1.8; letter-spacing: .12em; color: #52614b; }
+  .cukcolour .cukcolour__arrow { display: block; margin: 22px auto; font-size: 25px; line-height: 1; font-weight: 400; color: #687460; }
+  .cukcolour .cukcolour__intelligence h3 { font-family: var(--font-heading-family); font-size: clamp(36px, 4vw, 58px); line-height: 1.1; font-weight: 400; letter-spacing: -.035em; color: #173d35; margin: 0; text-wrap: balance; }
+  .cukcolour .cukcolour__result { font-size: clamp(22px, 2.1vw, 30px); line-height: 1.35; color: #173d35; margin: 0; text-wrap: balance; }
+  .cukcolour .cukcolour__confidence { max-width: 570px; margin: 22px auto 30px; font-size: 16px; line-height: 1.75; color: #40534d; text-wrap: pretty; }
+  .cukcolour a.cukcolour__cta { display: inline-flex; align-items: center; justify-content: center; gap: 28px; min-height: 52px; padding: 12px 26px; box-sizing: border-box; max-width: 100%; background: #173d35; color: #f6f2e8; font-size: 14px; font-weight: 600; line-height: 1.6; text-decoration: none; }
+  .cukcolour a.cukcolour__cta:hover { background: #284e42; }
+  .cukcolour a.cukcolour__cta:focus-visible { outline: 2px solid #173d35; outline-offset: 5px; }
+  @media (max-width: 999px) {
+    .cukcolour .cukcolour__directions { grid-template-columns: minmax(0, 1fr); gap: 60px; }
+    .cukcolour .cukcolour__direction { display: block; grid-row: auto; }
+    .cukcolour .cukcolour__direction h3 { font-size: 32px; }
+    .cukcolour .cukcolour__intro { font-size: 16px; }
+    .cukcolour .cukcolour__layers { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .cukcolour .cukcolour__layer { display: grid; grid-template-columns: 80px minmax(0, 1fr); column-gap: 20px; }
+    .cukcolour .cukcolour__layer dt { display: contents; }
+    .cukcolour .cukcolour__percentage { grid-row: span 2; font-size: 44px; }
+    .cukcolour .cukcolour__layer dd { grid-column: 2; margin-top: 4px; }
+    .cukcolour .cukcolour__layer-title { font-size: 16px; }
+    .cukcolour .cukcolour__palette { height: 22px; }
+    .cukcolour .cukcolour__inputs { gap: 8px 10px; font-size: 10px; letter-spacing: .08em; }
+  }
+{% endstylesheet %}

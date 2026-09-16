@@ -1,0 +1,35 @@
+{% doc %}
+  Editorial navigation using the commercial routes inherited from the live base.
+  @param {string} location - Desktop, mobile or fallback scope
+  @param {string} section_id - Parent section ID
+{% enddoc %}
+<ul class="cuknav__list">
+  <li class="cuknav__item">
+    <details class="cuknav__disclosure">
+      <summary aria-expanded="false" aria-controls="CukIntelligence-{{ location }}-{{ section_id }}">Fabric Intelligence™ <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
+      <div class="cuknav__dropdown" id="CukIntelligence-{{ location }}-{{ section_id }}">
+        <p class="cuknav__overline">A considered fabric direction</p>
+        <ul>
+          <li><a href="/apps/curtainsuk-decision/consultation?entry=match">Let us read your room <span aria-hidden="true">→</span></a></li>
+          <li><a href="/apps/curtainsuk-decision/consultation?entry=guided">Help me choose</a></li>
+          <li><a href="{{ routes.root_url }}#what-we-consider">How Fabric Intelligence works</a></li>
+          <li><a href="{{ routes.root_url }}#colour-intelligence">Colour Intelligence</a></li>
+        </ul>
+      </div>
+    </details>
+  </li>
+  <li class="cuknav__item"><a href="/pages/fabric-library">Fabrics</a></li>
+  <li class="cuknav__item"><a href="/pages/solve-my-window">Shop by Window</a></li>
+  <li class="cuknav__item"><a href="/pages/samples">Samples</a></li>
+  <li class="cuknav__item">
+    <details class="cuknav__disclosure">
+      <summary aria-expanded="false" aria-controls="CukGuides-{{ location }}-{{ section_id }}">Measure &amp; Fit <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
+      <div class="cuknav__dropdown" id="CukGuides-{{ location }}-{{ section_id }}"><ul>
+        <li><a href="/pages/how-to-measure">How to Measure</a></li>
+        <li><a href="/pages/how-to-fit">How to Fit</a></li>
+      </ul></div>
+    </details>
+  </li>
+  <li class="cuknav__item"><a href="{{ routes.root_url }}#curtainsuk-inspiration">Inspiration</a></li>
+  <li class="cuknav__item"><a href="{{ routes.root_url }}#curtainsuk-help">Contact</a></li>
+</ul>

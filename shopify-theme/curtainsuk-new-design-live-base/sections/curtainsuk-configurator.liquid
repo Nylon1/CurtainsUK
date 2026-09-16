@@ -1,0 +1,230 @@
+{% liquid
+  assign production_checkout = false
+  if theme.role == 'main' and settings.curtainsuk_staging_mode == false
+    assign production_checkout = true
+  endif
+%}
+{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
+
+{% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
+<script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
+{% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
+<section class="cuk-shell cuk-section" data-cuk-configurator data-production-checkout="{{ production_checkout }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
+  <div class="cuk-wrap">
+    <div class="cuk-section__head">
+      <div>
+        <p class="cuk-eyebrow">Made for your window{% unless production_checkout %} · private preview{% endunless %}</p>
+        <h1>Make it yours.</h1>
+      </div>
+      <span class="cuk-status" data-cuk-route-status>Loading route…</span>
+    </div>
+    <section class="cuk-panel cuk-reviewed-resume cuk-hidden" data-cuk-reviewed-resume tabindex="-1" aria-live="polite">
+      <p class="cuk-eyebrow">Staff-reviewed curtain{% unless production_checkout %} · staging only{% endunless %}</p>
+      <h2>Review and accept your final curtain specification</h2>
+      <p data-cuk-reviewed-loading>Securely checking the approved revision…</p>
+      <div class="cuk-hidden" data-cuk-reviewed-content>
+        <span class="cuk-status" data-cuk-reviewed-status>Ready for acceptance</span>
+        <p class="cuk-result__price" data-cuk-reviewed-price></p>
+        <p data-cuk-reviewed-message>Your staff-reviewed price is frozen to this exact revision. Delivery is shown separately.</p>
+        <dl class="cuk-result__summary">
+          <div><dt>Reference</dt><dd data-cuk-reviewed-reference>—</dd></div>
+          <div><dt>Window</dt><dd data-cuk-reviewed-window>—</dd></div>
+          <div><dt>Measurements</dt><dd data-cuk-reviewed-measurements>—</dd></div>
+          <div><dt>Fabric</dt><dd data-cuk-reviewed-fabric>—</dd></div>
+          <div><dt>Heading</dt><dd data-cuk-reviewed-heading>—</dd></div>
+          <div><dt>Lining</dt><dd data-cuk-reviewed-lining>—</dd></div>
+          <div><dt>Pair / single</dt><dd data-cuk-reviewed-construction>—</dd></div>
+          <div><dt>Availability</dt><dd data-cuk-reviewed-availability>—</dd></div>
+          <div><dt>Price</dt><dd data-cuk-reviewed-price-summary>—</dd></div>
+          <div><dt>Delivery</dt><dd data-cuk-reviewed-delivery>Shown separately</dd></div>
+          <div><dt>Review status</dt><dd>Approved by the curtain team</dd></div>
+        </dl>
+        <form class="cuk-checkout-handoff" data-cuk-reviewed-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
+          <h3>{% if production_checkout %}Your approved curtains{% else %}Prepare your Shopify test checkout{% endif %}</h3>
+          <p>{% if production_checkout %}We will confirm the exact approved specification, price, availability and delivery before secure checkout.{% else %}The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.{% endif %}</p>
+          <div class="cuk-field">
+            <label for="CukReviewedShippingRegion-{{ section.id }}">Delivery area</label>
+            <select id="CukReviewedShippingRegion-{{ section.id }}" name="shippingRegion" required>
+              <option value="UK_MAINLAND">UK Mainland</option>
+              <option value="HIGHLANDS_ISLANDS">Highlands and Islands</option>
+              <option value="NORTHERN_IRELAND">Northern Ireland</option>
+            </select>
+          </div>
+          <div class="cuk-field">
+            <label for="CukReviewedPostcode-{{ section.id }}">Delivery postcode</label>
+            <input id="CukReviewedPostcode-{{ section.id }}" name="shippingPostcode" autocomplete="postal-code" maxlength="8" required>
+          </div>
+          <label class="cuk-checkout-handoff__accept" for="CukAcceptReviewedSummary-{{ section.id }}">
+            <input id="CukAcceptReviewedSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>
+            <span>I accept this exact staff-reviewed specification and VAT-inclusive price.</span>
+          </label>
+          <div class="cuk-error" data-cuk-reviewed-error hidden></div>
+          <div class="cuk-review-confirmation cuk-hidden" data-cuk-reviewed-confirmation tabindex="-1"></div>
+          <button class="cuk-button" type="submit">{% if production_checkout %}Continue to secure checkout{% else %}Prepare test checkout{% endif %}</button>
+          <p class="cuk-hint">No real payment can be taken and this does not release the job to manufacture.</p>
+        </form>
+      </div>
+      <div class="cuk-error" data-cuk-reviewed-load-error hidden></div>
+      <p class="cuk-hint"><a href="/pages/curtain-visualiser" data-cuk-reviewed-clear>Start a new curtain configuration</a></p>
+    </section>
+    <div class="cuk-layout" data-cuk-configurator-builder>
+      <form class="cuk-panel cuk-form">
+        <fieldset class="cuk-step">
+          <legend>1. Window type</legend>
+          <div class="cuk-field">
+            <label for="CukWindow-{{ section.id }}">What are you dressing?</label>
+            <select id="CukWindow-{{ section.id }}" name="windowSlug" required><option value="">Choose a window</option></select>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step" data-cuk-standard>
+          <legend>2. Measurements</legend>
+          <div class="cuk-fields">
+            <div class="cuk-field cuk-field--wide" data-cuk-measurement-basis>
+              <label for="CukBasis-{{ section.id }}">Width measurement basis</label>
+              <select id="CukBasis-{{ section.id }}" name="measurementBasis" required>
+                <option value="TRACK_WIDTH">Track width</option>
+                <option value="POLE_USABLE_WIDTH">Usable pole width</option>
+              </select>
+              <p class="cuk-hint">Enter the full coverage width, not a finished curtain width.</p>
+            </div>
+            <div class="cuk-field" data-cuk-width><label for="CukWidth-{{ section.id }}" data-cuk-width-label>Width (cm)</label><input id="CukWidth-{{ section.id }}" name="widthCm" type="number" min="30" max="1200" step="0.1" value="200" required><p class="cuk-hint cuk-hidden" data-cuk-width-hint>Measure along the complete curved track, not straight across the opening.</p></div>
+            <div class="cuk-field"><label for="CukDrop-{{ section.id }}">Drop (cm)</label><input id="CukDrop-{{ section.id }}" name="dropCm" type="number" min="30" max="600" step="0.1" value="220" required></div>
+            <div class="cuk-field cuk-hidden" data-cuk-bay>
+              <label for="CukBaySectionCount-{{ section.id }}">Number of bay sections</label>
+              <input id="CukBaySectionCount-{{ section.id }}" name="baySectionCount" type="number" min="2" max="8" step="1" value="3" required>
+            </div>
+            <div class="cuk-field cuk-field--wide cuk-hidden" data-cuk-bay>
+              <span class="cuk-field__label">Width of each section (cm)</span>
+              <div class="cuk-bay-sections" data-cuk-bay-sections></div>
+              <p class="cuk-hint">Measure along the fitted track or pole. We add the sections to calculate the full curtain coverage width; angles are not needed for curtain pricing.</p>
+            </div>
+            <div class="cuk-field cuk-hidden" data-cuk-corner><label for="CukCornerOne-{{ section.id }}">First section width (cm)</label><input id="CukCornerOne-{{ section.id }}" name="cornerSectionOneCm" type="number" min="10" max="600" step="0.1" value="150" required></div>
+            <div class="cuk-field cuk-hidden" data-cuk-corner><label for="CukCornerTwo-{{ section.id }}">Second section width (cm)</label><input id="CukCornerTwo-{{ section.id }}" name="cornerSectionTwoCm" type="number" min="10" max="600" step="0.1" value="150" required></div>
+            <div class="cuk-field cuk-field--wide cuk-hidden" data-cuk-corner><label for="CukCornerAngle-{{ section.id }}">Corner angle (degrees)</label><input id="CukCornerAngle-{{ section.id }}" name="cornerAngleDegrees" type="number" min="1" max="359" step="0.1" value="90" required><p class="cuk-hint">One approximate internal angle is enough for curtain review. Bay windows remain angle-free.</p></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step cuk-hidden" data-cuk-specialist-shape>
+          <legend>2. Specialist measurements</legend>
+          <div class="cuk-fields">
+            <div class="cuk-field"><label for="CukBase-{{ section.id }}">Base width (cm)</label><input id="CukBase-{{ section.id }}" name="baseWidth" type="number" min="30" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukPeak-{{ section.id }}">Overall peak height (cm)</label><input id="CukPeak-{{ section.id }}" name="peakHeight" type="number" min="30" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukLeftVertical-{{ section.id }}">Left vertical (cm)</label><input id="CukLeftVertical-{{ section.id }}" name="leftVertical" type="number" min="0.1" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukRightVertical-{{ section.id }}">Right vertical (cm)</label><input id="CukRightVertical-{{ section.id }}" name="rightVertical" type="number" min="0.1" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukLeftSlope-{{ section.id }}">Left slope (cm)</label><input id="CukLeftSlope-{{ section.id }}" name="leftSlope" type="number" min="1" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukRightSlope-{{ section.id }}">Right slope (cm)</label><input id="CukRightSlope-{{ section.id }}" name="rightSlope" type="number" min="1" step="0.1" required></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukFixing-{{ section.id }}">Fixing position</label><textarea id="CukFixing-{{ section.id }}" name="fixingPosition" required placeholder="For example: ceiling fixed within the recess"></textarea></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step cuk-hidden" data-cuk-awkward>
+          <legend>2. Rough project dimensions</legend>
+          <p class="cuk-hint">Approximate measurements are enough to start. The technical team will identify the exact geometry from your photograph and drawing.</p>
+          <div class="cuk-fields">
+            <div class="cuk-field"><label for="CukRoughWidth-{{ section.id }}">Rough overall width (cm)</label><input id="CukRoughWidth-{{ section.id }}" name="roughWidthCm" type="number" min="30" max="1200" step="0.1" required></div>
+            <div class="cuk-field"><label for="CukRoughDrop-{{ section.id }}">Rough maximum drop / height (cm)</label><input id="CukRoughDrop-{{ section.id }}" name="roughDropCm" type="number" min="30" max="600" step="0.1" required></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukAwkwardFixing-{{ section.id }}">Proposed fixing position</label><textarea id="CukAwkwardFixing-{{ section.id }}" name="awkwardFixingPosition" required placeholder="For example: ceiling fixed around the glazed opening"></textarea></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step">
+          <legend>3. Curtain specification</legend>
+          <div class="cuk-fields">
+            <div class="cuk-field"><label for="CukHeading-{{ section.id }}">Heading</label><select id="CukHeading-{{ section.id }}" name="heading" required><option value="PENCIL_PLEAT">Pencil pleat</option><option value="WAVE">Wave</option><option value="EYELET">Eyelet</option><option value="DOUBLE_PINCH">Double pinch pleat</option></select></div>
+            <div class="cuk-field"><label for="CukFabric-{{ section.id }}">Fabric and colour</label><select id="CukFabric-{{ section.id }}" name="fabricId" required><option value="">Loading fabrics…</option></select><a class="cuk-text-link" data-cuk-browse-fabrics href="/pages/fabric-library">Browse all fabrics for this window</a></div>
+            <div class="cuk-field"><label for="CukLining-{{ section.id }}">Lining</label><select id="CukLining-{{ section.id }}" name="lining" required><option value="STANDARD">Standard lining</option><option value="BLACKOUT">Blackout lining</option><option value="THERMAL">Thermal lining</option><option value="BONDED">Bonded lining / interlining</option><option value="UNLINED">Unlined</option></select></div>
+            <div class="cuk-field"><label for="CukConstruction-{{ section.id }}">Pair or single</label><select id="CukConstruction-{{ section.id }}" name="construction" required><option value="PAIR">Pair</option><option value="SINGLE">Single curtain</option></select></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukStack-{{ section.id }}">Opening / stack direction</label><select id="CukStack-{{ section.id }}" name="stackDirection" required><option value="SPLIT">Pair opening from centre</option><option value="LEFT">Stack left</option><option value="RIGHT">Stack right</option></select></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="cuk-step cuk-hidden" data-cuk-review-evidence>
+          <legend>4. Photos and drawings by email</legend>
+          <p>Submit your measurements first. We will give you a unique reference to include when emailing photos or drawings separately to {{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}. No files are uploaded here.</p>
+        </fieldset>
+
+        <div class="cuk-error" data-cuk-error hidden></div>
+        <button class="cuk-button" type="submit">Check my price or review route</button>
+        <p class="cuk-hint">{% if production_checkout %}Review your measurements and choices carefully before continuing.{% else %}Staging only. This flow cannot take real payment or release a job to manufacture.{% endif %}</p>
+      </form>
+
+      <aside class="cuk-panel cuk-result" data-cuk-result hidden aria-live="polite">
+        <span class="cuk-status cuk-status--review" data-cuk-result-outcome></span>
+        <p class="cuk-result__price" data-cuk-result-price></p>
+        <p data-cuk-result-message></p>
+        <h2 class="cuk-result__summary-title">Your curtain summary</h2>
+        <dl class="cuk-result__summary" data-cuk-result-summary>
+          <div><dt>Window</dt><dd data-cuk-summary-window>—</dd></div>
+          <div><dt>Dimensions</dt><dd data-cuk-summary-dimensions>—</dd></div>
+          <div><dt>Fabric</dt><dd data-cuk-summary-fabric>—</dd></div>
+          <div><dt>Heading</dt><dd data-cuk-summary-heading>—</dd></div>
+          <div><dt>Lining</dt><dd data-cuk-summary-lining>—</dd></div>
+          <div><dt>Pair / single</dt><dd data-cuk-summary-construction>—</dd></div>
+          <div><dt>Availability</dt><dd data-cuk-summary-availability>—</dd></div>
+          <div><dt>Price</dt><dd data-cuk-summary-price>—</dd></div>
+          <div><dt>Delivery</dt><dd data-cuk-summary-delivery>Shown separately</dd></div>
+          <div><dt>Review status</dt><dd data-cuk-summary-review>Not required</dd></div>
+        </dl>
+        <p class="cuk-hint" data-cuk-result-spec></p>
+        <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
+          <h2>{% if production_checkout %}Your curtain order{% else %}Prepare a Shopify test checkout{% endif %}</h2>
+          <p>{% if production_checkout %}Your curtain specification and price are preserved. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
+          <div class="cuk-field">
+            <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>
+            <select id="CukShippingRegion-{{ section.id }}" name="shippingRegion" required>
+              <option value="UK_MAINLAND">UK Mainland</option>
+              <option value="HIGHLANDS_ISLANDS">Highlands and Islands</option>
+              <option value="NORTHERN_IRELAND">Northern Ireland</option>
+            </select>
+          </div>
+          <div class="cuk-field">
+            <label for="CukPostcode-{{ section.id }}">Delivery postcode</label>
+            <input id="CukPostcode-{{ section.id }}" name="shippingPostcode" autocomplete="postal-code" maxlength="8" required>
+          </div>
+          <label class="cuk-checkout-handoff__accept" for="CukAcceptSummary-{{ section.id }}">
+            <input id="CukAcceptSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>
+            <span>I confirm the summary above matches my measurements and selections.</span>
+          </label>
+          <div class="cuk-error" data-cuk-checkout-error hidden></div>
+          <p class="cuk-review-confirmation cuk-hidden" data-cuk-checkout-confirmation tabindex="-1"></p>
+          <button class="cuk-button" type="submit">{% if production_checkout %}Continue to secure checkout{% else %}Prepare test checkout{% endif %}</button>
+          <p class="cuk-hint">{% if production_checkout %}Your order is confirmed only after successful payment.{% else %}Real payment and manufacture remain disabled.{% endif %}</p>
+        </form>
+        <form class="cuk-review-submit cuk-hidden" data-cuk-review-form>
+          <h2>Send this project for review</h2>
+          <p data-cuk-review-next-step>Share your contact details and our curtain team will check the specification before confirming the next step.</p>
+          <div class="cuk-fields">
+            <div class="cuk-field"><label for="CukReviewName-{{ section.id }}">Name</label><input id="CukReviewName-{{ section.id }}" name="customerName" autocomplete="name" required></div>
+            <div class="cuk-field"><label for="CukReviewEmail-{{ section.id }}">Email</label><input id="CukReviewEmail-{{ section.id }}" name="customerEmail" type="email" autocomplete="email" required></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukReviewPhone-{{ section.id }}">Phone (optional)</label><input id="CukReviewPhone-{{ section.id }}" name="customerPhone" type="tel" autocomplete="tel"></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukReviewNotes-{{ section.id }}">Anything else we should know? (optional)</label><textarea id="CukReviewNotes-{{ section.id }}" name="customerNotes"></textarea></div>
+          </div>
+          <div class="cuk-error" data-cuk-review-error hidden></div>
+          <button class="cuk-button" type="submit">Submit project for review</button>
+          <p class="cuk-hint">Submitting does not take payment or release anything to manufacture.</p>
+        </form>
+        <div class="cuk-review-confirmation cuk-hidden" data-cuk-review-confirmation tabindex="-1"></div>
+        <div class="cuk-notice" data-cuk-result-notice>{% if production_checkout %}VAT is included. Delivery and availability are confirmed before checkout.{% else %}Staging only. Shopify test checkout remains gated; real payment is disabled.{% endif %}</div>
+      </aside>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "CurtainsUK configurator",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" },
+    { "type": "text", "id": "initial_window", "label": "Initial Window Type slug", "default": "standard-window" },
+    { "type": "text", "id": "review_request_path", "label": "Review request endpoint path", "default": "review-request" },
+    { "type": "text", "id": "staging_checkout_host", "label": "Allowed Shopify development-store checkout host", "default": "curtainsuk-dev.myshopify.com" }
+  ],
+  "presets": [{ "name": "CurtainsUK configurator" }]
+}
+{% endschema %}

@@ -1,5 +1,5 @@
-/** Presentation-only staging boundary. No engine imports or browser-supplied state. */
-export const HCI_INTEGRATION_BASELINE = "41a9f3f";
+/** Presentation-only integration boundary. No engine imports or browser-supplied state. */
+export const HCI_INTEGRATION_BASELINE = "6963feb3d3e85e80b759cd2e3cc5a505e8a80960";
 /** Translate an explicit consultation answer only; this is a commerce handoff hint, not ranking logic. */
 export function integrationWindowContext(state: unknown): string | null {
   const commands = (state as { commands?: unknown[] } | null)?.commands;

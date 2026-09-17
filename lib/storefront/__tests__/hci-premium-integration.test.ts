@@ -87,6 +87,26 @@ test('premium route is preview-only and needs both existing staging gates', () =
   assert.equal(premiumHciEnabled({ ...base, CURTAINSUK_HCI_PREMIUM_ENABLED: 'false' }), false);
 });
 
+test('short taste and exact real-fabric calibration projection is bounded', () => {
+  const base = {
+    version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId,
+    phase: 'calibration', profileSummary: '', question: null, stimulusId: null,
+    palette: null, directions: [], learning: null, refinementDigest: null,
+    tasteProgress: { current: 3, total: 3 },
+    calibrationProgress: { current: 2, total: 6 },
+    calibrationFabric: {
+      fabricMasterId: 'sdg-ddae236495', supplierSku: 'DDAE236495',
+      brand: 'Sanderson', design: 'Linden', colourway: 'Celadon',
+      imageUrl: 'https://cdn.shopify.com/s/files/1/example.jpg',
+    },
+  };
+  const view = customerView(base);
+  assert.equal(view.calibrationFabric?.fabricMasterId, 'sdg-ddae236495');
+  assert.deepEqual(view.calibrationProgress, { current: 2, total: 6 });
+  assert.throws(() => customerView({ ...base, calibrationFabric: { ...base.calibrationFabric, imageUrl: 'https://example.com/a.jpg' } }));
+  assert.throws(() => customerView({ ...base, calibrationProgress: { current: 7, total: 6 } }));
+});
+
 test('premium fabric feedback records governed reaction evidence without mutating supplier truth', () => {
   const events = acceptedHciFeedback({
     sessionId,

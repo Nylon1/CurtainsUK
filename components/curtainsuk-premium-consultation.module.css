@@ -5,3 +5,28 @@
 
 /* Offset approved HCI focus/scroll targets for the inherited sticky CurtainsUK header. */
 .referenceHost [tabindex="-1"] { scroll-margin-top: 88px; }
+
+/* Candidate consultation: the shared room-analysis presentation remains untouched. */
+.taste,.eye{max-width:1120px;margin:clamp(42px,7vw,90px) auto 90px}
+.stepLine{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:860px;color:#657167;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.stepLine .eyebrow{margin:0}
+.stepProgress{display:block;width:min(100%,860px);height:3px;margin:18px 0 44px;appearance:none;border:0;background:#ded8c9}
+.stepProgress::-webkit-progress-bar{background:#ded8c9}.stepProgress::-webkit-progress-value{background:#315440}.stepProgress::-moz-progress-bar{background:#315440}
+.taste h1,.eye h1{max-width:850px}
+.tasteChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:42px 0 30px}
+.tasteChoice{min-width:0;min-height:132px;display:grid;grid-template-columns:1fr auto;align-content:space-between;gap:24px;padding:24px 26px;text-align:left;border:1px solid #d7cebf;background:#f9f6ef;color:#213e30;font:normal clamp(23px,2.5vw,34px)/1.12 Georgia,serif;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.tasteChoice:hover{background:#eee7da;border-color:#9b8971;transform:translateY(-2px)}
+.tasteChoice:focus-visible,.eyeReactions button:focus-visible{outline:3px solid #a16f45;outline-offset:3px}
+.choiceNumber{grid-column:1/-1;color:#8d775e;font:11px Arial,sans-serif;letter-spacing:.18em}
+.tasteChoice>span:last-child{font:23px Arial,sans-serif;align-self:end}
+.eyeFabric{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,.75fr);align-items:center;gap:clamp(22px,5vw,70px);margin:34px 0}
+.eyeFabric img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#e8e0d3;margin:0}
+.eyeFabric h2{font:normal clamp(30px,3.2vw,47px)/1.1 Georgia,serif;letter-spacing:-.045em;margin:12px 0}
+.eyeFabric p:not(.eyebrow){color:#667167;font-size:14px}
+.eyeReactions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:30px 0}
+.eyeReactions button{min-height:58px;padding:12px;border:1px solid #274635;background:#274635;color:#fff;font:inherit;cursor:pointer}
+.eyeReactions button:hover{background:#173a27}
+.eyeReactions button:nth-child(n+3){background:transparent;color:#274635}
+.eyeReactions button:nth-child(n+3):hover{background:#eee7da}
+@media(max-width:700px){.taste,.eye{margin:38px auto 68px}.stepProgress{margin:14px 0 30px}.taste h1,.eye h1{font-size:clamp(39px,11vw,53px)}.tasteChoices{grid-template-columns:1fr;gap:10px;margin:28px 0}.tasteChoice{min-height:78px;padding:16px 18px;gap:8px;font-size:25px}.choiceNumber{font-size:10px}.eyeFabric{grid-template-columns:1fr;gap:16px;margin:24px 0}.eyeFabric img{aspect-ratio:4/3}.eyeFabric h2{font-size:34px;margin:6px 0}.eyeReactions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.eyeReactions button{min-height:52px}}
+@media(prefers-reduced-motion:reduce){.tasteChoice{transition:none}.tasteChoice:hover{transform:none}}

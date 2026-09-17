@@ -17,7 +17,7 @@ export function assertNoRawReferenceMedia(value: unknown): void {
     if (Array.isArray(node)) { node.forEach((child,index)=>inspect(child,`${path}.${index}`)); return; }
     if (node && typeof node === "object") {
       for (const [key, child] of Object.entries(node)) {
-        if (/^(bytes|base64|rawImage|imageBytes|imageData|pixels)$/i.test(key) || (key === 'imageUrl' && !/\.(candidates\.\d+|strongestOmitted)\.binding$/.test(path)))
+        if (/^(bytes|base64|rawImage|imageBytes|imageData|pixels)$/i.test(key) || (key === 'imageUrl' && path !== '.calibrationFabric' && !/\.(candidates\.\d+|strongestOmitted)\.binding$/.test(path)))
           throw Error("HCI_RAW_IMAGE_RETENTION_REJECTED");
         inspect(child,`${path}.${key}`);
       }

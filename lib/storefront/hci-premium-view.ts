@@ -23,6 +23,27 @@ export function customerView(value: unknown) {
   assertNoRawReferenceMedia(view);
   if ('revision' in view && (!Number.isSafeInteger(view.revision) || Number(view.revision) < 0)) throw Error('HCI_CONTRACT_INVALID');
   const seen = new Set<string>();
+  const progress = (value: unknown, maximum: number) => {
+    if (value === null || value === undefined) return null;
+    const item = object(value);
+    fields(item, ['current', 'total']);
+    if (!Number.isSafeInteger(item.current) || !Number.isSafeInteger(item.total) ||
+      Number(item.current) < 1 || Number(item.total) < 1 || Number(item.current) > Number(item.total) || Number(item.total) > maximum)
+      throw Error('HCI_CONTRACT_INVALID');
+    return { current: Number(item.current), total: Number(item.total) };
+  };
+  const eye = view.calibrationFabric == null ? null : (() => {
+    const item = object(view.calibrationFabric);
+    fields(item, ['fabricMasterId', 'supplierSku', 'brand', 'design', 'colourway', 'imageUrl']);
+    const imageUrl = new URL(string(item.imageUrl, 2000));
+    if (imageUrl.protocol !== 'https:' || imageUrl.hostname !== 'cdn.shopify.com' || imageUrl.search)
+      throw Error('HCI_CONTRACT_INVALID');
+    return {
+      fabricMasterId: string(item.fabricMasterId, 150), supplierSku: string(item.supplierSku, 150),
+      brand: string(item.brand, 160), design: string(item.design, 160),
+      colourway: string(item.colourway, 160), imageUrl: imageUrl.toString(),
+    };
+  })();
   const directions = view.directions.map((candidate) => {
     const direction = object(candidate);
     fields(direction, ['id', 'label', 'purpose', 'status', 'cards', 'feedback']);
@@ -52,6 +73,9 @@ export function customerView(value: unknown) {
     profileSummary: typeof view.profileSummary === 'string' ? view.profileSummary.slice(0, 4000) : '',
     question: view.question === null ? null : view.question,
     stimulusId: view.stimulusId === null ? null : string(view.stimulusId, 160),
+    tasteProgress: progress(view.tasteProgress, 4),
+    calibrationFabric: eye,
+    calibrationProgress: progress(view.calibrationProgress, 8),
     palette: view.palette === null ? null : view.palette,
     directions,
     learning: view.learning === null ? null : view.learning,

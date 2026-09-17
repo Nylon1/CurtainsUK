@@ -2,8 +2,36 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { premiumHciCommand, premiumHciEnabled } from '../hci-premium-contract';
 import { acceptedHciFeedback } from '../hci-feedback';
+import { roomFeatures } from '../../../vendor/hci-approved/intelligence/reference-images/room-context';
+import { createPalette, editPalette, type PaletteAction } from '../../../vendor/hci-approved/intelligence/reference-images/palette';
 
 const sessionId = '11111111-1111-4111-8111-111111111111';
+
+test('gateway accepts every canonical HCI room feature without translation or evidence loss', () => {
+  const draft = createPalette({ schema: 'hci-draft-palette-observation-v1', palette: { primary: ['grey'], secondary: [], accent: [] } }, {
+    consultationId: sessionId, imageHash: `sha256:${'a'.repeat(64)}`, modelVersion: 'test',
+  });
+  const state = editPalette(draft, { id: 'begin', revision: 0, type: 'begin-review' });
+  for (const feature of roomFeatures) {
+    for (const type of ['describe', 'review-colour'] as const) {
+      const command = premiumHciCommand({ requestId: sessionId, sessionId, revision: 1, action: {
+        type: 'palette', edit: { id: `feature:${feature}:${type}`, revision: state.revision, type,
+          previousColour: 'grey', colour: 'grey', category: 'primary', feature, influence: 'consider' },
+      } });
+      const result = editPalette(state, command.action!.edit as PaletteAction);
+      assert.equal(result.room?.colours.grey?.feature, feature);
+      assert.deepEqual(result.draft, draft.draft);
+    }
+  }
+});
+
+test('gateway still rejects obsolete aliases, arbitrary room features and malformed values', () => {
+  for (const feature of ['sofa-upholstery', 'furniture-wood', 'existing-curtains', 'cushions-soft-furnishings', 'accessories-metalwork', 'guess', '', {}, 123]) {
+    assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 1, action: {
+      type: 'palette', edit: { id: 'rejected', revision: 1, type: 'review-colour', previousColour: 'grey', colour: 'grey', category: 'primary', feature, influence: 'consider' },
+    } }), /HCI_CONTRACT_INVALID/);
+  }
+});
 
 test('premium customer contract accepts only bounded guided palette actions', () => {
   assert.equal(premiumHciCommand({ requestId: sessionId, sessionId: null, revision: null }).sessionId, sessionId);

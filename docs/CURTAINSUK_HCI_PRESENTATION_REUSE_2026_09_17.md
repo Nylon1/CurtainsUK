@@ -51,21 +51,24 @@ transport-adapted files. The authoritative implementation remains the HCI repo.
   Original guided confirmation, progress rail and review controls rendered.
 - Reduced-motion rules remain unchanged in the original imported styles.
 
-## Exact remaining boundary — awaiting owner decision
+## Palette boundary correction — owner approved
 
 The original HCI feature vocabulary is `sofa`, `furniture`, `curtains`, `cushions`,
 `accessories`. The pre-existing CurtainsUK palette validator instead permits
 `sofa-upholstery`, `furniture-wood`, `existing-curtains`,
 `cushions-soft-furnishings`, `accessories-metalwork`.
 
-Hosted Sofa confirmation returns `HCI_CONTRACT_INVALID`; Walls succeeds. This is
-a palette contract mismatch, not an image-analysis failure. It was discovered by
-using the authoritative components. Do not claim complete palette save coverage.
+Initial hosted Sofa confirmation returned `HCI_CONTRACT_INVALID`; Walls succeeded.
+The owner subsequently approved correcting only the gateway palette allow-list.
+The five obsolete aliases have now been replaced by HCI's exact canonical names.
+Upload/reference types remain separate and unchanged (`sofa-upholstery` remains a
+valid image reference type). No analysis, session, storage or security change.
 
-Because the owner explicitly requested no backend changes, the allow-list remains
-unchanged pending their answer. The proposed minimum correction is to replace
-only those five obsolete names with the exact HCI canonical names and add
-cross-contract regression coverage; do not loosen arbitrary-string validation.
+Cross-contract regression tests pass every canonical feature through both gateway
+validation and HCI palette editing, for both describe and review-colour commands.
+Original machine evidence remains unchanged. Obsolete aliases, arbitrary strings
+and malformed values remain rejected. Storefront suite: 183/183 passed.
+Hosted Sofa verification is performed on the new protected preview before delivery.
 
 The existing global Next.js navigation/footer remains outside this focused
 presentation restoration. The Shopify candidate remains unpublished and untouched.

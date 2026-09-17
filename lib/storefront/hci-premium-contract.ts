@@ -8,7 +8,7 @@ const fabricReactions = ['LOVE', 'MORE_LIKE_THIS', 'NOT_QUITE', 'NOT_FOR_ME'];
 const directionReactions = ['LOVE', 'LIKE', 'DISLIKE'];
 const referenceTypes = ['room', 'paint', 'sofa-upholstery', 'wallpaper', 'rug', 'flooring', 'existing-fabric', 'moodboard'];
 const paletteCategories = ['primary', 'secondary', 'accent'];
-const roomFeatures = ['walls', 'sofa-upholstery', 'flooring', 'rug', 'wallpaper', 'furniture-wood', 'existing-curtains', 'cushions-soft-furnishings', 'artwork', 'accessories-metalwork', 'other'];
+const roomFeatures = ['walls', 'sofa', 'flooring', 'rug', 'wallpaper', 'furniture', 'curtains', 'cushions', 'artwork', 'accessories', 'other'];
 const influences = ['important', 'consider', 'ignore'];
 export type PremiumHciCommand = { requestId: string; sessionId: string; revision: number | null; action?: Record<string, unknown> };
 

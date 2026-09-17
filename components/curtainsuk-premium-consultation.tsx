@@ -106,7 +106,10 @@ export default function CurtainsUkPremiumConsultation() {
       view.phase === 'calibration' ? view.calibrationFabric?.fabricMasterId :
         view.phase === 'complete' ? 'ready' : null;
     if (!step) return;
-    const frame = requestAnimationFrame(() => document.getElementById('premium-current-step')?.scrollIntoView({ block: 'start', behavior: 'instant' }));
+    const frame = requestAnimationFrame(() => {
+      const element = document.getElementById('premium-current-step');
+      if (element) window.scrollTo({ top: Math.max(0, window.scrollY + element.getBoundingClientRect().top - 88), behavior: 'instant' });
+    });
     return () => cancelAnimationFrame(frame);
   }, [view, reviewPalette]);
 

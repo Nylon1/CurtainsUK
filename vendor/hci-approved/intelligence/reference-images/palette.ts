@@ -1,4 +1,5 @@
 import { fingerprintHash } from '../fingerprint/engine';
+import { selectedCustomerShade } from './customer-shades';
 import {
   colourFamilies,
   standardizeReference,
@@ -35,6 +36,7 @@ export type PaletteAction = { id: string; revision: number } & (
       category: PaletteCategory;
       feature: RoomFeature | null;
       influence: ColourInfluence;
+      customerSelectedShade?: string | null;
     }
 );
 export type PaletteEdit = PaletteAction extends infer T
@@ -43,6 +45,7 @@ export type PaletteEdit = PaletteAction extends infer T
     : never
   : never;
 export type RoomColour = {
+  customerSelectedShade?: string;
   feature: RoomFeature | null;
   influence: ColourInfluence;
   source: 'MACHINE_OBSERVED' | 'CUSTOMER_CONFIRMED' | 'CUSTOMER_ADDED';
@@ -364,6 +367,7 @@ function describePalette(
     'category',
     'feature',
     'influence',
+    ...(Object.hasOwn(action, 'customerSelectedShade') ? ['customerSelectedShade'] : []),
   ];
   if (
     Object.keys(action).length !== fields.length ||
@@ -375,7 +379,10 @@ function describePalette(
     (action.previousColour !== null && !colourFamilies.includes(action.previousColour)) ||
     !paletteCategories.includes(action.category) ||
     (action.feature !== null && !roomFeatures.includes(action.feature)) ||
-    !colourInfluences.includes(action.influence)
+    !colourInfluences.includes(action.influence) ||
+    (action.customerSelectedShade != null &&
+      !selectedCustomerShade(action.colour, action.customerSelectedShade)) ||
+    (Object.hasOwn(action, 'customerSelectedShade') && action.customerSelectedShade === undefined)
   )
     throw Error('INVALID_PALETTE_ACTION');
   const actionDigest = fingerprintHash(action),
@@ -410,6 +417,13 @@ function describePalette(
           : 'CONFIRMED'
         : 'NEEDS_INPUT';
   room.colours[action.colour] = {
+    ...(action.customerSelectedShade
+      ? { customerSelectedShade: action.customerSelectedShade }
+      : !Object.hasOwn(action, 'customerSelectedShade') &&
+          action.colour === action.previousColour &&
+          original?.customerSelectedShade
+        ? { customerSelectedShade: original.customerSelectedShade }
+        : {}),
     feature: action.feature,
     influence: action.influence,
     source:

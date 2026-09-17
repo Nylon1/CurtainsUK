@@ -19,8 +19,18 @@ import {
 } from '../intelligence/reference-images/room-context';
 import styles from './RoomPaletteBoard.module.css';
 import { GuidedRoomColour } from './GuidedRoomColour';
+import {
+  customerShades,
+  selectedCustomerShade,
+} from '../intelligence/reference-images/customer-shades';
 
-import { familyLabel, featureLabel, influenceCopy, shades } from './room-palette-presentation';
+import {
+  familyLabel,
+  featureLabel,
+  influenceCopy,
+  shades,
+  roomSwatch,
+} from './room-palette-presentation';
 export { familyLabel, featureLabel } from './room-palette-presentation';
 const roleCopy = {
   primary: 'Shapes the overall room',
@@ -33,6 +43,7 @@ type EditDraft = {
   category: PaletteCategory;
   feature: RoomFeature | null;
   influence: ColourInfluence;
+  customerSelectedShade: string | null;
 };
 
 export function RoomPaletteBoard({
@@ -68,6 +79,9 @@ export function RoomPaletteBoard({
     if (!demo) heading.current?.focus({ preventScroll: true });
   }, [demo]);
   const editing = draft !== null;
+  const correctingPending = Boolean(
+    draft?.previousColour && reviewStatus(state, draft.previousColour) === 'NEEDS_INPUT',
+  );
   useEffect(() => {
     if (!editing) return;
     const el = dialog.current;
@@ -112,6 +126,7 @@ export function RoomPaletteBoard({
       category: role,
       feature: context?.feature ?? null,
       influence: context?.influence ?? 'consider',
+      customerSelectedShade: context?.customerSelectedShade ?? null,
       ...pendingContext,
     });
   }
@@ -131,10 +146,15 @@ export function RoomPaletteBoard({
       );
       return;
     }
-    if (await onEdit({ type: 'review-colour', ...draft })) {
-      setReceipt(
-        `${draft.influence === 'ignore' ? '—' : '✓'} ${familyLabel(draft.colour)} ${draft.influence === 'ignore' ? 'ignored' : 'confirmed'} · ${draft.feature ? featureLabel[draft.feature] + ' · ' : ''}${familyLabel(draft.category)} · ${familyLabel(draft.influence)}`,
-      );
+    if (await onEdit({ type: correctingPending ? 'describe' : 'review-colour', ...draft })) {
+      if (correctingPending) {
+        setSelected(draft.colour);
+        setReceipt('');
+      } else {
+        setReceipt(
+          `${draft.influence === 'ignore' ? '—' : '✓'} ${familyLabel(draft.colour)} ${draft.influence === 'ignore' ? 'ignored' : 'confirmed'} · ${draft.feature ? featureLabel[draft.feature] + ' · ' : ''}${familyLabel(draft.category)} · ${familyLabel(draft.influence)}`,
+        );
+      }
       advanceAfterSave.current = Boolean(
         draft.previousColour && reviewStatus(state, draft.previousColour) === 'NEEDS_INPUT',
       );
@@ -235,7 +255,7 @@ export function RoomPaletteBoard({
               aria-label={`${familyLabel(c.colour)} — ${reviewStatus(state, c.colour) === 'NEEDS_INPUT' ? 'needs your input' : reviewStatus(state, c.colour) === 'IGNORED' ? 'ignored' : 'confirmed'}`}
               aria-current={current?.colour === c.colour ? 'step' : undefined}
             >
-              <span style={{ background: shades[c.colour] }} />
+              <span style={{ background: roomSwatch(c.colour, c) }} />
               <b>{familyLabel(c.colour)}</b>
               <small>
                 {reviewStatus(state, c.colour) === 'NEEDS_INPUT'
@@ -257,7 +277,7 @@ export function RoomPaletteBoard({
           )}
           <p className={styles.eyebrow}>Next colour · {familyLabel(current.colour)}</p>
           <GuidedRoomColour
-            key={current.colour}
+            key={`${current.colour}:${state.revision}`}
             colour={current.colour}
             role={current.role}
             context={current}
@@ -309,7 +329,10 @@ export function RoomPaletteBoard({
                       onClick={() => open(colour)}
                       aria-label={`Change ${familyLabel(colour)}: ${context.feature ? featureLabel[context.feature] : 'feature not assigned'}, ${familyLabel(role)}, ${familyLabel(context.influence)}`}
                     >
-                      <span className={styles.colourField} style={{ background: shades[colour] }}>
+                      <span
+                        className={styles.colourField}
+                        style={{ background: roomSwatch(colour, context) }}
+                      >
                         <span className={styles.editMark} aria-hidden="true">
                           ↗
                         </span>
@@ -407,7 +430,7 @@ export function RoomPaletteBoard({
               <li key={c.colour}>
                 <span
                   className={styles.summarySwatch}
-                  style={{ background: shades[c.colour] }}
+                  style={{ background: roomSwatch(c.colour, c) }}
                   aria-hidden="true"
                 />
                 <div>
@@ -524,7 +547,14 @@ export function RoomPaletteBoard({
           }}
         >
           <div className={styles.sheetTop}>
-            <span className={styles.sheetSwatch} style={{ background: shades[draft.colour] }} />
+            <span
+              className={styles.sheetSwatch}
+              style={{
+                background: roomSwatch(draft.colour, {
+                  customerSelectedShade: draft.customerSelectedShade ?? undefined,
+                }),
+              }}
+            />
             <div>
               <p className={styles.eyebrow}>
                 {draft.previousColour ? 'Make this colour yours' : 'A colour the photograph missed'}
@@ -561,7 +591,12 @@ export function RoomPaletteBoard({
                     aria-pressed={draft.colour === c}
                     onClick={() => {
                       setIssue('');
-                      setDraft({ ...draft, colour: c });
+                      setDraft({
+                        ...draft,
+                        colour: c,
+                        customerSelectedShade:
+                          c === draft.colour ? draft.customerSelectedShade : null,
+                      });
                     }}
                   >
                     <span style={{ background: shades[c] }} />
@@ -569,24 +604,60 @@ export function RoomPaletteBoard({
                   </button>
                 ))}
               </div>
-            </fieldset>
-            <fieldset>
-              <legend>2 — Where is it in your room?</legend>
-              <div className={styles.features}>
-                {roomFeatures.map((feature) => (
+              <div className={styles.shadeTitle}>
+                <h4>Which {familyLabel(draft.colour).toLowerCase()} feels closest?</h4>
+                <p>
+                  A visual guide to your room. Screens and lighting affect colour; these are not
+                  paint-standard matches.
+                </p>
+              </div>
+              <div
+                className={styles.shadePicker}
+                role="group"
+                aria-label={`${familyLabel(draft.colour)} shades`}
+              >
+                {customerShades[draft.colour].map((shade) => (
                   <button
-                    key={feature}
+                    type="button"
+                    key={shade.id}
                     disabled={busy}
-                    aria-pressed={draft.feature === feature}
-                    onClick={() =>
-                      setDraft({ ...draft, feature: draft.feature === feature ? null : feature })
-                    }
+                    aria-pressed={draft.customerSelectedShade === shade.id}
+                    onClick={() => setDraft({ ...draft, customerSelectedShade: shade.id })}
                   >
-                    {featureLabel[feature]}
+                    <span style={{ background: shade.hex }} aria-hidden="true" />
+                    <b>{shade.label}</b>
+                    <small>
+                      {draft.customerSelectedShade === shade.id ? 'Selected ✓' : 'Choose shade'}
+                    </small>
                   </button>
                 ))}
               </div>
+              {draft.customerSelectedShade && (
+                <p role="status">
+                  Your choice:{' '}
+                  {selectedCustomerShade(draft.colour, draft.customerSelectedShade)?.label}
+                </p>
+              )}
             </fieldset>
+            {!correctingPending && (
+              <fieldset>
+                <legend>2 — Where is it in your room?</legend>
+                <div className={styles.features}>
+                  {roomFeatures.map((feature) => (
+                    <button
+                      key={feature}
+                      disabled={busy}
+                      aria-pressed={draft.feature === feature}
+                      onClick={() =>
+                        setDraft({ ...draft, feature: draft.feature === feature ? null : feature })
+                      }
+                    >
+                      {featureLabel[feature]}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            )}
             <fieldset>
               <legend>3 — What role does it play?</legend>
               <div className={styles.roles}>
@@ -607,22 +678,24 @@ export function RoomPaletteBoard({
               </div>
               <p>Up to three colours per group. Changing the role moves this card on your board.</p>
             </fieldset>
-            <fieldset>
-              <legend>4 — How much should this colour influence your curtains?</legend>
-              <div className={styles.influences}>
-                {colourInfluences.map((influence) => (
-                  <button
-                    key={influence}
-                    disabled={busy}
-                    aria-pressed={draft.influence === influence}
-                    onClick={() => setDraft({ ...draft, influence })}
-                  >
-                    <b>{familyLabel(influence)}</b>
-                    <span>{influenceCopy[influence]}</span>
-                  </button>
-                ))}
-              </div>
-            </fieldset>
+            {!correctingPending && (
+              <fieldset>
+                <legend>4 — How much should this colour influence your curtains?</legend>
+                <div className={styles.influences}>
+                  {colourInfluences.map((influence) => (
+                    <button
+                      key={influence}
+                      disabled={busy}
+                      aria-pressed={draft.influence === influence}
+                      onClick={() => setDraft({ ...draft, influence })}
+                    >
+                      <b>{familyLabel(influence)}</b>
+                      <span>{influenceCopy[influence]}</span>
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            )}
           </div>
           <div className={styles.sheetFooter}>
             {(issue || error) && <p role="alert">{issue || error}</p>}
@@ -657,10 +730,12 @@ export function RoomPaletteBoard({
             >
               {busy
                 ? 'Saving…'
-                : draft.previousColour &&
-                    reviewStatus(state, draft.previousColour) !== 'NEEDS_INPUT'
-                  ? 'Save changes'
-                  : 'Confirm this colour →'}
+                : correctingPending
+                  ? 'Use this colour →'
+                  : draft.previousColour &&
+                      reviewStatus(state, draft.previousColour) !== 'NEEDS_INPUT'
+                    ? 'Save changes'
+                    : 'Confirm this colour →'}
             </button>
             <button className={styles.review} disabled={busy} onClick={() => setDraft(null)}>
               Cancel

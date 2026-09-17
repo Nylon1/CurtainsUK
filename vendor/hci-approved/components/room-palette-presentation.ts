@@ -1,5 +1,11 @@
 import type { ColourFamily } from '../intelligence/reference-images/evidence';
 import type { RoomFeature } from '../intelligence/reference-images/room-context';
+import { selectedCustomerShade } from '../intelligence/reference-images/customer-shades';
+import type { RoomColour } from '../intelligence/reference-images/palette';
+export const roomSwatch = (
+  colour: ColourFamily,
+  context?: Pick<RoomColour, 'customerSelectedShade'> | null,
+) => selectedCustomerShade(colour, context?.customerSelectedShade)?.hex ?? shades[colour];
 export const familyLabel = (colour: string) =>
   colour === 'cream' ? 'Cream / off-white' : colour[0]!.toUpperCase() + colour.slice(1);
 export const shades: Record<ColourFamily, string> = {

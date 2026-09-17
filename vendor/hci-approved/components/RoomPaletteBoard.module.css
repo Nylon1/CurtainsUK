@@ -850,6 +850,49 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 6px;
 }
+.shadeTitle {
+  margin: 26px 0 16px;
+}
+.shadeTitle h4 {
+  font:
+    24px/1.2 Georgia,
+    serif;
+  margin: 0 0 10px;
+}
+.shadeTitle p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.shadePicker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.board .shadePicker button {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 6px;
+  min-width: 0;
+  border: 1px solid transparent;
+}
+.shadePicker button > span {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid #0001;
+}
+.shadePicker b {
+  font-size: 12px;
+  font-weight: 500;
+}
+.shadePicker small {
+  font-size: 10px;
+}
+.board .shadePicker button[aria-pressed='true'] {
+  border-color: #293f33;
+  background: #e3e8d8;
+}
 .board .familyPicker button {
   display: flex;
   flex-direction: column;

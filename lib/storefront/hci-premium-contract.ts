@@ -1,3 +1,5 @@
+import { selectedCustomerShade } from '../../vendor/hci-approved/intelligence/reference-images/customer-shades';
+import { colourFamilies, type ColourFamily } from '../../vendor/hci-approved/intelligence/reference-images/evidence';
 export const HCI_PREMIUM_BASELINE = '6963feb3d3e85e80b759cd2e3cc5a505e8a80960';
 export const HCI_PREMIUM_CONTRACT = 'curtainsuk-premium-customer-v1';
 export const PREMIUM_HCI_COOKIE = '__Host-cuk_premium_consultation';
@@ -22,13 +24,16 @@ function paletteEdit(value: unknown) {
     keep: [...common, 'colour'], remove: [...common, 'colour'], add: [...common, 'colour', 'category'], move: [...common, 'colour', 'category'],
     describe: [...common, 'previousColour', 'colour', 'category', 'feature', 'influence'], 'review-colour': [...common, 'previousColour', 'colour', 'category', 'feature', 'influence'],
   };
-  const allowed = byType[type]; if (!allowed) throw Error('HCI_CONTRACT_INVALID'); fields(edit, allowed);
+  const allowed = byType[type]; if (!allowed) throw Error('HCI_CONTRACT_INVALID');
+  if (['describe', 'review-colour'].includes(type) && Object.hasOwn(edit, 'customerSelectedShade')) allowed.push('customerSelectedShade');
+  fields(edit, allowed);
+  if (Object.hasOwn(edit, 'customerSelectedShade') && edit.customerSelectedShade !== null && !selectedCustomerShade(edit.colour as ColourFamily, edit.customerSelectedShade)) throw Error('HCI_CONTRACT_INVALID');
   if (!/^[a-zA-Z0-9:_-]{1,160}$/.test(string(edit.id, 160)) || !Number.isSafeInteger(edit.revision) || Number(edit.revision) < 0) throw Error('HCI_CONTRACT_INVALID');
   if ('category' in edit && !paletteCategories.includes(string(edit.category, 30))) throw Error('HCI_CONTRACT_INVALID');
   if ('feature' in edit && edit.feature !== null && !roomFeatures.includes(string(edit.feature, 60))) throw Error('HCI_CONTRACT_INVALID');
   if ('influence' in edit && !influences.includes(string(edit.influence, 30))) throw Error('HCI_CONTRACT_INVALID');
   if ('previousColour' in edit && edit.previousColour !== null) string(edit.previousColour, 30);
-  if ('colour' in edit) string(edit.colour, 30); return edit;
+  if ('colour' in edit && !colourFamilies.includes(string(edit.colour, 30) as ColourFamily)) throw Error('HCI_CONTRACT_INVALID'); return edit;
 }
 
 /** Browser input is bounded and parsed before it reaches the server-only gateway. */

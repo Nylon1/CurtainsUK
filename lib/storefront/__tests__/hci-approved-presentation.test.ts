@@ -4,18 +4,24 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { createPalette, editPalette, paletteContext } from '../../../vendor/hci-approved/intelligence/reference-images/palette';
-import { acknowledgedPremiumRevision } from '../../../components/curtainsuk-premium-transport';
+import { acknowledgedPremiumRevision, savedPremiumSession } from '../../../components/curtainsuk-premium-transport';
 
 const root = resolve('vendor/hci-approved');
 const manifest = JSON.parse(readFileSync(resolve(root, 'source-manifest.json'), 'utf8'));
 
-test('presentation tracks the unchanged gateway CAS acknowledgements without changing retries', () => {
-  assert.equal(acknowledgedPremiumRevision(null, undefined), 0);
-  assert.equal(acknowledgedPremiumRevision(0, undefined), 1);
-  assert.equal(acknowledgedPremiumRevision(1, undefined), 2);
-  assert.equal(acknowledgedPremiumRevision(1, undefined), 2, 'same request retry keeps same acknowledged revision');
+test('server revisions distinguish mutation/retry acknowledgements from read-only resume', () => {
+  assert.equal(acknowledgedPremiumRevision(null, 0), 0);
+  assert.equal(acknowledgedPremiumRevision(0, 1), 1);
+  assert.equal(acknowledgedPremiumRevision(1, 2), 2);
+  assert.equal(acknowledgedPremiumRevision(1, 2), 2, 'same request retry keeps same acknowledged revision');
   assert.equal(acknowledgedPremiumRevision(2, 3), 3);
   assert.throws(() => acknowledgedPremiumRevision(2, 8));
+  assert.throws(() => acknowledgedPremiumRevision(2, undefined));
+  assert.equal(acknowledgedPremiumRevision(null, 7, false), 7);
+  assert.equal(acknowledgedPremiumRevision(7, 7, false), 7);
+  assert.equal(acknowledgedPremiumRevision(5, 7, false), 7);
+  assert.equal(savedPremiumSession('not-a-session'), null);
+  assert.equal(savedPremiumSession('11111111-1111-4111-8111-111111111111'), '11111111-1111-4111-8111-111111111111');
 });
 
 test('transport-adapted copy keeps UTF-8 punctuation intact', () => {

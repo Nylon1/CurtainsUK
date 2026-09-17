@@ -1,20 +1,20 @@
 {
   "repository": "Nylon1/Hybrid-Curtain-Intelligence",
-  "commit": "6963feb3d3e85e80b759cd2e3cc5a505e8a80960",
+  "commit": "20606b85891d732fadcd4ff310016eb203b29d08",
   "transportAdapted": [
     "components/ReferencePalette.tsx",
     "components/ReferenceExperience.tsx"
   ],
   "files": {
-    "components/GuidedRoomColour.tsx": "f8da37d0212404d7515160170433ca361a3099b2c5e68e99fd5505d779a40d90",
+    "components/GuidedRoomColour.tsx": "fedd79a49edc8d9f57d25ffc9cf0135de5020addc1f02ad85f1aee5f092fd288",
     "components/ReferenceAnalysis.module.css": "4185b3612d026383f1a061a38cf8d7cbe3bfc1727727b6274ba9348e6789b3eb",
     "components/ReferenceAnalysis.tsx": "2e6e1eae8fddc57213860e7b1026c74eaf6f638d48317430a5eb130035c00ae4",
     "components/ReferenceExperience.module.css": "8b8054cc69aab6f892b53eaea1bec65dbcc37d6ef8f16b3a9a919dc6d296ceec",
     "components/ReferenceExperience.tsx": "39dd45bfc8750e374836d8ae20ef14ae351f8bf4643d5177c2c2ebbea31d36e1",
     "components/ReferencePalette.tsx": "3e2288b9b11f3ec527c9462a715b1987a9c89ea19400e704569863be4d786569",
-    "components/room-palette-presentation.ts": "b10e1c15cfc5473abcf673e04027c9e159054063381de8ae733fbd498ab9476b",
-    "components/RoomPaletteBoard.module.css": "476c68923d11981c6af25099bf2f11614e1222d7906ca81c6ae39d6158d250e8",
-    "components/RoomPaletteBoard.tsx": "d28316be6fdf96ee1f51734f8bf3c126534e7d1b95c91c5e2ed770719e4f10ac",
+    "components/room-palette-presentation.ts": "1a156c5d5b39cede4f58d310499b86940fb1caa971c1a928d3434bdea16c5da7",
+    "components/RoomPaletteBoard.module.css": "9dc8337a3faf7702374c1577e938b08e9ddd11cf66c7c4beb20dad6931373ec9",
+    "components/RoomPaletteBoard.tsx": "ab08dc1e7d3a6f4a5a75920e8c9b05655b0ade914cc7a01efb0e1c1d30257b09",
     "data/catalogue/compiler.ts": "bf73e05504dd3c137afe6c6a27fe0c8ad32d1215546d1cbc93bf8acb07475470",
     "data/catalogue/types.ts": "16e22ed3b1c71542689df0d423db2492f73abab818b5092088d1ba335461e4b8",
     "data/catalogue/validation.ts": "f699e30f0a28421e631779b2ee2824501c85d16b8dc0c7c7465c25831f6d360d",
@@ -27,8 +27,11 @@
     "intelligence/matching/colour-relationship.ts": "060f6f5ac0aecb81670e9aeff23b46d1c5530f805b10592ce6d8485a929dd544",
     "intelligence/matching/recommendation-policy.ts": "cb3e949c83177281f2ae34451f95b7e39e4093f36100d394834e14a0b78fafd0",
     "intelligence/reference-images/evidence.ts": "e052f2cd8ad3936b0449ab0ccc5091a1e7f25d3e3833491682853b907a9c9355",
-    "intelligence/reference-images/palette.ts": "808e1a311aed0834b836a736b78f4e1ee9e1c60cd55b7a4f8d0a98622bf6c0a8",
-    "intelligence/reference-images/room-context.ts": "ad14e1c7395820c9b5ef3d04a5953e77bce2e3746cebb0bc11112f5cc062847a"
+    "intelligence/reference-images/palette.ts": "bdbf4d8174fa2529f08315f2270f6ecaba11ea68706cfac09da51550d352fc4a",
+    "intelligence/reference-images/room-context.ts": "ad14e1c7395820c9b5ef3d04a5953e77bce2e3746cebb0bc11112f5cc062847a",
+    "intelligence/reference-images/customer-shades.ts": "b8ea35ac07519b1dccef8d38ad33d8a51eb09d94662d2b365887bdc64647dd01"
   },
-  "hashNormalization": "UTF-8 with LF line endings"
+  "hashNormalization": "UTF-8 with LF line endings",
+  "baseline": "6963feb3d3e85e80b759cd2e3cc5a505e8a80960",
+  "note": "Room Palette correction and customer shade evidence only; upload, analysis and first reveal source unchanged."
 }

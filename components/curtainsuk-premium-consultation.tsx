@@ -3,7 +3,7 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
-import { acknowledgedPremiumRevision } from './curtainsuk-premium-transport';
+import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
 import styles from './curtainsuk-premium-consultation.module.css';
 import referenceStyles from '@/vendor/hci-approved/components/ReferenceExperience.module.css';
 
@@ -48,12 +48,16 @@ export default function CurtainsUkPremiumConsultation() {
   const loaded = useRef(false);
   const latestView = useRef<View | null>(null);
   const bridgeRequest = useRef<RequestInit | null>(null);
+  const requestLock = useRef(false);
+  const resumeSession = useRef<string | null>(null);
+  const [reviewPalette, setReviewPalette] = useState(false);
 
-  const send = async (action?: Record<string, unknown>, retry = false) => {
-    if (busy && !retry) return null;
+  const send = async (action?: Record<string, unknown>, retry = false, paletteRequest = false) => {
+    if (requestLock.current) return null;
+    requestLock.current = true;
     const payload = retry && pending.current ? pending.current : {
       requestId: crypto.randomUUID(),
-      sessionId: latestView.current?.sessionId ?? null,
+      sessionId: latestView.current?.sessionId ?? resumeSession.current,
       revision: latestView.current?.revision ?? null,
       ...(action ? { action } : {}),
     };
@@ -63,22 +67,26 @@ export default function CurtainsUkPremiumConsultation() {
       const response = await fetch('/api/curtain-consultation-premium', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const data = await response.json();
       if (!response.ok) throw Error(data.error || 'Your consultation is temporarily unavailable.');
-      data.revision = acknowledgedPremiumRevision(payload.revision, data.revision);
+      data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, Boolean(payload.action) || !payload.sessionId);
+      resumeSession.current = data.sessionId;
+      try { sessionStorage.setItem(premiumSessionStorageKey, data.sessionId); } catch { /* Server evidence remains durable. */ }
       latestView.current = data; setView(data); pending.current = null;
       return data as View;
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'Your consultation is temporarily unavailable.');
+      // Palette failures belong to ReferencePalette and its exact saved-request retry.
+      // A failed colour save does not declare the whole consultation unavailable.
+      if (!paletteRequest) setNotice(error instanceof Error ? error.message : 'Your consultation is temporarily unavailable.');
       return null;
-    } finally { setBusy(false); }
+    } finally { requestLock.current = false; setBusy(false); }
   };
   useEffect(() => {
     if (!loaded.current) {
       loaded.current = true;
       setEntry(new URLSearchParams(window.location.search).get('entry') === 'guided' ? 'guided' : 'match');
+      try { resumeSession.current = savedPremiumSession(sessionStorage.getItem(premiumSessionStorageKey)); } catch { /* Storage may be disabled. */ }
       void send();
     }
   // This initializes exactly one anonymous consultation; re-running would create a second request.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (!view?.directions.length) return;
@@ -96,15 +104,15 @@ export default function CurtainsUkPremiumConsultation() {
     const retry = bridgeRequest.current === request && Boolean(pending.current);
     bridgeRequest.current = request;
     let result: View | null;
-    if (retry) result = await send(undefined, true);
+    if (retry) result = await send(undefined, true, true);
     else if (request.body instanceof Blob) {
       const headers = new Headers(request.headers);
       result = await send({ type: 'image', mime: request.body.type,
         bytes: base64(await request.body.arrayBuffer()),
-        referenceType: headers.get('x-hci-reference-type') ?? 'room' });
+        referenceType: headers.get('x-hci-reference-type') ?? 'room' }, false, true);
     } else {
       const command = JSON.parse(String(request.body));
-      result = await send({ type: 'palette', edit: command.action });
+      result = await send(command.action ? { type: 'palette', edit: command.action } : undefined, false, true);
     }
     if (!result?.palette) throw Error('PALETTE_REQUEST_FAILED');
     bridgeRequest.current = null;
@@ -121,20 +129,22 @@ export default function CurtainsUkPremiumConsultation() {
   };
   const reportOutcome = async (card: Card, direction: Direction, event: string) => Boolean(await send({ type: 'outcome', event, fabricMasterId: card.fabricMasterId, strategyId: direction.id }));
 
-  if (!view) return <main className={styles.shell}><p className={styles.loading}>Preparing your Fabric Intelligence consultation…</p></main>;
+  if (!view) return <main className={styles.shell}>{notice ? <div className={styles.notice} role="alert">{notice}<button disabled={busy} onClick={() => void send(undefined, true)}>Retry consultation</button></div> : <p className={styles.loading}>Preparing your Fabric Intelligence consultation…</p>}</main>;
   const showUpload = entry === 'match' && !roomPalette && !view.directions.length;
-  const showPalette = Boolean(roomPalette && !roomPalette.confirmedPalette);
+  const showPalette = Boolean(roomPalette && (!roomPalette.confirmedPalette || reviewPalette));
 
   return <main className={showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell}>
     <header className={styles.header}><Link href="/" className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href="/fabrics">Explore fabrics</a></header>
     <div className={styles.progress} aria-label="Consultation progress"><span className={roomPalette ? styles.complete : ''}>Your room</span><span className={view.phase !== 'discovery' ? styles.complete : ''}>Your taste</span><span className={view.directions.length ? styles.complete : ''}>Your edit</span></div>
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}
+    {!showPalette && roomPalette?.confirmedPalette && <button className={styles.textButton} onClick={() => setReviewPalette(true)}>Review my Room Palette</button>}
     {(showUpload || showPalette) && <ReferencePalette
       initialView={view.palette}
       transport={paletteTransport}
       maxImageMb={2}
       onChange={() => { /* The session response is the source of truth. */ }}
     />}
+    {showPalette && roomPalette?.confirmedPalette && <button className={styles.primary} onClick={() => setReviewPalette(false)}>Continue with my Room Palette →</button>}
     {!showUpload && !showPalette && view.phase === 'discovery' && view.question && <section className={styles.question}><p className={styles.eyebrow}>Your starting point</p><h1>{view.question.prompt}</h1><div className={styles.answers}>{view.question.answers.map((answer) => <button key={answer.id} disabled={busy} onClick={() => void send({ type: 'answer', answerId: answer.id })}>{answer.label}</button>)}</div>{entry === 'guided' && !roomPalette && <button className={styles.textButton} onClick={() => setEntry('match')}>Have something you’d like us to match with? Add a reference image</button>}</section>}
     {!showUpload && !showPalette && view.phase === 'calibration' && <section className={styles.calibration}><p className={styles.eyebrow}>Visual calibration</p><h1>What is your first <em>reaction?</em></h1><p>Your response helps us understand the fabric character you enjoy.</p>{view.stimulusId && <img src={`/api/curtain-consultation-premium/assets/${encodeURIComponent(view.stimulusId)}.svg`} alt="Curtain design for visual preference calibration" />}<div className={styles.answers}>{[['LOVE','Love it'],['LIKE','I like it'],['NOT_SURE','Not sure'],['DISLIKE','Not for me']].map(([reaction, text]) => <button key={reaction} disabled={busy} onClick={() => void send({ type: 'calibrate', reaction })}>{text}</button>)}</div></section>}
     {!showUpload && !showPalette && view.phase === 'complete' && <section className={styles.ready}><p className={styles.eyebrow}>Your profile</p><h1>Ready to explore <em>your directions.</em></h1><p>{view.profileSummary}</p>{!roomPalette && <button className={styles.textButton} onClick={() => setEntry('match')}>Add a room image first</button>}<button className={styles.primary} disabled={busy} onClick={() => void send({ type: 'recommend' })}>{roomPalette ? 'Show my design directions →' : 'Show my design directions →'}</button></section>}

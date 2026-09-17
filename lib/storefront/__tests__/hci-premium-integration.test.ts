@@ -4,8 +4,38 @@ import { premiumHciCommand, premiumHciEnabled } from '../hci-premium-contract';
 import { acceptedHciFeedback } from '../hci-feedback';
 import { roomFeatures } from '../../../vendor/hci-approved/intelligence/reference-images/room-context';
 import { createPalette, editPalette, type PaletteAction } from '../../../vendor/hci-approved/intelligence/reference-images/palette';
+import { customerShades } from '../../../vendor/hci-approved/intelligence/reference-images/customer-shades';
+import { customerView } from '../hci-premium-view';
+import { HCI_PREMIUM_BASELINE, HCI_PREMIUM_CONTRACT } from '../hci-premium-contract';
 
 const sessionId = '11111111-1111-4111-8111-111111111111';
+
+test('saved presentation/resume retains CAS revision and three corrected shade evidence records', () => {
+  let state = createPalette({ schema: 'hci-draft-palette-observation-v1', palette: { primary: ['grey'], secondary: ['green'], accent: ['red'] } }, { consultationId: sessionId, imageHash: `sha256:${'c'.repeat(64)}`, modelVersion: 'test' });
+  const original = structuredClone(state.draft);
+  for (const [previousColour, colour, category, feature, influence] of [
+    ['grey', 'blue', 'primary', 'walls', 'important'], ['green', 'brown', 'secondary', 'flooring', 'consider'], ['red', 'pink', 'accent', 'accessories', 'ignore'],
+  ] as const) {
+    const command = premiumHciCommand({ requestId: sessionId, sessionId, revision: state.revision, action: { type: 'palette', edit: { id: colour, revision: state.revision, type: 'review-colour', previousColour, colour, category, feature, influence, customerSelectedShade: customerShades[colour][1]!.id } } });
+    state = editPalette(state, command.action!.edit as PaletteAction);
+  }
+  state = editPalette(state, { id: 'complete', revision: state.revision, type: 'complete-review' });
+  const saved = { version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId, revision: 27, phase: 'discovery', profileSummary: '', question: null, stimulusId: null, palette: { recordId: sessionId, state }, directions: [], learning: null, refinementDigest: null };
+  const projected = customerView(JSON.parse(JSON.stringify(saved)));
+  assert.equal(projected.revision, 27, 'projection must not drop revision and make the client invent it');
+  assert.deepEqual(projected.palette, saved.palette);
+  assert.deepEqual(state.draft, original);
+  assert.equal(state.room?.confirmed?.blue?.customerSelectedShade, customerShades.blue[1]!.id);
+  assert.throws(() => customerView({ ...saved, revision: -1 }));
+});
+
+test('gateway permits only exact registered within-family shade IDs on correction actions', () => {
+  const edit = { id: 'shade', revision: 0, type: 'describe', previousColour: 'grey', colour: 'blue', category: 'primary', feature: 'walls', influence: 'important' };
+  const request = (value: Record<string, unknown>) => premiumHciCommand({ requestId: sessionId, sessionId, revision: 0, action: { type: 'palette', edit: value } });
+  for (const customerSelectedShade of [customerShades.blue[0]!.id, null]) assert.doesNotThrow(() => request({ ...edit, customerSelectedShade }));
+  for (const customerSelectedShade of [customerShades.green[0]!.id, '#ffffff', {}, undefined]) assert.throws(() => request({ ...edit, customerSelectedShade }));
+  assert.throws(() => request({ id: 'shade', revision: 0, type: 'complete-review', customerSelectedShade: null }));
+});
 
 test('gateway accepts every canonical HCI room feature without translation or evidence loss', () => {
   const draft = createPalette({ schema: 'hci-draft-palette-observation-v1', palette: { primary: ['grey'], secondary: [], accent: [] } }, {

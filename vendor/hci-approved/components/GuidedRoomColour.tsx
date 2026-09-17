@@ -12,7 +12,8 @@ import {
   type RoomFeature,
   type ColourInfluence,
 } from '../intelligence/reference-images/room-context';
-import { familyLabel, featureLabel, influenceCopy, shades } from './room-palette-presentation';
+import { familyLabel, featureLabel, influenceCopy, roomSwatch } from './room-palette-presentation';
+import { selectedCustomerShade } from '../intelligence/reference-images/customer-shades';
 import styles from './RoomPaletteBoard.module.css';
 
 export function GuidedRoomColour({
@@ -62,11 +63,14 @@ export function GuidedRoomColour({
       <div className={styles.guidedSample}>
         <div
           className={styles.guidedField}
-          style={{ background: shades[colour] }}
+          style={{ background: roomSwatch(colour, context) }}
           aria-hidden="true"
         />
         <div className={styles.guidedCaption}>
           <h3>{familyLabel(colour)}</h3>
+          {context.customerSelectedShade && (
+            <small>{selectedCustomerShade(colour, context.customerSelectedShade)?.label}</small>
+          )}
           <span className={styles.eyebrow}>
             {familyLabel(role)} · {position} of {total}
           </span>

@@ -43,9 +43,11 @@ export function ReferencePalette({
   initialView?: PaletteView | null;
   maxImageMb?: number;
 }) {
-  const [view, setView] = useState<PaletteView | null>(initialView),
+  const [savedView, setView] = useState<PaletteView | null>(initialView),
     [busy, setBusy] = useState(false),
     [error, setError] = useState('');
+  // Hosted integration has one authoritative server response, including retries/resume.
+  const view = transport ? initialView : savedView;
   const [type, setType] = useState('room'),
     [preview, setPreview] = useState(''),
     [canRetry, setCanRetry] = useState(false);
@@ -132,7 +134,7 @@ export function ReferencePalette({
     );
   }
   async function resume(): Promise<boolean> {
-    const recordId = localStorage.getItem('hci-reference-palette-v1');
+    const recordId = transport ? view?.recordId : localStorage.getItem('hci-reference-palette-v1');
     if (!recordId) {
       setError('No saved palette on this device yet.');
       return false;
@@ -318,7 +320,7 @@ export function ReferencePalette({
           onRetry={
             canRetry ? async () => Boolean(retry.current && (await send(retry.current))) : undefined
           }
-          onResume={transport ? undefined : resume}
+          onResume={resume}
         />
       ) : (
         <p className={styles.optional}>

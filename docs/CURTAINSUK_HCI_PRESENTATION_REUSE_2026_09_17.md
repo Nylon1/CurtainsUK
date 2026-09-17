@@ -68,7 +68,15 @@ Cross-contract regression tests pass every canonical feature through both gatewa
 validation and HCI palette editing, for both describe and review-colour commands.
 Original machine evidence remains unchanged. Obsolete aliases, arbitrary strings
 and malformed values remain rejected. Storefront suite: 183/183 passed.
-Hosted Sofa verification is performed on the new protected preview before delivery.
+Hosted verification PASS on preview `dpl_63T2eszdeKp7Q97A5C8KcFoJZzfZ`
+(application commit `3fed98e5bc548491b4b7968591cbcb10eaf5de1b`): a genuine room
+JPEG passed upload → approved analysis → five machine colours → Room Palette.
+Grey → Sofa / Upholstery → Consider saved successfully, showed the confirmed
+summary, and advanced to the next colour (1/5 confirmed). Scoped lint,
+TypeScript and the Vercel production build passed. No production promotion.
+
+Review URL:
+https://curtainsuk-staging-h2babj3wt-hamzas-projects-4ef62f35.vercel.app/curtain-consultation-premium
 
 The existing global Next.js navigation/footer remains outside this focused
 presentation restoration. The Shopify candidate remains unpublished and untouched.

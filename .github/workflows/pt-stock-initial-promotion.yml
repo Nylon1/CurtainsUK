@@ -30,7 +30,7 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
-      - name: Fresh PT retrieval and exact governed materialisation
+      - name: Fresh PT retrieval and scoped approval/materialisation
         run: npx --no-install tsx scripts/curtainsuk-pt-routine-stock.ts
       - name: Mark failed stage for operational attention
         if: failure()

@@ -135,9 +135,9 @@ async function main() {
       return { snapshot, validation };
     });
     stage = "APPROVAL";
-    for (let offset = 0; offset < validated.length; offset += 100) {
-      const batch = validated.slice(offset, offset + 100);
-      const runId = `pt-webtex-routine:${randomUUID()}:${String(Math.floor(offset / 100) + 1).padStart(3, "0")}`;
+    for (let offset = 0; offset < validated.length; offset += 25) {
+      const batch = validated.slice(offset, offset + 25);
+      const runId = `pt-webtex-routine:${randomUUID()}:${String(Math.floor(offset / 25) + 1).padStart(3, "0")}`;
       const times = batch.map((item) => Date.parse(item.snapshot.checked_at));
       const run = runAudit({ id: runId, adapter: ADAPTER, started: new Date(Math.min(...times)).toISOString(),
         completed: new Date(Math.max(...times)).toISOString(), status: "SUCCEEDED", received: batch.length, appended: batch.length });

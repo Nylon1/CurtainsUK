@@ -67,4 +67,9 @@ export function premiumHciCommand(value: unknown): PremiumHciCommand {
   return { requestId, sessionId, revision: body.revision == null ? null : Number(body.revision), action };
 }
 
-export function premiumHciEnabled(env: Record<string, string | undefined> = process.env as Record<string, string | undefined>) { return env.VERCEL_ENV === 'preview' && env.CURTAINSUK_DEPLOYMENT_STAGE === 'STAGING' && env.CURTAINSUK_HCI_INTEGRATION_ENABLED === 'true' && env.CURTAINSUK_HCI_PREMIUM_ENABLED === 'true'; }
+export function premiumHciEnabled(env: Record<string, string | undefined> = process.env as Record<string, string | undefined>) {
+  const environmentMatchesStage =
+    (env.VERCEL_ENV === 'preview' && env.CURTAINSUK_DEPLOYMENT_STAGE === 'STAGING') ||
+    (env.VERCEL_ENV === 'production' && env.CURTAINSUK_DEPLOYMENT_STAGE === 'PRODUCTION');
+  return environmentMatchesStage && env.CURTAINSUK_HCI_INTEGRATION_ENABLED === 'true' && env.CURTAINSUK_HCI_PREMIUM_ENABLED === 'true';
+}

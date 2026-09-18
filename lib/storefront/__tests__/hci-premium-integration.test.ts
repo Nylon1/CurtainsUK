@@ -80,10 +80,12 @@ test('premium customer contract accepts only bounded guided palette actions', ()
   assert.throws(() => premiumHciCommand({ requestId: sessionId, action: { type: 'palette', edit: { id: 'x', revision: 0, type: 'add', colour: 'red', category: 'primary', unexpected: true } } }));
 });
 
-test('premium route is preview-only and needs both existing staging gates', () => {
+test('premium route requires matching deployment stage and explicit gates', () => {
   const base = { VERCEL_ENV: 'preview', CURTAINSUK_DEPLOYMENT_STAGE: 'STAGING', CURTAINSUK_HCI_INTEGRATION_ENABLED: 'true', CURTAINSUK_HCI_PREMIUM_ENABLED: 'true' };
   assert.equal(premiumHciEnabled(base), true);
   assert.equal(premiumHciEnabled({ ...base, VERCEL_ENV: 'production' }), false);
+  assert.equal(premiumHciEnabled({ ...base, VERCEL_ENV: 'production', CURTAINSUK_DEPLOYMENT_STAGE: 'PRODUCTION' }), true);
+  assert.equal(premiumHciEnabled({ ...base, CURTAINSUK_DEPLOYMENT_STAGE: 'PRODUCTION' }), false);
   assert.equal(premiumHciEnabled({ ...base, CURTAINSUK_HCI_PREMIUM_ENABLED: 'false' }), false);
 });
 

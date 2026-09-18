@@ -54,3 +54,7 @@ The active premium client reads `entry` and `session`; its command boundary has 
 ## Review boundary
 
 Awaiting Hamza’s visual/content approval. Candidate is unpublished. No merge or publication. Existing preview banner is inherited from the live theme’s unpublished-role treatment.
+
+## Homepage footer follow-up
+
+Shop by Window now renders the same existing homepage help/footer component by extending its route condition to page.handle == 'solve-my-window'. No duplicated markup, new styling or changed destinations. Homepage output and other routes remain unchanged. Candidate-only upload: sections/curtainsuk-help-footer.liquid. Verified at desktop, 390px and 412px with no horizontal overflow.

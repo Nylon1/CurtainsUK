@@ -1,6 +1,8 @@
 name: PT Webtex read-only login proof
 
 on:
+  push:
+    branches: [stock/pt-webtex-production]
   workflow_dispatch:
 
 permissions:

@@ -1,3 +1,6 @@
+{% if page.handle == 'fabric-library' or page.handle == 'shop-by-fabric' %}
+  {% render 'curtainsuk-fabric-editorial' %}
+{% else %}
 <section class="cuk-shell cuk-wrap cuk-discovery" aria-label="How would you like to find your fabric?" data-cuk-discovery>
   <p class="cuk-eyebrow">Choose yourself. Show us your room. Or let us guide you.</p>
   <h2>How would you like to find your fabric?</h2>
@@ -13,3 +16,5 @@
     </a>
   </div>
 </section>
+
+{% endif %}

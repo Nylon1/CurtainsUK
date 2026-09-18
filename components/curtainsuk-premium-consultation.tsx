@@ -50,7 +50,7 @@ export default function CurtainsUkPremiumConsultation() {
   const [entry, setEntry] = useState<'match' | 'guided'>('match');
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
-  const [fabrics, setFabrics] = useState<Record<string, Fabric>>({});
+  const [fabrics, setFabrics] = useState<Record<string, Fabric | null | 'error'>>({});
   const [feedback, setFeedback] = useState<{ direction: Direction; reaction: string; selected: string[]; likeDirection: boolean } | null>(null);
   const pending = useRef<Record<string, unknown> | null>(null);
   const loaded = useRef(false);
@@ -102,11 +102,16 @@ export default function CurtainsUkPremiumConsultation() {
   }, []);
   useEffect(() => {
     if (!view?.directions.length) return;
-    const ids = view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)).filter((id) => !fabrics[id]);
+    const ids = view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)).filter((id) => !(id in fabrics));
     void Promise.all(ids.map(async (id) => {
-      const response = await fetch(premiumProxyEnabled() ? `${premiumProxyPath('premium-catalog')}?fabric=${encodeURIComponent(id)}` : `/api/curtain-consultation-premium?fabric=${encodeURIComponent(id)}`);
-      const data = await response.json();
-      if (response.ok && data.fabric?.id === id) setFabrics((previous) => ({ ...previous, [id]: data.fabric }));
+      try {
+        const response = await fetch(premiumProxyEnabled() ? `${premiumProxyPath('premium-catalog')}?fabric=${encodeURIComponent(id)}` : `/api/curtain-consultation-premium?fabric=${encodeURIComponent(id)}`);
+        const data = await response.json();
+        const result = response.status === 404 ? null : response.ok && data.fabric?.id === id ? data.fabric as Fabric : 'error';
+        setFabrics((previous) => ({ ...previous, [id]: result }));
+      } catch {
+        setFabrics((previous) => ({ ...previous, [id]: 'error' }));
+      }
     }));
   }, [view, fabrics]);
   useEffect(() => {
@@ -179,8 +184,10 @@ export default function CurtainsUkPremiumConsultation() {
   </main>;
 }
 
-function DirectionCard({ direction, fabric, final, onReaction, onOutcome, commerceUrl }: { direction: Direction; fabric?: Fabric; final: boolean; onReaction: (reaction: string) => void; onOutcome: (card: Card, direction: Direction, event: string) => Promise<boolean>; commerceUrl: (card: Card, direction: Direction, sample: boolean) => string }) {
-  const card = direction.cards[0]; if (!card) return <article className={styles.directionCard}><p>{direction.label}</p><h2>{direction.purpose}</h2><span>Unavailable for this consultation</span></article>;
+function DirectionCard({ direction, fabric, final, onReaction, onOutcome, commerceUrl }: { direction: Direction; fabric?: Fabric | null | 'error'; final: boolean; onReaction: (reaction: string) => void; onOutcome: (card: Card, direction: Direction, event: string) => Promise<boolean>; commerceUrl: (card: Card, direction: Direction, sample: boolean) => string }) {
+  const card = direction.cards[0];
+  if (!card || fabric === null) return <article className={styles.directionCard}><div className={styles.cardBody}><p className={styles.eyebrow}>{direction.label}</p><h2>This fabric is currently unavailable.</h2><p>The fabric selected for this direction no longer meets our current catalogue checks. You can continue with another direction or explore the Fabric Library.</p><div className={styles.actions}><a href="/pages/fabric-library">Explore current fabrics →</a></div></div></article>;
+  if (fabric === 'error' || fabric === undefined) return <article className={styles.directionCard}><div className={styles.cardBody}><p className={styles.eyebrow}>{direction.label}</p><h2>{fabric === 'error' ? 'We could not verify this fabric.' : 'Checking this fabric…'}</h2><p>{fabric === 'error' ? 'Please refresh the consultation before choosing a fabric.' : 'We are checking its current catalogue details before showing shopping options.'}</p></div></article>;
   const handoff = async (event: MouseEvent<HTMLAnchorElement>, type: string, sample: boolean) => { event.preventDefault(); if (await onOutcome(card, direction, type)) window.location.assign(commerceUrl(card, direction, sample)); };
   return <article className={styles.directionCard}><div className={styles.fabricImage}>{fabric?.images[0] ? <img src={fabric.images[0].url} alt={`${fabric.design} ${fabric.colour} fabric`} /> : <div>Loading fabric</div>}<span>{direction.label}</span></div><div className={styles.cardBody}><p className={styles.eyebrow}>{fabric?.brand ?? 'CurtainsUK fabric'}</p><h2>{fabric?.design ?? 'Loading'} <em>{fabric?.colour}</em></h2><p>{direction.purpose}</p><div className={styles.why}><strong>Why we chose this</strong><p>{card.explanation.join(' ')}</p></div>{!final && <div className={styles.reactions}>{reactionCopy.map(([id, text]) => <button key={id} onClick={() => onReaction(id)}>{text}</button>)}</div>}<div className={styles.actions}>{fabric?.sampleAvailable && <a onClick={(event) => void handoff(event, 'SAMPLE_INTENT', true)} href={commerceUrl(card, direction, true)}>Order sample</a>}<a className={styles.primaryLink} onClick={(event) => void handoff(event, 'FABRIC_SELECTED', false)} href={commerceUrl(card, direction, false)}>Make curtains</a></div></div></article>;
 }

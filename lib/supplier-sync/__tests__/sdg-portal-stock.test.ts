@@ -10,7 +10,7 @@ const identities = [
   { supplierSku: "F0650/12", brandId: "clarke-and-clarke" },
 ];
 
-test("portal details become exact stock-only observations through the existing 72-hour validator", async () => {
+test("portal details become exact stock-only observations through the 96-hour validator", async () => {
   let request: RequestInit | undefined;
   const result = await readSdgPortalStock({
     identities,
@@ -40,7 +40,7 @@ test("portal details become exact stock-only observations through the existing 7
     known_supplier: true, known_sku: true, allowed_currencies: ["GBP"], allowed_stock_units: ["METRE"], required_price_field: "CUT_TRADE_PRICE", freshness_policies: [],
   }, now);
   assert.equal(validated.status, "VALIDATED");
-  assert.equal(validated.stock_expires_at, "2026-09-21T14:00:00.000Z");
+  assert.equal(validated.stock_expires_at, "2026-09-22T14:00:00.000Z");
 });
 
 test("missing, ambiguous and non-metre stock fail closed without converting absence to zero", async () => {

@@ -8,6 +8,7 @@ import { SupabaseSupplierIntelligenceRepository } from "@/lib/supplier-intellige
 import type { DurableSupplierSyncRun } from "@/lib/supplier-intelligence/types";
 import { normalizeSupplierSnapshot } from "@/lib/supplier-sync/normalize";
 import { supplierDatabaseConfigured } from "@/lib/supabase/supplier-service";
+import { stockObservationCurrent } from "@/lib/storefront/daily-stock";
 
 export const dynamic = "force-dynamic";
 
@@ -49,7 +50,7 @@ export async function GET(request: NextRequest) {
             notes: null,
             priceVerificationStatus: fabric.priceVerificationStatus,
           },
-          evaluation: latest ? { internalState: latest.validation_status, customerState: "Availability to be confirmed", stale: latest.stock_expires_at ? Date.parse(latest.stock_expires_at) <= Date.now() : true } : null,
+          evaluation: latest ? { internalState: latest.validation_status, customerState: "Availability to be confirmed", stale: !stockObservationCurrent(latest.checked_at) } : null,
         };
       }),
     });

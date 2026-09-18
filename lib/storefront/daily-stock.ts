@@ -1,6 +1,6 @@
 /** Private business policy. Never serialize inputs or effective metres publicly. */
-export const DAILY_STOCK_POLICY = "curtainsuk-stock-72h-at-least-30m-v2";
-export const STOCK_VALIDITY_MS = 3 * 24 * 60 * 60 * 1000;
+export const DAILY_STOCK_POLICY = "curtainsuk-stock-96h-at-least-30m-v3";
+export const STOCK_VALIDITY_MS = 4 * 24 * 60 * 60 * 1000;
 export type DailyStockInput = {
   aggregateMetres: number | null;
   confirmedUsageMetres: number;
@@ -13,7 +13,7 @@ export function stockObservationCurrent(checkedAt: string | null | undefined, no
   const checked = Date.parse(checkedAt ?? '');
   return Number.isFinite(checked) && checked <= now.getTime() && now.getTime() - checked <= STOCK_VALIDITY_MS;
 }
-/** A failed retrieval does not invalidate a genuine observation still within 72 hours. */
+/** A failed retrieval does not invalidate a genuine observation still within 96 hours. */
 export function currentDailyStockAvailability(decision: ReturnType<typeof dailyStockDecision>) {
   return decision.stale && decision.status !== 'DISCONTINUED'
     ? 'AVAILABILITY_TO_BE_CONFIRMED' as const

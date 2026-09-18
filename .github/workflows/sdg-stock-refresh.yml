@@ -1,0 +1,38 @@
+name: SDG supplier stock refresh
+
+on:
+  schedule:
+    # Check every six hours. The worker refreshes only after 72 hours from
+    # the last proven successful supplier-to-materialisation run.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sdg-supplier-stock-production
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+      SDG_TRADE_EMAIL: ${{ secrets.SDG_TRADE_EMAIL }}
+      SDG_TRADE_PASSWORD: ${{ secrets.SDG_TRADE_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Retrieve, validate, approve, materialise and verify SDG stock
+        run: npx --no-install tsx scripts/curtainsuk-sdg-routine-stock.ts
+      - name: Mark failed stage for operational attention
+        if: failure()
+        run: echo "::error title=SDG stock refresh failed::Inspect the failed stage above. Existing genuine observations retain their original timestamps and expire under the 96-hour policy."

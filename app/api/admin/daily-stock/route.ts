@@ -26,7 +26,12 @@ export async function GET() {
     .order("completed_at", { ascending: false })
     .limit(20);
   const {data:coverage,error:coverageError}=await createSupplierServiceClient().rpc('daily_stock_health');
-  return error || auditError || coverageError
+  const {data:supplierRefreshRuns,error:refreshError}=await createSupplierServiceClient()
+    .from('supplier_sync_runs')
+    .select('supplier_id,started_at,completed_at,status,snapshots_received,snapshots_appended,error_code')
+    .eq('adapter_id','sdg-trade-portal-full-refresh')
+    .order('completed_at',{ascending:false}).limit(10);
+  return error || auditError || coverageError || refreshError
     ? NextResponse.json(
         { error: "SNAPSHOT_STATUS_UNAVAILABLE" },
         { status: 503, headers },
@@ -35,10 +40,11 @@ export async function GET() {
         {
           runs: data,
           refreshEvents,
+          supplierRefreshRuns,
           coverage,
           process: 'STOCK_MATERIALISATION_ONLY',
           responsibleOperator: "CurtainsUK owner/admin",
-          upstreamRefresh: "UNATTENDED_SUPPLIER_SOURCE_NOT_CONFIGURED",
+          upstreamRefresh: {sdg:'SCHEDULED_EXACT_PORTAL_REFRESH',pt:'MANUAL_WEBTEX_OBSERVATIONS'},
         },
         { headers },
       );

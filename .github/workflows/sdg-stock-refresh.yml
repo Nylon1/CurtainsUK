@@ -2,9 +2,10 @@ name: SDG supplier stock refresh
 
 on:
   schedule:
-    # Check every six hours. The worker refreshes only after 72 hours from
-    # the last proven successful supplier-to-materialisation run.
-    - cron: "17 */6 * * *"
+    # Check hourly. The worker refreshes only after 72 hours from the last
+    # proven successful supplier-to-materialisation run, leaving ~23 hours
+    # before 96-hour evidence expires if a scheduled attempt fails.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:

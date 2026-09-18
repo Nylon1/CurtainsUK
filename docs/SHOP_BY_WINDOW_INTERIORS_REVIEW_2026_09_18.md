@@ -58,3 +58,30 @@ Awaiting Hamza’s visual/content approval. Candidate is unpublished. No merge o
 ## Homepage footer follow-up
 
 Shop by Window now renders the same existing homepage help/footer component by extending its route condition to page.handle == 'solve-my-window'. No duplicated markup, new styling or changed destinations. Homepage output and other routes remain unchanged. Candidate-only upload: sections/curtainsuk-help-footer.liquid. Verified at desktop, 390px and 412px with no horizontal overflow.
+
+## Visual refinement after review
+
+Continues from a64b316 and retains the shared-footer follow-up 3a33966. No merge/publication. Candidate remains 182336291195.
+
+- Hero markup and space navigation are unchanged (compared with 3a33966); shared homepage footer unchanged.
+- Replaced alternating prose/image modules with an immersive lounge photograph and horizontal palette desk; a bedroom light study; a bay architecture study with three annotated points; and a large patio photograph with an inset colour-direction board. Other Rooms stays a concise exploratory introduction.
+- Removed the standalone arbitrary illustrative palette block. Four major rooms now use colours sampled from their own photographs. Roles/names are editorial interpretations, not an HCI extraction or measured room-area percentages.
+- Main room guidance (lead + thinking + consideration fields) falls from 368 to 169 words. Each room has What works / What needs care and one unchanged same-origin Fabric Intelligence destination.
+- Shared palette snippet uses native named radio groups and CSS :has for Blend / Coordinate / Lift / Contrast. Selected border/check and keyboard focus supplement colour. No JavaScript, image manipulation, HCI state, contracts, persistence or generated fabric matches. Example selection remains local education and is not passed as a customer preference.
+
+### Palette evidence
+
+Median RGB of small patches in the existing Shopify photographs downloaded for this review; coordinates are normalised x/y centres, using a 2%-wide patch. These represent the photograph's lighting, not colour-standard measurements. Lift is an explicitly lighter tonal variation. Lounge Contrast is a darker variation of its sampled taupe; the other contrasts use photographed accent colours.
+
+| Space / source filename | Primary | Secondary | Accent |
+| --- | --- | --- | --- |
+| Lounge / prestigious-room-neutral-pattern.webp | #dacfbe at .73/.67 | #81725f at .12/.30 | #bea38e at .94/.18 |
+| Bedroom / curtainsuk-layered-sheer-grey-curtains.jpg | #d2d7dc at .44/.39 | #979691 at .70/.30 | #73452c at .18/.87 |
+| Bay / Bay-window-curtains-1.png | #a59271 at .46/.11 | #977e54 at .47/.16 | #2b3e01 at .78/.58 |
+| Patio / prestigious-room-watercolour-dining.webp | #999a93 at .50/.09 | #668698 at .11/.41 | #4d6256 at .80/.30 |
+
+### Focused verification
+
+Shopify Liquid/schema validator passed section, template, palette snippet and stylesheet. Desktop 1440px and mobile 390/412px inspected; no horizontal overflow; all six photographs loaded; five room CTAs retain the existing premium entry=match URL. Touch changes displayed direction notes; ArrowLeft changed native radio selection and exposed a solid focus outline. No animation was introduced. Corrected Bay's mobile heading alignment and adjusted numbered points for its tighter crop. This is Chrome responsive-width evidence, not a physical Safari/iPhone test.
+
+Preview-only changes: sections/curtainsuk-spaces.liquid, assets/curtainsuk-spaces.css, templates/page.solve-my-window.json, snippets/curtainsuk-space-palette.liquid. Live theme, destinations, homepage, navigation, HCI and commerce untouched. Human visual approval remains pending.

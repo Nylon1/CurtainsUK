@@ -25,44 +25,45 @@
 
   <div class="cukfi__wrap cukspace__chapters">
     {% for block in section.blocks %}
-      <section id="space-{{ block.settings.anchor }}" class="cukspace__chapter{% cycle '', ' cukspace__chapter--reverse' %}" aria-labelledby="space-title-{{ block.id }}" {{ block.shopify_attributes }}>
-        <figure class="cukspace__photo">
-          {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 1500 | image_tag: widths: '400, 650, 900, 1200, 1500', sizes: '(min-width: 1000px) 52vw, calc(100vw - 48px)', loading: 'lazy', alt: block.settings.image_alt }}
-          {% endif %}
-          <figcaption><span class="cukspace__number">0{{ forloop.index }}</span>{{ block.settings.caption }}</figcaption>
-        </figure>
-        <div class="cukspace__chapter-copy">
-          <p class="cukfi__eyebrow">{{ block.settings.eyebrow }}</p>
+      <section id="space-{{ block.settings.anchor }}" class="cukspace__chapter cukspace__chapter--{{ block.settings.anchor }}" aria-labelledby="space-title-{{ block.id }}" {{ block.shopify_attributes }}>
+        <header class="cukspace__chapter-heading">
+          <p class="cukfi__eyebrow">0{{ forloop.index }} / {{ block.settings.eyebrow }}</p>
           <h2 id="space-title-{{ block.id }}">{{ block.settings.title }}</h2>
           <p class="cukspace__standfirst">{{ block.settings.lead }}</p>
-          <p>{{ block.settings.thinking }}</p>
-          <div class="cukspace__consider"><span class="cukfi__eyebrow">A detail to consider</span><p>{{ block.settings.consider }}</p></div>
+        </header>
+        <figure class="cukspace__photo">
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 1800 | image_tag: widths: '400, 650, 900, 1200, 1500, 1800', sizes: '(min-width: 1000px) 85vw, calc(100vw - 48px)', loading: 'lazy', alt: block.settings.image_alt }}
+          {% endif %}
+          {% if block.settings.anchor == 'bay' %}
+            <span class="cukspace__photo-point cukspace__photo-point--one" aria-hidden="true">01</span>
+            <span class="cukspace__photo-point cukspace__photo-point--two" aria-hidden="true">02</span>
+            <span class="cukspace__photo-point cukspace__photo-point--three" aria-hidden="true">03</span>
+          {% endif %}
+          <figcaption>{{ block.settings.caption }}</figcaption>
+        </figure>
+        <div class="cukspace__study">
+          {% if block.settings.anchor == 'bay' %}
+            <div class="cukspace__architecture">
+              <p class="cukfi__eyebrow">Read the architecture</p>
+              <div><span>01</span><p><strong>Follow the rhythm</strong>Let the heading follow the bay’s changing planes.</p></div>
+              <div><span>02</span><p><strong>See the whole pattern</strong>Judge its scale across every window and fold.</p></div>
+              <div><span>03</span><p><strong>Leave room to open</strong>Stacked fabric has weight, width and movement.</p></div>
+            </div>
+            {% render 'curtainsuk-space-palette', space: block, interactive: false %}
+          {% elsif block.settings.anchor != 'other' %}
+            {% render 'curtainsuk-space-palette', space: block, interactive: true %}
+          {% else %}
+            <p class="cukfi__eyebrow">Begin with three things</p>
+            <div class="cukspace__open-questions"><p><span>Space</span>What should the window bring to the room?</p><p><span>Light</span>What changes through the day?</p><p><span>Colour</span>What would you love to keep?</p></div>
+          {% endif %}
+        </div>
+        <div class="cukspace__takeaway">
+          <div><h3>What works</h3><p>{{ block.settings.thinking }}</p></div>
+          <div><h3>What needs care</h3><p>{{ block.settings.consider }}</p></div>
           <a class="cukspace__link" href="{{ intelligence_url }}">{{ block.settings.cta }} <span aria-hidden="true">→</span></a>
         </div>
       </section>
-
-      {% if forloop.index == 2 %}
-        <section class="cukspace__palette" aria-labelledby="space-palette-title">
-          <div class="cukspace__palette-heading"><p class="cukfi__eyebrow">A little interior thinking</p><h2 id="space-palette-title">One room.<br><em>More than one direction.</em></h2><p>Your curtains can echo a room, connect its colours, introduce a lighter note or bring deliberate contrast. There is more than one way to belong.</p></div>
-          <div class="cukspace__palette-board">
-            <p class="cukspace__board-label">An illustrative room palette</p>
-            <div class="cukspace__room-colours">
-              <div><span class="cukspace__swatch cukspace__swatch--cream"></span><span class="cukfi__eyebrow">Primary</span><strong>Warm cream</strong><small>The foundation</small></div>
-              <div><span class="cukspace__swatch cukspace__swatch--olive"></span><span class="cukfi__eyebrow">Secondary</span><strong>Olive</strong><small>A supporting colour</small></div>
-              <div><span class="cukspace__swatch cukspace__swatch--ochre"></span><span class="cukfi__eyebrow">Accent</span><strong>Soft ochre</strong><small>A smaller detail</small></div>
-            </div>
-            <p class="cukspace__board-label cukspace__board-label--next">Four possible curtain relationships</p>
-            <div class="cukspace__relationships">
-              <div><span class="cukspace__curtain-colour cukspace__swatch--cream" aria-hidden="true"></span><h3>Blend</h3><p>Warm cream echoes the foundation for a quieter, tonal effect.</p></div>
-              <div><span class="cukspace__curtain-colour cukspace__swatch--olive" aria-hidden="true"></span><h3>Coordinate</h3><p>Olive carries a supporting colour across the room.</p></div>
-              <div><span class="cukspace__curtain-colour cukspace__swatch--ivory" aria-hidden="true"></span><h3>Lift</h3><p>Pale ivory brings a lighter note to the window.</p></div>
-              <div><span class="cukspace__curtain-colour cukspace__swatch--plum" aria-hidden="true"></span><h3>Contrast</h3><p>Deep plum introduces a distinct, more expressive focal point.</p></div>
-            </div>
-            <p class="cukspace__palette-note">Illustrative colours, not a fabric match. Light, texture and finish change how a colour feels in your room.</p>
-          </div>
-        </section>
-      {% endif %}
     {% endfor %}
   </div>
 
@@ -79,24 +80,145 @@
   "name": "Curtains for your space",
   "tag": "section",
   "class": "section",
-  "enabled_on": { "templates": ["page"] },
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
   "max_blocks": 5,
   "settings": [],
-  "blocks": [{
-    "type": "space",
-    "name": "Space",
-    "settings": [
-      { "type": "text", "id": "anchor", "label": "Section anchor" },
-      { "type": "text", "id": "title", "label": "Space title" },
-      { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
-      { "type": "image_picker", "id": "image", "label": "Interior photograph" },
-      { "type": "text", "id": "image_alt", "label": "Image description" },
-      { "type": "text", "id": "caption", "label": "Image caption" },
-      { "type": "textarea", "id": "lead", "label": "Opening thought" },
-      { "type": "textarea", "id": "thinking", "label": "Design thinking" },
-      { "type": "textarea", "id": "consider", "label": "Detail to consider" },
-      { "type": "text", "id": "cta", "label": "Fabric Intelligence link label" }
-    ]
-  }]
+  "blocks": [
+    {
+      "type": "space",
+      "name": "Space",
+      "settings": [
+        {
+          "type": "text",
+          "id": "anchor",
+          "label": "Section anchor"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Space title"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Interior photograph"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image description"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Image caption"
+        },
+        {
+          "type": "textarea",
+          "id": "lead",
+          "label": "Opening thought"
+        },
+        {
+          "type": "textarea",
+          "id": "thinking",
+          "label": "Design thinking"
+        },
+        {
+          "type": "textarea",
+          "id": "consider",
+          "label": "Detail to consider"
+        },
+        {
+          "type": "text",
+          "id": "cta",
+          "label": "Fabric Intelligence link label"
+        },
+        {
+          "type": "color",
+          "id": "primary_colour",
+          "label": "Primary sampled colour"
+        },
+        {
+          "type": "text",
+          "id": "primary_name",
+          "label": "Primary colour name"
+        },
+        {
+          "type": "color",
+          "id": "secondary_colour",
+          "label": "Secondary sampled colour"
+        },
+        {
+          "type": "text",
+          "id": "secondary_name",
+          "label": "Secondary colour name"
+        },
+        {
+          "type": "color",
+          "id": "accent_colour",
+          "label": "Accent sampled colour"
+        },
+        {
+          "type": "text",
+          "id": "accent_name",
+          "label": "Accent colour name"
+        },
+        {
+          "type": "text",
+          "id": "explore",
+          "label": "Relationship prompt"
+        },
+        {
+          "type": "color",
+          "id": "blend_colour",
+          "label": "Blend direction colour"
+        },
+        {
+          "type": "text",
+          "id": "blend_note",
+          "label": "Blend direction insight"
+        },
+        {
+          "type": "color",
+          "id": "coordinate_colour",
+          "label": "Coordinate direction colour"
+        },
+        {
+          "type": "text",
+          "id": "coordinate_note",
+          "label": "Coordinate direction insight"
+        },
+        {
+          "type": "color",
+          "id": "lift_colour",
+          "label": "Lift direction colour"
+        },
+        {
+          "type": "text",
+          "id": "lift_note",
+          "label": "Lift direction insight"
+        },
+        {
+          "type": "color",
+          "id": "contrast_colour",
+          "label": "Contrast direction colour"
+        },
+        {
+          "type": "text",
+          "id": "contrast_note",
+          "label": "Contrast direction insight"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

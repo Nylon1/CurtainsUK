@@ -3,6 +3,8 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
+import { fullUrl } from '@/lib/sitemap-utils';
+import { shopifyConsultationHandoff } from '@/lib/storefront/consultation-navigation';
 import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
 import styles from './curtainsuk-premium-consultation.module.css';
 import referenceStyles from '@/vendor/hci-approved/components/ReferenceExperience.module.css';
@@ -137,13 +139,8 @@ export default function CurtainsUkPremiumConsultation() {
     return result.palette;
   };
   const commerceUrl = (card: Card, direction: Direction, sample: boolean) => {
-    const destination = sample ? '/pages/fabric-library' : '/pages/curtain-visualiser';
-    // Customer navigation remains in the current CurtainsUK origin: Shopify in the
-    // candidate and this protected same-origin preview during review.
-    const url = new URL(destination, window.location.origin);
-    url.searchParams.set('fabric', card.fabricMasterId); if (sample) url.searchParams.set('intent', 'sample');
-    url.hash = `cuk_hci=${encodeURIComponent(JSON.stringify({ sessionId: view?.sessionId, fabricMasterId: card.fabricMasterId, strategyId: direction.id, commerceToken: card.commerceToken, returnOrigin: window.location.origin }))}`;
-    return url.toString();
+    return shopifyConsultationHandoff({ sample, sessionId: view?.sessionId ?? '', profileSummary: view?.profileSummary ?? '',
+      fabricMasterId: card.fabricMasterId, supplierSku: card.supplierSku, strategyId: direction.id, commerceToken: card.commerceToken });
   };
   const reportOutcome = async (card: Card, direction: Direction, event: string) => Boolean(await send({ type: 'outcome', event, fabricMasterId: card.fabricMasterId, strategyId: direction.id }));
 
@@ -152,7 +149,7 @@ export default function CurtainsUkPremiumConsultation() {
   const showPalette = Boolean(roomPalette && (!roomPalette.confirmedPalette || reviewPalette));
 
   return <main className={showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell}>
-    <header className={styles.header}><Link href="/" className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href="/fabrics">Explore fabrics</a></header>
+    <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Explore fabrics</a></header>
     <div className={styles.progress} aria-label="Consultation progress"><span className={roomPalette ? styles.complete : ''}>Your room</span><span className={view.phase !== 'discovery' ? styles.complete : ''}>Your taste</span><span className={view.directions.length ? styles.complete : ''}>Your edit</span></div>
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}
     {!showPalette && roomPalette?.confirmedPalette && <button className={styles.textButton} onClick={() => setReviewPalette(true)}>Review my Room Palette</button>}

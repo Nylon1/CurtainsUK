@@ -95,7 +95,10 @@ export class PtWebtexSession {
     const xml = load(xmlText, { xmlMode: true });
     const status = xml("RETURNPACKET > STATUS").text().trim();
     if (status === "REDIRECT") throw new Error("PT_WEBTEX_AUTH_EXPIRED");
-    if (status !== "OKAY") throw new Error("PT_WEBTEX_QUERY_FAILED");
+    if (status !== "OKAY") {
+      const safeStatus = /^[A-Za-z0-9_-]{1,40}$/.test(status) ? status : "UNRECOGNISED";
+      throw new Error(`PT_WEBTEX_QUERY_STATUS_${safeStatus}`);
+    }
     const total = Number(xml("RETURNPACKET > TOTALROWS").text());
     if (!Number.isInteger(total) || total < 0) throw new Error("PT_WEBTEX_TOTAL_INVALID");
     const rows: PtStockRow[] = [];

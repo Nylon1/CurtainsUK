@@ -38,3 +38,23 @@ Room palette is an editorial interpretation of the displayed photograph, not mea
 - Existing homepage shared footer present on candidate Fabrics page.
 
 Awaiting Hamza's visual review. Candidate remains unpublished; live theme unchanged.
+
+
+## V2 — separate editorial and browsing experiences
+
+Continues from 283c223; supersedes the inline-catalogue arrangement above.
+
+- Editorial preview: https://www.curtainsuk.com/pages/fabric-library?preview_theme_id=182336323963
+- Library preview: https://www.curtainsuk.com/pages/fabric-library?view=browse-fabrics&preview_theme_id=182336323963
+- Added page.fabric-library.json uses the existing page's assigned template suffix, so navigation is unchanged. It renders only the editorial section. Added page.browse-fabrics.json reuses the existing browser and sample-basket sections, without introductory discovery cards.
+- Existing filtered/exact-fabric bookmarks are routed to the browse view with all context preserved. Three narrowly scoped storefront JS line changes preserve view on search/reload and retain browse view in View Fabric/All fabrics links. No catalogue fetch, identity, pricing, eligibility, search/filter logic or commerce handling changed.
+- Hero includes a genuine Cord Breeze textile detail; space section pairs a crop with its room; light uses one actual fabric image under explicitly illustrative light treatments; weight uses room photography rather than diagrams; character compares actual surface/pattern imagery instead of decorative palettes. Colour relationship swatches have larger folded-card treatment.
+- Light effects are educational CSS overlays, not measured supplier photography. No physical-weight value or supplier property inferred.
+
+### V2 verification
+
+Shopify validation passed all six initial files and three final routing/style files. Node syntax check passed. Desktop 1440, mobile 390 and 412 show no horizontal overflow. Editorial contains zero browser instances; browse view contains one browser and zero editorial instances. Native colour disclosure toggled by keyboard. Existing shared footer retained.
+
+Both FI CTA destinations retain same-origin entry=match; final entry loaded the real Let us read your room screen (initial server preparation state required time to finish). Library Cord search survived reload with view=browse-fabrics. View Fabric opened exact pt-7248-590 Cord Breeze, with original sample and Make Curtains controls. All fabrics returned to browse view. Legacy ?fabric=pt-7248-590 without view correctly routed to the same product detail. Browse and product detail had no mobile overflow. No transactions attempted. No Vercel/staging hostname in editorial link targets.
+
+Unaffected homepage, Shop by Window, navigation, product rendering, HCI, stock, Fabric Master and commerce source files were not changed (aside from the three necessary library navigation lines in the shared storefront asset). Candidate only, no merge/publication.

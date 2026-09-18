@@ -3,7 +3,10 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
+import { fullUrl } from '@/lib/sitemap-utils';
+import { shopifyConsultationHandoff } from '@/lib/storefront/consultation-navigation';
 import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
+import { premiumProxyCapability, premiumProxyEnabled, premiumProxyPath } from './curtainsuk-premium-proxy-transport';
 import styles from './curtainsuk-premium-consultation.module.css';
 import referenceStyles from '@/vendor/hci-approved/components/ReferenceExperience.module.css';
 
@@ -70,7 +73,9 @@ export default function CurtainsUkPremiumConsultation() {
     pending.current = payload;
     setBusy(true); setNotice('');
     try {
-      const response = await fetch('/api/curtain-consultation-premium', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      const endpoint = premiumProxyEnabled() ? premiumProxyPath('premium-command') : '/api/curtain-consultation-premium';
+      const body = premiumProxyEnabled() ? { capability: await premiumProxyCapability(), command: payload } : payload;
+      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const data = await response.json();
       if (!response.ok) throw Error(data.error || 'Your consultation is temporarily unavailable.');
       data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, Boolean(payload.action) || !payload.sessionId);
@@ -90,6 +95,7 @@ export default function CurtainsUkPremiumConsultation() {
       loaded.current = true;
       setEntry(new URLSearchParams(window.location.search).get('entry') === 'guided' ? 'guided' : 'match');
       try { resumeSession.current = savedPremiumSession(sessionStorage.getItem(premiumSessionStorageKey)); } catch { /* Storage may be disabled. */ }
+      if (premiumProxyEnabled()) resumeSession.current = savedPremiumSession(new URLSearchParams(window.location.search).get('session')) ?? resumeSession.current;
       void send();
     }
   // This initializes exactly one anonymous consultation; re-running would create a second request.
@@ -98,7 +104,7 @@ export default function CurtainsUkPremiumConsultation() {
     if (!view?.directions.length) return;
     const ids = view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)).filter((id) => !fabrics[id]);
     void Promise.all(ids.map(async (id) => {
-      const response = await fetch(`/api/curtain-consultation-premium?fabric=${encodeURIComponent(id)}`);
+      const response = await fetch(premiumProxyEnabled() ? `${premiumProxyPath('premium-catalog')}?fabric=${encodeURIComponent(id)}` : `/api/curtain-consultation-premium?fabric=${encodeURIComponent(id)}`);
       const data = await response.json();
       if (response.ok && data.fabric?.id === id) setFabrics((previous) => ({ ...previous, [id]: data.fabric }));
     }));
@@ -137,13 +143,8 @@ export default function CurtainsUkPremiumConsultation() {
     return result.palette;
   };
   const commerceUrl = (card: Card, direction: Direction, sample: boolean) => {
-    const destination = sample ? '/pages/fabric-library' : '/pages/curtain-visualiser';
-    // Customer navigation remains in the current CurtainsUK origin: Shopify in the
-    // candidate and this protected same-origin preview during review.
-    const url = new URL(destination, window.location.origin);
-    url.searchParams.set('fabric', card.fabricMasterId); if (sample) url.searchParams.set('intent', 'sample');
-    url.hash = `cuk_hci=${encodeURIComponent(JSON.stringify({ sessionId: view?.sessionId, fabricMasterId: card.fabricMasterId, strategyId: direction.id, commerceToken: card.commerceToken, returnOrigin: window.location.origin }))}`;
-    return url.toString();
+    return shopifyConsultationHandoff({ sample, sessionId: view?.sessionId ?? '', profileSummary: view?.profileSummary ?? '',
+      fabricMasterId: card.fabricMasterId, supplierSku: card.supplierSku, strategyId: direction.id, commerceToken: card.commerceToken });
   };
   const reportOutcome = async (card: Card, direction: Direction, event: string) => Boolean(await send({ type: 'outcome', event, fabricMasterId: card.fabricMasterId, strategyId: direction.id }));
 
@@ -152,7 +153,7 @@ export default function CurtainsUkPremiumConsultation() {
   const showPalette = Boolean(roomPalette && (!roomPalette.confirmedPalette || reviewPalette));
 
   return <main className={showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell}>
-    <header className={styles.header}><Link href="/" className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href="/fabrics">Explore fabrics</a></header>
+    <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Explore fabrics</a></header>
     <div className={styles.progress} aria-label="Consultation progress"><span className={roomPalette ? styles.complete : ''}>Your room</span><span className={view.phase !== 'discovery' ? styles.complete : ''}>Your taste</span><span className={view.directions.length ? styles.complete : ''}>Your edit</span></div>
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}
     {!showPalette && roomPalette?.confirmedPalette && <button className={styles.textButton} onClick={() => setReviewPalette(true)}>Review my Room Palette</button>}
@@ -164,7 +165,7 @@ export default function CurtainsUkPremiumConsultation() {
     />}
     {showPalette && roomPalette?.confirmedPalette && <button className={styles.primary} onClick={() => setReviewPalette(false)}>Continue with my Room Palette →</button>}
     {!showUpload && !showPalette && view.phase === 'discovery' && view.question && <section id="premium-current-step" className={`${styles.question} ${styles.taste}`} aria-labelledby="taste-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Your taste</p>{view.tasteProgress && <span>Question {view.tasteProgress.current} of {view.tasteProgress.total}</span>}</div>{view.tasteProgress && <progress className={styles.stepProgress} max={view.tasteProgress.total} value={view.tasteProgress.current} aria-label="Your taste progress" />}<h1 id="taste-heading">{view.question.prompt}</h1><p>Choose what feels most like you. We’ll use your answer to shape the fabrics you see.</p><div className={styles.tasteChoices}>{view.question.answers.map((answer, index) => <button key={answer.id} className={styles.tasteChoice} disabled={busy} onClick={() => void send({ type: 'answer', answerId: answer.id })}><span className={styles.choiceNumber}>{String(index + 1).padStart(2, '0')}</span><span>{answer.label}</span><span aria-hidden="true">→</span></button>)}</div>{entry === 'guided' && !roomPalette && <button className={styles.textButton} onClick={() => setEntry('match')}>Have something you’d like us to match with? Add a reference image</button>}</section>}
-    {!showUpload && !showPalette && view.phase === 'calibration' && <section id="premium-current-step" className={`${styles.calibration} ${styles.eye}`} aria-labelledby="eye-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Your eye</p>{view.calibrationProgress && <span>Fabric {view.calibrationProgress.current} of {view.calibrationProgress.total}</span>}</div>{view.calibrationProgress && <progress className={styles.stepProgress} max={view.calibrationProgress.total} value={view.calibrationProgress.current} aria-label="Fabric progress" />}<h1 id="eye-heading">Which fabrics <em>feel like you?</em></h1><p>Trust your first impression. Each choice helps us understand your taste.</p>{view.calibrationFabric ? <div className={styles.eyeFabric}><img src={view.calibrationFabric.imageUrl} alt={`${view.calibrationFabric.brand} ${view.calibrationFabric.design} ${view.calibrationFabric.colourway} fabric`} /><div><p className={styles.eyebrow}>{view.calibrationFabric.brand}</p><h2>{view.calibrationFabric.design} <em>{view.calibrationFabric.colourway}</em></h2><p>Fabric reference {view.calibrationFabric.supplierSku}</p></div></div> : view.stimulusId ? <img src={`/api/curtain-consultation-premium/assets/${encodeURIComponent(view.stimulusId)}.svg`} alt="Curtain design for preference calibration" /> : null}<div className={styles.eyeReactions}>{[['LOVE','Love this'],['LIKE','Like this'],['NOT_SURE','Not sure'],['DISLIKE','Not for me']].map(([reaction, label]) => <button key={reaction} disabled={busy} onClick={() => void send({ type: 'calibrate', reaction })}>{label}</button>)}</div></section>}
+    {!showUpload && !showPalette && view.phase === 'calibration' && <section id="premium-current-step" className={`${styles.calibration} ${styles.eye}`} aria-labelledby="eye-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Your eye</p>{view.calibrationProgress && <span>Fabric {view.calibrationProgress.current} of {view.calibrationProgress.total}</span>}</div>{view.calibrationProgress && <progress className={styles.stepProgress} max={view.calibrationProgress.total} value={view.calibrationProgress.current} aria-label="Fabric progress" />}<h1 id="eye-heading">Which fabrics <em>feel like you?</em></h1><p>Trust your first impression. Each choice helps us understand your taste.</p>{view.calibrationFabric ? <div className={styles.eyeFabric}><img src={view.calibrationFabric.imageUrl} alt={`${view.calibrationFabric.brand} ${view.calibrationFabric.design} ${view.calibrationFabric.colourway} fabric`} /><div><p className={styles.eyebrow}>{view.calibrationFabric.brand}</p><h2>{view.calibrationFabric.design} <em>{view.calibrationFabric.colourway}</em></h2><p>Fabric reference {view.calibrationFabric.supplierSku}</p></div></div> : view.stimulusId ? <img src={premiumProxyEnabled() ? `${premiumProxyPath('premium-asset')}?name=${encodeURIComponent(view.stimulusId)}.svg` : `/api/curtain-consultation-premium/assets/${encodeURIComponent(view.stimulusId)}.svg`} alt="Curtain design for preference calibration" /> : null}<div className={styles.eyeReactions}>{[['LOVE','Love this'],['LIKE','Like this'],['NOT_SURE','Not sure'],['DISLIKE','Not for me']].map(([reaction, label]) => <button key={reaction} disabled={busy} onClick={() => void send({ type: 'calibrate', reaction })}>{label}</button>)}</div></section>}
     {!showUpload && !showPalette && view.interiorBrief && (view.phase === 'brief' || view.phase === 'complete') && <section id="premium-current-step" className={styles.brief} aria-labelledby="brief-heading">
       <div className={styles.briefIntro}><p className={styles.eyebrow}>Your interior fabric brief</p><h1 id="brief-heading">A direction shaped <em>by you.</em></h1><p>{roomPalette?.confirmedPalette ? 'We’ve brought together your room, what matters to you and the fabrics you responded to.' : 'We’ve brought together what matters to you and the fabrics you responded to.'} This is the brief we’ll use to find your curtains.</p></div>
       <div className={styles.briefSources} aria-label="Sources of your brief"><span>Your room <small>{roomPalette?.confirmedPalette ? 'Confirmed palette' : 'Image optional'}</small></span><span>Your taste <small>What matters to you</small></span><span>Your eye <small>Fabrics you responded to</small></span></div>

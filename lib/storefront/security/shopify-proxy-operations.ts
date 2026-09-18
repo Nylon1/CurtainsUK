@@ -1,4 +1,4 @@
-export const SHOPIFY_PROXY_OPERATIONS = ["catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff", "sample-order", "consultation", "consultation-asset", "hci-session", "hci-command", "image-privacy"] as const;
+export const SHOPIFY_PROXY_OPERATIONS = ["catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff", "sample-order", "consultation", "consultation-asset", "premium-asset", "premium-catalog", "premium-session", "premium-command", "hci-session", "hci-command", "image-privacy"] as const;
 export type ShopifyProxyOperation = typeof SHOPIFY_PROXY_OPERATIONS[number];
 
 export function isShopifyProxyOperation(value: string): value is ShopifyProxyOperation {
@@ -15,6 +15,10 @@ export const SHOPIFY_PROXY_OPERATION_POLICY: Record<ShopifyProxyOperation, {
   catalog: { methods: ["GET"], maximumBytes: 0, rateLimit: { limit: 120, windowSeconds: 60 } },
   consultation: {methods:['GET'],maximumBytes:0,rateLimit:{limit:120,windowSeconds:60}},
   'consultation-asset': {methods:['GET'],maximumBytes:0,rateLimit:{limit:180,windowSeconds:60}},
+  'premium-asset': {methods:['GET'],maximumBytes:0,rateLimit:{limit:180,windowSeconds:60}},
+  'premium-catalog': {methods:['GET'],maximumBytes:0,rateLimit:{limit:120,windowSeconds:60}},
+  'premium-session': {methods:['POST'],maximumBytes:2048,rateLimit:{limit:20,windowSeconds:900}},
+  'premium-command': {methods:['POST'],maximumBytes:3_000_000,rateLimit:{limit:120,windowSeconds:60}},
   'image-privacy': {methods:['GET'],maximumBytes:0,rateLimit:{limit:120,windowSeconds:60}},
   'hci-session': {methods:['POST'],maximumBytes:2048,rateLimit:{limit:20,windowSeconds:900}},
   'hci-command': {methods:['POST'],maximumBytes:3_000_000,rateLimit:{limit:120,windowSeconds:60}},

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
+import StorefrontFrame from "@/components/layout/StorefrontFrame";
 
 const SITE_URL = "https://www.curtainsuk.com";
 
@@ -85,9 +84,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
         />
-        <Navbar />
-        {children}
-        <Footer />
+        <StorefrontFrame>{children}</StorefrontFrame>
       </body>
     </html>
   );

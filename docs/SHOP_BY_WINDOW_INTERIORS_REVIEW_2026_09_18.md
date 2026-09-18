@@ -85,3 +85,8 @@ Median RGB of small patches in the existing Shopify photographs downloaded for t
 Shopify Liquid/schema validator passed section, template, palette snippet and stylesheet. Desktop 1440px and mobile 390/412px inspected; no horizontal overflow; all six photographs loaded; five room CTAs retain the existing premium entry=match URL. Touch changes displayed direction notes; ArrowLeft changed native radio selection and exposed a solid focus outline. No animation was introduced. Corrected Bay's mobile heading alignment and adjusted numbered points for its tighter crop. This is Chrome responsive-width evidence, not a physical Safari/iPhone test.
 
 Preview-only changes: sections/curtainsuk-spaces.liquid, assets/curtainsuk-spaces.css, templates/page.solve-my-window.json, snippets/curtainsuk-space-palette.liquid. Live theme, destinations, homepage, navigation, HCI and commerce untouched. Human visual approval remains pending.
+## Release authorisation and preflight
+
+Hamza authorised merge and page-only publication after focused checks. Candidate 7ded8ec passed the final desktop1440 / mobile390 / mobile412 checks; no material regression found. The final polish specified in the prior refinement is already included.
+
+Current live theme confirmed as 182310502779. A fresh read-only pull found no existing new page template, section, palette snippet or stylesheet to overwrite. The current shared help footer differs only by the new route condition after line-ending normalisation. Its current source is preserved locally in curtainsuk-window-review/live-before-release. Deployment will stage supporting files first, then the dedicated page template. The candidate theme itself will not be published. Other theme files are excluded.

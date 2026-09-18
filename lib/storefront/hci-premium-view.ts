@@ -17,7 +17,7 @@ function fields(value: Record<string, unknown>, allowed: readonly string[]) {
 export function customerView(value: unknown) {
   const view = object(value);
   if (view.version !== HCI_PREMIUM_CONTRACT || view.sourceCommit !== HCI_PREMIUM_BASELINE || !uuid.test(string(view.sessionId, 36)) ||
-    !['discovery', 'calibration', 'complete', 'directions', 'final'].includes(string(view.phase, 30)) || !Array.isArray(view.directions) || view.directions.length > 5)
+    !['discovery', 'calibration', 'brief', 'complete', 'directions', 'final'].includes(string(view.phase, 30)) || !Array.isArray(view.directions) || view.directions.length > 5)
     throw Error('HCI_CONTRACT_INVALID');
   if (JSON.stringify(view).length > 1_000_000) throw Error('HCI_CONTRACT_INVALID');
   assertNoRawReferenceMedia(view);
@@ -43,6 +43,30 @@ export function customerView(value: unknown) {
       brand: string(item.brand, 160), design: string(item.design, 160),
       colourway: string(item.colourway, 160), imageUrl: imageUrl.toString(),
     };
+  })();
+  const brief = view.interiorBrief == null ? null : (() => {
+    const item = object(view.interiorBrief);
+    fields(item, ['status', 'version', 'sections']);
+    if (!['HCI_PROPOSED', 'CUSTOMER_CONFIRMED'].includes(string(item.status, 25)) ||
+      !Number.isSafeInteger(item.version) || Number(item.version) < 0 || Number(item.version) > 20 ||
+      !Array.isArray(item.sections) || item.sections.length > 5) throw Error('HCI_CONTRACT_INVALID');
+    const dimensions = new Set<string>();
+    const sections = item.sections.map((raw) => {
+      const section = object(raw); fields(section, ['dimension', 'title', 'description', 'value', 'changed', 'options']);
+      const dimension = string(section.dimension, 40);
+      if (!['atmosphere', 'pattern', 'colour.family', 'texture', 'sheen'].includes(dimension) || dimensions.has(dimension) ||
+        typeof section.changed !== 'boolean' || !Array.isArray(section.options) || section.options.length > 20) throw Error('HCI_CONTRACT_INVALID');
+      dimensions.add(dimension);
+      const options = section.options.map((rawOption) => {
+        const option = object(rawOption); fields(option, ['value', 'label']);
+        return { value: string(option.value, 100), label: string(option.label, 100) };
+      });
+      const value = string(section.value, 100);
+      if (!options.some((option) => option.value === value)) throw Error('HCI_CONTRACT_INVALID');
+      return { dimension, title: string(section.title, 80), description: string(section.description, 200),
+        value, changed: section.changed, options };
+    });
+    return { status: string(item.status, 25), version: Number(item.version), sections };
   })();
   const directions = view.directions.map((candidate) => {
     const direction = object(candidate);
@@ -76,6 +100,7 @@ export function customerView(value: unknown) {
     tasteProgress: progress(view.tasteProgress, 4),
     calibrationFabric: eye,
     calibrationProgress: progress(view.calibrationProgress, 8),
+    interiorBrief: brief,
     palette: view.palette === null ? null : view.palette,
     directions,
     learning: view.learning === null ? null : view.learning,

@@ -70,6 +70,7 @@ next-env.d.ts
 /artifacts/phase6-discovery/private/
 
 /artifacts/hci-integration/private/
+/artifacts/sdg-portal-private/
 
 # Built from the approved premium consultation for the same-origin Shopify app proxy.
 /lib/storefront/hci/premium/

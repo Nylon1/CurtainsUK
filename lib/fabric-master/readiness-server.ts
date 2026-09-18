@@ -10,6 +10,6 @@ export async function commercialReadiness(records: FabricMasterRecord[]) {
   if(!records.length) return new Map<string,ReturnType<typeof fabricReadiness>>();
   const {data,error}=await createSupplierServiceClient().rpc('fabric_commercial_evidence',{p_ids:records.map(r=>r.fabric_id)});
   if(error) throw Error('FABRIC_READINESS_UNAVAILABLE');
-  const evidence=new Map(((data??[]) as {fabric_id:string;stock:PublicSupplierAvailability;stale:boolean;price_confirmed:boolean}[]).map(e=>[e.fabric_id,e]));
-  return new Map(records.map(r=>{const e=evidence.get(r.fabric_id);return [r.fabric_id,fabricReadiness(r,{stock:e?.stock,stale:e?.stale,priceConfirmed:e?.price_confirmed})];}));
+  const evidence=new Map(((data??[]) as {fabric_id:string;stock:PublicSupplierAvailability;stale:boolean;sample_stock_available:boolean;price_confirmed:boolean}[]).map(e=>[e.fabric_id,e]));
+  return new Map(records.map(r=>{const e=evidence.get(r.fabric_id);return [r.fabric_id,fabricReadiness(r,{stock:e?.stock,stale:e?.stale,sampleStockAvailable:e?.sample_stock_available,priceConfirmed:e?.price_confirmed})];}));
 }

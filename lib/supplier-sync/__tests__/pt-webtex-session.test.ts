@@ -4,7 +4,7 @@ import { PtWebtexSession } from "../adapters/pt-webtex-session";
 
 const initial = '<html><input id="txtUserName"><input name="__VIEWSTATE" value="state"><form id="aspnetForm"><input name="__VIEWSTATE" value="state"></form></html>';
 const stock = '<html><title>Stock Enquiry</title><script>callbackSearchCollection</script><input id="webtexPageLoadData" value="%3CRETURNPACKET%3E%3CDATA%3E%3CCOLUMNS%20InitialSortOrder%3D%22C2%22%2F%3E%3C%2FDATA%3E%3C%2FRETURNPACKET%3E"></html>';
-const result = '<RETURNPACKET><STATUS>OKAY</STATUS><TOTALROWS>2</TOTALROWS><results><Detail>' +
+const result = '<RETURNPACKET><STATUS>DATA</STATUS><TOTALROWS>2</TOTALROWS><results><Detail>' +
   '<record groupRow="FALSE"><fd id="C1" value=""/><fd id="C2" value="4262/770"/><fd id="C4" value="295 M"/></record>' +
   '<record groupRow="FALSE"><fd id="C1" value="L"/><fd id="C2" value="4264/162"/><fd id="C4" value="1 M"/></record>' +
   '</Detail></results></RETURNPACKET>';

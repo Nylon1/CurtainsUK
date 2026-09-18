@@ -1,0 +1,38 @@
+name: PT supplier stock refresh
+
+on:
+  schedule:
+    # Check hourly; worker only refreshes 72 hours after the last proven
+    # retrieve-to-materialisation success, before 96-hour evidence expires.
+    - cron: "39 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pt-supplier-stock-production
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+      PT_WEBTEX_USERNAME: ${{ secrets.PT_WEBTEX_USERNAME }}
+      PT_WEBTEX_PASSWORD: ${{ secrets.PT_WEBTEX_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Retrieve, validate, approve, materialise and verify PT stock
+        run: npx --no-install tsx scripts/curtainsuk-pt-routine-stock.ts
+      - name: Mark failed stage for operational attention
+        if: failure()
+        run: echo "::error title=PT stock refresh failed::Inspect the failed stage above. Genuine observations retain their original timestamps and expire under the 96-hour policy."

@@ -11,7 +11,21 @@ async function main() {
   const result = await session.search("COLLECTION", "Rustic Persian");
   const sadira = result.rows.find((row) => row.sku === "4262/770");
   if (!sadira) throw new Error("PT_WEBTEX_CONTROL_SKU_MISSING");
-  console.log(JSON.stringify({ outcome: "PASS", total: result.total, controlSku: sadira.sku, stock: sadira.stockText, observedAt: sadira.observedAt }));
+  const collections = [result];
+  const metres = (text: string) => Number(/^(\d+(?:\.\d+)?)\s*M$/i.exec(text)?.[1] ?? NaN);
+  for (const name of ["Cheviot", "Cavendish", "Grosvenor", "Chiltern", "Islington"]) {
+    const rows = collections.flatMap((item) => item.rows);
+    if (rows.some((row) => metres(row.stockText) > 0 && metres(row.stockText) < 30) &&
+        rows.some((row) => metres(row.stockText) === 0)) break;
+    collections.push(await session.search("COLLECTION", name));
+  }
+  const candidates = collections.flatMap((item) => item.rows);
+  const below = candidates.find((row) => metres(row.stockText) > 0 && metres(row.stockText) < 30 && row.indicator !== "D");
+  const zero = candidates.find((row) => metres(row.stockText) === 0 && row.indicator !== "D");
+  if (!below || !zero || metres(sadira.stockText) < 30) throw new Error("PT_CANARY_STOCK_STATES_NOT_FOUND");
+  console.log(JSON.stringify({ outcome: "PASS", control: { sku: sadira.sku, stock: sadira.stockText, observedAt: sadira.observedAt },
+    canary: [sadira, below, zero].map((row) => ({ sku: row.sku, stockText: row.stockText, observedAt: row.observedAt,
+      queryType: row.queryType, queryValue: row.queryValue })), collectionCounts: collections.map((item) => item.total) }));
 }
 
 main().catch((error: unknown) => {

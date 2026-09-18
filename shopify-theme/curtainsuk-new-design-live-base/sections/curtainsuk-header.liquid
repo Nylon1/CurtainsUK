@@ -3,7 +3,7 @@
 {{ 'curtainsuk-header.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curtainsuk-header.js' | asset_url }}" defer="defer"></script>
 {% liquid
-  assign room_url = '/apps/curtainsuk-decision/consultation?entry=match'
+  assign room_url = '/apps/curtainsuk-decision/consultation?experience=premium&entry=match'
   assign home_url = routes.root_url
 %}
 <curtainsuk-header class="cuknav" data-section-id="{{ section.id }}">

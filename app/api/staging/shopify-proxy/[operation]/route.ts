@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import {proxyCustomerSession,proxyCustomerCommand,proxyConsultationAsset} from '@/lib/storefront/hci-proxy-server';
+import { premiumProxyAsset, premiumProxyCommand, premiumProxyPage, premiumProxySession } from '@/lib/storefront/hci-premium-proxy-server';
 import { prepareSampleOrder } from "@/lib/storefront/sample-order-server";
 import { buildDatabaseShopifyCatalogPayload } from "@/lib/storefront/shopify-database-contract";
 import { calculateStagingPrice, classifyServerSpecialistReview } from "@/lib/storefront/server-staging-pricing";
@@ -24,6 +25,7 @@ import { retailFabricDetail, searchRetailFabrics } from "@/lib/fabric-master/ret
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 30;
 
 function errorResponse(error: unknown, fallback: string) {
   const rateLimit = endpointRateLimitResponse(error);
@@ -84,7 +86,12 @@ async function operation(request: Request, rawOperation: string) {
 export async function GET(request: Request, context: { params: Promise<{ operation: string }> }) {
   try {
     const selected = await operation(request, (await context.params).operation);
-    if(selected==='consultation')return proxyConsultationAsset('consultation.html');
+    if(selected==='consultation')return new URL(request.url).searchParams.get('experience')==='premium' ? premiumProxyPage() : proxyConsultationAsset('consultation.html');
+    if(selected==='premium-asset')return premiumProxyAsset(new URL(request.url).searchParams.get('name')??'');
+    if(selected==='premium-catalog') {
+      const fabric = await retailFabricDetail(new URL(request.url).searchParams.get('fabric') ?? '');
+      return NextResponse.json({ fabric }, { status: fabric ? 200 : 404, headers: PUBLIC_NO_STORE_HEADERS });
+    }
     if(selected==='image-privacy')return proxyConsultationAsset('privacy.html');
     if(selected==='consultation-asset')return proxyConsultationAsset(new URL(request.url).searchParams.get('name')??'');
     if (selected !== "catalog") throw new Error("SHOPIFY_PROXY_METHOD_DENIED");
@@ -105,6 +112,10 @@ export async function GET(request: Request, context: { params: Promise<{ operati
 export async function POST(request: Request, context: { params: Promise<{ operation: string }> }) {
   try {
     const selected = await operation(request, (await context.params).operation);
+    if(selected==='premium-session' || selected==='premium-command') {
+      if(request.headers.get('origin')!=='https://www.curtainsuk.com')throw Error('HCI_ORIGIN_DENIED');
+      return NextResponse.json(selected==='premium-session'?premiumProxySession():await premiumProxyCommand(await readBoundedJson(request,3_000_000)),{headers:PUBLIC_NO_STORE_HEADERS});
+    }
     if(selected==='hci-session' || selected==='hci-command') {
       if(request.headers.get('origin')!=='https://www.curtainsuk.com')throw Error('HCI_ORIGIN_DENIED');
       return NextResponse.json(selected==='hci-session'?proxyCustomerSession():await proxyCustomerCommand(await readBoundedJson(request,3_000_000)),{headers:PUBLIC_NO_STORE_HEADERS});

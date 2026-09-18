@@ -68,7 +68,7 @@
         text.textContent = `Your consultation · ${context.profileSummary}`;
         const link = document.createElement('a');
         link.textContent = 'Return to my shortlist';
-        link.href = `/apps/curtainsuk-decision/consultation?session=${encodeURIComponent(context.sessionId)}`;
+        link.href = `/apps/curtainsuk-decision/consultation?experience=premium&session=${encodeURIComponent(context.sessionId)}`;
         const details = document.createElement('details'),
           summary = document.createElement('summary');
         summary.textContent = 'Your profile';

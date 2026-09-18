@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "spaces": {
+      "type": "curtainsuk-spaces",
+      "settings": {},
+      "blocks": {
+        "lounge": { "type": "space", "settings": {
+          "anchor": "lounge", "title": "Lounge", "eyebrow": "In conversation with your room",
+          "image": "shopify://shop_images/prestigious-room-neutral-pattern.webp",
+          "image_alt": "Patterned neutral curtains beside a cream sofa and coordinated cushions in a sitting room",
+          "caption": "Palette, pattern and a sense of belonging.",
+          "lead": "Let your curtains join the conversation.",
+          "thinking": "Begin with the colours of your sofa, walls and the pieces you want to notice. A tonal fabric can sit quietly within that palette; contrast can give the window a presence of its own. Texture adds interest without necessarily adding another pattern.",
+          "consider": "When furniture or artwork already makes a statement, consider pattern strength as well as colour. Quiet and expressive can work together when one has room to lead.",
+          "cta": "See what works in your lounge"
+        }},
+        "bedroom": { "type": "space", "settings": {
+          "anchor": "bedroom", "title": "Bedroom", "eyebrow": "Atmosphere, from morning to evening",
+          "image": "shopify://shop_images/curtainsuk-layered-sheer-grey-curtains.jpg",
+          "image_alt": "Soft grey curtains layered with sheers beside a bed and an upholstered chair",
+          "caption": "Softness in the room. Control at the window.",
+          "lead": "Softness has more than one expression.",
+          "thinking": "Closely related colours can create a restful rhythm, while controlled pattern can bring character without dominating. Think about the warmth of the palette, the feel of the fabric and how its finish changes between daylight and lamplight.",
+          "consider": "Privacy and light control are functional choices. Blackout lining is separate from the face fabric you see, so a practical requirement need not dictate a plain aesthetic.",
+          "cta": "Find your bedroom fabric direction"
+        }},
+        "bay": { "type": "space", "settings": {
+          "anchor": "bay", "title": "Bay Windows", "eyebrow": "Give the architecture its due",
+          "image": "shopify://shop_images/Bay-window-curtains-1.png",
+          "image_alt": "Warm full-length curtains following a bay window around a softly upholstered chair",
+          "caption": "A rhythm of light, fabric and architecture.",
+          "lead": "Frame the bay. Or let it take the lead.",
+          "thinking": "A bay brings several planes of light into one room. Tonal curtains can follow its shape quietly; a stronger colour or larger pattern can deliberately emphasise the architecture. Consider how the pattern reads across the whole bay, and in the folds.",
+          "consider": "More fabric means more visual weight. Plan where it stacks when open, so the finished proportions and movement work with the window and the view.",
+          "cta": "See what works with your bay"
+        }},
+        "patio": { "type": "space", "settings": {
+          "anchor": "patio", "title": "Patio & French Doors", "eyebrow": "Make room for the light",
+          "image": "shopify://shop_images/prestigious-room-watercolour-dining.webp",
+          "image_alt": "Watercolour-patterned curtains framing glazed French doors in a light dining room",
+          "caption": "A considered connection to the outdoors.",
+          "lead": "A beautiful view, open or closed.",
+          "thinking": "Across a large glazed area, curtains become a substantial surface in the room. A tonal colour can keep the view central; contrast or a generous pattern can make the closed curtains a feature. Lightness, texture and pattern scale all change that balance.",
+          "consider": "Everyday access matters. Allow for stack-back and the doors’ movement, and consider the fabric’s visual weight across the full span rather than judging a small sample alone.",
+          "cta": "Find the right direction for your patio doors"
+        }},
+        "other": { "type": "space", "settings": {
+          "anchor": "other", "title": "Other Rooms & Windows", "eyebrow": "Start with what makes it yours",
+          "image": "shopify://shop_images/prestigious-room-green-abstract.webp",
+          "image_alt": "Green abstract curtains alongside a sculptural armchair and a quiet neutral wall",
+          "caption": "An individual room deserves an individual direction.",
+          "lead": "There is no standard room.",
+          "thinking": "A dining room, a workspace or a corner you love: begin with its light, the colours already there and how you want it to feel. The right balance of pattern, texture and character depends on those relationships, not just the name of the room.",
+          "consider": "Tell us which colours matter and which details you would rather play down. You can explore a direction before settling on the final fabric.",
+          "cta": "Explore the possibilities for your space"
+        }}
+      },
+      "block_order": ["lounge", "bedroom", "bay", "patio", "other"]
+    }
+  },
+  "order": ["spaces"]
+}

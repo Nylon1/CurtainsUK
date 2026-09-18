@@ -126,14 +126,15 @@ test("429 retries respect Retry-After and do not turn absence into stock", async
   assert.equal(result.snapshots[0].aggregate_available_quantity, 0);
 });
 
-test("a portal batch 404 leaves every requested SKU unknown and later batches continue", async () => {
+test("a portal-wide 404 stays bounded and leaves affected SKUs unknown while later batches continue", async () => {
   const many = Array.from({ length: 101 }, (_, index) => ({ supplierSku: `SKU-${index}`, brandId: "sdg" }));
   let calls = 0;
   const result = await readSdgPortalStock({
     identities: many, bearerToken: "test-token", clock: () => now,
-    fetchImpl: async () => {
+    fetchImpl: async (_url, init) => {
       calls += 1;
-      return calls === 1
+      const criteria = JSON.parse(String(init?.body)).productCriteria as { productCode: string }[];
+      return criteria.some(({ productCode }) => productCode !== "SKU-100")
         ? new Response(null, { status: 404 })
         : Response.json([{ productCode: "SKU-100", productStockUnit: "Metres", stockInformation: { primaryStock: 49.4 } }]);
     },
@@ -144,6 +145,24 @@ test("a portal batch 404 leaves every requested SKU unknown and later batches co
   assert.equal(result.snapshots[0].supplier_sku, "SKU-100");
   assert.equal(result.snapshots[0].aggregate_available_quantity, 49.4);
   assert.equal(result.batches.length, 2);
+  assert.ok(calls <= 16);
+});
+
+test("one bad SKU cannot suppress valid neighbours in a 404 batch", async () => {
+  const many = Array.from({ length: 100 }, (_, index) => ({ supplierSku: `SKU-${index}`, brandId: "sdg" }));
+  const result = await readSdgPortalStock({
+    identities: many, bearerToken: "test-token", clock: () => now,
+    fetchImpl: async (_url, init) => {
+      const criteria = JSON.parse(String(init?.body)).productCriteria as { productCode: string }[];
+      return criteria.some(({ productCode }) => productCode === "SKU-73")
+        ? new Response(null, { status: 404 })
+        : Response.json(criteria.map(({ productCode }) => ({ productCode, productStockUnit: "Metre", stockInformation: { primaryStock: 12.5 } })));
+    },
+  });
+  assert.equal(result.snapshots.length, 99);
+  assert.deepEqual(result.exceptions, [{ supplierSku: "SKU-73", reason: "PORTAL_SKU_HTTP_404" }]);
+  assert.ok(result.batches[0].attempts <= 15);
+  assert.ok(result.snapshots.every((item) => item.aggregate_available_quantity === 12.5));
 });
 
 test("portal requests are bounded to 100 exact SKUs per batch", async () => {

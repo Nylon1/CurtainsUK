@@ -74,9 +74,10 @@ function summarize(result: SdgStockReadResult) {
 async function main() {
   const args = process.argv.slice(2);
   const stagesOnly = args.includes("--stages-only");
+  const zoffanyProbe = args.includes("--zoffany-probe");
   const startArg = args.find((arg) => arg.startsWith("--start-at="));
-  if (args.some((arg) => arg !== "--stages-only" && arg !== startArg) || (stagesOnly && startArg)) {
-    throw new Error("SDG_PROOF_USAGE: tsx scripts/curtainsuk-sdg-portal-stock-proof.ts [--stages-only | --start-at=CHECKPOINT]");
+  if (args.some((arg) => arg !== "--stages-only" && arg !== "--zoffany-probe" && arg !== startArg) || [stagesOnly, zoffanyProbe, Boolean(startArg)].filter(Boolean).length > 1) {
+    throw new Error("SDG_PROOF_USAGE: tsx scripts/curtainsuk-sdg-portal-stock-proof.ts [--stages-only | --start-at=CHECKPOINT | --zoffany-probe]");
   }
   const startAt = startArg ? Number(startArg.slice("--start-at=".length)) : 0;
   const raw: unknown = JSON.parse(await readFile(MANIFEST, "utf8"));
@@ -111,6 +112,39 @@ async function main() {
   const credentials = await promptCredentials();
   const session = new SdgPortalSession({ ...credentials });
   credentials.password = "";
+  if (zoffanyProbe) {
+    const probePath = resolve(PRIVATE_DIR, `zoffany-probe-${new Date().toISOString().replace(/[:.]/g, "-")}.json`);
+    const legacyBatch = identities.slice(7900, 8000);
+    if (legacyBatch.length !== 100 || legacyBatch.some((item) => item.brandId !== "sdg-zoffany")) throw new Error("SDG_ZOFFANY_PROBE_IDENTITY_CHANGED");
+    const report: Record<string, unknown> = { complete: false, source: "authorised SDG Product/detail, read-only", startedAt: new Date().toISOString(), legacyBatchStart: 7900 };
+    try {
+      await session.login();
+      const control = await readSdgPortalStock({ identities: [identities[0]], getBearerToken: () => session.getBearerToken() });
+      if (control.snapshots.length !== 1) throw new Error("SDG_NON_ZOFFANY_CONTROL_FAILED");
+      await session.refresh();
+      const legacy = await readSdgPortalStock({ identities: legacyBatch, getBearerToken: () => session.getBearerToken() });
+      const mapped = await readSdgPortalStock({ identities: [
+        { supplierSku: "ZOF0223-02", brandId: "sdg-zoffany" },
+        { supplierSku: "ZOF0236-04", brandId: "sdg-zoffany" },
+      ], getBearerToken: () => session.getBearerToken() });
+      report.complete = true;
+      report.completedAt = new Date().toISOString();
+      report.auth = session.stats;
+      report.control = { ...summarize(control), batches: control.batches };
+      report.legacy = { ...summarize(legacy), batches: legacy.batches, exceptions: legacy.exceptions, details: legacy.details, snapshots: legacy.snapshots };
+      report.portalIdControls = { ...summarize(mapped), batches: mapped.batches, exceptions: mapped.exceptions, details: mapped.details, snapshots: mapped.snapshots, identityEvidence: "Only two historically verified legacy-SKU ↔ portal-product-code pairs; no general conversion inferred" };
+      await writeFile(probePath, JSON.stringify(report, null, 2), { mode: 0o600 });
+      console.log(JSON.stringify({ complete: true, control: summarize(control), legacy: summarize(legacy), portalIdControls: summarize(mapped), auth: session.stats, reportPath: probePath }));
+    } catch (error) {
+      report.completedAt = new Date().toISOString();
+      report.errorCode = error instanceof Error && error.message.startsWith("SDG_") ? error.message : "SDG_ZOFFANY_PROBE_FAILED";
+      report.auth = session.stats;
+      await writeFile(probePath, JSON.stringify(report, null, 2), { mode: 0o600 });
+      console.error(JSON.stringify({ errorCode: report.errorCode, reportPath: probePath }));
+      process.exitCode = 1;
+    }
+    return;
+  }
   const startedAt = new Date();
   const report: {
     startedAt: string; completedAt?: string; complete: boolean; errorCode?: string;
@@ -129,7 +163,7 @@ async function main() {
       stage = `stage-${count}`;
       const stageStarted = Date.now();
       const result = await readSdgPortalStock({ identities: spread(identities, count), getBearerToken: () => session.getBearerToken() });
-      report.stages[String(count)] = { ...summarize(result), runtimeMs: Date.now() - stageStarted, details: result.details, exceptions: result.exceptions, batches: result.batches };
+      report.stages[String(count)] = { ...summarize(result), runtimeMs: Date.now() - stageStarted, details: result.details, exceptions: result.exceptions, batches: result.batches, snapshots: result.snapshots };
       report.auth = session.stats;
       await save();
       if (result.exceptions.some((item) => item.reason === "DUPLICATE_PORTAL_SKU")) throw new Error("SDG_PORTAL_AMBIGUOUS_IDENTITY");
@@ -152,7 +186,7 @@ async function main() {
         full.details.push(...result.details);
         full.exceptions.push(...result.exceptions);
         full.batches.push(...result.batches);
-        report.full = { ...summarize(full), completedSkus: Math.min(offset + BATCH_SIZE, identities.length), runtimeMs: Date.now() - fullStarted, details: full.details, exceptions: full.exceptions, batches: full.batches };
+        report.full = { ...summarize(full), completedSkus: Math.min(offset + BATCH_SIZE, identities.length), runtimeMs: Date.now() - fullStarted, details: full.details, exceptions: full.exceptions, batches: full.batches, snapshots: full.snapshots };
         report.auth = session.stats;
         await save();
         if (result.exceptions.some((item) => item.reason === "DUPLICATE_PORTAL_SKU")) throw new Error("SDG_PORTAL_AMBIGUOUS_IDENTITY");
@@ -162,7 +196,7 @@ async function main() {
     report.completedAt = new Date().toISOString();
     report.auth = session.stats;
     await save();
-    console.log(JSON.stringify({ complete: true, stages: Object.fromEntries(Object.entries(report.stages).map(([key, value]) => [key, { ...value as object, details: undefined, exceptions: undefined, batches: undefined }])), full: report.full ? { ...report.full as object, details: undefined, exceptions: undefined, batches: undefined } : null, auth: report.auth, reportPath }));
+    console.log(JSON.stringify({ complete: true, stages: Object.fromEntries(Object.entries(report.stages).map(([key, value]) => [key, { ...value as object, details: undefined, exceptions: undefined, batches: undefined, snapshots: undefined }])), full: report.full ? { ...report.full as object, details: undefined, exceptions: undefined, batches: undefined, snapshots: undefined } : null, auth: report.auth, reportPath }));
   } catch (error) {
     report.complete = false;
     report.completedAt = new Date().toISOString();

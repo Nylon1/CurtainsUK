@@ -9,6 +9,7 @@ export type SandersonDesignGroupAdapter = SupplierAdapter;
 // portal itself requests at most 130 product details per batch. Stay below it.
 export const SDG_PORTAL_DETAIL_URL = "https://supplier.sandersondesigngroup.com/EdiNextCore/api/Product/detail";
 const BATCH_SIZE = 100;
+const MAX_404_REQUESTS_PER_BATCH = 15;
 const METRE_UNITS = new Set(["m", "metre", "metres", "meter", "meters"]);
 
 export interface SdgStockIdentity { supplierSku: string; brandId: string }
@@ -168,80 +169,91 @@ export async function readSdgPortalStock(input: {
   for (let offset = 0; offset < requested.length; offset += BATCH_SIZE) {
     const batch = requested.slice(offset, offset + BATCH_SIZE);
     const started = Date.now();
-    let response: Response | undefined;
     let attempts = 0;
+    let retries = 0;
     let throttled = 0;
-    while (attempts < 3) {
-      attempts += 1;
-      const token = input.getBearerToken ? await input.getBearerToken() : input.bearerToken;
-      if (!token?.trim()) throw new Error("SDG_PORTAL_CREDENTIAL_REQUIRED");
-      try {
-        response = await fetchImpl(SDG_PORTAL_DETAIL_URL, {
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-          body: JSON.stringify({ price: false, stock: true, options: false, productCriteria: batch.map(({ supplierSku }) => ({ productCode: supplierSku, orderUnit: "", orderQuantity: 1 })) }),
-          cache: "no-store",
-          signal: AbortSignal.timeout(20000),
-        });
-      } catch {
-        if (attempts === 3) throw new Error("SDG_PORTAL_DETAIL_NETWORK_FAILED");
-        await sleep(attempts * 1000);
+    let returned = 0;
+    const pending: SdgStockIdentity[][] = [batch];
+    while (pending.length) {
+      const part = pending.shift()!;
+      if (attempts >= MAX_404_REQUESTS_PER_BATCH) {
+        exceptions.push(...part.map(({ supplierSku }) => ({ supplierSku, reason: "PORTAL_BATCH_HTTP_404" })));
         continue;
       }
-      if (response.status === 401 || response.status === 403) throw new Error("SDG_PORTAL_AUTH_FAILED");
-      if (response.status === 404) break;
-      if (response.status === 429) {
-        throttled += 1;
-        const seconds = retryAfterSeconds(response.headers.get("Retry-After"), attempts);
-        if (attempts === 3 || !Number.isFinite(seconds) || seconds > 60) throw new Error("SDG_PORTAL_RATE_LIMITED");
-        await sleep(Math.max(1, seconds) * 1000);
+      let response: Response | undefined;
+      for (let retry = 0; retry < 3; retry += 1) {
+        if (retry) retries += 1;
+        attempts += 1;
+        const token = input.getBearerToken ? await input.getBearerToken() : input.bearerToken;
+        if (!token?.trim()) throw new Error("SDG_PORTAL_CREDENTIAL_REQUIRED");
+        try {
+          response = await fetchImpl(SDG_PORTAL_DETAIL_URL, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({ price: false, stock: true, options: false, productCriteria: part.map(({ supplierSku }) => ({ productCode: supplierSku, orderUnit: "", orderQuantity: 1 })) }),
+            cache: "no-store",
+            signal: AbortSignal.timeout(20000),
+          });
+        } catch {
+          if (retry === 2) throw new Error("SDG_PORTAL_DETAIL_NETWORK_FAILED");
+          await sleep((retry + 1) * 1000);
+          continue;
+        }
+        if (response.status === 401 || response.status === 403) throw new Error("SDG_PORTAL_AUTH_FAILED");
+        if (response.status === 429) {
+          throttled += 1;
+          const seconds = retryAfterSeconds(response.headers.get("Retry-After"), retry + 1);
+          if (retry === 2 || !Number.isFinite(seconds) || seconds > 60) throw new Error("SDG_PORTAL_RATE_LIMITED");
+          await sleep(Math.max(1, seconds) * 1000);
+          continue;
+        }
+        if (response.status >= 500 && retry < 2) {
+          await sleep((retry + 1) * 1000);
+          continue;
+        }
+        break;
+      }
+      if (response?.status === 404) {
+        if (part.length > 1 && attempts + pending.length + 2 <= MAX_404_REQUESTS_PER_BATCH) {
+          const middle = Math.floor(part.length / 2);
+          pending.push(part.slice(0, middle), part.slice(middle));
+        } else {
+          exceptions.push(...part.map(({ supplierSku }) => ({ supplierSku, reason: part.length === 1 ? "PORTAL_SKU_HTTP_404" : "PORTAL_BATCH_HTTP_404" })));
+        }
         continue;
       }
-      if (response.status >= 500 && attempts < 3) {
-        await sleep(attempts * 1000);
-        continue;
+      if (!response?.ok) throw new Error(`SDG_PORTAL_DETAIL_HTTP_${response?.status ?? "NO_RESPONSE"}`);
+      const payload: unknown = await response.json();
+      if (!Array.isArray(payload)) throw new Error("SDG_PORTAL_DETAIL_SHAPE_CHANGED");
+      returned += payload.length;
+      const bySku = new Map<string, PortalProduct[]>();
+      const partSkus = new Set(part.map(({ supplierSku }) => supplierSku));
+      for (const raw of payload) {
+        if (!raw || typeof raw !== "object") throw new Error("SDG_PORTAL_DETAIL_SHAPE_CHANGED");
+        const product = raw as PortalProduct;
+        if (typeof product.productCode !== "string") throw new Error("SDG_PORTAL_DETAIL_SHAPE_CHANGED");
+        if (!partSkus.has(product.productCode)) throw new Error("SDG_PORTAL_UNREQUESTED_SKU");
+        const list = bySku.get(product.productCode) ?? [];
+        list.push(product);
+        bySku.set(product.productCode, list);
       }
-      if (!response.ok) throw new Error(`SDG_PORTAL_DETAIL_HTTP_${response.status}`);
-      break;
+      const checkedAt = clock().toISOString();
+      for (const identity of part) {
+        const products = bySku.get(identity.supplierSku) ?? [];
+        if (products.length !== 1) {
+          exceptions.push({ supplierSku: identity.supplierSku, reason: products.length ? "DUPLICATE_PORTAL_SKU" : "MISSING_PORTAL_SKU" });
+          continue;
+        }
+        details.push(detailFor(products[0], identity));
+        const snapshot = snapshotFor(products[0], identity, checkedAt);
+        if (!snapshot) {
+          exceptions.push({ supplierSku: identity.supplierSku, reason: "MISSING_STOCK_OR_NON_METRE_UNIT" });
+          continue;
+        }
+        snapshots.push(snapshot);
+      }
     }
-    if (response?.status === 404) {
-      // A batch-level 404 does not prove that any SKU has zero stock, or even
-      // that each individual SKU is absent. Leave the whole batch unresolved.
-      exceptions.push(...batch.map(({ supplierSku }) => ({ supplierSku, reason: "PORTAL_BATCH_HTTP_404" })));
-      const metric = { requested: batch.length, returned: 0, attempts, retries: attempts - 1, throttled, latencyMs: Date.now() - started };
-      batches.push(metric);
-      await input.onBatch?.({ completed: Math.min(offset + batch.length, requested.length), total: requested.length, metric });
-      continue;
-    }
-    if (!response?.ok) throw new Error(`SDG_PORTAL_DETAIL_HTTP_${response?.status ?? "NO_RESPONSE"}`);
-    const payload: unknown = await response.json();
-    if (!Array.isArray(payload)) throw new Error("SDG_PORTAL_DETAIL_SHAPE_CHANGED");
-    const bySku = new Map<string, PortalProduct[]>();
-    for (const raw of payload) {
-      if (!raw || typeof raw !== "object") throw new Error("SDG_PORTAL_DETAIL_SHAPE_CHANGED");
-      const product = raw as PortalProduct;
-      if (typeof product.productCode !== "string") throw new Error("SDG_PORTAL_DETAIL_SHAPE_CHANGED");
-      if (!batch.some((identity) => identity.supplierSku === product.productCode)) throw new Error("SDG_PORTAL_UNREQUESTED_SKU");
-      const list = bySku.get(product.productCode) ?? [];
-      list.push(product);
-      bySku.set(product.productCode, list);
-    }
-    const checkedAt = clock().toISOString();
-    for (const identity of batch) {
-      const products = bySku.get(identity.supplierSku) ?? [];
-      if (products.length !== 1) {
-        exceptions.push({ supplierSku: identity.supplierSku, reason: products.length ? "DUPLICATE_PORTAL_SKU" : "MISSING_PORTAL_SKU" });
-        continue;
-      }
-      details.push(detailFor(products[0], identity));
-      const snapshot = snapshotFor(products[0], identity, checkedAt);
-      if (!snapshot) {
-        exceptions.push({ supplierSku: identity.supplierSku, reason: "MISSING_STOCK_OR_NON_METRE_UNIT" });
-        continue;
-      }
-      snapshots.push(snapshot);
-    }
-    const metric = { requested: batch.length, returned: payload.length, attempts, retries: attempts - 1, throttled, latencyMs: Date.now() - started };
+    const metric = { requested: batch.length, returned, attempts, retries, throttled, latencyMs: Date.now() - started };
     batches.push(metric);
     await input.onBatch?.({ completed: Math.min(offset + batch.length, requested.length), total: requested.length, metric });
   }

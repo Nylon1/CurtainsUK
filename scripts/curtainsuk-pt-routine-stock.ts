@@ -2,7 +2,7 @@
 import { randomUUID } from "node:crypto";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { PtWebtexSession } from "../lib/supplier-sync/adapters/pt-webtex-session";
-import { assertProvenPtCoverage, nextPtRefreshAt, PT_SOURCE, PT_SUPPLIER, reconcilePtStock, type PtIdentity, type PtStockRow } from "../lib/supplier-sync/pt-stock-reconciliation";
+import { assertProvenPtCoverage, nextPtRefreshAt, PT_PRIOR_UNKNOWN_SKUS, PT_SOURCE, PT_SUPPLIER, reconcilePtStock, type PtIdentity, type PtStockRow } from "../lib/supplier-sync/pt-stock-reconciliation";
 import { validateSupplierIntelligenceSnapshot } from "../lib/supplier-intelligence/validation";
 import { createValidationEvent } from "../lib/supplier-intelligence/promotion";
 import type { NormalizedSupplierSnapshot } from "../lib/supplier-sync/types";
@@ -58,7 +58,17 @@ async function retrieve(session: PtWebtexSession, identities: readonly PtIdentit
   for (const design of designs) rows.push(...(await session.search("DESIGN_CODE", design)).rows);
   const afterDesign = new Set(rows.map((row) => row.sku));
   const skuFallbacks = identities.filter((item) => !afterDesign.has(item.supplierSku));
-  for (const item of skuFallbacks) rows.push(...(await session.search("PRODUCT_CODE", item.supplierSku)).rows);
+  for (const item of skuFallbacks) {
+    try { rows.push(...(await session.search("PRODUCT_CODE", item.supplierSku)).rows); }
+    catch (error) {
+      // Only the three previously proven unresolved identities may be absent.
+      // Authentication and parser failures still stop the run; missing product
+      // evidence never becomes an invented zero or a refreshed timestamp.
+      const code = error instanceof Error ? error.message : "";
+      if (!PT_PRIOR_UNKNOWN_SKUS.has(item.supplierSku) ||
+          !(/^PT_WEBTEX_QUERY_STATUS_/.test(code) || code === "PT_WEBTEX_HTTP_404")) throw error;
+    }
+  }
   return { rows, collectionQueries: collections.length, designQueries: designs.length, skuQueries: skuFallbacks.length };
 }
 

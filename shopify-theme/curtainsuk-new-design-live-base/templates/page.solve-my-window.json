@@ -1,0 +1,146 @@
+{
+  "sections": {
+    "spaces": {
+      "type": "curtainsuk-spaces",
+      "settings": {},
+      "blocks": {
+        "lounge": {
+          "type": "space",
+          "settings": {
+            "anchor": "lounge",
+            "title": "Lounge",
+            "eyebrow": "Colour / focal points",
+            "image": "shopify://shop_images/prestigious-room-neutral-pattern.webp",
+            "image_alt": "Patterned neutral curtains beside a cream sofa and coordinated cushions in a sitting room",
+            "caption": "Palette, pattern and a sense of belonging.",
+            "lead": "Quietly connected. Or confidently expressive.",
+            "thinking": "Echo the upholstery for calm; let texture or a single pattern carry the interest.",
+            "consider": "Competing focal points. A strong curtain pattern needs room beside artwork and furniture.",
+            "cta": "Find my lounge direction",
+            "primary_colour": "#dacfbe",
+            "primary_name": "Warm ivory",
+            "secondary_colour": "#81725f",
+            "secondary_name": "Soft taupe",
+            "accent_colour": "#bea38e",
+            "accent_name": "Dusty clay",
+            "explore": "Where should the eye go?",
+            "blend_colour": "#dacfbe",
+            "coordinate_colour": "#81725f",
+            "lift_colour": "#eee8dd",
+            "contrast_colour": "#4d4439",
+            "blend_note": "Warm ivory \u00b7 let the furniture lead.",
+            "coordinate_note": "Soft taupe \u00b7 carry the curtain pattern\u2019s quieter colour through the room.",
+            "lift_note": "Pale ivory \u00b7 a lighter tonal variation at the window.",
+            "contrast_note": "Deep taupe \u00b7 a darker variation of the room\u2019s neutral palette draws the eye."
+          }
+        },
+        "bedroom": {
+          "type": "space",
+          "settings": {
+            "anchor": "bedroom",
+            "title": "Bedroom",
+            "eyebrow": "Light / softness",
+            "image": "shopify://shop_images/curtainsuk-layered-sheer-grey-curtains.jpg",
+            "image_alt": "Soft grey curtains layered with sheers beside a bed and an upholstered chair",
+            "caption": "Softness in the room. Control at the window.",
+            "lead": "A softer way to end the day.",
+            "thinking": "Related tones keep the room quiet. Let texture add depth before stronger pattern.",
+            "consider": "High contrast raises visual energy. Choose blackout lining separately for light control.",
+            "cta": "Find my bedroom direction",
+            "primary_colour": "#d2d7dc",
+            "primary_name": "Silver light",
+            "secondary_colour": "#979691",
+            "secondary_name": "Warm grey",
+            "accent_colour": "#73452c",
+            "accent_name": "Warm wood",
+            "explore": "Choose the mood at the window",
+            "blend_colour": "#d2d7dc",
+            "coordinate_colour": "#979691",
+            "lift_colour": "#eef0f1",
+            "contrast_colour": "#73452c",
+            "blend_note": "Silver light \u00b7 keep the window softly within the room\u2019s palette.",
+            "coordinate_note": "Warm grey \u00b7 echo the existing curtain and chair tones.",
+            "lift_note": "Soft chalk \u00b7 a paler variation for a lighter visual presence.",
+            "contrast_note": "Warm wood \u00b7 a deeper accent gives the curtain area more presence."
+          }
+        },
+        "bay": {
+          "type": "space",
+          "settings": {
+            "anchor": "bay",
+            "title": "Bay Windows",
+            "eyebrow": "Architecture / rhythm",
+            "image": "shopify://shop_images/Bay-window-curtains-1.png",
+            "image_alt": "Warm full-length curtains following a bay window around a softly upholstered chair",
+            "caption": "A rhythm of light, fabric and architecture.",
+            "lead": "Let the shape do the talking.",
+            "thinking": "Tonal fabric lets the bay\u2019s rhythm lead. A restrained surface keeps the folds readable.",
+            "consider": "Pattern repeated across several planes can feel busier. Plan stack-back before choosing visual weight.",
+            "cta": "Find my bay direction",
+            "primary_colour": "#a59271",
+            "primary_name": "Sand",
+            "secondary_colour": "#977e54",
+            "secondary_name": "Golden flax",
+            "accent_colour": "#2b3e01",
+            "accent_name": "Leaf green"
+          }
+        },
+        "patio": {
+          "type": "space",
+          "settings": {
+            "anchor": "patio",
+            "title": "Patio & French Doors",
+            "eyebrow": "Daylight / scale",
+            "image": "shopify://shop_images/prestigious-room-watercolour-dining.webp",
+            "image_alt": "Watercolour-patterned curtains framing glazed French doors in a light dining room",
+            "caption": "A considered connection to the outdoors.",
+            "lead": "A view when open. A presence when closed.",
+            "thinking": "A lighter tonal fabric keeps the view central. Colour can make closed curtains a feature.",
+            "consider": "A large fabric area amplifies colour and pattern. Leave clear space for access and stack-back.",
+            "cta": "Find my patio-door direction",
+            "primary_colour": "#999a93",
+            "primary_name": "Soft stone",
+            "secondary_colour": "#668698",
+            "secondary_name": "Watercolour blue",
+            "accent_colour": "#4d6256",
+            "accent_name": "Muted green",
+            "explore": "Let light lead \u2014 or frame the view?",
+            "blend_colour": "#999a93",
+            "coordinate_colour": "#668698",
+            "lift_colour": "#e6e6e0",
+            "contrast_colour": "#4d6256",
+            "blend_note": "Soft stone \u00b7 let the glazed area sit quietly within the room.",
+            "coordinate_note": "Watercolour blue \u00b7 pick up a colour already running through the curtains.",
+            "lift_note": "Pale stone \u00b7 imagine a lighter surface across the full span.",
+            "contrast_note": "Deep green \u00b7 give the window a stronger frame, with more visual weight."
+          }
+        },
+        "other": {
+          "type": "space",
+          "settings": {
+            "anchor": "other",
+            "title": "Other Rooms & Windows",
+            "eyebrow": "Your room / your starting point",
+            "image": "shopify://shop_images/prestigious-room-green-abstract.webp",
+            "image_alt": "Green abstract curtains alongside a sculptural armchair and a quiet neutral wall",
+            "caption": "An individual room deserves an individual direction.",
+            "lead": "There is no standard room.",
+            "thinking": "Begin with the colours you want to keep, the daylight and how you use the space.",
+            "consider": "The room\u2019s name doesn\u2019t decide its style. Let your own reference lead.",
+            "cta": "Find my room\u2019s direction"
+          }
+        }
+      },
+      "block_order": [
+        "lounge",
+        "bedroom",
+        "bay",
+        "patio",
+        "other"
+      ]
+    }
+  },
+  "order": [
+    "spaces"
+  ]
+}

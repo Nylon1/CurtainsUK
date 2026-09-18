@@ -87,6 +87,42 @@ test('premium route is preview-only and needs both existing staging gates', () =
   assert.equal(premiumHciEnabled({ ...base, CURTAINSUK_HCI_PREMIUM_ENABLED: 'false' }), false);
 });
 
+test('short taste and exact real-fabric calibration projection is bounded', () => {
+  const base = {
+    version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId,
+    phase: 'calibration', profileSummary: '', question: null, stimulusId: null,
+    palette: null, directions: [], learning: null, refinementDigest: null,
+    tasteProgress: { current: 3, total: 3 },
+    calibrationProgress: { current: 2, total: 6 },
+    calibrationFabric: {
+      fabricMasterId: 'sdg-ddae236495', supplierSku: 'DDAE236495',
+      brand: 'Sanderson', design: 'Linden', colourway: 'Celadon',
+      imageUrl: 'https://cdn.shopify.com/s/files/1/example.jpg',
+    },
+  };
+  const view = customerView(base);
+  assert.equal(view.calibrationFabric?.fabricMasterId, 'sdg-ddae236495');
+  assert.deepEqual(view.calibrationProgress, { current: 2, total: 6 });
+  assert.throws(() => customerView({ ...base, calibrationFabric: { ...base.calibrationFabric, imageUrl: 'https://example.com/a.jpg' } }));
+  assert.throws(() => customerView({ ...base, calibrationProgress: { current: 7, total: 6 } }));
+});
+
+test('interior brief commands and projection retain governed choices', () => {
+  const command = (action: Record<string, unknown>) => premiumHciCommand({ requestId: sessionId, sessionId, revision: 9, action });
+  assert.equal((command({ type: 'brief-change', id: sessionId, choice: { dimension: 'pattern', value: 'Plain' } }).action?.choice as { value: string }).value, 'Plain');
+  assert.equal(command({ type: 'brief-confirm', id: sessionId }).action?.type, 'brief-confirm');
+  assert.throws(() => command({ type: 'brief-change', id: sessionId, choice: { dimension: 'supplier.price', value: 'Free' } }));
+  const base = { version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId,
+    phase: 'brief', profileSummary: '', question: null, stimulusId: null, tasteProgress: null,
+    calibrationFabric: null, calibrationProgress: null, palette: null, directions: [], learning: null,
+    refinementDigest: null, interiorBrief: { status: 'HCI_PROPOSED', version: 0, sections: [
+      { dimension: 'pattern', title: 'Pattern direction', description: 'How much pattern.', value: 'Plain', changed: false,
+        options: [{ value: 'Plain', label: 'Plain' }, { value: 'Subtle pattern', label: 'Subtle pattern' }] },
+    ] } };
+  assert.equal(customerView(base).interiorBrief?.sections[0]?.value, 'Plain');
+  assert.throws(() => customerView({ ...base, interiorBrief: { ...base.interiorBrief, sections: [{ ...base.interiorBrief.sections[0], dimension: 'supplier.price' }] } }));
+});
+
 test('premium fabric feedback records governed reaction evidence without mutating supplier truth', () => {
   const events = acceptedHciFeedback({
     sessionId,

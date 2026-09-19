@@ -1,0 +1,15 @@
+<script>
+  // Preserve existing exact-fabric and filtered Library bookmarks without changing their contracts.
+  (() => {
+    const url = new URL(window.location.href);
+    const libraryKeys = ['fabric', 'query', 'page', 'window', 'brand', 'collection', 'colour', 'pattern', 'style', 'character', 'availability', 'sample'];
+    if (libraryKeys.some(key => url.searchParams.has(key))) {
+      url.searchParams.set('view', 'browse-fabrics');
+      window.location.replace(url.href);
+    }
+  })();
+</script>
+{% render 'curtainsuk-fabric-editorial' %}
+{% schema %}
+{"name":"Fabrics editorial","settings":[]}
+{% endschema %}

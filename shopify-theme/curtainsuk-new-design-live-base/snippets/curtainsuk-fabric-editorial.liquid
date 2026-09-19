@@ -1,0 +1,103 @@
+{% doc %}
+  Interior-led introduction to the existing Fabric Library. No catalogue or commerce logic.
+{% enddoc %}
+{{ 'curtainsuk-fabric-editorial.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign intelligence_url = '/apps/curtainsuk-decision/consultation?experience=premium&entry=match'
+  assign library_url = '/pages/fabric-library?view=browse-fabrics'
+%}
+<div class="cukfabric">
+  <section class="cukfabric__hero" aria-labelledby="fabric-heading">
+    <div class="cukfabric__hero-copy">
+      <p class="cukfabric__eyebrow">THE ART OF CHOOSING FABRIC</p>
+      <h1 id="fabric-heading">Choosing fabric is about more than choosing a colour.</h1>
+      <p>A fabric changes with the room around it — its scale, daylight, palette, texture, pattern and the amount of fabric the window requires.</p>
+      <a class="cukfabric__button" href="{{ intelligence_url }}">Find fabric for my room <span aria-hidden="true">→</span></a>
+      <a class="cukfabric__link" href="{{ library_url }}">Browse all fabrics <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="cukfabric__hero-image">
+      {{ images['prestigious-room-watercolour-dining.webp'] | image_url: width: 1600 | image_tag: widths: '540, 800, 1100, 1600', sizes: '(min-width: 900px) 56vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: 'Blue and green patterned curtains framing daylight in a dining room' }}
+      <div class="cukfabric__hero-sample">{{ images['cuk-fabric-a42c34ebddb1379a6db3b6c857a98cd321b73afebddf89717b04829b089b9ab4.jpg'] | image_url: width: 540 | image_tag: loading: 'eager', alt: 'Tactile detail of Prestigious Textiles Cord Breeze' }}<span>LOOK CLOSER<br>Colour is only the beginning.</span></div>
+    </div>
+  </section>
+  <nav class="cukfabric__chapters" aria-label="Explore fabric relationships">
+    {% assign chapters = 'Space,Light,Colour,Weight,Pattern,Texture,Character' | split: ',' %}
+    {% for chapter in chapters %}<a href="#fabric-{{ chapter | downcase }}">{{ chapter }}</a>{% endfor %}
+  </nav>
+
+  <section class="cukfabric__section cukfabric__space" id="fabric-space" aria-labelledby="fabric-space-title">
+    <header class="cukfabric__intro"><p class="cukfabric__eyebrow">01 / SPACE</p><h2 id="fabric-space-title">A little fabric.<br>A much bigger presence.</h2><p>From a small detail to a wall of curtains: more fabric gives colour and pattern more presence.</p></header>
+    <div class="cukfabric__space-contexts"><span>Lounge · the focal point</span><span>Bedroom · the atmosphere</span><span>Bay · the architecture</span><span>Patio doors · the expanse</span></div><div class="cukfabric__space-board">
+      {{ images['prestigious-room-neutral-pattern.webp'] | image_url: width: 1600 | image_tag: widths: '540, 800, 1100, 1600', sizes: '90vw', loading: 'lazy', alt: 'Neutral patterned curtains repeated across tall windows in a furnished room' }}
+      <div class="cukfabric__space-caption"><div class="cukfabric__space-crop" aria-hidden="true">{{ images['prestigious-room-neutral-pattern.webp'] | image_url: width: 800 | image_tag: loading: 'lazy', alt: '' }}</div><span>THE DETAIL → THE WHOLE ROOM</span><h3>Let the architecture set the scale.</h3><p>More fabric means more visual presence — even when the colours are quiet.</p></div>
+    </div>
+    <div class="cukfabric__advice"><p><strong>What works</strong>Read the curtains alongside the furniture and focal points.</p><p><strong>What needs care</strong>A strong repeat over a large area can become the room’s main event.</p></div>
+  </section>
+
+  <section class="cukfabric__section cukfabric__light" id="fabric-light" aria-labelledby="fabric-light-title">
+    <header class="cukfabric__intro"><p class="cukfabric__eyebrow">02 / LIGHT</p><h2 id="fabric-light-title">Meet the light.<br>Then meet the fabric.</h2><p>One surface. Three light impressions. Check a sample in the light you actually live with.</p></header>
+    <div class="cukfabric__light-grid">
+      {% assign light_names = 'Bright daylight,Softer / lower light,Warmer evening light' | split: ',' %}
+      {% assign light_notes = 'See the colour relationship.,Notice depth and quieter contrast.,Check how warmth changes the impression.' | split: ',' %}
+      {% for light in light_names %}<figure class="cukfabric__light-study cukfabric__light-study--{{ forloop.index }}"><div>{{ images['cuk-fabric-a42c34ebddb1379a6db3b6c857a98cd321b73afebddf89717b04829b089b9ab4.jpg'] | image_url: width: 800 | image_tag: widths: '360, 540, 800', sizes: '(min-width: 800px) 30vw, 90vw', loading: 'lazy', alt: 'Cord Breeze texture: illustrative light study' }}<span aria-hidden="true"></span></div><figcaption><h3>{{ light }}</h3><p>{{ light_notes[forloop.index0] }}</p></figcaption></figure>{% endfor %}
+    </div>
+    <p class="cukfabric__note">One genuine fabric photograph, shown with illustrative light treatments — not measured colour rendering. Check your sample in your own daylight and evening light.</p>
+    <div class="cukfabric__lining"><strong>A light-looking curtain can still have blackout lining.</strong><span>Face fabric shapes the look. Lining provides functional light control.</span></div>
+  </section>
+
+  <section class="cukfabric__colour" id="fabric-colour" aria-labelledby="fabric-colour-title">
+    <div class="cukfabric__colour-photo">{{ images['prestigious-room-watercolour-dining.webp'] | image_url: width: 1400 | image_tag: widths: '540, 800, 1100, 1400', sizes: '(min-width: 900px) 52vw, 100vw', loading: 'lazy', alt: 'Cream walls, blue-green curtains and dark timber in the example dining room' }}</div>
+    <div class="cukfabric__colour-copy"><p class="cukfabric__eyebrow">03 / COLOUR</p><h2 id="fabric-colour-title">One room.<br>More than one right answer.</h2><p>Start with the colours already in the picture. Then decide how you want the curtains to relate.</p>
+      <div class="cukfabric__palette" aria-label="Illustrative palette drawn from the room photograph">
+        <div><i style="--swatch:#ddd8c9"></i><small>PRIMARY</small><span>Warm ivory</span></div><div><i style="--swatch:#738c87"></i><small>SECONDARY</small><span>Blue-green</span></div><div><i style="--swatch:#51463b"></i><small>ACCENT</small><span>Dark timber</span></div>
+      </div>
+      <p class="cukfabric__small">An illustrative reading of this photograph, not a paint or colour-matching standard.</p>
+      <div class="cukfabric__relationships">
+        <details open><summary><i style="--swatch:#d8d0bc"></i><span>Blend<small>Stay close to the foundation</small></span><b aria-hidden="true">+</b></summary><p>A flax-like neutral follows the room’s warm ivory, keeping the overall relationship quiet.</p></details>
+        <details><summary><i style="--swatch:#738c87"></i><span>Coordinate<small>Pick up a supporting colour</small></span><b aria-hidden="true">+</b></summary><p>A blue-green direction draws the curtain into conversation with the existing secondary colour.</p></details>
+        <details><summary><i style="--swatch:#eee9dc"></i><span>Lift<small>Introduce a lighter related tone</small></span><b aria-hidden="true">+</b></summary><p>A soft chalk direction lightens the visual impression while staying related to the room.</p></details>
+        <details><summary><i style="--swatch:#354c49"></i><span>Contrast<small>Give the curtain more presence</small></span><b aria-hidden="true">+</b></summary><p>A deeper green creates stronger light–dark contrast. Across a large window, it will feel more assertive.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cukfabric__section" id="fabric-weight" aria-labelledby="fabric-weight-title">
+    <header class="cukfabric__intro"><p class="cukfabric__eyebrow">04 / WEIGHT</p><h2 id="fabric-weight-title">Weight you can feel.<br>Weight you can see.</h2><p>Physical weight is a supplier specification. Visual weight is the presence a fabric creates through colour, density, pattern and finish.</p></header>
+    <div class="cukfabric__weight-grid">
+      {% assign weight_photos = 'curtainsuk-luxury-sheer-living-room.jpg,curtainsuk-layered-sheer-grey-curtains.jpg,curtainsuk-warm-accent-curtains.jpg' | split: ',' %}
+      {% assign weight_names = 'Lighter presence,Balanced presence,Stronger presence' | split: ',' %}
+      {% assign weight_notes = 'Light, view and softer boundaries.|A frame for the room and its furnishings.|Deeper colour brings the curtain forward.' | split: '|' %}
+      {% for photo in weight_photos %}<article>{{ images[photo] | image_url: width: 900 | image_tag: widths: '360, 600, 900', sizes: '(min-width: 800px) 30vw, 90vw', loading: 'lazy', alt: weight_names[forloop.index0] }}<h3>{{ weight_names[forloop.index0] }}</h3><p>{{ weight_notes[forloop.index0] }}</p></article>{% endfor %}
+    </div>
+    <div class="cukfabric__weight-facts"><p><strong>VISUAL WEIGHT</strong>What the room sees: colour depth, surface, pattern and the amount of fabric.</p><p><strong>PHYSICAL WEIGHT</strong>What the supplier specifies. Weave and construction also affect drape and movement; feel a sample before choosing.</p></div>
+  </section>
+
+  <section class="cukfabric__section cukfabric__pattern" id="fabric-pattern" aria-labelledby="fabric-pattern-title">
+    <header class="cukfabric__intro"><p class="cukfabric__eyebrow">05 / PATTERN</p><h2 id="fabric-pattern-title">Not just “patterned”.<br>How much rhythm?</h2><p>Notice the space between motifs. The rhythm of the repeat. The strength of the contrast.</p></header>
+    <div class="cukfabric__pattern-grid">
+      <figure>{{ images['cuk-fabric-69e8c2973b13c93edeaf14b1a9775ec879a352b5c1cc7a0420d15f6d5b659303.jpg'] | image_url: width: 900 | image_tag: widths: '360, 600, 900', sizes: '(min-width: 800px) 50vw, 100vw', loading: 'lazy', alt: 'Abeja Linen fabric by Clarke & Clarke' }}<figcaption><span class="cukfabric__eyebrow">A REPEATED DETAIL</span><h3>Abeja · Linen</h3><p>Clarke &amp; Clarke</p></figcaption></figure>
+      <figure>{{ images['cuk-fabric-89269d7f5a0afea8751ad4b927605c077bd71460e879dafbaf96c2dba1092a44.jpg'] | image_url: width: 900 | image_tag: widths: '360, 600, 900', sizes: '(min-width: 800px) 50vw, 100vw', loading: 'lazy', alt: 'Painters Garden Violet/Crimson fabric by Sanderson' }}<figcaption><span class="cukfabric__eyebrow">A MORE EXPRESSIVE COMPOSITION</span><h3>Painters Garden · Violet/Crimson</h3><p>Sanderson</p></figcaption></figure>
+    </div>
+    <div class="cukfabric__advice"><p><strong>What works</strong>Consider motif size, the space between motifs and the strength of the colour contrast together.</p><p><strong>What needs care</strong>Photographs aren’t shown at a common physical scale. Check the repeat and see a sample before deciding.</p></div>
+  </section>
+
+  <section class="cukfabric__texture" id="fabric-texture" aria-labelledby="fabric-texture-title">
+    <div class="cukfabric__texture-photo">{{ images['cuk-fabric-a42c34ebddb1379a6db3b6c857a98cd321b73afebddf89717b04829b089b9ab4.jpg'] | image_url: width: 1400 | image_tag: widths: '540, 800, 1100, 1400', sizes: '100vw', loading: 'lazy', alt: 'Close view of Cord Breeze by Prestigious Textiles' }}<span class="cukfabric__image-note">Prestigious Textiles · Cord · Breeze</span></div>
+    <div class="cukfabric__texture-copy"><p class="cukfabric__eyebrow">06 / TEXTURE</p><h2 id="fabric-texture-title">“Not plain.<br>Not really patterned either.”</h2><p>Depth without a strong motif. Let the weave, surface and shifting shadows do the work.</p><div class="cukfabric__rule"><strong>Look closer</strong><p>See the surface here. Feel the handle with a sample.</p></div></div>
+  </section>
+
+  <section class="cukfabric__section" id="fabric-character" aria-labelledby="fabric-character-title">
+    <header class="cukfabric__intro"><p class="cukfabric__eyebrow">07 / CHARACTER</p><h2 id="fabric-character-title">It’s the combination<br>that creates the character.</h2><p>No single colour or pattern defines a room. See what happens when the elements come together.</p></header>
+    <div class="cukfabric__character-grid">
+      <article>{{ images['cuk-fabric-a42c34ebddb1379a6db3b6c857a98cd321b73afebddf89717b04829b089b9ab4.jpg'] | image_url: width: 900 | image_tag: loading: 'lazy', alt: 'Cord Breeze: close view of a quieter woven surface' }}<p class="cukfabric__eyebrow">CORD · BREEZE / PRESTIGIOUS TEXTILES</p><h3>Let the surface lead.</h3><p>A quieter rhythm. Interest in the weave.</p></article>
+      <article>{{ images['cuk-fabric-d42971de12b2fd2ef8ba565e21329fbd6e2c6623336d76f2eed26e2f302e5ceb.jpg'] | image_url: width: 900 | image_tag: loading: 'lazy', alt: 'Supplier fabric image showing green and cream patterned weave' }}<p class="cukfabric__eyebrow">A GREEN &amp; CREAM PATTERN STUDY</p><h3>Let the pattern lead.</h3><p>A more pronounced rhythm. Interest in the contrast.</p></article>
+    </div>
+    <p class="cukfabric__note">Related green directions, different visual activity. These are visual comparisons, not new product classifications.</p>
+    <div class="cukfabric__advice"><p><strong>What works</strong>Choose which element leads, then let the others support it.</p><p><strong>What needs care</strong>Strong pattern, strong contrast and a large fabric area can compete with an already busy room.</p></div>
+  </section>
+
+  <div class="cukfabric__decisions">
+  <section class="cukfabric__payoff" aria-labelledby="fabric-payoff-title"><p class="cukfabric__eyebrow">FABRIC INTELLIGENCE™</p><h2 id="fabric-payoff-title">Want us to work it out<br>with your room?</h2><p>You don’t need to work it all out yourself. Bring your room, your priorities and your taste together in your Interior Fabric Brief.</p><a class="cukfabric__button cukfabric__button--light" href="{{ intelligence_url }}">Find my fabric direction <span aria-hidden="true">→</span></a><span class="cukfabric__journey">YOUR ROOM · YOUR TASTE · YOUR EYE</span></section>
+  <div class="cukfabric__browse"><p class="cukfabric__eyebrow">YOUR COLLECTION, YOUR WAY</p><h2>Already know what you’re looking for?</h2><p>Explore the collection directly in the Fabric Library.</p><a class="cukfabric__button" href="{{ library_url }}">Browse all fabrics <span aria-hidden="true">→</span></a></div>
+  </div>
+</div>

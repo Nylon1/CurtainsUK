@@ -1,21 +1,27 @@
 import { createSupplierServiceClient } from "../supabase/supplier-service";
-import { fabricMasterRecordsByIds } from "./repository";
+import { fabricMasterRecordsByIds, verifiedSupplierCostMinor } from "./repository";
 import { projectCustomerSafeFabric, assertCustomerSafeProjection } from "./projection";
 import { RETAIL_TAXONOMY, factualRetailDescription, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
 import { commercialReadiness } from './readiness-server';
 import { calculationWidth } from './readiness';
+import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
+import { BROWSE_DISCOVERY, reviewedFabricIntelligence, supplierFacts, type EvidenceProfile } from './browse-experience';
 
-export async function retailFabricDetail(id: string) {
+export async function retailFabricDetail(id: string, browseExperience = false) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
-  return (await hydrateRetailFabrics([id]))[0] ?? null;
+  const fabric = (await hydrateRetailFabrics([id], browseExperience))[0] ?? null;
+  if (!fabric || !browseExperience) return fabric;
+  const record = (await fabricMasterRecordsByIds([id]))[0];
+  const cost = record ? await verifiedSupplierCostMinor(record.supplier_id, record.supplier_sku).catch(() => null) : null;
+  return { ...fabric, browseGuide: customerBrowseGuide(cost === null ? null : cost * 3) };
 }
-async function hydrateRetailFabrics(ids: string[]) {
+async function hydrateRetailFabrics(ids: string[], browseExperience = false) {
   if (!ids.length) return [];
   const db = createSupplierServiceClient();
   const [records, profileResult, imageResult] = await Promise.all([
     fabricMasterRecordsByIds(ids),
-    db.from("fabric_retail_profiles").select("fabric_id,description,description_validated,colour_families,patterns,characters,styles,rooms,window_types,headings,linings").in("fabric_id", ids),
-    db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,image_type,fabric_media_assets!inner(shopify_cdn_url,width,height)").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
+    db.from("fabric_retail_profiles").select("fabric_id,description,description_validated,classification_evidence,colour_families,patterns,characters,styles,rooms,window_types,headings,linings").in("fabric_id", ids),
+    db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,image_type,content_hash,fabric_media_assets!inner(shopify_cdn_url,width,height)").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
   ]);
   if (profileResult.error || imageResult.error) throw new Error("RETAIL_CATALOGUE_UNAVAILABLE");
   // A stock service outage must not take browsing offline or imply available stock.
@@ -45,6 +51,11 @@ async function hydrateRetailFabrics(ids: string[]) {
     colourFamilies: profile?.colour_families ?? ["UNKNOWN"], patterns: profile?.patterns ?? ["UNKNOWN"], characters: profile?.characters ?? ["UNKNOWN"], styles: profile?.styles ?? ["UNKNOWN"],
     headings: profile?.headings ?? [], windowTypes: profile?.window_types ?? [], linings: profile?.linings ?? [], rooms: profile?.rooms ?? [],
     browseReady: true, orderReady: commercial?.orderReady ?? false, launchReady: true, metadata: retailMetadata(record), feedEligible: false,
+    ...(browseExperience ? {
+      supplierFacts: supplierFacts(record),
+      intelligence: reviewedFabricIntelligence(profile as EvidenceProfile | undefined,
+        (imageResult.data ?? []).filter(row => row.fabric_id === id && row.supplier_id === record.supplier_id && row.supplier_sku === record.supplier_sku).map(row => String(row.content_hash))),
+    } : {}),
   };
   assertCustomerSafeProjection(result); return [result];
   });
@@ -53,10 +64,25 @@ export async function searchRetailFabrics(params: URLSearchParams) {
   const page = Math.max(1, Math.min(10000, Number.parseInt(params.get("page") ?? "1", 10) || 1));
   const pageSize = 24;
   const filters = Object.fromEntries(["query", "brand", "collection", "colour", "pattern", "character", "style", "sample", "availability", "window"].map((key) => [key, (params.get(key) ?? "").trim().slice(0, 100)]));
-  const { data, error } = await createSupplierServiceClient().rpc("search_retail_fabrics", { p_filters: filters, p_page: page, p_size: pageSize });
+  // Explicit Browse opt-in. Detail, HCI and configuration projections never get a guide.
+  const withGuide = params.get('browseGuide') === '1';
+  if (withGuide) for (const dimension of BROWSE_DISCOVERY) {
+    if (!dimension.active && dimension.key in filters) filters[dimension.key] = '';
+  }
+  if (withGuide) filters.style = ''; // The legacy sparse style filter is not a catalogue-wide discovery facet.
+  const band = withGuide ? browsePriceBand(params.get('guidePrice')) : null;
+  const { data, error } = await createSupplierServiceClient().rpc("search_retail_fabrics", {
+    p_filters: filters, p_page: page, p_size: pageSize,
+    ...(withGuide ? { p_guide_min: band?.minimumMinor ?? null, p_guide_max: band?.maximumMinor ?? null } : {}),
+  });
   if (error) throw new Error("RETAIL_SEARCH_UNAVAILABLE");
-  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[] };
+  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[]; guidePrices?: Record<string, number> };
   // At most 24 records are ever hydrated for a response.
-  const fabrics = await hydrateRetailFabrics(value.ids);
-  return { schemaVersion: "3.0.0", fabrics, page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize), facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY } };
+  const fabrics = await hydrateRetailFabrics(value.ids, withGuide);
+  const result = { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(fabric => ({ ...fabric, browseGuide: customerBrowseGuide(value.guidePrices?.[fabric.id]) })) : fabrics,
+    page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize),
+    facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY,
+      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})), discovery: BROWSE_DISCOVERY } : {}) } };
+  assertCustomerSafeProjection(result);
+  return result;
 }

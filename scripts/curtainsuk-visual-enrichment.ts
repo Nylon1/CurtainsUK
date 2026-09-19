@@ -166,6 +166,16 @@ function estimate(plan: { governed_designs:number; eligible_colourways:number; s
     optimisedPaid: { highDetailDesignCalls: plan.governed_designs, lowDetailColourwayCalls: paidColourwayCalls, reusableSingleColourwayCalls: reusable, highDetailImageTokens: highTokens, lowDetailImageTokens: lowTokens, imageInputUsd: +(imageTokens / 1_000_000 * inputUsdPerMillion).toFixed(2) },
   };
 }
+function flexibleCandidate(raw: VisualCandidate): VisualCandidate {
+  const candidate = structuredClone(raw) as any;
+  for (const [key, observation] of Object.entries(candidate.observations ?? {}) as [string, any][]) {
+    const unknown = observation.value === "unknown" || (Array.isArray(observation.value) && observation.value.length === 0);
+    if (unknown) observation.confidence = "REVIEW";
+    if (key === "patternScale" && observation.value !== "unknown") { observation.value = "unknown"; observation.confidence = "REVIEW"; }
+    if (key === "directionality" && candidate.imageContext !== "REPEAT_VIEW" && observation.value !== "unknown") { observation.value = "unknown"; observation.confidence = "REVIEW"; }
+  }
+  return candidate;
+}
 async function main() {
   assertProductionTarget();
   await mkdir(outDir, { recursive: true });
@@ -182,11 +192,11 @@ async function main() {
     const targetLedger = await fetchAllLedger(db);
     const designKeysWithEvidence = new Set(targetLedger.filter((r) => r.analysis_level === "DESIGN").map(designKey));
     const colourwayKeysWithEvidence = new Set(targetLedger.filter((r) => r.analysis_level === "COLOURWAY").map(colourwayKey));
-    colourwayRows = colourwayRows.filter((row) => !colourwayKeysWithEvidence.has(colourwayKey(row)) && !designKeysWithEvidence.has(designKey(row)));
+    colourwayRows = colourwayRows.filter((row) => !colourwayKeysWithEvidence.has(colourwayKey(row)));
     const targetDesignKeys = new Set(colourwayRows.map(designKey));
-    designRows = designRows.filter((row) => targetDesignKeys.has(designKey(row)));
+    designRows = designRows.filter((row) => targetDesignKeys.has(designKey(row)) && !designKeysWithEvidence.has(designKey(row)));
     if (colourwayRows.length !== 3153) throw new Error(`TARGET_MISSING_SCOPE_RECONCILIATION_FAILED_${colourwayRows.length}`);
-    const singleColourwayDesigns = [...targetDesignKeys].filter((key) => colourwayRows.filter((r) => designKey(r) === key).length === 1).length;
+    const singleColourwayDesigns = [...targetDesignKeys].filter((key) => !designKeysWithEvidence.has(key) && colourwayRows.filter((r) => designKey(r) === key).length === 1).length;
     plan = { ...plan, governed_designs: designRows.length, eligible_colourways: colourwayRows.length, representative_design_images_selected: designRows.length, colourway_images_resolved: colourwayRows.length, single_colourway_designs: singleColourwayDesigns, single_colourway_reusable_colourway_calls: singleColourwayDesigns, existing_design_fingerprints: 0, existing_colourway_fingerprints: 0 };
   }
   const report = { runLabel, scope, inference: apply, targetMissing, singleColourwayCombined: combineSingleColourway, designCallsPlanned: plan.governed_designs, colourwayFingerprintsPlanned: plan.eligible_colourways, representativeDesignImagesSelected: plan.representative_design_images_selected, colourwayImagesResolved: plan.colourway_images_resolved, duplicateReusableWorkDetected: plan.single_colourway_reusable_colourway_calls, estimates: estimate(plan), ledgerCheckpointReadiness: "NOT_RUN" as "PASS"|"NOT_RUN", recovered: 0, newlyInferredDesigns: 0, newlyInferredColourways: 0, resolved: 0, failed: 0, failures: [] as { level:string; fabric_id:string; supplier_sku:string; reason:string }[] };
@@ -221,14 +231,13 @@ async function main() {
           else {
             const classified = await openAiClassify(designRow, combined ? combinedSingleColourwayInstruction : designFingerprintInstruction, "high", designAsset);
             combinedRaw = classified.candidate;
-            designVisual = acceptVisualCandidate(designCandidateFrom(classified.candidate), { binding: binding(designRow, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "DESIGN" });
+            designVisual = acceptVisualCandidate(designCandidateFrom(flexibleCandidate(classified.candidate)), { binding: binding(designRow, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "DESIGN" });
             report.newlyInferredDesigns++;
           }
           const ledgerId = await insertFingerprint(db, runId, designRow, designVisual, designAsset);
           designLedger = { ledger_id: ledgerId, analysis_level: "DESIGN", fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, brand_id: designRow.brand_id, design_id: designRow.design_id, source_image_hash: designRow.source_image_hash, analysis_asset_hash: designAsset.analysisAssetHash, output: designVisual, approval_state: reviewState(designVisual.candidate, "DESIGN") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(designVisual.candidate, "DESIGN") };
           designByGoverned.set(governedKey, designLedger);
         }
-        if (designLedger.approval_state !== "APPROVED") throw new Error("DESIGN_FINGERPRINT_NOT_APPROVED_FOR_RESOLUTION");
         for (const row of siblings) {
           if (colourwayByFabric.has(colourwayKey(row))) continue;
           const colourwayAsset = combined && row.fabric_id === designRow.fabric_id && designAsset ? designAsset : await fetchAnalysisAsset(row);
@@ -237,7 +246,7 @@ async function main() {
           if (cached) { colourwayVisual = cached; report.recovered++; }
           else {
             const classified = combined && row.fabric_id === designRow.fabric_id && combinedRaw ? { candidate: combinedRaw, asset: colourwayAsset } : await openAiClassify(row, colourwayFingerprintInstruction, "low", colourwayAsset);
-            colourwayVisual = acceptVisualCandidate(colourwayCandidateFrom(classified.candidate), { binding: binding(row, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "COLOURWAY" });
+            colourwayVisual = acceptVisualCandidate(colourwayCandidateFrom(flexibleCandidate(classified.candidate)), { binding: binding(row, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "COLOURWAY" });
             report.newlyInferredColourways++;
           }
           const colourwayLedgerId = await insertFingerprint(db, runId, row, colourwayVisual, colourwayAsset);

@@ -47,6 +47,7 @@ function base64(bytes: ArrayBuffer) {
 
 export default function CurtainsUkPremiumConsultation() {
   const [view, setView] = useState<View | null>(null);
+  const [referenceFabric,setReferenceFabric] = useState<Fabric | null>(null);
   const [entry, setEntry] = useState<'match' | 'guided'>('match');
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
@@ -96,6 +97,8 @@ export default function CurtainsUkPremiumConsultation() {
       setEntry(new URLSearchParams(window.location.search).get('entry') === 'guided' ? 'guided' : 'match');
       try { resumeSession.current = savedPremiumSession(sessionStorage.getItem(premiumSessionStorageKey)); } catch { /* Storage may be disabled. */ }
       if (premiumProxyEnabled()) resumeSession.current = savedPremiumSession(new URLSearchParams(window.location.search).get('session')) ?? resumeSession.current;
+      const referenceId = new URLSearchParams(window.location.search).get('fabric');
+      if (referenceId && /^[-a-zA-Z0-9]{1,150}$/.test(referenceId)) void fetch(`${premiumProxyPath('premium-catalog')}?fabric=${encodeURIComponent(referenceId)}`).then(r=>r.json()).then(data=>{if(data.fabric?.id===referenceId)setReferenceFabric(data.fabric);}).catch(()=>{});
       void send();
     }
   // This initializes exactly one anonymous consultation; re-running would create a second request.
@@ -159,6 +162,7 @@ export default function CurtainsUkPremiumConsultation() {
 
   return <main className={showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell}>
     <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Explore fabrics</a></header>
+    {referenceFabric && <p className={styles.profileContext}><a href={`/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(referenceFabric.id)}`}>Your selected fabric: {referenceFabric.design} · {referenceFabric.colour} →</a></p>}
     <div className={styles.progress} aria-label="Consultation progress"><span className={roomPalette ? styles.complete : ''}>Your room</span><span className={view.phase !== 'discovery' ? styles.complete : ''}>Your taste</span><span className={view.directions.length ? styles.complete : ''}>Your edit</span></div>
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}
     {!showPalette && roomPalette?.confirmedPalette && <button className={styles.textButton} onClick={() => setReviewPalette(true)}>Review my Room Palette</button>}

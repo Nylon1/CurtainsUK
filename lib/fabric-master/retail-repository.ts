@@ -1,14 +1,22 @@
+import { knowledgeDiscovery, type KnowledgeOption } from './knowledge-discovery';
 import { createSupplierServiceClient } from "../supabase/supplier-service";
-import { fabricMasterRecordsByIds } from "./repository";
+import { fabricMasterRecordsByIds, verifiedSupplierCostMinor } from "./repository";
 import { projectCustomerSafeFabric, assertCustomerSafeProjection } from "./projection";
 import { RETAIL_TAXONOMY, factualRetailDescription, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
 import { commercialReadiness } from './readiness-server';
 import { calculationWidth } from './readiness';
-import { customerGuidance, visualKnowledgeByFabricIds } from './visual-knowledge';
+import { customerGuidance, customerIntelligence, visualKnowledgeByFabricIds } from './visual-knowledge';
 
-export async function retailFabricDetail(id: string) {
+import { supplierFacts } from './browse-experience';
+import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
+
+export async function retailFabricDetail(id: string, withGuide = false) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
-  return (await hydrateRetailFabrics([id]))[0] ?? null;
+  const fabric = (await hydrateRetailFabrics([id]))[0] ?? null;
+  if (!fabric || !withGuide) return fabric;
+  const record = (await fabricMasterRecordsByIds([id]))[0];
+  const cost = record ? await verifiedSupplierCostMinor(record.supplier_id, record.supplier_sku).catch(() => null) : null;
+  return { ...fabric, browseGuide: customerBrowseGuide(cost === null ? null : cost * 3) };
 }
 async function hydrateRetailFabrics(ids: string[]) {
   if (!ids.length) return [];
@@ -36,11 +44,12 @@ async function hydrateRetailFabrics(ids: string[]) {
   if(commercial?.commercialStockState==='DISCONTINUED') return [];
   // Explicit public shape: supplier SKU remains in canonical server records.
   const result = {
+    supplierFacts: { facts: supplierFacts(record).facts },
     id: safe.id, supplier: safe.supplier, brand: safe.brand, collection: safe.collection, design: safe.design, colour: safe.colour,
     composition: safe.composition, fullWidthMm: safe.fullWidthMm, usableWidthMm: safe.usableWidthMm, verticalRepeatMm: safe.verticalRepeatMm, horizontalRepeatMm: safe.horizontalRepeatMm,
     patternMatchType: safe.patternMatchType, weightGsm: record.weight_gsm, careInstructions: record.care_instructions,
     sampleAvailable: commercial?.sampleReady ?? false, availability: commercial?.stockMessage ?? 'Check availability' as const, configurable: safe.configurable, configurationMessage: commercial?.priceReady ? 'Ready to configure' as const : 'Price and availability to be confirmed' as const,
-    sampleEligible: true, calculationWidthMm: calculationWidth(record), ...(visual.get(id) ? { visualIntelligence: visual.get(id), fabricIntelligenceGuidance: customerGuidance(visual.get(id)) } : {}),
+    sampleEligible: true, calculationWidthMm: calculationWidth(record), ...(visual.get(id) ? { visualIntelligence: visual.get(id), fabricIntelligenceGuidance: customerGuidance(visual.get(id)), intelligence: customerIntelligence(visual.get(id)) } : {}),
     commercialStockState: commercial?.commercialStockState ?? 'CHECK_AVAILABILITY',
     priceReady: commercial?.priceReady ?? false, currentStockConfirmed: commercial?.currentStockConfirmed ?? false,
     imageReferences: images.map((i) => i.url), images, description: profile?.description_validated && profile.description.trim() ? profile.description : factualRetailDescription(record),
@@ -54,11 +63,14 @@ async function hydrateRetailFabrics(ids: string[]) {
 export async function searchRetailFabrics(params: URLSearchParams) {
   const page = Math.max(1, Math.min(10000, Number.parseInt(params.get("page") ?? "1", 10) || 1));
   const pageSize = 24;
-  const filters = Object.fromEntries(["query", "brand", "collection", "colour", "pattern", "character", "style", "sample", "availability", "window"].map((key) => [key, (params.get(key) ?? "").trim().slice(0, 100)]));
-  const { data, error } = await createSupplierServiceClient().rpc("search_retail_fabrics", { p_filters: filters, p_page: page, p_size: pageSize });
-  if (error) throw new Error("RETAIL_SEARCH_UNAVAILABLE");
-  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[] };
+  const filters = Object.fromEntries(["query", "brand", "collection", "colour", "pattern", "character", "style", "sample", "availability", "window", "knowledge", "activity", "texture", "presence"].map((key) => [key, (params.get(key) ?? "").trim().slice(0, 100)]));
+  const withGuide = params.get('browseGuide') === '1';
+  const band = withGuide ? browsePriceBand(params.get('guidePrice')) : null;
+  const { data, error } = await createSupplierServiceClient().rpc("search_retail_fabrics", { p_filters: filters, p_page: page, p_size: pageSize,
+    ...(withGuide ? {p_guide_min: band?.minimumMinor ?? null, p_guide_max: band?.maximumMinor ?? null} : {}) });
+  if (error) { console.error("RETAIL_SEARCH_UNAVAILABLE", { code: error.code }); throw new Error("RETAIL_SEARCH_UNAVAILABLE"); }
+  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[]; guidePrices?: Record<string, number>; knowledgeOptions?: KnowledgeOption[] };
   // At most 24 records are ever hydrated for a response.
   const fabrics = await hydrateRetailFabrics(value.ids);
-  return { schemaVersion: "3.0.0", fabrics, page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize), facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY } };
+  return { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(f => ({...f, browseGuide: customerBrowseGuide(value.guidePrices?.[f.id])})) : fabrics, page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize), facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY, ...(filters.knowledge === "1" ? { discovery: knowledgeDiscovery(value.knowledgeOptions) } : {}), ...(withGuide ? {guidePrices: BROWSE_PRICE_BANDS.map(({value,label})=>({value,label}))} : {}) } };
 }

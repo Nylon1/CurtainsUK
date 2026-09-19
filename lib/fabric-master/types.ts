@@ -98,6 +98,8 @@ export interface CustomerSafeFabricProjection {
   configurable: boolean;
   configurationMessage: "Ready to configure" | "Price and availability to be confirmed" | "No longer available";
   feedEligible: false;
+  /** Governed visual/interior observations; absent fields remain unavailable to the customer. */
+  visualIntelligence?: import("./visual-knowledge").FabricVisualIntelligence;
 }
 
 export const PRIVATE_FABRIC_FIELDS = [

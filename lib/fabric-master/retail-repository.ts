@@ -4,6 +4,7 @@ import { projectCustomerSafeFabric, assertCustomerSafeProjection } from "./proje
 import { RETAIL_TAXONOMY, factualRetailDescription, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
 import { commercialReadiness } from './readiness-server';
 import { calculationWidth } from './readiness';
+import { customerGuidance, visualKnowledgeByFabricIds } from './visual-knowledge';
 
 export async function retailFabricDetail(id: string) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
@@ -20,6 +21,7 @@ async function hydrateRetailFabrics(ids: string[]) {
   if (profileResult.error || imageResult.error) throw new Error("RETAIL_CATALOGUE_UNAVAILABLE");
   // A stock service outage must not take browsing offline or imply available stock.
   const readiness = await commercialReadiness(records).catch(()=>null);
+  const visual = await visualKnowledgeByFabricIds(records.map((record) => record.fabric_id));
   return ids.flatMap((id) => {
   const record = records.find((r) => r.fabric_id === id);
   if (!record?.staging_catalog_visible || record.lifecycle_state === "DISCONTINUED") return [];
@@ -38,7 +40,7 @@ async function hydrateRetailFabrics(ids: string[]) {
     composition: safe.composition, fullWidthMm: safe.fullWidthMm, usableWidthMm: safe.usableWidthMm, verticalRepeatMm: safe.verticalRepeatMm, horizontalRepeatMm: safe.horizontalRepeatMm,
     patternMatchType: safe.patternMatchType, weightGsm: record.weight_gsm, careInstructions: record.care_instructions,
     sampleAvailable: commercial?.sampleReady ?? false, availability: commercial?.stockMessage ?? 'Check availability' as const, configurable: safe.configurable, configurationMessage: commercial?.priceReady ? 'Ready to configure' as const : 'Price and availability to be confirmed' as const,
-    sampleEligible: true, calculationWidthMm: calculationWidth(record),
+    sampleEligible: true, calculationWidthMm: calculationWidth(record), ...(visual.get(id) ? { visualIntelligence: visual.get(id), fabricIntelligenceGuidance: customerGuidance(visual.get(id)) } : {}),
     commercialStockState: commercial?.commercialStockState ?? 'CHECK_AVAILABILITY',
     priceReady: commercial?.priceReady ?? false, currentStockConfirmed: commercial?.currentStockConfirmed ?? false,
     imageReferences: images.map((i) => i.url), images, description: profile?.description_validated && profile.description.trim() ? profile.description : factualRetailDescription(record),

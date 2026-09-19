@@ -39,12 +39,24 @@ function repeatLabel(fabric: CustomerSafeFabricProjection) {
 
 export default function FabricBrowser({ fabrics, windowSlug }: { fabrics: CustomerSafeFabricProjection[]; windowSlug?: string }) {
   const [query, setQuery] = useState("");
+  const [dimension, setDimension] = useState("all");
   const [saved, setSaved] = useState<string[]>([]);
   const visible = useMemo(() => {
     const search = query.trim().toLowerCase();
-    if (!search) return fabrics;
-    return fabrics.filter((fabric) => [fabric.supplier, fabric.brand, fabric.collection, fabric.design, fabric.colour].some((value) => value.toLowerCase().includes(search)));
-  }, [fabrics, query]);
+    return fabrics.filter((fabric) => {
+      const matchesSearch = !search || [fabric.supplier, fabric.brand, fabric.collection, fabric.design, fabric.colour].some((value) => value.toLowerCase().includes(search));
+      if (!matchesSearch || dimension === "all") return matchesSearch;
+      const visual = fabric.visualIntelligence;
+      if (!visual) return false;
+      if (dimension === "colour") return Boolean(visual.palette?.primary || visual.palette?.secondary?.length);
+      if (dimension === "pattern") return Boolean(visual.pattern?.category || visual.pattern?.motif?.length);
+      if (dimension === "activity") return Boolean(visual.pattern?.activity);
+      if (dimension === "texture") return Boolean(visual.texture?.length);
+      if (dimension === "character") return Boolean(visual.character?.length);
+      if (dimension === "weight") return Boolean(visual.visualWeight);
+      return true;
+    });
+  }, [fabrics, query, dimension]);
 
   function handleSample(fabricId: string) {
     const fabric = fabrics.find((item) => item.id === fabricId);
@@ -61,6 +73,12 @@ export default function FabricBrowser({ fabrics, windowSlug }: { fabrics: Custom
         <span className="sr-only">Search supplier fabrics</span>
         <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by design, colour or collection" className="w-full bg-transparent text-sm outline-none placeholder:text-[#80918b]" />
       </label>
+      <div className="mx-auto mt-4 flex max-w-lg items-center justify-center gap-3 text-sm text-[#587168]">
+        <label htmlFor="fabric-knowledge-filter">Explore by</label>
+        <select id="fabric-knowledge-filter" value={dimension} onChange={(event) => setDimension(event.target.value)} className="rounded-full border border-[#173c32]/15 bg-white px-4 py-2">
+          <option value="all">All governed knowledge</option><option value="colour">Colour</option><option value="pattern">Pattern</option><option value="activity">Visual activity</option><option value="texture">Texture</option><option value="character">Character</option><option value="weight">Presence / visual weight</option>
+        </select>
+      </div>
       <div className="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {visible.map((fabric) => (
           <article key={fabric.id} className="overflow-hidden rounded-[26px] border border-[#173c32]/10 bg-white shadow-[0_12px_40px_rgba(23,60,50,0.07)]">
@@ -73,6 +91,7 @@ export default function FabricBrowser({ fabrics, windowSlug }: { fabrics: Custom
               <p className="text-sm font-medium text-[#5b7169]">{fabric.colour}</p>
               <p className="mt-2 text-xs font-semibold text-[#6f5a3e]">{fabric.availability}</p>
               <p className="mt-3 text-sm leading-6 text-[#6b7d76]">{fabric.brand} fabric linked to a verified supplier specification.</p>
+              {fabric.visualIntelligence && <div className="mt-4 rounded-2xl bg-[#f7f3ec] p-4 text-xs leading-5 text-[#526b61]"><div className="font-semibold uppercase tracking-[0.12em] text-[#996a31]">CurtainsUK fabric intelligence</div><p className="mt-2">{[fabric.visualIntelligence.palette?.primary && `Colour: ${fabric.visualIntelligence.palette.primary}`, fabric.visualIntelligence.pattern?.category && `Pattern: ${fabric.visualIntelligence.pattern.category}`, fabric.visualIntelligence.pattern?.activity && `Activity: ${fabric.visualIntelligence.pattern.activity}`, fabric.visualIntelligence.texture?.length && `Texture: ${fabric.visualIntelligence.texture.join(", ")}`, fabric.visualIntelligence.character?.length && `Character: ${fabric.visualIntelligence.character.join(", ")}`, fabric.visualIntelligence.visualWeight && `Presence: ${fabric.visualIntelligence.visualWeight}`].filter(Boolean).join(" · ") || "Additional visual intelligence is still being prepared."}</p></div>}
               <dl className="mt-4 space-y-1 text-xs leading-5 text-[#64776f]">
                 <div className="flex justify-between gap-3"><dt>Width</dt><dd>{fabric.usableWidthMm === null ? "To be confirmed" : `${fabric.usableWidthMm / 10} cm`}</dd></div>
                 <div className="flex justify-between gap-3"><dt>Repeat</dt><dd>{repeatLabel(fabric)}</dd></div>

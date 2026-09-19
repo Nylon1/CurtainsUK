@@ -157,11 +157,13 @@ function estimate(plan: { governed_designs:number; eligible_colourways:number; s
   const reusable = combineSingleColourway ? plan.single_colourway_designs : 0;
   const paidColourwayCalls = plan.eligible_colourways - reusable;
   const lowTokens = paidColourwayCalls * lowDetailTokensPerImage;
-  const imageTokens = designHighDetailImageTokens + lowTokens;
+  const highTokens = Math.round(designHighDetailImageTokens * plan.governed_designs / 2186);
+  const independentTokens = Math.round(canonicalHighDetailImageTokens * plan.eligible_colourways / 9248);
+  const imageTokens = highTokens + lowTokens;
   return {
-    fullIndependent: { calls: plan.eligible_colourways, highDetailImageTokens: canonicalHighDetailImageTokens, imageInputUsd: +(canonicalHighDetailImageTokens / 1_000_000 * inputUsdPerMillion).toFixed(2) },
+    fullIndependent: { calls: plan.eligible_colourways, highDetailImageTokens: independentTokens, imageInputUsd: +(independentTokens / 1_000_000 * inputUsdPerMillion).toFixed(2) },
     optimisedLogical: { designFingerprints: plan.governed_designs, colourwayFingerprints: plan.eligible_colourways, resolvedFingerprints: plan.eligible_colourways },
-    optimisedPaid: { highDetailDesignCalls: plan.governed_designs, lowDetailColourwayCalls: paidColourwayCalls, reusableSingleColourwayCalls: reusable, highDetailImageTokens: designHighDetailImageTokens, lowDetailImageTokens: lowTokens, imageInputUsd: +(imageTokens / 1_000_000 * inputUsdPerMillion).toFixed(2) },
+    optimisedPaid: { highDetailDesignCalls: plan.governed_designs, lowDetailColourwayCalls: paidColourwayCalls, reusableSingleColourwayCalls: reusable, highDetailImageTokens: highTokens, lowDetailImageTokens: lowTokens, imageInputUsd: +(imageTokens / 1_000_000 * inputUsdPerMillion).toFixed(2) },
   };
 }
 async function main() {

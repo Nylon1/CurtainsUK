@@ -253,7 +253,9 @@ async function main() {
           }
           const colourwayLedgerId = await insertFingerprint(db, runId, row, colourwayVisual, colourwayAsset);
           colourwayByFabric.set(colourwayKey(row), { ledger_id: colourwayLedgerId, analysis_level: "COLOURWAY", fabric_id: row.fabric_id, supplier_id: row.supplier_id, supplier_sku: row.supplier_sku, brand_id: row.brand_id, design_id: row.design_id, source_image_hash: row.source_image_hash, analysis_asset_hash: colourwayAsset.analysisAssetHash, output: colourwayVisual, approval_state: reviewState(colourwayVisual.candidate, "COLOURWAY") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(colourwayVisual.candidate, "COLOURWAY") });
-          const resolved = resolveFabricFingerprint({ design: designLedger.output, colourway: colourwayVisual, analysedAt: new Date().toISOString() });
+          const designForResolution = { ...designLedger.output, candidate: designCandidateFrom(flexibleCandidate(designLedger.output.candidate)) } as VisualFingerprint;
+          const colourwayForResolution = { ...colourwayVisual, candidate: colourwayCandidateFrom(flexibleCandidate(colourwayVisual.candidate)) } as VisualFingerprint;
+          const resolved = resolveFabricFingerprint({ design: designForResolution, colourway: colourwayForResolution, analysedAt: new Date().toISOString() });
           await insertFingerprint(db, runId, row, resolved, colourwayAsset, { designId: designLedger.ledger_id, colourwayId: colourwayLedgerId });
           report.resolved++;
         }

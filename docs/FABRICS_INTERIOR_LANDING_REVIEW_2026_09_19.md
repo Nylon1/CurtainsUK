@@ -58,3 +58,10 @@ Shopify validation passed all six initial files and three final routing/style fi
 Both FI CTA destinations retain same-origin entry=match; final entry loaded the real Let us read your room screen (initial server preparation state required time to finish). Library Cord search survived reload with view=browse-fabrics. View Fabric opened exact pt-7248-590 Cord Breeze, with original sample and Make Curtains controls. All fabrics returned to browse view. Legacy ?fabric=pt-7248-590 without view correctly routed to the same product detail. Browse and product detail had no mobile overflow. No transactions attempted. No Vercel/staging hostname in editorial link targets.
 
 Unaffected homepage, Shop by Window, navigation, product rendering, HCI, stock, Fabric Master and commerce source files were not changed (aside from the three necessary library navigation lines in the shared storefront asset). Candidate only, no merge/publication.
+
+
+## Final polish and authorised release
+
+User approved merge/publication after focused checks. Final polish enlarges full-width Space/Light/Pattern imagery, makes Texture a full-width macro treatment, tightens section spacing, shortens supporting prose and creates a substantial two-route ending. Colour system, advice language and separate browsing architecture retained. Corrected a comma-delimited Weight caption split.
+
+Final candidate checks: desktop1440,390,412 no overflow; full-width pattern and texture inspected; final buttons 58px high; corrected Weight captions visible; final FI CTA loads same-origin Let us read your room; Browse CTA opens dedicated view with existing search. Shopify validator passes both changed presentation files. Existing shared files pulled from live before deployment matched origin/main; backups retained at C:/Users/hamza/curtainsuk-fabrics-live-backup. Deployment targets only the eight Fabrics-related theme files from the branch, not a whole-theme replacement. Current live theme 182310502779 remains live.

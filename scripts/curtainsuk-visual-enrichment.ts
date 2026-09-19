@@ -21,6 +21,7 @@ const restoreDir = args.get("restore-dir");
 const outDir = args.get("out") ?? "artifacts/visual-enrichment";
 const runLabel = args.get("run-label") ?? `fabric-master-visual-${new Date().toISOString()}`;
 const combineSingleColourway = args.get("single-colourway") !== "separate";
+const targetMissing = args.get("target-missing") === "true" || (args.has("target-missing") && !args.has("full-catalogue"));
 const expectedProjectRef = "hqysjumypgeapgmqkcrx";
 const canonicalHighDetailImageTokens = 20695145;
 const designHighDetailImageTokens = 4870018;
@@ -167,15 +168,26 @@ async function main() {
   assertProductionTarget();
   await mkdir(outDir, { recursive: true });
   const db = createSupplierServiceClient();
-  const [designRows, colourwayRows, planResult] = await Promise.all([
+  let [designRows, colourwayRows, planResult] = await Promise.all([
     fetchAllRpc<DesignScopeRow>(db, "fabric_visual_design_enrichment_scope"),
     fetchAllRpc<ScopeRow>(db, "fabric_visual_enrichment_scope", { p_scope: "CANONICAL_APPROVED_IMAGE" }),
     db.rpc("fabric_visual_optimised_plan"),
   ]);
   if (planResult.error) throw planResult.error;
-  const plan = planResult.data as { governed_designs:number; eligible_colourways:number; representative_design_images_selected:number; colourway_images_resolved:number; single_colourway_designs:number; existing_design_fingerprints:number; existing_colourway_fingerprints:number; single_colourway_reusable_colourway_calls:number };
-  if (designRows.length !== 2186 || colourwayRows.length !== 9248 || plan.governed_designs !== 2186 || plan.eligible_colourways !== 9248 || plan.representative_design_images_selected !== 2186 || plan.colourway_images_resolved !== 9248) throw new Error(`OPTIMISED_PLAN_RECONCILIATION_FAILED_${JSON.stringify({ designRows: designRows.length, colourwayRows: colourwayRows.length, plan })}`);
-  const report = { runLabel, scope, inference: apply, singleColourwayCombined: combineSingleColourway, designCallsPlanned: 2186, colourwayFingerprintsPlanned: 9248, representativeDesignImagesSelected: plan.representative_design_images_selected, colourwayImagesResolved: plan.colourway_images_resolved, duplicateReusableWorkDetected: plan.single_colourway_reusable_colourway_calls, estimates: estimate(plan), ledgerCheckpointReadiness: "NOT_RUN" as "PASS"|"NOT_RUN", recovered: 0, newlyInferredDesigns: 0, newlyInferredColourways: 0, resolved: 0, failed: 0, failures: [] as { level:string; fabric_id:string; supplier_sku:string; reason:string }[] };
+  let plan = planResult.data as { governed_designs:number; eligible_colourways:number; representative_design_images_selected:number; colourway_images_resolved:number; single_colourway_designs:number; existing_design_fingerprints:number; existing_colourway_fingerprints:number; single_colourway_reusable_colourway_calls:number };
+  if (!targetMissing && (designRows.length !== 2186 || colourwayRows.length !== 9248 || plan.governed_designs !== 2186 || plan.eligible_colourways !== 9248 || plan.representative_design_images_selected !== 2186 || plan.colourway_images_resolved !== 9248)) throw new Error(`OPTIMISED_PLAN_RECONCILIATION_FAILED_${JSON.stringify({ designRows: designRows.length, colourwayRows: colourwayRows.length, plan })}`);
+  if (targetMissing) {
+    const targetLedger = await fetchAllLedger(db);
+    const designKeysWithEvidence = new Set(targetLedger.filter((r) => r.analysis_level === "DESIGN").map(designKey));
+    const colourwayKeysWithEvidence = new Set(targetLedger.filter((r) => r.analysis_level === "COLOURWAY").map(colourwayKey));
+    colourwayRows = colourwayRows.filter((row) => !colourwayKeysWithEvidence.has(colourwayKey(row)) && !designKeysWithEvidence.has(designKey(row)));
+    const targetDesignKeys = new Set(colourwayRows.map(designKey));
+    designRows = designRows.filter((row) => targetDesignKeys.has(designKey(row)));
+    if (colourwayRows.length !== 3153) throw new Error(`TARGET_MISSING_SCOPE_RECONCILIATION_FAILED_${colourwayRows.length}`);
+    const singleColourwayDesigns = [...targetDesignKeys].filter((key) => colourwayRows.filter((r) => designKey(r) === key).length === 1).length;
+    plan = { ...plan, governed_designs: designRows.length, eligible_colourways: colourwayRows.length, representative_design_images_selected: designRows.length, colourway_images_resolved: colourwayRows.length, single_colourway_designs: singleColourwayDesigns, single_colourway_reusable_colourway_calls: singleColourwayDesigns, existing_design_fingerprints: 0, existing_colourway_fingerprints: 0 };
+  }
+  const report = { runLabel, scope, inference: apply, targetMissing, singleColourwayCombined: combineSingleColourway, designCallsPlanned: plan.governed_designs, colourwayFingerprintsPlanned: plan.eligible_colourways, representativeDesignImagesSelected: plan.representative_design_images_selected, colourwayImagesResolved: plan.colourway_images_resolved, duplicateReusableWorkDetected: plan.single_colourway_reusable_colourway_calls, estimates: estimate(plan), ledgerCheckpointReadiness: "NOT_RUN" as "PASS"|"NOT_RUN", recovered: 0, newlyInferredDesigns: 0, newlyInferredColourways: 0, resolved: 0, failed: 0, failures: [] as { level:string; fabric_id:string; supplier_sku:string; reason:string }[] };
   if (planOnly) { await writeFile(path.join(outDir, "visual-enrichment-optimised-plan.json"), JSON.stringify(report, null, 2)); console.log(JSON.stringify(report, null, 2)); return; }
 
   await assertOpenAiCredentialReady();

@@ -3,29 +3,39 @@
 
 {% if page.handle == 'shop-by-fabric' or page.handle == 'fabric-library' %}
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
+{% if template.suffix == 'browse-fabrics' %}<script src="{{ 'curtainsuk-fabric-experience.js' | asset_url }}" defer="defer"></script>{% endif %}
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
+{% if template.suffix == 'browse-fabrics' %}{{ 'curtainsuk-browse.css' | asset_url | stylesheet_tag }}{% endif %}
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
 {% render 'curtainsuk-fabric-discovery' %}
-<section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser data-engine-base="{{ engine_base | escape }}">
+<section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser {% if template.suffix == 'browse-fabrics' %}data-cuk-shopping{% if theme.role != 'main' and section.settings.browse_preview_endpoint != blank %} data-browse-preview-endpoint="{{ section.settings.browse_preview_endpoint | escape }}"{% endif %}{% endif %} data-engine-base="{{ engine_base | escape }}">
   <div class="cuk-wrap">
-    <div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>
+    {% if template.suffix == 'browse-fabrics' %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">THE CURTAINSUK COLLECTION</p><h1>Browse all fabrics</h1><p>Discover your next fabric — or find a design, colourway or collection you already know.</p></div></div>{% else %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>{% endif %}
     <div class="cuk-error" data-cuk-error hidden></div>
     <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search" id="cuk-fabric-library-search">
-      <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Design, colour or collection"></div>
-      <details class="cuk-filter-options" data-cuk-filter-options open><summary>Refine by brand, colour and style</summary><div class="cuk-filter-options__grid">
+      <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Search design, colourway, brand, collection or SKU"></div>
+      {% if template.suffix == 'browse-fabrics' %}
+      <input type="hidden" name="guidePrice"><div data-cuk-discovery></div>
+      <p class="cuk-browse-price-note">Price guide. Final price depends on measurements and options.</p>
+      {% endif %}
+      <details class="cuk-filter-options" data-cuk-filter-options {% unless template.suffix == 'browse-fabrics' %}open{% endunless %}><summary>{% if template.suffix == 'browse-fabrics' %}Brand, collection &amp; sample availability{% else %}Filters · colour, pattern, texture &amp; character{% endif %}</summary><div class="cuk-filter-options__grid">
       <div class="cuk-field"><label for="CukFabricBrand-{{ section.id }}">Brand</label><select id="CukFabricBrand-{{ section.id }}" name="brand"><option value="">All brands</option></select></div>
       <div class="cuk-field"><label for="CukFabric-collection-{{ section.id }}">Collections</label><select id="CukFabric-collection-{{ section.id }}" name="collection"><option value="">All collections</option></select></div>
+      {% unless template.suffix == 'browse-fabrics' %}
       <div class="cuk-field"><label for="CukFabric-colour-{{ section.id }}">Colour families</label><select id="CukFabric-colour-{{ section.id }}" name="colour"><option value="">All colour families</option></select></div>
       <div class="cuk-field"><label for="CukFabric-pattern-{{ section.id }}">Patterns</label><select id="CukFabric-pattern-{{ section.id }}" name="pattern"><option value="">All patterns</option></select></div>
       <div class="cuk-field"><label for="CukFabric-style-{{ section.id }}">Styles</label><select id="CukFabric-style-{{ section.id }}" name="style"><option value="">All styles</option></select></div>
-      <div class="cuk-field"><label for="CukFabric-character-{{ section.id }}">Fabric characters</label><select id="CukFabric-character-{{ section.id }}" name="character"><option value="">All fabric characters</option></select></div>
+      <div class="cuk-field"><label for="CukFabric-character-{{ section.id }}">Texture &amp; character</label><select id="CukFabric-character-{{ section.id }}" name="character"><option value="">All fabric characters</option></select></div>
       <div class="cuk-field"><label for="CukFabricAvailability-{{ section.id }}">Availability</label><select id="CukFabricAvailability-{{ section.id }}" name="availability"><option value="">All availability</option><option value="CURRENT">Current range</option><option value="CONFIRM">To be confirmed</option></select></div>
+      {% endunless %}
       <div class="cuk-field"><label for="CukFabricSample-{{ section.id }}">Samples</label><select id="CukFabricSample-{{ section.id }}" name="sample"><option value="">All fabrics</option><option value="AVAILABLE">Sample available</option><option value="UNAVAILABLE">Sample unavailable</option></select></div>
       </div></details>
+      {% if template.suffix == 'browse-fabrics' %}<div class="cuk-browse-filter-state"><span data-cuk-active-filters aria-live="polite">All fabrics</span><button type="reset" class="cuk-text-link">Clear filters</button></div>{% endif %}
     </form>
     <p class="cuk-hint" data-cuk-fabric-count aria-live="polite"></p>
     <div class="cuk-fabrics" data-cuk-fabric-grid aria-live="polite"><p>Loading fabrics…</p></div>
     <nav class="cuk-pagination" data-cuk-pagination aria-label="Fabric pages"><button class="cuk-button cuk-button--secondary" data-cuk-previous type="button" disabled>Previous</button><button class="cuk-button cuk-button--secondary" data-cuk-next type="button" disabled>Next</button></nav>
+    {% if template.suffix == 'browse-fabrics' %}<aside class="cuk-browse-assistance" data-cuk-browse-assistance><div><h2>Too much choice?</h2><p>Let Fabric Intelligence narrow the collection using your room and taste.</p></div><a class="cuk-button" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">Find my fabric direction →</a></aside>{% endif %}
     <div data-cuk-fabric-detail hidden></div>
   </div>
 </section>
@@ -36,7 +46,7 @@
   "name": "CurtainsUK fabric browser",
   "tag": "section",
   "class": "section",
-  "settings": [{ "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }],
+  "settings": [{ "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }, { "type": "url", "id": "browse_preview_endpoint", "label": "Unpublished browse preview API", "info": "Candidate-only read-only catalogue endpoint. Ignored on the live theme." }],
   "presets": [{ "name": "CurtainsUK fabric browser" }]
 }
 {% endschema %}

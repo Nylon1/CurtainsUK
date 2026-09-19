@@ -179,7 +179,7 @@
     const selectedWindow = params.get("window") || readJson(PROJECT_KEY, {}).windowSlug || "standard-window";
     grid.innerHTML = "";
     const count = root.querySelector("[data-cuk-fabric-count]");
-    if (count) count.textContent = `${catalog.total ?? catalog.fabrics.length} fabrics · Page ${catalog.page || 1} of ${Math.max(1, catalog.pages || 1)}`;
+    if (count) count.textContent = `${catalog.total ?? catalog.fabrics.length} ${(catalog.total ?? catalog.fabrics.length) === 1 ? 'fabric' : 'fabrics'} · Page ${catalog.page || 1} of ${Math.max(1, catalog.pages || 1)}`;
     if (catalog.fabrics.length === 0) {
       grid.innerHTML = '<p class="cuk-empty">No fabrics match those filters.</p>';
       return;
@@ -211,10 +211,36 @@
           <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric__actions">
             ${sampleAction}
-            <a class="cuk-button" href="/pages/fabric-library?fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}">View Fabric</a>
+            <a class="cuk-button" href="/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}">View Fabric</a>
           </div>
         </div>`;
-      card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
+      if (root.hasAttribute("data-cuk-shopping")) {
+        const body = card.querySelector('.cuk-fabric__body');
+        body.querySelector('.cuk-eyebrow').textContent = fabric.brand || fabric.supplier;
+        body.querySelector('h3').textContent = fabric.design;
+        const paragraphs = [...body.querySelectorAll(':scope > p:not(.cuk-eyebrow):not(.cuk-hint)')];
+        paragraphs[0].textContent = fabric.colour;
+        paragraphs[0].className = 'cuk-browse-colourway';
+        paragraphs[1].textContent = [...new Set([...(fabric.patterns || []), ...(fabric.characters || [])])].filter(v => v && v !== 'UNKNOWN').slice(0, 2).join(' · ');
+        paragraphs[1].className = 'cuk-browse-descriptor';
+        const price = document.createElement('p'); price.className = 'cuk-browse-price';
+        const guide = fabric.browseGuide;
+        const guideValid = guide?.currency === 'GBP' && guide.policy === 'curtainsuk-browse-guide-v1' && Number.isSafeInteger(guide.amountMinor) && guide.amountMinor > 0;
+        price.textContent = guideValid ? `Curtains from ${new Intl.NumberFormat('en-GB', {style:'currency', currency:'GBP', minimumFractionDigits: guide.amountMinor % 100 ? 2 : 0}).format(guide.amountMinor / 100)}` : 'Price guide unavailable';
+        body.insertBefore(price, paragraphs[1]);
+        if (guideValid) {
+          const disclosure = document.createElement('p'); disclosure.className = 'cuk-browse-price-note';
+          disclosure.textContent = 'Price guide. Final price depends on measurements and options.';
+          price.after(disclosure);
+        }
+        const productLink = card.querySelector('a[href*="fabric="]');
+        const imageLink = document.createElement('a'); imageLink.href = productLink.href;
+        imageLink.setAttribute('aria-label', `View ${fabric.design} in ${fabric.colour}`);
+        const swatch = card.querySelector('.cuk-fabric__swatch');
+        imageLink.append(...swatch.childNodes); swatch.append(imageLink);
+      }
+      if (root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience) window.CurtainsUKFabricExperience.enhanceCard(card,fabric,selectedWindow,addSample);
+      else card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
       card.querySelector("img")?.addEventListener("error", (event) => {
         const swatch = event.currentTarget.closest(".cuk-fabric__swatch");
         if (swatch) swatch.innerHTML = `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;
@@ -237,15 +263,21 @@
     const apiUrl = () => new URL(endpoint(root.dataset.engineBase, "catalog"), location.origin);
     try {
       if (params.get("fabric")) {
-        const url = apiUrl(); url.searchParams.set("view", "retail"); url.searchParams.set("fabric", params.get("fabric"));
+        const premiumDetail = root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience;
+        if (!premiumDetail) root.removeAttribute('data-cuk-shopping');
+        root.querySelector('[data-cuk-browse-assistance]')?.remove();
+        const url = premiumDetail && root.dataset.browsePreviewEndpoint ? new URL(root.dataset.browsePreviewEndpoint) : apiUrl();
+        url.searchParams.set("view", "retail"); url.searchParams.set("fabric", params.get("fabric"));
+        if (premiumDetail) url.searchParams.set('browseGuide','1');
         const { fabric } = await fetchJson(url.href);
         if (!fabric) throw new Error("This fabric is not available to view.");
         filters.hidden = true; grid.hidden = true; navigation.hidden = true; root.querySelector("[data-cuk-fabric-count]").hidden = true;
         detail.hidden = false;
+        if (premiumDetail) { window.CurtainsUKFabricExperience.renderDetail(root,fabric,windowSlug,addSample); return; }
         const main = fabric.images?.[0];
         const configureUrl = `/pages/curtain-visualiser?fabric=${encodeURIComponent(fabric.id)}${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}`;
         const spec = (label, value) => value ? `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>` : "";
-        detail.innerHTML = `<a href="/pages/fabric-library${windowSlug ? `?window=${encodeURIComponent(windowSlug)}` : ""}" class="cuk-text-link">← All fabrics</a>
+        detail.innerHTML = `<a href="/pages/fabric-library?view=browse-fabrics${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}" class="cuk-text-link">← All fabrics</a>
           <div class="cuk-fabric-detail"><div class="cuk-fabric-detail__gallery">${main ? `<img class="cuk-fabric-detail__main" src="${escapeHtml(main.url)}" width="${main.width}" height="${main.height}" alt="${escapeHtml(fabric.metadata.alt)}" fetchpriority="high">` : '<p class="cuk-empty">Fabric photography is being prepared.</p>'}
           <div class="cuk-fabric-detail__additional">${(fabric.images || []).slice(1).map((image) => `<img src="${escapeHtml(image.url)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(fabric.metadata.alt)} — ${escapeHtml(image.imageType.toLowerCase())}" loading="lazy">`).join("")}</div></div>
           <div><p class="cuk-eyebrow">${escapeHtml(fabric.brand)} · ${escapeHtml(fabric.collection)}</p><h2>${escapeHtml(fabric.design)}</h2><p class="cuk-fabric-detail__colour">${escapeHtml(fabric.colour)}</p>
@@ -264,19 +296,32 @@
         return;
       }
       const load = async () => {
-        const current = ++generation; const url = apiUrl(); url.searchParams.set("view", "retail"); url.searchParams.set("page", String(page));
+        const current = ++generation;
+        const url = root.hasAttribute('data-cuk-shopping') && root.dataset.browsePreviewEndpoint ? new URL(root.dataset.browsePreviewEndpoint) : apiUrl();
+        url.searchParams.set("view", "retail"); url.searchParams.set("page", String(page));
+        if (root.hasAttribute('data-cuk-shopping')) url.searchParams.set('browseGuide','1');
         for (const [key, value] of new FormData(filters)) if (String(value).trim()) url.searchParams.set(key, String(value).trim());
         root.setAttribute("aria-busy", "true");
         try {
           const catalog = await fetchJson(url.href); if (current !== generation) return;
+          const guideSelect = filters.elements.guidePrice;
+          if (guideSelect?.tagName === "SELECT" && catalog.facets.guidePrices) {
+            const selected = guideSelect.value;
+            guideSelect.replaceChildren(option('All guide prices', ''), ...catalog.facets.guidePrices.map(band => option(band.label, band.value)));
+            guideSelect.value = selected;
+          }
           for (const [key, values] of Object.entries({ brand: catalog.facets.brands, collection: catalog.facets.collections, colour: catalog.facets.colour, pattern: catalog.facets.pattern, style: catalog.facets.style, character: catalog.facets.character })) {
             const select = filters.elements[key]; if (select && !select.dataset.facetsLoaded) { values.filter((v) => v !== "UNKNOWN" && ![...select.options].some((o) => o.value === v)).forEach((v) => select.appendChild(option(v, v))); select.dataset.facetsLoaded = "true"; }
+          }
+          if (root.hasAttribute('data-cuk-shopping')) {
+            window.CurtainsUKFabricExperience?.renderDiscovery(root,catalog,filters);
+            root.querySelector('[data-cuk-active-filters]').textContent = [...new FormData(filters)].filter(([,value])=>String(value).trim()).map(([key,value])=>key === 'guidePrice' ? `Curtains from: ${catalog.facets.guidePrices.find(band=>band.value===value)?.label || ''}` : humanise(String(value))).join(' · ') || 'All fabrics';
           }
           renderFabricCards(root, catalog);
           navigation.querySelector("[data-cuk-previous]").disabled = page <= 1;
           navigation.querySelector("[data-cuk-next]").disabled = page >= catalog.pages;
           root.querySelector("[data-cuk-error]").hidden = true;
-          const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (key !== "window" && key !== "preview_theme_id") address.searchParams.delete(key);
+          const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (key !== "window" && key !== "preview_theme_id" && key !== "view") address.searchParams.delete(key);
           for (const [key, value] of new FormData(filters)) if (String(value).trim()) address.searchParams.set(key, String(value).trim());
           address.searchParams.set("page", String(page)); history.replaceState(null, "", address);
         } catch (error) { if (current === generation) showError(error); } finally { if (current === generation) root.removeAttribute("aria-busy"); }
@@ -284,6 +329,11 @@
       for (const [key, value] of params) if (filters.elements[key]) {
         const element = filters.elements[key]; if (element.tagName === "SELECT" && value && ![...element.options].some((o) => o.value === value)) element.appendChild(option(value, value)); element.value = value;
       }
+      filters.addEventListener('reset', () => { clearTimeout(timer); timer = setTimeout(() => {
+        // Hidden visual-choice inputs reflect value into defaultValue; native reset alone retains them.
+        if (root.hasAttribute('data-cuk-shopping')) for (const field of filters.elements) if (field.type === 'hidden') field.value = '';
+        page = 1; load();
+      }, 0); });
       filters.addEventListener("submit", (event) => event.preventDefault());
       filters.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(() => { page = 1; load(); }, 300); });
       navigation.querySelector("[data-cuk-previous]").addEventListener("click", async () => { page = Math.max(1, page - 1); await load(); grid.scrollIntoView({ block: "start" }); });

@@ -1,0 +1,42 @@
+{% doc %}
+  A photograph-sampled room palette with optional illustrative curtain relationships.
+  @param {object} space - The current space block.
+  @param {boolean} interactive - Show the four relationship choices.
+{% enddoc %}
+<div class="cukspace__board">
+  <p class="cukfi__eyebrow">Colours in this room</p>
+  <div class="cukspace__room-colours">
+    {% assign roles = 'primary,secondary,accent' | split: ',' %}
+    {% for role in roles %}
+      {% assign colour_key = role | append: '_colour' %}
+      {% assign name_key = role | append: '_name' %}
+      <div>
+        <span class="cukspace__sample" style="--sample:{{ space.settings[colour_key] }}" aria-hidden="true"></span>
+        <span class="cukspace__role">{{ role | capitalize }}</span>
+        <strong>{{ space.settings[name_key] | escape }}</strong>
+      </div>
+    {% endfor %}
+  </div>
+  {% if interactive %}
+    <fieldset class="cukspace__directions">
+      <legend>{{ space.settings.explore | escape }}</legend>
+      {% assign directions = 'blend,coordinate,lift,contrast' | split: ',' %}
+      <div class="cukspace__choices">
+        {% for direction in directions %}
+          {% assign colour_key = direction | append: '_colour' %}
+          <div class="cukspace__choice">
+            <input type="radio" id="{{ space.id }}-{{ direction }}" name="{{ space.id }}-relationship" value="{{ direction }}"{% if forloop.first %} checked{% endif %} aria-controls="{{ space.id }}-direction-notes">
+            <label for="{{ space.id }}-{{ direction }}"><span style="--sample:{{ space.settings[colour_key] }}" aria-hidden="true"></span>{{ direction | capitalize }}<i aria-hidden="true">✓</i></label>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="cukspace__direction-notes" id="{{ space.id }}-direction-notes" aria-live="polite" aria-atomic="true">
+        {% for direction in directions %}
+          {% assign note_key = direction | append: '_note' %}
+          <p data-direction="{{ direction }}">{{ space.settings[note_key] | escape }}</p>
+        {% endfor %}
+      </div>
+    </fieldset>
+  {% endif %}
+  <p class="cukspace__palette-note">Palette sampled from this photograph. {% if interactive %}Tap a direction to explore. Illustrative colours, not fabric matches.{% else %}Light and finish change how colours appear.{% endif %}</p>
+</div>

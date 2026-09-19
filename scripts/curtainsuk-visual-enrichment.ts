@@ -111,8 +111,13 @@ async function openAiClassify(row: ScopeRow, instruction: string, detail: "low"|
     input: [{ role: "user", content: [{ type: "input_text", text: "Classify the exact fabric image using the closed schema." }, { type: "input_image", image_url: `data:${image.mime};base64,${Buffer.from(image.bytes).toString("base64")}`, detail }] }],
     text: { format: { type: "json_schema", name: "hci_colourway_visual_v1", strict: true, schema: stripUniqueItems(visualOutputSchema) } },
   };
-  const response = await fetch("https://api.openai.com/v1/responses", { method: "POST", headers: { authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "content-type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
-  if (!response.ok) throw new Error(`OPENAI_RESPONSE_${response.status}`);
+  let response: Response | undefined;
+  for (let attempt = 0; attempt < 4; attempt++) {
+    response = await fetch("https://api.openai.com/v1/responses", { method: "POST", headers: { authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "content-type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
+    if (response.status !== 429 && response.status < 500) break;
+    if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, 1500 * (attempt + 1)));
+  }
+  if (!response || !response.ok) throw new Error(`OPENAI_RESPONSE_${response?.status ?? "UNKNOWN"}`);
   const raw = await response.json();
   if (raw.model !== hciVisualModel || raw.status !== "completed") throw new Error("OPENAI_MODEL_OR_STATUS_REJECTED");
   const texts = (raw.output ?? []).flatMap((o: any) => (o.content ?? []).filter((c: any) => c.type === "output_text").map((c: any) => c.text));

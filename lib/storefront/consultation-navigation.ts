@@ -15,7 +15,7 @@ export function shopifyConsultationHandoff(input: {
 }) {
   const url = new URL(fullUrl(input.sample ? '/pages/fabric-library' : '/pages/curtain-visualiser'));
   url.searchParams.set('fabric', input.fabricMasterId);
-  if (input.sample) url.searchParams.set('intent', 'sample');
+  if (input.sample) { url.searchParams.set('intent', 'sample'); url.searchParams.set('view', 'browse-fabrics'); }
   url.hash = `cuk_hci=${encodeURIComponent(JSON.stringify({
     sessionId: input.sessionId,
     profileSummary: input.profileSummary,

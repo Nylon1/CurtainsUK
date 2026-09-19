@@ -28,3 +28,16 @@ test('consultation exits use the Shopify origin and preserve exact fabric contex
     assert.equal(JSON.stringify(handoff).includes('vercel.app'), false);
   }
 });
+
+test('PT and SDG complete, partial and pending exact identities survive both commerce exits',()=>{
+ for(const [fabricMasterId,supplierSku] of [['pt-1223-374','1223/374'],['pt-1204-212','1204/212'],['sdg-aarc520004','AARC520004'],['sdg-ccf0865-01','CCF0865-01']]) {
+  for(const sample of [true,false]) {
+   const u=new URL(shopifyConsultationHandoff({sample,fabricMasterId,supplierSku,sessionId:'11111111-1111-4111-8111-111111111111',profileSummary:'',strategyId:'overall',commerceToken:'test-token'}));
+   assert.equal(u.origin,'https://www.curtainsuk.com');
+   assert.equal(u.searchParams.get('fabric'),fabricMasterId);
+   assert.equal(u.searchParams.get('view'),sample?'browse-fabrics':null);
+   const context=JSON.parse(decodeURIComponent(u.hash.slice('#cuk_hci='.length)));
+   assert.equal(context.fabricMasterId,fabricMasterId);assert.equal(context.supplierSku,supplierSku);
+  }
+ }
+});

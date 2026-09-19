@@ -98,7 +98,7 @@ export async function GET(request: Request, context: { params: Promise<{ operati
     const params = new URL(request.url).searchParams;
     if (params.get("view") === "retail") {
       if (params.has("fabric")) {
-        const fabric = await retailFabricDetail(params.get("fabric") ?? "", params.get('browseGuide') === '1');
+        const fabric = await retailFabricDetail(params.get("fabric") ?? "", params.get("browseGuide") === "1");
         return NextResponse.json({ fabric }, { status: fabric ? 200 : 404, headers: PUBLIC_NO_STORE_HEADERS });
       }
       return NextResponse.json(await searchRetailFabrics(params), { headers: PUBLIC_NO_STORE_HEADERS });

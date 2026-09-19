@@ -4,6 +4,7 @@ import { listFabricMasterRecords } from "@/lib/fabric-master/repository";
 import { retailFabricDetail } from "@/lib/fabric-master/retail-repository";
 import { assertCustomerSafeProjection, projectCustomerSafeFabric } from "@/lib/fabric-master/projection";
 import { buildShopifyCatalogPayload } from "./shopify-contract";
+import { visualKnowledgeByFabricIds } from "@/lib/fabric-master/visual-knowledge";
 
 /** Read-only PostgreSQL projection consumed by the unpublished Dawn theme. */
 export async function buildDatabaseShopifyCatalogPayload(fabricId?: string) {
@@ -11,12 +12,12 @@ export async function buildDatabaseShopifyCatalogPayload(fabricId?: string) {
   // The configurator receives a bounded eligible selection. Retail browsing
   // uses the separate paginated projection.
   const records = await listFabricMasterRecords({ stagingCatalogOnly: true, storefrontOnly: true, limit: 48 });
-  const readiness = await commercialReadiness(records).catch(()=>null);
+  const [readiness, visual] = await Promise.all([commercialReadiness(records).catch(()=>null), visualKnowledgeByFabricIds(records.map((r) => r.fabric_id))]);
   const fabrics = records.filter(r=>readiness?.get(r.fabric_id)?.commercialStockState!=="DISCONTINUED").map((record) => {
     const fabric = projectCustomerSafeFabric(record);
     delete fabric.supplierSku;
     const status=readiness?.get(record.fabric_id);
-    return { ...fabric, sampleAvailable:status?.sampleReady??false, availability:status?.stockMessage??"Check availability", selectableForReview: true };
+    return { ...fabric, ...(visual.get(record.fabric_id) ? { visualIntelligence: visual.get(record.fabric_id) } : {}), sampleAvailable:status?.sampleReady??false, availability:status?.stockMessage??"Check availability", selectableForReview: true };
   });
   // One selected browse-ready fabric may enter measurements without a price.
   // Server pricing still requires a current approved cut-price snapshot, and

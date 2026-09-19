@@ -1,3 +1,4 @@
+import { hciVisualKnowledge } from '@/lib/fabric-master/hci-visual-knowledge';
 import 'server-only';
 import { customerView } from './hci-premium-view';
 
@@ -73,10 +74,12 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const secret = process.env.CURTAINSUK_HCI_SERVICE_TOKEN ?? '';
   if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.hostname === 'invalid.invalid' || secret.length < 32)
     throw Error('HCI_CONFIGURATION_INVALID');
+  const knowledgeEnabled = !prior || prior.private_state?.visualKnowledgePolicy === 'visual-vocabulary-v1';
+  const visualKnowledge = knowledgeEnabled ? await hciVisualKnowledge() : undefined;
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`, 'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },
-    body: JSON.stringify({ sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: command.action, recordedAt: new Date().toISOString() }),
+    body: JSON.stringify({ visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: command.action, recordedAt: new Date().toISOString() }),
   });
   if (!upstream.ok) {
     // Operationally useful without logging a photograph, session state, URL or credentials.
@@ -102,7 +105,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     action: command.action,
     directions: prior?.presentation?.directions,
   });
-  const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
+  const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, ...(knowledgeEnabled ? {visualKnowledgePolicy:'visual-vocabulary-v1'} : {}), commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
   return handoff(customerView(data));
 }

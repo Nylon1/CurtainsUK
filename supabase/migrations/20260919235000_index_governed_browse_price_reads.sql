@@ -1,0 +1,4 @@
+CREATE INDEX IF NOT EXISTS supplier_snapshots_browse_price_read_idx ON curtainsuk_private.supplier_snapshots(snapshot_id) INCLUDE(supplier_id,supplier_sku,checked_at,validation_status) WHERE validation_status='VALIDATED';
+CREATE INDEX IF NOT EXISTS supplier_promotion_events_browse_price_read_idx ON curtainsuk_private.supplier_promotion_events(snapshot_id,created_at DESC) INCLUDE(promotion_state);
+ANALYZE curtainsuk_private.supplier_snapshots;
+ANALYZE curtainsuk_private.supplier_promotion_events;

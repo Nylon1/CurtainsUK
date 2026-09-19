@@ -1,0 +1,93 @@
+name: Fabric visual ledger proof
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_mode:
+        description: "plan or full"
+        required: true
+        default: "plan"
+        type: choice
+        options:
+          - plan
+          - full
+      scope_mode:
+        description: "catalogue scope"
+        required: true
+        default: "target-missing"
+        type: choice
+        options:
+          - target-missing
+          - full-catalogue
+      target_seed_run_id:
+        description: "target run whose design evidence should be resumed"
+        required: false
+        default: "5f766a83-3726-4e5e-ace0-a6861b49f162"
+        type: string
+  push:
+    branches:
+      - stock/pt-webtex-production
+    paths:
+      - ".github/workflows/fabric-visual-ledger-proof.yml"
+      - "scripts/curtainsuk-visual-enrichment.ts"
+      - "scripts/curtainsuk-visual-ledger-proof.ts"
+      - "lib/fabric-master/visual-enrichment.ts"
+      - "lib/supabase/supplier-service.ts"
+      - "supabase/migrations/20260919094500_optimised_fabric_visual_fingerprints.sql"
+      - "supabase/migrations/20260919095500_visual_analysis_asset_provenance.sql"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fabric-visual-enrichment-production
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Prove Fabric Master visual ledger checkpoint path without inference
+        run: npx --no-install tsx scripts/curtainsuk-visual-ledger-proof.ts
+      - name: Prove optimised visual execution plan without inference
+        run: npm run fabric:visual-enrichment -- --plan-only ${{ inputs.scope_mode == 'target-missing' && format('--target-missing --target-seed-run-id={0}', inputs.target_seed_run_id) || '' }} --out=artifacts/visual-enrichment-plan
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fabric-visual-enrichment-plan
+          path: artifacts/visual-enrichment-plan/visual-enrichment-optimised-plan.json
+
+  full:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'full'
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Run optimised Fabric Master visual enrichment
+        run: npm run fabric:visual-enrichment -- --apply --target-missing=${{ inputs.scope_mode == 'target-missing' }} --target-seed-run-id=${{ inputs.target_seed_run_id }} --batch-size=10 --out=artifacts/visual-enrichment-run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fabric-visual-enrichment-run
+          path: artifacts/visual-enrichment-run/

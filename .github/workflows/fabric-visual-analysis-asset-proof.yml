@@ -2,6 +2,13 @@ name: Fabric visual analysis asset proof
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - stock/pt-webtex-production
+    paths:
+      - ".github/workflows/fabric-visual-analysis-asset-proof.yml"
+      - "scripts/curtainsuk-visual-analysis-asset-proof.ts"
+      - "lib/supabase/supplier-service.ts"
 
 permissions:
   contents: read
@@ -32,4 +39,3 @@ jobs:
         with:
           name: fabric-visual-analysis-asset-proof
           path: artifacts/visual-analysis-assets/
-

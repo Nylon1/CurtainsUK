@@ -2,62 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Your curtain consultation | CurtainsUK</title>
+    <meta name="theme-color" content="#f6f2e8" />
+    <title>Fabric Intelligence | CurtainsUK</title>
     <link rel="stylesheet" href="/hci-assets/consultation.css" />
+    <link rel="stylesheet" href="/hci-assets/premium-integration.css" />
     <script src="/hci-assets/consultation.js" defer></script>
   </head>
   <body>
     <header>
-      <a class="wordmark" href="/">Curtains<span>UK</span></a
-      ><span class="internal">THE PRIVATE CONSULTATION · INTERNAL PREVIEW</span
-      ><a href="/pages/fabric-library" class="quiet">Explore fabrics ↗</a>
+      <a class="wordmark" href="/">Curtains<span>UK</span></a>
+      <span class="internal">Fabric Intelligence</span>
+      <a href="/pages/fabric-library" class="quiet">Explore fabrics ↗</a>
     </header>
     <main id="consultation">
       <div class="progress" aria-label="Consultation progress">
-        <span>01 Your room</span><span>02 Your eye</span
-        ><span>03 Your edit</span>
+        <span>01 Your room</span><span>02 Your eye</span><span>03 Your edit</span>
       </div>
       <div id="notice" role="alert" hidden></div>
       <section id="stage" tabindex="-1">
-        <p class="eyebrow">Your home. Your starting point.</p>
-        <h1>How would you like to<br /><em>find your fabric?</em></h1>
+        <p class="eyebrow">Fabric Intelligence™ · Start your consultation</p>
+        <h1>Find curtains that feel<br /><em>right for your room.</em></h1>
+        <p>Start with your room, start with your taste, or browse independently. Fabric Intelligence combines what you tell us with governed fabric evidence to help narrow thousands of choices into a considered edit.</p>
         <div class="entry-options">
-          <a
-            class="option"
-            href="https://www.curtainsuk.com/pages/fabric-library?preview_theme_id=182264234363"
-            ><span>01</span><strong>Browse fabrics myself</strong
-            ><span
-              >I know what I like. Explore the full library with search and
-              filters.</span
-            ></a
-          >
           <button class="option" id="entry-match">
-            <span>02</span><strong>Match fabrics to my room</strong
-            ><span
-              >Start with an optional reference image, then explore your
-              preferences.</span
-            >
+            <span>01</span><strong>Read my room</strong>
+            <span>Add one room or inspiration image. We’ll prepare its colour picture for you to review and correct before it influences your recommendations.</span>
           </button>
           <button class="option" id="entry-guided">
-            <span>03</span><strong>Help me choose</strong
-            ><span
-              >Start with guided questions. Add an optional reference towards
-              the end.</span
-            >
+            <span>02</span><strong>Learn my taste</strong>
+            <span>Begin with guided questions and visual calibration. You can add room context as part of the consultation.</span>
           </button>
+          <a class="option" href="https://www.curtainsuk.com/pages/fabric-library">
+            <span>03</span><strong>Browse fabrics myself</strong>
+            <span>Explore the Fabric Library directly with search and filters.</span>
+          </a>
         </div>
-        <p class="fine">
-          Internal staging preview. Customer recommendations remain disabled
-          until HCI passes quality review.
-        </p>
+        <p class="fine">Your room image is used only for the consultation analysis described in our image privacy notice. Manufacturer information remains the primary source for fabric facts; intelligence adds governed design context and your preferences.</p>
       </section>
       <aside id="review" hidden></aside>
     </main>
     <footer>
-      <span>Made for your home, down to the last detail.</span
-      ><button class="quiet" id="restart">Start a new consultation</button>
+      <span>Made for your home, down to the last detail.</span>
+      <button class="quiet" id="restart">Start a new consultation</button>
     </footer>
   </body>
 </html>

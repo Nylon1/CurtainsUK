@@ -5,7 +5,7 @@ import {PRIVATE_NO_STORE_HEADERS} from '@/lib/storefront/security/http';
 export async function GET(_request:Request,{params}:{params:Promise<{asset:string}>}){
  if(!customerHciEnabled())return new Response(null,{status:404});
  const {asset}=await params,visual=/^[a-zA-Z0-9_-]+\.svg$/.test(asset);
- if(!visual&&!['consultation.css','consultation.js'].includes(asset))return new Response(null,{status:404});
+ if(!visual&&!['consultation.css','premium-integration.css','consultation.js'].includes(asset))return new Response(null,{status:404});
  try{
  let body=await readFile(resolve('lib/storefront/hci',...(visual?['visuals',asset]:[asset])),'utf8');
  if(asset==='consultation.js')body=body.replaceAll('/api/admin/curtain-consultation','/api/curtain-consultation').replace('curtainsuk_hci_session_v2','curtainsuk_customer_hci_session_v1').replace('url.searchParams.set("preview_theme_id", "182264234363");','');

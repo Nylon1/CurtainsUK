@@ -20,7 +20,12 @@ async function main() {
 
   const { data: scopeRows, error: scopeError } = await db.rpc("fabric_visual_enrichment_scope", { p_scope: "CANONICAL_APPROVED_IMAGE" });
   if (scopeError) throw scopeError;
-  const scopeCount = Array.isArray(scopeRows) ? scopeRows.length : 0;
+  const scopePageCount = Array.isArray(scopeRows) ? scopeRows.length : 0;
+  if (scopePageCount < 1) throw new Error("VISUAL_SCOPE_READ_EMPTY");
+
+  const { data: coverage, error: coverageError } = await db.rpc("fabric_visual_enrichment_coverage");
+  if (coverageError) throw coverageError;
+  const scopeCount = Number((coverage as { eligible?: unknown } | null)?.eligible ?? 0);
   if (scopeCount !== 9248) throw new Error(`VISUAL_SCOPE_COUNT_REJECTED_${scopeCount}`);
 
   const { count: ledgerCount, error: ledgerError } = await db
@@ -39,7 +44,7 @@ async function main() {
       schema_version: visualSchemaVersion,
       model_id: hciVisualModel,
       status: "DRY_RUN",
-      checkpoint: { stage: "created", scopeCount, ledgerCount },
+      checkpoint: { stage: "created", scopeCount, scopePageCount, ledgerCount },
       summary: { proof: "ledger-only", inference: false },
     })
     .select("run_id")
@@ -47,7 +52,7 @@ async function main() {
   if (insertError) throw insertError;
 
   const runId = run.run_id as string;
-  const checkpoint = { stage: "checkpointed", scopeCount, ledgerCount, resumed: false };
+  const checkpoint = { stage: "checkpointed", scopeCount, scopePageCount, ledgerCount, resumed: false };
   const { error: checkpointError } = await db
     .from("fabric_visual_enrichment_runs")
     .update({ checkpoint })
@@ -67,7 +72,7 @@ async function main() {
     .update({
       completed_at: new Date().toISOString(),
       checkpoint: { ...checkpoint, resumed: true, stage: "closed" },
-      summary: { proof: "ledger-only", inference: false, scopeCount, ledgerCount, checkpointResume: "PASS" },
+      summary: { proof: "ledger-only", inference: false, scopeCount, scopePageCount, ledgerCount, checkpointResume: "PASS" },
     })
     .eq("run_id", runId);
   if (closeError) throw closeError;
@@ -87,3 +92,4 @@ main().catch((err) => {
   console.error(err instanceof Error ? err.message : "VISUAL_LEDGER_PROOF_FAILED");
   process.exitCode = 1;
 });
+

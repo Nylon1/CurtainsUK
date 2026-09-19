@@ -56,7 +56,7 @@ jobs:
       - name: Prove Fabric Master visual ledger checkpoint path without inference
         run: npx --no-install tsx scripts/curtainsuk-visual-ledger-proof.ts
       - name: Prove optimised visual execution plan without inference
-        run: npm run fabric:visual-enrichment -- --plan-only ${{ inputs.scope_mode == 'target-missing' && '--target-missing' || '' }} --out=artifacts/visual-enrichment-plan
+        run: npm run fabric:visual-enrichment -- --plan-only ${{ inputs.scope_mode == 'target-missing' && '--target-missing --target-seed-run-id=50ea30bb-d023-4870-aaf4-2938d48937fd' || '' }} --out=artifacts/visual-enrichment-plan
       - uses: actions/upload-artifact@v4
         with:
           name: fabric-visual-enrichment-plan
@@ -80,7 +80,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Run optimised Fabric Master visual enrichment
-        run: npm run fabric:visual-enrichment -- --apply --target-missing=${{ inputs.scope_mode == 'target-missing' }} --batch-size=10 --out=artifacts/visual-enrichment-run
+        run: npm run fabric:visual-enrichment -- --apply --target-missing=${{ inputs.scope_mode == 'target-missing' }} --target-seed-run-id=50ea30bb-d023-4870-aaf4-2938d48937fd --batch-size=10 --out=artifacts/visual-enrichment-run
       - uses: actions/upload-artifact@v4
         if: always()
         with:

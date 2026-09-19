@@ -7,7 +7,7 @@ import { acceptVisualCandidate, colourwayCandidateFrom, colourwayFingerprintInst
 type ScopeRow = { fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; image_type:string; source_image_hash:string; source_image_url:string; source_image_rank:number; useful_image_count:number; already_approved:boolean; };
 type AnalysisAsset = { approvedSourceHash:string; analysisAssetUrl:string; analysisAssetHash:string; contentType:string; byteLength:number; decodedWidth:number|null; decodedHeight:number|null; classification:"EXACT_BYTE_MATCH"|"SHOPIFY_TRANSFORMATION"; urlContainsSourceHash:boolean; };
 type DesignScopeRow = ScopeRow & { design_colourway_count:number };
-type LedgerRow = { ledger_id:string; analysis_level:AnalysisLevel; fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; source_image_hash:string; analysis_asset_hash?:string|null; output:VisualFingerprint; approval_state:string; review_state:string; };
+type LedgerRow = { ledger_id:string; run_id?:string|null; analysis_level:AnalysisLevel; fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; source_image_hash:string; analysis_asset_hash?:string|null; output:VisualFingerprint; approval_state:string; review_state:string; };
 
 const args = new Map(process.argv.slice(2).map((arg) => {
   const [k, ...rest] = arg.replace(/^--/, "").split("=");
@@ -22,6 +22,7 @@ const outDir = args.get("out") ?? "artifacts/visual-enrichment";
 const runLabel = args.get("run-label") ?? `fabric-master-visual-${new Date().toISOString()}`;
 const combineSingleColourway = args.get("single-colourway") !== "separate";
 const targetMissing = args.get("target-missing") === "true" || (args.has("target-missing") && !args.has("full-catalogue"));
+const targetSeedRunId = args.get("target-seed-run-id");
 const expectedProjectRef = "hqysjumypgeapgmqkcrx";
 const canonicalHighDetailImageTokens = 20695145;
 const designHighDetailImageTokens = 4870018;
@@ -132,7 +133,7 @@ async function fetchAllRpc<T>(db: any, fn: string, params?: Record<string, unkno
 async function fetchAllLedger(db: any) {
   const rows: LedgerRow[] = [];
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from("fabric_visual_enrichment_ledger").select("ledger_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,analysis_asset_hash,output,approval_state,review_state").is("superseded_at", null).range(from, from + 999);
+    const { data, error } = await db.from("fabric_visual_enrichment_ledger").select("ledger_id,run_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,analysis_asset_hash,output,approval_state,review_state").is("superseded_at", null).range(from, from + 999);
     if (error) throw error;
     const page = (data ?? []) as LedgerRow[];
     rows.push(...page);
@@ -192,7 +193,8 @@ async function main() {
     const targetLedger = await fetchAllLedger(db);
     const designKeysWithEvidence = new Set(targetLedger.filter((r) => r.analysis_level === "DESIGN").map(designKey));
     const colourwayKeysWithEvidence = new Set(targetLedger.filter((r) => r.analysis_level === "COLOURWAY").map(colourwayKey));
-    colourwayRows = colourwayRows.filter((row) => !colourwayKeysWithEvidence.has(colourwayKey(row)));
+    const seedDesignKeys = new Set(targetLedger.filter((r) => r.analysis_level === "DESIGN" && r.run_id === targetSeedRunId).map(designKey));
+    colourwayRows = colourwayRows.filter((row) => !colourwayKeysWithEvidence.has(colourwayKey(row)) && (!designKeysWithEvidence.has(designKey(row)) || seedDesignKeys.has(designKey(row))));
     const targetDesignKeys = new Set(colourwayRows.map(designKey));
     designRows = designRows.filter((row) => targetDesignKeys.has(designKey(row)) && !designKeysWithEvidence.has(designKey(row)));
     if (colourwayRows.length !== 3153) throw new Error(`TARGET_MISSING_SCOPE_RECONCILIATION_FAILED_${colourwayRows.length}`);

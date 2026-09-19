@@ -27,6 +27,18 @@ const designHighDetailImageTokens = 4870018;
 const lowDetailTokensPerImage = 70;
 const inputUsdPerMillion = 1;
 
+function openAiKeyLooksUsable(value: string | undefined) {
+  const key = value?.trim() ?? "";
+  return key.length >= 20 && !/^\*+$/.test(key) && !/^hidden$/i.test(key) && !/^encrypted$/i.test(key);
+}
+async function assertOpenAiCredentialReady() {
+  if (!openAiKeyLooksUsable(process.env.OPENAI_API_KEY)) throw new Error("OPENAI_API_KEY_UNUSABLE");
+  const response = await fetch("https://api.openai.com/v1/models", { headers: { authorization: `Bearer ${process.env.OPENAI_API_KEY}` }, signal: AbortSignal.timeout(30_000) });
+  if (response.status === 401 || response.status === 403) throw new Error(`OPENAI_CREDENTIAL_REJECTED_${response.status}`);
+  if (!response.ok) throw new Error(`OPENAI_CREDENTIAL_PREFLIGHT_${response.status}`);
+}
+function isSystemicOpenAiFailure(reason: string) { return reason === "OPENAI_RESPONSE_401" || reason === "OPENAI_RESPONSE_403" || reason === "OPENAI_API_KEY_UNUSABLE" || reason.startsWith("OPENAI_CREDENTIAL_REJECTED_"); }
+
 function assertProductionTarget() {
   const projectRef = process.env.CURTAINSUK_SUPABASE_PROJECT_REF;
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -166,6 +178,7 @@ async function main() {
   const report = { runLabel, scope, inference: apply, singleColourwayCombined: combineSingleColourway, designCallsPlanned: 2186, colourwayFingerprintsPlanned: 9248, representativeDesignImagesSelected: plan.representative_design_images_selected, colourwayImagesResolved: plan.colourway_images_resolved, duplicateReusableWorkDetected: plan.single_colourway_reusable_colourway_calls, estimates: estimate(plan), ledgerCheckpointReadiness: "NOT_RUN" as "PASS"|"NOT_RUN", recovered: 0, newlyInferredDesigns: 0, newlyInferredColourways: 0, resolved: 0, failed: 0, failures: [] as { level:string; fabric_id:string; supplier_sku:string; reason:string }[] };
   if (planOnly) { await writeFile(path.join(outDir, "visual-enrichment-optimised-plan.json"), JSON.stringify(report, null, 2)); console.log(JSON.stringify(report, null, 2)); return; }
 
+  await assertOpenAiCredentialReady();
   const cache = await loadRestoreCache(restoreDir);
   const existing = await fetchAllLedger(db);
   const designByGoverned = new Map(existing.filter((r) => r.analysis_level === "DESIGN" && r.approval_state === "APPROVED").map((r) => [designKey(r), r]));
@@ -223,6 +236,10 @@ async function main() {
         const reason = err instanceof Error ? err.message.replace(/[^A-Z0-9_]/gi, "_").toUpperCase().slice(0, 80) : "UNKNOWN_FAILURE";
         report.failed++; report.failures.push({ level: "DESIGN_GROUP", fabric_id: designRow.fabric_id, supplier_sku: designRow.supplier_sku, reason });
         await db.from("fabric_visual_enrichment_failures").insert({ run_id: runId, fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, source_image_hash: designRow.source_image_hash, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, failure_reason: reason, context: { analysis_level: "DESIGN_GROUP", design_id: designRow.design_id } });
+        if (isSystemicOpenAiFailure(reason)) {
+          await db.from("fabric_visual_enrichment_runs").update({ status: "FAILED", completed_at: new Date().toISOString(), checkpoint: { stage: "stopped_systemic_openai_failure", reason, processedDesigns: i, totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: { ...report, stopReason: reason } }).eq("run_id", runId);
+          throw new Error(reason);
+        }
       }
     }
     report.ledgerCheckpointReadiness = "PASS";

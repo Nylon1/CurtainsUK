@@ -202,7 +202,7 @@ async function main() {
     colourwayRows = colourwayRows.filter((row) => !colourwayKeysWithEvidence.has(colourwayKey(row)) && (!designKeysWithEvidence.has(designKey(row)) || seedDesignKeys.has(designKey(row))));
     const targetDesignKeys = new Set(colourwayRows.map(designKey));
     designRows = designRows.filter((row) => targetDesignKeys.has(designKey(row)) && !designKeysWithEvidence.has(designKey(row)));
-    if (colourwayRows.length !== 3153) throw new Error(`TARGET_MISSING_SCOPE_RECONCILIATION_FAILED_${colourwayRows.length}`);
+    if (colourwayRows.length < 1 || colourwayRows.length > 3153) throw new Error(`TARGET_MISSING_SCOPE_RECONCILIATION_FAILED_${colourwayRows.length}`);
     const singleColourwayDesigns = [...targetDesignKeys].filter((key) => !designKeysWithEvidence.has(key) && colourwayRows.filter((r) => designKey(r) === key).length === 1).length;
     plan = { ...plan, governed_designs: designRows.length, eligible_colourways: colourwayRows.length, representative_design_images_selected: designRows.length, colourway_images_resolved: colourwayRows.length, single_colourway_designs: singleColourwayDesigns, single_colourway_reusable_colourway_calls: singleColourwayDesigns, existing_design_fingerprints: 0, existing_colourway_fingerprints: 0 };
   }

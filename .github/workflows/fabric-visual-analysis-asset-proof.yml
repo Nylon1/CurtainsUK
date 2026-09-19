@@ -32,3 +32,4 @@ jobs:
         with:
           name: fabric-visual-analysis-asset-proof
           path: artifacts/visual-analysis-assets/
+

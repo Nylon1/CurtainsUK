@@ -5,8 +5,9 @@ import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { acceptVisualCandidate, colourwayCandidateFrom, colourwayFingerprintInstruction, combinedSingleColourwayInstruction, designCandidateFrom, designFingerprintInstruction, hciVisualModel, resolveFabricFingerprint, reviewState, validateVisual, visualOutputSchema, visualPromptVersion, visualSchemaVersion, visualVersion, visualVocabularyVersion, type AnalysisLevel, type ColourwayVisualFingerprint, type ImageBinding, type VisualCandidate, type VisualFingerprint } from "../lib/fabric-master/visual-enrichment";
 
 type ScopeRow = { fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; image_type:string; source_image_hash:string; source_image_url:string; source_image_rank:number; useful_image_count:number; already_approved:boolean; };
+type AnalysisAsset = { approvedSourceHash:string; analysisAssetUrl:string; analysisAssetHash:string; contentType:string; byteLength:number; decodedWidth:number|null; decodedHeight:number|null; classification:"EXACT_BYTE_MATCH"|"SHOPIFY_TRANSFORMATION"; urlContainsSourceHash:boolean; };
 type DesignScopeRow = ScopeRow & { design_colourway_count:number };
-type LedgerRow = { ledger_id:string; analysis_level:AnalysisLevel; fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; source_image_hash:string; output:VisualFingerprint; approval_state:string; review_state:string; };
+type LedgerRow = { ledger_id:string; analysis_level:AnalysisLevel; fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; source_image_hash:string; analysis_asset_hash?:string|null; output:VisualFingerprint; approval_state:string; review_state:string; };
 
 const args = new Map(process.argv.slice(2).map((arg) => {
   const [k, ...rest] = arg.replace(/^--/, "").split("=");
@@ -33,10 +34,10 @@ function assertProductionTarget() {
   if (url && new URL(url).hostname !== `${expectedProjectRef}.supabase.co`) throw new Error("SUPABASE_URL_REJECTED");
 }
 function hashBytes(bytes: Uint8Array) { return createHash("sha256").update(bytes).digest("hex"); }
-function binding(row: ScopeRow): ImageBinding { return { fabricId: row.fabric_id, canonicalFabricId: row.fabric_id, supplierId: row.supplier_id, brandId: row.brand_id, designId: row.design_id, sku: row.supplier_sku, imageReference: row.source_image_url, expectedImageHash: `sha256:${row.source_image_hash}`, sourceRecordKey: `fabric-master:${row.fabric_id}:${row.supplier_id}:${row.supplier_sku}:${row.source_image_hash}` }; }
+function binding(row: ScopeRow, asset: Pick<AnalysisAsset,"analysisAssetHash">): ImageBinding { return { fabricId: row.fabric_id, canonicalFabricId: row.fabric_id, supplierId: row.supplier_id, brandId: row.brand_id, designId: row.design_id, sku: row.supplier_sku, imageReference: row.source_image_url, expectedImageHash: `sha256:${asset.analysisAssetHash}`, sourceRecordKey: `fabric-master:${row.fabric_id}:${row.supplier_id}:${row.supplier_sku}:${row.source_image_hash}:${asset.analysisAssetHash}` }; }
 function designKey(row: Pick<ScopeRow,"supplier_id"|"brand_id"|"design_id">) { return `${row.supplier_id}|${row.brand_id}|${row.design_id}`; }
 function colourwayKey(row: Pick<ScopeRow,"fabric_id"|"source_image_hash">) { return `${row.fabric_id}|${row.source_image_hash}`; }
-function lineageKey(level: AnalysisLevel, row: ScopeRow) { return `${level}|${row.fabric_id}|${row.supplier_id}|${row.supplier_sku}|${row.source_image_hash}|${visualVersion}|${visualVocabularyVersion}|${visualPromptVersion}|${visualSchemaVersion}|${hciVisualModel}`; }
+function lineageKey(level: AnalysisLevel, row: ScopeRow, asset?: Pick<AnalysisAsset,"analysisAssetHash">) { return `${level}|${row.fabric_id}|${row.supplier_id}|${row.supplier_sku}|${row.source_image_hash}|${asset?.analysisAssetHash ?? "pending-analysis-asset"}|${visualVersion}|${visualVocabularyVersion}|${visualPromptVersion}|${visualSchemaVersion}|${hciVisualModel}`; }
 async function listJsonFiles(dir: string): Promise<string[]> {
   const entries = await readdir(dir, { withFileTypes: true }).catch(() => []);
   const nested = await Promise.all(entries.map(async (entry) => {
@@ -55,31 +56,38 @@ async function loadRestoreCache(dir?: string) {
       const candidates = Array.isArray(parsed) ? parsed : [parsed.visual, parsed].filter(Boolean);
       for (const candidate of candidates) {
         validateVisual(candidate);
-        const key = `${candidate.analysisLevel}|${candidate.binding.fabricId}|${candidate.binding.supplierId}|${candidate.binding.sku}|${candidate.imageContentHash}|${candidate.version}|${candidate.vocabularyVersion}|${candidate.promptVersion}|${candidate.schemaVersion}|${candidate.modelId}`;
+        const approvedSourceHash = (candidate as any).approvedSourceHash ?? String(candidate.binding.sourceRecordKey).split(":").slice(-2, -1)[0];
+        const key = `${candidate.analysisLevel}|${candidate.binding.fabricId}|${candidate.binding.supplierId}|${candidate.binding.sku}|${approvedSourceHash}|${candidate.imageContentHash.replace(/^sha256:/, "")}|${candidate.version}|${candidate.vocabularyVersion}|${candidate.promptVersion}|${candidate.schemaVersion}|${candidate.modelId}`;
         cache.set(key, candidate);
       }
     } catch { /* ignore non-visual JSON */ }
   }
   return cache;
 }
-async function fetchExactImage(row: ScopeRow) {
+async function fetchAnalysisAsset(row: ScopeRow): Promise<AnalysisAsset & { bytes: Uint8Array; mime: string }> {
   const response = await fetch(row.source_image_url, { method: "GET", redirect: "error", credentials: "omit", signal: AbortSignal.timeout(30000) });
   if (!response.ok || response.redirected || response.url !== row.source_image_url) throw new Error("IMAGE_FETCH_REJECTED");
   const contentType = response.headers.get("content-type")?.split(";")[0]?.trim().toLowerCase();
   if (!contentType || !["image/jpeg","image/png","image/webp"].includes(contentType)) throw new Error("IMAGE_FORMAT_REJECTED");
   const bytes = new Uint8Array(await response.arrayBuffer());
   if (!bytes.length || bytes.length > 10 * 1024 * 1024) throw new Error("IMAGE_SIZE_REJECTED");
-  if (hashBytes(bytes) !== row.source_image_hash) throw new Error("IMAGE_HASH_MISMATCH");
-  return { bytes, mime: contentType };
+  const analysisAssetHash = hashBytes(bytes);
+  let metadata: { width?: number; height?: number };
+  try { metadata = await (await import("sharp")).default(bytes, { limitInputPixels: 40_000_000 }).metadata(); } catch { throw new Error("IMAGE_DECODE_REJECTED"); }
+  if (!metadata.width || !metadata.height) throw new Error("IMAGE_DECODE_REJECTED");
+  const urlContainsSourceHash = row.source_image_url.includes(row.source_image_hash);
+  const classification = analysisAssetHash === row.source_image_hash ? "EXACT_BYTE_MATCH" : urlContainsSourceHash && row.image_type === "MAIN" ? "SHOPIFY_TRANSFORMATION" : undefined;
+  if (!classification) throw new Error("IMAGE_PROVENANCE_UNVERIFIED");
+  return { bytes, mime: contentType, approvedSourceHash: row.source_image_hash, analysisAssetUrl: row.source_image_url, analysisAssetHash, contentType, byteLength: bytes.length, decodedWidth: metadata.width, decodedHeight: metadata.height, classification, urlContainsSourceHash };
 }
 function stripUniqueItems(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(stripUniqueItems);
   if (value && typeof value === "object") return Object.fromEntries(Object.entries(value as Record<string, unknown>).filter(([k]) => k !== "uniqueItems").map(([k, v]) => [k, stripUniqueItems(v)]));
   return value;
 }
-async function openAiClassify(row: ScopeRow, instruction: string, detail: "low"|"high"): Promise<VisualCandidate> {
+async function openAiClassify(row: ScopeRow, instruction: string, detail: "low"|"high", asset?: AnalysisAsset & { bytes: Uint8Array; mime: string }): Promise<{ candidate: VisualCandidate; asset: AnalysisAsset }> {
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY_MISSING");
-  const image = await fetchExactImage(row);
+  const image = asset ?? await fetchAnalysisAsset(row);
   const body = {
     model: hciVisualModel,
     store: false,
@@ -95,7 +103,7 @@ async function openAiClassify(row: ScopeRow, instruction: string, detail: "low"|
   if (raw.model !== hciVisualModel || raw.status !== "completed") throw new Error("OPENAI_MODEL_OR_STATUS_REJECTED");
   const texts = (raw.output ?? []).flatMap((o: any) => (o.content ?? []).filter((c: any) => c.type === "output_text").map((c: any) => c.text));
   if (texts.length !== 1) throw new Error("OPENAI_OUTPUT_TEXT_REJECTED");
-  return JSON.parse(texts[0]);
+  return { candidate: JSON.parse(texts[0]), asset: image };
 }
 async function fetchAllRpc<T>(db: any, fn: string, params?: Record<string, unknown>) {
   const rows: T[] = [];
@@ -111,7 +119,7 @@ async function fetchAllRpc<T>(db: any, fn: string, params?: Record<string, unkno
 async function fetchAllLedger(db: any) {
   const rows: LedgerRow[] = [];
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from("fabric_visual_enrichment_ledger").select("ledger_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,output,approval_state,review_state").is("superseded_at", null).range(from, from + 999);
+    const { data, error } = await db.from("fabric_visual_enrichment_ledger").select("ledger_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,analysis_asset_hash,output,approval_state,review_state").is("superseded_at", null).range(from, from + 999);
     if (error) throw error;
     const page = (data ?? []) as LedgerRow[];
     rows.push(...page);
@@ -119,11 +127,11 @@ async function fetchAllLedger(db: any) {
   }
   return rows;
 }
-async function insertFingerprint(db: any, runId: string, row: ScopeRow, visual: VisualFingerprint, links: { designId?: string; colourwayId?: string } = {}) {
+async function insertFingerprint(db: any, runId: string, row: ScopeRow, visual: VisualFingerprint, asset: AnalysisAsset, links: { designId?: string; colourwayId?: string } = {}) {
   const state = reviewState(visual.candidate, visual.analysisLevel);
   const { data, error } = await db.from("fabric_visual_enrichment_ledger").insert({
     run_id: runId, analysis_level: visual.analysisLevel, fabric_id: row.fabric_id, supplier_id: row.supplier_id, supplier_sku: row.supplier_sku, brand_id: row.brand_id, design_id: row.design_id,
-    image_type: row.image_type, source_image_hash: row.source_image_hash, source_image_url: row.source_image_url, source_image_rank: row.source_image_rank, useful_image_count: row.useful_image_count,
+    image_type: row.image_type, source_image_hash: row.source_image_hash, source_image_url: row.source_image_url, analysis_asset_hash: asset.analysisAssetHash, analysis_asset_url: asset.analysisAssetUrl, analysis_asset_content_type: asset.contentType, analysis_asset_byte_length: asset.byteLength, analysis_asset_width: asset.decodedWidth, analysis_asset_height: asset.decodedHeight, analysis_asset_classification: asset.classification, analysis_asset_verified_at: visual.analysedAt, source_image_rank: row.source_image_rank, useful_image_count: row.useful_image_count,
     visual_version: visual.version, vocabulary_version: visual.vocabularyVersion, prompt_version: visual.promptVersion, schema_version: visual.schemaVersion, model_id: visual.modelId,
     analysed_at: visual.analysedAt, output: visual, output_hash: visual.outputHash, evidence_id: visual.evidenceId, visual_digest: visual.digest,
     review_state: state, approval_state: state === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", field_provenance: visual.fieldProvenance,
@@ -177,34 +185,38 @@ async function main() {
         const siblings = colourwaysByDesign.get(governedKey) ?? [];
         const combined = combineSingleColourway && siblings.length === 1;
         let combinedRaw: VisualCandidate | undefined;
+        let designAsset: (AnalysisAsset & { bytes: Uint8Array; mime: string }) | undefined;
         if (!designLedger) {
-          const cached = cache.get(lineageKey("DESIGN", designRow));
+          designAsset = await fetchAnalysisAsset(designRow);
+          const cached = cache.get(lineageKey("DESIGN", designRow, designAsset));
           let designVisual: VisualFingerprint;
           if (cached) { designVisual = cached; report.recovered++; }
           else {
-            combinedRaw = await openAiClassify(designRow, combined ? combinedSingleColourwayInstruction : designFingerprintInstruction, "high");
-            designVisual = acceptVisualCandidate(designCandidateFrom(combinedRaw), { binding: binding(designRow), imageContentHash: `sha256:${designRow.source_image_hash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "DESIGN" });
+            const classified = await openAiClassify(designRow, combined ? combinedSingleColourwayInstruction : designFingerprintInstruction, "high", designAsset);
+            combinedRaw = classified.candidate;
+            designVisual = acceptVisualCandidate(designCandidateFrom(classified.candidate), { binding: binding(designRow, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "DESIGN" });
             report.newlyInferredDesigns++;
           }
-          const ledgerId = await insertFingerprint(db, runId, designRow, designVisual);
-          designLedger = { ledger_id: ledgerId, analysis_level: "DESIGN", fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, brand_id: designRow.brand_id, design_id: designRow.design_id, source_image_hash: designRow.source_image_hash, output: designVisual, approval_state: reviewState(designVisual.candidate, "DESIGN") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(designVisual.candidate, "DESIGN") };
+          const ledgerId = await insertFingerprint(db, runId, designRow, designVisual, designAsset);
+          designLedger = { ledger_id: ledgerId, analysis_level: "DESIGN", fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, brand_id: designRow.brand_id, design_id: designRow.design_id, source_image_hash: designRow.source_image_hash, analysis_asset_hash: designAsset.analysisAssetHash, output: designVisual, approval_state: reviewState(designVisual.candidate, "DESIGN") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(designVisual.candidate, "DESIGN") };
           designByGoverned.set(governedKey, designLedger);
         }
         if (designLedger.approval_state !== "APPROVED") throw new Error("DESIGN_FINGERPRINT_NOT_APPROVED_FOR_RESOLUTION");
         for (const row of siblings) {
           if (colourwayByFabric.has(colourwayKey(row))) continue;
-          const cached = cache.get(lineageKey("COLOURWAY", row));
+          const colourwayAsset = combined && row.fabric_id === designRow.fabric_id && designAsset ? designAsset : await fetchAnalysisAsset(row);
+          const cached = cache.get(lineageKey("COLOURWAY", row, colourwayAsset));
           let colourwayVisual: VisualFingerprint;
           if (cached) { colourwayVisual = cached; report.recovered++; }
           else {
-            const raw = combined && row.fabric_id === designRow.fabric_id && combinedRaw ? combinedRaw : await openAiClassify(row, colourwayFingerprintInstruction, "low");
-            colourwayVisual = acceptVisualCandidate(colourwayCandidateFrom(raw), { binding: binding(row), imageContentHash: `sha256:${row.source_image_hash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "COLOURWAY" });
+            const classified = combined && row.fabric_id === designRow.fabric_id && combinedRaw ? { candidate: combinedRaw, asset: colourwayAsset } : await openAiClassify(row, colourwayFingerprintInstruction, "low", colourwayAsset);
+            colourwayVisual = acceptVisualCandidate(colourwayCandidateFrom(classified.candidate), { binding: binding(row, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "COLOURWAY" });
             report.newlyInferredColourways++;
           }
-          const colourwayLedgerId = await insertFingerprint(db, runId, row, colourwayVisual);
-          colourwayByFabric.set(colourwayKey(row), { ledger_id: colourwayLedgerId, analysis_level: "COLOURWAY", fabric_id: row.fabric_id, supplier_id: row.supplier_id, supplier_sku: row.supplier_sku, brand_id: row.brand_id, design_id: row.design_id, source_image_hash: row.source_image_hash, output: colourwayVisual, approval_state: reviewState(colourwayVisual.candidate, "COLOURWAY") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(colourwayVisual.candidate, "COLOURWAY") });
+          const colourwayLedgerId = await insertFingerprint(db, runId, row, colourwayVisual, colourwayAsset);
+          colourwayByFabric.set(colourwayKey(row), { ledger_id: colourwayLedgerId, analysis_level: "COLOURWAY", fabric_id: row.fabric_id, supplier_id: row.supplier_id, supplier_sku: row.supplier_sku, brand_id: row.brand_id, design_id: row.design_id, source_image_hash: row.source_image_hash, analysis_asset_hash: colourwayAsset.analysisAssetHash, output: colourwayVisual, approval_state: reviewState(colourwayVisual.candidate, "COLOURWAY") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(colourwayVisual.candidate, "COLOURWAY") });
           const resolved = resolveFabricFingerprint({ design: designLedger.output, colourway: colourwayVisual, analysedAt: new Date().toISOString() });
-          await insertFingerprint(db, runId, row, resolved, { designId: designLedger.ledger_id, colourwayId: colourwayLedgerId });
+          await insertFingerprint(db, runId, row, resolved, colourwayAsset, { designId: designLedger.ledger_id, colourwayId: colourwayLedgerId });
           report.resolved++;
         }
       } catch (err) {

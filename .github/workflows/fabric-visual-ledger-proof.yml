@@ -21,6 +21,7 @@ on:
       - "lib/fabric-master/visual-enrichment.ts"
       - "lib/supabase/supplier-service.ts"
       - "supabase/migrations/20260919094500_optimised_fabric_visual_fingerprints.sql"
+      - "supabase/migrations/20260919095500_visual_analysis_asset_provenance.sql"
 
 permissions:
   contents: read

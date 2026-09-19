@@ -45,3 +45,40 @@ Previous candidate checks: desktop 1440px, 390px and 412px had no overflow. Mobi
 Price implementation: 12/12 focused tests pass (guide boundaries, invalid/missing guide evidence, supplier approval/basis and existing retail/media guards). Focused ESLint and TypeScript pass. Local Next production build and Vercel Preview build pass. Shopify validates changed JS, CSS, Liquid and candidate template. All five SQL filter counts and page guide bounds pass. Customer API returns 24 filtered records with no private cost fields. Requests from absent/unapproved origins return 404. No merge or live theme publication.
 
 Candidate browser verification: 1440px desktop, 390px and 412px have no horizontal overflow; mobile secondary filters start collapsed; price selector has 48px touch height. £50–under £100 shows 3,215 records, search combines with price and reset restores all 9,248. Gino Ivory remains browsable with “Price guide unavailable” and disappears under a numeric band. £250+ shows 264 records; Next retains the band on page 2 and every visible guide remains ≥£250. Exact product links retain Fabric Master ID and same-origin destinations. Guide disclosure is visible beside the filter and on priced cards. No calculator, checkout or HCI calls were added or invoked for guide pricing.
+
+
+## Browse + detail correction pass (supersedes the filter/detail notes above)
+
+Status: unpublished candidate only. Do not merge/publish 5efa02e or this correction without review.
+
+- Browse: https://www.curtainsuk.com/pages/fabric-library?view=browse-fabrics&preview_theme_id=182336356731
+- Reviewed detail: https://www.curtainsuk.com/pages/fabric-library?view=browse-fabrics&fabric=pt-4271-147&preview_theme_id=182336356731
+- Candidate theme: 182336356731 (unpublished). Live theme untouched.
+- Preview service: dpl_6UBq89K4QXR5UYBXDzASXvVo99nL / curtainsuk-staging-55j0se6vy-hamzas-projects-4ef62f35.vercel.app.
+
+### Discovery and evidence limits
+
+Read-only coverage check found 263 existing retail profiles against 9,248 browsable fabrics; colour 246, pattern 251, character 214, style 257. The separate visual-enrichment ledger had zero current entries at inspection. This is insufficient to present those facets as whole-catalogue discovery. Advanced filters therefore remain inactive. `BROWSE_DISCOVERY` describes their existing canonical dimensions and swatch/image/continuum presentation; an active flag AND governed options are required before rendering. No classifications were added to fill gaps, and the separate enrichment process was not changed.
+
+Price uses visual segmented choices for the existing five bands. Brand, collection and sample availability are secondary, collapsed controls. Search/pagination stay on the existing search routine. A minimal change to the Browse-only five-argument overload adds exact supplier-SKU matching; the old three-argument function, price policy, eligibility and catalogue data remain unchanged. Migration applied as `20260919063701_browse_exact_sku_search`.
+
+### Detail and actions
+
+The new detail projection is opt-in via browseGuide=1; HCI and other callers retain their existing projection. Supplier facts are copied from canonical Fabric Master records, including separate full/usable widths. Incomplete composition and absent physical weight are omitted. Intelligence requires an existing validated editorial profile, known editorial rule, source/rule hashes and a matching approved exact-SKU image hash. Governed colour families do not become invented primary/secondary/accent roles. Missing scale, density, strength, visual-weight and finish classifications stay absent. Contextual advice is deterministic and conditional, labelled as interpretation rather than supplier specification. No generated image or fabricated macro asset.
+
+Cards and detail reuse `curtainsuk:sample-add` and the existing same-origin sample-order handler; no new commerce flow. Make Curtains links contain the exact fabric ID and window context, and are enabled only when current orderReady is true. Existing server revalidation remains authoritative. Sample buttons use sampleAvailable independently of the curtain floor. Guides use the same approved current supplier price authority, with no raw supplier cost in responses.
+
+### Focused proof
+
+- 19/19 tests: provenance/image mismatch and unknown omission; immutable supplier facts; existing guide approval/band boundaries; commercial eligibility; media identity; direct sample event identity/context and same-origin routing; curtain handoff gating.
+- Focused ESLint and TypeScript passed. Local Next production build and Vercel Preview build passed. Shopify validation passed for the changed JS/CSS/Liquid files.
+- API: all 9,248 fabrics remain browsable. Five band totals remain 2,403 / 3,215 / 2,127 / 1,230 / 264; all 24 returned guides in each band pass bounds checks. Exact search 4271/147 resolves only pt-4271-147, and under-50 correctly excludes it.
+- Diez Mocha: guide GBP 65.52; reviewed brown / geometric / textured / contemporary; supplier SKU 4271/147, full width 140cm, usable width 132cm, repeats 23.3cm / 22cm. No physical-weight or unobserved palette roles invented.
+- Gino Ivory: browseGuide null, no reviewed interpretation, sample available but orderReady false; no manufactured guide.
+- Browser: desktop 1440px and mobile 390px/412px have no horizontal overflow. Main detail actions about 49px high. Sample click resolves the signed exact ID/SKU, GBP 1 sample price, and stops at the existing service's purchaseEnabled=false gate. No cart/order/payment was created. This existing purchasing restriction was not changed.
+- Make Curtains opens www.curtainsuk.com/pages/curtain-visualiser with Diez Mocha already selected (pt-4271-147). All detail/card/Fabric Intelligence navigation remains same-origin. Search + price, no-results and reset verified. One transient catalogue request displayed the existing retry error and recovered on the next query; subsequent direct band/SKU checks passed.
+- Local runtime API probe was blocked by an expired local Supabase credential (401). No credential/security workaround was introduced; real-data validation used the correctly configured Vercel Preview instead.
+
+No supplier/stock/catalogue records, HCI logic/contracts, calculator or Shopify commercial prices changed. The only database change is the private Browse search overload described above. The preview endpoint now exposes read-only customer-safe detail as well as search, under its existing preview-only/CORS/rate-limit guards. The installed app proxy and Production gateway are unchanged. Future publication requires the normal approved gateway deployment first; the candidate-only Preview endpoint is deliberately ignored by a live theme.
+
+Final mobile interaction check found and corrected native form reset retaining the hidden price value; Clear filters now explicitly clears visual-choice state before reloading. Browser reset restored 9,248 results. New primary buttons have keyboard focus-visible treatment; card actions are at least 44px and detail actions approximately 49px.

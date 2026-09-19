@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { NextResponse } from 'next/server';
-import { searchRetailFabrics } from '@/lib/fabric-master/retail-repository';
+import { retailFabricDetail, searchRetailFabrics } from '@/lib/fabric-master/retail-repository';
 import { consumeEndpointRateLimit, endpointRateLimitResponse } from '@/lib/storefront/security/endpoint-rate-limit';
 import { PUBLIC_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
 
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 30;
 
 // Candidate theme testing only. Live uses the existing signed app proxy.
-// No credentials, supplier amounts, detail/checkout endpoints or writes are exposed.
+// Public customer projections only. No credentials, supplier amounts, checkout or writes.
 function headers(request: Request) {
   const origin = request.headers.get('origin');
   if (process.env.VERCEL_ENV !== 'preview' || process.env.CURTAINSUK_BROWSE_PREVIEW !== 'true'
@@ -30,6 +30,10 @@ export async function GET(request: Request) {
     const address = (request.headers.get('x-vercel-forwarded-for') ?? 'unknown').split(',',1)[0].slice(0,128);
     await consumeEndpointRateLimit(createHash('sha256').update(`browse-preview:${address}`).digest('hex'), {limit:60,windowSeconds:60});
     const params = new URL(request.url).searchParams;
+    if (params.has('fabric')) {
+      const fabric = await retailFabricDetail(params.get('fabric') ?? '', true);
+      return NextResponse.json({fabric}, {status: fabric ? 200 : 404, headers: allowed});
+    }
     params.set('browseGuide','1');
     return NextResponse.json(await searchRetailFabrics(params), { headers: allowed });
   } catch (error) {

@@ -179,7 +179,7 @@
     const selectedWindow = params.get("window") || readJson(PROJECT_KEY, {}).windowSlug || "standard-window";
     grid.innerHTML = "";
     const count = root.querySelector("[data-cuk-fabric-count]");
-    if (count) count.textContent = `${catalog.total ?? catalog.fabrics.length} fabrics · Page ${catalog.page || 1} of ${Math.max(1, catalog.pages || 1)}`;
+    if (count) count.textContent = `${catalog.total ?? catalog.fabrics.length} ${(catalog.total ?? catalog.fabrics.length) === 1 ? 'fabric' : 'fabrics'} · Page ${catalog.page || 1} of ${Math.max(1, catalog.pages || 1)}`;
     if (catalog.fabrics.length === 0) {
       grid.innerHTML = '<p class="cuk-empty">No fabrics match those filters.</p>';
       return;
@@ -239,7 +239,8 @@
         const swatch = card.querySelector('.cuk-fabric__swatch');
         imageLink.append(...swatch.childNodes); swatch.append(imageLink);
       }
-      card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
+      if (root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience) window.CurtainsUKFabricExperience.enhanceCard(card,fabric,selectedWindow,addSample);
+      else card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
       card.querySelector("img")?.addEventListener("error", (event) => {
         const swatch = event.currentTarget.closest(".cuk-fabric__swatch");
         if (swatch) swatch.innerHTML = `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;
@@ -262,13 +263,17 @@
     const apiUrl = () => new URL(endpoint(root.dataset.engineBase, "catalog"), location.origin);
     try {
       if (params.get("fabric")) {
-        root.removeAttribute('data-cuk-shopping');
+        const premiumDetail = root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience;
+        if (!premiumDetail) root.removeAttribute('data-cuk-shopping');
         root.querySelector('[data-cuk-browse-assistance]')?.remove();
-        const url = apiUrl(); url.searchParams.set("view", "retail"); url.searchParams.set("fabric", params.get("fabric"));
+        const url = premiumDetail && root.dataset.browsePreviewEndpoint ? new URL(root.dataset.browsePreviewEndpoint) : apiUrl();
+        url.searchParams.set("view", "retail"); url.searchParams.set("fabric", params.get("fabric"));
+        if (premiumDetail) url.searchParams.set('browseGuide','1');
         const { fabric } = await fetchJson(url.href);
         if (!fabric) throw new Error("This fabric is not available to view.");
         filters.hidden = true; grid.hidden = true; navigation.hidden = true; root.querySelector("[data-cuk-fabric-count]").hidden = true;
         detail.hidden = false;
+        if (premiumDetail) { window.CurtainsUKFabricExperience.renderDetail(root,fabric,windowSlug,addSample); return; }
         const main = fabric.images?.[0];
         const configureUrl = `/pages/curtain-visualiser?fabric=${encodeURIComponent(fabric.id)}${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}`;
         const spec = (label, value) => value ? `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>` : "";
@@ -300,7 +305,7 @@
         try {
           const catalog = await fetchJson(url.href); if (current !== generation) return;
           const guideSelect = filters.elements.guidePrice;
-          if (guideSelect && catalog.facets.guidePrices) {
+          if (guideSelect?.tagName === "SELECT" && catalog.facets.guidePrices) {
             const selected = guideSelect.value;
             guideSelect.replaceChildren(option('All guide prices', ''), ...catalog.facets.guidePrices.map(band => option(band.label, band.value)));
             guideSelect.value = selected;
@@ -309,16 +314,8 @@
             const select = filters.elements[key]; if (select && !select.dataset.facetsLoaded) { values.filter((v) => v !== "UNKNOWN" && ![...select.options].some((o) => o.value === v)).forEach((v) => select.appendChild(option(v, v))); select.dataset.facetsLoaded = "true"; }
           }
           if (root.hasAttribute('data-cuk-shopping')) {
-            const colours = root.querySelector('[data-cuk-browse-colours]');
-            const palette = {'white/cream':'#eee9dc','beige/taupe':'#b7a78e',grey:'#92928c',black:'#333733',blue:'#587887',green:'#718367',pink:'#c99caa',red:'#9c4a4a',orange:'#bc8055','yellow/gold':'#c3ac65',purple:'#86728d',brown:'#795c49',neutral:'#d1c7b6',multicolour:'linear-gradient(120deg,#738c87,#c99caa,#c3ac65)'};
-            colours.replaceChildren(...catalog.facets.colour.filter(v => v !== 'UNKNOWN' && palette[v]).map(value => {
-              const button = document.createElement('button'); button.type = 'button'; button.className = 'cuk-browse-colour';
-              button.style.setProperty('--colour', palette[value]); button.setAttribute('aria-pressed', String(filters.elements.colour.value === value));
-              const dot = document.createElement('i'); dot.setAttribute('aria-hidden','true'); const label = document.createElement('span'); label.textContent = humanise(value);
-              button.append(dot,label); button.addEventListener('click',()=>{filters.elements.colour.value=filters.elements.colour.value === value ? '' : value; filters.dispatchEvent(new Event('input',{bubbles:true}));});
-              return button;
-            }));
-            root.querySelector('[data-cuk-active-filters]').textContent = [...new FormData(filters)].filter(([,value])=>String(value).trim()).map(([key,value])=>key === 'guidePrice' ? `Curtains from: ${guideSelect.selectedOptions[0]?.textContent || ''}` : humanise(String(value))).join(' · ') || 'All fabrics';
+            window.CurtainsUKFabricExperience?.renderDiscovery(root,catalog,filters);
+            root.querySelector('[data-cuk-active-filters]').textContent = [...new FormData(filters)].filter(([,value])=>String(value).trim()).map(([key,value])=>key === 'guidePrice' ? `Curtains from: ${catalog.facets.guidePrices.find(band=>band.value===value)?.label || ''}` : humanise(String(value))).join(' · ') || 'All fabrics';
           }
           renderFabricCards(root, catalog);
           navigation.querySelector("[data-cuk-previous]").disabled = page <= 1;
@@ -332,7 +329,11 @@
       for (const [key, value] of params) if (filters.elements[key]) {
         const element = filters.elements[key]; if (element.tagName === "SELECT" && value && ![...element.options].some((o) => o.value === value)) element.appendChild(option(value, value)); element.value = value;
       }
-      filters.addEventListener('reset', () => { clearTimeout(timer); timer = setTimeout(() => { page = 1; load(); }, 0); });
+      filters.addEventListener('reset', () => { clearTimeout(timer); timer = setTimeout(() => {
+        // Hidden visual-choice inputs reflect value into defaultValue; native reset alone retains them.
+        if (root.hasAttribute('data-cuk-shopping')) for (const field of filters.elements) if (field.type === 'hidden') field.value = '';
+        page = 1; load();
+      }, 0); });
       filters.addEventListener("submit", (event) => event.preventDefault());
       filters.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(() => { page = 1; load(); }, 300); });
       navigation.querySelector("[data-cuk-previous]").addEventListener("click", async () => { page = Math.max(1, page - 1); await load(); grid.scrollIntoView({ block: "start" }); });

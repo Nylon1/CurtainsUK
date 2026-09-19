@@ -33,7 +33,8 @@
     "fabric:discover:plan": "tsx scripts/curtainsuk-plan-portal-discovery.ts",
     "fabric:apply:media": "tsx scripts/curtainsuk-apply-media-mappings.ts",
     "fabric:preview:retail": "tsx scripts/curtainsuk-retail-local-preview.ts",
-    "preview:curtainsuk-6a": "tsx scripts/curtainsuk-phase6a-preview.mts"
+    "preview:curtainsuk-6a": "tsx scripts/curtainsuk-phase6a-preview.mts",
+    "fabric:visual-enrichment": "tsx scripts/curtainsuk-visual-enrichment.ts"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",

@@ -1,0 +1,37 @@
+name: Fabric visual ledger proof
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - stock/pt-webtex-production
+    paths:
+      - ".github/workflows/fabric-visual-ledger-proof.yml"
+      - "scripts/curtainsuk-visual-ledger-proof.ts"
+      - "lib/fabric-master/visual-enrichment.ts"
+      - "lib/supabase/supplier-service.ts"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fabric-visual-ledger-proof-production
+  cancel-in-progress: false
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Prove Fabric Master visual ledger checkpoint path without inference
+        run: npx --no-install tsx scripts/curtainsuk-visual-ledger-proof.ts

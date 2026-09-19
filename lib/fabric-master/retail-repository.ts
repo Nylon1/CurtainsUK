@@ -4,6 +4,7 @@ import { projectCustomerSafeFabric, assertCustomerSafeProjection } from "./proje
 import { RETAIL_TAXONOMY, factualRetailDescription, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
 import { commercialReadiness } from './readiness-server';
 import { calculationWidth } from './readiness';
+import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
 
 export async function retailFabricDetail(id: string) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
@@ -53,10 +54,21 @@ export async function searchRetailFabrics(params: URLSearchParams) {
   const page = Math.max(1, Math.min(10000, Number.parseInt(params.get("page") ?? "1", 10) || 1));
   const pageSize = 24;
   const filters = Object.fromEntries(["query", "brand", "collection", "colour", "pattern", "character", "style", "sample", "availability", "window"].map((key) => [key, (params.get(key) ?? "").trim().slice(0, 100)]));
-  const { data, error } = await createSupplierServiceClient().rpc("search_retail_fabrics", { p_filters: filters, p_page: page, p_size: pageSize });
+  // Explicit Browse opt-in. Detail, HCI and configuration projections never get a guide.
+  const withGuide = params.get('browseGuide') === '1';
+  const band = withGuide ? browsePriceBand(params.get('guidePrice')) : null;
+  const { data, error } = await createSupplierServiceClient().rpc("search_retail_fabrics", {
+    p_filters: filters, p_page: page, p_size: pageSize,
+    ...(withGuide ? { p_guide_min: band?.minimumMinor ?? null, p_guide_max: band?.maximumMinor ?? null } : {}),
+  });
   if (error) throw new Error("RETAIL_SEARCH_UNAVAILABLE");
-  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[] };
+  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[]; guidePrices?: Record<string, number> };
   // At most 24 records are ever hydrated for a response.
   const fabrics = await hydrateRetailFabrics(value.ids);
-  return { schemaVersion: "3.0.0", fabrics, page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize), facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY } };
+  const result = { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(fabric => ({ ...fabric, browseGuide: customerBrowseGuide(value.guidePrices?.[fabric.id]) })) : fabrics,
+    page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize),
+    facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY,
+      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})) } : {}) } };
+  assertCustomerSafeProjection(result);
+  return result;
 }

@@ -7,12 +7,13 @@
 {% if template.suffix == 'browse-fabrics' %}{{ 'curtainsuk-browse.css' | asset_url | stylesheet_tag }}{% endif %}
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
 {% render 'curtainsuk-fabric-discovery' %}
-<section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser {% if template.suffix == 'browse-fabrics' %}data-cuk-shopping{% endif %} data-engine-base="{{ engine_base | escape }}">
+<section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser {% if template.suffix == 'browse-fabrics' %}data-cuk-shopping{% if theme.role != 'main' and section.settings.browse_preview_endpoint != blank %} data-browse-preview-endpoint="{{ section.settings.browse_preview_endpoint | escape }}"{% endif %}{% endif %} data-engine-base="{{ engine_base | escape }}">
   <div class="cuk-wrap">
     {% if template.suffix == 'browse-fabrics' %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">THE CURTAINSUK COLLECTION</p><h1>Browse all fabrics</h1><p>Explore through colour, pattern, texture and character — or find a design or collection you already know.</p></div></div>{% else %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>{% endif %}
     <div class="cuk-error" data-cuk-error hidden></div>
     <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search" id="cuk-fabric-library-search">
       <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Search design, colourway, brand or collection"></div>
+      {% if template.suffix == 'browse-fabrics' %}<div class="cuk-field cuk-browse-price-filter"><label for="CukGuidePrice-{{ section.id }}">Curtains from price</label><select id="CukGuidePrice-{{ section.id }}" name="guidePrice" aria-describedby="CukGuideNote-{{ section.id }}"><option value="">All guide prices</option></select><p id="CukGuideNote-{{ section.id }}" class="cuk-browse-price-note">Price guide. Final price depends on measurements and options.</p></div>{% endif %}
       {% if template.suffix == 'browse-fabrics' %}<div class="cuk-browse-colours" data-cuk-browse-colours aria-label="Filter by colour"></div>{% endif %}
       <details class="cuk-filter-options" data-cuk-filter-options open><summary>Filters · colour, pattern, texture &amp; character</summary><div class="cuk-filter-options__grid">
       <div class="cuk-field"><label for="CukFabricBrand-{{ section.id }}">Brand</label><select id="CukFabricBrand-{{ section.id }}" name="brand"><option value="">All brands</option></select></div>
@@ -40,7 +41,7 @@
   "name": "CurtainsUK fabric browser",
   "tag": "section",
   "class": "section",
-  "settings": [{ "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }],
+  "settings": [{ "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }, { "type": "url", "id": "browse_preview_endpoint", "label": "Unpublished browse preview API", "info": "Candidate-only read-only catalogue endpoint. Ignored on the live theme." }],
   "presets": [{ "name": "CurtainsUK fabric browser" }]
 }
 {% endschema %}

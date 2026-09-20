@@ -14,7 +14,7 @@ The production customer storefront is Shopify store `carpetup.myshopify.com`, pr
 
 Shopify continues to own cart, checkout, payment and orders. The MTM gateway owns server-side configuration compatibility, fresh-stock revalidation, pricing identity and the post-payment operational transition `PAID → CURTAINSUK REVIEW → APPROVED FOR MANUFACTURE → WORKROOM RELEASE`. Payment never releases manufacture automatically.
 
-The active public MTM payment gate remains disabled until the owner performs the first controlled payment test. A private Draft Order rehearsal, when explicitly enabled for a short operator window, must run only inside the Vercel production environment; it uses server-resident credentials, a fixed safe configuration, no customer/email, no invoice operation, no payment capability and an immediate verified deletion. No environment values or credentials belong in source, artifacts or this document.
+The active public MTM payment gate remains disabled until the owner performs the first controlled payment test. On 20 September 2026, a server-side private Draft Order rehearsal reconciled £532.00 goods, £90.83 VAT, £12.95 delivery and £544.95 total between CurtainsUK and Shopify. It used a fixed safe configuration with no customer/email, invoice operation, payment capability or workroom release, and was immediately deleted after verification. The temporary rehearsal route was then removed. No environment values or credentials belong in source, artifacts or this document.
 
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 

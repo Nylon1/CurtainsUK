@@ -1,0 +1,49 @@
+{
+  "live": {
+    "id": "182336356731",
+    "role": "MAIN",
+    "fileCount": 407,
+    "changed": [],
+    "removed": []
+  },
+  "candidate": {
+    "id": "182339731835",
+    "role": "UNPUBLISHED",
+    "fileCount": 420,
+    "changed": [
+      {
+        "filename": "assets/cuk-studio-length-puddle.png",
+        "checksumMd5": "e39685dc3f1ed7ed1f66964daea77fb9"
+      },
+      {
+        "filename": "assets/cuk-studio-length-short.png",
+        "checksumMd5": "2859e11fbee7207148cefd9e60f41079"
+      },
+      {
+        "filename": "assets/cuk-studio-length-soft-break.png",
+        "checksumMd5": "b07f42d27d18ba870e6784a724ce8e6e"
+      },
+      {
+        "filename": "assets/cuk-studio-position-high-wide.png",
+        "checksumMd5": "5f46aed7dfaec5b6dab79a61ac17be90"
+      },
+      {
+        "filename": "assets/cuk-studio-position-window-led.png",
+        "checksumMd5": "da3fa11e8bd301c78c7e4f9a75de7bcd"
+      },
+      {
+        "filename": "assets/cuk-studio-presence-more.png",
+        "checksumMd5": "09caec0c681a4bf579afdcb04cd03e46"
+      },
+      {
+        "filename": "locales/en.default.json",
+        "checksumMd5": "fde7a07d673fc631167fa0a02dfcdd06"
+      },
+      {
+        "filename": "sections/curtainsuk-curtain-style.liquid",
+        "checksumMd5": "a8122cb4de9c452c65a2e26f9decfec5"
+      }
+    ],
+    "removed": []
+  }
+}

@@ -1,0 +1,1282 @@
+{
+  "preview": "https://www.curtainsuk.com/pages/fabric-library?view=curtain-style&preview_theme_id=182339731835",
+  "identity": {
+    "id": 182339731835,
+    "role": "unpublished",
+    "url": "https://www.curtainsuk.com/pages/fabric-library?_review=1789906908507&view=curtain-style"
+  },
+  "widths": [
+    {
+      "pageHeight": 4237,
+      "scrollWidth": 1440,
+      "sectionHeight": 3598.9375,
+      "visibleWords": 330,
+      "visualWidth": 955.9375,
+      "width": 1440,
+      "states": [
+        {
+          "focus": "heading",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        }
+      ],
+      "studioStates": [
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 440,
+          "group": "presence",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "balanced",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 440,
+          "group": "presence",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "more",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 220,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "short",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 220,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "floor",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 220,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "soft-break",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 220,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "puddle",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 293.328125,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "window-led",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 293.34375,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "higher",
+          "visualWidth": 880
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 293.328125,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "high-wide",
+          "visualWidth": 880
+        }
+      ]
+    },
+    {
+      "pageHeight": 4237,
+      "scrollWidth": 390,
+      "sectionHeight": 3434.9375,
+      "visibleWords": 330,
+      "visualWidth": 390,
+      "width": 390,
+      "states": [
+        {
+          "focus": "heading",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        }
+      ],
+      "studioStates": [
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 177,
+          "group": "presence",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "balanced",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 177,
+          "group": "presence",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "more",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 88.5,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "short",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 88.5,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "floor",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 88.5,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "soft-break",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 88.5,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "puddle",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 118,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "window-led",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 118,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "higher",
+          "visualWidth": 390
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 118,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "high-wide",
+          "visualWidth": 390
+        }
+      ]
+    },
+    {
+      "pageHeight": 4226,
+      "scrollWidth": 412,
+      "sectionHeight": 3423.140625,
+      "visibleWords": 330,
+      "visualWidth": 412,
+      "width": 412,
+      "states": [
+        {
+          "focus": "heading",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "wave",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "double-pinch",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "pencil-pleat",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "heading",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "heading",
+          "open": [
+            "heading"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "flow",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "flow",
+          "open": [
+            "flow"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "structure",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "structure",
+          "open": [
+            "structure"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "fabric",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "fabric",
+          "open": [
+            "fabric"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "room",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "room",
+          "open": [
+            "room"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        },
+        {
+          "focus": "floor",
+          "form": "eyelet",
+          "imageWidth": 1448,
+          "layer": "floor",
+          "open": [
+            "floor"
+          ],
+          "pressed": "true",
+          "touchHeight": 44,
+          "touchWidth": 44
+        }
+      ],
+      "studioStates": [
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 188,
+          "group": "presence",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "balanced",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 188,
+          "group": "presence",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "more",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 94,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "short",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 94,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "floor",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 94,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "soft-break",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 94,
+          "group": "length",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "puddle",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 125.328125,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "window-led",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 125.34375,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "higher",
+          "visualWidth": 412
+        },
+        {
+          "buttonHeight": 48,
+          "buttonWidth": 125.328125,
+          "group": "position",
+          "imageWidth": 1448,
+          "selected": "true",
+          "state": "high-wide",
+          "visualWidth": 412
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "72 live-preview form/layer states",
+    "44px or larger hotspots",
+    "one full-width mobile visual",
+    "all four images loaded at native resolution",
+    "no horizontal page overflow",
+    "same-origin handoffs",
+    "live keyboard ArrowRight/End/Home",
+    "live heading closeup, form carry and layer reset at all three widths",
+    "27 approved Studio states and floor detail at all three widths",
+    "nested Studio keyboard controls",
+    "Less presence excluded",
+    "existing £2.50 sample product available",
+    "isolated basket remained empty"
+  ],
+  "screenshots": [
+    "preview-1440-studio-presence.png",
+    "preview-1440-studio-length.png",
+    "preview-1440-studio-position.png",
+    "preview-1440-studio-floor-detail.png",
+    "preview-page-1440.png",
+    "preview-1440-wave.png",
+    "preview-1440-double-pinch.png",
+    "preview-1440-pencil-pleat.png",
+    "preview-1440-eyelet.png",
+    "preview-1440-support.png",
+    "preview-390-studio-presence.png",
+    "preview-390-studio-length.png",
+    "preview-390-studio-position.png",
+    "preview-390-studio-floor-detail.png",
+    "preview-page-390.png",
+    "preview-390-wave.png",
+    "preview-390-double-pinch.png",
+    "preview-390-pencil-pleat.png",
+    "preview-390-eyelet.png",
+    "preview-390-support.png",
+    "preview-412-studio-presence.png",
+    "preview-412-studio-length.png",
+    "preview-412-studio-position.png",
+    "preview-412-studio-floor-detail.png",
+    "preview-page-412.png",
+    "preview-412-wave.png",
+    "preview-412-double-pinch.png",
+    "preview-412-pencil-pleat.png",
+    "preview-412-eyelet.png",
+    "preview-412-support.png"
+  ],
+  "commerceWrites": 0,
+  "links": [
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&activity=low",
+      "text": "Explore quieter fabrics"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&activity=statement",
+      "text": "Explore more expressive fabrics"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&pattern=stripe",
+      "text": "Explore striped fabrics"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&pattern=geometric",
+      "text": "Explore geometric fabrics"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&pattern=botanical",
+      "text": "Explore botanical fabrics"
+    },
+    {
+      "href": "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+      "text": "Let Fabric Intelligence guide me"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&texture=visible-weave",
+      "text": "Explore visible-weave fabrics"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&texture=relief",
+      "text": "Explore raised-surface fabrics"
+    },
+    {
+      "href": "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+      "text": "Find fabrics for my room"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&presence=light",
+      "text": "Explore light-presence fabrics"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics&presence=substantial",
+      "text": "Explore substantial-presence fabrics"
+    },
+    {
+      "href": "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+      "text": "Use Fabric Intelligence"
+    },
+    {
+      "href": "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+      "text": "Let Fabric Intelligence guide me"
+    },
+    {
+      "href": "/pages/fabric-library?view=browse-fabrics",
+      "text": "Browse Fabrics"
+    },
+    {
+      "href": "/pages/curtain-visualiser",
+      "text": "Make my curtains"
+    }
+  ],
+  "sample": {
+    "available": true,
+    "priceMinor": 250,
+    "variant": 56120226873723
+  },
+  "cart": {
+    "currency": "GBP",
+    "item_count": 0
+  },
+  "accessibility": {
+    "counts": {
+      "inapplicable": 63,
+      "incomplete": 1,
+      "passes": 25,
+      "violations": 0
+    },
+    "violations": [],
+    "note": "Scoped automated scan, not a full WCAG audit; image-overlay contrast manually inspected."
+  }
+}

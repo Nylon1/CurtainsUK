@@ -1,0 +1,59 @@
+{
+  "approved": true,
+  "excluded": "Less presence",
+  "unchangedBaselineStates": [
+    "Balanced",
+    "Floor",
+    "Higher"
+  ],
+  "assets": [
+    {
+      "state": "presence-more",
+      "themeAsset": "assets/cuk-studio-presence-more.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-studio-presence-more-v1.png?v=1789906080",
+      "fileId": "gid://shopify/MediaImage/72626113315195",
+      "filename": "curtainsuk-studio-presence-more-v1.png",
+      "alt": "Curtain form study: presence more in the approved Double Pinch reference room."
+    },
+    {
+      "state": "length-short",
+      "themeAsset": "assets/cuk-studio-length-short.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-studio-length-short-v1.png?v=1789906087",
+      "fileId": "gid://shopify/MediaImage/72626113446267",
+      "filename": "curtainsuk-studio-length-short-v1.png",
+      "alt": "Curtain form study: length short in the approved Double Pinch reference room."
+    },
+    {
+      "state": "length-soft-break",
+      "themeAsset": "assets/cuk-studio-length-soft-break.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-studio-length-soft-break-v1.png?v=1789906096",
+      "fileId": "gid://shopify/MediaImage/72626113610107",
+      "filename": "curtainsuk-studio-length-soft-break-v1.png",
+      "alt": "Curtain form study: length soft break in the approved Double Pinch reference room."
+    },
+    {
+      "state": "length-puddle",
+      "themeAsset": "assets/cuk-studio-length-puddle.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-studio-length-puddle-v1.png?v=1789906104",
+      "fileId": "gid://shopify/MediaImage/72626113872251",
+      "filename": "curtainsuk-studio-length-puddle-v1.png",
+      "alt": "Curtain form study: length puddle in the approved Double Pinch reference room."
+    },
+    {
+      "state": "position-window-led",
+      "themeAsset": "assets/cuk-studio-position-window-led.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-studio-position-window-led-v1.png?v=1789906111",
+      "fileId": "gid://shopify/MediaImage/72626114003323",
+      "filename": "curtainsuk-studio-position-window-led-v1.png",
+      "alt": "Curtain form study: position window led in the approved Double Pinch reference room."
+    },
+    {
+      "state": "position-high-wide",
+      "themeAsset": "assets/cuk-studio-position-high-wide.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-studio-position-high-wide-v1.png?v=1789906117",
+      "fileId": "gid://shopify/MediaImage/72626114167163",
+      "filename": "curtainsuk-studio-position-high-wide-v1.png",
+      "alt": "Curtain form study: position high wide in the approved Double Pinch reference room."
+    }
+  ]
+}

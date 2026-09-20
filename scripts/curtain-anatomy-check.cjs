@@ -44,7 +44,7 @@ const body = section.replace(/{% stylesheet %}[\s\S]*?{% endstylesheet %}/,'').r
   const server = http.createServer((req,res)=>{
     if (req.url.startsWith('/assets/')) {
       const name=path.basename(req.url);
-      if (!/^cuk-anatomy-(wave|double-pinch|pencil-pleat|eyelet)\.png$/.test(name)) {res.writeHead(404).end();return;}
+      if (!/^cuk-(anatomy-(wave|double-pinch|pencil-pleat|eyelet)|studio-(presence-more|length-(short|soft-break|puddle)|position-(window-led|high-wide)))\.png$/.test(name)) {res.writeHead(404).end();return;}
       res.setHeader('Content-Type','image/png');
       res.end(fs.readFileSync(path.join(theme,'assets',name)));return;
     }
@@ -139,9 +139,43 @@ const body = section.replace(/{% stylesheet %}[\s\S]*?{% endstylesheet %}/,'').r
         assert.equal(await detail.getAttribute('open'),'');
         await detail.locator('summary').click();
       }
+      const studio=page.locator('[data-curtain-studio]');
+      const lessonTabs=studio.locator('[data-studio-lessons] button');
+      assert.equal(await studio.locator('[data-studio-view]').count(),9);
+      assert.ok(!(await studio.innerText()).includes('Less presence'));
+      let studioStates=0;
+      for(let g=0;g<3;g++) {
+        await lessonTabs.nth(g).click();
+        const group=studio.locator('[data-studio-group]:visible');
+        assert.equal(await group.count(),1);
+        const stateTabs=group.locator('[data-studio-states] button');
+        for(let s=0;s<await stateTabs.count();s++) {
+          await stateTabs.nth(s).click();
+          const view=group.locator('[data-studio-view]:visible');
+          assert.equal(await view.count(),1);
+          const image=view.locator('img');
+          await image.evaluate(i=>i.decode());
+          assert.equal(await image.evaluate(i=>i.naturalWidth),1448);
+          const box=await stateTabs.nth(s).boundingBox();
+          assert.ok(box.height>=44 && box.width>=44);
+          if(width<750)assert.equal(Math.round((await view.locator('[data-studio-image]').boundingBox()).width),width);
+          studioStates++;
+        }
+        await stateTabs.first().focus();await page.keyboard.press('End');
+        assert.equal(await stateTabs.last().getAttribute('aria-selected'),'true');
+        await page.keyboard.press('Home');
+        assert.equal(await stateTabs.first().getAttribute('aria-selected'),'true');
+        const visual=group.locator('[data-studio-view]:visible [data-studio-image]');
+        await visual.dispatchEvent('pointerdown',{pointerType:'touch',pointerId:9,clientX:250,clientY:140});
+        await visual.dispatchEvent('pointerup',{pointerType:'touch',pointerId:9,clientX:120,clientY:145});
+        assert.equal(await stateTabs.nth(1).getAttribute('aria-selected'),'true');
+        if(g===1){await group.locator('[data-studio-detail]').click();assert.equal(await group.getAttribute('data-detail'),'true');await group.locator('[data-studio-detail]').click();}
+      }
+      assert.equal(studioStates,9);
+      await lessonTabs.first().click();
       await page.screenshot({path:path.join(output,'page-'+width+'.png'),fullPage:true});
       assert.deepEqual(errors,[]);
-      results.matrix.push({width,states:24,keyboard:true,swipe:true,headingMagnification:true,verticalScrollPreserved:true,hotspots44px:true,fullWidthMobile:width<750?true:null,height:geometry.height,horizontalOverflow:0});
+      results.matrix.push({width,states:24,studioStates,keyboard:true,swipe:true,headingMagnification:true,verticalScrollPreserved:true,hotspots44px:true,fullWidthMobile:width<750?true:null,height:geometry.height,horizontalOverflow:0});
       results.links= [...new Set(links)];
       await page.close();
     }
@@ -154,9 +188,11 @@ const body = section.replace(/{% stylesheet %}[\s\S]*?{% endstylesheet %}/,'').r
     await noJS.goto(url);
     assert.equal(await noJS.locator('[data-anatomy-panel]:visible').count(),4);
     assert.equal(await noJS.locator('[data-anatomy-tabs]:visible').count(),0);
+    assert.equal(await noJS.locator('[data-studio-view]:visible').count(),9);
+    assert.equal(await noJS.locator('[data-studio-lessons]:visible').count(),0);
     await noJS.locator('[data-anatomy-layer="fabric"]').first().locator('summary').click();
     assert.equal(await noJS.locator('[data-anatomy-layer="fabric"]').first().getAttribute('open'),'');
-    results.noJS='Four studies and native disclosures readable';
+    results.noJS='Four heading studies, nine Studio states and native disclosures readable';
     await noJS.close();
     const failed=await browser.newPage();
     await failed.route('**/assets/cuk-anatomy-wave.png',route=>route.abort());

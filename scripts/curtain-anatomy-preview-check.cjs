@@ -17,11 +17,12 @@ const screenshot = name => {
   return run(['screenshot',path.join(output,'preview-'+name+'.png')]);
 };
 const preview = 'https://www.curtainsuk.com/pages/fabric-library?view=curtain-style&preview_theme_id=182339731835';
-run(['open',preview]);
+run(['open',preview+'&_review='+Date.now()]);
 run(['wait','[data-curtain-anatomy][data-ready]']);
 const identity = evaluate('({id:Shopify.theme.id,role:Shopify.theme.role,url:location.href})');
 assert.equal(identity.id,182339731835);
 assert.equal(identity.role,'unpublished');
+evaluate(`(async()=>{const images=[...document.querySelectorAll('[data-curtain-anatomy] img')];images.forEach(i=>{i.loading='eager'});await Promise.all(images.map(i=>i.decode()));return images.length})()`);
 const report = {preview,identity,widths:[],checks:[],screenshots:[],commerceWrites:0};
 for(const width of [1440,390,412]) {
   run(['set','viewport',String(width),width===1440?'1000':'900']);
@@ -53,6 +54,37 @@ for(const width of [1440,390,412]) {
   assert.equal(dimensions.width,width);assert.ok(dimensions.scrollWidth<=width);
   if(width<500)assert.ok(dimensions.visualWidth>=width-4);
   report.widths.push({...dimensions,states});
+  const studioStates=evaluate(`(async()=>{
+    const root=document.querySelector('[data-curtain-studio]');
+    const tabs=[...root.querySelectorAll('[data-studio-lessons] button')];
+    const results=[];
+    for(const tab of tabs){
+      tab.click();
+      const group=root.querySelector('[data-studio-group]:not([hidden])');
+      for(const button of group.querySelectorAll('[data-studio-states] button')){
+        button.click();
+        const view=group.querySelector('[data-studio-view]:not([hidden])');
+        const image=view.querySelector('img');await image.decode();
+        const box=button.getBoundingClientRect();
+        results.push({group:group.dataset.studioGroup,state:view.dataset.studioView,imageWidth:image.naturalWidth,visualWidth:view.querySelector('[data-studio-image]').getBoundingClientRect().width,buttonWidth:box.width,buttonHeight:box.height,selected:button.getAttribute('aria-selected')});
+      }
+    }
+    return results;
+  })()`);
+  assert.equal(studioStates.length,9);
+  assert.deepEqual(studioStates.filter(s=>s.group==='presence').map(s=>s.state),['balanced','more']);
+  for(const s of studioStates){assert.equal(s.imageWidth,1448);assert.equal(s.selected,'true');assert.ok(s.buttonWidth>=44&&s.buttonHeight>=44);if(width<500)assert.ok(s.visualWidth>=width-1);}
+  report.widths.at(-1).studioStates=studioStates;
+  for(const group of ['presence','length','position']){
+    evaluate(`(()=>{const g=document.querySelector('[data-studio-group="${group}"]');document.querySelector('[aria-controls="'+g.id+'"]').click();g.querySelector('[data-studio-states] button').click();g.scrollIntoView({block:'start'});})()`);
+    screenshot(width+'-studio-'+group);
+    report.screenshots.push('preview-'+width+'-studio-'+group+'.png');
+  }
+  evaluate(`(()=>{const g=document.querySelector('[data-studio-group="length"]');document.querySelector('[aria-controls="'+g.id+'"]').click();g.querySelector('[data-state="soft-break"]').click();g.querySelector('[data-studio-detail]').click();g.scrollIntoView({block:'start'});})()`);
+  assert.equal(evaluate(`document.querySelector('[data-studio-group="length"]').dataset.detail`),'true');
+  screenshot(width+'-studio-floor-detail');
+  report.screenshots.push('preview-'+width+'-studio-floor-detail.png');
+  evaluate(`document.querySelector('[data-studio-detail]').click();document.querySelector('[data-studio-lessons] button').click();document.querySelector('[data-studio-group="presence"] [data-state="balanced"]').click()`);
   const closeup=evaluate(`(()=>{
     const root=document.querySelector('[data-curtain-anatomy]');
     let panel=root.querySelector('[data-anatomy-panel]:not([hidden])');
@@ -88,6 +120,13 @@ run(['press','End']);assert.equal(evaluate(`document.querySelector('[data-anatom
 run(['press','Home']);assert.equal(evaluate(`document.querySelector('[data-anatomy-panel]:not([hidden])').dataset.form`),'wave');
 report.checks.push('live keyboard ArrowRight/End/Home');
 report.checks.push('live heading closeup, form carry and layer reset at all three widths');
+run(['focus','[data-studio-lessons] button:first-child']);run(['press','ArrowRight']);
+assert.equal(evaluate(`document.querySelector('[data-studio-group]:not([hidden])').dataset.studioGroup`),'length');
+run(['focus','[data-studio-group="length"] [data-studio-states] button:first-child']);run(['press','End']);
+assert.equal(evaluate(`document.querySelector('[data-studio-group="length"] [data-studio-view]:not([hidden])').dataset.studioView`),'puddle');
+run(['press','Home']);
+assert.equal(evaluate(`document.querySelector('[data-studio-group="length"] [data-studio-view]:not([hidden])').dataset.studioView`),'short');
+report.checks.push('27 approved Studio states and floor detail at all three widths','nested Studio keyboard controls','Less presence excluded');
 report.sample = evaluate(`fetch('/products/fabric-sample.js').then(r=>r.json()).then(p=>{const v=p.variants.find(v=>v.id===56120226873723);return {variant:v.id,priceMinor:v.price,available:v.available}})`);
 assert.equal(report.sample.priceMinor,250);assert.equal(report.sample.available,true);
 report.cart=evaluate(`fetch('/cart.js').then(r=>r.json()).then(c=>({item_count:c.item_count,currency:c.currency}))`);

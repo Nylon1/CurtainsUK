@@ -67,10 +67,51 @@
   </section>
   <section class="canatomy__support canatomy__wrap" aria-labelledby="support-title-{{ section.id }}">
     <div class="canatomy__section-head"><h2 id="support-title-{{ section.id }}">{{ 'curtain_anatomy.support_title' | t }}</h2><p>{{ 'curtain_anatomy.support_intro' | t }}</p></div>
-    <div class="canatomy__support-grid">
-      <article class="canatomy__lesson"><figure class="canatomy__lesson-photo canatomy__lesson-photo--fullness"><img src="{{ 'cuk-anatomy-wave.png' | asset_url }}" width="1448" height="1086" loading="lazy" alt="{{ 'curtain_anatomy.fullness_alt' | t }}"></figure><p class="canatomy__eyebrow">{{ 'curtain_anatomy.fullness' | t }}</p><h3>{{ 'curtain_anatomy.fullness_title' | t }}</h3><svg class="canatomy__volume-art" viewBox="0 0 320 64" role="img" aria-label="{{ 'curtain_anatomy.volume_illustration' | t }}" preserveAspectRatio="none"><defs><linearGradient id="volume-shade-{{ section.id }}"><stop stop-color="#bdb39f"/><stop offset=".48" stop-color="#eee8dc"/><stop offset="1" stop-color="#c9bfaa"/></linearGradient></defs><path d="M0 3H320V60Q300 67 282 60T246 60T210 60T170 60T116 60T48 60T0 60Z" fill="#e7dfd0"/><path d="M10 3H70Q62 32 70 61Q40 66 10 60Q18 32 10 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M79 3H127Q119 32 127 61Q103 66 79 60Q87 32 79 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M136 3H172Q164 32 172 61Q154 66 136 60Q144 32 136 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M179 3H207Q199 32 207 61Q193 66 179 60Q187 32 179 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M214 3H236Q228 32 236 61Q225 66 214 60Q222 32 214 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M243 3H260Q252 32 260 61Q251.5 66 243 60Q251 32 243 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M267 3H280Q272 32 280 61Q273.5 66 267 60Q275 32 267 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M287 3H297Q289 32 297 61Q292 66 287 60Q295 32 287 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M304 3H312Q304 32 312 61Q308 66 304 60Q312 32 304 3Z" fill="url(#volume-shade-{{ section.id }})"/></svg><div class="canatomy__continuum"><span>{{ 'curtain_anatomy.less' | t }}</span><span aria-hidden="true">↔</span><span>{{ 'curtain_anatomy.more' | t }}</span></div><p>{{ 'curtain_anatomy.fullness_body' | t }}</p><p class="canatomy__fine">{{ 'curtain_anatomy.fullness_note' | t }}</p></article>
-      <article class="canatomy__lesson"><figure class="canatomy__lesson-photo canatomy__lesson-photo--length"><img src="{{ 'cuk-anatomy-double-pinch.png' | asset_url }}" width="1448" height="1086" loading="lazy" alt="{{ 'curtain_anatomy.length_alt' | t }}"></figure><p class="canatomy__eyebrow">{{ 'curtain_anatomy.length' | t }}</p><h3>{{ 'curtain_anatomy.length_title' | t }}</h3><p>{{ 'curtain_anatomy.length_body' | t }}</p><details class="canatomy__small-detail"><summary>{{ 'curtain_anatomy.soft_break' | t }}</summary><p>{{ 'curtain_anatomy.soft_break_body' | t }}</p>{% assign soft_image = images['prestigious-room-watercolour-dining.webp'] %}{% assign soft_alt = 'curtain_anatomy.soft_break_alt' | t %}{% render 'curtainsuk-style-image', source: soft_image, alt: soft_alt, eager: false %}<p class="canatomy__fine">{{ 'curtain_anatomy.supplier_note' | t }}</p></details></article>
-      <article class="canatomy__lesson"><figure class="canatomy__lesson-photo canatomy__lesson-photo--position"><img src="{{ 'cuk-anatomy-wave.png' | asset_url }}" width="1448" height="1086" loading="lazy" alt="{{ 'curtain_anatomy.position_alt' | t }}"></figure><p class="canatomy__eyebrow">{{ 'curtain_anatomy.position' | t }}</p><h3>{{ 'curtain_anatomy.position_title' | t }}</h3><p>{{ 'curtain_anatomy.position_body' | t }}</p><details class="canatomy__small-detail"><summary>{{ 'curtain_anatomy.position_more' | t }}</summary><p>{{ 'curtain_anatomy.position_more_body' | t }}</p></details></article>
+    {% assign studio_groups = 'presence,length,position' | split: ',' %}
+    <div class="cstudio" data-curtain-studio>
+      <p class="cstudio__context">{{ 'curtain_studio.context' | t }}</p>
+      <div class="cstudio__lessons" data-studio-lessons hidden aria-label="{{ 'curtain_studio.lessons' | t }}">
+        {% for group in studio_groups %}{% assign group_key = 'curtain_studio.' | append: group %}
+          <button type="button" id="studio-tab-{{ section.id }}-{{ group }}" aria-controls="studio-group-{{ section.id }}-{{ group }}">{{ group_key | t }}</button>
+        {% endfor %}
+      </div>
+      {% for group in studio_groups %}
+        {% assign group_key = 'curtain_studio.' | append: group %}
+        {% assign title_key = group_key | append: '_title' %}
+        {% assign note_key = group_key | append: '_note' %}
+        {% case group %}
+          {% when 'presence' %}{% assign states = 'balanced,more' | split: ',' %}{% assign default_state = 'balanced' %}
+          {% when 'length' %}{% assign states = 'short,floor,soft-break,puddle' | split: ',' %}{% assign default_state = 'floor' %}
+          {% when 'position' %}{% assign states = 'window-led,higher,high-wide' | split: ',' %}{% assign default_state = 'higher' %}
+        {% endcase %}
+        <div class="cstudio__group" data-studio-group="{{ group }}" data-default-state="{{ default_state }}" id="studio-group-{{ section.id }}-{{ group }}">
+          <h3>{{ title_key | t }}</h3>
+          <div class="cstudio__states" data-studio-states hidden aria-label="{{ title_key | t }}">
+            {% for state in states %}{% assign state_key = group_key | append: '_' | append: state %}
+              <button type="button" data-state="{{ state }}" id="studio-state-{{ section.id }}-{{ group }}-{{ state }}" aria-controls="studio-view-{{ section.id }}-{{ group }}-{{ state }}">{{ state_key | t }}</button>
+            {% endfor %}
+          </div>
+          {% for state in states %}
+            {% assign state_key = group_key | append: '_' | append: state %}
+            {% assign alt_key = state_key | append: '_alt' %}
+            {% assign copy_key = state_key | append: '_copy' %}
+            {% assign asset_name = 'cuk-studio-' | append: group | append: '-' | append: state | append: '.png' %}
+            {% if state == 'balanced' or state == 'floor' or state == 'higher' %}{% assign asset_name = 'cuk-anatomy-double-pinch.png' %}{% endif %}
+            <div class="cstudio__view" data-studio-view="{{ state }}" id="studio-view-{{ section.id }}-{{ group }}-{{ state }}">
+              <figure>
+                <div class="cstudio__image" data-studio-image>
+                  <img src="{{ asset_name | asset_url }}" alt="{{ alt_key | t }}" width="1448" height="1086" loading="lazy">
+                  <p class="cstudio__error" role="status" hidden>{{ 'curtain_anatomy.image_error' | t }}</p>
+                </div>
+                <figcaption><strong>{{ state_key | t }}</strong><p>{{ copy_key | t }}</p></figcaption>
+              </figure>
+            </div>
+          {% endfor %}
+          {% if group == 'length' %}<button class="cstudio__detail" type="button" data-studio-detail aria-pressed="false" data-open-label="{{ 'curtain_studio.floor_detail' | t }}" data-close-label="{{ 'curtain_anatomy.whole_curtain' | t }}" hidden>{{ 'curtain_studio.floor_detail' | t }}</button>{% endif %}
+          <p class="cstudio__note">{{ note_key | t }}</p>
+        </div>
+      {% endfor %}
+      <p class="cstudio__disclosure">{{ 'curtain_studio.disclosure' | t }}</p>
     </div>
   </section>
   <section class="canatomy__return"><div class="canatomy__wrap">
@@ -127,11 +168,7 @@
 .canatomy__knowledge-item summary{display:flex;justify-content:space-between;align-items:center;min-height:65px;font-size:15px;letter-spacing:.02em;gap:20px}
 .canatomy__knowledge-item>div{padding:0 0 26px;font-size:14px;max-width:590px}.canatomy__links{display:flex;gap:8px 24px;flex-wrap:wrap;margin-top:14px}.canatomy__links a{padding-block:9px;font-size:12px}
 .canatomy__knowledge-item aside{border-left:1px solid #173d3560;padding-left:18px;margin-top:22px;font-size:13px}.canatomy__knowledge-item aside a{display:inline-block;padding-block:10px}
-.canatomy__support{padding-block:74px 82px}.canatomy__support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}.canatomy__lesson-photo{height:180px;overflow:hidden;margin-bottom:24px!important;background:#e6e1d5}.canatomy__lesson-photo img{display:block;width:100%;height:100%;object-fit:cover}
-.canatomy__lesson-photo--fullness img{object-position:left center;transform:scale(1.7);transform-origin:20% 50%}.canatomy__lesson-photo--length img{object-position:bottom;transform:scale(1.7);transform-origin:50% 100%}.canatomy__lesson-photo--position img{object-position:top}
-.canatomy__lesson h3{margin:12px 0 16px;max-width:310px}.canatomy__lesson>p:not(.canatomy__eyebrow){font-size:13px}.canatomy__continuum{display:flex;align-items:center;justify-content:space-between;border-block:1px solid var(--line);margin:18px 0;padding:12px 0;font-size:11px;gap:8px}
-.canatomy__fine{font-size:10px!important;line-height:1.5;margin-top:12px!important;opacity:.76}.canatomy__small-detail{margin-top:14px;font-size:13px}.canatomy__small-detail summary{padding-block:12px;text-decoration:underline;text-underline-offset:5px}.canatomy__small-detail img{width:100%;height:auto;display:block;margin-top:14px}
-.canatomy__volume-art{display:block;width:100%;height:64px;margin-top:18px;color:#c6bdab}
+.canatomy__support{padding-block:74px 82px}
 .canatomy__return{background:var(--forest);color:var(--cream);padding-block:74px}.canatomy__return h2{font-size:clamp(40px,4.5vw,65px);max-width:860px;margin:20px 0 24px}.canatomy__return .canatomy__wrap>p:not(.canatomy__eyebrow){max-width:670px;font-size:16px}
 .canatomy__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}.canatomy__button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 24px;border:1px solid var(--cream);background:var(--cream);color:var(--forest)!important;font-size:13px;text-decoration:none}
 .canatomy__button--outline{background:transparent;color:var(--cream)!important}.canatomy__already{margin-top:27px!important;font-size:13px!important}.canatomy__already a{display:inline-block;padding:10px 0;margin-left:10px}
@@ -146,10 +183,106 @@
 .canatomy__study-note{display:block;font-size:10px}.canatomy__swipe{margin-top:9px!important}.canatomy__knowledge{padding-top:46px}.canatomy__knowledge-grid{grid-template-columns:1fr}.canatomy__knowledge-item summary{min-height:58px;font-size:14px}
 .canatomy__support{padding-block:45px 48px}.canatomy__support-grid{grid-template-columns:1fr;gap:34px}.canatomy__lesson-photo{height:160px;margin-bottom:20px!important}.canatomy__lesson h3{max-width:none;font-size:29px}.canatomy__lesson>p:not(.canatomy__eyebrow){font-size:14px}.canatomy__return{padding-block:46px}.canatomy__return .canatomy__wrap>p:not(.canatomy__eyebrow){font-size:14px}.canatomy__actions{display:grid;gap:12px}.canatomy__button{width:100%}.canatomy__already a{margin-left:5px}}
 @media(prefers-reduced-motion:reduce){.canatomy *{transition:none!important;scroll-behavior:auto!important}}
+.cstudio{max-width:880px;margin-inline:auto}.cstudio__context{font-size:13px;margin-bottom:20px!important;max-width:700px}
+.cstudio__lessons{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin-bottom:24px}
+.cstudio__lessons button,.cstudio__states button{border:0;background:transparent;min-height:48px;padding:12px 14px;font-size:13px;border-bottom:2px solid transparent}
+.cstudio__lessons button[aria-selected=true],.cstudio__states button[aria-selected=true]{border-bottom-color:var(--forest);background:#173d3509;font-weight:600}
+.cstudio__group{margin-bottom:26px}.cstudio__group h3{font-size:clamp(26px,2.5vw,34px);margin-bottom:18px}
+.cstudio__states{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:18px}.cstudio__states button{flex:1;white-space:nowrap}
+.cstudio__view{margin-bottom:22px}.cstudio__image{position:relative;aspect-ratio:4/3;overflow:hidden;touch-action:pan-y;background:#e6e1d5}
+.cstudio__image img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .3s ease}
+.cstudio__group[data-detail=true] .cstudio__image img{transform:scale(2);transform-origin:50% 100%}
+.cstudio__view figcaption{display:grid;grid-template-columns:150px 1fr;gap:20px;padding-top:16px;font-size:14px}.cstudio__view figcaption strong{font-weight:600}.cstudio__view figcaption p{max-width:690px}
+.cstudio__note,.cstudio__disclosure{font-size:12px;line-height:1.6;max-width:840px}.cstudio__disclosure{border-top:1px solid var(--line);padding-top:16px}
+.cstudio__detail{min-height:44px;border:1px solid var(--forest);background:transparent;padding:10px 16px;font-size:12px;margin-bottom:16px}
+.cstudio__error{position:absolute;inset:30% 12%;background:var(--cream);display:grid;place-items:center;text-align:center;padding:20px;font-size:14px}
+@media(max-width:749px){.cstudio__context{font-size:12px}.cstudio__lessons{margin-bottom:20px}.cstudio__lessons button,.cstudio__states button{font-size:12px;padding:12px 6px;min-height:48px}.cstudio__states{margin-bottom:14px}.cstudio__image{width:calc(100% + 36px);margin-inline:-18px}.cstudio__view figcaption{display:block;font-size:14px}.cstudio__view figcaption strong{display:block;margin-bottom:5px}.cstudio__group h3{font-size:28px}.cstudio__note,.cstudio__disclosure{font-size:11px}}
 {% endstylesheet %}
 
 {% javascript %}
 (() => {
+  function initialiseStudio(root) {
+    const studio = root.querySelector('[data-curtain-studio]');
+    if (!studio || studio.dataset.ready) return;
+    const lessons = studio.querySelector('[data-studio-lessons]');
+    const lessonButtons = [...lessons.querySelectorAll('button')];
+    const groups = [...studio.querySelectorAll('[data-studio-group]')];
+    let lesson = 0;
+    function bindTabs(container, buttons, panels, select, current) {
+      container.setAttribute('role', 'tablist');
+      container.hidden = false;
+      buttons.forEach((button, index) => {
+        button.setAttribute('role', 'tab');
+        panels[index].setAttribute('role', 'tabpanel');
+        panels[index].setAttribute('aria-labelledby', button.id);
+        button.addEventListener('click', () => select(index));
+        button.addEventListener('keydown', event => {
+          let next;
+          if (event.key === 'ArrowRight') next = current() + 1;
+          else if (event.key === 'ArrowLeft') next = current() - 1;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = buttons.length - 1;
+          else return;
+          event.preventDefault();
+          select((next + buttons.length) % buttons.length);
+          buttons[current()].focus();
+        });
+      });
+    }
+    function display(buttons, panels, selected) {
+      buttons.forEach((button, index) => {
+        button.setAttribute('aria-selected', String(index === selected));
+        button.tabIndex = index === selected ? 0 : -1;
+        panels[index].hidden = index !== selected;
+      });
+    }
+    groups.forEach(group => {
+      const controls = group.querySelector('[data-studio-states]');
+      const buttons = [...controls.querySelectorAll('button')];
+      const views = [...group.querySelectorAll('[data-studio-view]')];
+      let selected = buttons.findIndex(button => button.dataset.state === group.dataset.defaultState);
+      const select = index => { selected = (index + views.length) % views.length; display(buttons, views, selected); };
+      bindTabs(controls, buttons, views, select, () => selected);
+      select(selected);
+      const detail = group.querySelector('[data-studio-detail]');
+      if (detail) {
+        detail.hidden = false;
+        detail.addEventListener('click', () => {
+          const enabled = group.dataset.detail !== 'true';
+          group.dataset.detail = String(enabled);
+          detail.setAttribute('aria-pressed', String(enabled));
+          detail.textContent = enabled ? detail.dataset.closeLabel : detail.dataset.openLabel;
+        });
+      }
+      views.forEach(view => {
+        const visual = view.querySelector('[data-studio-image]');
+        const image = visual.querySelector('img');
+        const error = visual.querySelector('.cstudio__error');
+        image.addEventListener('error', () => { error.hidden = false; });
+        image.addEventListener('load', () => { error.hidden = true; });
+        if (image.complete && !image.naturalWidth) error.hidden = false;
+        let start = null;
+        visual.addEventListener('pointerdown', event => {
+          if (event.pointerType !== 'mouse') start = { x: event.clientX, y: event.clientY, id: event.pointerId };
+        });
+        visual.addEventListener('pointercancel', () => { start = null; });
+        visual.addEventListener('pointerup', event => {
+          if (!start || start.id !== event.pointerId) return;
+          const dx = event.clientX - start.x;
+          const dy = event.clientY - start.y;
+          start = null;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            select(selected + (dx < 0 ? 1 : -1));
+            buttons[selected].focus({ preventScroll: true });
+          }
+        });
+      });
+    });
+    const chooseLesson = index => { lesson = index; display(lessonButtons, groups, lesson); };
+    bindTabs(lessons, lessonButtons, groups, chooseLesson, () => lesson);
+    chooseLesson(0);
+    studio.dataset.ready = 'true';
+  }
   function initialise(scope) {
     scope.querySelectorAll('[data-curtain-anatomy]').forEach(root => {
       if (root.dataset.ready) return;
@@ -250,6 +383,7 @@
         });
         panel.querySelector('.canatomy__hotspots').hidden = false;
       });
+      initialiseStudio(root);
       root.dataset.ready = 'true';
       tabs.hidden = false;
       root.querySelector('.canatomy__swipe').hidden = false;

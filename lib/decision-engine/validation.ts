@@ -292,21 +292,22 @@ export function validatePricingRuleActivation(rules: PricingRuleSet, registry: D
     rules.constructionAllowances.rightReturnMm,
     rules.patternRules.randomMatch,
     rules.patternRules.straightMatch,
-    rules.patternRules.halfDropMatch,
-    rules.patternRules.exactCentringAndJoining,
     rules.pairSingleConstruction,
     rules.marginPolicy.targetGrossMarginBasisPoints,
   ];
   for (const governed of governedValues) if (governed.status !== "LOCKED" || governed.value === null) issues.push(issue("GOVERNED_VALUE_NOT_LOCKED", `decisions.${governed.decisionId}`, "Every executable governed value must be locked and resolved before activation"));
   for (const [heading, rule] of Object.entries(rules.headingRules)) {
-    if (!rule || rule.fullnessFactor.value === null) issues.push(issue("HEADING_RULE_REQUIRED", `headingRules.${heading}`, "Heading fullness is required before activation"));
-    if (rule) {
-      if (rule.fullnessFactor.status !== "LOCKED" || rule.voileFullnessFactor.status !== "LOCKED" || rule.voileFullnessFactor.value === null) issues.push(issue("HEADING_RULE_NOT_LOCKED", `headingRules.${heading}`, "Heading and voile fullness must be locked before activation"));
+    // Null headings are intentionally excluded from a bounded production route.
+    if (!rule) continue;
+    if (rule.fullnessFactor.value === null) issues.push(issue("HEADING_RULE_REQUIRED", `headingRules.${heading}`, "Heading fullness is required before activation"));
+    if (rule.fullnessFactor.status !== "LOCKED") issues.push(issue("HEADING_RULE_NOT_LOCKED", `headingRules.${heading}`, "Heading fullness must be locked before activation"));
+    if (rule.voileFullnessFactor.value !== null && rule.voileFullnessFactor.status !== "LOCKED") issues.push(issue("HEADING_RULE_NOT_LOCKED", `headingRules.${heading}.voileFullnessFactor`, "Voile fullness must be locked when enabled"));
+    {
       if (rule.priceFactor.status !== "LOCKED" || rule.priceFactor.value === null) issues.push(issue("HEADING_PRICE_FACTOR_NOT_LOCKED", `headingRules.${heading}.priceFactor`, "Heading price factor must be locked before activation"));
     }
   }
   validateMoney(rules.baseMakeupLabourNetPerWidth, "baseMakeupLabourNetPerWidth", true, issues);
-  validateMoney(rules.patternMatchLabourNetPerWidth, "patternMatchLabourNetPerWidth", true, issues);
+  validateMoney(rules.patternMatchLabourNetPerWidth, "patternMatchLabourNetPerWidth", false, issues);
   for (const key of ["STANDARD", "BLACKOUT", "THERMAL", "BONDED"] as const) {
     const rule = rules.liningRules[key];
     if (rule.usableWidthMm === null || rule.topAllowanceMm === null || rule.bottomAllowanceMm === null) issues.push(issue("LINING_RULE_INCOMPLETE", `liningRules.${key}`, "Lining dimensions and allowances are required"));
@@ -333,7 +334,7 @@ export function validatePricingRuleActivation(rules: PricingRuleSet, registry: D
   }
   for (const packaging of rules.packagingRules) {
     validateMoney(packaging.internalCostNet, `packagingRules.${packaging.packagingClass}.internalCostNet`, true, issues);
-    if (packaging.packagingClass !== "SPECIALIST" && packaging.maximumFabricWidths === null && packaging.maximumFinishedWeightKg === null && packaging.maximumLongestSideMm === null) issues.push(issue("PACKAGING_THRESHOLD_REQUIRED", `packagingRules.${packaging.packagingClass}`, "Non-specialist packaging requires at least one classification threshold"));
+    if (packaging.packagingClass !== "SPECIALIST" && packaging.chargeToCustomer && packaging.maximumFabricWidths === null && packaging.maximumFinishedWeightKg === null && packaging.maximumLongestSideMm === null) issues.push(issue("PACKAGING_THRESHOLD_REQUIRED", `packagingRules.${packaging.packagingClass}`, "Customer-charged packaging requires a classification threshold"));
   }
   if ([rules.measurementValidation.minimumWidthCm, rules.measurementValidation.maximumWidthCm, rules.measurementValidation.minimumDropCm, rules.measurementValidation.maximumDropCm, rules.measurementValidation.suspiciousLikelyMillimetresAtCm].some((value) => value === null)) issues.push(issue("MEASUREMENT_LIMITS_REQUIRED", "measurementValidation", "Measurement limits and unit-confusion threshold are required"));
   return { valid: issues.length === 0, issues };

@@ -156,6 +156,7 @@ async function prepareCheckout(
   let measurements: Record<string, unknown>;
   let fabricMasterId: string;
   let supplierSku: string;
+  let fabricIdentity: { supplier: string; brand: string; design: string; colour: string };
   let heading: string;
   let lining: string;
   let construction: "PAIR" | "SINGLE";
@@ -212,6 +213,7 @@ async function prepareCheckout(
     if (!record || record.supplier_id !== supplierId || record.supplier_sku !== supplierSku) {
       throw new Error("CHECKOUT_FABRIC_IDENTITY_INVALID");
     }
+    fabricIdentity = { supplier: record.supplier_name, brand: record.brand_name, design: record.design_name, colour: record.colour_name };
     heading = String(spec.heading ?? request.heading);
     lining = String(spec.lining ?? request.lining);
     construction = String(spec.construction ?? request.construction) as "PAIR" | "SINGLE";
@@ -266,13 +268,17 @@ async function prepareCheckout(
     outcome = calculation.outcome;
     windowType = input.configuration.windowSlug;
     measurements = {
-      measurement_basis: input.configuration.measurementBasis,
-      coverage_width: calculation.totalCoverageWidthCm,
-      finished_drop: input.configuration.dropCm,
-      ...(input.configuration.baySegmentWidthsCm ? { bay_segment_widths: input.configuration.baySegmentWidthsCm, number_of_sections: input.configuration.bayNumberOfSections } : {}),
+      measurement_contract_version: "guided-measure-v1",
+      hardware: input.configuration.hardware ?? (input.configuration.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE" : "TRACK"),
+      raw_width_cm: calculation.totalCoverageWidthCm,
+      raw_drop_cm: input.configuration.dropCm,
+      width_anchor: input.configuration.windowSlug === "bay-window" ? "BAY_TRACK_ROUTE" : input.configuration.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE_BETWEEN_FINIALS" : "TRACK_FULL_WIDTH",
+      drop_anchor: input.configuration.windowSlug === "bay-window" ? "TRACK_TOP_TO_FINISH" : input.configuration.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE_BOTTOM_TO_FINISH" : calculation.heading === "WAVE" ? "TRACK_BOTTOM_TO_FINISH" : "TRACK_TOP_TO_FINISH",
+      ...(input.configuration.desiredFinish ? { desired_finish: input.configuration.desiredFinish } : {}),
     };
     fabricMasterId = record.fabric_id;
     supplierSku = record.supplier_sku;
+    fabricIdentity = { supplier: record.supplier_name, brand: record.brand_name, design: record.design_name, colour: record.colour_name };
     heading = calculation.heading;
     lining = calculation.lining;
     construction = calculation.construction;
@@ -347,6 +353,7 @@ async function prepareCheckout(
     measurements,
     fabricMasterId,
     supplierSku,
+    fabricIdentity,
     heading,
     lining,
     construction,

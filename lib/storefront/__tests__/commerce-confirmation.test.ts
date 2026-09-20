@@ -33,7 +33,7 @@ test("price confirmation cannot bypass measurements or use BONDED as a separate 
 });
 
 test("Bay and specialist identity-only selections enter review without supplier prices or uploads",()=>{
-  const bay=calculatePriceConfirmationReview({...request,windowSlug:"bay-window",widthCm:undefined,bayTrackOrPoleFitted:true,bayNumberOfSections:3,baySegmentWidthsCm:[80,180,80]},fabric,fabric);
+  const bay=calculatePriceConfirmationReview({...request,windowSlug:"bay-window",widthCm:340},fabric,fabric);
   assert.equal(bay.totalCoverageWidthCm,340);
   assert.equal(bay.totalAmountMinor,null);
   const {id,colour,recordLifecycle,supplierAvailability,allowedHeadings,allowedLinings,suitableWindowTypeSlugs}=fabric;

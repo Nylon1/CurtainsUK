@@ -59,17 +59,16 @@ test("a normal standard curtain receives a server-authoritative instant price", 
   assert.ok(!Object.hasOwn(result, "directCostNet"), "public response must not expose internal cost");
 });
 
-test("a real Dali bay is priced instantly at the unchanged 35% rule", () => {
+test("a real Dali bay uses the approved fitted-track and heading policy", () => {
   const fabric = { ...STOREFRONT_FABRICS.find((item) => item.id === "pt-4270-147")!, supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
   const result = calculateStagingPriceForTest({
     windowSlug: "bay-window",
     measurementBasis: "TRACK_WIDTH",
+    hardware: "TRACK",
+    widthCm: 340,
     dropCm: 220,
-    bayTrackOrPoleFitted: true,
-    bayNumberOfSections: 3,
-    baySegmentWidthsCm: [80, 180, 80],
     fabricId: "pt-4270-147",
-    heading: "WAVE",
+    heading: "DOUBLE_PINCH",
     lining: "BLACKOUT",
     construction: "PAIR",
     stackDirection: "SPLIT",
@@ -78,7 +77,7 @@ test("a real Dali bay is priced instantly at the unchanged 35% rule", () => {
   assert.equal(result.outcome, "INSTANT_PRICE");
   assert.equal(result.technicalReviewRequired, false);
   assert.equal(result.totalCoverageWidthCm, 340);
-  assert.equal(result.bayTrackOrPoleFitted, true);
+  assert.equal(result.bayTrackOrPoleFitted, null);
   assert.equal(result.fabricWidths, 6);
   assert.ok(result.fabricMetres > 0);
   assert.ok(result.totalAmountMinor !== null && result.totalAmountMinor > 0);
@@ -171,18 +170,16 @@ test("manual-quote pricing suppresses every numeric selling amount", () => {
   assert.match(result.configurationId, /^[0-9a-f-]{36}$/);
 });
 
-test("Bay coverage is derived from section widths and angles are not part of the contract", () => {
+test("Bay uses one raw fitted-track route and angles are not part of the contract", () => {
   const fabric = { ...STOREFRONT_FABRICS[0], supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
   const base = {
     windowSlug: "bay-window",
     measurementBasis: "TRACK_WIDTH" as const,
-    widthCm: 999,
+    hardware: "TRACK" as const,
+    widthCm: 340,
     dropCm: 220,
-    bayTrackOrPoleFitted: false,
-    bayNumberOfSections: 3,
-    baySegmentWidthsCm: [80, 180, 80],
     fabricId: fabric.id,
-    heading: "WAVE" as const,
+    heading: "PENCIL_PLEAT" as const,
     lining: "BLACKOUT" as const,
     construction: "PAIR" as const,
     stackDirection: "SPLIT" as const,
@@ -193,32 +190,29 @@ test("Bay coverage is derived from section widths and angles are not part of the
   assert.notEqual(result.totalAmountMinor, null);
   assert.equal(WINDOW_TYPES_BY_SLUG.get("bay-window")!.requiredMeasurements.some((item) => item.key === "bay_angles_degrees"), false);
 
-  assert.throws(() => calculateStagingPriceForTest({ ...base, bayNumberOfSections: 4 }, fabric), /must match the section count/);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, baySegmentWidthsCm: [80, 9.9, 180] }, fabric), /between 10 cm and 600 cm/);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, baySegmentWidthsCm: [80, 600.1, 180] }, fabric), /between 10 cm and 600 cm/);
-  assert.equal(calculateStagingPriceForTest({ ...base, bayTrackOrPoleFitted: undefined }, fabric).outcome, "INSTANT_PRICE");
+  assert.throws(() => calculateStagingPriceForTest({ ...base, heading: "WAVE" }, fabric), /MTM_HARDWARE_HEADING_INCOMPATIBLE/);
+  assert.throws(() => calculateStagingPriceForTest({ ...base, hardware: "POLE", measurementBasis: "POLE_USABLE_WIDTH" }, fabric), /MTM_BAY_REQUIRES_EXISTING_TRACK/);
 });
 
-test("Bay section-count and per-section launch boundaries are server-authoritative", () => {
+test("Bay accepts one route width and retains normal dimension limits", () => {
   const fabric = { ...STOREFRONT_FABRICS[0], supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
   const base = {
     windowSlug: "bay-window",
     measurementBasis: "TRACK_WIDTH" as const,
+    hardware: "TRACK" as const,
+    widthCm: 610,
     dropCm: 220,
-    bayTrackOrPoleFitted: true,
     fabricId: fabric.id,
     heading: "PENCIL_PLEAT" as const,
     lining: "STANDARD" as const,
     construction: "PAIR" as const,
     stackDirection: "SPLIT" as const,
   };
-  assert.equal(calculateStagingPriceForTest({ ...base, bayNumberOfSections: 2, baySegmentWidthsCm: [10, 600] }, fabric).totalCoverageWidthCm, 610);
-  assert.equal(calculateStagingPriceForTest({ ...base, bayNumberOfSections: 8, baySegmentWidthsCm: [10, 10, 10, 10, 10, 10, 10, 10] }, fabric).totalCoverageWidthCm, 80);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, bayNumberOfSections: 1, baySegmentWidthsCm: [100] }, fabric), /between 2 and 8/);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, bayNumberOfSections: 9, baySegmentWidthsCm: [10, 10, 10, 10, 10, 10, 10, 10, 10] }, fabric), /between 2 and 8/);
+  assert.equal(calculateStagingPriceForTest(base, fabric).totalCoverageWidthCm, 610);
+  assert.throws(() => calculateStagingPriceForTest({ ...base, widthCm: 1_201 }, fabric), /outside approved limits|invalid/i);
 });
 
-test("Curved and bow pricing uses the entered track arc as both coverage and required curve geometry", () => {
+test("Curved and bow geometry is excluded from automated payment", () => {
   const fabric = { ...STOREFRONT_FABRICS[0], supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
   const base = {
     windowSlug: "curved-bow-window",
@@ -233,14 +227,10 @@ test("Curved and bow pricing uses the entered track arc as both coverage and req
     photoNames: ["curved-window.jpg"],
   };
 
-  const result = calculateStagingPriceForTest(base, fabric);
-  assert.equal(result.outcome, "PRICE_WITH_REVIEW");
-  assert.equal(result.totalCoverageWidthCm, 260);
-  assert.ok(result.totalAmountMinor !== null && result.totalAmountMinor > 0);
-  assert.equal(calculateStagingPriceForTest({ ...base, photoNames: [] }, fabric).outcome, "PRICE_WITH_REVIEW");
+  assert.throws(() => calculateStagingPriceForTest(base, fabric), /MTM_AUTOMATED_OPENING_UNAVAILABLE/);
 });
 
-test("Corner pricing derives coverage from exactly two sections and retains one corner angle", () => {
+test("Corner geometry is excluded from automated payment", () => {
   const fabric = { ...STOREFRONT_FABRICS[0], supplierCostPerMetre: { amountMinor: 2_000, currency: "GBP" as const }, supplierCostEffectiveFrom: "2026-09-07" };
   const base = {
     windowSlug: "corner-window",
@@ -256,13 +246,7 @@ test("Corner pricing derives coverage from exactly two sections and retains one 
     photoNames: ["corner-window.jpg"],
   };
 
-  const result = calculateStagingPriceForTest(base, fabric);
-  assert.equal(result.outcome, "PRICE_WITH_REVIEW");
-  assert.equal(result.totalCoverageWidthCm, 300);
-  assert.ok(result.totalAmountMinor !== null && result.totalAmountMinor > 0);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, cornerSectionWidthsCm: [300] }, fabric), /exactly two/);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, cornerAngleDegrees: 0 }, fabric), /between 1 and 359/);
-  assert.throws(() => calculateStagingPriceForTest({ ...base, cornerSectionWidthsCm: [9, 291] }, fabric), /between 10 cm and 600 cm/);
+  assert.throws(() => calculateStagingPriceForTest(base, fabric), /MTM_AUTOMATED_OPENING_UNAVAILABLE/);
 });
 
 test("Awkward windows accept rough dimensions without uploads and remain manual quote", () => {

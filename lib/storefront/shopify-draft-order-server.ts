@@ -510,7 +510,13 @@ export async function executeStagingShopifyDraftOrder(input: {
   });
   const config = shopifyDraftOrderConfigFromEnvironment(input.environment);
   const contract = config?.mode === "CREATE_PRODUCTION_DRAFT"
-    ? asProductionDraftOrderContract(baseContract,input.handoff.snapshot.fabricMasterId)
+    ? asProductionDraftOrderContract(baseContract,input.handoff.snapshot.fabricMasterId, {
+      supplier: input.handoff.snapshot.fabricIdentity?.supplier ?? "Not recorded",
+      brand: input.handoff.snapshot.fabricIdentity?.brand ?? "Not recorded",
+      design: input.handoff.snapshot.fabricIdentity?.design ?? "Not recorded",
+      colour: input.handoff.snapshot.fabricIdentity?.colour ?? "Not recorded",
+      supplierSku: input.handoff.snapshot.supplierSku,
+    })
     : baseContract;
   return executeShopifyDraftOrder({
     contract,

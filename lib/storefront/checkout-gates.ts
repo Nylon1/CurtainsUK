@@ -128,6 +128,7 @@ export interface ImmutableConfigurationSnapshot {
   measurements: Readonly<Record<string, unknown>>;
   fabricMasterId: string;
   supplierSku: string;
+  fabricIdentity?: Readonly<{ supplier: string; brand: string; design: string; colour: string }>;
   heading: string;
   lining: string;
   construction: "PAIR" | "SINGLE";

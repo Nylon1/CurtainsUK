@@ -48,7 +48,8 @@ test('production contract preserves exact price and identity without labelling r
  const original=buildShopifyDraftOrderContract({handoff});
  const production=asProductionDraftOrderContract(original,handoff.snapshot.fabricMasterId);
  assert.deepEqual(production.expected,original.expected);
- assert.deepEqual(production.input.lineItems,original.input.lineItems);
+ assert.equal(production.input.lineItems.length,original.input.lineItems.length);
+ assert.ok(production.input.lineItems[0].customAttributes.some((attribute)=>attribute.key==='Fabric Master ID'&&attribute.value===handoff.snapshot.fabricMasterId));
  assert.equal(production.paymentEnabled,true);
  assert.equal(production.environment,'PRODUCTION');
  assert.equal(original.paymentEnabled,false);

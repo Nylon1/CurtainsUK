@@ -3,7 +3,7 @@ import test from "node:test";
 import { calculateStagingPriceForTest } from "../staging-pricing";
 import { STOREFRONT_FABRICS } from "../fabrics";
 
-test("ordinary Bay uses section sum and instant pricing without track status or angles", () => {
+test("ordinary Bay uses its full fitted track route and instant pricing without angles", () => {
   const fabric = {
     ...STOREFRONT_FABRICS[0],
     supplierCostPerMetre: { amountMinor: 2000, currency: "GBP" as const },
@@ -22,8 +22,7 @@ test("ordinary Bay uses section sum and instant pricing without track status or 
     {
       ...common,
       windowSlug: "bay-window",
-      bayNumberOfSections: 3,
-      baySegmentWidthsCm: [80, 180, 80],
+      widthCm: 340,
     },
     fabric,
   );
@@ -36,23 +35,12 @@ test("ordinary Bay uses section sum and instant pricing without track status or 
   assert.equal(bay.totalCoverageWidthCm, 340);
   assert.equal(bay.totalAmountMinor, straight.totalAmountMinor);
   assert.equal(bay.fabricMetres, straight.fabricMetres);
-  assert.throws(() =>
-    calculateStagingPriceForTest(
-      {
-        ...common,
-        windowSlug: "bay-window",
-        bayNumberOfSections: 3,
-        baySegmentWidthsCm: [80, 180],
-      },
-      fabric,
-    ),
-  );
+  assert.throws(() => calculateStagingPriceForTest({ ...common, windowSlug: "bay-window" }, fabric), /Width and drop/);
   const specialist = calculateStagingPriceForTest(
     {
       ...common,
       windowSlug: "bay-window",
-      bayNumberOfSections: 3,
-      baySegmentWidthsCm: [200, 300, 200],
+      widthCm: 700,
     },
     fabric,
   );

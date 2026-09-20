@@ -9,12 +9,23 @@ import { STOREFRONT_FABRICS_BY_ID } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
 import { allocateVatInclusiveRetailTotal } from "./checkout-gates";
 import { MissingCommercialRuleError } from "@/lib/decision-engine/errors";
+import {
+  assertAutomatedMtmCompatibility,
+  isAutomatedMtmWindowSlug,
+  measurementAnchors,
+  type MtmDesiredFinish,
+  type MtmHardware,
+} from "./mtm-production-policy";
 
 export interface StagingPriceRequest {
   windowSlug: string;
   measurementBasis: CoverageMeasurementBasis;
+  /** Fitted hardware. It is explicit in production snapshots, not inferred by the workshop. */
+  hardware?: MtmHardware;
   widthCm?: number;
   dropCm: number;
+  /** Design intent only; the tape reading stays the customer raw drop. */
+  desiredFinish?: MtmDesiredFinish;
   bayTrackOrPoleFitted?: boolean;
   bayNumberOfSections?: number;
   baySegmentWidthsCm?: number[];
@@ -133,16 +144,22 @@ function cornerMeasurements(input: StagingPriceRequest) {
 export function prepareStagingConfiguration(input: StagingPriceRequest, pricedFabric: ConfigurationFabricIdentity) {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow) throw new Error("Unknown window type");
-  if (storefrontWindow.journey === "SPECIALIST") throw new Error("Specialist shapes require the review journey");
+  if (!isAutomatedMtmWindowSlug(input.windowSlug)) throw new Error("MTM_AUTOMATED_OPENING_UNAVAILABLE");
+  const hardware = input.hardware ?? (input.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE" : "TRACK");
+  const requiredBasis: CoverageMeasurementBasis = hardware === "POLE" ? "POLE_USABLE_WIDTH" : "TRACK_WIDTH";
+  if (input.measurementBasis !== requiredBasis) throw new Error("MTM_HARDWARE_MEASUREMENT_BASIS_INCOMPATIBLE");
+  assertAutomatedMtmCompatibility({ windowSlug: input.windowSlug, hardware, heading: input.heading });
   const masterSlug = storefrontWindow.masterSlugs[0];
   const windowType = WINDOW_TYPES_BY_SLUG.get(masterSlug);
   if (!windowType) throw new Error("Window type is unavailable");
   const isBay = masterSlug === "bay-window";
   const isCorner = masterSlug === "corner-window";
   const isCurved = masterSlug === "curved-window" || masterSlug === "bow-window";
-  const bay = isBay ? bayMeasurements(input) : null;
+  // V1 Bay is an existing fitted track measured as one complete route. Historic
+  // segment inputs are deliberately not used as production width evidence.
+  const bay = null;
   const corner = isCorner ? cornerMeasurements(input) : null;
-  const widthCm = bay?.totalCoverageWidthCm ?? corner?.totalCoverageWidthCm ?? input.widthCm;
+  const widthCm = corner?.totalCoverageWidthCm ?? input.widthCm;
   if (typeof widthCm !== "number" || !Number.isFinite(widthCm) || !Number.isFinite(input.dropCm)) throw new Error("Width and drop must be valid numbers");
 
   const configuration = createCurtainConfiguration({
@@ -155,18 +172,12 @@ export function prepareStagingConfiguration(input: StagingPriceRequest, pricedFa
     lining: input.lining,
     interlining: input.interlining ?? "NONE",
     construction: input.construction,
-    trackOrPole: isBay || isCorner ? "BAY_TRACK" : isCurved ? "CURVED_TRACK" : input.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE" : "STRAIGHT_TRACK",
+    trackOrPole: isBay || isCorner ? "BAY_TRACK" : isCurved ? "CURVED_TRACK" : hardware === "POLE" ? "POLE" : "STRAIGHT_TRACK",
     trackComplexity: isBay || isCorner ? "MULTI_SEGMENT" : isCurved ? "BENT" : "SIMPLE_STRAIGHT",
-    numberOfSegments: bay?.numberOfSections ?? corner?.sectionWidthsCm.length ?? 1,
+    numberOfSegments: corner?.sectionWidthsCm.length ?? 1,
     stackDirection: input.stackDirection,
   });
-  configuration.measurements = isBay
-    ? {
-        coverage_width: widthCm,
-        finished_drop: input.dropCm,
-        bay_segment_widths: bay!.sectionWidthsCm,
-      }
-    : isCorner
+  configuration.measurements = isCorner
       ? {
           coverage_width: widthCm,
           finished_drop: input.dropCm,
@@ -183,7 +194,7 @@ export function prepareStagingConfiguration(input: StagingPriceRequest, pricedFa
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
   assertValidConfiguration(configuration, windowType, pricedFabric, buildStagingRuleSet().measurementValidation);
-  return {configuration, windowType, widthCm, bay};
+  return {configuration, windowType, widthCm, bay, hardware, anchors: measurementAnchors({ windowSlug: input.windowSlug, hardware, heading: input.heading })};
 }
 
 function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabric: FabricSpec, availability: string): StagingPriceResponse & {fabricWidths:number;fabricMetres:number} {

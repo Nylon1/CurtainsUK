@@ -351,17 +351,39 @@ export function buildShopifyDraftOrderContract(input: {
 }
 
 /** Promote execution only; the approved configuration and all financial inputs stay immutable. */
-export function asProductionDraftOrderContract(contract: Readonly<ShopifyDraftOrderContract>, fabricMasterId: string): Readonly<ShopifyDraftOrderContract> {
+export function asProductionDraftOrderContract(
+  contract: Readonly<ShopifyDraftOrderContract>,
+  fabricMasterId: string,
+  fabricIdentity?: Readonly<{ supplier: string; brand: string; design: string; colour: string; supplierSku: string }>,
+): Readonly<ShopifyDraftOrderContract> {
   if (!/^[a-zA-Z0-9_-]{1,200}$/.test(fabricMasterId)) throw new Error("SHOPIFY_FABRIC_ID_INVALID");
+  const identity = fabricIdentity ?? { supplier: "Not recorded", brand: "Not recorded", design: "Not recorded", colour: "Not recorded", supplierSku: "Not recorded" };
   return immutableClone({
     ...contract,
     environment: "PRODUCTION" as const,
     paymentEnabled: true,
     input: {
       ...contract.input,
-      note: `CurtainsUK made-to-measure configuration ${contract.configurationId}. Supplier ordering remains manual.`,
+      note: `CurtainsUK made-to-measure configuration ${contract.configurationId}. Payment enters CurtainsUK review before any workroom release. Change requests: enquiries@curtainsuk.com within 2 hours; requests are reviewed, not guaranteed.`,
       tags: ["CURTAINSUK_PRODUCTION", contract.idempotencyTag],
-      customAttributes: [...contract.input.customAttributes, {key:"curtainsuk_fabric_master_id",value:fabricMasterId}],
+      customAttributes: [
+        ...contract.input.customAttributes,
+        {key:"curtainsuk_fabric_master_id",value:fabricMasterId},
+        {key:"curtainsuk_post_payment_state",value:"PAID_TO_CURTAINSUK_REVIEW"},
+        {key:"curtainsuk_change_request_window",value:"Email enquiries@curtainsuk.com within 2 hours; requests are reviewed, not guaranteed."},
+      ],
+      lineItems: contract.input.lineItems.map((line) => ({
+        ...line,
+        customAttributes: [
+          ...line.customAttributes,
+          { key: "Fabric Master ID", value: fabricMasterId },
+          { key: "Supplier SKU", value: identity.supplierSku },
+          { key: "Supplier", value: safeText(identity.supplier) },
+          { key: "Brand", value: safeText(identity.brand) },
+          { key: "Design", value: safeText(identity.design) },
+          { key: "Colour", value: safeText(identity.colour) },
+        ],
+      })),
     },
   });
 }

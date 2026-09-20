@@ -83,23 +83,17 @@
           <legend>2. Measurements</legend>
           <div class="cuk-fields">
             <div class="cuk-field cuk-field--wide" data-cuk-measurement-basis>
-              <label for="CukBasis-{{ section.id }}">Width measurement basis</label>
+              <label for="CukBasis-{{ section.id }}">Fitted hardware</label>
               <select id="CukBasis-{{ section.id }}" name="measurementBasis" required>
-                <option value="TRACK_WIDTH">Track width</option>
-                <option value="POLE_USABLE_WIDTH">Usable pole width</option>
+                <option value="TRACK_WIDTH">Fitted track</option>
+                <option value="POLE_USABLE_WIDTH">Fitted pole</option>
               </select>
-              <p class="cuk-hint">Enter the full coverage width, not a finished curtain width.</p>
+              <p class="cuk-hint">Measure the fitted hardware, not the finished curtain. <a class="cuk-text-link" href="/pages/how-to-measure">How to measure</a></p>
             </div>
             <div class="cuk-field" data-cuk-width><label for="CukWidth-{{ section.id }}" data-cuk-width-label>Width (cm)</label><input id="CukWidth-{{ section.id }}" name="widthCm" type="number" min="30" max="1200" step="0.1" value="200" required><p class="cuk-hint cuk-hidden" data-cuk-width-hint>Measure along the complete curved track, not straight across the opening.</p></div>
             <div class="cuk-field"><label for="CukDrop-{{ section.id }}">Drop (cm)</label><input id="CukDrop-{{ section.id }}" name="dropCm" type="number" min="30" max="600" step="0.1" value="220" required></div>
-            <div class="cuk-field cuk-hidden" data-cuk-bay>
-              <label for="CukBaySectionCount-{{ section.id }}">Number of bay sections</label>
-              <input id="CukBaySectionCount-{{ section.id }}" name="baySectionCount" type="number" min="2" max="8" step="1" value="3" required>
-            </div>
             <div class="cuk-field cuk-field--wide cuk-hidden" data-cuk-bay>
-              <span class="cuk-field__label">Width of each section (cm)</span>
-              <div class="cuk-bay-sections" data-cuk-bay-sections></div>
-              <p class="cuk-hint">Measure along the fitted track or pole. We add the sections to calculate the full curtain coverage width; angles are not needed for curtain pricing.</p>
+              <p class="cuk-hint">For a bay, select fitted track and measure its full route from start to finish. <a class="cuk-text-link" href="/pages/how-to-measure">Measure a bay track</a></p>
             </div>
             <div class="cuk-field cuk-hidden" data-cuk-corner><label for="CukCornerOne-{{ section.id }}">First section width (cm)</label><input id="CukCornerOne-{{ section.id }}" name="cornerSectionOneCm" type="number" min="10" max="600" step="0.1" value="150" required></div>
             <div class="cuk-field cuk-hidden" data-cuk-corner><label for="CukCornerTwo-{{ section.id }}">Second section width (cm)</label><input id="CukCornerTwo-{{ section.id }}" name="cornerSectionTwoCm" type="number" min="10" max="600" step="0.1" value="150" required></div>
@@ -148,7 +142,7 @@
 
         <div class="cuk-error" data-cuk-error hidden></div>
         <button class="cuk-button" type="submit">Check my price or review route</button>
-        <p class="cuk-hint">{% if production_checkout %}Review your measurements and choices carefully before continuing.{% else %}Staging only. This flow cannot take real payment or release a job to manufacture.{% endif %}</p>
+          <p class="cuk-hint">{% if production_checkout %}Review your measurements and choices carefully before continuing.{% else %}Staging only. This flow cannot take real payment or release a job to manufacture.{% endif %}</p>
       </form>
 
       <aside class="cuk-panel cuk-result" data-cuk-result hidden aria-live="polite">
@@ -188,6 +182,7 @@
             <input id="CukAcceptSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>
             <span>I confirm the summary above matches my measurements and selections.</span>
           </label>
+          <p class="cuk-hint">Need to request a change? Email us within 2 hours of placing your order at enquiries@curtainsuk.com. We’ll review your request and get in touch.</p>
           <div class="cuk-error" data-cuk-checkout-error hidden></div>
           <p class="cuk-review-confirmation cuk-hidden" data-cuk-checkout-confirmation tabindex="-1"></p>
           <button class="cuk-button" type="submit">{% if production_checkout %}Continue to secure checkout{% else %}Prepare test checkout{% endif %}</button>

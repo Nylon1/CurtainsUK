@@ -401,29 +401,40 @@
     select.value = values.includes(previous) ? previous : values[0];
   }
 
+  const AUTOMATED_MTM_WINDOWS = new Set([
+    "standard-window", "patio-sliding-doors", "french-doors", "bifold-doors", "bay-window",
+  ]);
+
+  function automatedHeadings(windowType, measurementBasis) {
+    if (windowType?.slug === "bay-window") return ["PENCIL_PLEAT", "DOUBLE_PINCH"];
+    return measurementBasis === "POLE_USABLE_WIDTH"
+      ? ["PENCIL_PLEAT", "DOUBLE_PINCH", "EYELET"]
+      : ["PENCIL_PLEAT", "DOUBLE_PINCH", "WAVE"];
+  }
+
   function setJourneyFields(root, windowType) {
     const isBay = windowType?.slug === "bay-window";
-    const isCorner = windowType?.journey === "REVIEW" && windowType.slug === "corner-window";
-    const isCurved = windowType?.journey === "REVIEW" && windowType.slug === "curved-bow-window";
-    const isSpecialist = windowType?.journey === "SPECIALIST";
-    const isAwkward = isSpecialist && windowType.slug === "awkward-unusual-window";
-    const isShapedSpecialist = isSpecialist && !isAwkward;
-    const isReview = windowType?.journey === "REVIEW";
-    const needsEvidence = isReview || isSpecialist;
+    const isCorner = false;
+    const isCurved = false;
+    const isSpecialist = false;
+    const isAwkward = false;
+    const isShapedSpecialist = false;
+    const isReview = false;
+    const needsEvidence = false;
     root.querySelectorAll("[data-cuk-bay]").forEach((item) => item.classList.toggle("cuk-hidden", !isBay));
     root.querySelectorAll("[data-cuk-corner]").forEach((item) => item.classList.toggle("cuk-hidden", !isCorner));
     root.querySelectorAll("[data-cuk-standard]").forEach((item) => item.classList.toggle("cuk-hidden", isSpecialist));
-    root.querySelectorAll("[data-cuk-measurement-basis]").forEach((item) => item.classList.toggle("cuk-hidden", isBay || isCorner || isCurved));
-    root.querySelectorAll("[data-cuk-width]").forEach((item) => item.classList.toggle("cuk-hidden", isBay || isCorner));
+    root.querySelectorAll("[data-cuk-measurement-basis]").forEach((item) => item.classList.toggle("cuk-hidden", isBay));
+    root.querySelectorAll("[data-cuk-width]").forEach((item) => item.classList.toggle("cuk-hidden", false));
     root.querySelectorAll("[data-cuk-specialist-shape]").forEach((item) => item.classList.toggle("cuk-hidden", !isShapedSpecialist));
     root.querySelectorAll("[data-cuk-awkward]").forEach((item) => item.classList.toggle("cuk-hidden", !isAwkward));
     root.querySelectorAll("[data-cuk-review-evidence]").forEach((item) => item.classList.toggle("cuk-hidden", !needsEvidence));
     root.querySelectorAll("[data-cuk-specialist-evidence]").forEach((item) => item.classList.toggle("cuk-hidden", !isSpecialist));
-    root.querySelectorAll("[data-cuk-bay] input, [data-cuk-bay] select, [data-cuk-bay] textarea").forEach((field) => { field.disabled = !isBay; });
+    root.querySelectorAll("[data-cuk-bay] input, [data-cuk-bay] select, [data-cuk-bay] textarea").forEach((field) => { field.disabled = true; });
     root.querySelectorAll("[data-cuk-corner] input, [data-cuk-corner] select, [data-cuk-corner] textarea").forEach((field) => { field.disabled = !isCorner; });
     root.querySelectorAll("[data-cuk-standard] input, [data-cuk-standard] select, [data-cuk-standard] textarea").forEach((field) => { field.disabled = isSpecialist; });
-    root.querySelectorAll("[data-cuk-measurement-basis] input, [data-cuk-measurement-basis] select, [data-cuk-measurement-basis] textarea").forEach((field) => { field.disabled = isBay || isCorner || isCurved || isSpecialist; });
-    root.querySelectorAll("[data-cuk-width] input, [data-cuk-width] select, [data-cuk-width] textarea").forEach((field) => { field.disabled = isBay || isCorner || isSpecialist; });
+    root.querySelectorAll("[data-cuk-measurement-basis] input, [data-cuk-measurement-basis] select, [data-cuk-measurement-basis] textarea").forEach((field) => { field.disabled = isBay; });
+    root.querySelectorAll("[data-cuk-width] input, [data-cuk-width] select, [data-cuk-width] textarea").forEach((field) => { field.disabled = false; });
     root.querySelectorAll("[data-cuk-specialist-shape] input, [data-cuk-specialist-shape] select, [data-cuk-specialist-shape] textarea").forEach((field) => { field.disabled = !isShapedSpecialist; });
     root.querySelectorAll("[data-cuk-awkward] input, [data-cuk-awkward] select, [data-cuk-awkward] textarea").forEach((field) => { field.disabled = !isAwkward; });
     root.querySelectorAll("[data-cuk-review-evidence] input, [data-cuk-review-evidence] select, [data-cuk-review-evidence] textarea").forEach((field) => { field.disabled = !needsEvidence; });
@@ -432,7 +443,8 @@
     if (widthLabel) widthLabel.textContent = isCurved ? "Track arc length (cm)" : "Width (cm)";
     root.querySelector("[data-cuk-width-hint]")?.classList.toggle("cuk-hidden", !isCurved);
     const form = root.querySelector(".cuk-form");
-    replaceOptions(form?.elements.heading, windowType?.headings, {
+    if (isBay && form?.elements.measurementBasis) form.elements.measurementBasis.value = "TRACK_WIDTH";
+    replaceOptions(form?.elements.heading, automatedHeadings(windowType, form?.elements.measurementBasis?.value), {
       PENCIL_PLEAT: "Pencil pleat", WAVE: "Wave", EYELET: "Eyelet", DOUBLE_PINCH: "Double pinch pleat", TRIPLE_PINCH: "Triple pinch pleat", TAB_TOP: "Tab top",
     });
     replaceOptions(form?.elements.lining, windowType?.linings, {
@@ -576,7 +588,7 @@
     try {
       const requested = params.get("fabric") || readJson(PROJECT_KEY, {}).fabricId;
       catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog") + (requested ? `?fabric=${encodeURIComponent(requested)}` : ""));
-      catalog.windows.forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
+      catalog.windows.filter((item) => AUTOMATED_MTM_WINDOWS.has(item.slug)).forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
       fabricSelect.replaceChildren(option("Choose a fabric", ""));
       catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} — ${item.colour}`, item.id)));
     } catch (error) {
@@ -588,7 +600,8 @@
 
     const remembered = readJson(PROJECT_KEY, {});
     restoreProject(form, remembered);
-    windowSelect.value = params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window";
+    const requestedWindow = params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window";
+    windowSelect.value = AUTOMATED_MTM_WINDOWS.has(requestedWindow) ? requestedWindow : "standard-window";
     const requestedFabric = params.get("fabric") || remembered.fabricId;
     const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true);
     fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric) ? requestedFabric : configurableFabrics[0]?.id;
@@ -638,13 +651,20 @@
       syncConfiguratorUrl(form);
       emit("window_type_selected", { window_type: windowSelect.value });
     });
+    form.elements.measurementBasis.addEventListener("change", () => {
+      const selected = catalog.windows.find((item) => item.slug === windowSelect.value);
+      setJourneyFields(root, selected);
+      result.hidden = true;
+      checkoutForm.classList.add("cuk-hidden");
+      rememberProject(projectSnapshot(form, root));
+    });
     fabricSelect.addEventListener("change", () => {
       form.querySelector("button[type=submit]").disabled = !configurableFabrics.some((fabric) => fabric.id === fabricSelect.value);
       rememberProject(projectSnapshot(form, root));
       syncConfiguratorUrl(form);
       emit("fabric_selected", { fabric_id: fabricSelect.value, window_type: windowSelect.value });
     });
-    form.elements.baySectionCount.addEventListener("change", () => {
+    form.elements.baySectionCount?.addEventListener("change", () => {
       const existing = baySectionWidths(root);
       renderBaySections(root, form.elements.baySectionCount.value, existing);
       rememberProject(projectSnapshot(form, root));
@@ -677,6 +697,9 @@
       let path = "price";
       let body;
 
+      if (!AUTOMATED_MTM_WINDOWS.has(selected.slug)) {
+        throw new Error("This opening needs a curtain-team review and is not available for automated checkout.");
+      }
       if (selected.journey === "SPECIALIST") {
         const isAwkward = selected.slug === "awkward-unusual-window";
         path = "specialist-review";
@@ -704,37 +727,12 @@
           photoNames,
         };
       } else {
-        const segments = baySectionWidths(root);
         const isBay = selected.slug === "bay-window";
-        const isCorner = selected.slug === "corner-window";
-        const isCurved = selected.slug === "curved-bow-window";
-        const cornerSections = [Number(form.elements.cornerSectionOneCm.value), Number(form.elements.cornerSectionTwoCm.value)];
-        const derivedWidth = isCorner
-          ? cornerSections.reduce((total, width) => total + width, 0)
-          : segments.reduce((total, width) => total + width, 0);
-        if (isBay && (segments.some((width) => !Number.isFinite(width) || width < 10 || width > 600) || derivedWidth < 30 || derivedWidth > 1200)) {
-          errorBox.textContent = "Check each bay section width. The total curtain coverage must be between 30 cm and 1,200 cm.";
-          errorBox.hidden = false;
-          emit("validation_failure", { window_type: windowSelect.value, source: "browser", field: "bay_sections" });
-          return;
-        }
-        const cornerAngle = Number(form.elements.cornerAngleDegrees.value);
-        if (isCorner && (cornerSections.some((width) => !Number.isFinite(width) || width < 10 || width > 600) || derivedWidth < 30 || derivedWidth > 1200 || !Number.isFinite(cornerAngle) || cornerAngle < 1 || cornerAngle > 359)) {
-          errorBox.textContent = "Check both corner section widths and enter one corner angle between 1° and 359°.";
-          errorBox.hidden = false;
-          emit("validation_failure", { window_type: windowSelect.value, source: "browser", field: "corner_geometry" });
-          return;
-        }
         body = {
           windowSlug: windowSelect.value,
-          measurementBasis: isBay || isCorner || isCurved ? "TRACK_WIDTH" : form.elements.measurementBasis.value,
-          widthCm: isBay || isCorner ? derivedWidth : Number(form.elements.widthCm.value),
+          measurementBasis: isBay ? "TRACK_WIDTH" : form.elements.measurementBasis.value,
+          widthCm: Number(form.elements.widthCm.value),
           dropCm: Number(form.elements.dropCm.value),
-
-          bayNumberOfSections: isBay ? segments.length : undefined,
-          baySegmentWidthsCm: isBay ? segments : undefined,
-          cornerSectionWidthsCm: isCorner ? cornerSections : undefined,
-          cornerAngleDegrees: isCorner ? cornerAngle : undefined,
           fabricId: fabricSelect.value,
           heading: form.elements.heading.value,
           lining: form.elements.lining.value,
@@ -780,7 +778,7 @@
         }
         const selectedFabric = response.selectedFabric || catalog.fabrics.find((fabric) => fabric.id === fabricSelect.value);
         const widthSummary = selected.slug === "bay-window"
-          ? `${body.widthCm} cm total across ${body.bayNumberOfSections} sections`
+          ? `${body.widthCm} cm full fitted bay-track route × ${body.dropCm} cm drop`
           : selected.slug === "corner-window"
             ? `${body.widthCm} cm total across two sections · ${body.cornerAngleDegrees}° corner`
             : selected.slug === "curved-bow-window"

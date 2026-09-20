@@ -1,0 +1,274 @@
+{% liquid
+  assign forms = 'wave,double-pinch,pencil-pleat,eyelet' | split: ','
+  assign layers = 'heading,flow,structure,fabric,room,floor' | split: ','
+%}
+<div class="canatomy" data-curtain-anatomy>
+  <header class="canatomy__intro canatomy__wrap">
+    <p class="canatomy__eyebrow">{{ 'curtain_anatomy.eyebrow' | t }}</p>
+    <div class="canatomy__intro-grid"><h1>{{ 'curtain_anatomy.title' | t }}</h1><p>{{ 'curtain_anatomy.intro' | t }}</p></div>
+    <p class="canatomy__hierarchy">{{ 'curtain_anatomy.hierarchy' | t }}</p>
+  </header>
+  <section class="canatomy__experience canatomy__wrap" aria-labelledby="anatomy-title-{{ section.id }}">
+    <div class="canatomy__section-head"><h2 id="anatomy-title-{{ section.id }}">{{ 'curtain_anatomy.anatomy' | t }}</h2><p>{{ 'curtain_anatomy.instruction' | t }}</p></div>
+    <div class="canatomy__forms" data-anatomy-tabs hidden aria-label="{{ 'curtain_anatomy.form_controls' | t }}">
+      {% for form in forms %}{% assign label_key = 'curtain_anatomy.' | append: form | append: '_label' %}
+        <button type="button" id="anatomy-tab-{{ section.id }}-{{ form }}" aria-controls="anatomy-panel-{{ section.id }}-{{ form }}">{{ label_key | t }}</button>
+      {% endfor %}
+    </div>
+    {% for form in forms %}
+      {% assign form_key = 'curtain_anatomy.' | append: form %}
+      {% assign label_key = form_key | append: '_label' %}
+      {% assign full_label_key = form_key | append: '_name' %}
+      {% assign image_name = 'cuk-anatomy-' | append: form | append: '.png' %}
+      <div class="canatomy__panel" id="anatomy-panel-{{ section.id }}-{{ form }}" data-anatomy-panel data-form="{{ form }}" data-focus="heading">
+        <div class="canatomy__visual" data-anatomy-visual>
+          {% assign alt_key = form_key | append: '_alt' %}
+          <img class="canatomy__master" src="{{ image_name | asset_url }}" alt="{{ alt_key | t }}" width="1448" height="1086" {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+          <div class="canatomy__focus" aria-hidden="true"></div>
+          <div class="canatomy__hotspots" hidden>
+            {% for layer in layers %}{% assign layer_key = 'curtain_anatomy.' | append: layer %}
+              <button type="button" class="canatomy__spot canatomy__spot--{{ layer }}" data-layer="{{ layer }}" aria-label="{{ layer_key | t }}" aria-controls="anatomy-{{ section.id }}-{{ form }}-{{ layer }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"><span aria-hidden="true">0{{ forloop.index }}</span></button>
+            {% endfor %}
+          </div>
+          <p class="canatomy__image-error" hidden>{{ 'curtain_anatomy.image_error' | t }}</p>
+          <span class="canatomy__visual-name">{{ full_label_key | t }}</span>
+          <button class="canatomy__closeup" type="button" data-closeup aria-pressed="false" data-open-label="{{ 'curtain_anatomy.look_closer' | t }}" data-close-label="{{ 'curtain_anatomy.whole_curtain' | t }}" hidden>{{ 'curtain_anatomy.look_closer' | t }}</button>
+        </div>
+        <div class="canatomy__layers">
+          <p class="canatomy__eyebrow canatomy__selected">{{ full_label_key | t }}</p>
+          {% for layer in layers %}
+            {% assign layer_key = 'curtain_anatomy.' | append: layer %}
+            {% assign body_key = form_key | append: '_' | append: layer %}
+            {% assign intro_key = layer_key | append: '_intro' %}
+            <details class="canatomy__layer" data-anatomy-layer="{{ layer }}" id="anatomy-{{ section.id }}-{{ form }}-{{ layer }}" {% if forloop.first %}open{% endif %}>
+              <summary><span class="canatomy__number">0{{ forloop.index }}</span><span>{{ layer_key | t }}</span><span class="canatomy__plus" aria-hidden="true">+</span></summary>
+              <div class="canatomy__layer-copy"><h3>{{ intro_key | t }}</h3><p>{{ body_key | t }}</p></div>
+            </details>
+          {% endfor %}
+        </div>
+        <div class="canatomy__takeaway">
+          {% assign gives_key = form_key | append: '_gives' %}{% assign consider_key = form_key | append: '_consider' %}
+          <p><span>{{ 'curtain_anatomy.gives' | t }}</span>{{ gives_key | t }}</p>
+          <p><span>{{ 'curtain_anatomy.consider' | t }}</span>{{ consider_key | t }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="canatomy__study-note"><p>{{ 'curtain_anatomy.study_note' | t }}</p><p class="canatomy__swipe" hidden>{{ 'curtain_anatomy.swipe' | t }}</p></div>
+  </section>
+  <section class="canatomy__knowledge canatomy__wrap" aria-labelledby="knowledge-title-{{ section.id }}">
+    <div class="canatomy__section-head"><h2 id="knowledge-title-{{ section.id }}">{{ 'curtain_anatomy.knowledge_title' | t }}</h2><p>{{ 'curtain_anatomy.knowledge_intro' | t }}</p></div>
+    <div class="canatomy__knowledge-grid">
+      <details class="canatomy__knowledge-item"><summary>{{ 'curtain_anatomy.pattern_fold' | t }}<span aria-hidden="true">+</span></summary><div><p>{{ 'curtain_anatomy.pattern_body' | t }}</p><div class="canatomy__links"><a href="/pages/fabric-library?view=browse-fabrics&amp;activity=low">{{ 'curtain_anatomy.quieter' | t }}</a><a href="/pages/fabric-library?view=browse-fabrics&amp;activity=statement">{{ 'curtain_anatomy.expressive' | t }}</a><a href="/pages/fabric-library?view=browse-fabrics&amp;pattern=stripe">{{ 'curtain_anatomy.stripe' | t }}</a><a href="/pages/fabric-library?view=browse-fabrics&amp;pattern=geometric">{{ 'curtain_anatomy.geometric' | t }}</a><a href="/pages/fabric-library?view=browse-fabrics&amp;pattern=botanical">{{ 'curtain_anatomy.botanical' | t }}</a></div><aside><p>{{ 'curtain_anatomy.pattern_question' | t }}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'curtain_anatomy.fi' | t }}</a></aside></div></details>
+      <details class="canatomy__knowledge-item"><summary>{{ 'curtain_anatomy.texture_fold' | t }}<span aria-hidden="true">+</span></summary><div><p>{{ 'curtain_anatomy.texture_body' | t }}</p><div class="canatomy__links"><a href="/pages/fabric-library?view=browse-fabrics&amp;texture=visible-weave">{{ 'curtain_anatomy.weave' | t }}</a><a href="/pages/fabric-library?view=browse-fabrics&amp;texture=relief">{{ 'curtain_anatomy.raised' | t }}</a></div><aside><p>{{ 'curtain_anatomy.texture_question' | t }}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'curtain_anatomy.fi_texture' | t }}</a></aside></div></details>
+      <details class="canatomy__knowledge-item"><summary>{{ 'curtain_anatomy.activity_fullness' | t }}<span aria-hidden="true">+</span></summary><div><p>{{ 'curtain_anatomy.activity_body' | t }}</p></div></details>
+      <details class="canatomy__knowledge-item"><summary>{{ 'curtain_anatomy.character_form' | t }}<span aria-hidden="true">+</span></summary><div><p>{{ 'curtain_anatomy.character_body' | t }}</p></div></details>
+      <details class="canatomy__knowledge-item"><summary>{{ 'curtain_anatomy.presence_form' | t }}<span aria-hidden="true">+</span></summary><div><p>{{ 'curtain_anatomy.presence_body' | t }}</p><div class="canatomy__links"><a href="/pages/fabric-library?view=browse-fabrics&amp;presence=light">{{ 'curtain_anatomy.light' | t }}</a><a href="/pages/fabric-library?view=browse-fabrics&amp;presence=substantial">{{ 'curtain_anatomy.substantial' | t }}</a></div><aside><p>{{ 'curtain_anatomy.presence_question' | t }}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'curtain_anatomy.fi_presence' | t }}</a></aside></div></details>
+    </div>
+  </section>
+  <section class="canatomy__support canatomy__wrap" aria-labelledby="support-title-{{ section.id }}">
+    <div class="canatomy__section-head"><h2 id="support-title-{{ section.id }}">{{ 'curtain_anatomy.support_title' | t }}</h2><p>{{ 'curtain_anatomy.support_intro' | t }}</p></div>
+    <div class="canatomy__support-grid">
+      <article class="canatomy__lesson"><figure class="canatomy__lesson-photo canatomy__lesson-photo--fullness"><img src="{{ 'cuk-anatomy-wave.png' | asset_url }}" width="1448" height="1086" loading="lazy" alt="{{ 'curtain_anatomy.fullness_alt' | t }}"></figure><p class="canatomy__eyebrow">{{ 'curtain_anatomy.fullness' | t }}</p><h3>{{ 'curtain_anatomy.fullness_title' | t }}</h3><svg class="canatomy__volume-art" viewBox="0 0 320 64" role="img" aria-label="{{ 'curtain_anatomy.volume_illustration' | t }}" preserveAspectRatio="none"><defs><linearGradient id="volume-shade-{{ section.id }}"><stop stop-color="#bdb39f"/><stop offset=".48" stop-color="#eee8dc"/><stop offset="1" stop-color="#c9bfaa"/></linearGradient></defs><path d="M0 3H320V60Q300 67 282 60T246 60T210 60T170 60T116 60T48 60T0 60Z" fill="#e7dfd0"/><path d="M10 3H70Q62 32 70 61Q40 66 10 60Q18 32 10 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M79 3H127Q119 32 127 61Q103 66 79 60Q87 32 79 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M136 3H172Q164 32 172 61Q154 66 136 60Q144 32 136 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M179 3H207Q199 32 207 61Q193 66 179 60Q187 32 179 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M214 3H236Q228 32 236 61Q225 66 214 60Q222 32 214 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M243 3H260Q252 32 260 61Q251.5 66 243 60Q251 32 243 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M267 3H280Q272 32 280 61Q273.5 66 267 60Q275 32 267 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M287 3H297Q289 32 297 61Q292 66 287 60Q295 32 287 3Z" fill="url(#volume-shade-{{ section.id }})"/><path d="M304 3H312Q304 32 312 61Q308 66 304 60Q312 32 304 3Z" fill="url(#volume-shade-{{ section.id }})"/></svg><div class="canatomy__continuum"><span>{{ 'curtain_anatomy.less' | t }}</span><span aria-hidden="true">↔</span><span>{{ 'curtain_anatomy.more' | t }}</span></div><p>{{ 'curtain_anatomy.fullness_body' | t }}</p><p class="canatomy__fine">{{ 'curtain_anatomy.fullness_note' | t }}</p></article>
+      <article class="canatomy__lesson"><figure class="canatomy__lesson-photo canatomy__lesson-photo--length"><img src="{{ 'cuk-anatomy-double-pinch.png' | asset_url }}" width="1448" height="1086" loading="lazy" alt="{{ 'curtain_anatomy.length_alt' | t }}"></figure><p class="canatomy__eyebrow">{{ 'curtain_anatomy.length' | t }}</p><h3>{{ 'curtain_anatomy.length_title' | t }}</h3><p>{{ 'curtain_anatomy.length_body' | t }}</p><details class="canatomy__small-detail"><summary>{{ 'curtain_anatomy.soft_break' | t }}</summary><p>{{ 'curtain_anatomy.soft_break_body' | t }}</p>{% assign soft_image = images['prestigious-room-watercolour-dining.webp'] %}{% assign soft_alt = 'curtain_anatomy.soft_break_alt' | t %}{% render 'curtainsuk-style-image', source: soft_image, alt: soft_alt, eager: false %}<p class="canatomy__fine">{{ 'curtain_anatomy.supplier_note' | t }}</p></details></article>
+      <article class="canatomy__lesson"><figure class="canatomy__lesson-photo canatomy__lesson-photo--position"><img src="{{ 'cuk-anatomy-wave.png' | asset_url }}" width="1448" height="1086" loading="lazy" alt="{{ 'curtain_anatomy.position_alt' | t }}"></figure><p class="canatomy__eyebrow">{{ 'curtain_anatomy.position' | t }}</p><h3>{{ 'curtain_anatomy.position_title' | t }}</h3><p>{{ 'curtain_anatomy.position_body' | t }}</p><details class="canatomy__small-detail"><summary>{{ 'curtain_anatomy.position_more' | t }}</summary><p>{{ 'curtain_anatomy.position_more_body' | t }}</p></details></article>
+    </div>
+  </section>
+  <section class="canatomy__return"><div class="canatomy__wrap">
+    <p class="canatomy__eyebrow">{{ 'curtain_anatomy.return_label' | t }}</p><h2>{{ 'curtain_anatomy.return_title' | t }}</h2><p>{{ 'curtain_anatomy.return_body' | t }}</p>
+    <div class="canatomy__actions"><a class="canatomy__button" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'curtain_anatomy.fi' | t }}</a><a class="canatomy__button canatomy__button--outline" href="/pages/fabric-library?view=browse-fabrics">{{ 'curtain_anatomy.browse' | t }}</a></div>
+    <p class="canatomy__already">{{ 'curtain_anatomy.already' | t }} <a href="/pages/curtain-visualiser">{{ 'curtain_anatomy.make' | t }}</a></p>
+  </div></section>
+</div>
+
+{% stylesheet %}
+.canatomy{--cream:#f5f2e9;--forest:#173d35;--line:#173d3530;background:var(--cream);color:var(--forest);font-family:var(--font-body-family);font-size:16px;line-height:1.6}
+.canatomy *{box-sizing:border-box}.canatomy [hidden]{display:none!important}
+.canatomy h1,.canatomy h2,.canatomy h3,.canatomy p,.canatomy figure{margin:0}
+.canatomy h1,.canatomy h2,.canatomy h3{font-family:var(--font-heading-family);font-weight:400;letter-spacing:-.035em;line-height:1.12;color:inherit}
+.canatomy h1{font-size:clamp(48px,5.4vw,80px);max-width:630px}.canatomy h2{font-size:clamp(31px,3.2vw,45px)}.canatomy h3{font-size:25px}
+.canatomy a{color:inherit;text-underline-offset:5px;text-decoration-thickness:1px}.canatomy button,.canatomy summary{font:inherit;color:inherit}.canatomy button{cursor:pointer}
+.canatomy a:focus-visible,.canatomy button:focus-visible,.canatomy summary:focus-visible{outline:3px solid #a66b2c;outline-offset:4px}
+.canatomy__wrap{width:min(1440px,calc(100% - 96px));margin-inline:auto}.canatomy__intro{padding-block:70px 52px}.canatomy__eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;line-height:1.5;text-transform:uppercase}
+.canatomy__intro-grid{display:grid;grid-template-columns:1.2fr 1fr;align-items:end;gap:60px;margin-top:20px}.canatomy__intro-grid>p{font-size:18px;max-width:480px;padding-bottom:6px}
+.canatomy__hierarchy{margin-top:30px!important;font-size:11px;letter-spacing:.11em;text-transform:uppercase}
+.canatomy__section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:26px}.canatomy__section-head>p{max-width:370px;font-size:14px}
+.canatomy__forms{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-bottom:24px}
+.canatomy__forms button{border:0;border-bottom:2px solid transparent;background:transparent;min-height:60px;padding:15px 10px;font-size:13px;letter-spacing:.04em}
+.canatomy__forms button[aria-selected=true]{border-bottom-color:var(--forest);background:#173d3507;font-weight:600}
+.canatomy__panel{display:grid;grid-template-columns:minmax(0,2.7fr) minmax(250px,1fr);gap:0 34px;margin-bottom:30px}
+.canatomy__visual{position:relative;aspect-ratio:4/3;overflow:hidden;background:#e6e1d5;touch-action:pan-y;align-self:start}
+.canatomy__master{display:block;width:100%;height:100%;object-fit:contain;transition:transform .4s ease}
+.canatomy__panel[data-closeup=true] .canatomy__master{transform:scale(2.7);transform-origin:23% 0}
+.canatomy .canatomy__panel[data-closeup=true] .canatomy__focus,.canatomy .canatomy__panel[data-closeup=true] .canatomy__hotspots{display:none}
+.canatomy__closeup{position:absolute;bottom:10px;right:12px;min-height:44px;padding:10px 15px;border:1px solid #173d3560;background:var(--cream);color:var(--forest);font-size:11px!important;letter-spacing:.02em}
+.canatomy__visual[data-image-error] .canatomy__closeup{display:none}
+.canatomy__focus{display:none;position:absolute;pointer-events:none;border:1px solid #fff9;box-shadow:0 0 0 1000px #173d3512;transition:inset .4s ease,border-radius .4s ease}
+.canatomy[data-ready] .canatomy__focus{display:block}
+.canatomy__panel[data-focus=heading] .canatomy__focus{inset:1% 5% 82% 5%;border-radius:2px}
+.canatomy__panel[data-focus=flow] .canatomy__focus{inset:17% 60% 11% 10%;border-radius:2px}
+.canatomy__panel[data-focus=structure] .canatomy__focus{inset:3% 7% 50% 61%;border-radius:2px}
+.canatomy__panel[data-focus=fabric] .canatomy__focus{inset:37% 65% 13% 10%;border-radius:2px}
+.canatomy__panel[data-focus=room] .canatomy__focus{inset:0;border-color:transparent;box-shadow:none}
+.canatomy__panel[data-focus=floor] .canatomy__focus{inset:81% 5% 3% 5%;border-radius:2px}
+.canatomy__spot{position:absolute;width:44px;height:44px;border:0;display:grid;place-items:center;padding:0;background:transparent;transform:translate(-50%,-50%);border-radius:50%}
+.canatomy__spot span{display:grid;place-items:center;width:29px;height:29px;background:#f5f2e9e8;border:1px solid #173d3580;border-radius:50%;font-size:10px;letter-spacing:.03em;box-shadow:0 1px 8px #0001}
+.canatomy__spot[aria-pressed=true] span{background:var(--forest);color:var(--cream);border-color:var(--cream);box-shadow:0 0 0 5px #f5f2e94d}
+.canatomy__spot--heading{left:23%;top:9%}.canatomy__spot--flow{left:35%;top:43%}.canatomy__spot--structure{left:78%;top:28%}.canatomy__spot--fabric{left:18%;top:68%}.canatomy__spot--room{left:54%;top:53%}.canatomy__spot--floor{left:78%;top:89%}
+.canatomy__visual-name{position:absolute;bottom:13px;left:16px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:#f5f2e9e8;padding:5px 9px}
+.canatomy__layers{align-self:start}.canatomy__selected{padding-block:2px 16px}.canatomy__layer{border-top:1px solid var(--line)}
+.canatomy summary{cursor:pointer;list-style:none}.canatomy summary::-webkit-details-marker{display:none}
+.canatomy__layer summary{display:flex;align-items:center;min-height:50px;gap:14px;font-size:13px;letter-spacing:.01em}
+.canatomy__number{font-size:10px;opacity:.85}.canatomy__plus{margin-left:auto;font-size:19px;font-weight:300}
+.canatomy details[open]>summary .canatomy__plus{transform:rotate(45deg)}.canatomy__layer[open]>summary{font-weight:600}
+.canatomy__layer-copy{padding:3px 0 20px 27px}.canatomy__layer-copy h3{font-size:23px;line-height:1.15;margin-bottom:12px}.canatomy__layer-copy p{font-size:14px;line-height:1.65}
+.canatomy__takeaway{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-top:20px}.canatomy__takeaway p{font-size:13px;max-width:540px}.canatomy__takeaway span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.canatomy__study-note{display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--line);padding-top:15px;font-size:11px;line-height:1.5}.canatomy__swipe{white-space:nowrap}
+.canatomy__knowledge{padding-block:74px 0}.canatomy__knowledge-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}.canatomy__knowledge-item{border-top:1px solid var(--line);align-self:start}
+.canatomy__knowledge-item summary{display:flex;justify-content:space-between;align-items:center;min-height:65px;font-size:15px;letter-spacing:.02em;gap:20px}
+.canatomy__knowledge-item>div{padding:0 0 26px;font-size:14px;max-width:590px}.canatomy__links{display:flex;gap:8px 24px;flex-wrap:wrap;margin-top:14px}.canatomy__links a{padding-block:9px;font-size:12px}
+.canatomy__knowledge-item aside{border-left:1px solid #173d3560;padding-left:18px;margin-top:22px;font-size:13px}.canatomy__knowledge-item aside a{display:inline-block;padding-block:10px}
+.canatomy__support{padding-block:74px 82px}.canatomy__support-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}.canatomy__lesson-photo{height:180px;overflow:hidden;margin-bottom:24px!important;background:#e6e1d5}.canatomy__lesson-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.canatomy__lesson-photo--fullness img{object-position:left center;transform:scale(1.7);transform-origin:20% 50%}.canatomy__lesson-photo--length img{object-position:bottom;transform:scale(1.7);transform-origin:50% 100%}.canatomy__lesson-photo--position img{object-position:top}
+.canatomy__lesson h3{margin:12px 0 16px;max-width:310px}.canatomy__lesson>p:not(.canatomy__eyebrow){font-size:13px}.canatomy__continuum{display:flex;align-items:center;justify-content:space-between;border-block:1px solid var(--line);margin:18px 0;padding:12px 0;font-size:11px;gap:8px}
+.canatomy__fine{font-size:10px!important;line-height:1.5;margin-top:12px!important;opacity:.76}.canatomy__small-detail{margin-top:14px;font-size:13px}.canatomy__small-detail summary{padding-block:12px;text-decoration:underline;text-underline-offset:5px}.canatomy__small-detail img{width:100%;height:auto;display:block;margin-top:14px}
+.canatomy__volume-art{display:block;width:100%;height:64px;margin-top:18px;color:#c6bdab}
+.canatomy__return{background:var(--forest);color:var(--cream);padding-block:74px}.canatomy__return h2{font-size:clamp(40px,4.5vw,65px);max-width:860px;margin:20px 0 24px}.canatomy__return .canatomy__wrap>p:not(.canatomy__eyebrow){max-width:670px;font-size:16px}
+.canatomy__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}.canatomy__button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 24px;border:1px solid var(--cream);background:var(--cream);color:var(--forest)!important;font-size:13px;text-decoration:none}
+.canatomy__button--outline{background:transparent;color:var(--cream)!important}.canatomy__already{margin-top:27px!important;font-size:13px!important}.canatomy__already a{display:inline-block;padding:10px 0;margin-left:10px}
+.canatomy__image-error{position:absolute;inset:30% 12%;display:grid;place-items:center;background:var(--cream);padding:20px;text-align:center;font-size:14px}.canatomy__visual[data-image-error] .canatomy__focus,.canatomy__visual[data-image-error] .canatomy__hotspots{display:none}
+@media(min-width:1500px){.canatomy__layer summary{min-height:58px}.canatomy__layer-copy{padding-bottom:28px}}
+@media(max-width:1050px){.canatomy__wrap{width:calc(100% - 56px)}.canatomy__panel{grid-template-columns:minmax(0,1.8fr) minmax(235px,1fr);gap:0 24px}.canatomy__intro-grid{gap:35px}.canatomy__layer summary{min-height:46px}.canatomy__layer-copy h3{font-size:21px}.canatomy__layer-copy p{font-size:13px}}
+@media(max-width:749px){.canatomy__wrap{width:calc(100% - 36px)}.canatomy__intro{padding-block:38px 32px}.canatomy__intro-grid{grid-template-columns:1fr;gap:18px;margin-top:14px}.canatomy__intro-grid>p{font-size:15px;padding:0}.canatomy__hierarchy{font-size:9px;letter-spacing:.065em;margin-top:22px!important}
+.canatomy__section-head{display:block;margin-bottom:20px}.canatomy__section-head>p{font-size:13px;margin-top:12px}.canatomy__forms{margin-bottom:16px}.canatomy__forms button{font-size:11px;min-height:54px;padding:12px 4px;letter-spacing:0}
+.canatomy__panel{display:block;margin-bottom:22px}.canatomy__visual{width:calc(100% + 36px);margin-inline:-18px}.canatomy__layers{margin-top:20px}.canatomy__selected{padding-bottom:12px}
+.canatomy__layer summary{min-height:46px;font-size:13px}.canatomy__layer-copy{padding:2px 0 16px 27px}.canatomy__layer-copy h3{font-size:24px;margin-bottom:9px}.canatomy__layer-copy p{font-size:14px}
+.canatomy__takeaway{display:block;padding-top:18px;border-top:1px solid var(--line);margin-top:4px}.canatomy__takeaway p+p{margin-top:14px}.canatomy__takeaway p{font-size:12px}
+.canatomy__study-note{display:block;font-size:10px}.canatomy__swipe{margin-top:9px!important}.canatomy__knowledge{padding-top:46px}.canatomy__knowledge-grid{grid-template-columns:1fr}.canatomy__knowledge-item summary{min-height:58px;font-size:14px}
+.canatomy__support{padding-block:45px 48px}.canatomy__support-grid{grid-template-columns:1fr;gap:34px}.canatomy__lesson-photo{height:160px;margin-bottom:20px!important}.canatomy__lesson h3{max-width:none;font-size:29px}.canatomy__lesson>p:not(.canatomy__eyebrow){font-size:14px}.canatomy__return{padding-block:46px}.canatomy__return .canatomy__wrap>p:not(.canatomy__eyebrow){font-size:14px}.canatomy__actions{display:grid;gap:12px}.canatomy__button{width:100%}.canatomy__already a{margin-left:5px}}
+@media(prefers-reduced-motion:reduce){.canatomy *{transition:none!important;scroll-behavior:auto!important}}
+{% endstylesheet %}
+
+{% javascript %}
+(() => {
+  function initialise(scope) {
+    scope.querySelectorAll('[data-curtain-anatomy]').forEach(root => {
+      if (root.dataset.ready) return;
+      const tabs = root.querySelector('[data-anatomy-tabs]');
+      const buttons = [...tabs.querySelectorAll('button')];
+      const panels = [...root.querySelectorAll('[data-anatomy-panel]')];
+      if (buttons.length !== 4 || panels.length !== 4) return;
+      let selected = 0;
+      let focus = 'heading';
+      let closeup = false;
+      function applyCloseup(panel) {
+        panel.dataset.closeup = String(closeup);
+        const button = panel.querySelector('[data-closeup]');
+        button.hidden = focus !== 'heading';
+        button.setAttribute('aria-pressed', String(closeup));
+        button.textContent = closeup ? button.dataset.closeLabel : button.dataset.openLabel;
+      }
+      function focusLayer(panel, layer) {
+        panel.dataset.focus = layer;
+        if (layer !== 'heading') closeup = false;
+        applyCloseup(panel);
+        panel.querySelectorAll('[data-anatomy-layer]').forEach(detail => {
+          detail.open = detail.dataset.anatomyLayer === layer;
+        });
+        panel.querySelectorAll('[data-layer]').forEach(button => {
+          button.setAttribute('aria-pressed', String(button.dataset.layer === layer));
+        });
+      }
+      function activate(index) {
+        selected = (index + panels.length) % panels.length;
+        buttons.forEach((button, i) => {
+          button.setAttribute('aria-selected', String(i === selected));
+          button.tabIndex = i === selected ? 0 : -1;
+          panels[i].hidden = i !== selected;
+        });
+        focusLayer(panels[selected], focus);
+      }
+      tabs.setAttribute('role', 'tablist');
+      buttons.forEach((button, index) => {
+        button.setAttribute('role', 'tab');
+        panels[index].setAttribute('role', 'tabpanel');
+        panels[index].setAttribute('aria-labelledby', button.id);
+        button.addEventListener('click', () => activate(index));
+        button.addEventListener('keydown', event => {
+          let next;
+          if (event.key === 'ArrowRight') next = selected + 1;
+          else if (event.key === 'ArrowLeft') next = selected - 1;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = panels.length - 1;
+          else return;
+          event.preventDefault();
+          activate(next);
+          buttons[selected].focus();
+        });
+      });
+      panels.forEach(panel => {
+        const visual = panel.querySelector('[data-anatomy-visual]');
+        const image = visual.querySelector('img');
+        const error = visual.querySelector('.canatomy__image-error');
+        panel.querySelector('[data-closeup]').addEventListener('click', () => {
+          closeup = !closeup;
+          applyCloseup(panel);
+        });
+        const fail = () => { visual.dataset.imageError = 'true'; error.hidden = false; };
+        image.addEventListener('error', fail);
+        image.addEventListener('load', () => { delete visual.dataset.imageError; error.hidden = true; });
+        if (image.complete && !image.naturalWidth) fail();
+        panel.querySelectorAll('[data-layer]').forEach(button => {
+          button.addEventListener('click', () => {
+            focus = button.dataset.layer;
+            focusLayer(panel, focus);
+            const summary = panel.querySelector('[data-anatomy-layer="' + focus + '"] summary');
+            summary.focus({ preventScroll: true });
+          });
+        });
+        panel.querySelectorAll('[data-anatomy-layer]').forEach(detail => {
+          detail.querySelector('summary').addEventListener('click', event => {
+            event.preventDefault();
+            focus = detail.dataset.anatomyLayer;
+            focusLayer(panel, focus);
+          });
+        });
+        let start = null;
+        visual.addEventListener('pointerdown', event => {
+          if (event.pointerType === 'mouse' || event.target.closest('button')) return;
+          start = { x: event.clientX, y: event.clientY, id: event.pointerId };
+        });
+        visual.addEventListener('pointercancel', () => { start = null; });
+        visual.addEventListener('pointerup', event => {
+          if (!start || start.id !== event.pointerId) return;
+          const dx = event.clientX - start.x;
+          const dy = event.clientY - start.y;
+          start = null;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            activate(selected + (dx < 0 ? 1 : -1));
+            buttons[selected].focus({ preventScroll: true });
+          }
+        });
+        panel.querySelector('.canatomy__hotspots').hidden = false;
+      });
+      root.dataset.ready = 'true';
+      tabs.hidden = false;
+      root.querySelector('.canatomy__swipe').hidden = false;
+      activate(0);
+    });
+  }
+  initialise(document);
+  document.addEventListener('shopify:section:load', event => initialise(event.target));
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Curtain Anatomy",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {"type":"paragraph","content":"Approved controlled form studies. These demonstrate form, never a purchasable fabric or exact-fabric preview."}
+  ],
+  "presets": [{"name":"Curtain Anatomy"}]
+}
+{% endschema %}

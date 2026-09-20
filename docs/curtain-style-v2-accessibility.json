@@ -1,0 +1,12 @@
+{
+  "tool": "axe 4.12.1 via agent-browser",
+  "scope": "[data-curtain-anatomy]",
+  "counts": {
+    "inapplicable": 62,
+    "incomplete": 1,
+    "passes": 26,
+    "violations": 0
+  },
+  "violations": [],
+  "manualReview": "Image-overlay contrast remains an automated incomplete check; inspected visually. This is not a full WCAG audit."
+}

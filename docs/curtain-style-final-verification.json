@@ -1,0 +1,13 @@
+{
+  "live": "MAIN",
+  "candidate": "UNPUBLISHED",
+  "liveChanges": [],
+  "candidateChanges": [
+    "locales/en.default.json",
+    "sections/curtainsuk-curtain-style.liquid",
+    "snippets/curtainsuk-header-navigation.liquid",
+    "snippets/curtainsuk-style-image.liquid",
+    "templates/page.curtain-style.json"
+  ],
+  "removed": []
+}

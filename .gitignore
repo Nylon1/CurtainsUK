@@ -74,3 +74,8 @@ next-env.d.ts
 
 # Built from the approved premium consultation for the same-origin Shopify app proxy.
 /lib/storefront/hci/premium/
+
+# Local complete Shopify candidate and asset-review downloads. Scoped source lives in shopify-theme.
+/candidate-theme/
+/artifacts/curtain-style-v1/
+/artifacts/curtain-style-v2/

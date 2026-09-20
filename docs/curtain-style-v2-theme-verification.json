@@ -1,0 +1,23 @@
+{
+  "live": {
+    "id": "182336356731",
+    "role": "MAIN",
+    "fileCount": 407,
+    "changed": [],
+    "removed": []
+  },
+  "candidate": {
+    "id": "182339731835",
+    "role": "UNPUBLISHED",
+    "fileCount": 414,
+    "changed": [
+      "assets/cuk-anatomy-double-pinch.png",
+      "assets/cuk-anatomy-eyelet.png",
+      "assets/cuk-anatomy-pencil-pleat.png",
+      "assets/cuk-anatomy-wave.png",
+      "locales/en.default.json",
+      "sections/curtainsuk-curtain-style.liquid"
+    ],
+    "removed": []
+  }
+}

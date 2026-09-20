@@ -1,0 +1,39 @@
+{
+  "type": "approved-generated-form-studies",
+  "exactFabricSimulation": false,
+  "referencePhotosPublished": false,
+  "assets": [
+    {
+      "form": "wave",
+      "themeAsset": "assets/cuk-anatomy-wave.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-form-study-wave-v2.png?v=1789902177",
+      "fileId": "gid://shopify/MediaImage/72624754983291",
+      "filename": "curtainsuk-form-study-wave-v2.png",
+      "alt": "Wave curtain form study in a neutral reference room."
+    },
+    {
+      "form": "double-pinch",
+      "themeAsset": "assets/cuk-anatomy-double-pinch.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-form-study-double-pinch-v2.png?v=1789902184",
+      "fileId": "gid://shopify/MediaImage/72624772088187",
+      "filename": "curtainsuk-form-study-double-pinch-v2.png",
+      "alt": "Double Pinch Pleat curtain form study with paired fixed pleats."
+    },
+    {
+      "form": "pencil-pleat",
+      "themeAsset": "assets/cuk-anatomy-pencil-pleat.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-form-study-pencil-pleat-v2.png?v=1789902218",
+      "fileId": "gid://shopify/MediaImage/72624839786875",
+      "filename": "curtainsuk-form-study-pencil-pleat-v2.png",
+      "alt": "Pencil Pleat curtain form study with a densely gathered heading."
+    },
+    {
+      "form": "eyelet",
+      "themeAsset": "assets/cuk-anatomy-eyelet.png",
+      "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/curtainsuk-form-study-eyelet-v2.png?v=1789902191",
+      "fileId": "gid://shopify/MediaImage/72624785097083",
+      "filename": "curtainsuk-form-study-eyelet-v2.png",
+      "alt": "Eyelet curtain form study with a pole threaded through grommets."
+    }
+  ]
+}

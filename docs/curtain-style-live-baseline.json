@@ -1,0 +1,2052 @@
+{
+  "data": {
+    "theme": {
+      "id": "gid://shopify/OnlineStoreTheme/182336356731",
+      "name": "CurtainsUK - Browse Fabrics review",
+      "role": "MAIN",
+      "files": {
+        "nodes": [
+          {
+            "filename": "assets/animations.js",
+            "checksumMd5": "f4257a19eb1d120e5b0d710e85d8a5b2",
+            "size": "3657"
+          },
+          {
+            "filename": "assets/base.css",
+            "checksumMd5": "478cca03c9e19a42f41bb96e51754811",
+            "size": "81445"
+          },
+          {
+            "filename": "assets/cart-disclosure-modal.js",
+            "checksumMd5": "13b3c1b73c3d4bbf47718180a3cd37d6",
+            "size": "5787"
+          },
+          {
+            "filename": "assets/cart-disclosure-tooltip.js",
+            "checksumMd5": "22a72ed05fc5bb5e95506aef80e79450",
+            "size": "1648"
+          },
+          {
+            "filename": "assets/cart-drawer.js",
+            "checksumMd5": "856219113a210bd885867a1f04e2998f",
+            "size": "4599"
+          },
+          {
+            "filename": "assets/cart-notification.js",
+            "checksumMd5": "493129c503e15137f46a10de6a6ae9ea",
+            "size": "3379"
+          },
+          {
+            "filename": "assets/cart.js",
+            "checksumMd5": "067ed2e1f88b21068e8a9c67f76c1a7d",
+            "size": "15748"
+          },
+          {
+            "filename": "assets/collage.css",
+            "checksumMd5": "afd1fd9cfbb62b47c9f116c5e94a9f1b",
+            "size": "5234"
+          },
+          {
+            "filename": "assets/collapsible-content.css",
+            "checksumMd5": "a8e0387d221740aa876b18f85cbb6501",
+            "size": "2947"
+          },
+          {
+            "filename": "assets/component-accordion.css",
+            "checksumMd5": "1e08a2ec8737904507c61e2251023b58",
+            "size": "1145"
+          },
+          {
+            "filename": "assets/component-article-card.css",
+            "checksumMd5": "334deeed4fd4aecf09e9a4044a2e74be",
+            "size": "2370"
+          },
+          {
+            "filename": "assets/component-card.css",
+            "checksumMd5": "cca7c626e96a2f2873ae5961bed99a59",
+            "size": "14067"
+          },
+          {
+            "filename": "assets/component-cart-drawer.css",
+            "checksumMd5": "dad9f54ee06b0614dad375efb75b9d09",
+            "size": "7569"
+          },
+          {
+            "filename": "assets/component-cart-items.css",
+            "checksumMd5": "d97ae299227cb84ffb7cbd0f3bcdee99",
+            "size": "12619"
+          },
+          {
+            "filename": "assets/component-cart-notification.css",
+            "checksumMd5": "00ae23214488973541c0a9716a7f434d",
+            "size": "3393"
+          },
+          {
+            "filename": "assets/component-cart.css",
+            "checksumMd5": "caf57dbc9a8970445e70f82926a62344",
+            "size": "3339"
+          },
+          {
+            "filename": "assets/component-collection-hero.css",
+            "checksumMd5": "3a5cfc82ef16c23375d71ea1f80a1a42",
+            "size": "2189"
+          },
+          {
+            "filename": "assets/component-complementary-products.css",
+            "checksumMd5": "b0940f72eb09e43a405a975eb7d4d9ab",
+            "size": "4302"
+          },
+          {
+            "filename": "assets/component-deferred-media.css",
+            "checksumMd5": "9e8521edf831e6cd21c31e16e50b533f",
+            "size": "2559"
+          },
+          {
+            "filename": "assets/component-disclosures.css",
+            "checksumMd5": "540b8d05f12fc85b6c6cf26124a22c80",
+            "size": "3381"
+          },
+          {
+            "filename": "assets/component-discounts.css",
+            "checksumMd5": "bd1602d8de6c40b35e19f8ec44e2ee22",
+            "size": "562"
+          },
+          {
+            "filename": "assets/component-facets.css",
+            "checksumMd5": "b7f31c8f6982d75f644b525d0bc63a40",
+            "size": "25694"
+          },
+          {
+            "filename": "assets/component-image-with-text.css",
+            "checksumMd5": "ea266a81060c889760762c0287661ce5",
+            "size": "11542"
+          },
+          {
+            "filename": "assets/component-list-menu.css",
+            "checksumMd5": "501d64354e044821e95ef3e3903af7fd",
+            "size": "516"
+          },
+          {
+            "filename": "assets/component-list-payment.css",
+            "checksumMd5": "11e7704326c3fee6834e3f6d91e44699",
+            "size": "362"
+          },
+          {
+            "filename": "assets/component-list-social.css",
+            "checksumMd5": "648fdd25e7248f2900b7afbcd8cce889",
+            "size": "504"
+          },
+          {
+            "filename": "assets/component-localization-form.css",
+            "checksumMd5": "4d5f49194cd5946c9f8feb669b4191c9",
+            "size": "9758"
+          },
+          {
+            "filename": "assets/component-mega-menu.css",
+            "checksumMd5": "fbeb427ad46ee1823fa049f954db0fbc",
+            "size": "1681"
+          },
+          {
+            "filename": "assets/component-menu-drawer.css",
+            "checksumMd5": "74888ab7f8e15b873baa35bf664bd41c",
+            "size": "4500"
+          },
+          {
+            "filename": "assets/component-modal-video.css",
+            "checksumMd5": "3827e2f6213a381f20e52343d3b79390",
+            "size": "1808"
+          },
+          {
+            "filename": "assets/component-model-viewer-ui.css",
+            "checksumMd5": "b595b3af1c5f26695a793b934f40b013",
+            "size": "1500"
+          },
+          {
+            "filename": "assets/component-newsletter.css",
+            "checksumMd5": "f869f9874dd754df068f6795ea05de91",
+            "size": "1408"
+          },
+          {
+            "filename": "assets/component-pagination.css",
+            "checksumMd5": "7f04489e05b3f80b7359b26c85401f28",
+            "size": "1385"
+          },
+          {
+            "filename": "assets/component-pickup-availability.css",
+            "checksumMd5": "13bb19727ad2b1fcdd04bef204dc8a3a",
+            "size": "3511"
+          },
+          {
+            "filename": "assets/component-predictive-search.css",
+            "checksumMd5": "7290e4f8eb0a98788fd7622a7e500a54",
+            "size": "5827"
+          },
+          {
+            "filename": "assets/component-price.css",
+            "checksumMd5": "58852ee17aa90b8fd98b19bbce18388b",
+            "size": "1810"
+          },
+          {
+            "filename": "assets/component-product-model.css",
+            "checksumMd5": "4ddf195183232ddc412202d7f0b6716d",
+            "size": "838"
+          },
+          {
+            "filename": "assets/component-product-variant-picker.css",
+            "checksumMd5": "44c64177ffc39cff0f9446b48a4b1ce8",
+            "size": "4619"
+          },
+          {
+            "filename": "assets/component-progress-bar.css",
+            "checksumMd5": "40e5efd379242363cb00bc256541e17a",
+            "size": "590"
+          },
+          {
+            "filename": "assets/component-rating.css",
+            "checksumMd5": "41a12f9e827b4ac10997465dd25529d6",
+            "size": "1196"
+          },
+          {
+            "filename": "assets/component-search.css",
+            "checksumMd5": "7a1e5b36c6c903e6c1ede036f4571836",
+            "size": "1489"
+          },
+          {
+            "filename": "assets/component-show-more.css",
+            "checksumMd5": "e8a97e8f3911498fcd77fb7b843c3feb",
+            "size": "162"
+          },
+          {
+            "filename": "assets/component-slider.css",
+            "checksumMd5": "2bee1826a71e67d35663606f4d643383",
+            "size": "9406"
+          },
+          {
+            "filename": "assets/component-slideshow.css",
+            "checksumMd5": "8e86dc1cfac2fe5be8d45e146a06cf42",
+            "size": "4222"
+          },
+          {
+            "filename": "assets/component-swatch-input.css",
+            "checksumMd5": "b98bea54e04850ee30a9a9268555de79",
+            "size": "3084"
+          },
+          {
+            "filename": "assets/component-swatch.css",
+            "checksumMd5": "02d7954ee3ec024b27f351f3ff9f63d5",
+            "size": "778"
+          },
+          {
+            "filename": "assets/component-totals.css",
+            "checksumMd5": "25b5e8da83da7751a0f9e985dfce4ef9",
+            "size": "501"
+          },
+          {
+            "filename": "assets/component-volume-pricing.css",
+            "checksumMd5": "01a7141ad3a23be6bb120568a43e8502",
+            "size": "1208"
+          },
+          {
+            "filename": "assets/constants.js",
+            "checksumMd5": "1f9fbfb00e90d309115198100029eb74",
+            "size": "258"
+          },
+          {
+            "filename": "assets/curtainsuk-browse.css",
+            "checksumMd5": "b0b87c0ed8daacbc6083ca75955dee27",
+            "size": "17014"
+          },
+          {
+            "filename": "assets/curtainsuk-fabric-editorial.css",
+            "checksumMd5": "e1ddae111397b17ee0874e2e2bc6c8a0",
+            "size": "18822"
+          },
+          {
+            "filename": "assets/curtainsuk-fabric-experience-v2.js",
+            "checksumMd5": "6a0f9a93d8f38ead512654bcc5644219",
+            "size": "11697"
+          },
+          {
+            "filename": "assets/curtainsuk-fabric-experience.js",
+            "checksumMd5": "21b9f095a188c100e145443d65b9ec56",
+            "size": "15849"
+          },
+          {
+            "filename": "assets/curtainsuk-guides.css",
+            "checksumMd5": "5bbef2c24fe866821ad4dd88831668e4",
+            "size": "2944"
+          },
+          {
+            "filename": "assets/curtainsuk-guides.js",
+            "checksumMd5": "a96232edf0be2d558f6ba7745e88dd1e",
+            "size": "1921"
+          },
+          {
+            "filename": "assets/curtainsuk-header.css",
+            "checksumMd5": "d50a433c515979be05141a17649c8672",
+            "size": "7663"
+          },
+          {
+            "filename": "assets/curtainsuk-header.js",
+            "checksumMd5": "42e86f522cd8329d30575ce117ba952d",
+            "size": "4566"
+          },
+          {
+            "filename": "assets/curtainsuk-home-editorial.css",
+            "checksumMd5": "f9efbfa6e4dabccadbc56b1c52801720",
+            "size": "9834"
+          },
+          {
+            "filename": "assets/curtainsuk-pilot-fabrics.json",
+            "checksumMd5": "6ef902b90776b1d19b684196ab05d6e5",
+            "size": "9101"
+          },
+          {
+            "filename": "assets/curtainsuk-premium.css",
+            "checksumMd5": "59b2d8b33ccc19b33d0f3fe44da64ed0",
+            "size": "10601"
+          },
+          {
+            "filename": "assets/curtainsuk-premium.js",
+            "checksumMd5": "1b110cb0ac7fd1e1b17a667576fdd2e1",
+            "size": "14745"
+          },
+          {
+            "filename": "assets/curtainsuk-routes.json",
+            "checksumMd5": "5f25ed24552f2e2af6ae90c7f0599fcc",
+            "size": "781"
+          },
+          {
+            "filename": "assets/curtainsuk-sample-checkout.js",
+            "checksumMd5": "e9abd90056422f9b9e2aa45c19b3fe5c",
+            "size": "4304"
+          },
+          {
+            "filename": "assets/curtainsuk-spaces.css",
+            "checksumMd5": "01161938e1c69424fa920d1021d654c4",
+            "size": "13854"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v10.js",
+            "checksumMd5": "a63e95beeea2979ac9679bd8fada1c47",
+            "size": "54973"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v2.js",
+            "checksumMd5": "f661db5a1862e63878f93fefe6511bba",
+            "size": "65493"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v3.js",
+            "checksumMd5": "37a7158320b5187a515597ae2e15c525",
+            "size": "66991"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v4.js",
+            "checksumMd5": "37a7158320b5187a515597ae2e15c525",
+            "size": "66991"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v5.js",
+            "checksumMd5": "b1313650ee3ec014e25cf9782537e120",
+            "size": "66987"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v6.js",
+            "checksumMd5": "d9de991bb5e5827f8cf3513f44668eef",
+            "size": "67064"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v7.js",
+            "checksumMd5": "d95e3e5cf592d9e353c6b04f1a9dfabb",
+            "size": "67133"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v8.js",
+            "checksumMd5": "96c61ac6766ea79afc71eb1973a6c727",
+            "size": "67158"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront-v9.js",
+            "checksumMd5": "2e986de9ac4c3cde21553adb9f2f42c6",
+            "size": "67218"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront.css",
+            "checksumMd5": "6ac9dfd4baa67d8187bf3468a661e045",
+            "size": "12882"
+          },
+          {
+            "filename": "assets/curtainsuk-storefront.js",
+            "checksumMd5": "87c44eba896d688a131ced382f0817ee",
+            "size": "65797"
+          },
+          {
+            "filename": "assets/customer.js",
+            "checksumMd5": "98fbac22e38fecdc715443845e497815",
+            "size": "2978"
+          },
+          {
+            "filename": "assets/details-disclosure.js",
+            "checksumMd5": "8fec4ad4fe5c5b767d4627a91fe42ccd",
+            "size": "1615"
+          },
+          {
+            "filename": "assets/details-modal.js",
+            "checksumMd5": "098465ba842e1b1d4458d294031fde4b",
+            "size": "1683"
+          },
+          {
+            "filename": "assets/disclosures.js",
+            "checksumMd5": "c81abbee4f96e7a4a39175f7ac02c82c",
+            "size": "852"
+          },
+          {
+            "filename": "assets/email-signup-banner-background-mobile.svg",
+            "checksumMd5": "a4f9d1956e089e1fb38e72f22450c04b",
+            "size": "2926"
+          },
+          {
+            "filename": "assets/email-signup-banner-background.svg",
+            "checksumMd5": "5daac32aa50aaa79891998204bd3554c",
+            "size": "4298"
+          },
+          {
+            "filename": "assets/facets.js",
+            "checksumMd5": "15e5f6ad722891e3ad9dccca7cac4faa",
+            "size": "17076"
+          },
+          {
+            "filename": "assets/global.js",
+            "checksumMd5": "1fe77227fac8ab63a36b090722441aa0",
+            "size": "47484"
+          },
+          {
+            "filename": "assets/icon-3d-model.svg",
+            "checksumMd5": "7282dd50922ffd62569f170d409e64f3",
+            "size": "532"
+          },
+          {
+            "filename": "assets/icon-account.svg",
+            "checksumMd5": "2f9b308e02d87208ad8ceaddaaa67a98",
+            "size": "477"
+          },
+          {
+            "filename": "assets/icon-apple.svg",
+            "checksumMd5": "dedd9879af96ee334728ed7d17bbec7d",
+            "size": "1785"
+          },
+          {
+            "filename": "assets/icon-arrow.svg",
+            "checksumMd5": "9d3f120bb1698f5118f1bd2bdaaa87c9",
+            "size": "322"
+          },
+          {
+            "filename": "assets/icon-banana.svg",
+            "checksumMd5": "8fc21c25e7b87d493e754ee9787cb9b3",
+            "size": "1789"
+          },
+          {
+            "filename": "assets/icon-bottle.svg",
+            "checksumMd5": "da204484fa2b8796dbc4b4f041e6dd3c",
+            "size": "4510"
+          },
+          {
+            "filename": "assets/icon-box.svg",
+            "checksumMd5": "11290b27b5a2fc76328fde421c7f211c",
+            "size": "478"
+          },
+          {
+            "filename": "assets/icon-caret.svg",
+            "checksumMd5": "6e1428be79f9c32416d2aa3808b18a00",
+            "size": "237"
+          },
+          {
+            "filename": "assets/icon-carrot.svg",
+            "checksumMd5": "648ad9720ddd915f2665b778cb3a7742",
+            "size": "1736"
+          },
+          {
+            "filename": "assets/icon-cart-empty.svg",
+            "checksumMd5": "651b31bd627d5255fe8dc1908c31ac0b",
+            "size": "388"
+          },
+          {
+            "filename": "assets/icon-cart.svg",
+            "checksumMd5": "d5c35b08c353201320fa10c4da791065",
+            "size": "485"
+          },
+          {
+            "filename": "assets/icon-chat-bubble.svg",
+            "checksumMd5": "1b09bc1594b77573650ba23d63a9903d",
+            "size": "767"
+          },
+          {
+            "filename": "assets/icon-check-mark.svg",
+            "checksumMd5": "175a86baa1f3f58c5d4e1948490290d2",
+            "size": "388"
+          },
+          {
+            "filename": "assets/icon-checkmark.svg",
+            "checksumMd5": "886d012aaaefc916ba1fd5f38735c225",
+            "size": "317"
+          },
+          {
+            "filename": "assets/icon-clipboard.svg",
+            "checksumMd5": "4f125047462f209877f648ec15b5fa78",
+            "size": "746"
+          },
+          {
+            "filename": "assets/icon-close-small.svg",
+            "checksumMd5": "1a5b2c80d83fb9a0d1b4658ad860ba97",
+            "size": "235"
+          },
+          {
+            "filename": "assets/icon-close.svg",
+            "checksumMd5": "0b5d3e7a52a86f50f45ad09546a06c30",
+            "size": "334"
+          },
+          {
+            "filename": "assets/icon-copy.svg",
+            "checksumMd5": "2821beafbb1e74c067e982edee8ac17c",
+            "size": "387"
+          },
+          {
+            "filename": "assets/icon-dairy-free.svg",
+            "checksumMd5": "26700441e75ec9f1b431bc68ecdcd3bc",
+            "size": "863"
+          },
+          {
+            "filename": "assets/icon-dairy.svg",
+            "checksumMd5": "8521fe4e2c6df4a012560f06c6502afc",
+            "size": "548"
+          },
+          {
+            "filename": "assets/icon-discount.svg",
+            "checksumMd5": "da7904df6aa39422d233ee3e0d150bd3",
+            "size": "260"
+          },
+          {
+            "filename": "assets/icon-dryer.svg",
+            "checksumMd5": "decf35d3e44d75f9611f31ba81f8baa9",
+            "size": "449"
+          },
+          {
+            "filename": "assets/icon-error.svg",
+            "checksumMd5": "82d65365434af55390200102b1880c89",
+            "size": "593"
+          },
+          {
+            "filename": "assets/icon-eye.svg",
+            "checksumMd5": "a744d951b559ad54bcf79a3cf0c8fbbb",
+            "size": "759"
+          },
+          {
+            "filename": "assets/icon-facebook.svg",
+            "checksumMd5": "49086437196683c19dd750fac683e92c",
+            "size": "365"
+          },
+          {
+            "filename": "assets/icon-filter.svg",
+            "checksumMd5": "8eb350515531a4334d3878609fe6289e",
+            "size": "497"
+          },
+          {
+            "filename": "assets/icon-fire.svg",
+            "checksumMd5": "a478e0e1950469b03bfa30343f02ae01",
+            "size": "1366"
+          },
+          {
+            "filename": "assets/icon-gluten-free.svg",
+            "checksumMd5": "47e745a218ebbed6271e8a8144516a0c",
+            "size": "1931"
+          },
+          {
+            "filename": "assets/icon-hamburger.svg",
+            "checksumMd5": "b7ad06cd6faa9c99c3a6925e858869f3",
+            "size": "303"
+          },
+          {
+            "filename": "assets/icon-heart.svg",
+            "checksumMd5": "5426fc8b14f3e71da6c191b0cb6a891f",
+            "size": "461"
+          },
+          {
+            "filename": "assets/icon-info.svg",
+            "checksumMd5": "386fb44dd473d8b9c2026d5dd113b253",
+            "size": "627"
+          },
+          {
+            "filename": "assets/icon-instagram.svg",
+            "checksumMd5": "a081fd8854765f92c4bac0466f098f3e",
+            "size": "1646"
+          },
+          {
+            "filename": "assets/icon-inventory-status.svg",
+            "checksumMd5": "ab5f41e5b4caf54916109c7960c83e3c",
+            "size": "169"
+          },
+          {
+            "filename": "assets/icon-iron.svg",
+            "checksumMd5": "8d2c0833b990928082473b969db17869",
+            "size": "912"
+          },
+          {
+            "filename": "assets/icon-leaf.svg",
+            "checksumMd5": "e6c669388efe6773be06cb7075266f3e",
+            "size": "1178"
+          },
+          {
+            "filename": "assets/icon-leather.svg",
+            "checksumMd5": "aeefca7b60a1d87505875c6a758e114b",
+            "size": "3209"
+          },
+          {
+            "filename": "assets/icon-lightning-bolt.svg",
+            "checksumMd5": "83dfc3f03ab0e49c700e0ae06b5f36b2",
+            "size": "414"
+          },
+          {
+            "filename": "assets/icon-lipstick.svg",
+            "checksumMd5": "981930bf8bcc2f9483553c56ff47cf37",
+            "size": "657"
+          },
+          {
+            "filename": "assets/icon-lock.svg",
+            "checksumMd5": "2ce216f684f67bc026ffb22c26e3e57e",
+            "size": "554"
+          },
+          {
+            "filename": "assets/icon-map-pin.svg",
+            "checksumMd5": "b0079ed616aa5421f92ea4071beffa94",
+            "size": "570"
+          },
+          {
+            "filename": "assets/icon-minus.svg",
+            "checksumMd5": "c7ca9b4bbb66463817e27551742dc4c0",
+            "size": "228"
+          },
+          {
+            "filename": "assets/icon-nut-free.svg",
+            "checksumMd5": "b7bf485ea305866bdb99a4e49f002316",
+            "size": "1349"
+          },
+          {
+            "filename": "assets/icon-padlock.svg",
+            "checksumMd5": "394bc35f3333903f6cb247191a195dc4",
+            "size": "534"
+          },
+          {
+            "filename": "assets/icon-pants.svg",
+            "checksumMd5": "db3bbb361c5c0f152fdd3e5fe0ae2c33",
+            "size": "947"
+          },
+          {
+            "filename": "assets/icon-pause.svg",
+            "checksumMd5": "536865dcaefe874981c1d7c640c8915b",
+            "size": "331"
+          },
+          {
+            "filename": "assets/icon-paw-print.svg",
+            "checksumMd5": "9297a6c506cc06a81ee3a26de065b63b",
+            "size": "2215"
+          },
+          {
+            "filename": "assets/icon-pepper.svg",
+            "checksumMd5": "ccef53e98b432fcd90daae5d3653b3ee",
+            "size": "1903"
+          },
+          {
+            "filename": "assets/icon-perfume.svg",
+            "checksumMd5": "a786a398ef3974a463b005259d0b7cd6",
+            "size": "7871"
+          },
+          {
+            "filename": "assets/icon-pinterest.svg",
+            "checksumMd5": "403010859b2a37804d1f666b81e96cd5",
+            "size": "1206"
+          },
+          {
+            "filename": "assets/icon-plane.svg",
+            "checksumMd5": "fbe34fd1afb6459ae1faa7118e8c978e",
+            "size": "1877"
+          },
+          {
+            "filename": "assets/icon-plant.svg",
+            "checksumMd5": "d1ba6a1edb4f4e5956c13a491f00cc6f",
+            "size": "1218"
+          },
+          {
+            "filename": "assets/icon-play.svg",
+            "checksumMd5": "3f859ed84d1edd6f0575f53547714324",
+            "size": "260"
+          },
+          {
+            "filename": "assets/icon-plus.svg",
+            "checksumMd5": "3584b5ecd34549fd7d902fc3c61b99ec",
+            "size": "296"
+          },
+          {
+            "filename": "assets/icon-price-tag.svg",
+            "checksumMd5": "691646617a9e7661b13d4fa438dfbc82",
+            "size": "711"
+          },
+          {
+            "filename": "assets/icon-question-mark.svg",
+            "checksumMd5": "bf28b2d36a204b353abc3a86ed64d467",
+            "size": "881"
+          },
+          {
+            "filename": "assets/icon-recycle.svg",
+            "checksumMd5": "4962dfcceca4af6b29e4bb9337f58b6c",
+            "size": "2260"
+          },
+          {
+            "filename": "assets/icon-remove.svg",
+            "checksumMd5": "7daab8a96a79eb7468d664470639f409",
+            "size": "571"
+          },
+          {
+            "filename": "assets/icon-reset.svg",
+            "checksumMd5": "dfec50b3842e36797df375ebfc65a86e",
+            "size": "247"
+          },
+          {
+            "filename": "assets/icon-return.svg",
+            "checksumMd5": "be01984d037cfacc622557a5bb4837e4",
+            "size": "583"
+          },
+          {
+            "filename": "assets/icon-ruler.svg",
+            "checksumMd5": "981391c5c253aac54c30f05926d9161e",
+            "size": "753"
+          },
+          {
+            "filename": "assets/icon-search.svg",
+            "checksumMd5": "51b119957412db63413c522a369e793d",
+            "size": "266"
+          },
+          {
+            "filename": "assets/icon-serving-dish.svg",
+            "checksumMd5": "8c4e4121c00982fa7c8d9b4bbd63a0eb",
+            "size": "658"
+          },
+          {
+            "filename": "assets/icon-share.svg",
+            "checksumMd5": "5cead8156b42094c4ce79d626f876356",
+            "size": "592"
+          },
+          {
+            "filename": "assets/icon-shirt.svg",
+            "checksumMd5": "b2aadec09bd58270ed2bca82aa962b09",
+            "size": "1228"
+          },
+          {
+            "filename": "assets/icon-shoe.svg",
+            "checksumMd5": "27d725b8dbde810e6b773c843e8de190",
+            "size": "900"
+          },
+          {
+            "filename": "assets/icon-shopify.svg",
+            "checksumMd5": "3e711088a4e6f1b15399320df2b33b62",
+            "size": "2656"
+          },
+          {
+            "filename": "assets/icon-silhouette.svg",
+            "checksumMd5": "ff1c11ceb35f5410cf05aad0fc5228fb",
+            "size": "547"
+          },
+          {
+            "filename": "assets/icon-snapchat.svg",
+            "checksumMd5": "5b54a79d6b91fb35e07759c996411d86",
+            "size": "2931"
+          },
+          {
+            "filename": "assets/icon-snowflake.svg",
+            "checksumMd5": "754d4908ac7acbd09383ff449999d46c",
+            "size": "1484"
+          },
+          {
+            "filename": "assets/icon-star.svg",
+            "checksumMd5": "25ea0dc98e30f6b7a4638730ea28c01e",
+            "size": "713"
+          },
+          {
+            "filename": "assets/icon-stopwatch.svg",
+            "checksumMd5": "7a1af799bc719951ac457a3eb4ea67a2",
+            "size": "724"
+          },
+          {
+            "filename": "assets/icon-success.svg",
+            "checksumMd5": "e8d14d28e84d455b65b250782ef336e9",
+            "size": "247"
+          },
+          {
+            "filename": "assets/icon-tick.svg",
+            "checksumMd5": "7ea37ae7528c42c38ea12b18cb566d94",
+            "size": "310"
+          },
+          {
+            "filename": "assets/icon-tiktok.svg",
+            "checksumMd5": "de619afa8e3665f8e9d55d0b26a6a5e7",
+            "size": "241"
+          },
+          {
+            "filename": "assets/icon-truck.svg",
+            "checksumMd5": "38bc1df387c8432784d3948d14c42b02",
+            "size": "900"
+          },
+          {
+            "filename": "assets/icon-tumblr.svg",
+            "checksumMd5": "e3cb2ec2536d3443432f68c88abf6d26",
+            "size": "290"
+          },
+          {
+            "filename": "assets/icon-twitter.svg",
+            "checksumMd5": "78d33a77bb23da71e44807cffd5cbb0c",
+            "size": "293"
+          },
+          {
+            "filename": "assets/icon-unavailable.svg",
+            "checksumMd5": "c17808b617e16ad53e79ff9dfe83bd95",
+            "size": "371"
+          },
+          {
+            "filename": "assets/icon-vimeo.svg",
+            "checksumMd5": "4c5f6e77c96d22a4ee919f650b3ef63e",
+            "size": "597"
+          },
+          {
+            "filename": "assets/icon-warning.svg",
+            "checksumMd5": "ef29d51730e2cdf32c1e3e0d02437084",
+            "size": "539"
+          },
+          {
+            "filename": "assets/icon-washing.svg",
+            "checksumMd5": "871ce71897cb91a511b287d07cd4d133",
+            "size": "1341"
+          },
+          {
+            "filename": "assets/icon-youtube.svg",
+            "checksumMd5": "75ba70ddabc67ecbcb0292b1978e708b",
+            "size": "399"
+          },
+          {
+            "filename": "assets/icon-zoom.svg",
+            "checksumMd5": "1867343115fb87cbd22d6209423ca694",
+            "size": "692"
+          },
+          {
+            "filename": "assets/loading-spinner.svg",
+            "checksumMd5": "b0b56a8deb0667171d2c7e3dfb71263b",
+            "size": "157"
+          },
+          {
+            "filename": "assets/localization-form.js",
+            "checksumMd5": "61b20eddcabc904f2bf54a4b327ad4a6",
+            "size": "7863"
+          },
+          {
+            "filename": "assets/magnify.js",
+            "checksumMd5": "63a0b729648db05c21789f0753a8f51d",
+            "size": "2132"
+          },
+          {
+            "filename": "assets/main-search.js",
+            "checksumMd5": "cc3339a1f8960777d246f899cd5bb2eb",
+            "size": "1242"
+          },
+          {
+            "filename": "assets/mask-arch.svg",
+            "checksumMd5": "646639dda8ef8467152a878508c02a42",
+            "size": "323"
+          },
+          {
+            "filename": "assets/mask-blobs.css",
+            "checksumMd5": "c0fad24da7bde42d5da7a40c29909259",
+            "size": "12089"
+          },
+          {
+            "filename": "assets/media-gallery.js",
+            "checksumMd5": "e5709a400b4be7fd0527079fc698e52e",
+            "size": "4910"
+          },
+          {
+            "filename": "assets/newsletter-section.css",
+            "checksumMd5": "47dbbaecafbfdd7ae455b257937ca093",
+            "size": "878"
+          },
+          {
+            "filename": "assets/password-modal.js",
+            "checksumMd5": "aa4c4c0a0ba04707104b6998dbd9d4d0",
+            "size": "250"
+          },
+          {
+            "filename": "assets/pickup-availability.js",
+            "checksumMd5": "2e0182c4cf49ce7272a9e0af83ec6981",
+            "size": "4198"
+          },
+          {
+            "filename": "assets/predictive-search.js",
+            "checksumMd5": "59d4c73a7c1fdd28600c6f5b00f86592",
+            "size": "9599"
+          },
+          {
+            "filename": "assets/price-per-item.js",
+            "checksumMd5": "9354efcd9fd11f4467b05f4568002d07",
+            "size": "4416"
+          },
+          {
+            "filename": "assets/product-form.js",
+            "checksumMd5": "6902a1ab19575a55ed967f8ccc24c23d",
+            "size": "7552"
+          },
+          {
+            "filename": "assets/product-info.js",
+            "checksumMd5": "bbfa4e3c5d1f73496c2048bd0878ed51",
+            "size": "17468"
+          },
+          {
+            "filename": "assets/product-modal.js",
+            "checksumMd5": "afade2c873219795095fb5a6c713e81e",
+            "size": "1306"
+          },
+          {
+            "filename": "assets/product-model.js",
+            "checksumMd5": "5a65086050b89c99d1f6169400430870",
+            "size": "1356"
+          },
+          {
+            "filename": "assets/pubsub.js",
+            "checksumMd5": "8248464217500d0e0d68f4571f0d4dc3",
+            "size": "598"
+          },
+          {
+            "filename": "assets/quantity-popover.css",
+            "checksumMd5": "b0153be865959149c378e36c7e82462e",
+            "size": "3380"
+          },
+          {
+            "filename": "assets/quantity-popover.js",
+            "checksumMd5": "bf458d23a960ae21c7a1e56439d19a05",
+            "size": "3549"
+          },
+          {
+            "filename": "assets/quick-add-bulk.js",
+            "checksumMd5": "9e00eae587454550259c62dc3ec30629",
+            "size": "7028"
+          },
+          {
+            "filename": "assets/quick-add.css",
+            "checksumMd5": "ab527af7c009ac67a1592f37cfb78ef6",
+            "size": "8687"
+          },
+          {
+            "filename": "assets/quick-add.js",
+            "checksumMd5": "c56febddffd5da8c7e07c90a36b05d8a",
+            "size": "4889"
+          },
+          {
+            "filename": "assets/quick-order-list.css",
+            "checksumMd5": "ee0b1a159e238bc1a1014fceab12fe73",
+            "size": "12054"
+          },
+          {
+            "filename": "assets/quick-order-list.js",
+            "checksumMd5": "3c0d2bf40bfa9c874c8b5649c555d8a7",
+            "size": "18255"
+          },
+          {
+            "filename": "assets/recipient-form.js",
+            "checksumMd5": "f07e60312bcddee4557452e314b411d9",
+            "size": "6504"
+          },
+          {
+            "filename": "assets/search-form.js",
+            "checksumMd5": "6cee10ce22bf873d19c678ce122a11e8",
+            "size": "1350"
+          },
+          {
+            "filename": "assets/section-blog-post.css",
+            "checksumMd5": "c6a4b49e8f5a70ea748863c41a9d6dbd",
+            "size": "3174"
+          },
+          {
+            "filename": "assets/section-collection-list.css",
+            "checksumMd5": "630a1f65410b809be329d9139d8d3395",
+            "size": "1116"
+          },
+          {
+            "filename": "assets/section-contact-form.css",
+            "checksumMd5": "e1cd7aef6162525673e4057784e5c06d",
+            "size": "566"
+          },
+          {
+            "filename": "assets/section-email-signup-banner.css",
+            "checksumMd5": "46b5990ddaeae3493a14b659e02ab8fa",
+            "size": "2598"
+          },
+          {
+            "filename": "assets/section-featured-blog.css",
+            "checksumMd5": "7426ad06ffc8073ac696c8585596bd9d",
+            "size": "1080"
+          },
+          {
+            "filename": "assets/section-featured-product.css",
+            "checksumMd5": "7ea89169d6dbee85ff5c4461ca05d54b",
+            "size": "1491"
+          },
+          {
+            "filename": "assets/section-footer.css",
+            "checksumMd5": "16092eb2dd299320647d3183f154d3cc",
+            "size": "9474"
+          },
+          {
+            "filename": "assets/section-image-banner.css",
+            "checksumMd5": "a8e4a3e0bc9af8636946d3ef10bb39dc",
+            "size": "10249"
+          },
+          {
+            "filename": "assets/section-main-blog.css",
+            "checksumMd5": "f93b527680e56d3055873daec6eca2ae",
+            "size": "2158"
+          },
+          {
+            "filename": "assets/section-main-page.css",
+            "checksumMd5": "2be651a1d8f3e55ee6ea36a863dd33c9",
+            "size": "305"
+          },
+          {
+            "filename": "assets/section-main-product.css",
+            "checksumMd5": "80ede8067e563d5153bd3c54c8bdcafe",
+            "size": "32327"
+          },
+          {
+            "filename": "assets/section-multicolumn.css",
+            "checksumMd5": "765ceb0112680c65b2ad2c5068626f5c",
+            "size": "4705"
+          },
+          {
+            "filename": "assets/section-password.css",
+            "checksumMd5": "4746287030bec0e481435d06a0d7df1b",
+            "size": "5596"
+          },
+          {
+            "filename": "assets/section-related-products.css",
+            "checksumMd5": "8d84aba745feeaf9e24f7b6dd0909df3",
+            "size": "92"
+          },
+          {
+            "filename": "assets/section-rich-text.css",
+            "checksumMd5": "8de44a0760fa5883822c19580ca03d9c",
+            "size": "1380"
+          },
+          {
+            "filename": "assets/share.js",
+            "checksumMd5": "1c9859b510ac48f1c64e39dd54942eec",
+            "size": "2172"
+          },
+          {
+            "filename": "assets/show-more.js",
+            "checksumMd5": "fa013d1fb1c796f27c6d200a192d0a96",
+            "size": "1208"
+          },
+          {
+            "filename": "assets/sparkle.gif",
+            "checksumMd5": "7adcd48a3cc215a81fabd9dafb919507",
+            "size": "179349"
+          },
+          {
+            "filename": "assets/square.svg",
+            "checksumMd5": "4921912749635b38f9b2893de6a5c532",
+            "size": "123"
+          },
+          {
+            "filename": "assets/standard-actions-override.js",
+            "checksumMd5": "dc75b736c614c696aacc60938eb8c848",
+            "size": "5889"
+          },
+          {
+            "filename": "assets/template-collection.css",
+            "checksumMd5": "d68ffa1086c5316741577db2a9560b89",
+            "size": "1718"
+          },
+          {
+            "filename": "assets/template-giftcard.css",
+            "checksumMd5": "fc2c4de3620147250fdfc2baa32a22dd",
+            "size": "6651"
+          },
+          {
+            "filename": "assets/theme-editor.js",
+            "checksumMd5": "83d2d36c4591be909f0d466b1cfd22ee",
+            "size": "2084"
+          },
+          {
+            "filename": "assets/video-section.css",
+            "checksumMd5": "1ab043c6e1434f706b82e4caff4e79f4",
+            "size": "1197"
+          },
+          {
+            "filename": "config/settings_data.json",
+            "checksumMd5": "1658df6dba62c1beabaff47f25bc3b32",
+            "size": "9541"
+          },
+          {
+            "filename": "config/settings_schema.json",
+            "checksumMd5": "28d063b952840c6bfb312d5dd2822800",
+            "size": "43192"
+          },
+          {
+            "filename": "layout/password.liquid",
+            "checksumMd5": "15551ed39355ada6fd5a6f52c4a80ab2",
+            "size": "14289"
+          },
+          {
+            "filename": "layout/theme.liquid",
+            "checksumMd5": "d2cd1d76f3d1aacdbc576ac96d476571",
+            "size": "23030"
+          },
+          {
+            "filename": "locales/bg.json",
+            "checksumMd5": "0ec4e7831288d4752be85c86a7e19f0f",
+            "size": "27858"
+          },
+          {
+            "filename": "locales/cs.json",
+            "checksumMd5": "ff446941c5aa5fbf2c587b67dcedab69",
+            "size": "22802"
+          },
+          {
+            "filename": "locales/cs.schema.json",
+            "checksumMd5": "594cf108d6791981f2e95ddeb7e621ae",
+            "size": "93053"
+          },
+          {
+            "filename": "locales/da.json",
+            "checksumMd5": "b67127837171ea3b293b19d386042bc3",
+            "size": "20546"
+          },
+          {
+            "filename": "locales/da.schema.json",
+            "checksumMd5": "ba7af1d5c58c7c59713625d67762608b",
+            "size": "90755"
+          },
+          {
+            "filename": "locales/de.json",
+            "checksumMd5": "562e5b0cc7f1d685b87a3fb88b7692ea",
+            "size": "21404"
+          },
+          {
+            "filename": "locales/de.schema.json",
+            "checksumMd5": "682a9ce2a8a1e6cba143036e11cb0736",
+            "size": "91686"
+          },
+          {
+            "filename": "locales/el.json",
+            "checksumMd5": "f8e0011550cce951d7dd5ad86356f72d",
+            "size": "29472"
+          },
+          {
+            "filename": "locales/en.default.json",
+            "checksumMd5": "9465447706acdc8965522114a55e227a",
+            "size": "19832"
+          },
+          {
+            "filename": "locales/en.default.schema.json",
+            "checksumMd5": "4daacabc235ac3d13f64930ecb660acd",
+            "size": "88653"
+          },
+          {
+            "filename": "locales/es.json",
+            "checksumMd5": "1c26b44b8e5d1d8344b8b201c3742c4f",
+            "size": "22434"
+          },
+          {
+            "filename": "locales/es.schema.json",
+            "checksumMd5": "9c2bfb12b36f5a97bb0b5c3ddf595e94",
+            "size": "93961"
+          },
+          {
+            "filename": "locales/fi.json",
+            "checksumMd5": "342aed99122a4559310e2678268760ff",
+            "size": "20732"
+          },
+          {
+            "filename": "locales/fi.schema.json",
+            "checksumMd5": "fdebe810222d520038ab302877d90683",
+            "size": "91351"
+          },
+          {
+            "filename": "locales/fr.json",
+            "checksumMd5": "df8b054d7402c3df4cb4ea7a8a1d86b2",
+            "size": "22686"
+          },
+          {
+            "filename": "locales/fr.schema.json",
+            "checksumMd5": "9c1265732970a56d07c176f6582f4932",
+            "size": "93512"
+          },
+          {
+            "filename": "locales/hr.json",
+            "checksumMd5": "fc4eeed970252db8b312d67181b9b648",
+            "size": "22235"
+          },
+          {
+            "filename": "locales/hu.json",
+            "checksumMd5": "61864226b62adbc84d04eb024599ddfc",
+            "size": "22286"
+          },
+          {
+            "filename": "locales/id.json",
+            "checksumMd5": "e470aeb2f12aaca7d5cc089481025404",
+            "size": "20258"
+          },
+          {
+            "filename": "locales/it.json",
+            "checksumMd5": "516107f917e1897d3c087e15b9068584",
+            "size": "21872"
+          },
+          {
+            "filename": "locales/it.schema.json",
+            "checksumMd5": "25d63a38298b2cecac1515da3e0cbd97",
+            "size": "93323"
+          },
+          {
+            "filename": "locales/ja.json",
+            "checksumMd5": "9600f8cc14391439090047c3623e41d7",
+            "size": "23533"
+          },
+          {
+            "filename": "locales/ja.schema.json",
+            "checksumMd5": "d86340685cbe80f2b95ffe92e25a853c",
+            "size": "95792"
+          },
+          {
+            "filename": "locales/ko.json",
+            "checksumMd5": "300b0030164fc380d0ae29610677ec4a",
+            "size": "21517"
+          },
+          {
+            "filename": "locales/ko.schema.json",
+            "checksumMd5": "1f798882456db7995f8772ccaafae7da",
+            "size": "92877"
+          },
+          {
+            "filename": "locales/lt.json",
+            "checksumMd5": "b2d8858e9eaa31af0818d11b4bc01fda",
+            "size": "23380"
+          },
+          {
+            "filename": "locales/nb.json",
+            "checksumMd5": "9aceced1329dbc6072813f4c6c212c07",
+            "size": "20343"
+          },
+          {
+            "filename": "locales/nb.schema.json",
+            "checksumMd5": "17a02844115f40518517bf81f8efc5a6",
+            "size": "90572"
+          },
+          {
+            "filename": "locales/nl.json",
+            "checksumMd5": "bf72883f5112d98b281ec58bc0d47815",
+            "size": "21188"
+          },
+          {
+            "filename": "locales/nl.schema.json",
+            "checksumMd5": "4e2c67ec1e12ecbb326048706033f0fc",
+            "size": "91771"
+          },
+          {
+            "filename": "locales/pl.json",
+            "checksumMd5": "7ff1accb53315a1ba30e38674ed9a805",
+            "size": "22378"
+          },
+          {
+            "filename": "locales/pl.schema.json",
+            "checksumMd5": "34402ec388946b69db2ff0fa4ddb2511",
+            "size": "93133"
+          },
+          {
+            "filename": "locales/pt-BR.json",
+            "checksumMd5": "d9eff0d9747ac2b22b3c716000fa67a6",
+            "size": "21757"
+          },
+          {
+            "filename": "locales/pt-BR.schema.json",
+            "checksumMd5": "5b0b21cc9bf73bc9b63d968f9366e82d",
+            "size": "93113"
+          },
+          {
+            "filename": "locales/pt-PT.json",
+            "checksumMd5": "137b4ee6cf54b5576ae60649a0b4488e",
+            "size": "22131"
+          },
+          {
+            "filename": "locales/pt-PT.schema.json",
+            "checksumMd5": "d260b62f1db96baa71fd8406a521b38a",
+            "size": "93480"
+          },
+          {
+            "filename": "locales/ro.json",
+            "checksumMd5": "3b08d773926d0e6086d7ed4372c9d378",
+            "size": "22349"
+          },
+          {
+            "filename": "locales/ru.json",
+            "checksumMd5": "8748fe19fea39b19959b5610945389c1",
+            "size": "29336"
+          },
+          {
+            "filename": "locales/sk.json",
+            "checksumMd5": "0d2e588794e9beb0d062ba8717d5c8c7",
+            "size": "22876"
+          },
+          {
+            "filename": "locales/sl.json",
+            "checksumMd5": "421e331fcd766437898e312c85425770",
+            "size": "22644"
+          },
+          {
+            "filename": "locales/sv.json",
+            "checksumMd5": "ab45c6c2bc9f92b0c3ae20b0b2c9ac5b",
+            "size": "20770"
+          },
+          {
+            "filename": "locales/sv.schema.json",
+            "checksumMd5": "7c73581e44e258c3775f74462cb71632",
+            "size": "90435"
+          },
+          {
+            "filename": "locales/th.json",
+            "checksumMd5": "9e12bf9c5f4feaf52c193e795ec35e6c",
+            "size": "32895"
+          },
+          {
+            "filename": "locales/th.schema.json",
+            "checksumMd5": "e5c24a67ae00fec3108a754086687dac",
+            "size": "118134"
+          },
+          {
+            "filename": "locales/tr.json",
+            "checksumMd5": "acb9d9ba80852cff4d5b1aa68bacdd66",
+            "size": "21338"
+          },
+          {
+            "filename": "locales/tr.schema.json",
+            "checksumMd5": "a4570d6a8fa656938013ada256b6e588",
+            "size": "91940"
+          },
+          {
+            "filename": "locales/vi.json",
+            "checksumMd5": "5daf8aa8a47349e063adf912c4413316",
+            "size": "23019"
+          },
+          {
+            "filename": "locales/zh-CN.json",
+            "checksumMd5": "567c0627b67e08bd1fb7afb173e3ddfa",
+            "size": "19804"
+          },
+          {
+            "filename": "locales/zh-CN.schema.json",
+            "checksumMd5": "15c561b8b620f6c635cba2a312f45c2b",
+            "size": "88234"
+          },
+          {
+            "filename": "locales/zh-TW.json",
+            "checksumMd5": "94fe417714494adef3b8a2a3cb03970b",
+            "size": "19972"
+          },
+          {
+            "filename": "locales/zh-TW.schema.json",
+            "checksumMd5": "59a83fe7c0a0c463aa0e482fa3eec9c5",
+            "size": "88944"
+          },
+          {
+            "filename": "sections/announcement-bar.liquid",
+            "checksumMd5": "1d48023fca2b5a597392cd28f2a869af",
+            "size": "10838"
+          },
+          {
+            "filename": "sections/apps.liquid",
+            "checksumMd5": "2318940b1855d892f9b1a353ceb414e6",
+            "size": "666"
+          },
+          {
+            "filename": "sections/bulk-quick-order-list.liquid",
+            "checksumMd5": "bbca56eb2fbe6f9cb643645ddae5d8f3",
+            "size": "383"
+          },
+          {
+            "filename": "sections/cart-drawer.liquid",
+            "checksumMd5": "57f717cf57a43e7d837571f79cb31905",
+            "size": "29"
+          },
+          {
+            "filename": "sections/cart-icon-bubble.liquid",
+            "checksumMd5": "06e77f0309c409c3e95d0ea383e40cd0",
+            "size": "583"
+          },
+          {
+            "filename": "sections/cart-live-region-text.liquid",
+            "checksumMd5": "c498543150cfba8cb5a4a87b8feb8680",
+            "size": "92"
+          },
+          {
+            "filename": "sections/cart-notification-button.liquid",
+            "checksumMd5": "cc1193d58642eb5d65fd556771b78a47",
+            "size": "54"
+          },
+          {
+            "filename": "sections/cart-notification-product.liquid",
+            "checksumMd5": "f064f1ffa835cca1c1460b7ee77e3e24",
+            "size": "2410"
+          },
+          {
+            "filename": "sections/collage.liquid",
+            "checksumMd5": "a2bb68a12cc64ce7686910006d3adcd5",
+            "size": "17332"
+          },
+          {
+            "filename": "sections/collapsible-content.liquid",
+            "checksumMd5": "8c6ea2a6fb5bddeb475f5292ae81f415",
+            "size": "19650"
+          },
+          {
+            "filename": "sections/collection-list.liquid",
+            "checksumMd5": "7b6d8681dad4edce3d53e7e0678ad7f2",
+            "size": "10644"
+          },
+          {
+            "filename": "sections/contact-form.liquid",
+            "checksumMd5": "3da78c8810baf56fe7b3b9351528104b",
+            "size": "7401"
+          },
+          {
+            "filename": "sections/curtainsuk-configurator.liquid",
+            "checksumMd5": "e21c90cef8893839d53affbe522be10d",
+            "size": "21054"
+          },
+          {
+            "filename": "sections/curtainsuk-fabric-browser.liquid",
+            "checksumMd5": "9a9f986e91c6712939788652d0358a87",
+            "size": "6230"
+          },
+          {
+            "filename": "sections/curtainsuk-fabric-editorial.liquid",
+            "checksumMd5": "8438e3b0e44efec0f962a2f93cb2c865",
+            "size": "619"
+          },
+          {
+            "filename": "sections/curtainsuk-guides.liquid",
+            "checksumMd5": "da411e074a0c2e9ad4bd642cfe7d78c2",
+            "size": "1074"
+          },
+          {
+            "filename": "sections/curtainsuk-header.liquid",
+            "checksumMd5": "d04dc8cf9eebfe1e98bee03b7ba802f2",
+            "size": "9582"
+          },
+          {
+            "filename": "sections/curtainsuk-help-footer.liquid",
+            "checksumMd5": "a961f15cfef5a79d25c72170fff88b6f",
+            "size": "4229"
+          },
+          {
+            "filename": "sections/curtainsuk-home-editorial.liquid",
+            "checksumMd5": "dc6086603ff05d0fe4c9a2cbd8cbb2d6",
+            "size": "5987"
+          },
+          {
+            "filename": "sections/curtainsuk-home-hero.liquid",
+            "checksumMd5": "60f867a63c85136c668ebbb088c7ae0c",
+            "size": "2673"
+          },
+          {
+            "filename": "sections/curtainsuk-home-shopping.liquid",
+            "checksumMd5": "290d02af5008b506083d2bad260cd74f",
+            "size": "1256"
+          },
+          {
+            "filename": "sections/curtainsuk-inspiration-help.liquid",
+            "checksumMd5": "e8048c03460db87cf54b93be19bc27a1",
+            "size": "2510"
+          },
+          {
+            "filename": "sections/curtainsuk-measure-guide.liquid",
+            "checksumMd5": "e1ac5190be2d359298aff269bdbda80b",
+            "size": "330"
+          },
+          {
+            "filename": "sections/curtainsuk-sample-basket.liquid",
+            "checksumMd5": "6ea7bdf49815fc8657671a2607a14871",
+            "size": "1680"
+          },
+          {
+            "filename": "sections/curtainsuk-spaces.liquid",
+            "checksumMd5": "151a07997e9b044951e46a790f69d6d0",
+            "size": "8639"
+          },
+          {
+            "filename": "sections/curtainsuk-task-nav.liquid",
+            "checksumMd5": "4ef1ee132c90726e9128ed50c9816d1d",
+            "size": "1205"
+          },
+          {
+            "filename": "sections/curtainsuk-window-grid.liquid",
+            "checksumMd5": "ee3865226c54a9e6381b0109d3b45744",
+            "size": "2784"
+          },
+          {
+            "filename": "sections/curtainsuk-window-page.liquid",
+            "checksumMd5": "615a6a8a7237ba0ef51e805b168ebf0a",
+            "size": "4306"
+          },
+          {
+            "filename": "sections/custom-liquid.liquid",
+            "checksumMd5": "f59e0ab39564ad3ce9a75048a8bf342a",
+            "size": "1698"
+          },
+          {
+            "filename": "sections/disclosures.liquid",
+            "checksumMd5": "4c29602df31c221ff69942e6dcbbfaf8",
+            "size": "2821"
+          },
+          {
+            "filename": "sections/email-signup-banner.liquid",
+            "checksumMd5": "6155a003ee741efee690c99b03d889d8",
+            "size": "15701"
+          },
+          {
+            "filename": "sections/featured-blog.liquid",
+            "checksumMd5": "be2cdb262d9dd2505deacd80e49d368e",
+            "size": "12666"
+          },
+          {
+            "filename": "sections/featured-collection.liquid",
+            "checksumMd5": "316c16b32d3e6a71bd7459a183b59773",
+            "size": "19031"
+          },
+          {
+            "filename": "sections/featured-product.liquid",
+            "checksumMd5": "e0c4fa2f7d80eaae72a96b74f205f7a1",
+            "size": "65773"
+          },
+          {
+            "filename": "sections/footer-group.json",
+            "checksumMd5": "3299bfc2d0340f0b4413c2ca7ead82cd",
+            "size": "1033"
+          },
+          {
+            "filename": "sections/footer.liquid",
+            "checksumMd5": "f6fcbca4d192cb626f27d57d58cce66a",
+            "size": "20924"
+          },
+          {
+            "filename": "sections/header-group.json",
+            "checksumMd5": "4adb9c82c95978908c59ad565e8fd958",
+            "size": "2126"
+          },
+          {
+            "filename": "sections/header.liquid",
+            "checksumMd5": "014e3f02325b188ce4a217dea4d5548e",
+            "size": "24173"
+          },
+          {
+            "filename": "sections/image-banner.liquid",
+            "checksumMd5": "1d5602e474f97a610fa22d47d7dc6fc6",
+            "size": "18367"
+          },
+          {
+            "filename": "sections/image-with-text.liquid",
+            "checksumMd5": "da1cdef7d40be204e14bc51ae1c45583",
+            "size": "17912"
+          },
+          {
+            "filename": "sections/main-404.liquid",
+            "checksumMd5": "8d301c4f5ae7c9afcebe74382b725149",
+            "size": "493"
+          },
+          {
+            "filename": "sections/main-article.liquid",
+            "checksumMd5": "5649a28805e4ea926a632ea917632ef6",
+            "size": "15076"
+          },
+          {
+            "filename": "sections/main-blog.liquid",
+            "checksumMd5": "0b8efa5c1644412b0d2268dc14df9ebd",
+            "size": "4193"
+          },
+          {
+            "filename": "sections/main-cart-footer.liquid",
+            "checksumMd5": "ada74ed98ce2a226d52eb135411cc48c",
+            "size": "7795"
+          },
+          {
+            "filename": "sections/main-cart-items.liquid",
+            "checksumMd5": "33bd6e7d9c85755dd5d031e4916be362",
+            "size": "26814"
+          },
+          {
+            "filename": "sections/main-collection-banner.liquid",
+            "checksumMd5": "635dbbe683fd38896dab5048047c634b",
+            "size": "3318"
+          },
+          {
+            "filename": "sections/main-collection-product-grid.liquid",
+            "checksumMd5": "33b394616545584be78f7eaa9cf3ab15",
+            "size": "15294"
+          },
+          {
+            "filename": "sections/main-list-collections.liquid",
+            "checksumMd5": "840854149bbb515e9aafa4c195ac5b64",
+            "size": "4562"
+          },
+          {
+            "filename": "sections/main-page.liquid",
+            "checksumMd5": "2266a32d8c73a18818c5ccc943efc473",
+            "size": "2166"
+          },
+          {
+            "filename": "sections/main-password-footer.liquid",
+            "checksumMd5": "c7db7d53e7308a4239c63fc0347bf466",
+            "size": "4910"
+          },
+          {
+            "filename": "sections/main-password-header.liquid",
+            "checksumMd5": "cb2be6fb3fe8520ed793aa3adb21b07e",
+            "size": "4561"
+          },
+          {
+            "filename": "sections/main-product.liquid",
+            "checksumMd5": "2e57a698b6a40c95b658864b6149bf7f",
+            "size": "101760"
+          },
+          {
+            "filename": "sections/main-search.liquid",
+            "checksumMd5": "dbe01691af6ff6b103d3d75851ee5727",
+            "size": "19786"
+          },
+          {
+            "filename": "sections/multicolumn.liquid",
+            "checksumMd5": "9fde5a61bf9cf6b5e3d91ca8a089a7ad",
+            "size": "16568"
+          },
+          {
+            "filename": "sections/multirow.liquid",
+            "checksumMd5": "39b16326c5ae1aecf887399fac99a228",
+            "size": "14235"
+          },
+          {
+            "filename": "sections/newsletter.liquid",
+            "checksumMd5": "b13115c1bfdcc7618bc97f01a754f9da",
+            "size": "8463"
+          },
+          {
+            "filename": "sections/page.liquid",
+            "checksumMd5": "c2545bb29033007a8c9e5912e2a1d3c1",
+            "size": "3189"
+          },
+          {
+            "filename": "sections/pickup-availability.liquid",
+            "checksumMd5": "f78ec58ae0a67ec1fe80b3fd795494f2",
+            "size": "4212"
+          },
+          {
+            "filename": "sections/predictive-search.liquid",
+            "checksumMd5": "2135265160a15479bf5bcbb776d1760b",
+            "size": "12750"
+          },
+          {
+            "filename": "sections/quick-order-list.liquid",
+            "checksumMd5": "1fa352083da6afd0fc926132c29ac1aa",
+            "size": "2449"
+          },
+          {
+            "filename": "sections/related-products.liquid",
+            "checksumMd5": "11a967627aa95e8ca6e96dcb41811efa",
+            "size": "7752"
+          },
+          {
+            "filename": "sections/rich-text.liquid",
+            "checksumMd5": "e9c5f92d3fcae02e4abe00c6745c70d1",
+            "size": "12281"
+          },
+          {
+            "filename": "sections/slideshow.liquid",
+            "checksumMd5": "03e05b125dfbe5473fd83ac51f8b8031",
+            "size": "22125"
+          },
+          {
+            "filename": "sections/video.liquid",
+            "checksumMd5": "8a924ea3e6a9d89fdc39e0f115de0db4",
+            "size": "8066"
+          },
+          {
+            "filename": "snippets/article-card.liquid",
+            "checksumMd5": "50fd22a133425a62b4e2b5dafa891703",
+            "size": "8030"
+          },
+          {
+            "filename": "snippets/buy-buttons.liquid",
+            "checksumMd5": "1fa802ff95dada045c3b8adb1696a1b2",
+            "size": "5256"
+          },
+          {
+            "filename": "snippets/card-collection.liquid",
+            "checksumMd5": "9088e5f6ed7cb80c108577b54771ed3b",
+            "size": "7669"
+          },
+          {
+            "filename": "snippets/card-product.liquid",
+            "checksumMd5": "6b4ef1b2f169f08e22a88455580f47a1",
+            "size": "35724"
+          },
+          {
+            "filename": "snippets/cart-disclosure-indicator.liquid",
+            "checksumMd5": "be701a3c49acae4f867fb658a35cfcd0",
+            "size": "4390"
+          },
+          {
+            "filename": "snippets/cart-drawer.liquid",
+            "checksumMd5": "9f5a43332894e5b0f433355492d9a1de",
+            "size": "30714"
+          },
+          {
+            "filename": "snippets/cart-notification.liquid",
+            "checksumMd5": "ab9f8ca580e9f831ddc67b5f10d63f6e",
+            "size": "2052"
+          },
+          {
+            "filename": "snippets/country-localization.liquid",
+            "checksumMd5": "06fadd06751e9c9d4734231f7bfed3db",
+            "size": "5944"
+          },
+          {
+            "filename": "snippets/curtainsuk-colour-intelligence.liquid",
+            "checksumMd5": "a774a051f4fc31608cfe245932e6d280",
+            "size": "11526"
+          },
+          {
+            "filename": "snippets/curtainsuk-environment.liquid",
+            "checksumMd5": "2baefae834e0a489df089ff5fd1aae8e",
+            "size": "233"
+          },
+          {
+            "filename": "snippets/curtainsuk-fabric-discovery.liquid",
+            "checksumMd5": "5f8fef7135a6242b885fda8322d05539",
+            "size": "1483"
+          },
+          {
+            "filename": "snippets/curtainsuk-fabric-editorial.liquid",
+            "checksumMd5": "487c4cec119f3da0c254d599a919979b",
+            "size": "14212"
+          },
+          {
+            "filename": "snippets/curtainsuk-guide-content.liquid",
+            "checksumMd5": "c3bb536ac05e3b6650e4b20368eaa70a",
+            "size": "11513"
+          },
+          {
+            "filename": "snippets/curtainsuk-guide-diagram.liquid",
+            "checksumMd5": "3f4e4c8f170fb20d2b8a0ea486752bdf",
+            "size": "2598"
+          },
+          {
+            "filename": "snippets/curtainsuk-header-navigation.liquid",
+            "checksumMd5": "652223f4d931d2150b934c67acedffbf",
+            "size": "2362"
+          },
+          {
+            "filename": "snippets/curtainsuk-space-palette.liquid",
+            "checksumMd5": "6214345b14125d96535ff4166f87d78e",
+            "size": "2335"
+          },
+          {
+            "filename": "snippets/curtainsuk-three-ways.liquid",
+            "checksumMd5": "4b316cf0e60e714349e7bd5fb8f7cbb8",
+            "size": "7821"
+          },
+          {
+            "filename": "snippets/facets.liquid",
+            "checksumMd5": "24203ba3e2524570a6adcaa7f6bd9b0f",
+            "size": "48467"
+          },
+          {
+            "filename": "snippets/gift-card-recipient-form.liquid",
+            "checksumMd5": "be2640adc235ebabfd34bfb254d40bd2",
+            "size": "7996"
+          },
+          {
+            "filename": "snippets/header-drawer.liquid",
+            "checksumMd5": "cc6333f1035471f8e32ed330098ec6b7",
+            "size": "14643"
+          },
+          {
+            "filename": "snippets/header-dropdown-menu.liquid",
+            "checksumMd5": "3cfd8f45cc79deb39d1a39b41cf76be9",
+            "size": "4434"
+          },
+          {
+            "filename": "snippets/header-mega-menu.liquid",
+            "checksumMd5": "25ec2a85651ccf1d597408b9da946577",
+            "size": "3704"
+          },
+          {
+            "filename": "snippets/header-search.liquid",
+            "checksumMd5": "f86fa5c358c6cdaea78b7a2072870b62",
+            "size": "4170"
+          },
+          {
+            "filename": "snippets/icon-accordion.liquid",
+            "checksumMd5": "94e89225f4182228bc7fc8e78fa58e72",
+            "size": "194"
+          },
+          {
+            "filename": "snippets/icon-with-text.liquid",
+            "checksumMd5": "cfb4ab0b47953c2b1c944bd114548875",
+            "size": "3291"
+          },
+          {
+            "filename": "snippets/language-localization.liquid",
+            "checksumMd5": "0307757fe86cb46bc4c3b48121e8d518",
+            "size": "1799"
+          },
+          {
+            "filename": "snippets/loading-spinner.liquid",
+            "checksumMd5": "5515470ebcbf51cf756e1fb3c4d9ce80",
+            "size": "330"
+          },
+          {
+            "filename": "snippets/meta-tags.liquid",
+            "checksumMd5": "94fe115faaf448a88815c92abdfe59eb",
+            "size": "1704"
+          },
+          {
+            "filename": "snippets/pagination.liquid",
+            "checksumMd5": "1f938b935eae13566cd3a358505958a9",
+            "size": "2769"
+          },
+          {
+            "filename": "snippets/price-facet.liquid",
+            "checksumMd5": "aae000aade82361a39729886d01e5fc0",
+            "size": "1412"
+          },
+          {
+            "filename": "snippets/price.liquid",
+            "checksumMd5": "188b4aef59b4164a01541e22539dd72f",
+            "size": "5466"
+          },
+          {
+            "filename": "snippets/product-disclosures.liquid",
+            "checksumMd5": "b20a3b9adff7748af1e4122e5dc8f25b",
+            "size": "3754"
+          },
+          {
+            "filename": "snippets/product-media-gallery.liquid",
+            "checksumMd5": "f118ad70d77306c0d3f2b745d3179cb2",
+            "size": "14715"
+          },
+          {
+            "filename": "snippets/product-media-modal.liquid",
+            "checksumMd5": "c3f78ac87f8ee80a00979decf4e4d4dd",
+            "size": "1949"
+          },
+          {
+            "filename": "snippets/product-media.liquid",
+            "checksumMd5": "dd57260e9c198332622ea16d3729294a",
+            "size": "5380"
+          },
+          {
+            "filename": "snippets/product-thumbnail.liquid",
+            "checksumMd5": "8cae0530bd0994606d9aff76c4fac507",
+            "size": "6713"
+          },
+          {
+            "filename": "snippets/product-variant-options.liquid",
+            "checksumMd5": "99397799a02ae35adf652837c30898e7",
+            "size": "3467"
+          },
+          {
+            "filename": "snippets/product-variant-picker.liquid",
+            "checksumMd5": "4398309d4786665a18535bbb2818791a",
+            "size": "3737"
+          },
+          {
+            "filename": "snippets/progress-bar.liquid",
+            "checksumMd5": "ee25ae6c279ca065815ca79c5121ad86",
+            "size": "132"
+          },
+          {
+            "filename": "snippets/quantity-input.liquid",
+            "checksumMd5": "eb5757434aecf7085034570aceeee056",
+            "size": "1783"
+          },
+          {
+            "filename": "snippets/quick-order-list-row.liquid",
+            "checksumMd5": "38dcfd3ac40c28d4f98607d5497ee779",
+            "size": "18730"
+          },
+          {
+            "filename": "snippets/quick-order-list.liquid",
+            "checksumMd5": "e91e95fb1362299706ab11f12f71ff35",
+            "size": "13002"
+          },
+          {
+            "filename": "snippets/quick-order-product-row.liquid",
+            "checksumMd5": "1be6aee33a1ce1b0b867bd28b6bee4ed",
+            "size": "1190"
+          },
+          {
+            "filename": "snippets/share-button.liquid",
+            "checksumMd5": "b672bafb61bb8c3bbf014b94c8826149",
+            "size": "2030"
+          },
+          {
+            "filename": "snippets/social-icons.liquid",
+            "checksumMd5": "3a5534ab2c5769d9c339f1ddb43b79f1",
+            "size": "3932"
+          },
+          {
+            "filename": "snippets/swatch-input.liquid",
+            "checksumMd5": "728b63a7188d237c136a3296d65306b3",
+            "size": "1660"
+          },
+          {
+            "filename": "snippets/swatch.liquid",
+            "checksumMd5": "397b6bdb9ebbaad5586ed1c3f0798bd4",
+            "size": "994"
+          },
+          {
+            "filename": "snippets/unit-price.liquid",
+            "checksumMd5": "0cdacaf0a920cf3e3bd8663fabea89e3",
+            "size": "869"
+          },
+          {
+            "filename": "templates/404.json",
+            "checksumMd5": "7ba9f14bef4a35a29fd53ad813b63f7f",
+            "size": "576"
+          },
+          {
+            "filename": "templates/article.json",
+            "checksumMd5": "feacd7a78931ca00357c0593bfddd03f",
+            "size": "1151"
+          },
+          {
+            "filename": "templates/blog.json",
+            "checksumMd5": "f7ac686e4047fac3e182ab5e319ada81",
+            "size": "695"
+          },
+          {
+            "filename": "templates/cart.json",
+            "checksumMd5": "eb93c1fe17876bdbd62bff928e204d76",
+            "size": "1094"
+          },
+          {
+            "filename": "templates/collection.json",
+            "checksumMd5": "5ba41c004ab0939d2f312ece45904d0c",
+            "size": "1234"
+          },
+          {
+            "filename": "templates/gift_card.liquid",
+            "checksumMd5": "75a42576e88e40cab1410f7c03bf87aa",
+            "size": "10302"
+          },
+          {
+            "filename": "templates/index.json",
+            "checksumMd5": "4fa79362c22286e7c91dd24c4ef45f4a",
+            "size": "968"
+          },
+          {
+            "filename": "templates/list-collections.json",
+            "checksumMd5": "582d0710bd2d1a1410b323b6df69fc9b",
+            "size": "660"
+          },
+          {
+            "filename": "templates/page.browse-fabrics.json",
+            "checksumMd5": "0c917f62ac3272d4f1eb575681b53100",
+            "size": "407"
+          },
+          {
+            "filename": "templates/page.configure-curtains.json",
+            "checksumMd5": "4e751a9a7423ad9e48403e16bfa9465f",
+            "size": "565"
+          },
+          {
+            "filename": "templates/page.contact.json",
+            "checksumMd5": "249e94619527045773a583d2712c9821",
+            "size": "783"
+          },
+          {
+            "filename": "templates/page.curtainsuk-guide.json",
+            "checksumMd5": "c191484782cd9bf0ac13b1b6ac74ced9",
+            "size": "494"
+          },
+          {
+            "filename": "templates/page.fabric-library.json",
+            "checksumMd5": "7184810ce3829c14d63cd64cea132f49",
+            "size": "103"
+          },
+          {
+            "filename": "templates/page.json",
+            "checksumMd5": "2492cc05fcc0c4af9e229cb0aa4ea5c0",
+            "size": "1493"
+          },
+          {
+            "filename": "templates/page.measure.json",
+            "checksumMd5": "7978e2ff39b04ea7821f9329e4223c37",
+            "size": "475"
+          },
+          {
+            "filename": "templates/page.samples.json",
+            "checksumMd5": "34fad2c5cfe7e441f9de0bf8b6c4025e",
+            "size": "475"
+          },
+          {
+            "filename": "templates/page.shop-by-fabric.json",
+            "checksumMd5": "84c916d357c5c14b64a6cb1008fb2d80",
+            "size": "608"
+          },
+          {
+            "filename": "templates/page.shop-by-window.json",
+            "checksumMd5": "8c52547581702aa93a4157c6457f3acf",
+            "size": "601"
+          },
+          {
+            "filename": "templates/page.solve-my-window.json",
+            "checksumMd5": "3cf5d817cc498198492299b99f723400",
+            "size": "7206"
+          },
+          {
+            "filename": "templates/page.window-type.json",
+            "checksumMd5": "92774adad90e9a11f5d49f0b2a845d89",
+            "size": "481"
+          },
+          {
+            "filename": "templates/password.json",
+            "checksumMd5": "bb47340733117eec92e3c583b8f1a3fd",
+            "size": "1460"
+          },
+          {
+            "filename": "templates/product.json",
+            "checksumMd5": "39bc8505c206d93eb45a84e5982a063c",
+            "size": "2746"
+          },
+          {
+            "filename": "templates/product.product.json",
+            "checksumMd5": "39bc8505c206d93eb45a84e5982a063c",
+            "size": "2746"
+          },
+          {
+            "filename": "templates/search.json",
+            "checksumMd5": "297a05ae042e8de6433ce2f379c69d3c",
+            "size": "951"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "InRlbXBsYXRlc1wvc2VhcmNoLmpzb24i"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{% doc %}
+  Renders a real, representative curtain photograph without altering the source.
+  @param {image} source - Shopify-hosted authorised photograph
+  @param {string} alt - Description of the visible lesson
+  @param {string} [image_class] - Presentational class
+  @param {boolean} [eager] - Prioritise the hero photograph
+{% enddoc %}
+{% if source != blank %}
+  {% if eager %}
+    {{ source | image_url: width: 1800 | image_tag: widths: '390, 600, 800, 1200, 1800', sizes: '(min-width: 900px) 55vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: alt, class: image_class }}
+  {% else %}
+    {{ source | image_url: width: 1600 | image_tag: widths: '390, 600, 800, 1200, 1600', sizes: '(min-width: 900px) 65vw, 100vw', loading: 'lazy', alt: alt, class: image_class }}
+  {% endif %}
+{% endif %}
+

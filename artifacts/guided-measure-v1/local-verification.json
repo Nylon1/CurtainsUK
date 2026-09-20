@@ -1,0 +1,85 @@
+{
+  "url": "http://127.0.0.1:62369",
+  "widths": [
+    {
+      "width": 1440,
+      "result": "PASS",
+      "journeys": [
+        "standard-track",
+        "Wave-track",
+        "Pencil-track",
+        "pole",
+        "bay",
+        "not-fitted",
+        "bay-pole-stop",
+        "bay-wave-stop",
+        "unknown-heading",
+        "soft-break-review",
+        "puddle-review",
+        "doors",
+        "wide",
+        "wall"
+      ],
+      "rawStringsPreserved": true,
+      "immutableConfirmedRevisions": true,
+      "downloadVerified": true,
+      "backAndReload": true
+    },
+    {
+      "width": 390,
+      "result": "PASS",
+      "journeys": [
+        "standard-track",
+        "Wave-track",
+        "Pencil-track",
+        "pole",
+        "bay",
+        "not-fitted",
+        "bay-pole-stop",
+        "bay-wave-stop",
+        "unknown-heading",
+        "soft-break-review",
+        "puddle-review",
+        "doors",
+        "wide",
+        "wall"
+      ],
+      "rawStringsPreserved": true,
+      "immutableConfirmedRevisions": true,
+      "downloadVerified": true,
+      "backAndReload": true
+    },
+    {
+      "width": 412,
+      "result": "PASS",
+      "journeys": [
+        "standard-track",
+        "Wave-track",
+        "Pencil-track",
+        "pole",
+        "bay",
+        "not-fitted",
+        "bay-pole-stop",
+        "bay-wave-stop",
+        "unknown-heading",
+        "soft-break-review",
+        "puddle-review",
+        "doors",
+        "wide",
+        "wall"
+      ],
+      "rawStringsPreserved": true,
+      "immutableConfirmedRevisions": true,
+      "downloadVerified": true,
+      "backAndReload": true
+    }
+  ],
+  "checks": [
+    "No-JavaScript help",
+    "Storage-disabled warning",
+    "Malformed resume cannot present confirmed brief"
+  ],
+  "errors": [],
+  "noProductionMutations": true,
+  "result": "PASS"
+}

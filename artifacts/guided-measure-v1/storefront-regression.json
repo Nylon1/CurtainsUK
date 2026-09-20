@@ -1,0 +1,53 @@
+{
+  "candidate": 182339731835,
+  "checks": [
+    {
+      "name": "homepage",
+      "result": "PASS"
+    },
+    {
+      "name": "existing measure hub replaced, entry retained",
+      "result": "PASS"
+    },
+    {
+      "name": "Fabric Intelligence entry",
+      "result": "PASS",
+      "scope": "Entry loaded; no HCI submission or logic change"
+    },
+    {
+      "name": "Browse Fabrics",
+      "result": "PASS",
+      "cards": 24
+    },
+    {
+      "name": "Fabric Detail / exact Fabric Master identity",
+      "result": "PASS",
+      "fabricId": "sdg-f1325-03",
+      "makeHref": "/pages/curtain-visualiser?fabric=sdg-f1325-03&window=standard-window"
+    },
+    {
+      "name": "£2.50 sample handoff and cart identity",
+      "result": "PASS",
+      "priceMinor": 250,
+      "fabricId": "sdg-f1325-03"
+    },
+    {
+      "name": "Make Curtains identity continuity",
+      "result": "PASS",
+      "fabricId": "sdg-f1325-03",
+      "scope": "Entry and selected fabric verified; no pricing/order submission"
+    },
+    {
+      "name": "Samples route retained",
+      "result": "PASS"
+    },
+    {
+      "name": "Fitting help route",
+      "result": "PASS"
+    }
+  ],
+  "requestsToStaging": [],
+  "ordersOrPaymentsSubmitted": false,
+  "testCartCleaned": true,
+  "result": "PASS"
+}

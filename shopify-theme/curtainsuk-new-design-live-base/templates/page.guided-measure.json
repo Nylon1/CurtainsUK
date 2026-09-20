@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "curtainsuk-guided-measure", "settings": {} }
+  },
+  "order": ["main"]
+}

@@ -6,7 +6,7 @@
       <h2 id="cukservice-heading">We’re here from inspiration to installation.</h2>
     </div>
     <nav class="cukservice__routes" aria-label="CurtainsUK help">
-      <a href="/pages/how-to-measure"><span>Measure</span><strong>How to Measure <i aria-hidden="true">→</i></strong></a>
+      <a href="/pages/how-to-measure"><span>Measure</span><strong>{{ 'guided_measure.navigation' | t }} <i aria-hidden="true">→</i></strong></a>
       <a href="/pages/how-to-fit"><span>Fit</span><strong>How to Fit <i aria-hidden="true">→</i></strong></a>
       <a href="/pages/samples"><span>Samples</span><strong>Order Samples <i aria-hidden="true">→</i></strong></a>
       <a href="/#curtainsuk-help"><span>Advice</span><strong>Contact Us <i aria-hidden="true">→</i></strong></a>
@@ -21,7 +21,7 @@
 {% else %}
 {{ 'curtainsuk-guides.css' | asset_url | stylesheet_tag }}
 <nav class="cuk-guide-footer" aria-label="CurtainsUK help">
-  <a href="/pages/how-to-measure">How to Measure</a><a href="/pages/how-to-fit">How to Fit</a><a href="/pages/samples">Samples</a><a href="/#curtainsuk-help">Contact</a><a href="/apps/curtainsuk-decision/image-privacy">Room-image privacy</a>
+  <a href="/pages/how-to-measure">{{ 'guided_measure.navigation' | t }}</a><a href="/pages/how-to-fit">How to Fit</a><a href="/pages/samples">Samples</a><a href="/#curtainsuk-help">Contact</a><a href="/apps/curtainsuk-decision/image-privacy">Room-image privacy</a>
 </nav>
 <div class="cuk-wrap"><p>Apex Curtains Ltd trading as Curtains UK<br>36–44 Bolton Road, Blackburn, BB2 3FA<br><a href="mailto:enquiries@curtainsuk.com">enquiries@curtainsuk.com</a></p></div>
 {% endif %}

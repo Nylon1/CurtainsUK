@@ -1,0 +1,58 @@
+{
+  "liveTheme": "gid://shopify/OnlineStoreTheme/182336356731",
+  "candidateTheme": "gid://shopify/OnlineStoreTheme/182339731835",
+  "candidateRole": "UNPUBLISHED",
+  "liveDiff": [],
+  "candidateDiff": [
+    {
+      "filename": "assets/curtainsuk-guided-measure.css",
+      "before": null,
+      "after": "5567945952945445418afd2acf932b93"
+    },
+    {
+      "filename": "assets/curtainsuk-guided-measure.js",
+      "before": null,
+      "after": "352c3db53b05f3ed682437feffb1dc16"
+    },
+    {
+      "filename": "locales/en.default.json",
+      "before": "384e7b7aef85efedfa89e9bd54d1ad5b",
+      "after": "86dbdc5b0e20a438fde6810303bcbf3a"
+    },
+    {
+      "filename": "sections/curtainsuk-guided-measure.liquid",
+      "before": null,
+      "after": "2bf1426c3b5906d5bd1f8f050b1a6b53"
+    },
+    {
+      "filename": "sections/curtainsuk-guides.liquid",
+      "before": "da411e074a0c2e9ad4bd642cfe7d78c2",
+      "after": "4bd51e798971cf4971b682b71ae74750"
+    },
+    {
+      "filename": "sections/curtainsuk-help-footer.liquid",
+      "before": "a961f15cfef5a79d25c72170fff88b6f",
+      "after": "6a88dbb921bdae695de868ab96a2e75a"
+    },
+    {
+      "filename": "sections/curtainsuk-measure-guide.liquid",
+      "before": "e1ac5190be2d359298aff269bdbda80b",
+      "after": "34f50901fe68fc4eeacb49f241a6b8fa"
+    },
+    {
+      "filename": "snippets/curtainsuk-guided-measure-content.liquid",
+      "before": null,
+      "after": "3421e6c6179064c42ae50227ffe57cb6"
+    },
+    {
+      "filename": "snippets/curtainsuk-header-navigation.liquid",
+      "before": "b05f52cccbc04934fe9dd3d3c1fe9dda",
+      "after": "eb2ec55629c1825291047d52f554a0bb"
+    },
+    {
+      "filename": "templates/page.guided-measure.json",
+      "before": null,
+      "after": "17eb7ead017775fd447359b1006da295"
+    }
+  ]
+}

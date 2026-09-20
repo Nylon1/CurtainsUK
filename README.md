@@ -8,6 +8,14 @@ CurtainsUK is a made-to-measure curtain commerce and fabric-intelligence platfor
 
 ## Current architecture decision — September 2026
 
+### MTM production checkout release status — 20 September 2026
+
+The production customer storefront is Shopify store `carpetup.myshopify.com`, presented at `www.curtainsuk.com`; the current live theme is `182339731835`. The installed MTM app is `curtains-uk-mtm`. Its active supporting runtime is the existing Vercel project `curtainsuk-staging-api`, served through `curtainsuk-staging-gateway.vercel.app`. HCI remains a separate upstream service.
+
+Shopify continues to own cart, checkout, payment and orders. The MTM gateway owns server-side configuration compatibility, fresh-stock revalidation, pricing identity and the post-payment operational transition `PAID → CURTAINSUK REVIEW → APPROVED FOR MANUFACTURE → WORKROOM RELEASE`. Payment never releases manufacture automatically.
+
+The active public MTM payment gate remains disabled until the owner performs the first controlled payment test. A private Draft Order rehearsal, when explicitly enabled for a short operator window, must run only inside the Vercel production environment; it uses server-resident credentials, a fixed safe configuration, no customer/email, no invoice operation, no payment capability and an immediate verified deletion. No environment values or credentials belong in source, artifacts or this document.
+
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 
 There are **three distinct frontend bodies of work**:

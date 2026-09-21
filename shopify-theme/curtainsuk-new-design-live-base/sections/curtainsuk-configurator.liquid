@@ -6,12 +6,17 @@
 %}
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 {{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
+{% if settings.curtainsuk_rooms_enabled %}
+  {{ 'curtainsuk-rooms.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'curtainsuk-rooms-store.js' | asset_url }}" defer></script>
+  <script src="{{ 'curtainsuk-rooms.js' | asset_url }}" defer></script>
+{% endif %}
 
 {% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
-<section class="cuk-shell cuk-section" data-cuk-configurator data-production-checkout="{{ production_checkout }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
+<section class="cuk-shell cuk-section" data-cuk-configurator data-rooms-enabled="{{ settings.curtainsuk_rooms_enabled }}" data-production-checkout="{{ production_checkout }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
@@ -166,7 +171,7 @@
         <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h2>{% if production_checkout %}Your curtain order{% else %}Prepare a Shopify test checkout{% endif %}</h2>
           {% render 'curtainsuk-colour-guidance' %}
-          <p>{% if production_checkout %}Your curtain specification and price are preserved. This made-to-measure configuration cannot be edited in cart or checkout; to change it, remove it and configure your curtains again. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
+          <p>{% if settings.curtainsuk_rooms_enabled %}{{ 'rooms.retain_notice' | t }}{% elsif production_checkout %}Your curtain specification and price are preserved. This made-to-measure configuration cannot be edited in cart or checkout; to change it, remove it and configure your curtains again. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukShippingRegion-{{ section.id }}" name="shippingRegion" required>

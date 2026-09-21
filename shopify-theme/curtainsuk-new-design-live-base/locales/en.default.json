@@ -8,6 +8,15 @@
  * ------------------------------------------------------------
  */
 {
+  "rooms": {
+    "navigation": "My Rooms",
+    "title": "Build My Rooms",
+    "opening": "Opening your rooms…",
+    "enable_javascript": "Please enable JavaScript to open your saved rooms.",
+    "unavailable": "This experience is not available yet.",
+    "browse": "Browse fabrics",
+    "retain_notice": "Add this validated curtain to your rooms. To change its specification, remove it and configure it again. Price and availability are checked again before checkout."
+  },
   "guided_measure": {
     "navigation": "Guided Measure",
     "eyebrow": "Guided Measure",

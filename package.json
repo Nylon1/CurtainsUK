@@ -5,6 +5,9 @@
   "scripts": {
     "prebuild": "node scripts/build-premium-proxy.mjs",
     "dev": "next dev",
+    "preview:rooms": "tsx scripts/rooms-preview.ts",
+    "test:rooms": "tsx --test lib/storefront/__tests__/rooms*.test.ts",
+    "verify:rooms": "node scripts/verify-rooms.cjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

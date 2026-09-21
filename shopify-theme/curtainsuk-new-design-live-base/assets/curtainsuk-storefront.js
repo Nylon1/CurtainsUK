@@ -585,6 +585,9 @@
     const params = new URLSearchParams(location.search);
     let catalog;
     let lastEvaluation = null;
+    const roomsEnabled = root.dataset.roomsEnabled === 'true';
+    const roomsFresh = roomsEnabled && (params.get('rooms_new') === '1' || window.CurtainsUKRooms?.readIntent());
+    const checkoutLabel = () => roomsEnabled ? 'Add to my rooms' : root.dataset.productionCheckout === 'true' ? 'Continue to secure checkout' : 'Prepare test checkout';
 
     try {
       const requested = params.get("fabric") || readJson(PROJECT_KEY, {}).fabricId;
@@ -600,8 +603,12 @@
       return;
     }
 
-    const remembered = readJson(PROJECT_KEY, {});
+    const remembered = roomsFresh ? {} : readJson(PROJECT_KEY, {});
     restoreProject(form, remembered);
+    if (roomsEnabled) {
+      try { if (roomsFresh) localStorage.removeItem(EVALUATION_KEY); window.CurtainsUKRoomsFlow.prepare(root); }
+      catch (error) { errorBox.textContent = error.message; errorBox.hidden = false; form.querySelector('button[type=submit]').disabled = true; return; }
+    }
     const requestedWindow = params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window";
     windowSelect.value = AUTOMATED_MTM_WINDOWS.has(requestedWindow) ? requestedWindow : "standard-window";
     const requestedFabric = params.get("fabric") || remembered.fabricId;
@@ -683,7 +690,7 @@
         reviewForm.classList.add("cuk-hidden");
         checkoutForm.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutLabel(); }
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         reviewConfirmation.classList.add("cuk-hidden");
       }
@@ -846,7 +853,7 @@
         previousCheckoutError.textContent = "";
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutLabel(); }
         const notice = result.querySelector("[data-cuk-result-notice]");
         if (notice) notice.textContent = needsReview
           ? "Checkout is unavailable. This project must be reviewed before payment or manufacture."
@@ -906,6 +913,20 @@
       const checkoutError = checkoutForm.querySelector("[data-cuk-checkout-error]");
       checkoutError.hidden = true;
       if (!checkoutForm.reportValidity() || !lastEvaluation || lastEvaluation.calculation.outcome !== "INSTANT_PRICE") return;
+      if (roomsEnabled) {
+        const button = checkoutForm.querySelector('button[type=submit]');
+        button.disabled = true; button.textContent = 'Adding to your rooms…';
+        try {
+          await window.CurtainsUKRoomsFlow.add(lastEvaluation, root.dataset.engineBase, {
+            roomId: checkoutForm.elements.roomId.value || null,
+            roomName: checkoutForm.elements.roomName.value,
+          });
+        } catch (error) {
+          checkoutError.textContent = error.message; checkoutError.hidden = false;
+          button.disabled = false; button.textContent = checkoutLabel();
+        }
+        return;
+      }
       const previousAttempt = readJson(EVALUATION_KEY, {}).checkoutAttempted === true;
       const submit = checkoutForm.querySelector("button[type=submit]");
       submit.disabled = true;

@@ -1,5 +1,13 @@
 # CurtainsUK
 
+## Build My Rooms V1 — unpublished feature, 21 September 2026
+
+Development lives on `feature/build-my-rooms-v1`, in the isolated `curtainsuk-build-my-rooms` worktree. See [Build My Rooms implementation and release runbook](docs/BUILD_MY_ROOMS_V1.md). The room experience, structured device autosave, immutable curtain retention and server revalidation adapter are implemented for local review. Combined checkout is **not released**: the existing paid-order schema/webhook records one snapshot per Shopify order; it must not receive a multi-curtain order without an explicitly approved extension. No production pricing, stock, paid lifecycle, workroom, Customer Trust or cookie implementation was changed.
+
+**Canonical live Shopify theme: `182339731835` on `carpetup.myshopify.com`. Do not create duplicate themes for feature development/review.** Git is the history/rollback source. Before every later deployment, compare the intended scoped files against the actual current live theme and preserve all intervening live changes. Do not push this worktree wholesale: historical sections below describe earlier work and are not a current-live release manifest.
+
+Local preview: `npm run preview:rooms` → `http://127.0.0.1:4348`. Test: `npm run test:rooms`; browser verification: `npm run verify:rooms` while preview runs. Preview costs/stock are labelled fixtures, not a customer quote. Neither preview nor the new server command creates a Shopify order or takes payment.
+
 ## Google Fabric Discovery V1 — pilot infrastructure, 21 September 2026
 
 The implemented pilot layer is documented in [Google Fabric Discovery V1](docs/GOOGLE_FABRIC_DISCOVERY_V1.md). It establishes one server-rendered canonical Fabric Detail destination per Fabric Master and models the Merchant item as a **physical fabric sample**, never a made-to-measure curtain. The projection is read-only and fail-closed against Fabric Master, governed commerce/sample state, approved image rights and approved Fabric Knowledge. The live audit found no working exact Fabric Detail route, so the live Google-eligible count is **0**; that is a distribution gap, not a judgement on fabric or Knowledge quality. £2.50 sample semantics and pilot image rights are approved, but the current public sample-product endpoint used by the existing code returns `404`, so live sample proof is still blocked. No feed was submitted, no mass indexation was changed, and the route/sitemap remain unmounted from the live domain pending the 50-item source-backed preflight and owner approval.

@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { roomsCommand } from '@/lib/storefront/rooms-server';
+import { roomsCustomerError } from '@/lib/storefront/rooms-core';
 import {proxyCustomerSession,proxyCustomerCommand,proxyConsultationAsset} from '@/lib/storefront/hci-proxy-server';
 import { premiumProxyAsset, premiumProxyCommand, premiumProxyPage, premiumProxySession } from '@/lib/storefront/hci-premium-proxy-server';
 import { prepareSampleOrder } from "@/lib/storefront/sample-order-server";
@@ -124,6 +126,14 @@ export async function POST(request: Request, context: { params: Promise<{ operat
       return NextResponse.json(await calculateStagingPrice(await readBoundedJson<StagingPriceRequest>(request)), {
         headers: PUBLIC_NO_STORE_HEADERS,
       });
+    }
+    if (selected === "rooms") {
+      const payload = await readBoundedJson(request, 512 * 1024);
+      try {
+        return NextResponse.json(await roomsCommand(payload), { headers: PUBLIC_NO_STORE_HEADERS });
+      } catch (error) {
+        return NextResponse.json({ error: roomsCustomerError(error) }, { status: 409, headers: PUBLIC_NO_STORE_HEADERS });
+      }
     }
     if (selected === "sample-order") {
       return NextResponse.json(await prepareSampleOrder(await readBoundedJson(request,4096)), {headers:PUBLIC_NO_STORE_HEADERS});

@@ -32,5 +32,8 @@
     </details>
   </li>
   <li class="cuknav__item"><a href="{{ routes.root_url }}#curtainsuk-inspiration">Inspiration</a></li>
+  {% if settings.curtainsuk_rooms_enabled %}
+    <li class="cuknav__item"><a href="/pages/build-my-rooms">{{ 'rooms.navigation' | t }}</a></li>
+  {% endif %}
   <li class="cuknav__item"><a href="{{ routes.root_url }}#curtainsuk-help">Contact</a></li>
 </ul>

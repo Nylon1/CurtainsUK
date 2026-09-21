@@ -1,0 +1,50 @@
+{
+  "scope": "UNPUBLISHED LOOPBACK FIXTURES — not a live Shopify rehearsal",
+  "checks": [
+    "1 curtains survive refresh",
+    "3 curtains survive refresh",
+    "10 curtains survive refresh",
+    "10 curtains survive browser close/reopen using persistent same-device profile",
+    "Local navigation/back/forward: /pages/fabric-library?view=browse-fabrics",
+    "Local navigation/back/forward: /apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+    "Local navigation/back/forward: /pages/curtain-visualiser?fabric=pt-4269-147&rooms_new=1",
+    "1440px: no overflow; ten visual cards; 44px removal targets",
+    "390px: no overflow; ten visual cards; 44px removal targets",
+    "412px: no overflow; ten visual cards; 44px removal targets",
+    "Custom room name saves automatically",
+    "Add another window carries room identity only",
+    "New room autosaves before fabric discovery",
+    "Remove middle curtain preserves other specifications",
+    "Unchanged server review shows exact summary; checkout release remains blocked",
+    "Price changes require individual acknowledgement",
+    "out-of-stock: checkout blocked, saved rooms retained",
+    "non-commercial: checkout blocked, saved rooms retained",
+    "unavailable: checkout blocked, saved rooms retained",
+    "Remove entire room preserves other rooms",
+    "Final removal produces intentional empty state"
+  ],
+  "screenshots": [
+    "desktop.png",
+    "mobile-390.png",
+    "mobile-412.png",
+    "review.png",
+    "changed-price.png",
+    "empty-mobile.png"
+  ],
+  "browserErrors": {
+    "errors": [],
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 7921533071014542000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    }
+  }
+}

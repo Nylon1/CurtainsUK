@@ -1,0 +1,19 @@
+{% if settings.curtainsuk_rooms_enabled %}
+  {{ 'curtainsuk-rooms.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'curtainsuk-rooms-store.js' | asset_url }}" defer></script>
+  <script src="{{ 'curtainsuk-rooms.js' | asset_url }}" defer></script>
+  <section class="cukrooms" data-cuk-rooms
+    data-engine-base="{{ settings.curtainsuk_staging_api_base | default: '/apps/curtainsuk-decision' | escape }}"
+    data-heading-wave="{{ 'cuk-anatomy-wave.png' | asset_url }}"
+    data-heading-double-pinch="{{ 'cuk-anatomy-double-pinch.png' | asset_url }}"
+    data-heading-pencil-pleat="{{ 'cuk-anatomy-pencil-pleat.png' | asset_url }}"
+    data-heading-eyelet="{{ 'cuk-anatomy-eyelet.png' | asset_url }}">
+    <p>{{ 'rooms.opening' | t }}</p>
+    <noscript><h1>{{ 'rooms.title' | t }}</h1><p>{{ 'rooms.enable_javascript' | t }} <a href="/pages/fabric-library?view=browse-fabrics">{{ 'rooms.browse' | t }}</a></p></noscript>
+  </section>
+{% else %}
+  <section class="page-width"><h1>{{ 'rooms.title' | t }}</h1><p>{{ 'rooms.unavailable' | t }} <a href="/pages/fabric-library?view=browse-fabrics">{{ 'rooms.browse' | t }}</a></p></section>
+{% endif %}
+{% schema %}
+{"name":"Build My Rooms","settings":[]}
+{% endschema %}

@@ -691,9 +691,10 @@ test("production checkout preserves recovery, one-shot creation and explicit act
     const {executeShopifyDraftOrder,shopifyDraftOrderConfigFromEnvironment} = await import("../shopify-draft-order-server");
     const handoff=approvedHandoff("INSTANT_PRICE");
     const contract=asProductionDraftOrderContract(buildShopifyDraftOrderContract({handoff}),handoff.snapshot.fabricMasterId);
-    const env={NODE_ENV:"test" as const,CURTAINSUK_DEPLOYMENT_STAGE:"STAGING",CURTAINSUK_SHOPIFY_CHECKOUT_STORE:"carpetup.myshopify.com",CURTAINSUK_SHOPIFY_CLIENT_ID:"production-test-client",CURTAINSUK_SHOPIFY_APP_SECRET:"production-test-secret-not-real",CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:"CREATE_PRODUCTION_DRAFT",CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:"true",CURTAINSUK_SHOPIFY_REAL_PAYMENTS_DISABLED_CONFIRMED:"false"};
+    const env={NODE_ENV:"test" as const,CURTAINSUK_DEPLOYMENT_STAGE:"PRODUCTION",CURTAINSUK_SHOPIFY_CHECKOUT_STORE:"carpetup.myshopify.com",CURTAINSUK_SHOPIFY_CLIENT_ID:"production-test-client",CURTAINSUK_SHOPIFY_APP_SECRET:"production-test-secret-not-real",CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:"CREATE_PRODUCTION_DRAFT",CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:"true",CURTAINSUK_SHOPIFY_REAL_PAYMENTS_DISABLED_CONFIRMED:"false"};
     assert.throws(()=>shopifyDraftOrderConfigFromEnvironment({...env,CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:"false"}),/STORE_DENIED/);
-    assert.throws(()=>shopifyDraftOrderConfigFromEnvironment({...env,CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:"CREATE_TEST_DRAFT",CURTAINSUK_SHOPIFY_PRODUCTION_TEST_MODE_VERIFIED:"true"}),/PAYMENT_SAFETY_NOT_CONFIRMED/);
+    assert.throws(()=>shopifyDraftOrderConfigFromEnvironment({...env,CURTAINSUK_DEPLOYMENT_STAGE:"STAGING"}),/NON_STAGING_DENIED/);
+    assert.throws(()=>shopifyDraftOrderConfigFromEnvironment({...env,CURTAINSUK_DEPLOYMENT_STAGE:"STAGING",CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:"CREATE_TEST_DRAFT",CURTAINSUK_SHOPIFY_PRODUCTION_TEST_MODE_VERIFIED:"true"}),/PAYMENT_SAFETY_NOT_CONFIRMED/);
     const config=shopifyDraftOrderConfigFromEnvironment(env)!;
     let claimed=false,creates=0,indexed=false;
     const claimCreate=async()=>{if(claimed)return false;claimed=true;return true;};

@@ -28,6 +28,10 @@ SDG Fabric Master IDs are generated from the authoritative supplier SKU only. Ac
 
 The 21 September live Browse/Fabric Detail SDG handoff audit covered all 386 paginated public catalogue pages (9,248 retail records): 6,070 SDG records were emitted, of which 5,815 were configuration-and-price ready, 255 were governed pending/non-commercial, 0 were aliased and 0 live handoff IDs were not found. This checks identity existence and governed commercial readiness; fresh supplier stock is still revalidated separately at price and checkout handoff.
 
+### Production checkout deployment-stage gate — 21 September 2026
+
+Non-payable Shopify Draft Order rehearsal modes remain restricted to `STAGING`. The live `CREATE_PRODUCTION_DRAFT` mode is restricted instead to the explicit `PRODUCTION` stage, the exact `carpetup.myshopify.com` store, the owner purchase-approval flag and the server-validated production contract. The inverse stage/mode combinations fail closed. This preserves the distinction between a private rehearsal and a customer-reachable checkout while allowing the authorised production route to execute on its production deployment.
+
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 
 There are **three distinct frontend bodies of work**:

@@ -18,7 +18,7 @@ import type { StagingCheckoutHandoff } from "./checkout-gates";
 
 export interface ShopifyDraftOrderRuntimeConfig {
   mode: ShopifyDraftOrderMode;
-  deploymentStage: "STAGING";
+  deploymentStage: "STAGING" | "PRODUCTION";
   shopDomain: string;
   clientId: string;
   clientSecret: string;
@@ -150,14 +150,31 @@ function validShopDomain(value: string): boolean {
   return /^[a-z0-9][a-z0-9-]*\.myshopify\.com$/.test(value);
 }
 
+/**
+ * A non-payable rehearsal is confined to STAGING. A payable production Draft
+ * Order is the inverse: it may execute only from the explicit PRODUCTION
+ * deployment stage, after the separate store and owner-approval gates below.
+ */
+function deploymentStageForMode(
+  mode: ShopifyDraftOrderMode,
+  value: string | undefined,
+): "STAGING" | "PRODUCTION" {
+  const stage = value === "STAGING" || value === "PRODUCTION" ? value : null;
+  if (!stage) throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
+  if (mode === "CREATE_PRODUCTION_DRAFT") {
+    if (stage !== "PRODUCTION") throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
+    return stage;
+  }
+  if (stage !== "STAGING") throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
+  return stage;
+}
+
 export function shopifyDraftOrderConfigFromEnvironment(
   environment: NodeJS.ProcessEnv = process.env,
 ): ShopifyDraftOrderRuntimeConfig | null {
   const mode = parseMode(environment.CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE);
   if (mode === "DISABLED") return null;
-  if (environment.CURTAINSUK_DEPLOYMENT_STAGE !== "STAGING") {
-    throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
-  }
+  const deploymentStage = deploymentStageForMode(mode, environment.CURTAINSUK_DEPLOYMENT_STAGE);
   const shopDomain = environment.CURTAINSUK_SHOPIFY_CHECKOUT_STORE?.trim().toLowerCase() ?? "";
   const productionStore = shopDomain === 'carpetup.myshopify.com';
   const clientId = (productionStore ? environment.CURTAINSUK_SHOPIFY_CLIENT_ID : environment.CURTAINSUK_SHOPIFY_CHECKOUT_CLIENT_ID ?? environment.CURTAINSUK_SHOPIFY_CLIENT_ID)?.trim() ?? "";
@@ -176,7 +193,7 @@ export function shopifyDraftOrderConfigFromEnvironment(
   }
   return {
     mode,
-    deploymentStage: "STAGING",
+    deploymentStage,
     shopDomain,
     clientId,
     clientSecret,
@@ -430,7 +447,9 @@ export async function executeShopifyDraftOrder(input: {
       paymentEnabled: false,
     };
   }
-  if (input.config.deploymentStage !== "STAGING") {
+  const production = input.config.mode === "CREATE_PRODUCTION_DRAFT";
+  if ((production && input.config.deploymentStage !== "PRODUCTION")
+      || (!production && input.config.deploymentStage !== "STAGING")) {
     throw new Error("SHOPIFY_DRAFT_ORDER_NON_STAGING_DENIED");
   }
   if (!validShopDomain(input.config.shopDomain)
@@ -438,7 +457,6 @@ export async function executeShopifyDraftOrder(input: {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_STORE_DENIED");
   }
   const fetchImpl = input.fetchImpl ?? fetch;
-  const production = input.config.mode === "CREATE_PRODUCTION_DRAFT";
   if (production !== (input.contract.environment === "PRODUCTION" && input.contract.paymentEnabled)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CONTRACT_MODE_MISMATCH");
   }

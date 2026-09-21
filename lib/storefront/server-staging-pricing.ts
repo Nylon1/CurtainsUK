@@ -34,6 +34,12 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
       : calculateStagingPriceForTest(input, pricedFabric);
   }
   catch(error) { if(error instanceof MissingCommercialRuleError) return priceConfirmation(); throw error; }
+  if (productionCustomerPricingEnabled()) {
+    console.info(JSON.stringify({
+      event: "CURTAINSUK_MTM_PRODUCTION_PRICE_RULESET",
+      pricingRuleVersion: provisional.calculationVersion,
+    }));
+  }
   const projection = await dailyStockProjection({
     supplierId: record.supplier_id,
     supplierSku: record.supplier_sku,

@@ -388,6 +388,12 @@ async function prepareCheckout(
     handoffId: handoff.handoffId,
     preparedBy: "SHOPIFY_APP_PROXY_CUSTOMER",
   });
+  if (process.env.VERCEL_ENV === "production" && process.env.CURTAINSUK_DEPLOYMENT_STAGE === "PRODUCTION") {
+    console.info(JSON.stringify({
+      event: "CURTAINSUK_MTM_PRODUCTION_SNAPSHOT_RULESET",
+      pricingRuleVersion: snapshot.pricingRuleVersion,
+    }));
+  }
   enter("SHOPIFY_EXECUTION");
   const shopifyExecution = await executeStagingShopifyDraftOrder({
     handoff,

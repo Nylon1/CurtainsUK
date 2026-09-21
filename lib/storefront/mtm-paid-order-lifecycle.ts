@@ -12,22 +12,57 @@ export type MtmPaidOrderLifecycleState =
   | "CHANGE_REQUESTED"
   | "REJECTED";
 
+export type MtmPaidHouseCurtain = {
+  snapshotId: string;
+  configurationId: string;
+  roomId: string;
+  roomName: string;
+  windowName: string;
+  lineOrdinal: number;
+};
+
+export type MtmPaidHouse = {
+  houseId: string;
+  houseRevision: number;
+  houseFingerprint: string;
+  contractFingerprint: string;
+  curtains: readonly MtmPaidHouseCurtain[];
+};
+
 export function verifiedShopifyWebhookPayloadSha256(rawBody: Uint8Array): string {
   return createHash("sha256").update(rawBody).digest("hex");
 }
 
 export async function recordVerifiedMtmPaidOrder(input: {
-  snapshotId: string;
+  snapshotId?: string;
+  house?: MtmPaidHouse;
   shopifyOrderGid: string;
   shopifyOrderName: string;
   shopifyDraftOrderGid?: string | null;
   paidAt: string;
   rawWebhookBody: Uint8Array;
 }) {
+  if ((input.snapshotId ? 1 : 0) + (input.house ? 1 : 0) !== 1) {
+    throw new Error("MTM_PAID_ORDER_CONTRACT_INVALID");
+  }
   const { data, error } = await createSupplierServiceClient().rpc("record_mtm_paid_order", {
     p_payment: {
       paid_order_id: randomUUID(),
-      snapshot_id: input.snapshotId,
+      ...(input.snapshotId ? { snapshot_id: input.snapshotId } : {}),
+      ...(input.house ? {
+        house_id: input.house.houseId,
+        house_revision: input.house.houseRevision,
+        house_fingerprint: input.house.houseFingerprint,
+        contract_fingerprint: input.house.contractFingerprint,
+        curtains: input.house.curtains.map((curtain) => ({
+          snapshot_id: curtain.snapshotId,
+          configuration_id: curtain.configurationId,
+          room_id: curtain.roomId,
+          room_name: curtain.roomName,
+          window_name: curtain.windowName,
+          line_ordinal: curtain.lineOrdinal,
+        })),
+      } : {}),
       shopify_order_gid: input.shopifyOrderGid,
       shopify_order_name: input.shopifyOrderName,
       shopify_draft_order_gid: input.shopifyDraftOrderGid ?? null,
@@ -36,7 +71,7 @@ export async function recordVerifiedMtmPaidOrder(input: {
     },
   });
   if (error) throw new Error("MTM_PAID_ORDER_RECORD_FAILED");
-  return data as { paid_order_id: string; lifecycle_state: MtmPaidOrderLifecycleState; reused: boolean };
+  return data as { paid_order_id: string; lifecycle_state: MtmPaidOrderLifecycleState; reused: boolean; contract_type: "SINGLE_CURTAIN" | "HOUSE" };
 }
 
 export async function transitionMtmPaidOrder(input: {

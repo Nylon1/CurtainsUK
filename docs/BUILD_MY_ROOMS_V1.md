@@ -1,6 +1,6 @@
 # Build My Rooms / House of Curtains V1
 
-Status: **unpublished local implementation; combined checkout blocked**.
+Status: **unpublished local implementation; multi-curtain contract built; public House payment disabled**.
 
 ## Source and deployment policy
 
@@ -42,25 +42,48 @@ House review also verifies aggregate cloth requirements for repeated use of the 
 
 Five-minute review evidence binds membership, room names, house revision, destination, current prices and configuration receipts. It is not persisted as a reusable checkout. Price changes need individual acknowledgement; all measurements need final confirmation. Failed curtains leave unaffected rooms intact. No stale Shopify draft can become authoritative because this implementation creates none.
 
-## Exact release dependency — multi-snapshot paid orders
+## Multi-snapshot paid-order contract
 
-Evidence in the current source:
+The original checkout was intentionally one-snapshot-per-order. This branch
+adds a narrow relational extension without changing pricing, Fabric Master,
+stock, compatibility or the lifecycle meanings:
 
-- `app/api/webhooks/shopify/orders-paid/route.ts` resolves one `curtainsuk_snapshot_id` order attribute.
-- `supabase/migrations/20260920183654_mtm_paid_order_lifecycle.sql` uniquely associates both one snapshot ID and one Shopify order GID with a paid-order record.
-- The workroom packet/review path is snapshot-specific.
+- Migration `20260921205826_multi_curtain_paid_order_contract.sql` preserves
+  historic `SINGLE_CURTAIN` records and adds `HOUSE` records. Each paid order
+  has relational `mtm_paid_order_curtains` rows containing snapshot,
+  configuration, room and window identity. It does not store production lines
+  as one unstructured JSON document.
+- `mtm_workroom_release_packet_curtains` is likewise relational. One explicit
+  staff House release emits all of its curtain rows; V1 has no partial release.
+- The signed `orders/paid` webhook now accepts either the historic single
+  snapshot or an HMAC-authenticated Shopify House with every private line
+  property reconstructed and checked before the RPC persists it.
+- House Draft Orders use one governed delivery line, exact summed goods/VAT,
+  private per-line production identity, a House/revision/fingerprint and a
+  durable House-fingerprint creation claim. The payment transport continues to
+  reject public House payment.
 
-Sending many curtain lines under the first snapshot would omit other curtains from production review. Creating several unrelated checkouts would violate the single house order. Neither workaround is acceptable.
+Sending many curtain lines under the first snapshot would omit other curtains
+from production review. Creating several unrelated checkouts would violate the
+single House order. Neither behaviour is allowed.
 
-The owner's protected webhook/lifecycle/schema files remain **untouched**. `ROOMS_CHECKOUT_RELEASED=false` and the server checkout command fail closed independently of theme/env gates. A production release needs explicit authority for a narrowly scoped order→many snapshots extension, not a pricing or lifecycle-policy redesign:
+`ROOMS_CHECKOUT_RELEASED=false` and the server checkout command fail closed
+independently of theme/env gates. The production transport is intentionally not
+wired to public House checkout. Before that separate release, perform a linked
+Supabase migration deployment plus a private, non-payable Shopify Draft Order
+rehearsal using the deployed gateway credentials:
 
-1. Associate every immutable line/snapshot with one order atomically and idempotently; verify full house fingerprint and line membership.
-2. Register paid→review for all retained curtains. Payment and approval still must not automatically release any workroom job.
-3. Keep approval/release staff-only and explicitly scoped to all relevant snapshots; prove partial/failure/replay paths.
-4. Only then connect final server revalidation, price-change acknowledgements and fresh per-line snapshots to a multi-line Shopify calculate/create transport. Bind draft identity to house revision, invalidate superseded handoffs, and reconcile exact goods/VAT/one delivery/total before returning checkout.
-5. Rehearse 1/2/multi-room Draft Orders without sending invoices/payment, then review before live activation.
+1. Deploy the migration and verify the private relational schema/RPC against the linked project.
+2. Connect the existing final House review to fresh immutable snapshot preparation and House execution persistence. This branch intentionally does not create a public route or take payment while that linked-environment proof is absent.
+3. Run 1/2/multi-room private Draft Orders without sending an invoice/payment, with a durable House claim and exact Shopify reconciliation.
+4. Verify webhook replay, PAID → REVIEW and one explicit whole-House staff-only workroom release in the deployed environment.
+5. Obtain separate owner authority before enabling any House payment flag.
 
-`rooms-order-contract.ts` prepares the future combined contract using existing immutable single-line builders, one delivery and private per-line identity. It does not call Shopify. Contract tests use synthetic Shopify financial responses; they are **not** evidence of live Shopify reconciliation.
+`rooms-order-contract.ts` prepares the combined contract using existing immutable
+single-line builders, one delivery and private per-line identity.
+`rooms-draft-order-repository.ts` supplies durable House claim/receipt helpers
+for the later transport. Contract tests use synthetic Shopify financial
+responses; they are **not** evidence of live Shopify reconciliation.
 
 The staff-reviewed/manual-quote resume route is unchanged; the new retention adapter currently handles approved automated instant-price configurations only. It does not claim to import reviewed specialist quotes.
 
@@ -68,18 +91,18 @@ The staff-reviewed/manual-quote resume route is unchanged; the new retention ada
 
 Run `npm run preview:rooms` at loopback `http://127.0.0.1:4348`. The preview has a conspicuous fixture banner, example-curtain/10-curtain controls and price/stock failure scenarios. It uses real existing production calculation code with labelled fixture supplier costs and stock, approved catalogue-image mappings, and ephemeral local signing. It loads no production credentials. Browse/Fabric Intelligence/Make Curtains navigation destinations are explicitly labelled local placeholders, not live integration tests.
 
-- `npm run test:rooms`: 27 domain/store/contract/integration-guard tests.
-- `npm run test:storefront`: 230 passing tests.
+- `npm run test:rooms`: 31 domain/store/contract/integration-guard tests.
+- `npm run test:storefront`: run before a deployment; local source tests are expected to include the multi-contract suite.
 - `npx tsc --noEmit --incremental false`: passed.
 - Shopify Liquid skill validation: all ten changed theme/template/assets/locale files passed.
 - `npm run verify:rooms`: 21 local browser checks, no browser errors. Evidence: `artifacts/build-my-rooms-v1/browser-verification.json`.
 - Browser checks: 1/3/10 refresh, real browser close/reopen with persistent profile, local navigation/back/forward, one room with multiple windows, multiple rooms, rename/add/remove, changed price, unavailable/non-commercial/out-of-stock, final empty state; desktop 1440 / 390 / 412 no overflow with 44px removal controls.
-- Storage corruption/quota, cross-tab conflicts, stale/tampered receipt, compatibility, draft-rules rejection, cumulative stock and 1/2/10-line penny reconciliation are covered by isolated tests.
+- Storage corruption/quota, cross-tab conflicts, stale/tampered receipt, compatibility, draft-rules rejection, cumulative stock, 1/2/10-line penny reconciliation, House line property tampering, generic exact-total execution and House idempotency identity are covered by isolated tests.
 
 Screenshots: `desktop.png`, `mobile-390.png`, `mobile-412.png`, `review.png`, `changed-price.png`, `empty-mobile.png` in the same artifacts folder. All are local fixtures.
 
 ## Remaining release verification
 
-Do not enable the flags or deploy incomplete functionality to live for preview. Outstanding: owner visual review; approved multi-snapshot extension; deployed full Make Curtains/Fabric Intelligence/Browse round trips and same-device identity continuity; real Shopify financial reconciliation and paid-review coverage; canonical-live diff reconciliation and Shopify-hosted rendering. No payment or manufacture action is authorised by this local build.
+Do not enable the flags or deploy incomplete functionality to live for preview. Outstanding: owner visual review; linked Supabase migration deployment; server bridge from fresh House review to immutable snapshot preparation; private 2-room/3-curtain Draft Order rehearsal; live Shopify financial reconciliation; webhook/paid-review proof; canonical-live diff reconciliation and Shopify-hosted rendering. No payment or manufacture action is authorised by this local build.
 
 Customer Trust V1, canonical footer/policies, consent, Fabric Master, production ruleset, stock projection, compatibility, Guided Measure, existing payment/webhook and workroom gates must remain intact during any later scoped deployment.

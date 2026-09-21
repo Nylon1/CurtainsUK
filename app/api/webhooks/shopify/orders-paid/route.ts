@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { recordVerifiedMtmPaidOrder } from "@/lib/storefront/mtm-paid-order-lifecycle";
+import { housePaymentFromShopify, shopifyOrderAttributes, type ShopifyPaidLine } from "@/lib/storefront/mtm-house-paid-webhook";
 import { assertVerifiedShopifyWebhook } from "@/lib/storefront/security/shopify-webhook";
 
 export const runtime = "nodejs";
@@ -12,16 +13,8 @@ type ShopifyOrderPayload = {
   processed_at?: string;
   created_at?: string;
   note_attributes?: Array<{ name?: unknown; key?: unknown; value?: unknown }>;
+  line_items?: ShopifyPaidLine[];
 };
-
-function attributes(payload: ShopifyOrderPayload) {
-  const values = new Map<string, string>();
-  for (const item of payload.note_attributes ?? []) {
-    const key = typeof item.name === "string" ? item.name : typeof item.key === "string" ? item.key : null;
-    if (key && typeof item.value === "string") values.set(key, item.value);
-  }
-  return values;
-}
 
 function asOrderGid(payload: ShopifyOrderPayload): string {
   if (typeof payload.admin_graphql_api_id === "string" && /^gid:\/\/shopify\/Order\/\d+$/.test(payload.admin_graphql_api_id)) return payload.admin_graphql_api_id;
@@ -38,14 +31,15 @@ export async function POST(request: Request) {
     const orderName = typeof payload.name === "string" && payload.name.trim() ? payload.name.trim() : null;
     const paidAt = typeof payload.processed_at === "string" ? payload.processed_at : payload.created_at;
     if (!orderName || !paidAt || !Number.isFinite(Date.parse(paidAt))) throw new Error("SHOPIFY_PAID_ORDER_PAYLOAD_INVALID");
-    const orderAttributes = attributes(payload);
+    const orderAttributes = shopifyOrderAttributes(payload.note_attributes);
+    const house = housePaymentFromShopify({ orderAttributes, lineItems: payload.line_items });
     const snapshotId = orderAttributes.get("curtainsuk_snapshot_id");
     const draftOrderGid = orderAttributes.get("curtainsuk_draft_order_gid") ?? null;
-    if (!snapshotId || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(snapshotId)) {
+    if (!house && (!snapshotId || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(snapshotId))) {
       throw new Error("SHOPIFY_PAID_ORDER_NOT_MTM");
     }
     await recordVerifiedMtmPaidOrder({
-      snapshotId,
+      ...(house ? { house } : { snapshotId: snapshotId! }),
       shopifyOrderGid: asOrderGid(payload),
       shopifyOrderName: orderName,
       shopifyDraftOrderGid: draftOrderGid,

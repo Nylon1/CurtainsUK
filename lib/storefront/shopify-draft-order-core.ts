@@ -75,6 +75,24 @@ export interface ShopifyDraftOrderContract {
   invoiceSendAllowed: false;
 }
 
+/**
+ * The shared, transport-safe part of a Draft Order contract.  A single
+ * curtain carries one handoff/snapshot; a House carries several relational
+ * snapshot references.  Both must pass the exact same Shopify financial and
+ * idempotency checks before a Draft Order can be created.
+ */
+export interface ShopifyDraftOrderExecutionContract {
+  apiVersion: typeof SHOPIFY_DRAFT_ORDER_API_VERSION;
+  environment: "STAGING" | "PRODUCTION";
+  idempotencyTag: string;
+  requiredScopes: typeof SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES;
+  input: ShopifyDraftOrderInput;
+  expected: ShopifyDraftOrderExpectedFinancials;
+  paymentEnabled: boolean;
+  completionMutationAllowed: false;
+  invoiceSendAllowed: false;
+}
+
 type ShopifyMoneyBag = {
   presentmentMoney?: {
     amount?: unknown;
@@ -101,6 +119,7 @@ export interface ShopifyDraftOrderNode extends ShopifyDraftOrderFinancialNode {
   status?: unknown;
   tags?: unknown;
   customAttributes?: unknown;
+  lineItems?: unknown;
 }
 
 export interface ValidatedShopifyDraftOrder {
@@ -477,9 +496,43 @@ function attributes(value: unknown): ShopifyAttributeInput[] {
   });
 }
 
+function assertLineItemsMatchContract(node: ShopifyDraftOrderNode, contract: ShopifyDraftOrderExecutionContract): void {
+  // House checkout must prove every individual configured curtain, not only a
+  // coincidentally correct aggregate. Historic single-snapshot fixture callers
+  // predate line-item responses and retain their existing validation path.
+  if (!("contractType" in contract)) return;
+  const actualLines = Array.isArray(node.lineItems)
+    ? node.lineItems
+    : node.lineItems && typeof node.lineItems === "object" && Array.isArray((node.lineItems as { nodes?: unknown }).nodes)
+      ? (node.lineItems as { nodes: unknown[] }).nodes
+      : null;
+  if (!actualLines || actualLines.length !== contract.input.lineItems.length) {
+    throw new Error("SHOPIFY_DRAFT_ORDER_LINE_IDENTITY_MISMATCH");
+  }
+  for (let index = 0; index < contract.input.lineItems.length; index += 1) {
+    const expected = contract.input.lineItems[index];
+    const actual = actualLines[index];
+    if (!actual || typeof actual !== "object") throw new Error("SHOPIFY_DRAFT_ORDER_LINE_IDENTITY_MISMATCH");
+    const line = actual as { title?: unknown; quantity?: unknown; originalTotalSet?: ShopifyMoneyBag; customAttributes?: unknown };
+    if (line.title !== expected.title || line.quantity !== expected.quantity) {
+      throw new Error("SHOPIFY_DRAFT_ORDER_LINE_IDENTITY_MISMATCH");
+    }
+    const expectedAmount = parseShopifyMoneyMinor(expected.originalUnitPriceWithCurrency.amount) * expected.quantity;
+    if (presentmentAmount(line.originalTotalSet, contract.expected.currency) !== expectedAmount) {
+      throw new Error("SHOPIFY_DRAFT_ORDER_LINE_PRICE_MISMATCH");
+    }
+    const actualAttributes = attributes(line.customAttributes);
+    for (const attribute of expected.customAttributes) {
+      if (!actualAttributes.some((candidate) => candidate.key === attribute.key && candidate.value === attribute.value)) {
+        throw new Error("SHOPIFY_DRAFT_ORDER_LINE_IDENTITY_MISMATCH");
+      }
+    }
+  }
+}
+
 export function validateShopifyDraftOrderNode(
   node: ShopifyDraftOrderNode,
-  contract: ShopifyDraftOrderContract,
+  contract: ShopifyDraftOrderExecutionContract,
 ): ValidatedShopifyDraftOrder {
   assertShopifyDraftOrderFinancials(node, contract.expected);
   if (typeof node.id !== "string" || !node.id.startsWith("gid://shopify/DraftOrder/")) {
@@ -491,11 +544,17 @@ export function validateShopifyDraftOrderNode(
   if (!Array.isArray(node.tags) || !node.tags.includes(contract.idempotencyTag)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_IDEMPOTENCY_MISMATCH");
   }
-  const handoffAttribute = attributes(node.customAttributes)
-    .find((attribute) => attribute.key === "curtainsuk_handoff_id");
-  if (handoffAttribute?.value !== contract.handoffId) {
-    throw new Error("SHOPIFY_DRAFT_ORDER_IDEMPOTENCY_MISMATCH");
+  // Historic single-curtain contracts identify the handoff at order level.
+  // House contracts identify a checked House fingerprint instead.  Both are
+  // asserted from the immutable Draft Order attributes below in production.
+  if ("handoffId" in contract) {
+    const handoffAttribute = attributes(node.customAttributes)
+      .find((attribute) => attribute.key === "curtainsuk_handoff_id");
+    if (handoffAttribute?.value !== contract.handoffId) {
+      throw new Error("SHOPIFY_DRAFT_ORDER_IDEMPOTENCY_MISMATCH");
+    }
   }
+  assertLineItemsMatchContract(node, contract);
   if (contract.environment === "PRODUCTION") {
     if (!node.tags.includes("CURTAINSUK_PRODUCTION") || node.tags.some(tag => ["CURTAINSUK_STAGING","DO_NOT_FULFIL","NO_REAL_PAYMENT"].includes(String(tag)))) {
       throw new Error("SHOPIFY_DRAFT_ORDER_ENVIRONMENT_MISMATCH");

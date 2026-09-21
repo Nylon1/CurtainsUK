@@ -8,7 +8,7 @@ import {
   asProductionDraftOrderContract,
   SHOPIFY_DRAFT_ORDER_API_VERSION,
   SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES,
-  type ShopifyDraftOrderContract,
+  type ShopifyDraftOrderExecutionContract,
   type ShopifyDraftOrderFinancialNode,
   type ShopifyDraftOrderMode,
   type ShopifyDraftOrderNode,
@@ -78,6 +78,17 @@ const FINANCIAL_FIELDS = `
   totalPriceSet { presentmentMoney { amount currencyCode } }
 `;
 
+const LINE_IDENTITY_FIELDS = `
+  lineItems(first: 100) {
+    nodes {
+      title
+      quantity
+      customAttributes { key value }
+      originalTotalSet { presentmentMoney { amount currencyCode } }
+    }
+  }
+`;
+
 export const SHOPIFY_DRAFT_ORDER_CALCULATE_MUTATION = `
   mutation CurtainsUKCalculateDraftOrder($input: DraftOrderInput!) {
     draftOrderCalculate(input: $input) {
@@ -101,6 +112,7 @@ export const SHOPIFY_DRAFT_ORDER_LOOKUP_QUERY = `
         tags
         customAttributes { key value }
         ${FINANCIAL_FIELDS}
+        ${LINE_IDENTITY_FIELDS}
       }
     }
   }
@@ -111,6 +123,7 @@ export const SHOPIFY_DRAFT_ORDER_BY_ID_QUERY = `
     draftOrder(id: $id) {
       id name invoiceUrl status tags customAttributes { key value }
       ${FINANCIAL_FIELDS}
+      ${LINE_IDENTITY_FIELDS}
     }
   }
 `;
@@ -126,6 +139,7 @@ export const SHOPIFY_DRAFT_ORDER_CREATE_MUTATION = `
         tags
         customAttributes { key value }
         ${FINANCIAL_FIELDS}
+        ${LINE_IDENTITY_FIELDS}
       }
       userErrors { field message }
     }
@@ -352,7 +366,7 @@ async function clientCredentialsToken(input: {
 }
 
 async function calculate(input: {
-  contract: ShopifyDraftOrderContract;
+  contract: ShopifyDraftOrderExecutionContract;
   config: ShopifyDraftOrderRuntimeConfig;
   accessToken: string;
   fetchImpl: FetchLike;
@@ -380,7 +394,7 @@ async function calculate(input: {
 }
 
 async function findExisting(input: {
-  contract: ShopifyDraftOrderContract;
+  contract: ShopifyDraftOrderExecutionContract;
   config: ShopifyDraftOrderRuntimeConfig;
   accessToken: string;
   fetchImpl: FetchLike;
@@ -406,7 +420,7 @@ async function findExisting(input: {
 }
 
 async function create(input: {
-  contract: ShopifyDraftOrderContract;
+  contract: ShopifyDraftOrderExecutionContract;
   config: ShopifyDraftOrderRuntimeConfig;
   accessToken: string;
   fetchImpl: FetchLike;
@@ -430,11 +444,11 @@ async function create(input: {
 }
 
 export async function executeShopifyDraftOrder(input: {
-  contract: ShopifyDraftOrderContract;
+  contract: ShopifyDraftOrderExecutionContract;
   config: ShopifyDraftOrderRuntimeConfig | null;
   existingDraftOrderId?: string | null;
   /** Durable one-shot claim; injectable only for controlled transport tests. */
-  claimCreate?: (handoffId: string) => Promise<boolean>;
+  claimCreate?: (checkoutIdentity: string) => Promise<boolean>;
   fetchImpl?: FetchLike;
 }): Promise<ShopifyDraftOrderExecutionResult> {
   if (!input.config) {
@@ -500,7 +514,17 @@ export async function executeShopifyDraftOrder(input: {
   // Never release this claim on a timeout, malformed response, process death or
   // failed receipt write: Shopify may already have accepted the create. A retry
   // may recover an existing order, but an empty tag index is not proof of absence.
-  if (!await (input.claimCreate ?? claimShopifyDraftOrderCreation)(input.contract.handoffId)) {
+  // Existing single-curtain execution claims its durable handoff ID.  A House
+  // has no pretend single handoff: its future relational house claim must be
+  // passed explicitly, keyed by the immutable House fingerprint/tag.
+  const claim = input.claimCreate ?? ("handoffId" in input.contract
+    ? claimShopifyDraftOrderCreation
+    : null);
+  if (!claim) throw new Error("SHOPIFY_HOUSE_DRAFT_ORDER_CLAIM_REQUIRED");
+  const checkoutIdentity = "handoffId" in input.contract
+    ? String(input.contract.handoffId)
+    : input.contract.idempotencyTag;
+  if (!await claim(checkoutIdentity)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_PENDING");
   }
   const created = await create({ contract: input.contract, config: input.config, accessToken, fetchImpl });

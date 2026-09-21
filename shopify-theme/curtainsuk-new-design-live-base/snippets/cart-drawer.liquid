@@ -12,6 +12,15 @@
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <style>
+  .cart-item--curtainsuk-mtm quantity-input,
+  .cart-item--curtainsuk-mtm .quantity-popover__info-button {
+    display: none;
+  }
+
+  .cart-item--curtainsuk-mtm .curtainsuk-mtm-lock-note {
+    margin: 0.6rem 0;
+  }
+
   .drawer {
     visibility: hidden;
   }
@@ -42,8 +51,8 @@
                   {{- 'icon-close.svg' | inline_asset_content -}}
                 </span>
               </button>
-              <a href="{{ routes.all_products_collection_url }}" class="button">
-                {{ 'general.continue_shopping' | t }}
+              <a href="/pages/fabric-library?view=browse-fabrics" class="button">
+                Browse Fabrics
               </a>
 
               {%- if shop.customer_accounts_enabled and customer == null -%}
@@ -120,9 +129,10 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
+                      {%- assign curtainsuk_mtm_locked = item.properties['_curtainsuk_mtm_locked'] == 'true' -%}
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
-                        class="cart-item{% if item.parent_relationship.parent != null %} cart-item__nested-line{% endif %}"
+                        class="cart-item{% if curtainsuk_mtm_locked %} cart-item--curtainsuk-mtm{% endif %}{% if item.parent_relationship.parent != null %} cart-item__nested-line{% endif %}"
                         role="row"
                         {% if item.parent_relationship.parent != null %}
                           aria-label="{{- 'products.product.nested_label' | t: title: item.product.title, parent_title: item.parent_relationship.parent.title | escape -}}"
@@ -226,6 +236,10 @@
                             </dl>
 
                             <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                          {%- endif -%}
+
+                          {%- if curtainsuk_mtm_locked -%}
+                            <p class="product-option curtainsuk-mtm-lock-note"><strong>Made to measure.</strong> This configuration is fixed. To change it, remove it and configure your curtains again.</p>
                           {%- endif -%}
 
                           <ul
@@ -370,9 +384,13 @@
                                     class="hidden"
                                   {% endif %}
                                 >
-                                  <span class="svg-wrapper">
-                                    {{- 'icon-remove.svg' | inline_asset_content -}}
-                                  </span>
+                                  {%- if curtainsuk_mtm_locked -%}
+                                    Remove curtain
+                                  {%- else -%}
+                                    <span class="svg-wrapper">
+                                      {{- 'icon-remove.svg' | inline_asset_content -}}
+                                    </span>
+                                  {%- endif -%}
                                 </button>
                               </cart-remove-button>
                             </div>

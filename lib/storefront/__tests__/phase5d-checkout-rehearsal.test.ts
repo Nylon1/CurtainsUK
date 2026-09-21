@@ -13,6 +13,7 @@ import {
   allocateVatFromGross,
   buildShopifyDraftOrderContract,
   asProductionDraftOrderContract,
+  customerDimensionSummary,
   parseShopifyMoneyMinor,
   SHOPIFY_DRAFT_ORDER_API_VERSION,
   SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES,
@@ -43,13 +44,17 @@ const IDS = {
   event3: "99999999-9999-4999-8999-999999999999",
 };
 
-test('production contract preserves exact price and identity without labelling real orders as tests',()=>{
+test('production contract preserves exact price and keeps fulfilment identity out of buyer-facing line attributes',()=>{
  const handoff=approvedHandoff('INSTANT_PRICE');
  const original=buildShopifyDraftOrderContract({handoff});
- const production=asProductionDraftOrderContract(original,handoff.snapshot.fabricMasterId);
+ const production=asProductionDraftOrderContract(original,handoff.snapshot.fabricMasterId,{
+  supplier:"Prestigious",brand:"Prestigious",design:"Harlow",colour:"Mocha",supplierSku:handoff.snapshot.supplierSku,
+ });
  assert.deepEqual(production.expected,original.expected);
  assert.equal(production.input.lineItems.length,original.input.lineItems.length);
- assert.ok(production.input.lineItems[0].customAttributes.some((attribute)=>attribute.key==='Fabric Master ID'&&attribute.value===handoff.snapshot.fabricMasterId));
+ assert.ok(production.input.customAttributes.some((attribute)=>attribute.key==='curtainsuk_fabric_master_id'&&attribute.value===handoff.snapshot.fabricMasterId));
+ assert.ok(production.input.customAttributes.some((attribute)=>attribute.key==='curtainsuk_supplier_sku'&&attribute.value===handoff.snapshot.supplierSku));
+ assert.equal(production.input.lineItems[0].customAttributes.some((attribute)=>/Fabric Master|Supplier SKU|Pricing rules|Configuration/.test(attribute.key)),false);
  assert.equal(production.paymentEnabled,true);
  assert.equal(production.environment,'PRODUCTION');
  assert.equal(original.paymentEnabled,false);
@@ -181,11 +186,38 @@ test("Shopify test Draft Order contract carries exact immutable goods, VAT, deli
   assert.equal(lineAttributes.has("Fabric SKU"), false);
   assert.doesNotMatch(JSON.stringify(contract.input), /4270\/147/);
   assert.equal(handoff.snapshot.supplierSku, "4270/147");
-  assert.equal(lineAttributes.get("Pricing rules"), "curtainsuk-draft-v1-35");
-  assert.match(lineAttributes.get("Measurements") ?? "", /Bay Segment Widths: 80 cm \/ 180 cm \/ 80 cm/);
-  assert.match(lineAttributes.get("Review / quote") ?? "", new RegExp(IDS.request));
+  assert.deepEqual([...lineAttributes.keys()].sort(), ["Fabric", "Heading", "Lining", "Made to measure", "Opening", "Pair / single", "Width × drop", "_curtainsuk_mtm_locked"].sort());
+  assert.equal(lineAttributes.get("Width × drop"), "220 cm drop");
+  assert.match(lineAttributes.get("Made to measure") ?? "", /remove it and configure your curtains again/i);
+  assert.equal(lineAttributes.get("_curtainsuk_mtm_locked"), "true");
+  const orderAttributes = new Map(contract.input.customAttributes.map((item) => [item.key, item.value]));
+  assert.equal(orderAttributes.get("curtainsuk_configuration_id"), IDS.configuration);
+  assert.equal(orderAttributes.get("curtainsuk_pricing_rule_version"), "curtainsuk-draft-v1-35");
   assert.equal(Object.isFrozen(contract.input.lineItems[0].customAttributes), true);
   assert.doesNotMatch(JSON.stringify(contract), /supplier_cost|cut_trade_price|gross_margin|batch_reference/i);
+});
+
+test("buyer-facing dimensions retain only width and drop while internal anchors stay on the immutable order record", () => {
+  const measurements = {
+    measurement_contract_version: "guided-measure-v1",
+    hardware: "TRACK",
+    raw_width_cm: 201,
+    raw_drop_cm: 236,
+    width_anchor: "TRACK_FULL_WIDTH",
+    drop_anchor: "TRACK_BOTTOM_TO_FINISH",
+    desired_finish: "FLOOR",
+  };
+  assert.equal(customerDimensionSummary(measurements), "201 × 236 cm");
+  const handoff = approvedHandoff("INSTANT_PRICE");
+  const contract = buildShopifyDraftOrderContract({
+    handoff: { ...handoff, snapshot: { ...handoff.snapshot, measurements } },
+  });
+  const line = new Map(contract.input.lineItems[0].customAttributes.map((item) => [item.key, item.value]));
+  const internal = new Map(contract.input.customAttributes.map((item) => [item.key, item.value]));
+  assert.equal(line.get("Width × drop"), "201 × 236 cm");
+  assert.doesNotMatch(JSON.stringify(line), /TRACK_BOTTOM_TO_FINISH|guided-measure-v1|raw_width_cm/i);
+  assert.equal(internal.get("curtainsuk_drop_anchor"), "TRACK_BOTTOM_TO_FINISH");
+  assert.equal(internal.get("curtainsuk_measurement_contract_version"), "guided-measure-v1");
 });
 
 test("checkout retries derive stable snapshot and handoff identities from the displayed configuration", () => {
@@ -535,7 +567,7 @@ test("approved monetary snapshot and Shopify contract do not reprice after later
   const rebuiltFromApprovedSnapshot = buildShopifyDraftOrderContract({ handoff });
   assert.deepEqual(rebuiltFromApprovedSnapshot.expected, originalContract.expected);
   assert.equal(rebuiltFromApprovedSnapshot.input.lineItems[0].originalUnitPriceWithCurrency.amount, "1253.00");
-  assert.equal(rebuiltFromApprovedSnapshot.input.lineItems[0].customAttributes.find((item) => item.key === "Availability")?.value, "Fabric available");
+  assert.equal(rebuiltFromApprovedSnapshot.input.lineItems[0].customAttributes.find((item) => item.key === "Width × drop")?.value, "220 cm drop");
 });
 
 test("a real pricing-engine cost change affects a new configuration but cannot mutate the existing snapshot contract", () => {

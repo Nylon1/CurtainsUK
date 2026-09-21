@@ -43,7 +43,7 @@
         </dl>
         <form class="cuk-checkout-handoff" data-cuk-reviewed-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h3>{% if production_checkout %}Your approved curtains{% else %}Prepare your Shopify test checkout{% endif %}</h3>
-          <p>{% if production_checkout %}We will confirm the exact approved specification, price, availability and delivery before secure checkout.{% else %}The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.{% endif %}</p>
+          <p>{% if production_checkout %}We will confirm the exact approved specification, price, availability and delivery before secure checkout. Once created, this made-to-measure configuration cannot be edited; remove it and configure again if anything needs to change.{% else %}The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukReviewedShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukReviewedShippingRegion-{{ section.id }}" name="shippingRegion" required>
@@ -142,7 +142,7 @@
 
         <div class="cuk-error" data-cuk-error hidden></div>
         <button class="cuk-button" type="submit">Check my price or review route</button>
-          <p class="cuk-hint">{% if production_checkout %}Review your measurements and choices carefully before continuing.{% else %}Staging only. This flow cannot take real payment or release a job to manufacture.{% endif %}</p>
+        <p class="cuk-hint">{% if production_checkout %}Review your measurements and choices carefully before continuing.{% else %}Staging only. This flow cannot take real payment or release a job to manufacture.{% endif %}</p>
       </form>
 
       <aside class="cuk-panel cuk-result" data-cuk-result hidden aria-live="polite">
@@ -165,7 +165,7 @@
         <p class="cuk-hint" data-cuk-result-spec></p>
         <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h2>{% if production_checkout %}Your curtain order{% else %}Prepare a Shopify test checkout{% endif %}</h2>
-          <p>{% if production_checkout %}Your curtain specification and price are preserved. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
+          <p>{% if production_checkout %}Your curtain specification and price are preserved. This made-to-measure configuration cannot be edited in cart or checkout; to change it, remove it and configure your curtains again. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukShippingRegion-{{ section.id }}" name="shippingRegion" required>

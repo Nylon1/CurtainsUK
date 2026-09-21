@@ -112,14 +112,7 @@ export interface ValidatedShopifyDraftOrder {
 
 const PRIVATE_FIELD_PATTERN = /(^|_)(supplier_?cost|standard_?trade_?price|cut_?trade_?price|gross_?margin|raw_?stock|batch_?reference|dye_?lot)($|_)/i;
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const AVAILABILITY_LABELS: Readonly<Record<string, string>> = Object.freeze({
-  FABRIC_AVAILABLE: "Fabric available",
-  LIMITED_AVAILABILITY: "Limited availability",
-  AVAILABLE_SOON: "Available soon",
-  AVAILABILITY_TO_BE_CONFIRMED: "Availability to be confirmed",
-  TEMPORARILY_UNAVAILABLE: "Temporarily unavailable",
-  NO_LONGER_AVAILABLE: "No longer available",
-});
+const MTM_LOCK_PROPERTY = "_curtainsuk_mtm_locked";
 
 function assertCustomerSafe(value: unknown, path = "draftOrder"): void {
   if (!value || typeof value !== "object") return;
@@ -190,6 +183,54 @@ export function customerMeasurementSummary(
   return safeText(summary, 240);
 }
 
+function positiveCentimetres(value: unknown): number | null {
+  if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) return null;
+  return value;
+}
+
+function formatCentimetres(value: number): string {
+  return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(1)));
+}
+
+/**
+ * Customer checkout needs only the physical dimensions they gave us. The raw
+ * snapshot retains its measurement anchors and rule version for CurtainsUK;
+ * neither belongs in the buyer-facing line-item summary.
+ */
+export function customerDimensionSummary(
+  measurements: Readonly<Record<string, unknown>>,
+): string {
+  const width = positiveCentimetres(measurements.raw_width_cm)
+    ?? positiveCentimetres(measurements.coverage_width)
+    ?? positiveCentimetres(measurements.width_cm);
+  const drop = positiveCentimetres(measurements.raw_drop_cm)
+    ?? positiveCentimetres(measurements.finished_drop)
+    ?? positiveCentimetres(measurements.drop_cm);
+  if (width !== null && drop !== null) return `${formatCentimetres(width)} × ${formatCentimetres(drop)} cm`;
+  if (width !== null) return `${formatCentimetres(width)} cm wide`;
+  if (drop !== null) return `${formatCentimetres(drop)} cm drop`;
+  return "Not recorded";
+}
+
+function internalMeasurementAttributes(
+  measurements: Readonly<Record<string, unknown>>,
+): ShopifyAttributeInput[] {
+  const fields: Array<[string, string]> = [
+    ["measurement_contract_version", "measurement_contract_version"],
+    ["hardware", "hardware"],
+    ["raw_width_cm", "raw_width_cm"],
+    ["raw_drop_cm", "raw_drop_cm"],
+    ["width_anchor", "width_anchor"],
+    ["drop_anchor", "drop_anchor"],
+    ["desired_finish", "desired_finish"],
+  ];
+  return fields.flatMap(([attributeKey, measurementKey]) => {
+    const value = measurements[measurementKey];
+    if (value === undefined || value === null || String(value).trim() === "") return [];
+    return [{ key: `curtainsuk_${attributeKey}`, value: safeText(value) }];
+  });
+}
+
 function optionalEmail(value: string | null | undefined): string | undefined {
   if (value == null || value.trim() === "") return undefined;
   const email = value.trim().toLowerCase();
@@ -200,15 +241,6 @@ function optionalEmail(value: string | null | undefined): string | undefined {
   // their domain even during calculation. Keep them only in our staging review.
   if (email.endsWith(".invalid")) return undefined;
   return email;
-}
-
-function approvalReference(handoff: StagingCheckoutHandoff): string {
-  const { snapshot } = handoff;
-  if (snapshot.outcome === "INSTANT_PRICE") return "Instant-price configuration";
-  if (!snapshot.reviewRequestId || !snapshot.reviewRevisionId) {
-    throw new Error("SHOPIFY_DRAFT_ORDER_APPROVAL_REFERENCE_REQUIRED");
-  }
-  return `${snapshot.reviewRequestId} / revision ${snapshot.reviewRevisionId}`;
 }
 
 function immutableClone<T>(value: T): Readonly<T> {
@@ -264,23 +296,16 @@ export function buildShopifyDraftOrderContract(input: {
     snapshot.shipping.grossAmountMinor,
     snapshot.customerPrice.vatRateBasisPoints,
   );
-  const availability = AVAILABILITY_LABELS[snapshot.availability]
-    ?? "Availability to be confirmed";
   const fabricLabel = safeText(input.fabricLabel || "Approved curtain fabric");
-  const approval = approvalReference(handoff);
   const lineAttributes: ShopifyAttributeInput[] = [
-    { key: "Configuration", value: snapshot.configurationId },
-    { key: "Window type", value: humanize(snapshot.windowType) },
-    { key: "Measurements", value: customerMeasurementSummary(snapshot.measurements) },
     { key: "Fabric", value: fabricLabel },
+    { key: "Opening", value: humanize(snapshot.windowType) },
     { key: "Heading", value: humanize(snapshot.heading) },
+    { key: "Width × drop", value: customerDimensionSummary(snapshot.measurements) },
     { key: "Lining", value: humanize(snapshot.lining) },
     { key: "Pair / single", value: humanize(snapshot.construction) },
-    { key: "Fabric required", value: `${snapshot.calculatedFabricMetres} m` },
-    { key: "Availability", value: availability },
-    { key: "Pricing rules", value: safeText(snapshot.pricingRuleVersion) },
-    { key: "Review / quote", value: approval },
-    { key: "VAT", value: "Included" },
+    { key: "Made to measure", value: "This configuration is fixed. To change it, remove it and configure your curtains again." },
+    { key: MTM_LOCK_PROPERTY, value: "true" },
   ];
   const orderAttributes: ShopifyAttributeInput[] = [
     { key: "curtainsuk_handoff_id", value: handoff.handoffId },
@@ -289,6 +314,13 @@ export function buildShopifyDraftOrderContract(input: {
     { key: "curtainsuk_review_request_id", value: snapshot.reviewRequestId ?? "" },
     { key: "curtainsuk_review_revision_id", value: snapshot.reviewRevisionId ?? "" },
     { key: "curtainsuk_pricing_rule_version", value: safeText(snapshot.pricingRuleVersion) },
+    { key: "curtainsuk_window_type", value: snapshot.windowType },
+    { key: "curtainsuk_heading", value: snapshot.heading },
+    { key: "curtainsuk_lining", value: snapshot.lining },
+    { key: "curtainsuk_construction", value: snapshot.construction },
+    { key: "curtainsuk_customer_dimension_summary", value: customerDimensionSummary(snapshot.measurements) },
+    { key: "curtainsuk_calculated_fabric_metres", value: String(snapshot.calculatedFabricMetres) },
+    ...internalMeasurementAttributes(snapshot.measurements),
   ];
   const draftInput: ShopifyDraftOrderInput = {
     acceptAutomaticDiscounts: false,
@@ -369,20 +401,16 @@ export function asProductionDraftOrderContract(
       customAttributes: [
         ...contract.input.customAttributes,
         {key:"curtainsuk_fabric_master_id",value:fabricMasterId},
+        {key:"curtainsuk_supplier_sku",value:identity.supplierSku},
+        {key:"curtainsuk_supplier",value:safeText(identity.supplier)},
+        {key:"curtainsuk_brand",value:safeText(identity.brand)},
+        {key:"curtainsuk_design",value:safeText(identity.design)},
+        {key:"curtainsuk_colour",value:safeText(identity.colour)},
         {key:"curtainsuk_post_payment_state",value:"PAID_TO_CURTAINSUK_REVIEW"},
         {key:"curtainsuk_change_request_window",value:"Email enquiries@curtainsuk.com within 2 hours; requests are reviewed, not guaranteed."},
       ],
       lineItems: contract.input.lineItems.map((line) => ({
         ...line,
-        customAttributes: [
-          ...line.customAttributes,
-          { key: "Fabric Master ID", value: fabricMasterId },
-          { key: "Supplier SKU", value: identity.supplierSku },
-          { key: "Supplier", value: safeText(identity.supplier) },
-          { key: "Brand", value: safeText(identity.brand) },
-          { key: "Design", value: safeText(identity.design) },
-          { key: "Colour", value: safeText(identity.colour) },
-        ],
       })),
     },
   });

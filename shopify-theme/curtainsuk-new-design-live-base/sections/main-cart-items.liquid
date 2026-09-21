@@ -6,6 +6,15 @@
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .cart-item--curtainsuk-mtm quantity-input,
+  .cart-item--curtainsuk-mtm .quantity-popover__info-button {
+    display: none;
+  }
+
+  .cart-item--curtainsuk-mtm .curtainsuk-mtm-lock-note {
+    margin: 0.6rem 0;
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -32,15 +41,15 @@
   <div class="page-width">
     <div class="title-wrapper-with-link">
       <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
-        {{- 'general.continue_shopping' | t -}}
+      <a href="/pages/fabric-library?view=browse-fabrics" class="underlined-link">
+        Browse Fabrics
       </a>
     </div>
 
     <div class="cart__warnings">
       <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="button">
-        {{ 'general.continue_shopping' | t }}
+      <a href="/pages/fabric-library?view=browse-fabrics" class="button">
+        Browse Fabrics
       </a>
 
       {%- if shop.customer_accounts_enabled and customer == null -%}
@@ -82,8 +91,9 @@
 
               <tbody>
                 {%- for item in cart.items -%}
+                  {%- assign curtainsuk_mtm_locked = item.properties['_curtainsuk_mtm_locked'] == 'true' -%}
                   <tr
-                    class="cart-item {% if item.parent_relationship.parent != null %}cart-item__nested-line{% endif %}"
+                    class="cart-item{% if curtainsuk_mtm_locked %} cart-item--curtainsuk-mtm{% endif %} {% if item.parent_relationship.parent != null %}cart-item__nested-line{% endif %}"
                     id="CartItem-{{ item.index | plus: 1 }}"
                     {% if item.parent_relationship.parent != null %}
                       aria-label="{{- 'products.product.nested_label' | t: title: item.product.title, parent_title: item.parent_relationship.parent.title | escape -}}"
@@ -92,10 +102,10 @@
                     <td class="cart-item__media">
                       {% if item.image == item.image %}
                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-                        <a data-cpcproducturl='{{ item.variant_id }}' href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                        <a data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
                         <div class="cart-item__image-container gradient {% if item.parent_relationship.parent == null %}global-media-settings{% endif %}">
                           <img
-                            data-cpcimageid='{{ item.variant_id }}' src="{{ item.image | image_url: width: 300 }}"
+                            data-cpcimageid='{{ item.variant_id }}' data-cpcimageid='{{ item.variant_id }}' data-cpcimageid='{{ item.variant_id }}' data-cpcimageid='{{ item.variant_id }}' src="{{ item.image | image_url: width: 300 }}"
                             class="cart-item__image {% if item.parent_relationship.parent != null %}global-media-settings{% endif %}"
                             alt="{{ item.image.alt | escape }}"
                             loading="lazy"
@@ -112,7 +122,7 @@
                       {%- endif -%}
 
                       <div class="cart-item__title">
-                        <a data-cpcproducturl='{{ item.variant_id }}' href="{{ item.url }}" class="cart-item__name h4 break"><cpc class='product_title' data-id='{{ item.variant_id }}'>{{ item.product.title | escape | cpc_modified }}</cpc></a>
+                        <a data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' href="{{ item.url }}" class="cart-item__name h4 break"><cpc class='product_title' data-id='{{ item.variant_id }}'>{{ item.product.title | escape | cpc_modified }}</cpc></a>
                         {%- assign cart_disclosure_modal_id = 'CartDisclosureModal-cart-' | append: item.key | replace: ':', '-' -%}
                         {%- render 'cart-disclosure-indicator',
                           product: item.product,
@@ -175,6 +185,10 @@
                         </dl>
 
                         <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                      {%- endif -%}
+
+                      {%- if curtainsuk_mtm_locked -%}
+                        <p class="product-option curtainsuk-mtm-lock-note"><strong>Made to measure.</strong> This configuration is fixed. To change it, remove it and configure your curtains again.</p>
                       {%- endif -%}
 
                       <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
@@ -247,6 +261,7 @@
                             {%- endif -%}
                             <quantity-input class="quantity cart-quantity">
                               {% assign can_update_quantity = item.instructions.can_update_quantity | default: true %}
+                              {% if curtainsuk_mtm_locked %}{% assign can_update_quantity = false %}{% endif %}
                               <button
                                 class="quantity__button"
                                 name="minus"
@@ -311,13 +326,17 @@
                             {% endif %}
                           >
                             <a
-                              data-cpcproducturl='{{ item.variant_id }}' href="{{ item.url_to_remove }}"
+                              data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' data-cpcproducturl='{{ item.variant_id }}' href="{{ item.url_to_remove }}"
                               class="button button--tertiary"
                               aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
                             >
-                              <span class="svg-wrapper">
-                                {{- 'icon-remove.svg' | inline_asset_content -}}
-                              </span>
+                              {%- if curtainsuk_mtm_locked -%}
+                                Remove curtain
+                              {%- else -%}
+                                <span class="svg-wrapper">
+                                  {{- 'icon-remove.svg' | inline_asset_content -}}
+                                </span>
+                              {%- endif -%}
                             </a>
                           </cart-remove-button>
                         </div>

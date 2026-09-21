@@ -40,6 +40,12 @@ The public price route now selects its ruleset only from the deployed runtime co
 
 The canonical no-payment owner smoke test then confirmed `sdg-f1681-03` / `F1681/03` (French Doors, fitted Track, Wave, 201 × 236 cm, Blackout, Pair) at £661.00 goods including VAT, £12.95 delivery and £673.95 total. Gateway provenance confirmed the production ruleset for both price and immutable snapshot; Shopify's server calculation and Draft Order handoff completed. The checkout was prepared but not opened or paid. MTM purchase approval was re-enabled only after that proof; the first payment remains owner-controlled, and paid orders remain `PAID → CURTAINSUK REVIEW` with staff-only workroom release.
 
+### Made-to-measure cart configuration contract — 21 September 2026
+
+A made-to-measure curtain is an immutable configured item after the server has validated it and created its Shopify Draft Order. Customers can keep it or remove it; fabric, opening, hardware, heading, measurements, lining, construction and finish are never edited in place. A replacement curtain must be configured afresh through Fabric Master resolution, compatibility, raw measurement, pricing, fresh stock and signed handoff.
+
+Buyer-facing line details are limited to fabric, opening, heading, width × drop, lining, pair/single and price. Measurement anchors, rule versions, configuration identifiers and supplier/production identity remain attached to the immutable CurtainsUK/Shopify operational record, not the customer line summary. Theme-cart continuation goes to Browse Fabrics and retains any valid cart contents.
+
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 
 There are **three distinct frontend bodies of work**:

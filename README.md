@@ -22,6 +22,12 @@ On 21 September 2026, migration `20260921103025_guided_measure_checkout_measurem
 
 `/pages/curtain-visualiser?fabric=<Fabric Master ID>` carries an identity reference only. The Shopify app proxy resolves that ID from the canonical Fabric Master configuration projection before the customer can price or check out; it never accepts commercial fields from the query string, browser storage or an editorial retail payload. Retail imagery/profile completeness is therefore independent of MTM configuration eligibility. The price and checkout-handoff endpoints re-read the canonical record and perform their own fresh stock, commercial eligibility, compatibility and signed-price checks. Invalid, deleted, unavailable or non-priceable IDs remain fail-closed with no price or checkout path. Browse and Fabric Detail handoffs use the same ID route and converge on this server-side resolver.
 
+### SDG Fabric Master identity and handoff integrity — 21 September 2026
+
+SDG Fabric Master IDs are generated from the authoritative supplier SKU only. Acanthus — Slate/Dove is supplier reference `F1681/03` and canonical Fabric Master `sdg-f1681-03`; `sdg-f1681-038` is not a canonical record and has no alias. Browse, Fabric Detail and HCI first resolve their card/handoff IDs against the canonical Fabric Master repository, while the Visualiser rehydrates a supplied ID through the same configuration projection. A stale, malformed or deleted ID therefore remains fail-closed rather than being guessed, aliased or made payable.
+
+The 21 September live Browse/Fabric Detail SDG handoff audit covered all 386 paginated public catalogue pages (9,248 retail records): 6,070 SDG records were emitted, of which 5,815 were configuration-and-price ready, 255 were governed pending/non-commercial, 0 were aliased and 0 live handoff IDs were not found. This checks identity existence and governed commercial readiness; fresh supplier stock is still revalidated separately at price and checkout handoff.
+
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 
 There are **three distinct frontend bodies of work**:

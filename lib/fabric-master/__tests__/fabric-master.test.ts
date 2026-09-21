@@ -53,6 +53,19 @@ test("Sanderson uses the same normalized Fabric Master contract without supplier
   assert.equal(record.price_verification_status, "PRICE_REQUIRES_VERIFICATION");
 });
 
+test("Sanderson Fabric Master IDs are derived only from the authoritative supplier SKU", () => {
+  const [record] = normalizeSandersonRows([{
+    brand: "Clarke & Clarke", collection: "William Morris Designs", design: "Acanthus", colour: "Slate/Dove",
+    supplierSku: "F1681/03", supplierDesignCode: "F1681", widthMm: 1370,
+    verticalRepeatMm: 640, horizontalRepeatMm: 685, composition: [{ material: "Cotton", percentage: 100 }],
+    imageUrl: null, lifecycleState: "CURRENT", sampleAvailable: true, sourceRowNumber: 2,
+  }]);
+
+  assert.equal(record.supplier_sku, "F1681/03");
+  assert.equal(record.fabric_id, "sdg-f1681-03");
+  assert.notEqual(record.fabric_id, "sdg-f1681-038");
+});
+
 test("the authorised Sanderson pilot fixture maps into the shared contract", () => {
   const fixture = JSON.parse(readFileSync(
     "fixtures/suppliers/sanderson/painters-garden-DAPGPA203.public.json",

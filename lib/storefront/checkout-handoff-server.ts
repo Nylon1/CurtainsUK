@@ -128,7 +128,11 @@ export async function prepareServerStagingCheckoutHandoff(
 ): Promise<ServerStagingCheckoutHandoffResult> {
   return traceCheckout(
     (enter) => prepareCheckout(input, enter),
-    (event) => { if (process.env.VERCEL_ENV === "preview") console.error(JSON.stringify(event)); },
+    // `traceCheckout` emits only a UUID, a bounded boundary name and a bounded
+    // diagnostic code. Retain it in Production so a fail-closed customer
+    // handoff can be investigated without logging configuration, payment or
+    // supplier-commercial data.
+    (event) => { console.error(JSON.stringify(event)); },
   );
 }
 

@@ -6,6 +6,8 @@ import { calculationWidth } from '@/lib/fabric-master/readiness';
 import { toDecisionEngineFabric, toReviewFabricIdentity } from "@/lib/fabric-master/decision-engine";
 import { dailyStockProjection } from "./daily-stock-server";
 import { calculateStagingPriceForTest, calculatePriceConfirmationReview, classifySpecialistReview, type SpecialistReviewRequest, type StagingPriceRequest, type StagingPriceResponse } from "./staging-pricing";
+import { calculateProductionMtmCustomerPrice } from "./production-pricing";
+import { productionCustomerPricingEnabled } from "./customer-pricing-runtime";
 import { signReviewSubmission } from "./review-token";
 
 /** Server-authoritative staging pricing. Costs and approval history remain in PostgreSQL. */
@@ -25,8 +27,12 @@ export async function calculateStagingPrice(input: StagingPriceRequest): Promise
   };
   if(supplierCostMinor === null || !specificationsKnown) return priceConfirmation();
   const pricedFabric = toDecisionEngineFabric(record, supplierCostMinor, record.source_effective_date ?? new Date().toISOString().slice(0, 10));
-  let provisional: ReturnType<typeof calculateStagingPriceForTest>;
-  try { provisional = calculateStagingPriceForTest(input, pricedFabric); }
+  let provisional: ReturnType<typeof calculateStagingPriceForTest> | ReturnType<typeof calculateProductionMtmCustomerPrice>;
+  try {
+    provisional = productionCustomerPricingEnabled()
+      ? calculateProductionMtmCustomerPrice(input, pricedFabric)
+      : calculateStagingPriceForTest(input, pricedFabric);
+  }
   catch(error) { if(error instanceof MissingCommercialRuleError) return priceConfirmation(); throw error; }
   const projection = await dailyStockProjection({
     supplierId: record.supplier_id,

@@ -4,7 +4,7 @@ import { calculatePrice, calculateFabricRequirement } from "@/lib/decision-engin
 import { assertValidConfiguration, type ConfigurationFabricIdentity } from "@/lib/decision-engine/validation";
 import { DRAFT_PRICING_RULE_SET, INITIAL_COMPLEXITY_RULE_SET } from "@/lib/decision-engine/seed/pricing-rules";
 import { WINDOW_TYPES_BY_SLUG } from "@/lib/decision-engine/seed/window-types";
-import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, FabricSpec, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
+import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, DecisionRegistry, FabricSpec, HeadingType, InterliningType, LiningType, PricingRuleSet } from "@/lib/decision-engine/types";
 import { STOREFRONT_FABRICS_BY_ID } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
 import { allocateVatInclusiveRetailTotal } from "./checkout-gates";
@@ -141,7 +141,11 @@ function cornerMeasurements(input: StagingPriceRequest) {
   };
 }
 
-export function prepareStagingConfiguration(input: StagingPriceRequest, pricedFabric: ConfigurationFabricIdentity) {
+export function prepareStagingConfiguration(
+  input: StagingPriceRequest,
+  pricedFabric: ConfigurationFabricIdentity,
+  rules: PricingRuleSet = buildStagingRuleSet(),
+) {
   const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
   if (!storefrontWindow) throw new Error("Unknown window type");
   if (!isAutomatedMtmWindowSlug(input.windowSlug)) throw new Error("MTM_AUTOMATED_OPENING_UNAVAILABLE");
@@ -193,14 +197,33 @@ export function prepareStagingConfiguration(input: StagingPriceRequest, pricedFa
         : scalarMeasurementsFor(masterSlug, widthCm, input.dropCm);
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
-  assertValidConfiguration(configuration, windowType, pricedFabric, buildStagingRuleSet().measurementValidation);
+  assertValidConfiguration(configuration, windowType, pricedFabric, rules.measurementValidation);
   return {configuration, windowType, widthCm, bay, hardware, anchors: measurementAnchors({ windowSlug: input.windowSlug, hardware, heading: input.heading })};
 }
 
-function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabric: FabricSpec, availability: string): StagingPriceResponse & {fabricWidths:number;fabricMetres:number} {
-  const {configuration, windowType, widthCm, bay} = prepareStagingConfiguration(input, pricedFabric);
-  const rules = buildStagingRuleSet();
-  const calculation = calculatePrice({ configuration, windowType, fabric: pricedFabric, rules, shippingZone: "UK_MAINLAND", mode: "CALIBRATION" });
+export interface CustomerPricingExecution {
+  rules: PricingRuleSet;
+  mode: "CALIBRATION" | "PRODUCTION";
+  decisionRegistry?: DecisionRegistry;
+}
+
+/**
+ * Shared customer-price response builder. The caller supplies the actual
+ * ruleset and engine mode; this prevents a production response from being
+ * relabelled after a draft calculation.
+ */
+export function calculateCustomerPriceWithRules(
+  input: StagingPriceRequest,
+  pricedFabric: FabricSpec,
+  availability: string,
+  execution: CustomerPricingExecution,
+): StagingPriceResponse & {fabricWidths:number;fabricMetres:number} {
+  const {rules, mode, decisionRegistry} = execution;
+  const {configuration, windowType, widthCm, bay} = prepareStagingConfiguration(input, pricedFabric, rules);
+  const calculation = calculatePrice({ configuration, windowType, fabric: pricedFabric, rules, shippingZone: "UK_MAINLAND", mode, decisionRegistry });
+  if (mode === "PRODUCTION" && calculation.calculationVersion !== rules.version) {
+    throw new Error("MTM_PRODUCTION_RULESET_IDENTITY_INVALID");
+  }
   const complexity = classifyComplexity(configuration, windowType, INITIAL_COMPLEXITY_RULE_SET, {
     fabric: pricedFabric,
     // The draft rules do not yet define an exact width-count review threshold.
@@ -214,7 +237,12 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
     : allocateVatInclusiveRetailTotal(calculation.total.amountMinor, rules.vat.rateBasisPoints!);
   return {
     configurationId: configuration.id,
-    calculationVersion: pricedFabric.patternAllowance ? `${calculation.calculationVersion}:${pricedFabric.patternAllowance.policyVersion}` : calculation.calculationVersion,
+    // The production value is the immutable pricing-ruleset identity. Pattern
+    // allowance provenance remains separately recorded below rather than
+    // mutating the pricing version stamped into checkout evidence.
+    calculationVersion: mode === "PRODUCTION"
+      ? calculation.calculationVersion
+      : pricedFabric.patternAllowance ? `${calculation.calculationVersion}:${pricedFabric.patternAllowance.policyVersion}` : calculation.calculationVersion,
     outcome: complexity.outcome,
     pricingConfidence: complexity.pricingConfidence,
     technicalReviewRequired: complexity.outcome !== "INSTANT_PRICE" || complexity.technicalApprovalRequiredBeforePayment,
@@ -245,7 +273,10 @@ function calculateStagingPriceWithFabric(input: StagingPriceRequest, pricedFabri
 
 /** Pure test/calibration entry point. The cost is supplied by the test, never read from Git. */
 export function calculateStagingPriceForTest(input: StagingPriceRequest, pricedFabric: FabricSpec) {
-  return calculateStagingPriceWithFabric(input, pricedFabric, "Availability to be confirmed");
+  return calculateCustomerPriceWithRules(input, pricedFabric, "Availability to be confirmed", {
+    rules: buildStagingRuleSet(),
+    mode: "CALIBRATION",
+  });
 }
 
 /** Reuses the ordinary canonical configuration and existing manual review queue. */

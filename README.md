@@ -32,7 +32,11 @@ The 21 September live Browse/Fabric Detail SDG handoff audit covered all 386 pag
 
 Non-payable Shopify Draft Order rehearsal modes remain restricted to `STAGING`. The live `CREATE_PRODUCTION_DRAFT` mode is restricted instead to the explicit `PRODUCTION` stage, the exact `carpetup.myshopify.com` store, the owner purchase-approval flag and the server-validated production contract. The inverse stage/mode combinations fail closed. This preserves the distinction between a private rehearsal and a customer-reachable checkout while allowing the authorised production route to execute on its production deployment.
 
-The same-day no-payment live checkout test was then stopped: the Shopify line-item snapshot reported historical draft pricing version `2.3.0-draft.1`, not required production ruleset `3.0.0-production.1`. MTM purchase approval was disabled immediately. Do not re-enable it until the customer-facing price and handoff route use the verified production ruleset end-to-end and a fresh no-payment reconciliation confirms the exact Shopify snapshot.
+The same-day no-payment live checkout test was then stopped: the Shopify line-item snapshot reported historical draft pricing version `2.3.0-draft.1`, not required production ruleset `3.0.0-production.1`. MTM purchase approval was disabled immediately.
+
+### Production customer pricing selection — 21 September 2026
+
+The public price route now selects its ruleset only from the deployed runtime contract: Vercel `production` plus CurtainsUK `PRODUCTION` stage executes the immutable active `3.0.0-production.1` ruleset and matching decision registry. It does not consult the public-purchase approval flag, so the exact production price and signed handoff can be verified while customer payment remains disabled. The production response is built by the pricing engine with that ruleset, validates that the engine's calculation version is exactly the ruleset version, and carries the same version through signed confirmation, immutable snapshot and Shopify Draft Order properties. Calibration routes retain their draft ruleset independently. Do not re-enable MTM purchase approval until the canonical no-payment Shopify checkout has reconfirmed this end-to-end contract.
 
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 

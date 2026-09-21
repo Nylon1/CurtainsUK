@@ -201,3 +201,11 @@ Before implementing CurtainsUK work:
 **Learning may change what CurtainsUK recommends. It must not change what is commercially true.**
 
 **Newer persisted evidence always supersedes snapshot counts and historical handovers.**
+
+## Customer Trust V1 — review-only release state
+
+The canonical customer-care/legal source is `content/customer-trust/catalogue.mjs`, built by `scripts/build-customer-trust.mjs`. It generates the shared footer, 21 review destinations, native-policy draft bodies and the HCI/app-proxy footer from one source. The customer-facing business identity is Apex Curtains Ltd trading as Curtains UK, company number `15652466`, customer correspondence/authorised returns address `36–44 Bolton Road, Blackburn, BB2 3FA`; the VAT registration number is intentionally not published.
+
+Owner-approved policy decisions are recorded in `docs/CUSTOMER_TRUST_OWNER_DECISION_SHEET.md`. Technical privacy/cookie evidence is in `artifacts/customer-trust-v1/privacy-cookie-technical-verification.md`; the legacy-reference inventory is `artifacts/customer-trust-v1/drapesey-audit.md`. No Shopify policies, pages, consent settings, notifications, themes or live routes have been mutated by this build. The candidate remains unpublished pending technical privacy/consent verification, coordinated Shopify Admin cleanup and final legal/privacy review.
+
+The MTM cart remains immutable (Keep or Remove), Continue shopping returns to Browse Fabrics, and all pricing, Fabric Master, stock, payment, PAID → REVIEW and staff-only workroom-release logic is outside this workstream and unchanged. Never publish generated policy/footer artifacts independently of the coordinated Shopify policy, page, consent and notification surfaces.

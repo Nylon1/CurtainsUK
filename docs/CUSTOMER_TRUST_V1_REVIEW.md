@@ -6,7 +6,7 @@ This is an implementation and evidence pack, not a legal sign-off. No Shopify pa
 
 ## Review entry points
 
-- Owner answers: [decision sheet](CUSTOMER_TRUST_OWNER_DECISION_SHEET.md). Legacy references: [Drapesey audit](../artifacts/customer-trust-v1/drapesey-audit.md).
+- Owner decisions: [decision sheet](CUSTOMER_TRUST_OWNER_DECISION_SHEET.md). Legacy references: [Drapesey audit](../artifacts/customer-trust-v1/drapesey-audit.md). Technical evidence: [privacy/cookie verification](../artifacts/customer-trust-v1/privacy-cookie-technical-verification.md).
 - Run `node scripts/build-customer-trust.mjs`, then `node scripts/preview-customer-trust.mjs`.
 - Review index: http://127.0.0.1:4347/ ; footer: http://127.0.0.1:4347/footer .
 - Source of truth: `content/customer-trust/catalogue.mjs`, `footer.css`, `footer.js`.
@@ -27,7 +27,7 @@ Shopify connector identifies `carpetup.myshopify.com`. Admin's stable URL slug i
 | `/policies/privacy-policy` | REWRITE | Current 14 Sept policy lacks sufficiently verified current processors/retention; image claims need downstream evidence. Keep native policy URL. |
 | `/policies/terms-of-service` | REWRITE | Generic boilerplate, state/province language and broad disclaimers. Keep native policy URL. |
 | `/policies/contact-information` | REWRITE | Only enquiries and address. Separate support, complaint, media and MTM-change purposes. |
-| `/policies/shipping-policy` | REWRITE | Empty body. Draft concise delivery information; actual commitments need approval. |
+| `/policies/shipping-policy` | REWRITE | Empty body. Draft now states UK Mainland, free samples, approximately 3–4 week MTM estimate and current checkout delivery charge without hard-coding a price. |
 | `/pages/privacy-policy` | MERGE | Duplicate includes `[Insert Date]`. Redirect to native Privacy Policy after canonical release. |
 | `/pages/terms-and-conditions` | MERGE | Old Drapesey terms: deposit process, short fault-report periods and older cancellation logic. Redirect to native Terms. |
 | `/pages/contact-us` | REWRITE | Old Drapesey email/branding and unverified hours/phone. Retain handle, replace content. |
@@ -51,7 +51,7 @@ Shopify connector identifies `carpetup.myshopify.com`. Admin's stable URL slug i
 | Responsible sourcing / modern slavery / equality / waste | CREATE drafts | Explicit adoption/evidence hold; no false sustainability or audit claims. |
 | Separate Sustainability destination | DO NOT CREATE | No approved evidence for broad environmental claims. |
 | Other city/specialist/legacy pages | KEEP pending scoped review | Do not mass-delete indexed pages; shared theme footer covers them. Specialist content itself not revalidated. |
-| Shopify notification contact/footer | REWRITE after approval | Preview still shows enquiries@drapesey.com. MTM-only fragment prepared locally. |
+| Shopify notification contact/footer | REWRITE after approval | Legacy sender/contact remains an Admin setting. MTM-only fragment is prepared locally; no Shopify write has been made. |
 
 No existing page was deleted. Proposed redirects are a manifest, not live redirects. Shopify redirects from an existing page handle require coordinated handling of that record; do not blindly create a redirect and assume it overrides a live page.
 
@@ -71,21 +71,21 @@ Do not hand-edit generated copies. Run the builder and commit generated diffs wi
 
 | Topic | Review result |
 |---|---|
-| Refunds & Returns | MTM change-of-mind exception separate from samples and faulty/damaged/incorrect/not-as-described goods; rights preserved. Two-hour request is not statutory cancellation. Sample postage, returns address, optional terms and cancellation form remain to finalise. |
-| Privacy | Actual HCI/room image/Guided Measure/sample/MTM/support/Shopify flows described. Provider contracts, retention, legal-basis record and transfers remain NEEDS CONFIRMATION. No blanket no-training or deletion guarantee. |
-| Terms | Samples, MTM, measurements, pricing/payment, review/manufacture, delivery, changes and complaints. Contract acceptance event and delivery commitments remain NEEDS CONFIRMATION. |
-| Cookies | Cookie and browser-storage distinction. Actual preference API wired with honest unavailable message. Live banner/optional tracking behaviour is BLOCKED, not a passing consent implementation. |
+| Refunds & Returns | MTM and samples have no voluntary change-of-mind offer; statutory rights for faulty/damaged/incorrect/materially misdescribed goods remain. Two-hour request is not statutory cancellation. Customer/returns address is BB2 3FA. |
+| Privacy | Owner-approved no-training/no-reuse restriction is stated. Provider contracts, upstream image handling, retention, legal-basis record and transfers remain technical/legal verification items; no blanket deletion promise is made. |
+| Terms | Samples, MTM, measurements, pricing/payment, review/manufacture, delivery estimate, workmanship, changes and complaints. No VAT registration number is published. |
+| Cookies | Cookie and browser-storage distinction and four intended integrations are stated. Admin banner is currently not visible; consent behaviour remains BLOCKED pending configuration/runtime verification. |
 | Fabric Colour/Shade | Device/light/surroundings, conditional nap/weave/natural variation, batches, sample limitations, pattern placement, photography and AI colour families. Physical sample recommended; statutory rights preserved. Links staged in Fabric Detail, samples, Make Curtains, returns and footer. |
-| Room Image / AI Privacy | Layered notice retained, central page and full policy linked; no separate conflicting retention promises. Upstream facts need confirmation before release. |
+| Room Image / AI Privacy | Layered notice retained, central page and full policy linked; owner-approved no-training/no-reuse restriction is stated. Upstream processor/storage/retention facts need confirmation before release. |
 | Made-to-measure orders | Paid → review → approved → workroom → delivery; payment not production release. Uses approved two-hour request language. |
 | Complaints | complaints@curtainsuk.com; order/reference, facts, dates, requested outcome; review/escalation without invented SLA or ADR membership. |
 | Media | media@curtainsuk.com; factual overview, topics, interviews and relevant collaborations. No awards, dominance or television claims. |
 | Modern slavery | Voluntary-policy draft only. Statutory applicability cannot be determined from company existence alone; turnover/group and scope needed. No invented audits. |
 | Equality/non-discrimination | Proposed treatment of all requested groups, relevant protected characteristics, access/adjustment and complaint route. Adoption/process owner not presumed. |
-| Recycling/waste | No claimed recycling rate, offcut scheme, supplier take-back or WEEE practice. Actual material streams/process evidence required. |
-| Responsible sourcing | Supplier-specific evidence distinguished from CurtainsUK practice; no unsubstantiated sustainability destination. |
+| Recycling/waste | Qualified owner-approved practices are stated for suitable offcuts/surplus, donations, recycling and cardboard/plastic packaging; no universal take-back or WEEE claim. |
+| Responsible sourcing | Established UK suppliers and fair-treatment/respect expectation are stated; no audit/certification or broad sustainability claim. |
 | Accessibility | Keyboard/focus/navigation/mobile footer tested locally; no certification or site-wide conformance claim. Support route included. |
-| Contacts | Four distinct purposes preserved. Inbox existence, access and monitoring must be confirmed by owner before relying on them operationally. |
+| Contacts | Four distinct purposes preserved. Admin sender/contact cleanup remains a technical release task; no legacy sender is presented as an approved CurtainsUK route. |
 
 ## Privacy and cookie evidence
 
@@ -111,7 +111,7 @@ The notification fragment is in `content/customer-trust/order-confirmation-fragm
 
 ## Company evidence
 
-[Companies House](https://find-and-update.company-information.service.gov.uk/company/15652466) identifies active APEX CURTAINS LTD, number **15652466**, registered office **36–44 Bolton Road, Blackburn, Lancashire, BB2 3PZ**. The customer site publishes **BB2 3FA**. Drafts distinguish these two addresses; do not assume which is the returns/correspondence address. VAT number not verified, so none invented. Incorporation is not evidence of business history or statutory-modern-slavery exemption.
+[Companies House](https://find-and-update.company-information.service.gov.uk/company/15652466) identifies active APEX CURTAINS LTD, number **15652466**. The owner-authorised customer correspondence and returns address is **36–44 Bolton Road, Blackburn, BB2 3FA**. The VAT registration number is intentionally not published. Incorporation is not evidence of business history or statutory-modern-slavery exemption.
 
 ## Legal/industry sources and limits
 
@@ -137,15 +137,11 @@ The notification fragment is in `content/customer-trust/order-confirmation-fragm
 
 ## Needs confirmation / release gates
 
-1. Confirm registered versus customer/returns address, VAT registration details and monitored support/complaints/media inboxes.
-2. Confirm sample change-of-mind return postage, returns procedure/address and any optional promise; complete statutory cancellation information/form.
-3. Confirm contract acceptance/acknowledgement wording and delivery timing/areas/charges actually presented before payment. Do not invent turnaround SLAs.
-4. Identify HCI/image processor and evidence retention/logging/training, legal bases, transfer safeguards and other processor/record-retention facts. Legal review of final Privacy/Terms/Returns.
-5. Decide/adopt responsible-business policies and identify actual supplier due diligence, waste streams/contractors/take-back, policy owner and turnover/group scope. Do not publish draft meta-commentary as a final policy.
-6. Resolve cookie banner region/privacy URL/checkout settings and verify actual web/server pixel consent and withdrawal. This is a real outstanding privacy implementation gate.
-7. Review new footer/content. Coordinate page updates/aliases, native policy bodies, HCI presentation and notification copy. Global Shopify policies affect LIVE checkout even when a theme is unpublished, so do not use a draft theme as an assumed policy sandbox.
-8. Authenticate the chosen CurtainsUK notification sender securely and verify customer support delivery. Replace generic Drapesey contact; test sample/MTM/mixed notification contexts without payment.
-9. Publish only an expressly approved coherent release. Verify actual route matrix, footer links, consent and policy coherence. Preserve all existing commerce gates and the live rollback theme. No order/payment needed for this workstream.
+1. Verify the upstream image processor, temporary handling, logs/backups, deletion/retention, subprocessors, countries, transfer safeguards and purpose-by-purpose lawful bases. Do not add precise operational promises until evidenced.
+2. Configure Shopify consent controls and canonical CurtainsUK privacy destination; verify Accept/Reject/Preferences/withdrawal and actual non-essential web/server pixel blocking in the served regions.
+3. Replace/retire the 41 legacy-referencing Shopify pages and legacy notification/cookie settings through a separately approved Admin write step. Do not delete blindly; use the audit and coordinated redirects/content replacement.
+4. Replace native Shopify policy bodies and notification copy only after final review, previewing MTM-only, mixed and samples-only contexts. Global policy records affect live checkout even when a theme is unpublished.
+5. Obtain legal/privacy review of final wording and approve one coherent publication. Preserve all existing commerce gates and the live rollback theme. No order/payment is needed for this workstream.
 
 ## Files / ownership / status
 

@@ -66,7 +66,7 @@ Case-insensitive `rg` excluding `.git`, `node_modules` and generated audit artif
 
 | File | Classification | Action |
 |---|---|---|
-| `content/customer-trust/catalogue.mjs` | Review-only blocker text mentioning the stale cookie URL | Keep as evidence until Admin configuration is corrected; not published. |
+| `content/customer-trust/catalogue.mjs` | Canonical review source; no active Drapesey string after owner-decision update | Keep generated review content unpublished until Admin configuration is corrected. |
 | `docs/curtainsuk-phase5e-owner-inputs.md` | Historical launch documentation with old contact | Keep historical record; do not serve. |
 | `docs/curtainsuk-phase5e-launch-rehearsal.md` | Historical rehearsal evidence | Keep historical record; do not serve. |
 | `docs/curtainsuk-phase5m-launch-gate-september8-history.md` | Historical scan/report saying no current references | Keep; superseded by this broader Shopify audit. |
@@ -78,7 +78,7 @@ The runtime/theme source scan found no active `Drapesey` or `drapesey.com` strin
 
 ## Required cleanup sequence after owner decisions
 
-1. Update the canonical customer-trust source with confirmed address, returns, delivery, privacy, cookie and responsible-business facts.
+1. **Complete in this review build:** update the canonical customer-trust source with the confirmed address, returns, delivery, privacy and responsible-business facts; regenerate all 21 drafts.
 2. Replace/retire the 41 Shopify page records in a scoped migration; do not mass-delete pages without deciding redirects and search/indexing impact.
 3. Replace the cookie-banner privacy destination and configure/verify consent in Shopify Admin.
 4. Replace the notification sender and generic Drapesey confirmation footer; preview MTM-only, mixed and samples-only messages.

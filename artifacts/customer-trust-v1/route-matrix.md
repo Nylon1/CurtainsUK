@@ -40,11 +40,11 @@ Read-only live audit: 2026-09-21T14:32:38.522Z. All responsive PASS results belo
 
 ## New/revised destinations
 
-- /policies/refund-policy — REWRITE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
-- /policies/terms-of-service — REWRITE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
+- /policies/refund-policy — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
+- /policies/terms-of-service — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /policies/privacy-policy — REWRITE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
-- /policies/contact-information — REWRITE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
-- /pages/contact-us — REWRITE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
+- /policies/contact-information — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
+- /pages/contact-us — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/cookies-policy — REWRITE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/curtain-fabric-colour-guide — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/room-image-ai-privacy — MERGE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
@@ -56,7 +56,7 @@ Read-only live audit: 2026-09-21T14:32:38.522Z. All responsive PASS results belo
 - /pages/recycling-waste — CREATE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/responsible-sourcing — CREATE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/accessibility — CREATE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
-- /policies/shipping-policy — REWRITE; NEEDS CONFIRMATION; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
+- /policies/shipping-policy — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/fabric-care-guide — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/faq-1 — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.
 - /pages/about-us-1 — REWRITE; READY FOR OWNER REVIEW; local 390px no-overflow/shared-footer PASS. Shopify record not changed.

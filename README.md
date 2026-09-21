@@ -16,6 +16,8 @@ Shopify continues to own cart, checkout, payment and orders. The MTM gateway own
 
 The active public MTM payment gate remains disabled until the owner performs the first controlled payment test. On 20 September 2026, a server-side private Draft Order rehearsal reconciled £532.00 goods, £90.83 VAT, £12.95 delivery and £544.95 total between CurtainsUK and Shopify. It used a fixed safe configuration with no customer/email, invoice operation, payment capability or workroom release, and was immediately deleted after verification. The temporary rehearsal route was then removed. No environment values or credentials belong in source, artifacts or this document.
 
+On 21 September 2026, migration `20260921103025_guided_measure_checkout_measurement_allowlist` was applied and recorded against the production project. It adds the approved Guided Measure raw hardware fields to the immutable checkout snapshot allowlist only; all price, stock, compatibility, payment, RLS and paid-order lifecycle gates remain unchanged.
+
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 
 There are **three distinct frontend bodies of work**:

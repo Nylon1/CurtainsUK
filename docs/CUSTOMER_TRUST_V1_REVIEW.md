@@ -6,6 +6,7 @@ This is an implementation and evidence pack, not a legal sign-off. No Shopify pa
 
 ## Review entry points
 
+- Owner answers: [decision sheet](CUSTOMER_TRUST_OWNER_DECISION_SHEET.md). Legacy references: [Drapesey audit](../artifacts/customer-trust-v1/drapesey-audit.md).
 - Run `node scripts/build-customer-trust.mjs`, then `node scripts/preview-customer-trust.mjs`.
 - Review index: http://127.0.0.1:4347/ ; footer: http://127.0.0.1:4347/footer .
 - Source of truth: `content/customer-trust/catalogue.mjs`, `footer.css`, `footer.js`.

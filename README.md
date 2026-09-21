@@ -1,5 +1,9 @@
 # CurtainsUK
 
+## Google Fabric Discovery V1 — pilot infrastructure, 21 September 2026
+
+The implemented pilot layer is documented in [Google Fabric Discovery V1](docs/GOOGLE_FABRIC_DISCOVERY_V1.md). It establishes one server-rendered canonical Fabric Detail destination per Fabric Master and models the Merchant item as a **physical fabric sample**, never a made-to-measure curtain. The projection is read-only and fail-closed against Fabric Master, governed commerce/sample state, approved image rights and approved Fabric Knowledge. The live audit found no working exact Fabric Detail route, so the live Google-eligible count is **0**; that is a distribution gap, not a judgement on fabric or Knowledge quality. £2.50 sample semantics and pilot image rights are approved, but the current public sample-product endpoint used by the existing code returns `404`, so live sample proof is still blocked. No feed was submitted, no mass indexation was changed, and the route/sitemap remain unmounted from the live domain pending the 50-item source-backed preflight and owner approval.
+
 ## Customer Trust / Legal / Footer V1 — review only, 21 September 2026
 
 **NOT RELEASED. Do not deploy this branch as a gateway/theme update or publish its policy bodies until the review gates are resolved.** See [Customer Trust V1 review/runbook](docs/CUSTOMER_TRUST_V1_REVIEW.md) and [route audit](artifacts/customer-trust-v1/route-matrix.md).
@@ -213,3 +217,16 @@ The MTM cart remains immutable (Keep or Remove), Continue shopping returns to Br
 ### Customer Trust V1 closeout (review-only)
 
 Closeout evidence is recorded in `artifacts/customer-trust-v1/final-closeout.md`. The reversible Shopify cleanup plan is `artifacts/customer-trust-v1/drapesey-cleanup-plan.md`. The current live store still has 41 published Pages with 187 Drapesey occurrences, a Drapesey cookie privacy destination, and a Drapesey notification sender; these are publication blockers, not reasons to alter MTM commerce. Room-image processing facts that are not proven by the application/provider contract remain qualified in the privacy draft. No live Shopify record was changed in this closeout.
+### Customer Trust route repair (2026-09-21)
+
+The live theme 182339731835 referenced custom Shopify page templates whose
+Shopify Page records were missing. This caused 404s for Fabric Library,
+Browse Fabrics, Guided Measure, Make Curtains, How to Fit, Samples and Shop by
+Window; it was not an MTM gateway disconnect. The required published Page
+records were restored with their existing template suffixes, and `/pages/fabrics`
+and `/pages/browse-fabrics` now redirect to the canonical catalogue routes.
+
+Verified live HTTP 200: `/pages/fabric-library`,
+`/pages/fabric-library?view=browse-fabrics`, `/pages/curtain-visualiser`,
+`/pages/how-to-measure`, `/pages/how-to-fit`, `/pages/samples`, and
+`/pages/solve-my-window`.

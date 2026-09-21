@@ -9,7 +9,9 @@ import { PRESTIGIOUS_PILOT_FABRICS } from '../lib/prestigious/pilot-fabrics';
 import { signReviewSubmissionWithSecret, verifyReviewSubmissionWithSecret } from '../lib/storefront/review-token-core';
 import { quoteOwnerApprovedCurtainShipping, STAGING_SHIPPING_OWNER_INPUTS } from '../lib/storefront/shipping-owner-inputs';
 import type { StagingPriceRequest } from '../lib/storefront/staging-pricing';
-import mediaEvidence from '../artifacts/phase5h/media-summary.json';
+// The optional local media report is intentionally ignored by Git and absent
+// from Vercel builds. This loopback-only preview still works without it.
+const mediaEvidence: { mappings: Array<{ fabricId: string; mappingState: string; rightsState: string; shopifyCdnUrl?: string | null }> } = { mappings: [] };
 
 const secret=randomBytes(32).toString('hex');
 const assetRoot=path.resolve('shopify-theme/curtainsuk-new-design-live-base/assets');

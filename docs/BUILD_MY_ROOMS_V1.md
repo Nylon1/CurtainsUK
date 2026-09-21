@@ -8,7 +8,7 @@ Status: **unpublished local implementation; multi-curtain contract built; public
 - Canonical production store: `carpetup.myshopify.com`; public domain: `www.curtainsuk.com`.
 - Canonical live Shopify theme: **182339731835**.
 - Do not create duplicate themes for feature development/review. Do not deploy to, delete or otherwise alter historical themes.
-- No Shopify/Vercel/Supabase deployment, live Page creation, settings change, order creation or payment was performed for this feature.
+- The scoped Supabase migration and one temporary, operator-authenticated gateway rehearsal route were deployed on 22 September 2026 solely to prove the private multi-line contract. The route and its credential were removed immediately after the invisible Draft Order was deleted. No Shopify theme, live Page, settings, public House payment, customer invoice, email, order completion or payment was performed.
 - Before ANY deployment, download/read the then-current canonical live scoped files and compare them with the intended Git diff. Merge intervening Customer Trust and other live changes. Do not overwrite the current theme with this historical worktree wholesale.
 - Git holds known-good files for scoped rollback. Theme duplication is not the rollback strategy.
 
@@ -69,15 +69,23 @@ single House order. Neither behaviour is allowed.
 
 `ROOMS_CHECKOUT_RELEASED=false` and the server checkout command fail closed
 independently of theme/env gates. The production transport is intentionally not
-wired to public House checkout. Before that separate release, perform a linked
-Supabase migration deployment plus a private, non-payable Shopify Draft Order
-rehearsal using the deployed gateway credentials:
+wired to public House checkout. On 22 September 2026 the linked project received
+migration `20260921205826_multi_curtain_paid_order_contract`: RLS remained on
+each new private table, browser roles retained no grants, and append-only
+curtain/release triggers were present. One operator-authenticated, non-payable
+House rehearsal used two rooms and three independently immutable snapshots (two
+using the same SDG Fabric Master), revalidated combined fresh stock and ruleset
+`3.0.0-production.1`, and exactly reconciled £2,149.00 goods + £360.33 VAT +
+one £12.95 delivery line = £2,161.95 in CurtainsUK and Shopify. The invisible
+Draft Order was deleted and the temporary route/credential removed. A separate
+rolled-back database transaction proved House webhook reconstruction, no direct
+`PAID → WORKROOM_RELEASED` transition, and exactly three release rows only after
+the explicit review/approval chain. No paid/release rehearsal records persisted.
 
-1. Deploy the migration and verify the private relational schema/RPC against the linked project.
-2. Connect the existing final House review to fresh immutable snapshot preparation and House execution persistence. This branch intentionally does not create a public route or take payment while that linked-environment proof is absent.
-3. Run 1/2/multi-room private Draft Orders without sending an invoice/payment, with a durable House claim and exact Shopify reconciliation.
-4. Verify webhook replay, PAID → REVIEW and one explicit whole-House staff-only workroom release in the deployed environment.
-5. Obtain separate owner authority before enabling any House payment flag.
+Before a separate public House-payment release, connect the final reviewed House
+to fresh snapshot preparation and durable House execution persistence, obtain
+Astra visual approval, reconcile the scoped live-theme diff, and obtain new owner
+authority. No House payment flag is implied by this proof.
 
 `rooms-order-contract.ts` prepares the combined contract using existing immutable
 single-line builders, one delivery and private per-line identity.
@@ -103,6 +111,6 @@ Screenshots: `desktop.png`, `mobile-390.png`, `mobile-412.png`, `review.png`, `c
 
 ## Remaining release verification
 
-Do not enable the flags or deploy incomplete functionality to live for preview. Outstanding: owner visual review; linked Supabase migration deployment; server bridge from fresh House review to immutable snapshot preparation; private 2-room/3-curtain Draft Order rehearsal; live Shopify financial reconciliation; webhook/paid-review proof; canonical-live diff reconciliation and Shopify-hosted rendering. No payment or manufacture action is authorised by this local build.
+Do not enable the flags or deploy incomplete functionality to live for preview. Outstanding: owner visual review; server bridge from fresh House review to immutable snapshot preparation; canonical-live diff reconciliation and Shopify-hosted rendering. No payment or manufacture action is authorised by this local build.
 
 Customer Trust V1, canonical footer/policies, consent, Fabric Master, production ruleset, stock projection, compatibility, Guided Measure, existing payment/webhook and workroom gates must remain intact during any later scoped deployment.

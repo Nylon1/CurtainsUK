@@ -6,6 +6,7 @@
   const REVIEW_RESUME_KEY = "curtainsuk_staging_review_resume_v1";
   const REVIEW_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   const REVIEW_ACCEPTANCE_TOKEN = /^v1\.\d{10,12}\.[A-Za-z0-9_-]{43}$/;
+  const FABRIC_MASTER_ID = /^[a-zA-Z0-9-]{1,150}$/;
 
   const emit = (name, detail = {}) => {
     const payload = { event: `curtainsuk_${name}`, ...detail };
@@ -525,6 +526,7 @@
 
     try {
       const requested = params.get("fabric") || readJson(PROJECT_KEY, {}).fabricId;
+      if (requested && !FABRIC_MASTER_ID.test(requested)) throw new Error("We couldn't verify the fabric in this link. Please choose a fabric from Browse Fabrics.");
       catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog") + (requested ? `?fabric=${encodeURIComponent(requested)}` : ""));
       catalog.windows.forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
       fabricSelect.replaceChildren(option("Choose a fabric", ""));
@@ -543,10 +545,14 @@
     const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true);
     fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric) ? requestedFabric : configurableFabrics[0]?.id;
     if (requestedFabric && fabricSelect.value !== requestedFabric) {
-      fabricSelect.appendChild(option("Your selected fabric — price to be confirmed", requestedFabric));
+      const resolution = catalog.requestedFabric;
+      const unavailable = resolution?.id === requestedFabric && resolution.status === "NOT_FOUND";
+      fabricSelect.appendChild(option(unavailable ? "Selected fabric is no longer available" : "Selected fabric needs confirmation", requestedFabric));
       fabricSelect.value = requestedFabric;
       form.querySelector("button[type=submit]").disabled = true;
-      errorBox.textContent = "Your selected fabric is saved. Its price and availability must be confirmed before we can calculate curtains.";
+      errorBox.textContent = unavailable
+        ? "This fabric is no longer available to configure. Please choose another fabric."
+        : "We couldn't confirm this fabric for made-to-measure curtains, so no price or checkout is available.";
       errorBox.hidden = false;
     }
     renderBaySections(root, remembered.baySectionCount || 3, remembered.baySectionWidthsCm || []);

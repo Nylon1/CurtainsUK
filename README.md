@@ -18,6 +18,10 @@ The active public MTM payment gate remains disabled until the owner performs the
 
 On 21 September 2026, migration `20260921103025_guided_measure_checkout_measurement_allowlist` was applied and recorded against the production project. It adds the approved Guided Measure raw hardware fields to the immutable checkout snapshot allowlist only; all price, stock, compatibility, payment, RLS and paid-order lifecycle gates remain unchanged.
 
+### Fabric Master deep-link hydration contract
+
+`/pages/curtain-visualiser?fabric=<Fabric Master ID>` carries an identity reference only. The Shopify app proxy resolves that ID from the canonical Fabric Master configuration projection before the customer can price or check out; it never accepts commercial fields from the query string, browser storage or an editorial retail payload. Retail imagery/profile completeness is therefore independent of MTM configuration eligibility. The price and checkout-handoff endpoints re-read the canonical record and perform their own fresh stock, commercial eligibility, compatibility and signed-price checks. Invalid, deleted, unavailable or non-priceable IDs remain fail-closed with no price or checkout path. Browse and Fabric Detail handoffs use the same ID route and converge on this server-side resolver.
+
 CurtainsUK remains **Shopify-first for current production**, while preserving all frontend work already built.
 
 There are **three distinct frontend bodies of work**:

@@ -127,7 +127,7 @@ test("Dawn uses paginated retail imagery and retains canonical sample identity w
   assert.match(script, /fabric\.imageReferences\?\.\[0\]/);
   assert.match(script, /fabric\.availability/);
   assert.match(script, /fabric\.browseReady \?/);
-  assert.match(script, /price and availability must be confirmed/);
+  assert.match(script, /We couldn't confirm this fabric for made-to-measure curtains/);
   assert.match(script, /Usable width to be confirmed/);
   assert.match(script, /addEventListener\("error"/);
   assert.match(section, /data-cuk-fabric-filters/);
@@ -140,9 +140,12 @@ test("Dawn uses paginated retail imagery and retains canonical sample identity w
   assert.equal(/supplierCost|tradePrice|stockMetres|batchReference/i.test(script + section), false);
 });
 
-test("an unverified fabric deep link is explained instead of silently substituted", () => {
+test("a Fabric Master deep link is validated, hydrated through the catalogue, and fails closed when unresolved", () => {
   const script = read("assets", "curtainsuk-storefront.js");
-  assert.match(script, /Your selected fabric is saved/);
+  assert.match(script, /FABRIC_MASTER_ID/);
+  assert.match(script, /We couldn't verify the fabric in this link/);
+  assert.match(script, /catalog\.requestedFabric/);
+  assert.match(script, /no price or checkout is available/);
   assert.match(script, /fabricSelect\.value = requestedFabric/);
   assert.match(script, /fabricSelect\.value !== requestedFabric/);
 });

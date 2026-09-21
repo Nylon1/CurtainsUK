@@ -6,6 +6,7 @@ import { issueCustomerSession, verifyCustomerSession } from './customer-hci-sess
 import { premiumHciCommand, premiumHciEnabled, premiumHciIntegration } from './hci-premium-integration';
 import { consumeEndpointRateLimit } from './security/endpoint-rate-limit';
 import { PRIVATE_NO_STORE_HEADERS } from './security/http';
+import { trustFooterHtml } from './customer-trust/generated';
 
 const assetDirectory = resolve('lib/storefront/hci/premium');
 const secret = () => process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? '';
@@ -13,7 +14,7 @@ const secret = () => process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? '';
 export function premiumProxyPage() {
   if (!premiumHciEnabled()) return new Response(null, { status: 404 });
   const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Fabric Intelligence | CurtainsUK</title><link rel="stylesheet" href="/apps/curtainsuk-decision/premium-asset?name=premium.css"></head><body><div id="curtainsuk-premium-root"></div><script>window.__CURTAINSUK_PREMIUM_PROXY__=true</script><script src="/apps/curtainsuk-decision/premium-asset?name=premium.js" defer></script></body></html>`;
-  return new Response(html, { headers: { ...PRIVATE_NO_STORE_HEADERS, 'Content-Type': 'text/html; charset=utf-8', 'X-Content-Type-Options': 'nosniff' } });
+  return new Response(html.replace('</body>', `${trustFooterHtml}</body>`), { headers: { ...PRIVATE_NO_STORE_HEADERS, 'Content-Type': 'text/html; charset=utf-8', 'X-Content-Type-Options': 'nosniff' } });
 }
 
 export async function premiumProxyAsset(name: string) {

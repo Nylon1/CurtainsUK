@@ -274,14 +274,14 @@ export function ReferencePrivacy({ previewOnly = false, hosted = false }: { prev
         <p>
           {previewOnly
             ? 'No image is sent or analysed in this design preview.'
-            : hosted ? 'This protected consultation processes your photograph privately to derive colour information. The original image bytes are not saved by the consultation.' : hosted ? 'This protected consultation processes your photograph privately to derive colour information. The original image bytes are not saved by the consultation.' : 'This local image-palette tool processes your photograph without writing the original image bytes to its palette store.'}{' '}
+            : hosted ? 'Adding an image is optional. Automated image analysis helps suggest colours and fabric directions. Our consultation database stores derived colour and preference records and rejects raw image data.' : 'This local image-palette tool processes your photograph without writing the original image bytes to its palette store.'}{' '}
           Please avoid photographs containing people, personal documents, screens or other sensitive
           information. Image analysis is used to derive colour information.
         </p>
         <details>
           <summary>Image privacy & safe uploading</summary>
           <p>
-            {hosted ? 'Derived palettes, your corrections and consultation evidence are retained separately. Your photograph is processed for this request and is not sent to a generative AI service. This is a protected integration preview.' : 'Derived palettes, corrections and evidence can be retained by the consultation system. Public hosted image processing, authentication, storage and retention/deletion terms remain a separate release boundary. This preview does not promise automatic deletion or enable customer image analysis.'}
+            {hosted ? <>Derived palettes, your corrections and consultation evidence are stored separately. Read <a href="/pages/room-image-ai-privacy">Room Image &amp; AI Privacy</a> and our <a href="/policies/privacy-policy">Privacy Policy</a> before uploading.</> : 'Derived palettes, corrections and evidence can be retained by the consultation system. Public hosted image processing, authentication, storage and retention/deletion terms remain a separate release boundary. This preview does not promise automatic deletion or enable customer image analysis.'}
           </p>
         </details>
       </div>

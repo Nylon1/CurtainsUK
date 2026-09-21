@@ -1,0 +1,20 @@
+{
+  "auditedAt": "2026-09-21",
+  "method": "Read-only Shopify Admin UI; no settings saved or test email sent",
+  "store": "carpetup.myshopify.com",
+  "adminSlug": "madetomeasurecurtains",
+  "domainVerified": "www.curtainsuk.com",
+  "privacy": {
+    "automation": "off",
+    "networkIntelligence": "enabled",
+    "primaryCustomerDataHosting": "European Union",
+    "cookieBannerRegions": "Not visible in any region",
+    "savedBannerPrivacyUrl": "https://www.drapesey.com/policies/privacy-policy",
+    "showCookieBannerInCheckout": false
+  },
+  "listedPixelIntegrations": ["Facebook & Instagram: Web", "Google & YouTube: Web / Optimized", "Pinterest: Web", "TikTok: Server + Web / Optimized"],
+  "pixelRuntimeConsentTest": "NOT PERFORMED; listing is not evidence of actual firing/blocking",
+  "notificationSender": "enquiries@drapesey.com",
+  "orderConfirmationPreviewContact": "enquiries@drapesey.com",
+  "newInboxAuthentication": "NEEDS CONFIRMATION"
+}

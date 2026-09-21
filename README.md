@@ -1,5 +1,19 @@
 # CurtainsUK
 
+## Customer Trust / Legal / Footer V1 — review only, 21 September 2026
+
+**NOT RELEASED. Do not deploy this branch as a gateway/theme update or publish its policy bodies until the review gates are resolved.** See [Customer Trust V1 review/runbook](docs/CUSTOMER_TRUST_V1_REVIEW.md) and [route audit](artifacts/customer-trust-v1/route-matrix.md).
+
+The canonical source is `content/customer-trust/catalogue.mjs` plus `footer.css`/`footer.js`. `node scripts/build-customer-trust.mjs` generates the shared Shopify Liquid footer, app-proxy footer and 21 policy/care review destinations. Do not maintain duplicate footer copies by hand. `node scripts/preview-customer-trust.mjs` serves the local review at `http://127.0.0.1:4347/`; `/footer` shows the expanded service layer. `node scripts/check-customer-trust.mjs` checks source/link consistency and preference-control behaviour. `node scripts/verify-customer-trust.cjs` runs local desktop/390/412 browser checks (requires agent-browser and the preview server).
+
+Canonical checkout/storefront legal destinations remain native `/policies/refund-policy`, `/policies/privacy-policy`, `/policies/terms-of-service`, `/policies/contact-information` and `/policies/shipping-policy`. These Shopify global records, page records/aliases, cookie settings and notification templates have separate Admin ownership; a theme preview does not sandbox them. New bodies/aliases are prepared in the unpublished manifest, not applied. The MTM-only order-confirmation addition is a review fragment, not a deployed email change.
+
+Customer support: `support@curtainsuk.com`; complaints: `complaints@curtainsuk.com`; media: `media@curtainsuk.com`; MTM two-hour change requests retain `enquiries@curtainsuk.com`. Do not merge these purposes. Inbox operation and the legacy notification sender still need verification.
+
+Preserve MTM cart immutability: Keep or Remove curtain, never edit priced configuration properties. Continue shopping returns to Browse Fabrics without clearing retained items. Customer-facing fabric/opening/heading/dimensions/lining/pair/price remains distinct from retained hidden machine metadata. This workstream does not change cart handlers, production pricing, stock, payment, PAID → REVIEW or explicit staff-only workroom release.
+
+Publication holds include actual image-processor/retention facts, delivery/contract/returns details, address/VAT verification, responsible-business policy adoption and Shopify consent behaviour. Cookie Settings invokes the genuine Shopify preference control when available; the current banner is not enabled for any region, so live consent cannot yet be marked PASS. No secrets belong in this documentation.
+
 CurtainsUK is a made-to-measure curtain commerce and fabric-intelligence platform. This repository is the authoritative application source.
 
 > **Critical:** Shopify is the current customer-facing production storefront and commerce platform. Supabase Fabric Master is the canonical fabric catalogue. Next.js/Vercel also contains a substantial **built frontend that must be preserved**, although it is not the current production storefront direction; Vercel additionally supports APIs/intelligence/application infrastructure.

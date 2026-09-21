@@ -165,6 +165,7 @@
         <p class="cuk-hint" data-cuk-result-spec></p>
         <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h2>{% if production_checkout %}Your curtain order{% else %}Prepare a Shopify test checkout{% endif %}</h2>
+          {% render 'curtainsuk-colour-guidance' %}
           <p>{% if production_checkout %}Your curtain specification and price are preserved. This made-to-measure configuration cannot be edited in cart or checkout; to change it, remove it and configure your curtains again. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>

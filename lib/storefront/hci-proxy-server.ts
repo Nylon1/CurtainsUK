@@ -7,6 +7,7 @@ import {customerProxyHtml,customerProxyScript} from './hci-proxy-render';
 import {consumeEndpointRateLimit} from './security/endpoint-rate-limit';
 import {stagingHciIntegration} from './hci-integration-server';
 import {PRIVATE_NO_STORE_HEADERS} from './security/http';
+import {trustFooterHtml,roomPrivacyHtml} from './customer-trust/generated';
 const secret=()=>process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET??'';
 export function proxyCustomerSession() {
   if(!customerHciEnabled()) throw Error('HCI_DISABLED');
@@ -29,6 +30,8 @@ export async function proxyConsultationAsset(name:string) {
     let body=await readFile(resolve('lib/storefront/hci',...(visual?['visuals',name]:[name])),'utf8');
     if(name==='consultation.html')body=customerProxyHtml(body);
     if(name==='consultation.js')body=customerProxyScript(body);
+    if(name==='privacy.html')body=body.replace(/<main[\s\S]*?<\/main>/,'<main><h1>Room Image &amp; AI Privacy</h1>'+roomPrivacyHtml+'</main>');
+    if(name==='consultation.html'||name==='privacy.html')body=body.replace('</body>',trustFooterHtml+'</body>');
     return new Response(body,{headers:{...PRIVATE_NO_STORE_HEADERS,'Content-Type':visual?'image/svg+xml':name.endsWith('.html')?'text/html; charset=utf-8':name.endsWith('.css')?'text/css':'text/javascript'}});
   }catch{return new Response(null,{status:404});}
 }

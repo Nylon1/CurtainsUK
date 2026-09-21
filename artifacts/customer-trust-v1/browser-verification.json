@@ -1,0 +1,205 @@
+{
+  "scope": "Local review: shared footer, all drafted policy pages; no production checkout or policy mutation",
+  "widths": [
+    {
+      "width": 1440,
+      "footerCount": 1,
+      "groups": [
+        {
+          "height": 44,
+          "open": true
+        },
+        {
+          "height": 44,
+          "open": true
+        },
+        {
+          "height": 44,
+          "open": true
+        },
+        {
+          "height": 44,
+          "open": true
+        }
+      ],
+      "overflow": false,
+      "keyboardToggle": "native details",
+      "screenshot": "footer-1440.png"
+    },
+    {
+      "width": 390,
+      "footerCount": 1,
+      "groups": [
+        {
+          "height": 52,
+          "open": false
+        },
+        {
+          "height": 52,
+          "open": false
+        },
+        {
+          "height": 52,
+          "open": false
+        },
+        {
+          "height": 52,
+          "open": false
+        }
+      ],
+      "overflow": false,
+      "keyboardToggle": "PASS",
+      "screenshot": "footer-390.png"
+    },
+    {
+      "width": 412,
+      "footerCount": 1,
+      "groups": [
+        {
+          "height": 52,
+          "open": false
+        },
+        {
+          "height": 52,
+          "open": false
+        },
+        {
+          "height": 52,
+          "open": false
+        },
+        {
+          "height": 52,
+          "open": false
+        }
+      ],
+      "overflow": false,
+      "keyboardToggle": "PASS",
+      "screenshot": "footer-412.png"
+    }
+  ],
+  "pages": [
+    {
+      "url": "/policies/refund-policy",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/policies/terms-of-service",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/policies/privacy-policy",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/policies/contact-information",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/contact-us",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/cookies-policy",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/curtain-fabric-colour-guide",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/room-image-ai-privacy",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/made-to-measure-orders",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/complaints",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/media",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/modern-slavery-supply-chain",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/equality-diversity",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/recycling-waste",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/responsible-sourcing",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/accessibility",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/policies/shipping-policy",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/fabric-care-guide",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/faq-1",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/about-us-1",
+      "status": "PASS",
+      "viewport": 390
+    },
+    {
+      "url": "/pages/sitemap",
+      "status": "PASS",
+      "viewport": 390
+    }
+  ],
+  "cookieControl": "Production blocked pending Shopify banner activation; failure state tested",
+  "cartChanges": false,
+  "browserErrors": {
+    "errors": [],
+    "lifecycle": {
+      "effectiveLaunch": {
+        "browserLaunched": true,
+        "engine": "chrome",
+        "launchHash": 11677035664275012000
+      },
+      "launched": false,
+      "relaunchedBrowser": false,
+      "restartedBackground": false,
+      "restoreStatus": "not_configured",
+      "reused": true,
+      "saveStatus": "not_attempted"
+    }
+  }
+}

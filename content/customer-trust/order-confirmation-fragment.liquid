@@ -1,0 +1,28 @@
+{% comment %}
+REVIEW ONLY. Insert once below the acknowledgement in the existing Shopify
+order-confirmation notification. Check sample-only, MTM and mixed orders.
+This content does not change order, payment, approval or workroom state.
+Preserve the notification's existing summary, tax and payment logic.
+{% endcomment %}
+{% assign curtainsuk_has_mtm = false %}
+{% for line in line_items %}
+  {% if line.properties['_curtainsuk_mtm_locked'] == 'true' %}
+    {% assign curtainsuk_has_mtm = true %}
+  {% endif %}
+{% endfor %}
+{% if curtainsuk_has_mtm %}
+  <div lang="en" dir="ltr" style="font-size:16px;line-height:1.6;color:#173d35;background:#f8f6ef;padding:20px;">
+    <h2 style="font-size:22px;">Your made-to-measure curtains</h2>
+    <p>Paid made-to-measure orders go to CurtainsUK review. Payment does not automatically approve manufacture or release an order to the workroom.</p>
+    <p>Need to request a change? Email us within 2 hours of placing your order at <a href="mailto:enquiries@curtainsuk.com">enquiries@curtainsuk.com</a>. We’ll review your request and get in touch.</p>
+    <p>Requested changes are not guaranteed. This request window does not affect your statutory rights.</p>
+    <p><a href="https://www.curtainsuk.com/pages/made-to-measure-orders">Your made-to-measure order</a></p>
+  </div>
+{% endif %}
+<div lang="en" dir="ltr" style="font-size:16px;line-height:1.6;">
+  <p>Customer support: <a href="mailto:support@curtainsuk.com">support@curtainsuk.com</a><br>
+  Complaints: <a href="mailto:complaints@curtainsuk.com">complaints@curtainsuk.com</a></p>
+  <p><a href="https://www.curtainsuk.com/policies/refund-policy">Refunds &amp; Returns</a> ·
+  <a href="https://www.curtainsuk.com/policies/privacy-policy">Privacy Policy</a> ·
+  <a href="https://www.curtainsuk.com/policies/terms-of-service">Terms &amp; Conditions</a></p>
+</div>

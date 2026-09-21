@@ -650,6 +650,10 @@
     }
   },
   "templates": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "404"
+    },
     "search": {
       "no_results": "No results found for “{{ terms }}”. Check the spelling or use a different word or phrase.",
       "page": "Page",
@@ -693,10 +697,6 @@
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
       }
-    },
-    "404": {
-      "title": "Page not found",
-      "subtext": "404"
     }
   },
   "sections": {
@@ -707,7 +707,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -960,6 +959,74 @@
       "max_characters": "{{ max_chars }} characters max",
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
+    }
+  },
+  "customer_trust": {
+    "footer": {
+      "copy_1": "CurtainsUK help and information",
+      "copy_2": "Cookie preferences could not be opened. No choice has been changed. Please try again or contact support@curtainsuk.com for help.",
+      "copy_3": "NEED SOME HELP?",
+      "copy_4": "We’re here from inspiration to installation.",
+      "copy_5": "CurtainsUK help",
+      "copy_6": "Measure",
+      "copy_7": "Guided Measure",
+      "copy_8": "Fit",
+      "copy_9": "How to Fit",
+      "copy_10": "Samples",
+      "copy_11": "Order Samples",
+      "copy_12": "Advice",
+      "copy_13": "Contact Us",
+      "copy_14": "Privacy",
+      "copy_15": "Room-image privacy",
+      "copy_16": "Customer care and policies",
+      "copy_17": "CurtainsUK",
+      "copy_18": "About Us",
+      "copy_19": "Fabric Intelligence™",
+      "copy_20": "Browse Fabrics",
+      "copy_21": "Curtain Style",
+      "copy_22": "Shop by Window",
+      "copy_23": "Inspiration / Gallery",
+      "copy_24": "Media & Press",
+      "copy_25": "Sitemap",
+      "copy_26": "Help & Customer Care",
+      "copy_27": "Guided Measure",
+      "copy_28": "How to Fit",
+      "copy_29": "Fabric Samples",
+      "copy_30": "Delivery Information",
+      "copy_31": "Curtain Care & Cleaning",
+      "copy_32": "FAQs",
+      "copy_33": "Contact Us",
+      "copy_34": "Complaints",
+      "copy_35": "Your made-to-measure order",
+      "copy_36": "Responsible Business",
+      "copy_37": "Responsible Sourcing",
+      "copy_38": "Modern Slavery & Supply Chain",
+      "copy_39": "Equality, Diversity & Non-Discrimination",
+      "copy_40": "Recycling & Waste",
+      "copy_41": "Legal & Privacy",
+      "copy_42": "Terms & Conditions",
+      "copy_43": "Privacy Policy",
+      "copy_44": "Cookie Information",
+      "copy_45": "Refunds & Returns",
+      "copy_46": "Fabric Colour, Shade & Variation",
+      "copy_47": "Room Image & AI Privacy",
+      "copy_48": "Website Accessibility",
+      "copy_49": "Cookie Settings",
+      "copy_50": "Customer support",
+      "copy_51": "support@curtainsuk.com",
+      "copy_52": "Complaints",
+      "copy_53": "complaints@curtainsuk.com",
+      "copy_54": "Media & Press",
+      "copy_55": "media@curtainsuk.com",
+      "copy_56": "Apex Curtains Ltd trading as Curtains UK",
+      "copy_57": "Customer contact: 36–44 Bolton Road, Blackburn, BB2 3FA",
+      "copy_58": "Company 15652466 · Registered office: 36–44 Bolton Road, Blackburn, Lancashire, BB2 3PZ",
+      "copy_59": "Made-to-measure order-change requests:",
+      "copy_60": "enquiries@curtainsuk.com"
+    },
+    "colour": {
+      "note": "Screens, light and fabric surfaces affect colour. A physical sample helps you judge it in your room.",
+      "link": "Fabric Colour, Shade & Variation"
     }
   }
 }

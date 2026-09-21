@@ -659,6 +659,13 @@ export async function persistStagingCheckoutSnapshotAndHandoff(input: {
     p_prepared_by: input.preparedBy,
   });
   if (error) {
+    console.error(JSON.stringify({
+      event: "CURTAINSUK_CHECKOUT_HANDOFF_PERSISTENCE_REJECTED",
+      code: typeof error.code === "string" ? error.code : null,
+      message: typeof error.message === "string" ? error.message.slice(0, 240) : null,
+      details: typeof error.details === "string" ? error.details.slice(0, 240) : null,
+      hint: typeof error.hint === "string" ? error.hint.slice(0, 240) : null,
+    }));
     // The configuration ID and derived snapshot/handoff IDs are stable. If a
     // response was lost after commit, return the exact existing receipt only
     // after proving that every immutable customer-facing field still matches.

@@ -129,7 +129,10 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
-                      {%- assign curtainsuk_mtm_locked = item.properties['_curtainsuk_mtm_locked'] == 'true' -%}
+                      {%- assign curtainsuk_mtm_locked = false -%}
+                      {%- if item.properties['_curtainsuk_mtm_locked'] == 'true' -%}
+                        {%- assign curtainsuk_mtm_locked = true -%}
+                      {%- endif -%}
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
                         class="cart-item{% if curtainsuk_mtm_locked %} cart-item--curtainsuk-mtm{% endif %}{% if item.parent_relationship.parent != null %} cart-item__nested-line{% endif %}"

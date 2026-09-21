@@ -91,7 +91,10 @@
 
               <tbody>
                 {%- for item in cart.items -%}
-                  {%- assign curtainsuk_mtm_locked = item.properties['_curtainsuk_mtm_locked'] == 'true' -%}
+                  {%- assign curtainsuk_mtm_locked = false -%}
+                  {%- if item.properties['_curtainsuk_mtm_locked'] == 'true' -%}
+                    {%- assign curtainsuk_mtm_locked = true -%}
+                  {%- endif -%}
                   <tr
                     class="cart-item{% if curtainsuk_mtm_locked %} cart-item--curtainsuk-mtm{% endif %} {% if item.parent_relationship.parent != null %}cart-item__nested-line{% endif %}"
                     id="CartItem-{{ item.index | plus: 1 }}"

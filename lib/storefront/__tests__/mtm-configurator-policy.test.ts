@@ -25,7 +25,7 @@ test("Make Curtains directs raw hardware measurement to Guided Measure and shows
 
 test("MTM cart lines are immutable and route continued shopping to Browse Fabrics", () => {
   for (const source of [cartItems, cartDrawer]) {
-    assert.match(source, /item\.properties\['_curtainsuk_mtm_locked'\] == 'true'/);
+    assert.match(source, /if item\.properties\['_curtainsuk_mtm_locked'\] == 'true'/);
     assert.match(source, /This configuration is fixed\. To change it, remove it and configure your curtains again\./);
     assert.match(source, /Remove curtain/);
     assert.match(source, /cart-item--curtainsuk-mtm/);

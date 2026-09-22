@@ -45,8 +45,35 @@ export interface ShopifyHouseDraftOrderContract extends ShopifyDraftOrderExecuti
   fingerprint: string;
   lineFingerprint: string;
   curtains: readonly HouseCurtainSnapshotIdentity[];
-  /** Public House checkout remains off until a separately approved release. */
-  releaseBlocker: 'MULTI_SNAPSHOT_PUBLIC_PAYMENT_DISABLED';
+  /** Present only while the House contract is deliberately non-payable. */
+  releaseBlocker: 'MULTI_SNAPSHOT_PUBLIC_PAYMENT_DISABLED' | null;
+}
+
+/**
+ * Promotes only the already-built immutable House contract to production
+ * execution. No price, delivery quote, curtain identity, or snapshot is
+ * recalculated here.
+ */
+export function asProductionHouseDraftOrderContract(
+  contract: Readonly<ShopifyHouseDraftOrderContract>,
+): Readonly<ShopifyHouseDraftOrderContract> {
+  if (contract.environment !== 'STAGING' || contract.paymentEnabled || contract.releaseBlocker !== 'MULTI_SNAPSHOT_PUBLIC_PAYMENT_DISABLED') {
+    throw Error('SHOPIFY_HOUSE_CONTRACT_PROMOTION_INVALID');
+  }
+  if (!contract.curtains.length || contract.curtains.some((curtain) => curtain.pricingRuleVersion !== ROOMS_RULESET)) {
+    throw Error('ROOMS_PRODUCTION_IDENTITY_REQUIRED');
+  }
+  return immutableClone({
+    ...contract,
+    environment: 'PRODUCTION' as const,
+    paymentEnabled: true,
+    releaseBlocker: null,
+    input: {
+      ...contract.input,
+      note: 'CurtainsUK Build My Rooms order. Payment enters CurtainsUK review before any workroom release. Change requests: enquiries@curtainsuk.com within 2 hours; requests are reviewed, not guaranteed.',
+      tags: ['CURTAINSUK_PRODUCTION', contract.idempotencyTag],
+    },
+  });
 }
 
 function immutableClone<T>(value: T): Readonly<T> {

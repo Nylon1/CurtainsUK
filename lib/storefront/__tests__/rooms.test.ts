@@ -87,6 +87,13 @@ test('real server binding defaults to no writes and rejects production transport
     assert.equal(networkCalls,0);
   }finally{globalThis.fetch=originalFetch;hooks.deregister();}
 });
+test('House release requires both its own gate and the established production checkout approval',async()=>{
+  const {houseCheckoutConfigFromEnvironment}=await import('../rooms-checkout-server');
+  const root:NodeJS.ProcessEnv={NODE_ENV:'test',CURTAINSUK_ROOMS_CHECKOUT_RELEASED:'true',CURTAINSUK_DEPLOYMENT_STAGE:'PRODUCTION',CURTAINSUK_SHOPIFY_CHECKOUT_STORE:'carpetup.myshopify.com',CURTAINSUK_SHOPIFY_CLIENT_ID:'production-test-client',CURTAINSUK_SHOPIFY_APP_SECRET:'production-test-secret-not-real',CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:'CREATE_PRODUCTION_DRAFT',CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:'true'};
+  assert.equal(houseCheckoutConfigFromEnvironment(root).mode,'CREATE_PRODUCTION_DRAFT');
+  assert.throws(()=>houseCheckoutConfigFromEnvironment({...root,CURTAINSUK_ROOMS_CHECKOUT_RELEASED:'false'}),/MULTI_SNAPSHOT/);
+  assert.throws(()=>houseCheckoutConfigFromEnvironment({...root,CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:'false'}),/STORE_DENIED/);
+});
 test('new accepted membership, destination or price has distinct execution identity while retained identity stays stable',async()=>{
   const input=await checkoutInput(),s=checkoutService();const before=await prepareHouseCheckout(input,s);assert.equal(before.prepared,true);if(!before.prepared)return;
   for(const kind of ['membership','destination','price']){

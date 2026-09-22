@@ -71,8 +71,15 @@ export async function prepareHouseCheckout(input: HouseCheckoutInput, services: 
 }
 
 export function houseCheckoutCustomerResult(prepared: Awaited<ReturnType<typeof prepareHouseCheckout>>) {
-  if (!prepared.prepared) return { prepared: false, paymentEnabled: false, checkoutUrl: null, review: prepared.review, message: 'Your rooms need another look. Please check the updated review below.' };
-  return { prepared: true, paymentEnabled: false, checkoutUrl: null, shopifyWritePerformed: false,
+  if (!prepared.prepared) {
+    const status = prepared.review.lines.some((line) => line.status === 'PRICE_CHANGED')
+      ? 'PRICE_CHANGED'
+      : prepared.review.lines.some((line) => line.status === 'BLOCKED')
+        ? prepared.review.lines.some((line) => /enough fabric/i.test(line.message)) ? 'STOCK_CHANGED' : 'INVALID_CONFIGURATION'
+        : 'REVIEW_REQUIRED';
+    return { status, prepared: false, paymentEnabled: false, checkoutUrl: null, review: prepared.review, message: 'Your rooms need another look. Please check the updated review below.' };
+  }
+  return { status: 'REVIEW_REQUIRED' as const, prepared: true, paymentEnabled: false, checkoutUrl: null, shopifyWritePerformed: false,
     goods: prepared.review.goods, delivery: prepared.review.delivery, total: prepared.review.total, vat: prepared.review.vat,
     message: 'Your curtains and combined total have been checked again. Checkout is not open yet, so no order or payment has been created. Your rooms remain saved.' };
 }

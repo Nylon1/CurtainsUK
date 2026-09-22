@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { randomUUID } from 'node:crypto';
-import { buildHouseDraftContract } from '../rooms-order-contract';
+import { asProductionHouseDraftOrderContract, buildHouseDraftContract } from '../rooms-order-contract';
 import { createImmutableConfigurationSnapshot, evaluateCheckoutGate, prepareStagingCheckoutHandoff } from '../checkout-gates';
 import { assertShopifyDraftOrderFinancials } from '../shopify-draft-order-core';
 import { ROOMS_RULESET } from '../rooms-core';
@@ -43,6 +43,19 @@ for(const count of [1,2,10])test(`${count}-line house contract preserves each im
   assert.throws(()=>assertShopifyDraftOrderFinancials({...node,totalPriceSet:bag(contract.expected.orderGrossAmountMinor-1)},contract.expected),/EXACT_PRICE_MISMATCH/);
 });
 test('house membership or room-name changes invalidate its order fingerprint',()=>{const a=curtain(),b=curtain(),houseId=randomUUID();const build=(revision:number,curtains:ReturnType<typeof curtain>[])=>buildHouseDraftContract({houseId,revision,curtains});assert.notEqual(build(1,[a,b]).fingerprint,build(2,[a]).fingerprint);assert.notEqual(build(1,[a,b]).fingerprint,build(1,[{...a,roomName:'Front Lounge'},b]).fingerprint);assert.throws(()=>build(1,[a,a]),/DUPLICATE/);});
+
+test('House promotion changes execution authority only, retaining every checked line and financial value',()=>{
+  const contract=buildHouseDraftContract({houseId:randomUUID(),revision:2,curtains:[curtain(),curtain()]});
+  const production=asProductionHouseDraftOrderContract(contract);
+  assert.equal(production.environment,'PRODUCTION');
+  assert.equal(production.paymentEnabled,true);
+  assert.equal(production.releaseBlocker,null);
+  assert.deepEqual(production.expected,contract.expected);
+  assert.deepEqual(production.curtains,contract.curtains);
+  assert.deepEqual(production.input.lineItems,contract.input.lineItems);
+  assert.deepEqual(production.input.tags,['CURTAINSUK_PRODUCTION',contract.idempotencyTag]);
+  assert.throws(()=>asProductionHouseDraftOrderContract(production),/PROMOTION_INVALID/);
+});
 
 test('authored comma separators preserve punctuation within exact fabric and room names',()=>{
   const original=curtain();const copy=structuredClone(original);copy.roomName='Room — West';

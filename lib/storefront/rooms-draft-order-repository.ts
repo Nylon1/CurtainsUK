@@ -29,9 +29,10 @@ export async function persistHouseShopifyDraftOrderExecution(input: {
   contract: Readonly<ShopifyHouseDraftOrderContract>;
   execution: Exclude<ShopifyDraftOrderExecutionResult, { status: 'DISABLED' }>;
 }): Promise<void> {
-  if (input.execution.paymentEnabled || input.contract.paymentEnabled) {
-    // Public House payment is deliberately not wired in this change.
-    throw Error('SHOPIFY_HOUSE_PUBLIC_PAYMENT_DISABLED');
+  const production = input.contract.environment === 'PRODUCTION';
+  const productionExecution = input.execution.status === 'PRODUCTION_DRAFT_CREATED' || input.execution.status === 'EXISTING_PRODUCTION_DRAFT_REUSED';
+  if (production !== input.contract.paymentEnabled || production !== input.execution.paymentEnabled || production !== productionExecution) {
+    throw Error('SHOPIFY_HOUSE_EXECUTION_MODE_MISMATCH');
   }
   const { error } = await createSupplierServiceClient().from('mtm_house_checkout_executions').insert({
     execution_id: randomUUID(),
@@ -41,7 +42,7 @@ export async function persistHouseShopifyDraftOrderExecution(input: {
     shopify_draft_order_gid: input.execution.draftOrderId,
     execution_status: input.execution.status,
     shopify_write_performed: input.execution.shopifyWritePerformed,
-    payment_enabled: false,
+    payment_enabled: production,
   });
   if (error?.code === '23505') return;
   if (error) throw Error('SHOPIFY_HOUSE_DRAFT_ORDER_EXECUTION_PERSISTENCE_FAILED');

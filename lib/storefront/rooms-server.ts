@@ -8,7 +8,7 @@ import { loadStagingUkShippingRules } from './shipping-repository';
 import { quoteOwnerApprovedCurtainShipping, STAGING_SHIPPING_OWNER_INPUTS, deliveryRequiresReview } from './shipping-owner-inputs';
 import { retainCurtain, reviewHouse, type HouseReviewRequest } from './rooms-core';
 import { prepareHouseCheckout, type HouseCheckoutInput, type HouseCheckoutServices } from './rooms-checkout';
-import { executePreparedHouseCheckout } from './rooms-checkout-server';
+import { executePreparedHouseCheckout, houseCheckoutConfigFromEnvironment } from './rooms-checkout-server';
 
 function services(): HouseCheckoutServices {
   const secret = process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET;
@@ -51,7 +51,6 @@ export async function roomsCommand(input: unknown) {
   const command = input as { action: string; payload: unknown };
   if (command.action === 'retain') return retainCurtain(command.payload as Parameters<typeof retainCurtain>[0], services());
   if (command.action === 'review') return reviewHouse(command.payload as HouseReviewRequest, services());
-  // Null is deliberate: never inherit the single-curtain production payment config.
-  if (command.action === 'checkout') return executePreparedHouseCheckout(await prepareHouseCheckout(command.payload as HouseCheckoutInput, services()), null);
+  if (command.action === 'checkout') return executePreparedHouseCheckout(await prepareHouseCheckout(command.payload as HouseCheckoutInput, services()), houseCheckoutConfigFromEnvironment());
   throw Error('ROOMS_REQUEST_INVALID');
 }

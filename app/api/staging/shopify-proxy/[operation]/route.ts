@@ -132,7 +132,7 @@ export async function POST(request: Request, context: { params: Promise<{ operat
       try {
         return NextResponse.json(await roomsCommand(payload), { headers: PUBLIC_NO_STORE_HEADERS });
       } catch (error) {
-        return NextResponse.json({ error: roomsCustomerError(error) }, { status: 409, headers: PUBLIC_NO_STORE_HEADERS });
+        return NextResponse.json({ status: 'ERROR', error: roomsCustomerError(error) }, { status: 409, headers: PUBLIC_NO_STORE_HEADERS });
       }
     }
     if (selected === "sample-order") {

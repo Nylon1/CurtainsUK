@@ -4,12 +4,19 @@ import type { ShippingQuote } from './shipping';
 import { allocateVatFromGross } from './shopify-draft-order-core';
 
 export const ROOMS_RULESET = '3.0.0-production.1';
-export const ROOMS_CHECKOUT_RELEASED = false; // Multi-snapshot paid lifecycle is a release dependency, not a browser flag.
+/**
+ * House checkout is a server-side release gate. It deliberately defaults to
+ * closed, is never derived from browser state, and is separate from the
+ * single-curtain production checkout approval.
+ */
+export function roomsCheckoutReleased(environment: NodeJS.ProcessEnv = process.env): boolean {
+  return environment.CURTAINSUK_ROOMS_CHECKOUT_RELEASED === 'true';
+}
 export function roomsCustomerError(error: unknown): string {
   const code = error instanceof Error ? error.message : '';
   if (code === 'ROOMS_PRICE_RECONFIRM_REQUIRED') return 'Please check your curtain price again before adding it to your rooms.';
   if (code === 'ROOMS_CURTAIN_REQUIRES_REVIEW') return 'This curtain needs a CurtainsUK check before it can be added. Please contact support@curtainsuk.com.';
-  if (code === 'ROOMS_UNAVAILABLE' || code === 'ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE') return 'Build My Rooms checkout is not available yet. Your saved rooms have not been changed.';
+  if (code === 'ROOMS_UNAVAILABLE' || code === 'ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE' || code === 'SHOPIFY_HOUSE_PUBLIC_PAYMENT_DISABLED') return 'Build My Rooms checkout is not available yet. Your saved rooms have not been changed.';
   if (code === 'ROOMS_EMPTY') return 'Add a curtain before reviewing your rooms.';
   if (code === 'ROOMS_REVIEW_EXPIRED' || code === 'ROOMS_REVIEW_CHANGED') return 'Your rooms or their price have changed. Please review your rooms again before continuing.';
   if (code === 'ROOMS_CONFIRMATION_REQUIRED') return 'Confirm your measurements and accept each updated price before continuing.';
@@ -156,7 +163,7 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
     ? prices.reduce((total, price) => total + price.vatAmountMinor!, 0) + allocateVatFromGross(deliveryAmount!, prices[0].vatRateBasisPoints!) : null;
   const result = {
     house_id: input.house_id, revision: input.revision, lines, validated_at: services.now(),
-    ready: Boolean(ready && vat !== null), checkoutEnabled: ROOMS_CHECKOUT_RELEASED, checkoutPreparationEnabled: true,
+    ready: Boolean(ready && vat !== null), checkoutEnabled: roomsCheckoutReleased(), checkoutPreparationEnabled: true,
     requiresPriceAcknowledgement: lines.some(line => line.status === 'PRICE_CHANGED'),
     goods, delivery: deliveryAmount, total: ready ? goods! + deliveryAmount! : null, vat,
     pricingVersion: ROOMS_RULESET, currency: 'GBP' as const,
@@ -168,6 +175,6 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
   return { ...result, reviewToken };
 }
 
-export function assertHouseCheckoutReleased(): never {
-  throw Error('ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE');
+export function assertHouseCheckoutReleased(environment: NodeJS.ProcessEnv = process.env): void {
+  if (!roomsCheckoutReleased(environment)) throw Error('ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE');
 }

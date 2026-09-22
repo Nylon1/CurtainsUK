@@ -1,14 +1,57 @@
 # Build My Rooms / House of Curtains V1
 
-Status: **owner visual and scoped deployment approval granted; deployment held because the public House checkout connection is incomplete; not published**.
+Status: **public House checkout source connection implemented behind a separate server gate; awaiting deployed private proof and Astra theme integration; not published**.
+
+## Public House checkout operation, 22 September 2026
+
+The public `rooms` gateway command now supports a House checkout operation without
+changing the Shopify theme. The source intentionally uses the existing House
+review, snapshot, Draft Order, webhook and workroom components rather than a new
+cart or pricing path.
+
+- `CURTAINSUK_ROOMS_CHECKOUT_RELEASED=true` is a separate server-side gate. It
+  defaults to closed and is required in addition to the existing production
+  purchase approval, production deployment stage and `CREATE_PRODUCTION_DRAFT`
+  configuration. Single-curtain approval does not implicitly open House payment.
+- Checkout reruns the complete House review before it creates a Draft Order:
+  canonical Fabric Master, current commercial eligibility, aggregate fresh stock,
+  `3.0.0-production.1`, hardware/heading compatibility, raw measurements and
+  signed retained configuration evidence are all checked again.
+- A fresh price returns `PRICE_CHANGED` with the affected room/window review
+  details. Combined stock returns `STOCK_CHANGED`; a malformed or no-longer
+  eligible line returns `INVALID_CONFIGURATION`; an expired or unconfirmed
+  review returns `REVIEW_REQUIRED`; safe failures return `ERROR`. Browser code
+  only needs these statuses and never receives supplier cost, snapshot IDs or
+  other operational detail.
+- On success, each curtain is persisted as an immutable snapshot and becomes an
+  individual Shopify Draft Order line. The original House ID, room ID/name and
+  retained configuration identity remain in private line properties. One
+  existing governed delivery charge is used for the House.
+- Shopify must reproduce exact goods, VAT, delivery and total before the server
+  returns the HTTPS checkout URL. The existing allowed-host validation restricts
+  a production checkout URL to `www.curtainsuk.com` or
+  `carpetup.myshopify.com`.
+- The House fingerprint is the durable Draft Order idempotency key. A changed
+  House has a new fingerprint and cannot reuse a prior prepared Draft Order.
+  Repeated unchanged checkout requests recover the same verified Draft Order.
+- The contract preserves the existing `PAID → CURTAINSUK REVIEW` webhook path.
+  It cannot release a room or curtain to the workroom; release remains an
+  explicit staff action for the whole House.
+
+The public release gate must remain closed while the endpoint is deployed and
+privately rehearsed through the genuine signed Shopify app proxy. The rehearsal
+may retrieve the validated checkout URL but must not open it, issue an invoice,
+email a customer, collect payment or release manufacture. The created private
+Draft Order must then be deleted under the existing auditable procedure. No
+Shopify theme files are part of this backend-only change.
 
 ## Authorised release check, 22 September 2026
 
-Release baseline: `1ff71b1`, with visual baseline `a1250b6` and prior private commerce rehearsal baseline `af8feef`. The fixture correction changed tests only. All 415 regression tests, 36 dedicated Rooms tests and 29 loopback browser checks passed. Those results prove the existing nonpayable behavior, not a live checkout connection.
+Historical pre-connection record. Release baseline: `1ff71b1`, with visual baseline `a1250b6` and prior private commerce rehearsal baseline `af8feef`. The fixture correction changed tests only. The listed checks proved the original nonpayable behavior; this record is superseded by the gated public operation above.
 
 Immediately before any mutation, Shopify CLI confirmed `182339731835` remains the live theme on `carpetup.myshopify.com`. A fresh pull into `artifacts/build-my-rooms-release-prep/final-live-182339731835` matched all five shared files in the approved 16-file manifest by SHA-256. All ten checked Customer Trust files also matched. No theme, gateway, environment, payment, page or lifecycle mutation was performed, so no rollback was required.
 
-The deployment blocker is reproducible directly from the approved source:
+The former deployment blocker, now resolved in source, was reproducible as follows:
 
 - `rooms-server.ts` explicitly passes `null` to `executePreparedHouseCheckout` for customer checkout.
 - `rooms-checkout-server.ts` rejects `CREATE_PRODUCTION_DRAFT` or a production deployment stage before persistence/network execution.
@@ -19,7 +62,7 @@ The deployment blocker is reproducible directly from the approved source:
 
 The current Vercel gateway inspection resolved to ready production deployment `dpl_GbfAvYMiBZuuPGAoJLCRJCiPRc9A`, project `curtainsuk-staging-api`. This identifies the deployment only; it is not evidence that the final Rooms bridge is deployed or enabled. A normal live Make Curtains browser check confirmed the existing page, footer, policies and consent controls remain visible.
 
-Required completion before switching the live configurator: connect the existing validated House preparation to the governed production transport with a House-specific release gate, preserve production contract identity and exact reconciliation, return only a validated Shopify checkout capability on success, and add guarded browser navigation. Verify the successful production connection and disabled/failure cases before deploying the scoped theme plus its activation settings. No pricing, stock, compatibility or manufacturing policy change is required. The previous private Draft Order proof remains valid but did not exercise this public connection. This is additional implementation outside the previously reconciled theme-only diff, not an unresolved owner business decision.
+The required source connection is now implemented. Remaining work is the deployed private proof through the genuine app proxy, followed by Astra's guarded browser navigation and a separately authorised scoped theme deployment. No pricing, stock, compatibility or manufacturing policy change is required.
 
 All historical "awaiting owner visual approval" statements below describe earlier checkpoints and are superseded by this release check. Build My Rooms is not live. Existing live Make Curtains remains in place.
 

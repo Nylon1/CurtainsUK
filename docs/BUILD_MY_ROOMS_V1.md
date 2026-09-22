@@ -1,6 +1,6 @@
 # Build My Rooms / House of Curtains V1
 
-Status: **public House checkout source connection implemented behind a separate server gate; awaiting deployed private proof and Astra theme integration; not published**.
+Status: **public House checkout operation privately proved through the signed Shopify app proxy; House gates closed again; awaiting Astra theme integration; not published**.
 
 ## Public House checkout operation, 22 September 2026
 
@@ -44,6 +44,29 @@ may retrieve the validated checkout URL but must not open it, issue an invoice,
 email a customer, collect payment or release manufacture. The created private
 Draft Order must then be deleted under the existing auditable procedure. No
 Shopify theme files are part of this backend-only change.
+
+### Verified private public-path rehearsal
+
+The production deployment was temporarily given both explicit House gates only
+for this rehearsal, then both gates were removed and the gateway redeployed.
+The exact signed app-proxy flow returned a production-host-validated checkout
+URL for two rooms and three immutable curtains. The customer-facing route was
+retried unchanged and recovered the same URL, proving House idempotency.
+
+Shopify Draft Order verification confirmed three lines with complete private
+House, room, configuration, Fabric Master and pricing-ruleset identity. The
+exact result was:
+
+- CurtainsUK goods and Shopify goods: **£1,828.00**
+- CurtainsUK VAT and Shopify VAT: **£306.83**
+- CurtainsUK delivery and Shopify delivery: **£12.95**
+- CurtainsUK total and Shopify total: **£1,840.95**
+
+The URL was never opened. No invoice was sent, no payment or customer email was
+created, and no paid-order or workroom-release action occurred. The private
+Draft Order was deleted immediately after reconciliation. `PAID → CURTAINSUK
+REVIEW` and staff-only whole-House workroom release remain the existing proven
+contract; no payment was made in this proof.
 
 ## Authorised release check, 22 September 2026
 

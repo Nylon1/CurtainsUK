@@ -1,7 +1,7 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Protected production changes require an APPROVED GitHub review from Nylon1 on the exact PR HEAD, which the sole collaborator cannot submit on their own PR.",
-  "newRule": "Protected production changes require an authenticated GitHub PR comment from Nylon1 containing OWNER_APPROVED_POLICY_CHANGE and the exact current HEAD SHA; both required production checks remain in force.",
-  "reason": "The single-owner repository cannot satisfy its own reviewer requirement, so the protected policy check needs an owner action GitHub can verify without accepting a stale or forged approval.",
-  "ownerApprovedDecision": "The owner instructed Codex to replace the impossible self-review requirement with an exact-HEAD owner comment and reserved the one-time bootstrap merge for manual action."
+  "previousRule": "The production release workflow hard-fails on stale bootstrap data, incomplete live probes, preflight requirements and an explicit activation blocker, so even an approved protected release/production HEAD cannot be deployed.",
+  "newRule": "The two required pull-request checks remain mandatory, while the workflow becomes validation-only and owner-authorised manual Vercel deployment is permitted from the exact protected release/production HEAD; incomplete bootstrap smoke and preflight assets remain advisory until completed.",
+  "reason": "The unfinished automation bootstrap was creating a permanent deployment deadlock unrelated to application quality. The capability and policy checks remain enforced while deployment returns to the proven protected-branch manual path.",
+  "ownerApprovedDecision": "The owner explicitly instructed that the unfinished release blockage be removed so approved Calibration V2 can be deployed without weakening the required production capability checks."
 }

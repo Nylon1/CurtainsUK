@@ -87,6 +87,18 @@ test('real server binding defaults to no writes and rejects production transport
     assert.equal(networkCalls,0);
   }finally{globalThis.fetch=originalFetch;hooks.deregister();}
 });
+test('House snapshots use the existing customer-safe snapshot summary allowlist',async()=>{
+  const prepared=await prepareHouseCheckout(await checkoutInput(),checkoutService());assert.equal(prepared.prepared,true);if(!prepared.prepared)return;
+  const {serverScriptHooks:hooks}=await import('../../../scripts/curtainsuk-server-script-loader.mjs');
+  try{
+    const {houseSnapshotCustomerSummary}=await import('../rooms-checkout-server');
+    const summary=houseSnapshotCustomerSummary({snapshot:prepared.curtains[0].handoff.snapshot});
+    assert.deepEqual(Object.keys(summary).sort(),['availability','construction','deliveryShownSeparately','fabric','heading','lining','measurements','vatIncluded','windowType'].sort());
+    assert.deepEqual(Object.keys(summary.fabric).sort(),['brand','colour','design','id','supplier'].sort());
+    assert.equal(summary.windowType,'french-doors');assert.equal(summary.vatIncluded,true);assert.equal(summary.deliveryShownSeparately,true);
+    assert.doesNotMatch(JSON.stringify(summary),/retainedConfiguration|supplierSku|patternAllowance|stackDirection/i);
+  }finally{hooks.deregister();}
+});
 test('House release requires both its own gate and the established production checkout approval',async()=>{
   const {houseCheckoutConfigFromEnvironment}=await import('../rooms-checkout-server');
   const root:NodeJS.ProcessEnv={NODE_ENV:'test',CURTAINSUK_ROOMS_CHECKOUT_RELEASED:'true',CURTAINSUK_DEPLOYMENT_STAGE:'PRODUCTION',CURTAINSUK_SHOPIFY_CHECKOUT_STORE:'carpetup.myshopify.com',CURTAINSUK_SHOPIFY_CLIENT_ID:'production-test-client',CURTAINSUK_SHOPIFY_APP_SECRET:'production-test-secret-not-real',CURTAINSUK_SHOPIFY_DRAFT_ORDER_MODE:'CREATE_PRODUCTION_DRAFT',CURTAINSUK_PRODUCTION_PURCHASES_APPROVED:'true'};

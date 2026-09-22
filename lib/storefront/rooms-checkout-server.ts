@@ -1,10 +1,37 @@
 import 'server-only';
 import { persistStagingCheckoutSnapshotAndHandoff } from './review-operations-repository';
+import type { ImmutableConfigurationSnapshot } from './checkout-gates';
 import { claimHouseShopifyDraftOrderCreation, persistedHouseShopifyDraftOrderId, persistHouseShopifyDraftOrderExecution } from './rooms-draft-order-repository';
 import { asProductionHouseDraftOrderContract } from './rooms-order-contract';
 import { assertHouseCheckoutReleased } from './rooms-core';
 import { executeShopifyDraftOrder, shopifyDraftOrderConfigFromEnvironment, type ShopifyDraftOrderRuntimeConfig } from './shopify-draft-order-server';
 import { houseCheckoutCustomerResult, type prepareHouseCheckout } from './rooms-checkout';
+
+/** The private snapshot RPC accepts the same customer-safe summary schema as the single-curtain handoff. */
+export function houseSnapshotCustomerSummary(input: {
+  snapshot: Readonly<ImmutableConfigurationSnapshot>;
+}) {
+  const snapshot = input.snapshot;
+  const fabric = snapshot.fabricIdentity;
+  if (!fabric) throw Error('ROOMS_PRODUCTION_IDENTITY_REQUIRED');
+  return {
+    windowType: snapshot.windowType,
+    measurements: snapshot.measurements,
+    fabric: {
+      id: snapshot.fabricMasterId,
+      supplier: fabric.supplier,
+      brand: fabric.brand,
+      design: fabric.design,
+      colour: fabric.colour,
+    },
+    heading: snapshot.heading,
+    lining: snapshot.lining,
+    construction: snapshot.construction,
+    availability: snapshot.availability,
+    vatIncluded: true,
+    deliveryShownSeparately: true,
+  };
+}
 
 /**
  * The House release gate and the established Shopify production gate must both
@@ -37,11 +64,7 @@ export async function executePreparedHouseCheckout(
   if (config) for (const curtain of prepared.curtains) {
     const { snapshot, handoffId } = curtain.handoff;
     await persistStagingCheckoutSnapshotAndHandoff({ snapshot, handoffId, preparedBy: 'SHOPIFY_APP_PROXY_HOUSE',
-      customerSummary: { fabric: snapshot.fabricIdentity, measurements: snapshot.measurements,
-        configuration: prepared.review.lines.find(line => line.configuration_id === curtain.retainedConfigurationId)!.configuration,
-        heading: snapshot.heading, lining: snapshot.lining, construction: snapshot.construction,
-        retainedConfigurationId: curtain.retainedConfigurationId,
-        ...(snapshot.patternAllowance ? { patternAllowance: snapshot.patternAllowance } : {}) } });
+      customerSummary: houseSnapshotCustomerSummary({ snapshot }) });
   }
   const execution = await executeShopifyDraftOrder({ contract, config,
     existingDraftOrderId: await persistedHouseShopifyDraftOrderId(contract),

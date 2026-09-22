@@ -1,6 +1,27 @@
 # Build My Rooms / House of Curtains V1
 
-Status: **final local integration ready for owner visual review; public House payment disabled; not published**.
+Status: **owner visual and scoped deployment approval granted; deployment held because the public House checkout connection is incomplete; not published**.
+
+## Authorised release check, 22 September 2026
+
+Release baseline: `1ff71b1`, with visual baseline `a1250b6` and prior private commerce rehearsal baseline `af8feef`. The fixture correction changed tests only. All 415 regression tests, 36 dedicated Rooms tests and 29 loopback browser checks passed. Those results prove the existing nonpayable behavior, not a live checkout connection.
+
+Immediately before any mutation, Shopify CLI confirmed `182339731835` remains the live theme on `carpetup.myshopify.com`. A fresh pull into `artifacts/build-my-rooms-release-prep/final-live-182339731835` matched all five shared files in the approved 16-file manifest by SHA-256. All ten checked Customer Trust files also matched. No theme, gateway, environment, payment, page or lifecycle mutation was performed, so no rollback was required.
+
+The deployment blocker is reproducible directly from the approved source:
+
+- `rooms-server.ts` explicitly passes `null` to `executePreparedHouseCheckout` for customer checkout.
+- `rooms-checkout-server.ts` rejects `CREATE_PRODUCTION_DRAFT` or a production deployment stage before persistence/network execution.
+- `rooms-order-contract.ts` constructs a staging House with `paymentEnabled: false` and `MULTI_SNAPSHOT_PUBLIC_PAYMENT_DISABLED`.
+- `rooms-core.ts` fixes `ROOMS_CHECKOUT_RELEASED` to false.
+- `houseCheckoutCustomerResult` always returns a null checkout URL. The Rooms browser handler only displays the returned message; it has no successful checkout navigation.
+- `rooms.test.ts` explicitly verifies rejection of production transport with zero network calls. The 29-check browser matrix likewise verifies a prepared-but-disabled result.
+
+The current Vercel gateway inspection resolved to ready production deployment `dpl_GbfAvYMiBZuuPGAoJLCRJCiPRc9A`, project `curtainsuk-staging-api`. This identifies the deployment only; it is not evidence that the final Rooms bridge is deployed or enabled. A normal live Make Curtains browser check confirmed the existing page, footer, policies and consent controls remain visible.
+
+Required completion before switching the live configurator: connect the existing validated House preparation to the governed production transport with a House-specific release gate, preserve production contract identity and exact reconciliation, return only a validated Shopify checkout capability on success, and add guarded browser navigation. Verify the successful production connection and disabled/failure cases before deploying the scoped theme plus its activation settings. No pricing, stock, compatibility or manufacturing policy change is required. The previous private Draft Order proof remains valid but did not exercise this public connection. This is additional implementation outside the previously reconciled theme-only diff, not an unresolved owner business decision.
+
+All historical "awaiting owner visual approval" statements below describe earlier checkpoints and are superseded by this release check. Build My Rooms is not live. Existing live Make Curtains remains in place.
 
 ## Source and deployment policy
 

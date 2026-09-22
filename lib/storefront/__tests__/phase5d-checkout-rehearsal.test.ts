@@ -316,7 +316,7 @@ test("server adapter is calculate-first, idempotent by handoff tag and contains 
 
 test("checkout persistence recovers only an exact immutable retry and rejects identity conflicts", () => {
   const source = readFileSync(join(process.cwd(), "lib", "storefront", "review-operations-repository.ts"), "utf8");
-  assert.match(source, /\.eq\("configuration_id", snapshot\.configurationId\)/);
+  assert.match(source, /\.eq\("snapshot_id", snapshot\.snapshotId\)/);
   assert.match(source, /idempotent_recovery: true/);
   assert.match(source, /CHECKOUT_IDEMPOTENCY_CONFLICT/);
   assert.match(source, /canonical\(existingSnapshot\.customer_summary\) === canonical\(input\.customerSummary\)/);

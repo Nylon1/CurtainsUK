@@ -673,7 +673,12 @@ export async function persistStagingCheckoutSnapshotAndHandoff(input: {
     const { data: existingSnapshot, error: snapshotError } = await database
       .from("staging_configuration_snapshots")
       .select("snapshot_id,configuration_id,review_request_id,review_revision_id,pricing_outcome,window_type_slug,measurements,fabric_master_id,supplier_sku,heading,lining,construction,calculated_fabric_metres,pricing_rule_version,net_amount_minor,vat_amount_minor,customer_price_minor,vat_rate_basis_points,currency,availability_state,shipping_region,shipping_parcel_class,shipping_gross_amount_minor,customer_summary")
-      .eq("configuration_id", snapshot.configurationId)
+      // A House retry recovers by the immutable snapshot identity. The
+      // configuration ID is House-revision scoped, but snapshot_id is the
+      // database primary key that actually raised the conflict. Querying it
+      // directly prevents a retry from being rejected merely because a
+      // historic configuration identifier happens to recur elsewhere.
+      .eq("snapshot_id", snapshot.snapshotId)
       .maybeSingle();
     if (snapshotError || !existingSnapshot) throw new Error("CHECKOUT_HANDOFF_PERSISTENCE_FAILED");
     const canonical = (value: unknown): string => {

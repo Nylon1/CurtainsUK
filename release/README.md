@@ -50,12 +50,10 @@ That writer is not implemented/activated in V1; no fabricated receipt exists.
 - No Production credential has been installed in Actions. Existing supplier
   workflow secrets were neither read nor repurposed.
 
-The checked-in workflows/CODEOWNERS are pending this review, not already
-installed on the protected base. The first PR is therefore deliberately
-blocked at bootstrap. Do not weaken the check to merge it. An independently
-authenticated owner must approve the initial policy installation and source
-attestation through a recorded bootstrap operation. Agents currently using
-the owner's own account cannot provide independent approval of their own PR.
+The production-gate workflow is installed on `release/production`. The branch
+rule still requires an independent GitHub review, which the sole collaborator
+cannot provide on their own PR. The owner is handling that one-time protection
+bootstrap manually; this policy change does not alter branch protection.
 
 ## Gate implementation
 
@@ -75,8 +73,13 @@ guards and existing House webhook parsing tests, **not a full database/runtime
 execution proof**. Full protected Production-suite status remains BLOCKED.
 
 `policy-change.mjs` requires an `OWNER_APPROVED_POLICY_CHANGE` record with
-previous rule, new rule, reason and owner decision, plus a real owner approval
-of the exact current PR HEAD. A file claiming approval is not approval.
+previous rule, new rule, reason and owner decision. For a protected change,
+the owner must also post a PR comment containing exactly
+`OWNER_APPROVED_POLICY_CHANGE <HEAD_SHA>`. The checker reads GitHub's PR
+identity and issue comments, verifies author `Nylon1` and the current HEAD,
+and rejects missing, wrong-author or stale comments. After posting the comment,
+rerun `protected-production-policy` because an issue comment does not rerun the
+PR workflow by itself. A file claiming approval is not approval.
 Semantic policy changes require a separately reviewed policy release: the old
 trusted suite remains active until the new policy is deliberately installed.
 

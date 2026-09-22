@@ -12,6 +12,15 @@ Final integration on 22 September connects Continue to signed House review verif
 
 The latest reference-led local visual pass keeps the locked “Your home is taking shape” copy and adds an editorial photographic hero, quiet saved panel, full-width white room panels, photographic next-room inspiration and a full-width bottom House summary. Each card prominently shows the approved selected neutral heading study, explicitly not the chosen fabric or room; its separate inset shows the exact Fabric Master photograph. Editorial imagery is AI-generated inspiration, never product evidence; prompts and provenance are recorded in `artifacts/build-my-rooms-v1/room-inspiration-assets.json`. Exact Fabric Detail links, Size labels, keep/remove behaviour and autosave are unchanged. Zero curtains consistently opens the intentional empty state. Authored separators use commas, preserving punctuation inside authoritative names. The [owner review gallery](artifacts/build-my-rooms-v1/owner-review.html) covers empty, one room/one window, one room/two windows, three rooms, 390px and 412px views. No protected commerce, persistence contract, lifecycle or live theme changed; owner approval and hosted release verification remain outstanding.
 
+The subsequent owner polish keeps that structure while making the saved House the
+hero: a compact populated introduction, larger curtain studies and exact-fabric
+insets, price before readable editorial specifications, and larger next-room photo
+tiles. Review My Rooms now uses compact visual curtain cards and places verified
+totals after them, before confirmation. Blocked lines remain visible and unverified
+saved details are labelled. The expanded gallery includes desktop, 390px and 412px
+for one window, two windows, three rooms, visual review and returning saved House.
+This is local-only presentation work, with commerce, identity and autosave untouched.
+
 ## Google Fabric Discovery V1 — pilot infrastructure, 21 September 2026
 
 The implemented pilot layer is documented in [Google Fabric Discovery V1](docs/GOOGLE_FABRIC_DISCOVERY_V1.md). It establishes one server-rendered canonical Fabric Detail destination per Fabric Master and models the Merchant item as a **physical fabric sample**, never a made-to-measure curtain. The projection is read-only and fail-closed against Fabric Master, governed commerce/sample state, approved image rights and approved Fabric Knowledge. The live audit found no working exact Fabric Detail route, so the live Google-eligible count is **0**; that is a distribution gap, not a judgement on fabric or Knowledge quality. £2.50 sample semantics and pilot image rights are approved, but the current public sample-product endpoint used by the existing code returns `404`, so live sample proof is still blocked. No feed was submitted, no mass indexation was changed, and the route/sitemap remain unmounted from the live domain pending the 50-item source-backed preflight and owner approval.

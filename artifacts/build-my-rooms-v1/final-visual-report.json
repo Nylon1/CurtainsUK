@@ -1,19 +1,32 @@
 {
   "scope": "Reference-led local visual review. Approved exact fabric photographs and neutral heading studies; AI-generated editorial room inspiration. Fixture costs/stock, no live quote or payment.",
+  "captureLimit": "Browser selector screenshots returned blank. Review images use the verified full-page reviewed-House screenshots instead, without image manipulation. The capture harness now uses full-page Review capture.",
   "checks": [
     "Zero curtains displays empty state even with a preserved organisational room",
+    "Returning saved House matches retained data and renders CONTENT first without a lifestyle hero",
     "390px no overflow; Summary precedes Review in DOM and reading order",
     "412px no overflow; Summary precedes Review in DOM and reading order",
+    "Four compact visual review cards retain exact matched fabric images, with totals after cards and before confirmation",
     "Customer-authored Rooms copy contains no em dash in all rendered review content",
     "All exact fabric photographs and neutral heading studies loaded"
   ],
   "screenshots": [
     "final-empty.png",
     "final-one-room-one-window.png",
+    "final-one-room-one-window-390.png",
+    "final-one-room-one-window-412.png",
     "final-one-room-two-windows.png",
+    "final-one-room-two-windows-390.png",
+    "final-one-room-two-windows-412.png",
+    "final-returning-house.png",
+    "final-returning-house-390.png",
+    "final-returning-house-412.png",
     "final-three-rooms.png",
     "final-mobile-390.png",
     "final-mobile-412.png",
+    "final-review.png",
+    "final-review-390.png",
+    "final-review-412.png",
     "final-guarded-checkout.png"
   ],
   "summary": "ONE PLACE, WHOLE HOME\n\nYour home so far\n\n3 rooms · 4 windows\n\nBack to Browse Fabrics\nCurtains subtotal\n£2,126.00\nDelivery\n£12.95\nHouse total\n£2,138.95\n\nIncludes £356.49 VAT. Saved prices and availability are checked again before checkout.\n\nUK Mainland postcode\nReview My Rooms →\n\nTo change a curtain, remove it and configure it again.\n\n✓\nTake your time. Your rooms are saved on this device. You can continue building your home whenever you’re ready.",

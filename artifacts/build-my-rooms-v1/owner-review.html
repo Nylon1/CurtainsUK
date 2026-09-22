@@ -21,6 +21,16 @@
       <button type="button" data-view="4" aria-pressed="false">Guarded checkout result</button>
       <button type="button" data-view="5" aria-pressed="false">Empty state</button>
       <button type="button" data-view="6" aria-pressed="false">Mobile · 412px</button>
+      <button type="button" data-view="7" aria-pressed="false">One window · 390px</button>
+      <button type="button" data-view="8" aria-pressed="false">One window · 412px</button>
+      <button type="button" data-view="9" aria-pressed="false">Two windows · 390px</button>
+      <button type="button" data-view="10" aria-pressed="false">Two windows · 412px</button>
+      <button type="button" data-view="11" aria-pressed="false">Returning House · desktop</button>
+      <button type="button" data-view="12" aria-pressed="false">Returning House · 390px</button>
+      <button type="button" data-view="13" aria-pressed="false">Returning House · 412px</button>
+      <button type="button" data-view="14" aria-pressed="false">Visual Review · desktop</button>
+      <button type="button" data-view="15" aria-pressed="false">Visual Review · 390px</button>
+      <button type="button" data-view="16" aria-pressed="false">Visual Review · 412px</button>
     </nav>
   </header>
   <main>
@@ -43,6 +53,16 @@
     ];
     views.push(['final-empty.png','Build My Rooms, your first room','The intentional zero-curtain state, with a restrained window cue and fabric discovery. Organisational rooms do not trigger a misleading populated view.',1440]);
     views.push(['final-mobile-412.png','Three rooms on mobile, 412px','The same House at 412px. Summary precedes final review in visual, reading and keyboard order. Fabric images and neutral heading studies remain distinct.',412]);
+    views.push(['final-one-room-one-window-390.png','One room, one window at 390px','Dominant truthful heading study, separate exact fabric and readable editorial details.',390]);
+    views.push(['final-one-room-one-window-412.png','One room, one window at 412px','The same saved curtain at 412px, with no horizontal overflow.',412]);
+    views.push(['final-one-room-two-windows-390.png','One room, two windows at 390px','Two independent immutable configurations in one saved room.',390]);
+    views.push(['final-one-room-two-windows-412.png','One room, two windows at 412px','Separate visual cards retain each window’s fabric, price and details.',412]);
+    views.push(['final-returning-house.png','Returning to your saved House','The retained three-room House after leaving for fabric discovery and returning. No empty-state flash; populated House replaces the lifestyle hero.',1440]);
+    views.push(['final-returning-house-390.png','Returning House at 390px','Saved rooms survive the navigation round trip and refresh.',390]);
+    views.push(['final-returning-house-412.png','Returning House at 412px','Saved rooms survive the navigation round trip and refresh.',412]);
+    views.push(['final-review.png','Visual Review My Rooms','Compact visual cards preserve room, window, exact fabric, verified specifications and current price. Subtotal, one delivery and total follow the cards, before confirmation and guarded checkout. Full local fixture page, including visual Review below the House summary.',1440]);
+    views.push(['final-review-390.png','Visual Review at 390px','Visual continuity continues through review. Prices and stock are local fixtures, not a live quote.',390]);
+    views.push(['final-review-412.png','Visual Review at 412px','Visual cards, then totals, measurement confirmation and guarded checkout. No payment is enabled.',412]);
     document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{
       const [file,title,description,width]=views[Number(button.dataset.view)];
       document.querySelectorAll('[data-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));

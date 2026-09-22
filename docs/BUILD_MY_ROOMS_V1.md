@@ -192,6 +192,22 @@ files (artifact `rooms-photographic-upgrade`, revision 2). Publication is held f
 owner visual approval and hosted/live-diff verification, not claimed complete.
 
 Do not enable the flags or deploy to live for preview. Outstanding: owner visual
+approval remains the current gate. The final editorial polish keeps the existing
+structure while enlarging the dominant curtain study and exact-fabric inset,
+using readable editorial specifications after price, enlarging room photo tiles,
+and reducing the populated header to a compact saved-House introduction. Empty
+state retains its aspirational hero. Review uses compact visual cards matched by
+configuration ID, authoritative available review fields/current price, and explicit
+saved/unverified detail labels on blocked fallbacks. No price is calculated in the
+browser. Review subtotal, delivery and total follow cards before confirmation.
+
+The expanded gallery has 17 screens: the original seven plus 390/412 one-window
+and two-window views, returning House at all three widths, and full-page visual
+Review at all three widths. The fixture caveat remains visible in the screenshots and gallery.
+Parent independently confirmed 243 storefront tests, zero authored em dashes,
+empty protected diff, and Shopify validation of both edited assets, artifact
+`rooms-final-editorial-polish`, revision 1. No storage, schema, server or commerce
+contract changed in this polish. Publication still requires owner visual
 approval, canonical-live diff reconciliation, Shopify-hosted rendering and hosted
 verification of this exact final bridge before a separately authorised release.
 No payment or manufacture action is authorised by this local build.

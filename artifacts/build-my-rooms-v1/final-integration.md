@@ -94,6 +94,20 @@ label is verified using source text content rather than rendered casing.
 This is local visual readiness only; publication remains held for final owner
 approval, canonical-live comparison and hosted verification.
 
+## Final editorial polish
+
+The final owner-requested editorial polish makes the saved House visually primary,
+enlarges the curtain study/fabric inset and room inspiration tiles, and presents
+specifications in readable editorial type after price. Review retains compact
+visual cards rather than collapsing to plain text. Each review image is matched
+only through the original retained configuration ID. Available review details and
+current price remain authoritative; unverified saved details are labelled and
+null prices/totals never become zero or a locally invented quote. The gallery now
+contains 17 views, including one/two windows, three rooms, returning House and
+visual Review at desktop/390/412. Independent parent results: 243 storefront
+tests and Shopify validation of both assets PASS, artifact
+`rooms-final-editorial-polish`, revision 1. Protected diff empty from `1234e4b`.
+
 ## Earlier live proof — not repeated here
 
 The separate private rehearsal recorded at `af8feef` used two rooms and three

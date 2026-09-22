@@ -1,7 +1,7 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "No machine-enforced common production release gate existed.",
-  "newRule": "Protect the owner's listed production capabilities through one lineage, trusted regression tests, owner review and environment-gated deployment.",
-  "reason": "Feature-branch deployments omitted existing Fabric Knowledge capability.",
-  "ownerApprovedDecision": "Owner's CurtainsUK Production Release Gate V1 instruction dated 2026-09-22 authorises implementation. Activation review is still required; this record does not self-approve the PR."
+  "previousRule": "Protected production changes require an APPROVED GitHub review from Nylon1 on the exact PR HEAD, which the sole collaborator cannot submit on their own PR.",
+  "newRule": "Protected production changes require an authenticated GitHub PR comment from Nylon1 containing OWNER_APPROVED_POLICY_CHANGE and the exact current HEAD SHA; both required production checks remain in force.",
+  "reason": "The single-owner repository cannot satisfy its own reviewer requirement, so the protected policy check needs an owner action GitHub can verify without accepting a stale or forged approval.",
+  "ownerApprovedDecision": "The owner instructed Codex to replace the impossible self-review requirement with an exact-HEAD owner comment and reserved the one-time bootstrap merge for manual action."
 }

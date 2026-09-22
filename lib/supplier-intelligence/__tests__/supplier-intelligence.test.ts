@@ -144,7 +144,7 @@ test("a later approval links to the previous approved snapshot", async () => {
   assert.equal(current.previous_approved_snapshot_id, "previous");
 });
 
-test("expiration and stale supplier state project availability to be confirmed", async () => {
+test("a stock observation remains current throughout the 96-hour validity window", async () => {
   const repo = repository();
   const service = new SupplierIntelligenceService(repo);
   await service.ingest({ run: run("expiry-run"), snapshot: snapshot("expiry"), requiredPriceField: "CUT_TRADE_PRICE", now });
@@ -153,9 +153,9 @@ test("expiration and stale supplier state project availability to be confirmed",
   assert.equal(fresh.availability, "FABRIC_AVAILABLE");
   const expiredAt = new Date("2026-09-10T10:00:01.000Z");
   const expired = await service.projection({ supplierId, supplierSku: sku, requirement: { quantity: 10, stock_unit: "METRE" }, now: expiredAt });
-  assert.equal(expired.availability, "AVAILABILITY_TO_BE_CONFIRMED");
+  assert.equal(expired.availability, "FABRIC_AVAILABLE");
   assert.equal(expired.promotion_state, "APPROVED_FOR_PROJECTION");
-  assert.deepEqual((await service.health(supplierId, expiredAt)).stale_skus, [sku]);
+  assert.deepEqual((await service.health(supplierId, expiredAt)).stale_skus, []);
 });
 
 test("a failed sync preserves the previous approval until it expires", async () => {

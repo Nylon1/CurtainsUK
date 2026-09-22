@@ -1,0 +1,17 @@
+{
+  "release/protected-tests/lib/fabric-master/__tests__/commercial-readiness.test.ts": "89a3c2a9447e75e82c567ec664735e0b720b6bb782f246177f6a232e28e00d5b",
+  "release/protected-tests/lib/fabric-master/__tests__/fabric-master.test.ts": "d11456d7a5142e35e631336efcc2a5586a40e22633efb2c775833bceb69cae21",
+  "release/protected-tests/lib/fabric-master/__tests__/visual-knowledge-display.test.ts": "9ddfe06bb79c585540251823114cd07185f6d678bada53bc09c5783ed1b88f09",
+  "release/protected-tests/lib/storefront/__tests__/checkout-review.test.ts": "44a4ded4ac7b26c12c6d91f7ed08d05df466b37beeddcafd2b813caa68b68281",
+  "release/protected-tests/lib/storefront/__tests__/morning-stock-current.test.ts": "d7525ec2767a71d7f79cb3c982629ab98ee0c02b26797d10cf0c3bd23f72c959",
+  "release/protected-tests/lib/storefront/__tests__/mtm-production-policy.test.ts": "f02897957edadbc3bcd9f3b75e37eccdf535cbefd7214acb9cd951696bb51c54",
+  "release/protected-tests/lib/storefront/__tests__/multi-curtain-contract.test.ts": "fc46ca909e980de00d6e784ceaf50e16971c5bb88fc2c878558f4f3b6604cb9f",
+  "release/protected-tests/lib/storefront/__tests__/phase5d-checkout-rehearsal.test.ts": "440baac7ab6f6fbc52ee20e4a1f1ef5b2385a881d7adc5b8b57b364150467f99",
+  "release/protected-tests/lib/storefront/__tests__/production-capabilities.test.ts": "9498d25b457e62da40a4c51c94fc4f2d6acbc025b011bdc65cd25c7e98ec1a43",
+  "release/protected-tests/lib/storefront/__tests__/production-pricing.test.ts": "9d4bae969119f3742565c2bf60bfaa09adab12fc676fb7f9df2b77dcfccc28b5",
+  "release/protected-tests/lib/storefront/__tests__/rooms-order-contract.test.ts": "b67ab70041a9d53971d8dd9b97a710f6c9f0115bae872c40b6021c1a9efff8a6",
+  "release/protected-tests/lib/storefront/__tests__/rooms.test.ts": "d2026fc7b8939408849ad41b35c82855ec1ec80e2013f5f117e3b84d6cb42dd9",
+  "release/protected-tests/lib/storefront/__tests__/sample-order.test.ts": "fdbaaf0c42e33cb1b2cc2376c99cfcf6f40dc123b85a35a19c0415dae318dad2",
+  "release/protected-tests/lib/supplier-sync/__tests__/pt-stock-reconciliation.test.ts": "b94a8de74bfc33420fd51642675f179d58a6265541f14f61bcc2926de701d7ad",
+  "release/protected-tests/lib/supplier-sync/__tests__/sdg-routine-policy.test.ts": "cedfe155d04697b03f3fb4f6042476f57e6b31616bf41aeeb1a3ac7348ef517c"
+}

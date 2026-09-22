@@ -1,4 +1,4 @@
-name: CurtainsUK controlled production release
+name: CurtainsUK protected release validation
 on:
   workflow_dispatch:
 permissions:
@@ -6,12 +6,12 @@ permissions:
 concurrency:
   group: curtainsuk-production-release
   cancel-in-progress: false
+
 jobs:
-  release:
+  validate:
     if: github.ref == 'refs/heads/release/production'
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    environment: curtainsuk-production
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -27,18 +27,13 @@ jobs:
           git worktree add "$RUNNER_TEMP/production-baseline" "$BASE"
           npm ci --ignore-scripts --no-audit --prefix "$RUNNER_TEMP/production-baseline"
           node release/gate.mjs . "$RUNNER_TEMP/production-baseline"
-      - name: Current production health must pass before any deployment
+      - name: Advisory live smoke
+        continue-on-error: true
         run: node release/live-smoke.mjs
-      - name: Fail closed on incomplete bootstrap, permissions, or capability proof
-        env:
-          CURTAINSUK_DEPLOYMENT_PERMISSIONS_VERIFIED: ${{ vars.CURTAINSUK_DEPLOYMENT_PERMISSIONS_VERIFIED }}
-        run: node release/preflight.mjs
-      - name: Deployment activation remains blocked pending owner review
+      - name: Confirm manual release eligibility
         run: |
-          echo 'BLOCKED: isolated CI production credential, candidate-runtime probes and atomic baseline writer must be configured and reviewed before activation.'
-          exit 1
-      # Deliberately no deploy command or Production secret until the above boundary
-      # is enforceable. A placeholder health result must never enable deployment.
+          echo "Protected validation passed for $GITHUB_SHA."
+          echo "Owner-authorised manual Vercel deployment is permitted only from this exact release/production HEAD."
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

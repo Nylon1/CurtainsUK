@@ -149,7 +149,7 @@ export function buildHouseDraftContract(input: {
     if (seenConfigurations.has(snapshot.configurationId)) throw Error('ROOMS_CONFIGURATION_DUPLICATE');
     seenConfigurations.add(snapshot.configurationId);
     if (snapshot.pricingRuleVersion !== ROOMS_RULESET || !snapshot.fabricIdentity) throw Error('ROOMS_PRODUCTION_IDENTITY_REQUIRED');
-    return buildShopifyDraftOrderContract({ handoff: curtain.handoff, fabricLabel: `${snapshot.fabricIdentity.design} — ${snapshot.fabricIdentity.colour}` });
+    return buildShopifyDraftOrderContract({ handoff: curtain.handoff, fabricLabel: `${snapshot.fabricIdentity.design}, ${snapshot.fabricIdentity.colour}` });
   });
   const first = contracts[0];
   const delivery = input.delivery ?? quoteFromContract(first);
@@ -202,14 +202,14 @@ export function buildHouseDraftContract(input: {
         { key: 'curtainsuk_change_request_window', value: CHANGE_COPY },
       ],
       lineItems: contracts.map((lineContract, index) => ({
-        ...lineContract.input.lineItems[0], title: `${curtains[index].roomName} — ${curtains[index].windowName}`,
+        ...lineContract.input.lineItems[0], title: `${curtains[index].roomName}, ${curtains[index].windowName}`,
         customAttributes: [
           ...lineContract.input.lineItems[0].customAttributes,
           { key: 'Room', value: curtains[index].roomName },
           ...privateLineAttributes(lineContract.input.customAttributes, input.houseId, curtains[index].roomId, curtains[index].roomName, curtains[index].windowName, index + 1, input.curtains[index]),
         ],
       })),
-      note: 'Build My Rooms — every curtain remains subject to CurtainsUK review before any workroom release.',
+      note: 'Build My Rooms: every curtain remains subject to CurtainsUK review before any workroom release.',
       shippingLine: { title: first.input.shippingLine.title, priceWithCurrency: { amount: (delivery.grossAmountMinor / 100).toFixed(2), currencyCode: 'GBP' } },
       tags: ['CURTAINSUK_ROOMS_STAGING', 'DO_NOT_FULFIL', 'NO_REAL_PAYMENT', idempotencyTag],
     },

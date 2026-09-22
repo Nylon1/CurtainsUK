@@ -8,6 +8,8 @@
     "Local navigation/back/forward: /pages/fabric-library?view=browse-fabrics",
     "Local navigation/back/forward: /apps/curtainsuk-decision/consultation?experience=premium&entry=match",
     "Local navigation/back/forward: /pages/curtain-visualiser?fabric=pt-4269-147&rooms_new=1",
+    "Saved arrival renders populated on its first DOM update with no empty-state flash",
+    "Exact governed fabric-details route, Size label and authored copy punctuation",
     "Actual RoomsFlow Add + server retain fixture saves one curtain in custom room",
     "One room / two windows, same exact fabric, distinct curtain identities and refresh persistence",
     "Continue calls fresh multi-line preparation; no payment/order/URL, saved House unchanged",
@@ -19,6 +21,7 @@
     "Custom room name saves automatically",
     "Add another window carries room identity only",
     "New room autosaves before fabric discovery",
+    "Six illustrated room choices; selected room and intent persist before discovery, including refresh",
     "Remove middle curtain preserves other specifications",
     "Unchanged server review shows exact summary; checkout release remains blocked",
     "Price changes require individual acknowledgement",
@@ -41,14 +44,14 @@
     "changed-price.png",
     "empty-mobile.png"
   ],
-  "walkthroughBlocked": "Browser recording requires ffmpeg, which is unavailable in this runtime. Screenshot sequence covers the same walkthrough.",
+  "walkthroughBlocked": "Video encoding unavailable in this runtime. Updated screenshot walkthrough supplied.",
   "browserErrors": {
     "errors": [],
     "lifecycle": {
       "effectiveLaunch": {
         "browserLaunched": true,
         "engine": "chrome",
-        "launchHash": 8275779836577801000
+        "launchHash": 5658965517314651000
       },
       "launched": false,
       "relaunchedBrowser": false,

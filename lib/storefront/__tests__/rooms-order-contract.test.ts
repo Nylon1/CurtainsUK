@@ -43,3 +43,12 @@ for(const count of [1,2,10])test(`${count}-line house contract preserves each im
   assert.throws(()=>assertShopifyDraftOrderFinancials({...node,totalPriceSet:bag(contract.expected.orderGrossAmountMinor-1)},contract.expected),/EXACT_PRICE_MISMATCH/);
 });
 test('house membership or room-name changes invalidate its order fingerprint',()=>{const a=curtain(),b=curtain(),houseId=randomUUID();const build=(revision:number,curtains:ReturnType<typeof curtain>[])=>buildHouseDraftContract({houseId,revision,curtains});assert.notEqual(build(1,[a,b]).fingerprint,build(2,[a]).fingerprint);assert.notEqual(build(1,[a,b]).fingerprint,build(1,[{...a,roomName:'Front Lounge'},b]).fingerprint);assert.throws(()=>build(1,[a,a]),/DUPLICATE/);});
+
+test('authored comma separators preserve punctuation within exact fabric and room names',()=>{
+  const original=curtain();const copy=structuredClone(original);copy.roomName='Room — West';
+  const identity={...copy.handoff.snapshot.fabricIdentity!,design:'Design — Archive',colour:'Slate/Dove'};
+  const contract=buildHouseDraftContract({houseId:randomUUID(),revision:1,curtains:[{...copy,handoff:{...copy.handoff,snapshot:{...copy.handoff.snapshot,fabricIdentity:identity}}}]});
+  assert.equal(contract.input.lineItems[0].title,'Room — West, French Doors');
+  assert.equal(contract.input.lineItems[0].customAttributes.find(p=>p.key==='Fabric')?.value,'Design — Archive, Slate/Dove');
+  assert.equal(contract.input.lineItems[0].customAttributes.find(p=>p.key==='_curtainsuk_design')?.value,'Design — Archive');
+});

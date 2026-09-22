@@ -3,42 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Build My Rooms — populated owner review</title>
+  <title>Build My Rooms, final local visual review</title>
   <style>
     *{box-sizing:border-box}body{margin:0;background:#f5f5f3;color:#203a34;font:16px/1.5 Arial,sans-serif}header,main{max-width:1488px;margin:auto;padding:24px}h1{margin:0 0 8px;font-size:28px}p{margin:8px 0}nav{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 8px}button,a{font:inherit;color:inherit}button{padding:10px 14px;min-height:44px;background:white;border:1px solid #b7c1bc;border-radius:3px;cursor:pointer}button[aria-pressed=true]{background:#193e35;color:white}button:focus-visible,a:focus-visible{outline:3px solid #a87826;outline-offset:3px}figure{margin:0}figcaption{padding:0 0 16px}img{display:block;max-width:100%;height:auto;margin:0 auto;background:white;border:1px solid #d4d9d5}.note{font-size:14px;color:#4f5e58}.heading{display:flex;gap:16px;flex-wrap:wrap;align-items:baseline}h2{font-size:21px;margin:0}.heading a{font-size:14px}main{padding-top:0}
   </style>
 </head>
 <body>
   <header>
-    <h1>Build My Rooms — populated views</h1>
+    <h1>Build My Rooms, final visual review</h1>
     <p>Read-only screenshots of the existing experience. Opens populated; no browser setup or saved-room data is needed.</p>
-    <p class="note">Real, approved Fabric Master photographs and labelled neutral heading studies. Costs and stock are local fixtures, not a live quote. Payment remains disabled. No product styling was changed for these views.</p>
+    <p class="note">Real, approved Fabric Master photographs and labelled neutral heading studies. Costs and stock are local fixtures, not a live quote. Payment remains disabled. Final locked visual direction, prepared locally for owner approval.</p>
     <nav aria-label="Choose a populated screenshot">
       <button type="button" data-view="0" aria-pressed="true">Three rooms · reviewed total</button>
       <button type="button" data-view="1" aria-pressed="false">Mobile · 390px</button>
       <button type="button" data-view="2" aria-pressed="false">One room · one curtain</button>
       <button type="button" data-view="3" aria-pressed="false">One room · two windows</button>
       <button type="button" data-view="4" aria-pressed="false">Guarded checkout result</button>
+      <button type="button" data-view="5" aria-pressed="false">Empty state</button>
+      <button type="button" data-view="6" aria-pressed="false">Mobile · 412px</button>
     </nav>
   </header>
   <main>
     <figure>
       <figcaption aria-live="polite">
-        <div class="heading"><h2 id="title">Three rooms, four curtains — reviewed House</h2><a id="original" href="owner-three-rooms-reviewed-desktop.png" target="_blank" rel="noopener">Open full-size screenshot</a></div>
+        <div class="heading"><h2 id="title">Three rooms, four windows, reviewed House</h2><a id="original" href="final-three-rooms.png" target="_blank" rel="noopener">Open full-size screenshot</a></div>
         <p id="description">Living Room has two windows; Main Bedroom and Home Office have one each. Shows saved status, immutable specifications, prices, Remove, Add window, Add room, Review and checkout confirmation. Fixture total: £2,126.00 curtains + £12.95 delivery = £2,138.95, including £356.49 VAT.</p>
       </figcaption>
-      <img id="screen" src="owner-three-rooms-reviewed-desktop.png" alt="Reviewed three-room desktop House with four curtains, exact fabric imagery and total" width="1440">
+      <img id="screen" src="final-three-rooms.png" alt="Reviewed three-room desktop House with four curtains, exact fabric imagery and total" width="1440">
     </figure>
-    <noscript><p>Other screenshots: <a href="owner-three-rooms-mobile-390.png">Mobile 390</a> · <a href="owner-one-room-one-curtain.png">One curtain</a> · <a href="owner-one-room-two-windows.png">Two windows</a> · <a href="owner-three-rooms-guarded-checkout.png">Guarded checkout</a>.</p></noscript>
+    <noscript><p>Other screenshots: <a href="final-mobile-390.png">Mobile 390</a> · <a href="final-one-room-one-window.png">One curtain</a> · <a href="final-one-room-two-windows.png">Two windows</a> · <a href="final-guarded-checkout.png">Guarded checkout</a>.</p></noscript>
   </main>
   <script>
     const views=[
-      ['owner-three-rooms-reviewed-desktop.png','Three rooms, four curtains — reviewed House','Living Room has two windows; Main Bedroom and Home Office have one each. Shows saved status, immutable specifications, prices, Remove, Add window, Add room, Review and checkout confirmation. Fixture total: £2,126.00 curtains + £12.95 delivery = £2,138.95, including £356.49 VAT.',1440],
-      ['owner-three-rooms-mobile-390.png','Three rooms on mobile — 390px','The same reviewed House at 390px. All fabric and heading images loaded; no horizontal overflow. The summary includes one delivery and included VAT.',390],
-      ['owner-one-room-one-curtain.png','One room — one curtain','Living Room with independently retained Escher — Mocha, 180 × 220 cm, Wave, Blackout, Pair. Saved fixture price £504.00; delivery is confirmed at review.',1440],
-      ['owner-one-room-two-windows.png','One room — two windows','Living Room contains separate Escher and Dali curtain configurations, each with its own dimensions, heading, price and Remove action. Room identity remains stable.',1440],
-      ['owner-three-rooms-guarded-checkout.png','Three rooms — guarded checkout result','After measurement confirmation, Continue revalidates all four curtains and the combined total. The visible result confirms checkout is not open: no order or payment was created, and rooms remain saved.',1440]
+      ['final-three-rooms.png','Three rooms, four windows, reviewed House','Living Room has two windows; Main Bedroom and Home Office have one each. Shows saved status, immutable specifications, prices, Remove, Add window, Add room, Review and checkout confirmation. Fixture total: £2,126.00 curtains + £12.95 delivery = £2,138.95, including £356.49 VAT.',1440],
+      ['final-mobile-390.png','Three rooms on mobile, 390px','The same reviewed House at 390px. All fabric and heading images loaded; no horizontal overflow. The summary includes one delivery and included VAT.',390],
+      ['final-one-room-one-window.png','One room, one curtain','Living Room with independently retained Escher, Mocha, 180 × 220 cm, Wave, Blackout, Pair. Saved fixture price £504.00; delivery is confirmed at review.',1440],
+      ['final-one-room-two-windows.png','One room, two windows','Living Room contains separate Escher and Dali curtain configurations, each with its own dimensions, heading, price and Remove action. Room identity remains stable.',1440],
+      ['final-guarded-checkout.png','Three rooms, guarded checkout result','After measurement confirmation, Continue revalidates all four curtains and the combined total. The visible result confirms checkout is not open: no order or payment was created, and rooms remain saved.',1440]
     ];
+    views.push(['final-empty.png','Build My Rooms, your first room','The intentional zero-curtain state, with a restrained window cue and fabric discovery. Organisational rooms do not trigger a misleading populated view.',1440]);
+    views.push(['final-mobile-412.png','Three rooms on mobile, 412px','The same House at 412px. Summary precedes final review in visual, reading and keyboard order. Fabric images and neutral heading studies remain distinct.',412]);
     document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{
       const [file,title,description,width]=views[Number(button.dataset.view)];
       document.querySelectorAll('[data-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));

@@ -33,9 +33,28 @@ operational proof. This integration creates no remote order or deployment.
 | Public House payment | BLOCKED intentionally | Hard-disabled; no invoice URL returned, no order/payment/manufacture |
 | Video walkthrough | BLOCKED | Browser recording needs absent ffmpeg; screenshot walkthrough delivered instead |
 
-Validation: `npm run test:rooms` **35/35**; `npm run test:storefront`
-**242/242**; `npm run verify:rooms` **26/26**, browser errors **0**.
+Validation after the locked visual pass: `npm run test:rooms` **36/36**;
+`npm run test:storefront` **243/243**; `npm run verify:rooms` **29/29**,
+browser errors **0**.
 TypeScript `npx tsc --noEmit --incremental false` passes. `git diff --check` passes.
+
+The final locked visual pass preserves the large premium fabric cards and adds
+the approved populated heading, window counts, quiet saving copy, Size label,
+exact Fabric Detail links and six muted illustrated room choices. Customer
+display separators are commas; a contract test preserves genuine punctuation
+inside authoritative names. Zero curtains shows the empty state, including
+when a future organisational room is saved. Local render observation confirms
+saved arrival has no empty-state flash. On mobile, Summary precedes final Review
+in both DOM and visual order. Shopify full-theme validation passed both edited
+theme assets, recorded by parent as `rooms-visual-locked-parent-20260922`, revision 1.
+
+The current owner gallery is `owner-review.html`: `final-empty.png`,
+`final-one-room-one-window.png`, `final-one-room-two-windows.png`,
+`final-three-rooms.png`, `final-mobile-390.png`, `final-mobile-412.png` and
+`final-guarded-checkout.png`. It opens populated without accessing owner storage.
+The separate capture record is `final-visual-report.json`. The screenshots below
+remain the interaction walkthrough. No hosted verification or publication is
+claimed by this final local visual pass.
 
 ## Screen walkthrough
 

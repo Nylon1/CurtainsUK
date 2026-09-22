@@ -1,0 +1,20 @@
+{
+  "status": "STALE_CAPTURE",
+  "productionCommit": "a63f5fddd969ec6cbdc5b14b472ceadbd9a5dc0b",
+  "reconstructedSourceCommit": "6668e2232522b563ce2946384b3b4644bac4fbc8",
+  "deploymentId": "dpl_GsynQ3vdZTekQdA5aDDEzPdumKqD",
+  "deploymentUrl": "curtainsuk-staging-2cmaxumn7-hamzas-projects-4ef62f35.vercel.app",
+  "aliases": [
+    "curtainsuk-staging-api.vercel.app",
+    "curtainsuk-staging-gateway.vercel.app"
+  ],
+  "reason": "Deployed SHA omitted staged restored Fabric Knowledge files. Full protected lifecycle/live health proof and source attestation required before bootstrap can become KNOWN_GOOD.",
+  "manifestVersion": "1.0.0",
+  "protectedResult": null,
+  "timestamp": null,
+  "observedReplacement": {
+    "deploymentId": "dpl_Ceg5VuFRTV7micGHXVk9K73W4DXx",
+    "productionCommit": "2314c6daec3b82d504cf6c26ebc77026ff6939f9",
+    "verified": false
+  }
+}

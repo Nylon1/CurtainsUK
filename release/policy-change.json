@@ -1,0 +1,7 @@
+{
+  "classification": "OWNER_APPROVED_POLICY_CHANGE",
+  "previousRule": "No machine-enforced common production release gate existed.",
+  "newRule": "Protect the owner's listed production capabilities through one lineage, trusted regression tests, owner review and environment-gated deployment.",
+  "reason": "Feature-branch deployments omitted existing Fabric Knowledge capability.",
+  "ownerApprovedDecision": "Owner's CurtainsUK Production Release Gate V1 instruction dated 2026-09-22 authorises implementation. Activation review is still required; this record does not self-approve the PR."
+}

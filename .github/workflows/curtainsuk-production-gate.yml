@@ -1,0 +1,68 @@
+name: CurtainsUK production gate
+on:
+  pull_request:
+    branches: [release/production]
+  pull_request_review:
+    types: [submitted, dismissed]
+permissions:
+  contents: read
+  pull-requests: read
+concurrency:
+  group: production-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    if: github.event.pull_request.base.ref == 'release/production'
+    name: curtainsuk-production-gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: candidate
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+          path: trusted
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.14.0'
+      - name: Require bootstrapped protected policy on production branch
+        run: test -f trusted/release/gate.mjs
+      - name: Install without credentials or lifecycle scripts
+        run: |
+          npm ci --ignore-scripts --no-audit --prefix candidate
+          npm ci --ignore-scripts --no-audit --prefix trusted
+      - name: Run baseline assertions against both trees
+        run: node trusted/release/gate.mjs candidate trusted
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: production-gate-${{ github.event.pull_request.head.sha }}
+          path: |
+            candidate/artifacts/production-gate/
+            trusted/artifacts/production-gate/
+  policy:
+    if: github.event.pull_request.base.ref == 'release/production'
+    name: protected-production-policy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Run only policy checker from trusted base
+        env:
+          POLICY_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          POLICY_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git show "$POLICY_BASE_SHA:release/policy-change.mjs" > "$RUNNER_TEMP/policy-change.mjs"
+          node "$RUNNER_TEMP/policy-change.mjs"

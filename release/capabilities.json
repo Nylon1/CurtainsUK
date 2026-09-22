@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "productionBranch": "release/production",
+  "owner": "Nylon1",
+  "fabricMaster": true,
+  "fabricKnowledgeReader": "fabric_visual_knowledge_read_cache",
+  "fabricKnowledgeControl": "pt-1223-374",
+  "completeControls": [
+    "pt-1223-374",
+    "sdg-aarc520004"
+  ],
+  "partialControls": [
+    "pt-1204-212"
+  ],
+  "pendingControls": [
+    "sdg-ccf0865-01"
+  ],
+  "samples": true,
+  "samplePriceMinor": 250,
+  "sampleCurrency": "GBP",
+  "sampleVariantId": 56120226873723,
+  "pricingRuleset": "3.0.0-production.1",
+  "stockFreshnessHours": 96,
+  "refreshCadenceHours": 72,
+  "curtainFloorMetres": 30,
+  "jobSufficiencyRequired": true,
+  "samplePositiveStockOnly": true,
+  "singleCurtainCheckout": true,
+  "houseCheckout": true,
+  "paidLifecycle": "PAID_TO_REVIEW",
+  "automaticManufacture": false,
+  "workroomRelease": "STAFF_ONLY",
+  "compatibility": {
+    "track": [
+      "PENCIL_PLEAT",
+      "DOUBLE_PINCH",
+      "WAVE"
+    ],
+    "pole": [
+      "PENCIL_PLEAT",
+      "DOUBLE_PINCH",
+      "EYELET"
+    ],
+    "bay": [
+      "PENCIL_PLEAT",
+      "DOUBLE_PINCH"
+    ]
+  },
+  "testGroups": {
+    "fabricMaster": [
+      "lib/fabric-master/__tests__/fabric-master.test.ts",
+      "lib/fabric-master/__tests__/commercial-readiness.test.ts"
+    ],
+    "fabricKnowledge": [
+      "lib/fabric-master/__tests__/visual-knowledge-display.test.ts"
+    ],
+    "samples": [
+      "lib/storefront/__tests__/sample-order.test.ts"
+    ],
+    "stock": [
+      "lib/storefront/__tests__/morning-stock-current.test.ts",
+      "lib/supplier-sync/__tests__/sdg-routine-policy.test.ts",
+      "lib/supplier-sync/__tests__/pt-stock-reconciliation.test.ts"
+    ],
+    "pricing": [
+      "lib/storefront/__tests__/production-pricing.test.ts"
+    ],
+    "compatibility": [
+      "lib/storefront/__tests__/mtm-production-policy.test.ts"
+    ],
+    "singleCheckout": [
+      "lib/storefront/__tests__/checkout-review.test.ts",
+      "lib/storefront/__tests__/phase5d-checkout-rehearsal.test.ts"
+    ],
+    "houseCheckout": [
+      "lib/storefront/__tests__/rooms-order-contract.test.ts",
+      "lib/storefront/__tests__/multi-curtain-contract.test.ts",
+      "lib/storefront/__tests__/rooms.test.ts"
+    ],
+    "financialReconciliation": [
+      "lib/storefront/__tests__/multi-curtain-contract.test.ts"
+    ],
+    "paidLifecycle": [
+      "lib/storefront/__tests__/multi-curtain-contract.test.ts"
+    ],
+    "policy": [
+      "lib/storefront/__tests__/production-capabilities.test.ts"
+    ]
+  },
+  "requiredLiveCapabilities": [
+    "fabricMaster",
+    "fabricKnowledge",
+    "samples",
+    "stock",
+    "pricing",
+    "singleCheckout",
+    "houseCheckout",
+    "financialReconciliation",
+    "paidLifecycle",
+    "manufacture",
+    "workroomRelease"
+  ]
+}

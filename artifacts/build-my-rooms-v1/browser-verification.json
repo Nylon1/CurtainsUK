@@ -21,7 +21,7 @@
     "Custom room name saves automatically",
     "Add another window carries room identity only",
     "New room autosaves before fabric discovery",
-    "Six illustrated room choices; selected room and intent persist before discovery, including refresh",
+    "Six next-room choices with labelled photographic inspiration; selected room and intent persist before discovery, including refresh",
     "Remove middle curtain preserves other specifications",
     "Unchanged server review shows exact summary; checkout release remains blocked",
     "Price changes require individual acknowledgement",
@@ -51,7 +51,7 @@
       "effectiveLaunch": {
         "browserLaunched": true,
         "engine": "chrome",
-        "launchHash": 5658965517314651000
+        "launchHash": 10801525095524018000
       },
       "launched": false,
       "relaunchedBrowser": false,

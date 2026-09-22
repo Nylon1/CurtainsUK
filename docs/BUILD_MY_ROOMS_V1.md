@@ -143,23 +143,28 @@ Order, theme duplication, theme publication, payment or manufacture was performe
 
 ## Remaining release verification
 
-### Final locked local visual pass
+### Final reference-led local visual pass
 
 The populated header reads “Your home is taking shape”, with room/window counts
 and quiet saving reassurance. Card headings join the exact fabric design and
 colour with an authored comma; official punctuation within either name remains
-untouched. Cards keep their large approved photographs, clearly separate neutral
-heading studies, immutable specifications, Remove action, and add the existing
+untouched. Full-width white room panels show the approved selected neutral heading
+study prominently, labelled as not the chosen fabric or room. The exact Fabric
+Master photograph stays in a separately labelled inset. Cards retain immutable
+specifications, Remove action, and the existing
 governed Fabric Detail route with the exact encoded Fabric Master ID. The
 customer measurement label is “Size”; no stored measurement field was changed.
 
 “Which room is next?” offers Bedroom, Dining Room, Kitchen, Home Office, Child’s
-Room and Other Room. The muted line illustrations are organisational room cues,
-not fabric, room-photo or finished-curtain evidence. Choosing a room saves it and
+Room and Other Room. Five photographic room choices and the editorial hero are
+AI-generated room inspiration, never exact fabric or finished-curtain evidence.
+The Other Room cue stays restrained. Asset prompts/provenance are recorded in
+`artifacts/build-my-rooms-v1/room-inspiration-assets.json`. Choosing a room saves it and
 the organisational intent before discovery navigation. The primary discovery
 action is “Find fabric for another room”; Browse fabrics is secondary. The
 summary says “One place, whole home”. Mobile DOM order puts Summary before final
-Review while retaining the desktop card/sidebar composition.
+Review. Desktop now uses a full-width bottom House summary, aligned specification
+rows and stronger action hierarchy, with a quiet saved panel in the hero.
 
 Zero curtains always shows the intentional empty state, including when empty
 organisational rooms remain saved. It keeps Build My Rooms, the home-building
@@ -179,8 +184,12 @@ without requiring an owner browser to seed localStorage. Final screens are
 `final-one-room-two-windows.png`, `final-three-rooms.png`,
 `final-mobile-390.png`, `final-mobile-412.png` and `final-guarded-checkout.png`.
 All prices/stock in those screenshots are labelled local fixtures, not live
-quotes. The only order-contract edits in this visual pass are three authored
-display separators; financial, identity and operational rules are unchanged.
+quotes. The preceding locked-copy pass changed three authored order-contract
+display separators only. This photographic revision makes no changes to commerce,
+store, bindings, identity, pricing, stock or operational rules. Parent independently
+confirmed 243 storefront tests and Shopify validation of the three edited theme
+files (artifact `rooms-photographic-upgrade`, revision 2). Publication is held for
+owner visual approval and hosted/live-diff verification, not claimed complete.
 
 Do not enable the flags or deploy to live for preview. Outstanding: owner visual
 approval, canonical-live diff reconciliation, Shopify-hosted rendering and hosted

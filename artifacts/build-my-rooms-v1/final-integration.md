@@ -70,10 +70,29 @@ All images are local, clearly labelled fixture evidence:
 
 `parent-desktop.png` and `parent-mobile.png` record independent parent-agent
 inspection. `browser-verification.json` contains the exact executed check list.
-Preview media is derived only from the existing VERIFIED/APPROVED mappings for
+Exact fabric media is derived only from the existing VERIFIED/APPROVED mappings for
 `pt-4269-147`, `pt-4270-147` and `pt-4271-147` in
 `artifacts/phase5h/media-summary.json`; it depicts fabric, never the customer’s
 finished curtain. Neutral heading studies remain explicitly labelled.
+
+## Reference-led photographic revision, 22 September
+
+The latest gallery replaces the earlier visual screenshots with the photographic
+hero, quiet saved panel, full-width room panels, large approved selected heading
+studies, separate exact fabric insets, photographic room choices and full-width
+bottom House summary. Generated editorial inspiration is not product evidence;
+see `room-inspiration-assets.json` for prompts and provenance. No protected
+commerce, store, binding, pricing, stock or identity file changed from `aa46f74`.
+Images have explicit dimensions; secondary images are lazy-loaded.
+
+Independent parent checks: 243 storefront tests PASS and Shopify validation of
+the three edited theme files PASS, artifact `rooms-photographic-upgrade`, revision
+2. TypeScript and diff checks PASS. Browser skill verification uses dedicated QA
+sessions, not owner storage. See updated `browser-verification.json` and
+`final-visual-report.json` for executed local checks. The CSS-uppercase Size
+label is verified using source text content rather than rendered casing.
+This is local visual readiness only; publication remains held for final owner
+approval, canonical-live comparison and hosted verification.
 
 ## Earlier live proof — not repeated here
 

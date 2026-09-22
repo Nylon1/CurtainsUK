@@ -1,5 +1,5 @@
 {
-  "scope": "Final local visual review. Approved fabric photographs; fixture costs/stock, no live quote or payment.",
+  "scope": "Reference-led local visual review. Approved exact fabric photographs and neutral heading studies; AI-generated editorial room inspiration. Fixture costs/stock, no live quote or payment.",
   "checks": [
     "Zero curtains displays empty state even with a preserved organisational room",
     "390px no overflow; Summary precedes Review in DOM and reading order",
@@ -16,7 +16,7 @@
     "final-mobile-412.png",
     "final-guarded-checkout.png"
   ],
-  "summary": "ONE PLACE, WHOLE HOME\n\nYour home so far\n\n3 rooms · 4 windows\n\nCurtains subtotal\n£2,126.00\nDelivery\n£12.95\nHouse total\n£2,138.95\n\nIncludes £356.49 VAT. Saved prices and availability are checked again before checkout.\n\nUK Mainland postcode\nReview My Rooms →\n\nTo change a curtain, remove it and configure it again.\n\nBack to Browse Fabrics",
+  "summary": "ONE PLACE, WHOLE HOME\n\nYour home so far\n\n3 rooms · 4 windows\n\nBack to Browse Fabrics\nCurtains subtotal\n£2,126.00\nDelivery\n£12.95\nHouse total\n£2,138.95\n\nIncludes £356.49 VAT. Saved prices and availability are checked again before checkout.\n\nUK Mainland postcode\nReview My Rooms →\n\nTo change a curtain, remove it and configure it again.\n\n✓\nTake your time. Your rooms are saved on this device. You can continue building your home whenever you’re ready.",
   "browserErrors": {
     "errors": [],
     "lifecycle": {

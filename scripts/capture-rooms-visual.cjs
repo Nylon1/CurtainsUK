@@ -3,7 +3,7 @@ const {execFileSync}=require('node:child_process');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const binary=path.join(process.env.APPDATA,'npm/node_modules/agent-browser/bin/agent-browser-win32-x64.exe');
 const session=`rooms-locked-visual-${process.pid}`,out='artifacts/build-my-rooms-v1';
-const report={scope:'Final local visual review. Approved fabric photographs; fixture costs/stock, no live quote or payment.',checks:[],screenshots:[]};
+const report={scope:'Reference-led local visual review. Approved exact fabric photographs and neutral heading studies; AI-generated editorial room inspiration. Fixture costs/stock, no live quote or payment.',checks:[],screenshots:[]};
 function run(args,input){let raw;try{raw=execFileSync(binary,['--session',session,'--json',...args],{encoding:'utf8',input,timeout:20000,maxBuffer:2e6});}catch(error){if(!error.stdout?.trim().startsWith('{'))throw error;raw=error.stdout;}const result=JSON.parse(raw);assert.ok(result.success,result.error);return result.data;}
 const evaluate=code=>run(['eval','--stdin'],code).result;
 function screenshot(name){evaluate('window.scrollTo(0,0)');evaluate('Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))');assert.equal(evaluate('document.documentElement.scrollWidth>innerWidth'),false);run(['screenshot',`${out}/${name}.png`,'--full']);report.screenshots.push(name+'.png');}

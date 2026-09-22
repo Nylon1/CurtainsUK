@@ -255,3 +255,7 @@ Verified live HTTP 200: `/pages/fabric-library`,
 `/pages/fabric-library?view=browse-fabrics`, `/pages/curtain-visualiser`,
 `/pages/how-to-measure`, `/pages/how-to-fit`, `/pages/samples`, and
 `/pages/solve-my-window`.
+
+## Production release enforcement
+
+Gateway releases must use the protected `release/production` lineage and `curtainsuk-production-gate`. See [the release gate and current activation blockers](release/README.md). Production deployment is intentionally disabled in the new workflow until source attestation, isolated release credentials and all runtime controls are proven. Documentation alone is not deployment enforcement.

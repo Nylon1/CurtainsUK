@@ -1,0 +1,8 @@
+# Must also be enforced by the production branch rule. A comment is not approval.
+/release/ @Nylon1
+/.github/ @Nylon1
+/lib/**/__tests__/ @Nylon1
+/supabase/migrations/ @Nylon1
+/supabase/tests/ @Nylon1
+/package.json @Nylon1
+/package-lock.json @Nylon1

@@ -23,6 +23,7 @@ export type HouseCurtainReference = {
   roomId: string;
   roomName: string;
   windowName: string;
+  retainedConfigurationId?: string;
   handoff: Readonly<StagingCheckoutHandoff>;
 };
 
@@ -86,6 +87,7 @@ function privateLineAttributes(
   const identity = curtain.handoff.snapshot.fabricIdentity;
   if (!identity) throw Error('ROOMS_PRODUCTION_IDENTITY_REQUIRED');
   return [
+    ...(curtain.retainedConfigurationId ? [{ key: '_curtainsuk_retained_configuration_id', value: curtain.retainedConfigurationId }] : []),
     { key: '_curtainsuk_house_id', value: houseId },
     { key: '_curtainsuk_room_id', value: roomId },
     { key: '_curtainsuk_room_name', value: roomName },
@@ -139,6 +141,7 @@ export function buildHouseDraftContract(input: {
   if (!UUID.test(input.houseId)) throw Error('ROOMS_HOUSE_INVALID');
   const seenConfigurations = new Set<string>();
   const contracts = input.curtains.map((curtain) => {
+    if (curtain.retainedConfigurationId && !UUID.test(curtain.retainedConfigurationId)) throw Error('ROOMS_CONFIGURATION_INVALID');
     if (!UUID.test(curtain.roomId)) throw Error('ROOMS_ROOM_INVALID');
     assertName(curtain.roomName, 'ROOMS_NAME_INVALID');
     assertName(curtain.windowName, 'ROOMS_NAME_INVALID');

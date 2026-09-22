@@ -1,0 +1,8 @@
+{
+  "source": "artifacts/phase5h/media-summary.json — exact VERIFIED, APPROVED public mappings retained for the local preview",
+  "mappings": [
+    { "fabricId": "pt-4269-147", "mappingState": "VERIFIED", "rightsState": "APPROVED", "shopifyCdnUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-34d1f0437d8f05265f7aff88d9734b3a54a39c0730d8b459e0a3180fc734e449.jpg" },
+    { "fabricId": "pt-4270-147", "mappingState": "VERIFIED", "rightsState": "APPROVED", "shopifyCdnUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-be96feee7c6a5f4f9bdff4eab8cfa5cf1798a06afdcbc3c30a7f22f5405afe2a.jpg" },
+    { "fabricId": "pt-4271-147", "mappingState": "VERIFIED", "rightsState": "APPROVED", "shopifyCdnUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2e9de45cb1c9284dda39291f86a5b787569e24b353e71f928b874cb81a7f2c7c.jpg" }
+  ]
+}

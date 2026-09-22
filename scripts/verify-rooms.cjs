@@ -17,6 +17,32 @@ for(const count of [1,3,10]){reset();seed(count);const before=current();run(['re
 const ten=current();
 run(['close']);session+='-reopened';run(['open','http://127.0.0.1:4348/pages/build-my-rooms']);assert.deepEqual(current(),ten);report.checks.push('10 curtains survive browser close/reopen using persistent same-device profile');
 for(const route of ['/pages/fabric-library?view=browse-fabrics','/apps/curtainsuk-decision/consultation?experience=premium&entry=match','/pages/curtain-visualiser?fabric=pt-4269-147&rooms_new=1']){run(['open','http://127.0.0.1:4348'+route]);run(['back']);assert.deepEqual(current(),ten);run(['forward']);run(['back']);assert.deepEqual(current(),ten);report.checks.push(`Local navigation/back/forward: ${route}`);}
+// Exercise the actual Add hook/retain endpoint using explicitly labelled local Make fixtures.
+reset();
+run(['record','start',`${out}/walkthrough.webm`]);
+run(['open','http://127.0.0.1:4348/pages/curtain-visualiser?fabric=pt-4269-147&rooms_new=1']);run(['snapshot','-i']);
+run(['find','label','Room name','fill','Reading Room']);run(['find','role','button','click','--name','Add to my rooms']);run(['wait','[data-curtain]']);run(['snapshot','-i']);
+const one=current();assert.equal(one.rooms.length,1);assert.equal(one.rooms[0].curtains.length,1);assert.equal(one.rooms[0].room_name,'Reading Room');
+report.checks.push('Actual RoomsFlow Add + server retain fixture saves one curtain in custom room');shot('add-to-rooms');
+run(['find','role','button','click','--name','+ Add another window to Reading Room']);run(['snapshot','-i']);run(['find','role','button','click','--name','Back to my rooms']);
+run(['open','http://127.0.0.1:4348/pages/curtain-visualiser?fabric=pt-4269-147&rooms_new=1']);run(['snapshot','-i']);
+assert.equal(evaluate('document.querySelector("[name=roomId]").value'),one.rooms[0].room_id);
+run(['find','role','button','click','--name','Add to my rooms']);run(['wait','[data-curtain]']);run(['snapshot','-i']);
+const two=current();assert.equal(two.rooms.length,1);assert.equal(two.rooms[0].curtains.length,2);assert.notEqual(two.rooms[0].curtains[0].configuration_id,two.rooms[0].curtains[1].configuration_id);assert.deepEqual(two.rooms[0].curtains[0],one.rooms[0].curtains[0]);
+run(['reload']);assert.deepEqual(current(),two);report.checks.push('One room / two windows, same exact fabric, distinct curtain identities and refresh persistence');shot('two-windows');
+run(['find','label','UK Mainland postcode','fill','BB2 3FA']);run(['find','role','button','click','--name','Review My Rooms →']);run(['wait','[data-confirm-measurements]']);run(['snapshot','-i']);
+assert.equal(evaluate('document.querySelector("[data-checkout]").disabled'),true);
+run(['find','label','I confirm the measurements and selections shown above are correct.','check']);run(['snapshot','-i']);assert.equal(evaluate('document.querySelector("[data-checkout]").disabled'),false);
+run(['find','role','button','click','--name','Continue to secure checkout']);run(['wait','[data-rooms-error]:not([hidden])']);run(['snapshot','-i']);assert.match(evaluate('document.querySelector("[data-rooms-error]").innerText'),/no order or payment/);assert.deepEqual(current(),two);
+report.checks.push('Continue calls fresh multi-line preparation; no payment/order/URL, saved House unchanged');shot('prepared-disabled');
+evaluate(`fetch('/scenario?value=price-change')`);run(['find','role','button','click','--name','Review My Rooms →']);run(['wait','[data-price-ack]']);run(['snapshot','-i']);
+run(['find','label','I confirm the measurements and selections shown above are correct.','check']);assert.equal(evaluate('document.querySelector("[data-checkout]").disabled'),true);
+evaluate(`document.querySelectorAll('[data-price-ack]').forEach(input=>{input.click()})`);run(['snapshot','-i']);assert.equal(evaluate('document.querySelector("[data-checkout]").disabled'),false);shot('acknowledged-price');
+run(['find','role','button','click','--name','Continue to secure checkout']);run(['wait','[data-rooms-error]:not([hidden])']);run(['snapshot','-i']);assert.match(evaluate('document.querySelector("[data-rooms-error]").innerText'),/no order or payment/);assert.deepEqual(current(),two);report.checks.push('Every changed line accepted at exact reviewed price before successful nonpayable handoff');
+try{run(['record','stop']);report.walkthrough='walkthrough.webm';}catch(error){report.walkthroughBlocked='Browser recording requires ffmpeg, which is unavailable in this runtime. Screenshot sequence covers the same walkthrough.';}
+evaluate(`fetch('/scenario?value=normal')`);run(['find','role','button','click','--name','Review My Rooms →']);run(['wait','[data-confirm-measurements]']);run(['snapshot','-i']);
+evaluate(`fetch('/scenario?value=combined-stock')`);run(['find','label','I confirm the measurements and selections shown above are correct.','check']);run(['find','role','button','click','--name','Continue to secure checkout']);run(['wait','[data-rooms-error]:not([hidden])']);run(['snapshot','-i']);assert.match(evaluate('document.querySelector("#rooms-review").innerText'),/enough fabric/);assert.equal(evaluate('document.querySelector("[data-checkout]").disabled'),true);assert.deepEqual(current(),two);report.checks.push('Combined stock fails between review and Continue with line-specific issues and retained House');shot('combined-stock');
+reset();seed(10);
 // The broad fixture contains four windows in Living Room and three each in two other rooms.
 assert.deepEqual(ten.rooms.map(r=>r.curtains.length),[4,3,3]);
 for(const width of [1440,390,412]){run(['set','viewport',String(width),'1000']);const dimensions=evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,cards:document.querySelectorAll('[data-curtain]').length,remove:[...document.querySelectorAll('[data-remove]')].every(b=>b.getBoundingClientRect().height>=44)})`);assert.equal(dimensions.overflow,false);assert.equal(dimensions.cards,10);assert.equal(dimensions.remove,true);report.checks.push(`${width}px: no overflow; ten visual cards; 44px removal targets`);}
@@ -36,6 +62,7 @@ for(const scenario of ['out-of-stock','non-commercial','unavailable']){evaluate(
 run(['find','role','button','click','--name','Organise Home Office']);run(['snapshot','-i']);run(['find','role','button','click','--name','Remove entire room']);run(['snapshot','-i']);run(['find','role','button','click','--name','Remove room','--exact']);run(['snapshot','-i']);assert.equal(current().rooms.some(r=>r.room_name==='Home Office'),false);report.checks.push('Remove entire room preserves other rooms');
 run(['find','role','button','click','--name','Remove curtain from Front Lounge — Standard Window']);run(['snapshot','-i']);run(['find','role','button','click','--name','Remove curtain','--exact']);run(['snapshot','-i']);assert.equal(current().rooms.length,0);assert.match(evaluate('document.querySelector("[data-cuk-rooms]").innerText'),/Start your first room/);report.checks.push('Final removal produces intentional empty state');shot('empty-mobile');
 report.browserErrors=run(['errors']);
+assert.equal(report.browserErrors.errors?.length||0,0);
 fs.writeFileSync(`${out}/browser-verification.json`,JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));
 run(['close']);

@@ -6,13 +6,20 @@ import { projectCustomerSafeFabric } from '@/lib/fabric-master/projection';
 import { dailyStockProjection } from './daily-stock-server';
 import { loadStagingUkShippingRules } from './shipping-repository';
 import { quoteOwnerApprovedCurtainShipping, STAGING_SHIPPING_OWNER_INPUTS, deliveryRequiresReview } from './shipping-owner-inputs';
-import { retainCurtain, reviewHouse, type RoomsServices, type HouseReviewRequest } from './rooms-core';
+import { retainCurtain, reviewHouse, type HouseReviewRequest } from './rooms-core';
+import { prepareHouseCheckout, type HouseCheckoutInput, type HouseCheckoutServices } from './rooms-checkout';
+import { executePreparedHouseCheckout } from './rooms-checkout-server';
 
-function services(): RoomsServices {
+function services(): HouseCheckoutServices {
   const secret = process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET;
   if (!secret || secret.length < 32) throw Error('ROOMS_SIGNING_UNAVAILABLE');
   return {
     secret, calculate: calculateStagingPrice, now: () => new Date().toISOString(),
+    async productionFabric(id) {
+      const record = await fabricMasterRecordById(id);
+      if (!record || record.fabric_id !== id) throw Error('ROOMS_FABRIC_UNAVAILABLE');
+      return { supplierSku: record.supplier_sku, identity: { supplier: record.supplier_name, brand: record.brand_name, design: record.design_name, colour: record.colour_name } };
+    },
     verifyPrice: (configuration, configurationId, price, token) => verifyReviewSubmission({ configuration, configurationId, outcome: price.outcome, totalAmountMinor: price.totalAmountMinor }, token),
     async fabric(id) {
       const record = await fabricMasterRecordById(id);
@@ -44,7 +51,7 @@ export async function roomsCommand(input: unknown) {
   const command = input as { action: string; payload: unknown };
   if (command.action === 'retain') return retainCurtain(command.payload as Parameters<typeof retainCurtain>[0], services());
   if (command.action === 'review') return reviewHouse(command.payload as HouseReviewRequest, services());
-  // Existing paid-order and workroom paths remain untouched. No environment toggle bypasses this.
-  if (command.action === 'checkout') throw Error('ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE');
+  // Null is deliberate: never inherit the single-curtain production payment config.
+  if (command.action === 'checkout') return executePreparedHouseCheckout(await prepareHouseCheckout(command.payload as HouseCheckoutInput, services()), null);
   throw Error('ROOMS_REQUEST_INVALID');
 }

@@ -1,4 +1,4 @@
-import { createHmac, timingSafeEqual } from 'node:crypto';
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import type { StagingPriceRequest, StagingPriceResponse } from './staging-pricing';
 import type { ShippingQuote } from './shipping';
 import { allocateVatFromGross } from './shopify-draft-order-core';
@@ -11,6 +11,9 @@ export function roomsCustomerError(error: unknown): string {
   if (code === 'ROOMS_CURTAIN_REQUIRES_REVIEW') return 'This curtain needs a CurtainsUK check before it can be added. Please contact support@curtainsuk.com.';
   if (code === 'ROOMS_UNAVAILABLE' || code === 'ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE') return 'Build My Rooms checkout is not available yet. Your saved rooms have not been changed.';
   if (code === 'ROOMS_EMPTY') return 'Add a curtain before reviewing your rooms.';
+  if (code === 'ROOMS_REVIEW_EXPIRED' || code === 'ROOMS_REVIEW_CHANGED') return 'Your rooms or their price have changed. Please review your rooms again before continuing.';
+  if (code === 'ROOMS_CONFIRMATION_REQUIRED') return 'Confirm your measurements and accept each updated price before continuing.';
+  if (code === 'ROOMS_INTEGRITY_FAILED') return 'We could not verify this review. Please review your rooms again. Your saved curtains are safe.';
   return 'We could not verify this curtain just now. Your saved rooms have not been changed. Please check your selections or contact support@curtainsuk.com.';
 }
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -40,6 +43,11 @@ function canonical(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
   const object = value as Record<string, unknown>;
   return `{${Object.keys(object).filter(key => object[key] !== undefined).sort().map(key => `${JSON.stringify(key)}:${canonical(object[key])}`).join(',')}}`;
+}
+export function roomsDigest(value: unknown): string { return createHash('sha256').update(canonical(value)).digest('hex'); }
+export type HouseReviewClaims = { requestDigest: string; financialDigest: string; reviewedAt: string; expiresAt: number };
+export function reviewFinancialDigest(result: { lines: ReviewedLine[]; goods: number | null; delivery: number | null; total: number | null; vat: number | null }) {
+  return roomsDigest({ lines: result.lines.map(line => ({ id: line.configuration_id, status: line.status, previous: line.previousPrice, current: line.currentPrice })), goods: result.goods, delivery: result.delivery, total: result.total, vat: result.vat });
 }
 function mac(scope: string, payload: string, secret: string) {
   if (secret.length < 32) throw Error('ROOMS_SIGNING_UNAVAILABLE');
@@ -96,6 +104,7 @@ export type ReviewedLine = {
 export async function reviewHouse(input: HouseReviewRequest, services: RoomsServices) {
   if (!input || !uuid.test(input.house_id) || !Number.isSafeInteger(input.revision) || input.revision < 0 || !Array.isArray(input.rooms) || !input.rooms.length) throw Error('ROOMS_HOUSE_INVALID');
   const roomIds = new Set<string>(), configIds = new Set<string>();
+  if (input.rooms.length > 100 || input.rooms.reduce((n, room) => n + (Array.isArray(room.curtains) ? room.curtains.length : 0), 0) > 100) throw Error('ROOMS_HOUSE_INVALID');
   const lines: ReviewedLine[] = [], prices: StagingPriceResponse[] = [];
   const stockGroups = new Map<string, { metres: number; lineIndexes: number[] }>();
   for (const room of input.rooms) {
@@ -147,14 +156,15 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
     ? prices.reduce((total, price) => total + price.vatAmountMinor!, 0) + allocateVatFromGross(deliveryAmount!, prices[0].vatRateBasisPoints!) : null;
   const result = {
     house_id: input.house_id, revision: input.revision, lines, validated_at: services.now(),
-    ready: Boolean(ready && vat !== null), checkoutEnabled: ROOMS_CHECKOUT_RELEASED,
+    ready: Boolean(ready && vat !== null), checkoutEnabled: ROOMS_CHECKOUT_RELEASED, checkoutPreparationEnabled: true,
     requiresPriceAcknowledgement: lines.some(line => line.status === 'PRICE_CHANGED'),
     goods, delivery: deliveryAmount, total: ready ? goods! + deliveryAmount! : null, vat,
     pricingVersion: ROOMS_RULESET, currency: 'GBP' as const,
     deliveryMessage: delivery?.message || 'Enter a UK Mainland postcode to confirm delivery.',
   };
   // Five-minute review signature binds names, membership, prices, destination and revision.
-  const reviewToken = seal('review', { result, request: input, expiresAt: Date.parse(services.now()) + 300_000 }, services.secret);
+  // A digest binds every receipt without duplicating the whole House in the token.
+  const reviewToken = seal<HouseReviewClaims>('review', { requestDigest: roomsDigest(input), financialDigest: reviewFinancialDigest(result), reviewedAt: result.validated_at, expiresAt: Date.parse(result.validated_at) + 300_000 }, services.secret);
   return { ...result, reviewToken };
 }
 

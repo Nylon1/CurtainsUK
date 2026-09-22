@@ -9,6 +9,7 @@ import { calculateProductionMtmCustomerPrice } from '../production-pricing';
 import { STOREFRONT_FABRICS } from '../fabrics';
 import { signReviewSubmissionWithSecret, verifyReviewSubmissionWithSecret } from '../review-token-core';
 import type { StagingPriceRequest } from '../staging-pricing';
+import { prepareHouseCheckout, houseCheckoutCustomerResult, type HouseCheckoutServices } from '../rooms-checkout';
 const require=createRequire(import.meta.url);
 const Store=require('../../../shopify-theme/curtainsuk-new-design-live-base/assets/curtainsuk-rooms-store.js');
 test('room-specific failures are useful without leaking internal exceptions',()=>{
@@ -40,6 +41,63 @@ function service(overrides:Partial<RoomsServices>={}):RoomsServices{return{
 async function retained(services=service(),c=configuration){const price=await services.calculate(c);const configurationId=randomUUID();const token=signReviewSubmissionWithSecret({configuration:c,configurationId,outcome:price.outcome,totalAmountMinor:price.totalAmountMinor},secret);return retainCurtain({configuration:c,configurationId,priceConfirmationToken:token},services);}
 function request(curtains:Awaited<ReturnType<typeof retained>>[]):HouseReviewRequest{return{house_id:randomUUID(),revision:3,postcode:'BB2 3FA',rooms:[{room_id:randomUUID(),room_name:'Front Lounge',curtains:curtains.map(c=>({configuration_id:c.configuration_id,receipt:c.receipt,window_name:'French Doors'}))}]};}
 function memory(){const data=new Map<string,string>();return{getItem:(key:string)=>data.get(key)??null,setItem:(key:string,value:string)=>{data.set(key,value);},removeItem:(key:string)=>{data.delete(key);}};}
+function checkoutService(overrides:Partial<RoomsServices>={}):HouseCheckoutServices{return{...service(overrides),async productionFabric(){return{supplierSku:source.supplierReference,identity:{supplier:source.supplier,brand:'Prestigious Textiles',design:source.design,colour:source.colour}};}};}
+async function checkoutInput(count=2,s=checkoutService()) { const house=request(await Promise.all(Array.from({length:count},()=>retained()))); const review=await reviewHouse(house,s); return{house,reviewToken:review.reviewToken,measurementsConfirmed:true,acceptedPriceChanges:review.lines.filter(l=>l.status==='PRICE_CHANGED').map(l=>({configuration_id:l.configuration_id,currentPrice:l.currentPrice!}))}; }
+
+for(const count of [1,2,10])test(`final ${count}-curtain bridge prepares private multi-line contract with stable retry identity and safe public result`,async()=>{
+  const s=checkoutService(),input=await checkoutInput(count,s);const a=await prepareHouseCheckout(input,s),b=await prepareHouseCheckout(input,s);
+  assert.equal(a.prepared,true);assert.equal(b.prepared,true);if(!a.prepared||!b.prepared)return;
+  assert.deepEqual(a.contract,b.contract);assert.deepEqual(a.curtains,b.curtains);
+  assert.equal(a.contract.input.lineItems.length,count);assert.equal(a.contract.expected.orderGrossAmountMinor,a.review.total);
+  assert.ok(input.reviewToken.length<2000);assert.equal(a.contract.paymentEnabled,false);
+  a.contract.input.lineItems.forEach((line,i)=>assert.equal(line.customAttributes.find(p=>p.key==='_curtainsuk_retained_configuration_id')?.value,input.house.rooms[0].curtains[i].configuration_id));
+  const publicResult=houseCheckoutCustomerResult(a);assert.equal(publicResult.checkoutUrl,null);assert.equal(publicResult.paymentEnabled,false);
+  assert.doesNotMatch(JSON.stringify(publicResult),/supplierSku|snapshotId|configuration_id|invoiceUrl|curtainsuk_/);
+});
+test('final handoff rejects stale review after membership, revision, postcode, room-name or receipt changes',async()=>{
+  const original=await checkoutInput();
+  for(const change of [(h:HouseReviewRequest)=>h.revision++,(h:HouseReviewRequest)=>h.rooms[0].curtains.pop(),(h:HouseReviewRequest)=>h.postcode='SW1A 1AA',(h:HouseReviewRequest)=>h.rooms[0].room_name='New room',(h:HouseReviewRequest)=>h.rooms[0].curtains[0].receipt+='bad']){
+    const input=structuredClone(original);change(input.house);await assert.rejects(prepareHouseCheckout(input,checkoutService()),/REVIEW_CHANGED/);
+  }
+  await assert.rejects(prepareHouseCheckout(original,checkoutService({now:()=> '2026-09-21T21:06:00.000Z'})),/EXPIRED/);
+  await assert.rejects(prepareHouseCheckout({...original,reviewToken:original.reviewToken+'bad'},checkoutService()),/INTEGRITY/);
+  await assert.rejects(prepareHouseCheckout({...original,measurementsConfirmed:false},checkoutService()),/CONFIRMATION/);
+});
+test('price changes between review and Continue return fresh line review, then require exact per-line amount acceptance',async()=>{
+  const input=await checkoutInput();const more=checkoutService({async calculate(c){return{...calculateProductionMtmCustomerPrice(c,{...source,supplierCostPerMetre:{amountMinor:1800,currency:'GBP'},supplierCostEffectiveFrom:'2026-09-21'}),stockSnapshotStale:false,commercialState:'ORDER_READY'};}});
+  const changed=await prepareHouseCheckout(input,more);assert.equal(changed.prepared,false);assert.ok(changed.review.lines.every(l=>l.status==='PRICE_CHANGED'));
+  const refreshed={...input,reviewToken:changed.review.reviewToken};await assert.rejects(prepareHouseCheckout(refreshed,more),/CONFIRMATION/);
+  const accepted={...refreshed,acceptedPriceChanges:changed.review.lines.map(l=>({configuration_id:l.configuration_id,currentPrice:l.currentPrice!}))};
+  const wrong=structuredClone(accepted);wrong.acceptedPriceChanges[0].currentPrice--;await assert.rejects(prepareHouseCheckout(wrong,more),/CONFIRMATION/);
+  assert.equal((await prepareHouseCheckout(accepted,more)).prepared,true);
+});
+test('combined stock changing after review returns blocked lines and creates no prepared contract',async()=>{
+  const input=await checkoutInput();const result=await prepareHouseCheckout(input,checkoutService({async stock(){return false;}}));
+  assert.equal(result.prepared,false);assert.ok(result.review.lines.every(l=>l.status==='BLOCKED'));assert.equal('contract' in result,false);
+});
+test('real server binding defaults to no writes and rejects production transport before any network call',async()=>{
+  const prepared=await prepareHouseCheckout(await checkoutInput(),checkoutService());
+  const {serverScriptHooks:hooks}=await import('../../../scripts/curtainsuk-server-script-loader.mjs');
+  const originalFetch=globalThis.fetch;let networkCalls=0;
+  globalThis.fetch=async()=>{networkCalls++;throw Error('UNEXPECTED_NETWORK');};
+  try{
+    const {executePreparedHouseCheckout}=await import('../rooms-checkout-server');
+    const result=await executePreparedHouseCheckout(prepared);assert.equal(result.prepared,true);assert.equal(result.paymentEnabled,false);assert.equal(result.checkoutUrl,null);assert.equal(result.shopifyWritePerformed,false);
+    await assert.rejects(executePreparedHouseCheckout(prepared,{mode:'CREATE_PRODUCTION_DRAFT',deploymentStage:'PRODUCTION',shopDomain:'carpetup.myshopify.com',clientId:'unused',clientSecret:'unused',realPaymentsDisabledConfirmed:true,requestTimeoutMs:1000}),/PUBLIC_PAYMENT_DISABLED/);
+    assert.equal(networkCalls,0);
+  }finally{globalThis.fetch=originalFetch;hooks.deregister();}
+});
+test('new accepted membership, destination or price has distinct execution identity while retained identity stays stable',async()=>{
+  const input=await checkoutInput(),s=checkoutService();const before=await prepareHouseCheckout(input,s);assert.equal(before.prepared,true);if(!before.prepared)return;
+  for(const kind of ['membership','destination','price']){
+    const next=structuredClone(input);if(kind==='membership'){next.house.rooms[0].curtains.pop();next.house.revision++;}if(kind==='destination')next.house.postcode='SW1A 1AA';
+    const changedService=kind==='price'?checkoutService({async calculate(c){return{...calculateProductionMtmCustomerPrice(c,{...source,supplierCostPerMetre:{amountMinor:1800,currency:'GBP'},supplierCostEffectiveFrom:'2026-09-21'}),stockSnapshotStale:false,commercialState:'ORDER_READY'};}}):s;
+    const review=await reviewHouse(next.house,changedService);next.reviewToken=review.reviewToken;next.acceptedPriceChanges=review.lines.filter(l=>l.status==='PRICE_CHANGED').map(l=>({configuration_id:l.configuration_id,currentPrice:l.currentPrice!}));
+    const prepared=await prepareHouseCheckout(next,changedService);assert.equal(prepared.prepared,true);if(!prepared.prepared)return;
+    assert.notEqual(prepared.contract.fingerprint,before.contract.fingerprint);assert.notEqual(prepared.curtains[0].handoff.snapshot.configurationId,before.curtains[0].handoff.snapshot.configurationId);
+    assert.equal(prepared.curtains[0].retainedConfigurationId,before.curtains[0].retainedConfigurationId);
+  }
+});
 
 test('retaining independently uses the production engine and exact fabric, without a fixed retail fixture',async()=>{const line=await retained();assert.equal(line.pricing_version,ROOMS_RULESET);assert.equal(line.fabric_master_id,source.id);assert.deepEqual(line.configuration,configuration);assert.equal(line.last_validated_price,(await service().calculate(configuration)).totalAmountMinor);assert.equal(unseal<any>('retained',line.receipt,secret).configuration_id,line.configuration_id);});
 test('old price token and tampered measurements cannot enter a saved room',async()=>{const price=await service().calculate(configuration);const configurationId=randomUUID();const token=signReviewSubmissionWithSecret({configuration,configurationId,outcome:price.outcome,totalAmountMinor:price.totalAmountMinor},secret,1);await assert.rejects(retainCurtain({configuration,configurationId,priceConfirmationToken:token},service()),/RECONFIRM/);const fresh=signReviewSubmissionWithSecret({configuration,configurationId,outcome:price.outcome,totalAmountMinor:price.totalAmountMinor},secret);await assert.rejects(retainCurtain({configuration:{...configuration,widthCm:202},configurationId,priceConfirmationToken:fresh},service()),/RECONFIRM/);});

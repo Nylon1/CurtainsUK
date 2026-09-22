@@ -1,6 +1,6 @@
 # Build My Rooms / House of Curtains V1
 
-Status: **unpublished local implementation; multi-curtain contract built; public House payment disabled**.
+Status: **final local integration ready for owner visual review; public House payment disabled; not published**.
 
 ## Source and deployment policy
 
@@ -40,7 +40,7 @@ Retained receipts are domain-separated HMACs using the existing server-only sign
 
 House review also verifies aggregate cloth requirements for repeated use of the same fabric. Delivery uses one existing SINGLE_RATE quote with the actual maximum drop/review flags and aggregate requirements. No delivery amount is hard-coded into the customer UI. A future departure from the approved SINGLE_RATE policy fails closed pending review.
 
-Five-minute review evidence binds membership, room names, house revision, destination, current prices and configuration receipts. It is not persisted as a reusable checkout. Price changes need individual acknowledgement; all measurements need final confirmation. Failed curtains leave unaffected rooms intact. No stale Shopify draft can become authoritative because this implementation creates none.
+Five-minute review evidence binds membership, room names, house revision, destination, current prices and configuration receipts using compact signed digests. It is not persisted as a reusable checkout. Price changes need individual acknowledgement of each current amount; all measurements need final confirmation. Failed curtains leave unaffected rooms intact. No stale Shopify draft can become authoritative because the public preparation path creates none.
 
 ## Multi-snapshot paid-order contract
 
@@ -67,50 +67,85 @@ Sending many curtain lines under the first snapshot would omit other curtains
 from production review. Creating several unrelated checkouts would violate the
 single House order. Neither behaviour is allowed.
 
-`ROOMS_CHECKOUT_RELEASED=false` and the server checkout command fail closed
-independently of theme/env gates. The production transport is intentionally not
-wired to public House checkout. On 22 September 2026 the linked project received
+`ROOMS_CHECKOUT_RELEASED=false` and an explicit null transport configuration keep
+public House payment closed independently of theme/env gates. Continue now calls
+the server preparation bridge described below. On 22 September 2026 the linked project received
 migration `20260921205826_multi_curtain_paid_order_contract`: RLS remained on
 each new private table, browser roles retained no grants, and append-only
 curtain/release triggers were present. One operator-authenticated, non-payable
 House rehearsal used two rooms and three independently immutable snapshots (two
 using the same SDG Fabric Master), revalidated combined fresh stock and ruleset
-`3.0.0-production.1`, and exactly reconciled £2,149.00 goods + £360.33 VAT +
-one £12.95 delivery line = £2,161.95 in CurtainsUK and Shopify. The invisible
+`3.0.0-production.1`, and exactly reconciled £2,149.00 goods +
+one £12.95 delivery line = £2,161.95, including £360.33 VAT, in CurtainsUK and Shopify. The invisible
 Draft Order was deleted and the temporary route/credential removed. A separate
 rolled-back database transaction proved House webhook reconstruction, no direct
 `PAID → WORKROOM_RELEASED` transition, and exactly three release rows only after
 the explicit review/approval chain. No paid/release rehearsal records persisted.
 
-Before a separate public House-payment release, connect the final reviewed House
-to fresh snapshot preparation and durable House execution persistence, obtain
-Astra visual approval, reconcile the scoped live-theme diff, and obtain new owner
-authority. No House payment flag is implied by this proof.
+Before a separate public House-payment release, verify the final bridge in the
+approved hosted environment, obtain owner visual approval, reconcile the scoped
+live-theme diff, and obtain new owner authority. No House payment flag is implied
+by this proof or by the local final integration.
 
 `rooms-order-contract.ts` prepares the combined contract using existing immutable
 single-line builders, one delivery and private per-line identity.
 `rooms-draft-order-repository.ts` supplies durable House claim/receipt helpers
-for the later transport. Contract tests use synthetic Shopify financial
+used by the nonpayable server binding. Contract tests use synthetic Shopify financial
 responses; they are **not** evidence of live Shopify reconciliation.
 
 The staff-reviewed/manual-quote resume route is unchanged; the new retention adapter currently handles approved automated instant-price configurations only. It does not claim to import reviewed specialist quotes.
 
 ## Local review and tests
 
-Run `npm run preview:rooms` at loopback `http://127.0.0.1:4348`. The preview has a conspicuous fixture banner, example-curtain/10-curtain controls and price/stock failure scenarios. It uses real existing production calculation code with labelled fixture supplier costs and stock, approved catalogue-image mappings, and ephemeral local signing. It loads no production credentials. Browse/Fabric Intelligence/Make Curtains navigation destinations are explicitly labelled local placeholders, not live integration tests.
+Run `npm run preview:rooms` at loopback `http://127.0.0.1:4348`. The preview has a conspicuous fixture banner, example-curtain/10-curtain controls and price/stock failure scenarios. It uses real existing production calculation code with labelled fixture supplier costs and stock, approved catalogue-image mappings, and ephemeral local signing. It loads no production credentials. Browse/Fabric Intelligence are labelled navigation placeholders. The Make Curtains fixture exercises the actual existing room-choice/Add hook and retain endpoint with a server-priced example; it does not reproduce or prove the live configurator. Three exact approved public image mappings are retained in `scripts/rooms-preview-media.json`, avoiding reliance on an ignored local media report.
 
-- `npm run test:rooms`: 31 domain/store/contract/integration-guard tests.
+- `npm run test:rooms`: 35 domain/store/contract/final-bridge tests.
 - `npm run test:storefront`: run before a deployment; local source tests are expected to include the multi-contract suite.
 - `npx tsc --noEmit --incremental false`: passed.
 - Shopify Liquid skill validation: all ten changed theme/template/assets/locale files passed.
-- `npm run verify:rooms`: 21 local browser checks, no browser errors. Evidence: `artifacts/build-my-rooms-v1/browser-verification.json`.
+- `npm run verify:rooms`: see the current exact check count and result in `artifacts/build-my-rooms-v1/browser-verification.json`.
 - Browser checks: 1/3/10 refresh, real browser close/reopen with persistent profile, local navigation/back/forward, one room with multiple windows, multiple rooms, rename/add/remove, changed price, unavailable/non-commercial/out-of-stock, final empty state; desktop 1440 / 390 / 412 no overflow with 44px removal controls.
 - Storage corruption/quota, cross-tab conflicts, stale/tampered receipt, compatibility, draft-rules rejection, cumulative stock, 1/2/10-line penny reconciliation, House line property tampering, generic exact-total execution and House idempotency identity are covered by isolated tests.
 
 Screenshots: `desktop.png`, `mobile-390.png`, `mobile-412.png`, `review.png`, `changed-price.png`, `empty-mobile.png` in the same artifacts folder. All are local fixtures.
 
+## Final integration — 22 September 2026
+
+`rooms-checkout.ts` verifies the signed review and full House request, then calls
+the same authoritative review again. Changes since review return fresh line
+issues/prices, clear the old confirmations and leave device storage untouched.
+Only the exact reviewed current amount can satisfy each price acknowledgement.
+The existing immutable snapshot builder and checkout gate prepare every curtain,
+then `buildHouseDraftContract` combines them with one delivery and exact included VAT.
+
+Execution configuration IDs are deterministic for the accepted House/commercial
+revision; unchanged retries preserve the snapshot and contract identity. A new
+accepted price, membership or destination gets distinct execution IDs, avoiding
+the existing database uniqueness constraint on configuration IDs. The original
+saved curtain ID remains in `_curtainsuk_retained_configuration_id`; House/Room
+identity and raw validated configuration remain in the private server record.
+The existing persistence summary retains interlining, stack direction and other
+validated options in addition to the established measurement snapshot.
+
+`rooms-checkout-server.ts` binds prepared snapshots to the existing persistence,
+House claim/recovery, exact Shopify financial validation and execution-receipt
+services. Its default is no writes; the public command passes **null explicitly**
+and never reads the single-curtain payment environment configuration. Production
+transport is rejected. The owner can exercise Continue locally and see a truthful
+prepared-but-not-open result; no invoice URL or private production attributes are
+returned. Nonpayable operator execution is implemented but was not executed in
+this final integration task. The earlier private live rehearsal remains separate
+evidence; it does not prove deployment of this new bridge.
+
+The final acceptance matrix and evidence limitations are in
+`artifacts/build-my-rooms-v1/final-integration.md`. No remote deployment, Draft
+Order, theme duplication, theme publication, payment or manufacture was performed.
+
 ## Remaining release verification
 
-Do not enable the flags or deploy incomplete functionality to live for preview. Outstanding: owner visual review; server bridge from fresh House review to immutable snapshot preparation; canonical-live diff reconciliation and Shopify-hosted rendering. No payment or manufacture action is authorised by this local build.
+Do not enable the flags or deploy to live for preview. Outstanding: owner visual
+approval, canonical-live diff reconciliation, Shopify-hosted rendering and hosted
+verification of this exact final bridge before a separately authorised release.
+No payment or manufacture action is authorised by this local build.
 
 Customer Trust V1, canonical footer/policies, consent, Fabric Master, production ruleset, stock projection, compatibility, Guided Measure, existing payment/webhook and workroom gates must remain intact during any later scoped deployment.

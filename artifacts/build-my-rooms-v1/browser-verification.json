@@ -8,6 +8,11 @@
     "Local navigation/back/forward: /pages/fabric-library?view=browse-fabrics",
     "Local navigation/back/forward: /apps/curtainsuk-decision/consultation?experience=premium&entry=match",
     "Local navigation/back/forward: /pages/curtain-visualiser?fabric=pt-4269-147&rooms_new=1",
+    "Actual RoomsFlow Add + server retain fixture saves one curtain in custom room",
+    "One room / two windows, same exact fabric, distinct curtain identities and refresh persistence",
+    "Continue calls fresh multi-line preparation; no payment/order/URL, saved House unchanged",
+    "Every changed line accepted at exact reviewed price before successful nonpayable handoff",
+    "Combined stock fails between review and Continue with line-specific issues and retained House",
     "1440px: no overflow; ten visual cards; 44px removal targets",
     "390px: no overflow; ten visual cards; 44px removal targets",
     "412px: no overflow; ten visual cards; 44px removal targets",
@@ -24,6 +29,11 @@
     "Final removal produces intentional empty state"
   ],
   "screenshots": [
+    "add-to-rooms.png",
+    "two-windows.png",
+    "prepared-disabled.png",
+    "acknowledged-price.png",
+    "combined-stock.png",
     "desktop.png",
     "mobile-390.png",
     "mobile-412.png",
@@ -31,13 +41,14 @@
     "changed-price.png",
     "empty-mobile.png"
   ],
+  "walkthroughBlocked": "Browser recording requires ffmpeg, which is unavailable in this runtime. Screenshot sequence covers the same walkthrough.",
   "browserErrors": {
     "errors": [],
     "lifecycle": {
       "effectiveLaunch": {
         "browserLaunched": true,
         "engine": "chrome",
-        "launchHash": 7921533071014542000
+        "launchHash": 8275779836577801000
       },
       "launched": false,
       "relaunchedBrowser": false,

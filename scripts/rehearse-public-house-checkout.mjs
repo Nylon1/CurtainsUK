@@ -1,9 +1,13 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 const APP_PROXY = 'https://www.curtainsuk.com/apps/curtainsuk-decision';
 const STORE = 'carpetup.myshopify.com';
+const CHECKPOINT = join(tmpdir(), 'curtainsuk-private-house-checkout-rehearsal.json');
 
 function money(minor) { return `£${(minor / 100).toFixed(2)}`; }
 async function post(operation, body) {
@@ -47,10 +51,6 @@ const configurations = [
   { windowSlug: 'standard-window', measurementBasis: 'TRACK_WIDTH', hardware: 'TRACK', widthCm: 180, dropCm: 210, fabricId: 'pt-4262-770', heading: 'PENCIL_PLEAT', lining: 'STANDARD', construction: 'PAIR', stackDirection: 'SPLIT' },
 ];
 const expectedGoods = [66100, 63500, 53200];
-let draftId = null;
-let houseId = null;
-let rehearsalToken = null;
-
 async function removeOnlyOrphanedHouseDraft(token) {
   const data = await graphql(token, `query HouseDrafts { draftOrders(first: 10, query: "tag:CURTAINSUK_PRODUCTION") { nodes { id status email customAttributes { key value } } } }`);
   const candidates = data.draftOrders.nodes.filter(draft => draft.status === 'OPEN' && draft.email === null
@@ -61,12 +61,42 @@ async function removeOnlyOrphanedHouseDraft(token) {
   console.log('Orphaned private House Draft Order cleanup: PASS');
 }
 
-try {
-  rehearsalToken = await shopifyAccessToken();
-  if (process.argv.includes('--clean-orphan')) {
-    await removeOnlyOrphanedHouseDraft(rehearsalToken);
-    process.exit(0);
+async function verifyAndCleanPrivateDraft() {
+  if (!existsSync(CHECKPOINT)) throw Error('No private House checkout rehearsal is awaiting verification.');
+  const checkpoint = JSON.parse(readFileSync(CHECKPOINT, 'utf8'));
+  const token = await shopifyAccessToken();
+  const data = await graphql(token, `query Drafts($query: String!) { draftOrders(first: 10, query: $query) { nodes { id status email tags customAttributes { key value } lineItems(first: 10) { nodes { title quantity originalTotalSet { presentmentMoney { amount currencyCode } } customAttributes { key value } } } totalLineItemsPriceSet { presentmentMoney { amount currencyCode } } totalShippingPriceSet { presentmentMoney { amount currencyCode } } totalTaxSet { presentmentMoney { amount currencyCode } } totalPriceSet { presentmentMoney { amount currencyCode } } } } }`, { query: 'tag:CURTAINSUK_PRODUCTION' });
+  const matches = data.draftOrders.nodes.filter(draft => draft.customAttributes.some(attribute => attribute.key === 'curtainsuk_house_id' && attribute.value === checkpoint.houseId));
+  assert.equal(matches.length, 1); const draft = matches[0];
+  assert.equal(draft.status, 'OPEN'); assert.equal(draft.email, null); assert.equal(draft.lineItems.nodes.length, 3);
+  assert.ok(!draft.tags.some(tag => ['CURTAINSUK_STAGING', 'DO_NOT_FULFIL', 'NO_REAL_PAYMENT'].includes(tag)));
+  const attributes = Object.fromEntries(draft.customAttributes.map(attribute => [attribute.key, attribute.value]));
+  assert.equal(attributes.curtainsuk_house_id, checkpoint.houseId);
+  assert.equal(attributes.curtainsuk_post_payment_state, 'PAID_TO_CURTAINSUK_REVIEW');
+  for (const line of draft.lineItems.nodes) {
+    const lineAttributes = Object.fromEntries(line.customAttributes.map(attribute => [attribute.key, attribute.value]));
+    assert.equal(lineAttributes._curtainsuk_house_id, checkpoint.houseId);
+    assert.equal(lineAttributes._curtainsuk_pricing_rule_version, '3.0.0-production.1');
+    assert.ok(typeof lineAttributes._curtainsuk_configuration_id === 'string');
+    assert.ok(typeof lineAttributes._curtainsuk_fabric_master_id === 'string');
   }
+  const values = draft.lineItems.nodes.map(line => Math.round(Number(line.originalTotalSet.presentmentMoney.amount) * 100));
+  assert.deepEqual(values, expectedGoods);
+  const minor = moneySet => Math.round(Number(moneySet.presentmentMoney.amount) * 100);
+  const shopify = { goods: minor(draft.totalLineItemsPriceSet), delivery: minor(draft.totalShippingPriceSet), vat: minor(draft.totalTaxSet), total: minor(draft.totalPriceSet) };
+  assert.deepEqual(shopify, checkpoint.financials);
+  const result = await graphql(token, `mutation DeleteDraft($input: DraftOrderDeleteInput!) { draftOrderDelete(input: $input) { deletedId userErrors { field message } } }`, { input: { id: draft.id } });
+  if (result.draftOrderDelete.userErrors.length || result.draftOrderDelete.deletedId !== draft.id) throw Error('Private Draft Order rehearsal cleanup failed.');
+  rmSync(CHECKPOINT);
+  console.log(JSON.stringify({ house: '2 rooms / 3 curtains', goods: money(shopify.goods), vat: money(shopify.vat), delivery: money(shopify.delivery), total: money(shopify.total), checkoutUrlVerified: true, idempotency: 'PASS', lineIdentity: 'PASS', invoiceUrlOpened: false, paymentPerformed: false, customerEmail: false, cleanup: 'PASS' }));
+}
+
+if (process.argv.includes('--clean-orphan')) {
+  await removeOnlyOrphanedHouseDraft(await shopifyAccessToken());
+} else if (process.argv.includes('--verify')) {
+  await verifyAndCleanPrivateDraft();
+} else {
+  if (existsSync(CHECKPOINT)) throw Error('A private House rehearsal requires verification and cleanup before another is started.');
   const prices = await Promise.all(configurations.map(configuration => post('price', configuration)));
   prices.forEach((price, index) => {
     assert.equal(price.calculationVersion, '3.0.0-production.1');
@@ -81,7 +111,7 @@ try {
       configuration: configurations[index], configurationId: price.configurationId, priceConfirmationToken: price.reviewSubmissionToken,
     },
   })));
-  houseId = randomUUID();
+  const houseId = randomUUID();
   const firstRoom = randomUUID(); const secondRoom = randomUUID();
   const house = {
     house_id: houseId, revision: 0, postcode: 'BB2 3FA', rooms: [
@@ -105,29 +135,8 @@ try {
   assert.equal(checkout.status, 'SUCCESS'); assert.equal(checkout.paymentEnabled, true); assert.equal(checkout.goods, review.goods);
   assert.equal(checkout.delivery, review.delivery); assert.equal(checkout.vat, review.vat); assert.equal(checkout.total, review.total);
   const safeUrl = new URL(checkout.checkoutUrl); assert.equal(safeUrl.protocol, 'https:'); assert.ok(['www.curtainsuk.com', STORE].includes(safeUrl.hostname));
+  writeFileSync(CHECKPOINT, JSON.stringify({ houseId, financials: { goods: review.goods, delivery: review.delivery, vat: review.vat, total: review.total } }), { encoding: 'utf8', mode: 0o600 });
   const retry = await post('rooms', { action: 'checkout', payload: checkoutInput });
   assert.equal(retry.status, 'SUCCESS'); assert.equal(retry.checkoutUrl, checkout.checkoutUrl);
-  const data = await graphql(rehearsalToken, `query Drafts($query: String!) { draftOrders(first: 10, query: $query) { nodes { id status email tags customAttributes { key value } lineItems(first: 10) { nodes { title quantity originalTotalSet { presentmentMoney { amount currencyCode } } customAttributes { key value } } } totalLineItemsPriceSet { presentmentMoney { amount currencyCode } } totalShippingPriceSet { presentmentMoney { amount currencyCode } } totalTaxSet { presentmentMoney { amount currencyCode } } totalPriceSet { presentmentMoney { amount currencyCode } } } } }`, { query: `tag:CURTAINSUK_PRODUCTION` });
-  const matches = data.draftOrders.nodes.filter(draft => draft.customAttributes.some(attribute => attribute.key === 'curtainsuk_house_id' && attribute.value === houseId));
-  assert.equal(matches.length, 1); const draft = matches[0]; draftId = draft.id;
-  assert.equal(draft.status, 'OPEN'); assert.equal(draft.email, null); assert.equal(draft.lineItems.nodes.length, 3);
-  assert.ok(!draft.tags.some(tag => ['CURTAINSUK_STAGING', 'DO_NOT_FULFIL', 'NO_REAL_PAYMENT'].includes(tag)));
-  const attributes = Object.fromEntries(draft.customAttributes.map(attribute => [attribute.key, attribute.value]));
-  assert.equal(attributes.curtainsuk_house_id, houseId); assert.equal(attributes.curtainsuk_pricing_rule_version, '3.0.0-production.1');
-  assert.equal(attributes.curtainsuk_post_payment_state, 'PAID_TO_CURTAINSUK_REVIEW');
-  const values = draft.lineItems.nodes.map(line => Number(line.originalTotalSet.presentmentMoney.amount) * 100);
-  assert.deepEqual(values, expectedGoods);
-  const minor = moneySet => Math.round(Number(moneySet.presentmentMoney.amount) * 100);
-  const shopify = { goods: minor(draft.totalLineItemsPriceSet), delivery: minor(draft.totalShippingPriceSet), vat: minor(draft.totalTaxSet), total: minor(draft.totalPriceSet) };
-  assert.deepEqual(shopify, { goods: review.goods, delivery: review.delivery, vat: review.vat, total: review.total });
-  console.log(JSON.stringify({
-    house: '2 rooms / 3 curtains', goods: money(shopify.goods), vat: money(shopify.vat), delivery: money(shopify.delivery), total: money(shopify.total),
-    checkoutUrlVerified: true, idempotency: 'PASS', lineIdentity: 'PASS', invoiceUrlOpened: false, paymentPerformed: false, customerEmail: false,
-  }));
-} finally {
-  if (draftId && rehearsalToken) {
-    const result = await graphql(rehearsalToken, `mutation DeleteDraft($input: DraftOrderDeleteInput!) { draftOrderDelete(input: $input) { deletedId userErrors { field message } } }`, { input: { id: draftId } });
-    if (result.draftOrderDelete.userErrors.length || result.draftOrderDelete.deletedId !== draftId) throw Error('Private Draft Order rehearsal cleanup failed.');
-    console.log('Private Draft Order rehearsal cleanup: PASS');
-  }
+  console.log(JSON.stringify({ house: '2 rooms / 3 curtains', checkoutUrlVerified: true, idempotency: 'PASS', invoiceUrlOpened: false, paymentPerformed: false, customerEmail: false, next: 'Run --verify to reconcile and delete the private Draft Order.' }));
 }

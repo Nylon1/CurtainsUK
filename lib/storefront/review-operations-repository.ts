@@ -618,59 +618,18 @@ export async function persistStagingCheckoutHandoff(input: {
   return data as Record<string, unknown>;
 }
 
-export async function persistStagingCheckoutSnapshotAndHandoff(input: {
+async function recoverExactCheckoutSnapshotAndHandoff(input: {
   snapshot: Readonly<ImmutableConfigurationSnapshot>;
   customerSummary: Record<string, unknown>;
   handoffId: string;
   preparedBy: string;
-}) {
+}): Promise<Record<string, unknown> | null> {
   const snapshot = input.snapshot;
-  if (snapshot.shipping.status !== "READY" || snapshot.shipping.grossAmountMinor === null) {
-    throw new Error("CHECKOUT_SHIPPING_NOT_READY");
-  }
-  const { data, error } = await createSupplierServiceClient().rpc("create_staging_checkout_snapshot_and_handoff", {
-    p_snapshot: {
-      snapshot_id: snapshot.snapshotId,
-      configuration_id: snapshot.configurationId,
-      review_request_id: snapshot.reviewRequestId,
-      review_revision_id: snapshot.reviewRevisionId,
-      pricing_outcome: snapshot.outcome,
-      window_type_slug: snapshot.windowType,
-      measurements: snapshot.measurements,
-      fabric_master_id: snapshot.fabricMasterId,
-      supplier_sku: snapshot.supplierSku,
-      heading: snapshot.heading,
-      lining: snapshot.lining,
-      construction: snapshot.construction,
-      calculated_fabric_metres: snapshot.calculatedFabricMetres,
-      pricing_rule_version: snapshot.pricingRuleVersion,
-      net_amount_minor: snapshot.customerPrice.netAmountMinor,
-      vat_amount_minor: snapshot.customerPrice.vatAmountMinor,
-      vat_rate_basis_points: snapshot.customerPrice.vatRateBasisPoints,
-      customer_price_minor: snapshot.customerPrice.grossAmountMinor,
-      availability_state: snapshot.availability,
-      shipping_region: snapshot.shipping.region,
-      shipping_parcel_class: snapshot.shipping.parcelClass,
-      shipping_gross_amount_minor: snapshot.shipping.grossAmountMinor,
-      customer_summary: input.customerSummary,
-      approval_reference: snapshot.reviewRequestId,
-    },
-    p_handoff_id: input.handoffId,
-    p_prepared_by: input.preparedBy,
-  });
-  if (error) {
-    console.error(JSON.stringify({
-      event: "CURTAINSUK_CHECKOUT_HANDOFF_PERSISTENCE_REJECTED",
-      code: typeof error.code === "string" ? error.code : null,
-      message: typeof error.message === "string" ? error.message.slice(0, 240) : null,
-      details: typeof error.details === "string" ? error.details.slice(0, 240) : null,
-      hint: typeof error.hint === "string" ? error.hint.slice(0, 240) : null,
-    }));
-    // The configuration ID and derived snapshot/handoff IDs are stable. If a
-    // response was lost after commit, return the exact existing receipt only
-    // after proving that every immutable customer-facing field still matches.
-    const database = createSupplierServiceClient();
-    const { data: existingSnapshot, error: snapshotError } = await database
+  // A retry may arrive after the database committed but before the browser
+  // received a response. Read by primary snapshot identity first, then accept
+  // only a byte-for-byte immutable match with the same handoff identity.
+  const database = createSupplierServiceClient();
+  const { data: existingSnapshot, error: snapshotError } = await database
       .from("staging_configuration_snapshots")
       .select("snapshot_id,configuration_id,review_request_id,review_revision_id,pricing_outcome,window_type_slug,measurements,fabric_master_id,supplier_sku,heading,lining,construction,calculated_fabric_metres,pricing_rule_version,net_amount_minor,vat_amount_minor,customer_price_minor,vat_rate_basis_points,currency,availability_state,shipping_region,shipping_parcel_class,shipping_gross_amount_minor,customer_summary")
       // A House retry recovers by the immutable snapshot identity. The
@@ -680,7 +639,8 @@ export async function persistStagingCheckoutSnapshotAndHandoff(input: {
       // historic configuration identifier happens to recur elsewhere.
       .eq("snapshot_id", snapshot.snapshotId)
       .maybeSingle();
-    if (snapshotError || !existingSnapshot) throw new Error("CHECKOUT_HANDOFF_PERSISTENCE_FAILED");
+  if (snapshotError) throw new Error("CHECKOUT_HANDOFF_PERSISTENCE_FAILED");
+  if (!existingSnapshot) return null;
     const canonical = (value: unknown): string => {
       if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
       if (value && typeof value === "object") {
@@ -716,23 +676,73 @@ export async function persistStagingCheckoutSnapshotAndHandoff(input: {
       && text(existingSnapshot.shipping_parcel_class) === snapshot.shipping.parcelClass
       && Number(existingSnapshot.shipping_gross_amount_minor) === snapshot.shipping.grossAmountMinor
       && canonical(existingSnapshot.customer_summary) === canonical(input.customerSummary);
-    if (!matches) throw new Error("CHECKOUT_IDEMPOTENCY_CONFLICT");
-    const { data: existingHandoff, error: handoffError } = await database
+  if (!matches) throw new Error("CHECKOUT_IDEMPOTENCY_CONFLICT");
+  const { data: existingHandoff, error: handoffError } = await database
       .from("staging_checkout_handoffs")
       .select("handoff_id,snapshot_id")
       .eq("snapshot_id", snapshot.snapshotId)
       .maybeSingle();
-    if (handoffError || !existingHandoff
-        || text(existingHandoff.handoff_id) !== input.handoffId
-        || text(existingHandoff.snapshot_id) !== snapshot.snapshotId) {
-      throw new Error("CHECKOUT_IDEMPOTENCY_CONFLICT");
-    }
-    return {
+  if (handoffError || !existingHandoff
+      || text(existingHandoff.handoff_id) !== input.handoffId
+      || text(existingHandoff.snapshot_id) !== snapshot.snapshotId) {
+    throw new Error("CHECKOUT_IDEMPOTENCY_CONFLICT");
+  }
+  return {
+    snapshot_id: snapshot.snapshotId,
+    configuration_id: snapshot.configurationId,
+    handoff_id: input.handoffId,
+    idempotent_recovery: true,
+  };
+}
+
+export async function persistStagingCheckoutSnapshotAndHandoff(input: {
+  snapshot: Readonly<ImmutableConfigurationSnapshot>;
+  customerSummary: Record<string, unknown>;
+  handoffId: string;
+  preparedBy: string;
+}) {
+  const snapshot = input.snapshot;
+  if (snapshot.shipping.status !== "READY" || snapshot.shipping.grossAmountMinor === null) {
+    throw new Error("CHECKOUT_SHIPPING_NOT_READY");
+  }
+  const existing = await recoverExactCheckoutSnapshotAndHandoff(input);
+  if (existing) return existing;
+  const { data, error } = await createSupplierServiceClient().rpc("create_staging_checkout_snapshot_and_handoff", {
+    p_snapshot: {
       snapshot_id: snapshot.snapshotId,
       configuration_id: snapshot.configurationId,
-      handoff_id: input.handoffId,
-      idempotent_recovery: true,
-    };
+      review_request_id: snapshot.reviewRequestId,
+      review_revision_id: snapshot.reviewRevisionId,
+      pricing_outcome: snapshot.outcome,
+      window_type_slug: snapshot.windowType,
+      measurements: snapshot.measurements,
+      fabric_master_id: snapshot.fabricMasterId,
+      supplier_sku: snapshot.supplierSku,
+      heading: snapshot.heading,
+      lining: snapshot.lining,
+      construction: snapshot.construction,
+      calculated_fabric_metres: snapshot.calculatedFabricMetres,
+      pricing_rule_version: snapshot.pricingRuleVersion,
+      net_amount_minor: snapshot.customerPrice.netAmountMinor,
+      vat_amount_minor: snapshot.customerPrice.vatAmountMinor,
+      vat_rate_basis_points: snapshot.customerPrice.vatRateBasisPoints,
+      customer_price_minor: snapshot.customerPrice.grossAmountMinor,
+      availability_state: snapshot.availability,
+      shipping_region: snapshot.shipping.region,
+      shipping_parcel_class: snapshot.shipping.parcelClass,
+      shipping_gross_amount_minor: snapshot.shipping.grossAmountMinor,
+      customer_summary: input.customerSummary,
+      approval_reference: snapshot.reviewRequestId,
+    }, p_handoff_id: input.handoffId, p_prepared_by: input.preparedBy,
+  });
+  if (error) {
+    const recovered = await recoverExactCheckoutSnapshotAndHandoff(input);
+    if (recovered) return recovered;
+    console.error(JSON.stringify({
+      event: "CURTAINSUK_CHECKOUT_HANDOFF_PERSISTENCE_REJECTED",
+      code: typeof error.code === "string" ? error.code : null,
+    }));
+    throw new Error("CHECKOUT_HANDOFF_PERSISTENCE_FAILED");
   }
   return data as Record<string, unknown>;
 }

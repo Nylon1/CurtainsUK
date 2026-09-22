@@ -1,12 +1,14 @@
+import { hciVisualKnowledge } from '@/lib/fabric-master/hci-visual-knowledge';
 import 'server-only';
 import { customerView } from './hci-premium-view';
 
 import { createHash, randomUUID } from 'node:crypto';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
-import { fabricMasterRecordsByIds } from '@/lib/fabric-master/repository';
+import { fabricMasterRecordsByIds, listFabricMasterRecords } from '@/lib/fabric-master/repository';
 import { fabricReadiness } from '@/lib/fabric-master/readiness';
 import { assertNoRawReferenceMedia } from './hci-image-privacy';
 import { signHciCommerceContext } from './hci-commerce-context';
+import { calibrationEligibility, currentCalibrationFabric, calibrationRequestContext } from './hci-calibration';
 import { acceptedHciFeedback } from './hci-feedback';
 import {
   HCI_PREMIUM_BASELINE,
@@ -19,6 +21,10 @@ export { HCI_PREMIUM_BASELINE, HCI_PREMIUM_CONTRACT, PREMIUM_HCI_COOKIE, PREMIUM
 export function issuePremiumOwner() { return randomUUID(); }
 
 async function handoff(view: ReturnType<typeof customerView>) {
+  if (view.calibrationFabric) {
+    const records = await fabricMasterRecordsByIds([view.calibrationFabric.fabricMasterId]);
+    view = { ...view, calibrationFabric: currentCalibrationFabric(view.calibrationFabric, records) };
+  }
   const ids = [...new Set(view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)))];
   // Discovery, upload and palette states have no fabric cards. Avoid a needless
   // Fabric Master round-trip until an exact recommendation needs commercial handoff.
@@ -73,10 +79,15 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const secret = process.env.CURTAINSUK_HCI_SERVICE_TOKEN ?? '';
   if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.hostname === 'invalid.invalid' || secret.length < 32)
     throw Error('HCI_CONFIGURATION_INVALID');
+  const knowledgeEnabled = !prior || prior.private_state?.visualKnowledgePolicy === 'visual-vocabulary-v1';
+  const visualKnowledge = knowledgeEnabled ? await hciVisualKnowledge() : undefined;
+  const calibration = calibrationRequestContext(prior?.private_state, command.action);
+  const calibrationEligibilityIds = calibration.needsEligibility
+    ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`, 'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },
-    body: JSON.stringify({ sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: command.action, recordedAt: new Date().toISOString() }),
+    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: command.action, recordedAt: new Date().toISOString() }),
   });
   if (!upstream.ok) {
     // Operationally useful without logging a photograph, session state, URL or credentials.
@@ -102,7 +113,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     action: command.action,
     directions: prior?.presentation?.directions,
   });
-  const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
+  const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}), commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
   return handoff(customerView(data));
 }

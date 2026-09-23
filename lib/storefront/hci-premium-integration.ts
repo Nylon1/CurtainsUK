@@ -105,18 +105,23 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const secret = process.env.CURTAINSUK_HCI_SERVICE_TOKEN ?? '';
   if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.hostname === 'invalid.invalid' || secret.length < 32)
     throw Error('HCI_CONFIGURATION_INVALID');
-  const knowledgeEnabled = !prior || prior.private_state?.visualKnowledgePolicy === 'visual-vocabulary-v1';
-  const visualKnowledge = knowledgeEnabled ? await hciVisualKnowledge() : undefined;
-  const calibration = calibrationRequestContext(prior?.private_state, command.action);
-  const calibrationEligibilityIds = calibration.needsEligibility
-    ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
-  const styleDirections = styleDirectionRequestContext(prior?.private_state, command.action);
   const selectedPriceLevel = command.action?.type === 'price-level'
     ? command.action.level
     : prior?.private_state?.priceLevel;
   const priceLevelEligibilityIds = selectedPriceLevel
     ? await currentRetailPriceLevelEligibility(selectedPriceLevel)
     : undefined;
+  const knowledgeEnabled = !prior || prior.private_state?.visualKnowledgePolicy === 'visual-vocabulary-v1';
+  // The active price-level cohort is the only catalogue that can participate
+  // in Calibration or Style Directions. Keep the existing governed visual
+  // evidence, but do not send every other tier through the live request.
+  const visualKnowledge = knowledgeEnabled && priceLevelEligibilityIds
+    ? await hciVisualKnowledge(priceLevelEligibilityIds)
+    : undefined;
+  const calibration = calibrationRequestContext(prior?.private_state, command.action);
+  const calibrationEligibilityIds = calibration.needsEligibility
+    ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
+  const styleDirections = styleDirectionRequestContext(prior?.private_state, command.action);
   const styleDirectionEligibilityIds = styleDirections.needsEligibility
     ? await currentRetailStyleDirectionEligibility() : undefined;
   const upstream = await fetch(endpoint, {

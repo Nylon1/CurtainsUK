@@ -54,26 +54,52 @@ export function mapHciFabricKnowledge(row: VisualRow): HciFabricKnowledge {
   };
 }
 
-let cached: { until: number; value: Promise<[string, HciFabricKnowledge][]> } | undefined;
+type CachedKnowledge = { until: number; value: Promise<[string, HciFabricKnowledge][]> };
+const cached = new Map<string, CachedKnowledge>();
+
+function requestedIds(fabricIds?: readonly string[]) {
+  if (!fabricIds) return undefined;
+  return [...new Set(fabricIds)].sort();
+}
 
 /** Server-to-server only. The browser never receives this source projection. */
-export function hciVisualKnowledge() {
-  if (cached && cached.until > Date.now()) return cached.value;
+export function hciVisualKnowledge(fabricIds?: readonly string[]) {
+  const ids = requestedIds(fabricIds);
+  const key = ids ? ids.join('\n') : '*';
+  const now = Date.now();
+  for (const [candidate, entry] of cached) if (entry.until <= now) cached.delete(candidate);
+  const previous = cached.get(key);
+  if (previous) return previous.value;
   const value = (async () => {
     const db = createSupplierServiceClient();
     const rows: VisualRow[] = [];
-    for (let from = 0; ; from += 1000) {
-      const { data, error } = await db.from('fabric_visual_knowledge_read_cache')
-        .select('fabric_id,visual_fields').in('knowledge_state', ['COMPLETE', 'PARTIAL_GOVERNED'])
-        .order('fabric_id').range(from, from + 999);
-      if (error) throw Error('FABRIC_VISUAL_KNOWLEDGE_UNAVAILABLE');
-      const page = (data ?? []) as VisualRow[];
-      rows.push(...page);
-      if (page.length < 1000) break;
+    if (ids) {
+      // Price level is a governed commercial boundary. Reading only its exact
+      // Fabric Master cohort avoids serialising unrelated visual evidence into
+      // the customer request while retaining all richer evidence for candidates
+      // that can actually be selected.
+      for (let from = 0; from < ids.length; from += 400) {
+        const { data, error } = await db.from('fabric_visual_knowledge_read_cache')
+          .select('fabric_id,visual_fields').in('knowledge_state', ['COMPLETE', 'PARTIAL_GOVERNED'])
+          .in('fabric_id', ids.slice(from, from + 400));
+        if (error) throw Error('FABRIC_VISUAL_KNOWLEDGE_UNAVAILABLE');
+        rows.push(...((data ?? []) as VisualRow[]));
+      }
+    } else {
+      for (let from = 0; ; from += 1000) {
+        const { data, error } = await db.from('fabric_visual_knowledge_read_cache')
+          .select('fabric_id,visual_fields').in('knowledge_state', ['COMPLETE', 'PARTIAL_GOVERNED'])
+          .order('fabric_id').range(from, from + 999);
+        if (error) throw Error('FABRIC_VISUAL_KNOWLEDGE_UNAVAILABLE');
+        const page = (data ?? []) as VisualRow[];
+        rows.push(...page);
+        if (page.length < 1000) break;
+      }
     }
-    return rows.map((row) => [row.fabric_id, mapHciFabricKnowledge(row)] as [string, HciFabricKnowledge]);
+    return rows.sort((a, b) => a.fabric_id.localeCompare(b.fabric_id))
+      .map((row) => [row.fabric_id, mapHciFabricKnowledge(row)] as [string, HciFabricKnowledge]);
   })();
-  cached = { until: Date.now() + 60_000, value };
-  value.catch(() => { if (cached?.value === value) cached = undefined; });
+  cached.set(key, { until: now + 60_000, value });
+  value.catch(() => { if (cached.get(key)?.value === value) cached.delete(key); });
   return value;
 }

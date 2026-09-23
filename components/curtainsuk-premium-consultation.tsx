@@ -32,6 +32,8 @@ type View = {
   palette: { recordId: string; state: PaletteState } | null;
   directions: Direction[];
   learning: { events: unknown[]; summary: string[] } | null;
+  /** Gateway-owned delivery state; HCI retains the complete persisted selection. */
+  directionDelivery?: { current: number; total: number };
 };
 type Fabric = { id: string; brand: string; design: string; colour: string; images: { url: string }[]; sampleAvailable: boolean; availability: string; configurable: boolean; configurationMessage: string };
 
@@ -61,35 +63,56 @@ export default function CurtainsUkPremiumConsultation() {
   const resumeSession = useRef<string | null>(null);
   const [reviewPalette, setReviewPalette] = useState(false);
   const [briefEditing, setBriefEditing] = useState<string | null>(null);
+  const [directionProcessing, setDirectionProcessing] = useState<'search' | 'create' | null>(null);
+  const directionLoadLock = useRef(false);
+  const deliveredDirections = useRef<Record<number, Direction>>({});
 
-  const send = async (action?: Record<string, unknown>, retry = false, paletteRequest = false) => {
-    if (requestLock.current) return null;
-    requestLock.current = true;
+  const send = async (action?: Record<string, unknown>, retry = false, paletteRequest = false, background = false) => {
+    const directionLoad = action?.type === 'direction-load';
+    if (background ? directionLoadLock.current : requestLock.current) return null;
+    if (background) directionLoadLock.current = true;
+    else requestLock.current = true;
     const payload = retry && pending.current ? pending.current : {
       requestId: crypto.randomUUID(),
       sessionId: latestView.current?.sessionId ?? resumeSession.current,
       revision: latestView.current?.revision ?? null,
       ...(action ? { action } : {}),
     };
-    pending.current = payload;
-    setBusy(true); setNotice('');
+    if (!background) pending.current = payload;
+    if (!background) { setBusy(true); setNotice(''); }
     try {
       const endpoint = premiumProxyEnabled() ? premiumProxyPath('premium-command') : '/api/curtain-consultation-premium';
       const body = premiumProxyEnabled() ? { capability: await premiumProxyCapability(), command: payload } : payload;
       const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const data = await response.json();
       if (!response.ok) throw Error(data.error || 'Your consultation is temporarily unavailable.');
-      data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, Boolean(payload.action) || !payload.sessionId);
+      data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, !directionLoad && (Boolean(payload.action) || !payload.sessionId));
+      if (directionLoad) {
+        // This reads an already persisted direction. An older background response
+        // must never overwrite a newer customer-preference revision.
+        if (latestView.current?.revision !== payload.revision || !data.directionDelivery || data.directions.length !== 1) return null;
+        deliveredDirections.current[Number(action.index)] = data.directions[0] as Direction;
+        data.directions = Object.keys(deliveredDirections.current).map(Number).sort((a, b) => a - b).map((index) => deliveredDirections.current[index]!);
+      } else if (data.directionDelivery) {
+        deliveredDirections.current = {};
+        if (data.directionDelivery.current > 0 && data.directions.length === 1)
+          deliveredDirections.current[data.directionDelivery.current - 1] = data.directions[0] as Direction;
+      } else {
+        deliveredDirections.current = {};
+      }
       resumeSession.current = data.sessionId;
       try { sessionStorage.setItem(premiumSessionStorageKey, data.sessionId); } catch { /* Server evidence remains durable. */ }
-      latestView.current = data; setView(data); pending.current = null;
+      latestView.current = data; setView(data); if (!background) pending.current = null;
       return data as View;
     } catch (error) {
       // Palette failures belong to ReferencePalette and its exact saved-request retry.
       // A failed colour save does not declare the whole consultation unavailable.
-      if (!paletteRequest) setNotice(error instanceof Error ? error.message : 'Your consultation is temporarily unavailable.');
+      if (!paletteRequest && !background) setNotice(error instanceof Error ? error.message : 'Your consultation is temporarily unavailable.');
       return null;
-    } finally { requestLock.current = false; setBusy(false); }
+    } finally {
+      if (background) directionLoadLock.current = false;
+      else { requestLock.current = false; setBusy(false); }
+    }
   };
   useEffect(() => {
     if (!loaded.current) {
@@ -115,6 +138,17 @@ export default function CurtainsUkPremiumConsultation() {
       }
     }));
   }, [view, fabrics]);
+  useEffect(() => {
+    const delivery = view?.directionDelivery;
+    if (!delivery || delivery.current >= delivery.total || directionProcessing === 'search') return;
+    const index = delivery.current;
+    let active = true;
+    void (async () => {
+      const result = await send({ type: 'direction-load', index }, false, false, true);
+      if (active && index === 0 && result) setDirectionProcessing(null);
+    })();
+    return () => { active = false; };
+  }, [view?.directionDelivery?.current, view?.directionDelivery?.total, directionProcessing]);
   useEffect(() => {
     if (!view || reviewPalette || (view.palette && !view.palette.state.confirmedPalette)) return;
     const step = view.phase === 'discovery' ? view.question?.id :
@@ -160,7 +194,7 @@ export default function CurtainsUkPremiumConsultation() {
 
   return <main className={showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell}>
     <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Explore fabrics</a></header>
-    <div className={styles.progress} aria-label="Consultation progress"><span className={roomPalette ? styles.complete : ''}>Your room</span><span className={view.phase !== 'discovery' ? styles.complete : ''}>Your taste</span><span className={view.directions.length ? styles.complete : ''}>Your edit</span></div>
+    <div className={styles.progress} aria-label="Consultation progress"><span className={roomPalette ? styles.complete : ''}>Your room</span><span className={view.phase !== 'discovery' ? styles.complete : ''}>Your taste</span><span className={view.phase === 'directions' || view.phase === 'final' || view.directions.length ? styles.complete : ''}>Your edit</span></div>
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}
     {!showPalette && roomPalette?.confirmedPalette && <button className={styles.textButton} onClick={() => setReviewPalette(true)}>Review my Room Palette</button>}
     {(showUpload || showPalette) && <ReferencePalette
@@ -179,11 +213,19 @@ export default function CurtainsUkPremiumConsultation() {
       <div className={styles.briefIntro}><p className={styles.eyebrow}>Your interior fabric brief</p><h1 id="brief-heading">A direction shaped <em>by you.</em></h1><p>{roomPalette?.confirmedPalette ? 'We’ve brought together your room, what matters to you and the fabrics you responded to.' : 'We’ve brought together what matters to you and the fabrics you responded to.'} This is the brief we’ll use to find your curtains.</p></div>
       <div className={styles.briefSources} aria-label="Sources of your brief"><span>Your room <small>{roomPalette?.confirmedPalette ? 'Confirmed palette' : 'Image optional'}</small></span><span>Your taste <small>What matters to you</small></span><span>Your eye <small>Fabrics you responded to</small></span></div>
       <div className={styles.briefBoard}>{view.interiorBrief.sections.map((section, index) => <article className={styles.briefRow} key={section.dimension}><span className={styles.briefNumber}>{String(index + 1).padStart(2, '0')}</span><div><h2>{section.title}</h2><p>{section.description}</p></div><div className={styles.briefValue}><strong>{section.value}</strong>{section.changed && <small>Your choice</small>}</div><button type="button" disabled={busy} onClick={() => setBriefEditing(briefEditing === section.dimension ? null : section.dimension)} aria-expanded={briefEditing === section.dimension} aria-controls={`brief-${section.dimension.replace('.', '-')}`}>Change</button>{briefEditing === section.dimension && <div id={`brief-${section.dimension.replace('.', '-')}`} className={styles.briefChoices} aria-label={`Change ${section.title}`}><p>Which feels closest to you?</p><div>{section.options.map((option) => <button type="button" key={option.value} aria-pressed={section.value === option.value} disabled={busy} onClick={async () => { if (await send({ type: 'brief-change', id: crypto.randomUUID(), choice: { dimension: section.dimension, value: option.value } })) setBriefEditing(null); }}>{option.label}</button>)}</div></div>}</article>)}</div>
-      <div className={styles.briefFinish}><div><p className={styles.eyebrow}>Before we choose your fabrics</p><h2>Does this feel like you?</h2><p>You can change your brief later. Your room colours and practical needs remain separate.</p></div><button className={styles.primary} disabled={busy} onClick={() => void send({ type: 'brief-confirm', id: crypto.randomUUID() })}>This feels like me →</button></div>
+      <div className={styles.briefFinish}><div><p className={styles.eyebrow}>Before we choose your fabrics</p><h2>Does this feel like you?</h2><p>You can change your brief later. Your room colours and practical needs remain separate.</p></div><button className={styles.primary} disabled={busy} onClick={() => { setDirectionProcessing('search'); void (async () => { const result = await send({ type: 'brief-confirm', id: crypto.randomUUID() }); setDirectionProcessing(result?.directionDelivery?.current === 0 ? 'create' : null); })(); }}>This feels like me →</button></div>
       {view.phase === 'complete' && <p className={styles.briefNext}>Next · <strong>Your edit</strong> — five directions, built from your brief.</p>}
     </section>}
     {!showUpload && !showPalette && !view.interiorBrief && view.phase === 'complete' && <section id="premium-current-step" className={styles.ready}><p className={styles.eyebrow}>Your profile</p><h1>Ready to explore <em>your directions.</em></h1><p>{view.profileSummary}</p><button className={styles.primary} disabled={busy} onClick={() => void send({ type: 'recommend' })}>Show my design directions →</button></section>}
-    {!showUpload && !showPalette && view.directions.length > 0 && view.phase !== 'brief' && <section className={styles.directions}><p className={styles.eyebrow}>{view.phase === 'final' ? 'Your refined shortlist' : view.directions.every((direction) => direction.cards.length > 1) ? 'Your edit' : 'Five design directions'}</p><h1>{view.phase === 'final' ? <>A shortlist shaped <em>by you.</em></> : view.directions.every((direction) => direction.cards.length > 1) ? <>Three directions, <em>built from your brief.</em></> : <>Five ways your room <em>could go.</em></>}</h1>{view.learning?.summary.length ? <p>{view.learning.summary.join(' ')}</p> : <p>Each direction uses your confirmed room context, calibration and real CurtainsUK fabrics.</p>}{view.interiorBrief && <button className={styles.textButton} disabled={busy} onClick={() => void send({ type: 'brief-adjust', id: crypto.randomUUID() })}>Adjust my brief</button>}<div className={styles.directionGrid}>{view.directions.map((direction) => <DirectionCard key={direction.id} direction={direction} fabrics={fabrics} final={view.phase === 'final'} onReaction={(card, reaction, selected = [], likeDirection = false) => setFeedback({ direction, card, reaction, selected, likeDirection })} onOutcome={reportOutcome} commerceUrl={commerceUrl} />)}</div>{view.phase !== 'final' && !view.directions.every((direction) => direction.cards.length > 1) && <button className={styles.primary} disabled={busy} onClick={() => void send({ type: 'finish' })}>Refine my directions →</button>}</section>}
+    {!showUpload && !showPalette && directionProcessing && view.phase === 'directions' && <section id="premium-current-step" className={styles.directionProcessing} aria-live="polite" aria-labelledby="direction-processing-heading"><p className={styles.eyebrow}>Fabric Intelligence</p><h1 id="direction-processing-heading">Creating your <em>fabric directions.</em></h1><p>We’re bringing together the evidence you have already confirmed, then checking each real fabric against the current CurtainsUK collection.</p><ol className={styles.processingStages}>{[
+      ['Combining your colour palette', roomPalette?.confirmedPalette ? 'complete' : 'skipped'],
+      ['Refining your taste preferences', 'complete'],
+      ['Applying your chosen price level', 'complete'],
+      ['Learning from your calibration choices', 'complete'],
+      ['Searching the CurtainsUK fabric collection', directionProcessing === 'search' ? 'active' : 'complete'],
+      ['Creating your fabric directions', directionProcessing === 'create' ? 'active' : 'waiting'],
+    ].map(([label, status]) => <li key={label} className={styles[`processing_${status}`]}>{status === 'complete' ? <span aria-hidden="true">✓</span> : <span aria-hidden="true">{status === 'active' ? '•' : status === 'skipped' ? '—' : '○'}</span>}{label}</li>)}</ol></section>}
+    {!showUpload && !showPalette && !directionProcessing && view.directions.length > 0 && view.phase !== 'brief' && <section className={styles.directions}><p className={styles.eyebrow}>{view.phase === 'final' ? 'Your refined shortlist' : view.directions.every((direction) => direction.cards.length > 1) ? 'Your edit' : 'Five design directions'}</p><h1>{view.phase === 'final' ? <>A shortlist shaped <em>by you.</em></> : view.directions.every((direction) => direction.cards.length > 1) ? <>Three directions, <em>built from your brief.</em></> : <>Five ways your room <em>could go.</em></>}</h1>{view.learning?.summary.length ? <p>{view.learning.summary.join(' ')}</p> : <p>Each direction uses your confirmed room context, calibration and real CurtainsUK fabrics.</p>}{view.directionDelivery && view.directionDelivery.current < view.directionDelivery.total && <p className={styles.nextDirection} aria-live="polite">We’re preparing your next direction while you explore this one.</p>}{view.interiorBrief && <button className={styles.textButton} disabled={busy} onClick={() => void send({ type: 'brief-adjust', id: crypto.randomUUID() })}>Adjust my brief</button>}<div className={styles.directionGrid}>{view.directions.map((direction) => <DirectionCard key={direction.id} direction={direction} fabrics={fabrics} final={view.phase === 'final'} onReaction={(card, reaction, selected = [], likeDirection = false) => setFeedback({ direction, card, reaction, selected, likeDirection })} onOutcome={reportOutcome} commerceUrl={commerceUrl} />)}</div>{view.phase !== 'final' && !view.directions.every((direction) => direction.cards.length > 1) && <button className={styles.primary} disabled={busy} onClick={() => void send({ type: 'finish' })}>Refine my directions →</button>}</section>}
     {feedback && <FeedbackSheet value={feedback} busy={busy} onClose={() => setFeedback(null)} onChange={setFeedback} onSave={async () => { const directionReaction = feedback.likeDirection ? 'LIKE' : feedback.reaction === 'LOVE' ? 'LOVE' : null; const saved = await send({ type: 'feedback', command: { id: crypto.randomUUID(), strategyId: feedback.direction.id, fabricId: feedback.card.reactionId, fabricReaction: feedback.reaction, directionReaction, optionIds: feedback.selected } }); if (saved && await send({ type: 'finish' })) setFeedback(null); }} />}
   </main>;
 }

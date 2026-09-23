@@ -87,6 +87,14 @@ test('price level is a bounded consultation action and never a customer-supplied
   assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'price-level', level: 'MID_RANGE', amount: 4999 } }));
 });
 
+test('progressive direction delivery accepts only one bounded persisted-direction index', () => {
+  const command = premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'direction-load', index: 2 } });
+  assert.equal(command.action?.type, 'direction-load');
+  assert.equal(command.action?.index, 2);
+  for (const index of [-1, 3, 1.5, '1'])
+    assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'direction-load', index } }));
+});
+
 test('price level is retained as a bounded preference in the customer view, without an amount', () => {
   const view = customerView({
     version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId,

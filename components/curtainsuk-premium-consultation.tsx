@@ -165,11 +165,10 @@ export default function CurtainsUkPremiumConsultation() {
   useEffect(() => {
     const delivery = view?.directionDelivery;
     if (!delivery || directionPrepareLock.current) return;
-    const next = delivery.current === 1
-      ? 1
-      : delivery.current === 2 && view.directions[1]?.cards.length > 0
-        ? 2
-        : null;
+    // Each completed prepare advances the persisted delivery cursor. Later
+    // card hydration is deliberately independent of this background work: the
+    // customer can open either saved direction without another HCI call.
+    const next = delivery.current === 1 ? 1 : delivery.current === 2 ? 2 : null;
     if (next !== null) void send({ type: 'direction-prepare', index: next }, false, false, true);
   }, [view?.directionDelivery?.current, view?.directions, view?.revision]);
   useEffect(() => {

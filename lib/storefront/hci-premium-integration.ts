@@ -23,6 +23,8 @@ export function issuePremiumOwner() { return randomUUID(); }
 
 type DirectionDelivery = { current: number; total: number };
 type CustomerPresentation = ReturnType<typeof customerView> & { directionDelivery?: DirectionDelivery };
+type PreparedDirectionStore = Record<string, ReturnType<typeof customerView>['directions'][number]>;
+type StoredCustomerState = Record<string, unknown> & { deliveryPreparedDirections?: PreparedDirectionStore };
 
 function delivery(view: ReturnType<typeof customerView>, current: number, total = 3): CustomerPresentation {
   if (!Number.isSafeInteger(total) || total !== 3 || !Number.isSafeInteger(current) || current < 1 || current > total || current > view.directions.length)
@@ -49,6 +51,39 @@ function initialProgressiveDelivery(view: ReturnType<typeof customerView>): Cust
   // Retain a safe presentation for a short-lived legacy partial result. New
   // sessions never take this path.
   return delivery(view, view.directions.length);
+}
+
+/**
+ * The guarded presentation column has a deliberately small customer-safe size
+ * limit. Keep later directions private until the customer asks for them: their
+ * bounded card payload lives in the private state column, while the durable
+ * presentation holds Direction 1 plus the two direction summaries.
+ */
+function compactDeliveryPresentation(view: ReturnType<typeof customerView>): ReturnType<typeof customerView> {
+  if (!isProgressiveStyleDirections(view) || view.directions.length < 2) return view;
+  return { ...view, directions: view.directions.map((direction, index) => index === 0 ? direction : { ...direction, cards: [] }) };
+}
+
+function preparedDirectionStore(view: ReturnType<typeof customerView>): PreparedDirectionStore | undefined {
+  if (!isProgressiveStyleDirections(view) || view.directions.length < 2) return undefined;
+  return Object.fromEntries(view.directions.slice(1).map((direction, index) => [String(index + 1), direction]));
+}
+
+function expandPreparedDirections(view: ReturnType<typeof customerView>, state: unknown): ReturnType<typeof customerView> {
+  const prepared = (state && typeof state === 'object' && !Array.isArray(state)
+    ? (state as StoredCustomerState).deliveryPreparedDirections
+    : undefined) ?? {};
+  if (!view.directions.some((direction) => direction.cards.length === 0)) return view;
+  return {
+    ...view,
+    directions: view.directions.map((direction, index) => {
+      if (direction.cards.length) return direction;
+      const saved = prepared[String(index)];
+      if (!saved || saved.id !== direction.id || saved.cards.length < 5 || saved.cards.length > 7)
+        throw Error('DIRECTION_DELIVERY_REQUIRED');
+      return saved;
+    }),
+  };
 }
 
 function hydratedDirection(view: ReturnType<typeof customerView>, index: number): CustomerPresentation {
@@ -117,17 +152,18 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   if (prior?.request_id === command.requestId) {
     if (prior.request_digest !== digest) throw Error('HCI_SESSION_CONFLICT');
     const persisted = customerView(prior.presentation);
-    return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(persisted, Number(command.action!.index)) : persisted);
+    const expanded = expandPreparedDirections(persisted, prior.private_state);
+    return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(expanded, Number(command.action!.index)) : persisted);
   }
   if (prior && !command.action) return handoff(initialProgressiveDelivery(customerView(prior.presentation)));
   const expected = prior?.revision ?? -1;
   if ((prior && command.revision !== expected) || (!prior && command.revision !== null)) throw Error('HCI_SESSION_CONFLICT');
   if (command.action?.type === 'direction-hydrate') {
     if (!prior) throw Error('DIRECTION_DELIVERY_REQUIRED');
-    return handoff(hydratedDirection(customerView(prior.presentation), Number(command.action.index)));
+    return handoff(hydratedDirection(expandPreparedDirections(customerView(prior.presentation), prior.private_state), Number(command.action.index)));
   }
   if (command.action?.type === 'outcome') {
-    const priorView = customerView(prior?.presentation);
+    const priorView = expandPreparedDirections(customerView(prior?.presentation), prior?.private_state);
     const direction = priorView.directions.find((entry) => entry.id === command.action!.strategyId);
     if (!direction?.cards.some((card) => card.fabricMasterId === command.action!.fabricMasterId)) throw Error('HCI_CONTEXT_INVALID');
     const event = { event: command.action.event, sessionId: command.sessionId, strategyId: command.action.strategyId, fabricMasterId: command.action.fabricMasterId, policyVersion: HCI_PREMIUM_BASELINE, recommendationVersion: priorView.refinementDigest ?? `initial:${command.sessionId}`, timestamp: new Date().toISOString() };
@@ -188,10 +224,18 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     recommendationVersion: view.refinementDigest ?? `initial:${command.sessionId}`,
     timestamp: new Date().toISOString(),
     action: command.action,
-    directions: prior?.presentation?.directions,
+    directions: prior ? expandPreparedDirections(customerView(prior.presentation), prior.private_state).directions : undefined,
   });
-  const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}), commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
+  const deliveryState = preparedDirectionStore(view);
+  const storedState: StoredCustomerState = {
+    ...result.state,
+    ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}),
+    ...(deliveryState ? { deliveryPreparedDirections: deliveryState } : {}),
+    commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents],
+  };
+  const storedView = compactDeliveryPresentation(view);
+  const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: storedState, p_view: storedView });
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
   const persisted = customerView(data);
-  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(persisted, Number(command.action!.index)) : persisted);
+  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(expandPreparedDirections(persisted, storedState), Number(command.action!.index)) : persisted);
 }

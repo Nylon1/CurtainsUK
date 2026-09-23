@@ -63,6 +63,14 @@ export function premiumHciCommand(value: unknown): PremiumHciCommand {
     fields(action, ['type', 'index']);
     if (!Number.isSafeInteger(action.index) || Number(action.index) < 0 || Number(action.index) > 2) throw Error('HCI_CONTRACT_INVALID');
   }
+  else if (type === 'direction-hydrate') {
+    fields(action, ['type', 'index']);
+    if (!Number.isSafeInteger(action.index) || Number(action.index) < 1 || Number(action.index) > 2) throw Error('HCI_CONTRACT_INVALID');
+  }
+  else if (type === 'direction-prepare') {
+    fields(action, ['type', 'index']);
+    if (!Number.isSafeInteger(action.index) || Number(action.index) < 1 || Number(action.index) > 2) throw Error('HCI_CONTRACT_INVALID');
+  }
   else if (type === 'image') { fields(action, ['type', 'mime', 'bytes', 'referenceType']); if (!['image/jpeg', 'image/png', 'image/webp'].includes(string(action.mime, 30)) || !referenceTypes.includes(string(action.referenceType, 40))) throw Error('HCI_CONTRACT_INVALID'); string(action.bytes, 2_800_000); }
   else if (type === 'palette') { fields(action, ['type', 'edit']); action.edit = paletteEdit(action.edit); }
   else if (type === 'feedback') {

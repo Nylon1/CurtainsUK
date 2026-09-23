@@ -34,13 +34,36 @@ function isProgressiveStyleDirections(view: ReturnType<typeof customerView>) {
   return view.directions.length >= 1 && view.directions.length <= 3 && view.directions.every((direction) => direction.cards.length >= 5 && direction.cards.length <= 7);
 }
 
-function progressiveDelivery(view: ReturnType<typeof customerView>, forceLatest = false): CustomerPresentation {
-  // HCI persists each completed direction before requesting the next one.  A
-  // complete saved result still returns normally; only an in-progress result
-  // carries delivery metadata so reload resumes exactly where it left off.
-  return isProgressiveStyleDirections(view) && (view.directions.length < 3 || forceLatest)
-    ? delivery(view, view.directions.length)
-    : view;
+function initialProgressiveDelivery(view: ReturnType<typeof customerView>): CustomerPresentation {
+  if (!isProgressiveStyleDirections(view)) return view;
+  // A resumed complete selection retains the same customer presentation:
+  // Direction 1 is shown first, while the other two remain summaries until
+  // explicitly opened.
+  if (view.directions.length === 3) {
+    return {
+      ...view,
+      directions: view.directions.map((direction, index) => index === 0 ? direction : { ...direction, cards: [] }),
+      directionDelivery: { current: 1, total: 3 },
+    };
+  }
+  // Retain a safe presentation for a short-lived legacy partial result. New
+  // sessions never take this path.
+  return delivery(view, view.directions.length);
+}
+
+function hydratedDirection(view: ReturnType<typeof customerView>, index: number): CustomerPresentation {
+  if (!isProgressiveStyleDirections(view) || view.directions.length <= index || !Number.isSafeInteger(index) || index < 1 || index > 2)
+    throw Error('DIRECTION_DELIVERY_INVALID');
+  // Bounded read: only the requested persisted six-card direction reaches the
+  // Fabric Master handoff. No HCI selection, calibration or catalogue work.
+  return delivery(view, index + 1);
+}
+
+function preparedDirectionSummary(view: ReturnType<typeof customerView>, index: number): CustomerPresentation {
+  if (!isProgressiveStyleDirections(view) || view.directions.length <= index || !Number.isSafeInteger(index) || index < 1 || index > 2)
+    throw Error('DIRECTION_DELIVERY_INVALID');
+  const direction = view.directions[index]!;
+  return { ...view, directions: [{ ...direction, cards: [] }], directionDelivery: { current: index + 1, total: 3 } };
 }
 
 async function handoff<T extends CustomerPresentation>(view: T): Promise<T> {
@@ -79,6 +102,13 @@ async function handoff<T extends CustomerPresentation>(view: T): Promise<T> {
 export async function premiumHciIntegration(owner: string, value: unknown) {
   if (!premiumHciEnabled()) throw Error('HCI_DISABLED');
   const command = premiumHciCommand(value);
+  const directionPrepare = command.action?.type === 'direction-prepare';
+  // Preparing a later saved direction remains a server-to-server HCI command.
+  // The browser receives only its summary; it never receives or hydrates the
+  // six cards until the customer explicitly opens that direction.
+  const upstreamAction = directionPrepare
+    ? { type: 'direction-load' as const, index: Number(command.action!.index) }
+    : command.action;
   const db = createSupplierServiceClient();
   const digest = createHash('sha256').update(JSON.stringify(command)).digest('hex');
   const { data: prior, error: readError } = await db.rpc('hci_staging_read', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId });
@@ -87,11 +117,15 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   if (prior?.request_id === command.requestId) {
     if (prior.request_digest !== digest) throw Error('HCI_SESSION_CONFLICT');
     const persisted = customerView(prior.presentation);
-    return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? progressiveDelivery(persisted, command.action?.type === 'direction-load') : persisted);
+    return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(persisted, Number(command.action!.index)) : persisted);
   }
-  if (prior && !command.action) return handoff(progressiveDelivery(customerView(prior.presentation)));
+  if (prior && !command.action) return handoff(initialProgressiveDelivery(customerView(prior.presentation)));
   const expected = prior?.revision ?? -1;
   if ((prior && command.revision !== expected) || (!prior && command.revision !== null)) throw Error('HCI_SESSION_CONFLICT');
+  if (command.action?.type === 'direction-hydrate') {
+    if (!prior) throw Error('DIRECTION_DELIVERY_REQUIRED');
+    return handoff(hydratedDirection(customerView(prior.presentation), Number(command.action.index)));
+  }
   if (command.action?.type === 'outcome') {
     const priorView = customerView(prior?.presentation);
     const direction = priorView.directions.find((entry) => entry.id === command.action!.strategyId);
@@ -118,10 +152,10 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const visualKnowledge = knowledgeEnabled && priceLevelEligibilityIds
     ? await hciVisualKnowledge(priceLevelEligibilityIds)
     : undefined;
-  const calibration = calibrationRequestContext(prior?.private_state, command.action);
+  const calibration = calibrationRequestContext(prior?.private_state, upstreamAction);
   const calibrationEligibilityIds = calibration.needsEligibility
     ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
-  const styleDirections = styleDirectionRequestContext(prior?.private_state, command.action);
+  const styleDirections = styleDirectionRequestContext(prior?.private_state, upstreamAction);
   const styleDirectionEligibilityIds = styleDirections.needsEligibility
     // Price Level is already a hard candidate boundary. Apply the existing
     // retail-image/readiness gate within that exact cohort, rather than
@@ -130,7 +164,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`, 'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },
-    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: command.action, recordedAt: new Date().toISOString() }),
+    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: upstreamAction, recordedAt: new Date().toISOString() }),
   });
   if (!upstream.ok) {
     // Operationally useful without logging a photograph, session state, URL or credentials.
@@ -159,5 +193,5 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}), commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
   const persisted = customerView(data);
-  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? progressiveDelivery(persisted, command.action?.type === 'direction-load') : persisted);
+  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(persisted, Number(command.action!.index)) : persisted);
 }

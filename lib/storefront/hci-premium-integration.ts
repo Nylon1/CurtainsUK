@@ -11,6 +11,7 @@ import { signHciCommerceContext } from './hci-commerce-context';
 import { calibrationEligibility, currentCalibrationFabric, calibrationRequestContext } from './hci-calibration';
 import { currentRetailStyleDirectionEligibility, styleDirectionRequestContext } from './hci-style-directions';
 import { currentRetailPriceLevelEligibility } from './hci-price-level';
+import type { GuidePriceLevel } from '@/lib/fabric-master/guide-price-level';
 import { acceptedHciFeedback } from './hci-feedback';
 import {
   HCI_PREMIUM_BASELINE,
@@ -25,7 +26,10 @@ export function issuePremiumOwner() { return randomUUID(); }
 type DirectionDelivery = { current: number; total: number };
 type CustomerPresentation = ReturnType<typeof customerView> & { directionDelivery?: DirectionDelivery };
 type PreparedDirectionStore = string;
-type StoredCustomerState = Record<string, unknown> & { deliveryPreparedDirections?: PreparedDirectionStore };
+type StoredCustomerState = Record<string, unknown> & {
+  hciStateCompressed?: string;
+  deliveryPreparedDirections?: PreparedDirectionStore;
+};
 
 function delivery(view: ReturnType<typeof customerView>, current: number, total = 3): CustomerPresentation {
   if (!Number.isSafeInteger(total) || total !== 3 || !Number.isSafeInteger(current) || current < 1 || current > total || current > view.directions.length)
@@ -63,6 +67,30 @@ function initialProgressiveDelivery(view: ReturnType<typeof customerView>): Cust
 function compactDeliveryPresentation(view: ReturnType<typeof customerView>): ReturnType<typeof customerView> {
   if (!isProgressiveStyleDirections(view) || view.directions.length < 2) return view;
   return { ...view, directions: view.directions.map((direction, index) => index === 0 ? direction : { ...direction, cards: [] }) };
+}
+
+function compressPrivateJson(value: unknown): string {
+  const compressed = gzipSync(Buffer.from(JSON.stringify(value), 'utf8')).toString('base64');
+  if (Buffer.byteLength(compressed) > 1_500_000) throw Error('HCI_STORAGE_UNAVAILABLE');
+  return compressed;
+}
+
+function privateHciState(value: unknown): Record<string, unknown> | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const encoded = (value as StoredCustomerState).hciStateCompressed;
+  // Existing sessions are replayable: only newly written state uses the
+  // compact private envelope.
+  if (encoded === undefined) return value as Record<string, unknown>;
+  if (typeof encoded !== 'string' || Buffer.byteLength(encoded) > 1_500_000) throw Error('HCI_STORAGE_UNAVAILABLE');
+  try {
+    const bytes = gunzipSync(Buffer.from(encoded, 'base64'));
+    if (bytes.byteLength > 4_000_000) throw Error('too large');
+    const parsed = JSON.parse(bytes.toString('utf8'));
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw Error('not an object');
+    return parsed as Record<string, unknown>;
+  } catch {
+    throw Error('HCI_STORAGE_UNAVAILABLE');
+  }
 }
 
 function preparedDirectionStore(view: ReturnType<typeof customerView>): PreparedDirectionStore | undefined {
@@ -183,6 +211,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const digest = createHash('sha256').update(JSON.stringify(command)).digest('hex');
   const { data: prior, error: readError } = await db.rpc('hci_staging_read', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId });
   if (readError) throw Error('HCI_STORAGE_UNAVAILABLE');
+  const priorHciState = privateHciState(prior?.private_state);
   if (!prior && command.sessionId !== command.requestId) throw Error('HCI_SESSION_CONFLICT');
   if (prior?.request_id === command.requestId) {
     if (prior.request_digest !== digest) throw Error('HCI_SESSION_CONFLICT');
@@ -210,9 +239,12 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const secret = process.env.CURTAINSUK_HCI_SERVICE_TOKEN ?? '';
   if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.hostname === 'invalid.invalid' || secret.length < 32)
     throw Error('HCI_CONFIGURATION_INVALID');
-  const selectedPriceLevel = command.action?.type === 'price-level'
-    ? command.action.level
-    : prior?.private_state?.priceLevel;
+  const priorPriceLevel = priorHciState?.priceLevel;
+  const selectedPriceLevel: GuidePriceLevel | undefined = command.action?.type === 'price-level'
+    ? command.action.level as GuidePriceLevel
+    : ['MID_RANGE', 'LUXURY', 'PREMIUM_LUXURY', 'SUPER_LUXURY'].includes(priorPriceLevel as string)
+      ? priorPriceLevel as GuidePriceLevel
+      : undefined;
   const priceLevelEligibilityIds = selectedPriceLevel
     ? await currentRetailPriceLevelEligibility(selectedPriceLevel)
     : undefined;
@@ -223,10 +255,10 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const visualKnowledge = knowledgeEnabled && priceLevelEligibilityIds
     ? await hciVisualKnowledge(priceLevelEligibilityIds)
     : undefined;
-  const calibration = calibrationRequestContext(prior?.private_state, upstreamAction);
+  const calibration = calibrationRequestContext(priorHciState, upstreamAction);
   const calibrationEligibilityIds = calibration.needsEligibility
     ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
-  const styleDirections = styleDirectionRequestContext(prior?.private_state, upstreamAction);
+  const styleDirections = styleDirectionRequestContext(priorHciState, upstreamAction);
   const styleDirectionEligibilityIds = styleDirections.needsEligibility
     // Price Level is already a hard candidate boundary. Apply the existing
     // retail-image/readiness gate within that exact cohort, rather than
@@ -235,7 +267,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`, 'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },
-    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: upstreamAction, recordedAt: new Date().toISOString() }),
+    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: priorHciState, action: upstreamAction, recordedAt: new Date().toISOString() }),
   });
   if (!upstream.ok) {
     // Operationally useful without logging a photograph, session state, URL or credentials.
@@ -264,7 +296,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   });
   const deliveryState = preparedDirectionStore(view);
   const storedState: StoredCustomerState = {
-    ...result.state,
+    hciStateCompressed: compressPrivateJson(result.state),
     ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}),
     ...(deliveryState ? { deliveryPreparedDirections: deliveryState } : {}),
     commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents],

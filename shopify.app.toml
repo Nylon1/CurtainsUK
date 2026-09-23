@@ -22,6 +22,6 @@ optional_scopes = ["write_draft_orders"]
 redirect_urls = [ "https://curtainsuk-staging-gateway.vercel.app/api/shopify/auth/callback" ]
 
 [app_proxy]
-url = "https://curtainsuk-staging-gateway.vercel.app/api/staging/shopify-proxy"
+url = "https://curtainsuk-staging-api.vercel.app/api/staging/shopify-proxy"
 subpath = "curtainsuk-decision"
 prefix = "apps"

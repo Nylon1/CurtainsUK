@@ -311,6 +311,10 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: storedState, p_view: storedView });
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
   const persisted = customerView(data);
-  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(expandPreparedDirections(persisted, storedState), Number(command.action!.index)) : persisted);
+  // The prepared second direction has just been validated and committed. Return
+  // its bounded summary directly rather than re-expanding the same private
+  // payload only to hide its cards again. The later hydration still reads the
+  // durable persisted selection.
+  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(view, Number(command.action!.index)) : persisted);
 }
 

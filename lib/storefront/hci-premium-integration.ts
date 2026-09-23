@@ -31,7 +31,7 @@ type StoredCustomerState = Record<string, unknown> & {
   deliveryPreparedDirections?: PreparedDirectionStore;
 };
 
-function delivery(view: ReturnType<typeof customerView>, current: number, total = 3): CustomerPresentation {
+function delivery(view: ReturnType<typeof customerView>, current: number, total = 2): CustomerPresentation {
   if (!Number.isSafeInteger(total) || total !== 2 || !Number.isSafeInteger(current) || current < 1 || current > total || current > view.directions.length)
     throw Error('DIRECTION_DELIVERY_INVALID');
   return { ...view, directions: [view.directions[current - 1]!], directionDelivery: { current, total } };
@@ -313,3 +313,4 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const persisted = customerView(data);
   return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(expandPreparedDirections(persisted, storedState), Number(command.action!.index)) : persisted);
 }
+

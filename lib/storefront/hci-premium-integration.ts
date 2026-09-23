@@ -4,8 +4,7 @@ import { customerView } from './hci-premium-view';
 
 import { createHash, randomUUID } from 'node:crypto';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
-import { fabricMasterRecordsByIds, listFabricMasterRecords } from '@/lib/fabric-master/repository';
-import { fabricReadiness } from '@/lib/fabric-master/readiness';
+import { fabricMasterRecommendationEligibleIds, fabricMasterRecordsByIds, listFabricMasterRecords } from '@/lib/fabric-master/repository';
 import { assertNoRawReferenceMedia } from './hci-image-privacy';
 import { signHciCommerceContext } from './hci-commerce-context';
 import { calibrationEligibility, currentCalibrationFabric, calibrationRequestContext } from './hci-calibration';
@@ -31,8 +30,7 @@ async function handoff(view: ReturnType<typeof customerView>) {
   // Discovery, upload and palette states have no fabric cards. Avoid a needless
   // Fabric Master round-trip until an exact recommendation needs commercial handoff.
   if (!ids.length) return view;
-  const records = await fabricMasterRecordsByIds(ids);
-  const eligible = new Set(records.filter((record) => fabricReadiness(record).recommendationEligible).map((record) => record.fabric_id));
+  const eligible = await fabricMasterRecommendationEligibleIds(ids);
   const signingSecret = process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? '';
   return {
     ...view,

@@ -13,6 +13,29 @@ import { previewSandersonAllBrandsCatalogue } from "../sanderson-catalogue-impor
 import { SANDERSON_CANARY_ALLOCATION, selectSandersonCanary } from "../sanderson-canary";
 import { normalizeSandersonRows } from "../sanderson";
 import { selectCurrentApprovedSupplierCostMinor } from "../verified-supplier-price";
+import { recommendationEligibleFabricIdsFromHandoffRows } from "../repository";
+
+test("HCI handoff retains the existing Fabric Master recommendation gate for a full 18-card response without full record hydration", () => {
+  const rows = Array.from({ length: 18 }, (_, index) => ({
+    fabric_id: `eligible-${index + 1}`,
+    supplier_id: "pt",
+    supplier_sku: `1000/${String(index + 1).padStart(3, "0")}`,
+    colour_name: "Chalk",
+    lifecycle_state: "CURRENT",
+    staging_catalog_visible: true,
+    imagery: ["https://example.test/fabric.jpg"],
+    supplier_brands: { display_name: "Prestigious Textiles" },
+    fabric_designs: { display_name: "Dunbar" },
+  }));
+  rows.push(
+    { fabric_id: "discontinued", supplier_id: "pt", supplier_sku: "1000/019", colour_name: "Ink", lifecycle_state: "DISCONTINUED", staging_catalog_visible: true, imagery: ["https://example.test/fabric.jpg"], supplier_brands: { display_name: "Prestigious Textiles" }, fabric_designs: { display_name: "Dunbar" } },
+    { fabric_id: "no-image", supplier_id: "pt", supplier_sku: "1000/020", colour_name: "Moss", lifecycle_state: "CURRENT", staging_catalog_visible: true, imagery: [], supplier_brands: { display_name: "Prestigious Textiles" }, fabric_designs: { display_name: "Dunbar" } },
+  );
+  assert.deepEqual(
+    [...recommendationEligibleFabricIdsFromHandoffRows(rows)],
+    Array.from({ length: 18 }, (_, index) => `eligible-${index + 1}`),
+  );
+});
 
 const prestigiousRows = [{
   Title: "ESCHER",

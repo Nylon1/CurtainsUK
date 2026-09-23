@@ -10,6 +10,11 @@ import {
 type Row = Record<string, unknown>;
 
 const FABRIC_MASTER_SELECT = "*,supplier_brands!inner(display_name),fabric_designs!inner(*,fabric_collections!inner(display_name))";
+// The consultation handoff only needs to decide whether an already-selected
+// Fabric Master identity may still be shown. Keep this deliberately narrower
+// than full retail hydration: the customer UI loads its own customer-safe card
+// details afterwards, while the gateway needs only the existing browsable rule.
+const FABRIC_MASTER_HANDOFF_SELECT = "fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,staging_catalog_visible,imagery,supplier_brands!inner(display_name),fabric_designs!inner(display_name)";
 
 function databaseError(error: { code?: string; message?: string } | null) {
   if (error) {
@@ -188,4 +193,44 @@ export async function fabricMasterRecordsByIds(ids: string[]) {
   const { data, error } = await createSupplierServiceClient().from("fabric_colourways").select(FABRIC_MASTER_SELECT).in("fabric_id", ids);
   databaseError(error);
   return ((data ?? []) as Row[]).map(mapFabricMasterRow);
+}
+
+function nestedDisplayName(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return "";
+  const displayName = (value as Row).display_name;
+  return typeof displayName === "string" ? displayName : "";
+}
+
+/**
+ * Bounded, batched presentation gate for HCI recommendations. This preserves
+ * Fabric Master's existing recommendation-eligibility rule without fetching
+ * every supplier fact and nested collection field for each displayed card.
+ */
+export function recommendationEligibleFabricIdsFromHandoffRows(rows: Row[]) {
+  return new Set(rows.flatMap((row) => {
+    const canonical = [
+      row.fabric_id,
+      row.supplier_id,
+      row.supplier_sku,
+      nestedDisplayName(row.supplier_brands),
+      nestedDisplayName(row.fabric_designs),
+      row.colour_name,
+    ].every((value) => typeof value === "string" && value.length > 0);
+    const visible = row.staging_catalog_visible === true;
+    const current = row.lifecycle_state !== "DISCONTINUED";
+    const imagery = Array.isArray(row.imagery) && row.imagery.length > 0;
+    return canonical && visible && current && imagery && typeof row.fabric_id === "string" ? [row.fabric_id] : [];
+  }));
+}
+
+export async function fabricMasterRecommendationEligibleIds(ids: string[]) {
+  const uniqueIds = [...new Set(ids)];
+  if (uniqueIds.length > 48) throw new Error("RETAIL_PAGE_TOO_LARGE");
+  if (!uniqueIds.length) return new Set<string>();
+  const { data, error } = await createSupplierServiceClient()
+    .from("fabric_colourways")
+    .select(FABRIC_MASTER_HANDOFF_SELECT)
+    .in("fabric_id", uniqueIds);
+  databaseError(error);
+  return recommendationEligibleFabricIdsFromHandoffRows((data ?? []) as Row[]);
 }

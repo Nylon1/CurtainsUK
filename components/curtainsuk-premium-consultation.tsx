@@ -189,7 +189,7 @@ export default function CurtainsUkPremiumConsultation() {
 }
 
 const styleRefinementLabels: Record<string, string> = {
-  'change:warmer': 'Warmer', 'change:cooler': 'Cooler', 'change:patterned': 'More pattern',
+  'change:warmer': 'Warmer', 'change:cooler': 'Cooler', 'change:plainer': 'Quieter', 'change:patterned': 'More pattern',
   'change:texture': 'More texture', 'change:smooth': 'Less texture',
 };
 

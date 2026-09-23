@@ -9,10 +9,19 @@ import {
  * V2 needs a fresh Fabric Master eligibility projection.
  */
 export function styleDirectionRequestContext(
-  _state: { interiorBrief?: unknown; styleDirectionsV2?: unknown } | null | undefined,
+  state: { interiorBrief?: unknown; styleDirectionsV2?: unknown } | null | undefined,
   action?: Record<string, unknown>,
 ) {
-  return { needsEligibility: action?.type === 'brief-confirm' };
+  // Feedback and refinement must rebuild the same governed candidate context
+  // used when V2 rendered its cards. Without this, the learning input digest
+  // changes between display and reaction even though the customer is reacting
+  // to the same persisted direction.
+  return {
+    needsEligibility:
+      action?.type === 'brief-confirm' ||
+      (Boolean(state?.styleDirectionsV2) &&
+        (action?.type === 'feedback' || action?.type === 'finish')),
+  };
 }
 
 export async function currentRetailStyleDirectionEligibility() {

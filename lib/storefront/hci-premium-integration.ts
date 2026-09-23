@@ -4,8 +4,7 @@ import { customerView } from './hci-premium-view';
 
 import { createHash, randomUUID } from 'node:crypto';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
-import { fabricMasterRecordsByIds, listFabricMasterRecords } from '@/lib/fabric-master/repository';
-import { fabricReadiness } from '@/lib/fabric-master/readiness';
+import { fabricMasterRecommendationEligibleIds, fabricMasterRecordsByIds, listFabricMasterRecords } from '@/lib/fabric-master/repository';
 import { assertNoRawReferenceMedia } from './hci-image-privacy';
 import { signHciCommerceContext } from './hci-commerce-context';
 import { calibrationEligibility, currentCalibrationFabric, calibrationRequestContext } from './hci-calibration';
@@ -23,16 +22,18 @@ export { HCI_PREMIUM_BASELINE, HCI_PREMIUM_CONTRACT, PREMIUM_HCI_COOKIE, PREMIUM
 export function issuePremiumOwner() { return randomUUID(); }
 
 async function handoff(view: ReturnType<typeof customerView>) {
-  if (view.calibrationFabric) {
+  const ids = [...new Set(view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)))];
+  // A completed calibration card is no longer rendered once Style Directions
+  // exist. Do not add a sequential full-record read to the 18-card handoff.
+  // The exact calibration-stage re-check remains unchanged when it is visible.
+  if (view.calibrationFabric && !ids.length) {
     const records = await fabricMasterRecordsByIds([view.calibrationFabric.fabricMasterId]);
     view = { ...view, calibrationFabric: currentCalibrationFabric(view.calibrationFabric, records) };
   }
-  const ids = [...new Set(view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)))];
   // Discovery, upload and palette states have no fabric cards. Avoid a needless
   // Fabric Master round-trip until an exact recommendation needs commercial handoff.
   if (!ids.length) return view;
-  const records = await fabricMasterRecordsByIds(ids);
-  const eligible = new Set(records.filter((record) => fabricReadiness(record).recommendationEligible).map((record) => record.fabric_id));
+  const eligible = await fabricMasterRecommendationEligibleIds(ids);
   const signingSecret = process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? '';
   return {
     ...view,

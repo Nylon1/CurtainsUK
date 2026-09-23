@@ -32,13 +32,13 @@ type StoredCustomerState = Record<string, unknown> & {
 };
 
 function delivery(view: ReturnType<typeof customerView>, current: number, total = 3): CustomerPresentation {
-  if (!Number.isSafeInteger(total) || total !== 3 || !Number.isSafeInteger(current) || current < 1 || current > total || current > view.directions.length)
+  if (!Number.isSafeInteger(total) || total !== 2 || !Number.isSafeInteger(current) || current < 1 || current > total || current > view.directions.length)
     throw Error('DIRECTION_DELIVERY_INVALID');
   return { ...view, directions: [view.directions[current - 1]!], directionDelivery: { current, total } };
 }
 
 function isProgressiveStyleDirections(view: ReturnType<typeof customerView>) {
-  return view.directions.length >= 1 && view.directions.length <= 3 && view.directions.every((direction) => direction.cards.length >= 5 && direction.cards.length <= 7);
+  return view.directions.length >= 1 && view.directions.length <= 2 && view.directions.every((direction) => direction.cards.length >= 5 && direction.cards.length <= 7);
 }
 
 function initialProgressiveDelivery(view: ReturnType<typeof customerView>): CustomerPresentation {
@@ -46,11 +46,11 @@ function initialProgressiveDelivery(view: ReturnType<typeof customerView>): Cust
   // A resumed complete selection retains the same customer presentation:
   // Direction 1 is shown first, while the other two remain summaries until
   // explicitly opened.
-  if (view.directions.length === 3) {
+  if (view.directions.length === 2) {
     return {
       ...view,
       directions: view.directions.map((direction, index) => index === 0 ? direction : { ...direction, cards: [] }),
-      directionDelivery: { current: 1, total: 3 },
+      directionDelivery: { current: 1, total: 2 },
     };
   }
   // Retain a safe presentation for a short-lived legacy partial result. New
@@ -139,7 +139,7 @@ function joinPreparedDirection(
   prior: { presentation: unknown; private_state: unknown } | null,
   index: number,
 ): ReturnType<typeof customerView> {
-  if (!prior || !Number.isSafeInteger(index) || index < 1 || index > 2) return view;
+  if (!prior || !Number.isSafeInteger(index) || index < 1 || index > 1) return view;
   if (view.directions.length > index && view.directions[index]?.cards.length) return view;
   if (view.directions.length !== 1 || view.directions[0]?.cards.length < 5 || view.directions[0]?.cards.length > 7)
     throw Error('DIRECTION_DELIVERY_REQUIRED');
@@ -150,7 +150,7 @@ function joinPreparedDirection(
 }
 
 function hydratedDirection(view: ReturnType<typeof customerView>, index: number): CustomerPresentation {
-  if (!isProgressiveStyleDirections(view) || view.directions.length <= index || !Number.isSafeInteger(index) || index < 1 || index > 2)
+  if (!isProgressiveStyleDirections(view) || view.directions.length <= index || !Number.isSafeInteger(index) || index < 1 || index > 1)
     throw Error('DIRECTION_DELIVERY_INVALID');
   // Bounded read: only the requested persisted six-card direction reaches the
   // Fabric Master handoff. No HCI selection, calibration or catalogue work.
@@ -158,10 +158,10 @@ function hydratedDirection(view: ReturnType<typeof customerView>, index: number)
 }
 
 function preparedDirectionSummary(view: ReturnType<typeof customerView>, index: number): CustomerPresentation {
-  if (!isProgressiveStyleDirections(view) || view.directions.length <= index || !Number.isSafeInteger(index) || index < 1 || index > 2)
+  if (!isProgressiveStyleDirections(view) || view.directions.length <= index || !Number.isSafeInteger(index) || index < 1 || index > 1)
     throw Error('DIRECTION_DELIVERY_INVALID');
   const direction = view.directions[index]!;
-  return { ...view, directions: [{ ...direction, cards: [] }], directionDelivery: { current: index + 1, total: 3 } };
+  return { ...view, directions: [{ ...direction, cards: [] }], directionDelivery: { current: index + 1, total: 2 } };
 }
 
 async function handoff<T extends CustomerPresentation>(view: T): Promise<T> {
@@ -282,7 +282,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   } catch {
     throw Error('HCI_CONTRACT_VIEW');
   }
-  let view: ReturnType<typeof customerView> & { revision: number } = { ...projected, revision: expected + 1 };
+  let view: ReturnType<typeof customerView> & { revision: number } = { ...projected, directions: projected.directions.slice(0, 2), revision: expected + 1 };
   if (directionPrepare) view = { ...joinPreparedDirection(view, prior, Number(command.action!.index)), revision: expected + 1 };
   if (view.sessionId !== command.sessionId || result?.state?.consultation?.sessionId !== command.sessionId || result?.state?.consultation?.owner !== createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'))
     throw Error('HCI_CONTRACT_STATE');

@@ -9,7 +9,7 @@ import { fabricReadiness } from '@/lib/fabric-master/readiness';
 import { assertNoRawReferenceMedia } from './hci-image-privacy';
 import { signHciCommerceContext } from './hci-commerce-context';
 import { calibrationEligibility, currentCalibrationFabric, calibrationRequestContext } from './hci-calibration';
-import { styleDirectionRequestContext } from './hci-style-directions';
+import { currentRetailStyleDirectionEligibility, styleDirectionRequestContext } from './hci-style-directions';
 import { acceptedHciFeedback } from './hci-feedback';
 import {
   HCI_PREMIUM_BASELINE,
@@ -87,7 +87,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
   const styleDirections = styleDirectionRequestContext(prior?.private_state, command.action);
   const styleDirectionEligibilityIds = styleDirections.needsEligibility
-    ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
+    ? await currentRetailStyleDirectionEligibility() : undefined;
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`, 'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },

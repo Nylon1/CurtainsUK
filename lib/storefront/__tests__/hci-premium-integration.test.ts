@@ -95,6 +95,17 @@ test('progressive direction delivery accepts only one bounded persisted-directio
     assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'direction-load', index } }));
 });
 
+test('later directions have separate bounded prepare and hydrate commands', () => {
+  for (const type of ['direction-prepare', 'direction-hydrate'] as const) {
+    const command = premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type, index: 1 } });
+    assert.equal(command.action?.type, type);
+    assert.equal(command.action?.index, 1);
+  }
+  for (const type of ['direction-prepare', 'direction-hydrate'] as const)
+    for (const index of [0, 3, 1.5, '1'])
+      assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type, index } }));
+});
+
 test('price level is retained as a bounded preference in the customer view, without an amount', () => {
   const view = customerView({
     version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId,

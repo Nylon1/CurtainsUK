@@ -64,13 +64,19 @@ export default function CurtainsUkPremiumConsultation() {
   const [reviewPalette, setReviewPalette] = useState(false);
   const [briefEditing, setBriefEditing] = useState<string | null>(null);
   const [directionProcessing, setDirectionProcessing] = useState<'search' | 'create' | null>(null);
-  const directionLoadLock = useRef(false);
+  const [openingDirection, setOpeningDirection] = useState<number | null>(null);
+  const [restartPrompt, setRestartPrompt] = useState(false);
+  const [returningPrompt, setReturningPrompt] = useState(false);
+  const directionPrepareLock = useRef(false);
   const deliveredDirections = useRef<Record<number, Direction>>({});
 
   const send = async (action?: Record<string, unknown>, retry = false, paletteRequest = false, background = false) => {
     const directionLoad = action?.type === 'direction-load';
-    if (background ? directionLoadLock.current : requestLock.current) return null;
-    if (background) directionLoadLock.current = true;
+    const directionHydrate = action?.type === 'direction-hydrate';
+    const directionPrepare = action?.type === 'direction-prepare';
+    const directionRead = directionLoad || directionHydrate;
+    if (background ? directionPrepareLock.current : requestLock.current) return null;
+    if (background) directionPrepareLock.current = true;
     else requestLock.current = true;
     const payload = retry && pending.current ? pending.current : {
       requestId: crypto.randomUUID(),
@@ -78,7 +84,7 @@ export default function CurtainsUkPremiumConsultation() {
       revision: latestView.current?.revision ?? null,
       ...(action ? { action } : {}),
     };
-    if (!background) pending.current = payload;
+    if (!background && !directionHydrate) pending.current = payload;
     if (!background) { setBusy(true); setNotice(''); }
     try {
       const endpoint = premiumProxyEnabled() ? premiumProxyPath('premium-command') : '/api/curtain-consultation-premium';
@@ -86,13 +92,30 @@ export default function CurtainsUkPremiumConsultation() {
       const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const data = await response.json();
       if (!response.ok) throw Error(data.error || 'Your consultation is temporarily unavailable.');
-      data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, !directionLoad && (Boolean(payload.action) || !payload.sessionId));
+      data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, !directionRead && (Boolean(payload.action) || !payload.sessionId));
       if (directionLoad) {
         // This reads an already persisted direction. An older background response
         // must never overwrite a newer customer-preference revision.
         if (latestView.current?.revision !== payload.revision || !data.directionDelivery || data.directions.length !== 1) return null;
         deliveredDirections.current[Number(action.index)] = data.directions[0] as Direction;
         data.directions = Object.keys(deliveredDirections.current).map(Number).sort((a, b) => a - b).map((index) => deliveredDirections.current[index]!);
+      } else if (directionHydrate) {
+        // The gateway has read exactly one previously persisted six-card
+        // direction. Keep the existing summaries and hydrated cards intact.
+        const previous = latestView.current;
+        if (!previous || previous.revision !== payload.revision || !data.directionDelivery || data.directions.length !== 1) return null;
+        const target = Number(action.index);
+        data.directions = previous.directions.map((direction, index) => index === target ? data.directions[0] as Direction : direction);
+        deliveredDirections.current[target] = data.directions[target] as Direction;
+      } else if (directionPrepare) {
+        // The later direction has been calculated and persisted in the
+        // background, but cards remain deliberately hidden until Explore.
+        const previous = latestView.current;
+        if (!previous || previous.revision !== payload.revision || !data.directionDelivery || data.directions.length !== 1) return null;
+        const target = Number(action.index);
+        const directions = [...previous.directions];
+        directions[target] = data.directions[0] as Direction;
+        data.directions = directions;
       } else if (data.directionDelivery) {
         deliveredDirections.current = {};
         if (data.directionDelivery.current > 0 && data.directions.length === 1)
@@ -102,7 +125,7 @@ export default function CurtainsUkPremiumConsultation() {
       }
       resumeSession.current = data.sessionId;
       try { sessionStorage.setItem(premiumSessionStorageKey, data.sessionId); } catch { /* Server evidence remains durable. */ }
-      latestView.current = data; setView(data); if (!background) pending.current = null;
+      latestView.current = data; setView(data); if (!background && !directionHydrate) pending.current = null;
       return data as View;
     } catch (error) {
       // Palette failures belong to ReferencePalette and its exact saved-request retry.
@@ -110,7 +133,7 @@ export default function CurtainsUkPremiumConsultation() {
       if (!paletteRequest && !background) setNotice(error instanceof Error ? error.message : 'Your consultation is temporarily unavailable.');
       return null;
     } finally {
-      if (background) directionLoadLock.current = false;
+      if (background) directionPrepareLock.current = false;
       else { requestLock.current = false; setBusy(false); }
     }
   };
@@ -120,6 +143,7 @@ export default function CurtainsUkPremiumConsultation() {
       setEntry(new URLSearchParams(window.location.search).get('entry') === 'guided' ? 'guided' : 'match');
       try { resumeSession.current = savedPremiumSession(sessionStorage.getItem(premiumSessionStorageKey)); } catch { /* Storage may be disabled. */ }
       if (premiumProxyEnabled()) resumeSession.current = savedPremiumSession(new URLSearchParams(window.location.search).get('session')) ?? resumeSession.current;
+      setReturningPrompt(Boolean(resumeSession.current));
       void send();
     }
   // This initializes exactly one anonymous consultation; re-running would create a second request.
@@ -140,10 +164,14 @@ export default function CurtainsUkPremiumConsultation() {
   }, [view, fabrics]);
   useEffect(() => {
     const delivery = view?.directionDelivery;
-    if (!delivery || delivery.current >= delivery.total || directionProcessing === 'search') return;
-    const index = delivery.current;
-    void send({ type: 'direction-load', index }, false, false, true);
-  }, [view?.directionDelivery?.current, view?.directionDelivery?.total, directionProcessing]);
+    if (!delivery || directionPrepareLock.current) return;
+    const next = delivery.current === 1
+      ? 1
+      : delivery.current === 2 && view.directions[1]?.cards.length > 0
+        ? 2
+        : null;
+    if (next !== null) void send({ type: 'direction-prepare', index: next }, false, false, true);
+  }, [view?.directionDelivery?.current, view?.directions, view?.revision]);
   useEffect(() => {
     if (!view || reviewPalette || (view.palette && !view.palette.state.confirmedPalette)) return;
     const step = view.phase === 'discovery' ? view.question?.id :
@@ -182,13 +210,30 @@ export default function CurtainsUkPremiumConsultation() {
       fabricMasterId: card.fabricMasterId, supplierSku: card.supplierSku, strategyId: direction.id, commerceToken: card.commerceToken });
   };
   const reportOutcome = async (card: Card, direction: Direction, event: string) => Boolean(await send({ type: 'outcome', event, fabricMasterId: card.fabricMasterId, strategyId: direction.id }));
+  const startAgain = () => {
+    try { sessionStorage.removeItem(premiumSessionStorageKey); } catch { /* The active session still resets in memory. */ }
+    resumeSession.current = null;
+    latestView.current = null;
+    pending.current = null;
+    deliveredDirections.current = {};
+    setView(null); setFabrics({}); setFeedback(null); setNotice(''); setReviewPalette(false);
+    setBriefEditing(null); setDirectionProcessing(null); setOpeningDirection(null);
+    setRestartPrompt(false); setReturningPrompt(false);
+    void send();
+  };
+  const openDirection = async (index: number) => {
+    if (view?.directions[index]?.cards.length || openingDirection !== null) return;
+    setOpeningDirection(index);
+    await send({ type: 'direction-hydrate', index });
+    setOpeningDirection(null);
+  };
 
-  if (!view) return <main className={styles.shell}>{notice ? <div className={styles.notice} role="alert">{notice}<button disabled={busy} onClick={() => void send(undefined, true)}>Retry consultation</button></div> : <p className={styles.loading}>Preparing your Fabric Intelligence consultation…</p>}</main>;
+  if (!view) return <main className={styles.shell}>{notice ? <div className={styles.notice} role="alert">{notice}<button disabled={busy} onClick={() => void send(undefined, true)}>Retry consultation</button></div> : <JourneyPreparation />}</main>;
   const showUpload = entry === 'match' && !roomPalette && !view.directions.length;
   const showPalette = Boolean(roomPalette && (!roomPalette.confirmedPalette || reviewPalette));
 
   return <main className={showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell}>
-    <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Explore fabrics</a></header>
+    <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Explore fabrics</a><button className={styles.headerRestart} type="button" onClick={() => setRestartPrompt(true)}>Start again</button></header>
     <div className={styles.progress} aria-label="Consultation progress"><span className={roomPalette ? styles.complete : ''}>Your room</span><span className={view.phase !== 'discovery' ? styles.complete : ''}>Your taste</span><span className={view.phase === 'directions' || view.phase === 'final' || view.directions.length ? styles.complete : ''}>Your edit</span></div>
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}
     {!showPalette && roomPalette?.confirmedPalette && <button className={styles.textButton} onClick={() => setReviewPalette(true)}>Review my Room Palette</button>}
@@ -201,7 +246,7 @@ export default function CurtainsUkPremiumConsultation() {
     {showPalette && roomPalette?.confirmedPalette && <button className={styles.primary} onClick={() => setReviewPalette(false)}>Continue with my Room Palette →</button>}
     {!showUpload && !showPalette && view.phase === 'discovery' && view.question && <section id="premium-current-step" className={`${styles.question} ${styles.taste}`} aria-labelledby="taste-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Your taste</p>{view.tasteProgress && <span>Question {view.tasteProgress.current} of {view.tasteProgress.total}</span>}</div>{view.tasteProgress && <progress className={styles.stepProgress} max={view.tasteProgress.total} value={view.tasteProgress.current} aria-label="Your taste progress" />}<h1 id="taste-heading">{view.question.prompt}</h1><p>Choose what feels most like you. We’ll use your answer to shape the fabrics you see.</p><div className={styles.tasteChoices}>{view.question.answers.map((answer, index) => <button key={answer.id} className={styles.tasteChoice} disabled={busy} onClick={() => void send({ type: 'answer', answerId: answer.id })}><span className={styles.choiceNumber}>{String(index + 1).padStart(2, '0')}</span><span>{answer.label}</span><span aria-hidden="true">→</span></button>)}</div>{entry === 'guided' && !roomPalette && <button className={styles.textButton} onClick={() => setEntry('match')}>Have something you’d like us to match with? Add a reference image</button>}</section>}
     {!showUpload && !showPalette && view.phase === 'price' && <section id="premium-current-step" className={`${styles.question} ${styles.taste}`} aria-labelledby="price-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Price level</p><span>One guide for your edit</span></div><h1 id="price-heading">Where would you like us to <em>begin?</em></h1><p>We’ll use the Curtains from guide to focus the real fabrics we show. Final made-to-measure pricing still depends on your measurements and options.</p><div className={styles.tasteChoices}>{[
-      ['MID_RANGE', 'Mid Range', 'Under £50 per metre'], ['LUXURY', 'Luxury', '£50 – £149.99 per metre'], ['PREMIUM_LUXURY', 'Premium Luxury', '£150 – £249.99 per metre'], ['SUPER_LUXURY', 'Super Luxury', '£250+ per metre'],
+      ['MID_RANGE', 'Mid Range', 'Curtains from under £50'], ['LUXURY', 'Luxury', 'Curtains from £50–£149.99'], ['PREMIUM_LUXURY', 'Premium Luxury', 'Curtains from £150–£249.99'], ['SUPER_LUXURY', 'Super Luxury', 'Curtains from £250+'],
     ].map(([level, title, detail], index) => <button key={level} className={styles.tasteChoice} disabled={busy} onClick={() => void send({ type: 'price-level', level })}><span className={styles.choiceNumber}>{String(index + 1).padStart(2, '0')}</span><span><strong>{title}</strong><small>{detail}</small></span><span aria-hidden="true">→</span></button>)}</div></section>}
     {!showUpload && !showPalette && view.phase === 'calibration' && <section id="premium-current-step" className={`${styles.calibration} ${styles.eye}`} aria-labelledby="eye-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Your eye</p>{view.calibrationProgress && <span>Fabric {view.calibrationProgress.current} of {view.calibrationProgress.total}</span>}</div>{view.calibrationProgress && <progress className={styles.stepProgress} max={view.calibrationProgress.total} value={view.calibrationProgress.current} aria-label="Fabric progress" />}<h1 id="eye-heading">Which fabrics <em>feel like you?</em></h1><p>Trust your first impression. Each choice helps us understand your taste.</p>{view.calibrationFabric ? <div className={styles.eyeFabric}><img src={view.calibrationFabric.imageUrl} alt={`${view.calibrationFabric.brand} ${view.calibrationFabric.design} ${view.calibrationFabric.colourway} fabric`} /><div><p className={styles.eyebrow}>{view.calibrationFabric.brand}</p><h2>{view.calibrationFabric.design} <em>{view.calibrationFabric.colourway}</em></h2><p>Fabric reference {view.calibrationFabric.supplierSku}</p></div></div> : view.stimulusId ? <img src={premiumProxyEnabled() ? `${premiumProxyPath('premium-asset')}?name=${encodeURIComponent(view.stimulusId)}.svg` : `/api/curtain-consultation-premium/assets/${encodeURIComponent(view.stimulusId)}.svg`} alt="Curtain design for preference calibration" /> : null}<div className={styles.eyeReactions}>{[['LOVE','Love this'],['LIKE','Like this'],['NOT_SURE','Not sure'],['DISLIKE','Not for me']].map(([reaction, label]) => <button key={reaction} disabled={busy} onClick={() => void send({ type: 'calibrate', reaction })}>{label}</button>)}</div></section>}
     {!showUpload && !showPalette && !directionProcessing && view.interiorBrief && (view.phase === 'brief' || view.phase === 'complete') && <section id="premium-current-step" className={styles.brief} aria-labelledby="brief-heading">
@@ -220,8 +265,9 @@ export default function CurtainsUkPremiumConsultation() {
       ['Searching the CurtainsUK fabric collection', directionProcessing === 'search' ? 'active' : 'complete'],
       ['Creating your fabric directions', directionProcessing === 'create' ? 'active' : 'waiting'],
     ].map(([label, status]) => <li key={label} className={styles[`processing_${status}`]}>{status === 'complete' ? <span aria-hidden="true">✓</span> : <span aria-hidden="true">{status === 'active' ? '•' : status === 'skipped' ? '—' : '○'}</span>}{label}</li>)}</ol></section>}
-    {!showUpload && !showPalette && !directionProcessing && view.directions.length > 0 && view.phase !== 'brief' && <section className={styles.directions}><p className={styles.eyebrow}>{view.phase === 'final' ? 'Your refined shortlist' : view.directions.every((direction) => direction.cards.length > 1) ? 'Your edit' : 'Five design directions'}</p><h1>{view.phase === 'final' ? <>A shortlist shaped <em>by you.</em></> : view.directions.every((direction) => direction.cards.length > 1) ? <>Three directions, <em>built from your brief.</em></> : <>Five ways your room <em>could go.</em></>}</h1>{view.learning?.summary.length ? <p>{view.learning.summary.join(' ')}</p> : <p>Each direction uses your confirmed room context, calibration and real CurtainsUK fabrics.</p>}{view.directionDelivery && view.directionDelivery.current < view.directionDelivery.total && <p className={styles.nextDirection} aria-live="polite">We’re preparing your next direction while you explore this one.</p>}{view.interiorBrief && <button className={styles.textButton} disabled={busy} onClick={() => void send({ type: 'brief-adjust', id: crypto.randomUUID() })}>Adjust my brief</button>}<div className={styles.directionGrid}>{view.directions.map((direction) => <DirectionCard key={direction.id} direction={direction} fabrics={fabrics} final={view.phase === 'final'} onReaction={(card, reaction, selected = [], likeDirection = false) => setFeedback({ direction, card, reaction, selected, likeDirection })} onOutcome={reportOutcome} commerceUrl={commerceUrl} />)}</div>{view.phase !== 'final' && !view.directions.every((direction) => direction.cards.length > 1) && <button className={styles.primary} disabled={busy} onClick={() => void send({ type: 'finish' })}>Refine my directions →</button>}</section>}
+    {!showUpload && !showPalette && !directionProcessing && view.directions.length > 0 && view.phase !== 'brief' && <section className={styles.directions}><p className={styles.eyebrow}>{view.phase === 'final' ? 'Your refined shortlist' : view.directionDelivery ? 'Your edit' : view.directions.every((direction) => direction.cards.length > 1) ? 'Your edit' : 'Five design directions'}</p><h1>{view.phase === 'final' ? <>A shortlist shaped <em>by you.</em></> : view.directionDelivery || view.directions.every((direction) => direction.cards.length > 1) ? <>Three directions, <em>built from your brief.</em></> : <>Five ways your room <em>could go.</em></>}</h1>{view.learning?.summary.length ? <p>{view.learning.summary.join(' ')}</p> : <p>Each direction uses your confirmed room context, calibration and real CurtainsUK fabrics.</p>}{view.interiorBrief && <button className={styles.textButton} disabled={busy} onClick={() => void send({ type: 'brief-adjust', id: crypto.randomUUID() })}>Adjust my brief</button>}<div className={styles.directionGrid}>{view.directions.map((direction, index) => <DirectionCard key={direction.id} direction={direction} fabrics={fabrics} final={view.phase === 'final'} opening={openingDirection === index} onExplore={() => void openDirection(index)} onReaction={(card, reaction, selected = [], likeDirection = false) => setFeedback({ direction, card, reaction, selected, likeDirection })} onOutcome={reportOutcome} commerceUrl={commerceUrl} />)}</div>{view.phase !== 'final' && !view.directionDelivery && !view.directions.every((direction) => direction.cards.length > 1) && <button className={styles.primary} disabled={busy} onClick={() => void send({ type: 'finish' })}>Refine my directions →</button>}</section>}
     {feedback && <FeedbackSheet value={feedback} busy={busy} onClose={() => setFeedback(null)} onChange={setFeedback} onSave={async () => { const directionReaction = feedback.likeDirection ? 'LIKE' : feedback.reaction === 'LOVE' ? 'LOVE' : null; const saved = await send({ type: 'feedback', command: { id: crypto.randomUUID(), strategyId: feedback.direction.id, fabricId: feedback.card.reactionId, fabricReaction: feedback.reaction, directionReaction, optionIds: feedback.selected } }); if (saved && await send({ type: 'finish' })) setFeedback(null); }} />}
+    {(restartPrompt || returningPrompt) && <RestartSheet returning={returningPrompt} onContinue={() => { setReturningPrompt(false); setRestartPrompt(false); }} onStartAgain={startAgain} />}
   </main>;
 }
 
@@ -230,9 +276,20 @@ const styleRefinementLabels: Record<string, string> = {
   'change:texture': 'More texture', 'change:smooth': 'Less texture',
 };
 
-function DirectionCard({ direction, fabrics, final, onReaction, onOutcome, commerceUrl }: { direction: Direction; fabrics: Record<string, Fabric | null | 'error'>; final: boolean; onReaction: (card: Card, reaction: string, selected?: string[], likeDirection?: boolean) => void; onOutcome: (card: Card, direction: Direction, event: string) => Promise<boolean>; commerceUrl: (card: Card, direction: Direction, sample: boolean) => string }) {
+function JourneyPreparation() {
+  return <section className={styles.journeyPreparation} aria-live="polite"><p className={styles.eyebrow}>Fabric Intelligence</p><span className={styles.preparationMark} aria-hidden="true" /><h1>Preparing your <em>Fabric Intelligence journey.</em></h1><p>Getting everything ready for your room…</p></section>;
+}
+
+function RestartSheet({ returning, onContinue, onStartAgain }: { returning: boolean; onContinue: () => void; onStartAgain: () => void }) {
+  return <div className={styles.sheetBackdrop} role="presentation"><section className={styles.restartSheet} role="dialog" aria-modal="true" aria-label={returning ? 'Continue or start again' : 'Start again'}><p className={styles.eyebrow}>{returning ? 'Welcome back' : 'Start again'}</p><h2>{returning ? 'Would you like to continue your choices?' : 'Start a new Fabric Intelligence journey?'}</h2><p>{returning ? 'Your saved room, taste, price level and fabric choices are ready when you are.' : 'This clears the room, palette, taste, price level, calibration, brief, directions and feedback for this consultation.'}</p><div className={styles.restartActions}><button type="button" className={styles.secondary} onClick={onContinue}>{returning ? 'Continue my choices' : 'Keep my choices'}</button><button type="button" className={styles.primary} onClick={onStartAgain}>Start again</button></div></section></div>;
+}
+
+function DirectionCard({ direction, fabrics, final, opening, onExplore, onReaction, onOutcome, commerceUrl }: { direction: Direction; fabrics: Record<string, Fabric | null | 'error'>; final: boolean; opening: boolean; onExplore: () => void; onReaction: (card: Card, reaction: string, selected?: string[], likeDirection?: boolean) => void; onOutcome: (card: Card, direction: Direction, event: string) => Promise<boolean>; commerceUrl: (card: Card, direction: Direction, sample: boolean) => string }) {
   const card = direction.cards[0];
   const fabric = card ? fabrics[card.fabricMasterId] : undefined;
+  if (direction.cards.length === 0) {
+    return <article className={`${styles.directionCard} ${styles.styleDirectionCard} ${styles.styleDirectionSummary}`}><div className={styles.styleDirectionIntro}><p className={styles.eyebrow}>{direction.label}</p><h2>{direction.purpose}</h2><p>Six real fabrics have been selected for this direction from your confirmed brief.</p><button type="button" className={styles.primary} disabled={opening} onClick={onExplore}>{opening ? 'Opening this direction…' : 'Explore this direction →'}</button>{opening && <p className={styles.directionOpening} aria-live="polite">Bringing together the six fabrics selected for you…</p>}</div></article>;
+  }
   if (direction.cards.length > 1) {
     const refinements = card?.feedback?.change.filter((option) => option.id in styleRefinementLabels) ?? [];
     return <article className={`${styles.directionCard} ${styles.styleDirectionCard}`}><div className={styles.styleDirectionIntro}><p className={styles.eyebrow}>{direction.label}</p><h2>{direction.purpose}</h2>{card && refinements.length > 0 && <div className={styles.styleRefinements} aria-label={`Refine ${direction.label}`}><span>Refine this direction</span><div>{refinements.map((option) => <button key={option.id} type="button" onClick={() => onReaction(card, 'NOT_QUITE', [option.id], true)}>{styleRefinementLabels[option.id]}</button>)}</div></div>}</div><div className={styles.styleFabricGrid}>{direction.cards.map((entry) => <StyleFabricCard key={entry.fabricMasterId} card={entry} direction={direction} fabric={fabrics[entry.fabricMasterId]} final={final} onReaction={onReaction} onOutcome={onOutcome} commerceUrl={commerceUrl} />)}</div></article>;

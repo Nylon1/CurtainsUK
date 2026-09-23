@@ -7,9 +7,12 @@ import { customerView } from '../hci-premium-view';
 import { HCI_PREMIUM_BASELINE, HCI_PREMIUM_CONTRACT } from '../hci-premium-contract';
 import type { FabricMasterRecord } from '../../fabric-master/types';
 
-test('requests current Fabric Master eligibility only when a brief is confirmed', () => {
+test('keeps the exact V2 eligibility context for feedback and refinement', () => {
   assert.equal(styleDirectionRequestContext(null, { type: 'brief-confirm' }).needsEligibility, true);
   assert.equal(styleDirectionRequestContext(null, { type: 'answer' }).needsEligibility, false);
+  assert.equal(styleDirectionRequestContext({ styleDirectionsV2: {} }, { type: 'feedback' }).needsEligibility, true);
+  assert.equal(styleDirectionRequestContext({ styleDirectionsV2: {} }, { type: 'finish' }).needsEligibility, true);
+  assert.equal(styleDirectionRequestContext({ styleDirectionsV2: {} }, { type: 'calibrate' }).needsEligibility, false);
 });
 
 test('accepts three style directions with up to seven exact governed cards', () => {

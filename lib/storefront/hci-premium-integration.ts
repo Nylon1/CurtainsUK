@@ -295,8 +295,14 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     directions: prior ? expandPreparedDirections(customerView(prior.presentation), prior.private_state).directions : undefined,
   });
   const deliveryState = preparedDirectionStore(view);
+  // A later direction is a read of the already-confirmed brief. Preserve the
+  // compact post-brief HCI state rather than writing the upstream's cumulative
+  // response state again; its selected six cards are persisted separately below.
+  const hciStateCompressed = directionPrepare && typeof prior?.private_state?.hciStateCompressed === 'string'
+    ? prior.private_state.hciStateCompressed
+    : compressPrivateJson(result.state);
   const storedState: StoredCustomerState = {
-    hciStateCompressed: compressPrivateJson(result.state),
+    hciStateCompressed,
     ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}),
     ...(deliveryState ? { deliveryPreparedDirections: deliveryState } : {}),
     commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents],

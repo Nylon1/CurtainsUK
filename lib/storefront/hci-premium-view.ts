@@ -17,7 +17,7 @@ function fields(value: Record<string, unknown>, allowed: readonly string[]) {
 export function customerView(value: unknown) {
   const view = object(value);
   if (view.version !== HCI_PREMIUM_CONTRACT || view.sourceCommit !== HCI_PREMIUM_BASELINE || !uuid.test(string(view.sessionId, 36)) ||
-    !['discovery', 'calibration', 'brief', 'complete', 'directions', 'final'].includes(string(view.phase, 30)) || !Array.isArray(view.directions) || view.directions.length > 5)
+    !['discovery', 'price', 'calibration', 'brief', 'complete', 'directions', 'final'].includes(string(view.phase, 30)) || !Array.isArray(view.directions) || view.directions.length > 5)
     throw Error('HCI_CONTRACT_INVALID');
   if (JSON.stringify(view).length > 1_000_000) throw Error('HCI_CONTRACT_INVALID');
   assertNoRawReferenceMedia(view);
@@ -43,6 +43,11 @@ export function customerView(value: unknown) {
       brand: string(item.brand, 160), design: string(item.design, 160),
       colourway: string(item.colourway, 160), imageUrl: imageUrl.toString(),
     };
+  })();
+  const priceLevel = view.priceLevel == null ? null : (() => {
+    const item = object(view.priceLevel); fields(item, ['selected']);
+    if (item.selected !== null && !['MID_RANGE', 'LUXURY', 'PREMIUM_LUXURY', 'SUPER_LUXURY'].includes(string(item.selected, 30))) throw Error('HCI_CONTRACT_INVALID');
+    return { selected: item.selected === null ? null : string(item.selected, 30) };
   })();
   const brief = view.interiorBrief == null ? null : (() => {
     const item = object(view.interiorBrief);
@@ -72,7 +77,7 @@ export function customerView(value: unknown) {
     const direction = object(candidate);
     fields(direction, ['id', 'label', 'purpose', 'status', 'cards', 'feedback']);
     const id = string(direction.id, 160);
-    if (seen.has(id) || !Array.isArray(direction.cards) || direction.cards.length > 1) throw Error('HCI_CONTRACT_INVALID');
+    if (seen.has(id) || !Array.isArray(direction.cards) || direction.cards.length > 7) throw Error('HCI_CONTRACT_INVALID');
     seen.add(id);
     return {
       id,
@@ -98,6 +103,7 @@ export function customerView(value: unknown) {
     question: view.question === null ? null : view.question,
     stimulusId: view.stimulusId === null ? null : string(view.stimulusId, 160),
     tasteProgress: progress(view.tasteProgress, 4),
+    priceLevel,
     calibrationFabric: eye,
     calibrationProgress: progress(view.calibrationProgress, 8),
     interiorBrief: brief,

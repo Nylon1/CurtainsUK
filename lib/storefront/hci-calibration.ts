@@ -10,7 +10,7 @@ export function calibrationRequestContext(state: {
   return {
     policy: enabled ? policy : undefined,
     needsEligibility: enabled && !state?.calibrationSelection &&
-      state?.tasteAnswers?.length === 2 && action?.type === 'answer',
+      state?.tasteAnswers?.length === 3 && action?.type === 'price-level',
   };
 }
 

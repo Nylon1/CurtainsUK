@@ -22,11 +22,14 @@ export { HCI_PREMIUM_BASELINE, HCI_PREMIUM_CONTRACT, PREMIUM_HCI_COOKIE, PREMIUM
 export function issuePremiumOwner() { return randomUUID(); }
 
 async function handoff(view: ReturnType<typeof customerView>) {
-  if (view.calibrationFabric) {
+  const ids = [...new Set(view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)))];
+  // A completed calibration card is no longer rendered once Style Directions
+  // exist. Do not add a sequential full-record read to the 18-card handoff.
+  // The exact calibration-stage re-check remains unchanged when it is visible.
+  if (view.calibrationFabric && !ids.length) {
     const records = await fabricMasterRecordsByIds([view.calibrationFabric.fabricMasterId]);
     view = { ...view, calibrationFabric: currentCalibrationFabric(view.calibrationFabric, records) };
   }
-  const ids = [...new Set(view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)))];
   // Discovery, upload and palette states have no fabric cards. Avoid a needless
   // Fabric Master round-trip until an exact recommendation needs commercial handoff.
   if (!ids.length) return view;

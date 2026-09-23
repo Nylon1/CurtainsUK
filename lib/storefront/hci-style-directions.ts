@@ -19,6 +19,7 @@ export function styleDirectionRequestContext(
   return {
     needsEligibility:
       action?.type === 'brief-confirm' ||
+      action?.type === 'direction-load' ||
       (Boolean(state?.styleDirectionsV2) &&
         (action?.type === 'feedback' || action?.type === 'finish')),
   };

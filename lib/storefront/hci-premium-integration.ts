@@ -34,11 +34,11 @@ function isProgressiveStyleDirections(view: ReturnType<typeof customerView>) {
   return view.directions.length >= 1 && view.directions.length <= 3 && view.directions.every((direction) => direction.cards.length >= 5 && direction.cards.length <= 7);
 }
 
-function progressiveDelivery(view: ReturnType<typeof customerView>): CustomerPresentation {
+function progressiveDelivery(view: ReturnType<typeof customerView>, forceLatest = false): CustomerPresentation {
   // HCI persists each completed direction before requesting the next one.  A
   // complete saved result still returns normally; only an in-progress result
   // carries delivery metadata so reload resumes exactly where it left off.
-  return isProgressiveStyleDirections(view) && view.directions.length < 3
+  return isProgressiveStyleDirections(view) && (view.directions.length < 3 || forceLatest)
     ? delivery(view, view.directions.length)
     : view;
 }
@@ -87,7 +87,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   if (prior?.request_id === command.requestId) {
     if (prior.request_digest !== digest) throw Error('HCI_SESSION_CONFLICT');
     const persisted = customerView(prior.presentation);
-    return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? progressiveDelivery(persisted) : persisted);
+    return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? progressiveDelivery(persisted, command.action?.type === 'direction-load') : persisted);
   }
   if (prior && !command.action) return handoff(progressiveDelivery(customerView(prior.presentation)));
   const expected = prior?.revision ?? -1;
@@ -151,5 +151,5 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}), commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
   const persisted = customerView(data);
-  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? progressiveDelivery(persisted) : persisted);
+  return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? progressiveDelivery(persisted, command.action?.type === 'direction-load') : persisted);
 }

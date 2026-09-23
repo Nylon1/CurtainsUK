@@ -13,6 +13,23 @@ function string(value: unknown, maximum = 400): string {
 function fields(value: Record<string, unknown>, allowed: readonly string[]) {
   if (Object.keys(value).some((key) => !allowed.includes(key)) || allowed.some((key) => !Object.hasOwn(value, key))) throw Error('HCI_CONTRACT_INVALID');
 }
+type FeedbackOption = { id: string; label: string; group: string; dimension: string };
+type FeedbackMenu = { keep: FeedbackOption[]; change: FeedbackOption[] };
+function feedbackMenu(value: unknown): FeedbackMenu {
+  const menu = object(value); fields(menu, ['keep', 'change']);
+  const options = (items: unknown) => {
+    if (!Array.isArray(items) || items.length > 12) throw Error('HCI_CONTRACT_INVALID');
+    const ids = new Set<string>();
+    return items.map((raw) => {
+      const item = object(raw); fields(item, ['id', 'label', 'group', 'dimension']);
+      const id = string(item.id, 160);
+      if (!/^[a-zA-Z0-9:_-]{1,160}$/.test(id) || ids.has(id)) throw Error('HCI_CONTRACT_INVALID');
+      ids.add(id);
+      return { id, label: string(item.label, 160), group: string(item.group, 100), dimension: string(item.dimension, 100) };
+    });
+  };
+  return { keep: options(menu.keep), change: options(menu.change) };
+}
 
 export function customerView(value: unknown) {
   const view = object(value);
@@ -86,11 +103,20 @@ export function customerView(value: unknown) {
       status: string(direction.status, 60),
       cards: direction.cards.map((candidate) => {
         const card = object(candidate);
-        fields(card, ['fabricMasterId', 'supplierSku', 'reactionId', 'explanation']);
+        const hasFeedback = Object.hasOwn(card, 'feedback');
+        fields(card, hasFeedback
+          ? ['fabricMasterId', 'supplierSku', 'reactionId', 'explanation', 'feedback']
+          : ['fabricMasterId', 'supplierSku', 'reactionId', 'explanation']);
         if (!Array.isArray(card.explanation) || card.explanation.length > 3) throw Error('HCI_CONTRACT_INVALID');
-        return { fabricMasterId: string(card.fabricMasterId, 150), supplierSku: string(card.supplierSku, 150), reactionId: string(card.reactionId, 160), explanation: card.explanation.map((line) => string(line, 1200)) };
+        return {
+          fabricMasterId: string(card.fabricMasterId, 150),
+          supplierSku: string(card.supplierSku, 150),
+          reactionId: string(card.reactionId, 160),
+          explanation: card.explanation.map((line) => string(line, 1200)),
+          ...(hasFeedback ? { feedback: feedbackMenu(card.feedback) } : {}),
+        };
       }),
-      feedback: direction.feedback,
+      feedback: feedbackMenu(direction.feedback),
     };
   });
   return {

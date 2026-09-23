@@ -21,6 +21,7 @@ test('accepts three style directions with up to seven exact governed cards', () 
     supplierSku: `TEST/${index}`,
     reactionId: `canonical-${index}`,
     explanation: ['Governed evidence supports this current brief.'],
+    feedback: { keep: [{ id: 'keep:colour', label: 'Colour', group: 'Colour', dimension: 'colour' }], change: [] },
   }));
   const view = customerView({
     version: HCI_PREMIUM_CONTRACT,
@@ -37,6 +38,21 @@ test('accepts three style directions with up to seven exact governed cards', () 
   });
   assert.equal(view.directions.length, 3);
   assert.equal(view.directions[0]?.cards.length, 6);
+  assert.equal(view.directions[0]?.cards[0]?.feedback?.keep[0]?.id, 'keep:colour');
+});
+
+test('rejects malformed style-direction feedback metadata', () => {
+  const base = {
+    version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE,
+    sessionId: '12345678-1234-4123-8123-123456789abc', phase: 'directions',
+    profileSummary: '', question: null, stimulusId: null, tasteProgress: null,
+    calibrationFabric: null, calibrationProgress: null, interiorBrief: null, palette: null,
+    directions: [{ id: 'overall', label: 'Overall', purpose: 'Existing direction.', status: 'available',
+      cards: [{ fabricMasterId: 'pt-test', supplierSku: 'TEST/1', reactionId: 'canonical', explanation: [],
+        feedback: { keep: [{ id: 'bad id', label: 'Colour', group: 'Colour', dimension: 'colour' }], change: [] } }],
+      feedback: { keep: [], change: [] } }], learning: null, refinementDigest: null,
+  };
+  assert.throws(() => customerView(base));
 });
 
 const record = (overrides: Record<string, unknown> = {}) => ({

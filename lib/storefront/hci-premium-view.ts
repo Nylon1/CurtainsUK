@@ -72,7 +72,7 @@ export function customerView(value: unknown) {
     const direction = object(candidate);
     fields(direction, ['id', 'label', 'purpose', 'status', 'cards', 'feedback']);
     const id = string(direction.id, 160);
-    if (seen.has(id) || !Array.isArray(direction.cards) || direction.cards.length > 1) throw Error('HCI_CONTRACT_INVALID');
+    if (seen.has(id) || !Array.isArray(direction.cards) || direction.cards.length > 7) throw Error('HCI_CONTRACT_INVALID');
     seen.add(id);
     return {
       id,

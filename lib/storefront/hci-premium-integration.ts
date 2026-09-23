@@ -9,6 +9,7 @@ import { fabricReadiness } from '@/lib/fabric-master/readiness';
 import { assertNoRawReferenceMedia } from './hci-image-privacy';
 import { signHciCommerceContext } from './hci-commerce-context';
 import { calibrationEligibility, currentCalibrationFabric, calibrationRequestContext } from './hci-calibration';
+import { styleDirectionRequestContext } from './hci-style-directions';
 import { acceptedHciFeedback } from './hci-feedback';
 import {
   HCI_PREMIUM_BASELINE,
@@ -84,10 +85,13 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const calibration = calibrationRequestContext(prior?.private_state, command.action);
   const calibrationEligibilityIds = calibration.needsEligibility
     ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
+  const styleDirections = styleDirectionRequestContext(prior?.private_state, command.action);
+  const styleDirectionEligibilityIds = styleDirections.needsEligibility
+    ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`, 'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },
-    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: command.action, recordedAt: new Date().toISOString() }),
+    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: prior?.private_state ?? null, action: command.action, recordedAt: new Date().toISOString() }),
   });
   if (!upstream.ok) {
     // Operationally useful without logging a photograph, session state, URL or credentials.

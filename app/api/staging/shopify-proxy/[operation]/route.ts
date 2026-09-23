@@ -33,8 +33,10 @@ function errorResponse(error: unknown, fallback: string) {
   const rateLimit = endpointRateLimitResponse(error);
   const code = error instanceof Error ? error.message : "";
   // Keep operational diagnostics private and bounded; never log request bodies or supplier values.
-  if (process.env.VERCEL_ENV === "preview") {
-    const diagnosticCode = code.split(":", 1)[0];
+  const diagnosticCode = code.split(":", 1)[0];
+  // Production retains only bounded HCI/delivery codes so a fail-closed guided
+  // consultation boundary can be diagnosed without logging request data.
+  if (process.env.VERCEL_ENV === "preview" || /^(HCI_|DIRECTION_)/.test(diagnosticCode)) {
     console.error("CURTAINSUK_STAGING_REQUEST_FAILED", /^[A-Z][A-Z0-9_]{2,100}$/.test(diagnosticCode) ? diagnosticCode : "UNCLASSIFIED_FAILURE");
   }
   const replayStatus = code === "SHOPIFY_PROXY_REPLAY_DETECTED" ? 409 : null;

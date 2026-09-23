@@ -3,6 +3,7 @@ import 'server-only';
 import { customerView } from './hci-premium-view';
 
 import { createHash, randomUUID } from 'node:crypto';
+import { gzipSync, gunzipSync } from 'node:zlib';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 import { fabricMasterRecommendationEligibleIds, fabricMasterRecordsByIds, listFabricMasterRecords } from '@/lib/fabric-master/repository';
 import { assertNoRawReferenceMedia } from './hci-image-privacy';
@@ -23,7 +24,7 @@ export function issuePremiumOwner() { return randomUUID(); }
 
 type DirectionDelivery = { current: number; total: number };
 type CustomerPresentation = ReturnType<typeof customerView> & { directionDelivery?: DirectionDelivery };
-type PreparedDirectionStore = Record<string, ReturnType<typeof customerView>['directions'][number]>;
+type PreparedDirectionStore = string;
 type StoredCustomerState = Record<string, unknown> & { deliveryPreparedDirections?: PreparedDirectionStore };
 
 function delivery(view: ReturnType<typeof customerView>, current: number, total = 3): CustomerPresentation {
@@ -66,24 +67,58 @@ function compactDeliveryPresentation(view: ReturnType<typeof customerView>): Ret
 
 function preparedDirectionStore(view: ReturnType<typeof customerView>): PreparedDirectionStore | undefined {
   if (!isProgressiveStyleDirections(view) || view.directions.length < 2) return undefined;
-  return Object.fromEntries(view.directions.slice(1).map((direction, index) => [String(index + 1), direction]));
+  // The HCI state is already private but intentionally has a hard size limit.
+  // Compress only the customer-safe later-card payload so it is durable without
+  // duplicating a large expanded direction object in its JSON representation.
+  const compressed = gzipSync(Buffer.from(JSON.stringify(view.directions.slice(1)), 'utf8')).toString('base64');
+  if (Buffer.byteLength(compressed) > 256_000) throw Error('DIRECTION_DELIVERY_REQUIRED');
+  return compressed;
 }
 
 function expandPreparedDirections(view: ReturnType<typeof customerView>, state: unknown): ReturnType<typeof customerView> {
-  const prepared = (state && typeof state === 'object' && !Array.isArray(state)
+  const encoded = (state && typeof state === 'object' && !Array.isArray(state)
     ? (state as StoredCustomerState).deliveryPreparedDirections
-    : undefined) ?? {};
+    : undefined);
   if (!view.directions.some((direction) => direction.cards.length === 0)) return view;
+  if (typeof encoded !== 'string' || Buffer.byteLength(encoded) > 256_000) throw Error('DIRECTION_DELIVERY_REQUIRED');
+  let prepared: ReturnType<typeof customerView>['directions'];
+  try {
+    const bytes = gunzipSync(Buffer.from(encoded, 'base64'));
+    if (bytes.byteLength > 1_000_000) throw Error('too large');
+    prepared = customerView({ ...view, directions: JSON.parse(bytes.toString('utf8')) }).directions;
+  } catch {
+    throw Error('DIRECTION_DELIVERY_REQUIRED');
+  }
   return {
     ...view,
     directions: view.directions.map((direction, index) => {
       if (direction.cards.length) return direction;
-      const saved = prepared[String(index)];
+      const saved = prepared[index - 1];
       if (!saved || saved.id !== direction.id || saved.cards.length < 5 || saved.cards.length > 7)
         throw Error('DIRECTION_DELIVERY_REQUIRED');
       return saved;
     }),
   };
+}
+
+/**
+ * HCI may project a follow-up direction either cumulatively or as the bounded
+ * direction that was just prepared. Reattach the latter to the existing
+ * persisted selection before it reaches CurtainsUK's delivery store.
+ */
+function joinPreparedDirection(
+  view: ReturnType<typeof customerView>,
+  prior: { presentation: unknown; private_state: unknown } | null,
+  index: number,
+): ReturnType<typeof customerView> {
+  if (!prior || !Number.isSafeInteger(index) || index < 1 || index > 2) return view;
+  if (view.directions.length > index && view.directions[index]?.cards.length) return view;
+  if (view.directions.length !== 1 || view.directions[0]?.cards.length < 5 || view.directions[0]?.cards.length > 7)
+    throw Error('DIRECTION_DELIVERY_REQUIRED');
+  const persisted = expandPreparedDirections(customerView(prior.presentation), prior.private_state);
+  if (persisted.directions.length !== index || persisted.directions.some((direction) => direction.cards.length < 5 || direction.cards.length > 7))
+    throw Error('DIRECTION_DELIVERY_REQUIRED');
+  return { ...view, directions: [...persisted.directions, view.directions[0]] };
 }
 
 function hydratedDirection(view: ReturnType<typeof customerView>, index: number): CustomerPresentation {
@@ -215,7 +250,8 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   } catch {
     throw Error('HCI_CONTRACT_VIEW');
   }
-  const view = { ...projected, revision: expected + 1 };
+  let view: ReturnType<typeof customerView> & { revision: number } = { ...projected, revision: expected + 1 };
+  if (directionPrepare) view = { ...joinPreparedDirection(view, prior, Number(command.action!.index)), revision: expected + 1 };
   if (view.sessionId !== command.sessionId || result?.state?.consultation?.sessionId !== command.sessionId || result?.state?.consultation?.owner !== createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'))
     throw Error('HCI_CONTRACT_STATE');
   const feedbackEvents = acceptedHciFeedback({

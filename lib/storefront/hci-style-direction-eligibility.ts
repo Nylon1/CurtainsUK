@@ -1,6 +1,27 @@
 import { fabricReadiness } from '../fabric-master/readiness';
 import type { FabricMasterRecord } from '../fabric-master/types';
 
+/**
+ * The retail direction gate deliberately needs only the facts used by the
+ * existing readiness rule. Keeping this small lets a selected price cohort be
+ * checked without hydrating unrelated Fabric Master fields.
+ */
+export type RetailDirectionCandidate = Pick<
+  FabricMasterRecord,
+  | 'fabric_id'
+  | 'supplier_id'
+  | 'supplier_sku'
+  | 'brand_name'
+  | 'design_name'
+  | 'colour_name'
+  | 'lifecycle_state'
+  | 'staging_catalog_visible'
+  | 'imagery'
+  | 'usable_width_mm'
+  | 'full_width_mm'
+  | 'pattern_match_type'
+>;
+
 export type ApprovedImageRow = {
   fabric_id: string;
   supplier_id: string;
@@ -14,7 +35,7 @@ export type ApprovedImageRow = {
  * valid HCI result cannot later degrade into an unavailable visual card.
  */
 export function retailStyleDirectionEligibility(
-  records: readonly FabricMasterRecord[],
+  records: readonly RetailDirectionCandidate[],
   mappings: readonly ApprovedImageRow[],
 ) {
   const approved = new Set(

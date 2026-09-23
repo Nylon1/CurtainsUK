@@ -7,7 +7,23 @@ export function calculationWidth(record: Pick<FabricMasterRecord,'usable_width_m
   const width = record.full_width_mm;
   return width !== null && Number.isFinite(width) && width > 0 ? width : null;
 }
-export function fabricReadiness(record: FabricMasterRecord, evidence: {
+type ReadinessRecord = Pick<
+  FabricMasterRecord,
+  | 'fabric_id'
+  | 'supplier_id'
+  | 'supplier_sku'
+  | 'brand_name'
+  | 'design_name'
+  | 'colour_name'
+  | 'lifecycle_state'
+  | 'staging_catalog_visible'
+  | 'imagery'
+  | 'usable_width_mm'
+  | 'full_width_mm'
+  | 'pattern_match_type'
+> & Partial<FabricMasterRecord>;
+
+export function fabricReadiness(record: ReadinessRecord, evidence: {
   stock?: PublicSupplierAvailability; stale?: boolean; sampleStockAvailable?: boolean; priceConfirmed?: boolean; shippingKnown?: boolean;
 } = {}) {
   const canonical = Boolean(record.fabric_id && record.supplier_id && record.supplier_sku && record.brand_name && record.design_name && record.colour_name);

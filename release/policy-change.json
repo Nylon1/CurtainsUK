@@ -1,7 +1,7 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The production release workflow hard-fails on stale bootstrap data, incomplete live probes, preflight requirements and an explicit activation blocker, so even an approved protected release/production HEAD cannot be deployed.",
-  "newRule": "The two required pull-request checks remain mandatory, while the workflow becomes validation-only and owner-authorised manual Vercel deployment is permitted from the exact protected release/production HEAD; incomplete bootstrap smoke and preflight assets remain advisory until completed.",
-  "reason": "The unfinished automation bootstrap was creating a permanent deployment deadlock unrelated to application quality. The capability and policy checks remain enforced while deployment returns to the proven protected-branch manual path.",
-  "ownerApprovedDecision": "The owner explicitly instructed that the unfinished release blockage be removed so approved Calibration V2 can be deployed without weakening the required production capability checks."
+  "previousRule": "Style Direction eligibility was sent when the Interior Fabric Brief was confirmed, but omitted from later feedback and refinement commands even though those commands replay the displayed V2 direction state.",
+  "newRule": "Feedback and refinement for a persisted Style Directions V2 result receive the same server-derived retail eligibility projection used when its cards were rendered; other actions retain their existing projection behaviour.",
+  "reason": "Without the retained eligibility context, the governed learning input changes between display and reaction and the HCI service rejects the feedback command despite the customer selecting a card that was actually shown.",
+  "ownerApprovedDecision": "The owner explicitly authorised this post-Style-Direction feedback regression fix, limited to the existing eligibility context and state transition, with no changes to selection, ranking, price tiers, Calibration, Fabric Knowledge or taxonomy."
 }

@@ -11,7 +11,8 @@ const record={fabric_id:offered.fabricMasterId,supplier_sku:offered.supplierSku,
 test('new sessions opt in; legacy sessions remain replayable; only selection creation loads eligibility',()=>{
   assert.equal(calibrationRequestContext(null).policy,'brief-calibration-v2');
   assert.equal(calibrationRequestContext({tasteAnswers:[]}).policy,undefined);
-  assert.equal(calibrationRequestContext({calibrationPolicy:'brief-calibration-v2',tasteAnswers:[1,2]}, {type:'answer'}).needsEligibility,true);
+  assert.equal(calibrationRequestContext({calibrationPolicy:'brief-calibration-v2',tasteAnswers:[1,2]}, {type:'answer'}).needsEligibility,false);
+  assert.equal(calibrationRequestContext({calibrationPolicy:'brief-calibration-v2',tasteAnswers:[1,2,3]}, {type:'price-level'}).needsEligibility,true);
   assert.equal(calibrationRequestContext({calibrationPolicy:'brief-calibration-v2',tasteAnswers:[1,2,3],calibrationSelection:{}}, {type:'calibrate'}).needsEligibility,false);
 });
 test('existing recommendation eligibility governs calibration, without inventing purchasing/stock readiness',()=>{

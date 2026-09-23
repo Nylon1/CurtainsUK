@@ -12,6 +12,7 @@ const referenceTypes = ['room', 'paint', 'sofa-upholstery', 'wallpaper', 'rug', 
 const paletteCategories = ['primary', 'secondary', 'accent'];
 const roomFeatures = ['walls', 'sofa', 'flooring', 'rug', 'wallpaper', 'furniture', 'curtains', 'cushions', 'artwork', 'accessories', 'other'];
 const influences = ['important', 'consider', 'ignore'];
+const priceLevels = ['MID_RANGE', 'LUXURY', 'PREMIUM_LUXURY', 'SUPER_LUXURY'];
 export type PremiumHciCommand = { requestId: string; sessionId: string; revision: number | null; action?: Record<string, unknown> };
 
 function object(value: unknown): Record<string, unknown> { if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('HCI_CONTRACT_INVALID'); return value as Record<string, unknown>; }
@@ -45,6 +46,7 @@ export function premiumHciCommand(value: unknown): PremiumHciCommand {
   if (body.action == null) return { requestId, sessionId, revision: body.revision == null ? null : Number(body.revision) };
   const action = object(body.action); const type = string(action.type, 30);
   if (type === 'answer') { fields(action, ['type', 'answerId']); action.answerId = string(action.answerId); }
+  else if (type === 'price-level') { fields(action, ['type', 'level']); if (!priceLevels.includes(string(action.level, 30))) throw Error('HCI_CONTRACT_INVALID'); }
   else if (type === 'calibrate') { fields(action, ['type', 'reaction']); if (!reactions.includes(string(action.reaction, 30))) throw Error('HCI_CONTRACT_INVALID'); }
   else if (type === 'recommend' || type === 'finish') fields(action, ['type']);
   else if (type === 'brief-change') {

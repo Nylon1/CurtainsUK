@@ -80,6 +80,25 @@ test('premium customer contract accepts only bounded guided palette actions', ()
   assert.throws(() => premiumHciCommand({ requestId: sessionId, action: { type: 'palette', edit: { id: 'x', revision: 0, type: 'add', colour: 'red', category: 'primary', unexpected: true } } }));
 });
 
+test('price level is a bounded consultation action and never a customer-supplied amount', () => {
+  const command = premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'price-level', level: 'PREMIUM_LUXURY' } });
+  assert.equal(command.action?.level, 'PREMIUM_LUXURY');
+  assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'price-level', level: '£150' } }));
+  assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'price-level', level: 'MID_RANGE', amount: 4999 } }));
+});
+
+test('price level is retained as a bounded preference in the customer view, without an amount', () => {
+  const view = customerView({
+    version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId,
+    phase: 'calibration', profileSummary: '', question: null, stimulusId: null,
+    tasteProgress: { current: 3, total: 3 }, priceLevel: { selected: 'LUXURY' },
+    calibrationFabric: null, calibrationProgress: { current: 1, total: 6 },
+    interiorBrief: null, palette: null, directions: [], learning: null, refinementDigest: null,
+  });
+  assert.deepEqual(view.priceLevel, { selected: 'LUXURY' });
+  assert.throws(() => customerView({ ...view, priceLevel: { selected: 'LUXURY', amountMinor: 15000 } }));
+});
+
 test('premium route requires matching deployment stage and explicit gates', () => {
   const base = { VERCEL_ENV: 'preview', CURTAINSUK_DEPLOYMENT_STAGE: 'STAGING', CURTAINSUK_HCI_INTEGRATION_ENABLED: 'true', CURTAINSUK_HCI_PREMIUM_ENABLED: 'true' };
   assert.equal(premiumHciEnabled(base), true);

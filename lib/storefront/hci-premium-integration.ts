@@ -21,7 +21,25 @@ export { HCI_PREMIUM_BASELINE, HCI_PREMIUM_CONTRACT, PREMIUM_HCI_COOKIE, PREMIUM
 
 export function issuePremiumOwner() { return randomUUID(); }
 
-async function handoff(view: ReturnType<typeof customerView>) {
+type DirectionDelivery = { current: number; total: number };
+type CustomerPresentation = ReturnType<typeof customerView> & { directionDelivery?: DirectionDelivery };
+
+function delivery(view: ReturnType<typeof customerView>, current: number): CustomerPresentation {
+  const total = view.directions.length;
+  if (!total || total > 3 || !Number.isSafeInteger(current) || current < 0 || current > total)
+    throw Error('DIRECTION_DELIVERY_INVALID');
+  return { ...view, directions: current === 0 ? [] : [view.directions[current - 1]!], directionDelivery: { current, total } };
+}
+
+function isProgressiveStyleDirections(view: ReturnType<typeof customerView>) {
+  return view.directions.length === 3 && view.directions.every((direction) => direction.cards.length >= 5 && direction.cards.length <= 7);
+}
+
+function initialDelivery(view: ReturnType<typeof customerView>): CustomerPresentation {
+  return isProgressiveStyleDirections(view) ? delivery(view, 0) : view;
+}
+
+async function handoff<T extends CustomerPresentation>(view: T): Promise<T> {
   const ids = [...new Set(view.directions.flatMap((direction) => direction.cards.map((card) => card.fabricMasterId)))];
   // A completed calibration card is no longer rendered once Style Directions
   // exist. Do not add a sequential full-record read to the 18-card handoff.
@@ -50,7 +68,7 @@ async function handoff(view: ReturnType<typeof customerView>) {
         }, signingSecret),
       })),
     })),
-  };
+  } as T;
 }
 
 /** Durable user state stays in CurtainsUK's existing guarded RPC store. HCI receives a hashed owner only. */
@@ -62,11 +80,20 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const { data: prior, error: readError } = await db.rpc('hci_staging_read', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId });
   if (readError) throw Error('HCI_STORAGE_UNAVAILABLE');
   if (!prior && command.sessionId !== command.requestId) throw Error('HCI_SESSION_CONFLICT');
+  // Style Directions are selected and persisted as one governed result. Delivery is
+  // intentionally incremental so the customer receives the first six exact fabrics
+  // without waiting for all 18 commercial projections to be hydrated.
+  if (prior && command.action?.type === 'direction-load') {
+    const persisted = customerView(prior.presentation);
+    if (!isProgressiveStyleDirections(persisted)) throw Error('DIRECTION_DELIVERY_UNAVAILABLE');
+    return handoff(delivery(persisted, Number(command.action.index) + 1));
+  }
   if (prior?.request_id === command.requestId) {
     if (prior.request_digest !== digest) throw Error('HCI_SESSION_CONFLICT');
-    return handoff(customerView(prior.presentation));
+    const persisted = customerView(prior.presentation);
+    return handoff(command.action?.type === 'brief-confirm' ? initialDelivery(persisted) : persisted);
   }
-  if (prior && !command.action) return handoff(customerView(prior.presentation));
+  if (prior && !command.action) return handoff(initialDelivery(customerView(prior.presentation)));
   const expected = prior?.revision ?? -1;
   if ((prior && command.revision !== expected) || (!prior && command.revision !== null)) throw Error('HCI_SESSION_CONFLICT');
   if (command.action?.type === 'outcome') {
@@ -127,5 +154,6 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   });
   const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: { ...result.state, ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}), commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents] }, p_view: view });
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
-  return handoff(customerView(data));
+  const persisted = customerView(data);
+  return handoff(command.action?.type === 'brief-confirm' ? initialDelivery(persisted) : persisted);
 }

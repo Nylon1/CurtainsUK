@@ -7,7 +7,7 @@ import { calculationWidth } from './readiness';
 import { customerGuidance, customerIntelligence, visualKnowledgeByFabricIds } from './visual-knowledge';
 
 import { BROWSE_DISCOVERY, supplierFacts } from './browse-experience';
-import { governedBrowseFilters, type BrowseKnowledgeKey } from './browse-filters';
+import { governedBrowseFilters, type BrowseFacetKey } from './browse-filters';
 import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
 
 export async function retailFabricDetail(id: string, withGuide = false) {
@@ -71,13 +71,13 @@ export async function searchRetailFabrics(params: URLSearchParams) {
     ...(withGuide ? { p_guide_min: band?.minimumMinor ?? null, p_guide_max: band?.maximumMinor ?? null } : {}),
   });
   if (error) throw new Error("RETAIL_SEARCH_UNAVAILABLE");
-  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[]; guidePrices?: Record<string, number>; knowledgeOptions?: Partial<Record<BrowseKnowledgeKey, { value: string; label: string; count: number }[]>> };
+  const value = data as { ids: string[]; total: number; brands: string[]; collections: string[]; guidePrices?: Record<string, number>; facetOptions?: Partial<Record<BrowseFacetKey, { value: string; label: string; count: number }[]>> };
   // At most 24 records are ever hydrated for a response.
   const fabrics = await hydrateRetailFabrics(value.ids, withGuide);
   const result = { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(fabric => ({ ...fabric, browseGuide: customerBrowseGuide(value.guidePrices?.[fabric.id]) })) : fabrics,
     page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize),
     facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY,
-      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.knowledgeOptions?.[dimension.key] ?? [] })) } : {}) } };
+      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.facetOptions?.[dimension.key] ?? [] })) } : {}) } };
   assertCustomerSafeProjection(result);
   return result;
 }

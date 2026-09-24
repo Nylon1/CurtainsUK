@@ -4,17 +4,18 @@ import { governedBrowseFilters } from '../browse-filters';
 
 test('governed Browse facets accept only bounded known-value-shaped browser input', () => {
   const params = new URLSearchParams({
-    query: '  Dunbar  ', pattern: 'geometric, geometric',
+    query: '  Dunbar  ', colour: 'blue, blue', pattern: 'geometric, geometric',
     texture: 'visible-weave', finish: 'matte', character: 'natural, refined',
   });
   assert.deepEqual(governedBrowseFilters(params), {
     query: 'Dunbar', brand: '', collection: '', sample: '', availability: '', window: '',
-    pattern: ['geometric'], texture: ['visible-weave'], finish: ['matte'], character: ['natural', 'refined'],
+    colour: ['blue'], pattern: ['geometric'], texture: ['visible-weave'], finish: ['matte'], character: ['natural', 'refined'],
   });
 });
 
 test('missing governed facet input remains an empty constraint, never a fabricated value', () => {
   const filters = governedBrowseFilters(new URLSearchParams());
+  assert.deepEqual(filters.colour, []);
   assert.deepEqual(filters.pattern, []);
   assert.deepEqual(filters.texture, []);
   assert.deepEqual(filters.finish, []);

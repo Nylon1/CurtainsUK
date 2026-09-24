@@ -1,7 +1,7 @@
-export const BROWSE_KNOWLEDGE_KEYS = ['pattern', 'texture', 'finish', 'character'] as const;
-export type BrowseKnowledgeKey = typeof BROWSE_KNOWLEDGE_KEYS[number];
+export const BROWSE_FACET_KEYS = ['colour', 'pattern', 'texture', 'finish', 'character'] as const;
+export type BrowseFacetKey = typeof BROWSE_FACET_KEYS[number];
 
-function browseFacetValues(params: URLSearchParams, key: BrowseKnowledgeKey) {
+function browseFacetValues(params: URLSearchParams, key: BrowseFacetKey) {
   return [...new Set((params.get(key) ?? '')
     .split(',')
     .map((value) => value.trim().toLowerCase())
@@ -14,6 +14,6 @@ export function governedBrowseFilters(params: URLSearchParams) {
   const filters: Record<string, string | string[]> = Object.fromEntries(
     ['query', 'brand', 'collection', 'sample', 'availability', 'window'].map((key) => [key, (params.get(key) ?? '').trim().slice(0, 100)]),
   );
-  for (const key of BROWSE_KNOWLEDGE_KEYS) filters[key] = browseFacetValues(params, key);
+  for (const key of BROWSE_FACET_KEYS) filters[key] = browseFacetValues(params, key);
   return filters;
 }

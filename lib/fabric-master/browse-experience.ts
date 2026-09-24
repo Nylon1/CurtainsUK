@@ -2,14 +2,15 @@ import type { FabricMasterRecord } from './types';
 import { RETAIL_TAXONOMY, type RetailProfile } from './retail';
 
 /**
- * Customer-facing Browse facets. Values are supplied only by the governed visual
- * knowledge read cache; this registry never creates or infers a value itself.
+ * Customer-facing Browse facets. Colour and price are governed supplier facts;
+ * Fabric Knowledge adds only the reviewed visual dimensions.
  */
 export const BROWSE_DISCOVERY = [
-  { key: 'pattern', label: 'Pattern character', treatment: 'choices', active: true },
-  { key: 'texture', label: 'Texture', treatment: 'choices', active: true },
-  { key: 'character', label: 'Character / style', treatment: 'choices', active: true },
-  { key: 'finish', label: 'Finish / sheen', treatment: 'choices', active: true },
+  { key: 'colour', label: 'Colour', treatment: 'swatches', active: true, authority: 'MANUFACTURER_FACT' },
+  { key: 'pattern', label: 'Pattern character', treatment: 'choices', active: true, authority: 'GOVERNED_FABRIC_KNOWLEDGE' },
+  { key: 'texture', label: 'Texture', treatment: 'choices', active: true, authority: 'GOVERNED_FABRIC_KNOWLEDGE' },
+  { key: 'character', label: 'Character / style', treatment: 'choices', active: true, authority: 'GOVERNED_FABRIC_KNOWLEDGE' },
+  { key: 'finish', label: 'Finish / sheen', treatment: 'choices', active: true, authority: 'GOVERNED_FABRIC_KNOWLEDGE' },
 ] as const;
 
 export type EvidenceProfile = RetailProfile & { classification_evidence?: string | null };

@@ -1,4 +1,4 @@
-export const BROWSE_KNOWLEDGE_KEYS = ['colour', 'pattern', 'texture', 'finish', 'character'] as const;
+export const BROWSE_KNOWLEDGE_KEYS = ['pattern', 'texture', 'finish', 'character'] as const;
 export type BrowseKnowledgeKey = typeof BROWSE_KNOWLEDGE_KEYS[number];
 
 function browseFacetValues(params: URLSearchParams, key: BrowseKnowledgeKey) {

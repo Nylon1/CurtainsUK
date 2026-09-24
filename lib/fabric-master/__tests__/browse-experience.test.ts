@@ -25,7 +25,7 @@ test('missing governed attributes are omitted, with no fallback AI or invented a
   assert.equal(reviewedFabricIntelligence({...profile,colour_families:['UNKNOWN'],patterns:['UNKNOWN'],characters:['UNKNOWN'],styles:['UNKNOWN']},[hash]),null);
   const plain=reviewedFabricIntelligence({...profile,patterns:['plain'],characters:['UNKNOWN']},[hash])!;
   assert.ok(!plain.advice.some(a=>a.label==='Light'||a.label==='What needs care'));
-  assert.deepEqual(BROWSE_DISCOVERY.map(d=>d.key), ['colour','pattern','texture','character','finish']);
+  assert.deepEqual(BROWSE_DISCOVERY.map(d=>d.key), ['pattern','texture','character','finish']);
   assert.ok(BROWSE_DISCOVERY.every(d=>d.active));
 });
 test('supplier specifications remain separate, exact and unchanged; zero repeat is meaningful',()=>{

@@ -1,7 +1,7 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Browse production coverage asserted that every Fabric Intelligence discovery facet remained inactive because the former facet projection was not part of the production lineage.",
-  "newRule": "Browse production coverage asserts five cache-governed facets and bounded browser input validation while private SQL independently limits values to eligible Fabric Knowledge evidence.",
-  "reason": "Owner approved restoring the existing Browse UI through a clean current-production governed projection, without legacy profiles or a second pricing or knowledge source.",
-  "ownerApprovedDecision": "The owner authorised this exact Browse facets release; GitHub must still record an exact current-HEAD OWNER_APPROVED_POLICY_CHANGE comment before merge."
+  "previousRule": "Browse production coverage asserted five visible governed facets, including Colour / palette, from the clean current-production cache projection.",
+  "newRule": "Browse production coverage asserts only Pattern, Texture, Character / style and Finish / sheen because their governed coverage exceeds seventy percent of the eligible catalogue; Colour remains unavailable until its coverage becomes useful.",
+  "reason": "Read-only production coverage proved that visual Colour has only 3,092 known eligible fabrics (33.4%), while the four retained facets range from 71.6% to 83.0%; exposing colour now would make partial enrichment appear like an absence of eligible fabrics.",
+  "ownerApprovedDecision": "The owner required the smallest genuinely useful facet set, full unfiltered Browse eligibility, and unknown Fabric Knowledge to remain unknown rather than inferred or treated as false."
 }

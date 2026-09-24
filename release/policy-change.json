@@ -1,7 +1,7 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Style Direction eligibility was sent when the Interior Fabric Brief was confirmed, but omitted from later feedback and refinement commands even though those commands replay the displayed V2 direction state.",
-  "newRule": "Feedback and refinement for a persisted Style Directions V2 result receive the same server-derived retail eligibility projection used when its cards were rendered; other actions retain their existing projection behaviour.",
-  "reason": "Without the retained eligibility context, the governed learning input changes between display and reaction and the HCI service rejects the feedback command despite the customer selecting a card that was actually shown.",
-  "ownerApprovedDecision": "The owner explicitly authorised this post-Style-Direction feedback regression fix, limited to the existing eligibility context and state transition, with no changes to selection, ranking, price tiers, Calibration, Fabric Knowledge or taxonomy."
+  "previousRule": "Browse production coverage asserted that every Fabric Intelligence discovery facet remained inactive because the former facet projection was not part of the production lineage.",
+  "newRule": "Browse production coverage asserts five cache-governed facets and bounded browser input validation while private SQL independently limits values to eligible Fabric Knowledge evidence.",
+  "reason": "Owner approved restoring the existing Browse UI through a clean current-production governed projection, without legacy profiles or a second pricing or knowledge source.",
+  "ownerApprovedDecision": "The owner authorised this exact Browse facets release; GitHub must still record an exact current-HEAD OWNER_APPROVED_POLICY_CHANGE comment before merge."
 }

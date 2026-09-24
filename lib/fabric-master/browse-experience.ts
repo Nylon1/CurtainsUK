@@ -1,18 +1,16 @@
 import type { FabricMasterRecord } from './types';
 import { RETAIL_TAXONOMY, type RetailProfile } from './retail';
 
-/** Presentation registry only. Activation requires a governed, catalogue-wide coverage gate.
- * Sparse editorial profiles are useful on exact detail pages, not complete catalogue facets.
- * Future enrichment must supply approved values through these existing canonical dimensions.
+/**
+ * Customer-facing Browse facets. Values are supplied only by the governed visual
+ * knowledge read cache; this registry never creates or infers a value itself.
  */
 export const BROWSE_DISCOVERY = [
-  { key: 'colour', label: 'Colour / palette', treatment: 'swatches', active: false },
-  { key: 'pattern', label: 'Pattern character', treatment: 'fabric-images', active: false },
-  { key: 'patternStrength', label: 'Pattern strength', treatment: 'continuum', active: false },
-  { key: 'texture', label: 'Texture', treatment: 'fabric-images', active: false },
-  { key: 'character', label: 'Fabric character', treatment: 'fabric-images', active: false },
-  { key: 'designStrength', label: 'Design strength', treatment: 'continuum', active: false },
-  { key: 'visualWeight', label: 'Visual weight', treatment: 'continuum', active: false },
+  { key: 'colour', label: 'Colour / palette', treatment: 'swatches', active: true },
+  { key: 'pattern', label: 'Pattern character', treatment: 'choices', active: true },
+  { key: 'texture', label: 'Texture', treatment: 'choices', active: true },
+  { key: 'character', label: 'Character / style', treatment: 'choices', active: true },
+  { key: 'finish', label: 'Finish / sheen', treatment: 'choices', active: true },
 ] as const;
 
 export type EvidenceProfile = RetailProfile & { classification_evidence?: string | null };

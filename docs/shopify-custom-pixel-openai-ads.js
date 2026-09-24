@@ -3,7 +3,7 @@
 // Privacy: Permission required; data collected does not qualify as data sale.
 
 const OPENAI_PIXEL_ID = "6LN4GfrhY92CkQR6Uti2NH";
-const OPENAI_IMAGE_ENDPOINT = "https://bzr.openai.com/v1/sdk/events";
+const OPENAI_EVENT_ENDPOINT = "https://bzr.openai.com/v1/sdk/events";
 
 async function getOppref() {
   try {
@@ -34,24 +34,14 @@ async function sendOpenAiEvent(eventName, event) {
     const oppref = await getOppref();
     if (oppref) params.set("oppref", oppref);
 
-    const total = event?.data?.checkout?.totalPrice;
-    const amount = Number(total?.amount);
-    if (
-      total?.currencyCode === "GBP" &&
-      Number.isFinite(amount) &&
-      amount >= 0
-    ) {
-      params.set("data[amount]", String(Math.round(amount * 100)));
-      params.set("data[currency]", "GBP");
-    }
-
-    // OpenAI's supported image-tag transport avoids CORS dependency inside
-    // Shopify's sandbox. No response body is required.
-    const beacon = new Image(1, 1);
-    beacon.width = 1;
-    beacon.height = 1;
-    beacon.style.display = "none";
-    beacon.src = `${OPENAI_IMAGE_ENDPOINT}?${params.toString()}`;
+    // Keep the browser event deliberately minimal for reliability.
+    // Value enrichment can be added after transport is proven.
+    await fetch(`${OPENAI_EVENT_ENDPOINT}?${params.toString()}`, {
+      method: "GET",
+      mode: "no-cors",
+      keepalive: true,
+      cache: "no-store",
+    });
   } catch (_) {
     // Measurement must never interrupt checkout.
   }

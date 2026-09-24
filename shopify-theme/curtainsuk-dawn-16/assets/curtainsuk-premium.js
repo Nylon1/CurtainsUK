@@ -1,20 +1,6 @@
 (() => {
   if (window.__curtainsukPremiumReady) return;
   window.__curtainsukPremiumReady = true;
-  const publishCustomerEvent = (name, data = {}) => {
-    try {
-      if (window.Shopify?.analytics?.publish) {
-        window.Shopify.analytics.publish(name, data);
-      }
-    } catch {
-      /* Advertising measurement must never block the customer journey. */
-    }
-  };
-  document.querySelectorAll('[data-cuk-assisted-entry]').forEach((link) => {
-    link.addEventListener('click', () => publishCustomerEvent('curtainsuk:fabric_intelligence_started', {
-      entry: new URL(link.href).searchParams.get('entry') || 'guided',
-    }));
-  });
   document.querySelectorAll("[data-cuk-discovery]").forEach(section => {
     const query = new URLSearchParams(location.search);
     if (query.has("fabric")) section.hidden = true;
@@ -147,25 +133,6 @@
     const form = root.querySelector('form.cuk-form');
     if (!form || form.dataset.wizardReady) return;
     form.dataset.wizardReady = 'true';
-    form.addEventListener('submit', () => {
-      publishCustomerEvent('curtainsuk:quote_started', {
-        windowSlug: String(form.elements.windowSlug?.value || '').slice(0, 60),
-        fabricId: String(form.elements.fabricId?.value || '').slice(0, 100),
-      });
-    });
-    const reviewEvidence = form.querySelector('[data-cuk-review-evidence]');
-    if (reviewEvidence) {
-      new MutationObserver(() => {
-        const text = reviewEvidence.textContent || '';
-        if (reviewEvidence.dataset.openaiLeadSent !== 'true' && /reference|submitted|review request|received/i.test(text)) {
-          reviewEvidence.dataset.openaiLeadSent = 'true';
-          publishCustomerEvent('curtainsuk:quote_submitted', {
-            windowSlug: String(form.elements.windowSlug?.value || '').slice(0, 60),
-            fabricId: String(form.elements.fabricId?.value || '').slice(0, 100),
-          });
-        }
-      }).observe(reviewEvidence, {childList: true, subtree: true, characterData: true});
-    }
     root.classList.add('cuk-wizard');
     const titles = ['Window', 'Measurements', 'Fabric', 'Heading', 'Lining', 'Pair / single', 'Price'];
     const children = [...form.children],

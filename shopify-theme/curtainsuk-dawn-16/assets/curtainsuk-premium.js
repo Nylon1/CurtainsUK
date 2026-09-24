@@ -147,6 +147,25 @@
     const form = root.querySelector('form.cuk-form');
     if (!form || form.dataset.wizardReady) return;
     form.dataset.wizardReady = 'true';
+    form.addEventListener('submit', () => {
+      publishCustomerEvent('curtainsuk:quote_started', {
+        windowSlug: String(form.elements.windowSlug?.value || '').slice(0, 60),
+        fabricId: String(form.elements.fabricId?.value || '').slice(0, 100),
+      });
+    });
+    const reviewEvidence = form.querySelector('[data-cuk-review-evidence]');
+    if (reviewEvidence) {
+      new MutationObserver(() => {
+        const text = reviewEvidence.textContent || '';
+        if (reviewEvidence.dataset.openaiLeadSent !== 'true' && /reference|submitted|review request|received/i.test(text)) {
+          reviewEvidence.dataset.openaiLeadSent = 'true';
+          publishCustomerEvent('curtainsuk:quote_submitted', {
+            windowSlug: String(form.elements.windowSlug?.value || '').slice(0, 60),
+            fabricId: String(form.elements.fabricId?.value || '').slice(0, 100),
+          });
+        }
+      }).observe(reviewEvidence, {childList: true, subtree: true, characterData: true});
+    }
     root.classList.add('cuk-wizard');
     const titles = ['Window', 'Measurements', 'Fabric', 'Heading', 'Lining', 'Pair / single', 'Price'];
     const children = [...form.children],

@@ -6,7 +6,6 @@ import { RETAIL_TAXONOMY, type RetailProfile } from './retail';
  * knowledge read cache; this registry never creates or infers a value itself.
  */
 export const BROWSE_DISCOVERY = [
-  { key: 'colour', label: 'Colour / palette', treatment: 'swatches', active: true },
   { key: 'pattern', label: 'Pattern character', treatment: 'choices', active: true },
   { key: 'texture', label: 'Texture', treatment: 'choices', active: true },
   { key: 'character', label: 'Character / style', treatment: 'choices', active: true },

@@ -58,7 +58,7 @@ SELECT 'pattern',value FROM jsonb_array_elements_text((CASE WHEN e.pattern_class
     UNION ALL SELECT 'texture',value FROM jsonb_array_elements_text(e.visual_surface)
     UNION ALL SELECT 'finish',e.sheen_appearance WHERE e.sheen_appearance<>''
     UNION ALL SELECT 'character',value FROM jsonb_array_elements_text(e.visual_character)
-  ) x WHERE x.value<>'' AND lower(x.value)<>'unknown'
+  ) x(key,value) WHERE x.value<>'' AND lower(x.value)<>'unknown'
 ), knowledge_coverage AS (
   SELECT key,count(DISTINCT fabric_id)::integer coverage FROM knowledge_values GROUP BY key
 ), knowledge_options AS (

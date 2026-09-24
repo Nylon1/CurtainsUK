@@ -1,6 +1,20 @@
 (() => {
   if (window.__curtainsukPremiumReady) return;
   window.__curtainsukPremiumReady = true;
+  const publishCustomerEvent = (name, data = {}) => {
+    try {
+      if (window.Shopify?.analytics?.publish) {
+        window.Shopify.analytics.publish(name, data);
+      }
+    } catch {
+      /* Advertising measurement must never block the customer journey. */
+    }
+  };
+  document.querySelectorAll('[data-cuk-assisted-entry]').forEach((link) => {
+    link.addEventListener('click', () => publishCustomerEvent('curtainsuk:fabric_intelligence_started', {
+      entry: new URL(link.href).searchParams.get('entry') || 'guided',
+    }));
+  });
   document.querySelectorAll("[data-cuk-discovery]").forEach(section => {
     const query = new URLSearchParams(location.search);
     if (query.has("fabric")) section.hidden = true;

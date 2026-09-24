@@ -1,8 +1,0 @@
-{
-  "name": "curtainsuk-openai-ads-pixel",
-  "private": true,
-  "version": "1.0.0",
-  "dependencies": {
-    "@shopify/web-pixels-extension": "^2.0.0"
-  }
-}

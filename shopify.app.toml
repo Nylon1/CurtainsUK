@@ -10,7 +10,7 @@ api_version = "2026-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_app_proxy,write_files,write_metaobject_definitions,write_metaobjects,write_products"
+scopes = "write_app_proxy,write_files,write_metaobject_definitions,write_metaobjects,write_products,write_pixels,read_customer_events"
 # Granted per installation for owner-authorised Draft Order workflows only.
 optional_scopes = ["write_draft_orders"]
 

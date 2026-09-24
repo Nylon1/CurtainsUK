@@ -1,44 +1,59 @@
 # OpenAI Ads tracking — CurtainsUK
 
-## Architecture
+## Verified production architecture
 
-CurtainsUK remains Shopify-first for production commerce. Fabric Intelligence and decision/configuration services are served through the CurtainsUK Shopify app proxy and supporting Next.js/Vercel infrastructure.
+CurtainsUK is Shopify-first for the live storefront and commerce. Fabric Intelligence / HCI and configuration services run through the CurtainsUK app-proxy and supporting Next.js/Vercel infrastructure.
 
-Tracking must therefore preserve one attribution journey across Shopify and the app-proxy intelligence layer.
+The current MAIN Shopify theme already contains the OpenAI Measurement Pixel and a CurtainsUK analytics bridge.
 
-## Ads Manager
+## Verified live status — 25 September 2026
 
-Data source: `CurtainsUK Website`
+- OpenAI data source: `CurtainsUK Website`.
+- Standard conversion setting: `CurtainsUK Lead` -> `lead_created`.
+- Live page-view events are reaching OpenAI Ads Event Stream.
+- The live storefront bridge emits `lead_created` only after a successful persisted review/quote submission.
+- The live storefront attempts `checkout_started` before Shopify checkout, but a real no-payment rehearsal reached Shopify checkout without that event appearing in OpenAI Event Stream.
+- The Ads campaign remains paused while conversion measurement is proven.
 
-Primary optimisation event: `lead_created`
+## Checkout fix
 
-Do not put Ads Manager identifiers in this document other than the public pixel configuration value passed through the web-pixel settings.
+Use Shopify Customer Events for the checkout boundary rather than relying only on the preceding storefront click.
 
-## Shopify customer events
+Immediate implementation: Shopify **Custom Pixel**, stored in this repository at:
 
-The `curtainsuk-openai-ads` web pixel subscribes to Shopify standard commerce events and CurtainsUK custom events.
+`docs/shopify-custom-pixel-openai-ads.js`
 
-CurtainsUK custom event contract:
+The custom pixel subscribes to Shopify's native:
 
-- `curtainsuk:fabric_intelligence_started`
-- `curtainsuk:palette_created`
-- `curtainsuk:fabric_selected`
-- `curtainsuk:quote_submitted` -> OpenAI `lead_created`
+- `checkout_started` -> OpenAI `checkout_started`
+- `checkout_completed` -> OpenAI `order_created`
 
-Commerce events:
+It reads the first-party OpenAI `__oppref` cookie through Shopify's controlled `browser.cookie` API and forwards the original attribution identifier to OpenAI's browser measurement endpoint.
 
-- Shopify `checkout_started` -> OpenAI `checkout_started`
-- Shopify `checkout_completed` -> OpenAI `order_created`
+It does **not** send email, phone, address, customer name, order identifiers or other customer personal data.
 
-## Attribution
+For GBP checkouts it also sends the Shopify checkout total in integer pence. For any other currency it omits value rather than assuming a minor-unit conversion.
 
-The web pixel records the OpenAI `oppref` query parameter in Shopify pixel local storage when present. The app-proxy customer experience remains on `www.curtainsuk.com`, so the click reference is not deliberately discarded when moving into Fabric Intelligence.
+## Shopify Custom Pixel privacy
 
-## Activation
+Configure the custom pixel in Shopify Admin to require:
 
-1. Deploy the Shopify app version containing the web pixel extension.
-2. Approve the added `write_pixels` and `read_customer_events` scopes.
-3. Activate the web pixel for the shop with the CurtainsUK Website Pixel ID.
-4. Publish the custom events from the relevant live customer actions.
-5. Run a real non-payment test through the journey and confirm events in Ads Manager Event Stream.
-6. Keep advertising campaign paused until `lead_created` is observed.
+- Analytics: required
+- Marketing: required
+- Preferences: not required
+- Sale of data: disabled / not required
+
+Shopify Customer Events provides the checkout lifecycle coverage that theme JavaScript cannot provide reliably.
+
+## Test sequence
+
+1. Add and connect the custom pixel in Shopify Admin.
+2. Ensure marketing consent is granted in the test browser.
+3. Start a CurtainsUK made-to-measure checkout without paying.
+4. Confirm `checkout_started` appears in OpenAI Ads Event Stream.
+5. Do not make a payment merely to test the checkout-start event.
+6. Leave the campaign paused until the required measurement checks pass.
+
+## Longer-term purchase reliability
+
+For confirmed paid orders, add OpenAI Conversions API delivery from the trusted server/order boundary and deduplicate it against the browser `order_created` event with a shared event ID. This is separate from the immediate checkout-start fix.

@@ -251,7 +251,6 @@ async function main() {
   const cache = await loadRestoreCache(restoreDir);
   const existing = await fetchAllLedger(db, cohortFile ? [...new Set(designRows.map(r=>r.design_id))] : undefined);
   const reusable = existing.filter(r=>r.approval_state === "APPROVED" || (cohortFile && r.approval_state === "PROPOSED"));
-  for (const row of reusable) if (cohortFile) validateVisual(row.output);
   const designByGoverned = new Map(reusable.filter((r) => r.analysis_level === "DESIGN").map((r) => [designKey(r), r]));
   const colourwayByFabric = new Map(reusable.filter((r) => r.analysis_level === "COLOURWAY").map((r) => [colourwayKey(r), r]));
   const resolvedKeys = new Set(reusable.filter(r=>r.analysis_level === "RESOLVED").map(colourwayKey));

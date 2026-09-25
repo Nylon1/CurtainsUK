@@ -138,10 +138,12 @@ async function fetchAllRpc<T>(db: any, fn: string, params?: Record<string, unkno
   }
   return rows;
 }
-async function fetchAllLedger(db: any) {
+async function fetchAllLedger(db: any, designIds?: string[]) {
   const rows: LedgerRow[] = [];
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from("fabric_visual_enrichment_ledger").select("ledger_id,run_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,analysis_asset_hash,output,approval_state,review_state").is("superseded_at", null).range(from, from + 999);
+    let query = db.from("fabric_visual_enrichment_ledger").select("ledger_id,run_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,analysis_asset_hash,output,approval_state,review_state").is("superseded_at", null);
+    if (designIds) query=query.in("design_id",designIds).eq("visual_version",visualVersion).eq("prompt_version",visualPromptVersion).eq("vocabulary_version",visualVocabularyVersion).eq("schema_version",visualSchemaVersion).eq("model_id",hciVisualModel);
+    const { data, error } = await query.range(from, from + 999);
     if (error) throw error;
     const page = (data ?? []) as LedgerRow[];
     rows.push(...page);
@@ -247,9 +249,12 @@ async function main() {
 
   await assertOpenAiCredentialReady();
   const cache = await loadRestoreCache(restoreDir);
-  const existing = await fetchAllLedger(db);
-  const designByGoverned = new Map(existing.filter((r) => r.analysis_level === "DESIGN" && r.approval_state === "APPROVED").map((r) => [designKey(r), r]));
-  const colourwayByFabric = new Map(existing.filter((r) => r.analysis_level === "COLOURWAY" && r.approval_state === "APPROVED").map((r) => [colourwayKey(r), r]));
+  const existing = await fetchAllLedger(db, cohortFile ? [...new Set(designRows.map(r=>r.design_id))] : undefined);
+  const reusable = existing.filter(r=>r.approval_state === "APPROVED" || (cohortFile && r.approval_state === "PROPOSED"));
+  for (const row of reusable) if (cohortFile) validateVisual(row.output);
+  const designByGoverned = new Map(reusable.filter((r) => r.analysis_level === "DESIGN").map((r) => [designKey(r), r]));
+  const colourwayByFabric = new Map(reusable.filter((r) => r.analysis_level === "COLOURWAY").map((r) => [colourwayKey(r), r]));
+  const resolvedKeys = new Set(reusable.filter(r=>r.analysis_level === "RESOLVED").map(colourwayKey));
   const { data: run, error: runError } = await db.from("fabric_visual_enrichment_runs").insert({ run_label: runLabel, scope, visual_version: visualVersion, vocabulary_version: visualVocabularyVersion, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, checkpoint: { stage: "created", designTotal: designRows.length, colourwayTotal: colourwayRows.length }, summary: report }).select("run_id").single();
   if (runError) throw runError;
   const runId = run.run_id as string;
@@ -282,22 +287,25 @@ async function main() {
           designByGoverned.set(governedKey, designLedger);
         }
         for (const row of siblings) {
-          if (colourwayByFabric.has(colourwayKey(row))) continue;
+          if (resolvedKeys.has(colourwayKey(row))) continue;
           const colourwayAsset = combined && row.fabric_id === designRow.fabric_id && designAsset ? designAsset : await fetchAnalysisAsset(row);
           const cached = cache.get(lineageKey("COLOURWAY", row, colourwayAsset));
           let colourwayVisual: VisualFingerprint;
-          if (cached) { colourwayVisual = cached; report.recovered++; }
+          const savedColourway=colourwayByFabric.get(colourwayKey(row));
+          if (savedColourway) { colourwayVisual=savedColourway.output; report.recovered++; }
+          else if (cached) { colourwayVisual = cached; report.recovered++; }
           else {
             const classified = combined && row.fabric_id === designRow.fabric_id && combinedRaw ? { candidate: combinedRaw, asset: colourwayAsset } : await openAiClassify(row, colourwayFingerprintInstruction, "low", colourwayAsset);
             colourwayVisual = acceptVisualCandidate(colourwayCandidateFrom(flexibleCandidate(classified.candidate)), { binding: binding(row, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "COLOURWAY" });
             report.newlyInferredColourways++;
           }
-          const colourwayLedgerId = await insertFingerprint(db, runId, row, colourwayVisual, colourwayAsset);
+          const colourwayLedgerId = savedColourway?.ledger_id ?? await insertFingerprint(db, runId, row, colourwayVisual, colourwayAsset);
           colourwayByFabric.set(colourwayKey(row), { ledger_id: colourwayLedgerId, analysis_level: "COLOURWAY", fabric_id: row.fabric_id, supplier_id: row.supplier_id, supplier_sku: row.supplier_sku, brand_id: row.brand_id, design_id: row.design_id, source_image_hash: row.source_image_hash, analysis_asset_hash: colourwayAsset.analysisAssetHash, output: colourwayVisual, approval_state: reviewState(colourwayVisual.candidate, "COLOURWAY") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(colourwayVisual.candidate, "COLOURWAY") });
           const designForResolution = { ...designLedger.output, candidate: designCandidateFrom(flexibleCandidate(designLedger.output.candidate)) } as VisualFingerprint;
           const colourwayForResolution = { ...colourwayVisual, candidate: colourwayCandidateFrom(flexibleCandidate(colourwayVisual.candidate)) } as VisualFingerprint;
           const resolved = resolveFabricFingerprint({ design: designForResolution, colourway: colourwayForResolution, analysedAt: new Date().toISOString() });
           await insertFingerprint(db, runId, row, resolved, colourwayAsset, { designId: designLedger.ledger_id, colourwayId: colourwayLedgerId });
+          resolvedKeys.add(colourwayKey(row));
           report.resolved++;
         }
       } catch (err) {

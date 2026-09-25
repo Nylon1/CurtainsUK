@@ -130,6 +130,9 @@ export function resolveFabricFingerprint(input: { design: VisualFingerprint; col
   const designBinding = input.design.binding, colourwayBinding = input.colourway.binding;
   if (designBinding.supplierId !== colourwayBinding.supplierId || designBinding.brandId !== colourwayBinding.brandId || designBinding.designId !== colourwayBinding.designId) throw new Error("RESOLUTION_GOVERNED_IDENTITY_MISMATCH");
   const observations = Object.fromEntries((Object.keys(visualVocabulary) as VisualDimension[]).map((key) => [key, colourwayDimensionSet.has(key) ? input.colourway.candidate.observations[key] : input.design.candidate.observations[key]])) as VisualCandidate["observations"];
+  // A sibling's repeat view does not make the bound colourway image a repeat
+  // view. Retain its evidence on the design layer and withhold this one field.
+  if (input.colourway.candidate.imageContext !== "REPEAT_VIEW") observations.directionality = unknownObservation("directionality");
   const candidate = validateCandidate({ imageContext: input.colourway.candidate.imageContext, observations, reviewFlags: [...new Set([...input.design.candidate.reviewFlags, ...input.colourway.candidate.reviewFlags])].sort() });
   return acceptVisualCandidate(candidate, { binding: colourwayBinding, imageContentHash: input.colourway.imageContentHash, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: input.analysedAt, analysisLevel: "RESOLVED", source: "RESOLVED_COMPOSITION", authority: "composed", fieldProvenance: Object.fromEntries((Object.keys(visualVocabulary) as VisualDimension[]).map((key) => [key, colourwayDimensionSet.has(key) ? "colourway_inference" : "design_inference"])) as FieldProvenance, componentEvidenceIds: { design: input.design.evidenceId, colourway: input.colourway.evidenceId } });
 }

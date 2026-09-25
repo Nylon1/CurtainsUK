@@ -66,3 +66,15 @@ test("composes a resolved fabric fingerprint from design and colourway provenanc
   assert.equal(resolved.candidate.observations.primaryColour.value, "blue");
   assert.equal(resolved.componentEvidenceIds?.design, design.evidenceId);
 });
+
+test("a design repeat does not establish direction on a colourway swatch", () => {
+  const repeat=candidate({imageContext:"REPEAT_VIEW"});
+  repeat.observations.directionality={value:"vertical",confidence:"HIGH"};
+  const context={binding,imageContentHash:binding.expectedImageHash,modelId:hciVisualModel,promptVersion:visualPromptVersion,schemaVersion:visualSchemaVersion,analysedAt:"2026-09-25T17:00:00.000Z"};
+  const design=acceptVisualCandidate(designCandidateFrom(repeat),{...context,analysisLevel:"DESIGN"});
+  const colourway=acceptVisualCandidate(colourwayCandidateFrom(candidate()),{...context,analysisLevel:"COLOURWAY"});
+  const resolved=resolveFabricFingerprint({design,colourway,analysedAt:context.analysedAt});
+  assert.equal(resolved.candidate.observations.directionality.value,"unknown");
+  assert.equal(resolved.candidate.observations.directionality.confidence,"REVIEW");
+  assert.equal(design.candidate.observations.directionality.value,"vertical");
+});

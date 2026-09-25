@@ -16,9 +16,10 @@ function firstRelation(value: SupplierPriceSnapshotCandidate["prices"]) {
 }
 
 /**
- * PT uses genuine Standard Price ex VAT; other suppliers retain their approved
- * cut-price basis. Neither field is derived from the other. The latest genuine
- * approved price remains valid until superseded. Age-based
+ * CurtainsUK uses genuine approved Cut Price ex VAT for new PT observations
+ * and SDG. Existing PT Standard-only observations remain a compatibility
+ * fallback until individually refreshed with Cut Price; neither value is
+ * derived from or relabelled as the other. Age-based
  * expiry fields are historical metadata, not a price gate. Explicit revocation remains authoritative.
  */
 export function selectCurrentApprovedSupplierCostMinor(input: {
@@ -33,11 +34,14 @@ export function selectCurrentApprovedSupplierCostMinor(input: {
     if (!latestPromotionBySnapshot.has(event.snapshot_id)) latestPromotionBySnapshot.set(event.snapshot_id, event);
   }
 
-  for (const snapshot of [...input.snapshots].sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at))) {
+  const snapshots = [...input.snapshots].sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at));
+  const priceFields = input.supplierId === "prestigious-textiles"
+    ? ["cut_trade_price", "standard_trade_price"] as const
+    : ["cut_trade_price"] as const;
+  for (const priceField of priceFields) for (const snapshot of snapshots) {
     const latestPromotion = latestPromotionBySnapshot.get(snapshot.snapshot_id);
     const price = firstRelation(snapshot.prices);
-    const basePrice = Number(input.supplierId === 'prestigious-textiles'
-      ? price?.standard_trade_price : price?.cut_trade_price);
+    const basePrice = Number(price?.[priceField]);
     if (latestPromotion?.promotion_state !== "APPROVED_FOR_PROJECTION"
         || !Number.isFinite(Date.parse(snapshot.checked_at))
         || Date.parse(snapshot.checked_at) > now

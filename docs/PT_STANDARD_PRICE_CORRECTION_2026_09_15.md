@@ -1,7 +1,11 @@
-# Prestigious Standard Price correction — 15 September 2026
+# Prestigious Standard Price correction — 15 September 2026 (superseded)
+
+> Superseded on 25 September 2026 by the owner's clarification that CurtainsUK
+> uses Prestigious Textiles Cut Price. See `PT_CUT_PRICE_POLICY_2026_09_25.md`.
 
 ## Result
-Approved genuine PT Standard Price ex VAT now supplies the commercial base price in the application and database readiness/immutable-configuration consumers. Cut Price remains separate evidence and is neither copied nor converted. SDG keeps its existing price basis.
+This was the previous commercial-basis decision. The later correction changes
+consumers to use separately observed Cut Price without rewriting source evidence.
 
 Code commit: `c762683d348874ceccbcfb62cc3d431e20cc4168`.
 Existing approved application baseline: `98fc01d` (Full Width, 72-hour stock validity, >=30m and shared sample/curtain availability).

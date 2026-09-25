@@ -14,10 +14,10 @@ test('guide bands have exact, gap-free boundaries; unknown prices are not zero',
   for(const amount of [undefined,null,0,-1,NaN,Infinity,'5000',100.5,Number.MAX_SAFE_INTEGER+1]) assert.equal(customerBrowseGuide(amount),null);
 });
 
-test('guide uses existing PT Standard / SDG Cut approval policy, not an order calculation', () => {
+test('guide uses the owner-approved PT and SDG Cut-price policy, not an order calculation', () => {
   const snapshots=[{snapshot_id:'price',checked_at:'2026-01-01T00:00:00Z',price_expires_at:'2026-02-01T00:00:00Z',prices:{standard_trade_price:20.33,cut_trade_price:25,currency:'GBP'}}];
   const promotionEvents=[{snapshot_id:'price',promotion_state:'APPROVED_FOR_PROJECTION',created_at:'2026-01-01T00:01:00Z'}];
-  for(const [supplierId,expected] of [['prestigious-textiles',6099],['sanderson-design-group',7500]] as const) {
+  for(const [supplierId,expected] of [['prestigious-textiles',7500],['sanderson-design-group',7500]] as const) {
     const cost=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots,promotionEvents});
     const guide=customerBrowseGuide(cost===null?null:cost*3);
     assert.equal(guide?.amountMinor,expected);

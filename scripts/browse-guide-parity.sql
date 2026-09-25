@@ -6,8 +6,10 @@ WITH latest_promotion AS MATERIALIZED (
   SELECT DISTINCT ON (s.supplier_id, s.supplier_sku)
     s.supplier_id::text AS supplier_id,
     s.supplier_sku::text AS supplier_sku,
-    (round((CASE WHEN s.supplier_id = 'prestigious-textiles'
-      THEN p.standard_trade_price ELSE p.cut_trade_price END) * 100) * 3)::bigint AS guide_minor
+    (round((CASE
+      WHEN s.supplier_id = 'prestigious-textiles' AND p.cut_trade_price > 0 THEN p.cut_trade_price
+      WHEN s.supplier_id = 'prestigious-textiles' THEN p.standard_trade_price
+      ELSE p.cut_trade_price END) * 100) * 3)::bigint AS guide_minor
   FROM curtainsuk_private.supplier_snapshots s
   JOIN curtainsuk_private.supplier_snapshot_prices p USING (snapshot_id)
   JOIN latest_promotion e
@@ -16,9 +18,12 @@ WITH latest_promotion AS MATERIALIZED (
   WHERE s.validation_status = 'VALIDATED'
     AND s.checked_at <= now()
     AND p.currency = 'GBP'
-    AND (CASE WHEN s.supplier_id = 'prestigious-textiles'
-      THEN p.standard_trade_price ELSE p.cut_trade_price END) > 0
-  ORDER BY s.supplier_id, s.supplier_sku, s.checked_at DESC, s.snapshot_id DESC
+    AND (CASE
+      WHEN s.supplier_id = 'prestigious-textiles' THEN coalesce(p.cut_trade_price, p.standard_trade_price)
+      ELSE p.cut_trade_price END) > 0
+  ORDER BY s.supplier_id, s.supplier_sku,
+    CASE WHEN s.supplier_id = 'prestigious-textiles' AND p.cut_trade_price > 0 THEN 0 ELSE 1 END,
+    s.checked_at DESC, s.snapshot_id DESC
 ), old_rows AS MATERIALIZED (
   SELECT * FROM curtainsuk_private.current_retail_guide_prices()
 )

@@ -6,6 +6,12 @@ on:
     # retrieve-to-materialisation success, before 96-hour evidence expires.
     - cron: "39 * * * *"
   workflow_dispatch:
+    inputs:
+      cohort_skus:
+        description: "Optional exact registered PT SKU cohort (1–100); blank uses normal full refresh"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
@@ -24,6 +30,7 @@ jobs:
       SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
       PT_WEBTEX_USERNAME: ${{ secrets.PT_WEBTEX_USERNAME }}
       PT_WEBTEX_PASSWORD: ${{ secrets.PT_WEBTEX_PASSWORD }}
+      PT_COHORT_SKUS: ${{ inputs.cohort_skus }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

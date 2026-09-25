@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { reconcilePtStock, nextPtRefreshAt, type PtIdentity, type PtStockRow } from "../pt-stock-reconciliation";
+import { assertProvenPtCoverage, PT_EXPECTED_IDENTITIES, PT_PROVEN_MINIMUM, reconcilePtStock, nextPtRefreshAt, type PtIdentity, type PtStockRow } from "../pt-stock-reconciliation";
 
 const identities: PtIdentity[] = [
   { supplierSku: "4262/770", collection: "Rustic Persian", brandId: "prestigious-textiles", lifecycleState: "CURRENT" },
@@ -39,4 +39,18 @@ test("explicit zero is retained; invalid units and discontinued supplier flag re
 
 test("PT routine due interval remains 72 hours", () => {
   assert.equal(nextPtRefreshAt("2026-09-18T00:00:00.000Z").toISOString(), "2026-09-21T00:00:00.000Z");
+});
+
+test("normal PT refresh accepts the reconciled 3,235-master full catalogue", () => {
+  assert.equal(PT_EXPECTED_IDENTITIES, 3235);
+  assert.equal(PT_PROVEN_MINIMUM, 3232);
+  const full = Array.from({ length: PT_EXPECTED_IDENTITIES }, (_, index): PtIdentity => ({
+    supplierSku: `${String(1000 + Math.floor(index / 1000)).padStart(4, "0")}/${String(index % 1000).padStart(3, "0")}`,
+    collection: "Full manifest", brandId: "prestigious-textiles", lifecycleState: "CURRENT",
+  }));
+  full[0] = { ...full[0], supplierSku: "7222/022" };
+  full[1] = { ...full[1], supplierSku: "7866/012" };
+  full[2] = { ...full[2], supplierSku: "3622/282" };
+  const rows = full.slice(3).map((item): PtStockRow => ({ ...row(item.supplierSku, "1 M"), queryValue: "Full manifest" }));
+  assert.doesNotThrow(() => assertProvenPtCoverage(full, reconcilePtStock(full, rows)));
 });

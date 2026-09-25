@@ -3,8 +3,8 @@ import type { NormalizedSupplierSnapshot } from "./types";
 
 export const PT_SUPPLIER = "prestigious-textiles";
 export const PT_SOURCE = "Prestigious Webtex authenticated Stock Enquiry";
-export const PT_EXPECTED_IDENTITIES = 3185;
-export const PT_PROVEN_MINIMUM = 3182;
+export const PT_EXPECTED_IDENTITIES = 3235;
+export const PT_PROVEN_MINIMUM = 3232;
 export const PT_PRIOR_UNKNOWN_SKUS = new Set(["7222/022", "7866/012", "3622/282"]);
 export const PT_REFRESH_INTERVAL_MS = 72 * 60 * 60 * 1000;
 

@@ -1,7 +1,7 @@
 -- Owner-confirmed CurtainsUK commercial policy: new Prestigious Textiles
--- observations preserve the established Standard Price selection. New
--- approved Cut-only observations remain eligible until Standard evidence
--- exists for that SKU.
+-- observations preserve the established Standard Price selection. Approved
+-- Cut-only records from the governed PDF importer remain eligible for that
+-- cohort until Standard evidence exists for the SKU.
 -- No source value is copied, relabelled, or derived.
 
 CREATE OR REPLACE FUNCTION curtainsuk_private.fabric_commercial_evidence(p_ids text[])
@@ -24,7 +24,7 @@ begin
  'price_confirmed',exists(
  select 1 from curtainsuk_private.supplier_snapshots p join curtainsuk_private.supplier_snapshot_prices price using(snapshot_id)
  where p.supplier_id=c.supplier_id and p.supplier_sku=c.supplier_sku and p.validation_status='VALIDATED'
- and p.checked_at<=now()  and price.currency='GBP' and ((p.supplier_id='prestigious-textiles' AND (price.cut_trade_price>0 OR price.standard_trade_price>0)) OR (p.supplier_id<>'prestigious-textiles' AND price.cut_trade_price>0))
+ and p.checked_at<=now()  and price.currency='GBP' and ((p.supplier_id='prestigious-textiles' AND (price.standard_trade_price>0 OR (price.cut_trade_price>0 and p.snapshot_id like 'pt-pdf-cut:%' and p.source_type='OTHER' and p.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price'))) OR (p.supplier_id<>'prestigious-textiles' AND price.cut_trade_price>0))
  and (select e.promotion_state from curtainsuk_private.supplier_promotion_events e where e.snapshot_id=p.snapshot_id order by e.created_at desc limit 1)='APPROVED_FOR_PROJECTION'
  ))),'[]'::jsonb) into result
  from curtainsuk_private.fabric_colourways c
@@ -246,7 +246,7 @@ begin
     and supplier_snapshot.validation_status = 'VALIDATED'
     and supplier_snapshot.checked_at <= clock_timestamp()
     and supplier_snapshot.lifecycle_state <> 'DISCONTINUED'
-    and ((supplier_snapshot.supplier_id='prestigious-textiles' AND (supplier_price.cut_trade_price>0 OR supplier_price.standard_trade_price>0)) OR (supplier_snapshot.supplier_id<>'prestigious-textiles' AND supplier_price.cut_trade_price>0))
+    and ((supplier_snapshot.supplier_id='prestigious-textiles' AND (supplier_price.standard_trade_price>0 OR (supplier_price.cut_trade_price>0 and supplier_snapshot.snapshot_id like 'pt-pdf-cut:%' and supplier_snapshot.source_type='OTHER' and supplier_snapshot.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price'))) OR (supplier_snapshot.supplier_id<>'prestigious-textiles' AND supplier_price.cut_trade_price>0))
     and supplier_price.currency = 'GBP'
     and (
       select promotion.promotion_state
@@ -266,7 +266,12 @@ begin
     ) = 'APPROVED_FOR_PROJECTION'
   order by
     case when supplier_snapshot.supplier_id='prestigious-textiles'
-       and supplier_price.standard_trade_price>0 then 0 else 1 end,
+       and supplier_price.cut_trade_price>0
+       and supplier_snapshot.snapshot_id like 'pt-pdf-cut:%'
+       and supplier_snapshot.source_type='OTHER'
+       and supplier_snapshot.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price' then 0
+       when supplier_snapshot.supplier_id='prestigious-textiles'
+       and supplier_price.standard_trade_price>0 then 1 else 2 end,
     supplier_snapshot.checked_at desc, supplier_snapshot.snapshot_id desc
   limit 1;
   if current_price_snapshot_id is null then
@@ -342,7 +347,7 @@ begin
       and snapshot.validation_status = 'VALIDATED'
       and snapshot.checked_at <= clock_timestamp()
       and snapshot.lifecycle_state <> 'DISCONTINUED'
-      and ((snapshot.supplier_id='prestigious-textiles' AND (price.cut_trade_price>0 OR price.standard_trade_price>0)) OR (snapshot.supplier_id<>'prestigious-textiles' AND price.cut_trade_price>0))
+      and ((snapshot.supplier_id='prestigious-textiles' AND (price.standard_trade_price>0 OR (price.cut_trade_price>0 and snapshot.snapshot_id like 'pt-pdf-cut:%' and snapshot.source_type='OTHER' and snapshot.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price'))) OR (snapshot.supplier_id<>'prestigious-textiles' AND price.cut_trade_price>0))
       and price.currency = 'GBP'
       and (
         select event.promotion_state
@@ -384,14 +389,14 @@ RETURNS TABLE(supplier_id text, supplier_sku text, guide_minor bigint)
 LANGUAGE sql STABLE SET search_path TO '' AS $function$
   SELECT DISTINCT ON (s.supplier_id, s.supplier_sku)
     s.supplier_id::text, s.supplier_sku::text,
-    (round((CASE WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN p.standard_trade_price WHEN s.supplier_id='prestigious-textiles' THEN p.cut_trade_price ELSE p.cut_trade_price END)*100)*3)::bigint
+    (round((CASE WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 AND s.snapshot_id LIKE 'pt-pdf-cut:%' AND s.source_type='OTHER' AND s.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price' THEN p.cut_trade_price WHEN s.supplier_id='prestigious-textiles' THEN p.standard_trade_price ELSE p.cut_trade_price END)*100)*3)::bigint
   FROM curtainsuk_private.supplier_snapshots s
   JOIN curtainsuk_private.supplier_snapshot_prices p USING(snapshot_id)
   WHERE s.validation_status='VALIDATED' AND s.checked_at<=now() AND p.currency='GBP'
-    AND ((s.supplier_id='prestigious-textiles' AND (p.cut_trade_price>0 OR p.standard_trade_price>0)) OR (s.supplier_id<>'prestigious-textiles' AND p.cut_trade_price>0))
+    AND ((s.supplier_id='prestigious-textiles' AND (p.standard_trade_price>0 OR (p.cut_trade_price>0 AND s.snapshot_id LIKE 'pt-pdf-cut:%' AND s.source_type='OTHER' AND s.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price'))) OR (s.supplier_id<>'prestigious-textiles' AND p.cut_trade_price>0))
     AND (SELECT e.promotion_state FROM curtainsuk_private.supplier_promotion_events e
       WHERE e.snapshot_id=s.snapshot_id ORDER BY e.created_at DESC, e.event_id DESC LIMIT 1)='APPROVED_FOR_PROJECTION'
-  ORDER BY s.supplier_id, s.supplier_sku, CASE WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN 0 ELSE 1 END, s.checked_at DESC, s.snapshot_id DESC
+  ORDER BY s.supplier_id, s.supplier_sku, CASE WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 AND s.snapshot_id LIKE 'pt-pdf-cut:%' AND s.source_type='OTHER' AND s.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price' THEN 0 WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN 1 ELSE 2 END, s.checked_at DESC, s.snapshot_id DESC
 $function$;
 
 CREATE OR REPLACE VIEW curtainsuk_private.browse_current_guide_prices_set_v1
@@ -406,17 +411,17 @@ SELECT DISTINCT ON (s.supplier_id, s.supplier_sku)
   s.supplier_id::text AS supplier_id,
   s.supplier_sku::text AS supplier_sku,
   (round((CASE
-    WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN p.standard_trade_price
-    WHEN s.supplier_id='prestigious-textiles' THEN p.cut_trade_price
+    WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 AND s.snapshot_id LIKE 'pt-pdf-cut:%' AND s.source_type='OTHER' AND s.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price' THEN p.cut_trade_price
+    WHEN s.supplier_id='prestigious-textiles' THEN p.standard_trade_price
     ELSE p.cut_trade_price END) * 100) * 3)::bigint AS guide_minor
 FROM curtainsuk_private.supplier_snapshots s
 JOIN curtainsuk_private.supplier_snapshot_prices p USING (snapshot_id)
 JOIN latest_promotion e ON e.snapshot_id=s.snapshot_id AND e.promotion_state='APPROVED_FOR_PROJECTION'
 WHERE s.validation_status='VALIDATED' AND s.checked_at<=now() AND p.currency='GBP'
-  AND ((s.supplier_id='prestigious-textiles' AND (p.cut_trade_price>0 OR p.standard_trade_price>0))
+  AND ((s.supplier_id='prestigious-textiles' AND (p.standard_trade_price>0 OR (p.cut_trade_price>0 AND s.snapshot_id LIKE 'pt-pdf-cut:%' AND s.source_type='OTHER' AND s.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price')))
     OR (s.supplier_id<>'prestigious-textiles' AND p.cut_trade_price>0))
 ORDER BY s.supplier_id, s.supplier_sku,
-  CASE WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN 0 ELSE 1 END,
+  CASE WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 AND s.snapshot_id LIKE 'pt-pdf-cut:%' AND s.source_type='OTHER' AND s.source_name='Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price' THEN 0 WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN 1 ELSE 2 END,
   s.checked_at DESC, s.snapshot_id DESC;
 
 

@@ -4,8 +4,9 @@
 > uses Prestigious Textiles Cut Price. See `PT_CUT_PRICE_POLICY_2026_09_25.md`.
 
 ## Result
-This was the previous commercial-basis decision. The later correction changes
-consumers to use separately observed Cut Price without rewriting source evidence.
+This was the previous commercial-basis decision. The later PDF cohort adds a
+source-scoped Cut-only fallback without rewriting source evidence or changing
+the existing Standard-price selection.
 
 Code commit: `c762683d348874ceccbcfb62cc3d431e20cc4168`.
 Existing approved application baseline: `98fc01d` (Full Width, 72-hour stock validity, >=30m and shared sample/curtain availability).

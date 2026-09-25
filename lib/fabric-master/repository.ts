@@ -157,7 +157,7 @@ export async function verifiedSupplierCostMinor(supplierId: string, supplierSku:
   // Walk bounded pages so repeated stock-only observations never age a genuine price out of the lookup.
   for (let from=0; ; from+=100) {
     const {data:snapshots,error:snapshotError}=await database.from("supplier_snapshots")
-      .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(standard_trade_price,cut_trade_price,currency)")
+      .select("snapshot_id,checked_at,price_expires_at,source_type,source_name,prices:supplier_snapshot_prices!inner(standard_trade_price,cut_trade_price,currency)")
       .eq("supplier_id",supplierId).eq("supplier_sku",supplierSku).eq("validation_status","VALIDATED")
       .order("checked_at",{ascending:false}).order("snapshot_id",{ascending:false}).range(from,from+99);
     databaseError(snapshotError);

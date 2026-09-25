@@ -2,6 +2,8 @@ export interface SupplierPriceSnapshotCandidate {
   snapshot_id: string;
   checked_at: string;
   price_expires_at: string | null;
+  source_type?: string | null;
+  source_name?: string | null;
   prices: Record<string, unknown> | Record<string, unknown>[] | null;
 }
 
@@ -15,10 +17,18 @@ function firstRelation(value: SupplierPriceSnapshotCandidate["prices"]) {
   return Array.isArray(value) ? value[0] ?? null : value;
 }
 
+export const PT_GOVERNED_PDF_CUT_SOURCE = "Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price";
+
+function isGovernedPtPdfCut(snapshot: SupplierPriceSnapshotCandidate) {
+  return snapshot.snapshot_id.startsWith("pt-pdf-cut:")
+    && snapshot.source_type === "OTHER"
+    && snapshot.source_name === PT_GOVERNED_PDF_CUT_SOURCE;
+}
+
 /**
- * CurtainsUK preserves the existing PT Standard Price selection whenever
- * Standard evidence exists. Approved Cut-only PT observations cover the
- * governed PDF cohort until Standard evidence is supplied; neither value is
+ * CurtainsUK preserves the existing PT Standard Price selection. Approved
+ * Cut-only records from the governed PDF importer take precedence for their
+ * cohort, including where later Standard evidence exists; neither value is
  * derived from or relabelled as the other. Age-based
  * expiry fields are historical metadata, not a price gate. Explicit revocation remains authoritative.
  */
@@ -36,9 +46,10 @@ export function selectCurrentApprovedSupplierCostMinor(input: {
 
   const snapshots = [...input.snapshots].sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at));
   const priceFields = input.supplierId === "prestigious-textiles"
-    ? ["standard_trade_price", "cut_trade_price"] as const
+    ? ["cut_trade_price", "standard_trade_price"] as const
     : ["cut_trade_price"] as const;
   for (const priceField of priceFields) for (const snapshot of snapshots) {
+    if (input.supplierId === "prestigious-textiles" && priceField === "cut_trade_price" && !isGovernedPtPdfCut(snapshot)) continue;
     const latestPromotion = latestPromotionBySnapshot.get(snapshot.snapshot_id);
     const price = firstRelation(snapshot.prices);
     const basePrice = Number(price?.[priceField]);

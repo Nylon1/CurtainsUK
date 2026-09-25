@@ -12,11 +12,11 @@ import { validateSupplierIntelligenceSnapshot } from "../lib/supplier-intelligen
 import { createValidationEvent } from "../lib/supplier-intelligence/promotion";
 import { SupplierIntelligenceService } from "../lib/supplier-intelligence/service";
 import { SupabaseSupplierIntelligenceRepository } from "../lib/supplier-intelligence/supabase-repository";
+import { hasSupplierAdminRole } from "../lib/supplier-intelligence/authz";
 import type { SupplierBulkAppendItem } from "../lib/supplier-import/types";
 import type { DurableSupplierSyncRun } from "../lib/supplier-intelligence/types";
 
 type PreparedMaster = { supplier_id: string; supplier_sku: string; supplier_design_code: string; action: string; exclusion_checked: boolean; commercial_authority: string; workbook_commercial_fields_used: unknown[] };
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function option(name: string) {
   return process.argv.find((value) => value.startsWith(`${name}=`))?.slice(name.length + 1) ?? null;
@@ -28,6 +28,26 @@ function requireProductionConfiguration() {
       new URL(url).hostname !== "hqysjumypgeapgmqkcrx.supabase.co" || !process.env.SUPABASE_SECRET_KEY) {
     throw new Error("PT_PDF_PRODUCTION_CONFIGURATION_REQUIRED");
   }
+}
+
+async function resolveAuthenticatedSupplierAdmin(email: string) {
+  const requested = email.trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(requested)) throw new Error("PT_PDF_PRICE_APPROVER_EMAIL_REQUIRED");
+  const client = createSupplierServiceClient();
+  // Server-side supplier admin authentication is the established production
+  // authority. Resolve the operator from that identity rather than accepting
+  // an arbitrary UUID or reusing the staging-reviewer account.
+  for (let page = 1; page <= 20; page += 1) {
+    const { data, error } = await client.auth.admin.listUsers({ page, perPage: 1000 });
+    if (error) throw new Error("PT_PDF_PRICE_APPROVER_LOOKUP_FAILED");
+    const user = (data.users ?? []).find((item) => item.email?.trim().toLowerCase() === requested);
+    if (user) {
+      if (!hasSupplierAdminRole(user.app_metadata)) throw new Error("PT_PDF_SUPPLIER_ADMIN_REQUIRED");
+      return user.id;
+    }
+    if ((data.users ?? []).length < 1000) break;
+  }
+  throw new Error("PT_PDF_PRICE_APPROVER_NOT_FOUND");
 }
 
 async function readJson<T>(path: string) {
@@ -69,19 +89,18 @@ async function main() {
   const coveragePath = option("--coverage");
   const manifestPath = option("--manifest");
   const sourcePdfPath = option("--source-pdf");
+  const approverEmail = option("--approver-email");
   const observedAt = option("--observed-at") ?? new Date().toISOString();
   const apply = process.argv.includes("--apply");
   const approve = process.argv.includes("--approve");
-  if (!coveragePath || !manifestPath || !process.argv.includes("--owner-confirmed-cut-price")) throw new Error("USAGE: --coverage=... --manifest=... --owner-confirmed-cut-price [--observed-at=ISO] [--apply --approve --source-pdf=...]");
+  if (!coveragePath || !manifestPath || !process.argv.includes("--owner-confirmed-cut-price")) throw new Error("USAGE: --coverage=... --manifest=... --owner-confirmed-cut-price [--observed-at=ISO] [--apply --approve --source-pdf=... --approver-email=...]");
   if (approve && !apply) throw new Error("PT_PDF_APPROVAL_REQUIRES_APPLY");
   // A live PDF price record without its required manual approval is an
   // incomplete commercial state. Keep the two operations indivisible here.
   if (apply && !approve) throw new Error("PT_PDF_APPLY_REQUIRES_APPROVAL");
-  // This CLI has no server-authenticated operator session. It must be given
-  // the id of the actual authorised supplier admin; do not substitute a
-  // historical staging identity.
-  const actor = approve ? process.env.PT_PDF_PRICE_APPROVED_BY : null;
-  if (approve && (!actor || !UUID.test(actor))) throw new Error("PT_PDF_PRICE_APPROVER_REQUIRED");
+  // Do not accept a UUID supplied by the shell: resolve a current production
+  // SUPPLIER_ADMIN using the same role gate used by the admin API.
+  if (approve && !approverEmail) throw new Error("PT_PDF_PRICE_APPROVER_EMAIL_REQUIRED");
   if (apply && !sourcePdfPath) throw new Error("PT_PDF_SOURCE_PDF_REQUIRED");
 
   const [coverage, manifest] = await Promise.all([readJson<PtPdfCutPriceCoverage>(coveragePath), readJson<PreparedMaster[]>(manifestPath)]);
@@ -95,6 +114,7 @@ async function main() {
   // Read and hash the supplied file before every database operation. The
   // coverage hash alone is mutable input and is therefore insufficient.
   assertPtPdfSourceBytes(coverage, await readFile(sourcePdfPath!));
+  const actor = await resolveAuthenticatedSupplierAdmin(approverEmail!);
   const repository = new SupabaseSupplierIntelligenceRepository();
   const policy = await repository.approvalPolicy("prestigious-textiles");
   if (!policy || policy.approval_mode !== "MANUAL" || policy.required_price_field !== "CUT_TRADE_PRICE") {
@@ -123,7 +143,7 @@ async function main() {
     for (const snapshot of snapshots) {
       const events = await repository.promotionEvents(snapshot.snapshot_id);
       if (!events.some((event) => event.promotion_state === "APPROVED_FOR_PROJECTION")) {
-        await service.manuallyApprove({ snapshotId: snapshot.snapshot_id, approvedBy: actor!,
+        await service.manuallyApprove({ snapshotId: snapshot.snapshot_id, approvedBy: actor,
           reason: "Owner-confirmed CurtainsUK PT Cut Price basis. Exact supplier design-code match in the August 2026 Prestigious Textiles Price List; no workbook Price/RRP, stock, lifecycle, or Fabric Master facts supplied by this observation." });
       }
     }

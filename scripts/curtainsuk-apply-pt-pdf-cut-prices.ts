@@ -4,7 +4,7 @@
  * additionally records the existing required manual approval with a staff id.
  */
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { assertPtPdfSourceBytes, buildPtPdfCutPriceSnapshots, type PtPdfCutPriceCoverage } from "../lib/supplier-sync/pt-pdf-cut-price";
@@ -12,7 +12,7 @@ import { validateSupplierIntelligenceSnapshot } from "../lib/supplier-intelligen
 import { createValidationEvent } from "../lib/supplier-intelligence/promotion";
 import { SupplierIntelligenceService } from "../lib/supplier-intelligence/service";
 import { SupabaseSupplierIntelligenceRepository } from "../lib/supplier-intelligence/supabase-repository";
-import { hasSupplierAdminRole } from "../lib/supplier-intelligence/authz";
+import { hasSupplierPriceApprovalPermission, isPriceOnlyObservation } from "../lib/supplier-intelligence/authz";
 import type { SupplierBulkAppendItem } from "../lib/supplier-import/types";
 import type { DurableSupplierSyncRun } from "../lib/supplier-intelligence/types";
 
@@ -30,19 +30,19 @@ function requireProductionConfiguration() {
   }
 }
 
-async function resolveAuthenticatedSupplierAdmin(email: string) {
+async function resolveRegisteredPriceApprover(email: string) {
   const requested = email.trim().toLowerCase();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(requested)) throw new Error("PT_PDF_PRICE_APPROVER_EMAIL_REQUIRED");
   const client = createSupplierServiceClient();
-  // Server-side supplier admin authentication is the established production
-  // authority. Resolve the operator from that identity rather than accepting
+  // Server-managed staff metadata is the established production authority.
+  // Resolve the registered operator rather than accepting
   // an arbitrary UUID or reusing the staging-reviewer account.
   for (let page = 1; page <= 20; page += 1) {
     const { data, error } = await client.auth.admin.listUsers({ page, perPage: 1000 });
     if (error) throw new Error("PT_PDF_PRICE_APPROVER_LOOKUP_FAILED");
     const user = (data.users ?? []).find((item) => item.email?.trim().toLowerCase() === requested);
     if (user) {
-      if (!hasSupplierAdminRole(user.app_metadata)) throw new Error("PT_PDF_SUPPLIER_ADMIN_REQUIRED");
+      if (!hasSupplierPriceApprovalPermission(user.app_metadata)) throw new Error("PT_PDF_PRICE_APPROVAL_PERMISSION_REQUIRED");
       return user.id;
     }
     if ((data.users ?? []).length < 1000) break;
@@ -93,19 +93,21 @@ async function main() {
   const observedAt = option("--observed-at") ?? new Date().toISOString();
   const apply = process.argv.includes("--apply");
   const approve = process.argv.includes("--approve");
+  const approvalSqlPath = option("--prepare-approval-sql");
   if (!coveragePath || !manifestPath || !process.argv.includes("--owner-confirmed-cut-price")) throw new Error("USAGE: --coverage=... --manifest=... --owner-confirmed-cut-price [--observed-at=ISO] [--apply --approve --source-pdf=... --approver-email=...]");
   if (approve && !apply) throw new Error("PT_PDF_APPROVAL_REQUIRES_APPLY");
-  // A live PDF price record without its required manual approval is an
-  // incomplete commercial state. Keep the two operations indivisible here.
+  // A PDF observation remains unavailable for commercial use until approved.
+  // Require an approval run and retain resumability after a partial failure.
   if (apply && !approve) throw new Error("PT_PDF_APPLY_REQUIRES_APPROVAL");
   // Do not accept a UUID supplied by the shell: resolve a current production
-  // SUPPLIER_ADMIN using the same role gate used by the admin API.
+  // price approver using the same permission gate used by the admin API.
   if (approve && !approverEmail) throw new Error("PT_PDF_PRICE_APPROVER_EMAIL_REQUIRED");
   if (apply && !sourcePdfPath) throw new Error("PT_PDF_SOURCE_PDF_REQUIRED");
 
   const [coverage, manifest] = await Promise.all([readJson<PtPdfCutPriceCoverage>(coveragePath), readJson<PreparedMaster[]>(manifestPath)]);
   validatePreparedCohort(manifest, coverage);
   const snapshots = buildPtPdfCutPriceSnapshots({ coverage, ownerConfirmedCutPrice: true, observedAt });
+  if (snapshots.some(snapshot => !isPriceOnlyObservation(snapshot))) throw new Error("PT_PDF_PRICE_ONLY_OBSERVATIONS_REQUIRED");
   const summary = { supplier: "prestigious-textiles", scope: "EXACT_FIRST_50_MISSING_ONLY", priceField: "CUT_TRADE_PRICE",
     standardPrices: 0, cutPrices: snapshots.length, stockObservations: 0, workbookPriceOrRrpUsed: false, applied: false, approved: false };
   if (!apply) { console.log(JSON.stringify(summary)); return; }
@@ -114,7 +116,7 @@ async function main() {
   // Read and hash the supplied file before every database operation. The
   // coverage hash alone is mutable input and is therefore insufficient.
   assertPtPdfSourceBytes(coverage, await readFile(sourcePdfPath!));
-  const actor = await resolveAuthenticatedSupplierAdmin(approverEmail!);
+  const actor = await resolveRegisteredPriceApprover(approverEmail!);
   const repository = new SupabaseSupplierIntelligenceRepository();
   const policy = await repository.approvalPolicy("prestigious-textiles");
   if (!policy || policy.approval_mode !== "MANUAL" || policy.required_price_field !== "CUT_TRADE_PRICE") {
@@ -139,13 +141,49 @@ async function main() {
   if (!existing.every(Boolean)) await repository.appendBulkValidatedSnapshots({ run, items });
 
   if (approve) {
+    const pending: unknown[] = [];
+    if (approvalSqlPath) repository.appendPromotionEvent = async (event) => { pending.push(event); };
     const service = new SupplierIntelligenceService(repository);
     for (const snapshot of snapshots) {
-      const events = await repository.promotionEvents(snapshot.snapshot_id);
-      if (!events.some((event) => event.promotion_state === "APPROVED_FOR_PROJECTION")) {
-        await service.manuallyApprove({ snapshotId: snapshot.snapshot_id, approvedBy: actor,
-          reason: "Owner-confirmed CurtainsUK PT Cut Price basis. Exact supplier design-code match in the August 2026 Prestigious Textiles Price List; no workbook Price/RRP, stock, lifecycle, or Fabric Master facts supplied by this observation." });
+      for (let attempt = 1; attempt <= 3; attempt += 1) {
+        try {
+          const events = await repository.promotionEvents(snapshot.snapshot_id);
+          if (!events.some((event) => event.promotion_state === "APPROVED_FOR_PROJECTION")) {
+            await service.manuallyApprove({ snapshotId: snapshot.snapshot_id, approvedBy: actor,
+              reason: "Owner-confirmed CurtainsUK PT Cut Price basis. Exact supplier design-code match in the August 2026 Prestigious Textiles Price List; no workbook Price/RRP, stock, lifecycle, or Fabric Master facts supplied by this observation." });
+          }
+          console.log(JSON.stringify({ event: approvalSqlPath ? "PT_PRICE_APPROVAL_PREPARED" : "PT_PRICE_APPROVED", sku: snapshot.supplier_sku }));
+          break;
+        } catch (error) {
+          if (attempt === 3 || !(error instanceof Error) || error.message !== "SUPPLIER_DATABASE_OPERATION_FAILED") throw error;
+          await new Promise(resolve => setTimeout(resolve, attempt * 1500));
+        }
       }
+    }
+    if (approvalSqlPath) {
+      const payload = JSON.stringify(pending);
+      const scope = snapshots.map(snapshot => `'${snapshot.snapshot_id.replaceAll("'", "''")}'`).join(",");
+      if (payload.includes("$ptapproval$")) throw new Error("UNSAFE_SQL_DELIMITER");
+      await writeFile(approvalSqlPath, `BEGIN;
+SET LOCAL statement_timeout='120s';
+SET LOCAL lock_timeout='30s';
+SELECT pg_advisory_xact_lock(4252026,9248);
+DO $guard$ BEGIN
+IF NOT EXISTS(SELECT 1 FROM auth.users WHERE id='${actor}'::uuid AND raw_app_meta_data->'permissions' ? 'supplier_prices.approve') THEN RAISE EXCEPTION 'STAFF_PERMISSION_REQUIRED'; END IF;
+IF NOT EXISTS(SELECT 1 FROM curtainsuk_private.supplier_approval_policies WHERE supplier_id='prestigious-textiles' AND approval_mode='MANUAL' AND required_price_field='CUT_TRADE_PRICE') THEN RAISE EXCEPTION 'CUT_MANUAL_POLICY_REQUIRED'; END IF;
+END $guard$;
+CREATE TEMP TABLE pending_pt_approvals ON COMMIT DROP AS SELECT * FROM jsonb_populate_recordset(null::curtainsuk_private.supplier_promotion_events,$ptapproval$${payload}$ptapproval$::jsonb);
+DO $guard$ BEGIN
+IF EXISTS(SELECT 1 FROM pending_pt_approvals e LEFT JOIN curtainsuk_private.supplier_snapshots s USING(snapshot_id) WHERE s.snapshot_id IS NULL OR s.validation_status<>'VALIDATED' OR s.source_name<>'Prestigious Textiles August 2026 Price List; owner-confirmed Cut Price' OR e.actor_id IS DISTINCT FROM '${actor}' OR e.actor_type<>'MANUAL_STAFF' OR e.promotion_state<>'APPROVED_FOR_PROJECTION') THEN RAISE EXCEPTION 'PREPARED_APPROVAL_SCOPE_INVALID'; END IF;
+END $guard$;
+INSERT INTO curtainsuk_private.supplier_promotion_events SELECT e.* FROM pending_pt_approvals e WHERE NOT EXISTS(SELECT 1 FROM curtainsuk_private.supplier_promotion_events p WHERE p.snapshot_id=e.snapshot_id AND p.promotion_state='APPROVED_FOR_PROJECTION');
+DO $guard$ BEGIN
+IF (SELECT count(*) FROM curtainsuk_private.supplier_promotion_events WHERE snapshot_id IN (${scope}) AND promotion_state='APPROVED_FOR_PROJECTION' AND actor_id='${actor}')<>50 OR (SELECT count(DISTINCT snapshot_id) FROM curtainsuk_private.supplier_promotion_events WHERE snapshot_id IN (${scope}) AND promotion_state='APPROVED_FOR_PROJECTION' AND actor_id='${actor}')<>50 THEN RAISE EXCEPTION 'EXACTLY_50_DISTINCT_APPROVALS_REQUIRED'; END IF;
+END $guard$;
+SELECT count(*) AS approved_prices, count(DISTINCT snapshot_id) AS distinct_approved_prices FROM curtainsuk_private.supplier_promotion_events WHERE snapshot_id IN (${scope}) AND promotion_state='APPROVED_FOR_PROJECTION' AND actor_id='${actor}';
+COMMIT;\n`);
+      console.log(JSON.stringify({ ...summary, applied: true, approved: false, pendingApprovals: pending.length, approvalSqlPrepared: true }));
+      return;
     }
   }
   console.log(JSON.stringify({ ...summary, applied: true, approved: approve, runId }));

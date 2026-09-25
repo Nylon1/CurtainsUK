@@ -6,6 +6,12 @@ on:
     # retrieve-to-materialisation success, before 96-hour evidence expires.
     - cron: "39 * * * *"
   workflow_dispatch:
+    inputs:
+      force_refresh:
+        description: "Run the existing full refresh now, before its normal due time"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -24,6 +30,7 @@ jobs:
       SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
       PT_WEBTEX_USERNAME: ${{ secrets.PT_WEBTEX_USERNAME }}
       PT_WEBTEX_PASSWORD: ${{ secrets.PT_WEBTEX_PASSWORD }}
+      PT_FORCE_REFRESH: ${{ inputs.force_refresh && '1' || '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -124,6 +124,10 @@ async function main() {
     received = identities.length;
     const result = reconcilePtStock(identities, retrieved.rows);
     stage = "COVERAGE";
+    console.log(JSON.stringify({ event: "PT_STOCK_COVERAGE", expected: identities.length,
+      resolved: result.snapshots.length, unknown: result.exceptions,
+      overlap: result.overlapCount, collectionQueries: retrieved.collectionQueries,
+      designQueries: retrieved.designQueries, skuQueries: retrieved.skuQueries }));
     assertProvenPtCoverage(identities, result);
     stage = "VALIDATION";
     const validated = result.snapshots.map((snapshot) => {

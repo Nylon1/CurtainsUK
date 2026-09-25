@@ -4,8 +4,11 @@ import type { NormalizedSupplierSnapshot } from "./types";
 export const PT_SUPPLIER = "prestigious-textiles";
 export const PT_SOURCE = "Prestigious Webtex authenticated Stock Enquiry";
 export const PT_EXPECTED_IDENTITIES = 3235;
-export const PT_PROVEN_MINIMUM = 3232;
-export const PT_PRIOR_UNKNOWN_SKUS = new Set(["7222/022", "7866/012", "3622/282"]);
+export const PT_PROVEN_MINIMUM = 3230;
+// The existing three exceptions plus two exact identities absent from collection,
+// design and SKU queries in full refresh 36176934313 (25 September 2026).
+// Missing evidence remains unknown: never invent zero or refresh its timestamp.
+export const PT_PRIOR_UNKNOWN_SKUS = new Set(["7222/022", "7866/012", "3622/282", "5064/351", "7215/723"]);
 export const PT_REFRESH_INTERVAL_MS = 72 * 60 * 60 * 1000;
 
 export interface PtIdentity { supplierSku: string; collection: string; brandId: string; lifecycleState: string }

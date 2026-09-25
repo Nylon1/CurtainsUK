@@ -4,8 +4,8 @@ import { PtWebtexSession } from "../lib/supplier-sync/adapters/pt-webtex-session
 
 const sku = "4324/119";
 const stockPath = "/webtex/Content/StockEnquiry/Default.aspx";
-const evidence: { columns: unknown[]; fields: unknown[]; priceMarkerInResponse: boolean } = {
-  columns: [], fields: [], priceMarkerInResponse: false,
+const evidence: { columns: unknown[]; fields: unknown[]; priceMarkerInResponse: boolean; responseCounts: unknown[] } = {
+  columns: [], fields: [], priceMarkerInResponse: false, responseCounts: [],
 };
 
 async function main() {
@@ -28,11 +28,12 @@ async function main() {
         });
       }
     }
-    if (response.ok && path === `${stockPath}/callbackSearchProdCode`) {
+    if (response.ok && path.startsWith(`${stockPath}/callbackSearch`)) {
       const packet = await response.clone().json() as { d?: unknown };
       if (typeof packet.d === "string") {
         evidence.priceMarkerInResponse = /price|sterling|\bGBP\b/i.test(decodeURIComponent(packet.d));
         const xml = load(packet.d, { xmlMode: true });
+        evidence.responseCounts.push({path, total: xml("RETURNPACKET > TOTALROWS").text(), records: xml("results > Detail > record").length});
         xml("results > Detail > record").each((_, record) => {
           if (xml(record).attr("groupRow")?.toUpperCase() === "TRUE") return;
           const fields: Record<string, string> = {};
@@ -54,16 +55,16 @@ async function main() {
   const session = new PtWebtexSession(inspectFetch);
   delete process.env.PT_WEBTEX_PASSWORD;
   await session.login(username, password);
-  const result = await session.search("PRODUCT_CODE", sku);
+  const result = await session.search("COLLECTION", "Revival");
   const matched = result.rows.filter(row => row.sku === sku);
   if (matched.length !== 1 || evidence.fields.length === 0) throw new Error("PT_EXACT_MISSING_SKU_RESPONSE_REQUIRED");
-  console.log(JSON.stringify({ outcome: "PASS", sku, queryType: "PRODUCT_CODE",
-    endpoint: `${stockPath}/callbackSearchProdCode`, observedAt: result.observedAt,
+  console.log(JSON.stringify({ outcome: "PASS", sku, queryType: "COLLECTION",
+    endpoint: `${stockPath}/callbackSearchCollection`, observedAt: result.observedAt,
     parsedStockPresent: /^\d+(?:\.\d+)?\s*M$/i.test(matched[0].stockText),
     supplierResponseShape: evidence, databaseWrites: 0, catalogueWrites: 0, pricingLogicChanged: false }));
 }
 main().catch(error => {
   const code = error instanceof Error && /^PT_[A-Z0-9_]+$/.test(error.message) ? error.message : "PT_READ_ONLY_PROOF_FAILED";
-  console.error(JSON.stringify({ outcome: "FAILED", sku, code, databaseWrites: 0 }));
+  console.error(JSON.stringify({ outcome: "FAILED", sku, code, supplierResponseShape: evidence, databaseWrites: 0 }));
   process.exitCode = 1;
 });

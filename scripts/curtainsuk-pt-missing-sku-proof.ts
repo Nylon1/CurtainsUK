@@ -24,7 +24,7 @@ async function main() {
         xml("DATA > COLUMNS").find("*").each((_, column) => {
           const attrs = xml(column).attr() ?? {};
           evidence.columns.push(Object.fromEntries(Object.entries(attrs)
-            .filter(([key]) => /^(id|caption|title|header|text|name|field|heading)$/i.test(key))));
+            .filter(([key]) => /^(id|caption|title|header|text|name|field|heading|XMLATTRIBUTENAME)$/i.test(key))));
         });
       }
     }
@@ -46,6 +46,7 @@ async function main() {
             stockUnit: /^\d+(?:\.\d+)?\s*M$/i.test(value.trim()),
             currencyUnit: /STERLING|\bGBP\b|£/.test(value),
             numericOnly: /^\d+(?:\.\d+)?$/.test(value.trim()),
+            visibleDecimalPresent: /\d+\.\d+/.test(load(value).text()),
           }));
         });
       }

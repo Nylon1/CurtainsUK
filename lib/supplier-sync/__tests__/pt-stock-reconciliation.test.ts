@@ -41,23 +41,23 @@ test("PT routine due interval remains 72 hours", () => {
   assert.equal(nextPtRefreshAt("2026-09-18T00:00:00.000Z").toISOString(), "2026-09-21T00:00:00.000Z");
 });
 
-test("normal PT refresh accepts the reconciled 3,735-master full catalogue", () => {
-  assert.equal(PT_EXPECTED_IDENTITIES, 3735);
+test("normal PT refresh accepts the reconciled 3,736-master full catalogue", () => {
+  assert.equal(PT_EXPECTED_IDENTITIES, 3736);
   assert.equal(PT_PROVEN_MINIMUM, 3730);
   const full = Array.from({ length: PT_EXPECTED_IDENTITIES }, (_, index): PtIdentity => ({
     supplierSku: `${String(1000 + Math.floor(index / 1000)).padStart(4, "0")}/${String(index % 1000).padStart(3, "0")}`,
     collection: "Full manifest", brandId: "prestigious-textiles", lifecycleState: "CURRENT",
   }));
   [...PT_PRIOR_UNKNOWN_SKUS].forEach((sku, index) => { full[index] = { ...full[index], supplierSku: sku }; });
-  const rows = full.slice(5).map((item): PtStockRow => ({ ...row(item.supplierSku, "1 M"), queryValue: "Full manifest" }));
+  const rows = full.slice(PT_PRIOR_UNKNOWN_SKUS.size).map((item): PtStockRow => ({ ...row(item.supplierSku, "1 M"), queryValue: "Full manifest" }));
   const result = reconcilePtStock(full, rows);
   assert.doesNotThrow(() => assertProvenPtCoverage(full, result));
-  assert.equal(result.snapshots.length, 3730);
+  assert.equal(result.snapshots.length, PT_PROVEN_MINIMUM);
   assert.deepEqual(new Set(result.exceptions.map(item => item.sku)), PT_PRIOR_UNKNOWN_SKUS);
   assert.ok(result.snapshots.every(snapshot => !PT_PRIOR_UNKNOWN_SKUS.has(snapshot.supplier_sku)));
   // A new missing SKU must still stop the whole refresh, even if one known
   // exception recovers and the overall numeric coverage remains sufficient.
   const unexpected = reconcilePtStock(full, [...rows.slice(1), row(full[0].supplierSku, "1 M")]);
-  assert.equal(unexpected.snapshots.length, 3730);
+  assert.equal(unexpected.snapshots.length, PT_PROVEN_MINIMUM);
   assert.throws(() => assertProvenPtCoverage(full, unexpected), /PT_COVERAGE_CHANGED/);
 });

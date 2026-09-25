@@ -30,6 +30,11 @@ on:
         required: false
         default: "5f766a83-3726-4e5e-ace0-a6861b49f162"
         type: string
+      design_concurrency:
+        description: "Independent design analyses in flight (1–3; database persistence remains serialized)"
+        required: false
+        default: "1"
+        type: string
   push:
     branches:
       - stock/pt-webtex-production
@@ -72,6 +77,7 @@ jobs:
           COHORT_IDS: ${{ inputs.fabric_ids_json }}
           SCOPE_MODE: ${{ inputs.scope_mode }}
           SEED_RUN: ${{ inputs.target_seed_run_id }}
+          DESIGN_CONCURRENCY: ${{ inputs.design_concurrency || '1' }}
         run: |
           ARGS=()
           if [ "$SCOPE_MODE" = "explicit-cohort" ]; then
@@ -80,7 +86,7 @@ jobs:
           elif [ "$SCOPE_MODE" = "target-missing" ]; then
             ARGS+=(--target-missing "--target-seed-run-id=$SEED_RUN")
           fi
-          npm run fabric:visual-enrichment -- --plan-only "${ARGS[@]}" --out=artifacts/visual-enrichment-plan
+          npm run fabric:visual-enrichment -- --plan-only "${ARGS[@]}" "--design-concurrency=$DESIGN_CONCURRENCY" --out=artifacts/visual-enrichment-plan
       - uses: actions/upload-artifact@v4
         with:
           name: fabric-visual-enrichment-plan
@@ -108,6 +114,7 @@ jobs:
           COHORT_IDS: ${{ inputs.fabric_ids_json }}
           SCOPE_MODE: ${{ inputs.scope_mode }}
           SEED_RUN: ${{ inputs.target_seed_run_id }}
+          DESIGN_CONCURRENCY: ${{ inputs.design_concurrency || '1' }}
         run: |
           ARGS=()
           if [ "$SCOPE_MODE" = "explicit-cohort" ]; then
@@ -116,7 +123,7 @@ jobs:
           elif [ "$SCOPE_MODE" = "target-missing" ]; then
             ARGS+=(--target-missing "--target-seed-run-id=$SEED_RUN")
           fi
-          npm run fabric:visual-enrichment -- --apply "${ARGS[@]}" --batch-size=10 --out=artifacts/visual-enrichment-run
+          npm run fabric:visual-enrichment -- --apply "${ARGS[@]}" "--design-concurrency=$DESIGN_CONCURRENCY" --batch-size=10 --out=artifacts/visual-enrichment-run
       - uses: actions/upload-artifact@v4
         if: always()
         with:

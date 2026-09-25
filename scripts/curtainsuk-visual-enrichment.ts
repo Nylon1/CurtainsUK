@@ -5,6 +5,7 @@ import { selectVisualCohort } from "../lib/fabric-master/visual-cohort";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { acceptVisualCandidate, colourwayCandidateFrom, colourwayFingerprintInstruction, combinedSingleColourwayInstruction, designCandidateFrom, designFingerprintInstruction, hciVisualModel, resolveFabricFingerprint, reviewState, validateVisual, visualOutputSchema, visualPromptVersion, visualSchemaVersion, visualVersion, visualVocabularyVersion, type AnalysisLevel, type ColourwayVisualFingerprint, type ImageBinding, type VisualCandidate, type VisualFingerprint } from "../lib/fabric-master/visual-enrichment";
 import { retryVisualDatabase, visualFailureReason } from "../lib/fabric-master/visual-enrichment-runner";
+import { chunkPreparedScopeIds, createSerialWorkQueue, parseDesignWorkerConcurrency, runPreparedDesignBatches, type SerialWorkQueue } from "../lib/fabric-master/visual-enrichment-throughput";
 
 type ScopeRow = { fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; image_type:string; source_image_hash:string; source_image_url:string; source_image_rank:number; useful_image_count:number; already_approved:boolean; };
 type AnalysisAsset = { approvedSourceHash:string; analysisAssetUrl:string; analysisAssetHash:string; contentType:string; byteLength:number; decodedWidth:number|null; decodedHeight:number|null; classification:"EXACT_BYTE_MATCH"|"SHOPIFY_TRANSFORMATION"; urlContainsSourceHash:boolean; };
@@ -17,6 +18,7 @@ const args = new Map(process.argv.slice(2).map((arg) => {
 }));
 const scope = args.get("scope") ?? "OPTIMISED_CANONICAL_DESIGN_COLOURWAY";
 const batchSize = Math.max(1, Math.min(Number(args.get("batch-size") ?? "25"), 100));
+const designWorkerConcurrency = parseDesignWorkerConcurrency(args.get("design-concurrency"));
 const apply = args.has("apply");
 const planOnly = args.has("plan-only") || !apply;
 const restoreDir = args.get("restore-dir");
@@ -32,6 +34,26 @@ const canonicalHighDetailImageTokens = 20695145;
 const designHighDetailImageTokens = 4870018;
 const lowDetailTokensPerImage = 70;
 const inputUsdPerMillion = 1;
+type Timing = { started_at:string; completed_at?:string; stages_ms:Record<string,number>; counts:{ openai_requests:number; openai_backoff_ms:number; database_retries:number; database_backoff_ms:number; } };
+const timing: Timing = { started_at: new Date().toISOString(), stages_ms: {}, counts: { openai_requests: 0, openai_backoff_ms: 0, database_retries: 0, database_backoff_ms: 0 } };
+function addTiming(stage: string, milliseconds: number) { timing.stages_ms[stage] = (timing.stages_ms[stage] ?? 0) + Math.max(0, Math.round(milliseconds)); }
+async function timed<T>(stage: string, work: () => PromiseLike<T>) { const started = performance.now(); try { return await work(); } finally { addTiming(stage, performance.now() - started); } }
+type DatabaseSerialiser = SerialWorkQueue;
+let openAiCooldownUntil = 0;
+function retryAfterMilliseconds(response: Response, fallback: number) {
+  const header = response.headers.get("retry-after")?.trim();
+  if (!header) return fallback;
+  if (/^\d+(?:\.\d+)?$/.test(header)) return Math.max(0, Math.ceil(Number(header) * 1000));
+  const at = Date.parse(header);
+  return Number.isNaN(at) ? fallback : Math.max(0, at - Date.now());
+}
+async function waitForOpenAiCooldown() {
+  while (openAiCooldownUntil > Date.now()) {
+    const delay = openAiCooldownUntil - Date.now();
+    timing.counts.openai_backoff_ms += delay;
+    await timed("openai_shared_cooldown", () => new Promise<void>((resolve) => setTimeout(resolve, delay)));
+  }
+}
 
 function openAiKeyLooksUsable(value: string | undefined) {
   const key = value?.trim() ?? "";
@@ -83,6 +105,7 @@ async function loadRestoreCache(dir?: string) {
   return cache;
 }
 async function fetchAnalysisAsset(row: ScopeRow): Promise<AnalysisAsset & { bytes: Uint8Array; mime: string }> {
+  return timed("asset_fetch", async () => {
   const response = await fetch(row.source_image_url, { method: "GET", redirect: "error", credentials: "omit", signal: AbortSignal.timeout(30000) });
   if (!response.ok || response.redirected || response.url !== row.source_image_url) throw new Error("IMAGE_FETCH_REJECTED");
   const contentType = response.headers.get("content-type")?.split(";")[0]?.trim().toLowerCase();
@@ -97,6 +120,7 @@ async function fetchAnalysisAsset(row: ScopeRow): Promise<AnalysisAsset & { byte
   const classification = analysisAssetHash === row.source_image_hash ? "EXACT_BYTE_MATCH" : urlContainsSourceHash && row.image_type === "MAIN" ? "SHOPIFY_TRANSFORMATION" : undefined;
   if (!classification) throw new Error("IMAGE_PROVENANCE_UNVERIFIED");
   return { bytes, mime: contentType, approvedSourceHash: row.source_image_hash, analysisAssetUrl: row.source_image_url, analysisAssetHash, contentType, byteLength: bytes.length, decodedWidth: metadata.width, decodedHeight: metadata.height, classification, urlContainsSourceHash };
+  });
 }
 function stripUniqueItems(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(stripUniqueItems);
@@ -117,12 +141,20 @@ async function openAiClassify(row: ScopeRow, instruction: string, detail: "low"|
   };
   let response: Response | undefined;
   for (let attempt = 0; attempt < 4; attempt++) {
-    response = await fetch("https://api.openai.com/v1/responses", { method: "POST", headers: { authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "content-type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
+    await waitForOpenAiCooldown();
+    timing.counts.openai_requests += 1;
+    response = await timed("openai_request", () => fetch("https://api.openai.com/v1/responses", { method: "POST", headers: { authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "content-type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(90000) }));
     if (response.status !== 429 && response.status < 500) break;
-    if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, 1500 * (attempt + 1)));
+    const fallback = 1500 * (attempt + 1);
+    const delay = retryAfterMilliseconds(response, fallback);
+    if (response.status === 429) openAiCooldownUntil = Math.max(openAiCooldownUntil, Date.now() + delay);
+    if (attempt < 3) {
+      timing.counts.openai_backoff_ms += delay;
+      await timed("openai_backoff", () => new Promise<void>((resolve) => setTimeout(resolve, delay)));
+    }
   }
   if (!response || !response.ok) throw new Error(`OPENAI_RESPONSE_${response?.status ?? "UNKNOWN"}`);
-  const raw = await response.json();
+  const raw = await timed("openai_response_body", () => response!.json());
   if (raw.model !== hciVisualModel || raw.status !== "completed") throw new Error("OPENAI_MODEL_OR_STATUS_REJECTED");
   const texts = (raw.output ?? []).flatMap((o: any) => (o.content ?? []).filter((c: any) => c.type === "output_text").map((c: any) => c.text));
   if (texts.length !== 1) throw new Error("OPENAI_OUTPUT_TEXT_REJECTED");
@@ -141,18 +173,23 @@ async function fetchAllRpc<T>(db: any, fn: string, params?: Record<string, unkno
 }
 async function fetchAllLedger(db: any, designIds?: string[]) {
   const rows: LedgerRow[] = [];
-  for (let from = 0; ; from += 1000) {
-    let query = db.from("fabric_visual_enrichment_ledger").select("ledger_id,run_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,analysis_asset_hash,output,approval_state,review_state").is("superseded_at", null);
-    if (designIds) query=query.in("design_id",designIds).eq("visual_version",visualVersion).eq("prompt_version",visualPromptVersion).eq("vocabulary_version",visualVocabularyVersion).eq("schema_version",visualSchemaVersion).eq("model_id",hciVisualModel);
-    const { data, error } = await query.range(from, from + 999);
-    if (error) throw error;
-    const page = (data ?? []) as LedgerRow[];
-    rows.push(...page);
-    if (page.length < 1000) break;
+  // Prepared cohorts can contain up to 500 distinct designs; keep every relevant
+  // ledger predicate under the same 100-identity transport bound as media reads.
+  for (const designChunk of designIds ? chunkPreparedScopeIds(designIds) : [undefined]) {
+    for (let from = 0; ; from += 1000) {
+      let query = db.from("fabric_visual_enrichment_ledger").select("ledger_id,run_id,analysis_level,fabric_id,supplier_id,supplier_sku,brand_id,design_id,source_image_hash,analysis_asset_hash,output,approval_state,review_state").is("superseded_at", null);
+      if (designChunk) query=query.in("design_id",designChunk).eq("visual_version",visualVersion).eq("prompt_version",visualPromptVersion).eq("vocabulary_version",visualVocabularyVersion).eq("schema_version",visualSchemaVersion).eq("model_id",hciVisualModel);
+      const { data, error } = await query.range(from, from + 999);
+      if (error) throw error;
+      const page = (data ?? []) as LedgerRow[];
+      rows.push(...page);
+      if (page.length < 1000) break;
+    }
   }
   return rows;
 }
-async function insertFingerprint(db: any, runId: string, row: ScopeRow, visual: VisualFingerprint, asset: AnalysisAsset, links: { designId?: string; colourwayId?: string } = {}) {
+async function insertFingerprint(db: any, runId: string, row: ScopeRow, visual: VisualFingerprint, asset: AnalysisAsset, links: { designId?: string; colourwayId?: string } = {}, serialise: DatabaseSerialiser = async <T>(operation: () => PromiseLike<T>) => operation()) {
+  return serialise(async () => {
   const state = reviewState(visual.candidate, visual.analysisLevel);
   const exactExisting = async () => {
     const { data, error } = await db.from("fabric_visual_enrichment_ledger").select("ledger_id")
@@ -171,7 +208,9 @@ async function insertFingerprint(db: any, runId: string, row: ScopeRow, visual: 
     design_fingerprint_id: links.designId ?? null, colourway_fingerprint_id: links.colourwayId ?? null,
   };
   try {
-    const data = await retryVisualDatabase<{ ledger_id: string }>(() => db.from("fabric_visual_enrichment_ledger").insert(payload).select("ledger_id").single());
+    const data = await retryVisualDatabase<{ ledger_id: string }>(() => db.from("fabric_visual_enrichment_ledger").insert(payload).select("ledger_id").single(), {
+      onRetry: (milliseconds) => { timing.counts.database_retries += 1; timing.counts.database_backoff_ms += milliseconds; },
+    });
     return data.ledger_id as string;
   } catch (error) {
     // A timeout can mean the immutable lineage row committed after the client lost
@@ -180,6 +219,7 @@ async function insertFingerprint(db: any, runId: string, row: ScopeRow, visual: 
     if (existing) return existing;
     throw error;
   }
+  });
 }
 function estimate(plan: { governed_designs:number; eligible_colourways:number; single_colourway_designs:number }) {
   const reusable = combineSingleColourway ? plan.single_colourway_designs : 0;
@@ -208,27 +248,42 @@ async function main() {
   assertProductionTarget();
   await mkdir(outDir, { recursive: true });
   const db = createSupplierServiceClient();
-  let [designRows, colourwayRows, planResult] = await Promise.all([
-    fetchAllRpc<DesignScopeRow>(db, "fabric_visual_design_enrichment_scope"),
-    fetchAllRpc<ScopeRow>(db, "fabric_visual_enrichment_scope", { p_scope: "CANONICAL_APPROVED_IMAGE" }),
-    db.rpc("fabric_visual_optimised_plan"),
-  ]);
-  if (planResult.error) throw planResult.error;
-  let plan = planResult.data as { governed_designs:number; eligible_colourways:number; representative_design_images_selected:number; colourway_images_resolved:number; single_colourway_designs:number; existing_design_fingerprints:number; existing_colourway_fingerprints:number; single_colourway_reusable_colourway_calls:number };
+  const serialiseDb = createSerialWorkQueue({ onQueueWait: (milliseconds) => addTiming("database_queue_wait", milliseconds), onWrite: (milliseconds) => addTiming("database_write", milliseconds) });
+  let designRows: DesignScopeRow[] = [];
+  let colourwayRows: ScopeRow[] = [];
+  let plan = { governed_designs: 0, eligible_colourways: 0, representative_design_images_selected: 0, colourway_images_resolved: 0, single_colourway_designs: 0, existing_design_fingerprints: 0, existing_colourway_fingerprints: 0, single_colourway_reusable_colourway_calls: 0 };
+  const preparedCohort = Boolean(cohortFile && args.has("include-prepared"));
+  if (!preparedCohort) {
+    const [loadedDesigns, loadedColourways, planResult] = await timed("global_scope_load", () => Promise.all([
+      fetchAllRpc<DesignScopeRow>(db, "fabric_visual_design_enrichment_scope"),
+      fetchAllRpc<ScopeRow>(db, "fabric_visual_enrichment_scope", { p_scope: "CANONICAL_APPROVED_IMAGE" }),
+      db.rpc("fabric_visual_optimised_plan"),
+    ]));
+    if (planResult.error) throw planResult.error;
+    designRows = loadedDesigns;
+    colourwayRows = loadedColourways;
+    plan = planResult.data as typeof plan;
+  }
   if (cohortFile) {
     const ids: unknown = JSON.parse((await readFile(cohortFile, "utf8")).replace(/^\uFEFF/, ""));
     if (args.has("include-prepared")) {
       if (!Array.isArray(ids) || !ids.length || ids.length > 500 || new Set(ids).size !== ids.length || ids.some(id => typeof id !== "string" || !/^[a-z0-9-]{1,150}$/.test(id))) throw new Error("VISUAL_COHORT_INVALID");
       // Same canonical approval gates as the existing scope RPC, except that an
       // explicit preparation cohort need not be visible to customers already.
-      const [masters, mappings] = await Promise.all([
-        db.from("fabric_colourways").select("fabric_id,supplier_id,supplier_sku,brand_id,design_id,colour_name,lifecycle_state").in("fabric_id", ids),
-        db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,content_hash,image_type").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
-      ]);
-      if (masters.error || mappings.error) throw new Error("VISUAL_PREPARED_IDENTITY_READ_FAILED");
-      const hashes = [...new Set((mappings.data ?? []).map(row => row.content_hash))];
-      const assets = hashes.length ? await db.from("fabric_media_assets").select("content_hash,shopify_cdn_url,width,height").in("content_hash", hashes) : { data: [], error: null };
-      if (assets.error) throw new Error("VISUAL_PREPARED_ASSET_READ_FAILED");
+      const idChunks = chunkPreparedScopeIds(ids);
+      // PostgREST URL predicates are bounded to 100 identities. This preserves the
+      // exact cohort while avoiding the 400-record request failure seen in staging.
+      const [masterResponses, mappingResponses] = await timed("prepared_identity_load", () => Promise.all([
+        Promise.all(idChunks.map((chunk) => db.from("fabric_colourways").select("fabric_id,supplier_id,supplier_sku,brand_id,design_id,colour_name,lifecycle_state").in("fabric_id", chunk))),
+        Promise.all(idChunks.map((chunk) => db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,content_hash,image_type").in("fabric_id", chunk).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"))),
+      ]));
+      if (masterResponses.some(response => response.error) || mappingResponses.some(response => response.error)) throw new Error("VISUAL_PREPARED_IDENTITY_READ_FAILED");
+      const masters = { data: masterResponses.flatMap(response => response.data ?? []) };
+      const mappings = { data: mappingResponses.flatMap(response => response.data ?? []) };
+      const hashes = [...new Set(mappings.data.map(row => row.content_hash))];
+      const assetResponses = hashes.length ? await timed("prepared_asset_load", () => Promise.all(chunkPreparedScopeIds(hashes).map((chunk) => db.from("fabric_media_assets").select("content_hash,shopify_cdn_url,width,height").in("content_hash", chunk)))) : [];
+      if (assetResponses.some(response => response.error)) throw new Error("VISUAL_PREPARED_ASSET_READ_FAILED");
+      const assets = { data: assetResponses.flatMap(response => response.data ?? []) };
       const rank = (type: string) => ["MAIN", "SWATCH", "DETAIL", "ROOM"].indexOf(type) < 0 ? 4 : ["MAIN", "SWATCH", "DETAIL", "ROOM"].indexOf(type);
       colourwayRows = [];
       for (const master of masters.data ?? []) {
@@ -261,17 +316,17 @@ async function main() {
     const singleColourwayDesigns = [...targetDesignKeys].filter((key) => !designKeysWithEvidence.has(key) && colourwayRows.filter((r) => designKey(r) === key).length === 1).length;
     plan = { ...plan, governed_designs: designRows.length, eligible_colourways: colourwayRows.length, representative_design_images_selected: designRows.length, colourway_images_resolved: colourwayRows.length, single_colourway_designs: singleColourwayDesigns, single_colourway_reusable_colourway_calls: singleColourwayDesigns, existing_design_fingerprints: 0, existing_colourway_fingerprints: 0 };
   }
-  const report = { runLabel, scope, inference: apply, targetMissing, singleColourwayCombined: combineSingleColourway, designCallsPlanned: plan.governed_designs, colourwayFingerprintsPlanned: plan.eligible_colourways, representativeDesignImagesSelected: plan.representative_design_images_selected, colourwayImagesResolved: plan.colourway_images_resolved, duplicateReusableWorkDetected: plan.single_colourway_reusable_colourway_calls, estimates: estimate(plan), ledgerCheckpointReadiness: "NOT_RUN" as "PASS"|"NOT_RUN", recovered: 0, newlyInferredDesigns: 0, newlyInferredColourways: 0, resolved: 0, failed: 0, failures: [] as { level:string; fabric_id:string; supplier_sku:string; reason:string }[] };
-  if (planOnly) { await writeFile(path.join(outDir, "visual-enrichment-optimised-plan.json"), JSON.stringify(report, null, 2)); console.log(JSON.stringify(report, null, 2)); return; }
+  const report = { runLabel, scope, inference: apply, targetMissing, singleColourwayCombined: combineSingleColourway, designWorkerConcurrency, timing, designCallsPlanned: plan.governed_designs, colourwayFingerprintsPlanned: plan.eligible_colourways, representativeDesignImagesSelected: plan.representative_design_images_selected, colourwayImagesResolved: plan.colourway_images_resolved, duplicateReusableWorkDetected: plan.single_colourway_reusable_colourway_calls, estimates: estimate(plan), ledgerCheckpointReadiness: "NOT_RUN" as "PASS"|"NOT_RUN", recovered: 0, newlyInferredDesigns: 0, newlyInferredColourways: 0, resolved: 0, failed: 0, failures: [] as { level:string; fabric_id:string; supplier_sku:string; reason:string }[] };
+  if (planOnly) { timing.completed_at = new Date().toISOString(); await writeFile(path.join(outDir, "visual-enrichment-optimised-plan.json"), JSON.stringify(report, null, 2)); console.log(JSON.stringify(report, null, 2)); return; }
 
-  await assertOpenAiCredentialReady();
-  const cache = await loadRestoreCache(restoreDir);
-  const existing = await fetchAllLedger(db, cohortFile ? [...new Set(designRows.map(r=>r.design_id))] : undefined);
+  await timed("openai_credential_preflight", () => assertOpenAiCredentialReady());
+  const cache = await timed("restore_cache_load", () => loadRestoreCache(restoreDir));
+  const existing = await timed("ledger_checkpoint_load", () => fetchAllLedger(db, cohortFile ? [...new Set(designRows.map(r=>r.design_id))] : undefined));
   const reusable = existing.filter(r=>r.approval_state === "APPROVED" || (cohortFile && r.approval_state === "PROPOSED"));
   const designByGoverned = new Map(reusable.filter((r) => r.analysis_level === "DESIGN").map((r) => [designKey(r), r]));
   const colourwayByFabric = new Map(reusable.filter((r) => r.analysis_level === "COLOURWAY").map((r) => [colourwayKey(r), r]));
   const resolvedKeys = new Set(reusable.filter(r=>r.analysis_level === "RESOLVED").map(colourwayKey));
-  const { data: run, error: runError } = await db.from("fabric_visual_enrichment_runs").insert({ run_label: runLabel, scope, visual_version: visualVersion, vocabulary_version: visualVocabularyVersion, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, checkpoint: { stage: "created", designTotal: designRows.length, colourwayTotal: colourwayRows.length }, summary: report }).select("run_id").single();
+  const { data: run, error: runError } = await timed("run_checkpoint_write", () => serialiseDb(() => db.from("fabric_visual_enrichment_runs").insert({ run_label: runLabel, scope, visual_version: visualVersion, vocabulary_version: visualVocabularyVersion, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, checkpoint: { stage: "created", designTotal: designRows.length, colourwayTotal: colourwayRows.length }, summary: report }).select("run_id").single()));
   if (runError) throw runError;
   const runId = run.run_id as string;
 
@@ -279,7 +334,7 @@ async function main() {
   for (const row of colourwayRows) colourwaysByDesign.set(designKey(row), [...(colourwaysByDesign.get(designKey(row)) ?? []), row]);
   for (let i = 0; i < designRows.length; i += batchSize) {
     const batch = designRows.slice(i, i + batchSize);
-    for (const designRow of batch) {
+    await timed("design_analysis", () => runPreparedDesignBatches(batch, designWorkerConcurrency, async (designRow) => {
       const governedKey = designKey(designRow);
       try {
         let designLedger = designByGoverned.get(governedKey);
@@ -298,7 +353,7 @@ async function main() {
             designVisual = acceptVisualCandidate(designCandidateFrom(flexibleCandidate(classified.candidate)), { binding: binding(designRow, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "DESIGN" });
             report.newlyInferredDesigns++;
           }
-          const ledgerId = await insertFingerprint(db, runId, designRow, designVisual, designAsset);
+          const ledgerId = await insertFingerprint(db, runId, designRow, designVisual, designAsset, {}, serialiseDb);
           designLedger = { ledger_id: ledgerId, analysis_level: "DESIGN", fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, brand_id: designRow.brand_id, design_id: designRow.design_id, source_image_hash: designRow.source_image_hash, analysis_asset_hash: designAsset.analysisAssetHash, output: designVisual, approval_state: reviewState(designVisual.candidate, "DESIGN") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(designVisual.candidate, "DESIGN") };
           designByGoverned.set(governedKey, designLedger);
         }
@@ -315,34 +370,37 @@ async function main() {
             colourwayVisual = acceptVisualCandidate(colourwayCandidateFrom(flexibleCandidate(classified.candidate)), { binding: binding(row, classified.asset), imageContentHash: `sha256:${classified.asset.analysisAssetHash}`, modelId: hciVisualModel, promptVersion: visualPromptVersion, schemaVersion: visualSchemaVersion, analysedAt: new Date().toISOString(), analysisLevel: "COLOURWAY" });
             report.newlyInferredColourways++;
           }
-          const colourwayLedgerId = savedColourway?.ledger_id ?? await insertFingerprint(db, runId, row, colourwayVisual, colourwayAsset);
+          const colourwayLedgerId = savedColourway?.ledger_id ?? await insertFingerprint(db, runId, row, colourwayVisual, colourwayAsset, {}, serialiseDb);
           colourwayByFabric.set(colourwayKey(row), { ledger_id: colourwayLedgerId, analysis_level: "COLOURWAY", fabric_id: row.fabric_id, supplier_id: row.supplier_id, supplier_sku: row.supplier_sku, brand_id: row.brand_id, design_id: row.design_id, source_image_hash: row.source_image_hash, analysis_asset_hash: colourwayAsset.analysisAssetHash, output: colourwayVisual, approval_state: reviewState(colourwayVisual.candidate, "COLOURWAY") === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", review_state: reviewState(colourwayVisual.candidate, "COLOURWAY") });
           const designForResolution = { ...designLedger.output, candidate: designCandidateFrom(flexibleCandidate(designLedger.output.candidate)) } as VisualFingerprint;
           const colourwayForResolution = { ...colourwayVisual, candidate: colourwayCandidateFrom(flexibleCandidate(colourwayVisual.candidate)) } as VisualFingerprint;
           const resolved = resolveFabricFingerprint({ design: designForResolution, colourway: colourwayForResolution, analysedAt: new Date().toISOString() });
-          await insertFingerprint(db, runId, row, resolved, colourwayAsset, { designId: designLedger.ledger_id, colourwayId: colourwayLedgerId });
+          await insertFingerprint(db, runId, row, resolved, colourwayAsset, { designId: designLedger.ledger_id, colourwayId: colourwayLedgerId }, serialiseDb);
           resolvedKeys.add(colourwayKey(row));
           report.resolved++;
         }
       } catch (err) {
         const reason = visualFailureReason(err);
         report.failed++; report.failures.push({ level: "DESIGN_GROUP", fabric_id: designRow.fabric_id, supplier_sku: designRow.supplier_sku, reason });
-        const failureLog = await db.from("fabric_visual_enrichment_failures").insert({ run_id: runId, fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, source_image_hash: designRow.source_image_hash, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, failure_reason: reason, context: { analysis_level: "DESIGN_GROUP", design_id: designRow.design_id } });
+        const failureLog = await timed("failure_log_write", () => serialiseDb(() => db.from("fabric_visual_enrichment_failures").insert({ run_id: runId, fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, source_image_hash: designRow.source_image_hash, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, failure_reason: reason, context: { analysis_level: "DESIGN_GROUP", design_id: designRow.design_id } })));
         if (failureLog.error) console.error(`VISUAL_FAILURE_LOG_WRITE_FAILED_${visualFailureReason(failureLog.error)}`);
         if (isSystemicOpenAiFailure(reason)) {
-          await db.from("fabric_visual_enrichment_runs").update({ status: "FAILED", completed_at: new Date().toISOString(), checkpoint: { stage: "stopped_systemic_openai_failure", reason, processedDesigns: i, totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: { ...report, stopReason: reason } }).eq("run_id", runId);
+          timing.completed_at = new Date().toISOString();
+          await timed("run_checkpoint_write", () => serialiseDb(() => db.from("fabric_visual_enrichment_runs").update({ status: "FAILED", completed_at: timing.completed_at, checkpoint: { stage: "stopped_systemic_openai_failure", reason, processedDesigns: i, totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: { ...report, stopReason: reason } }).eq("run_id", runId)));
           throw new Error(reason);
         }
       }
-    }
+    }, async (prepared) => {
+      if (!prepared.ok) throw prepared.error;
+    }));
     report.ledgerCheckpointReadiness = "PASS";
-    await db.from("fabric_visual_enrichment_runs").update({ checkpoint: { stage: "running", processedDesigns: Math.min(i + batch.length, designRows.length), totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: report }).eq("run_id", runId);
+    await timed("run_checkpoint_write", () => serialiseDb(() => db.from("fabric_visual_enrichment_runs").update({ checkpoint: { stage: "running", processedDesigns: Math.min(i + batch.length, designRows.length), totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: report }).eq("run_id", runId)));
     await writeFile(path.join(outDir, "visual-enrichment-progress.json"), JSON.stringify(report, null, 2));
   }
   const finalStatus = report.failed ? (report.resolved ? "PARTIAL" : "FAILED") : "SUCCEEDED";
-  await db.from("fabric_visual_enrichment_runs").update({ status: finalStatus, completed_at: new Date().toISOString(), checkpoint: { stage: "closed", processedDesigns: designRows.length, totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: report }).eq("run_id", runId);
+  timing.completed_at = new Date().toISOString();
+  await timed("run_checkpoint_write", () => serialiseDb(() => db.from("fabric_visual_enrichment_runs").update({ status: finalStatus, completed_at: timing.completed_at, checkpoint: { stage: "closed", processedDesigns: designRows.length, totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: report }).eq("run_id", runId)));
   console.log(JSON.stringify(report, null, 2));
   if (report.failed) process.exitCode = 1;
 }
 main().catch((err) => { console.error(err instanceof Error ? err.message : "VISUAL_ENRICHMENT_FAILED"); process.exitCode = 1; });
-

@@ -27,6 +27,18 @@ export interface PtReconciliation {
 const EXACT_SKU = /^\d{4}\/\d{3}$/;
 const METRES = /^(\d+(?:\.\d+)?)\s*M$/i;
 
+/** An explicit bounded scope is for a newly-created, already reconciled cohort.
+ * It deliberately has different proof requirements from the long-lived full
+ * catalogue baseline below. */
+export function parsePtCohortSkus(value: string | undefined): string[] | null {
+  if (value === undefined || value.trim() === "") return null;
+  const skus = value.split(/[\s,]+/).map((item) => item.trim()).filter(Boolean);
+  if (skus.length < 1 || skus.length > 100) throw new Error("PT_COHORT_SCOPE_LIMIT_1_TO_100");
+  if (skus.some((sku) => !EXACT_SKU.test(sku))) throw new Error("PT_COHORT_SKU_INVALID");
+  if (new Set(skus).size !== skus.length) throw new Error("PT_COHORT_DUPLICATE_SKU");
+  return skus;
+}
+
 export function nextPtRefreshAt(lastSuccessfulAt: string): Date {
   const last = Date.parse(lastSuccessfulAt);
   if (!Number.isFinite(last)) throw new Error("PT_LAST_SUCCESS_INVALID");
@@ -82,5 +94,16 @@ export function assertProvenPtCoverage(identities: readonly PtIdentity[], result
       result.snapshots.length + result.exceptions.length !== identities.length ||
       result.exceptions.some((item) => !PT_PRIOR_UNKNOWN_SKUS.has(item.sku))) {
     throw new Error("PT_COVERAGE_CHANGED");
+  }
+}
+
+/** A bounded cohort must resolve every exact SKU. It does not alter the
+ * full-catalogue assertion above. */
+export function assertCompletePtCohortCoverage(identities: readonly PtIdentity[], result: PtReconciliation): void {
+  const expected = new Set(identities.map((item) => item.supplierSku));
+  const actual = new Set(result.snapshots.map((item) => item.supplier_sku));
+  if (!expected.size || result.exceptions.length || actual.size !== expected.size ||
+      [...expected].some((sku) => !actual.has(sku))) {
+    throw new Error("PT_COHORT_COVERAGE_CHANGED");
   }
 }

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { reconcilePtStock, nextPtRefreshAt, type PtIdentity, type PtStockRow } from "../pt-stock-reconciliation";
+import { assertCompletePtCohortCoverage, parsePtCohortSkus, reconcilePtStock, nextPtRefreshAt, type PtIdentity, type PtStockRow } from "../pt-stock-reconciliation";
 
 const identities: PtIdentity[] = [
   { supplierSku: "4262/770", collection: "Rustic Persian", brandId: "prestigious-textiles", lifecycleState: "CURRENT" },
@@ -39,4 +39,14 @@ test("explicit zero is retained; invalid units and discontinued supplier flag re
 
 test("PT routine due interval remains 72 hours", () => {
   assert.equal(nextPtRefreshAt("2026-09-18T00:00:00.000Z").toISOString(), "2026-09-21T00:00:00.000Z");
+});
+
+test("explicit cohort requires all supplied exact SKUs without changing the full guard", () => {
+  assert.deepEqual(parsePtCohortSkus("4262/770,4264/162"), ["4262/770", "4264/162"]);
+  assert.throws(() => parsePtCohortSkus("4262/770,4262/770"), /PT_COHORT_DUPLICATE_SKU/);
+  assert.throws(() => parsePtCohortSkus("invalid"), /PT_COHORT_SKU_INVALID/);
+  const complete = reconcilePtStock(identities, [row("4262/770", "295 M"), row("4264/162", "10 M"), row("3622/282", "3 M", "Elysium")]);
+  assert.doesNotThrow(() => assertCompletePtCohortCoverage(identities, complete));
+  const incomplete = reconcilePtStock(identities, [row("4262/770", "295 M")]);
+  assert.throws(() => assertCompletePtCohortCoverage(identities, incomplete), /PT_COHORT_COVERAGE_CHANGED/);
 });

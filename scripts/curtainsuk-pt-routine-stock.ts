@@ -2,7 +2,7 @@
 import { randomUUID } from "node:crypto";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { PtWebtexSession } from "../lib/supplier-sync/adapters/pt-webtex-session";
-import { assertProvenPtCoverage, nextPtRefreshAt, PT_PRIOR_UNKNOWN_SKUS, PT_SOURCE, PT_SUPPLIER, reconcilePtStock, type PtIdentity, type PtStockRow } from "../lib/supplier-sync/pt-stock-reconciliation";
+import { assertCompletePtCohortCoverage, assertProvenPtCoverage, nextPtRefreshAt, parsePtCohortSkus, PT_PRIOR_UNKNOWN_SKUS, PT_SOURCE, PT_SUPPLIER, reconcilePtStock, type PtIdentity, type PtStockRow } from "../lib/supplier-sync/pt-stock-reconciliation";
 import { validateSupplierIntelligenceSnapshot } from "../lib/supplier-intelligence/validation";
 import { createValidationEvent } from "../lib/supplier-intelligence/promotion";
 import type { NormalizedSupplierSnapshot } from "../lib/supplier-sync/types";
@@ -20,9 +20,26 @@ function assertConfiguration() {
   }
 }
 
-async function manifest(): Promise<PtIdentity[]> {
+async function manifest(scope: readonly string[] | null): Promise<PtIdentity[]> {
   const db = createSupplierServiceClient();
   const identities: PtIdentity[] = [];
+  if (scope) {
+    const { data, error } = await db.from("fabric_colourways")
+      .select("supplier_sku,brand_id,lifecycle_state,fabric_designs!inner(supplier_design_code,fabric_collections!inner(display_name))")
+      .eq("supplier_id", PT_SUPPLIER).neq("lifecycle_state", "DISCONTINUED")
+      .in("supplier_sku", scope).order("supplier_sku");
+    if (error) throw new Error("PT_COHORT_MANIFEST_READ_FAILED");
+    for (const row of data ?? []) {
+      const design = row.fabric_designs as unknown as { fabric_collections?: { display_name?: string } };
+      if (typeof row.supplier_sku !== "string" || typeof row.brand_id !== "string" ||
+          typeof design?.fabric_collections?.display_name !== "string") throw new Error("PT_COHORT_MANIFEST_IDENTITY_MISSING");
+      identities.push({ supplierSku: row.supplier_sku, brandId: row.brand_id,
+        lifecycleState: row.lifecycle_state, collection: design.fabric_collections.display_name });
+    }
+    if (identities.length !== scope.length || new Set(identities.map((item) => item.supplierSku)).size !== scope.length ||
+        scope.some((sku) => !identities.some((item) => item.supplierSku === sku))) throw new Error("PT_COHORT_MASTER_SCOPE_MISMATCH");
+    return identities;
+  }
   for (let offset = 0; ; offset += 1000) {
     const { data, error } = await db.from("fabric_colourways")
       .select("supplier_sku,brand_id,lifecycle_state,fabric_designs!inner(supplier_design_code,fabric_collections!inner(display_name))")
@@ -98,23 +115,28 @@ async function verifyMaterialisation(snapshots: readonly NormalizedSupplierSnaps
 
 async function main() {
   const started = new Date();
-  const fullRunId = `pt-webtex-full-refresh:${randomUUID()}`;
+  const cohort = parsePtCohortSkus(process.env.PT_COHORT_SKUS);
+  const refreshAdapter = cohort ? "pt-webtex-cohort-refresh" : FULL_ADAPTER;
+  const fullRunId = `${refreshAdapter}:${randomUUID()}`;
   let stage: Stage = "CONFIGURATION", received = 0, appended = 0, dbReady = false;
   try {
     assertConfiguration();
     const db = createSupplierServiceClient();
     dbReady = true;
-    stage = "DUE_CHECK";
-    const { data: latest, error: dueError } = await db.from("supplier_sync_runs")
-      .select("completed_at").eq("supplier_id", PT_SUPPLIER).eq("adapter_id", FULL_ADAPTER)
-      .eq("status", "SUCCEEDED").order("completed_at", { ascending: false }).limit(1).maybeSingle();
-    if (dueError) throw new Error("PT_LAST_SUCCESS_UNAVAILABLE");
-    const due = latest ? nextPtRefreshAt(latest.completed_at) : null;
-    if (due && started < due && process.env.PT_FORCE_REFRESH !== "1") {
-      console.log(JSON.stringify({ outcome: "NOT_DUE", nextRefresh: due.toISOString() })); return;
+    let due: Date | null = null;
+    if (!cohort) {
+      stage = "DUE_CHECK";
+      const { data: latest, error: dueError } = await db.from("supplier_sync_runs")
+        .select("completed_at").eq("supplier_id", PT_SUPPLIER).eq("adapter_id", FULL_ADAPTER)
+        .eq("status", "SUCCEEDED").order("completed_at", { ascending: false }).limit(1).maybeSingle();
+      if (dueError) throw new Error("PT_LAST_SUCCESS_UNAVAILABLE");
+      due = latest ? nextPtRefreshAt(latest.completed_at) : null;
+      if (due && started < due && process.env.PT_FORCE_REFRESH !== "1") {
+        console.log(JSON.stringify({ outcome: "NOT_DUE", nextRefresh: due.toISOString() })); return;
+      }
     }
     stage = "MANIFEST";
-    const identities = await manifest();
+    const identities = await manifest(cohort);
     stage = "AUTHENTICATION";
     const session = new PtWebtexSession();
     await session.login(process.env.PT_WEBTEX_USERNAME!, process.env.PT_WEBTEX_PASSWORD!);
@@ -124,7 +146,8 @@ async function main() {
     received = identities.length;
     const result = reconcilePtStock(identities, retrieved.rows);
     stage = "COVERAGE";
-    assertProvenPtCoverage(identities, result);
+    if (cohort) assertCompletePtCohortCoverage(identities, result);
+    else assertProvenPtCoverage(identities, result);
     stage = "VALIDATION";
     const validated = result.snapshots.map((snapshot) => {
       const validation = validateSupplierIntelligenceSnapshot(snapshot, {
@@ -163,21 +186,21 @@ async function main() {
     stage = "VERIFICATION";
     await verifyMaterialisation(result.snapshots);
     const completed = new Date();
-    const { error: auditError } = await db.from("supplier_sync_runs").insert(runAudit({ id: fullRunId, adapter: FULL_ADAPTER,
+    const { error: auditError } = await db.from("supplier_sync_runs").insert(runAudit({ id: fullRunId, adapter: refreshAdapter,
       started: started.toISOString(), completed: completed.toISOString(), status: "SUCCEEDED", received, appended }));
     if (auditError) throw new Error("PT_SUCCESS_AUDIT_FAILED");
-    console.log(JSON.stringify({ outcome: "SUCCEEDED", expected: received, resolved: appended,
+    console.log(JSON.stringify({ outcome: "SUCCEEDED", scope: cohort ? "EXPLICIT_COHORT" : "FULL_CATALOGUE", expected: received, resolved: appended,
       atLeast30: result.snapshots.filter((item) => (item.aggregate_available_quantity ?? 0) >= 30).length,
       positiveBelow30: result.snapshots.filter((item) => (item.aggregate_available_quantity ?? 0) > 0 && (item.aggregate_available_quantity ?? 0) < 30).length,
       zero: result.snapshots.filter((item) => item.aggregate_available_quantity === 0).length,
       unknown: result.exceptions, overlap: result.overlapCount,
       collectionQueries: retrieved.collectionQueries, designQueries: retrieved.designQueries, skuQueries: retrieved.skuQueries,
-      durationMs: completed.getTime() - started.getTime(), nextRefresh: nextPtRefreshAt(completed.toISOString()).toISOString() }));
+      durationMs: completed.getTime() - started.getTime(), nextRefresh: cohort ? null : nextPtRefreshAt(completed.toISOString()).toISOString() }));
   } catch (error) {
     const code = error instanceof Error && /^PT_[A-Z0-9_]+$/.test(error.message) ? error.message : "PT_ROUTINE_UNEXPECTED_FAILURE";
     if (dbReady) {
       try { await createSupplierServiceClient().from("supplier_sync_runs").insert(runAudit({ id: fullRunId,
-        adapter: FULL_ADAPTER, started: started.toISOString(), completed: new Date().toISOString(), status: "FAILED",
+        adapter: refreshAdapter, started: started.toISOString(), completed: new Date().toISOString(), status: "FAILED",
         received, appended, errorCode: `${stage}:${code}` })); } catch { /* Workflow failure remains an alert. */ }
     }
     console.error(JSON.stringify({ outcome: "FAILED", stage, code, received, appended }));

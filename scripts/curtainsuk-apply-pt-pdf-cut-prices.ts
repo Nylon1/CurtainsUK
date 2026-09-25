@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
-import { buildPtPdfCutPriceSnapshots, type PtPdfCutPriceCoverage } from "../lib/supplier-sync/pt-pdf-cut-price";
+import { assertPtPdfSourceBytes, buildPtPdfCutPriceSnapshots, type PtPdfCutPriceCoverage } from "../lib/supplier-sync/pt-pdf-cut-price";
 import { validateSupplierIntelligenceSnapshot } from "../lib/supplier-intelligence/validation";
 import { createValidationEvent } from "../lib/supplier-intelligence/promotion";
 import { SupplierIntelligenceService } from "../lib/supplier-intelligence/service";
@@ -68,11 +68,21 @@ async function main() {
   loadEnvConfig(process.cwd());
   const coveragePath = option("--coverage");
   const manifestPath = option("--manifest");
+  const sourcePdfPath = option("--source-pdf");
   const observedAt = option("--observed-at") ?? new Date().toISOString();
   const apply = process.argv.includes("--apply");
   const approve = process.argv.includes("--approve");
-  if (!coveragePath || !manifestPath || !process.argv.includes("--owner-confirmed-cut-price")) throw new Error("USAGE: --coverage=... --manifest=... --owner-confirmed-cut-price [--observed-at=ISO] [--apply --approve]");
+  if (!coveragePath || !manifestPath || !process.argv.includes("--owner-confirmed-cut-price")) throw new Error("USAGE: --coverage=... --manifest=... --owner-confirmed-cut-price [--observed-at=ISO] [--apply --approve --source-pdf=...]");
   if (approve && !apply) throw new Error("PT_PDF_APPROVAL_REQUIRES_APPLY");
+  // A live PDF price record without its required manual approval is an
+  // incomplete commercial state. Keep the two operations indivisible here.
+  if (apply && !approve) throw new Error("PT_PDF_APPLY_REQUIRES_APPROVAL");
+  // This CLI has no server-authenticated operator session. It must be given
+  // the id of the actual authorised supplier admin; do not substitute a
+  // historical staging identity.
+  const actor = approve ? process.env.PT_PDF_PRICE_APPROVED_BY : null;
+  if (approve && (!actor || !UUID.test(actor))) throw new Error("PT_PDF_PRICE_APPROVER_REQUIRED");
+  if (apply && !sourcePdfPath) throw new Error("PT_PDF_SOURCE_PDF_REQUIRED");
 
   const [coverage, manifest] = await Promise.all([readJson<PtPdfCutPriceCoverage>(coveragePath), readJson<PreparedMaster[]>(manifestPath)]);
   validatePreparedCohort(manifest, coverage);
@@ -82,8 +92,15 @@ async function main() {
   if (!apply) { console.log(JSON.stringify(summary)); return; }
 
   requireProductionConfiguration();
-  await assertExactlyOneCurrentMasterPerSku(snapshots.map((item) => item.supplier_sku));
+  // Read and hash the supplied file before every database operation. The
+  // coverage hash alone is mutable input and is therefore insufficient.
+  assertPtPdfSourceBytes(coverage, await readFile(sourcePdfPath!));
   const repository = new SupabaseSupplierIntelligenceRepository();
+  const policy = await repository.approvalPolicy("prestigious-textiles");
+  if (!policy || policy.approval_mode !== "MANUAL" || policy.required_price_field !== "CUT_TRADE_PRICE") {
+    throw new Error("PT_PDF_CUT_APPROVAL_POLICY_REQUIRED");
+  }
+  await assertExactlyOneCurrentMasterPerSku(snapshots.map((item) => item.supplier_sku));
   const now = new Date();
   const items: SupplierBulkAppendItem[] = [];
   for (const snapshot of snapshots) {
@@ -102,13 +119,11 @@ async function main() {
   if (!existing.every(Boolean)) await repository.appendBulkValidatedSnapshots({ run, items });
 
   if (approve) {
-    const actor = process.env.PT_PDF_PRICE_APPROVED_BY;
-    if (!actor || !UUID.test(actor)) throw new Error("PT_PDF_PRICE_APPROVER_REQUIRED");
     const service = new SupplierIntelligenceService(repository);
     for (const snapshot of snapshots) {
       const events = await repository.promotionEvents(snapshot.snapshot_id);
       if (!events.some((event) => event.promotion_state === "APPROVED_FOR_PROJECTION")) {
-        await service.manuallyApprove({ snapshotId: snapshot.snapshot_id, approvedBy: actor,
+        await service.manuallyApprove({ snapshotId: snapshot.snapshot_id, approvedBy: actor!,
           reason: "Owner-confirmed CurtainsUK PT Cut Price basis. Exact supplier design-code match in the August 2026 Prestigious Textiles Price List; no workbook Price/RRP, stock, lifecycle, or Fabric Master facts supplied by this observation." });
       }
     }

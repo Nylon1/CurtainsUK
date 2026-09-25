@@ -35,6 +35,17 @@ const SHA256 = /^[a-f0-9]{64}$/;
 function fail(code: string): never { throw new Error(code); }
 
 /**
+ * The coverage JSON is evidence about a supplier PDF, not the source itself.
+ * Verify the exact bytes at application time before emitting any price
+ * observation, so a modified coverage file cannot point at a different PDF.
+ */
+export function assertPtPdfSourceBytes(coverage: Pick<PtPdfCutPriceCoverage, "source_sha256">, bytes: Uint8Array): void {
+  if (!SHA256.test(coverage.source_sha256)) fail("PT_PDF_SOURCE_HASH_INVALID");
+  const actual = createHash("sha256").update(bytes).digest("hex");
+  if (actual !== coverage.source_sha256) fail("PT_PDF_SOURCE_HASH_MISMATCH");
+}
+
+/**
  * Turns a supplier PDF's exact design-code rows into private, price-only
  * observations. The owner-confirmed cut-price basis is an explicit argument,
  * so a generic PDF "Price" column can never silently become Standard Price.

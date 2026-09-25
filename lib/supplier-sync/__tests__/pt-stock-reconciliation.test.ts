@@ -41,9 +41,9 @@ test("PT routine due interval remains 72 hours", () => {
   assert.equal(nextPtRefreshAt("2026-09-18T00:00:00.000Z").toISOString(), "2026-09-21T00:00:00.000Z");
 });
 
-test("normal PT refresh accepts the reconciled 3,235-master full catalogue", () => {
-  assert.equal(PT_EXPECTED_IDENTITIES, 3235);
-  assert.equal(PT_PROVEN_MINIMUM, 3230);
+test("normal PT refresh accepts the reconciled 3,735-master full catalogue", () => {
+  assert.equal(PT_EXPECTED_IDENTITIES, 3735);
+  assert.equal(PT_PROVEN_MINIMUM, 3730);
   const full = Array.from({ length: PT_EXPECTED_IDENTITIES }, (_, index): PtIdentity => ({
     supplierSku: `${String(1000 + Math.floor(index / 1000)).padStart(4, "0")}/${String(index % 1000).padStart(3, "0")}`,
     collection: "Full manifest", brandId: "prestigious-textiles", lifecycleState: "CURRENT",
@@ -52,12 +52,12 @@ test("normal PT refresh accepts the reconciled 3,235-master full catalogue", () 
   const rows = full.slice(5).map((item): PtStockRow => ({ ...row(item.supplierSku, "1 M"), queryValue: "Full manifest" }));
   const result = reconcilePtStock(full, rows);
   assert.doesNotThrow(() => assertProvenPtCoverage(full, result));
-  assert.equal(result.snapshots.length, 3230);
+  assert.equal(result.snapshots.length, 3730);
   assert.deepEqual(new Set(result.exceptions.map(item => item.sku)), PT_PRIOR_UNKNOWN_SKUS);
   assert.ok(result.snapshots.every(snapshot => !PT_PRIOR_UNKNOWN_SKUS.has(snapshot.supplier_sku)));
   // A new missing SKU must still stop the whole refresh, even if one known
   // exception recovers and the overall numeric coverage remains sufficient.
   const unexpected = reconcilePtStock(full, [...rows.slice(1), row(full[0].supplierSku, "1 M")]);
-  assert.equal(unexpected.snapshots.length, 3230);
+  assert.equal(unexpected.snapshots.length, 3730);
   assert.throws(() => assertProvenPtCoverage(full, unexpected), /PT_COVERAGE_CHANGED/);
 });

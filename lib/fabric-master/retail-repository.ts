@@ -9,6 +9,7 @@ import { customerGuidance, customerIntelligence, visualKnowledgeByFabricIds } fr
 import { BROWSE_DISCOVERY, supplierFacts } from './browse-experience';
 import { governedBrowseFilters, type BrowseFacetKey } from './browse-filters';
 import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
+import { browseSearchRpcName } from './browse-rpc';
 
 export async function retailFabricDetail(id: string, withGuide = false) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
@@ -66,7 +67,7 @@ export async function searchRetailFabrics(params: URLSearchParams) {
   const filters = governedBrowseFilters(params);
   const withGuide = params.get('browseGuide') === '1';
   const band = withGuide ? browsePriceBand(params.get('guidePrice')) : null;
-  const { data, error } = await createSupplierServiceClient().rpc("search_retail_fabrics", {
+  const { data, error } = await createSupplierServiceClient().rpc(browseSearchRpcName(process.env.CURTAINSUK_BROWSE_READ_PROJECTION), {
     p_filters: filters, p_page: page, p_size: pageSize,
     ...(withGuide ? { p_guide_min: band?.minimumMinor ?? null, p_guide_max: band?.maximumMinor ?? null } : {}),
   });

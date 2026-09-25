@@ -8,6 +8,19 @@ async function main() {
   const session = new PtWebtexSession();
   delete process.env.PT_WEBTEX_PASSWORD;
   await session.login(username, password);
+  const requestedSku = (process.env.PT_WEBTEX_PROOF_SKU ?? "").trim();
+  if (requestedSku) {
+    if (!/^\d{4}\/\d{3}$/.test(requestedSku)) throw new Error("PT_WEBTEX_PROOF_SKU_INVALID");
+    // Match the routine worker's supplier-supported design-code route, then
+    // require the requested complete colourway code before accepting evidence.
+    const result = await session.search("DESIGN_CODE", requestedSku.slice(0, 4));
+    const exact = result.rows.find((row) => row.sku === requestedSku);
+    const metres = /^\d+(?:\.\d+)?\s*M$/i.test(exact?.stockText ?? "");
+    if (!exact || !metres || exact.indicator.toUpperCase() === "D") throw new Error("PT_WEBTEX_EXACT_STOCK_UNAVAILABLE");
+    console.log(JSON.stringify({ outcome: "PASS", exact: { sku: exact.sku, stockText: exact.stockText,
+      observedAt: exact.observedAt, queryType: exact.queryType, queryValue: exact.queryValue } }));
+    return;
+  }
   const result = await session.search("COLLECTION", "Rustic Persian");
   const sadira = result.rows.find((row) => row.sku === "4262/770");
   if (!sadira) throw new Error("PT_WEBTEX_CONTROL_SKU_MISSING");

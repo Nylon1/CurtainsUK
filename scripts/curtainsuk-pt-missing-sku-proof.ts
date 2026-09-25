@@ -72,7 +72,12 @@ async function main() {
   if (parameterNames.length !== 2) throw new Error("PT_PRODUCT_DETAIL_PARAMETERS_CHANGED");
   const detailXml = load(await transport.invoke(`${detailPath}/callbackGetProductDetails`, Object.fromEntries(parameterNames.map(name => [name,sku]))), {xmlMode:true});
   const detailFields: Record<string,string> = {};
-  detailXml("FIELDS fd").each((_,field) => { const id=detailXml(field).attr("id")?.toLowerCase(); if(id) detailFields[id]=decodeURIComponent(detailXml(field).attr("value") ?? ""); });
+  detailXml("FIELDS fd").each((_,field) => {
+    const id=detailXml(field).attr("id")?.toLowerCase();
+    if(id) { const raw=detailXml(field).attr("value") ?? "";
+      try { detailFields[id]=decodeURIComponent(raw); } catch { detailFields[id]=raw; }
+    }
+  });
   const detailEvidence = { endpoint: `${detailPath}/callbackGetProductDetails`, parameterNames,
     status: detailXml("RETURNPACKET > STATUS").text(), fieldNames: Object.keys(detailFields),
     exactSkuInFields: Object.values(detailFields).some(value => value.trim() === sku),
@@ -85,6 +90,6 @@ async function main() {
 }
 main().catch(error => {
   const code = error instanceof Error && /^PT_[A-Z0-9_]+$/.test(error.message) ? error.message : "PT_READ_ONLY_PROOF_FAILED";
-  console.error(JSON.stringify({ outcome: "FAILED", sku, code, supplierResponseShape: evidence, databaseWrites: 0 }));
+  console.error(JSON.stringify({ outcome: "FAILED", sku, code, errorType:error instanceof Error ? error.name : "unknown", supplierResponseShape: evidence, databaseWrites: 0 }));
   process.exitCode = 1;
 });

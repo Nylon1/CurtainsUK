@@ -47,6 +47,7 @@ async function main() {
             currencyUnit: /STERLING|\bGBP\b|£/.test(value),
             numericOnly: /^\d+(?:\.\d+)?$/.test(value.trim()),
             visibleDecimalPresent: /\d+\.\d+/.test(load(value).text()),
+            ...(["C6", "C7"].includes(id) ? { priceCellTextStructure: load(value).text().replace(/\d/g, "#").slice(0, 120), priceCellMarkup: /<[^>]+>/.test(value) } : {}),
           }));
         });
       }

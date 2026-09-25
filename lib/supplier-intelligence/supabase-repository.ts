@@ -149,11 +149,17 @@ export class SupabaseSupplierIntelligenceRepository implements SupplierIntellige
   }
 
   async previousApprovedSnapshotId(snapshot: DurableSupplierSnapshot) {
-    const data = await this.dataset(snapshot.supplier_id);
-    const snapshotIds = new Set(data.snapshots.filter((item) => item.supplier_sku === snapshot.supplier_sku && item.snapshot_id !== snapshot.snapshot_id).map((item) => item.snapshot_id));
-    return data.promotion_events
-      .filter((event) => event.promotion_state === "APPROVED_FOR_PROJECTION" && snapshotIds.has(event.snapshot_id))
-      .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))[0]?.snapshot_id ?? null;
+    const database = createSupplierServiceClient();
+    const { data: snapshots, error: snapshotError } = await database.from("supplier_snapshots")
+      .select("snapshot_id").eq("supplier_id", snapshot.supplier_id).eq("supplier_sku", snapshot.supplier_sku)
+      .neq("snapshot_id", snapshot.snapshot_id);
+    databaseError(snapshotError);
+    if (!snapshots?.length) return null;
+    const { data: event, error } = await database.from("supplier_promotion_events")
+      .select("snapshot_id").in("snapshot_id", snapshots.map(item => item.snapshot_id))
+      .eq("promotion_state", "APPROVED_FOR_PROJECTION").order("created_at", { ascending: false }).limit(1).maybeSingle();
+    databaseError(error);
+    return event?.snapshot_id ?? null;
   }
 
   async dataset(supplierId?: string): Promise<SupplierIntelligenceDataset> {

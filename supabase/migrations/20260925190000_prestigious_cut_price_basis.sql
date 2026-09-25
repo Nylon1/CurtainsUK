@@ -1,7 +1,7 @@
 -- Owner-confirmed CurtainsUK commercial policy: new Prestigious Textiles
--- observations preserve the established Standard Price selection. Approved
--- Cut-only records from the governed PDF importer remain eligible for that
--- cohort until Standard evidence exists for the SKU.
+-- observations preserve the established Standard Price selection outside the
+-- governed PDF cohort. For that cohort only, approved official PDF Cut Price
+-- evidence takes priority, including after a later Standard observation.
 -- No source value is copied, relabelled, or derived.
 
 CREATE OR REPLACE FUNCTION curtainsuk_private.fabric_commercial_evidence(p_ids text[])

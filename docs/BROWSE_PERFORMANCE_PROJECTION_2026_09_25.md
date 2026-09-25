@@ -1,6 +1,6 @@
-# Browse performance: source-only two-stage candidate
+# Browse performance: controlled projection release
 
-Status: **not deployed**. Production Browse still calls `search_retail_fabrics`. The gateway's `CURTAINSUK_BROWSE_READ_PROJECTION=enabled` switch is opt-in and is not set in production.
+Status: **release candidate, not yet switched live**. Production Browse still calls `search_retail_fabrics`. The gateway's `CURTAINSUK_BROWSE_READ_PROJECTION=enabled` switch is opt-in and is not set in production. The owner authorised a controlled production rollout on 25 September, with the existing RPC retained as the immediate fallback.
 
 ## Stage 1: direct, set-oriented eligibility
 
@@ -28,11 +28,13 @@ The live Shopify app proxy was sampled through `/apps/curtainsuk-decision/catalo
 
 The gateway source now has an explicit off-by-default switch for prepared Browse reads. Only `searchRetailFabrics` uses it. Sample and Make Curtains remain on their existing canonical Fabric Master, stock and pricing paths.
 
-## Remaining release gates
+## Controlled production sequence
 
-1. Leave the slower set-oriented direct candidate alone. Keep the existing RPC as fail-safe.
-2. Establish a reachable, isolated Postgres environment with production-scale non-customer fixture data for simultaneous authoritative writes, projection refreshes and reads. Verify transaction boundaries and lock wait times without changing the live database.
-3. Complete response parity for the remaining combinations in bounded batches, then benchmark Shopify proxy + gateway + 24-card hydration + browser with the prepared switch in an isolated reachable environment.
-4. Run the protected production capability suite. Enable the opt-in switch only after migration, complete parity and operational approval. No timeout increase or parallel Browse store is proposed.
+1. Release only the two scoped projection migrations and opt-in gateway selector through the protected `release/production` workflow. The slower direct shadow function remains source-only and is not part of the migration.
+2. Keep the gateway selector off. Build a full generation from current authoritative production data and reconcile all 9,248 eligible rows and representative response payloads against the unchanged live RPC.
+3. Enable the server-side selector only after exact parity, then measure the actual Shopify app-proxy route and commercial handoffs. On any parity, refresh, error or handoff regression, switch the selector off immediately.
+4. Preserve Sample and Make Curtains revalidation. Browse customers never initiate projection rebuilds. Do not increase timeouts or introduce a separate catalogue authority.
+
+The production migration history differs from older local files. Release operators must use a temporary migration workdir containing the fetched remote history plus only the two new source-controlled Browse migration files. Do not repair or replay historical migrations to make a push succeed.
 
 Read-only/rollback rehearsal commands: `scripts/browse-performance-stage1-parity.ps1`, `scripts/browse-guide-parity.sql`, and `scripts/browse-performance-transactional-rehearsal.ps1`.

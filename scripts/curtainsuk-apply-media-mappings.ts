@@ -31,9 +31,9 @@ async function main() {
     const { data: row, error } = await db.from("fabric_colourways").select("supplier_id,supplier_sku,updated_at,imagery,lifecycle_state,staging_catalog_visible,brand_id,design_id,colour_name").eq("fabric_id", mapping.fabricId).single();
     if (error || row.supplier_id !== mapping.supplier || row.supplier_sku !== mapping.supplierSku) throw new Error("MEDIA_CANONICAL_IDENTITY_MISMATCH");
     const asset = await db.from("fabric_media_assets").upsert({ content_hash: mapping.contentHash, shopify_file_id: mapping.shopifyFileId, shopify_cdn_url: mapping.shopifyCdnUrl, width: mapping.width, height: mapping.height, imported_at: mapping.importedAt }, { onConflict: "content_hash", ignoreDuplicates: true });
-    if (asset.error) throw new Error("MEDIA_ASSET_WRITE_FAILED");
+    if (asset.error) throw new Error(`MEDIA_ASSET_WRITE_FAILED_${asset.error.code}`);
     const saved = await db.from("fabric_media_mappings").upsert({ fabric_id: mapping.fabricId, content_hash: mapping.contentHash, image_type: mapping.imageType, supplier_id: mapping.supplier, supplier_sku: mapping.supplierSku, source_reference: mapping.sourceReference, rights_state: mapping.rightsState, mapping_state: mapping.mappingState, imported_at: mapping.importedAt }, { onConflict: "fabric_id,image_type,content_hash", ignoreDuplicates: true });
-    if (saved.error) throw new Error("MEDIA_MAPPING_WRITE_FAILED");
+    if (saved.error) throw new Error(`MEDIA_MAPPING_WRITE_FAILED_${saved.error.code}`);
     const approved = await db.from("fabric_media_mappings").select("rights_state,mapping_state").eq("fabric_id", mapping.fabricId).eq("content_hash", mapping.contentHash).eq("image_type", mapping.imageType).single();
     if (approved.error || approved.data.rights_state !== "APPROVED" || approved.data.mapping_state !== "VERIFIED") throw new Error("MEDIA_MAPPING_APPROVAL_WITHHELD");
     // Replace portal hotlinks only after the verified Shopify copy exists.
@@ -45,13 +45,14 @@ async function main() {
     // Approved exact-identity media activates browsing without a commercial check.
     const staging_catalog_visible = deferVisibility ? row.staging_catalog_visible : row.lifecycle_state !== "DISCONTINUED" && Boolean(row.brand_id && row.design_id && row.colour_name?.trim()) && (exactColourway || row.staging_catalog_visible);
     const update = await db.from("fabric_colourways").update({ imagery, staging_catalog_visible }).eq("fabric_id", mapping.fabricId).eq("updated_at", row.updated_at).select("fabric_id");
-    if (update.error || !update.data?.length) throw new Error("MEDIA_MASTER_REVISION_CHANGED");
+    if (update.error) throw new Error(`MEDIA_MASTER_WRITE_FAILED_${update.error.code}`);
+    if (!update.data?.length) throw new Error("MEDIA_MASTER_REVISION_CHANGED");
     if (row.staging_catalog_visible !== staging_catalog_visible) visibilityChanges++;
     const checkpoint = await db.from("fabric_media_checkpoints").upsert({ supplier_id: mapping.supplier, supplier_sku: mapping.supplierSku, fabric_id: mapping.fabricId, state: "UPLOADED", failure_reason: null, updated_at: new Date().toISOString() });
-    if (checkpoint.error) throw new Error("MEDIA_CHECKPOINT_WRITE_FAILED");
+    if (checkpoint.error) throw new Error(`MEDIA_CHECKPOINT_WRITE_FAILED_${checkpoint.error.code}`);
     count++;
    }
   });
   console.log(JSON.stringify({ mappingsApplied: count, visibilityChanges, pricingChanges: 0 }));
 }
-main().catch(() => { console.error("MEDIA_MAPPING_APPLY_FAILED"); process.exitCode = 1; });
+main().catch((error) => { console.error(error instanceof Error && /^MEDIA_[A-Z0-9_]+$/.test(error.message) ? error.message : "MEDIA_MAPPING_APPLY_FAILED"); process.exitCode = 1; });

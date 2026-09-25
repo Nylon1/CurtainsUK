@@ -65,6 +65,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Prove Fabric Master visual ledger checkpoint path without inference
+        if: inputs.scope_mode != 'explicit-cohort'
         run: npx --no-install tsx scripts/curtainsuk-visual-ledger-proof.ts
       - name: Prove optimised visual execution plan without inference
         env:

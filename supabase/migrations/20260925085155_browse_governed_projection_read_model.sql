@@ -17,6 +17,8 @@ CREATE TABLE curtainsuk_private.browse_projection_control (
   singleton boolean PRIMARY KEY DEFAULT true CHECK (singleton),
   active_generation uuid,
   refreshed_at timestamptz,
+  knowledge_cache_refreshed_at timestamptz,
+  knowledge_cache_dirty boolean NOT NULL DEFAULT false,
   next_time_change_at timestamptz NOT NULL DEFAULT '-infinity',
   metadata jsonb NOT NULL DEFAULT '{}'::jsonb
 );
@@ -107,8 +109,18 @@ DECLARE
   source_count bigint;
   projected_count bigint;
   result_metadata jsonb;
+  knowledge_cache_stamp timestamptz;
 BEGIN
   PERFORM pg_advisory_xact_lock(4252026, 9248);
+  -- Knowledge source writes mark the cache separately from ordinary supplier
+  -- price/stock dirtiness. Refresh it before deriving the Browse generation.
+  IF (SELECT knowledge_cache_dirty FROM curtainsuk_private.browse_projection_control
+      WHERE singleton) THEN
+    REFRESH MATERIALIZED VIEW CONCURRENTLY
+      curtainsuk_private.fabric_visual_knowledge_read_cache;
+  END IF;
+  SELECT max(refreshed_at) INTO knowledge_cache_stamp
+    FROM curtainsuk_private.fabric_visual_knowledge_read_cache;
   INSERT INTO curtainsuk_private.browse_read_projection
     SELECT next_generation, e.* FROM curtainsuk_private.browse_eligible_set_v1 e;
   SELECT count(*) INTO source_count FROM curtainsuk_private.browse_eligible_set_v1;
@@ -125,10 +137,17 @@ BEGIN
   ) THEN
     RAISE EXCEPTION 'BROWSE_PROJECTION_RECONCILIATION_FAILED';
   END IF;
+  IF (SELECT max(refreshed_at)
+      FROM curtainsuk_private.fabric_visual_knowledge_read_cache)
+      IS DISTINCT FROM knowledge_cache_stamp THEN
+    RAISE EXCEPTION 'BROWSE_KNOWLEDGE_CACHE_CHANGED_DURING_RECONCILIATION';
+  END IF;
   SELECT curtainsuk_private.browse_projection_metadata(next_generation)
     INTO result_metadata;
   UPDATE curtainsuk_private.browse_projection_control
     SET active_generation = next_generation, refreshed_at = now(),
+        knowledge_cache_refreshed_at = knowledge_cache_stamp,
+        knowledge_cache_dirty = false,
         next_time_change_at = curtainsuk_private.browse_projection_next_time_change(),
         metadata = result_metadata
     WHERE singleton;
@@ -187,14 +206,30 @@ REVOKE ALL ON FUNCTION curtainsuk_private.browse_projection_mark_fabric_dirty(),
   curtainsuk_private.browse_projection_mark_global_dirty()
   FROM public, anon, authenticated;
 
--- Direct Fabric Master, retail profile, media-map and governed Knowledge edits
--- can be refreshed for just the affected Fabric Master IDs.
+-- The governed Knowledge view depends on enrichment evidence plus the
+-- approved image/colourway scope. Queue one refresh after a successful source
+-- transaction; never refresh the materialized view inside a source trigger.
+CREATE FUNCTION curtainsuk_private.browse_projection_mark_knowledge_dirty()
+RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path TO '' AS $function$
+BEGIN
+  PERFORM pg_advisory_xact_lock(4252026, 9248);
+  UPDATE curtainsuk_private.browse_projection_control
+    SET knowledge_cache_dirty = true WHERE singleton;
+  RETURN NULL;
+END;
+$function$;
+REVOKE ALL ON FUNCTION curtainsuk_private.browse_projection_mark_knowledge_dirty()
+  FROM public, anon, authenticated;
+
+-- Direct Fabric Master, retail profile and media-map edits can be refreshed
+-- for just the affected Fabric Master IDs. PostgreSQL materialized views do
+-- not support DML triggers. A completed governed Knowledge cache refresh is
+-- detected by the projection worker below and reconciled in full.
 DO $install$
 DECLARE source_table text;
 BEGIN
   FOREACH source_table IN ARRAY ARRAY[
-    'fabric_colourways','fabric_retail_profiles',
-    'fabric_visual_knowledge_read_cache','fabric_media_mappings'
+    'fabric_colourways','fabric_retail_profiles','fabric_media_mappings'
   ] LOOP
     EXECUTE format('CREATE TRIGGER browse_projection_fabric_dirty
       AFTER INSERT OR UPDATE OR DELETE ON curtainsuk_private.%I
@@ -202,6 +237,23 @@ BEGIN
     EXECUTE format('CREATE TRIGGER browse_projection_fabric_truncated
       AFTER TRUNCATE ON curtainsuk_private.%I
       FOR EACH STATEMENT EXECUTE FUNCTION curtainsuk_private.browse_projection_mark_global_dirty()', source_table);
+  END LOOP;
+END;
+$install$;
+
+DO $install$
+DECLARE source_table text;
+BEGIN
+  FOREACH source_table IN ARRAY ARRAY[
+    'fabric_visual_enrichment_ledger','fabric_visual_enrichment_failures',
+    'fabric_colourways','fabric_media_mappings','fabric_media_assets'
+  ] LOOP
+    EXECUTE format('CREATE TRIGGER browse_projection_knowledge_dirty
+      AFTER INSERT OR UPDATE OR DELETE ON curtainsuk_private.%I
+      FOR EACH STATEMENT EXECUTE FUNCTION curtainsuk_private.browse_projection_mark_knowledge_dirty()', source_table);
+    EXECUTE format('CREATE TRIGGER browse_projection_knowledge_truncated
+      AFTER TRUNCATE ON curtainsuk_private.%I
+      FOR EACH STATEMENT EXECUTE FUNCTION curtainsuk_private.browse_projection_mark_knowledge_dirty()', source_table);
   END LOOP;
 END;
 $install$;
@@ -233,11 +285,18 @@ DECLARE
   generation uuid;
   ids text[];
   result_metadata jsonb;
+  knowledge_cache_stamp timestamptz;
 BEGIN
   PERFORM pg_advisory_xact_lock(4252026, 9248);
+  SELECT max(refreshed_at) INTO knowledge_cache_stamp
+    FROM curtainsuk_private.fabric_visual_knowledge_read_cache;
   SELECT active_generation INTO generation
     FROM curtainsuk_private.browse_projection_control WHERE singleton FOR UPDATE;
   IF generation IS NULL
+    OR EXISTS (SELECT 1 FROM curtainsuk_private.browse_projection_control
+      WHERE singleton AND knowledge_cache_dirty)
+    OR EXISTS (SELECT 1 FROM curtainsuk_private.browse_projection_control
+      WHERE singleton AND knowledge_cache_refreshed_at IS DISTINCT FROM knowledge_cache_stamp)
     OR EXISTS (SELECT 1 FROM curtainsuk_private.browse_projection_dirty WHERE fabric_id = '*')
     OR EXISTS (SELECT 1 FROM curtainsuk_private.browse_projection_control
       WHERE singleton AND now() >= next_time_change_at)

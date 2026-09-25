@@ -4,6 +4,9 @@ param(
   [string]$Case,
   [switch]$RefreshCheck,
   [switch]$SafetyCheck,
+  [switch]$KnowledgeCheck,
+  [switch]$InstallCheck,
+  [switch]$ReleaseMigration,
   [switch]$Benchmark,
   [switch]$BenchmarkDirect
 )
@@ -11,11 +14,20 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectRef = 'hqysjumypgeapgmqkcrx'
 $candidateDir = Join-Path $PSScriptRoot '..\sql-candidates\browse'
-$stage1 = Get-Content -LiteralPath (Join-Path $candidateDir '20260925064738_browse_set_oriented_search.sql') -Raw
-$stage2 = Get-Content -LiteralPath (Join-Path $candidateDir '20260925070237_browse_read_projection.sql') -Raw
+$stage1 = if ($ReleaseMigration) { '' } else {
+  Get-Content -LiteralPath (Join-Path $candidateDir '20260925064738_browse_set_oriented_search.sql') -Raw
+}
+$stage2 = if ($ReleaseMigration) {
+  Get-Content -LiteralPath (Join-Path $PSScriptRoot '..\supabase\migrations\20260925085155_browse_governed_projection_read_model.sql') -Raw
+} else {
+  Get-Content -LiteralPath (Join-Path $candidateDir '20260925070237_browse_read_projection.sql') -Raw
+}
 
-# Never install source-table triggers or a scheduler in a production rehearsal.
-$stage2 = [regex]::Replace($stage2, '(?s)DO \$install\$.*?\$install\$;', '')
+# Source-table triggers are installed only for the explicit transactional
+# installation check. The scheduled job is never installed in a rehearsal.
+if (-not $InstallCheck) {
+  $stage2 = [regex]::Replace($stage2, '(?s)DO \$install\$.*?\$install\$;', '')
+}
 $stage2 = [regex]::Replace($stage2,
   "(?s)SELECT cron\.schedule\('curtainsuk-browse-projection-refresh-v1'.*?\);", '')
 
@@ -69,6 +81,41 @@ FROM checked ORDER BY label;
 ROLLBACK;
 '@
 $checks = $checks.Replace('__CASES__', $caseSql)
+if ($ReleaseMigration) {
+  $checks = @'
+SELECT curtainsuk_private.browse_projection_refresh_full() AS generation_proof;
+WITH cases(label, filters, page_number, page_size, minimum, maximum) AS (
+  VALUES
+    __CASES__
+), checked AS MATERIALIZED (
+  SELECT label,
+    curtainsuk_private.search_retail_fabrics(filters,page_number,page_size,minimum,maximum) AS current_result,
+    curtainsuk_private.search_retail_fabrics_prepared_v1(filters,page_number,page_size,minimum,maximum) AS prepared_result
+  FROM cases
+)
+SELECT label, current_result = prepared_result AS prepared_json_parity,
+  current_result->>'total' AS current_total,
+  prepared_result->>'total' AS prepared_total
+FROM checked ORDER BY label;
+ROLLBACK;
+'@
+  $checks = $checks.Replace('__CASES__', $caseSql)
+}
+if ($InstallCheck) {
+  if (-not $ReleaseMigration) { throw 'InstallCheck requires ReleaseMigration.' }
+  $checks = @'
+SELECT count(*) AS browse_trigger_count,
+  count(*) FILTER (WHERE c.relkind='m') AS materialized_view_trigger_count,
+  count(*) FILTER (WHERE c.relname IN
+    ('supplier_snapshots','supplier_snapshot_prices','daily_stock_snapshots','daily_stock_usage')
+    AND t.tgname LIKE 'browse_projection_knowledge%') AS supplier_knowledge_trigger_count
+FROM pg_trigger t JOIN pg_class c ON c.oid=t.tgrelid
+JOIN pg_namespace n ON n.oid=c.relnamespace
+WHERE n.nspname='curtainsuk_private' AND NOT t.tgisinternal
+  AND t.tgname LIKE 'browse_projection_%';
+ROLLBACK;
+'@
+}
 if ($RefreshCheck) {
   $checks = @'
 SELECT curtainsuk_private.browse_projection_refresh_full() AS generation_proof;
@@ -162,6 +209,47 @@ INSERT INTO browse_safety_evidence
      curtainsuk_private.search_retail_fabrics(
       '{"query":"F1681/03"}'::jsonb, 1, 24, NULL, NULL))::text;
 SELECT label, value FROM browse_safety_evidence ORDER BY label;
+ROLLBACK;
+'@
+}
+if ($KnowledgeCheck) {
+  if (-not $ReleaseMigration) { throw 'KnowledgeCheck requires ReleaseMigration.' }
+  $checks = @'
+CREATE TEMP TABLE browse_knowledge_source_probe(fabric_id text);
+CREATE TRIGGER browse_knowledge_source_probe_trigger AFTER INSERT
+  ON browse_knowledge_source_probe FOR EACH STATEMENT
+  EXECUTE FUNCTION curtainsuk_private.browse_projection_mark_knowledge_dirty();
+INSERT INTO browse_knowledge_source_probe VALUES ('rehearsal-only');
+CREATE TEMP TABLE browse_knowledge_evidence(label text, value text);
+INSERT INTO browse_knowledge_evidence
+  SELECT 'source_change_queued', knowledge_cache_dirty::text
+  FROM curtainsuk_private.browse_projection_control;
+SELECT curtainsuk_private.browse_projection_refresh_dirty(500) AS knowledge_source_reconciliation;
+INSERT INTO browse_knowledge_evidence
+  SELECT 'source_change_cleared', (NOT knowledge_cache_dirty)::text
+  FROM curtainsuk_private.browse_projection_control;
+INSERT INTO browse_knowledge_evidence
+  SELECT 'initial_count', count(*)::text FROM curtainsuk_private.browse_read_projection p
+  JOIN curtainsuk_private.browse_projection_control c
+    ON p.generation_id = c.active_generation;
+INSERT INTO browse_knowledge_evidence
+  SELECT 'cache_stamp_captured',
+    (knowledge_cache_refreshed_at = (SELECT max(refreshed_at)
+      FROM curtainsuk_private.fabric_visual_knowledge_read_cache))::text
+  FROM curtainsuk_private.browse_projection_control;
+UPDATE curtainsuk_private.browse_projection_control
+  SET knowledge_cache_refreshed_at = knowledge_cache_refreshed_at - interval '1 second';
+SELECT curtainsuk_private.browse_projection_refresh_dirty(500) AS knowledge_reconciliation;
+INSERT INTO browse_knowledge_evidence
+  SELECT 'cache_stamp_reconciled',
+    (knowledge_cache_refreshed_at = (SELECT max(refreshed_at)
+      FROM curtainsuk_private.fabric_visual_knowledge_read_cache))::text
+  FROM curtainsuk_private.browse_projection_control;
+INSERT INTO browse_knowledge_evidence
+  SELECT 'reconciled_count', count(*)::text FROM curtainsuk_private.browse_read_projection p
+  JOIN curtainsuk_private.browse_projection_control c
+    ON p.generation_id = c.active_generation;
+SELECT label,value FROM browse_knowledge_evidence ORDER BY label;
 ROLLBACK;
 '@
 }

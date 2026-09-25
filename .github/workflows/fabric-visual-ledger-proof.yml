@@ -19,6 +19,12 @@ on:
         options:
           - target-missing
           - full-catalogue
+          - explicit-cohort
+      fabric_ids_json:
+        description: "Exact fabric IDs as JSON; required for explicit-cohort (1–500)"
+        required: false
+        default: "[]"
+        type: string
       target_seed_run_id:
         description: "target run whose design evidence should be resumed"
         required: false
@@ -61,7 +67,19 @@ jobs:
       - name: Prove Fabric Master visual ledger checkpoint path without inference
         run: npx --no-install tsx scripts/curtainsuk-visual-ledger-proof.ts
       - name: Prove optimised visual execution plan without inference
-        run: npm run fabric:visual-enrichment -- --plan-only ${{ inputs.scope_mode == 'target-missing' && format('--target-missing --target-seed-run-id={0}', inputs.target_seed_run_id) || '' }} --out=artifacts/visual-enrichment-plan
+        env:
+          COHORT_IDS: ${{ inputs.fabric_ids_json }}
+          SCOPE_MODE: ${{ inputs.scope_mode }}
+          SEED_RUN: ${{ inputs.target_seed_run_id }}
+        run: |
+          ARGS=()
+          if [ "$SCOPE_MODE" = "explicit-cohort" ]; then
+            node -e 'require("fs").writeFileSync("/tmp/fabric-cohort.json", JSON.stringify(JSON.parse(process.env.COHORT_IDS)))'
+            ARGS+=(--fabric-ids-file=/tmp/fabric-cohort.json --include-prepared)
+          elif [ "$SCOPE_MODE" = "target-missing" ]; then
+            ARGS+=(--target-missing "--target-seed-run-id=$SEED_RUN")
+          fi
+          npm run fabric:visual-enrichment -- --plan-only "${ARGS[@]}" --out=artifacts/visual-enrichment-plan
       - uses: actions/upload-artifact@v4
         with:
           name: fabric-visual-enrichment-plan
@@ -85,7 +103,19 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Run optimised Fabric Master visual enrichment
-        run: npm run fabric:visual-enrichment -- --apply --target-missing=${{ inputs.scope_mode == 'target-missing' }} --target-seed-run-id=${{ inputs.target_seed_run_id }} --batch-size=10 --out=artifacts/visual-enrichment-run
+        env:
+          COHORT_IDS: ${{ inputs.fabric_ids_json }}
+          SCOPE_MODE: ${{ inputs.scope_mode }}
+          SEED_RUN: ${{ inputs.target_seed_run_id }}
+        run: |
+          ARGS=()
+          if [ "$SCOPE_MODE" = "explicit-cohort" ]; then
+            node -e 'require("fs").writeFileSync("/tmp/fabric-cohort.json", JSON.stringify(JSON.parse(process.env.COHORT_IDS)))'
+            ARGS+=(--fabric-ids-file=/tmp/fabric-cohort.json --include-prepared)
+          elif [ "$SCOPE_MODE" = "target-missing" ]; then
+            ARGS+=(--target-missing "--target-seed-run-id=$SEED_RUN")
+          fi
+          npm run fabric:visual-enrichment -- --apply "${ARGS[@]}" --batch-size=10 --out=artifacts/visual-enrichment-run
       - uses: actions/upload-artifact@v4
         if: always()
         with:

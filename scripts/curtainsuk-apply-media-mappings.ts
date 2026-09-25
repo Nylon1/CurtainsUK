@@ -11,6 +11,8 @@ async function main() {
   const state = JSON.parse(await readFile("artifacts/phase5f/checkpoints/supplier-media.json", "utf8")) as { mappings: Record<string, ImportedMedia> };
   const requested = process.argv.find(arg => arg.startsWith("--fabric-ids="))?.slice("--fabric-ids=".length).split(",");
   const concurrency = Number(process.argv.find(arg=>arg.startsWith("--concurrency="))?.slice("--concurrency=".length) ?? 1);
+  const deferVisibility = process.argv.includes("--defer-visibility");
+  if (deferVisibility && !requested) throw new Error("DEFER_VISIBILITY_REQUIRES_EXPLICIT_COHORT");
   if(!Number.isInteger(concurrency) || concurrency<1 || concurrency>4)throw new Error("MEDIA_CONCURRENCY_INVALID");
   const all = Object.values(state.mappings);
   if (requested && (!requested.length || requested.length > 250 || new Set(requested).size !== requested.length || requested.some(id => !/^[a-z0-9-]{1,150}$/.test(id) || !all.some(m => m.fabricId === id)))) throw new Error("MEDIA_BATCH_INVALID");
@@ -41,7 +43,7 @@ async function main() {
     // exact-colourway image in legacy projections or activate an image-less fabric.
     const imagery = exactColourway ? [...new Set(mapping.imageType === "MAIN" ? [mapping.shopifyCdnUrl,...oldImagery] : [...oldImagery,mapping.shopifyCdnUrl])] : oldImagery;
     // Approved exact-identity media activates browsing without a commercial check.
-    const staging_catalog_visible = row.lifecycle_state !== "DISCONTINUED" && Boolean(row.brand_id && row.design_id && row.colour_name?.trim()) && (exactColourway || row.staging_catalog_visible);
+    const staging_catalog_visible = deferVisibility ? row.staging_catalog_visible : row.lifecycle_state !== "DISCONTINUED" && Boolean(row.brand_id && row.design_id && row.colour_name?.trim()) && (exactColourway || row.staging_catalog_visible);
     const update = await db.from("fabric_colourways").update({ imagery, staging_catalog_visible }).eq("fabric_id", mapping.fabricId).eq("updated_at", row.updated_at).select("fabric_id");
     if (update.error || !update.data?.length) throw new Error("MEDIA_MASTER_REVISION_CHANGED");
     if (row.staging_catalog_visible !== staging_catalog_visible) visibilityChanges++;

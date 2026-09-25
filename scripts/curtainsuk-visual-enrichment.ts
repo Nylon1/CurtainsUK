@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { selectVisualCohort } from "../lib/fabric-master/visual-cohort";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { acceptVisualCandidate, colourwayCandidateFrom, colourwayFingerprintInstruction, combinedSingleColourwayInstruction, designCandidateFrom, designFingerprintInstruction, hciVisualModel, resolveFabricFingerprint, reviewState, validateVisual, visualOutputSchema, visualPromptVersion, visualSchemaVersion, visualVersion, visualVocabularyVersion, type AnalysisLevel, type ColourwayVisualFingerprint, type ImageBinding, type VisualCandidate, type VisualFingerprint } from "../lib/fabric-master/visual-enrichment";
 
@@ -23,6 +24,8 @@ const runLabel = args.get("run-label") ?? `fabric-master-visual-${new Date().toI
 const combineSingleColourway = args.get("single-colourway") !== "separate";
 const targetMissing = args.get("target-missing") === "true" || (args.has("target-missing") && !args.has("full-catalogue"));
 const targetSeedRunId = args.get("target-seed-run-id");
+const cohortFile = args.get("fabric-ids-file");
+if (cohortFile && (targetMissing || args.has("full-catalogue"))) throw new Error("VISUAL_COHORT_SCOPE_CONFLICT");
 const expectedProjectRef = "hqysjumypgeapgmqkcrx";
 const canonicalHighDetailImageTokens = 20695145;
 const designHighDetailImageTokens = 4870018;
@@ -193,7 +196,40 @@ async function main() {
   ]);
   if (planResult.error) throw planResult.error;
   let plan = planResult.data as { governed_designs:number; eligible_colourways:number; representative_design_images_selected:number; colourway_images_resolved:number; single_colourway_designs:number; existing_design_fingerprints:number; existing_colourway_fingerprints:number; single_colourway_reusable_colourway_calls:number };
-  if (!targetMissing && (designRows.length !== 2186 || colourwayRows.length !== 9248 || plan.governed_designs !== 2186 || plan.eligible_colourways !== 9248 || plan.representative_design_images_selected !== 2186 || plan.colourway_images_resolved !== 9248)) throw new Error(`OPTIMISED_PLAN_RECONCILIATION_FAILED_${JSON.stringify({ designRows: designRows.length, colourwayRows: colourwayRows.length, plan })}`);
+  if (cohortFile) {
+    const ids: unknown = JSON.parse((await readFile(cohortFile, "utf8")).replace(/^\uFEFF/, ""));
+    if (args.has("include-prepared")) {
+      if (!Array.isArray(ids) || !ids.length || ids.length > 500 || new Set(ids).size !== ids.length || ids.some(id => typeof id !== "string" || !/^[a-z0-9-]{1,150}$/.test(id))) throw new Error("VISUAL_COHORT_INVALID");
+      // Same canonical approval gates as the existing scope RPC, except that an
+      // explicit preparation cohort need not be visible to customers already.
+      const [masters, mappings] = await Promise.all([
+        db.from("fabric_colourways").select("fabric_id,supplier_id,supplier_sku,brand_id,design_id,colour_name,lifecycle_state").in("fabric_id", ids),
+        db.from("fabric_media_mappings").select("fabric_id,supplier_id,supplier_sku,content_hash,image_type").in("fabric_id", ids).eq("rights_state", "APPROVED").eq("mapping_state", "VERIFIED"),
+      ]);
+      if (masters.error || mappings.error) throw new Error("VISUAL_PREPARED_IDENTITY_READ_FAILED");
+      const hashes = [...new Set((mappings.data ?? []).map(row => row.content_hash))];
+      const assets = hashes.length ? await db.from("fabric_media_assets").select("content_hash,shopify_cdn_url,width,height").in("content_hash", hashes) : { data: [], error: null };
+      if (assets.error) throw new Error("VISUAL_PREPARED_ASSET_READ_FAILED");
+      const rank = (type: string) => ["MAIN", "SWATCH", "DETAIL", "ROOM"].indexOf(type) < 0 ? 4 : ["MAIN", "SWATCH", "DETAIL", "ROOM"].indexOf(type);
+      colourwayRows = [];
+      for (const master of masters.data ?? []) {
+        if (master.lifecycle_state === "DISCONTINUED" || ![master.supplier_sku, master.colour_name, master.brand_id, master.design_id].every(v => typeof v === "string" && v.trim())) continue;
+        const useful = (mappings.data ?? []).filter(m => m.fabric_id === master.fabric_id && m.supplier_id === master.supplier_id && m.supplier_sku === master.supplier_sku)
+          .map(m => ({ mapping: m, asset: assets.data?.find(a => a.content_hash === m.content_hash) }))
+          .filter(({ asset: a }) => a && a.width > 0 && a.height > 0 && /^https:\/\/cdn[.]shopify[.]com\/[^?#]+$/.test(a.shopify_cdn_url))
+          .sort((a,b) => rank(a.mapping.image_type) - rank(b.mapping.image_type) || a.mapping.content_hash.localeCompare(b.mapping.content_hash));
+        if (!useful.length) continue;
+        const { mapping, asset } = useful[0];
+        colourwayRows.push({ ...master, image_type: mapping.image_type, source_image_hash: mapping.content_hash, source_image_url: asset!.shopify_cdn_url, source_image_rank: 1, useful_image_count: useful.length, already_approved: false });
+      }
+      designRows = [...new Set(colourwayRows.map(designKey))].map(key => ({ ...colourwayRows.filter(r => designKey(r) === key).sort((a,b) => a.fabric_id.localeCompare(b.fabric_id))[0], design_colourway_count: colourwayRows.filter(r => designKey(r) === key).length }));
+    }
+    const selected = selectVisualCohort(ids, colourwayRows, designRows);
+    designRows = selected.designs;
+    colourwayRows = selected.colours;
+    plan = { ...plan, governed_designs: designRows.length, eligible_colourways: colourwayRows.length, representative_design_images_selected: designRows.length, colourway_images_resolved: colourwayRows.length, single_colourway_designs: selected.singles, single_colourway_reusable_colourway_calls: selected.singles };
+  }
+  if (!cohortFile && !targetMissing && (designRows.length !== 2186 || colourwayRows.length !== 9248 || plan.governed_designs !== 2186 || plan.eligible_colourways !== 9248 || plan.representative_design_images_selected !== 2186 || plan.colourway_images_resolved !== 9248)) throw new Error(`OPTIMISED_PLAN_RECONCILIATION_FAILED_${JSON.stringify({ designRows: designRows.length, colourwayRows: colourwayRows.length, plan })}`);
   if (targetMissing) {
     const targetLedger = await fetchAllLedger(db);
     const designKeysWithEvidence = new Set(targetLedger.filter((r) => r.analysis_level === "DESIGN").map(designKey));

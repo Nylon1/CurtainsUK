@@ -2,6 +2,12 @@ name: PT Webtex read-only login proof
 
 on:
   workflow_dispatch:
+    inputs:
+      cohort_json:
+        description: "Optional exact first50 SKU/collection cohort for stock-only proof"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
@@ -13,6 +19,7 @@ jobs:
     env:
       PT_WEBTEX_USERNAME: ${{ secrets.PT_WEBTEX_USERNAME }}
       PT_WEBTEX_PASSWORD: ${{ secrets.PT_WEBTEX_PASSWORD }}
+      PT_PROOF_COHORT_JSON: ${{ inputs.cohort_json }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,4 +28,9 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Query one Webtex collection without database writes
-        run: npx --no-install tsx scripts/curtainsuk-pt-stock-proof.ts
+        run: |
+          if [ -n "$PT_PROOF_COHORT_JSON" ]; then
+            npx --no-install tsx scripts/curtainsuk-pt-stock-cohort-proof.ts
+          else
+            npx --no-install tsx scripts/curtainsuk-pt-stock-proof.ts
+          fi

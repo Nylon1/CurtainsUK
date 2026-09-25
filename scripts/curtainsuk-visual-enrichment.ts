@@ -4,6 +4,7 @@ import path from "node:path";
 import { selectVisualCohort } from "../lib/fabric-master/visual-cohort";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { acceptVisualCandidate, colourwayCandidateFrom, colourwayFingerprintInstruction, combinedSingleColourwayInstruction, designCandidateFrom, designFingerprintInstruction, hciVisualModel, resolveFabricFingerprint, reviewState, validateVisual, visualOutputSchema, visualPromptVersion, visualSchemaVersion, visualVersion, visualVocabularyVersion, type AnalysisLevel, type ColourwayVisualFingerprint, type ImageBinding, type VisualCandidate, type VisualFingerprint } from "../lib/fabric-master/visual-enrichment";
+import { retryVisualDatabase, visualFailureReason } from "../lib/fabric-master/visual-enrichment-runner";
 
 type ScopeRow = { fabric_id:string; supplier_id:string; supplier_sku:string; brand_id:string; design_id:string; image_type:string; source_image_hash:string; source_image_url:string; source_image_rank:number; useful_image_count:number; already_approved:boolean; };
 type AnalysisAsset = { approvedSourceHash:string; analysisAssetUrl:string; analysisAssetHash:string; contentType:string; byteLength:number; decodedWidth:number|null; decodedHeight:number|null; classification:"EXACT_BYTE_MATCH"|"SHOPIFY_TRANSFORMATION"; urlContainsSourceHash:boolean; };
@@ -153,16 +154,32 @@ async function fetchAllLedger(db: any, designIds?: string[]) {
 }
 async function insertFingerprint(db: any, runId: string, row: ScopeRow, visual: VisualFingerprint, asset: AnalysisAsset, links: { designId?: string; colourwayId?: string } = {}) {
   const state = reviewState(visual.candidate, visual.analysisLevel);
-  const { data, error } = await db.from("fabric_visual_enrichment_ledger").insert({
+  const exactExisting = async () => {
+    const { data, error } = await db.from("fabric_visual_enrichment_ledger").select("ledger_id")
+      .eq("analysis_level", visual.analysisLevel).eq("fabric_id", row.fabric_id).eq("supplier_id", row.supplier_id).eq("supplier_sku", row.supplier_sku).eq("source_image_hash", row.source_image_hash)
+      .eq("visual_version", visual.version).eq("vocabulary_version", visual.vocabularyVersion).eq("prompt_version", visual.promptVersion).eq("schema_version", visual.schemaVersion).eq("model_id", visual.modelId)
+      .is("superseded_at", null).maybeSingle();
+    if (error) throw error;
+    return data?.ledger_id as string | undefined;
+  };
+  const payload = {
     run_id: runId, analysis_level: visual.analysisLevel, fabric_id: row.fabric_id, supplier_id: row.supplier_id, supplier_sku: row.supplier_sku, brand_id: row.brand_id, design_id: row.design_id,
     image_type: row.image_type, source_image_hash: row.source_image_hash, source_image_url: row.source_image_url, analysis_asset_hash: asset.analysisAssetHash, analysis_asset_url: asset.analysisAssetUrl, analysis_asset_content_type: asset.contentType, analysis_asset_byte_length: asset.byteLength, analysis_asset_width: asset.decodedWidth, analysis_asset_height: asset.decodedHeight, analysis_asset_classification: asset.classification, analysis_asset_verified_at: visual.analysedAt, source_image_rank: row.source_image_rank, useful_image_count: row.useful_image_count,
     visual_version: visual.version, vocabulary_version: visual.vocabularyVersion, prompt_version: visual.promptVersion, schema_version: visual.schemaVersion, model_id: visual.modelId,
     analysed_at: visual.analysedAt, output: visual, output_hash: visual.outputHash, evidence_id: visual.evidenceId, visual_digest: visual.digest,
     review_state: state, approval_state: state === "AUTO_APPROVED" ? "APPROVED" : "PROPOSED", field_provenance: visual.fieldProvenance,
     design_fingerprint_id: links.designId ?? null, colourway_fingerprint_id: links.colourwayId ?? null,
-  }).select("ledger_id").single();
-  if (error) throw error;
-  return data.ledger_id as string;
+  };
+  try {
+    const data = await retryVisualDatabase<{ ledger_id: string }>(() => db.from("fabric_visual_enrichment_ledger").insert(payload).select("ledger_id").single());
+    return data.ledger_id as string;
+  } catch (error) {
+    // A timeout can mean the immutable lineage row committed after the client lost
+    // its response. Reuse that exact row; never write a duplicate visual fact.
+    const existing = await exactExisting();
+    if (existing) return existing;
+    throw error;
+  }
 }
 function estimate(plan: { governed_designs:number; eligible_colourways:number; single_colourway_designs:number }) {
   const reusable = combineSingleColourway ? plan.single_colourway_designs : 0;
@@ -308,9 +325,10 @@ async function main() {
           report.resolved++;
         }
       } catch (err) {
-        const reason = err instanceof Error ? err.message.replace(/[^A-Z0-9_]/gi, "_").toUpperCase().slice(0, 80) : "UNKNOWN_FAILURE";
+        const reason = visualFailureReason(err);
         report.failed++; report.failures.push({ level: "DESIGN_GROUP", fabric_id: designRow.fabric_id, supplier_sku: designRow.supplier_sku, reason });
-        await db.from("fabric_visual_enrichment_failures").insert({ run_id: runId, fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, source_image_hash: designRow.source_image_hash, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, failure_reason: reason, context: { analysis_level: "DESIGN_GROUP", design_id: designRow.design_id } });
+        const failureLog = await db.from("fabric_visual_enrichment_failures").insert({ run_id: runId, fabric_id: designRow.fabric_id, supplier_id: designRow.supplier_id, supplier_sku: designRow.supplier_sku, source_image_hash: designRow.source_image_hash, prompt_version: visualPromptVersion, schema_version: visualSchemaVersion, model_id: hciVisualModel, failure_reason: reason, context: { analysis_level: "DESIGN_GROUP", design_id: designRow.design_id } });
+        if (failureLog.error) console.error(`VISUAL_FAILURE_LOG_WRITE_FAILED_${visualFailureReason(failureLog.error)}`);
         if (isSystemicOpenAiFailure(reason)) {
           await db.from("fabric_visual_enrichment_runs").update({ status: "FAILED", completed_at: new Date().toISOString(), checkpoint: { stage: "stopped_systemic_openai_failure", reason, processedDesigns: i, totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: { ...report, stopReason: reason } }).eq("run_id", runId);
           throw new Error(reason);
@@ -324,6 +342,7 @@ async function main() {
   const finalStatus = report.failed ? (report.resolved ? "PARTIAL" : "FAILED") : "SUCCEEDED";
   await db.from("fabric_visual_enrichment_runs").update({ status: finalStatus, completed_at: new Date().toISOString(), checkpoint: { stage: "closed", processedDesigns: designRows.length, totalDesigns: designRows.length, colourwayResolved: report.resolved }, summary: report }).eq("run_id", runId);
   console.log(JSON.stringify(report, null, 2));
+  if (report.failed) process.exitCode = 1;
 }
 main().catch((err) => { console.error(err instanceof Error ? err.message : "VISUAL_ENRICHMENT_FAILED"); process.exitCode = 1; });
 

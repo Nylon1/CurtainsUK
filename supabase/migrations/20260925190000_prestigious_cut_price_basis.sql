@@ -1,6 +1,7 @@
 -- Owner-confirmed CurtainsUK commercial policy: new Prestigious Textiles
--- observations use approved Cut Price ex VAT. Existing PT Standard-only
--- observations remain an explicit read fallback until cut evidence exists.
+-- observations preserve the established Standard Price selection. New
+-- approved Cut-only observations remain eligible until Standard evidence
+-- exists for that SKU.
 -- No source value is copied, relabelled, or derived.
 
 CREATE OR REPLACE FUNCTION curtainsuk_private.fabric_commercial_evidence(p_ids text[])
@@ -265,7 +266,7 @@ begin
     ) = 'APPROVED_FOR_PROJECTION'
   order by
     case when supplier_snapshot.supplier_id='prestigious-textiles'
-       and supplier_price.cut_trade_price>0 then 0 else 1 end,
+       and supplier_price.standard_trade_price>0 then 0 else 1 end,
     supplier_snapshot.checked_at desc, supplier_snapshot.snapshot_id desc
   limit 1;
   if current_price_snapshot_id is null then
@@ -383,14 +384,14 @@ RETURNS TABLE(supplier_id text, supplier_sku text, guide_minor bigint)
 LANGUAGE sql STABLE SET search_path TO '' AS $function$
   SELECT DISTINCT ON (s.supplier_id, s.supplier_sku)
     s.supplier_id::text, s.supplier_sku::text,
-    (round((CASE WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 THEN p.cut_trade_price WHEN s.supplier_id='prestigious-textiles' THEN p.standard_trade_price ELSE p.cut_trade_price END)*100)*3)::bigint
+    (round((CASE WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN p.standard_trade_price WHEN s.supplier_id='prestigious-textiles' THEN p.cut_trade_price ELSE p.cut_trade_price END)*100)*3)::bigint
   FROM curtainsuk_private.supplier_snapshots s
   JOIN curtainsuk_private.supplier_snapshot_prices p USING(snapshot_id)
   WHERE s.validation_status='VALIDATED' AND s.checked_at<=now() AND p.currency='GBP'
     AND ((s.supplier_id='prestigious-textiles' AND (p.cut_trade_price>0 OR p.standard_trade_price>0)) OR (s.supplier_id<>'prestigious-textiles' AND p.cut_trade_price>0))
     AND (SELECT e.promotion_state FROM curtainsuk_private.supplier_promotion_events e
       WHERE e.snapshot_id=s.snapshot_id ORDER BY e.created_at DESC, e.event_id DESC LIMIT 1)='APPROVED_FOR_PROJECTION'
-  ORDER BY s.supplier_id, s.supplier_sku, CASE WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 THEN 0 ELSE 1 END, s.checked_at DESC, s.snapshot_id DESC
+  ORDER BY s.supplier_id, s.supplier_sku, CASE WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN 0 ELSE 1 END, s.checked_at DESC, s.snapshot_id DESC
 $function$;
 
 CREATE OR REPLACE VIEW curtainsuk_private.browse_current_guide_prices_set_v1
@@ -405,8 +406,8 @@ SELECT DISTINCT ON (s.supplier_id, s.supplier_sku)
   s.supplier_id::text AS supplier_id,
   s.supplier_sku::text AS supplier_sku,
   (round((CASE
-    WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 THEN p.cut_trade_price
-    WHEN s.supplier_id='prestigious-textiles' THEN p.standard_trade_price
+    WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN p.standard_trade_price
+    WHEN s.supplier_id='prestigious-textiles' THEN p.cut_trade_price
     ELSE p.cut_trade_price END) * 100) * 3)::bigint AS guide_minor
 FROM curtainsuk_private.supplier_snapshots s
 JOIN curtainsuk_private.supplier_snapshot_prices p USING (snapshot_id)
@@ -415,19 +416,12 @@ WHERE s.validation_status='VALIDATED' AND s.checked_at<=now() AND p.currency='GB
   AND ((s.supplier_id='prestigious-textiles' AND (p.cut_trade_price>0 OR p.standard_trade_price>0))
     OR (s.supplier_id<>'prestigious-textiles' AND p.cut_trade_price>0))
 ORDER BY s.supplier_id, s.supplier_sku,
-  CASE WHEN s.supplier_id='prestigious-textiles' AND p.cut_trade_price>0 THEN 0 ELSE 1 END,
+  CASE WHEN s.supplier_id='prestigious-textiles' AND p.standard_trade_price>0 THEN 0 ELSE 1 END,
   s.checked_at DESC, s.snapshot_id DESC;
 
 
--- Keep the established manual gate aligned with the exact batch's Cut evidence.
-UPDATE curtainsuk_private.supplier_approval_policies
-SET required_price_field = 'CUT_TRADE_PRICE'
-WHERE supplier_id = 'prestigious-textiles' AND approval_mode = 'MANUAL'
-  AND required_price_field IS DISTINCT FROM 'CUT_TRADE_PRICE';
-
--- A price-source change invalidates every materialized Browse guide generation.
-INSERT INTO curtainsuk_private.browse_projection_dirty(fabric_id)
-VALUES ('*') ON CONFLICT (fabric_id) DO UPDATE SET changed_at = now();
+-- The batch runner marks only its approved first-50 records dirty. Existing
+-- prepared projections keep their established Standard-price output.
 
 DO $check$
 DECLARE definition text; fn text;

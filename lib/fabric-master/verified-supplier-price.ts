@@ -16,9 +16,9 @@ function firstRelation(value: SupplierPriceSnapshotCandidate["prices"]) {
 }
 
 /**
- * CurtainsUK uses genuine approved Cut Price ex VAT for new PT observations
- * and SDG. Existing PT Standard-only observations remain a compatibility
- * fallback until individually refreshed with Cut Price; neither value is
+ * CurtainsUK preserves the existing PT Standard Price selection whenever
+ * Standard evidence exists. Approved Cut-only PT observations cover the
+ * governed PDF cohort until Standard evidence is supplied; neither value is
  * derived from or relabelled as the other. Age-based
  * expiry fields are historical metadata, not a price gate. Explicit revocation remains authoritative.
  */
@@ -36,7 +36,7 @@ export function selectCurrentApprovedSupplierCostMinor(input: {
 
   const snapshots = [...input.snapshots].sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at));
   const priceFields = input.supplierId === "prestigious-textiles"
-    ? ["cut_trade_price", "standard_trade_price"] as const
+    ? ["standard_trade_price", "cut_trade_price"] as const
     : ["cut_trade_price"] as const;
   for (const priceField of priceFields) for (const snapshot of snapshots) {
     const latestPromotion = latestPromotionBySnapshot.get(snapshot.snapshot_id);

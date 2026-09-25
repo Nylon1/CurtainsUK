@@ -32,7 +32,7 @@ export function isRetryableVisualDatabaseError(error: unknown) {
 
 export async function retryVisualDatabase<T>(
   operation: () => Promise<{ data: T; error: unknown | null }>,
-  options: { attempts?: number; retryDelayMilliseconds?: number; wait?: (milliseconds: number) => Promise<void> } = {},
+  options: { attempts?: number; retryDelayMilliseconds?: number; wait?: (milliseconds: number) => Promise<void>; onRetry?: (milliseconds: number) => void } = {},
 ): Promise<T> {
   const attempts = options.attempts ?? 3;
   // The production Browse refresh owns its advisory lock for about 14 seconds,
@@ -46,6 +46,7 @@ export async function retryVisualDatabase<T>(
     if (!result.error) return result.data;
     lastError = result.error;
     if (attempt === attempts || !isRetryableVisualDatabaseError(result.error)) throw result.error;
+    options.onRetry?.(retryDelayMilliseconds);
     await wait(retryDelayMilliseconds);
   }
   throw lastError;

@@ -12,15 +12,17 @@ test("preserves PostgREST failure context in the visual ledger report", () => {
 test("retries only transient visual database failures with bounded backoff", async () => {
   let calls = 0;
   const waits: number[] = [];
+  const retries: number[] = [];
   const value = await retryVisualDatabase(async () => {
     calls += 1;
     return calls < 3
       ? { data: null, error: { code: "57014", message: "canceling statement due to statement timeout" } }
       : { data: "ledger-id", error: null };
-  }, { wait: async (milliseconds) => { waits.push(milliseconds); } });
+  }, { wait: async (milliseconds) => { waits.push(milliseconds); }, onRetry: (milliseconds) => { retries.push(milliseconds); } });
   assert.equal(value, "ledger-id");
   assert.equal(calls, 3);
   assert.deepEqual(waits, [15_000, 15_000]);
+  assert.deepEqual(retries, [15_000, 15_000]);
 });
 
 test("does not repeat non-transient ledger failures", async () => {

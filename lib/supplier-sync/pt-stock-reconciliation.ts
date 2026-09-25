@@ -3,8 +3,8 @@ import type { NormalizedSupplierSnapshot } from "./types";
 
 export const PT_SUPPLIER = "prestigious-textiles";
 export const PT_SOURCE = "Prestigious Webtex authenticated Stock Enquiry";
-export const PT_EXPECTED_IDENTITIES = 3235;
-export const PT_PROVEN_MINIMUM = 3230;
+export const PT_EXPECTED_IDENTITIES = 3735;
+export const PT_PROVEN_MINIMUM = 3730;
 // The existing three exceptions plus two exact identities absent from collection,
 // design and SKU queries in full refresh 36176934313 (25 September 2026).
 // Missing evidence remains unknown: never invent zero or refresh its timestamp.

@@ -3,6 +3,7 @@ param(
   [string]$Batch = 'core',
   [string]$Case,
   [switch]$RefreshCheck,
+  [switch]$SafetyCheck,
   [switch]$Benchmark,
   [switch]$BenchmarkDirect
 )
@@ -91,6 +92,76 @@ FROM curtainsuk_private.browse_read_projection p
 JOIN curtainsuk_private.browse_projection_control c
   ON p.generation_id = c.active_generation;
 SELECT label, value FROM browse_refresh_evidence ORDER BY label;
+ROLLBACK;
+'@
+}
+if ($SafetyCheck) {
+  $checks = @'
+SELECT curtainsuk_private.browse_projection_refresh_full();
+CREATE TEMP TABLE browse_safety_evidence(label text, value text);
+INSERT INTO browse_safety_evidence
+  SELECT 'baseline_generation', active_generation::text
+  FROM curtainsuk_private.browse_projection_control;
+CREATE TEMP TABLE browse_safety_probe(fabric_id text);
+CREATE TRIGGER browse_safety_probe_trigger AFTER INSERT OR UPDATE OR DELETE
+  ON browse_safety_probe FOR EACH ROW
+  EXECUTE FUNCTION curtainsuk_private.browse_projection_mark_fabric_dirty();
+INSERT INTO browse_safety_probe(fabric_id)
+  SELECT fabric_id FROM curtainsuk_private.browse_read_projection
+  ORDER BY fabric_id LIMIT 2;
+INSERT INTO browse_safety_evidence
+  SELECT 'two_fabrics_queued', count(*)::text
+  FROM curtainsuk_private.browse_projection_dirty;
+SELECT curtainsuk_private.browse_projection_refresh_dirty(500);
+INSERT INTO browse_safety_evidence
+  SELECT 'queue_after_incremental', count(*)::text
+  FROM curtainsuk_private.browse_projection_dirty;
+INSERT INTO browse_safety_evidence
+  SELECT 'second_refresh', curtainsuk_private.browse_projection_refresh_dirty(500)::text;
+CREATE FUNCTION curtainsuk_private.browse_projection_fault_probe()
+RETURNS trigger LANGUAGE plpgsql AS $fault$
+BEGIN
+  RAISE EXCEPTION 'INTENTIONAL_BROWSE_REHEARSAL_FAILURE';
+END;
+$fault$;
+CREATE TRIGGER browse_projection_intentional_fault BEFORE INSERT
+  ON curtainsuk_private.browse_read_projection FOR EACH ROW
+  EXECUTE FUNCTION curtainsuk_private.browse_projection_fault_probe();
+UPDATE browse_safety_probe SET fabric_id = fabric_id WHERE fabric_id =
+  (SELECT fabric_id FROM browse_safety_probe ORDER BY fabric_id LIMIT 1);
+DO $check$
+BEGIN
+  BEGIN
+    PERFORM curtainsuk_private.browse_projection_refresh_full();
+    RAISE EXCEPTION 'EXPECTED_REFRESH_FAILURE_DID_NOT_OCCUR';
+  EXCEPTION WHEN others THEN
+    IF SQLERRM <> 'INTENTIONAL_BROWSE_REHEARSAL_FAILURE' THEN
+      RAISE;
+    END IF;
+    INSERT INTO browse_safety_evidence VALUES ('fault_caught', 'true');
+  END;
+END;
+$check$;
+INSERT INTO browse_safety_evidence
+  SELECT 'generation_unchanged_after_fault',
+    (c.active_generation::text = e.value)::text
+  FROM curtainsuk_private.browse_projection_control c
+  JOIN browse_safety_evidence e ON e.label = 'baseline_generation';
+INSERT INTO browse_safety_evidence
+  SELECT 'rows_after_fault', count(*)::text
+  FROM curtainsuk_private.browse_read_projection p
+  JOIN curtainsuk_private.browse_projection_control c
+    ON p.generation_id = c.active_generation;
+INSERT INTO browse_safety_evidence
+  SELECT 'dirty_after_fault', count(*)::text
+  FROM curtainsuk_private.browse_projection_dirty;
+INSERT INTO browse_safety_evidence
+  SELECT 'failed_refresh_fallback_equal',
+    (curtainsuk_private.search_retail_fabrics_prepared_v1(
+      '{"query":"F1681/03"}'::jsonb, 1, 24, NULL, NULL) =
+     curtainsuk_private.search_retail_fabrics(
+      '{"query":"F1681/03"}'::jsonb, 1, 24, NULL, NULL))::text;
+SELECT label, value FROM browse_safety_evidence ORDER BY label;
 ROLLBACK;
 '@
 }

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { assertProvenPtCoverage, PT_EXPECTED_IDENTITIES, PT_PROVEN_MINIMUM, reconcilePtStock, nextPtRefreshAt, type PtIdentity, type PtStockRow } from "../pt-stock-reconciliation";
+import { assertProvenPtCoverage, PT_EXPECTED_IDENTITIES, PT_PROVEN_MINIMUM, PT_PRIOR_UNKNOWN_SKUS, reconcilePtStock, nextPtRefreshAt, type PtIdentity, type PtStockRow } from "../pt-stock-reconciliation";
 
 const identities: PtIdentity[] = [
   { supplierSku: "4262/770", collection: "Rustic Persian", brandId: "prestigious-textiles", lifecycleState: "CURRENT" },
@@ -43,14 +43,21 @@ test("PT routine due interval remains 72 hours", () => {
 
 test("normal PT refresh accepts the reconciled 3,235-master full catalogue", () => {
   assert.equal(PT_EXPECTED_IDENTITIES, 3235);
-  assert.equal(PT_PROVEN_MINIMUM, 3232);
+  assert.equal(PT_PROVEN_MINIMUM, 3230);
   const full = Array.from({ length: PT_EXPECTED_IDENTITIES }, (_, index): PtIdentity => ({
     supplierSku: `${String(1000 + Math.floor(index / 1000)).padStart(4, "0")}/${String(index % 1000).padStart(3, "0")}`,
     collection: "Full manifest", brandId: "prestigious-textiles", lifecycleState: "CURRENT",
   }));
-  full[0] = { ...full[0], supplierSku: "7222/022" };
-  full[1] = { ...full[1], supplierSku: "7866/012" };
-  full[2] = { ...full[2], supplierSku: "3622/282" };
-  const rows = full.slice(3).map((item): PtStockRow => ({ ...row(item.supplierSku, "1 M"), queryValue: "Full manifest" }));
-  assert.doesNotThrow(() => assertProvenPtCoverage(full, reconcilePtStock(full, rows)));
+  [...PT_PRIOR_UNKNOWN_SKUS].forEach((sku, index) => { full[index] = { ...full[index], supplierSku: sku }; });
+  const rows = full.slice(5).map((item): PtStockRow => ({ ...row(item.supplierSku, "1 M"), queryValue: "Full manifest" }));
+  const result = reconcilePtStock(full, rows);
+  assert.doesNotThrow(() => assertProvenPtCoverage(full, result));
+  assert.equal(result.snapshots.length, 3230);
+  assert.deepEqual(new Set(result.exceptions.map(item => item.sku)), PT_PRIOR_UNKNOWN_SKUS);
+  assert.ok(result.snapshots.every(snapshot => !PT_PRIOR_UNKNOWN_SKUS.has(snapshot.supplier_sku)));
+  // A new missing SKU must still stop the whole refresh, even if one known
+  // exception recovers and the overall numeric coverage remains sufficient.
+  const unexpected = reconcilePtStock(full, [...rows.slice(1), row(full[0].supplierSku, "1 M")]);
+  assert.equal(unexpected.snapshots.length, 3230);
+  assert.throws(() => assertProvenPtCoverage(full, unexpected), /PT_COVERAGE_CHANGED/);
 });

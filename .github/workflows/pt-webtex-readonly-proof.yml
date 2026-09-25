@@ -20,5 +20,5 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
-      - name: Query one Webtex collection without database writes
-        run: npx --no-install tsx scripts/curtainsuk-pt-stock-proof.ts
+      - name: Query one missing SKU without database writes or commercial values in logs
+        run: npx --no-install tsx scripts/curtainsuk-pt-missing-sku-proof.ts

@@ -1,59 +1,60 @@
 # OpenAI Ads tracking — CurtainsUK
 
-## Verified production architecture
+## Current production architecture
 
-CurtainsUK is Shopify-first for the live storefront and commerce. Fabric Intelligence / HCI and configuration services run through the CurtainsUK app-proxy and supporting Next.js/Vercel infrastructure.
+CurtainsUK is Shopify-first for the live storefront and commerce. The made-to-measure curtain journey uses the CurtainsUK configurator and a server-side Shopify Draft Order handoff. Samples use the normal Shopify cart/checkout route.
 
-The current MAIN Shopify theme already contains the OpenAI Measurement Pixel and a CurtainsUK analytics bridge.
-
-## Verified live status — 25 September 2026
+## Verified production facts — 25 September 2026
 
 - OpenAI data source: `CurtainsUK Website`.
-- Standard conversion setting: `CurtainsUK Lead` -> `lead_created`.
-- Live page-view events are reaching OpenAI Ads Event Stream.
-- The live storefront bridge emits `lead_created` only after a successful persisted review/quote submission.
-- The live storefront attempts `checkout_started` before Shopify checkout, but a real no-payment rehearsal reached Shopify checkout without that event appearing in OpenAI Event Stream.
-- The Ads campaign remains paused while conversion measurement is proven.
+- Existing OpenAI page-view measurement is live and reaching Ads Manager.
+- Samples trigger Shopify's native `checkout_started` customer event.
+- Made-to-measure curtains do not use the same checkout boundary: they create a Shopify Draft Order and surface its secure `invoiceUrl`.
+- The CurtainsUK storefront already emits `curtainsuk_checkout_handoff_reached` only after the made-to-measure checkout handoff succeeds.
+- Specialist/review curtains are intentionally removed from the current live customer journey.
+- The OpenAI campaign remains paused while the correct curtain conversion is proven.
 
-## Checkout fix
+## Correct made-to-measure conversion boundary
 
-Use Shopify Customer Events for the checkout boundary rather than relying only on the preceding storefront click.
+For the curtain advertising campaign, map the existing successful CurtainsUK handoff event:
 
-Immediate implementation: Shopify **Custom Pixel**, stored in this repository at:
+`curtainsuk_checkout_handoff_reached` -> OpenAI `checkout_started`
 
-`docs/shopify-custom-pixel-openai-ads.js`
+Do not use the sample checkout as the primary curtain conversion.
 
-The custom pixel subscribes to Shopify's native:
+The live OpenAI bridge should accept both the handoff event and the later checkout-link click, using the same handoff-based event ID so OpenAI can deduplicate them:
 
-- `checkout_started` -> OpenAI `checkout_started`
-- `checkout_completed` -> OpenAI `order_created`
+```js
+if (
+  detail.event === "curtainsuk_checkout_handoff_reached" ||
+  detail.event === "curtainsuk_checkout_opened"
+) {
+  const options = detail.handoff_id
+    ? { event_id: "checkout_" + String(detail.handoff_id) }
+    : undefined;
 
-It reads the first-party OpenAI `__oppref` cookie through Shopify's controlled `browser.cookie` API and forwards the original attribution identifier to OpenAI's browser measurement endpoint.
+  if (options) {
+    window.oaiq("measure", "checkout_started", { type: "contents" }, options);
+  } else {
+    window.oaiq("measure", "checkout_started", { type: "contents" });
+  }
+  return;
+}
+```
 
-It does **not** send email, phone, address, customer name, order identifiers or other customer personal data.
+This event is curtain-specific because only the made-to-measure handoff emits `curtainsuk_checkout_handoff_reached`.
 
-For GBP checkouts it also sends the Shopify checkout total in integer pence. For any other currency it omits value rather than assuming a minor-unit conversion.
+## Conversion taxonomy
 
-## Shopify Custom Pixel privacy
+- Made-to-measure checkout handoff -> `checkout_started` (primary high-intent curtain conversion)
+- Paid made-to-measure curtain order -> `order_created` (ultimate sale)
+- Sample checkout -> separate supporting/micro-conversion; do not use as the primary curtain campaign goal
 
-Configure the custom pixel in Shopify Admin to require:
+## Campaign state
 
-- Analytics: required
-- Marketing: required
-- Preferences: not required
-- Sale of data: disabled / not required
+The existing £30/day UK web campaign is paused. Before activation:
 
-Shopify Customer Events provides the checkout lifecycle coverage that theme JavaScript cannot provide reliably.
-
-## Test sequence
-
-1. Add and connect the custom pixel in Shopify Admin.
-2. Ensure marketing consent is granted in the test browser.
-3. Start a CurtainsUK made-to-measure checkout without paying.
-4. Confirm `checkout_started` appears in OpenAI Ads Event Stream.
-5. Do not make a payment merely to test the checkout-start event.
-6. Leave the campaign paused until the required measurement checks pass.
-
-## Longer-term purchase reliability
-
-For confirmed paid orders, add OpenAI Conversions API delivery from the trusted server/order boundary and deduplicate it against the browser `order_created` event with a shared event ID. This is separate from the immediate checkout-start fix.
+1. verify a real made-to-measure handoff logs `checkout_started` in OpenAI Event Stream;
+2. create/select a standard Ads Manager conversion setting based on `checkout_started`;
+3. update the campaign to use that conversion goal;
+4. keep the campaign paused until ads clear review and conversion tracking is confirmed.

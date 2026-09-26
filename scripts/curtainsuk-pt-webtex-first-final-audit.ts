@@ -92,12 +92,21 @@ async function main() {
   const sample = visible.slice(0, 5);
   const exactResults = [];
   for (const row of sample) {
-    const result = await db.rpc("search_retail_fabrics", { p_filters: { query: row.supplier_sku }, p_page: 1, p_size: 48, p_guide_min: null, p_guide_max: null });
+    let ids: string[] = [];
+    let error: string | null = null;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const result = await db.rpc("search_retail_fabrics", { p_filters: { query: row.supplier_sku }, p_page: 1, p_size: 1, p_guide_min: null, p_guide_max: null });
+      error = result.error?.code ?? null;
+      if (!result.error) {
+        ids = (result.data as { ids?: string[] } | null)?.ids ?? [];
+        break;
+      }
+    }
     exactResults.push({
       supplier_sku: row.supplier_sku,
       expected: row.fabric_id,
-      ids: (result.data as { ids?: string[] } | null)?.ids ?? [],
-      error: result.error?.code ?? null,
+      ids,
+      error,
     });
   }
   const publicBrowse = [];

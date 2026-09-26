@@ -19,6 +19,26 @@ function rpcErrorEvidence(error: unknown) {
   return { code: text("code"), message: text("message"), details: text("details"), hint: text("hint"), status: number("status") };
 }
 
+function isRetryableStockWrite(error: unknown) {
+  const { code } = rpcErrorEvidence(error);
+  // PostgreSQL aborts the entire transaction for each of these conditions, so
+  // retrying the immutable run/payload cannot create a partial observation.
+  return code === "55P03" || code === "57014" || code === "40001" || code === "40P01";
+}
+
+const wait = (milliseconds: number) => new Promise<void>((resolve) => setTimeout(resolve, milliseconds));
+
+async function appendStockEvidence(db: ReturnType<typeof createSupplierServiceClient>, run: ReturnType<typeof runAudit>, items: unknown[], batchSize: number) {
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const { error } = await db.rpc("append_supplier_snapshot_batch", { p_run: run, p_items: items });
+    if (!error) return;
+    console.error(JSON.stringify({ event: "PT_EVIDENCE_APPEND_ERROR", runId: run.run_id, batchSize, attempt, database: rpcErrorEvidence(error) }));
+    if (!isRetryableStockWrite(error) || attempt === 3) break;
+    await wait(attempt * 15_000);
+  }
+  throw new Error("PT_EVIDENCE_APPEND_FAILED");
+}
+
 function assertConfiguration() {
   const url = process.env.SUPABASE_URL;
   const ref = process.env.CURTAINSUK_SUPABASE_PROJECT_REF;
@@ -182,13 +202,7 @@ async function main() {
           normalized_payload: snapshot },
         validation_event: createValidationEvent(snapshot.snapshot_id, validation, eventAt),
       }));
-      const { error: appendError } = await db.rpc("append_supplier_snapshot_batch", { p_run: run, p_items: items });
-      if (appendError) {
-        // Retain the database diagnostic needed to distinguish duration, locking,
-        // serialization, and constraint failures. The evidence payload remains private.
-        console.error(JSON.stringify({ event: "PT_EVIDENCE_APPEND_ERROR", runId, batchSize: batch.length, database: rpcErrorEvidence(appendError) }));
-        throw new Error("PT_EVIDENCE_APPEND_FAILED");
-      }
+      await appendStockEvidence(db, run, items, batch.length);
       appended += batch.length;
       const { data: approved, error: approvalError } = await db.rpc("approve_pt_webtex_stock_run", { p_run_id: runId });
       if (approvalError || approved !== batch.length) throw new Error("PT_POLICY_APPROVAL_FAILED");

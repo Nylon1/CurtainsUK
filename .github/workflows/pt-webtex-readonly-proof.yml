@@ -35,6 +35,8 @@ jobs:
             npx --no-install tsx scripts/curtainsuk-pt-webtex-first-audit.ts
           elif [ "$PT_PROOF_COHORT_JSON" = "__WEBTEX_FIRST_FINAL_AUDIT__" ]; then
             npx --no-install tsx scripts/curtainsuk-pt-webtex-first-final-audit.ts
+          elif [ "$PT_PROOF_COHORT_JSON" = "__PT_COMPLETE_RECONCILE__" ]; then
+            npx --no-install tsx scripts/curtainsuk-pt-complete-reconcile.ts
           elif [ "$PT_PROOF_COHORT_JSON" = "__WEBTEX_FIRST_RESOLVE_DISCONTINUED__" ]; then
             PT_WEBTEX_FIRST_APPLY=CONFIRM_DISCONTINUED_RECONCILIATION npx --no-install tsx scripts/curtainsuk-pt-webtex-first-resolve.ts
           elif [ -n "$PT_PROOF_COHORT_JSON" ]; then
@@ -43,8 +45,10 @@ jobs:
             npx --no-install tsx scripts/curtainsuk-pt-stock-proof.ts
           fi
       - uses: actions/upload-artifact@v4
-        if: ${{ inputs.cohort_json == '__WEBTEX_FIRST_AUDIT__' || inputs.cohort_json == '__WEBTEX_FIRST_FINAL_AUDIT__' || inputs.cohort_json == '__WEBTEX_FIRST_RESOLVE_DISCONTINUED__' }}
+        if: ${{ inputs.cohort_json == '__WEBTEX_FIRST_AUDIT__' || inputs.cohort_json == '__WEBTEX_FIRST_FINAL_AUDIT__' || inputs.cohort_json == '__WEBTEX_FIRST_RESOLVE_DISCONTINUED__' || inputs.cohort_json == '__PT_COMPLETE_RECONCILE__' }}
         with:
-          name: pt-webtex-first-${{ inputs.cohort_json == '__WEBTEX_FIRST_AUDIT__' && 'gate-audit' || inputs.cohort_json == '__WEBTEX_FIRST_FINAL_AUDIT__' && 'final-audit' || 'resolution-report' }}
-          path: artifacts/pt-webtex-first/*.json
+          name: pt-webtex-first-${{ inputs.cohort_json == '__WEBTEX_FIRST_AUDIT__' && 'gate-audit' || inputs.cohort_json == '__WEBTEX_FIRST_FINAL_AUDIT__' && 'final-audit' || inputs.cohort_json == '__PT_COMPLETE_RECONCILE__' && 'complete-reconciliation' || 'resolution-report' }}
+          path: |
+            artifacts/pt-webtex-first/*.json
+            artifacts/pt-complete-catalogue/*.json
           if-no-files-found: error

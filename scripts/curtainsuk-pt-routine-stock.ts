@@ -11,6 +11,14 @@ const ADAPTER = "pt-webtex-stock-enquiry";
 const FULL_ADAPTER = "pt-webtex-full-refresh";
 type Stage = "CONFIGURATION" | "DUE_CHECK" | "MANIFEST" | "AUTHENTICATION" | "RETRIEVAL" | "COVERAGE" | "VALIDATION" | "APPROVAL" | "MATERIALISATION" | "VERIFICATION";
 
+function rpcErrorEvidence(error: unknown) {
+  if (!error || typeof error !== "object") return { code: null, message: "UNKNOWN_RPC_ERROR", details: null, hint: null, status: null };
+  const source = error as Record<string, unknown>;
+  const text = (name: string) => typeof source[name] === "string" ? source[name] : null;
+  const number = (name: string) => typeof source[name] === "number" ? source[name] : null;
+  return { code: text("code"), message: text("message"), details: text("details"), hint: text("hint"), status: number("status") };
+}
+
 function assertConfiguration() {
   const url = process.env.SUPABASE_URL;
   const ref = process.env.CURTAINSUK_SUPABASE_PROJECT_REF;
@@ -175,7 +183,12 @@ async function main() {
         validation_event: createValidationEvent(snapshot.snapshot_id, validation, eventAt),
       }));
       const { error: appendError } = await db.rpc("append_supplier_snapshot_batch", { p_run: run, p_items: items });
-      if (appendError) throw new Error("PT_EVIDENCE_APPEND_FAILED");
+      if (appendError) {
+        // Retain the database diagnostic needed to distinguish duration, locking,
+        // serialization, and constraint failures. The evidence payload remains private.
+        console.error(JSON.stringify({ event: "PT_EVIDENCE_APPEND_ERROR", runId, batchSize: batch.length, database: rpcErrorEvidence(appendError) }));
+        throw new Error("PT_EVIDENCE_APPEND_FAILED");
+      }
       appended += batch.length;
       const { data: approved, error: approvalError } = await db.rpc("approve_pt_webtex_stock_run", { p_run_id: runId });
       if (approvalError || approved !== batch.length) throw new Error("PT_POLICY_APPROVAL_FAILED");

@@ -4,7 +4,7 @@ async function main() {
   const contractProof = rows.length === 1 && rows[0]?.mode === "PRODUCT_DETAIL_CONTRACT";
   const pageContractProof = rows.length === 1 && rows[0]?.mode === "PRODUCT_DETAIL_PAGE";
   const rawProductProof = rows.length === 1 && rows[0]?.mode === "PRODUCT_DETAIL_RAW";
-  const productCohortProof = rows.length >= 2 && rows.length <= 20 && rows.every(row => row.mode === "PRODUCT_DETAIL_COHORT");
+  const productCohortProof = rows.length >= 2 && rows.length <= 100 && rows.every(row => row.mode === "PRODUCT_DETAIL_COHORT");
   if ((!contractProof && !pageContractProof && !rawProductProof && !productCohortProof && rows.length !== 50) || new Set(rows.map(r => r.sku)).size !== rows.length || rows.some(r => !/^\d{4}\/\d{3}$/.test(r.sku) || !r.collection.trim())) throw new Error("PT_COHORT_PROOF_INVALID");
   const session = new PtWebtexSession();
   const username = process.env.PT_WEBTEX_USERNAME ?? "", password = process.env.PT_WEBTEX_PASSWORD ?? "";

@@ -8,6 +8,11 @@ const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 
 type QueryType = PtStockRow["queryType"];
 export interface PtQueryResult { rows: PtStockRow[]; total: number; returned: number; observedAt: string }
+export interface PtProductDetailContract {
+  exactSkuFound: boolean;
+  scriptPaths: string[];
+  navigationSnippets: string[];
+}
 
 /** First-party Webtex login and Stock Enquiry. Session cookies exist in memory for one run only. */
 export class PtWebtexSession {
@@ -116,5 +121,32 @@ export class PtWebtexSession {
     });
     if (rows.length !== total) throw new Error("PT_WEBTEX_PAGINATION_OR_ROW_COUNT_MISMATCH");
     return { rows, total, returned: rows.length, observedAt };
+  }
+
+  /** Read-only discovery of the portal's own product-detail navigation contract. */
+  async productDetailContract(sku: string): Promise<PtProductDetailContract> {
+    if (!this.authenticated) throw new Error("PT_WEBTEX_AUTH_REQUIRED");
+    if (!/^\d{4}\/\d{3}$/.test(sku)) throw new Error("PT_WEBTEX_PRODUCT_SKU_INVALID");
+    const exact = await this.search("PRODUCT_CODE", sku);
+    const page = await (await this.request(STOCK)).text();
+    const document = load(page);
+    const scriptPaths = document("script[src]").map((_, script) => document(script).attr("src") ?? "").get()
+      .filter(path => path && !/^https?:/i.test(path));
+    const navigationSnippets: string[] = [];
+    for (const scriptPath of scriptPaths) {
+      const absolute = new URL(scriptPath, `${ORIGIN}${STOCK}`);
+      if (absolute.origin !== ORIGIN) continue;
+      const source = await (await this.request(absolute.pathname + absolute.search)).text();
+      for (const line of source.split(/\r?\n/)) {
+        if (/ViewProductDetails|ifrModal|ProductDetails/i.test(line)) {
+          navigationSnippets.push(line.trim().replace(/\s+/g, " ").slice(0, 1000));
+        }
+      }
+    }
+    return {
+      exactSkuFound: exact.rows.filter(row => row.sku === sku).length === 1,
+      scriptPaths: [...new Set(scriptPaths)],
+      navigationSnippets: [...new Set(navigationSnippets)],
+    };
   }
 }

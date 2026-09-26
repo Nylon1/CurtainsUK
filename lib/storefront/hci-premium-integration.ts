@@ -11,6 +11,7 @@ import { signHciCommerceContext } from './hci-commerce-context';
 import { currentCalibrationFabric, currentRetailCalibrationEligibility, calibrationRequestContext } from './hci-calibration';
 import { currentRetailStyleDirectionEligibility, styleDirectionRequestContext } from './hci-style-directions';
 import { currentRetailPriceLevelEligibility } from './hci-price-level';
+import { requiresRetailGuideProjection } from './hci-price-level-pagination';
 import type { GuidePriceLevel } from '@/lib/fabric-master/guide-price-level';
 import { acceptedHciFeedback } from './hci-feedback';
 import {
@@ -248,18 +249,23 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     : ['MID_RANGE', 'LUXURY', 'PREMIUM_LUXURY', 'SUPER_LUXURY'].includes(priorPriceLevel as string)
       ? priorPriceLevel as GuidePriceLevel
       : undefined;
+  const knowledgeEnabled = !prior || prior.private_state?.visualKnowledgePolicy === 'visual-vocabulary-v1';
+  const calibration = calibrationRequestContext(priorHciState, upstreamAction);
+  const styleDirections = styleDirectionRequestContext(priorHciState, upstreamAction);
+  const needsPriceEligibility = requiresRetailGuideProjection(
+    selectedPriceLevel,
+    calibration.needsEligibility,
+    styleDirections.needsEligibility,
+  );
   const priceEligibilityStartedAt = performance.now();
-  const priceLevelEligibilityIds = selectedPriceLevel
+  const priceLevelEligibilityIds = needsPriceEligibility && selectedPriceLevel
     ? await currentRetailPriceLevelEligibility(selectedPriceLevel)
     : undefined;
   const priceEligibilityMs = performance.now() - priceEligibilityStartedAt;
-  const knowledgeEnabled = !prior || prior.private_state?.visualKnowledgePolicy === 'visual-vocabulary-v1';
-  const calibration = calibrationRequestContext(priorHciState, upstreamAction);
   const calibrationEligibilityStartedAt = performance.now();
   const calibrationEligibilityIds = calibration.needsEligibility && priceLevelEligibilityIds
     ? await currentRetailCalibrationEligibility(priceLevelEligibilityIds) : undefined;
   const calibrationEligibilityMs = performance.now() - calibrationEligibilityStartedAt;
-  const styleDirections = styleDirectionRequestContext(priorHciState, upstreamAction);
   const styleEligibilityStartedAt = performance.now();
   const styleDirectionEligibilityIds = styleDirections.needsEligibility
     // Price Level is already a hard candidate boundary. Apply the existing

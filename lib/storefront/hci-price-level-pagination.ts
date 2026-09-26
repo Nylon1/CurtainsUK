@@ -1,5 +1,8 @@
 const projectionPageSize = 1_000;
-const projectionConcurrency = 4;
+// Every page evaluates the same governed price projection. Keep this lane
+// serial so one customer request cannot multiply that database work and cause
+// statement-timeout contention while still collecting the exact full tier.
+const projectionConcurrency = 1;
 type ProjectionRow = { fabric_id?: unknown };
 export type ProjectionPage = { data: ProjectionRow[] | null; error: unknown; count: number | null };
 type ProjectionPageReader = (from: number, to: number, exactCount: boolean) => Promise<ProjectionPage>;

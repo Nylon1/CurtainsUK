@@ -20,6 +20,8 @@ jobs:
       PT_WEBTEX_USERNAME: ${{ secrets.PT_WEBTEX_USERNAME }}
       PT_WEBTEX_PASSWORD: ${{ secrets.PT_WEBTEX_PASSWORD }}
       PT_PROOF_COHORT_JSON: ${{ inputs.cohort_json }}
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,8 +31,16 @@ jobs:
       - run: npm ci
       - name: Query one Webtex collection without database writes
         run: |
-          if [ -n "$PT_PROOF_COHORT_JSON" ]; then
+          if [ "$PT_PROOF_COHORT_JSON" = "__WEBTEX_FIRST_AUDIT__" ]; then
+            npx --no-install tsx scripts/curtainsuk-pt-webtex-first-audit.ts
+          elif [ -n "$PT_PROOF_COHORT_JSON" ]; then
             npx --no-install tsx scripts/curtainsuk-pt-stock-cohort-proof.ts
           else
             npx --no-install tsx scripts/curtainsuk-pt-stock-proof.ts
           fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.cohort_json == '__WEBTEX_FIRST_AUDIT__' }}
+        with:
+          name: pt-webtex-first-gate-audit
+          path: artifacts/pt-webtex-first/webtex-first-gate-audit.json
+          if-no-files-found: error

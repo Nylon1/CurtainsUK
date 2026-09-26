@@ -215,6 +215,11 @@ export class PtWebtexSession {
     const status = xml("RETURNPACKET > STATUS").text().trim();
     if (status === "REDIRECT") throw new Error("PT_WEBTEX_AUTH_EXPIRED");
     const fields: Record<string, string[]> = {};
+    xml("fd").each((_, element) => {
+      const id = (xml(element).attr("id") ?? "").toUpperCase();
+      const value = decodeURIComponent(xml(element).attr("value") ?? "").replace(/\s+/g, " ").trim();
+      if (id && value && value.length <= 2000) (fields[id] ??= []).push(value);
+    });
     xml("*").each((_, element) => {
       if (xml(element).children().length) return;
       const name = element.tagName?.toUpperCase() ?? "";

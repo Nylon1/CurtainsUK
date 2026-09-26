@@ -7,6 +7,14 @@ type ProjectionRow = { fabric_id?: unknown };
 export type ProjectionPage = { data: ProjectionRow[] | null; error: unknown; count: number | null };
 type ProjectionPageReader = (from: number, to: number, exactCount: boolean) => Promise<ProjectionPage>;
 
+export function requiresRetailGuideProjection(
+  selectedPriceLevel: string | undefined,
+  calibrationNeedsEligibility: boolean,
+  styleDirectionsNeedEligibility: boolean,
+) {
+  return Boolean(selectedPriceLevel && (calibrationNeedsEligibility || styleDirectionsNeedEligibility));
+}
+
 export async function collectRetailGuideProjection(readPage: ProjectionPageReader) {
   const first = await readPage(0, projectionPageSize - 1, true);
   if (first.error) throw Error('RETAIL_GUIDE_PRICE_PROJECTION_UNAVAILABLE');

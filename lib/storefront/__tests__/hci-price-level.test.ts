@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { collectRetailGuideProjection } from '../hci-price-level-pagination';
+import { collectRetailGuideProjection, requiresRetailGuideProjection } from '../hci-price-level-pagination';
+
+test('loads a full price projection only at a governed selection boundary', () => {
+  assert.equal(requiresRetailGuideProjection('MID_RANGE', true, false), true);
+  assert.equal(requiresRetailGuideProjection('LUXURY', false, true), true);
+  assert.equal(requiresRetailGuideProjection('LUXURY', false, false), false);
+  assert.equal(requiresRetailGuideProjection(undefined, true, true), false);
+});
 
 test('collects every governed price-tier ID beyond the PostgREST row limit', async () => {
   const ids = Array.from({ length: 2_405 }, (_, index) => `fabric-${String(index).padStart(4, '0')}`);

@@ -217,7 +217,10 @@ export class PtWebtexSession {
     const fields: Record<string, string[]> = {};
     xml("fd").each((_, element) => {
       const id = (xml(element).attr("id") ?? "").toUpperCase();
-      const value = decodeURIComponent(xml(element).attr("value") ?? "").replace(/\s+/g, " ").trim();
+      const raw = xml(element).attr("value") ?? "";
+      let decoded = raw;
+      try { decoded = decodeURIComponent(raw); } catch { /* A literal percent sign is valid supplier text. */ }
+      const value = decoded.replace(/\s+/g, " ").trim();
       if (id && value && value.length <= 2000) (fields[id] ??= []).push(value);
     });
     xml("*").each((_, element) => {

@@ -16,12 +16,20 @@ const levels = [
 ];
 const output = {};
 for (const [level, minimum, maximum] of levels) {
-  const { data, error } = await database.rpc('retail_guide_price_level_fabric_ids', {
+  const parameters = {
     p_guide_min: minimum,
     p_guide_max: maximum,
-  });
-  if (error) throw error;
-  const ids = (data ?? []).map((row) => row.fabric_id);
+  };
+  const first = await database.rpc('retail_guide_price_level_fabric_ids', parameters, { count: 'exact' }).range(0, 999);
+  if (first.error || typeof first.count !== 'number') throw first.error ?? Error('COUNT_UNAVAILABLE');
+  const pages = [first.data ?? []];
+  for (let from = 1_000; from < first.count; from += 1_000) {
+    const page = await database.rpc('retail_guide_price_level_fabric_ids', parameters).range(from, Math.min(from + 999, first.count - 1));
+    if (page.error) throw page.error;
+    pages.push(page.data ?? []);
+  }
+  const ids = pages.flat().map((row) => row.fabric_id);
+  if (ids.length !== first.count || new Set(ids).size !== ids.length) throw Error('INCOMPLETE_PRICE_TIER');
   const rows = [];
   for (let from = 0; from < ids.length; from += 400) {
     const page = await database.from('fabric_colourways').select('fabric_id,supplier_id,design_id').in('fabric_id', ids.slice(from, from + 400));

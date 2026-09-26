@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { premiumHciCommand, premiumHciEnabled } from '../hci-premium-contract';
 import { acceptedHciFeedback } from '../hci-feedback';
 import { roomFeatures } from '../../../vendor/hci-approved/intelligence/reference-images/room-context';
@@ -85,6 +86,14 @@ test('price level is a bounded consultation action and never a customer-supplied
   assert.equal(command.action?.level, 'PREMIUM_LUXURY');
   assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'price-level', level: '£150' } }));
   assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type: 'price-level', level: 'MID_RANGE', amount: 4999 } }));
+});
+
+test('price selection scopes calibration and knowledge reads to the selected tier', () => {
+  const source = readFileSync('lib/storefront/hci-premium-integration.ts', 'utf8');
+  assert.doesNotMatch(source, /listFabricMasterRecords/);
+  assert.match(source, /currentRetailCalibrationEligibility\(priceLevelEligibilityIds\)/);
+  assert.match(source, /knowledgeCandidateIds = calibrationEligibilityIds \?\? styleDirectionEligibilityIds/);
+  assert.doesNotMatch(source, /hciVisualKnowledge\(priceLevelEligibilityIds\)/);
 });
 
 test('progressive direction delivery accepts only one bounded persisted-direction index', () => {

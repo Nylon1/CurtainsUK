@@ -5,10 +5,10 @@ import { customerView } from './hci-premium-view';
 import { createHash, randomUUID } from 'node:crypto';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
-import { fabricMasterRecommendationEligibleIds, fabricMasterRecordsByIds, listFabricMasterRecords } from '@/lib/fabric-master/repository';
+import { fabricMasterRecommendationEligibleIds, fabricMasterRecordsByIds } from '@/lib/fabric-master/repository';
 import { assertNoRawReferenceMedia } from './hci-image-privacy';
 import { signHciCommerceContext } from './hci-commerce-context';
-import { calibrationEligibility, currentCalibrationFabric, calibrationRequestContext } from './hci-calibration';
+import { currentCalibrationFabric, currentRetailCalibrationEligibility, calibrationRequestContext } from './hci-calibration';
 import { currentRetailStyleDirectionEligibility, styleDirectionRequestContext } from './hci-style-directions';
 import { currentRetailPriceLevelEligibility } from './hci-price-level';
 import type { GuidePriceLevel } from '@/lib/fabric-master/guide-price-level';
@@ -198,6 +198,7 @@ async function handoff<T extends CustomerPresentation>(view: T): Promise<T> {
 
 /** Durable user state stays in CurtainsUK's existing guarded RPC store. HCI receives a hashed owner only. */
 export async function premiumHciIntegration(owner: string, value: unknown) {
+  const commandStartedAt = performance.now();
   if (!premiumHciEnabled()) throw Error('HCI_DISABLED');
   const command = premiumHciCommand(value);
   const directionPrepare = command.action?.type === 'direction-prepare';
@@ -209,7 +210,9 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     : command.action;
   const db = createSupplierServiceClient();
   const digest = createHash('sha256').update(JSON.stringify(command)).digest('hex');
+  const readStartedAt = performance.now();
   const { data: prior, error: readError } = await db.rpc('hci_staging_read', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId });
+  const persistenceReadMs = performance.now() - readStartedAt;
   if (readError) throw Error('HCI_STORAGE_UNAVAILABLE');
   const priorHciState = privateHciState(prior?.private_state);
   if (!prior && command.sessionId !== command.requestId) throw Error('HCI_SESSION_CONFLICT');
@@ -245,33 +248,60 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     : ['MID_RANGE', 'LUXURY', 'PREMIUM_LUXURY', 'SUPER_LUXURY'].includes(priorPriceLevel as string)
       ? priorPriceLevel as GuidePriceLevel
       : undefined;
+  const priceEligibilityStartedAt = performance.now();
   const priceLevelEligibilityIds = selectedPriceLevel
     ? await currentRetailPriceLevelEligibility(selectedPriceLevel)
     : undefined;
+  const priceEligibilityMs = performance.now() - priceEligibilityStartedAt;
   const knowledgeEnabled = !prior || prior.private_state?.visualKnowledgePolicy === 'visual-vocabulary-v1';
-  // The active price-level cohort is the only catalogue that can participate
-  // in Calibration or Style Directions. Keep the existing governed visual
-  // evidence, but do not send every other tier through the live request.
-  const visualKnowledge = knowledgeEnabled && priceLevelEligibilityIds
-    ? await hciVisualKnowledge(priceLevelEligibilityIds)
-    : undefined;
   const calibration = calibrationRequestContext(priorHciState, upstreamAction);
-  const calibrationEligibilityIds = calibration.needsEligibility
-    ? calibrationEligibility(await listFabricMasterRecords({ stagingCatalogOnly: true })) : undefined;
+  const calibrationEligibilityStartedAt = performance.now();
+  const calibrationEligibilityIds = calibration.needsEligibility && priceLevelEligibilityIds
+    ? await currentRetailCalibrationEligibility(priceLevelEligibilityIds) : undefined;
+  const calibrationEligibilityMs = performance.now() - calibrationEligibilityStartedAt;
   const styleDirections = styleDirectionRequestContext(priorHciState, upstreamAction);
+  const styleEligibilityStartedAt = performance.now();
   const styleDirectionEligibilityIds = styleDirections.needsEligibility
     // Price Level is already a hard candidate boundary. Apply the existing
     // retail-image/readiness gate within that exact cohort, rather than
     // loading the full catalogue and intersecting it afterwards.
     ? await currentRetailStyleDirectionEligibility(priceLevelEligibilityIds) : undefined;
+  const styleEligibilityMs = performance.now() - styleEligibilityStartedAt;
+  // Governed visual evidence is needed only by a stage that is selecting a
+  // fabric. Price persistence itself does not serialise the whole price tier.
+  const knowledgeCandidateIds = calibrationEligibilityIds ?? styleDirectionEligibilityIds;
+  const knowledgeStartedAt = performance.now();
+  const visualKnowledge = knowledgeEnabled && knowledgeCandidateIds
+    ? await hciVisualKnowledge(knowledgeCandidateIds)
+    : undefined;
+  const knowledgeReadMs = performance.now() - knowledgeStartedAt;
+  const requestBody = JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: priorHciState, action: upstreamAction, recordedAt: new Date().toISOString() });
+  const upstreamStartedAt = performance.now();
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`, 'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },
-    body: JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: priorHciState, action: upstreamAction, recordedAt: new Date().toISOString() }),
+    body: requestBody,
   });
+  const upstreamMs = performance.now() - upstreamStartedAt;
   if (!upstream.ok) {
     // Operationally useful without logging a photograph, session state, URL or credentials.
-    console.error('CurtainsUK premium HCI upstream rejected a request', { status: upstream.status });
+    console.error('CurtainsUK premium HCI upstream rejected a request', {
+      status: upstream.status,
+      action: upstreamAction?.type ?? 'initial',
+      selectedPriceLevel,
+      priceEligibilityMs,
+      eligibleIdCount: priceLevelEligibilityIds?.length ?? 0,
+      calibrationEligibilityMs,
+      calibrationEligibleIdCount: calibrationEligibilityIds?.length ?? 0,
+      styleEligibilityMs,
+      styleEligibleIdCount: styleDirectionEligibilityIds?.length ?? 0,
+      knowledgeReadMs,
+      knowledgeRowCount: visualKnowledge?.length ?? 0,
+      requestBytes: Buffer.byteLength(requestBody),
+      upstreamMs,
+      persistenceReadMs,
+      totalMs: performance.now() - commandStartedAt,
+    });
     throw Error('HCI_SERVICE_UNAVAILABLE');
   }
   const result = await upstream.json();
@@ -308,8 +338,27 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     commerceEvents: [...(prior?.private_state?.commerceEvents ?? []), ...feedbackEvents],
   };
   const storedView = compactDeliveryPresentation(view);
+  const persistenceWriteStartedAt = performance.now();
   const { data, error } = await db.rpc('hci_staging_commit', { p_owner: owner, p_session: command.sessionId, p_request: command.requestId, p_digest: digest, p_expected: expected, p_state: storedState, p_view: storedView });
+  const persistenceWriteMs = performance.now() - persistenceWriteStartedAt;
   if (error) throw Error(error.message.includes('HCI_SESSION_CONFLICT') ? 'HCI_SESSION_CONFLICT' : 'HCI_STORAGE_UNAVAILABLE');
+  console.info('CURTAINSUK_HCI_COMMAND_TIMING', {
+    action: upstreamAction?.type ?? 'initial',
+    selectedPriceLevel,
+    priceEligibilityMs,
+    eligibleIdCount: priceLevelEligibilityIds?.length ?? 0,
+    calibrationEligibilityMs,
+    calibrationEligibleIdCount: calibrationEligibilityIds?.length ?? 0,
+    styleEligibilityMs,
+    styleEligibleIdCount: styleDirectionEligibilityIds?.length ?? 0,
+    knowledgeReadMs,
+    knowledgeRowCount: visualKnowledge?.length ?? 0,
+    requestBytes: Buffer.byteLength(requestBody),
+    upstreamMs,
+    persistenceReadMs,
+    persistenceWriteMs,
+    totalMs: performance.now() - commandStartedAt,
+  });
   const persisted = customerView(data);
   // The prepared second direction has just been validated and committed. Return
   // its bounded summary directly rather than re-expanding the same private

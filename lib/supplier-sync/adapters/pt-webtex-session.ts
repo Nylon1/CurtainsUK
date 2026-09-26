@@ -176,6 +176,10 @@ export class PtWebtexSession {
     const scriptPaths = document("script[src]").map((_, script) => document(script).attr("src") ?? "").get()
       .filter(scriptPath => scriptPath && !/^https?:/i.test(scriptPath));
     const callbackSnippets: string[] = [];
+    for (const match of page.matchAll(/callbackGetProductDetails/gi)) {
+      const index = match.index ?? 0;
+      callbackSnippets.push(page.slice(Math.max(0, index - 600), index + 900).replace(/\s+/g, " ").trim());
+    }
     for (const scriptPath of scriptPaths) {
       const absolute = new URL(scriptPath, `${ORIGIN}${path}`);
       if (absolute.origin !== ORIGIN) continue;

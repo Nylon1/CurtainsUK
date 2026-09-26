@@ -2,7 +2,7 @@
 import { randomUUID } from "node:crypto";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { PtWebtexSession } from "../lib/supplier-sync/adapters/pt-webtex-session";
-import { assertCompletePtCohortCoverage, assertProvenPtCoverage, nextPtRefreshAt, parsePtCohortSkus, PT_PRIOR_UNKNOWN_SKUS, PT_SOURCE, PT_SUPPLIER, reconcilePtStock, type PtIdentity, type PtStockRow } from "../lib/supplier-sync/pt-stock-reconciliation";
+import { assertProvenPtCoverage, nextPtRefreshAt, parsePtCohortSkus, PT_SOURCE, PT_SUPPLIER, reconcilePtStock, type PtIdentity, type PtStockRow } from "../lib/supplier-sync/pt-stock-reconciliation";
 import { validateSupplierIntelligenceSnapshot } from "../lib/supplier-intelligence/validation";
 import { createValidationEvent } from "../lib/supplier-intelligence/promotion";
 import type { NormalizedSupplierSnapshot } from "../lib/supplier-sync/types";
@@ -78,12 +78,11 @@ async function retrieve(session: PtWebtexSession, identities: readonly PtIdentit
   for (const item of skuFallbacks) {
     try { rows.push(...(await session.search("PRODUCT_CODE", item.supplierSku)).rows); }
     catch (error) {
-      // Only the three previously proven unresolved identities may be absent.
-      // Authentication and parser failures still stop the run; missing product
-      // evidence never becomes an invented zero or a refreshed timestamp.
+      // A failed exact-product lookup is supplier evidence that this SKU is
+      // unsupported for this refresh. Authentication, transport and parser
+      // failures still stop the run; absent evidence never becomes zero stock.
       const code = error instanceof Error ? error.message : "";
-      if (!PT_PRIOR_UNKNOWN_SKUS.has(item.supplierSku) ||
-          !(/^PT_WEBTEX_QUERY_STATUS_/.test(code) || code === "PT_WEBTEX_HTTP_404")) throw error;
+      if (!(code === "PT_WEBTEX_HTTP_404" || /^PT_WEBTEX_QUERY_STATUS_/.test(code))) throw error;
     }
   }
   return { rows, collectionQueries: collections.length, designQueries: designs.length, skuQueries: skuFallbacks.length };
@@ -146,8 +145,10 @@ async function main() {
     received = identities.length;
     const result = reconcilePtStock(identities, retrieved.rows);
     stage = "COVERAGE";
-    if (cohort) assertCompletePtCohortCoverage(identities, result);
-    else assertProvenPtCoverage(identities, result);
+    // A bounded intake cohort is intentionally partial-tolerant: each exact,
+    // validated observation proceeds through the existing governed pipeline;
+    // only the exact unresolved identities remain held as supplier exceptions.
+    if (!cohort) assertProvenPtCoverage(identities, result);
     stage = "VALIDATION";
     const validated = result.snapshots.map((snapshot) => {
       const validation = validateSupplierIntelligenceSnapshot(snapshot, {

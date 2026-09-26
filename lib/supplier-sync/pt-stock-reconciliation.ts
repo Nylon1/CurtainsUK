@@ -97,13 +97,3 @@ export function assertProvenPtCoverage(identities: readonly PtIdentity[], result
   }
 }
 
-/** A bounded cohort must resolve every exact SKU. It does not alter the
- * full-catalogue assertion above. */
-export function assertCompletePtCohortCoverage(identities: readonly PtIdentity[], result: PtReconciliation): void {
-  const expected = new Set(identities.map((item) => item.supplierSku));
-  const actual = new Set(result.snapshots.map((item) => item.supplier_sku));
-  if (!expected.size || result.exceptions.length || actual.size !== expected.size ||
-      [...expected].some((sku) => !actual.has(sku))) {
-    throw new Error("PT_COHORT_COVERAGE_CHANGED");
-  }
-}

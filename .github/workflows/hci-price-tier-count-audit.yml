@@ -1,0 +1,30 @@
+name: HCI price tier count audit
+
+on:
+  push:
+    branches: [ops/hci-tier-count-audit]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SDG_STOCK_SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SDG_STOCK_SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit
+      - run: node scripts/audit-hci-price-tier-counts.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hci-price-tier-counts
+          path: artifacts/hci-price-tier-audit/tier-counts.json
+          if-no-files-found: error
+          retention-days: 1

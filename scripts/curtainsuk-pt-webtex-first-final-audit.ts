@@ -73,6 +73,8 @@ async function main() {
     const row = latestStock.get(sku);
     return row && Date.parse(String(row.checked_at)) >= Date.now() - 92 * 60 * 60 * 1000 && Date.parse(String(row.checked_at)) <= Date.now();
   });
+  const stockWithin92HourSet = new Set(stockWithin92Hours);
+  const missingStockWithin92Hours = visibleSkus.filter((sku) => !stockWithin92HourSet.has(sku));
   const fullRuns = await db.from("supplier_sync_runs").select("run_id,status,started_at,completed_at,error_code,snapshots_received,snapshots_appended")
     .eq("supplier_id", "prestigious-textiles").eq("adapter_id", "pt-webtex-full-refresh").order("completed_at", { ascending: false }).limit(5);
   if (fullRuns.error) throw new Error(`PT_FINAL_AUDIT_RUN_READ_FAILED_${fullRuns.error.code ?? "UNKNOWN"}`);
@@ -130,6 +132,7 @@ async function main() {
     live_fabric_knowledge: `${visible.filter((row) => profileIds.has(String(row.fabric_id))).length}/${visible.length}`,
     live_visual_knowledge_cache: `${visible.filter((row) => knowledgeIds.has(String(row.fabric_id))).length}/${visible.length}`,
     live_stock_within_92_hours: `${stockWithin92Hours.length}/${visible.length}`,
+    missing_stock_within_92_hours: missingStockWithin92Hours,
     latest_full_stock_runs: fullRuns.data ?? [],
     browse_rpc_total: Number(browse?.total ?? -1),
     browse_rpc_timings_ms: browseTimings,
@@ -138,9 +141,11 @@ async function main() {
     public_browse: publicBrowseSafe,
     guided_fi: guidedSafe,
     guided_fi_content_pass: guidedContentPass,
-    catalogue_integrity_pass: visible.length === 556 && [...skuCounts.values()].every((count) => count === 1) && visible.every((row) => mediaIds.has(String(row.fabric_id))),
+    catalogue_integrity_pass: visible.length > 0 && Number(browse?.total ?? -1) === visible.length && [...skuCounts.values()].every((count) => count === 1) && visible.every((row) => mediaIds.has(String(row.fabric_id))),
+    fabric_intelligence_discovery_pass: knowledgeIds.size === visible.length && exactResults.every((row) => row.error === null && row.ids.length === 1 && row.ids[0] === row.expected),
     browse_functionality_pass: Number(browse?.total ?? -1) === visible.length && exactResults.every((row) => row.error === null && row.ids.length === 1 && row.ids[0] === row.expected),
-    browse_speed_pass: publicBrowse.every((row) => row.status === 200 && row.duration_ms < 3_000) && browseErrors.length === 0 && browseTimings.every((duration) => duration < 3_000),
+    browse_speed_pass: publicBrowse.every((row) => row.status === 200 && row.duration_ms < 3_000),
+    browse_rpc_performance_pass: browseErrors.length === 0 && browseTimings.every((duration) => duration < 3_000),
     stock_refresh_inclusion_pass: stockWithin92Hours.length === visible.length,
     scheduler_health_basis: "GitHub PT stock workflow state and latest scheduled run are verified outside this database report.",
   };

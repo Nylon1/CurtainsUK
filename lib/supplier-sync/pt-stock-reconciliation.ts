@@ -3,12 +3,6 @@ import type { NormalizedSupplierSnapshot } from "./types";
 
 export const PT_SUPPLIER = "prestigious-textiles";
 export const PT_SOURCE = "Prestigious Webtex authenticated Stock Enquiry";
-export const PT_EXPECTED_IDENTITIES = 3736;
-export const PT_PROVEN_MINIMUM = 3730;
-// Six exact identities are absent from collection, design and exact-SKU fallbacks,
-// including 7876/076 verified in full refresh 36182097270 (25 September 2026).
-// Missing evidence remains unknown: never invent zero or refresh its timestamp.
-export const PT_PRIOR_UNKNOWN_SKUS = new Set(["7222/022", "7866/012", "3622/282", "5064/351", "7215/723", "7876/076"]);
 export const PT_REFRESH_INTERVAL_MS = 72 * 60 * 60 * 1000;
 
 export interface PtIdentity { supplierSku: string; collection: string; brandId: string; lifecycleState: string }
@@ -81,9 +75,14 @@ export function reconcilePtStock(identities: readonly PtIdentity[], rows: readon
 }
 
 export function assertProvenPtCoverage(identities: readonly PtIdentity[], result: PtReconciliation): void {
-  if (identities.length !== PT_EXPECTED_IDENTITIES || result.snapshots.length < PT_PROVEN_MINIMUM ||
+  const expected = new Set(identities.map((item) => item.supplierSku));
+  const resolved = new Set(result.snapshots.map((item) => item.supplier_sku));
+  const unsupported = new Set(result.exceptions.map((item) => item.sku));
+  if (identities.length === 0 || expected.size !== identities.length ||
+      resolved.size !== result.snapshots.length || unsupported.size !== result.exceptions.length ||
       result.snapshots.length + result.exceptions.length !== identities.length ||
-      result.exceptions.some((item) => !PT_PRIOR_UNKNOWN_SKUS.has(item.sku))) {
+      [...resolved].some((sku) => !expected.has(sku) || unsupported.has(sku)) ||
+      [...unsupported].some((sku) => !expected.has(sku))) {
     throw new Error("PT_COVERAGE_CHANGED");
   }
 }

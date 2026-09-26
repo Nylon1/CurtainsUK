@@ -20,6 +20,12 @@ export interface PtProductDetailPageContract {
   scriptPaths: string[];
   callbackSnippets: string[];
 }
+export interface PtProductDetailRawRead {
+  sku: string;
+  observedAt: string;
+  status: string;
+  fields: Record<string, string[]>;
+}
 
 /** First-party Webtex login and Stock Enquiry. Session cookies exist in memory for one run only. */
 export class PtWebtexSession {
@@ -197,5 +203,25 @@ export class PtWebtexSession {
       scriptPaths: [...new Set(scriptPaths)],
       callbackSnippets: [...new Set(callbackSnippets)],
     };
+  }
+
+  /** Exact product-detail PageMethod response, reduced to factual XML leaf fields. */
+  async productDetailRaw(sku: string): Promise<PtProductDetailRawRead> {
+    if (!this.authenticated) throw new Error("PT_WEBTEX_AUTH_REQUIRED");
+    if (!/^\d{4}\/\d{3}$/.test(sku)) throw new Error("PT_WEBTEX_PRODUCT_SKU_INVALID");
+    const path = "/webtex/Content/ViewProductDetails/Default.aspx/callbackGetProductDetails";
+    const xmlText = await this.invoke(path, { l_stPassTag: sku, l_stPassProdCode: sku });
+    const xml = load(xmlText, { xmlMode: true });
+    const status = xml("RETURNPACKET > STATUS").text().trim();
+    if (status === "REDIRECT") throw new Error("PT_WEBTEX_AUTH_EXPIRED");
+    const fields: Record<string, string[]> = {};
+    xml("*").each((_, element) => {
+      if (xml(element).children().length) return;
+      const name = element.tagName?.toUpperCase() ?? "";
+      const value = xml(element).text().replace(/\s+/g, " ").trim();
+      if (!name || !value || value.length > 2000) return;
+      (fields[name] ??= []).push(value);
+    });
+    return { sku, observedAt: new Date().toISOString(), status, fields };
   }
 }

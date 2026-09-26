@@ -3,7 +3,8 @@ async function main() {
   const rows = JSON.parse(process.env.PT_PROOF_COHORT_JSON ?? "[]") as { sku: string; collection: string; mode?: string }[];
   const contractProof = rows.length === 1 && rows[0]?.mode === "PRODUCT_DETAIL_CONTRACT";
   const pageContractProof = rows.length === 1 && rows[0]?.mode === "PRODUCT_DETAIL_PAGE";
-  if ((!contractProof && !pageContractProof && rows.length !== 50) || new Set(rows.map(r => r.sku)).size !== rows.length || rows.some(r => !/^\d{4}\/\d{3}$/.test(r.sku) || !r.collection.trim())) throw new Error("PT_COHORT_PROOF_INVALID");
+  const rawProductProof = rows.length === 1 && rows[0]?.mode === "PRODUCT_DETAIL_RAW";
+  if ((!contractProof && !pageContractProof && !rawProductProof && rows.length !== 50) || new Set(rows.map(r => r.sku)).size !== rows.length || rows.some(r => !/^\d{4}\/\d{3}$/.test(r.sku) || !r.collection.trim())) throw new Error("PT_COHORT_PROOF_INVALID");
   const session = new PtWebtexSession();
   const username = process.env.PT_WEBTEX_USERNAME ?? "", password = process.env.PT_WEBTEX_PASSWORD ?? "";
   delete process.env.PT_WEBTEX_PASSWORD;
@@ -18,6 +19,12 @@ async function main() {
     const contract = await session.productDetailPageContract(rows[0].sku);
     console.log(JSON.stringify({ tested: 1, sku: rows[0].sku, contract, databaseWrites: 0 }));
     if (!contract.callbackSnippets.length) throw new Error("PT_PRODUCT_DETAIL_PAGE_CONTRACT_INCOMPLETE");
+    return;
+  }
+  if (rawProductProof) {
+    const product = await session.productDetailRaw(rows[0].sku);
+    console.log(JSON.stringify({ tested: 1, product, databaseWrites: 0 }));
+    if (product.status !== "DATA" || !Object.keys(product.fields).length) throw new Error("PT_PRODUCT_DETAIL_RAW_INCOMPLETE");
     return;
   }
   const results: { sku: string; stockPresent: boolean; exactMatches: number }[] = [];

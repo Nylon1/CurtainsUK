@@ -1,0 +1,746 @@
+[
+  {
+    "supplier_sku": "3688/018",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3688/112",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3688/327",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3688/332",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3688/770",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3690/018",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3690/327",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3691/332",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3691/333",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3691/770",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3692/770",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3692/812",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3693/333",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3693/430",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3693/770",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/119",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/128",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/141",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/142",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/158",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/168",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/211",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/213",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/272",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/302",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/319",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/505",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/662",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/702",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/714",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/721",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/723",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/918",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3833/925",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/119",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/128",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/141",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/142",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/158",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/168",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/213",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/272",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/302",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/319",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/505",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/575",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/662",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/702",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/714",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/721",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/723",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/918",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3834/925",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3976/698",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3977/705",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3978/235",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3978/675",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3978/698",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3978/705",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3978/711",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "3979/110",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4054/708",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4055/288",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4055/502",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4056/406",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4056/708",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4057/708",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4058/288",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4058/296",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4058/502",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4059/296",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "4059/502",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "5072/700",
+    "reasons": [
+      "NO_OFFICIAL_WEBTEX_IMAGE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/005",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/007",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/030",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/045",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/074",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/104",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/117",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/118",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/126",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/141",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/153",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/191",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/210",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/212",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/213",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/217",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/296",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/302",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/303",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/310",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/349",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/387",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/502",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/510",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/531",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/608",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/616",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/687",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/702",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/705",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/707",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/723",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/724",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/760",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/808",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/901",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/904",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/905",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/909",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/918",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7150/937",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7203/022",
+    "reasons": [
+      "NO_OFFICIAL_WEBTEX_IMAGE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/021",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/031",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/077",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/217",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/229",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/505",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/625",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "7220/957",
+    "reasons": [
+      "NO_CURRENT_GOVERNED_PRICE"
+    ]
+  },
+  {
+    "supplier_sku": "8663/005",
+    "reasons": [
+      "NO_OFFICIAL_WEBTEX_IMAGE"
+    ]
+  }
+]

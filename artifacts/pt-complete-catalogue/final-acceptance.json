@@ -1,0 +1,62 @@
+{
+  "checked_at": "2026-09-26T20:09:48.1071708Z",
+  "source_reconciliation": {
+    "source_total": 10015,
+    "live": 5267,
+    "novelty_exclusion": 24,
+    "pt_contract_exclusion": 390,
+    "supplier_discontinued": 3170,
+    "webtex_unsupported": 1040,
+    "genuinely_missing": 124,
+    "accounted": 10015
+  },
+  "production": {
+    "pt_masters": 7203,
+    "pt_live": 5745,
+    "newly_released": 782,
+    "newly_supplier_discontinued": 2,
+    "duplicate_pt_skus": 0
+  },
+  "released_cohort": {
+    "commit_timestamp": "2026-09-26T20:01:28.525768Z",
+    "official_images": "782/782",
+    "approved_cut_prices": "782/782",
+    "webtex_stock_within_92_hours": "782/782",
+    "fabric_intelligence_resolved": "782/782",
+    "fabric_knowledge": "782/782",
+    "knowledge_cache": "782/782",
+    "browse_projection": "782/782"
+  },
+  "browse": {
+    "active_generation": "630a8a76-cc4b-4e11-b6ec-1c40257c0c99",
+    "active_rows": 11815,
+    "active_pt_rows": 5745,
+    "knowledge_cache_dirty": false,
+    "scheduler_active": true,
+    "prepared_rpc_execution_ms": 64.889,
+    "public_page_statuses": [200, 200, 200],
+    "public_page_timings_ms": [371, 153, 154]
+  },
+  "guided_fabric_intelligence": {
+    "statuses": [200, 200, 200],
+    "timings_ms": [1869, 522, 660],
+    "content_marker_present": true
+  },
+  "stock_refresh": {
+    "github_run": "https://github.com/Nylon1/CurtainsUK/actions/runs/36266435301",
+    "database_run_id": "pt-webtex-full-refresh:44c7b0e0-d9fc-429b-b674-9be45a58dee1",
+    "status": "SUCCEEDED",
+    "started_at": "2026-09-26T19:33:26.623Z",
+    "completed_at": "2026-09-26T19:49:51.844Z",
+    "masters_requested": 6751,
+    "observations_appended": 5741,
+    "next_scheduled_refresh_within_hours": 72,
+    "new_release_included": "782/782"
+  },
+  "exact_browse_samples": [
+    { "fabric_id": "pt-1734-167", "supplier_sku": "1734/167", "matches": 1 },
+    { "fabric_id": "pt-4007-296", "supplier_sku": "4007/296", "matches": 1 },
+    { "fabric_id": "pt-8756-908", "supplier_sku": "8756/908", "matches": 1 }
+  ],
+  "catalogue_complete": true
+}

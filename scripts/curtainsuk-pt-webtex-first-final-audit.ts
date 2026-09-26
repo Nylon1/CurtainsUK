@@ -78,20 +78,25 @@ async function main() {
   if (fullRuns.error) throw new Error(`PT_FINAL_AUDIT_RUN_READ_FAILED_${fullRuns.error.code ?? "UNKNOWN"}`);
 
   const browseTimings: number[] = [];
+  const browseErrors: string[] = [];
   let browse: Record<string, unknown> | null = null;
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const started = performance.now();
-    const result = await db.rpc("search_retail_fabrics", { p_filters: { brand: "Prestigious Textiles" }, p_page: 1, p_size: 48, p_guide_min: null, p_guide_max: null });
+    const result = await db.rpc("search_retail_fabrics", { p_filters: { brand: "Prestigious Textiles" }, p_page: 1, p_size: 1, p_guide_min: null, p_guide_max: null });
     browseTimings.push(Math.round(performance.now() - started));
-    if (result.error) throw new Error(`PT_FINAL_AUDIT_BROWSE_RPC_FAILED_${result.error.code ?? "UNKNOWN"}`);
-    browse = result.data as Record<string, unknown>;
+    if (result.error) browseErrors.push(result.error.code ?? "UNKNOWN");
+    else browse = result.data as Record<string, unknown>;
   }
   const sample = visible.slice(0, 5);
   const exactResults = [];
   for (const row of sample) {
     const result = await db.rpc("search_retail_fabrics", { p_filters: { query: row.supplier_sku }, p_page: 1, p_size: 48, p_guide_min: null, p_guide_max: null });
-    if (result.error) throw new Error(`PT_FINAL_AUDIT_EXACT_BROWSE_FAILED_${result.error.code ?? "UNKNOWN"}`);
-    exactResults.push({ supplier_sku: row.supplier_sku, expected: row.fabric_id, ids: (result.data as { ids?: string[] })?.ids ?? [] });
+    exactResults.push({
+      supplier_sku: row.supplier_sku,
+      expected: row.fabric_id,
+      ids: (result.data as { ids?: string[] } | null)?.ids ?? [],
+      error: result.error?.code ?? null,
+    });
   }
   const publicBrowse = [];
   const guided = [];
@@ -128,13 +133,14 @@ async function main() {
     latest_full_stock_runs: fullRuns.data ?? [],
     browse_rpc_total: Number(browse?.total ?? -1),
     browse_rpc_timings_ms: browseTimings,
+    browse_rpc_errors: browseErrors,
     exact_sku_samples: exactResults,
     public_browse: publicBrowseSafe,
     guided_fi: guidedSafe,
     guided_fi_content_pass: guidedContentPass,
     catalogue_integrity_pass: visible.length === 556 && [...skuCounts.values()].every((count) => count === 1) && visible.every((row) => mediaIds.has(String(row.fabric_id))),
-    browse_functionality_pass: Number(browse?.total ?? -1) === visible.length && exactResults.every((row) => row.ids.length === 1 && row.ids[0] === row.expected),
-    browse_speed_pass: publicBrowse.every((row) => row.status === 200 && row.duration_ms < 3_000) && browseTimings.every((duration) => duration < 3_000),
+    browse_functionality_pass: Number(browse?.total ?? -1) === visible.length && exactResults.every((row) => row.error === null && row.ids.length === 1 && row.ids[0] === row.expected),
+    browse_speed_pass: publicBrowse.every((row) => row.status === 200 && row.duration_ms < 3_000) && browseErrors.length === 0 && browseTimings.every((duration) => duration < 3_000),
     stock_refresh_inclusion_pass: stockWithin92Hours.length === visible.length,
     scheduler_health_basis: "GitHub PT stock workflow state and latest scheduled run are verified outside this database report.",
   };

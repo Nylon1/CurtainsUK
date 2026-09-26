@@ -13,6 +13,13 @@ export interface PtProductDetailContract {
   scriptPaths: string[];
   navigationSnippets: string[];
 }
+export interface PtProductDetailPageContract {
+  title: string;
+  productCode: string;
+  populatedFields: Record<string, string>;
+  scriptPaths: string[];
+  callbackSnippets: string[];
+}
 
 /** First-party Webtex login and Stock Enquiry. Session cookies exist in memory for one run only. */
 export class PtWebtexSession {
@@ -147,6 +154,44 @@ export class PtWebtexSession {
       exactSkuFound: exact.rows.filter(row => row.sku === sku).length === 1,
       scriptPaths: [...new Set(scriptPaths)],
       navigationSnippets: [...new Set(navigationSnippets)],
+    };
+  }
+
+  /** Read-only inspection of one exact product-detail page and its own callbacks. */
+  async productDetailPageContract(sku: string): Promise<PtProductDetailPageContract> {
+    if (!this.authenticated) throw new Error("PT_WEBTEX_AUTH_REQUIRED");
+    if (!/^\d{4}\/\d{3}$/.test(sku)) throw new Error("PT_WEBTEX_PRODUCT_SKU_INVALID");
+    const path = `/webtex/Content/ViewProductDetails/Default.aspx?PRODUCT_CODE=${encodeURIComponent(sku)}`;
+    const page = await (await this.request(path)).text();
+    if (/Please enter your login details below/i.test(page)) throw new Error("PT_WEBTEX_AUTH_EXPIRED");
+    const document = load(page);
+    const populatedFields: Record<string, string> = {};
+    document("[id]").each((_, element) => {
+      const id = document(element).attr("id") ?? "";
+      const value = (document(element).attr("value") ?? document(element).text()).replace(/\s+/g, " ").trim();
+      if (id && value && value.length <= 500 && /product|price|stock|width|repeat|composition|weight|martindale|collection|colour|design|origin|care|usage|due/i.test(id)) {
+        populatedFields[id] = value;
+      }
+    });
+    const scriptPaths = document("script[src]").map((_, script) => document(script).attr("src") ?? "").get()
+      .filter(scriptPath => scriptPath && !/^https?:/i.test(scriptPath));
+    const callbackSnippets: string[] = [];
+    for (const scriptPath of scriptPaths) {
+      const absolute = new URL(scriptPath, `${ORIGIN}${path}`);
+      if (absolute.origin !== ORIGIN) continue;
+      const source = await (await this.request(absolute.pathname + absolute.search)).text();
+      for (const line of source.split(/\r?\n/)) {
+        if (/callback|productdesc|freestock|cutprice|greywidth|reportCriteria|imgProducts/i.test(line)) {
+          callbackSnippets.push(line.trim().replace(/\s+/g, " ").slice(0, 1200));
+        }
+      }
+    }
+    return {
+      title: document("title").text().replace(/\s+/g, " ").trim(),
+      productCode: document("body").text().match(/Product Code:\s*(\d+\/\d+)/i)?.[1] ?? "",
+      populatedFields,
+      scriptPaths: [...new Set(scriptPaths)],
+      callbackSnippets: [...new Set(callbackSnippets)],
     };
   }
 }

@@ -6,12 +6,10 @@ import {
 } from './hci-style-direction-eligibility';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 
-const candidateSelect = 'fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,staging_catalog_visible,imagery,usable_width_mm,full_width_mm,pattern_match_type,supplier_brands!inner(display_name),fabric_designs!inner(display_name)';
+const candidateSelect = 'fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,staging_catalog_visible,imagery,supplier_brands!inner(display_name),fabric_designs!inner(display_name,usable_width_mm,full_width_mm,pattern_match_type)';
 const batchSize = 400;
-// Commercial evidence includes current stock and approved price history. Keep
-// each query below the database statement deadline for the larger price tiers.
-const commercialBatchSize = 12;
-const commercialConcurrency = 2;
+const commercialBatchSize = 48;
+const commercialConcurrency = 4;
 
 function exactIds(fabricIds: readonly string[]) {
   const ids = [...new Set(fabricIds)].sort();
@@ -22,7 +20,12 @@ function exactIds(fabricIds: readonly string[]) {
 
 function candidate(row: Record<string, unknown>): RetailDirectionCandidate {
   const brand = row.supplier_brands as { display_name?: unknown } | null;
-  const design = row.fabric_designs as { display_name?: unknown } | null;
+  const design = row.fabric_designs as {
+    display_name?: unknown;
+    usable_width_mm?: unknown;
+    full_width_mm?: unknown;
+    pattern_match_type?: unknown;
+  } | null;
   return {
     fabric_id: String(row.fabric_id),
     supplier_id: String(row.supplier_id),
@@ -31,9 +34,9 @@ function candidate(row: Record<string, unknown>): RetailDirectionCandidate {
     lifecycle_state: row.lifecycle_state as RetailDirectionCandidate['lifecycle_state'],
     staging_catalog_visible: row.staging_catalog_visible === true,
     imagery: Array.isArray(row.imagery) ? row.imagery.filter((image): image is string => typeof image === 'string') : [],
-    usable_width_mm: typeof row.usable_width_mm === 'number' ? row.usable_width_mm : null,
-    full_width_mm: typeof row.full_width_mm === 'number' ? row.full_width_mm : null,
-    pattern_match_type: row.pattern_match_type as RetailDirectionCandidate['pattern_match_type'],
+    usable_width_mm: typeof design?.usable_width_mm === 'number' ? design.usable_width_mm : null,
+    full_width_mm: typeof design?.full_width_mm === 'number' ? design.full_width_mm : null,
+    pattern_match_type: design?.pattern_match_type as RetailDirectionCandidate['pattern_match_type'],
     brand_name: typeof brand?.display_name === 'string' ? brand.display_name : '',
     design_name: typeof design?.display_name === 'string' ? design.display_name : '',
   };

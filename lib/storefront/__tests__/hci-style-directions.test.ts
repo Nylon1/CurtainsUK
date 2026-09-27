@@ -59,13 +59,45 @@ const record = (overrides: Record<string, unknown> = {}) => ({
   fabric_id: 'pt-1223-374', supplier_id: 'prestigious-textiles', supplier_sku: '1223/374',
   brand_name: 'Prestigious Textiles', design_name: 'Dunbar', colour_name: 'Moss',
   staging_catalog_visible: true, lifecycle_state: 'CURRENT', imagery: ['https://cdn.shopify.com/source.jpg'],
+  usable_width_mm: 1380, full_width_mm: 1400, pattern_match_type: 'STRAIGHT_MATCH',
   ...overrides,
 } as unknown as FabricMasterRecord);
 
-test('requires the retail projection’s exact approved media binding for a Style Directions card', () => {
+test('requires exact approved media and governed commercial readiness for a Style Directions card', () => {
+  const commercial = new Map([
+    ['pt-1223-374', { recommendationEligible: true, orderReady: true }],
+    ['missing-media', { recommendationEligible: true, orderReady: true }],
+  ]);
   const ids = retailStyleDirectionEligibility([record(), record({ fabric_id: 'missing-media', supplier_sku: '1223/375' })], [{
     fabric_id: 'pt-1223-374', supplier_id: 'prestigious-textiles', supplier_sku: '1223/374',
     fabric_media_assets: { shopify_cdn_url: 'https://cdn.shopify.com/f.jpg', width: 800, height: 800 },
-  }]);
+  }], commercial);
   assert.deepEqual(ids, ['pt-1223-374']);
+});
+
+test('excludes sample-only, stale-stock, and unpriced fabrics from actionable directions', () => {
+  const records = [
+    record(),
+    record({ fabric_id: 'sample-only', supplier_sku: '1223/375' }),
+    record({ fabric_id: 'stale-stock', supplier_sku: '1223/376' }),
+    record({ fabric_id: 'missing-price', supplier_sku: '1223/377' }),
+  ];
+  const mappings = records.map((item) => ({
+    fabric_id: item.fabric_id,
+    supplier_id: item.supplier_id,
+    supplier_sku: item.supplier_sku,
+    fabric_media_assets: {
+      shopify_cdn_url: `https://cdn.shopify.com/${item.fabric_id}.jpg`,
+      width: 800,
+      height: 800,
+    },
+  }));
+  const commercial = new Map([
+    ['pt-1223-374', { recommendationEligible: true, orderReady: true }],
+    ['sample-only', { recommendationEligible: true, orderReady: false }],
+    ['stale-stock', { recommendationEligible: true, orderReady: false }],
+    ['missing-price', { recommendationEligible: true, orderReady: false }],
+  ]);
+
+  assert.deepEqual(retailStyleDirectionEligibility(records, mappings, commercial), ['pt-1223-374']);
 });

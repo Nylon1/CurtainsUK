@@ -8,8 +8,10 @@ import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 
 const candidateSelect = 'fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,staging_catalog_visible,imagery,usable_width_mm,full_width_mm,pattern_match_type,supplier_brands!inner(display_name),fabric_designs!inner(display_name)';
 const batchSize = 400;
-const commercialBatchSize = 48;
-const commercialConcurrency = 4;
+// Commercial evidence includes current stock and approved price history. Keep
+// each query below the database statement deadline for the larger price tiers.
+const commercialBatchSize = 12;
+const commercialConcurrency = 2;
 
 function exactIds(fabricIds: readonly string[]) {
   const ids = [...new Set(fabricIds)].sort();

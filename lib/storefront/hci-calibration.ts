@@ -3,6 +3,16 @@ import type { FabricMasterRecord } from '../fabric-master/types';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 
 const policy = 'brief-calibration-v2';
+
+function completeTasteAnswers(answers: unknown[] | undefined) {
+  if (!answers) return false;
+  const ids = answers.map((answer) => answer && typeof answer === 'object' &&
+    typeof (answer as { questionId?: unknown }).questionId === 'string'
+    ? (answer as { questionId: string }).questionId : null);
+  return (ids.length === 3 && ids[2] === 'pattern') ||
+    (ids.length === 4 && ids[2] === 'colour-family' && ids[3] === 'pattern');
+}
+
 /** Server-derived context only; browser commands cannot supply an eligibility list. */
 export function calibrationRequestContext(state: {
   calibrationPolicy?: string; calibrationSelection?: unknown; tasteAnswers?: unknown[];
@@ -11,7 +21,7 @@ export function calibrationRequestContext(state: {
   return {
     policy: enabled ? policy : undefined,
     needsEligibility: enabled && !state?.calibrationSelection &&
-      state?.tasteAnswers?.length === 3 && action?.type === 'price-level',
+      completeTasteAnswers(state?.tasteAnswers) && action?.type === 'price-level',
   };
 }
 

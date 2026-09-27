@@ -7,7 +7,7 @@ export function calculationWidth(record: Pick<FabricMasterRecord,'usable_width_m
   const width = record.full_width_mm;
   return width !== null && Number.isFinite(width) && width > 0 ? width : null;
 }
-type ReadinessRecord = Pick<
+export type ReadinessRecord = Pick<
   FabricMasterRecord,
   | 'fabric_id'
   | 'supplier_id'

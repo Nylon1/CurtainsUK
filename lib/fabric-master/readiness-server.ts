@@ -1,11 +1,10 @@
 import 'server-only';
 import { createSupplierServiceClient } from '../supabase/supplier-service';
 import type { PublicSupplierAvailability } from '../supplier-intelligence/types';
-import type { FabricMasterRecord } from './types';
-import { fabricReadiness } from './readiness';
+import { fabricReadiness, type ReadinessRecord } from './readiness';
 
 /** One bounded query per retail page. No supplier calls or prices in the public result. */
-export async function commercialReadiness(records: FabricMasterRecord[]) {
+export async function commercialReadiness(records: ReadinessRecord[]) {
   if(records.length>48) throw Error('RETAIL_PAGE_TOO_LARGE');
   if(!records.length) return new Map<string,ReturnType<typeof fabricReadiness>>();
   const {data,error}=await createSupplierServiceClient().rpc('fabric_commercial_evidence',{p_ids:records.map(r=>r.fabric_id)});

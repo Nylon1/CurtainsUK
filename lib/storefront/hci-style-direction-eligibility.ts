@@ -29,6 +29,11 @@ export type ApprovedImageRow = {
   fabric_media_assets: { shopify_cdn_url: string; width: number; height: number } | null;
 };
 
+export type RetailCommercialReadiness = Pick<
+  ReturnType<typeof fabricReadiness>,
+  'recommendationEligible' | 'orderReady'
+>;
+
 /**
  * Style cards use the existing retail projection. Select only identities that
  * already have its approved, exact-identity customer image requirement, so a
@@ -37,6 +42,7 @@ export type ApprovedImageRow = {
 export function retailStyleDirectionEligibility(
   records: readonly RetailDirectionCandidate[],
   mappings: readonly ApprovedImageRow[],
+  commercial: ReadonlyMap<string, RetailCommercialReadiness>,
 ) {
   const approved = new Set(
     mappings
@@ -54,7 +60,8 @@ export function retailStyleDirectionEligibility(
   return [...new Set(
     records
       .filter((record) =>
-        fabricReadiness(record).recommendationEligible &&
+        commercial.get(record.fabric_id)?.recommendationEligible === true &&
+        commercial.get(record.fabric_id)?.orderReady === true &&
         approved.has(JSON.stringify([record.fabric_id, record.supplier_id, record.supplier_sku])),
       )
       .map((record) => record.fabric_id),

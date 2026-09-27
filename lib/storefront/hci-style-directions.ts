@@ -1,12 +1,15 @@
 import {
   retailStyleDirectionEligibility,
   type ApprovedImageRow,
+  type RetailCommercialReadiness,
   type RetailDirectionCandidate,
 } from './hci-style-direction-eligibility';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 
-const candidateSelect = 'fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,staging_catalog_visible,imagery,supplier_brands!inner(display_name),fabric_designs!inner(display_name)';
+const candidateSelect = 'fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,staging_catalog_visible,imagery,usable_width_mm,full_width_mm,pattern_match_type,supplier_brands!inner(display_name),fabric_designs!inner(display_name)';
 const batchSize = 400;
+const commercialBatchSize = 48;
+const commercialConcurrency = 4;
 
 function exactIds(fabricIds: readonly string[]) {
   const ids = [...new Set(fabricIds)].sort();
@@ -26,14 +29,28 @@ function candidate(row: Record<string, unknown>): RetailDirectionCandidate {
     lifecycle_state: row.lifecycle_state as RetailDirectionCandidate['lifecycle_state'],
     staging_catalog_visible: row.staging_catalog_visible === true,
     imagery: Array.isArray(row.imagery) ? row.imagery.filter((image): image is string => typeof image === 'string') : [],
-    // These fields are irrelevant to recommendation eligibility. Keep them
-    // explicitly unknown here rather than hydrating supplier specifications.
-    usable_width_mm: null,
-    full_width_mm: null,
-    pattern_match_type: null,
+    usable_width_mm: typeof row.usable_width_mm === 'number' ? row.usable_width_mm : null,
+    full_width_mm: typeof row.full_width_mm === 'number' ? row.full_width_mm : null,
+    pattern_match_type: row.pattern_match_type as RetailDirectionCandidate['pattern_match_type'],
     brand_name: typeof brand?.display_name === 'string' ? brand.display_name : '',
     design_name: typeof design?.display_name === 'string' ? design.display_name : '',
   };
+}
+
+async function currentCommercialReadiness(records: readonly RetailDirectionCandidate[]) {
+  const { commercialReadiness } = await import('@/lib/fabric-master/readiness-server');
+  const result = new Map<string, RetailCommercialReadiness>();
+  const batches = Array.from(
+    { length: Math.ceil(records.length / commercialBatchSize) },
+    (_, index) => records.slice(index * commercialBatchSize, (index + 1) * commercialBatchSize),
+  );
+  for (let from = 0; from < batches.length; from += commercialConcurrency) {
+    const pages = await Promise.all(
+      batches.slice(from, from + commercialConcurrency).map((batch) => commercialReadiness([...batch])),
+    );
+    pages.forEach((page) => page.forEach((readiness, fabricId) => result.set(fabricId, readiness)));
+  }
+  return result;
 }
 
 /**
@@ -85,7 +102,9 @@ export async function currentRetailStyleDirectionEligibility(fabricIds?: readonl
         return (data ?? []) as unknown as ApprovedImageRow[];
       })),
     ]);
-    return retailStyleDirectionEligibility(recordPages.flat().map(candidate), mediaPages.flat());
+    const records = recordPages.flat().map(candidate);
+    const commercial = await currentCommercialReadiness(records);
+    return retailStyleDirectionEligibility(records, mediaPages.flat(), commercial);
   }
   const { listFabricMasterRecords } = await import('@/lib/fabric-master/repository');
   const records = await listFabricMasterRecords({ stagingCatalogOnly: true });
@@ -104,5 +123,6 @@ export async function currentRetailStyleDirectionEligibility(fabricIds?: readonl
     mappings.push(...page);
     if (page.length < pageSize) break;
   }
-  return retailStyleDirectionEligibility(records, mappings);
+  const commercial = await currentCommercialReadiness(records);
+  return retailStyleDirectionEligibility(records, mappings, commercial);
 }

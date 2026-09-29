@@ -1,0 +1,90 @@
+import { describe, expect, it } from 'vitest';
+import { createHash } from 'node:crypto';
+import { writeFileSync } from 'node:fs';
+import type { CanonicalFabric } from '../data/catalogue/types';
+import type { PilotBinding, InternalPilotCatalogueBundleV1 } from '../pilot/internal/bundle';
+import { selectCalibrationFabrics } from '../intelligence/calibration/fabric-selection';
+import { deriveProfile } from '../intelligence/profile/derive';
+import { calibrationAppearanceEvidence, premiumTasteSession } from '../server/curtainsuk-premium-taste';
+import { proposeInteriorBrief } from '../server/curtainsuk-interior-brief';
+
+// Deliberately separate every ordered six-event history even when its final
+// derived profile or brief happens to match another history.
+const vocabulary = ['LOVE', 'LIKE', 'NOT_SURE', 'DISLIKE'] as const;
+const fabrics: CanonicalFabric[] = [];
+const bindings: PilotBinding[] = [];
+for (const [territory, colour, pattern, texture] of [
+  ['quiet', 'cream', 'plain', 'smooth'],
+  ['warm', 'terracotta', 'plain', 'visible-weave'],
+  ['cool', 'blue', 'geometric', 'smooth'],
+  ['character', 'green', 'botanical', 'relief'],
+] as const) {
+  for (let i = 0; i < 8; i++) {
+    const id = `hardening-${territory}-${i}`;
+    fabrics.push({ id, sourceKey: id, displayName: id, unknownFields: [], visualKnowledge: {
+      palette: { primary: colour, temperature: colour === 'blue' ? 'cool' : 'warm', saturation: 'muted' },
+      pattern: { category: pattern, activity: pattern === 'plain' ? 'low' : 'balanced' },
+      texture: [texture], finish: i < 4 ? 'matte' : 'low', character: ['relaxed'], visualWeight: 'balanced',
+    } });
+    bindings.push({ canonicalId: id, curtainsUkFabricId: id, supplierId: 'hardening', brandId: 'hardening',
+      designId: id, supplier: 'hardening', brand: 'hardening', collection: 'hardening',
+      design: id, colourway: colour, sku: id, imageUrl: `https://cdn.shopify.com/${id}.jpg` });
+  }
+}
+const bundle = { catalogue: fabrics, bindings } as InternalPilotCatalogueBundleV1;
+const answers = [
+  { questionId: 'curtain-priority', answerId: 'appearance' },
+  { questionId: 'atmosphere', answerId: 'calm_and_restful' },
+  { questionId: 'pattern', answerId: 'plain' },
+];
+const selected = selectCalibrationFabrics({
+  profile: deriveProfile(premiumTasteSession(bundle, 'hardening', answers, [])),
+  room: { intent: 'advise-me', intentReference: 'synthetic', palette: [] },
+  catalogue: fabrics, bindings, eligibleFabricIds: bindings.map(b => b.curtainsUkFabricId),
+});
+for (const candidate of selected.candidates)
+  candidate.reactionEvidence = calibrationAppearanceEvidence(fabrics.find(f => f.id === candidate.canonicalId)!);
+
+const sha = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+
+describe('release-hardening exhaustive calibration history', () => {
+  it('replays all 4,096 ordered histories, each with six correctly ordered persisted-model events and a final output', () => {
+    expect(selected.candidates).toHaveLength(6);
+    const historyKeys = new Set<string>();
+    const profileDigests = new Set<string>();
+    const briefDigests = new Set<string>();
+    const firstFour = new Set<string>();
+    const positionPairCoverage = new Set<string>();
+    for (let encoded = 0; encoded < 4096; encoded++) {
+      let value = encoded;
+      const sequence = Array.from({ length: 6 }, () => { const reaction = vocabulary[value % 4]!; value = Math.floor(value / 4); return reaction; });
+      const historyKey = sequence.join('|');
+      expect(historyKeys.has(historyKey)).toBe(false);
+      historyKeys.add(historyKey);
+      const reactions = selected.candidates.map((candidate, index) => ({ fabricMasterId: candidate.fabricMasterId, reaction: sequence[index]! }));
+      const session = premiumTasteSession(bundle, `hardening-${encoded}`, answers, reactions, selected);
+      expect(session.calibration).toHaveLength(6);
+      expect(session.calibration.map(event => event.reaction)).toEqual(sequence);
+      expect(session.calibration.map(event => event.stimulusId)).toEqual(selected.candidates.map(candidate => candidate.canonicalId));
+      expect(session.calibration.every((event, index) => index === 0 || event.order >= session.calibration[index - 1]!.order)).toBe(true);
+      const profile = deriveProfile(session);
+      const brief = proposeInteriorBrief(profile, bundle, selected);
+      profileDigests.add(sha(profile.taste));
+      briefDigests.add(sha(brief.proposal));
+      firstFour.add(sequence[0]!);
+      for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++)
+        positionPairCoverage.add(`${i}:${j}:${sequence[i]}:${sequence[j]}`);
+    }
+    expect(historyKeys.size).toBe(4096);
+    expect(firstFour.size).toBe(4);
+    expect(positionPairCoverage.size).toBe(240);
+    const report = { checkedAt: new Date().toISOString(), verdict: 'PASS',
+      histories: historyKeys.size, sixEventsPerHistory: true, orderedEventMatching: true,
+      positionReactionPairs: positionPairCoverage.size, distinctFinalProfileDigests: profileDigests.size,
+      distinctFinalBriefDigests: briefDigests.size,
+      note: 'Profile collisions never collapse distinct ordered event histories; gateway revision persistence is verified separately on live synthetic sessions.' };
+    const resultPath = process.env.CUK_RELEASE_MATRIX_EXHAUSTIVE_RESULT;
+    if (!resultPath) throw Error('Missing exhaustive replay result path');
+    writeFileSync(resultPath, JSON.stringify(report, null, 2));
+  }, 120_000);
+});

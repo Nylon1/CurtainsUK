@@ -45,7 +45,16 @@ export function premiumHciCommand(value: unknown): PremiumHciCommand {
   if (!uuid.test(requestId) || !uuid.test(sessionId) || (body.revision !== null && (!Number.isSafeInteger(body.revision) || Number(body.revision) < 0))) throw Error('HCI_CONTRACT_INVALID');
   if (body.action == null) return { requestId, sessionId, revision: body.revision == null ? null : Number(body.revision) };
   const action = object(body.action); const type = string(action.type, 30);
-  if (type === 'answer') { fields(action, ['type', 'answerId']); action.answerId = string(action.answerId); }
+  if (type === 'answer') {
+    fields(action, action.questionId === undefined ? ['type', 'answerId'] : ['type', 'answerId', 'questionId']);
+    action.answerId = string(action.answerId);
+    if (action.questionId !== undefined) {
+      const questionId = string(action.questionId, 40);
+      if (!['curtain-priority', 'atmosphere', 'colour-family', 'pattern'].includes(questionId))
+        throw Error('HCI_CONTRACT_INVALID');
+      action.questionId = questionId;
+    }
+  }
   else if (type === 'price-level') { fields(action, ['type', 'level']); if (!priceLevels.includes(string(action.level, 30))) throw Error('HCI_CONTRACT_INVALID'); }
   else if (type === 'calibrate') { fields(action, ['type', 'reaction']); if (!reactions.includes(string(action.reaction, 30))) throw Error('HCI_CONTRACT_INVALID'); }
   else if (type === 'recommend' || type === 'finish') fields(action, ['type']);

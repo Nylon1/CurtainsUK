@@ -115,6 +115,15 @@ test('later directions have separate bounded prepare and hydrate commands', () =
       assert.throws(() => premiumHciCommand({ requestId: sessionId, sessionId, revision: 3, action: { type, index } }));
 });
 
+test('direction preparation persists the cumulative HCI state and keeps later cards in the bounded private store', () => {
+  const source = readFileSync('lib/storefront/hci-premium-integration.ts', 'utf8');
+  assert.match(source, /const hciStateCompressed = compressPrivateJson\(result\.state\);/);
+  assert.doesNotMatch(source, /directionPrepare && typeof prior\?\.private_state\?\.hciStateCompressed/);
+  assert.match(source, /const deliveryState = preparedDirectionStore\(view\);/);
+  assert.match(source, /const storedView = compactDeliveryPresentation\(view\);/);
+  assert.match(source, /Buffer\.byteLength\(compressed\) > 1_500_000/);
+});
+
 test('price level is retained as a bounded preference in the customer view, without an amount', () => {
   const view = customerView({
     version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE, sessionId,

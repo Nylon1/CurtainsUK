@@ -17,7 +17,7 @@ export async function currentRetailPriceLevelEligibility(level: GuidePriceLevel)
     p_guide_min: definition.minimumMinor,
     p_guide_max: definition.maximumMinor,
   };
-  const { data, error } = await database.rpc('retail_guide_price_level_fabric_ids_json', parameters);
+  const { data, error } = await database.rpc('fi_retail_guide_price_level_fabric_ids_v1', parameters);
   if (error) throw Error('RETAIL_GUIDE_PRICE_PROJECTION_UNAVAILABLE');
   return parseRetailGuideProjection(data);
 }

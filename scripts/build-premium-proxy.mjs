@@ -26,3 +26,4 @@ await build({
   }],
 });
 await copyFile('public/reference-experience/living-room.jpg', resolve(destination, 'living-room.jpg'));
+await import('./build-naila.mjs');

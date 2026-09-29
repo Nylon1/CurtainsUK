@@ -7,6 +7,8 @@ import { premiumHciCommand, premiumHciEnabled, premiumHciIntegration } from './h
 import { consumeEndpointRateLimit } from './security/endpoint-rate-limit';
 import { PRIVATE_NO_STORE_HEADERS } from './security/http';
 import { trustFooterHtml } from './customer-trust/generated';
+import { attachNailaMemory, nailaEnabled } from './naila/server';
+import { assertNailaRehearsalOwner } from './naila/rehearsal-access';
 
 const assetDirectory = resolve('lib/storefront/hci/premium');
 const secret = () => process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET ?? '';
@@ -33,13 +35,17 @@ export function premiumProxySession() {
   return { capability: issueCustomerSession(secret()).token };
 }
 
-export async function premiumProxyCommand(input: { capability?: string; command?: unknown }) {
+export async function premiumProxyCommand(input: { capability?: string; command?: unknown; presentation?: string }) {
   if (!premiumHciEnabled()) throw Error('HCI_DISABLED');
+  if (input.presentation !== undefined && (input.presentation !== 'naila-v1' || !nailaEnabled())) throw Error('HCI_DISABLED');
   const owner = verifyCustomerSession(input.capability, secret());
   if (!owner) throw Error('HCI_SESSION_REQUIRED');
   const command = premiumHciCommand(input.command);
+  if (input.presentation === 'naila-v1') assertNailaRehearsalOwner(owner, command.sessionId);
   await consumeEndpointRateLimit(createHash('sha256').update(`cuk-premium-proxy-owner:${owner}`).digest('hex'), { limit: 60, windowSeconds: 60 });
   // The guarded RPC store rejects a different owner when resuming a session.
   void command;
-  return premiumHciIntegration(owner, input.command);
+  const result = await premiumHciIntegration(owner, input.command,
+    input.presentation === 'naila-v1' ? { nailaPreparedPrice: true } : undefined);
+  return input.presentation === 'naila-v1' ? attachNailaMemory(owner, result) : result;
 }

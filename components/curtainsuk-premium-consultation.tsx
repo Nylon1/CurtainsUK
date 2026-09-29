@@ -84,13 +84,16 @@ export default function CurtainsUkPremiumConsultation() {
       revision: latestView.current?.revision ?? null,
       ...(action ? { action } : {}),
     };
+    const answerAction = (payload.action as { type?: unknown } | undefined)?.type === 'answer';
     if (!background && !directionHydrate) pending.current = payload;
     if (!background) { setBusy(true); setNotice(''); }
+    let resumeAfterAnswerConflict = false;
     try {
       const endpoint = premiumProxyEnabled() ? premiumProxyPath('premium-command') : '/api/curtain-consultation-premium';
       const body = premiumProxyEnabled() ? { capability: await premiumProxyCapability(), command: payload } : payload;
       const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const data = await response.json();
+      if (response.status === 409 && answerAction) resumeAfterAnswerConflict = true;
       if (!response.ok) throw Error(data.error || 'Your consultation is temporarily unavailable.');
       data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, !directionRead && (Boolean(payload.action) || !payload.sessionId));
       if (directionLoad) {
@@ -130,11 +133,18 @@ export default function CurtainsUkPremiumConsultation() {
     } catch (error) {
       // Palette failures belong to ReferencePalette and its exact saved-request retry.
       // A failed colour save does not declare the whole consultation unavailable.
-      if (!paletteRequest && !background) setNotice(error instanceof Error ? error.message : 'Your consultation is temporarily unavailable.');
+      if (!paletteRequest && !background && !resumeAfterAnswerConflict)
+        setNotice(error instanceof Error ? error.message : 'Your consultation is temporarily unavailable.');
       return null;
     } finally {
       if (background) directionPrepareLock.current = false;
       else { requestLock.current = false; setBusy(false); }
+      if (resumeAfterAnswerConflict) {
+        // The answer was not committed. Refresh the saved question with a new
+        // read-only request, never retry the stale colour click as a pattern.
+        pending.current = null;
+        queueMicrotask(() => void send());
+      }
     }
   };
   useEffect(() => {
@@ -243,7 +253,7 @@ export default function CurtainsUkPremiumConsultation() {
       onChange={() => { /* The session response is the source of truth. */ }}
     />}
     {showPalette && roomPalette?.confirmedPalette && <button className={styles.primary} onClick={() => setReviewPalette(false)}>Continue with my Room Palette →</button>}
-    {!showUpload && !showPalette && view.phase === 'discovery' && view.question && <section id="premium-current-step" className={`${styles.question} ${styles.taste}`} aria-labelledby="taste-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Your taste</p>{view.tasteProgress && <span>Question {view.tasteProgress.current} of {view.tasteProgress.total}</span>}</div>{view.tasteProgress && <progress className={styles.stepProgress} max={view.tasteProgress.total} value={view.tasteProgress.current} aria-label="Your taste progress" />}<h1 id="taste-heading">{view.question.prompt}</h1><p>Choose what feels most like you. We’ll use your answer to shape the fabrics you see.</p><div className={styles.tasteChoices}>{view.question.answers.map((answer, index) => <button key={answer.id} className={styles.tasteChoice} disabled={busy} onClick={() => void send({ type: 'answer', answerId: answer.id })}><span className={styles.choiceNumber}>{String(index + 1).padStart(2, '0')}</span><span>{answer.label}</span><span aria-hidden="true">→</span></button>)}</div>{entry === 'guided' && !roomPalette && <button className={styles.textButton} onClick={() => setEntry('match')}>Have something you’d like us to match with? Add a reference image</button>}</section>}
+    {!showUpload && !showPalette && view.phase === 'discovery' && view.question && <section id="premium-current-step" className={`${styles.question} ${styles.taste}`} aria-labelledby="taste-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Your taste</p>{view.tasteProgress && <span>Question {view.tasteProgress.current} of {view.tasteProgress.total}</span>}</div>{view.tasteProgress && <progress className={styles.stepProgress} max={view.tasteProgress.total} value={view.tasteProgress.current} aria-label="Your taste progress" />}<h1 id="taste-heading">{view.question.prompt}</h1><p>Choose what feels most like you. We’ll use your answer to shape the fabrics you see.</p><div className={styles.tasteChoices}>{view.question.answers.map((answer, index) => <button key={answer.id} className={styles.tasteChoice} disabled={busy} onClick={() => void send({ type: 'answer', questionId: view.question!.id, answerId: answer.id })}><span className={styles.choiceNumber}>{String(index + 1).padStart(2, '0')}</span><span>{answer.label}</span><span aria-hidden="true">→</span></button>)}</div>{entry === 'guided' && !roomPalette && <button className={styles.textButton} onClick={() => setEntry('match')}>Have something you’d like us to match with? Add a reference image</button>}</section>}
     {!showUpload && !showPalette && view.phase === 'price' && <section id="premium-current-step" className={`${styles.question} ${styles.taste}`} aria-labelledby="price-heading"><div className={styles.stepLine}><p className={styles.eyebrow}>Price level</p><span>One guide for your edit</span></div><h1 id="price-heading">Where would you like us to <em>begin?</em></h1><p>We’ll use the Curtains from guide to focus the real fabrics we show. Final made-to-measure pricing still depends on your measurements and options.</p><div className={styles.tasteChoices}>{[
       ['MID_RANGE', 'Mid Range', 'Curtains from under £50'], ['LUXURY', 'Luxury', 'Curtains from £50–£149.99'], ['PREMIUM_LUXURY', 'Premium Luxury', 'Curtains from £150–£249.99'], ['SUPER_LUXURY', 'Super Luxury', 'Curtains from £250+'],
     ].map(([level, title, detail], index) => <button key={level} className={styles.tasteChoice} disabled={busy} onClick={() => void send({ type: 'price-level', level })}><span className={styles.choiceNumber}>{String(index + 1).padStart(2, '0')}</span><span><strong>{title}</strong><small>{detail}</small></span><span aria-hidden="true">→</span></button>)}</div></section>}

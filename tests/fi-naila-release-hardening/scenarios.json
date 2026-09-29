@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "customerRequestLimitMs": 20000,
+  "calibration": { "reactions": ["LOVE", "LIKE", "NOT_SURE", "DISLIKE"], "events": 6, "orderedHistories": 4096, "livePairwiseCases": 28, "positionReactionPairs": 240 },
+  "priceBands": ["MID_RANGE", "LUXURY", "PREMIUM_LUXURY", "SUPER_LUXURY"],
+  "questions": {
+    "fabricIntelligence": ["curtain-priority", "atmosphere", "pattern"],
+    "naila": ["curtain-priority", "atmosphere", "colour-family", "pattern"]
+  },
+  "requiredInvariants": [
+    "FI does not ask Naila's additional colour question and retains the confirmed complete Room Palette",
+    "Naila keeps its governed colour question; both journeys retain their question order",
+    "Each accepted mutation advances the saved revision exactly once; an exact retry returns the committed revision",
+    "Each ordered six-reaction sequence is a separate case regardless of its final profile or brief",
+    "For each live calibration case, six private saved versions contain the exact ordered reaction and Fabric Master ID prefixes",
+    "All four price bands preserve the selected level through brief and directions",
+    "Direction 1 and Direction 2 preserve ordered Fabric Master IDs through prepare, hydrate and resume",
+    "Love, More Like This, Not Quite and Not For Me feedback each permit refinement on both directions when offered",
+    "A customer-visible feedback menu has at most 12 options in unchanged HCI order",
+    "Sample and Make Curtains intents use existing cards from both directions without submitting a cart or order",
+    "Stale new requests are rejected without changing saved progress; exact-request retries are idempotent",
+    "Naila Browse reports prepared_hci; ordinary Browse and Samples remain reachable",
+    "Unexpected 4xx or 5xx responses, requests over 20 seconds, missing required scenarios or skipped owner resume fail the full release run"
+  ],
+  "automatedScenarios": [
+    { "id": "gateway-focused-regressions", "runner": "run-focused-gateway.mjs", "covers": ["13+ valid upstream feedback to first 12", "malformed feedback fail-closed", "Direction 2 cumulative HCI state persistence"] },
+    { "id": "fi-image-palette", "runner": "live-matrix.mjs", "covers": ["room image", "palette edits and confirmation", "roles", "FI questions", "resume"] },
+    { "id": "fi-no-image", "runner": "live-matrix.mjs", "covers": ["no-image route", "FI questions", "all price bands"] },
+    { "id": "calibration-live-pairwise", "runner": "live-matrix.mjs", "covers": ["28 distinct ordered sequences", "240 position/reaction pairs", "six gateway revisions"] },
+    { "id": "calibration-saved-history", "runner": "audit-persisted-history.mjs", "covers": ["168 read-only private saved versions", "exact reaction and Fabric Master ID prefixes"] },
+    { "id": "calibration-local-exhaustive", "runner": "run-hci-exhaustive.mjs", "covers": ["4096 distinct ordered histories replayed through HCI", "240 position/reaction pairs"] },
+    { "id": "directions-feedback-commerce", "runner": "live-matrix.mjs", "covers": ["two directions", "four feedback actions on both", "refinement", "Sample and Make Curtains intents"] },
+    { "id": "naila-fresh-and-owner", "runner": "live-matrix.mjs", "covers": ["four questions", "owner resume", "prepared_hci Browse"] },
+    { "id": "naila-full", "runner": "naila-full.mjs", "covers": ["six calibration reactions", "two directions", "Direction 2 feedback", "final resume"] },
+    { "id": "palette-influence", "runner": "palette-influence.mjs", "covers": ["important", "consider", "ignore", "confirmed palette through price"] },
+    { "id": "retries-and-access", "runner": "edge-cases.mjs", "covers": ["exact retry", "stale revision", "abandon and resume", "invalid capability", "ordinary Browse and Samples"] }
+  ],
+  "observationOnlyScenarios": [
+    "prepared Browse dirty and governed-fallback states",
+    "natural supplier-stock dirty trigger and worker refresh while a consultation is active",
+    "active supplier-batch deferral",
+    "historical stock-expiry boundary crossing"
+  ]
+}

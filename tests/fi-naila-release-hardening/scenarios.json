@@ -23,6 +23,7 @@
     "Unexpected 4xx or 5xx responses, requests over 20 seconds, missing required scenarios or skipped owner resume fail the full release run"
   ],
   "automatedScenarios": [
+    { "id": "gateway-focused-regressions", "runner": "run-focused-gateway.mjs", "covers": ["13+ valid upstream feedback to first 12", "malformed feedback fail-closed", "Direction 2 cumulative HCI state persistence"] },
     { "id": "fi-image-palette", "runner": "live-matrix.mjs", "covers": ["room image", "palette edits and confirmation", "roles", "FI questions", "resume"] },
     { "id": "fi-no-image", "runner": "live-matrix.mjs", "covers": ["no-image route", "FI questions", "all price bands"] },
     { "id": "calibration-live-pairwise", "runner": "live-matrix.mjs", "covers": ["28 distinct ordered sequences", "240 position/reaction pairs", "six gateway revisions"] },

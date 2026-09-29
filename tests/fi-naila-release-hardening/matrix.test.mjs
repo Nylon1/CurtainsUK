@@ -22,7 +22,7 @@ test('scenario definitions and ordered reaction space remain complete', () => {
   for (const sequence of pairwise) for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++)
     pairs.add(`${i}:${j}:${sequence[i]}:${sequence[j]}`);
   assert.equal(pairs.size, 240);
-  assert.equal(definitions.automatedScenarios.length, 10);
+  assert.equal(definitions.automatedScenarios.length, 11);
   assert.equal(definitions.observationOnlyScenarios.length, 4);
 });
 

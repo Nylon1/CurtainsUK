@@ -66,7 +66,7 @@ describe('release-hardening exhaustive calibration history', () => {
       expect(session.calibration).toHaveLength(6);
       expect(session.calibration.map(event => event.reaction)).toEqual(sequence);
       expect(session.calibration.map(event => event.stimulusId)).toEqual(selected.candidates.map(candidate => candidate.canonicalId));
-      expect(session.calibration.every((event, index) => index === 0 || event.order >= session.calibration[index - 1]!.order)).toBe(true);
+      expect(session.calibration.map(event => event.order)).toEqual([6, 7, 8, 9, 10, 11]);
       const profile = deriveProfile(session);
       const brief = proposeInteriorBrief(profile, bundle, selected);
       profileDigests.add(sha(profile.taste));

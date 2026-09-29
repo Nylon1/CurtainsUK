@@ -11,7 +11,7 @@ if (process.env.CUK_RELEASE_MATRIX_ALLOW_WRITES !== '1' ||
     !(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY)) {
   throw Error('Explicit synthetic-session and read-only audit opt-ins/credentials are required');
 }
-for (const script of ['matrix.test.mjs', 'run-hci-exhaustive.mjs', 'live-matrix.mjs', 'edge-cases.mjs',
+for (const script of ['matrix.test.mjs', 'run-focused-gateway.mjs', 'run-hci-exhaustive.mjs', 'live-matrix.mjs', 'edge-cases.mjs',
   'palette-influence.mjs', 'naila-full.mjs', 'audit-persisted-history.mjs',
   'validate-results.mjs']) {
   const args = script.endsWith('.test.mjs') ? ['--test', script] : [script];

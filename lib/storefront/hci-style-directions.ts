@@ -10,6 +10,7 @@ const candidateSelect = 'fabric_id,supplier_id,supplier_sku,colour_name,lifecycl
 const batchSize = 400;
 const commercialBatchSize = 48;
 const commercialConcurrency = 4;
+type CommercialReader = (records: readonly RetailDirectionCandidate[]) => Promise<ReadonlyMap<string, RetailCommercialReadiness>>;
 
 function exactIds(fabricIds: readonly string[]) {
   const ids = [...new Set(fabricIds)].sort();
@@ -80,7 +81,9 @@ export function styleDirectionRequestContext(
   };
 }
 
-export async function currentRetailStyleDirectionEligibility(fabricIds?: readonly string[]) {
+export async function currentRetailStyleDirectionEligibility(
+  fabricIds?: readonly string[], commercialReader: CommercialReader = currentCommercialReadiness,
+) {
   const database = createSupplierServiceClient();
   if (fabricIds) {
     // The selected price tier is a strict commercial boundary. This is exactly
@@ -108,7 +111,7 @@ export async function currentRetailStyleDirectionEligibility(fabricIds?: readonl
       })),
     ]);
     const records = recordPages.flat().map(candidate);
-    const commercial = await currentCommercialReadiness(records);
+    const commercial = await commercialReader(records);
     return retailStyleDirectionEligibility(records, mediaPages.flat(), commercial);
   }
   const { listFabricMasterRecords } = await import('@/lib/fabric-master/repository');
@@ -128,6 +131,6 @@ export async function currentRetailStyleDirectionEligibility(fabricIds?: readonl
     mappings.push(...page);
     if (page.length < pageSize) break;
   }
-  const commercial = await currentCommercialReadiness(records);
+  const commercial = await commercialReader(records);
   return retailStyleDirectionEligibility(records, mappings, commercial);
 }

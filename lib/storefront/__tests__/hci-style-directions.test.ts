@@ -55,6 +55,42 @@ test('rejects malformed style-direction feedback metadata', () => {
   assert.throws(() => customerView(base));
 });
 
+test('trusted HCI feedback validates the full bounded menu and presents its first twelve in order', () => {
+  const options = Array.from({ length: 13 }, (_, index) => ({
+    id: `change:option-${index}`, label: `Option ${index}`, group: 'Colour', dimension: 'colour',
+  }));
+  const cards = ['fabric-1', 'fabric-2'].map((fabricMasterId, index) => ({
+    fabricMasterId, supplierSku: `SKU/${index}`, reactionId: `reaction-${index}`,
+    explanation: ['Governed reason.'],
+    feedback: { keep: [], change: index === 0 ? options : [] },
+  }));
+  const raw = {
+    version: HCI_PREMIUM_CONTRACT, sourceCommit: HCI_PREMIUM_BASELINE,
+    sessionId: '12345678-1234-4123-8123-123456789abc', phase: 'directions',
+    profileSummary: '', question: null, stimulusId: null, tasteProgress: null,
+    calibrationFabric: null, calibrationProgress: null, interiorBrief: null, palette: null,
+    directions: ['overall', 'tonal'].map((id) => ({
+      id, label: id, purpose: 'Governed direction.', status: 'available', cards,
+      feedback: { keep: [], change: [] },
+    })), learning: null, refinementDigest: null,
+  };
+  assert.throws(() => customerView(raw), /HCI_CONTRACT_INVALID/, 'saved or untrusted views remain capped');
+  const projected = customerView(raw, { trustedHciFeedback: true });
+  assert.deepEqual(projected.directions.map((direction) => direction.id), ['overall', 'tonal']);
+  assert.deepEqual(projected.directions[0]?.cards.map((card) => card.fabricMasterId), ['fabric-1', 'fabric-2']);
+  assert.deepEqual(projected.directions[0]?.cards[0]?.feedback?.change, options.slice(0, 12));
+  assert.deepEqual(customerView(projected).directions, projected.directions, 'persisted resume retains the bounded view');
+  const invalid = structuredClone(raw);
+  invalid.directions[0]!.cards[0]!.feedback.change[12]!.id = 'bad id';
+  assert.throws(() => customerView(invalid, { trustedHciFeedback: true }), /HCI_CONTRACT_INVALID/,
+    'an invalid option beyond the visible twelve must still fail closed');
+  const oversized = structuredClone(raw);
+  oversized.directions[0]!.cards[0]!.feedback.change = Array.from({ length: 65 }, (_, index) => ({
+    id: `change:${index}`, label: 'Option', group: 'Colour', dimension: 'colour',
+  }));
+  assert.throws(() => customerView(oversized, { trustedHciFeedback: true }), /HCI_CONTRACT_INVALID/);
+});
+
 const record = (overrides: Record<string, unknown> = {}) => ({
   fabric_id: 'pt-1223-374', supplier_id: 'prestigious-textiles', supplier_sku: '1223/374',
   brand_name: 'Prestigious Textiles', design_name: 'Dunbar', colour_name: 'Moss',

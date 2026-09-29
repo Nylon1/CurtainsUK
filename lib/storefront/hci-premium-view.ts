@@ -15,24 +15,28 @@ function fields(value: Record<string, unknown>, allowed: readonly string[]) {
 }
 type FeedbackOption = { id: string; label: string; group: string; dimension: string };
 type FeedbackMenu = { keep: FeedbackOption[]; change: FeedbackOption[] };
-function feedbackMenu(value: unknown): FeedbackMenu {
+const customerFeedbackLimit = 12;
+const trustedHciFeedbackLimit = 64;
+function feedbackMenu(value: unknown, incomingLimit: number): FeedbackMenu {
   const menu = object(value); fields(menu, ['keep', 'change']);
   const options = (items: unknown) => {
-    if (!Array.isArray(items) || items.length > 12) throw Error('HCI_CONTRACT_INVALID');
+    if (!Array.isArray(items) || items.length > incomingLimit) throw Error('HCI_CONTRACT_INVALID');
     const ids = new Set<string>();
-    return items.map((raw) => {
+    const validated = items.map((raw) => {
       const item = object(raw); fields(item, ['id', 'label', 'group', 'dimension']);
       const id = string(item.id, 160);
       if (!/^[a-zA-Z0-9:_-]{1,160}$/.test(id) || ids.has(id)) throw Error('HCI_CONTRACT_INVALID');
       ids.add(id);
       return { id, label: string(item.label, 160), group: string(item.group, 100), dimension: string(item.dimension, 100) };
     });
+    return validated.slice(0, customerFeedbackLimit);
   };
   return { keep: options(menu.keep), change: options(menu.change) };
 }
 
-export function customerView(value: unknown) {
+export function customerView(value: unknown, options: { trustedHciFeedback?: boolean } = {}) {
   const view = object(value);
+  const feedbackLimit = options.trustedHciFeedback ? trustedHciFeedbackLimit : customerFeedbackLimit;
   if (view.version !== HCI_PREMIUM_CONTRACT || view.sourceCommit !== HCI_PREMIUM_BASELINE || !uuid.test(string(view.sessionId, 36)) ||
     !['discovery', 'price', 'calibration', 'brief', 'complete', 'directions', 'final'].includes(string(view.phase, 30)) || !Array.isArray(view.directions) || view.directions.length > 5)
     throw Error('HCI_CONTRACT_INVALID');
@@ -113,10 +117,10 @@ export function customerView(value: unknown) {
           supplierSku: string(card.supplierSku, 150),
           reactionId: string(card.reactionId, 160),
           explanation: card.explanation.map((line) => string(line, 1200)),
-          ...(hasFeedback ? { feedback: feedbackMenu(card.feedback) } : {}),
+          ...(hasFeedback ? { feedback: feedbackMenu(card.feedback, feedbackLimit) } : {}),
         };
       }),
-      feedback: feedbackMenu(direction.feedback),
+      feedback: feedbackMenu(direction.feedback, feedbackLimit),
     };
   });
   return {

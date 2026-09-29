@@ -23,7 +23,11 @@ import {
 import { parseProxyReviewRequest } from "@/lib/storefront/security/shopify-proxy-review-controller";
 import { endpointRateLimitResponse } from "@/lib/storefront/security/endpoint-rate-limit";
 import { getCustomerReviewAcceptance } from "@/lib/storefront/review-acceptance-server";
-import { retailFabricDetail, searchRetailFabrics } from "@/lib/fabric-master/retail-repository";
+import { retailFabricDetail, searchRetailFabrics, searchNailaRetailFabrics } from "@/lib/fabric-master/retail-repository";
+import { nailaEnabled } from '@/lib/storefront/naila/server';
+import { assertNailaRehearsalRequest } from '@/lib/storefront/naila/rehearsal-access';
+import { serveNailaCatalog } from '@/lib/storefront/naila/catalog-route';
+import { NAILA_PREPARED_UNAVAILABLE, NAILA_PREPARED_MESSAGE } from '@/lib/fabric-master/naila-prepared-browse';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -39,6 +43,7 @@ function errorResponse(error: unknown, fallback: string) {
   if (process.env.VERCEL_ENV === "preview" || /^(HCI_|DIRECTION_)/.test(diagnosticCode)) {
     console.error("CURTAINSUK_STAGING_REQUEST_FAILED", /^[A-Z][A-Z0-9_]{2,100}$/.test(diagnosticCode) ? diagnosticCode : "UNCLASSIFIED_FAILURE");
   }
+  if (code === NAILA_PREPARED_UNAVAILABLE) return NextResponse.json({ error: NAILA_PREPARED_MESSAGE, code }, { status: 503, headers: PUBLIC_NO_STORE_HEADERS });
   const replayStatus = code === "SHOPIFY_PROXY_REPLAY_DETECTED" ? 409 : null;
   const replayUnavailable = code === "SHOPIFY_PROXY_REPLAY_UNAVAILABLE";
   const hciStatus = code==='HCI_SESSION_REQUIRED'?401:code==='HCI_SESSION_CONFLICT'?409:code==='HCI_ORIGIN_DENIED'?403:code==='HCI_DISABLED'?404:null;
@@ -98,13 +103,20 @@ export async function GET(request: Request, context: { params: Promise<{ operati
     }
     if(selected==='image-privacy')return proxyConsultationAsset('privacy.html');
     if(selected==='consultation-asset')return proxyConsultationAsset(new URL(request.url).searchParams.get('name')??'');
+    if (selected === 'naila-catalog') {
+      assertNailaRehearsalRequest(request);
+      return NextResponse.json(await serveNailaCatalog(new URL(request.url).searchParams, nailaEnabled(), searchNailaRetailFabrics), { headers: PUBLIC_NO_STORE_HEADERS });
+    }
     if (selected !== "catalog") throw new Error("SHOPIFY_PROXY_METHOD_DENIED");
     const params = new URL(request.url).searchParams;
+    if (params.get('naila') === '1') assertNailaRehearsalRequest(request);
     if (params.get("view") === "retail") {
       if (params.has("fabric")) {
         const fabric = await retailFabricDetail(params.get("fabric") ?? "", params.get('browseGuide') === '1');
         return NextResponse.json({ fabric }, { status: fabric ? 200 : 404, headers: PUBLIC_NO_STORE_HEADERS });
       }
+      const naila = params.get('naila') === '1';
+      if (naila) return NextResponse.json(await serveNailaCatalog(params, nailaEnabled(), searchNailaRetailFabrics), { headers: PUBLIC_NO_STORE_HEADERS });
       return NextResponse.json(await searchRetailFabrics(params), { headers: PUBLIC_NO_STORE_HEADERS });
     }
     return NextResponse.json(await buildDatabaseShopifyCatalogPayload(params.get("fabric") ?? undefined), { headers: PUBLIC_NO_STORE_HEADERS });

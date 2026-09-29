@@ -11,6 +11,10 @@ import { signHciCommerceContext } from './hci-commerce-context';
 import { currentCalibrationFabric, currentRetailCalibrationEligibility, calibrationRequestContext } from './hci-calibration';
 import { currentRetailStyleDirectionEligibility, styleDirectionRequestContext } from './hci-style-directions';
 import { currentRetailPriceLevelEligibility } from './hci-price-level';
+import { priceLevelEligibilityReader, readNailaPreparedPriceLevelIds } from './naila/prepared-price-level';
+import { readNailaPreparedCommercialReadiness } from './naila/prepared-commercial-readiness';
+import { fiCommercialReadiness } from './hci-fi-commercial-evidence';
+import { assertPremiumJourney, assertRecoverableFiView, needsDiscoveryReprojection, requestedPremiumJourney, staleColourAnswer, type PremiumJourney } from './hci-premium-journey';
 import { requiresRetailGuideProjection } from './hci-price-level-pagination';
 import type { GuidePriceLevel } from '@/lib/fabric-master/guide-price-level';
 import { acceptedHciFeedback } from './hci-feedback';
@@ -197,8 +201,36 @@ async function handoff<T extends CustomerPresentation>(view: T): Promise<T> {
   } as T;
 }
 
+function premiumServiceConnection() {
+  const endpoint = new URL(process.env.CURTAINSUK_HCI_PREMIUM_SERVICE_URL ?? 'https://invalid.invalid');
+  const secret = process.env.CURTAINSUK_HCI_SERVICE_TOKEN ?? '';
+  if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.hostname === 'invalid.invalid' || secret.length < 32)
+    throw Error('HCI_CONFIGURATION_INVALID');
+  return { endpoint, secret };
+}
+
+/** An old FI discovery view is reprojected from committed evidence on resume. */
+async function reprojectDiscovery(owner: string, command: ReturnType<typeof premiumHciCommand>,
+  state: Record<string, unknown>, revision: number, journey: PremiumJourney) {
+  const { endpoint, secret } = premiumServiceConnection();
+  const ownerHash = createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex');
+  const response = await fetch(endpoint, {
+    method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}`,
+      'x-vercel-protection-bypass': process.env.CURTAINSUK_HCI_PLATFORM_TOKEN ?? '' },
+    body: JSON.stringify({ sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId,
+      owner: ownerHash, state, journey, recordedAt: new Date().toISOString() }),
+  });
+  if (!response.ok) throw Error('HCI_SERVICE_UNAVAILABLE');
+  const result = await response.json();
+  const view = customerView(result?.view, { trustedHciFeedback: true });
+  if (view.sessionId !== command.sessionId || result?.state?.consultation?.owner !== ownerHash ||
+      result?.state?.journey !== journey) throw Error('HCI_CONTRACT_STATE');
+  return handoff({ ...view, revision });
+}
+
 /** Durable user state stays in CurtainsUK's existing guarded RPC store. HCI receives a hashed owner only. */
-export async function premiumHciIntegration(owner: string, value: unknown) {
+export async function premiumHciIntegration(owner: string, value: unknown, options: { nailaPreparedPrice?: boolean } = {}) {
   const commandStartedAt = performance.now();
   if (!premiumHciEnabled()) throw Error('HCI_DISABLED');
   const command = premiumHciCommand(value);
@@ -216,14 +248,27 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   const persistenceReadMs = performance.now() - readStartedAt;
   if (readError) throw Error('HCI_STORAGE_UNAVAILABLE');
   const priorHciState = privateHciState(prior?.private_state);
+  const journey = requestedPremiumJourney(options.nailaPreparedPrice === true);
+  assertPremiumJourney(priorHciState, journey);
+  assertRecoverableFiView(priorHciState, prior?.presentation ?? null, journey);
   if (!prior && command.sessionId !== command.requestId) throw Error('HCI_SESSION_CONFLICT');
   if (prior?.request_id === command.requestId) {
     if (prior.request_digest !== digest) throw Error('HCI_SESSION_CONFLICT');
+    if (priorHciState && needsDiscoveryReprojection(priorHciState, prior.presentation, journey))
+      return reprojectDiscovery(owner, command, priorHciState, prior.revision, journey);
     const persisted = customerView(prior.presentation);
     const expanded = expandPreparedDirections(persisted, prior.private_state);
     return handoff(command.action?.type === 'brief-confirm' || command.action?.type === 'direction-load' ? initialProgressiveDelivery(persisted) : directionPrepare ? preparedDirectionSummary(expanded, Number(command.action!.index)) : persisted);
   }
-  if (prior && !command.action) return handoff(initialProgressiveDelivery(customerView(prior.presentation)));
+  if (prior && !command.action) {
+    if (priorHciState && needsDiscoveryReprojection(priorHciState, prior.presentation, journey))
+      return reprojectDiscovery(owner, command, priorHciState, prior.revision, journey);
+    return handoff(initialProgressiveDelivery(customerView(prior.presentation)));
+  }
+  // Idempotent committed retries above remain valid even if the saved view
+  // still shows FI's obsolete colour question. New stale clicks never commit.
+  if (prior && staleColourAnswer(priorHciState, prior.presentation, journey, command.action))
+    throw Error('HCI_SESSION_CONFLICT');
   const expected = prior?.revision ?? -1;
   if ((prior && command.revision !== expected) || (!prior && command.revision !== null)) throw Error('HCI_SESSION_CONFLICT');
   if (command.action?.type === 'direction-hydrate') {
@@ -239,10 +284,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     if (error) throw Error('HCI_STORAGE_UNAVAILABLE');
     return handoff(customerView(data));
   }
-  const endpoint = new URL(process.env.CURTAINSUK_HCI_PREMIUM_SERVICE_URL ?? 'https://invalid.invalid');
-  const secret = process.env.CURTAINSUK_HCI_SERVICE_TOKEN ?? '';
-  if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.hostname === 'invalid.invalid' || secret.length < 32)
-    throw Error('HCI_CONFIGURATION_INVALID');
+  const { endpoint, secret } = premiumServiceConnection();
   const priorPriceLevel = priorHciState?.priceLevel;
   const selectedPriceLevel: GuidePriceLevel | undefined = command.action?.type === 'price-level'
     ? command.action.level as GuidePriceLevel
@@ -259,7 +301,11 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   );
   const priceEligibilityStartedAt = performance.now();
   const priceLevelEligibilityIds = needsPriceEligibility && selectedPriceLevel
-    ? await currentRetailPriceLevelEligibility(selectedPriceLevel)
+    ? await priceLevelEligibilityReader(
+      options.nailaPreparedPrice === true,
+      currentRetailPriceLevelEligibility,
+      (level) => readNailaPreparedPriceLevelIds(level, (name, parameters) => db.rpc(name, parameters)),
+    )(selectedPriceLevel)
     : undefined;
   const priceEligibilityMs = performance.now() - priceEligibilityStartedAt;
   const calibrationEligibilityStartedAt = performance.now();
@@ -271,7 +317,12 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     // Price Level is already a hard candidate boundary. Apply the existing
     // retail-image/readiness gate within that exact cohort, rather than
     // loading the full catalogue and intersecting it afterwards.
-    ? await currentRetailStyleDirectionEligibility(priceLevelEligibilityIds) : undefined;
+    ? await currentRetailStyleDirectionEligibility(
+      priceLevelEligibilityIds,
+      options.nailaPreparedPrice === true
+        ? (records) => readNailaPreparedCommercialReadiness(records, (name, parameters) => db.rpc(name, parameters))
+        : (records) => fiCommercialReadiness(records, (name, parameters) => db.rpc(name, parameters)),
+    ) : undefined;
   const styleEligibilityMs = performance.now() - styleEligibilityStartedAt;
   // Governed visual evidence is needed only by a stage that is selecting a
   // fabric. Price persistence itself does not serialise the whole price tier.
@@ -281,7 +332,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     ? await hciVisualKnowledge(knowledgeCandidateIds)
     : undefined;
   const knowledgeReadMs = performance.now() - knowledgeStartedAt;
-  const requestBody = JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: priorHciState, action: upstreamAction, recordedAt: new Date().toISOString() });
+  const requestBody = JSON.stringify({ calibrationPolicy: calibration.policy, calibrationEligibility: calibrationEligibilityIds, styleDirectionEligibility: styleDirectionEligibilityIds, priceLevelEligibility: priceLevelEligibilityIds, visualKnowledge, sourceCommit: HCI_PREMIUM_BASELINE, sessionId: command.sessionId, owner: createHash('sha256').update(`curtainsuk:premium:${owner}`).digest('hex'), state: priorHciState, journey, action: upstreamAction, recordedAt: new Date().toISOString() });
   const upstreamStartedAt = performance.now();
   const upstream = await fetch(endpoint, {
     method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(25000),
@@ -314,7 +365,7 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
   assertNoRawReferenceMedia(result?.state);
   let projected: ReturnType<typeof customerView>;
   try {
-    projected = customerView(result?.view);
+    projected = customerView(result?.view, { trustedHciFeedback: true });
   } catch {
     throw Error('HCI_CONTRACT_VIEW');
   }
@@ -331,12 +382,9 @@ export async function premiumHciIntegration(owner: string, value: unknown) {
     directions: prior ? expandPreparedDirections(customerView(prior.presentation), prior.private_state).directions : undefined,
   });
   const deliveryState = preparedDirectionStore(view);
-  // A later direction is a read of the already-confirmed brief. Preserve the
-  // compact post-brief HCI state rather than writing the upstream's cumulative
-  // response state again; its selected six cards are persisted separately below.
-  const hciStateCompressed = directionPrepare && typeof prior?.private_state?.hciStateCompressed === 'string'
-    ? prior.private_state.hciStateCompressed
-    : compressPrivateJson(result.state);
+  // Persist HCI's cumulative direction state so feedback can bind to every
+  // displayed fabric. The customer-safe later cards stay in their bounded store.
+  const hciStateCompressed = compressPrivateJson(result.state);
   const storedState: StoredCustomerState = {
     hciStateCompressed,
     ...(knowledgeEnabled ? { visualKnowledgePolicy: 'visual-vocabulary-v1' } : {}),

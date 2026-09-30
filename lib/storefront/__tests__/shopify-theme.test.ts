@@ -5,6 +5,7 @@ import test from "node:test";
 
 const themeRoot = join(process.cwd(), "shopify-theme", "curtainsuk-dawn-16");
 const read = (...parts: string[]) => readFileSync(join(themeRoot, ...parts), "utf8");
+const readThemeJson = (...parts: string[]) => JSON.parse(read(...parts).replace(/^\s*\/\*[\s\S]*?\*\/\s*/, ""));
 
 test("Dawn contains the 14 unique Window Type route definitions", () => {
   const manifest = JSON.parse(read("assets", "curtainsuk-routes.json")) as { routes: string[]; publishState: string };
@@ -54,53 +55,61 @@ test("manual quote results suppress numeric prices and expose review submission 
   assert.equal(/cart\/add|checkout\.js/i.test(script + section), false);
 });
 
-test("Bay UI derives coverage from section widths and never asks for angles", () => {
+test("Bay uses one fitted-track route width and drop without angles or segment controls", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
-  const guide = read("sections", "curtainsuk-measure-guide.liquid");
-  assert.doesNotMatch(section, /name="trackOrPoleFitted"/);
-  assert.match(section, /name="baySectionCount"[^>]*min="2"[^>]*max="8"/);
-  assert.match(section, /data-cuk-bay-sections/);
-  assert.doesNotMatch(script, /bayTrackOrPoleFitted:/);
-  assert.match(script, /bayNumberOfSections/);
-  assert.match(script, /segments\.reduce\(\(total, width\) => total \+ width, 0\)/);
-  assert.equal(/bayAngles|BayAngles|angles between segments/i.test(script + section + guide), false);
+  assert.match(section, /name="widthCm"[^>]*required/);
+  assert.match(section, /name="dropCm"[^>]*required/);
+  assert.match(section, /For a bay, select fitted track and measure its full route/);
+  assert.match(script, /if \(isBay && form\?\.elements\.measurementBasis\) form\.elements\.measurementBasis\.value = "TRACK_WIDTH"/);
+  assert.match(script, /measurementBasis: isBay \? "TRACK_WIDTH" : form\.elements\.measurementBasis\.value/);
+  assert.match(script, /widthCm: Number\(form\.elements\.widthCm\.value\)/);
+  assert.match(script, /dropCm: Number\(form\.elements\.dropCm\.value\)/);
+  assert.match(script, /\[data-cuk-bay\] input[^\n]*field\.disabled = true/);
+  assert.doesNotMatch(section, /name="baySectionCount"|data-cuk-bay-sections/);
+  assert.doesNotMatch(script, /bayNumberOfSections: isBay|bayAngles|BayAngles/);
 });
 
-test("Curved, corner and awkward advertised routes collect their required review measurements", () => {
+test("Only supported automated windows are actionable and unsupported routes cannot price", () => {
   const script = read("assets", "curtainsuk-storefront.js");
-  const section = read("sections", "curtainsuk-configurator.liquid");
-  assert.match(script, /selected\.slug === "curved-bow-window"/);
-  assert.match(script, /isCurved \? "Track arc length \(cm\)"/);
-  assert.match(section, /data-cuk-width-hint>Measure along the complete curved track/);
-  assert.match(section, /name="cornerSectionOneCm"[^>]*min="10"[^>]*max="600"/);
-  assert.match(section, /name="cornerSectionTwoCm"[^>]*min="10"[^>]*max="600"/);
-  assert.match(section, /name="cornerAngleDegrees"[^>]*min="1"[^>]*max="359"/);
-  assert.match(script, /cornerSectionWidthsCm: isCorner \? cornerSections : undefined/);
-  assert.match(script, /cornerAngleDegrees: isCorner \? cornerAngle : undefined/);
-  assert.match(section, /data-cuk-awkward/);
-  assert.match(section, /name="roughWidthCm"/);
-  assert.match(section, /name="roughDropCm"/);
-  assert.doesNotMatch(script, /drawing\.required/);
-  assert.equal(/Map every edge[\s\S]{0,500}data-cuk-awkward/.test(section), false, "awkward route must not inherit apex-specific measurement copy");
+  const allowlist = script.match(/const AUTOMATED_MTM_WINDOWS = new Set\(\[([\s\S]*?)\]\);/)?.[1];
+  assert.ok(allowlist, "the actionable window set must be explicit");
+  assert.deepEqual([...allowlist.matchAll(/"([^"]+)"/g)].map((match) => match[1]).sort(), [
+    "standard-window", "bay-window", "french-doors", "patio-sliding-doors", "bifold-doors",
+  ].sort());
+  assert.match(script, /catalog\.windows\.filter\(\(item\) => AUTOMATED_MTM_WINDOWS\.has\(item\.slug\)\)/);
+  assert.match(script, /windowSelect\.value = AUTOMATED_MTM_WINDOWS\.has\(requestedWindow\) \? requestedWindow : ""/);
+  const guard = script.indexOf("if (!AUTOMATED_MTM_WINDOWS.has(selected.slug))");
+  const reviewDispatch = script.indexOf('path = "specialist-review"', guard);
+  assert.ok(guard > 0 && reviewDispatch > guard, "unsupported routes must stop before request dispatch");
+  assert.match(script.slice(guard, reviewDispatch), /throw new Error\("This opening needs a curtain-team review and is not available for automated checkout\."\)/);
 });
 
-test("review routes explain email evidence without file inputs", () => {
+test("Review evidence appears only after a server review outcome, without uploads or premature checkout", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   const section = read("sections", "curtainsuk-configurator.liquid");
   assert.match(section, /class="cuk-step cuk-hidden" data-cuk-review-evidence/);
-  assert.match(script, /const needsEvidence = isReview \|\| isSpecialist/);
+  assert.match(script, /const needsEvidence = false/);
+  assert.match(script, /\[data-cuk-review-evidence\][^\n]*classList\.toggle\("cuk-hidden", !needsEvidence\)/);
+  assert.match(script, /\[data-cuk-review-evidence\] input[^\n]*field\.disabled = !needsEvidence/);
+  assert.match(script, /const needsReview = isManualQuote \|\| isPriceWithReview/);
+  assert.match(script, /if \(needsReview && evidence\) \{\s*evidence\.classList\.remove\("cuk-hidden"\)/);
+  assert.match(section, /class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form/);
+  assert.match(section, /class="cuk-review-submit cuk-hidden" data-cuk-review-form/);
   assert.doesNotMatch(section, /type="file"/);
-  assert.match(script, /construction: form\.elements\.construction\.value/);
-  assert.match(section, /unique reference/);
-  assert.match(script, /mailto:/);
+  assert.match(script, /catalog\.windows\.filter\(\(item\) => AUTOMATED_MTM_WINDOWS\.has\(item\.slug\)\)/);
 });
 
 test("task navigation uses resolvable theme-owned inspiration, help and sample anchors", () => {
   const nav = read("sections", "curtainsuk-task-nav.liquid");
   const support = read("sections", "curtainsuk-inspiration-help.liquid");
-  const index = read("templates", "index.json");
-  const fabricTemplate = read("templates", "page.shop-by-fabric.json");
+  const trustFooter = read("snippets", "curtainsuk-trust-footer.liquid");
+  const helpFooter = read("sections", "curtainsuk-help-footer.liquid");
+  const footerGroup = readThemeJson("sections", "footer-group.json") as { sections: Record<string, { type: string }>; order: string[] };
+  const index = readThemeJson("templates", "index.json") as { sections: Record<string, { type: string }>; order: string[] };
+  const samples = readThemeJson("templates", "page.samples.json") as { sections: Record<string, { type: string }>; order: string[] };
+  const browse = readThemeJson("templates", "page.browse-fabrics.json") as { sections: Record<string, { type: string; disabled?: boolean }>; order: string[] };
+  const basket = read("sections", "curtainsuk-sample-basket.liquid");
   assert.match(nav, /href="\/#curtainsuk-inspiration"/);
   assert.match(nav, /href="\/#curtainsuk-help"/);
   assert.match(nav, /href="\/pages\/samples"/);
@@ -108,9 +117,18 @@ test("task navigation uses resolvable theme-owned inspiration, help and sample a
   assert.match(nav, /href="\/pages\/how-to-fit"/);
   assert.equal(/\/blogs\/inspiration/.test(nav), false);
   assert.match(support, /id="curtainsuk-inspiration"/);
-  assert.match(support, /id="curtainsuk-help"/);
-  assert.match(index, /"type": "curtainsuk-inspiration-help"/);
-  assert.match(fabricTemplate, /"type": "curtainsuk-sample-basket"/);
+  assert.equal(index.sections["curtainsuk-inspiration-help"]?.type, "curtainsuk-inspiration-help");
+  assert.ok(index.order.includes("curtainsuk-inspiration-help"));
+  assert.match(trustFooter, /id="curtainsuk-help"/);
+  assert.match(helpFooter, /\{% render 'curtainsuk-trust-footer' %\}/);
+  assert.equal(footerGroup.sections["curtainsuk-help"]?.type, "curtainsuk-help-footer");
+  assert.ok(footerGroup.order.includes("curtainsuk-help"));
+  assert.equal(samples.sections.samples?.type, "curtainsuk-sample-basket");
+  assert.ok(samples.order.includes("samples"));
+  assert.equal(browse.sections.samples?.type, "curtainsuk-sample-basket");
+  assert.notEqual(browse.sections.samples.disabled, true);
+  assert.ok(browse.order.includes("samples"));
+  assert.match(basket, /id="samples"[^>]*\{% if template\.suffix == 'browse-fabrics' %\} hidden\{% endif %\}/);
 });
 
 test("the Dawn header uses the task navigation instead of the production main menu", () => {

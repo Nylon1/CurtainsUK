@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { fullUrl } from '@/lib/sitemap-utils';
 import { shopifyConsultationHandoff } from '@/lib/storefront/consultation-navigation';
 import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
-import { premiumProxyCapability, premiumProxyEnabled, premiumProxyPath } from './curtainsuk-premium-proxy-transport';
+import { premiumProxyCommand, premiumProxyEnabled, premiumProxyPath } from './curtainsuk-premium-proxy-transport';
 import styles from './curtainsuk-premium-consultation.module.css';
 import referenceStyles from '@/vendor/hci-approved/components/ReferenceExperience.module.css';
 
@@ -89,9 +89,9 @@ export default function CurtainsUkPremiumConsultation() {
     if (!background) { setBusy(true); setNotice(''); }
     let resumeAfterAnswerConflict = false;
     try {
-      const endpoint = premiumProxyEnabled() ? premiumProxyPath('premium-command') : '/api/curtain-consultation-premium';
-      const body = premiumProxyEnabled() ? { capability: await premiumProxyCapability(), command: payload } : payload;
-      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const response = premiumProxyEnabled()
+        ? await premiumProxyCommand(payload)
+        : await fetch('/api/curtain-consultation-premium', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const data = await response.json();
       if (response.status === 409 && answerAction) resumeAfterAnswerConflict = true;
       if (!response.ok) throw Error(data.error || 'Your consultation is temporarily unavailable.');

@@ -11,10 +11,10 @@ export function premiumProxyPath(operation: string) {
   return `${root}${operation}`;
 }
 
-export async function premiumProxyCapability() {
-  if (capability) return capability;
-  try { capability = sessionStorage.getItem(capabilityKey); } catch { /* Private browsing may deny storage. */ }
-  if (capability) return capability;
+export async function premiumProxyCapability(forceFresh = false) {
+  if (!forceFresh && capability) return capability;
+  if (!forceFresh) try { capability = sessionStorage.getItem(capabilityKey); } catch { /* Private browsing may deny storage. */ }
+  if (!forceFresh && capability) return capability;
   const response = await fetch(premiumProxyPath('premium-session'), {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}',
   });
@@ -24,4 +24,19 @@ export async function premiumProxyCapability() {
   capability = value.capability;
   try { sessionStorage.setItem(capabilityKey, capability!); } catch { /* In-memory session remains usable. */ }
   return capability;
+}
+
+export async function premiumProxyCommand(command: Record<string, unknown>) {
+  const send = async () => fetch(premiumProxyPath('premium-command'), {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ capability: await premiumProxyCapability(), command }),
+  });
+  let response = await send();
+  if (response.status === 401) {
+    capability = null;
+    try { sessionStorage.removeItem(capabilityKey); } catch { /* In-memory capability is still cleared. */ }
+    await premiumProxyCapability(true);
+    response = await send();
+  }
+  return response;
 }

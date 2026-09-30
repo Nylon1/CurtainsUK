@@ -325,7 +325,7 @@ function mount(root: HTMLElement) {
         button('Fine-tune my choices',()=>present('refine')));
       choose('Compare a few fabrics',{type:'brief-confirm',id:crypto.randomUUID()});
     } else if(phase==='react') {
-      body.append(element('h3','Would you enjoy this at your window?'),element('p','Think about this alongside the fabrics you’ve just seen. There’s no right answer — a quick reaction is enough.'));
+      body.append(element('h3','Would you enjoy this at your window?'),element('p','Think about this alongside the fabrics you’ve just seen. There’s no right answer. A quick reaction is enough.'));
       const fabric=view.calibrationFabric;
       if(fabric) {
         const image=element('img');image.src=fabric.imageUrl;image.alt=`${fabric.brand} ${fabric.design} ${fabric.colourway}`;image.width=320;image.height=240;image.className='cuk-naila-calibration';
@@ -351,10 +351,10 @@ function mount(root: HTMLElement) {
         else void send({type:'direction-hydrate',index});
       })));
       if(view.directions.length<2 && view.directions.length)choose('See another direction',{type:'direction-prepare',index:1});
-      if(view.interiorBrief)choose('Fine-tune my choices',{type:'brief-adjust',id:crypto.randomUUID()});
+      // Post-direction refinement stays in HCI, but is not exposed in launch V1.
       if(state.currentShortlist.length)body.append(element('p',`${state.currentShortlist.length} ${state.currentShortlist.length===1?'fabric':'fabrics'} in your shortlist.`));
     }
-    if(view.priceLevel?.selected && phase!=='explore')body.append(button('Explore fabrics with my choices',()=>{explore();setOpen(false);}));
+    if(view.priceLevel?.selected && !['explore','recommend','act'].includes(phase))body.append(button('Explore fabrics with my choices',()=>{explore();setOpen(false);}));
     caption=body.querySelector('h3')?.textContent??caption;
     caption=`${acknowledgment??''} ${caption}`.trim();
     scroll.scrollTop=0;
@@ -489,12 +489,7 @@ function mount(root: HTMLElement) {
     if(!facts.length&&!card)body.append(element('p','Let’s take a closer look at the fabric details and photograph. A sample can help you judge it in your own room.'));
     for(const line of card?.explanation??[])body.append(element('p',line));
     caption += ` ${facts.join('. ')} ${(card?.explanation??[]).join(' ')}`;
-    if(card&&direction) {
-      const feedback=(reaction:string,optionIds:string[]=[])=>{void send({type:'feedback',command:{id:crypto.randomUUID(),strategyId:direction.id,fabricId:card.reactionId,fabricReaction:reaction,directionReaction:null,optionIds}});};
-      body.append(button('Love this',()=>feedback('LOVE')),button('Show me similar',()=>feedback('MORE_LIKE_THIS')),button('Not for me',()=>feedback('NOT_FOR_ME')));
-      for(const option of card.feedback?.change??[])body.append(button(option.label,()=>feedback('NOT_QUITE',[option.id])));
-      choose('Add to shortlist',{type:'outcome',event:'FABRIC_SELECTED',fabricMasterId:fabric.id,strategyId:direction.id});
-    }
+    // Fabric feedback remains available to HCI, but is hidden from the launch UI.
     const cardNode=cards.get(fabric.id)?.node;
     for(const [label,selector] of [['Order Sample','[data-sample],a[href*="intent=sample"]'],['Make Curtains','a[href*="curtain-visualiser"]']]) {
       const target=cardNode?.querySelector<HTMLElement>(selector);

@@ -1,5 +1,5 @@
 import { createSupplierServiceClient } from "../supabase/supplier-service";
-import { fabricMasterRecordsByIds, verifiedSupplierCostMinor } from "./repository";
+import { fabricMasterRecordsByIds } from "./repository";
 import { projectCustomerSafeFabric, assertCustomerSafeProjection } from "./projection";
 import { RETAIL_TAXONOMY, factualRetailDescription, retailLaunchBlockers, retailMetadata, type RetailImage, type RetailProfile } from "./retail";
 import { commercialReadiness } from './readiness-server';
@@ -11,14 +11,15 @@ import { governedBrowseFilters, type BrowseFacetKey } from './browse-filters';
 import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
 import { browseSearchRpcName } from './browse-rpc';
 import { readNailaPreparedSelection } from './naila-prepared-browse';
+import { browseGuideMinorForFabric } from './browse-guide-reader';
 
 export async function retailFabricDetail(id: string, withGuide = false) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
   const fabric = (await hydrateRetailFabrics([id], withGuide))[0] ?? null;
   if (!fabric || !withGuide) return fabric;
   const record = (await fabricMasterRecordsByIds([id]))[0];
-  const cost = record ? await verifiedSupplierCostMinor(record.supplier_id, record.supplier_sku).catch(() => null) : null;
-  return { ...fabric, browseGuide: customerBrowseGuide(cost === null ? null : cost * 3) };
+  const guideMinor = record ? await browseGuideMinorForFabric(record.fabric_id, record.supplier_id, record.supplier_sku).catch(() => null) : null;
+  return { ...fabric, browseGuide: customerBrowseGuide(guideMinor) };
 }
 async function hydrateRetailFabrics(ids: string[], withGuide = false) {
   if (!ids.length) return [];

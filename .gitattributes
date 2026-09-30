@@ -2,3 +2,6 @@
 # Other repository paths retain their existing Git text handling.
 /shopify-theme/curtainsuk-new-design-live-base/** -text
 /shopify-theme/curtainsuk-updated-dawn-preview/** -text
+# Keep verified live Naila theme assets byte-identical in Git and checkouts.
+/shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-naila.js -text
+/shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-naila.css -text whitespace=cr-at-eol

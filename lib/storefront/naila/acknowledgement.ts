@@ -11,8 +11,8 @@ export function selectionAcknowledgement(before: NailaView | null, after: NailaV
     const chosen=evidence.confirmedPreferences.find(p=>p.dimension===before.question!.id && p.value===action.answerId && p.confidence==='confirmed');
     if(!chosen)return null;
     if(chosen.dimension==='colour-family')return `${chosen.label} is your chosen colour family. Let’s build from there.`;
-    if(chosen.dimension==='atmosphere')return `“${chosen.label}” — that’s the feeling you’ve chosen.`;
-    return `“${chosen.label}” — I’ve noted that.`;
+    if(chosen.dimension==='atmosphere')return `“${chosen.label}” is the feeling you’ve chosen.`;
+    return `“${chosen.label}”. I’ve noted that.`;
   }
   if(action.type==='price-level' && evidence.currentPriceLevel===action.level) {
     const level=GUIDE_PRICE_LEVELS.find(level=>level.id===action.level);
@@ -21,7 +21,7 @@ export function selectionAcknowledgement(before: NailaView | null, after: NailaV
   if(action.type==='calibrate') {
     const reaction=evidence.calibrationReactions.at(-1);
     if(!reaction || !before.calibrationFabric || reaction.fabricMasterId!==before.calibrationFabric.fabricMasterId || reaction.reaction!==action.reaction)return null;
-    const lines:Record<string,string>={LOVE:'You loved that fabric — I’ve noted your reaction.',LIKE:'You liked that fabric — I’ve noted your reaction.',NOT_SURE:'You’re not sure about that fabric yet. That’s useful to know.',DISLIKE:'That fabric wasn’t for you — I’ve noted your reaction.'};
+    const lines:Record<string,string>={LOVE:'You loved that fabric. I’ve noted your reaction.',LIKE:'You liked that fabric. I’ve noted your reaction.',NOT_SURE:'You’re not sure about that fabric yet. That’s useful to know.',DISLIKE:'That fabric wasn’t for you. I’ve noted your reaction.'};
     return lines[reaction.reaction]??null;
   }
   if(action.type==='brief-change') {
@@ -37,7 +37,7 @@ export function selectionAcknowledgement(before: NailaView | null, after: NailaV
     const card=before.directions.find(d=>d.id===feedback?.strategyId)?.cards.find(c=>c.reactionId===feedback?.fabricId);
     const reaction=evidence.fabricReactions.at(-1);
     if(!card || reaction?.fabricMasterId!==card.fabricMasterId || reaction.reaction!==feedback?.fabricReaction)return null;
-    const lines:Record<string,string>={LOVE:'You loved that fabric — I’ve noted your reaction.',MORE_LIKE_THIS:'You’d like more like that fabric — I’ve noted that.',NOT_QUITE:'That one isn’t quite right — I’ve noted your feedback.',NOT_FOR_ME:'That fabric wasn’t for you — I’ve noted your reaction.'};
+    const lines:Record<string,string>={LOVE:'You loved that fabric. I’ve noted your reaction.',MORE_LIKE_THIS:'You’d like more like that fabric. I’ve noted that.',NOT_QUITE:'That one isn’t quite right. I’ve noted your feedback.',NOT_FOR_ME:'That fabric wasn’t for you. I’ve noted your reaction.'};
     return lines[reaction.reaction]??null;
   }
   return null;

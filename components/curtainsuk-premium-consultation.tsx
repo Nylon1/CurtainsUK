@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { fullUrl } from '@/lib/sitemap-utils';
 import { shopifyConsultationHandoff } from '@/lib/storefront/consultation-navigation';
 import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
-import { premiumProxyCommand, premiumProxyEnabled, premiumProxyPath } from './curtainsuk-premium-proxy-transport';
+import { premiumProxyCommand, premiumProxyEnabled, premiumProxyPath } from './curtainsuk-fi-premium-proxy-transport';
 import styles from './curtainsuk-premium-consultation.module.css';
 import referenceStyles from '@/vendor/hci-approved/components/ReferenceExperience.module.css';
 

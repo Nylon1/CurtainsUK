@@ -22,7 +22,7 @@ async function withTransport(cached, reply, check, { removeDenied = false } = {}
     return reply(request, requests.length);
   };
   try {
-    const transport = await import(`../../components/curtainsuk-premium-proxy-transport.ts?fixture=${++fixtureId}`);
+    const transport = await import(`../../components/curtainsuk-fi-premium-proxy-transport.ts?fixture=${++fixtureId}`);
     await check({ transport, requests, values, removed });
   } finally {
     globalThis.fetch = originalFetch;

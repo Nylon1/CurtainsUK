@@ -1,7 +1,7 @@
 export const version = 'customer-trust-v1-review-2026-09-21';
 export const contacts = { support:'support@curtainsuk.com', complaints:'complaints@curtainsuk.com', media:'media@curtainsuk.com', changes:'enquiries@curtainsuk.com' };
 export const changeNotice = 'Need to request a change? Email us within 2 hours of placing your order at enquiries@curtainsuk.com. We’ll review your request and get in touch.';
-export const imageNotice = 'Adding an image is optional. We use your room or reference image only to provide the Fabric Intelligence service you request, with automated image analysis to suggest colours and fabric directions. We do not use uploaded room images for model training, general AI training, product or model improvement, unrelated evaluation or research, marketing, or a reusable image dataset. Please leave people, addresses, documents and other personal details out of the picture. Our current consultation persistence path stores derived colour and preference records rather than raw image data; the upstream processor, temporary handling, logs and deletion arrangements are being technically verified. Read Room Image & AI Privacy before uploading.';
+export const imageNotice = 'Adding a room or reference image is optional. Fabric Intelligence can use an uploaded image to help interpret colours and suggest fabric directions. Please avoid including people, addresses, documents or other unnecessary personal information in the image.';
 export const groups = [
   ['CurtainsUK', [['About Us','/pages/about-us-1'],['Fabric Intelligence™','/apps/curtainsuk-decision/consultation?experience=premium&entry=match'],['Browse Fabrics','/pages/fabric-library?view=browse-fabrics'],['Curtain Style','/pages/fabric-library?view=curtain-style'],['Shop by Window','/pages/solve-my-window'],['Inspiration / Gallery','/#curtainsuk-inspiration'],['Media & Press','/pages/media'],['Sitemap','/pages/sitemap']]],
   ['Help & Customer Care', [['Guided Measure','/pages/how-to-measure'],['How to Fit','/pages/how-to-fit'],['Fabric Samples','/pages/samples'],['Delivery Information','/policies/shipping-policy'],['Curtain Care & Cleaning','/pages/fabric-care-guide'],['FAQs','/pages/faq-1'],['Contact Us','/pages/contact-us'],['Complaints','/pages/complaints'],['Your made-to-measure order','/pages/made-to-measure-orders']]],
@@ -15,7 +15,7 @@ const colour = link('/pages/curtain-fabric-colour-guide','Fabric Colour, Shade &
 const returns = link('/policies/refund-policy','Refunds & Returns');
 const privacy = link('/policies/privacy-policy','Privacy Policy');
 const company = '<p>Apex Curtains Ltd trading as Curtains UK. Company number 15652466 (England and Wales).</p><p>Customer correspondence and authorised returns address: 36–44 Bolton Road, Blackburn, BB2 3FA.</p>';
-const page = (key,title,url,action,sections,confirmations=[]) => ({key,title,url,action,sections,confirmations,status:confirmations.length?'NEEDS CONFIRMATION':'READY FOR OWNER REVIEW'});
+const page = (key,title,url,action,sections,confirmations=[],seo={}) => ({key,title,url,action,sections,confirmations,seo,status:confirmations.length?'NEEDS CONFIRMATION':'READY FOR OWNER REVIEW'});
 export const pages = [
   page('refund-policy','Refunds & Returns','/policies/refund-policy','REWRITE',[
     ['Made to your specification','Our made-to-measure curtains are made to your individual choices and measurements. The usual online change-of-mind cancellation right does not apply to goods made to your specifications or clearly personalised. A change of mind alone does not normally entitle you to return them. This does not remove your rights if goods are faulty, damaged, incorrect or materially not as described.'],
@@ -57,14 +57,14 @@ export const pages = [
   ]),
   page('contact-us','Contact Us','/pages/contact-us','REWRITE',[
     ['A little help, at any stage','From choosing a fabric to a question about your order, contact '+support+'. Include an order or consultation reference if you have one.'],['Complaints','For a complaint email '+complaints+' and read '+link('/pages/complaints','how to raise a complaint')+'.'],['Press and collaborations','For editorial, interview and collaboration enquiries contact '+link('mailto:'+contacts.media,contacts.media)+'.'],['Order changes',changeNotice],['Find us',company],
-  ]),
+  ],[],{titleTag:'Contact CurtainsUK | Help & Customer Support',descriptionTag:'Contact CurtainsUK for help with fabrics, made-to-measure curtains, orders, complaints or press enquiries.'}),
   page('cookies-policy','Cookie Information','/pages/cookies-policy','REWRITE',[
     ['Cookies and saved choices','Cookies and related browser storage support checkout, security and continuity between steps. Shopify provides commerce technologies; CurtainsUK also saves some choices in local or session storage. Closing a tab does not necessarily remove local storage.'],
-    ['What the current service stores','Guided Measure saves measurements and briefs under curtainsuk.guided-measure.v1. The curtain journey also remembers selected fabric/context and progress. Fabric Intelligence uses a session reference to continue a consultation. These are distinct from records submitted to the server or retained with an order.'],
-    ['Analytics and marketing','The intended integrations are Facebook & Instagram, Google & YouTube, Pinterest and TikTok. Shopify Network Intelligence is enabled in the current store. The actual events, cookie durations and whether each non-essential event is blocked before consent must be verified against the deployed consent configuration. A listed integration is not proof that every event fires in every journey.'],
-    ['Your choices','Use Cookie Settings to open the actual consent preferences. Before release, the relevant UK experience must provide Accept, Reject, Preferences and withdrawal controls, and optional tracking must honour those choices. Browsing alone is not treated as consent. You can also manage site storage in your browser, but removing it may discard saved measurements or session progress.'],
-    ['Further information','See '+privacy+' and '+link('https://www.shopify.com/legal/cookies','Shopify’s cookie information')+'.'],
-  ],['Shopify banner is currently not visible in any region and the checkout banner is unchecked. Replace the legacy privacy destination, configure the approved consent controls, and verify Accept/Reject/Preferences/withdrawal plus actual non-essential pixel behaviour and cookie/storage lifetimes.']),
+    ['Saved journey information','Guided Measure can save measurements and briefs in browser storage. The curtain journey can also remember selected fabric, context and progress. Fabric Intelligence uses a session reference so a consultation can continue. These are separate from records submitted to the server or retained with an order.'],
+    ['Analytics and marketing','CurtainsUK may use analytics or marketing integrations where they are configured. Their availability and behaviour can change with Shopify and app settings, so a listed service should not be taken as proof that every event fires on every visit.'],
+    ['Your choices','<p>You can manage cookies and site storage in your browser settings. Where a Cookie Settings control is available on the site, use it to review or change the preferences offered there. Removing browser storage may also remove saved measurements or consultation progress.</p><p>If you need help with cookie or privacy settings, contact '+support+'.</p>'],
+    ['Further information','See our '+privacy+' and '+link('https://www.shopify.com/legal/cookies','Shopify’s cookie information')+'.'],
+  ],['Consent-banner availability, Accept/Reject/Preferences/withdrawal controls, optional pixel gating and cookie/storage lifetimes remain operationally unverified and must be checked against the deployed Shopify configuration.'],{titleTag:'Cookie Information | CurtainsUK',descriptionTag:'Learn how CurtainsUK uses cookies and browser storage for shopping, saved choices and site functionality, and where to find privacy information.'}),
   page('curtain-fabric-colour-guide','Fabric Colour, Shade & Variation','/pages/curtain-fabric-colour-guide','REWRITE',[
     ['See it in your own light','Screens, camera exposure and image processing can change how colour appears. Daylight, lamps and neighbouring wall or furnishing colours can also affect how a fabric looks in your room. Where colour, texture or finish matters, '+link('/pages/samples','order a physical sample')+' and look at it in the room at different times.'],
     ['Texture, weave and direction','A woven surface, raised yarn or nap can catch light differently as it turns or hangs. Some materials have natural irregularities. The relevant characteristics depend on the particular fabric; not every fabric has a nap or natural variation. Ask for product-specific information if you are unsure.'],
@@ -75,10 +75,10 @@ export const pages = [
   ]),
   page('room-image-ai-privacy','Room Image & AI Privacy','/pages/room-image-ai-privacy','MERGE',[
     ['Before you upload',imageNotice],
-    ['How the consultation uses your image','The image and your input are processed by the image/recommendation service to suggest colours and fabrics. You can review and correct the colour interpretation. You can use the questions or browse without uploading an image.'],
-    ['Stored consultation information','The CurtainsUK integration rejects raw images from stored consultation state. Derived information can include colour observations, your confirmed palette, answers, reactions, recommendations and an image hash. This code-level protection does not establish the independent retention or training terms of every processor.'],
-    ['Questions and rights','Contact '+support+' with your consultation reference where available. Please do not attach the original image again just to request help or deletion. Read the full '+privacy+'.'],
-  ],['Verify the actual upstream image processor, temporary storage, logs/backups, deletion/retention contract, subprocessors, countries and transfer safeguards before adding precise operational promises. The approved no-training/no-reuse restriction must remain in force.']),
+    ['How the consultation uses your image','The image and your consultation input are processed to provide the Fabric Intelligence service you request. You can review and correct colour interpretation, or use the questions and Browse Fabrics without uploading an image.'],
+    ['Training and stored consultation information','<p>The CurtainsUK integration is configured with training permission disabled for uploaded room images. It is also designed not to store raw reference media in the consultation state. Derived information can include colour observations, your confirmed palette, answers, reactions, recommendations and an image hash.</p><p>If you need current details about temporary processor handling, retention or international processing before uploading an image, contact '+support+'.</p>'],
+    ['Questions and rights','Contact '+support+' with your consultation reference where available. Please do not attach the original image again just to request help. You can also read our '+privacy+'.'],
+  ],['Upstream processor identity, temporary storage, logs/backups, deletion/retention contract, subprocessors, countries and transfer safeguards remain operationally unverified. The training-disabled and no-raw-state integration controls are source-verified.']),
   page('made-to-measure-orders','Your made-to-measure order','/pages/made-to-measure-orders','CREATE',[
     ['From order to curtain','Order placed and paid → CurtainsUK review → Approved for manufacture → Production/workroom → Delivery. Payment does not automatically approve manufacture or release your order to the workroom.'],
     ['What we review','Your fabric and configuration are recorded together with the measurements and validated price. Workshop-derived manufacturing dimensions are a separate production step. If we need clarification, CurtainsUK will contact you.'],
@@ -96,29 +96,28 @@ export const pages = [
     ['Press enquiries','For editorial enquiries, interviews and commentary contact '+link('mailto:'+contacts.media,contacts.media)+'. Please include your publication, topic, deadline and what you need.'],
     ['Areas of interest','Fabric colour, pattern and texture; curtain form and interiors; choosing and measuring made-to-measure curtains; and the role of guided digital tools in fabric selection.'],
     ['Images and collaborations','Ask about approved images, quotations and relevant editorial or creative collaborations. Sending an enquiry does not confirm availability, permission or a partnership.'],
-  ]),
+  ],[],{titleTag:'Media & Press | CurtainsUK',descriptionTag:'CurtainsUK media and press information, editorial enquiries, interviews, imagery and collaboration requests.'}),
   page('modern-slavery-supply-chain','Modern Slavery & Supply Chain Policy','/pages/modern-slavery-supply-chain','CREATE',[
-    ['A policy for review','This proposed policy states that forced labour, slavery, servitude and human trafficking have no place in how CurtainsUK works. It is not presented as a statutory annual modern slavery statement.'],
-    ['Supply-chain concerns','Customers, workers and business partners can raise a concern through '+complaints+'. Avoid sharing information that could put somebody at risk. If someone is in immediate danger, contact the emergency services.'],
-    ['Evidence and accountability','CurtainsUK works with established UK suppliers and expects supply partners to uphold principles of fair treatment and respect. No supplier audits, certifications or formal training programme are claimed here. The final policy must identify only due diligence and escalation actually operated.'],
-  ],['Confirm annual/group turnover, business scope and statutory section 54 applicability; policy owner and adoption; supplier checks/escalation actually operated. £36m threshold alone is not proof of exemption.']),
+    ['Our approach','Forced labour, slavery, servitude and human trafficking are not acceptable in how CurtainsUK aims to operate. This page is not presented as a statutory annual modern slavery statement.'],
+    ['Raise a supply-chain concern','Customers, workers and business partners can raise a concern through '+complaints+'. Avoid sharing information that could put somebody at risk. If someone is in immediate danger, contact the emergency services.'],
+    ['What we claim','We do not claim a formal supplier-audit, certification or training programme on this page. If a particular sourcing assurance or certification matters to your purchase, contact '+support+' before ordering so the available evidence can be checked.'],
+  ],['Annual/group turnover, statutory section 54 applicability, formal policy adoption and any supplier due-diligence/escalation process remain to be confirmed before making stronger claims.']),
   page('equality-diversity','Equality, Diversity & Non-Discrimination','/pages/equality-diversity','CREATE',[
-    ['Proposed commitment','We propose a policy of respectful, fair treatment of customers, employees, applicants, contractors and suppliers/partners. Decisions should be based on relevant needs and criteria. Unlawful discrimination, harassment and victimisation are unacceptable.'],
-    ['Protected characteristics','Applicable UK equality protections include age, disability, gender reassignment, marriage and civil partnership, pregnancy and maternity, race, religion or belief, sex and sexual orientation. How the protections apply depends on the relationship and circumstances.'],
-    ['Access and adjustments','If you need a different way to access information or communicate with us, contact '+support+' and explain the help you need. We will consider reasonable adjustments under applicable law.'],
-    ['Raise a concern','Contact '+complaints+' about unfair treatment. Employment and supplier processes, responsibility and escalation need to be confirmed as part of policy adoption.'],
-  ],['Owner approval/adoption, responsible person and actual employee/applicant/contractor/supplier procedures. Do not imply an existing training or monitoring programme.']),
+    ['Our approach','CurtainsUK aims to treat customers, employees, applicants, contractors and business partners respectfully and fairly. Unlawful discrimination, harassment and victimisation are not acceptable.'],
+    ['Access and adjustments','If you need a different way to access information or communicate with us, contact '+support+' and explain the help you need. We will consider reasonable adjustments where applicable.'],
+    ['Raise a concern','If you believe you have been treated unfairly, contact '+complaints+' and tell us what happened.'],
+    ['Current scope','This page describes our customer-facing approach and is not a claim that a formal monitoring or training programme operates across every business relationship.'],
+  ],['Formal policy adoption, responsible person and any employee/applicant/contractor/supplier monitoring or training procedures remain to be confirmed before making stronger claims.']),
   page('recycling-waste','Recycling & Waste','/pages/recycling-waste','CREATE',[
-    ['Practical information','Waste options depend on the material and the local collection service. Follow any material-specific instructions supplied with your product and check what your local service accepts. Do not assume all textiles, coatings, mixed packaging or hardware can go in household recycling.'],
-    ['CurtainsUK practices','Where suitable, fabric offcuts and surplus are reused, including for samples. Suitable surplus material may be donated, and suitable remaining fabric waste is recycled. Cardboard and plastic packaging are recycled. Suitability depends on the material, condition and available route; this is not a zero-waste or universal take-back claim.'],
-    ['Electrical items','No electrical take-back or WEEE scheme is promised by this draft. Any obligations and process for electrical products require a separate check against products actually sold.'],
-  ],['Confirm the operational route/contractor evidence for each material stream and any relevant electrical product obligations before adding more specific claims.']),
+    ['Practical disposal information','Waste and recycling options depend on the material and your local collection service. Follow any material-specific instructions supplied with your product and check what your local service accepts. Do not assume all textiles, coatings, mixed packaging or hardware can go in household recycling.'],
+    ['Packaging and product materials','For advice about the material in a CurtainsUK product or its packaging, contact '+support+' with the product or order reference where available.'],
+    ['Electrical items','If you need advice about disposing of an electrical item purchased from us, contact support before disposal so we can provide the information relevant to that product.'],
+  ],['Operational recycling routes, contractor evidence and any product-specific electrical/WEEE obligations remain to be confirmed before making broader business-practice claims.']),
   page('responsible-sourcing','Responsible Sourcing','/pages/responsible-sourcing','CREATE',[
-    ['Product facts, clearly attributed','Supplier information about a particular fabric should be attributed to that supplier and checked against that product. It is not evidence that every CurtainsUK product or the whole business has the same environmental or social characteristics.'],
-    ['Ask about a specific fabric','For an essential sourcing, material or certification requirement, contact '+support+' with the fabric reference before ordering so the available evidence can be checked.'],
-    ['CurtainsUK approach','CurtainsUK works with established UK suppliers and expects supply partners to uphold principles of fair treatment and respect. This is a statement of approach, not a formal audit, certification or supplier-assurance programme.'],
-    ['Claims need evidence','This draft makes no general sustainable, eco-friendly, carbon-neutral or certified-supply-chain claim. Product-specific supplier facts must be attributed and checked before publication.'],
-  ],['Confirm procurement practices and substantiation/source/date/scope for each product claim. No general Sustainability page until evidence is approved.']),
+    ['Product-specific evidence','Supplier information about a particular fabric should be attributed to that supplier and checked against that product. It should not be read as evidence that every CurtainsUK product or the whole business has the same environmental or social characteristics.'],
+    ['Ask before ordering','If a sourcing, material or certification requirement is important to you, contact '+support+' with the fabric reference before ordering so the available evidence can be checked.'],
+    ['No blanket claims','This page should not be read as a blanket claim that every CurtainsUK product is sustainable, eco-friendly, carbon-neutral or covered by a certified supply chain. Product-specific supplier facts should be attributed and checked before they are relied on.'],
+  ],['Procurement practices and substantiation/source/date/scope for product-specific sourcing claims remain to be confirmed before making broader sustainability claims.']),
   page('accessibility','Website Accessibility','/pages/accessibility','CREATE',[
     ['Using the website','We want CurtainsUK to be usable with a keyboard, screen reader and mobile device. The shared footer uses named navigation groups, visible focus and expandable sections on small screens. We are reviewing accessibility across the wider service.'],
     ['If something gets in your way','Email '+support+' with the page address, what you were trying to do, and the browser or assistive technology if you know it. Tell us what alternative format or help would work for you.'],
@@ -141,14 +140,14 @@ export const pages = [
     ['What happens after payment?','Your made-to-measure order goes to CurtainsUK review. Approval and workroom release are separate staff actions. Read '+link('/pages/made-to-measure-orders','Your made-to-measure order')+'.'],
     ['How do I request a change?',changeNotice],
     ['Can I return my order?','The rules differ for samples, made-to-measure goods and goods with a problem. See '+returns+'.'],
-  ]),
+  ],[],{titleTag:'CurtainsUK FAQs | Measuring, Samples, Orders & Returns',descriptionTag:'Answers to common CurtainsUK questions about measuring, fabric samples, curtain orders, changes, delivery and returns.'}),
   page('about-us-1','About CurtainsUK','/pages/about-us-1','REWRITE',[
     ['Fabric first','CurtainsUK is an interior-led fabric specialist and made-to-measure curtain service. Begin with your room, choose your fabric, explore curtain form, measure and make.'],
     ['Guidance that connects the choices','Fabric Intelligence helps relate fabric to your room. Fabric Knowledge explains colour, pattern, activity, texture, finish, character and presence. Curtain Style and Guided Measure help turn those choices into a considered curtain configuration.'],
     ['Here to help','Contact '+support+' for customer support. CurtainsUK is operated by Apex Curtains Ltd.'],
-  ]),
+  ],[],{titleTag:'About CurtainsUK | Made-to-Measure Curtains & Fabric Guidance',descriptionTag:'Learn about CurtainsUK, our fabric-first approach, Fabric Intelligence, curtain style guidance and made-to-measure service.'}),
 ];
-export const aliases = {
+export const aliasesexport const aliases = {
   '/pages/privacy-policy':'/policies/privacy-policy',
   '/pages/terms-and-conditions':'/policies/terms-of-service',
   '/pages/faq':'/pages/faq-1',

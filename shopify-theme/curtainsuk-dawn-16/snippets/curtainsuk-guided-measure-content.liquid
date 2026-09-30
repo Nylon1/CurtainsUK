@@ -1,0 +1,24 @@
+{% doc %}
+Renders the Guided Measure journey for fitted hardware.
+@param {string} section_id - Unique section identifier.
+{% enddoc %}
+{{ 'curtainsuk-guided-measure.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-guided-measure.js' | asset_url }}" defer></script>
+<section class="gmeasure" data-guided-measure data-section-id="{{ section_id }}">
+  <script type="application/json" data-measure-copy>{
+    {% assign keys = 'eyebrow,title,intro,setup,width,drop,check,back,continue,unsure,close_help,contact,fitting,hardware_title,hardware_copy,track,pole,none,opening_title,opening_copy,standard,doors,wide,wall,bay,heading_title,heading_copy,wave,double_pinch,pencil,unknown,unknown_heading,track_width_title,track_width_copy,pole_width_title,pole_width_copy,bay_width_title,bay_width_copy,width_label,drop_label,cm,finish_title,finish_copy,short,floor,soft_break,puddle,short_detail,floor_detail,soft_break_detail,puddle_detail,finish_review_title,finish_review_copy,choose_finish,track_drop_title,track_drop_copy,wave_drop_title,wave_drop_copy,pole_drop_title,pole_drop_copy,bay_drop_title,bay_drop_copy,top_track,bottom_track,bottom_pole,finish_point,floor_point,start,end,between_finials,full_route,illustration,track_help,pole_help,bay_help,top_help,wave_help,pole_drop_help,finish_help,general_help,still_unsure,stop_title,stop_copy,bay_pole_title,bay_pole_copy,bay_wave_title,bay_wave_copy,change_heading,check_title,check_copy,edit,edit_setup,confirm,raw,intent,finish,heading,hardware,opening,not_selected,check_review,bay_review,brief_title,brief_copy,brief_local,download,print,copy,copied,copy_failed,edit_brief,brief_id,revision,recorded,review,review_required,rules,storage,storage_failed,invalid,choose,recheck,check_incomplete,noscript,brief_measurement,not_manufacturing,endpoint_short,endpoint_floor' | split: ',' %}
+    {% assign last_key = keys | last %}
+    {% assign final_group = keys.size | minus: 1 | divided_by: 50 %}
+    {% for group in (0..final_group) %}
+      {% assign key_offset = group | times: 50 %}
+      {% for key in keys limit: 50 offset: key_offset %}{% assign translation_key = 'guided_measure.' | append: key %}{{ key | json }}: {{ translation_key | t | json }}{% unless key == last_key %},{% endunless %}{% endfor %}
+    {% endfor %}
+  }</script>
+  <header class="gmeasure__intro">
+    <p class="gmeasure__eyebrow">{{ 'guided_measure.eyebrow' | t }}</p>
+    <h1>{{ 'guided_measure.title' | t }}</h1>
+    <p>{{ 'guided_measure.intro' | t }}</p>
+  </header>
+  <div data-measure-app hidden></div>
+  <noscript><p>{{ 'guided_measure.noscript' | t }}</p><a href="mailto:enquiries@curtainsuk.com">{{ 'guided_measure.contact' | t }}</a></noscript>
+</section>

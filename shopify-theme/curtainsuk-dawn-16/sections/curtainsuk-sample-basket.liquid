@@ -3,7 +3,8 @@
 
 {% if page.handle == 'samples' or page.handle == 'fabric-library' %}
 {% if page.handle == 'samples' %}<script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>{% endif %}
-<section id="samples" class="cuk-shell cuk-section">
+
+<section id="samples" class="cuk-shell cuk-section"{% if template.suffix == 'browse-fabrics' %} hidden{% endif %}>
   <div class="cuk-wrap cuk-layout">
     <div>
       <p class="cuk-eyebrow">Fabric samples</p>

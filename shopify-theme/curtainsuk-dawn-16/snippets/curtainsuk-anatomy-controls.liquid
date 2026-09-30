@@ -1,0 +1,36 @@
+{% doc %}
+  Renders bounded comparison controls within a heading study.
+  @param {string} form - Heading geometry identifier
+  @param {string} section_id - Unique section identifier
+{% enddoc %}
+<div class="canatomy__controls" data-study-controls hidden>
+  <p>{{ 'curtain_compare.principle' | t }}</p>
+  <div class="canatomy__control-grid">
+    {% assign dimensions = 'presence,length,vertical,horizontal,state' | split: ',' %}
+    {% for dimension in dimensions %}
+      {% case dimension %}
+        {% when 'presence' %}{% assign values = 'less,balanced,more' | split: ',' %}
+        {% when 'length' %}{% assign values = 'short,floor,soft-break,puddle' | split: ',' %}
+        {% when 'vertical' %}{% assign values = 'window-led,higher,ceiling-led' | split: ',' %}
+        {% when 'horizontal' %}{% assign values = 'frame,extend-beyond,wall-to-wall' | split: ',' %}
+        {% when 'state' %}{% assign values = 'open,closed' | split: ',' %}
+      {% endcase %}
+      {% assign dimension_key = 'curtain_compare.' | append: dimension %}
+      <fieldset><legend>{{ dimension_key | t }}</legend><div class="canatomy__choices">
+      {% for value in values %}
+        {% assign value_key = 'curtain_compare.' | append: value %}
+        <button type="button" data-study-dimension="{{ dimension }}" data-study-value="{{ value }}" aria-pressed="false" aria-describedby="study-help-{{ section_id }}-{{ form }}" disabled>{{ value_key | t }}</button>
+      {% endfor %}
+      </div></fieldset>
+    {% endfor %}
+  </div>
+  <button type="button" class="canatomy__reset" data-study-reset>{{ 'curtain_compare.reset' | t }}</button>
+  <p data-study-message role="status"></p>
+  <div class="canatomy__changed" aria-live="polite" aria-atomic="true">
+    <h3>{{ 'curtain_compare.changed' | t }}</h3>
+    <p data-current-study></p>
+    <p data-study-explanation></p>
+    <p data-study-translation></p>
+    <p data-study-help id="study-help-{{ section_id }}-{{ form }}">{{ 'curtain_compare.availability' | t }}</p>
+  </div>
+</div>

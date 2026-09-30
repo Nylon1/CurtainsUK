@@ -6,12 +6,16 @@
 %}
 {{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
 {{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
+{% if settings.curtainsuk_rooms_enabled %}
+  {{ 'curtainsuk-rooms.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'curtainsuk-rooms.js' | asset_url }}" defer></script>
+{% endif %}
 
 {% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
-<section class="cuk-shell cuk-section" data-cuk-configurator data-production-checkout="{{ production_checkout }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
+<section class="cuk-shell cuk-section" data-cuk-configurator data-rooms-enabled="{{ settings.curtainsuk_rooms_enabled }}" data-production-checkout="{{ production_checkout }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
   <div class="cuk-wrap">
     <div class="cuk-section__head">
       <div>
@@ -43,7 +47,7 @@
         </dl>
         <form class="cuk-checkout-handoff" data-cuk-reviewed-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h3>{% if production_checkout %}Your approved curtains{% else %}Prepare your Shopify test checkout{% endif %}</h3>
-          <p>{% if production_checkout %}We will confirm the exact approved specification, price, availability and delivery before secure checkout.{% else %}The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.{% endif %}</p>
+          <p>{% if production_checkout %}We will confirm the exact approved specification, price, availability and delivery before secure checkout. Once created, this made-to-measure configuration cannot be edited; remove it and configure again if anything needs to change.{% else %}The server will re-check this exact approved revision before creating anything in the CurtainsUK development store. Real payment and manufacture remain disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukReviewedShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukReviewedShippingRegion-{{ section.id }}" name="shippingRegion" required>
@@ -83,23 +87,18 @@
           <legend>2. Measurements</legend>
           <div class="cuk-fields">
             <div class="cuk-field cuk-field--wide" data-cuk-measurement-basis>
-              <label for="CukBasis-{{ section.id }}">Width measurement basis</label>
+              <label for="CukBasis-{{ section.id }}">Fitted hardware</label>
               <select id="CukBasis-{{ section.id }}" name="measurementBasis" required>
-                <option value="TRACK_WIDTH">Track width</option>
-                <option value="POLE_USABLE_WIDTH">Usable pole width</option>
+                <option value="">Choose fitted hardware</option>
+                <option value="TRACK_WIDTH">Fitted track</option>
+                <option value="POLE_USABLE_WIDTH">Fitted pole</option>
               </select>
-              <p class="cuk-hint">Enter the full coverage width, not a finished curtain width.</p>
+              <p class="cuk-hint">Measure the fitted hardware, not the finished curtain. <a class="cuk-text-link" href="/pages/how-to-measure">How to measure</a></p>
             </div>
-            <div class="cuk-field" data-cuk-width><label for="CukWidth-{{ section.id }}" data-cuk-width-label>Width (cm)</label><input id="CukWidth-{{ section.id }}" name="widthCm" type="number" min="30" max="1200" step="0.1" value="200" required><p class="cuk-hint cuk-hidden" data-cuk-width-hint>Measure along the complete curved track, not straight across the opening.</p></div>
-            <div class="cuk-field"><label for="CukDrop-{{ section.id }}">Drop (cm)</label><input id="CukDrop-{{ section.id }}" name="dropCm" type="number" min="30" max="600" step="0.1" value="220" required></div>
-            <div class="cuk-field cuk-hidden" data-cuk-bay>
-              <label for="CukBaySectionCount-{{ section.id }}">Number of bay sections</label>
-              <input id="CukBaySectionCount-{{ section.id }}" name="baySectionCount" type="number" min="2" max="8" step="1" value="3" required>
-            </div>
+            <div class="cuk-field" data-cuk-width><label for="CukWidth-{{ section.id }}" data-cuk-width-label>Width (cm)</label><input id="CukWidth-{{ section.id }}" name="widthCm" type="number" min="30" max="1200" step="0.1" required><p class="cuk-hint cuk-hidden" data-cuk-width-hint>Measure along the complete curved track, not straight across the opening.</p></div>
+            <div class="cuk-field"><label for="CukDrop-{{ section.id }}">Drop (cm)</label><input id="CukDrop-{{ section.id }}" name="dropCm" type="number" min="30" max="600" step="0.1" required></div>
             <div class="cuk-field cuk-field--wide cuk-hidden" data-cuk-bay>
-              <span class="cuk-field__label">Width of each section (cm)</span>
-              <div class="cuk-bay-sections" data-cuk-bay-sections></div>
-              <p class="cuk-hint">Measure along the fitted track or pole. We add the sections to calculate the full curtain coverage width; angles are not needed for curtain pricing.</p>
+              <p class="cuk-hint">For a bay, select fitted track and measure its full route from start to finish. <a class="cuk-text-link" href="/pages/how-to-measure">Measure a bay track</a></p>
             </div>
             <div class="cuk-field cuk-hidden" data-cuk-corner><label for="CukCornerOne-{{ section.id }}">First section width (cm)</label><input id="CukCornerOne-{{ section.id }}" name="cornerSectionOneCm" type="number" min="10" max="600" step="0.1" value="150" required></div>
             <div class="cuk-field cuk-hidden" data-cuk-corner><label for="CukCornerTwo-{{ section.id }}">Second section width (cm)</label><input id="CukCornerTwo-{{ section.id }}" name="cornerSectionTwoCm" type="number" min="10" max="600" step="0.1" value="150" required></div>
@@ -133,11 +132,11 @@
         <fieldset class="cuk-step">
           <legend>3. Curtain specification</legend>
           <div class="cuk-fields">
-            <div class="cuk-field"><label for="CukHeading-{{ section.id }}">Heading</label><select id="CukHeading-{{ section.id }}" name="heading" required><option value="PENCIL_PLEAT">Pencil pleat</option><option value="WAVE">Wave</option><option value="EYELET">Eyelet</option><option value="DOUBLE_PINCH">Double pinch pleat</option></select></div>
+            <div class="cuk-field"><label for="CukHeading-{{ section.id }}">Heading</label><select id="CukHeading-{{ section.id }}" name="heading" required><option value="">Choose a heading</option><option value="PENCIL_PLEAT">Pencil pleat</option><option value="WAVE">Wave</option><option value="EYELET">Eyelet</option><option value="DOUBLE_PINCH">Double pinch pleat</option></select></div>
             <div class="cuk-field"><label for="CukFabric-{{ section.id }}">Fabric and colour</label><select id="CukFabric-{{ section.id }}" name="fabricId" required><option value="">Loading fabrics…</option></select><a class="cuk-text-link" data-cuk-browse-fabrics href="/pages/fabric-library">Browse all fabrics for this window</a></div>
-            <div class="cuk-field"><label for="CukLining-{{ section.id }}">Lining</label><select id="CukLining-{{ section.id }}" name="lining" required><option value="STANDARD">Standard lining</option><option value="BLACKOUT">Blackout lining</option><option value="THERMAL">Thermal lining</option><option value="BONDED">Bonded lining / interlining</option><option value="UNLINED">Unlined</option></select></div>
-            <div class="cuk-field"><label for="CukConstruction-{{ section.id }}">Pair or single</label><select id="CukConstruction-{{ section.id }}" name="construction" required><option value="PAIR">Pair</option><option value="SINGLE">Single curtain</option></select></div>
-            <div class="cuk-field cuk-field--wide"><label for="CukStack-{{ section.id }}">Opening / stack direction</label><select id="CukStack-{{ section.id }}" name="stackDirection" required><option value="SPLIT">Pair opening from centre</option><option value="LEFT">Stack left</option><option value="RIGHT">Stack right</option></select></div>
+            <div class="cuk-field"><label for="CukLining-{{ section.id }}">Lining</label><select id="CukLining-{{ section.id }}" name="lining" required><option value="">Choose lining</option><option value="STANDARD">Standard lining</option><option value="BLACKOUT">Blackout lining</option><option value="THERMAL">Thermal lining</option><option value="BONDED">Bonded lining / interlining</option><option value="UNLINED">Unlined</option></select></div>
+            <div class="cuk-field"><label for="CukConstruction-{{ section.id }}">Pair or single</label><select id="CukConstruction-{{ section.id }}" name="construction" required><option value="">Choose pair or single</option><option value="PAIR">Pair</option><option value="SINGLE">Single curtain</option></select></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukStack-{{ section.id }}">Opening / stack direction</label><select id="CukStack-{{ section.id }}" name="stackDirection" required><option value="">Choose opening direction</option><option value="SPLIT">Pair opening from centre</option><option value="LEFT">Stack left</option><option value="RIGHT">Stack right</option></select></div>
           </div>
         </fieldset>
 
@@ -171,7 +170,8 @@
         <p class="cuk-hint" data-cuk-result-spec></p>
         <form class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form {% unless settings.curtainsuk_purchase_controls_enabled %}hidden style="display:none!important"{% endunless %}>
           <h2>{% if production_checkout %}Your curtain order{% else %}Prepare a Shopify test checkout{% endif %}</h2>
-          <p>{% if production_checkout %}Your curtain specification and price are preserved. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
+          {% render 'curtainsuk-colour-guidance' %}
+          <p>{% if settings.curtainsuk_rooms_enabled %}{{ 'rooms.retain_notice' | t }}{% elsif production_checkout %}Your curtain specification and price are preserved. This made-to-measure configuration cannot be edited in cart or checkout; to change it, remove it and configure your curtains again. Confirm delivery and current availability before proceeding to secure checkout.{% else %}This validates and freezes the exact curtain specification and price. When every staging gate passes, it can create a Draft Order only in the CurtainsUK development store. Real payment remains disabled.{% endif %}</p>
           <div class="cuk-field">
             <label for="CukShippingRegion-{{ section.id }}">Delivery area</label>
             <select id="CukShippingRegion-{{ section.id }}" name="shippingRegion" required>
@@ -188,6 +188,7 @@
             <input id="CukAcceptSummary-{{ section.id }}" name="customerAccepted" type="checkbox" required>
             <span>I confirm the summary above matches my measurements and selections.</span>
           </label>
+          <p class="cuk-hint">Need to request a change? Email us within 2 hours of placing your order at enquiries@curtainsuk.com. We’ll review your request and get in touch.</p>
           <div class="cuk-error" data-cuk-checkout-error hidden></div>
           <p class="cuk-review-confirmation cuk-hidden" data-cuk-checkout-confirmation tabindex="-1"></p>
           <button class="cuk-button" type="submit">{% if production_checkout %}Continue to secure checkout{% else %}Prepare test checkout{% endif %}</button>

@@ -1,4 +1,6 @@
-{% if page.handle contains 'how-to-measure' or page.handle contains 'how-to-fit' %}
+{% if page.handle == 'how-to-measure' %}
+  {% render 'curtainsuk-guided-measure-content', section_id: section.id %}
+{% elsif page.handle contains 'how-to-measure' or page.handle contains 'how-to-fit' %}
   {% render 'curtainsuk-guide-content', guide_handle: page.handle %}
 {% elsif request.page_type == '404' and theme.role != 'main' %}
   {% comment %}Hidden pages are not resolvable in Shopify Liquid. In unpublished staging only, select the exact guide template in the browser. Publication must make the page records visible for HTTP 200 routes.{% endcomment %}

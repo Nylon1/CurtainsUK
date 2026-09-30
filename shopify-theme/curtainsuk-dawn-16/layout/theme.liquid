@@ -1,8 +1,18 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
+  
   <head>
+    <meta name="google-site-verification" content="QE0et75fxlPAPD8hhIDse4U1lo1la-IY1UY0bwV2z1s" />
     {%- if settings.curtainsuk_staging_mode or theme.role != 'main' or request.design_mode or request.visual_preview_mode -%}
       <meta name="robots" content="noindex, nofollow, noarchive">
+    {%- endif -%}
+    {%- if page.handle == 'fabric-library' -%}
+      {%- comment -%}
+        Exact Fabric Master discovery now has one Shopify metaobject URL per
+        eligible fabric. The interactive legacy/query route remains available
+        for compatibility, but is never an indexable fabric-detail competitor.
+      {%- endcomment -%}
+      <meta name="robots" content="noindex, follow">
     {%- endif -%}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,6 +77,127 @@
     {%- endif -%}
 
     {{ content_for_header }}
+
+    <!-- CurtainsUK OpenAI Ads measurement bridge -->
+<script>
+(() => {
+const pixelId = "6LN4GfrhY92CkQR6Uti2NH";
+
+if (!window.oaiq) {
+const q = function () { q.q.push(arguments); };
+q.q = [];
+window.oaiq = q;
+const js = document.createElement("script");
+js.async = true;
+js.src = "https://bzrcdn.openai.com/sdk/oaiq.min.js";
+const firstScript = document.getElementsByTagName("script")[0];
+firstScript.parentNode.insertBefore(js, firstScript);
+}
+
+window.oaiq("consent", false);
+window.oaiq("init", { pixelId, debug: true });
+
+let pageViewSent = false;
+
+const sendPageView = () => {
+if (pageViewSent) return;
+pageViewSent = true;
+window.oaiq("measure", "page_viewed", {
+type: "contents",
+contents: [{
+id: window.location.pathname || "/",
+name: document.title || "CurtainsUK",
+content_type: "page"
+}]
+});
+};
+
+const applyShopifyConsent = () => {
+try {
+const allowed = Boolean(
+window.Shopify &&
+window.Shopify.customerPrivacy &&
+window.Shopify.customerPrivacy.marketingAllowed()
+);
+window.oaiq("consent", allowed);
+if (allowed) sendPageView();
+} catch (_) {
+window.oaiq("consent", false);
+}
+};
+
+const loadPrivacyApi = () => {
+if (!window.Shopify || typeof window.Shopify.loadFeatures !== "function") {
+window.setTimeout(loadPrivacyApi, 100);
+return;
+}
+window.Shopify.loadFeatures(
+[{ name: "consent-tracking-api", version: "0.1" }],
+(error) => {
+if (!error) applyShopifyConsent();
+}
+);
+};
+
+loadPrivacyApi();
+
+document.addEventListener("visitorConsentCollected", (event) => {
+const allowed = typeof event.detail?.marketingAllowed === "boolean"
+? event.detail.marketingAllowed
+: Boolean(window.Shopify?.customerPrivacy?.marketingAllowed?.());
+window.oaiq("consent", allowed);
+if (allowed) sendPageView();
+});
+
+document.addEventListener("trackingConsentAccepted", () => {
+window.oaiq("consent", true);
+sendPageView();
+});
+
+window.addEventListener("curtainsuk:analytics", (event) => {
+  const detail = event.detail || {};
+
+  if (detail.event === "curtainsuk_review_submitted") {
+    
+const options = detail.configuration_id
+? { event_id: "lead_" + String(detail.configuration_id) }
+: undefined;
+if (options) {
+window.oaiq("measure", "lead_created", { type: "customer_action" }, options);
+} else {
+window.oaiq("measure", "lead_created", { type: "customer_action" });
+}
+return;
+}
+
+if (
+  detail.event === "curtainsuk_checkout_handoff_reached" ||
+  detail.event === "curtainsuk_checkout_opened"
+) {
+const options = detail.handoff_id
+? { event_id: "checkout_" + String(detail.handoff_id) }
+: undefined;
+if (options) {
+window.oaiq("measure", "checkout_started", { type: "contents" }, options);
+} else {
+window.oaiq("measure", "checkout_started", { type: "contents" });
+}
+return;
+}
+
+if (detail.event === "curtainsuk_fabric_selected" && detail.fabric_id) {
+window.oaiq("measure", "contents_viewed", {
+type: "contents",
+contents: [{
+id: String(detail.fabric_id),
+content_type: "product"
+}]
+});
+}
+});
+})();
+</script>
+
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
@@ -282,6 +413,9 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {%- if request.page_type == 'index' -%}
+      {{ 'curtainsuk-home-trust-strip.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -334,6 +468,10 @@
     {%- endif -%}
 
     {% sections 'header-group' %}
+
+    {%- if request.page_type == 'index' -%}
+      {% render 'curtainsuk-home-trust-strip' %}
+    {%- endif -%}
 
     <main
       id="MainContent"

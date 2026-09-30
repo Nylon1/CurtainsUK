@@ -1,0 +1,21 @@
+{% if settings.curtainsuk_rooms_enabled %}
+  {{ 'curtainsuk-home-house.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'curtainsuk-home-house.js' | asset_url }}" defer></script>
+  <section class="cukhouse-home" data-cuk-home-house data-house-hero="{{ 'cuk-rooms-editorial-hero-v1.png' | asset_url }}">
+    <div class="cukhouse-home__wrap">
+      <div class="cukhouse-home__copy">
+        <p class="cukhouse-home__eyebrow">House of Curtains</p>
+        <h2>Real Homes. Room by Room.</h2>
+        <p>Start with one window. Save your rooms and build the curtains for your home at your own pace.</p>
+        <a class="cukhouse-home__button" href="/pages/build-my-rooms">Build my rooms</a>
+      </div>
+      <div class="cukhouse-home__visual">
+        <img src="{{ 'cuk-rooms-editorial-hero-v1.png' | asset_url }}" width="1536" height="1024" loading="lazy" alt="Room inspiration with neutral curtains">
+        <p>Room inspiration</p>
+      </div>
+    </div>
+  </section>
+{% endif %}
+{% schema %}
+{"name":"House of Curtains","settings":[],"presets":[{"name":"House of Curtains"}]}
+{% endschema %}

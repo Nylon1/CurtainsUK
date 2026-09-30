@@ -68,7 +68,7 @@
         text.textContent = `Your consultation · ${context.profileSummary}`;
         const link = document.createElement('a');
         link.textContent = 'Return to my shortlist';
-        link.href = `/apps/curtainsuk-decision/consultation?session=${encodeURIComponent(context.sessionId)}`;
+        link.href = `/apps/curtainsuk-decision/consultation?experience=premium&session=${encodeURIComponent(context.sessionId)}`;
         const details = document.createElement('details'),
           summary = document.createElement('summary');
         summary.textContent = 'Your profile';
@@ -285,12 +285,19 @@
     back.textContent = 'Back';
     next.textContent = 'Continue';
     controls.append(back, next);
-    let step = Math.min(6, Math.max(0, Number(sessionStorage.getItem('cuk_config_step_v1')) || 0));
+    const stepKey = 'cuk_config_step_v1';
+    panes.forEach((pane) => pane.querySelectorAll('input,select,textarea').forEach((field) => {
+      field.dataset.cukWizardRequired = field.required ? 'true' : 'false';
+    }));
+    let step = Math.min(6, Math.max(0, Number(sessionStorage.getItem(stepKey)) || 0));
     const show = (index, focus = true) => {
       step = index;
-      sessionStorage.setItem('cuk_config_step_v1', String(step));
+      sessionStorage.setItem(stepKey, String(step));
       panes.forEach((pane, i) => {
         pane.hidden = i !== step;
+        pane.querySelectorAll('input,select,textarea').forEach((field) => {
+          field.required = i === step && field.dataset.cukWizardRequired === 'true';
+        });
       });
       [...nav.children].forEach((button, i) => {
         if (i === step) button.setAttribute('aria-current', 'step');
@@ -325,6 +332,10 @@
     form.prepend(nav);
     panes.forEach((pane) => form.append(pane));
     form.append(controls);
+    root.addEventListener('cuk:configurator-fresh-draft', () => {
+      sessionStorage.removeItem(stepKey);
+      show(0, false);
+    });
     form.addEventListener(
       'invalid',
       (event) => {

@@ -4,6 +4,7 @@
   const EVALUATION_KEY = "curtainsuk_staging_evaluation_v1";
   const RECEIPT_KEY = "curtainsuk_staging_submission_v1";
   const REVIEW_RESUME_KEY = "curtainsuk_staging_review_resume_v1";
+  const NEW_CURTAIN_DRAFT_KEY = "curtainsuk_new_curtain_draft_v1";
   const REVIEW_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   const REVIEW_ACCEPTANCE_TOKEN = /^v1\.\d{10,12}\.[A-Za-z0-9_-]{43}$/;
   const FABRIC_MASTER_ID = /^[a-zA-Z0-9-]{1,150}$/;
@@ -125,6 +126,29 @@
     return data;
   }
 
+  async function fetchNailaBrowse(root, destination) {
+    const url = new URL(destination, location.origin);
+    if (root.dataset.nailaEnabled !== 'true' || root.dataset.nailaActive !== 'true' ||
+      url.protocol !== 'https:' || url.origin !== location.origin || url.username || url.password || url.hash ||
+      url.pathname !== '/apps/curtainsuk-decision/catalog' || url.searchParams.getAll('naila').length !== 1 ||
+      url.searchParams.get('naila') !== '1' || url.searchParams.getAll('view').length !== 1 ||
+      url.searchParams.get('view') !== 'retail' || url.searchParams.has('fabric') ||
+      typeof root.cukNailaBrowseProof !== 'function')
+      throw new Error('Your consultation connection is not ready. Please continue with Naila and retry.');
+    const proof = await root.cukNailaBrowseProof(url.href);
+    if (root.dataset.nailaEnabled !== 'true' || root.dataset.nailaActive !== 'true' ||
+      typeof proof?.['x-curtainsuk-naila-capability'] !== 'string' || !proof['x-curtainsuk-naila-capability'] ||
+      proof['x-curtainsuk-naila-capability'].length > 180 ||
+      !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(proof?.['x-curtainsuk-naila-session'] ?? ''))
+      throw new Error('Your consultation connection is not ready. Please continue with Naila and retry.');
+    return fetchJson(url.href, {
+      method: 'GET', credentials: 'same-origin', redirect: 'error',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json',
+        'x-curtainsuk-naila-capability': proof['x-curtainsuk-naila-capability'],
+        'x-curtainsuk-naila-session': proof['x-curtainsuk-naila-session'] },
+    });
+  }
+
   function rememberProject(values) {
     const current = readJson(PROJECT_KEY, {});
     localStorage.setItem(PROJECT_KEY, JSON.stringify({ ...current, ...values, updatedAt: new Date().toISOString() }));
@@ -180,7 +204,7 @@
     const selectedWindow = params.get("window") || readJson(PROJECT_KEY, {}).windowSlug || "standard-window";
     grid.innerHTML = "";
     const count = root.querySelector("[data-cuk-fabric-count]");
-    if (count) count.textContent = `${catalog.total ?? catalog.fabrics.length} fabrics · Page ${catalog.page || 1} of ${Math.max(1, catalog.pages || 1)}`;
+    if (count) count.textContent = `${catalog.total ?? catalog.fabrics.length} ${(catalog.total ?? catalog.fabrics.length) === 1 ? 'fabric' : 'fabrics'} · Page ${catalog.page || 1} of ${Math.max(1, catalog.pages || 1)}`;
     if (catalog.fabrics.length === 0) {
       grid.innerHTML = '<p class="cuk-empty">No fabrics match those filters.</p>';
       return;
@@ -212,10 +236,36 @@
           <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric__actions">
             ${sampleAction}
-            <a class="cuk-button" href="/pages/fabric-library?fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}">View Fabric</a>
+            <a class="cuk-button" href="/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}">View Fabric</a>
           </div>
         </div>`;
-      card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
+      if (root.hasAttribute("data-cuk-shopping")) {
+        const body = card.querySelector('.cuk-fabric__body');
+        body.querySelector('.cuk-eyebrow').textContent = fabric.brand || fabric.supplier;
+        body.querySelector('h3').textContent = fabric.design;
+        const paragraphs = [...body.querySelectorAll(':scope > p:not(.cuk-eyebrow):not(.cuk-hint)')];
+        paragraphs[0].textContent = fabric.colour;
+        paragraphs[0].className = 'cuk-browse-colourway';
+        paragraphs[1].textContent = [...new Set([...(fabric.patterns || []), ...(fabric.characters || [])])].filter(v => v && v !== 'UNKNOWN').slice(0, 2).join(' · ');
+        paragraphs[1].className = 'cuk-browse-descriptor';
+        const price = document.createElement('p'); price.className = 'cuk-browse-price';
+        const guide = fabric.browseGuide;
+        const guideValid = guide?.currency === 'GBP' && guide.policy === 'curtainsuk-browse-guide-v1' && Number.isSafeInteger(guide.amountMinor) && guide.amountMinor > 0;
+        price.textContent = guideValid ? `Curtains from ${new Intl.NumberFormat('en-GB', {style:'currency', currency:'GBP', minimumFractionDigits: guide.amountMinor % 100 ? 2 : 0}).format(guide.amountMinor / 100)}` : 'Price guide unavailable';
+        body.insertBefore(price, paragraphs[1]);
+        if (guideValid) {
+          const disclosure = document.createElement('p'); disclosure.className = 'cuk-browse-price-note';
+          disclosure.textContent = 'Price guide. Final price depends on measurements and options.';
+          price.after(disclosure);
+        }
+        const productLink = card.querySelector('a[href*="fabric="]');
+        const imageLink = document.createElement('a'); imageLink.href = productLink.href;
+        imageLink.setAttribute('aria-label', `View ${fabric.design} in ${fabric.colour}`);
+        const swatch = card.querySelector('.cuk-fabric__swatch');
+        imageLink.append(...swatch.childNodes); swatch.append(imageLink);
+      }
+      if (root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience) window.CurtainsUKFabricExperience.enhanceCard(card,fabric,selectedWindow,addSample);
+      else card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
       card.querySelector("img")?.addEventListener("error", (event) => {
         const swatch = event.currentTarget.closest(".cuk-fabric__swatch");
         if (swatch) swatch.innerHTML = `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;
@@ -234,19 +284,38 @@
     const params = new URLSearchParams(location.search);
     const windowSlug = params.get("window") || readJson(PROJECT_KEY, {}).windowSlug || "";
     let page = Math.max(1, Number(params.get("page")) || 1), generation = 0, timer;
+    // Additive presentation bridge. Completely absent when Naila is disabled.
+    let nailaPaused = false;
+    if (root.dataset.nailaEnabled === 'true') {
+      root.addEventListener('cuk:naila:pause', () => { nailaPaused = true; ++generation; clearTimeout(timer); });
+      root.addEventListener('cuk:naila:browse', () => { nailaPaused = false; });
+      root.addEventListener('cuk:naila:render', event => {
+        if (root.dataset.nailaActive !== 'true') return;
+        ++generation; clearTimeout(timer); root.removeAttribute('aria-busy');
+        renderFabricCards(root, event.detail);
+      });
+      filters.addEventListener('input', () => { nailaPaused = false; });
+      filters.addEventListener('reset', () => { nailaPaused = false; });
+    }
     const showError = (error) => { const box = root.querySelector("[data-cuk-error]"); box.textContent = error.message || "Unable to load fabrics. Please try again."; box.hidden = false; };
     const apiUrl = () => new URL(endpoint(root.dataset.engineBase, "catalog"), location.origin);
     try {
       if (params.get("fabric")) {
-        const url = apiUrl(); url.searchParams.set("view", "retail"); url.searchParams.set("fabric", params.get("fabric"));
+        const premiumDetail = root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience;
+        if (!premiumDetail) root.removeAttribute('data-cuk-shopping');
+        root.querySelector('[data-cuk-browse-assistance]')?.remove();
+        const url = premiumDetail && root.dataset.browsePreviewEndpoint ? new URL(root.dataset.browsePreviewEndpoint) : apiUrl();
+        url.searchParams.set("view", "retail"); url.searchParams.set("fabric", params.get("fabric"));
+        if (premiumDetail) url.searchParams.set('browseGuide','1');
         const { fabric } = await fetchJson(url.href);
         if (!fabric) throw new Error("This fabric is not available to view.");
         filters.hidden = true; grid.hidden = true; navigation.hidden = true; root.querySelector("[data-cuk-fabric-count]").hidden = true;
         detail.hidden = false;
+        if (premiumDetail) { window.CurtainsUKFabricExperience.renderDetail(root,fabric,windowSlug,addSample); return; }
         const main = fabric.images?.[0];
         const configureUrl = `/pages/curtain-visualiser?fabric=${encodeURIComponent(fabric.id)}${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}`;
         const spec = (label, value) => value ? `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>` : "";
-        detail.innerHTML = `<a href="/pages/fabric-library${windowSlug ? `?window=${encodeURIComponent(windowSlug)}` : ""}" class="cuk-text-link">← All fabrics</a>
+        detail.innerHTML = `<a href="/pages/fabric-library?view=browse-fabrics${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}" class="cuk-text-link">← All fabrics</a>
           <div class="cuk-fabric-detail"><div class="cuk-fabric-detail__gallery">${main ? `<img class="cuk-fabric-detail__main" src="${escapeHtml(main.url)}" width="${main.width}" height="${main.height}" alt="${escapeHtml(fabric.metadata.alt)}" fetchpriority="high">` : '<p class="cuk-empty">Fabric photography is being prepared.</p>'}
           <div class="cuk-fabric-detail__additional">${(fabric.images || []).slice(1).map((image) => `<img src="${escapeHtml(image.url)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(fabric.metadata.alt)} — ${escapeHtml(image.imageType.toLowerCase())}" loading="lazy">`).join("")}</div></div>
           <div><p class="cuk-eyebrow">${escapeHtml(fabric.brand)} · ${escapeHtml(fabric.collection)}</p><h2>${escapeHtml(fabric.design)}</h2><p class="cuk-fabric-detail__colour">${escapeHtml(fabric.colour)}</p>
@@ -265,26 +334,69 @@
         return;
       }
       const load = async () => {
-        const current = ++generation; const url = apiUrl(); url.searchParams.set("view", "retail"); url.searchParams.set("page", String(page));
+        if (nailaPaused) return;
+        const current = ++generation;
+        const url = root.hasAttribute('data-cuk-shopping') && root.dataset.browsePreviewEndpoint ? new URL(root.dataset.browsePreviewEndpoint) : apiUrl();
+        url.searchParams.set("view", "retail"); url.searchParams.set("page", String(page));
+        if (root.hasAttribute('data-cuk-shopping')) url.searchParams.set('browseGuide','1');
         for (const [key, value] of new FormData(filters)) if (String(value).trim()) url.searchParams.set(key, String(value).trim());
+        if (root.dataset.nailaEnabled === 'true' && root.dataset.nailaActive === 'true') {
+          url.searchParams.set('naila', '1');
+          if (root.dataset.nailaPriceLevel) url.searchParams.set('nailaPriceLevel', root.dataset.nailaPriceLevel);
+        }
         root.setAttribute("aria-busy", "true");
         try {
-          const catalog = await fetchJson(url.href); if (current !== generation) return;
+          const catalog = root.dataset.nailaEnabled === 'true' && root.dataset.nailaActive === 'true'
+            ? await fetchNailaBrowse(root, url.href) : await fetchJson(url.href); if (current !== generation) return;
+          // Publish the current form state before the Browse presentation renders.
+          // Active filter chips deliberately read the URL because hidden fields are
+          // replaced by the controller during refresh/reset.
+          const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (key !== "window" && key !== "preview_theme_id" && key !== "view") address.searchParams.delete(key);
+          for (const [key, value] of new FormData(filters)) if (String(value).trim()) address.searchParams.set(key, String(value).trim());
+          address.searchParams.set("page", String(page)); history.replaceState(null, "", address);
+          const guideSelect = filters.elements.guidePrice;
+          if (guideSelect?.tagName === "SELECT" && catalog.facets.guidePrices) {
+            const selected = guideSelect.value;
+            guideSelect.replaceChildren(option('All guide prices', ''), ...catalog.facets.guidePrices.map(band => option(band.label, band.value)));
+            guideSelect.value = selected;
+          }
           for (const [key, values] of Object.entries({ brand: catalog.facets.brands, collection: catalog.facets.collections, colour: catalog.facets.colour, pattern: catalog.facets.pattern, style: catalog.facets.style, character: catalog.facets.character })) {
-            const select = filters.elements[key]; if (select && !select.dataset.facetsLoaded) { values.filter((v) => v !== "UNKNOWN" && ![...select.options].some((o) => o.value === v)).forEach((v) => select.appendChild(option(v, v))); select.dataset.facetsLoaded = "true"; }
+            // Browse Fabric Intelligence renders Colour as a governed visual
+            // control backed by a hidden input. Only legacy native selects own
+            // an options collection, so never assume every named form control
+            // can be expanded as a select.
+            const select = filters.elements[key];
+            if (select?.tagName === "SELECT" && !select.dataset.facetsLoaded) {
+              const existing = new Set(Array.from(select.options, (item) => item.value));
+              for (const value of Array.isArray(values) ? values : []) {
+                if (value !== "UNKNOWN" && !existing.has(value)) {
+                  select.appendChild(option(value, value));
+                  existing.add(value);
+                }
+              }
+              select.dataset.facetsLoaded = "true";
+            }
+          }
+          if (root.hasAttribute('data-cuk-shopping')) {
+            window.CurtainsUKFabricExperience?.renderDiscovery(root,catalog,filters);
+            if (window.CurtainsUKFabricExperience?.renderActiveFilters) window.CurtainsUKFabricExperience.renderActiveFilters(root,catalog,filters);
+            else root.querySelector('[data-cuk-active-filters]').textContent = [...new FormData(filters)].filter(([,value])=>String(value).trim()).map(([key,value])=>key === 'guidePrice' ? `Curtains from: ${catalog.facets.guidePrices.find(band=>band.value===value)?.label || ''}` : humanise(String(value))).join(' · ') || 'All fabrics';
           }
           renderFabricCards(root, catalog);
           navigation.querySelector("[data-cuk-previous]").disabled = page <= 1;
           navigation.querySelector("[data-cuk-next]").disabled = page >= catalog.pages;
           root.querySelector("[data-cuk-error]").hidden = true;
-          const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (key !== "window" && key !== "preview_theme_id") address.searchParams.delete(key);
-          for (const [key, value] of new FormData(filters)) if (String(value).trim()) address.searchParams.set(key, String(value).trim());
-          address.searchParams.set("page", String(page)); history.replaceState(null, "", address);
+          if (root.dataset.nailaEnabled === 'true') root.dispatchEvent(new CustomEvent('cuk:naila:loaded'));
         } catch (error) { if (current === generation) showError(error); } finally { if (current === generation) root.removeAttribute("aria-busy"); }
       };
       for (const [key, value] of params) if (filters.elements[key]) {
         const element = filters.elements[key]; if (element.tagName === "SELECT" && value && ![...element.options].some((o) => o.value === value)) element.appendChild(option(value, value)); element.value = value;
       }
+      filters.addEventListener('reset', () => { clearTimeout(timer); timer = setTimeout(() => {
+        // Hidden visual-choice inputs reflect value into defaultValue; native reset alone retains them.
+        if (root.hasAttribute('data-cuk-shopping')) for (const field of filters.elements) if (field.type === 'hidden') field.value = '';
+        page = 1; load();
+      }, 0); });
       filters.addEventListener("submit", (event) => event.preventDefault());
       filters.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(() => { page = 1; load(); }, 300); });
       navigation.querySelector("[data-cuk-previous]").addEventListener("click", async () => { page = Math.max(1, page - 1); await load(); grid.scrollIntoView({ block: "start" }); });
@@ -337,7 +449,8 @@
 
   function syncConfiguratorUrl(form) {
     const url = new URL(location.href);
-    url.searchParams.set("window", form.elements.windowSlug.value);
+    if (form.elements.windowSlug.value) url.searchParams.set("window", form.elements.windowSlug.value);
+    else url.searchParams.delete("window");
     if (form.elements.fabricId.value) url.searchParams.set("fabric", form.elements.fabricId.value);
     history.replaceState(history.state, "", url);
     const browseLink = form.querySelector("[data-cuk-browse-fabrics]");
@@ -352,29 +465,74 @@
     select.value = values.includes(previous) ? previous : values[0];
   }
 
+  // A retained House curtain is immutable commercial evidence. It must never
+  // seed the next window. Pricing creates the next authoritative configuration
+  // ID only after this clean draft has been completed and validated.
+  function beginNewCurtainDraft(root, form, fabricId) {
+    localStorage.removeItem(PROJECT_KEY);
+    localStorage.removeItem(EVALUATION_KEY);
+    localStorage.removeItem(RECEIPT_KEY);
+    sessionStorage.removeItem("cuk_config_step_v1");
+    form.reset();
+    const fieldNames = [
+      "windowSlug", "measurementBasis", "widthCm", "dropCm", "trackOrPoleFitted", "baySectionCount",
+      "cornerSectionOneCm", "cornerSectionTwoCm", "cornerAngleDegrees", "baseWidth", "peakHeight",
+      "leftVertical", "rightVertical", "leftSlope", "rightSlope", "roughWidthCm", "roughDropCm",
+      "fixingPosition", "awkwardFixingPosition", "heading", "lining", "construction", "stackDirection",
+    ];
+    fieldNames.forEach((name) => {
+      const field = form.elements[name];
+      if (field) field.value = "";
+    });
+    if (form.elements.fabricId) form.elements.fabricId.value = fabricId || "";
+    root.querySelector("[data-cuk-result]")?.setAttribute("hidden", "");
+    root.querySelector("[data-cuk-checkout-form]")?.classList.add("cuk-hidden");
+    root.querySelector("[data-cuk-review-form]")?.classList.add("cuk-hidden");
+    root.querySelector("[data-cuk-review-confirmation]")?.classList.add("cuk-hidden");
+    root.querySelector("[data-cuk-error]")?.setAttribute("hidden", "");
+    root.querySelectorAll("[data-cuk-result-spec], [data-cuk-result-price], [data-cuk-route-status]").forEach((item) => {
+      item.textContent = "";
+    });
+    const draftId = crypto.randomUUID();
+    sessionStorage.setItem(NEW_CURTAIN_DRAFT_KEY, JSON.stringify({ draftId, startedAt: new Date().toISOString(), fabricId: fabricId || null }));
+    root.dispatchEvent(new CustomEvent("cuk:configurator-fresh-draft"));
+    return draftId;
+  }
+
+  const AUTOMATED_MTM_WINDOWS = new Set([
+    "standard-window", "patio-sliding-doors", "french-doors", "bifold-doors", "bay-window",
+  ]);
+
+  function automatedHeadings(windowType, measurementBasis) {
+    if (windowType?.slug === "bay-window") return ["PENCIL_PLEAT", "DOUBLE_PINCH"];
+    return measurementBasis === "POLE_USABLE_WIDTH"
+      ? ["PENCIL_PLEAT", "DOUBLE_PINCH", "EYELET"]
+      : ["PENCIL_PLEAT", "DOUBLE_PINCH", "WAVE"];
+  }
+
   function setJourneyFields(root, windowType) {
     const isBay = windowType?.slug === "bay-window";
-    const isCorner = windowType?.journey === "REVIEW" && windowType.slug === "corner-window";
-    const isCurved = windowType?.journey === "REVIEW" && windowType.slug === "curved-bow-window";
-    const isSpecialist = windowType?.journey === "SPECIALIST";
-    const isAwkward = isSpecialist && windowType.slug === "awkward-unusual-window";
-    const isShapedSpecialist = isSpecialist && !isAwkward;
-    const isReview = windowType?.journey === "REVIEW";
-    const needsEvidence = isReview || isSpecialist;
+    const isCorner = false;
+    const isCurved = false;
+    const isSpecialist = false;
+    const isAwkward = false;
+    const isShapedSpecialist = false;
+    const isReview = false;
+    const needsEvidence = false;
     root.querySelectorAll("[data-cuk-bay]").forEach((item) => item.classList.toggle("cuk-hidden", !isBay));
     root.querySelectorAll("[data-cuk-corner]").forEach((item) => item.classList.toggle("cuk-hidden", !isCorner));
     root.querySelectorAll("[data-cuk-standard]").forEach((item) => item.classList.toggle("cuk-hidden", isSpecialist));
-    root.querySelectorAll("[data-cuk-measurement-basis]").forEach((item) => item.classList.toggle("cuk-hidden", isBay || isCorner || isCurved));
-    root.querySelectorAll("[data-cuk-width]").forEach((item) => item.classList.toggle("cuk-hidden", isBay || isCorner));
+    root.querySelectorAll("[data-cuk-measurement-basis]").forEach((item) => item.classList.toggle("cuk-hidden", isBay));
+    root.querySelectorAll("[data-cuk-width]").forEach((item) => item.classList.toggle("cuk-hidden", false));
     root.querySelectorAll("[data-cuk-specialist-shape]").forEach((item) => item.classList.toggle("cuk-hidden", !isShapedSpecialist));
     root.querySelectorAll("[data-cuk-awkward]").forEach((item) => item.classList.toggle("cuk-hidden", !isAwkward));
     root.querySelectorAll("[data-cuk-review-evidence]").forEach((item) => item.classList.toggle("cuk-hidden", !needsEvidence));
     root.querySelectorAll("[data-cuk-specialist-evidence]").forEach((item) => item.classList.toggle("cuk-hidden", !isSpecialist));
-    root.querySelectorAll("[data-cuk-bay] input, [data-cuk-bay] select, [data-cuk-bay] textarea").forEach((field) => { field.disabled = !isBay; });
+    root.querySelectorAll("[data-cuk-bay] input, [data-cuk-bay] select, [data-cuk-bay] textarea").forEach((field) => { field.disabled = true; });
     root.querySelectorAll("[data-cuk-corner] input, [data-cuk-corner] select, [data-cuk-corner] textarea").forEach((field) => { field.disabled = !isCorner; });
     root.querySelectorAll("[data-cuk-standard] input, [data-cuk-standard] select, [data-cuk-standard] textarea").forEach((field) => { field.disabled = isSpecialist; });
-    root.querySelectorAll("[data-cuk-measurement-basis] input, [data-cuk-measurement-basis] select, [data-cuk-measurement-basis] textarea").forEach((field) => { field.disabled = isBay || isCorner || isCurved || isSpecialist; });
-    root.querySelectorAll("[data-cuk-width] input, [data-cuk-width] select, [data-cuk-width] textarea").forEach((field) => { field.disabled = isBay || isCorner || isSpecialist; });
+    root.querySelectorAll("[data-cuk-measurement-basis] input, [data-cuk-measurement-basis] select, [data-cuk-measurement-basis] textarea").forEach((field) => { field.disabled = isBay; });
+    root.querySelectorAll("[data-cuk-width] input, [data-cuk-width] select, [data-cuk-width] textarea").forEach((field) => { field.disabled = false; });
     root.querySelectorAll("[data-cuk-specialist-shape] input, [data-cuk-specialist-shape] select, [data-cuk-specialist-shape] textarea").forEach((field) => { field.disabled = !isShapedSpecialist; });
     root.querySelectorAll("[data-cuk-awkward] input, [data-cuk-awkward] select, [data-cuk-awkward] textarea").forEach((field) => { field.disabled = !isAwkward; });
     root.querySelectorAll("[data-cuk-review-evidence] input, [data-cuk-review-evidence] select, [data-cuk-review-evidence] textarea").forEach((field) => { field.disabled = !needsEvidence; });
@@ -383,7 +541,16 @@
     if (widthLabel) widthLabel.textContent = isCurved ? "Track arc length (cm)" : "Width (cm)";
     root.querySelector("[data-cuk-width-hint]")?.classList.toggle("cuk-hidden", !isCurved);
     const form = root.querySelector(".cuk-form");
-    replaceOptions(form?.elements.heading, windowType?.headings, {
+    if (!windowType) {
+      if (form?.elements.heading) form.elements.heading.value = "";
+      if (form?.elements.lining) form.elements.lining.value = "";
+      const status = root.querySelector("[data-cuk-route-status]");
+      status.textContent = "Choose your window";
+      status.classList.remove("cuk-status--review");
+      return;
+    }
+    if (isBay && form?.elements.measurementBasis) form.elements.measurementBasis.value = "TRACK_WIDTH";
+    replaceOptions(form?.elements.heading, automatedHeadings(windowType, form?.elements.measurementBasis?.value), {
       PENCIL_PLEAT: "Pencil pleat", WAVE: "Wave", EYELET: "Eyelet", DOUBLE_PINCH: "Double pinch pleat", TRIPLE_PINCH: "Triple pinch pleat", TAB_TOP: "Tab top",
     });
     replaceOptions(form?.elements.lining, windowType?.linings, {
@@ -523,12 +690,20 @@
     const params = new URLSearchParams(location.search);
     let catalog;
     let lastEvaluation = null;
+    const roomsEnabled = root.dataset.roomsEnabled === 'true';
+    const roomIntent = roomsEnabled ? window.CurtainsUKRooms?.readIntent() : null;
+    const savedHouseCurtains = (() => {
+      try { return roomsEnabled ? window.CurtainsUKRooms?.totals(window.CurtainsUKRooms.read() || window.CurtainsUKRooms.ensure()).curtains || 0 : 0; }
+      catch { return 0; }
+    })();
+    const roomsFresh = roomsEnabled && (params.get('rooms_new') === '1' || roomIntent !== null || savedHouseCurtains > 0);
+    const checkoutLabel = () => roomsEnabled ? 'Add to my rooms' : root.dataset.productionCheckout === 'true' ? 'Continue to secure checkout' : 'Prepare test checkout';
 
     try {
-      const requested = params.get("fabric") || readJson(PROJECT_KEY, {}).fabricId;
+      const requested = params.get("fabric") || (!roomsFresh ? readJson(PROJECT_KEY, {}).fabricId : "");
       if (requested && !FABRIC_MASTER_ID.test(requested)) throw new Error("We couldn't verify the fabric in this link. Please choose a fabric from Browse Fabrics.");
       catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog") + (requested ? `?fabric=${encodeURIComponent(requested)}` : ""));
-      catalog.windows.forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
+      catalog.windows.filter((item) => AUTOMATED_MTM_WINDOWS.has(item.slug)).forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
       fabricSelect.replaceChildren(option("Choose a fabric", ""));
       catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} — ${item.colour}`, item.id)));
     } catch (error) {
@@ -538,12 +713,23 @@
       return;
     }
 
-    const remembered = readJson(PROJECT_KEY, {});
+    const remembered = roomsFresh ? {} : readJson(PROJECT_KEY, {});
     restoreProject(form, remembered);
-    windowSelect.value = params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window";
-    const requestedFabric = params.get("fabric") || remembered.fabricId;
+    const requestedFabric = params.get("fabric") || remembered.fabricId || "";
+    if (roomsFresh) {
+      beginNewCurtainDraft(root, form, requestedFabric);
+      lastEvaluation = null;
+    }
+    if (roomsEnabled) {
+      try { if (roomsFresh) localStorage.removeItem(EVALUATION_KEY); window.CurtainsUKRoomsFlow.prepare(root); }
+      catch (error) { errorBox.textContent = error.message; errorBox.hidden = false; form.querySelector('button[type=submit]').disabled = true; return; }
+    }
+    const requestedWindow = roomsFresh ? "" : (params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window");
+    windowSelect.value = AUTOMATED_MTM_WINDOWS.has(requestedWindow) ? requestedWindow : "";
     const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true);
-    fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric) ? requestedFabric : configurableFabrics[0]?.id;
+    fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric)
+      ? requestedFabric
+      : (roomsFresh ? "" : configurableFabrics[0]?.id);
     if (requestedFabric && fabricSelect.value !== requestedFabric) {
       const resolution = catalog.requestedFabric;
       const unavailable = resolution?.id === requestedFabric && resolution.status === "NOT_FOUND";
@@ -559,6 +745,12 @@
     setJourneyFields(root, catalog.windows.find((item) => item.slug === windowSelect.value));
     rememberProject(projectSnapshot(form, root));
     syncConfiguratorUrl(form);
+    if (roomsFresh) {
+      const clean = new URL(location.href);
+      clean.searchParams.delete('rooms_new');
+      clean.searchParams.delete('window');
+      history.replaceState(history.state, '', clean);
+    }
     emit("configurator_started", { window_type: windowSelect.value, surface: "shopify_dawn" });
 
     function showSavedReview(response) {
@@ -594,13 +786,20 @@
       syncConfiguratorUrl(form);
       emit("window_type_selected", { window_type: windowSelect.value });
     });
+    form.elements.measurementBasis.addEventListener("change", () => {
+      const selected = catalog.windows.find((item) => item.slug === windowSelect.value);
+      setJourneyFields(root, selected);
+      result.hidden = true;
+      checkoutForm.classList.add("cuk-hidden");
+      rememberProject(projectSnapshot(form, root));
+    });
     fabricSelect.addEventListener("change", () => {
       form.querySelector("button[type=submit]").disabled = !configurableFabrics.some((fabric) => fabric.id === fabricSelect.value);
       rememberProject(projectSnapshot(form, root));
       syncConfiguratorUrl(form);
       emit("fabric_selected", { fabric_id: fabricSelect.value, window_type: windowSelect.value });
     });
-    form.elements.baySectionCount.addEventListener("change", () => {
+    form.elements.baySectionCount?.addEventListener("change", () => {
       const existing = baySectionWidths(root);
       renderBaySections(root, form.elements.baySectionCount.value, existing);
       rememberProject(projectSnapshot(form, root));
@@ -613,7 +812,7 @@
         reviewForm.classList.add("cuk-hidden");
         checkoutForm.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutLabel(); }
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         reviewConfirmation.classList.add("cuk-hidden");
       }
@@ -633,6 +832,9 @@
       let path = "price";
       let body;
 
+      if (!AUTOMATED_MTM_WINDOWS.has(selected.slug)) {
+        throw new Error("This opening needs a curtain-team review and is not available for automated checkout.");
+      }
       if (selected.journey === "SPECIALIST") {
         const isAwkward = selected.slug === "awkward-unusual-window";
         path = "specialist-review";
@@ -660,37 +862,12 @@
           photoNames,
         };
       } else {
-        const segments = baySectionWidths(root);
         const isBay = selected.slug === "bay-window";
-        const isCorner = selected.slug === "corner-window";
-        const isCurved = selected.slug === "curved-bow-window";
-        const cornerSections = [Number(form.elements.cornerSectionOneCm.value), Number(form.elements.cornerSectionTwoCm.value)];
-        const derivedWidth = isCorner
-          ? cornerSections.reduce((total, width) => total + width, 0)
-          : segments.reduce((total, width) => total + width, 0);
-        if (isBay && (segments.some((width) => !Number.isFinite(width) || width < 10 || width > 600) || derivedWidth < 30 || derivedWidth > 1200)) {
-          errorBox.textContent = "Check each bay section width. The total curtain coverage must be between 30 cm and 1,200 cm.";
-          errorBox.hidden = false;
-          emit("validation_failure", { window_type: windowSelect.value, source: "browser", field: "bay_sections" });
-          return;
-        }
-        const cornerAngle = Number(form.elements.cornerAngleDegrees.value);
-        if (isCorner && (cornerSections.some((width) => !Number.isFinite(width) || width < 10 || width > 600) || derivedWidth < 30 || derivedWidth > 1200 || !Number.isFinite(cornerAngle) || cornerAngle < 1 || cornerAngle > 359)) {
-          errorBox.textContent = "Check both corner section widths and enter one corner angle between 1° and 359°.";
-          errorBox.hidden = false;
-          emit("validation_failure", { window_type: windowSelect.value, source: "browser", field: "corner_geometry" });
-          return;
-        }
         body = {
           windowSlug: windowSelect.value,
-          measurementBasis: isBay || isCorner || isCurved ? "TRACK_WIDTH" : form.elements.measurementBasis.value,
-          widthCm: isBay || isCorner ? derivedWidth : Number(form.elements.widthCm.value),
+          measurementBasis: isBay ? "TRACK_WIDTH" : form.elements.measurementBasis.value,
+          widthCm: Number(form.elements.widthCm.value),
           dropCm: Number(form.elements.dropCm.value),
-
-          bayNumberOfSections: isBay ? segments.length : undefined,
-          baySegmentWidthsCm: isBay ? segments : undefined,
-          cornerSectionWidthsCm: isCorner ? cornerSections : undefined,
-          cornerAngleDegrees: isCorner ? cornerAngle : undefined,
           fabricId: fabricSelect.value,
           heading: form.elements.heading.value,
           lining: form.elements.lining.value,
@@ -736,7 +913,7 @@
         }
         const selectedFabric = response.selectedFabric || catalog.fabrics.find((fabric) => fabric.id === fabricSelect.value);
         const widthSummary = selected.slug === "bay-window"
-          ? `${body.widthCm} cm total across ${body.bayNumberOfSections} sections`
+          ? `${body.widthCm} cm full fitted bay-track route × ${body.dropCm} cm drop`
           : selected.slug === "corner-window"
             ? `${body.widthCm} cm total across two sections · ${body.cornerAngleDegrees}° corner`
             : selected.slug === "curved-bow-window"
@@ -798,7 +975,7 @@
         previousCheckoutError.textContent = "";
         checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
         const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = root.dataset.productionCheckout === "true" ? "Continue to secure checkout" : "Prepare test checkout"; }
+        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutLabel(); }
         const notice = result.querySelector("[data-cuk-result-notice]");
         if (notice) notice.textContent = needsReview
           ? "Checkout is unavailable. This project must be reviewed before payment or manufacture."
@@ -858,6 +1035,21 @@
       const checkoutError = checkoutForm.querySelector("[data-cuk-checkout-error]");
       checkoutError.hidden = true;
       if (!checkoutForm.reportValidity() || !lastEvaluation || lastEvaluation.calculation.outcome !== "INSTANT_PRICE") return;
+      if (roomsEnabled) {
+        const button = checkoutForm.querySelector('button[type=submit]');
+        button.disabled = true; button.textContent = 'Adding to your rooms…';
+        try {
+          await window.CurtainsUKRoomsFlow.add(lastEvaluation, root.dataset.engineBase, {
+            roomId: checkoutForm.elements.roomId.value || null,
+            roomName: checkoutForm.elements.roomName.value,
+            windowName: checkoutForm.elements.windowName.value,
+          });
+        } catch (error) {
+          checkoutError.textContent = error.message; checkoutError.hidden = false;
+          button.disabled = false; button.textContent = checkoutLabel();
+        }
+        return;
+      }
       const previousAttempt = readJson(EVALUATION_KEY, {}).checkoutAttempted === true;
       const submit = checkoutForm.querySelector("button[type=submit]");
       submit.disabled = true;

@@ -1471,6 +1471,12 @@
     "name": "CurtainsUK staging",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "curtainsuk_rooms_enabled",
+        "label": "Build My Rooms (release approval required)",
+        "default": false
+      },
+      {
         "type": "text",
         "id": "curtainsuk_review_email",
         "label": "CurtainsUK review evidence email",

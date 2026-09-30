@@ -1,0 +1,14 @@
+{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-premium.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-home-editorial.css' | asset_url | stylesheet_tag }}
+<div class="cukhome-commercial">
+<section id="cuk-shop-your-way" class="cukhome__shopping cukhome__wrap">
+  <div><p class="cukhome__eyebrow">Your home. Your starting point.</p><h2>Find your own way in.</h2></div>
+  <a href="/pages/solve-my-window"><span class="cukhome__number">01</span><h3>Start with your window</h3><p>From a simple pair to a beautiful bay.</p><span class="cukhome__text-link">Shop by Window ↗</span></a>
+  <a href="/pages/fabric-library"><span class="cukhome__number">02</span><h3>Fall for a fabric</h3><p>Explore colour, texture and pattern from the brands you love.</p><span class="cukhome__text-link">Shop by Fabric ↗</span></a>
+</section>
+<section class="cukhome__reassurance cukhome__wrap" aria-label="Made for your home"><span>Made to your measurements</span><span>Sample in your own light</span><span>Specialist help when you need it</span></section>
+</div>
+{% schema %}
+{"name": "Shop and reassurance", "tag": "section", "class": "section", "settings": [], "presets": [{"name": "Shop and reassurance"}]}
+{% endschema %}

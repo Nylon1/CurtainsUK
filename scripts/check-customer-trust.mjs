@@ -7,10 +7,14 @@ const read=p=>readFile(p,'utf8');
 const out='artifacts/customer-trust-v1';
 const theme='shopify-theme/curtainsuk-new-design-live-base';
 const manifest=JSON.parse(await read(out+'/publication-manifest.json'));
+const livePageKeys=new Set(['contact-us','about-us-1','faq-1','cookies-policy','media','curtain-fabric-colour-guide','complaints','modern-slavery-supply-chain','equality-diversity','recycling-waste','responsible-sourcing','accessibility','room-image-ai-privacy','made-to-measure-orders','sitemap']);
+const internalReviewLanguage=/Unpublished draft|READY FOR OWNER REVIEW|NEEDS CONFIRMATION|customer-trust-v1-review|This draft|Before release|proposed policy|policy for review|final policy must|being technically verified/i;
 assert.equal(manifest.releaseApproved,false);
 assert.equal(manifest.pages.length,21);
 assert.equal(new Set(pages.map(p=>p.url)).size,pages.length);
 assert.equal(groups.length,4);
+for(const p of manifest.pages.filter(p=>livePageKeys.has(p.key)))assert.doesNotMatch(p.body,internalReviewLanguage,p.key);
+for(const p of manifest.pages.filter(p=>p.seo&&Object.keys(p.seo).length)){assert.ok(p.seo.titleTag?.trim());assert.ok(p.seo.descriptionTag?.trim());assert.doesNotMatch(JSON.stringify(p.seo),/Drapesey|Unpublished|OWNER REVIEW/i);}
 for(const p of manifest.pages){assert.match(await read(`${out}/pages/${p.key}.html`),/Unpublished/);assert.ok(p.status!=='APPROVED');}
 for(const [,target] of Object.entries(aliases)){assert.ok(manifest.pages.some(p=>p.url===target)||['/pages/how-to-measure','/pages/how-to-fit'].includes(target));}
 const generated=await read('lib/storefront/customer-trust/generated.ts');

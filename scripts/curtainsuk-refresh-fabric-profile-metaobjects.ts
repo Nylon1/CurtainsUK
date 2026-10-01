@@ -97,6 +97,7 @@ function runtimeConfig(environment: NodeJS.ProcessEnv = process.env) {
 
   if (shopDomain !== PRODUCTION_SHOP) throw new Error("FABRIC_PROFILE_SHOP_DENIED");
   if (clientId.length < 8 || clientSecret.length < 16) throw new Error("FABRIC_PROFILE_SHOPIFY_CREDENTIALS_MISSING");
+  if (clientId !== EXPECTED_SHOPIFY_APP_KEY) throw new Error("FABRIC_PROFILE_SHOPIFY_APP_MISMATCH");
 
   return { shopDomain, clientId, clientSecret };
 }

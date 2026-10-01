@@ -47,18 +47,33 @@ def main():
     source_keys = set()
     ai_requests_actual = 0
     accepted_patch_fragments = 0
+    source_run_reports = []
     for source in args.source:
         run_id, artifact_id, directory = source.split(":", 2)
         if not run_id.isdigit() or not artifact_id.isdigit() or (run_id, artifact_id) in source_keys:
             raise ValueError("SOURCE_ID_INVALID_OR_DUPLICATE")
         source_keys.add((run_id, artifact_id))
         files = sorted((Path(directory) / "fabrics").glob("*.json"))
-        if not files:
-            raise ValueError(f"SOURCE_HAS_NO_ACCEPTED_PATCHES_{run_id}")
         source_summary = json.loads((Path(directory) / "summary.json").read_text(encoding="utf-8"))
         if source_summary["production_database_writes"] != 0:
             raise ValueError(f"SOURCE_IS_NOT_ARTIFACT_ONLY_{run_id}")
+        failures = source_summary["failures"]
+        if not files and not (
+            source_summary["total_openai_requests"] == 1
+            and len(failures) == 1
+            and failures[0]["error"] == "PILOT_OPENAI_RESPONSE_429_TYPE_insufficient_quota_CODE_credit_balance_exhausted_RETRY_AFTER_unavailable"
+            and failures[0]["failure_class"] == "OTHER"
+        ):
+            raise ValueError(f"SOURCE_HAS_NO_ACCEPTED_PATCHES_{run_id}")
         ai_requests_actual += source_summary["total_openai_requests"]
+        source_run_reports.append({
+            "run_id": run_id,
+            "artifact_id": artifact_id,
+            "openai_requests": source_summary["total_openai_requests"],
+            "accepted_fabrics": len(files),
+            "failed_groups": len(failures),
+            "failure_codes": sorted(set(failure["error"] for failure in failures)),
+        })
         for file in files:
             result = json.loads(file.read_text(encoding="utf-8"))
             fabric_id = result["fabric_id"]
@@ -112,6 +127,7 @@ def main():
         "audit_version": audit["audit_version"],
         "production_published": False,
         "source_run_artifacts": sorted([{"run_id": run, "artifact_id": artifact} for run, artifact in source_keys], key=lambda x: int(x["run_id"])),
+        "source_run_reports": sorted(source_run_reports, key=lambda x: int(x["run_id"])),
         "summary": {
             "original_partial": len(manifest),
             "already_practically_complete": statuses["ALREADY_PRACTICALLY_COMPLETE"],

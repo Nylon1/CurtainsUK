@@ -91,7 +91,7 @@ async function infer(content:Row[],schema:Row,name:string,phase:"A"|"B") {
   return JSON.parse(texts[0]) as unknown;
 }
 function requestedFields(group:Group) {return unique(Object.values(group.requested_missing_fields_by_fabric).flat()) as VisualDimension[];}
-function verifyGroupSelection(group:Group,phase:"A"|"B",masters:Map<string,Row>,stored:Map<string,Row>) {
+export function verifyGroupSelection(group:Group,phase:"A"|"B",masters:Map<string,Row>,stored:Map<string,Row>,scale=false) {
   if (!group.affected_fabric_ids.length || (phase==="B" && group.affected_fabric_ids.length>4)) throw new Error("PILOT_GROUP_SIZE_INVALID");
   for (const fabricId of group.affected_fabric_ids) {
     const master=masters.get(fabricId), current=stored.get(fabricId);
@@ -99,7 +99,9 @@ function verifyGroupSelection(group:Group,phase:"A"|"B",masters:Map<string,Row>,
     const missing=missingUsefulFields(current.visual_fields,current.provenance);
     const expected=phase==="A" ? missing.design : unique([...missing.colourway,...missing.design]);
     const recorded=group.requested_missing_fields_by_fabric[fabricId];
-    if (!Array.isArray(recorded) || JSON.stringify([...expected].sort())!==JSON.stringify([...recorded].sort()) || (phase==="A" && missing.colourway.length) || (phase==="B" && !missing.colourway.length)) throw new Error(`PILOT_AUDIT_DELTA_CHANGED_${fabricId}`);
+    const applicable=phase==="A"?missing.design:missing.colourway;
+    const matches=scale ? Array.isArray(recorded) && recorded.length>0 && new Set(recorded).size===recorded.length && recorded.every(field=>applicable.includes(field as VisualDimension)) : JSON.stringify([...expected].sort())===JSON.stringify([...(recorded??[])].sort());
+    if (!matches || (!scale && phase==="A" && missing.colourway.length) || (!scale && phase==="B" && !missing.colourway.length)) throw new Error(`PILOT_AUDIT_DELTA_CHANGED_${fabricId}`);
   }
 }
 function assertRawPatch(raw:unknown):asserts raw is RawPatch {if (!exactKeys(raw,["new_values_only","legitimate_remaining_gaps","manufacturer_authority_applied","material_review"])) throw new Error("PILOT_RAW_PATCH_SCHEMA_INVALID");}
@@ -108,8 +110,8 @@ function applyForFabric(fabricId:string,requested:VisualDimension[],raw:unknown,
   const result=validateAndApplyPatch(fabricId,requested,raw,current.visual_fields,current.provenance);
   return {fabric_id:fabricId,patch:result.patch,current_stored_knowledge_state:current.knowledge_state,current_stored_reading:current.visual_fields,current_stored_provenance:current.provenance,reconstructed_final_reading:result.finalFields,reconstructed_final_provenance:result.finalProvenance,known_fields_changed_outside_requested_delta:result.changedOutsideDelta,genuinely_unresolved_fields:result.genuinelyUnresolved,evidence_reasons_per_new_field:result.evidenceReasons,material_review:result.materialReview,governed_image:image,manufacturer_context_used:context,model:hciVisualModel,reasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion};
 }
-async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map<string,Row>;stored:Map<string,Row>;designs:Map<string,Row>;brands:Map<string,Row>;collections:Map<string,Row>;assets:Map<string,Row>;mappings:Row[]},outDir:string) {
-  verifyGroupSelection(group,phase,data.masters,data.stored);
+async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map<string,Row>;stored:Map<string,Row>;designs:Map<string,Row>;brands:Map<string,Row>;collections:Map<string,Row>;assets:Map<string,Row>;mappings:Row[]},outDir:string,scale=false) {
+  verifyGroupSelection(group,phase,data.masters,data.stored,scale);
   const design=data.designs.get(group.design_id);
   if (!design) throw new Error("PILOT_DESIGN_FACTS_MISSING");
   const firstMaster=data.masters.get(group.affected_fabric_ids[0])!;
@@ -182,13 +184,17 @@ export async function runPartialPilot(selectionFile:string,outDir:string) {
   const retest=selection.selection_version==="partial-hybrid-contract-retest-v1";
   const closure=selection.selection_version==="partial-hybrid-pilot-closure-v1";
   const scale=selection.selection_version==="partial-hybrid-scale-batch-v1";
-  const expectedA=scale?0:closure?15:retest?4:36,expectedB=scale?selection.expected_openai_requests:closure?5:retest?4:10,expectedTotal=scale?selection.expected_fabric_count:closure?62:retest?25:179;
+  const expectedA=scale && selection.selection_kind==="design"?selection.expected_openai_requests:scale?0:closure?15:retest?4:36,expectedB=scale && selection.selection_kind==="colourway"?selection.expected_openai_requests:scale?0:closure?5:retest?4:10,expectedTotal=scale?selection.expected_fabric_count:closure?62:retest?25:179;
   maxOpenaiRequests=scale?selection.expected_openai_requests:closure?20:retest?8:46;
   openaiAttempts.A=0;openaiAttempts.B=0;openaiImageInputs.A=0;openaiImageInputs.B=0;
-  if (scale && (selection.batch_size!==expectedB || ![250,500].includes(expectedB) || !Number.isSafeInteger(expectedTotal) || expectedTotal<expectedB || expectedTotal>4*expectedB || !Number.isSafeInteger(selection.batch_number) || selection.batch_number<1 || typeof selection.source_audit_sha256!=="string" || !/^[a-f0-9]{64}$/.test(selection.source_audit_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fabric_ids_sha256))) throw new Error("SCALE_SELECTION_REJECTED");
+  if (scale && (!['design','colourway'].includes(selection.selection_kind) || !Number.isSafeInteger(maxOpenaiRequests) || maxOpenaiRequests<1 || maxOpenaiRequests>500 || selection.batch_size<maxOpenaiRequests || !Number.isSafeInteger(selection.batch_size) || selection.batch_size>500 || !Number.isSafeInteger(expectedTotal) || expectedTotal<maxOpenaiRequests || (selection.selection_kind==="colourway" && expectedTotal>4*maxOpenaiRequests) || !Number.isSafeInteger(selection.batch_number) || selection.batch_number<1 || typeof selection.source_audit_sha256!=="string" || !/^[a-f0-9]{64}$/.test(selection.source_audit_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fabric_ids_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fields_sha256))) throw new Error("SCALE_SELECTION_REJECTED");
   if (selection.recorded_before_inference!==true || selection.model!==hciVisualModel || selection.reasoning!==reasoning || selection.max_inference_concurrency!==maxConcurrency || selection.pilot_a?.length!==expectedA || selection.pilot_b?.length!==expectedB || selection.expected_openai_requests!==maxOpenaiRequests) throw new Error("PILOT_SELECTION_REJECTED");
   const allGroups=[...selection.pilot_a,...selection.pilot_b] as Group[];
   const fabricIds=allGroups.flatMap(g=>g.affected_fabric_ids);
+  if (scale && (!selection.accepted_fields_by_fabric || typeof selection.accepted_fields_by_fabric!=="object" || Object.keys(selection.accepted_fields_by_fabric).length!==selection.accepted_fabrics_seen || allGroups.some(group=>group.affected_fabric_ids.some(id=>{
+    const prior=selection.accepted_fields_by_fabric[id]??[];
+    return !Array.isArray(prior) || group.requested_missing_fields_by_fabric[id]?.some(field=>prior.includes(field));
+  })))) throw new Error("SCALE_ACCEPTED_FIELD_RERUN_REJECTED");
   if (fabricIds.length!==expectedTotal || new Set(fabricIds).size!==fabricIds.length || (!retest && !closure && !scale && (selection.pilot_a.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==149 || selection.pilot_b.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==30)) || selection.pilot_b.some((g:Group)=>g.affected_fabric_ids.length<1 || g.affected_fabric_ids.length>4)) throw new Error("PILOT_SELECTION_SIZE_OR_OVERLAP_REJECTED");
   await mkdir(outDir,{recursive:true});
   await writeFile(path.join(outDir,"selection.json"),JSON.stringify(selection,null,2));
@@ -209,12 +215,12 @@ export async function runPartialPilot(selectionFile:string,outDir:string) {
   ]);
   const collections=await readByIds("fabric_collections","collection_id,display_name","collection_id",unique(designs.map(x=>x.collection_id).filter(Boolean)));
   const data={masters:byId(masters,"fabric_id"),stored:byId(stored,"fabric_id"),designs:byId(designs,"design_id"),brands:byId(brands,"brand_id"),collections:byId(collections,"collection_id"),assets:byId(assets,"content_hash"),mappings};
-  for (const group of selection.pilot_a) verifyGroupSelection(group,"A",data.masters,data.stored);
-  for (const group of selection.pilot_b) verifyGroupSelection(group,"B",data.masters,data.stored);
+  for (const group of selection.pilot_a) verifyGroupSelection(group,"A",data.masters,data.stored,scale);
+  for (const group of selection.pilot_b) verifyGroupSelection(group,"B",data.masters,data.stored,scale);
   const failureList:Row[]=[];
   async function phaseRun(groups:Group[],phase:"A"|"B") {
     const outcomes=await mapLimit<Group,Row[]|null>(groups,maxConcurrency,async(group,index)=>{
-      try {return await runGroup(group,phase,index,data,outDir);}
+      try {return await runGroup(group,phase,index,data,outDir,scale);}
       catch(error){const message=error instanceof Error?error.message:String(error);const failure={phase,design_id:group.design_id,affected_fabric_ids:group.affected_fabric_ids,error:message,failure_class:message.startsWith("PILOT_OPENAI_RESPONSE_400") || message.includes("SCHEMA")?"SCHEMA":error instanceof PatchValidationError || message.startsWith("PATCH_")?"LOCAL_VALIDATION":"OTHER",diagnostics:error instanceof PatchValidationError?[error.diagnostic]:[]};failureList.push(failure);await mkdir(path.join(outDir,"failures"),{recursive:true});await writeFile(path.join(outDir,"failures",`${phase}-${index+1}.json`),JSON.stringify(failure,null,2));return null;}
     });
     const successes=outcomes.filter((x):x is Row[]=>x!==null);

@@ -3,7 +3,7 @@ import test from "node:test";
 import Ajv from "ajv";
 import { visualVocabulary } from "../../lib/fabric-master/visual-enrichment";
 import { missingUsefulFields, validateAndApplyPatch, patchResponseSchema, PatchValidationError } from "../curtainsuk-partial-hybrid-pilot-core";
-import { assertReadOnlyDatabaseRequest } from "../curtainsuk-partial-hybrid-pilot";
+import { assertReadOnlyDatabaseRequest, verifyGroupSelection } from "../curtainsuk-partial-hybrid-pilot";
 
 function reading() {
   const fields:Record<string,{value:string|string[];confidence:string}>=Object.fromEntries(Object.entries(visualVocabulary).map(([key,allowed])=>[key,{value:["secondaryColours","motif","visualSurface","character"].includes(key)?[allowed[0]]:allowed[0],confidence:"HIGH"}]));
@@ -101,4 +101,20 @@ test("unknown, wrong shape and duplicate set values fail locally with diagnostic
     const raw={...base,new_values_only:[{field,value,confidence:"MEDIUM",provenance:"IMAGE",reason:"Approved image."}]};
     assert.throws(()=>validateAndApplyPatch("pt-1",[field],raw,fields,provenance),(error:unknown)=>error instanceof PatchValidationError && error.diagnostic.validation_failure===failure && error.diagnostic.fabric_id==="pt-1" && error.diagnostic.field===field);
   }
+});
+
+test("scale selection requests only still-missing fields in its own design or colourway phase",()=>{
+  const {fields,provenance}=reading();
+  fields.primaryColour={value:"unknown",confidence:"REVIEW"};
+  fields.sheenAppearance={value:"unknown",confidence:"REVIEW"};
+  provenance.primaryColour="colourway_inference";
+  const masters=new Map([["pt-1",{fabric_id:"pt-1",supplier_id:"prestigious-textiles",design_id:"pt-design-1",lifecycle_state:"ACTIVE"}]]);
+  const stored=new Map([["pt-1",{fabric_id:"pt-1",knowledge_state:"PARTIAL_GOVERNED",visual_fields:fields,provenance}]]);
+  const base={supplier_id:"prestigious-textiles",design_id:"pt-design-1",affected_fabric_ids:["pt-1"]};
+  const colourway={...base,requested_missing_fields_by_fabric:{"pt-1":["primaryColour"]}};
+  const design={...base,representative_fabric_id:"pt-1",requested_missing_fields_by_fabric:{"pt-1":["sheenAppearance"]}};
+  assert.doesNotThrow(()=>verifyGroupSelection(colourway as any,"B",masters,stored,true));
+  assert.doesNotThrow(()=>verifyGroupSelection(design as any,"A",masters,stored,true));
+  assert.throws(()=>verifyGroupSelection(colourway as any,"B",masters,stored,false),/PILOT_AUDIT_DELTA_CHANGED/);
+  assert.throws(()=>verifyGroupSelection({...colourway,requested_missing_fields_by_fabric:{"pt-1":["motif"]}} as any,"B",masters,stored,true),/PILOT_AUDIT_DELTA_CHANGED/);
 });

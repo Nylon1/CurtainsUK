@@ -16,6 +16,7 @@ on:
           - partial-contract-retest
           - partial-pilot-closure
           - partial-scale
+          - partial-manifest
       scope_mode:
         description: "catalogue scope"
         required: true
@@ -40,6 +41,11 @@ on:
         required: false
         default: "1"
         type: string
+      artifact_sources_json:
+        description: "Accepted partial patch run/artifact identities for offline manifest consolidation"
+        required: false
+        default: "[]"
+        type: string
   push:
     branches:
       - stock/pt-webtex-production
@@ -54,6 +60,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: fabric-visual-enrichment-production
@@ -61,7 +68,7 @@ concurrency:
 
 jobs:
   plan:
-    if: inputs.run_mode != 'artifact-only' && inputs.run_mode != 'partial-pilot' && inputs.run_mode != 'partial-contract-retest' && inputs.run_mode != 'partial-pilot-closure' && inputs.run_mode != 'partial-scale'
+    if: inputs.run_mode != 'artifact-only' && inputs.run_mode != 'partial-pilot' && inputs.run_mode != 'partial-contract-retest' && inputs.run_mode != 'partial-pilot-closure' && inputs.run_mode != 'partial-scale' && inputs.run_mode != 'partial-manifest'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -273,7 +280,7 @@ jobs:
       - name: Record exact audited scale selection before inference
         run: |
           mkdir -p artifacts/partial-hybrid-scale
-          node -e 'const fs=require("fs"); const p="scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json"; const x=JSON.parse(fs.readFileSync(p,"utf8")); const groups=x.pilot_b,ids=groups.flatMap(g=>g.affected_fabric_ids); if(x.selection_version!=="partial-hybrid-scale-batch-v1"||x.recorded_before_inference!==true||x.pilot_a.length!==0||groups.length!==x.expected_openai_requests||![250,500].includes(groups.length)||ids.length!==x.expected_fabric_count||new Set(ids).size!==ids.length||groups.some(g=>g.affected_fabric_ids.length<1||g.affected_fabric_ids.length>4)||x.model!=="gpt-5.6-terra"||x.reasoning!=="medium"||x.max_inference_concurrency!==3)throw Error("SCALE_SELECTION_REJECTED"); fs.copyFileSync(p,"artifacts/partial-hybrid-scale/selection.json");'
+          node -e 'const fs=require("fs"); const p="scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json"; const x=JSON.parse(fs.readFileSync(p,"utf8")); const groups=[...x.pilot_a,...x.pilot_b],ids=groups.flatMap(g=>g.affected_fabric_ids); if(x.selection_version!=="partial-hybrid-scale-batch-v1"||x.recorded_before_inference!==true||!(["design","colourway"].includes(x.selection_kind))||(x.selection_kind==="design"?x.pilot_b.length!==0:x.pilot_a.length!==0)||groups.length!==x.expected_openai_requests||groups.length<1||groups.length>500||x.batch_size<groups.length||ids.length!==x.expected_fabric_count||new Set(ids).size!==ids.length||groups.some(g=>g.affected_fabric_ids.length<1||(x.selection_kind==="colourway"&&g.affected_fabric_ids.length>4))||groups.some(g=>g.affected_fabric_ids.some(id=>g.requested_missing_fields_by_fabric[id].some(field=>(x.accepted_fields_by_fabric?.[id]??[]).includes(field))))||x.model!=="gpt-5.6-terra"||x.reasoning!=="medium"||x.max_inference_concurrency!==3)throw Error("SCALE_SELECTION_REJECTED"); fs.copyFileSync(p,"artifacts/partial-hybrid-scale/selection.json");'
       - name: Test patch contract offline
         run: npx --no-install tsx --test scripts/__tests__/curtainsuk-partial-hybrid-pilot.test.ts
       - name: Run offline patch-only partial scale batch
@@ -283,3 +290,27 @@ jobs:
         with:
           name: partial-hybrid-scale-batch
           path: artifacts/partial-hybrid-scale/
+
+  partial-manifest:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'partial-manifest'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ARTIFACT_SOURCES_JSON: ${{ inputs.artifact_sources_json }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record exact accepted artifact sources
+        run: |
+          mkdir -p artifacts/partial-hybrid-master
+          python3 -c 'import json,os,pathlib; sources=json.loads(os.environ["ARTIFACT_SOURCES_JSON"]); assert isinstance(sources,list) and 1<=len(sources)<=30; pathlib.Path("artifacts/partial-hybrid-master/input-sources.json").write_text(json.dumps(sources,indent=2)+"\n")'
+      - name: Build cumulative read-only offline manifest
+        run: python3 scripts/curtainsuk-partial-hybrid-download-manifest.py --sources-json=artifacts/partial-hybrid-master/input-sources.json --audit=scripts/fixtures/curtainsuk-partial-hybrid-audit-records.json --out=artifacts/partial-hybrid-master/manifest.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partial-hybrid-master-manifest
+          path: |
+            artifacts/partial-hybrid-master/manifest.json
+            artifacts/partial-hybrid-master/sources.json
+            artifacts/partial-hybrid-master/input-sources.json

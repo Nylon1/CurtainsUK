@@ -50,19 +50,19 @@ It accepts only the production Shopify store `carpetup.myshopify.com` and hard-f
 Dry run is the default:
 
 ```bash
-npm run fabric:profiles:refresh
+npx tsx scripts/curtainsuk-refresh-fabric-profile-metaobjects.ts
 ```
 
 Optional single-fabric canary:
 
 ```bash
-npm run fabric:profiles:refresh -- --fabric=pt-4259-247
+npx tsx scripts/curtainsuk-refresh-fabric-profile-metaobjects.ts -- --fabric=pt-4259-247
 ```
 
 Optional bounded audit:
 
 ```bash
-npm run fabric:profiles:refresh -- --limit=10
+npx tsx scripts/curtainsuk-refresh-fabric-profile-metaobjects.ts -- --limit=10
 ```
 
 The report includes the exact old → new field differences and always reports `databaseWrites: 0`.
@@ -72,7 +72,7 @@ The report includes the exact old → new field differences and always reports `
 A live Shopify write requires both explicit flags:
 
 ```bash
-npm run fabric:profiles:refresh -- --apply --confirm-shopify-only
+npx tsx scripts/curtainsuk-refresh-fabric-profile-metaobjects.ts -- --apply --confirm-shopify-only
 ```
 
 Recommended manual sequence after a Fabric Intelligence recovery run:

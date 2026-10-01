@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { assertArtifactOnlyDatabaseRequest, classifyPracticalCompletion, countStillUnknownFieldInstances, validateArtifactReading, validateManufacturerAuthority } from "../curtainsuk-visual-hybrid-artifact";
+import { assertArtifactOnlyDatabaseRequest, classifyPracticalCompletion, countStillUnknownFieldInstances, validateArtifactReading, validateArtifactSafetyBaseline, validateManufacturerAuthority } from "../curtainsuk-visual-hybrid-artifact";
 import { visualVocabulary } from "../../lib/fabric-master/visual-enrichment";
 
 const allowed = new URL("https://hqysjumypgeapgmqkcrx.supabase.co/rest/v1/fabric_colourways?select=fabric_id");
@@ -13,6 +13,15 @@ test("artifact-only database boundary permits only allowlisted GET reads", () =>
   assert.throws(() => assertArtifactOnlyDatabaseRequest("GET", new URL("https://hqysjumypgeapgmqkcrx.supabase.co/rest/v1/rpc/browse_projection_refresh_dirty")), /ARTIFACT_ONLY_DATABASE_REQUEST_DENIED/);
   assert.throws(() => assertArtifactOnlyDatabaseRequest("GET", new URL("https://other.supabase.co/rest/v1/fabric_colourways")), /ARTIFACT_ONLY_DATABASE_REQUEST_DENIED/);
   assert.throws(() => assertArtifactOnlyDatabaseRequest("GET", new URL("https://hqysjumypgeapgmqkcrx.supabase.co/rest/v1/fabric_visual_enrichment_ledger")), /ARTIFACT_ONLY_DATABASE_REQUEST_DENIED/);
+});
+
+test("artifact safety gate accepts a healthy current generation and records it", () => {
+  const current = "aba0e174-d11b-46f7-8fd0-7c5138f31605";
+  const baseline = validateArtifactSafetyBaseline([{active_generation:current,knowledge_cache_dirty:false,knowledge_cache_refreshed_at:"2026-09-26T20:01:28Z"}]);
+  assert.equal(baseline.active_generation,current);
+  assert.equal(baseline.knowledge_cache_dirty,false);
+  assert.throws(() => validateArtifactSafetyBaseline([{active_generation:current,knowledge_cache_dirty:true}]), /ARTIFACT_ONLY_PRODUCTION_BASELINE_CHANGED/);
+  assert.throws(() => validateArtifactSafetyBaseline([{active_generation:"not-a-generation",knowledge_cache_dirty:false}]), /ARTIFACT_ONLY_PRODUCTION_BASELINE_CHANGED/);
 });
 
 test("experimental scale and direction remain isolated from validated production v1 reading", () => {
@@ -46,10 +55,10 @@ test("legitimate absent motif and secondary colours do not require material revi
   const practical = classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"No material issue."});
   assert.deepEqual(practical.legitimateNone.sort(),["motif","secondaryColours"]);
   assert.deepEqual(practical.v1IntentionalLimitations,["patternScale","directionality"]);
-  assert.equal(practical.status,"INCOMPLETE_NONMATERIAL");
+  assert.equal(practical.status,"PRACTICALLY_ENRICHED_WITH_MINOR_GAPS");
   assert.ok(practical.genuinelyUnresolved.includes("colourTemperature"));
   experimental.reviewFlags.push("REVIEW_REQUIRED");
-  assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"A manufacturer colourway label differs from image appearance."}).status,"INCOMPLETE_NONMATERIAL");
+  assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"A manufacturer colourway label differs from image appearance."}).status,"PRACTICALLY_ENRICHED_WITH_MINOR_GAPS");
   assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:true,issueType:"WRONG_IMAGE_IDENTITY",reason:"Image is for a different SKU."}).status,"NEEDS_MATERIAL_REVIEW");
   for (const key of practical.genuinelyUnresolved) {
     experimental.observations[key] = {value:visualVocabulary[key][0],confidence:"MEDIUM"};

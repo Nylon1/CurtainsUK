@@ -1,0 +1,1784 @@
+{
+  "selection_version": "partial-hybrid-pilot-v1",
+  "source_audit_sha256": "d64763801c46163005140933d21ef5ac1a23d99a91014f6ec0f398412d083dd9",
+  "recorded_before_inference": true,
+  "selection_rule": "Pilot A is all 36 standalone PT design-gap-only designs from the audit. Pilot B picks the first design_id in each fixed supplier / shared-gap / size / sparse-gap stratum; 5 PT and 5 SDG, 2–4 colourways per design.",
+  "model": "gpt-5.6-terra",
+  "reasoning": "medium",
+  "max_inference_concurrency": 3,
+  "expected_openai_requests": 46,
+  "pilot_a": [
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-2003",
+      "representative_fabric_id": "pt-2003-023",
+      "affected_fabric_ids": [
+        "pt-2003-023",
+        "pt-2003-024",
+        "pt-2003-648"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-2003-023": [
+          "sheenAppearance"
+        ],
+        "pt-2003-024": [
+          "sheenAppearance"
+        ],
+        "pt-2003-648": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-2004",
+      "representative_fabric_id": "pt-2004-024",
+      "affected_fabric_ids": [
+        "pt-2004-024",
+        "pt-2004-038",
+        "pt-2004-286",
+        "pt-2004-946"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-2004-024": [
+          "sheenAppearance"
+        ],
+        "pt-2004-038": [
+          "sheenAppearance"
+        ],
+        "pt-2004-286": [
+          "sheenAppearance"
+        ],
+        "pt-2004-946": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-3670",
+      "representative_fabric_id": "pt-3670-117",
+      "affected_fabric_ids": [
+        "pt-3670-117",
+        "pt-3670-282",
+        "pt-3670-394",
+        "pt-3670-937",
+        "pt-3670-945"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-3670-117": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3670-282": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3670-394": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3670-937": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3670-945": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-3724",
+      "representative_fabric_id": "pt-3724-547",
+      "affected_fabric_ids": [
+        "pt-3724-547"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-3724-547": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-3865",
+      "representative_fabric_id": "pt-3865-549",
+      "affected_fabric_ids": [
+        "pt-3865-549"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-3865-549": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-3904",
+      "representative_fabric_id": "pt-3904-103",
+      "affected_fabric_ids": [
+        "pt-3904-103",
+        "pt-3904-909"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-3904-103": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3904-909": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-3965",
+      "representative_fabric_id": "pt-3965-047",
+      "affected_fabric_ids": [
+        "pt-3965-047",
+        "pt-3965-562",
+        "pt-3965-643",
+        "pt-3965-702"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-3965-047": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3965-562": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3965-643": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-3965-702": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-3980",
+      "representative_fabric_id": "pt-3980-029",
+      "affected_fabric_ids": [
+        "pt-3980-029",
+        "pt-3980-575",
+        "pt-3980-705"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-3980-029": [
+          "sheenAppearance"
+        ],
+        "pt-3980-575": [
+          "sheenAppearance"
+        ],
+        "pt-3980-705": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-4022",
+      "representative_fabric_id": "pt-4022-046",
+      "affected_fabric_ids": [
+        "pt-4022-046",
+        "pt-4022-296",
+        "pt-4022-305",
+        "pt-4022-593",
+        "pt-4022-606",
+        "pt-4022-915"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-4022-046": [
+          "sheenAppearance"
+        ],
+        "pt-4022-296": [
+          "sheenAppearance"
+        ],
+        "pt-4022-305": [
+          "sheenAppearance"
+        ],
+        "pt-4022-593": [
+          "sheenAppearance"
+        ],
+        "pt-4022-606": [
+          "sheenAppearance"
+        ],
+        "pt-4022-915": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-4128",
+      "representative_fabric_id": "pt-4128-029",
+      "affected_fabric_ids": [
+        "pt-4128-029",
+        "pt-4128-054",
+        "pt-4128-066"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-4128-029": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-4128-054": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-4128-066": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-4178",
+      "representative_fabric_id": "pt-4178-106",
+      "affected_fabric_ids": [
+        "pt-4178-106",
+        "pt-4178-282"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-4178-106": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-4178-282": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-4180",
+      "representative_fabric_id": "pt-4180-106",
+      "affected_fabric_ids": [
+        "pt-4180-106",
+        "pt-4180-944"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-4180-106": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-4180-944": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-4207",
+      "representative_fabric_id": "pt-4207-178",
+      "affected_fabric_ids": [
+        "pt-4207-178",
+        "pt-4207-428",
+        "pt-4207-715",
+        "pt-4207-906"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-4207-178": [
+          "sheenAppearance"
+        ],
+        "pt-4207-428": [
+          "sheenAppearance"
+        ],
+        "pt-4207-715": [
+          "sheenAppearance"
+        ],
+        "pt-4207-906": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-4236",
+      "representative_fabric_id": "pt-4236-324",
+      "affected_fabric_ids": [
+        "pt-4236-324",
+        "pt-4236-331",
+        "pt-4236-397",
+        "pt-4236-490"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-4236-324": [
+          "sheenAppearance"
+        ],
+        "pt-4236-331": [
+          "sheenAppearance"
+        ],
+        "pt-4236-397": [
+          "sheenAppearance"
+        ],
+        "pt-4236-490": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-4290",
+      "representative_fabric_id": "pt-4290-012",
+      "affected_fabric_ids": [
+        "pt-4290-012",
+        "pt-4290-246",
+        "pt-4290-675",
+        "pt-4290-779"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-4290-012": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-4290-246": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-4290-675": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-4290-779": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-5027",
+      "representative_fabric_id": "pt-5027-720",
+      "affected_fabric_ids": [
+        "pt-5027-720"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-5027-720": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-5140",
+      "representative_fabric_id": "pt-5140-531",
+      "affected_fabric_ids": [
+        "pt-5140-531",
+        "pt-5140-703",
+        "pt-5140-714"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-5140-531": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-5140-703": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-5140-714": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-7171",
+      "representative_fabric_id": "pt-7171-024",
+      "affected_fabric_ids": [
+        "pt-7171-024",
+        "pt-7171-158",
+        "pt-7171-272",
+        "pt-7171-906"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-7171-024": [
+          "sheenAppearance"
+        ],
+        "pt-7171-158": [
+          "sheenAppearance"
+        ],
+        "pt-7171-272": [
+          "sheenAppearance"
+        ],
+        "pt-7171-906": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-7181",
+      "representative_fabric_id": "pt-7181-022",
+      "affected_fabric_ids": [
+        "pt-7181-022",
+        "pt-7181-074",
+        "pt-7181-158",
+        "pt-7181-531",
+        "pt-7181-655"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-7181-022": [
+          "sheenAppearance"
+        ],
+        "pt-7181-074": [
+          "sheenAppearance"
+        ],
+        "pt-7181-158": [
+          "sheenAppearance"
+        ],
+        "pt-7181-531": [
+          "sheenAppearance"
+        ],
+        "pt-7181-655": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-7878",
+      "representative_fabric_id": "pt-7878-031",
+      "affected_fabric_ids": [
+        "pt-7878-031",
+        "pt-7878-076",
+        "pt-7878-603"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-7878-031": [
+          "sheenAppearance"
+        ],
+        "pt-7878-076": [
+          "sheenAppearance"
+        ],
+        "pt-7878-603": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-7880",
+      "representative_fabric_id": "pt-7880-529",
+      "affected_fabric_ids": [
+        "pt-7880-529",
+        "pt-7880-928"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-7880-529": [
+          "patternClass",
+          "motif",
+          "sheenAppearance"
+        ],
+        "pt-7880-928": [
+          "patternClass",
+          "motif",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-7897",
+      "representative_fabric_id": "pt-7897-004",
+      "affected_fabric_ids": [
+        "pt-7897-004",
+        "pt-7897-007",
+        "pt-7897-021",
+        "pt-7897-031",
+        "pt-7897-037",
+        "pt-7897-038",
+        "pt-7897-039",
+        "pt-7897-131",
+        "pt-7897-135",
+        "pt-7897-211",
+        "pt-7897-212",
+        "pt-7897-213",
+        "pt-7897-272",
+        "pt-7897-277",
+        "pt-7897-412",
+        "pt-7897-490",
+        "pt-7897-528",
+        "pt-7897-530",
+        "pt-7897-610",
+        "pt-7897-629",
+        "pt-7897-638",
+        "pt-7897-655",
+        "pt-7897-703",
+        "pt-7897-714",
+        "pt-7897-741",
+        "pt-7897-818",
+        "pt-7897-901",
+        "pt-7897-903",
+        "pt-7897-905",
+        "pt-7897-907",
+        "pt-7897-918",
+        "pt-7897-920",
+        "pt-7897-944",
+        "pt-7897-946"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-7897-004": [
+          "sheenAppearance"
+        ],
+        "pt-7897-007": [
+          "sheenAppearance"
+        ],
+        "pt-7897-021": [
+          "sheenAppearance"
+        ],
+        "pt-7897-031": [
+          "sheenAppearance"
+        ],
+        "pt-7897-037": [
+          "sheenAppearance"
+        ],
+        "pt-7897-038": [
+          "sheenAppearance"
+        ],
+        "pt-7897-039": [
+          "sheenAppearance"
+        ],
+        "pt-7897-131": [
+          "sheenAppearance"
+        ],
+        "pt-7897-135": [
+          "sheenAppearance"
+        ],
+        "pt-7897-211": [
+          "sheenAppearance"
+        ],
+        "pt-7897-212": [
+          "sheenAppearance"
+        ],
+        "pt-7897-213": [
+          "sheenAppearance"
+        ],
+        "pt-7897-272": [
+          "sheenAppearance"
+        ],
+        "pt-7897-277": [
+          "sheenAppearance"
+        ],
+        "pt-7897-412": [
+          "sheenAppearance"
+        ],
+        "pt-7897-490": [
+          "sheenAppearance"
+        ],
+        "pt-7897-528": [
+          "sheenAppearance"
+        ],
+        "pt-7897-530": [
+          "sheenAppearance"
+        ],
+        "pt-7897-610": [
+          "sheenAppearance"
+        ],
+        "pt-7897-629": [
+          "sheenAppearance"
+        ],
+        "pt-7897-638": [
+          "sheenAppearance"
+        ],
+        "pt-7897-655": [
+          "sheenAppearance"
+        ],
+        "pt-7897-703": [
+          "sheenAppearance"
+        ],
+        "pt-7897-714": [
+          "sheenAppearance"
+        ],
+        "pt-7897-741": [
+          "sheenAppearance"
+        ],
+        "pt-7897-818": [
+          "sheenAppearance"
+        ],
+        "pt-7897-901": [
+          "sheenAppearance"
+        ],
+        "pt-7897-903": [
+          "sheenAppearance"
+        ],
+        "pt-7897-905": [
+          "sheenAppearance"
+        ],
+        "pt-7897-907": [
+          "sheenAppearance"
+        ],
+        "pt-7897-918": [
+          "sheenAppearance"
+        ],
+        "pt-7897-920": [
+          "sheenAppearance"
+        ],
+        "pt-7897-944": [
+          "sheenAppearance"
+        ],
+        "pt-7897-946": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8632",
+      "representative_fabric_id": "pt-8632-979",
+      "affected_fabric_ids": [
+        "pt-8632-979"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8632-979": [
+          "motif"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8648",
+      "representative_fabric_id": "pt-8648-162",
+      "affected_fabric_ids": [
+        "pt-8648-162",
+        "pt-8648-428",
+        "pt-8648-432",
+        "pt-8648-656",
+        "pt-8648-701"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8648-162": [
+          "sheenAppearance"
+        ],
+        "pt-8648-428": [
+          "sheenAppearance"
+        ],
+        "pt-8648-432": [
+          "sheenAppearance"
+        ],
+        "pt-8648-656": [
+          "sheenAppearance"
+        ],
+        "pt-8648-701": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8649",
+      "representative_fabric_id": "pt-8649-110",
+      "affected_fabric_ids": [
+        "pt-8649-110",
+        "pt-8649-428",
+        "pt-8649-632"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8649-110": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8649-428": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8649-632": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8652",
+      "representative_fabric_id": "pt-8652-162",
+      "affected_fabric_ids": [
+        "pt-8652-162",
+        "pt-8652-432"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8652-162": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8652-432": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8668",
+      "representative_fabric_id": "pt-8668-220",
+      "affected_fabric_ids": [
+        "pt-8668-220",
+        "pt-8668-412",
+        "pt-8668-593",
+        "pt-8668-594",
+        "pt-8668-660",
+        "pt-8668-770"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8668-220": [
+          "sheenAppearance"
+        ],
+        "pt-8668-412": [
+          "sheenAppearance"
+        ],
+        "pt-8668-593": [
+          "sheenAppearance"
+        ],
+        "pt-8668-594": [
+          "sheenAppearance"
+        ],
+        "pt-8668-660": [
+          "sheenAppearance"
+        ],
+        "pt-8668-770": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8669",
+      "representative_fabric_id": "pt-8669-660",
+      "affected_fabric_ids": [
+        "pt-8669-660"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8669-660": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8676",
+      "representative_fabric_id": "pt-8676-254",
+      "affected_fabric_ids": [
+        "pt-8676-254",
+        "pt-8676-944"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8676-254": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8676-944": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8701",
+      "representative_fabric_id": "pt-8701-264",
+      "affected_fabric_ids": [
+        "pt-8701-264",
+        "pt-8701-502"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8701-264": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8701-502": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8741",
+      "representative_fabric_id": "pt-8741-246",
+      "affected_fabric_ids": [
+        "pt-8741-246",
+        "pt-8741-301",
+        "pt-8741-627",
+        "pt-8741-707",
+        "pt-8741-722"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8741-246": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8741-301": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8741-627": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8741-707": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8741-722": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8744",
+      "representative_fabric_id": "pt-8744-229",
+      "affected_fabric_ids": [
+        "pt-8744-229",
+        "pt-8744-606",
+        "pt-8744-632"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8744-229": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8744-606": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8744-632": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8745",
+      "representative_fabric_id": "pt-8745-229",
+      "affected_fabric_ids": [
+        "pt-8745-229",
+        "pt-8745-522",
+        "pt-8745-575",
+        "pt-8745-632"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8745-229": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8745-522": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8745-575": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8745-632": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8756",
+      "representative_fabric_id": "pt-8756-146",
+      "affected_fabric_ids": [
+        "pt-8756-146",
+        "pt-8756-547",
+        "pt-8756-613",
+        "pt-8756-705",
+        "pt-8756-908"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8756-146": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8756-547": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8756-613": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8756-705": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8756-908": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8825",
+      "representative_fabric_id": "pt-8825-187",
+      "affected_fabric_ids": [
+        "pt-8825-187",
+        "pt-8825-204",
+        "pt-8825-401",
+        "pt-8825-518",
+        "pt-8825-629"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8825-187": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8825-204": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8825-401": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8825-518": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8825-629": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-8840",
+      "representative_fabric_id": "pt-8840-331",
+      "affected_fabric_ids": [
+        "pt-8840-331",
+        "pt-8840-397",
+        "pt-8840-490",
+        "pt-8840-705",
+        "pt-8840-711"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-8840-331": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8840-397": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8840-490": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8840-705": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "pt-8840-711": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    }
+  ],
+  "pilot_b": [
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-1770",
+      "affected_fabric_ids": [
+        "pt-1770-022",
+        "pt-1770-905"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-1770-022": [
+          "character"
+        ],
+        "pt-1770-905": [
+          "colourTemperature"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "pt-1770-022": [
+          "character"
+        ],
+        "pt-1770-905": [
+          "colourTemperature"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "pt-1770-022": [],
+        "pt-1770-905": []
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-1295",
+      "affected_fabric_ids": [
+        "pt-1295-314",
+        "pt-1295-316",
+        "pt-1295-531",
+        "pt-1295-906"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-1295-314": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ],
+        "pt-1295-316": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ],
+        "pt-1295-531": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ],
+        "pt-1295-906": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "pt-1295-314": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "pt-1295-316": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "pt-1295-531": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "pt-1295-906": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "pt-1295-314": [],
+        "pt-1295-316": [],
+        "pt-1295-531": [],
+        "pt-1295-906": []
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-3799",
+      "affected_fabric_ids": [
+        "pt-3799-762",
+        "pt-3799-954"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-3799-762": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualWeight"
+        ],
+        "pt-3799-954": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "pt-3799-762": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "pt-3799-954": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "pt-3799-762": [
+          "sheenAppearance"
+        ],
+        "pt-3799-954": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-6456",
+      "affected_fabric_ids": [
+        "pt-6456-012",
+        "pt-6456-706",
+        "pt-6456-803"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-6456-012": [
+          "sheenAppearance",
+          "visualWeight"
+        ],
+        "pt-6456-706": [
+          "sheenAppearance",
+          "visualWeight"
+        ],
+        "pt-6456-803": [
+          "sheenAppearance",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "pt-6456-012": [
+          "visualWeight"
+        ],
+        "pt-6456-706": [
+          "visualWeight"
+        ],
+        "pt-6456-803": [
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "pt-6456-012": [
+          "sheenAppearance"
+        ],
+        "pt-6456-706": [
+          "sheenAppearance"
+        ],
+        "pt-6456-803": [
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "prestigious-textiles",
+      "design_id": "pt-design-1312",
+      "affected_fabric_ids": [
+        "pt-1312-047",
+        "pt-1312-211",
+        "pt-1312-314",
+        "pt-1312-511"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "pt-1312-047": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualActivity",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "pt-1312-211": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualActivity",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "pt-1312-314": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualActivity",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "pt-1312-511": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualActivity",
+          "visualSurface",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "pt-1312-047": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "pt-1312-211": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "pt-1312-314": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "pt-1312-511": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "pt-1312-047": [
+          "visualSurface",
+          "sheenAppearance",
+          "visualActivity"
+        ],
+        "pt-1312-211": [
+          "visualSurface",
+          "sheenAppearance",
+          "visualActivity"
+        ],
+        "pt-1312-314": [
+          "visualSurface",
+          "sheenAppearance",
+          "visualActivity"
+        ],
+        "pt-1312-511": [
+          "visualSurface",
+          "sheenAppearance",
+          "visualActivity"
+        ]
+      }
+    },
+    {
+      "supplier_id": "sanderson-design-group",
+      "design_id": "sdg-clarke-clarke-design-catalogue-clarke-and-clarke-secret-garden-fabric-falena",
+      "affected_fabric_ids": [
+        "sdg-f1507-02",
+        "sdg-f1507-03"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "sdg-f1507-02": [
+          "visualActivity"
+        ],
+        "sdg-f1507-03": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "sdg-f1507-02": [
+          "visualActivity"
+        ],
+        "sdg-f1507-03": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "sdg-f1507-02": [],
+        "sdg-f1507-03": []
+      }
+    },
+    {
+      "supplier_id": "sanderson-design-group",
+      "design_id": "sdg-clarke-clarke-design-catalogue-clarke-and-clarke-amara-imani",
+      "affected_fabric_ids": [
+        "sdg-f0955-01",
+        "sdg-f0955-02",
+        "sdg-f0955-03",
+        "sdg-f0955-04"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "sdg-f0955-01": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ],
+        "sdg-f0955-02": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ],
+        "sdg-f0955-03": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ],
+        "sdg-f0955-04": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "sdg-f0955-01": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f0955-02": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f0955-03": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f0955-04": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "sdg-f0955-01": [],
+        "sdg-f0955-02": [],
+        "sdg-f0955-03": [],
+        "sdg-f0955-04": []
+      }
+    },
+    {
+      "supplier_id": "sanderson-design-group",
+      "design_id": "sdg-clarke-clarke-design-catalogue-clarke-and-clarke-alfresco-indoor-outdoor-fabric-passiflora-outdoor",
+      "affected_fabric_ids": [
+        "sdg-f1672-01",
+        "sdg-f1672-02"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "sdg-f1672-01": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "sdg-f1672-02": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "sdg-f1672-01": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f1672-02": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "sdg-f1672-01": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "sdg-f1672-02": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "sanderson-design-group",
+      "design_id": "sdg-clarke-clarke-design-catalogue-clarke-and-clarke-breegan-jane-x-clarke-and-clarke-fabric-malindi",
+      "affected_fabric_ids": [
+        "sdg-f1711-01",
+        "sdg-f1711-02",
+        "sdg-f1711-03"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "sdg-f1711-01": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "sdg-f1711-02": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "sdg-f1711-03": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "sdg-f1711-01": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f1711-02": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f1711-03": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "sdg-f1711-01": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "sdg-f1711-02": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "sdg-f1711-03": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    },
+    {
+      "supplier_id": "sanderson-design-group",
+      "design_id": "sdg-clarke-clarke-design-catalogue-clarke-and-clarke-alfresco-indoor-outdoor-fabric-klaudia-outdoor",
+      "affected_fabric_ids": [
+        "sdg-f1668-02",
+        "sdg-f1668-03",
+        "sdg-f1668-04",
+        "sdg-f1668-05"
+      ],
+      "requested_missing_fields_by_fabric": {
+        "sdg-f1668-02": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "sdg-f1668-03": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "sdg-f1668-04": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ],
+        "sdg-f1668-05": [
+          "colourComplexity",
+          "colourTemperature",
+          "contrast",
+          "lightness",
+          "primaryColour",
+          "saturation",
+          "secondaryColours",
+          "sheenAppearance",
+          "visualSurface",
+          "visualWeight"
+        ]
+      },
+      "colourway_missing_fields_by_fabric": {
+        "sdg-f1668-02": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f1668-03": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f1668-04": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ],
+        "sdg-f1668-05": [
+          "primaryColour",
+          "secondaryColours",
+          "colourTemperature",
+          "lightness",
+          "saturation",
+          "contrast",
+          "colourComplexity",
+          "visualWeight"
+        ]
+      },
+      "shared_design_missing_fields_by_fabric": {
+        "sdg-f1668-02": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "sdg-f1668-03": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "sdg-f1668-04": [
+          "visualSurface",
+          "sheenAppearance"
+        ],
+        "sdg-f1668-05": [
+          "visualSurface",
+          "sheenAppearance"
+        ]
+      }
+    }
+  ]
+}

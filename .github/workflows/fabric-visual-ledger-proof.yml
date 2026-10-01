@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       run_mode:
-        description: "plan, full, or offline artifact-only"
+        description: "plan, full, offline artifact-only, or partial patch pilot"
         required: true
         default: "plan"
         type: choice
@@ -12,6 +12,7 @@ on:
           - plan
           - full
           - artifact-only
+          - partial-pilot
       scope_mode:
         description: "catalogue scope"
         required: true
@@ -57,7 +58,7 @@ concurrency:
 
 jobs:
   plan:
-    if: inputs.run_mode != 'artifact-only'
+    if: inputs.run_mode != 'artifact-only' && inputs.run_mode != 'partial-pilot'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -161,3 +162,31 @@ jobs:
         with:
           name: fabric-hybrid-artifact-only
           path: artifacts/fabric-hybrid-artifact-only/
+
+  partial-pilot:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'partial-pilot'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Record exact partial pilot selection before inference
+        run: |
+          mkdir -p artifacts/partial-hybrid-pilot
+          node -e 'const fs=require("fs"); const path="scripts/fixtures/curtainsuk-partial-hybrid-pilot-selection.json"; const x=JSON.parse(fs.readFileSync(path,"utf8")); const a=x.pilot_a.flatMap(g=>g.affected_fabric_ids),b=x.pilot_b.flatMap(g=>g.affected_fabric_ids),all=[...a,...b]; if(x.recorded_before_inference!==true||x.pilot_a.length!==36||x.pilot_b.length!==10||a.length!==149||b.length!==30||new Set(all).size!==179||x.model!=="gpt-5.6-terra"||x.reasoning!=="medium")throw Error("PARTIAL_PILOT_SELECTION_REJECTED"); fs.copyFileSync(path,"artifacts/partial-hybrid-pilot/selection.json");'
+      - name: Run read-only patch-only hybrid pilot
+        run: npx --no-install tsx scripts/curtainsuk-partial-hybrid-pilot.ts --selection=scripts/fixtures/curtainsuk-partial-hybrid-pilot-selection.json --out=artifacts/partial-hybrid-pilot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partial-hybrid-patch-only-pilot
+          path: artifacts/partial-hybrid-pilot/

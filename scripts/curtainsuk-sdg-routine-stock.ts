@@ -50,6 +50,47 @@ function syncRun(input: { id: string; adapter: string; started: string; complete
   };
 }
 
+
+type RetentionResult = {
+  has_more: boolean;
+  supplier_snapshots_deleted?: number;
+  business_snapshot_refs_protected?: number;
+};
+
+type RetentionSummary = {
+  status: "SUCCEEDED" | "FAILED";
+  deleted: number;
+  batches: number;
+  protectedBusiness: number;
+};
+
+async function compactSupersededStock(
+  db: ReturnType<typeof createSupplierServiceClient>,
+  supplierId: string,
+  code: "PT" | "SDG",
+) {
+  let deleted = 0;
+  let batches = 0;
+  let protectedBusiness = 0;
+  for (let batch = 0; batch < 20; batch += 1) {
+    const { data, error } = await db.rpc("compact_supplier_stock_evidence", {
+      p_supplier_id: supplierId,
+      p_limit: 1000,
+      p_dry_run: false,
+    });
+    if (error) throw new Error(`${code}_RETENTION_CLEANUP_FAILED`);
+    const result = data as unknown as RetentionResult | null;
+    if (!result || typeof result.has_more !== "boolean") {
+      throw new Error(`${code}_RETENTION_CLEANUP_FAILED`);
+    }
+    batches += 1;
+    deleted += Number(result.supplier_snapshots_deleted ?? 0);
+    protectedBusiness = Number(result.business_snapshot_refs_protected ?? protectedBusiness);
+    if (!result.has_more) return { deleted, batches, protectedBusiness };
+  }
+  throw new Error(`${code}_RETENTION_CLEANUP_INCOMPLETE`);
+}
+
 async function assertMaterialised(snapshots: readonly NormalizedSupplierSnapshot[]): Promise<void> {
   const db = createSupplierServiceClient();
   const bySku = new Map(snapshots.map((snapshot) => [snapshot.supplier_sku, snapshot]));
@@ -155,10 +196,21 @@ async function main() {
     const completed = new Date();
     const { error: runError } = await db.from("supplier_sync_runs").insert(syncRun({ id: fullRunId, adapter: FULL_ADAPTER, started: started.toISOString(), completed: completed.toISOString(), status: "SUCCEEDED", received, appended }));
     if (runError) throw new Error("SDG_SUCCESS_AUDIT_FAILED");
+    let retention: RetentionSummary = { status: "SUCCEEDED", deleted: 0, batches: 0, protectedBusiness: 0 };
+    try {
+      const compacted = await compactSupersededStock(db, SUPPLIER, "SDG");
+      retention = { status: "SUCCEEDED", ...compacted };
+    } catch (retentionError) {
+      retention = { ...retention, status: "FAILED" };
+      console.error(JSON.stringify({ event: "SDG_STOCK_RETENTION_FAILED",
+        code: retentionError instanceof Error ? retentionError.message : "SDG_RETENTION_CLEANUP_FAILED" }));
+      process.exitCode = 1;
+    }
     console.log(JSON.stringify({ outcome: "SUCCEEDED", expected: received, resolved: appended, unknown: result.exceptions.length,
       zero: result.snapshots.filter((item) => item.aggregate_available_quantity === 0).length,
       atLeast30: result.snapshots.filter((item) => (item.aggregate_available_quantity ?? 0) >= 30).length,
       future: result.details.filter((item) => (item.futureMetres ?? 0) > 0).length,
+      retention,
       durationMs: completed.getTime() - started.getTime(), nextRefresh: nextSdgRefreshAt(completed.toISOString()).toISOString() }));
   } catch (error) {
     const code = error instanceof Error && /^SDG_[A-Z0-9_]+$/.test(error.message) ? error.message : "SDG_ROUTINE_UNEXPECTED_FAILURE";

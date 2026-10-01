@@ -130,7 +130,7 @@ async function accessToken(config: ReturnType<typeof runtimeConfig>, apply: bool
     throw new Error("FABRIC_PROFILE_TOKEN_INVALID");
   }
   const scopes = parseScopes(body.scope);
-  assertScopes(scopes);
+  assertScopes(scopes, apply);
   return body.access_token;
 }
 
@@ -176,7 +176,7 @@ async function verifyInstalledScopes(
   const scopes = new Set(installation.accessScopes.flatMap((entry) =>
     isRecord(entry) && typeof entry.handle === "string" ? [entry.handle] : [],
   ));
-  assertScopes(scopes);
+  assertScopes(scopes, apply);
 }
 
 function parseProfileNode(value: unknown): ShopifyProfile {

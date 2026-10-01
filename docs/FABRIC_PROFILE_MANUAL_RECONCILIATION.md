@@ -43,7 +43,7 @@ The script reuses the existing CurtainsUK Shopify app client credentials:
 - `CURTAINSUK_SHOPIFY_CLIENT_ID`
 - `CURTAINSUK_SHOPIFY_APP_SECRET`
 
-It accepts only the production Shopify store `carpetup.myshopify.com`. The app must have `read_metaobjects` and `write_metaobjects`; missing scopes fail closed.
+It accepts only the production Shopify store `carpetup.myshopify.com` and hard-fails unless the authenticated app is CurtainsUK app `gid://shopify/App/328390344705`. Dry-run requires `read_metaobjects`; apply additionally requires `write_metaobjects`. Missing scopes or the wrong app fail closed.
 
 ## Dry run
 

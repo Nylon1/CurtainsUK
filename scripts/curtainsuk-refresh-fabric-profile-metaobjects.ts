@@ -12,6 +12,7 @@ import { SHOPIFY_DRAFT_ORDER_API_VERSION } from "../lib/storefront/shopify-draft
 loadEnvConfig(process.cwd());
 
 const FABRIC_PROFILE_TYPE = "app--328390344705--fabric_discovery";
+const EXPECTED_CURTAINSUK_APP_ID = "gid://shopify/App/328390344705";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
 const READ_SCOPE = "read_metaobjects" as const;
 const WRITE_SCOPE = "write_metaobjects" as const;

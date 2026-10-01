@@ -92,7 +92,7 @@ async function infer(content:Row[],schema:Row,name:string,phase:"A"|"B") {
 }
 function requestedFields(group:Group) {return unique(Object.values(group.requested_missing_fields_by_fabric).flat()) as VisualDimension[];}
 function verifyGroupSelection(group:Group,phase:"A"|"B",masters:Map<string,Row>,stored:Map<string,Row>) {
-  if (!group.affected_fabric_ids.length || (phase==="B" && (group.affected_fabric_ids.length<2 || group.affected_fabric_ids.length>4))) throw new Error("PILOT_GROUP_SIZE_INVALID");
+  if (!group.affected_fabric_ids.length || (phase==="B" && group.affected_fabric_ids.length>4)) throw new Error("PILOT_GROUP_SIZE_INVALID");
   for (const fabricId of group.affected_fabric_ids) {
     const master=masters.get(fabricId), current=stored.get(fabricId);
     if (!master || !current || master.supplier_id!==group.supplier_id || master.design_id!==group.design_id || master.lifecycle_state==="DISCONTINUED" || current.knowledge_state!=="PARTIAL_GOVERNED") throw new Error(`PILOT_COHORT_STATE_CHANGED_${fabricId}`);
@@ -174,20 +174,22 @@ async function mapLimit<T,U>(items:T[],limit:number,fn:(item:T,index:number)=>Pr
 }
 function summarise(results:Row[][],failures:Row[],phase:"A"|"B",selectedFabrics:number) {
   const flat=results.flat(), status=flat.map(x=>x.patch.practical_completion_status);
-  return {designs:results.length+failures.length,selected_fabrics:selectedFabrics,successful_fabrics:flat.length,requests_attempted:openaiAttempts[phase],success:results.length,failed:failures.length,schema_failures:failures.filter(x=>x.failure_class==="SCHEMA").length,local_validation_failures:failures.filter(x=>x.failure_class==="LOCAL_VALIDATION").length,patch_new_value_invalid:failures.filter(x=>x.error==="PATCH_NEW_VALUE_INVALID").length,fields_filled:flat.reduce((n,x)=>n+Object.keys(x.patch.new_values_only).length,0),genuinely_unresolved:flat.reduce((n,x)=>n+x.genuinely_unresolved_fields.length,0),maximally_practically_enriched:status.filter(x=>x==="MAXIMALLY_PRACTICALLY_ENRICHED").length,practically_enriched_with_minor_gaps:status.filter(x=>x==="PRACTICALLY_ENRICHED_WITH_MINOR_GAPS").length,needs_material_review:status.filter(x=>x==="NEEDS_MATERIAL_REVIEW").length,known_fields_changed_outside_requested_delta:flat.reduce((n,x)=>n+x.known_fields_changed_outside_requested_delta,0),average_colourways_per_request:phase==="B" && openaiAttempts.B ? Number((openaiImageInputs.B/openaiAttempts.B).toFixed(2)) : undefined};
+  return {designs:results.length+failures.length,selected_fabrics:selectedFabrics,successful_fabrics:flat.length,requests_attempted:openaiAttempts[phase],success:results.length,failed:failures.length,schema_failures:failures.filter(x=>x.failure_class==="SCHEMA").length,local_validation_failures:failures.filter(x=>x.failure_class==="LOCAL_VALIDATION").length,patch_new_value_invalid:failures.filter(x=>x.error==="PATCH_NEW_VALUE_INVALID").length,patches_accepted:flat.length,patches_rejected:selectedFabrics-flat.length,fields_filled:flat.reduce((n,x)=>n+Object.keys(x.patch.new_values_only).length,0),genuinely_unresolved:flat.reduce((n,x)=>n+x.genuinely_unresolved_fields.length,0),maximally_practically_enriched:status.filter(x=>x==="MAXIMALLY_PRACTICALLY_ENRICHED").length,practically_enriched_with_minor_gaps:status.filter(x=>x==="PRACTICALLY_ENRICHED_WITH_MINOR_GAPS").length,needs_material_review:status.filter(x=>x==="NEEDS_MATERIAL_REVIEW").length,manufacturer_authority_overrides:flat.filter(x=>x.patch.manufacturer_authority_applied).length,known_fields_changed_outside_requested_delta:flat.reduce((n,x)=>n+x.known_fields_changed_outside_requested_delta,0),average_colourways_per_request:phase==="B" && openaiAttempts.B ? Number((openaiImageInputs.B/openaiAttempts.B).toFixed(2)) : undefined};
 }
 export async function runPartialPilot(selectionFile:string,outDir:string) {
   if (hciVisualModel!=="gpt-5.6-terra" || reasoning!=="medium" || !selectionFile || !outDir) throw new Error("PILOT_MODEL_OR_INPUT_REJECTED");
   const selection:Row=JSON.parse(await readFile(selectionFile,"utf8"));
   const retest=selection.selection_version==="partial-hybrid-contract-retest-v1";
   const closure=selection.selection_version==="partial-hybrid-pilot-closure-v1";
-  const expectedA=closure?15:retest?4:36,expectedB=closure?5:retest?4:10,expectedTotal=closure?62:retest?25:179;
-  maxOpenaiRequests=closure?20:retest?8:46;
+  const scale=selection.selection_version==="partial-hybrid-scale-batch-v1";
+  const expectedA=scale?0:closure?15:retest?4:36,expectedB=scale?selection.expected_openai_requests:closure?5:retest?4:10,expectedTotal=scale?selection.expected_fabric_count:closure?62:retest?25:179;
+  maxOpenaiRequests=scale?selection.expected_openai_requests:closure?20:retest?8:46;
   openaiAttempts.A=0;openaiAttempts.B=0;openaiImageInputs.A=0;openaiImageInputs.B=0;
+  if (scale && (selection.batch_size!==expectedB || ![250,500].includes(expectedB) || !Number.isSafeInteger(expectedTotal) || expectedTotal<expectedB || expectedTotal>4*expectedB || !Number.isSafeInteger(selection.batch_number) || selection.batch_number<1 || typeof selection.source_audit_sha256!=="string" || !/^[a-f0-9]{64}$/.test(selection.source_audit_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fabric_ids_sha256))) throw new Error("SCALE_SELECTION_REJECTED");
   if (selection.recorded_before_inference!==true || selection.model!==hciVisualModel || selection.reasoning!==reasoning || selection.max_inference_concurrency!==maxConcurrency || selection.pilot_a?.length!==expectedA || selection.pilot_b?.length!==expectedB || selection.expected_openai_requests!==maxOpenaiRequests) throw new Error("PILOT_SELECTION_REJECTED");
   const allGroups=[...selection.pilot_a,...selection.pilot_b] as Group[];
   const fabricIds=allGroups.flatMap(g=>g.affected_fabric_ids);
-  if (fabricIds.length!==expectedTotal || new Set(fabricIds).size!==fabricIds.length || (!retest && !closure && (selection.pilot_a.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==149 || selection.pilot_b.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==30)) || selection.pilot_b.some((g:Group)=>g.affected_fabric_ids.length<2 || g.affected_fabric_ids.length>4)) throw new Error("PILOT_SELECTION_SIZE_OR_OVERLAP_REJECTED");
+  if (fabricIds.length!==expectedTotal || new Set(fabricIds).size!==fabricIds.length || (!retest && !closure && !scale && (selection.pilot_a.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==149 || selection.pilot_b.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==30)) || selection.pilot_b.some((g:Group)=>g.affected_fabric_ids.length<1 || g.affected_fabric_ids.length>4)) throw new Error("PILOT_SELECTION_SIZE_OR_OVERLAP_REJECTED");
   await mkdir(outDir,{recursive:true});
   await writeFile(path.join(outDir,"selection.json"),JSON.stringify(selection,null,2));
   const control=await readRows("browse_projection_control","active_generation,knowledge_cache_dirty,knowledge_cache_refreshed_at",{singleton:"eq.true"});
@@ -220,7 +222,7 @@ export async function runPartialPilot(selectionFile:string,outDir:string) {
   }
   const a=await phaseRun(selection.pilot_a,"A");
   const b=await phaseRun(selection.pilot_b,"B");
-  const summary={mode:closure?"OFFLINE_ARTIFACT_ONLY_PATCH_PILOT_CLOSURE":retest?"OFFLINE_ARTIFACT_ONLY_PATCH_CONTRACT_RETEST":"OFFLINE_ARTIFACT_ONLY_PARTIAL_PATCH_PILOT",model:hciVisualModel,reasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion,max_inference_concurrency:maxConcurrency,safety_baseline:safetyBaseline,pilot_a:a,pilot_b:b,total_openai_requests:a.requests_attempted+b.requests_attempted,total_known_fields_changed_outside_requested_delta:a.known_fields_changed_outside_requested_delta+b.known_fields_changed_outside_requested_delta,production_database_writes:0,failures:failureList,completed_at:new Date().toISOString()};
+  const summary={mode:scale?"OFFLINE_ARTIFACT_ONLY_PARTIAL_SCALE_BATCH":closure?"OFFLINE_ARTIFACT_ONLY_PATCH_PILOT_CLOSURE":retest?"OFFLINE_ARTIFACT_ONLY_PATCH_CONTRACT_RETEST":"OFFLINE_ARTIFACT_ONLY_PARTIAL_PATCH_PILOT",model:hciVisualModel,reasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion,max_inference_concurrency:maxConcurrency,safety_baseline:safetyBaseline,pilot_a:a,pilot_b:b,total_openai_requests:a.requests_attempted+b.requests_attempted,total_known_fields_changed_outside_requested_delta:a.known_fields_changed_outside_requested_delta+b.known_fields_changed_outside_requested_delta,production_database_writes:0,failures:failureList,completed_at:new Date().toISOString()};
   await writeFile(path.join(outDir,"summary.json"),JSON.stringify(summary,null,2));
   if (failureList.length) process.exitCode=1;
   return summary;

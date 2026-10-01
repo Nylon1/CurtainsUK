@@ -15,7 +15,7 @@ Source of truth read:
 
 Shopify destination:
 
-- existing metaobject type `app--340764327937--fabric_discovery`
+- existing metaobject type `app--328390344705--fabric_discovery`
 - existing entries only
 - no create, upsert or delete operation exists in the script
 
@@ -32,7 +32,7 @@ Writable fields are hard-allowlisted to:
 - `knowledge_advice`
 - `sync_revision`
 
-The script does not write to Supabase.
+The script does not write to Supabase. The target type is the live MAIN-theme metaobject binding verified on 1 October 2026.
 
 It will not clear a populated Shopify intelligence field simply because a newer governed reading is unknown, and it will not downgrade an already published `COMPLETE` profile to `PARTIAL`.
 

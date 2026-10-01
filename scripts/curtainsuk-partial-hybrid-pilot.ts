@@ -83,7 +83,14 @@ async function infer(content:Row[],schema:Row,name:string,phase:"A"|"B") {
   openaiAttempts[phase]++;
   openaiImageInputs[phase]+=content.filter(item=>item.type==="input_image").length;
   const response=await fetch("https://api.openai.com/v1/responses",{method:"POST",headers:{authorization:`Bearer ${key}`,"content-type":"application/json"},body:JSON.stringify(body),signal:AbortSignal.timeout(180_000)});
-  if (!response.ok) throw new Error(`PILOT_OPENAI_RESPONSE_${response.status}`);
+  if (!response.ok) {
+    let errorBody:Row={};
+    try {errorBody=await response.json();} catch { /* A missing error body is diagnostic only. */ }
+    const token=(value:unknown)=>typeof value==="string" && /^[a-z0-9_]{1,80}$/i.test(value)?value:"unavailable";
+    const type=token(errorBody.error?.type),code=token(errorBody.error?.code);
+    const retryAfter=token(response.headers.get("retry-after"));
+    throw new Error(`PILOT_OPENAI_RESPONSE_${response.status}_TYPE_${type}_CODE_${code}_RETRY_AFTER_${retryAfter}`);
+  }
   const raw:Row=await response.json();
   if (raw.model!==hciVisualModel || raw.status!=="completed" || raw.incomplete_details) throw new Error("PILOT_OPENAI_MODEL_STATUS_OR_TRUNCATION_REJECTED");
   const texts=(raw.output??[]).flatMap((item:Row)=>(item.content??[]).filter((part:Row)=>part.type==="output_text").map((part:Row)=>part.text));

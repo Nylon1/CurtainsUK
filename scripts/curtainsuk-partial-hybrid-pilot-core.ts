@@ -7,6 +7,10 @@ export const designFields = ["patternClass","motif","visualSurface","sheenAppear
 export const colourwayFields = ["primaryColour","secondaryColours","colourTemperature","lightness","saturation","contrast","colourComplexity","visualWeight","visualActivity","character"] as const;
 const setFields = new Set<VisualDimension>(["secondaryColours","motif","visualSurface","character"]);
 const allFields = Object.keys(visualVocabulary) as VisualDimension[];
+export type PatchDiagnostic = {fabric_id:string;field:string|null;returned_value:unknown;expected_value_type:string|null;allowed_values:readonly string[];requested_fields:VisualDimension[];validation_failure:string};
+export class PatchValidationError extends Error {
+  constructor(public diagnostic:PatchDiagnostic) {super("PATCH_NEW_VALUE_INVALID");}
+}
 
 function exactKeys(value:unknown, keys:string[]): value is Row {
   return Boolean(value && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length === keys.length && keys.every(key=>Object.hasOwn(value,key)));
@@ -51,7 +55,18 @@ export function validateAndApplyPatch(fabricId:string, requested:VisualDimension
   if (requested.length===0 || new Set(requested).size!==requested.length || requested.some(field=>!allFields.includes(field) || ["patternScale","directionality"].includes(field))) throw new Error("PATCH_REQUESTED_FIELDS_INVALID");
   const allowed = new Set(requested), newValues:Row={}, confidences:Row={}, provenance:Row={}, reasons:Row={};
   for (const entry of raw.new_values_only) {
-    if (!exactKeys(entry,["field","value","confidence","provenance","reason"]) || !allowed.has(entry.field) || Object.hasOwn(newValues,entry.field) || !validValue(entry.field,entry.value) || !["HIGH","MEDIUM"].includes(entry.confidence) || !["MANUFACTURER","IMAGE","BOTH","AI_ESTIMATE_IMAGE_SUPPORTED"].includes(entry.provenance) || typeof entry.reason !== "string" || !entry.reason.trim()) throw new Error("PATCH_NEW_VALUE_INVALID");
+    const field=typeof entry?.field==="string"?entry.field:null;
+    const known=field!==null && allFields.includes(field as VisualDimension);
+    const isSet=known && setFields.has(field as VisualDimension);
+    let failure="";
+    if (!exactKeys(entry,["field","value","confidence","provenance","reason"])) failure="ENTRY_SHAPE_INVALID";
+    else if (!allowed.has(entry.field)) failure="FIELD_NOT_REQUESTED_FOR_FABRIC";
+    else if (Object.hasOwn(newValues,entry.field)) failure="DUPLICATE_FIELD";
+    else if (!validValue(entry.field,entry.value)) failure=entry.value==="unknown"?"UNKNOWN_NOT_ALLOWED":isSet && !Array.isArray(entry.value) || !isSet && typeof entry.value!=="string"?"WRONG_VALUE_TYPE":Array.isArray(entry.value) && !entry.value.length?"EMPTY_SET":Array.isArray(entry.value) && new Set(entry.value).size!==entry.value.length?"DUPLICATE_SET_VALUE":"VALUE_OUTSIDE_GOVERNED_VOCABULARY";
+    else if (!["HIGH","MEDIUM"].includes(entry.confidence)) failure="CONFIDENCE_INVALID";
+    else if (!["MANUFACTURER","IMAGE","BOTH","AI_ESTIMATE_IMAGE_SUPPORTED"].includes(entry.provenance)) failure="PROVENANCE_INVALID";
+    else if (typeof entry.reason!=="string" || !entry.reason.trim()) failure="REASON_MISSING";
+    if (failure) throw new PatchValidationError({fabric_id:fabricId,field,returned_value:entry?.value,expected_value_type:known?(isSet?"nonempty unique string[]":"string"):null,allowed_values:known?visualVocabulary[field as VisualDimension]:[],requested_fields:requested,validation_failure:failure});
     newValues[entry.field]=entry.value; confidences[entry.field]=entry.confidence; provenance[entry.field]=entry.provenance; reasons[entry.field]=entry.reason;
   }
   const gapFields = new Set<string>();
@@ -76,13 +91,20 @@ export function validateAndApplyPatch(fabricId:string, requested:VisualDimension
   return {patch,finalFields,finalProvenance,changedOutsideDelta,genuinelyUnresolved,evidenceReasons:reasons,materialReview:raw.material_review};
 }
 
-export function patchResponseSchema(fabricIds:string[], requestedFields:VisualDimension[], grouped:boolean) {
-  const fieldEnum=[...new Set(requestedFields)];
-  const payload={type:"object",additionalProperties:false,required:["new_values_only","legitimate_remaining_gaps","manufacturer_authority_applied","material_review"],properties:{
-    new_values_only:{type:"array",items:{type:"object",additionalProperties:false,required:["field","value","confidence","provenance","reason"],properties:{field:{type:"string",enum:fieldEnum},value:{anyOf:[{type:"string"},{type:"array",items:{type:"string"}}]},confidence:{type:"string",enum:["HIGH","MEDIUM"]},provenance:{type:"string",enum:["MANUFACTURER","IMAGE","BOTH","AI_ESTIMATE_IMAGE_SUPPORTED"]},reason:{type:"string"}}}},
-    legitimate_remaining_gaps:{type:"array",items:{type:"object",additionalProperties:false,required:["field","reason"],properties:{field:{type:"string",enum:fieldEnum},reason:{type:"string"}}}},
-    manufacturer_authority_applied:{type:"boolean"},material_review:{type:"object",additionalProperties:false,required:["needed","reason"],properties:{needed:{type:"boolean"},reason:{type:"string"}}},
-  }};
-  if (!grouped) return {type:"object",additionalProperties:false,required:["shared_patch"],properties:{shared_patch:payload}};
-  return {type:"object",additionalProperties:false,required:["patches"],properties:{patches:{type:"array",items:{type:"object",additionalProperties:false,required:["fabric_id",...payload.required],properties:{fabric_id:{type:"string",enum:fabricIds},...payload.properties}}}}};
+export function patchResponseSchema(requestedByFabric:Record<string,VisualDimension[]>, grouped:boolean):Row {
+  const ids=Object.keys(requestedByFabric);
+  if (!ids.length || (!grouped && ids.length!==1)) throw new Error("PATCH_SCHEMA_FABRIC_COUNT_INVALID");
+  const entry=(field:VisualDimension)=>({type:"object",additionalProperties:false,required:["field","value","confidence","provenance","reason"],properties:{field:{type:"string",enum:[field]},value:setFields.has(field)?{type:"array",minItems:1,items:{type:"string",enum:visualVocabulary[field]}}:{type:"string",enum:visualVocabulary[field]},confidence:{type:"string",enum:["HIGH","MEDIUM"]},provenance:{type:"string",enum:["MANUFACTURER","IMAGE","BOTH","AI_ESTIMATE_IMAGE_SUPPORTED"]},reason:{type:"string"}}});
+  const payload=(fields:VisualDimension[])=>{
+    const distinct=[...new Set(fields)];
+    if (!distinct.length || distinct.some(field=>!allFields.includes(field) || ["patternScale","directionality"].includes(field))) throw new Error("PATCH_SCHEMA_REQUESTED_FIELDS_INVALID");
+    return {type:"object",additionalProperties:false,required:["new_values_only","legitimate_remaining_gaps","manufacturer_authority_applied","material_review"],properties:{
+      new_values_only:{type:"array",items:distinct.length===1?entry(distinct[0]):{anyOf:distinct.map(entry)}},
+      legitimate_remaining_gaps:{type:"array",items:{type:"object",additionalProperties:false,required:["field","reason"],properties:{field:{type:"string",enum:distinct},reason:{type:"string"}}}},
+      manufacturer_authority_applied:{type:"boolean"},material_review:{type:"object",additionalProperties:false,required:["needed","reason"],properties:{needed:{type:"boolean"},reason:{type:"string"}}},
+    }};
+  };
+  if (!grouped) return {type:"object",additionalProperties:false,required:["shared_patch"],properties:{shared_patch:payload(requestedByFabric[ids[0]])}};
+  const variant=(id:string)=>{const p=payload(requestedByFabric[id]);return {type:"object",additionalProperties:false,required:["fabric_id",...p.required],properties:{fabric_id:{type:"string",enum:[id]},...p.properties}};};
+  return {type:"object",additionalProperties:false,required:["patches"],properties:{patches:{type:"array",minItems:ids.length,maxItems:ids.length,items:{anyOf:ids.map(variant)}}}};
 }

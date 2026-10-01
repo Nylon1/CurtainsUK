@@ -13,6 +13,7 @@ on:
           - full
           - artifact-only
           - partial-pilot
+          - partial-contract-retest
       scope_mode:
         description: "catalogue scope"
         required: true
@@ -58,7 +59,7 @@ concurrency:
 
 jobs:
   plan:
-    if: inputs.run_mode != 'artifact-only' && inputs.run_mode != 'partial-pilot'
+    if: inputs.run_mode != 'artifact-only' && inputs.run_mode != 'partial-pilot' && inputs.run_mode != 'partial-contract-retest'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -190,3 +191,33 @@ jobs:
         with:
           name: partial-hybrid-patch-only-pilot
           path: artifacts/partial-hybrid-pilot/
+
+  partial-contract-retest:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'partial-contract-retest'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Verify and record eight previously rejected groups before inference
+        run: |
+          mkdir -p artifacts/partial-hybrid-contract-retest
+          node -e 'const fs=require("fs"); const p="scripts/fixtures/curtainsuk-partial-hybrid-contract-retest-selection.json"; const x=JSON.parse(fs.readFileSync(p,"utf8")); const groups=[...x.pilot_a,...x.pilot_b], ids=groups.flatMap(g=>g.affected_fabric_ids); if(x.selection_version!=="partial-hybrid-contract-retest-v1"||x.source_pilot_run!==36916774493||x.source_pilot_artifact_id!==11189959573||x.recorded_before_inference!==true||x.expected_openai_requests!==8||x.pilot_a.length!==4||x.pilot_b.length!==4||new Set(ids).size!==ids.length||x.model!=="gpt-5.6-terra"||x.reasoning!=="medium")throw Error("CONTRACT_RETEST_SELECTION_REJECTED"); fs.copyFileSync(p,"artifacts/partial-hybrid-contract-retest/selection.json");'
+      - name: Test patch contract offline
+        run: npx --no-install tsx --test scripts/__tests__/curtainsuk-partial-hybrid-pilot.test.ts
+      - name: Run bounded read-only patch contract retest
+        run: npx --no-install tsx scripts/curtainsuk-partial-hybrid-pilot.ts --selection=scripts/fixtures/curtainsuk-partial-hybrid-contract-retest-selection.json --out=artifacts/partial-hybrid-contract-retest
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partial-hybrid-contract-retest
+          path: artifacts/partial-hybrid-contract-retest/

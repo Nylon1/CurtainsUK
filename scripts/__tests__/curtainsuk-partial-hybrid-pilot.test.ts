@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import Ajv from "ajv";
 import { visualVocabulary } from "../../lib/fabric-master/visual-enrichment";
-import { missingUsefulFields, validateAndApplyPatch, patchResponseSchema } from "../curtainsuk-partial-hybrid-pilot-core";
+import { missingUsefulFields, validateAndApplyPatch, patchResponseSchema, PatchValidationError } from "../curtainsuk-partial-hybrid-pilot-core";
 import { assertReadOnlyDatabaseRequest } from "../curtainsuk-partial-hybrid-pilot";
 
 function reading() {
@@ -48,6 +49,56 @@ test("patch rejects fields outside requested delta and duplicate fabric evidence
   const {fields,provenance}=reading();
   const raw={new_values_only:[{field:"primaryColour",value:"blue",confidence:"MEDIUM",provenance:"IMAGE",reason:"Blue image."}],legitimate_remaining_gaps:[],manufacturer_authority_applied:false,material_review:{needed:false,reason:"No issue."}};
   assert.throws(()=>validateAndApplyPatch("pt-1",["sheenAppearance"],raw,fields,provenance),/PATCH_NEW_VALUE_INVALID/);
-  const schema=patchResponseSchema(["pt-1","pt-2"],["primaryColour"],true);
-  assert.deepEqual((schema as any).properties.patches.items.properties.fabric_id.enum,["pt-1","pt-2"]);
+  const schema=patchResponseSchema({"pt-1":["primaryColour"],"pt-2":["sheenAppearance"]},true);
+  const variants=schema.properties.patches.items.anyOf;
+  assert.deepEqual(variants.map((x:any)=>x.properties.fabric_id.enum),[["pt-1"],["pt-2"]]);
+  assert.deepEqual(variants[0].properties.new_values_only.items.properties.field.enum,["primaryColour"]);
+  assert.deepEqual(variants[1].properties.new_values_only.items.properties.field.enum,["sheenAppearance"]);
+});
+
+test("each requested field has exact governed enum and scalar or set shape",()=>{
+  const sets=new Set(["secondaryColours","motif","visualSurface","character"]);
+  for (const [field,values] of Object.entries(visualVocabulary)) {
+    if (["patternScale","directionality"].includes(field)) continue;
+    const schema=patchResponseSchema({"pt-1":[field as keyof typeof visualVocabulary]},false);
+    const entry=schema.properties.shared_patch.properties.new_values_only.items;
+    assert.deepEqual(entry.properties.field.enum,[field]);
+    assert.deepEqual(entry.properties.value.type,sets.has(field)?"array":"string");
+    const value=sets.has(field)?entry.properties.value.items:entry.properties.value;
+    assert.deepEqual(value.enum,values);
+    assert.equal(value.enum.includes("unknown"),false);
+    if (sets.has(field)) assert.equal(entry.properties.value.minItems,1);
+  }
+});
+
+test("grouped schema binds each fabric to only its requested fields",()=>{
+  const schema=patchResponseSchema({"pt-a":["primaryColour","secondaryColours"],"pt-b":["sheenAppearance"]},true);
+  const [a,b]=schema.properties.patches.items.anyOf;
+  assert.deepEqual(a.properties.fabric_id.enum,["pt-a"]);
+  assert.deepEqual(b.properties.fabric_id.enum,["pt-b"]);
+  assert.deepEqual(a.properties.new_values_only.items.anyOf.map((x:any)=>x.properties.field.enum[0]),["primaryColour","secondaryColours"]);
+  assert.deepEqual(b.properties.new_values_only.items.properties.field.enum,["sheenAppearance"]);
+  assert.deepEqual(b.properties.legitimate_remaining_gaps.items.properties.field.enum,["sheenAppearance"]);
+  assert.equal(schema.properties.patches.minItems,2);
+  assert.equal(schema.properties.patches.maxItems,2);
+});
+
+test("strict JSON schema rejects unknowns, wrong types and sibling-only fields",()=>{
+  const validate=new Ajv().compile(patchResponseSchema({"pt-a":["primaryColour","motif"],"pt-b":["sheenAppearance"]},true));
+  const patch=(fabric_id:string,field:string,value:unknown)=>({fabric_id,new_values_only:[{field,value,confidence:"MEDIUM",provenance:"IMAGE",reason:"Approved image."}],legitimate_remaining_gaps:[],manufacturer_authority_applied:false,material_review:{needed:false,reason:"No issue."}});
+  const valid={patches:[patch("pt-a","motif",["flower"]),patch("pt-b","sheenAppearance","low")]};
+  assert.equal(validate(valid),true);
+  assert.equal(validate({patches:[patch("pt-a","primaryColour","unknown"),valid.patches[1]]}),false);
+  assert.equal(validate({patches:[patch("pt-a","motif","flower"),valid.patches[1]]}),false);
+  assert.equal(validate({patches:[patch("pt-a","primaryColour",["blue"]),valid.patches[1]]}),false);
+  assert.equal(validate({patches:[patch("pt-a","sheenAppearance","low"),valid.patches[1]]}),false);
+});
+
+test("unknown, wrong shape and duplicate set values fail locally with diagnostics",()=>{
+  const {fields,provenance}=reading();
+  const base={legitimate_remaining_gaps:[],manufacturer_authority_applied:false,material_review:{needed:false,reason:"No issue."}};
+  for (const [field,value,failure] of [["primaryColour","unknown","UNKNOWN_NOT_ALLOWED"],["primaryColour",["blue"],"WRONG_VALUE_TYPE"],["motif","flower","WRONG_VALUE_TYPE"],["motif",["flower","flower"],"DUPLICATE_SET_VALUE"]] as const) {
+    const raw={...base,new_values_only:[{field,value,confidence:"MEDIUM",provenance:"IMAGE",reason:"Approved image."}]};
+    assert.throws(()=>validateAndApplyPatch("pt-1",[field],raw,fields,provenance),(error:unknown)=>error instanceof PatchValidationError && error.diagnostic.validation_failure===failure && error.diagnostic.fabric_id==="pt-1" && error.diagnostic.field===field);
+  }
 });

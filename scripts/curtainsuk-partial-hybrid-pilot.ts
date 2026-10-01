@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { hciVisualModel, visualVocabulary, visualSchemaVersion, visualVocabularyVersion, type VisualDimension } from "../lib/fabric-master/visual-enrichment";
-import { missingUsefulFields, patchResponseSchema, validateAndApplyPatch, type Row, type RawPatch } from "./curtainsuk-partial-hybrid-pilot-core";
+import { missingUsefulFields, patchResponseSchema, validateAndApplyPatch, PatchValidationError, type Row, type RawPatch } from "./curtainsuk-partial-hybrid-pilot-core";
 
 const projectRef="hqysjumypgeapgmqkcrx";
 const promptVersion="partial-hybrid-delta-pilot-v1";
@@ -11,6 +11,7 @@ const reasoning="medium";
 const maxConcurrency=3;
 const openaiAttempts:{A:number;B:number}={A:0,B:0};
 const openaiImageInputs:{A:number;B:number}={A:0,B:0};
+let maxOpenaiRequests=46;
 const allowedTables=new Set(["browse_projection_control","fabric_colourways","fabric_designs","fabric_collections","supplier_brands","fabric_media_mappings","fabric_media_assets","fabric_visual_knowledge_read_cache"]);
 type ImageRow=Row & {fabric_id:string;supplier_id:string;supplier_sku:string;brand_id:string;design_id:string;image_type:string;source_image_hash:string;source_image_url:string};
 type AnalysisAsset={bytes:Uint8Array;mime:string;approvedSourceHash:string;analysisAssetHash:string;analysisAssetUrl:string;classification:"EXACT_BYTE_MATCH"|"SHOPIFY_TRANSFORMATION";byteLength:number;width:number;height:number};
@@ -78,6 +79,7 @@ async function infer(content:Row[],schema:Row,name:string,phase:"A"|"B") {
   const key=process.env.OPENAI_API_KEY;
   if (!key || key.trim().length<20) throw new Error("PILOT_OPENAI_KEY_UNUSABLE");
   const body={model:hciVisualModel,store:false,max_output_tokens:9000,reasoning:{effort:reasoning},instructions:governancePrompt(),input:[{role:"user",content}],text:{format:{type:"json_schema",name,strict:true,schema}}};
+  if (openaiAttempts.A+openaiAttempts.B>=maxOpenaiRequests) throw new Error("PILOT_OPENAI_REQUEST_LIMIT_REACHED");
   openaiAttempts[phase]++;
   openaiImageInputs[phase]+=content.filter(item=>item.type==="input_image").length;
   const response=await fetch("https://api.openai.com/v1/responses",{method:"POST",headers:{authorization:`Bearer ${key}`,"content-type":"application/json"},body:JSON.stringify(body),signal:AbortSignal.timeout(180_000)});
@@ -124,8 +126,12 @@ async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map
     content=[{type:"input_text",text:JSON.stringify({pilot:"B",instruction:"Return a separate patch for every listed fabric_id. Each image is labelled immediately before the image content. Shared design fields must have the same value for all siblings requesting them. Keep every other existing field byte-for-byte unchanged.",shared_manufacturer_design_facts:sharedContext,fabrics:group.affected_fabric_ids.map(id=>{const master=data.masters.get(id)!,current=data.stored.get(id)!;return {fabric_id:id,manufacturer_context:manufacturerContext(master,design,data.brands.get(master.brand_id),data.collections.get(design.collection_id)),existing_governed_reading:current.visual_fields,existing_provenance:current.provenance,requested_missing_fields:group.requested_missing_fields_by_fabric[id]};})})}];
     for (let i=0;i<imageRows.length;i++) content.push({type:"input_text",text:`Approved governed image for fabric_id ${imageRows[i].fabric_id}; approved source hash ${imageRows[i].source_image_hash}; do not apply this image's colour evidence to siblings.`},{type:"input_image",image_url:`data:${images[i].mime};base64,${Buffer.from(images[i].bytes).toString("base64")}`,detail:"high"});
   }
-  const schema=patchResponseSchema(group.affected_fabric_ids,requestedFields(group),phase==="B");
+  const requestedByFabric=phase==="A"?{[group.representative_fabric_id!]:requestedFields(group)}:group.requested_missing_fields_by_fabric as Record<string,VisualDimension[]>;
+  const schema=patchResponseSchema(requestedByFabric,phase==="B");
   const raw=await infer(content,schema,phase==="A"?"partial_design_delta_v1":"partial_grouped_colourway_delta_v1",phase);
+  const groupId=`${phase}-${String(index+1).padStart(2,"0")}-${group.design_id.replace(/[^a-z0-9-]/g,"")}`;
+  await mkdir(path.join(outDir,"raw"),{recursive:true});
+  await writeFile(path.join(outDir,"raw",`${groupId}.json`),JSON.stringify({phase,design_id:group.design_id,affected_fabric_ids:group.affected_fabric_ids,raw_structured_output:raw},null,2));
   const patches:Map<string,RawPatch>=new Map();
   if (phase==="A") {
     if (!exactKeys(raw,["shared_patch"])) throw new Error("PILOT_DESIGN_RESPONSE_SCHEMA_INVALID");
@@ -155,7 +161,6 @@ async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map
     const result=applyForFabric(id,group.requested_missing_fields_by_fabric[id] as VisualDimension[],patches.get(id),data.stored,image,context);
     results.push(result);
   }
-  const groupId=`${phase}-${String(index+1).padStart(2,"0")}-${group.design_id.replace(/[^a-z0-9-]/g,"")}`;
   await mkdir(path.join(outDir,"groups"),{recursive:true});
   await writeFile(path.join(outDir,"groups",`${groupId}.json`),JSON.stringify({phase,design_id:group.design_id,supplier_id:group.supplier_id,affected_fabric_ids:group.affected_fabric_ids,governed_images:[...imageById.values()],shared_manufacturer_design_facts:sharedContext,raw_structured_output:raw,patches:results.map(x=>x.patch)},null,2));
   await mkdir(path.join(outDir,"fabrics"),{recursive:true});
@@ -167,17 +172,21 @@ async function mapLimit<T,U>(items:T[],limit:number,fn:(item:T,index:number)=>Pr
   await Promise.all(Array.from({length:Math.min(limit,items.length)},async()=>{while(next<items.length){const index=next++;results[index]=await fn(items[index],index);}}));
   return results;
 }
-function summarise(results:Row[][],failures:Row[],phase:"A"|"B") {
+function summarise(results:Row[][],failures:Row[],phase:"A"|"B",selectedFabrics:number) {
   const flat=results.flat(), status=flat.map(x=>x.patch.practical_completion_status);
-  return {designs:results.length+failures.length,selected_fabrics:phase==="A"?149:30,successful_fabrics:flat.length,requests_attempted:openaiAttempts[phase],success:results.length,failed:failures.length,fields_filled:flat.reduce((n,x)=>n+Object.keys(x.patch.new_values_only).length,0),genuinely_unresolved:flat.reduce((n,x)=>n+x.genuinely_unresolved_fields.length,0),maximally_practically_enriched:status.filter(x=>x==="MAXIMALLY_PRACTICALLY_ENRICHED").length,practically_enriched_with_minor_gaps:status.filter(x=>x==="PRACTICALLY_ENRICHED_WITH_MINOR_GAPS").length,needs_material_review:status.filter(x=>x==="NEEDS_MATERIAL_REVIEW").length,known_fields_changed_outside_requested_delta:flat.reduce((n,x)=>n+x.known_fields_changed_outside_requested_delta,0),average_colourways_per_request:phase==="B" && openaiAttempts.B ? Number((openaiImageInputs.B/openaiAttempts.B).toFixed(2)) : undefined};
+  return {designs:results.length+failures.length,selected_fabrics:selectedFabrics,successful_fabrics:flat.length,requests_attempted:openaiAttempts[phase],success:results.length,failed:failures.length,schema_failures:failures.filter(x=>x.failure_class==="SCHEMA").length,local_validation_failures:failures.filter(x=>x.failure_class==="LOCAL_VALIDATION").length,patch_new_value_invalid:failures.filter(x=>x.error==="PATCH_NEW_VALUE_INVALID").length,fields_filled:flat.reduce((n,x)=>n+Object.keys(x.patch.new_values_only).length,0),genuinely_unresolved:flat.reduce((n,x)=>n+x.genuinely_unresolved_fields.length,0),maximally_practically_enriched:status.filter(x=>x==="MAXIMALLY_PRACTICALLY_ENRICHED").length,practically_enriched_with_minor_gaps:status.filter(x=>x==="PRACTICALLY_ENRICHED_WITH_MINOR_GAPS").length,needs_material_review:status.filter(x=>x==="NEEDS_MATERIAL_REVIEW").length,known_fields_changed_outside_requested_delta:flat.reduce((n,x)=>n+x.known_fields_changed_outside_requested_delta,0),average_colourways_per_request:phase==="B" && openaiAttempts.B ? Number((openaiImageInputs.B/openaiAttempts.B).toFixed(2)) : undefined};
 }
 export async function runPartialPilot(selectionFile:string,outDir:string) {
   if (hciVisualModel!=="gpt-5.6-terra" || reasoning!=="medium" || !selectionFile || !outDir) throw new Error("PILOT_MODEL_OR_INPUT_REJECTED");
   const selection:Row=JSON.parse(await readFile(selectionFile,"utf8"));
-  if (selection.recorded_before_inference!==true || selection.model!==hciVisualModel || selection.reasoning!==reasoning || selection.max_inference_concurrency!==maxConcurrency || selection.pilot_a?.length!==36 || selection.pilot_b?.length!==10) throw new Error("PILOT_SELECTION_REJECTED");
+  const retest=selection.selection_version==="partial-hybrid-contract-retest-v1";
+  const expectedA=retest?4:36,expectedB=retest?4:10,expectedTotal=retest?25:179;
+  maxOpenaiRequests=retest?8:46;
+  openaiAttempts.A=0;openaiAttempts.B=0;openaiImageInputs.A=0;openaiImageInputs.B=0;
+  if (selection.recorded_before_inference!==true || selection.model!==hciVisualModel || selection.reasoning!==reasoning || selection.max_inference_concurrency!==maxConcurrency || selection.pilot_a?.length!==expectedA || selection.pilot_b?.length!==expectedB || selection.expected_openai_requests!==maxOpenaiRequests) throw new Error("PILOT_SELECTION_REJECTED");
   const allGroups=[...selection.pilot_a,...selection.pilot_b] as Group[];
   const fabricIds=allGroups.flatMap(g=>g.affected_fabric_ids);
-  if (fabricIds.length!==179 || new Set(fabricIds).size!==179 || selection.pilot_a.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==149 || selection.pilot_b.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==30 || selection.pilot_b.some((g:Group)=>g.affected_fabric_ids.length<2 || g.affected_fabric_ids.length>4)) throw new Error("PILOT_SELECTION_SIZE_OR_OVERLAP_REJECTED");
+  if (fabricIds.length!==expectedTotal || new Set(fabricIds).size!==fabricIds.length || (!retest && (selection.pilot_a.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==149 || selection.pilot_b.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==30)) || selection.pilot_b.some((g:Group)=>g.affected_fabric_ids.length<2 || g.affected_fabric_ids.length>4)) throw new Error("PILOT_SELECTION_SIZE_OR_OVERLAP_REJECTED");
   await mkdir(outDir,{recursive:true});
   await writeFile(path.join(outDir,"selection.json"),JSON.stringify(selection,null,2));
   const control=await readRows("browse_projection_control","active_generation,knowledge_cache_dirty,knowledge_cache_refreshed_at",{singleton:"eq.true"});
@@ -203,14 +212,14 @@ export async function runPartialPilot(selectionFile:string,outDir:string) {
   async function phaseRun(groups:Group[],phase:"A"|"B") {
     const outcomes=await mapLimit<Group,Row[]|null>(groups,maxConcurrency,async(group,index)=>{
       try {return await runGroup(group,phase,index,data,outDir);}
-      catch(error){const failure={phase,design_id:group.design_id,affected_fabric_ids:group.affected_fabric_ids,error:error instanceof Error?error.message:String(error)};failureList.push(failure);await mkdir(path.join(outDir,"failures"),{recursive:true});await writeFile(path.join(outDir,"failures",`${phase}-${index+1}.json`),JSON.stringify(failure,null,2));return null;}
+      catch(error){const message=error instanceof Error?error.message:String(error);const failure={phase,design_id:group.design_id,affected_fabric_ids:group.affected_fabric_ids,error:message,failure_class:message.startsWith("PILOT_OPENAI_RESPONSE_400") || message.includes("SCHEMA")?"SCHEMA":error instanceof PatchValidationError || message.startsWith("PATCH_")?"LOCAL_VALIDATION":"OTHER",diagnostics:error instanceof PatchValidationError?[error.diagnostic]:[]};failureList.push(failure);await mkdir(path.join(outDir,"failures"),{recursive:true});await writeFile(path.join(outDir,"failures",`${phase}-${index+1}.json`),JSON.stringify(failure,null,2));return null;}
     });
     const successes=outcomes.filter((x):x is Row[]=>x!==null);
-    return summarise(successes,failureList.filter(x=>x.phase===phase),phase);
+    return summarise(successes,failureList.filter(x=>x.phase===phase),phase,groups.reduce((n,g)=>n+g.affected_fabric_ids.length,0));
   }
   const a=await phaseRun(selection.pilot_a,"A");
   const b=await phaseRun(selection.pilot_b,"B");
-  const summary={mode:"OFFLINE_ARTIFACT_ONLY_PARTIAL_PATCH_PILOT",model:hciVisualModel,reasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion,max_inference_concurrency:maxConcurrency,safety_baseline:safetyBaseline,pilot_a:a,pilot_b:b,total_openai_requests:a.requests_attempted+b.requests_attempted,total_known_fields_changed_outside_requested_delta:a.known_fields_changed_outside_requested_delta+b.known_fields_changed_outside_requested_delta,production_database_writes:0,failures:failureList,completed_at:new Date().toISOString()};
+  const summary={mode:retest?"OFFLINE_ARTIFACT_ONLY_PATCH_CONTRACT_RETEST":"OFFLINE_ARTIFACT_ONLY_PARTIAL_PATCH_PILOT",model:hciVisualModel,reasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion,max_inference_concurrency:maxConcurrency,safety_baseline:safetyBaseline,pilot_a:a,pilot_b:b,total_openai_requests:a.requests_attempted+b.requests_attempted,total_known_fields_changed_outside_requested_delta:a.known_fields_changed_outside_requested_delta+b.known_fields_changed_outside_requested_delta,production_database_writes:0,failures:failureList,completed_at:new Date().toISOString()};
   await writeFile(path.join(outDir,"summary.json"),JSON.stringify(summary,null,2));
   if (failureList.length) process.exitCode=1;
   return summary;

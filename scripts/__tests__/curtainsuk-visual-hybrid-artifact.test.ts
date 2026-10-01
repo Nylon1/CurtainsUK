@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { assertArtifactOnlyDatabaseRequest, classifyPracticalCompletion, validateArtifactReading } from "../curtainsuk-visual-hybrid-artifact";
+import { assertArtifactOnlyDatabaseRequest, classifyPracticalCompletion, countStillUnknownFieldInstances, validateArtifactReading, validateManufacturerAuthority } from "../curtainsuk-visual-hybrid-artifact";
 import { visualVocabulary } from "../../lib/fabric-master/visual-enrichment";
 
 const allowed = new URL("https://hqysjumypgeapgmqkcrx.supabase.co/rest/v1/fabric_colourways?select=fabric_id");
@@ -47,4 +47,25 @@ test("legitimate absent motif and secondary colours do not require material revi
   assert.deepEqual(practical.legitimateNone.sort(),["motif","secondaryColours"]);
   assert.deepEqual(practical.v1IntentionalLimitations,["patternScale","directionality"]);
   assert.equal(practical.status,"MAXIMALLY_PRACTICALLY_ENRICHED");
+  experimental.reviewFlags.push("REVIEW_REQUIRED");
+  assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"A manufacturer colourway label differs from image appearance."}).status,"MAXIMALLY_PRACTICALLY_ENRICHED");
+});
+
+test("unknown-field summary is the numeric sum of per-fabric outputs", () => {
+  const rows = [
+    {status:"SUCCESS",fields_still_unknown:[{field:"motif"},{field:"patternScale"}]},
+    {status:"SUCCESS",fields_still_unknown:[{field:"secondaryColours"}]},
+    {status:"FAILED"},
+  ];
+  assert.equal(countStillUnknownFieldInstances(rows),3);
+  assert.ok(Number.isInteger(countStillUnknownFieldInstances(rows)));
+  assert.throws(() => countStillUnknownFieldInstances([{status:"SUCCESS"}]), /ARTIFACT_UNKNOWN_FIELDS_MISSING/);
+});
+
+test("manufacturer conflict retains the exact governed value", () => {
+  const overrides = validateManufacturerAuthority({conflicts:[{field:"colourway_name",imageValue:"green with gold",reason:"The image looks greener than the colourway label."}]},{colourway_name:"Ink/ Gold"});
+  assert.equal(overrides.length,1);
+  assert.equal(overrides[0].manufacturer_value,"Ink/ Gold");
+  assert.equal(overrides[0].ai_image_value,"green with gold");
+  assert.throws(() => validateManufacturerAuthority({conflicts:[{field:"colourway_name",imageValue:"green",reason:"difference"}]},{colourway_name:null}), /ARTIFACT_MANUFACTURER_CONFLICT_INVALID/);
 });

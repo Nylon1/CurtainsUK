@@ -17,7 +17,7 @@ def main():
     parser.add_argument("--accepted-dir", type=Path, action="append", required=True)
     parser.add_argument("--batch-number", type=int, required=True)
     parser.add_argument("--batch-size", type=int, required=True)
-    parser.add_argument("--kind", choices=["colourway", "design"], required=True)
+    parser.add_argument("--kind", choices=["colourway-simple", "colourway", "design"], required=True)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
 
@@ -55,18 +55,20 @@ def main():
     for record in records:
         if record["operational_class"] not in ("C", "D"):
             continue
-        dimension = "requested_missing_colourway_fields" if args.kind == "colourway" else "requested_missing_design_fields"
+        if args.kind == "colourway-simple" and record["requested_missing_design_fields"]:
+            continue
+        dimension = "requested_missing_colourway_fields" if args.kind.startswith("colourway") else "requested_missing_design_fields"
         fields = [field for field in record[dimension] if field not in accepted.get(record["fabric_id"], set())]
         if not fields:
             continue
-        if args.kind == "colourway" and record["operational_class"] != "D":
+        if args.kind.startswith("colourway") and record["operational_class"] != "D":
             raise ValueError("COLOURWAY_GAP_OUTSIDE_CLASS_D")
         by_design[(record["supplier_id"], record["design_id"])].append((record, fields))
 
     groups = []
     for (supplier_id, design_id), members in sorted(by_design.items()):
         members.sort(key=lambda pair: pair[0]["fabric_id"])
-        step = 4 if args.kind == "colourway" else len(members)
+        step = 4 if args.kind.startswith("colourway") else len(members)
         for start in range(0, len(members), step):
             subset = members[start : start + step]
             ids = [r["fabric_id"] for r, _ in subset]
@@ -77,7 +79,7 @@ def main():
                 "affected_fabric_ids": ids,
                 "requested_missing_fields_by_fabric": fields,
                 "representative_fabric_id": ids[0] if args.kind == "design" else None,
-                "colourway_missing_fields_by_fabric": fields if args.kind == "colourway" else {},
+                "colourway_missing_fields_by_fabric": fields if args.kind.startswith("colourway") else {},
                 "shared_design_missing_fields_by_fabric": fields if args.kind == "design" else {},
             })
 
@@ -97,7 +99,8 @@ def main():
         "selection_version": "partial-hybrid-scale-batch-v1",
         "recorded_before_inference": True,
         "selection_rule": "Audit missing fields minus every accepted field per fabric; sorted by supplier/design/fabric ID. Colourway requests have at most four siblings; design requests use one image and all eligible siblings.",
-        "selection_kind": args.kind,
+        "selection_subtype": args.kind,
+        "selection_kind": "colourway" if args.kind.startswith("colourway") else "design",
         "source_audit_sha256": hashlib.sha256(audit_bytes).hexdigest(),
         "accepted_fabric_ids_sha256": digest(accepted),
         "accepted_fields_sha256": digest(f"{fabric_id}:{field}" for fabric_id, fields in accepted.items() for field in fields),
@@ -112,7 +115,7 @@ def main():
         "expected_openai_requests": len(selected),
         "expected_fabric_count": len(ids),
         "pilot_a": selected if args.kind == "design" else [],
-        "pilot_b": selected if args.kind == "colourway" else [],
+        "pilot_b": selected if args.kind.startswith("colourway") else [],
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")

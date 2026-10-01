@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { fullUrl } from '@/lib/sitemap-utils';
 import { shopifyConsultationHandoff } from '@/lib/storefront/consultation-navigation';
 import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
+import { fiSessionStorageKey, isFiReadOnlyResumeConflict, nailaPresentationStorageKey, selectFiResumeSession } from './curtainsuk-fi-session';
 import { premiumProxyCommand, premiumProxyEnabled, premiumProxyPath } from './curtainsuk-fi-premium-proxy-transport';
 import styles from './curtainsuk-premium-consultation.module.css';
 import referenceStyles from '@/vendor/hci-approved/components/ReferenceExperience.module.css';
@@ -53,6 +54,7 @@ export default function CurtainsUkPremiumConsultation() {
   const [entry, setEntry] = useState<'match' | 'guided'>('match');
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
+  const [resumeConflict, setResumeConflict] = useState(false);
   const [fabrics, setFabrics] = useState<Record<string, Fabric | null | 'error'>>({});
   const [feedback, setFeedback] = useState<{ direction: Direction; card: Card; reaction: string; selected: string[]; likeDirection: boolean } | null>(null);
   const pending = useRef<Record<string, unknown> | null>(null);
@@ -94,7 +96,9 @@ export default function CurtainsUkPremiumConsultation() {
         : await fetch('/api/curtain-consultation-premium', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const data = await response.json();
       if (response.status === 409 && answerAction) resumeAfterAnswerConflict = true;
+      if (isFiReadOnlyResumeConflict(response.status, payload.sessionId, payload.action, latestView.current !== null)) setResumeConflict(true);
       if (!response.ok) throw Error(data.error || 'Your consultation is temporarily unavailable.');
+      setResumeConflict(false);
       data.revision = acknowledgedPremiumRevision(payload.revision, data.revision, !directionRead && (Boolean(payload.action) || !payload.sessionId));
       if (directionLoad) {
         // This reads an already persisted direction. An older background response
@@ -127,7 +131,7 @@ export default function CurtainsUkPremiumConsultation() {
         deliveredDirections.current = {};
       }
       resumeSession.current = data.sessionId;
-      try { sessionStorage.setItem(premiumSessionStorageKey, data.sessionId); } catch { /* Server evidence remains durable. */ }
+      try { sessionStorage.setItem(fiSessionStorageKey, data.sessionId); } catch { /* Server evidence remains durable. */ }
       latestView.current = data; setView(data); if (!background && !directionHydrate) pending.current = null;
       return data as View;
     } catch (error) {
@@ -151,7 +155,13 @@ export default function CurtainsUkPremiumConsultation() {
     if (!loaded.current) {
       loaded.current = true;
       setEntry(new URLSearchParams(window.location.search).get('entry') === 'guided' ? 'guided' : 'match');
-      try { resumeSession.current = savedPremiumSession(sessionStorage.getItem(premiumSessionStorageKey)); } catch { /* Storage may be disabled. */ }
+      try {
+        resumeSession.current = selectFiResumeSession(
+          sessionStorage.getItem(fiSessionStorageKey),
+          sessionStorage.getItem(premiumSessionStorageKey),
+          sessionStorage.getItem(nailaPresentationStorageKey),
+        );
+      } catch { /* Storage may be disabled. */ }
       if (premiumProxyEnabled()) resumeSession.current = savedPremiumSession(new URLSearchParams(window.location.search).get('session')) ?? resumeSession.current;
       setReturningPrompt(Boolean(resumeSession.current));
       void send();
@@ -220,14 +230,14 @@ export default function CurtainsUkPremiumConsultation() {
   };
   const reportOutcome = async (card: Card, direction: Direction, event: string) => Boolean(await send({ type: 'outcome', event, fabricMasterId: card.fabricMasterId, strategyId: direction.id }));
   const startAgain = () => {
-    try { sessionStorage.removeItem(premiumSessionStorageKey); } catch { /* The active session still resets in memory. */ }
+    try { sessionStorage.removeItem(fiSessionStorageKey); } catch { /* The active session still resets in memory. */ }
     resumeSession.current = null;
     latestView.current = null;
     pending.current = null;
     deliveredDirections.current = {};
     setView(null); setFabrics({}); setFeedback(null); setNotice(''); setReviewPalette(false);
     setBriefEditing(null); setDirectionProcessing(null); setOpeningDirection(null);
-    setRestartPrompt(false); setReturningPrompt(false);
+    setRestartPrompt(false); setReturningPrompt(false); setResumeConflict(false);
     void send();
   };
   const openDirection = async (index: number) => {
@@ -237,7 +247,7 @@ export default function CurtainsUkPremiumConsultation() {
     setOpeningDirection(null);
   };
 
-  if (!view) return <main className={styles.shell}>{notice ? <div className={styles.notice} role="alert">{notice}<button disabled={busy} onClick={() => void send(undefined, true)}>Retry consultation</button></div> : <JourneyPreparation />}</main>;
+  if (!view) return <main className={styles.shell}>{notice ? <div className={styles.notice} role="alert">{notice}{resumeConflict ? <button disabled={busy} onClick={startAgain}>Start new consultation</button> : <button disabled={busy} onClick={() => void send(undefined, true)}>Retry consultation</button>}</div> : <JourneyPreparation />}</main>;
   const showUpload = entry === 'match' && !roomPalette && !view.directions.length;
   const showPalette = Boolean(roomPalette && (!roomPalette.confirmedPalette || reviewPalette));
 

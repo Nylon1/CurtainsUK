@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import Ajv from "ajv";
 import { visualVocabulary } from "../../lib/fabric-master/visual-enrichment";
-import { missingUsefulFields, validateAndApplyPatch, patchResponseSchema, PatchValidationError } from "../curtainsuk-partial-hybrid-pilot-core";
+import { missingUsefulFields, validateAndApplyPatch, patchResponseSchema, PatchValidationError, reusableDesignPatch, mergePatchFragments } from "../curtainsuk-partial-hybrid-pilot-core";
 import { assertReadOnlyDatabaseRequest, verifyGroupSelection } from "../curtainsuk-partial-hybrid-pilot";
 
 function reading() {
@@ -115,6 +115,23 @@ test("scale selection requests only still-missing fields in its own design or co
   const design={...base,representative_fabric_id:"pt-1",requested_missing_fields_by_fabric:{"pt-1":["sheenAppearance"]}};
   assert.doesNotThrow(()=>verifyGroupSelection(colourway as any,"B",masters,stored,true));
   assert.doesNotThrow(()=>verifyGroupSelection(design as any,"A",masters,stored,true));
+  assert.doesNotThrow(()=>verifyGroupSelection({...base,requested_missing_fields_by_fabric:{"pt-1":["primaryColour","sheenAppearance"]}} as any,"B",masters,stored,true,"design-seed"));
+  assert.throws(()=>verifyGroupSelection({...base,requested_missing_fields_by_fabric:{"pt-1":["primaryColour","sheenAppearance"]}} as any,"B",masters,stored,true,"colourway-simple"),/PILOT_AUDIT_DELTA_CHANGED/);
   assert.throws(()=>verifyGroupSelection(colourway as any,"B",masters,stored,false),/PILOT_AUDIT_DELTA_CHANGED/);
   assert.throws(()=>verifyGroupSelection({...colourway,requested_missing_fields_by_fabric:{"pt-1":["motif"]}} as any,"B",masters,stored,true),/PILOT_AUDIT_DELTA_CHANGED/);
+});
+
+test("accepted design evidence is copied as a disjoint delta, then validated with a new colourway delta",()=>{
+  const {fields,provenance}=reading();
+  fields.primaryColour={value:"unknown",confidence:"REVIEW"};
+  fields.sheenAppearance={value:"unknown",confidence:"REVIEW"};
+  const source={patch:{requested_missing_fields:["sheenAppearance"],new_values_only:{sheenAppearance:"low"},confidence_per_new_field:{sheenAppearance:"MEDIUM"},provenance_per_new_field:{sheenAppearance:"IMAGE"},legitimate_remaining_gaps:[],manufacturer_authority_applied:false},evidence_reasons_per_new_field:{sheenAppearance:"Accepted design evidence."},material_review:{needed:false,reason:"No concern."}};
+  const design=reusableDesignPatch(source,["sheenAppearance"]);
+  const colourway={new_values_only:[{field:"primaryColour",value:"blue",confidence:"HIGH",provenance:"IMAGE",reason:"Approved sibling image."}],legitimate_remaining_gaps:[],manufacturer_authority_applied:false,material_review:{needed:false,reason:"No concern."}} as const;
+  const merged=mergePatchFragments(colourway as any,design);
+  const applied=validateAndApplyPatch("pt-2",["primaryColour","sheenAppearance"],merged,fields,provenance);
+  assert.equal(applied.finalFields.primaryColour.value,"blue");
+  assert.equal(applied.finalFields.sheenAppearance.value,"low");
+  assert.equal(applied.changedOutsideDelta,0);
+  assert.throws(()=>reusableDesignPatch(source,["motif"]),/REUSABLE_DESIGN_FIELD_NOT_IN_SOURCE/);
 });

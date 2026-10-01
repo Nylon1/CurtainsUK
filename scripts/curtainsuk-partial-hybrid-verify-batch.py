@@ -22,6 +22,10 @@ def main():
             if fabric_id in requested:
                 raise ValueError(f"DUPLICATE_SELECTED_FABRIC_{fabric_id}")
             requested[fabric_id] = group["requested_missing_fields_by_fabric"][fabric_id]
+        for fabric_id, fields in group.get("design_only_reuse_targets_by_fabric", {}).items():
+            if fabric_id in requested:
+                raise ValueError(f"DUPLICATE_SELECTED_FABRIC_{fabric_id}")
+            requested[fabric_id] = fields
     files = sorted((artifact / "fabrics").glob("*.json"))
     raw_files = list((artifact / "raw").glob("*.json"))
     if len(files) != len(requested) or len(raw_files) != len(groups):

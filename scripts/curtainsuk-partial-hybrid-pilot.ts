@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { hciVisualModel, visualVocabulary, visualSchemaVersion, visualVocabularyVersion, type VisualDimension } from "../lib/fabric-master/visual-enrichment";
-import { missingUsefulFields, patchResponseSchema, validateAndApplyPatch, PatchValidationError, type Row, type RawPatch } from "./curtainsuk-partial-hybrid-pilot-core";
+import { missingUsefulFields, patchResponseSchema, validateAndApplyPatch, reusableDesignPatch, mergePatchFragments, PatchValidationError, type Row, type RawPatch } from "./curtainsuk-partial-hybrid-pilot-core";
 
 const projectRef="hqysjumypgeapgmqkcrx";
 const promptVersion="partial-hybrid-delta-pilot-v1";
@@ -15,7 +15,7 @@ let maxOpenaiRequests=46;
 const allowedTables=new Set(["browse_projection_control","fabric_colourways","fabric_designs","fabric_collections","supplier_brands","fabric_media_mappings","fabric_media_assets","fabric_visual_knowledge_read_cache"]);
 type ImageRow=Row & {fabric_id:string;supplier_id:string;supplier_sku:string;brand_id:string;design_id:string;image_type:string;source_image_hash:string;source_image_url:string};
 type AnalysisAsset={bytes:Uint8Array;mime:string;approvedSourceHash:string;analysisAssetHash:string;analysisAssetUrl:string;classification:"EXACT_BYTE_MATCH"|"SHOPIFY_TRANSFORMATION";byteLength:number;width:number;height:number};
-type Group={supplier_id:string;design_id:string;affected_fabric_ids:string[];requested_missing_fields_by_fabric:Record<string,string[]>;representative_fabric_id?:string;colourway_missing_fields_by_fabric?:Record<string,string[]>;shared_design_missing_fields_by_fabric?:Record<string,string[]>};
+type Group={supplier_id:string;design_id:string;affected_fabric_ids:string[];requested_missing_fields_by_fabric:Record<string,string[]>;representative_fabric_id?:string;design_seed_source_fabric_id?:string;design_only_reuse_targets_by_fabric?:Record<string,string[]>;design_reuse_source_fabric_id?:string;design_reuse_source_run_id?:number;design_reuse_source_artifact_id?:number;reused_design_fields_by_fabric?:Record<string,string[]>;ai_requested_missing_fields_by_fabric?:Record<string,string[]>;colourway_missing_fields_by_fabric?:Record<string,string[]>;shared_design_missing_fields_by_fabric?:Record<string,string[]>};
 
 function exactKeys(value:unknown, keys:string[]):value is Row {return Boolean(value && typeof value==="object" && !Array.isArray(value) && Object.keys(value).length===keys.length && keys.every(key=>Object.hasOwn(value,key)));}
 function dbConfig() {
@@ -91,7 +91,7 @@ async function infer(content:Row[],schema:Row,name:string,phase:"A"|"B") {
   return JSON.parse(texts[0]) as unknown;
 }
 function requestedFields(group:Group) {return unique(Object.values(group.requested_missing_fields_by_fabric).flat()) as VisualDimension[];}
-export function verifyGroupSelection(group:Group,phase:"A"|"B",masters:Map<string,Row>,stored:Map<string,Row>,scale=false) {
+export function verifyGroupSelection(group:Group,phase:"A"|"B",masters:Map<string,Row>,stored:Map<string,Row>,scale=false,scaleSubtype="") {
   if (!group.affected_fabric_ids.length || (phase==="B" && group.affected_fabric_ids.length>4)) throw new Error("PILOT_GROUP_SIZE_INVALID");
   for (const fabricId of group.affected_fabric_ids) {
     const master=masters.get(fabricId), current=stored.get(fabricId);
@@ -99,7 +99,7 @@ export function verifyGroupSelection(group:Group,phase:"A"|"B",masters:Map<strin
     const missing=missingUsefulFields(current.visual_fields,current.provenance);
     const expected=phase==="A" ? missing.design : unique([...missing.colourway,...missing.design]);
     const recorded=group.requested_missing_fields_by_fabric[fabricId];
-    const applicable=phase==="A"?missing.design:missing.colourway;
+    const applicable=phase==="A"?missing.design:["design-seed","design-reuse"].includes(scaleSubtype)?unique([...missing.colourway,...missing.design]):missing.colourway;
     const matches=scale ? Array.isArray(recorded) && recorded.length>0 && new Set(recorded).size===recorded.length && recorded.every(field=>applicable.includes(field as VisualDimension)) : JSON.stringify([...expected].sort())===JSON.stringify([...(recorded??[])].sort());
     if (!matches || (!scale && phase==="A" && missing.colourway.length) || (!scale && phase==="B" && !missing.colourway.length)) throw new Error(`PILOT_AUDIT_DELTA_CHANGED_${fabricId}`);
   }
@@ -110,8 +110,8 @@ function applyForFabric(fabricId:string,requested:VisualDimension[],raw:unknown,
   const result=validateAndApplyPatch(fabricId,requested,raw,current.visual_fields,current.provenance);
   return {fabric_id:fabricId,patch:result.patch,current_stored_knowledge_state:current.knowledge_state,current_stored_reading:current.visual_fields,current_stored_provenance:current.provenance,reconstructed_final_reading:result.finalFields,reconstructed_final_provenance:result.finalProvenance,known_fields_changed_outside_requested_delta:result.changedOutsideDelta,genuinely_unresolved_fields:result.genuinelyUnresolved,evidence_reasons_per_new_field:result.evidenceReasons,material_review:result.materialReview,governed_image:image,manufacturer_context_used:context,model:hciVisualModel,reasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion};
 }
-async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map<string,Row>;stored:Map<string,Row>;designs:Map<string,Row>;brands:Map<string,Row>;collections:Map<string,Row>;assets:Map<string,Row>;mappings:Row[]},outDir:string,scale=false) {
-  verifyGroupSelection(group,phase,data.masters,data.stored,scale);
+async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map<string,Row>;stored:Map<string,Row>;designs:Map<string,Row>;brands:Map<string,Row>;collections:Map<string,Row>;assets:Map<string,Row>;mappings:Row[]},outDir:string,scale=false,scaleSubtype="",reuseDir="") {
+  verifyGroupSelection(group,phase,data.masters,data.stored,scale,scaleSubtype);
   const design=data.designs.get(group.design_id);
   if (!design) throw new Error("PILOT_DESIGN_FACTS_MISSING");
   const firstMaster=data.masters.get(group.affected_fabric_ids[0])!;
@@ -120,15 +120,34 @@ async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map
   const imageRows=chosenIds.map(id=>imageRow(data.masters.get(id)!,data.mappings,data.assets));
   const images=await Promise.all(imageRows.map(fetchAnalysisAsset));
   const imageById=new Map(imageRows.map((row,i)=>[row.fabric_id,imageIdentity(images[i],row)]));
+  const aiRequested=group.ai_requested_missing_fields_by_fabric??group.requested_missing_fields_by_fabric;
+  let designSource:Row|undefined;
+  const designPatchById=new Map<string,RawPatch>();
+  if (scaleSubtype==="design-reuse") {
+    const sourceId=group.design_reuse_source_fabric_id;
+    if (!reuseDir || !sourceId || !group.reused_design_fields_by_fabric) throw new Error("DESIGN_REUSE_SOURCE_NOT_DECLARED");
+    designSource=JSON.parse(await readFile(path.join(reuseDir,"fabrics",`${sourceId}.json`),"utf8"));
+    if (designSource?.fabric_id!==sourceId || designSource.manufacturer_context_used?.supplier_id!==group.supplier_id || designSource.manufacturer_context_used?.design_id!==group.design_id || designSource.governed_image?.fabric_id!==sourceId || !["EXACT_BYTE_MATCH","SHOPIFY_TRANSFORMATION"].includes(designSource.governed_image?.classification) || designSource.model!==hciVisualModel || designSource.reasoning!==reasoning || designSource.known_fields_changed_outside_requested_delta!==0) throw new Error("DESIGN_REUSE_SOURCE_IDENTITY_INVALID");
+    for (const id of group.affected_fabric_ids) {
+      const reused=group.reused_design_fields_by_fabric[id] as VisualDimension[];
+      const ai=aiRequested[id] as VisualDimension[];
+      const requested=group.requested_missing_fields_by_fabric[id];
+      if (!Array.isArray(reused) || !reused.length || !Array.isArray(ai) || !ai.length || new Set([...ai,...reused]).size!==requested.length || JSON.stringify([...ai,...reused].sort())!==JSON.stringify([...requested].sort())) throw new Error(`DESIGN_REUSE_FIELD_BOUNDARY_INVALID_${id}`);
+      designPatchById.set(id,reusableDesignPatch(designSource,reused));
+    }
+  }
   let content:Row[];
   if (phase==="A") {
     const representative=group.representative_fabric_id!, current=data.stored.get(representative)!;
     content=[{type:"input_text",text:JSON.stringify({pilot:"A",instruction:"Return one shared design-only delta. The runner applies each shared value only to sibling fabrics that requested that field. Do not output any colourway field.",shared_manufacturer_design_facts:sharedContext,existing_governed_design_reading:Object.fromEntries(["patternClass","motif","visualSurface","sheenAppearance","visualActivity","character"].map(field=>[field,current.visual_fields[field]])),affected_sibling_fabric_ids:group.affected_fabric_ids,requested_missing_fields_by_fabric:group.requested_missing_fields_by_fabric,requested_shared_fields:requestedFields(group),representative_fabric_id:representative})},{type:"input_image",image_url:`data:${images[0].mime};base64,${Buffer.from(images[0].bytes).toString("base64")}`,detail:"high"}];
   } else {
-    content=[{type:"input_text",text:JSON.stringify({pilot:"B",instruction:"Return a separate patch for every listed fabric_id. Each image is labelled immediately before the image content. Shared design fields must have the same value for all siblings requesting them. Keep every other existing field byte-for-byte unchanged.",shared_manufacturer_design_facts:sharedContext,fabrics:group.affected_fabric_ids.map(id=>{const master=data.masters.get(id)!,current=data.stored.get(id)!;return {fabric_id:id,manufacturer_context:manufacturerContext(master,design,data.brands.get(master.brand_id),data.collections.get(design.collection_id)),existing_governed_reading:current.visual_fields,existing_provenance:current.provenance,requested_missing_fields:group.requested_missing_fields_by_fabric[id]};})})}];
+    const reusedFields=unique(Object.values(group.reused_design_fields_by_fabric??{}).flat());
+    const acceptedDesign=designSource?{source_fabric_id:designSource.fabric_id,new_values_only:Object.fromEntries(reusedFields.filter(field=>Object.hasOwn(designSource!.patch.new_values_only,field)).map(field=>[field,designSource!.patch.new_values_only[field]])),legitimate_remaining_gaps:designSource.patch.legitimate_remaining_gaps.filter((gap:Row)=>reusedFields.includes(gap.field))}:null;
+    const instruction="Return a separate patch for every listed fabric_id. Each image is labelled immediately before the image content. Shared design fields must have the same value for all siblings requesting them. Keep every other existing field byte-for-byte unchanged."+(designSource?" Accepted shared design values supplied as context are authoritative and will be copied locally; do not return them in your patch. Each colourway image must establish its own colour values.":"");
+    content=[{type:"input_text",text:JSON.stringify({pilot:"B",instruction,shared_manufacturer_design_facts:sharedContext,...(acceptedDesign?{accepted_shared_design_evidence:acceptedDesign}:{}),fabrics:group.affected_fabric_ids.map(id=>{const master=data.masters.get(id)!,current=data.stored.get(id)!;return {fabric_id:id,manufacturer_context:manufacturerContext(master,design,data.brands.get(master.brand_id),data.collections.get(design.collection_id)),existing_governed_reading:current.visual_fields,existing_provenance:current.provenance,requested_missing_fields:aiRequested[id],...(designSource?{reused_design_fields:group.reused_design_fields_by_fabric?.[id]??[]}:{})};})})}];
     for (let i=0;i<imageRows.length;i++) content.push({type:"input_text",text:`Approved governed image for fabric_id ${imageRows[i].fabric_id}; approved source hash ${imageRows[i].source_image_hash}; do not apply this image's colour evidence to siblings.`},{type:"input_image",image_url:`data:${images[i].mime};base64,${Buffer.from(images[i].bytes).toString("base64")}`,detail:"high"});
   }
-  const requestedByFabric=phase==="A"?{[group.representative_fabric_id!]:requestedFields(group)}:group.requested_missing_fields_by_fabric as Record<string,VisualDimension[]>;
+  const requestedByFabric=phase==="A"?{[group.representative_fabric_id!]:requestedFields(group)}:aiRequested as Record<string,VisualDimension[]>;
   const schema=patchResponseSchema(requestedByFabric,phase==="B");
   const raw=await infer(content,schema,phase==="A"?"partial_design_delta_v1":"partial_grouped_colourway_delta_v1",phase);
   const groupId=`${phase}-${String(index+1).padStart(2,"0")}-${group.design_id.replace(/[^a-z0-9-]/g,"")}`;
@@ -146,7 +165,12 @@ async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map
     if (!exactKeys(raw,["patches"]) || !Array.isArray(raw.patches) || raw.patches.length!==group.affected_fabric_ids.length) throw new Error("PILOT_GROUPED_RESPONSE_SCHEMA_INVALID");
     for (const item of raw.patches) {
       if (!item || typeof item.fabric_id!=="string" || !group.affected_fabric_ids.includes(item.fabric_id) || patches.has(item.fabric_id)) throw new Error("PILOT_GROUPED_FABRIC_ID_INVALID");
-      const {fabric_id,...payload}=item;assertRawPatch(payload);patches.set(fabric_id,payload);
+      const {fabric_id,...payload}=item;assertRawPatch(payload);
+      if (scaleSubtype==="design-reuse") {
+        const current=data.stored.get(fabric_id)!;
+        validateAndApplyPatch(fabric_id,aiRequested[fabric_id] as VisualDimension[],payload,current.visual_fields,current.provenance);
+        patches.set(fabric_id,mergePatchFragments(payload,designPatchById.get(fabric_id)!));
+      } else patches.set(fabric_id,payload);
     }
     const designValues=new Map<string,string>();
     for (const id of group.affected_fabric_ids) for (const entry of patches.get(id)!.new_values_only) if (group.shared_design_missing_fields_by_fabric?.[id]?.includes(entry.field)) {
@@ -161,10 +185,23 @@ async function runGroup(group:Group,phase:"A"|"B",index:number,data:{masters:Map
     const context=manufacturerContext(master,design,data.brands.get(master.brand_id),data.collections.get(design.collection_id));
     const image=phase==="A" ? imageById.get(group.representative_fabric_id!)! : imageById.get(id)!;
     const result=applyForFabric(id,group.requested_missing_fields_by_fabric[id] as VisualDimension[],patches.get(id),data.stored,image,context);
-    results.push(result);
+    results.push(designSource?{...result,design_reuse_source:{fabric_id:designSource.fabric_id,source_run_id:group.design_reuse_source_run_id,source_artifact_id:group.design_reuse_source_artifact_id,reused_fields:group.reused_design_fields_by_fabric?.[id]??[]}}:result);
+  }
+  if (scaleSubtype==="design-seed" && group.design_only_reuse_targets_by_fabric) {
+    const sourceId=group.design_seed_source_fabric_id!;
+    const source=results.find(result=>result.fabric_id===sourceId);
+    if (!source) throw new Error("DESIGN_SEED_RESULT_MISSING");
+    for (const [id,fields] of Object.entries(group.design_only_reuse_targets_by_fabric)) {
+      const master=data.masters.get(id)!;
+      const context=manufacturerContext(master,design,data.brands.get(master.brand_id),data.collections.get(design.collection_id));
+      const approved=imageRow(master,data.mappings,data.assets);
+      const reused=reusableDesignPatch(source,fields as VisualDimension[]);
+      const result=applyForFabric(id,fields as VisualDimension[],reused,data.stored,imageById.get(sourceId)!,context);
+      results.push({...result,target_approved_image:{fabric_id:id,url:approved.source_image_url,approved_source_hash:approved.source_image_hash,image_type:approved.image_type},design_reuse_source:{fabric_id:sourceId,source_run_id:null,source_artifact_id:null,reused_fields:fields,within_same_request:true}});
+    }
   }
   await mkdir(path.join(outDir,"groups"),{recursive:true});
-  await writeFile(path.join(outDir,"groups",`${groupId}.json`),JSON.stringify({phase,design_id:group.design_id,supplier_id:group.supplier_id,affected_fabric_ids:group.affected_fabric_ids,governed_images:[...imageById.values()],shared_manufacturer_design_facts:sharedContext,raw_structured_output:raw,patches:results.map(x=>x.patch)},null,2));
+  await writeFile(path.join(outDir,"groups",`${groupId}.json`),JSON.stringify({phase,design_id:group.design_id,supplier_id:group.supplier_id,affected_fabric_ids:group.affected_fabric_ids,design_only_reuse_fabric_ids:Object.keys(group.design_only_reuse_targets_by_fabric??{}),governed_images:[...imageById.values()],shared_manufacturer_design_facts:sharedContext,reused_design_source:designSource?{fabric_id:designSource.fabric_id,source_run_id:group.design_reuse_source_run_id,source_artifact_id:group.design_reuse_source_artifact_id}:null,raw_structured_output:raw,patches:results.map(x=>x.patch)},null,2));
   await mkdir(path.join(outDir,"fabrics"),{recursive:true});
   for (const result of results) await writeFile(path.join(outDir,"fabrics",`${result.fabric_id}.json`),JSON.stringify(result,null,2));
   return results;
@@ -178,7 +215,7 @@ function summarise(results:Row[][],failures:Row[],phase:"A"|"B",selectedFabrics:
   const flat=results.flat(), status=flat.map(x=>x.patch.practical_completion_status);
   return {designs:results.length+failures.length,selected_fabrics:selectedFabrics,successful_fabrics:flat.length,requests_attempted:openaiAttempts[phase],success:results.length,failed:failures.length,schema_failures:failures.filter(x=>x.failure_class==="SCHEMA").length,local_validation_failures:failures.filter(x=>x.failure_class==="LOCAL_VALIDATION").length,patch_new_value_invalid:failures.filter(x=>x.error==="PATCH_NEW_VALUE_INVALID").length,patches_accepted:flat.length,patches_rejected:selectedFabrics-flat.length,fields_filled:flat.reduce((n,x)=>n+Object.keys(x.patch.new_values_only).length,0),genuinely_unresolved:flat.reduce((n,x)=>n+x.genuinely_unresolved_fields.length,0),maximally_practically_enriched:status.filter(x=>x==="MAXIMALLY_PRACTICALLY_ENRICHED").length,practically_enriched_with_minor_gaps:status.filter(x=>x==="PRACTICALLY_ENRICHED_WITH_MINOR_GAPS").length,needs_material_review:status.filter(x=>x==="NEEDS_MATERIAL_REVIEW").length,manufacturer_authority_overrides:flat.filter(x=>x.patch.manufacturer_authority_applied).length,known_fields_changed_outside_requested_delta:flat.reduce((n,x)=>n+x.known_fields_changed_outside_requested_delta,0),average_colourways_per_request:phase==="B" && openaiAttempts.B ? Number((openaiImageInputs.B/openaiAttempts.B).toFixed(2)) : undefined};
 }
-export async function runPartialPilot(selectionFile:string,outDir:string) {
+export async function runPartialPilot(selectionFile:string,outDir:string,reuseDir="") {
   if (hciVisualModel!=="gpt-5.6-terra" || reasoning!=="medium" || !selectionFile || !outDir) throw new Error("PILOT_MODEL_OR_INPUT_REJECTED");
   const selection:Row=JSON.parse(await readFile(selectionFile,"utf8"));
   const retest=selection.selection_version==="partial-hybrid-contract-retest-v1";
@@ -187,13 +224,25 @@ export async function runPartialPilot(selectionFile:string,outDir:string) {
   const expectedA=scale && selection.selection_kind==="design"?selection.expected_openai_requests:scale?0:closure?15:retest?4:36,expectedB=scale && selection.selection_kind==="colourway"?selection.expected_openai_requests:scale?0:closure?5:retest?4:10,expectedTotal=scale?selection.expected_fabric_count:closure?62:retest?25:179;
   maxOpenaiRequests=scale?selection.expected_openai_requests:closure?20:retest?8:46;
   openaiAttempts.A=0;openaiAttempts.B=0;openaiImageInputs.A=0;openaiImageInputs.B=0;
-  if (scale && (!['design','colourway'].includes(selection.selection_kind) || !Number.isSafeInteger(maxOpenaiRequests) || maxOpenaiRequests<1 || maxOpenaiRequests>500 || selection.batch_size<maxOpenaiRequests || !Number.isSafeInteger(selection.batch_size) || selection.batch_size>500 || !Number.isSafeInteger(expectedTotal) || expectedTotal<maxOpenaiRequests || (selection.selection_kind==="colourway" && expectedTotal>4*maxOpenaiRequests) || !Number.isSafeInteger(selection.batch_number) || selection.batch_number<1 || typeof selection.source_audit_sha256!=="string" || !/^[a-f0-9]{64}$/.test(selection.source_audit_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fabric_ids_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fields_sha256))) throw new Error("SCALE_SELECTION_REJECTED");
+  if (scale && (!['design','colourway'].includes(selection.selection_kind) || !Number.isSafeInteger(maxOpenaiRequests) || maxOpenaiRequests<1 || maxOpenaiRequests>500 || selection.batch_size<maxOpenaiRequests || !Number.isSafeInteger(selection.batch_size) || selection.batch_size>500 || !Number.isSafeInteger(expectedTotal) || expectedTotal<maxOpenaiRequests || (selection.selection_kind==="colourway" && selection.selection_subtype!=="design-seed" && expectedTotal>4*maxOpenaiRequests) || !Number.isSafeInteger(selection.batch_number) || selection.batch_number<1 || typeof selection.source_audit_sha256!=="string" || !/^[a-f0-9]{64}$/.test(selection.source_audit_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fabric_ids_sha256) || !/^[a-f0-9]{64}$/.test(selection.accepted_fields_sha256))) throw new Error("SCALE_SELECTION_REJECTED");
   if (selection.recorded_before_inference!==true || selection.model!==hciVisualModel || selection.reasoning!==reasoning || selection.max_inference_concurrency!==maxConcurrency || selection.pilot_a?.length!==expectedA || selection.pilot_b?.length!==expectedB || selection.expected_openai_requests!==maxOpenaiRequests) throw new Error("PILOT_SELECTION_REJECTED");
   const allGroups=[...selection.pilot_a,...selection.pilot_b] as Group[];
-  const fabricIds=allGroups.flatMap(g=>g.affected_fabric_ids);
-  if (scale && (!selection.accepted_fields_by_fabric || typeof selection.accepted_fields_by_fabric!=="object" || Object.keys(selection.accepted_fields_by_fabric).length!==selection.accepted_fabrics_seen || allGroups.some(group=>group.affected_fabric_ids.some(id=>{
+  const fabricIds=allGroups.flatMap(g=>[...g.affected_fabric_ids,...Object.keys(g.design_only_reuse_targets_by_fabric??{})]);
+  if (scale && selection.selection_subtype==="design-seed" && (new Set(allGroups.map(g=>g.supplier_id+":"+g.design_id)).size!==allGroups.length || allGroups.some(g=>{
+    const source=g.design_seed_source_fabric_id;
+    const shared=unique(Object.values(g.shared_design_missing_fields_by_fabric??{}).flat());
+    return source!==g.affected_fabric_ids[0] || !source || !shared.length || !shared.every(field=>g.shared_design_missing_fields_by_fabric?.[source]?.includes(field));
+  }))) throw new Error("DESIGN_SEED_SOURCE_INVALID");
+  if (scale && selection.selection_subtype==="design-reuse" && (!reuseDir || !selection.design_reuse_source || !Number.isSafeInteger(selection.design_reuse_source.run_id) || !Number.isSafeInteger(selection.design_reuse_source.artifact_id) || selection.design_reuse_source.artifact_name!=="partial-hybrid-scale-batch" || allGroups.some(g=>{
+    if (!g.design_reuse_source_fabric_id || g.design_reuse_source_run_id!==selection.design_reuse_source.run_id || g.design_reuse_source_artifact_id!==selection.design_reuse_source.artifact_id) return true;
+    return g.affected_fabric_ids.some(id=>{
+      const all=g.requested_missing_fields_by_fabric[id],ai=g.ai_requested_missing_fields_by_fabric?.[id],design=g.reused_design_fields_by_fabric?.[id];
+      return !Array.isArray(all) || !Array.isArray(ai) || !ai.length || !Array.isArray(design) || !design.length || new Set([...ai,...design]).size!==all.length || JSON.stringify([...ai,...design].sort())!==JSON.stringify([...all].sort());
+    });
+  }))) throw new Error("DESIGN_REUSE_SELECTION_INVALID");
+  if (scale && (!selection.accepted_fields_by_fabric || typeof selection.accepted_fields_by_fabric!=="object" || Object.keys(selection.accepted_fields_by_fabric).length!==selection.accepted_fabrics_seen || allGroups.some(group=>[...Object.entries(group.requested_missing_fields_by_fabric),...Object.entries(group.design_only_reuse_targets_by_fabric??{})].some(([id,fields])=>{
     const prior=selection.accepted_fields_by_fabric[id]??[];
-    return !Array.isArray(prior) || group.requested_missing_fields_by_fabric[id]?.some(field=>prior.includes(field));
+    return !Array.isArray(prior) || fields.some(field=>prior.includes(field));
   })))) throw new Error("SCALE_ACCEPTED_FIELD_RERUN_REJECTED");
   if (fabricIds.length!==expectedTotal || new Set(fabricIds).size!==fabricIds.length || (!retest && !closure && !scale && (selection.pilot_a.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==149 || selection.pilot_b.reduce((n:number,g:Group)=>n+g.affected_fabric_ids.length,0)!==30)) || selection.pilot_b.some((g:Group)=>g.affected_fabric_ids.length<1 || g.affected_fabric_ids.length>4)) throw new Error("PILOT_SELECTION_SIZE_OR_OVERLAP_REJECTED");
   await mkdir(outDir,{recursive:true});
@@ -215,16 +264,22 @@ export async function runPartialPilot(selectionFile:string,outDir:string) {
   ]);
   const collections=await readByIds("fabric_collections","collection_id,display_name","collection_id",unique(designs.map(x=>x.collection_id).filter(Boolean)));
   const data={masters:byId(masters,"fabric_id"),stored:byId(stored,"fabric_id"),designs:byId(designs,"design_id"),brands:byId(brands,"brand_id"),collections:byId(collections,"collection_id"),assets:byId(assets,"content_hash"),mappings};
-  for (const group of selection.pilot_a) verifyGroupSelection(group,"A",data.masters,data.stored,scale);
-  for (const group of selection.pilot_b) verifyGroupSelection(group,"B",data.masters,data.stored,scale);
+  for (const group of selection.pilot_a) verifyGroupSelection(group,"A",data.masters,data.stored,scale,selection.selection_subtype);
+  for (const group of selection.pilot_b) verifyGroupSelection(group,"B",data.masters,data.stored,scale,selection.selection_subtype);
+  if (scale && selection.selection_subtype==="design-seed") for (const group of selection.pilot_b as Group[]) for (const [id,fields] of Object.entries(group.design_only_reuse_targets_by_fabric??{})) {
+    const master=data.masters.get(id),current=data.stored.get(id);
+    if (!master || !current || master.supplier_id!==group.supplier_id || master.design_id!==group.design_id || current.knowledge_state!=="PARTIAL_GOVERNED") throw new Error(`DESIGN_ONLY_REUSE_IDENTITY_INVALID_${id}`);
+    const missing=missingUsefulFields(current.visual_fields,current.provenance);
+    if (missing.colourway.length || !fields.length || fields.some(field=>!missing.design.includes(field as VisualDimension))) throw new Error(`DESIGN_ONLY_REUSE_DELTA_INVALID_${id}`);
+  }
   const failureList:Row[]=[];
   async function phaseRun(groups:Group[],phase:"A"|"B") {
     const outcomes=await mapLimit<Group,Row[]|null>(groups,maxConcurrency,async(group,index)=>{
-      try {return await runGroup(group,phase,index,data,outDir,scale);}
-      catch(error){const message=error instanceof Error?error.message:String(error);const failure={phase,design_id:group.design_id,affected_fabric_ids:group.affected_fabric_ids,error:message,failure_class:message.startsWith("PILOT_OPENAI_RESPONSE_400") || message.includes("SCHEMA")?"SCHEMA":error instanceof PatchValidationError || message.startsWith("PATCH_")?"LOCAL_VALIDATION":"OTHER",diagnostics:error instanceof PatchValidationError?[error.diagnostic]:[]};failureList.push(failure);await mkdir(path.join(outDir,"failures"),{recursive:true});await writeFile(path.join(outDir,"failures",`${phase}-${index+1}.json`),JSON.stringify(failure,null,2));return null;}
+      try {return await runGroup(group,phase,index,data,outDir,scale,selection.selection_subtype,reuseDir);}
+      catch(error){const message=error instanceof Error?error.message:String(error);const failure={phase,design_id:group.design_id,affected_fabric_ids:group.affected_fabric_ids,design_only_reuse_fabric_ids:Object.keys(group.design_only_reuse_targets_by_fabric??{}),error:message,failure_class:message.startsWith("PILOT_OPENAI_RESPONSE_400") || message.includes("SCHEMA")?"SCHEMA":error instanceof PatchValidationError || message.startsWith("PATCH_")?"LOCAL_VALIDATION":"OTHER",diagnostics:error instanceof PatchValidationError?[error.diagnostic]:[]};failureList.push(failure);await mkdir(path.join(outDir,"failures"),{recursive:true});await writeFile(path.join(outDir,"failures",`${phase}-${index+1}.json`),JSON.stringify(failure,null,2));return null;}
     });
     const successes=outcomes.filter((x):x is Row[]=>x!==null);
-    return summarise(successes,failureList.filter(x=>x.phase===phase),phase,groups.reduce((n,g)=>n+g.affected_fabric_ids.length,0));
+    return summarise(successes,failureList.filter(x=>x.phase===phase),phase,groups.reduce((n,g)=>n+g.affected_fabric_ids.length+Object.keys(g.design_only_reuse_targets_by_fabric??{}).length,0));
   }
   const a=await phaseRun(selection.pilot_a,"A");
   const b=await phaseRun(selection.pilot_b,"B");
@@ -237,5 +292,6 @@ export async function runPartialPilot(selectionFile:string,outDir:string) {
 if (process.argv[1]?.endsWith("curtainsuk-partial-hybrid-pilot.ts")) {
   const selection=process.argv.find(x=>x.startsWith("--selection="))?.slice("--selection=".length);
   const outDir=process.argv.find(x=>x.startsWith("--out="))?.slice("--out=".length);
-  runPartialPilot(selection??"",outDir??"").then(summary=>process.stdout.write(JSON.stringify({pilot_a:summary.pilot_a,pilot_b:summary.pilot_b,failed:summary.failures.length})+"\n")).catch(error=>{process.stderr.write(`${error instanceof Error?error.message:String(error)}\n`);process.exitCode=1;});
+  const reuseDir=process.argv.find(x=>x.startsWith("--reuse-dir="))?.slice("--reuse-dir=".length);
+  runPartialPilot(selection??"",outDir??"",reuseDir??"").then(summary=>process.stdout.write(JSON.stringify({pilot_a:summary.pilot_a,pilot_b:summary.pilot_b,failed:summary.failures.length})+"\n")).catch(error=>{process.stderr.write(`${error instanceof Error?error.message:String(error)}\n`);process.exitCode=1;});
 }

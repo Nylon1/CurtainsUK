@@ -108,3 +108,24 @@ export function patchResponseSchema(requestedByFabric:Record<string,VisualDimens
   const variant=(id:string)=>{const p=payload(requestedByFabric[id]);return {type:"object",additionalProperties:false,required:["fabric_id",...p.required],properties:{fabric_id:{type:"string",enum:[id]},...p.properties}};};
   return {type:"object",additionalProperties:false,required:["patches"],properties:{patches:{type:"array",minItems:ids.length,maxItems:ids.length,items:{anyOf:ids.map(variant)}}}};
 }
+
+export function reusableDesignPatch(source:Row, requestedDesignFields:VisualDimension[]):RawPatch {
+  const patch=source?.patch;
+  if (!patch || !Array.isArray(patch.requested_missing_fields) || !patch.new_values_only || !patch.confidence_per_new_field || !patch.provenance_per_new_field || !source.evidence_reasons_per_new_field || !Array.isArray(patch.legitimate_remaining_gaps) || !source.material_review) throw new Error("REUSABLE_DESIGN_SOURCE_INVALID");
+  const newValues:PatchEntry[]=[], gaps:{field:VisualDimension;reason:string}[]=[];
+  for (const field of requestedDesignFields) {
+    if (!designFields.includes(field as typeof designFields[number]) || !patch.requested_missing_fields.includes(field)) throw new Error(`REUSABLE_DESIGN_FIELD_NOT_IN_SOURCE_${field}`);
+    if (Object.hasOwn(patch.new_values_only,field)) {
+      newValues.push({field,value:patch.new_values_only[field],confidence:patch.confidence_per_new_field[field],provenance:patch.provenance_per_new_field[field],reason:source.evidence_reasons_per_new_field[field]});
+    } else {
+      const gap=patch.legitimate_remaining_gaps.find((item:Row)=>item.field===field);
+      if (!gap) throw new Error(`REUSABLE_DESIGN_FIELD_UNCOVERED_${field}`);
+      gaps.push({field,reason:gap.reason});
+    }
+  }
+  return {new_values_only:newValues,legitimate_remaining_gaps:gaps,manufacturer_authority_applied:patch.manufacturer_authority_applied,material_review:source.material_review};
+}
+
+export function mergePatchFragments(imagePatch:RawPatch, designPatch:RawPatch):RawPatch {
+  return {new_values_only:[...imagePatch.new_values_only,...designPatch.new_values_only],legitimate_remaining_gaps:[...imagePatch.legitimate_remaining_gaps,...designPatch.legitimate_remaining_gaps],manufacturer_authority_applied:imagePatch.manufacturer_authority_applied || designPatch.manufacturer_authority_applied,material_review:{needed:imagePatch.material_review.needed || designPatch.material_review.needed,reason:[imagePatch.material_review.reason,designPatch.material_review.reason].filter(Boolean).join("; ")}};
+}

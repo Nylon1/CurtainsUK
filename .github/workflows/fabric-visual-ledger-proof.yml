@@ -270,6 +270,7 @@ jobs:
       SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
       SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -280,11 +281,13 @@ jobs:
       - name: Record exact audited scale selection before inference
         run: |
           mkdir -p artifacts/partial-hybrid-scale
-          node -e 'const fs=require("fs"); const p="scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json"; const x=JSON.parse(fs.readFileSync(p,"utf8")); const groups=[...x.pilot_a,...x.pilot_b],ids=groups.flatMap(g=>g.affected_fabric_ids); if(x.selection_version!=="partial-hybrid-scale-batch-v1"||x.recorded_before_inference!==true||!(["design","colourway"].includes(x.selection_kind))||(x.selection_kind==="design"?x.pilot_b.length!==0:x.pilot_a.length!==0)||groups.length!==x.expected_openai_requests||groups.length<1||groups.length>500||x.batch_size<groups.length||ids.length!==x.expected_fabric_count||new Set(ids).size!==ids.length||groups.some(g=>g.affected_fabric_ids.length<1||(x.selection_kind==="colourway"&&g.affected_fabric_ids.length>4))||groups.some(g=>g.affected_fabric_ids.some(id=>g.requested_missing_fields_by_fabric[id].some(field=>(x.accepted_fields_by_fabric?.[id]??[]).includes(field))))||x.model!=="gpt-5.6-terra"||x.reasoning!=="medium"||x.max_inference_concurrency!==3)throw Error("SCALE_SELECTION_REJECTED"); fs.copyFileSync(p,"artifacts/partial-hybrid-scale/selection.json");'
+          node -e 'const fs=require("fs"); const p="scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json"; const x=JSON.parse(fs.readFileSync(p,"utf8")); const groups=[...x.pilot_a,...x.pilot_b],ids=groups.flatMap(g=>[...g.affected_fabric_ids,...Object.keys(g.design_only_reuse_targets_by_fabric??{})]); if(x.selection_version!=="partial-hybrid-scale-batch-v1"||x.recorded_before_inference!==true||!(["design","colourway"].includes(x.selection_kind))||(x.selection_kind==="design"?x.pilot_b.length!==0:x.pilot_a.length!==0)||groups.length!==x.expected_openai_requests||groups.length<1||groups.length>500||x.batch_size<groups.length||ids.length!==x.expected_fabric_count||new Set(ids).size!==ids.length||groups.some(g=>g.affected_fabric_ids.length<1||(x.selection_kind==="colourway"&&g.affected_fabric_ids.length>4))||groups.some(g=>[...Object.entries(g.requested_missing_fields_by_fabric),...Object.entries(g.design_only_reuse_targets_by_fabric??{})].some(([id,fields])=>fields.some(field=>(x.accepted_fields_by_fabric?.[id]??[]).includes(field))))||x.model!=="gpt-5.6-terra"||x.reasoning!=="medium"||x.max_inference_concurrency!==3)throw Error("SCALE_SELECTION_REJECTED"); fs.copyFileSync(p,"artifacts/partial-hybrid-scale/selection.json");'
       - name: Test patch contract offline
         run: npx --no-install tsx --test scripts/__tests__/curtainsuk-partial-hybrid-pilot.test.ts
+      - name: Fetch accepted shared design source when required
+        run: python3 scripts/curtainsuk-partial-hybrid-download-design-source.py --selection=scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json --out=artifacts/partial-hybrid-design-source
       - name: Run offline patch-only partial scale batch
-        run: npx --no-install tsx scripts/curtainsuk-partial-hybrid-pilot.ts --selection=scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json --out=artifacts/partial-hybrid-scale
+        run: npx --no-install tsx scripts/curtainsuk-partial-hybrid-pilot.ts --selection=scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json --out=artifacts/partial-hybrid-scale --reuse-dir=artifacts/partial-hybrid-design-source
       - name: Reconcile offline patches and raw responses
         run: python3 scripts/curtainsuk-partial-hybrid-verify-batch.py --artifact=artifacts/partial-hybrid-scale
       - uses: actions/upload-artifact@v4

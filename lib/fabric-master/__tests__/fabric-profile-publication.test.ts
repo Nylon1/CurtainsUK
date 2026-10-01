@@ -125,6 +125,7 @@ test("sync revision changes only when customer-facing intelligence changes", () 
     knowledge_state: "COMPLETE",
     knowledge_colour: "Colour: green",
     knowledge_pattern: "Pattern: plain",
+    knowledge_advice: publication.fields.knowledge_advice,
     sync_revision: "older-revision",
   }, publication);
   assert.equal(unchanged.length, 0);
@@ -133,6 +134,7 @@ test("sync revision changes only when customer-facing intelligence changes", () 
     knowledge_state: "PARTIAL",
     knowledge_colour: "Colour: blue",
     knowledge_pattern: "Pattern: plain",
+    knowledge_advice: publication.fields.knowledge_advice,
     sync_revision: "older-revision",
   }, publication);
   assert.deepEqual(changed.map((field) => field.key), [

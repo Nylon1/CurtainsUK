@@ -2,6 +2,8 @@ import "./curtainsuk-server-script-loader.mjs";
 import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import {
+  FABRIC_PROFILE_KNOWLEDGE_FIELDS,
+  FABRIC_PROFILE_SYNC_FIELD,
   assertFabricProfilePatchAllowed,
   buildFabricProfilePublication,
   fabricProfilePatch,
@@ -10,12 +12,14 @@ import type { VisualRow } from "../lib/fabric-master/visual-knowledge";
 
 loadEnvConfig(process.cwd());
 
-const FABRIC_PROFILE_TYPE = "app--328390344705--fabric_discovery";
+const FABRIC_PROFILE_TYPE = "$app:fabric_discovery";
+const EXPECTED_LIVE_THEME_FABRIC_PROFILE_TYPE = "app--328390344705--fabric_discovery";
 const EXPECTED_CURTAINSUK_APP_ID = "gid://shopify/App/328390344705";
 const EXPECTED_CURTAINSUK_APP_HANDLE = "curtains-uk-mtm";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
 const SHOPIFY_ADMIN_API_VERSION = "2026-07" as const;
 const READ_SCOPE = "read_metaobjects" as const;
+const READ_DEFINITIONS_SCOPE = "read_metaobject_definitions" as const;
 const WRITE_SCOPE = "write_metaobjects" as const;
 
 const LIST_PROFILES_QUERY = `
@@ -23,6 +27,15 @@ const LIST_PROFILES_QUERY = `
     metaobjects(type: $type, first: 100, after: $after) {
       nodes { id handle fields { key value } }
       pageInfo { hasNextPage endCursor }
+    }
+  }
+`;
+
+const PROFILE_DEFINITION_QUERY = `
+  query CurtainsUKFabricProfileDefinition($type: String!) {
+    metaobjectDefinitionByType(type: $type) {
+      type
+      fieldDefinitions { key }
     }
   }
 `;
@@ -112,7 +125,9 @@ function parseScopes(value: unknown) {
 }
 
 function assertScopes(scopes: ReadonlySet<string>, apply: boolean) {
-  const required = apply ? [READ_SCOPE, WRITE_SCOPE] : [READ_SCOPE];
+  const required = apply
+    ? [READ_SCOPE, READ_DEFINITIONS_SCOPE, WRITE_SCOPE]
+    : [READ_SCOPE, READ_DEFINITIONS_SCOPE];
   for (const scope of required) {
     if (!scopes.has(scope)) throw new Error(`FABRIC_PROFILE_SCOPE_MISSING:${scope}`);
   }
@@ -188,6 +203,24 @@ async function verifyInstalledScopes(
     isRecord(entry) && typeof entry.handle === "string" ? [entry.handle] : [],
   ));
   assertScopes(scopes, apply);
+}
+
+async function verifyProfileDefinition(
+  config: ReturnType<typeof runtimeConfig>,
+  token: string,
+) {
+  const data = await graphql(config, token, PROFILE_DEFINITION_QUERY, { type: FABRIC_PROFILE_TYPE });
+  const definition = data.metaobjectDefinitionByType;
+  if (!isRecord(definition) || definition.type !== EXPECTED_LIVE_THEME_FABRIC_PROFILE_TYPE
+    || !Array.isArray(definition.fieldDefinitions)) {
+    throw new Error("FABRIC_PROFILE_DEFINITION_MISMATCH");
+  }
+  const keys = new Set(definition.fieldDefinitions.flatMap((field) =>
+    isRecord(field) && typeof field.key === "string" ? [field.key] : [],
+  ));
+  for (const key of ["fabric_master_id", ...FABRIC_PROFILE_KNOWLEDGE_FIELDS, FABRIC_PROFILE_SYNC_FIELD]) {
+    if (!keys.has(key)) throw new Error(`FABRIC_PROFILE_DEFINITION_FIELD_MISSING:${key}`);
+  }
 }
 
 function parseProfileNode(value: unknown): ShopifyProfile {
@@ -282,6 +315,7 @@ async function main() {
   const config = runtimeConfig();
   const token = await accessToken(config, args.apply);
   await verifyInstalledScopes(config, token, args.apply);
+  await verifyProfileDefinition(config, token);
 
   let profiles = await existingProfiles(config, token);
   if (args.apply && profiles.length === 0) throw new Error("FABRIC_PROFILE_APPLY_NO_LIVE_PROFILES");

@@ -7,7 +7,6 @@ import {
   fabricProfilePatch,
 } from "../lib/fabric-master/fabric-profile-publication";
 import type { VisualRow } from "../lib/fabric-master/visual-knowledge";
-import { SHOPIFY_DRAFT_ORDER_API_VERSION } from "../lib/storefront/shopify-draft-order-core";
 
 loadEnvConfig(process.cwd());
 
@@ -15,6 +14,7 @@ const FABRIC_PROFILE_TYPE = "app--328390344705--fabric_discovery";
 const EXPECTED_CURTAINSUK_APP_ID = "gid://shopify/App/328390344705";
 const EXPECTED_CURTAINSUK_APP_HANDLE = "curtains-uk-mtm";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
+const SHOPIFY_ADMIN_API_VERSION = "2026-07" as const;
 const READ_SCOPE = "read_metaobjects" as const;
 const WRITE_SCOPE = "write_metaobjects" as const;
 
@@ -148,7 +148,7 @@ async function graphql(
   variables: Record<string, unknown>,
 ) {
   const response = await fetch(
-    `https://${config.shopDomain}/admin/api/${SHOPIFY_DRAFT_ORDER_API_VERSION}/graphql.json`,
+    `https://${config.shopDomain}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`,
     {
       method: "POST",
       headers: {

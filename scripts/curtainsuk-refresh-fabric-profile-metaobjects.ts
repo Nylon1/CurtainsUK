@@ -10,7 +10,7 @@ import { SHOPIFY_DRAFT_ORDER_API_VERSION } from "../lib/storefront/shopify-draft
 
 loadEnvConfig(process.cwd());
 
-const FABRIC_PROFILE_TYPE = "app--340764327937--fabric_discovery";
+const FABRIC_PROFILE_TYPE = "app--328390344705--fabric_discovery";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
 const READ_SCOPE = "read_metaobjects" as const;
 const WRITE_SCOPE = "write_metaobjects" as const;
@@ -274,6 +274,7 @@ async function main() {
   await verifyInstalledScopes(config, token, args.apply);
 
   let profiles = await existingProfiles(config, token);
+  if (args.apply && profiles.length === 0) throw new Error("FABRIC_PROFILE_APPLY_NO_LIVE_PROFILES");
   const byFabricId = new Map<string, ShopifyProfile>();
   for (const profile of profiles) {
     const fabricId = exactFabricId(profile);

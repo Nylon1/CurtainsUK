@@ -1,3 +1,4 @@
+import "./curtainsuk-server-script-loader.mjs";
 import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import {

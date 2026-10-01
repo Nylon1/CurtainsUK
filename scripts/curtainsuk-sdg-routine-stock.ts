@@ -1,4 +1,4 @@
-/** Authorised SDG Product/detail → existing supplier evidence → existing daily stock materialiser. */
+/** Authorised SDG Product/detail → governed supplier evidence → exact-run daily stock materialisation. */
 import { randomUUID } from "node:crypto";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { SdgPortalSession } from "../lib/supplier-sync/adapters/sdg-portal-session";
@@ -145,10 +145,11 @@ async function main() {
       appended += batch.length;
       const { data: approved, error: approvalError } = await db.rpc("approve_sdg_portal_stock_run", { p_run_id: runId });
       if (approvalError || approved !== batch.length) throw new Error("SDG_POLICY_APPROVAL_FAILED");
+      stage = "MATERIALISATION";
+      const { data: materialized, error: materializeError } = await db.rpc("materialize_sdg_portal_stock_run", { p_run_id: runId });
+      if (materializeError || materialized !== batch.length) throw new Error("SDG_MATERIALISATION_FAILED");
+      stage = "APPROVAL";
     }
-    stage = "MATERIALISATION";
-    const { error: materializeError } = await db.rpc("materialize_daily_stock");
-    if (materializeError) throw new Error("SDG_MATERIALISATION_FAILED");
     stage = "VERIFICATION";
     await assertMaterialised(result.snapshots);
     const completed = new Date();

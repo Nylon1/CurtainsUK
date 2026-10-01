@@ -13,6 +13,7 @@ loadEnvConfig(process.cwd());
 
 const FABRIC_PROFILE_TYPE = "app--328390344705--fabric_discovery";
 const EXPECTED_CURTAINSUK_APP_ID = "gid://shopify/App/328390344705";
+const EXPECTED_CURTAINSUK_APP_HANDLE = "curtains-uk-mtm";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
 const READ_SCOPE = "read_metaobjects" as const;
 const WRITE_SCOPE = "write_metaobjects" as const;
@@ -29,7 +30,7 @@ const LIST_PROFILES_QUERY = `
 const ACCESS_SCOPES_QUERY = `
   query CurtainsUKFabricProfileScopes {
     currentAppInstallation {
-      app { id title }
+      app { id handle }
       accessScopes { handle }
     }
   }
@@ -97,8 +98,7 @@ function runtimeConfig(environment: NodeJS.ProcessEnv = process.env) {
 
   if (shopDomain !== PRODUCTION_SHOP) throw new Error("FABRIC_PROFILE_SHOP_DENIED");
   if (clientId.length < 8 || clientSecret.length < 16) throw new Error("FABRIC_PROFILE_SHOPIFY_CREDENTIALS_MISSING");
-  if (clientId !== EXPECTED_SHOPIFY_APP_KEY) throw new Error("FABRIC_PROFILE_SHOPIFY_APP_MISMATCH");
-
+  
   return { shopDomain, clientId, clientSecret };
 }
 
@@ -180,7 +180,8 @@ async function verifyInstalledScopes(
   if (!isRecord(installation) || !isRecord(installation.app) || !Array.isArray(installation.accessScopes)) {
     throw new Error("FABRIC_PROFILE_SCOPE_RESPONSE_INVALID");
   }
-  if (installation.app.id !== EXPECTED_CURTAINSUK_APP_ID) {
+  if (installation.app.id !== EXPECTED_CURTAINSUK_APP_ID
+    || installation.app.handle !== EXPECTED_CURTAINSUK_APP_HANDLE) {
     throw new Error("FABRIC_PROFILE_WRONG_SHOPIFY_APP");
   }
   const scopes = new Set(installation.accessScopes.flatMap((entry) =>

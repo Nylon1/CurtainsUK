@@ -4,13 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       run_mode:
-        description: "plan or full"
+        description: "plan, full, or offline artifact-only"
         required: true
         default: "plan"
         type: choice
         options:
           - plan
           - full
+          - artifact-only
       scope_mode:
         description: "catalogue scope"
         required: true
@@ -56,6 +57,7 @@ concurrency:
 
 jobs:
   plan:
+    if: inputs.run_mode != 'artifact-only'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -129,3 +131,33 @@ jobs:
         with:
           name: fabric-visual-enrichment-run
           path: artifacts/visual-enrichment-run/
+
+  artifact-only:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'artifact-only' && inputs.scope_mode == 'explicit-cohort'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Record exact ten-fabric selection before inference
+        env:
+          COHORT_IDS: ${{ inputs.fabric_ids_json }}
+        run: |
+          mkdir -p artifacts/fabric-hybrid-artifact-only
+          node -e 'const fs=require("fs"); const ids=JSON.parse(process.env.COHORT_IDS); if(!Array.isArray(ids)||ids.length!==10||new Set(ids).size!==10||ids.some(id=>typeof id!=="string"||!/^sdg-[a-z0-9-]+$/.test(id))) throw Error("EXACT_TEN_IDS_REQUIRED"); fs.writeFileSync("/tmp/fabric-hybrid-cohort.json",JSON.stringify(ids)); fs.writeFileSync("artifacts/fabric-hybrid-artifact-only/selection.json",JSON.stringify({fabric_ids:ids,recorded_before_inference:true},null,2));'
+      - name: Run offline hybrid analysis without database writes
+        run: npm run fabric:visual-enrichment -- --artifact-only --fabric-ids-file=/tmp/fabric-hybrid-cohort.json --out=artifacts/fabric-hybrid-artifact-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fabric-hybrid-artifact-only
+          path: artifacts/fabric-hybrid-artifact-only/

@@ -403,4 +403,10 @@ async function main() {
   console.log(JSON.stringify(report, null, 2));
   if (report.failed) process.exitCode = 1;
 }
-main().catch((err) => { console.error(err instanceof Error ? err.message : "VISUAL_ENRICHMENT_FAILED"); process.exitCode = 1; });
+if (args.has("artifact-only")) {
+  if (args.has("apply") || args.has("plan-only") || !cohortFile || targetMissing || args.has("full-catalogue") || restoreDir) throw new Error("ARTIFACT_ONLY_SCOPE_CONFLICT");
+  import("./curtainsuk-visual-hybrid-artifact").then(({ runHybridArtifactOnly }) => runHybridArtifactOnly({ cohortFile, outDir }))
+    .catch((err) => { console.error(err instanceof Error ? err.message : "VISUAL_ARTIFACT_ONLY_FAILED"); process.exitCode = 1; });
+} else {
+  main().catch((err) => { console.error(err instanceof Error ? err.message : "VISUAL_ENRICHMENT_FAILED"); process.exitCode = 1; });
+}

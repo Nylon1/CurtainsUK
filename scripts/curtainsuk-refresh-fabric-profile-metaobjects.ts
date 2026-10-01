@@ -12,7 +12,7 @@ loadEnvConfig(process.cwd());
 
 const FABRIC_PROFILE_TYPE = "app--340764327937--fabric_discovery";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
-const REQUIRED_SCOPES = ["read_metaobjects", "write_metaobjects"] as const;
+const READ_SCOPE = "read_metaobjects" as const;\nconst WRITE_SCOPE = "write_metaobjects" as const;
 
 const LIST_PROFILES_QUERY = `
   query CurtainsUKFabricProfiles($type: String!, $after: String) {
@@ -104,13 +104,14 @@ function parseScopes(value: unknown) {
   return new Set(value.split(/[\s,]+/).map((scope) => scope.trim()).filter(Boolean));
 }
 
-function assertScopes(scopes: ReadonlySet<string>) {
-  for (const required of REQUIRED_SCOPES) {
-    if (!scopes.has(required)) throw new Error(`FABRIC_PROFILE_SCOPE_MISSING:${required}`);
+function assertScopes(scopes: ReadonlySet<string>, apply: boolean) {
+  const required = apply ? [READ_SCOPE, WRITE_SCOPE] : [READ_SCOPE];
+  for (const scope of required) {
+    if (!scopes.has(scope)) throw new Error(`FABRIC_PROFILE_SCOPE_MISSING:${scope}`);
   }
 }
 
-async function accessToken(config: ReturnType<typeof runtimeConfig>) {
+async function accessToken(config: ReturnType<typeof runtimeConfig>, apply: boolean) {
   const response = await fetch(`https://${config.shopDomain}/admin/oauth/access_token`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -165,6 +166,7 @@ async function graphql(
 async function verifyInstalledScopes(
   config: ReturnType<typeof runtimeConfig>,
   token: string,
+  apply: boolean,
 ) {
   const data = await graphql(config, token, ACCESS_SCOPES_QUERY, {});
   const installation = data.currentAppInstallation;
@@ -267,8 +269,8 @@ async function updateProfile(
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const config = runtimeConfig();
-  const token = await accessToken(config);
-  await verifyInstalledScopes(config, token);
+  const token = await accessToken(config, args.apply);
+  await verifyInstalledScopes(config, token, args.apply);
 
   let profiles = await existingProfiles(config, token);
   const byFabricId = new Map<string, ShopifyProfile>();

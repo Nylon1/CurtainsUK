@@ -285,6 +285,8 @@ jobs:
         run: npx --no-install tsx --test scripts/__tests__/curtainsuk-partial-hybrid-pilot.test.ts
       - name: Run offline patch-only partial scale batch
         run: npx --no-install tsx scripts/curtainsuk-partial-hybrid-pilot.ts --selection=scripts/fixtures/curtainsuk-partial-hybrid-scale-batch.json --out=artifacts/partial-hybrid-scale
+      - name: Reconcile offline patches and raw responses
+        run: python3 scripts/curtainsuk-partial-hybrid-verify-batch.py --artifact=artifacts/partial-hybrid-scale
       - uses: actions/upload-artifact@v4
         if: always()
         with:

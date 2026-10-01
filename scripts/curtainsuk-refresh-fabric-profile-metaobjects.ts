@@ -27,7 +27,10 @@ const LIST_PROFILES_QUERY = `
 
 const ACCESS_SCOPES_QUERY = `
   query CurtainsUKFabricProfileScopes {
-    currentAppInstallation { accessScopes { handle } }
+    currentAppInstallation {
+      app { id title }
+      accessScopes { handle }
+    }
   }
 `;
 
@@ -172,8 +175,11 @@ async function verifyInstalledScopes(
 ) {
   const data = await graphql(config, token, ACCESS_SCOPES_QUERY, {});
   const installation = data.currentAppInstallation;
-  if (!isRecord(installation) || !Array.isArray(installation.accessScopes)) {
+  if (!isRecord(installation) || !isRecord(installation.app) || !Array.isArray(installation.accessScopes)) {
     throw new Error("FABRIC_PROFILE_SCOPE_RESPONSE_INVALID");
+  }
+  if (installation.app.id !== EXPECTED_CURTAINSUK_APP_ID) {
+    throw new Error("FABRIC_PROFILE_WRONG_SHOPIFY_APP");
   }
   const scopes = new Set(installation.accessScopes.flatMap((entry) =>
     isRecord(entry) && typeof entry.handle === "string" ? [entry.handle] : [],
@@ -286,6 +292,7 @@ async function main() {
   if (args.fabricId) profiles = profiles.filter((profile) => exactFabricId(profile) === args.fabricId);
   if (args.limit !== null) profiles = profiles.slice(0, args.limit);
 
+  if (!profiles.length) throw new Error("FABRIC_PROFILE_NONE_DISCOVERED");
   const ids = profiles.map(exactFabricId);
   const rows = await visualRows(ids);
   const changes: Array<{

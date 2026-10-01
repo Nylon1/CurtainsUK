@@ -12,7 +12,8 @@ loadEnvConfig(process.cwd());
 
 const FABRIC_PROFILE_TYPE = "app--340764327937--fabric_discovery";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
-const READ_SCOPE = "read_metaobjects" as const;\nconst WRITE_SCOPE = "write_metaobjects" as const;
+const READ_SCOPE = "read_metaobjects" as const;
+const WRITE_SCOPE = "write_metaobjects" as const;
 
 const LIST_PROFILES_QUERY = `
   query CurtainsUKFabricProfiles($type: String!, $after: String) {

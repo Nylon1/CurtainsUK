@@ -15,7 +15,8 @@ Source of truth read:
 
 Shopify destination:
 
-- existing metaobject type `app--328390344705--fabric_discovery`
+- live MAIN-theme generated type: `app--328390344705--fabric_discovery`
+- runtime API query: `$app:fabric_discovery`, resolved only under the authenticated `curtains-uk-mtm` app
 - existing entries only
 - no create, upsert or delete operation exists in the script
 
@@ -43,7 +44,7 @@ The script reuses the existing CurtainsUK Shopify app client credentials:
 - `CURTAINSUK_SHOPIFY_CLIENT_ID`
 - `CURTAINSUK_SHOPIFY_APP_SECRET`
 
-It accepts only the production Shopify store `carpetup.myshopify.com` and hard-fails unless the authenticated app is CurtainsUK app `gid://shopify/App/328390344705`. Dry-run requires `read_metaobjects`; apply additionally requires `write_metaobjects`. Missing scopes or the wrong app fail closed.
+It accepts only the production Shopify store `carpetup.myshopify.com` and hard-fails unless the authenticated app is CurtainsUK app `gid://shopify/App/328390344705` with handle `curtains-uk-mtm`. Dry-run requires `read_metaobjects` and `read_metaobject_definitions`; apply additionally requires `write_metaobjects`. Before listing profiles, the runner verifies that `$app:fabric_discovery` resolves to the exact live generated type and contains every required intelligence field. Missing scopes, fields or the wrong app fail closed.
 
 ## Dry run
 

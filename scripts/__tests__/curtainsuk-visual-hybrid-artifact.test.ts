@@ -46,9 +46,16 @@ test("legitimate absent motif and secondary colours do not require material revi
   const practical = classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"No material issue."});
   assert.deepEqual(practical.legitimateNone.sort(),["motif","secondaryColours"]);
   assert.deepEqual(practical.v1IntentionalLimitations,["patternScale","directionality"]);
-  assert.equal(practical.status,"MAXIMALLY_PRACTICALLY_ENRICHED");
+  assert.equal(practical.status,"INCOMPLETE_NONMATERIAL");
+  assert.ok(practical.genuinelyUnresolved.includes("colourTemperature"));
   experimental.reviewFlags.push("REVIEW_REQUIRED");
-  assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"A manufacturer colourway label differs from image appearance."}).status,"MAXIMALLY_PRACTICALLY_ENRICHED");
+  assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"A manufacturer colourway label differs from image appearance."}).status,"INCOMPLETE_NONMATERIAL");
+  assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:true,issueType:"WRONG_IMAGE_IDENTITY",reason:"Image is for a different SKU."}).status,"NEEDS_MATERIAL_REVIEW");
+  for (const key of practical.genuinelyUnresolved) {
+    experimental.observations[key] = {value:visualVocabulary[key][0],confidence:"MEDIUM"};
+    checkedEvidence[key] = {basis:"IMAGE",reason:"Visible image evidence supports this estimate."};
+  }
+  assert.equal(classifyPracticalCompletion(experimental,v1Compatible,checkedEvidence,{needed:false,issueType:"NONE",reason:"No material issue."}).status,"MAXIMALLY_PRACTICALLY_ENRICHED");
 });
 
 test("unknown-field summary is the numeric sum of per-fabric outputs", () => {

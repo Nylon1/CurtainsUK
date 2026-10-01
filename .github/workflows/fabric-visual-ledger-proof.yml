@@ -135,7 +135,7 @@ jobs:
   artifact-only:
     if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'artifact-only' && inputs.scope_mode == 'explicit-cohort'
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 240
     env:
       CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
       SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
@@ -148,12 +148,12 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
-      - name: Record exact 250-fabric selection before inference
+      - name: Record exact 500-fabric selection before inference
         env:
           COHORT_IDS: ${{ inputs.fabric_ids_json }}
         run: |
           mkdir -p artifacts/fabric-hybrid-artifact-only
-          node -e 'const fs=require("fs"); const ids=JSON.parse(process.env.COHORT_IDS); if(!Array.isArray(ids)||ids.length!==250||new Set(ids).size!==250||ids.some(id=>typeof id!=="string"||!/^sdg-[a-z0-9-]+$/.test(id))) throw Error("EXACT_250_IDS_REQUIRED"); fs.writeFileSync("/tmp/fabric-hybrid-cohort.json",JSON.stringify(ids)); fs.writeFileSync("artifacts/fabric-hybrid-artifact-only/selection.json",JSON.stringify({fabric_ids:ids,recorded_before_inference:true},null,2));'
+          node -e 'const fs=require("fs"); const ids=JSON.parse(process.env.COHORT_IDS); if(!Array.isArray(ids)||ids.length!==500||new Set(ids).size!==500||ids.some(id=>typeof id!=="string"||!/^sdg-[a-z0-9-]+$/.test(id))) throw Error("EXACT_500_IDS_REQUIRED"); fs.writeFileSync("/tmp/fabric-hybrid-cohort.json",JSON.stringify(ids)); fs.writeFileSync("artifacts/fabric-hybrid-artifact-only/selection.json",JSON.stringify({fabric_ids:ids,recorded_before_inference:true},null,2));'
       - name: Run offline hybrid analysis without database writes
         run: npm run fabric:visual-enrichment -- --artifact-only --fabric-ids-file=/tmp/fabric-hybrid-cohort.json --out=artifacts/fabric-hybrid-artifact-only
       - uses: actions/upload-artifact@v4

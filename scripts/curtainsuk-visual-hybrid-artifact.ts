@@ -11,6 +11,7 @@ const projectRef = "hqysjumypgeapgmqkcrx";
 const promptVersion = "hybrid-artifact-prompt-v4";
 const artifactSchemaVersion = "hybrid-artifact-schema-v4";
 const modelReasoning = "medium";
+const cohortSize = 500;
 const priorManufacturerAuthorityResolutions = [
   {fabric_id:"sdg-hmof131440",previous_artifact_run_id:36860661964,manufacturer_field:"colourway_name",manufacturer_value:"Hazelnut",ai_image_value:"grey with cream and taupe",manufacturer_authority_applied:true,reason_manufacturer_retained:"Hazelnut is the governed manufacturer colourway name. The image reading is an appearance estimate; approved media provenance supplies no evidence that this asset belongs to another fabric.",rerun:false,practical_completion_status:"MAXIMALLY_PRACTICALLY_ENRICHED"},
   {fabric_id:"sdg-hmtf133476",previous_artifact_run_id:36860661964,manufacturer_field:"colourway_name",manufacturer_value:"Ink/ Gold",ai_image_value:"green with gold",manufacturer_authority_applied:true,reason_manufacturer_retained:"Ink/ Gold is the governed manufacturer colourway name. The image reading is an appearance estimate; approved media provenance supplies no evidence that this asset belongs to another fabric.",rerun:false,practical_completion_status:"MAXIMALLY_PRACTICALLY_ENRICHED"},
@@ -148,7 +149,10 @@ export function classifyPracticalCompletion(experimental: VisualCandidate, v1Com
   const materialReasons = [
     ...(materialReview.needed ? [`${materialReview.issueType}: ${materialReview.reason}`] : []),
   ];
-  return {legitimateNone,v1IntentionalLimitations,genuinelyUnresolved,status:materialReasons.length ? "NEEDS_MATERIAL_REVIEW" as const : "MAXIMALLY_PRACTICALLY_ENRICHED" as const,materialReasons};
+  const status = materialReasons.length ? "NEEDS_MATERIAL_REVIEW" as const
+    : genuinelyUnresolved.length ? "INCOMPLETE_NONMATERIAL" as const
+    : "MAXIMALLY_PRACTICALLY_ENRICHED" as const;
+  return {legitimateNone,v1IntentionalLimitations,genuinelyUnresolved,status,materialReasons};
 }
 function validateMaterialReview(raw: unknown) {
   if (!exactKeys(raw,["needed","issueType","reason"])) throw new Error("ARTIFACT_MATERIAL_REVIEW_SCHEMA_INVALID");
@@ -236,10 +240,10 @@ async function classify(context: Row, image: AnalysisAsset & {bytes:Uint8Array;m
 export async function runHybridArtifactOnly(input: {cohortFile:string;outDir:string}) {
   if (!input.cohortFile || !input.outDir) throw new Error("ARTIFACT_ONLY_EXPLICIT_SCOPE_REQUIRED");
   const ids: unknown = JSON.parse((await readFile(input.cohortFile,"utf8")).replace(/^\uFEFF/,""));
-  if (!Array.isArray(ids) || ids.length !== 250 || new Set(ids).size !== 250 || ids.some(id => typeof id !== "string" || !/^[a-z0-9-]{1,150}$/.test(id))) throw new Error("ARTIFACT_ONLY_250_IDS_REQUIRED");
+  if (!Array.isArray(ids) || ids.length !== cohortSize || new Set(ids).size !== cohortSize || ids.some(id => typeof id !== "string" || !/^[a-z0-9-]{1,150}$/.test(id))) throw new Error("ARTIFACT_ONLY_500_IDS_REQUIRED");
   const fabricIds = ids as string[];
   await mkdir(path.join(input.outDir,"fabrics"),{recursive:true});
-  await writeFile(path.join(input.outDir,"selection.json"),JSON.stringify({selection_rule:"Current pending SDG approved-media fabrics excluding prior artifact 50 and 250; order by colourway rank within design, then fabric_id COLLATE C; first 250",fabric_ids:fabricIds,recorded_before_inference:true},null,2));
+  await writeFile(path.join(input.outDir,"selection.json"),JSON.stringify({selection_rule:"Current pending SDG approved-media fabrics excluding prior artifact 50 and two 250 cohorts; order by colourway rank within design, then fabric_id COLLATE C; first 500",fabric_ids:fabricIds,recorded_before_inference:true},null,2));
   await writeFile(path.join(input.outDir,"prior_manufacturer_authority_resolutions.json"),JSON.stringify(priorManufacturerAuthorityResolutions,null,2));
   const control = await readRows("browse_projection_control","active_generation,knowledge_cache_dirty,knowledge_cache_refreshed_at",{singleton:"eq.true"});
   if (control.length !== 1 || control[0].active_generation !== "7ec394c7-ff22-4e8b-a4ae-d18c162423ca" || control[0].knowledge_cache_dirty !== false)
@@ -249,7 +253,7 @@ export async function runHybridArtifactOnly(input: {cohortFile:string;outDir:str
     readByIds("fabric_media_mappings","fabric_id,supplier_id,supplier_sku,content_hash,image_type,rights_state,mapping_state","fabric_id",fabricIds,{rights_state:"eq.APPROVED",mapping_state:"eq.VERIFIED"}),
     readByIds("fabric_visual_knowledge_read_cache","fabric_id,knowledge_state,visual_fields,provenance","fabric_id",fabricIds),
   ]);
-  if (masters.length !== 250 || stored.length !== 250 || unique(masters.map(m=>m.design_id)).length < 90 || masters.some(m=>m.supplier_id !== "sanderson-design-group" || m.lifecycle_state === "DISCONTINUED") || stored.some(s=>s.knowledge_state !== "PENDING_EXTERNAL_RETRY"))
+  if (masters.length !== cohortSize || stored.length !== cohortSize || unique(masters.map(m=>m.design_id)).length < 50 || masters.some(m=>m.supplier_id !== "sanderson-design-group" || m.lifecycle_state === "DISCONTINUED") || stored.some(s=>s.knowledge_state !== "PENDING_EXTERNAL_RETRY"))
     throw new Error("ARTIFACT_ONLY_COHORT_STATE_CHANGED");
   const [designs,assets,brands] = await Promise.all([
     readByIds("fabric_designs","design_id,collection_id,display_name,supplier_design_code,composition,full_width_mm,usable_width_mm,vertical_repeat_mm,horizontal_repeat_mm,pattern_match_type,source_name,source_reference","design_id",unique(masters.map(m=>m.design_id))),
@@ -260,7 +264,7 @@ export async function runHybridArtifactOnly(input: {cohortFile:string;outDir:str
   const collectionIds = unique(designs.map(d=>d.collection_id).filter(Boolean));
   const collections = collectionIds.length ? await readByIds("fabric_collections","collection_id,display_name","collection_id",collectionIds) : [];
   const masterById = byId(masters,"fabric_id"), designById = byId(designs,"design_id"), brandById = byId(brands,"brand_id"), collectionById = byId(collections,"collection_id"), storedById = byId(stored,"fabric_id"), assetByHash = byId(assets,"content_hash");
-  const summary: Row = {mode:"artifact-only",model:hciVisualModel,reasoning:modelReasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion,fabric_ids:fabricIds,openai_calls:0,success:0,failed:0,current_unknown_field_instances:0,new_estimated_or_resolved_field_instances:0,still_unknown_field_instances:0,legitimate_none_or_not_applicable_instances:0,v1_intentional_limitation_instances:0,genuinely_unresolved_instances:0,fabrics_at_maximum_practical_enrichment:0,fabrics_needing_material_review:0,fabrics_that_could_become_complete_under_v1:0,manufacturer_authority_override_instances:0,manufacturer_authority_affected_fabrics:[],prior_conflicts_reclassified_without_inference:priorManufacturerAuthorityResolutions.length,failures:[]};
+  const summary: Row = {mode:"artifact-only",model:hciVisualModel,reasoning:modelReasoning,prompt_version:promptVersion,visual_schema_version:visualSchemaVersion,artifact_schema_version:artifactSchemaVersion,vocabulary_version:visualVocabularyVersion,fabric_ids:fabricIds,openai_calls:0,success:0,failed:0,current_unknown_field_instances:0,new_estimated_or_resolved_field_instances:0,still_unknown_field_instances:0,legitimate_none_or_not_applicable_instances:0,v1_intentional_limitation_instances:0,genuinely_unresolved_instances:0,fabrics_at_maximum_practical_enrichment:0,fabrics_incomplete_nonmaterial:0,fabrics_needing_material_review:0,fabrics_that_could_become_complete_under_v1:0,manufacturer_authority_override_instances:0,manufacturer_authority_affected_fabrics:[],prior_conflicts_reclassified_without_inference:priorManufacturerAuthorityResolutions.length,failures:[]};
   const results: Row[] = [];
   for (const fabricId of fabricIds) {
     const master = masterById.get(fabricId)!;
@@ -326,7 +330,9 @@ export async function runHybridArtifactOnly(input: {cohortFile:string;outDir:str
       summary.genuinely_unresolved_instances += practical.genuinelyUnresolved.length;
       summary.manufacturer_authority_override_instances += manufacturerOverrides.length;
       if (manufacturerOverrides.length) summary.manufacturer_authority_affected_fabrics.push(fabricId);
-      if (practical.status === "MAXIMALLY_PRACTICALLY_ENRICHED") summary.fabrics_at_maximum_practical_enrichment += 1; else summary.fabrics_needing_material_review += 1;
+      if (practical.status === "MAXIMALLY_PRACTICALLY_ENRICHED") summary.fabrics_at_maximum_practical_enrichment += 1;
+      else if (practical.status === "INCOMPLETE_NONMATERIAL") summary.fabrics_incomplete_nonmaterial += 1;
+      else summary.fabrics_needing_material_review += 1;
       if (potentiallyComplete) summary.fabrics_that_could_become_complete_under_v1 += 1;
     } catch (error) {
       const reason = error instanceof Error ? error.message : "ARTIFACT_ANALYSIS_FAILED";
@@ -342,6 +348,8 @@ export async function runHybridArtifactOnly(input: {cohortFile:string;outDir:str
   }
   summary.still_unknown_field_instances = countStillUnknownFieldInstances(results);
   if (!Number.isInteger(summary.still_unknown_field_instances)) throw new Error("ARTIFACT_UNKNOWN_FIELD_TOTAL_INVALID");
+  if (summary.success + summary.failed !== cohortSize || summary.fabrics_at_maximum_practical_enrichment + summary.fabrics_incomplete_nonmaterial + summary.fabrics_needing_material_review !== cohortSize)
+    throw new Error("ARTIFACT_COMPLETION_TOTAL_INVALID");
   summary.completed_at = new Date().toISOString();
   await writeFile(path.join(input.outDir,"summary.json"),JSON.stringify(summary,null,2));
   console.log(JSON.stringify({mode:summary.mode,fabrics:fabricIds.length,openai_calls:summary.openai_calls,success:summary.success,failed:summary.failed}));

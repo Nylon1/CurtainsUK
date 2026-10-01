@@ -11,7 +11,7 @@ const projectRef = "hqysjumypgeapgmqkcrx";
 const promptVersion = "hybrid-artifact-prompt-v4";
 const artifactSchemaVersion = "hybrid-artifact-schema-v4";
 const modelReasoning = "medium";
-const cohortSize = 500;
+const cohortSize = 11;
 const priorManufacturerAuthorityResolutions = [
   {fabric_id:"sdg-hmof131440",previous_artifact_run_id:36860661964,manufacturer_field:"colourway_name",manufacturer_value:"Hazelnut",ai_image_value:"grey with cream and taupe",manufacturer_authority_applied:true,reason_manufacturer_retained:"Hazelnut is the governed manufacturer colourway name. The image reading is an appearance estimate; approved media provenance supplies no evidence that this asset belongs to another fabric.",rerun:false,practical_completion_status:"MAXIMALLY_PRACTICALLY_ENRICHED"},
   {fabric_id:"sdg-hmtf133476",previous_artifact_run_id:36860661964,manufacturer_field:"colourway_name",manufacturer_value:"Ink/ Gold",ai_image_value:"green with gold",manufacturer_authority_applied:true,reason_manufacturer_retained:"Ink/ Gold is the governed manufacturer colourway name. The image reading is an appearance estimate; approved media provenance supplies no evidence that this asset belongs to another fabric.",rerun:false,practical_completion_status:"MAXIMALLY_PRACTICALLY_ENRICHED"},
@@ -245,10 +245,10 @@ async function classify(context: Row, image: AnalysisAsset & {bytes:Uint8Array;m
 export async function runHybridArtifactOnly(input: {cohortFile:string;outDir:string}) {
   if (!input.cohortFile || !input.outDir) throw new Error("ARTIFACT_ONLY_EXPLICIT_SCOPE_REQUIRED");
   const ids: unknown = JSON.parse((await readFile(input.cohortFile,"utf8")).replace(/^\uFEFF/,""));
-  if (!Array.isArray(ids) || ids.length !== cohortSize || new Set(ids).size !== cohortSize || ids.some(id => typeof id !== "string" || !/^[a-z0-9-]{1,150}$/.test(id))) throw new Error("ARTIFACT_ONLY_500_IDS_REQUIRED");
+  if (!Array.isArray(ids) || ids.length !== cohortSize || new Set(ids).size !== cohortSize || ids.some(id => typeof id !== "string" || !/^[a-z0-9-]{1,150}$/.test(id))) throw new Error("ARTIFACT_ONLY_11_IDS_REQUIRED");
   const fabricIds = ids as string[];
   await mkdir(path.join(input.outDir,"fabrics"),{recursive:true});
-  await writeFile(path.join(input.outDir,"selection.json"),JSON.stringify({selection_rule:"Current pending SDG approved-media fabrics excluding prior artifact 50, two 250 cohorts, and one 500 cohort; order by colourway rank within design, then fabric_id COLLATE C; first 500",fabric_ids:fabricIds,recorded_before_inference:true},null,2));
+  await writeFile(path.join(input.outDir,"selection.json"),JSON.stringify({selection_rule:"Remaining current pending SDG approved-media fabrics after excluding prior artifact 50, two 250 cohorts, and two 500 cohorts; order by colourway rank within design, then fabric_id COLLATE C; all 11",fabric_ids:fabricIds,recorded_before_inference:true},null,2));
   await writeFile(path.join(input.outDir,"prior_manufacturer_authority_resolutions.json"),JSON.stringify(priorManufacturerAuthorityResolutions,null,2));
   const control = await readRows("browse_projection_control","active_generation,knowledge_cache_dirty,knowledge_cache_refreshed_at",{singleton:"eq.true"});
   const safetyBaseline = validateArtifactSafetyBaseline(control);
@@ -258,7 +258,7 @@ export async function runHybridArtifactOnly(input: {cohortFile:string;outDir:str
     readByIds("fabric_media_mappings","fabric_id,supplier_id,supplier_sku,content_hash,image_type,rights_state,mapping_state","fabric_id",fabricIds,{rights_state:"eq.APPROVED",mapping_state:"eq.VERIFIED"}),
     readByIds("fabric_visual_knowledge_read_cache","fabric_id,knowledge_state,visual_fields,provenance","fabric_id",fabricIds),
   ]);
-  if (masters.length !== cohortSize || stored.length !== cohortSize || unique(masters.map(m=>m.design_id)).length < 20 || masters.some(m=>m.supplier_id !== "sanderson-design-group" || m.lifecycle_state === "DISCONTINUED") || stored.some(s=>s.knowledge_state !== "PENDING_EXTERNAL_RETRY"))
+  if (masters.length !== cohortSize || stored.length !== cohortSize || masters.some(m=>m.supplier_id !== "sanderson-design-group" || m.lifecycle_state === "DISCONTINUED") || stored.some(s=>s.knowledge_state !== "PENDING_EXTERNAL_RETRY"))
     throw new Error("ARTIFACT_ONLY_COHORT_STATE_CHANGED");
   const [designs,assets,brands] = await Promise.all([
     readByIds("fabric_designs","design_id,collection_id,display_name,supplier_design_code,composition,full_width_mm,usable_width_mm,vertical_repeat_mm,horizontal_repeat_mm,pattern_match_type,source_name,source_reference","design_id",unique(masters.map(m=>m.design_id))),

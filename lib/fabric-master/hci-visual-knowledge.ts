@@ -1,6 +1,10 @@
 import 'server-only';
 
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
+import { queryVisualKnowledgeWithFallback } from './visual-knowledge-source';
+
+const enrichedSource = 'fabric_visual_knowledge_enriched' as const;
+const cacheSource = 'fabric_visual_knowledge_read_cache' as const;
 
 type VisualField = { value?: unknown };
 type VisualRow = {
@@ -79,17 +83,17 @@ export function hciVisualKnowledge(fabricIds?: readonly string[]) {
       // the customer request while retaining all richer evidence for candidates
       // that can actually be selected.
       for (let from = 0; from < ids.length; from += 400) {
-        const { data, error } = await db.from('fabric_visual_knowledge_read_cache')
+        const { data, error } = await queryVisualKnowledgeWithFallback((source) => db.from(source)
           .select('fabric_id,visual_fields').in('knowledge_state', ['COMPLETE', 'PARTIAL_GOVERNED'])
-          .in('fabric_id', ids.slice(from, from + 400));
+          .in('fabric_id', ids.slice(from, from + 400)), enrichedSource, cacheSource);
         if (error) throw Error('FABRIC_VISUAL_KNOWLEDGE_UNAVAILABLE');
         rows.push(...((data ?? []) as VisualRow[]));
       }
     } else {
       for (let from = 0; ; from += 1000) {
-        const { data, error } = await db.from('fabric_visual_knowledge_read_cache')
+        const { data, error } = await queryVisualKnowledgeWithFallback((source) => db.from(source)
           .select('fabric_id,visual_fields').in('knowledge_state', ['COMPLETE', 'PARTIAL_GOVERNED'])
-          .order('fabric_id').range(from, from + 999);
+          .order('fabric_id').range(from, from + 999), enrichedSource, cacheSource);
         if (error) throw Error('FABRIC_VISUAL_KNOWLEDGE_UNAVAILABLE');
         const page = (data ?? []) as VisualRow[];
         rows.push(...page);

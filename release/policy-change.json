@@ -1,7 +1,7 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Browse production coverage asserted only Fabric Knowledge Pattern, Texture, Character / style and Finish / sheen because the visual colour cache covered 33.4% of eligible fabrics.",
-  "newRule": "Browse treats Colour and Curtains From price as manufacturer-governed facts; Pattern, Texture, Character / style and Finish / sheen remain Fabric Knowledge facets. All filters combine over the same eligible Fabric Master catalogue.",
-  "reason": "Production audit proved every eligible Fabric Master preserves a supplier colourway (9,248/9,248) and controlled colour-family mapping covers 7,380 records without replacing supplier truth. Fabric Knowledge colour remains supplementary only.",
-  "ownerApprovedDecision": "The owner explicitly required Colour as a primary Browse facet sourced from manufacturer colourways, Price from the existing governed guide-price projection, and no Fabric Knowledge requirement for Browse eligibility."
+  "previousRule": "Production Fabric Intelligence customer readers use fabric_visual_knowledge_read_cache directly and Browse derives visual facets from that same governed cache.",
+  "newRule": "Production Fabric Intelligence readers may use the additive, fail-closed fabric_visual_knowledge_enriched view, which is based on fabric_visual_knowledge_read_cache and can only fill audited missing fields. Existing values, provenance, knowledge state, ledger evidence, validator behaviour and commercial Browse logic remain unchanged.",
+  "reason": "The completed offline proof established that 5,028 partial fabrics can gain 38,974 missing governed intelligence fields with zero changes to existing observations, provenance, knowledge state, eligibility, pricing, stock or sample behaviour. The additive overlay fails closed on any identity, hash, vocabulary or no-overwrite mismatch.",
+  "ownerApprovedDecision": "Owner approval is requested only for the additive missing-field overlay architecture and reader-source change. This record does not claim approval; an exact current-HEAD GitHub owner comment is still required. Patch publication, canary insertion, validator changes, ledger changes, knowledge-state changes and core Fabric Intelligence changes are outside this decision."
 }

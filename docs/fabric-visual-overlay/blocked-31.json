@@ -1,0 +1,447 @@
+{
+  "source_manifest_digest": "6102b6336ce13d1bd788e46f6e5d24bd8432fb8015dfc1de1918fc80d5d9a723",
+  "blocked_count": 31,
+  "blocked_requested_field_instances": 33,
+  "fabrics": [
+    {
+      "fabric_id": "pt-1770-905",
+      "blocked_requested_fields": [
+        {
+          "field": "colourTemperature",
+          "current_observation": "balanced",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "pt-5003-284",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "pt-5003-738",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "pt-5003-912",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "pt-7880-529",
+      "blocked_requested_fields": [
+        {
+          "field": "motif",
+          "current_observation": [
+            "abstract"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        },
+        {
+          "field": "patternClass",
+          "current_observation": "subtle-pattern",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "pt-7880-928",
+      "blocked_requested_fields": [
+        {
+          "field": "motif",
+          "current_observation": [
+            "abstract"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        },
+        {
+          "field": "patternClass",
+          "current_observation": "subtle-pattern",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "pt-8632-979",
+      "blocked_requested_fields": [
+        {
+          "field": "motif",
+          "current_observation": [
+            "animal",
+            "architectural"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-dbpf226852",
+      "blocked_requested_fields": [
+        {
+          "field": "motif",
+          "current_observation": [
+            "abstract",
+            "animal",
+            "architectural",
+            "bird",
+            "check",
+            "damask",
+            "flower",
+            "geometric",
+            "ikat",
+            "landscape",
+            "leaf",
+            "ornamental",
+            "paisley",
+            "stripe",
+            "tree"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-debb236554",
+      "blocked_requested_fields": [
+        {
+          "field": "visualSurface",
+          "current_observation": [
+            "smooth"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-debb236555",
+      "blocked_requested_fields": [
+        {
+          "field": "visualSurface",
+          "current_observation": [
+            "smooth"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-debb236556",
+      "blocked_requested_fields": [
+        {
+          "field": "visualSurface",
+          "current_observation": [
+            "smooth"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-dvipsw203",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-f1281-01",
+      "blocked_requested_fields": [
+        {
+          "field": "visualSurface",
+          "current_observation": [
+            "subtle-texture",
+            "visible-weave"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-f1281-02",
+      "blocked_requested_fields": [
+        {
+          "field": "visualSurface",
+          "current_observation": [
+            "subtle-texture",
+            "visible-weave"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-f1281-03",
+      "blocked_requested_fields": [
+        {
+          "field": "visualSurface",
+          "current_observation": [
+            "subtle-texture",
+            "visible-weave"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-f1281-04",
+      "blocked_requested_fields": [
+        {
+          "field": "visualSurface",
+          "current_observation": [
+            "subtle-texture",
+            "visible-weave"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-f1708-01",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-f1708-02",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hama120350",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hgat120432",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hgat120433",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hgat120435",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hltf120940",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hqn3121142",
+      "blocked_requested_fields": [
+        {
+          "field": "motif",
+          "current_observation": [
+            "flower",
+            "landscape",
+            "leaf",
+            "tree"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hqn3121143",
+      "blocked_requested_fields": [
+        {
+          "field": "motif",
+          "current_observation": [
+            "flower",
+            "landscape",
+            "leaf",
+            "tree"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-hqn3121144",
+      "blocked_requested_fields": [
+        {
+          "field": "motif",
+          "current_observation": [
+            "flower",
+            "landscape",
+            "leaf",
+            "tree"
+          ],
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-htef120977",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-htef120978",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-htef120979",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-htef120980",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    },
+    {
+      "fabric_id": "sdg-htef120981",
+      "blocked_requested_fields": [
+        {
+          "field": "patternClass",
+          "current_observation": "botanical",
+          "current_confidence": "REVIEW",
+          "reason": "Concrete current observation; strict no-overwrite overlay refuses the entire fabric patch."
+        }
+      ],
+      "reason": "REQUESTED_FIELD_ALREADY_POPULATED"
+    }
+  ]
+}

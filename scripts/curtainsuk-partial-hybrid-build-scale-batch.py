@@ -14,7 +14,8 @@ def digest(items):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--audit", type=Path, required=True)
-    parser.add_argument("--accepted-dir", type=Path, action="append", required=True)
+    parser.add_argument("--accepted-dir", type=Path, action="append", default=[])
+    parser.add_argument("--accepted-manifest", type=Path)
     parser.add_argument("--batch-number", type=int, required=True)
     parser.add_argument("--batch-size", type=int, required=True)
     parser.add_argument("--kind", choices=["colourway-simple", "colourway", "design-seed", "design-reuse", "design"], required=True)
@@ -34,7 +35,29 @@ def main():
 
     if args.batch_number < 1 or not 1 <= args.batch_size <= 500:
         raise ValueError("BATCH_LIMIT_INVALID")
+    if not args.accepted_dir and not args.accepted_manifest:
+        raise ValueError("ACCEPTED_EVIDENCE_REQUIRED")
     accepted = defaultdict(set)
+    manifest_sources = []
+    manifest_hash = None
+    if args.accepted_manifest:
+        manifest_bytes = args.accepted_manifest.read_bytes()
+        manifest_hash = hashlib.sha256(manifest_bytes).hexdigest()
+        manifest = json.loads(manifest_bytes)
+        if manifest.get("manifest_version") != "partial-hybrid-offline-master-v1" or manifest.get("production_published") is not False or manifest.get("summary", {}).get("original_partial") != 9214 or len(manifest.get("fabrics", [])) != 9214:
+            raise ValueError("ACCEPTED_MANIFEST_INVALID")
+        seen_manifest_ids = set()
+        for fabric in manifest["fabrics"]:
+            fabric_id = fabric["fabric_id"]
+            fields = fabric["requested_fields_covered_offline"]
+            if fabric_id in seen_manifest_ids or not isinstance(fields, list) or len(fields) != len(set(fields)):
+                raise ValueError("ACCEPTED_MANIFEST_DUPLICATE_OR_FIELDS_INVALID")
+            seen_manifest_ids.add(fabric_id)
+            if fields:
+                accepted[fabric_id].update(fields)
+        if len(accepted) != manifest["summary"]["accepted_offline_patched_fabrics"]:
+            raise ValueError("ACCEPTED_MANIFEST_COUNT_INVALID")
+        manifest_sources = [f"actions-run-{source['run_id']}-artifact-{source['artifact_id']}" for source in manifest["source_run_artifacts"]]
     for directory in args.accepted_dir:
         files = sorted((directory / "fabrics").glob("*.json"))
         if not files:
@@ -205,7 +228,8 @@ def main():
         "accepted_fields_sha256": digest(f"{fabric_id}:{field}" for fabric_id, fields in accepted.items() for field in fields),
         "accepted_fields_by_fabric": {fabric_id: sorted(fields) for fabric_id, fields in sorted(accepted.items())},
         "accepted_fabrics_seen": len(accepted),
-        "accepted_artifact_sources": [p.name for p in args.accepted_dir],
+        "accepted_manifest_sha256": manifest_hash,
+        "accepted_artifact_sources": manifest_sources + [p.name for p in args.accepted_dir],
         "batch_number": args.batch_number,
         "batch_size": args.batch_size,
         "model": "gpt-5.6-terra",

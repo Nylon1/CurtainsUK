@@ -1,0 +1,29 @@
+name: PT commercial basis validation
+
+on:
+  push:
+    branches:
+      - "validate/pt-cut-price-primary-20261002"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Focused PT price-basis regression
+        run: npx --no-install tsx --test lib/fabric-master/__tests__/prestigious-standard-price.test.ts
+      - name: Fabric Master tests
+        run: npm run test:fabric-master
+      - name: Storefront tests
+        run: npm run test:storefront
+      - name: TypeScript
+        run: npx tsc --noEmit

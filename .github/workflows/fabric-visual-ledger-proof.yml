@@ -17,6 +17,7 @@ on:
           - partial-pilot-closure
           - partial-scale
           - partial-manifest
+          - import-rehearsal-snapshot
       scope_mode:
         description: "catalogue scope"
         required: true
@@ -67,8 +68,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  import-rehearsal-snapshot:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_mode == 'import-rehearsal-snapshot'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Read-only governed snapshot
+        run: node scripts/curtainsuk-import-rehearsal-snapshot.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: import-rehearsal-readonly-snapshot
+          path: artifacts/import-rehearsal-snapshot/
+
   plan:
-    if: inputs.run_mode != 'artifact-only' && inputs.run_mode != 'partial-pilot' && inputs.run_mode != 'partial-contract-retest' && inputs.run_mode != 'partial-pilot-closure' && inputs.run_mode != 'partial-scale' && inputs.run_mode != 'partial-manifest'
+    if: inputs.run_mode != 'artifact-only' && inputs.run_mode != 'partial-pilot' && inputs.run_mode != 'partial-contract-retest' && inputs.run_mode != 'partial-pilot-closure' && inputs.run_mode != 'partial-scale' && inputs.run_mode != 'partial-manifest' && inputs.run_mode != 'import-rehearsal-snapshot'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:

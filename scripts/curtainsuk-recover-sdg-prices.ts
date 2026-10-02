@@ -37,7 +37,7 @@ async function targetMissing():Promise<Identity[]>{
     if((data??[]).length<1000)break;
   }
   const missing=manifest.filter(x=>!recovered.has(x.supplier_sku));
-  if(missing.length!==200)throw new Error(`SDG_PRICE_RESUME_TARGET_CHANGED:${missing.length}`);
+  if(missing.length>200)throw new Error(`SDG_PRICE_RESUME_TARGET_INCREASED:${missing.length}`);
   return missing;
 }
 
@@ -82,7 +82,7 @@ async function main(){
   await session.login();
   const prices:PriceRow[]=[];
   for(let offset=0;offset<missing.length;offset+=READ_BATCH)prices.push(...await fetchBatch(session,missing.slice(offset,offset+READ_BATCH)));
-  if(prices.length!==200||new Set(prices.map(x=>x.supplierSku)).size!==200)throw new Error("SDG_PRICE_RESUME_FULL_READ_FAILED");
+  if(prices.length!==missing.length||new Set(prices.map(x=>x.supplierSku)).size!==missing.length)throw new Error("SDG_PRICE_RESUME_FULL_READ_FAILED");
 
   const db=createSupplierServiceClient();
   let written=0,approved=0;

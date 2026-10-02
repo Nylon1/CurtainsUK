@@ -1,0 +1,22 @@
+name: PT full price list probe
+on:
+  push:
+    branches:
+      - "probe/pt-full-price-list-20261002"
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PT_WEBTEX_USERNAME: ${{ secrets.PT_WEBTEX_USERNAME }}
+      PT_WEBTEX_PASSWORD: ${{ secrets.PT_WEBTEX_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: npx --no-install tsx scripts/curtainsuk-pt-full-price-list-probe.ts

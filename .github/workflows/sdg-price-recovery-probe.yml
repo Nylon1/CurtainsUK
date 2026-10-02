@@ -1,0 +1,23 @@
+name: SDG price recovery probe
+on:
+  push:
+    branches:
+      - "probe/sdg-price-20261002"
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SDG_TRADE_EMAIL: ${{ secrets.SDG_TRADE_EMAIL }}
+      SDG_TRADE_PASSWORD: ${{ secrets.SDG_TRADE_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Probe authenticated SDG price fields
+        run: npx --no-install tsx scripts/curtainsuk-sdg-price-probe.ts

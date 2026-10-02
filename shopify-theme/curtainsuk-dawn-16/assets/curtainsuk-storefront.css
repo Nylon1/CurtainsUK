@@ -147,7 +147,11 @@
 .cuk-fabric-detail__actions { display:grid; gap:1rem; margin:2rem 0; }
 .cuk-fabric-spec > div { display:grid; grid-template-columns:1fr 1.5fr; gap:1rem; padding:1.2rem 0; border-bottom:1px solid #d8d7cd; }
 .cuk-fabric-spec dd { margin:0; }
-[data-cuk-fabric-browser][aria-busy="true"] [data-cuk-fabric-grid] { opacity:.65; }
+[data-cuk-fabric-grid][data-cuk-stale="true"] { opacity:.65; }
+.cuk-browse-loading { min-height:2.4rem; margin:.5rem 0 1.4rem; color:var(--cuk-muted); }
+.cuk-browse-error { margin:1rem 0; background:#f4f0e7; color:var(--cuk-ink); }
+.cuk-browse-error p { margin:0 0 1rem; }
+.cuk-browse-error .cuk-button { min-height:4.4rem; }
 @media(max-width:749px) { .cuk-fabric-filters { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; } .cuk-fabric-filters .cuk-field:first-child { grid-column:1/-1; } .cuk-fabric-detail { grid-template-columns:1fr; gap:2rem; } }
 
 .cuk-fabric-filters { display:block; }

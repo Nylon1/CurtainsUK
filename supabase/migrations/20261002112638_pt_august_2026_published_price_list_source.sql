@@ -1,0 +1,10 @@
+-- Historical production migration 20261002112638.
+-- It introduced the approved August 2026 PT published-price-list source as a
+-- source-specific Cut Price fallback during incident recovery.
+--
+-- The final generalized rule is fully defined by the immediately following
+-- 20261002114034_pt_cut_price_primary_commercial_basis.sql migration, which
+-- makes PT Cut Price the primary CurtainsUK commercial basis regardless of
+-- recovery source while retaining Standard Price as legacy fallback.
+--
+-- This marker keeps repository migration history aligned with production.

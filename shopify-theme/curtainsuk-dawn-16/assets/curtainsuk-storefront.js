@@ -323,6 +323,25 @@
     });
   }
 
+  const BROWSE_URL_FACETS = ["colour", "pattern", "texture", "finish", "character"];
+  const GROUPED_BROWSE_COLOURS = new Set(["beige/taupe", "white/cream", "yellow/gold"]);
+  const BROWSE_GUIDE_BANDS = new Set(["under-50", "50-100", "100-150", "150-250", "250-plus"]);
+
+  function restoreBrowseUrlFilters(filters, params) {
+    for (const key of BROWSE_URL_FACETS) {
+      const values = [...new Set((params.get(key) || "").split(",")
+        .map(value => value.trim().toLowerCase())
+        .filter(value => value !== "unknown" && (/^[a-z0-9][a-z0-9 -]{0,79}$/.test(value)
+          || (key === "colour" && GROUPED_BROWSE_COLOURS.has(value)))))].slice(0, 12);
+      let field = filters.elements[key];
+      if (!field) { field = document.createElement("input"); field.type = "hidden"; field.name = key; filters.append(field); }
+      field.value = values.join(",");
+    }
+    const guidePrice = filters.elements.guidePrice;
+    if (guidePrice) guidePrice.value = BROWSE_GUIDE_BANDS.has(params.get("guidePrice")) ? params.get("guidePrice") : "";
+    if (filters.elements.query) filters.elements.query.value = (params.get("query") || "").trim().slice(0, 100);
+  }
+
   async function initFabricBrowser(root) {
     const filters = root.querySelector("[data-cuk-fabric-filters]");
     const filterOptions = root.querySelector("[data-cuk-filter-options]");
@@ -483,7 +502,8 @@
           if (current === generation) { grid.removeAttribute("aria-busy"); activeRequest = null; }
         }
       };
-      for (const [key, value] of params) if (filters.elements[key]) {
+      if (root.hasAttribute('data-cuk-shopping')) restoreBrowseUrlFilters(filters, params);
+      else for (const [key, value] of params) if (filters.elements[key]) {
         const element = filters.elements[key]; if (element.tagName === "SELECT" && value && ![...element.options].some((o) => o.value === value)) element.appendChild(option(value, value)); element.value = value;
       }
       filters.addEventListener('reset', () => { cancelPending(); setLoading(); timer = setTimeout(() => {

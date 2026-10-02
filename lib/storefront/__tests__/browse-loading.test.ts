@@ -13,7 +13,7 @@ function requestWith(responses: ((signal: AbortSignal) => Promise<unknown>)[], f
     setTimeout: (callback: () => void, delay: number) => setTimeout(callback, fastTimeout && delay === 15000 ? 0 : delay),
     clearTimeout,
     location: { origin: 'https://www.curtainsuk.com' },
-    document: { querySelectorAll: () => [] },
+    document: { querySelectorAll: () => [], createElement: () => ({ type: '', name: '', value: '' }) },
     window: {},
     fetch: (_url: string, options: { signal: AbortSignal; method?: string }) => {
       calls.push(options.signal);
@@ -26,11 +26,12 @@ function requestWith(responses: ((signal: AbortSignal) => Promise<unknown>)[], f
       fetchBrowseJson: (url: string, signal: AbortSignal) => Promise<unknown>;
       fetchJson: (url: string) => Promise<unknown>;
       fetchNailaBrowse: (root: unknown, url: string, signal: AbortSignal) => Promise<unknown>;
+      restoreBrowseUrlFilters: (form: unknown, params: URLSearchParams) => void;
     },
   };
   const instrumented = source.replace(
     '  document.querySelectorAll("[data-cuk-configurator]").forEach(initConfigurator);',
-    '  globalThis.__browseTest = { fetchBrowseJson, fetchJson, fetchNailaBrowse };',
+    '  globalThis.__browseTest = { fetchBrowseJson, fetchJson, fetchNailaBrowse, restoreBrowseUrlFilters };',
   );
   assert.notEqual(instrumented, source);
   runInNewContext(instrumented, context);
@@ -110,4 +111,38 @@ test('Fabric Detail and Naila retain their existing one-shot request policy', as
   await assert.rejects(naila.fetchNailaBrowse(root, 'https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&naila=1', new AbortController().signal), /Consultation unavailable/);
   assert.equal(naila.calls.length, 1);
   assert.equal((naila.optionsSeen[0].headers as Record<string, string>)['x-curtainsuk-naila-capability'], 'test-capability');
+});
+
+test('Browse URL restoration creates bounded governed hidden fields before a request', () => {
+  const { restoreBrowseUrlFilters, calls } = requestWith([]);
+  const form = {
+    elements: { query: { value: '' }, guidePrice: { value: '' } } as Record<string, { value: string; type?: string; name?: string }>,
+    append(field: { value: string; type?: string; name?: string }) { this.elements[field.name!] = field; },
+  };
+  restoreBrowseUrlFilters(form, new URLSearchParams({
+    colour: 'Blue,white/cream,beige/taupe,yellow/gold,blue/green', pattern: 'botanical', texture: 'smooth',
+    finish: 'matte', character: 'calm', guidePrice: '50-100', query: '  Prestigious  ',
+    naila: '1', supplierCost: '999',
+  }));
+  assert.deepEqual(Object.keys(form.elements).sort(), ['character', 'colour', 'finish', 'guidePrice', 'pattern', 'query', 'texture'].sort());
+  assert.equal(form.elements.colour.value, 'blue,white/cream,beige/taupe,yellow/gold');
+  assert.equal(form.elements.pattern.value, 'botanical');
+  assert.equal(form.elements.texture.value, 'smooth');
+  assert.equal(form.elements.finish.value, 'matte');
+  assert.equal(form.elements.character.value, 'calm');
+  assert.equal(form.elements.guidePrice.value, '50-100');
+  assert.equal(form.elements.query.value, 'Prestigious');
+  assert.equal(calls.length, 0);
+});
+
+test('Browse URL restoration rejects unsupported facet punctuation and price bands', () => {
+  const { restoreBrowseUrlFilters } = requestWith([]);
+  const form = {
+    elements: { guidePrice: { value: '' } } as Record<string, { value: string; type?: string; name?: string }>,
+    append(field: { value: string; type?: string; name?: string }) { this.elements[field.name!] = field; },
+  };
+  restoreBrowseUrlFilters(form, new URLSearchParams({ colour: 'white/black', pattern: 'flower/leaf', guidePrice: '0-9999' }));
+  assert.equal(form.elements.colour.value, '');
+  assert.equal(form.elements.pattern.value, '');
+  assert.equal(form.elements.guidePrice.value, '');
 });

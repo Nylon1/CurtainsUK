@@ -21,3 +21,20 @@ test('missing governed facet input remains an empty constraint, never a fabricat
   assert.deepEqual(filters.finish, []);
   assert.deepEqual(filters.character, []);
 });
+
+test('ordinary and exact grouped governed colours reach the Browse filter', () => {
+  for (const colour of ['blue', 'green', 'red', 'grey', 'beige/taupe', 'white/cream', 'yellow/gold']) {
+    assert.deepEqual(governedBrowseFilters(new URLSearchParams({ colour })).colour, [colour]);
+  }
+  assert.deepEqual(governedBrowseFilters(new URLSearchParams({ colour: 'Blue,white/cream,beige/taupe,yellow/gold' })).colour,
+    ['blue', 'white/cream', 'beige/taupe', 'yellow/gold']);
+});
+
+test('arbitrary slash values remain rejected for colour and every other facet', () => {
+  for (const colour of ['blue/green', 'white/black', 'beige/taupe/grey', '/blue', 'blue/']) {
+    assert.deepEqual(governedBrowseFilters(new URLSearchParams({ colour })).colour, []);
+  }
+  for (const key of ['pattern', 'texture', 'finish', 'character']) {
+    assert.deepEqual(governedBrowseFilters(new URLSearchParams({ [key]: 'white/cream' }))[key], []);
+  }
+});

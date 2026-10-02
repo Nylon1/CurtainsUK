@@ -1,11 +1,13 @@
 export const BROWSE_FACET_KEYS = ['colour', 'pattern', 'texture', 'finish', 'character'] as const;
 export type BrowseFacetKey = typeof BROWSE_FACET_KEYS[number];
+const GROUPED_COLOUR_VALUES = new Set(['beige/taupe', 'white/cream', 'yellow/gold']);
 
 function browseFacetValues(params: URLSearchParams, key: BrowseFacetKey) {
   return [...new Set((params.get(key) ?? '')
     .split(',')
     .map((value) => value.trim().toLowerCase())
-    .filter((value) => /^[a-z0-9][a-z0-9 -]{0,79}$/.test(value) && value !== 'unknown')
+    .filter((value) => ((key === 'colour' && GROUPED_COLOUR_VALUES.has(value))
+      || /^[a-z0-9][a-z0-9 -]{0,79}$/.test(value)) && value !== 'unknown')
     .slice(0, 12))];
 }
 

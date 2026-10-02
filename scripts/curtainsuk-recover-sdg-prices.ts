@@ -10,7 +10,6 @@ const SUPPLIER="sanderson-design-group";
 const SOURCE="SDG authenticated trade portal Product/detail live price recovery";
 const READ_BATCH=100;
 const WRITE_BATCH=25;
-const APPROVAL_BATCH=10;
 const sleep=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
 
 type Identity={supplier_sku:string;brand_id:string;lifecycle_state:"CURRENT"|"UNKNOWN"};
@@ -86,8 +85,7 @@ async function main(){
   if(prices.length!==200||new Set(prices.map(x=>x.supplierSku)).size!==200)throw new Error("SDG_PRICE_RESUME_FULL_READ_FAILED");
 
   const db=createSupplierServiceClient();
-  const approvalEvents:any[]=[];
-  let written=0;
+  let written=0,approved=0;
   for(let offset=0;offset<prices.length;offset+=WRITE_BATCH){
     const batch=prices.slice(offset,offset+WRITE_BATCH);
     const runId=`sdg-price-recovery-resume-20261002:${String(offset/WRITE_BATCH+1).padStart(3,"0")}:${randomUUID()}`;
@@ -103,8 +101,6 @@ async function main(){
       });
       const validation=validateSupplierIntelligenceSnapshot(snapshot,{known_supplier:true,known_sku:true,allowed_currencies:["GBP"],allowed_stock_units:["METRE"],required_price_field:"CUT_TRADE_PRICE",freshness_policies:[]},new Date());
       if(validation.status!=="VALIDATED")throw new Error(`SDG_PRICE_RESUME_VALIDATION:${row.supplierSku}`);
-      approvalEvents.push({event_id:`${snapshot.snapshot_id}:price-recovery-resume-policy`,snapshot_id:snapshot.snapshot_id,promotion_state:"APPROVED_FOR_PROJECTION",actor_type:"POLICY",actor_id:null,
-        reason:"Completed 2026-10-02 SDG price incident recovery from fresh authorised Product/detail price:true evidence. No inference, stock write, supplier order or Shopify write.",rejection_reason:null,previous_approved_snapshot_id:null,created_at:new Date().toISOString()});
       return {snapshot:{...snapshot,run_id:runId,source_type:snapshot.source.type,source_name:snapshot.source.name,source_reference:snapshot.source.reference,
         validation_status:validation.status,validation_errors:validation.errors,stock_expires_at:validation.stock_expires_at,price_expires_at:validation.price_expires_at,lifecycle_expires_at:validation.lifecycle_expires_at,
         normalized_payload:{...snapshot,recovery:{incident:"2026-10-02-stock-retention-price-evidence-deletion",inferred:false,live_supplier_read:true,resume:true}}},
@@ -112,17 +108,9 @@ async function main(){
     });
     const run={run_id:runId,supplier_id:SUPPLIER,adapter_id:"sdg-live-price-recovery-resume",mode:"SHADOW",source_type:"MANUAL_PORTAL",source_name:SOURCE,
       started_at:batch[0].checkedAt,completed_at:batch[batch.length-1].checkedAt,status:"SUCCEEDED",snapshots_received:items.length,snapshots_appended:items.length,error_code:null,shopify_writes:0,production_schedule_created:false};
-    const {error}=await db.rpc("append_supplier_snapshot_batch",{p_run:run,p_items:items});
-    if(error)throw new Error("SDG_PRICE_RESUME_APPEND_FAILED");
-    written+=items.length;
-  }
-
-  let approved=0;
-  for(let offset=0;offset<approvalEvents.length;offset+=APPROVAL_BATCH){
-    const chunk=approvalEvents.slice(offset,offset+APPROVAL_BATCH);
-    const {error}=await db.from("supplier_promotion_events").insert(chunk);
-    if(error)throw new Error("SDG_PRICE_RESUME_APPROVAL_FAILED");
-    approved+=chunk.length;
+    const {data:applied,error}=await db.rpc("append_supplier_price_incident_recovery_batch",{p_run:run,p_items:items});
+    if(error||Number(applied)!==items.length)throw new Error("SDG_PRICE_RESUME_APPEND_APPROVE_FAILED");
+    written+=items.length;approved+=items.length;
   }
 
   const {count:recoveredCount,error:recoveredError}=await db.from("supplier_snapshots").select("snapshot_id",{count:"exact",head:true})

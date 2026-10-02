@@ -1,0 +1,33 @@
+name: SDG price incident recovery
+
+on:
+  push:
+    branches:
+      - "recovery/sdg-prices-20261002"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sdg-price-recovery-20261002
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
+      SDG_TRADE_EMAIL: ${{ secrets.SDG_TRADE_EMAIL }}
+      SDG_TRADE_PASSWORD: ${{ secrets.SDG_TRADE_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Recover approved SDG price evidence from live authorised trade source
+        run: npx --no-install tsx scripts/curtainsuk-recover-sdg-prices.ts

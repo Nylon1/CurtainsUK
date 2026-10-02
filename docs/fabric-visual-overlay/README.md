@@ -1,20 +1,21 @@
 # Empty Fabric Intelligence overlay rollout
 
-This branch starts from protected `release/production` commit
-`7b69be74f5b46829cba03edf0e661eb4f08bdfe4`. It contains **no patch
-inserts**. Neither migration has been applied and the application has not been
-deployed.
+The overlay source is now on protected `release/production`. It contains **no patch
+inserts**. The empty overlay migration has been applied to production and its
+11,815-row zero-patch parity gate passed with 0 differences. The Browse-source
+migration and application reader deployment remain pending.
 
 ## Scope and rollout gates
 
-1. Apply `20261002081604_fabric_visual_knowledge_overlay_empty.sql` only in a
-   separately approved rollout. This creates the private patch table, its
-   overlay-specific vocabulary guard, and the fail-closed enriched view. The
-   table starts empty. The existing cache and Browse source stay in place.
-2. With zero patch rows, compare all `11,815` cache rows to the enriched view:
+1. `20261002201534_fabric_visual_knowledge_overlay_empty.sql` is **applied**.
+   It created the private patch table, overlay-specific vocabulary guard, and
+   fail-closed enriched view. The patch table remains empty and the existing
+   Browse source remains in place.
+2. The live zero-patch parity gate has **passed** across all `11,815` rows:
    `fabric_id`, `supplier_id`, `supplier_sku`, `knowledge_state`,
-   `visual_fields`, `provenance`, and `refreshed_at` must match. Stop if any row
-   or value differs. Check that the Browse dirty queue did not change.
+   `visual_fields`, `provenance`, and `refreshed_at` matched with
+   **0 differences**. Browse dirty rows remained `0` and
+   `knowledge_cache_dirty=false`.
 3. Only after that parity gate, apply
    `20261002083409_fabric_visual_knowledge_overlay_browse_source.sql` and
    deploy the two FI read-source changes. The Browse SQL is byte-equivalent to

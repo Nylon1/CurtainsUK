@@ -10,11 +10,6 @@ import {
 type Row = Record<string, unknown>;
 
 const FABRIC_MASTER_SELECT = "*,supplier_brands!inner(display_name),fabric_designs!inner(*,fabric_collections!inner(display_name))";
-// The consultation handoff only needs to decide whether an already-selected
-// Fabric Master identity may still be shown. Keep this deliberately narrower
-// than full retail hydration: the customer UI loads its own customer-safe card
-// details afterwards, while the gateway needs only the existing browsable rule.
-const FABRIC_MASTER_HANDOFF_SELECT = "fabric_id,supplier_id,supplier_sku,colour_name,lifecycle_state,staging_catalog_visible,imagery,supplier_brands!inner(display_name),fabric_designs!inner(display_name)";
 
 function databaseError(error: { code?: string; message?: string } | null) {
   if (error) {
@@ -154,7 +149,11 @@ export async function fabricMasterRecordById(fabricId: string) {
 
 export async function verifiedSupplierCostMinor(supplierId: string, supplierSku: string) {
   const database = createSupplierServiceClient();
-  // Walk bounded pages so repeated stock-only observations never age a genuine price out of the lookup.
+  // PT Cut Price is primary and can be older than a later stock-only/legacy
+  // Standard observation, so gather the bounded history before selecting its
+  // commercial basis. Other suppliers can continue to return page-by-page.
+  const ptSnapshots: SupplierPriceSnapshotCandidate[] = [];
+  const ptPromotionEvents: SupplierPromotionObservation[] = [];
   for (let from=0; ; from+=100) {
     const {data:snapshots,error:snapshotError}=await database.from("supplier_snapshots")
       .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(standard_trade_price,cut_trade_price,currency)")
@@ -166,9 +165,20 @@ export async function verifiedSupplierCostMinor(supplierId: string, supplierSku:
     const {data:promotionEvents,error:promotionError}=await database.from("supplier_promotion_events")
       .select("snapshot_id,promotion_state,created_at").in("snapshot_id",candidates.map(s=>s.snapshot_id)).order("created_at",{ascending:false});
     databaseError(promotionError);
-    const price=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots:candidates,promotionEvents:(promotionEvents??[]) as SupplierPromotionObservation[]});
-    if(price!==null) return price;
+
+    if(supplierId==="prestigious-textiles") {
+      ptSnapshots.push(...candidates);
+      ptPromotionEvents.push(...((promotionEvents??[]) as SupplierPromotionObservation[]));
+    } else {
+      const price=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots:candidates,promotionEvents:(promotionEvents??[]) as SupplierPromotionObservation[]});
+      if(price!==null) return price;
+    }
     if(candidates.length<100) break;
+  }
+
+  if(supplierId==="prestigious-textiles") {
+    const price=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots:ptSnapshots,promotionEvents:ptPromotionEvents});
+    if(price!==null) return price;
   }
   throw new Error("PRICE_REQUIRES_VERIFICATION");
 }
@@ -193,44 +203,4 @@ export async function fabricMasterRecordsByIds(ids: string[]) {
   const { data, error } = await createSupplierServiceClient().from("fabric_colourways").select(FABRIC_MASTER_SELECT).in("fabric_id", ids);
   databaseError(error);
   return ((data ?? []) as Row[]).map(mapFabricMasterRow);
-}
-
-function nestedDisplayName(value: unknown) {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return "";
-  const displayName = (value as Row).display_name;
-  return typeof displayName === "string" ? displayName : "";
-}
-
-/**
- * Bounded, batched presentation gate for HCI recommendations. This preserves
- * Fabric Master's existing recommendation-eligibility rule without fetching
- * every supplier fact and nested collection field for each displayed card.
- */
-export function recommendationEligibleFabricIdsFromHandoffRows(rows: Row[]) {
-  return new Set(rows.flatMap((row) => {
-    const canonical = [
-      row.fabric_id,
-      row.supplier_id,
-      row.supplier_sku,
-      nestedDisplayName(row.supplier_brands),
-      nestedDisplayName(row.fabric_designs),
-      row.colour_name,
-    ].every((value) => typeof value === "string" && value.length > 0);
-    const visible = row.staging_catalog_visible === true;
-    const current = row.lifecycle_state !== "DISCONTINUED";
-    const imagery = Array.isArray(row.imagery) && row.imagery.length > 0;
-    return canonical && visible && current && imagery && typeof row.fabric_id === "string" ? [row.fabric_id] : [];
-  }));
-}
-
-export async function fabricMasterRecommendationEligibleIds(ids: string[]) {
-  const uniqueIds = [...new Set(ids)];
-  if (uniqueIds.length > 48) throw new Error("RETAIL_PAGE_TOO_LARGE");
-  if (!uniqueIds.length) return new Set<string>();
-  const { data, error } = await createSupplierServiceClient()
-    .from("fabric_colourways")
-    .select(FABRIC_MASTER_HANDOFF_SELECT)
-    .in("fabric_id", uniqueIds);
-  databaseError(error);
-  return recommendationEligibleFabricIdsFromHandoffRows((data ?? []) as Row[]);
 }

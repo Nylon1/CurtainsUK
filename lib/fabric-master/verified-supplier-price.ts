@@ -15,11 +15,35 @@ function firstRelation(value: SupplierPriceSnapshotCandidate["prices"]) {
   return Array.isArray(value) ? value[0] ?? null : value;
 }
 
+function approvedCandidates(input: {
+  snapshots: readonly SupplierPriceSnapshotCandidate[];
+  promotionEvents: readonly SupplierPromotionObservation[];
+  now: number;
+}) {
+  const latestPromotionBySnapshot = new Map<string, SupplierPromotionObservation>();
+  for (const event of [...input.promotionEvents].sort((left, right) => Date.parse(right.created_at) - Date.parse(left.created_at))) {
+    if (!latestPromotionBySnapshot.has(event.snapshot_id)) latestPromotionBySnapshot.set(event.snapshot_id, event);
+  }
+  return [...input.snapshots]
+    .sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at))
+    .filter((snapshot) => {
+      const latestPromotion = latestPromotionBySnapshot.get(snapshot.snapshot_id);
+      const checked = Date.parse(snapshot.checked_at);
+      const price = firstRelation(snapshot.prices);
+      return latestPromotion?.promotion_state === "APPROVED_FOR_PROJECTION"
+        && Number.isFinite(checked)
+        && checked <= input.now
+        && price?.currency === "GBP";
+    });
+}
+
 /**
- * PT uses genuine Standard Price ex VAT; other suppliers retain their approved
- * cut-price basis. Neither field is derived from the other. The latest genuine
- * approved price remains valid until superseded. Age-based
- * expiry fields are historical metadata, not a price gate. Explicit revocation remains authoritative.
+ * CurtainsUK PT commercial rule: Cut Price is the primary supplier base price.
+ * Older approved Standard Price evidence remains a legacy fallback where no
+ * approved Cut Price exists. SDG continues to use approved Cut Price.
+ *
+ * Raw supplier fields remain separate evidence; this selector does not rewrite,
+ * derive or mutate either source field.
  */
 export function selectCurrentApprovedSupplierCostMinor(input: {
   supplierId: string;
@@ -27,26 +51,23 @@ export function selectCurrentApprovedSupplierCostMinor(input: {
   promotionEvents: readonly SupplierPromotionObservation[];
   now?: Date;
 }) {
-  const now = (input.now ?? new Date()).getTime();
-  const latestPromotionBySnapshot = new Map<string, SupplierPromotionObservation>();
-  for (const event of [...input.promotionEvents].sort((left, right) => Date.parse(right.created_at) - Date.parse(left.created_at))) {
-    if (!latestPromotionBySnapshot.has(event.snapshot_id)) latestPromotionBySnapshot.set(event.snapshot_id, event);
-  }
+  const candidates = approvedCandidates({
+    snapshots: input.snapshots,
+    promotionEvents: input.promotionEvents,
+    now: (input.now ?? new Date()).getTime(),
+  });
 
-  for (const snapshot of [...input.snapshots].sort((left, right) => Date.parse(right.checked_at) - Date.parse(left.checked_at))) {
-    const latestPromotion = latestPromotionBySnapshot.get(snapshot.snapshot_id);
-    const price = firstRelation(snapshot.prices);
-    const basePrice = Number(input.supplierId === 'prestigious-textiles'
-      ? price?.standard_trade_price : price?.cut_trade_price);
-    if (latestPromotion?.promotion_state !== "APPROVED_FOR_PROJECTION"
-        || !Number.isFinite(Date.parse(snapshot.checked_at))
-        || Date.parse(snapshot.checked_at) > now
-        || price?.currency !== "GBP"
-        || !Number.isFinite(basePrice)
-        || basePrice <= 0) {
-      continue;
+  const selectField = (field: "cut_trade_price" | "standard_trade_price") => {
+    for (const snapshot of candidates) {
+      const price = firstRelation(snapshot.prices);
+      const value = Number(price?.[field]);
+      if (Number.isFinite(value) && value > 0) return Math.round(value * 100);
     }
-    return Math.round(basePrice * 100);
+    return null;
+  };
+
+  if (input.supplierId === "prestigious-textiles") {
+    return selectField("cut_trade_price") ?? selectField("standard_trade_price");
   }
-  return null;
+  return selectField("cut_trade_price");
 }

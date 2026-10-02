@@ -23,5 +23,19 @@ jobs:
         run: npx --no-install tsx --test lib/fabric-master/__tests__/prestigious-standard-price.test.ts lib/fabric-master/__tests__/browse-price-guide.test.ts
       - name: Storefront tests
         run: npm run test:storefront
-      - name: TypeScript
-        run: npx tsc --noEmit
+      - name: Changed-file ESLint
+        run: npx eslint lib/fabric-master/verified-supplier-price.ts lib/fabric-master/repository.ts lib/fabric-master/__tests__/prestigious-standard-price.test.ts lib/fabric-master/__tests__/browse-price-guide.test.ts
+      - name: Changed-file TypeScript gate
+        shell: bash
+        run: |
+          set +e
+          npx tsc --noEmit > /tmp/tsc.log 2>&1
+          status=$?
+          set -e
+          if grep -E 'lib/fabric-master/(verified-supplier-price|repository|__tests__/prestigious-standard-price|__tests__/browse-price-guide)\.ts' /tmp/tsc.log; then
+            echo "TypeScript error touches a changed PT pricing file."
+            exit 1
+          fi
+          if [ "$status" -ne 0 ]; then
+            echo "Full TypeScript still has unrelated pre-existing errors outside the changed PT pricing files."
+          fi

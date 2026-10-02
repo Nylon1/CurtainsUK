@@ -1,22 +1,19 @@
+import { load } from "cheerio";
 import { PtWebtexSession } from "../lib/supplier-sync/adapters/pt-webtex-session";
-
 async function main(){
   const session=new PtWebtexSession();
   await session.login(process.env.PT_WEBTEX_USERNAME??"",process.env.PT_WEBTEX_PASSWORD??"");
-  const path="/webtex/js/menu.js";
-  const response:Response=await (session as any).request(path);
-  const js=await response.text();
-  const needles=["DOWNLOADPRICE","DownloadPrice","downloadprice","PriceList","price_list","priceList"];
-  const hits:any[]=[];
-  for(const needle of needles){
-    let from=0;
-    while(true){
-      const i=js.indexOf(needle,from);if(i<0)break;
-      hits.push({needle,index:i,snippet:js.slice(Math.max(0,i-1800),i+5000)});
-      from=i+needle.length;
-      if(hits.length>50)break;
-    }
-  }
-  console.log(JSON.stringify({outcome:"SUCCEEDED",hits}));
+  const response:Response=await (session as any).request("/webtex/Content/StockEnquiry/Default.aspx");
+  const html=load(await response.text());
+  const raw=html("#webtexPageLoadData").attr("value")??"";
+  if(!raw)throw new Error("PT_MENU_PAGE_DATA_MISSING");
+  const xml=load(decodeURIComponent(raw),{xmlMode:true});
+  const items:any[]=[];
+  xml("PULLDOWNMENU *").each((_,el)=>{
+    const tag=(el as any).tagName??"";
+    const attrs=(el as any).attribs??{};
+    if(/price|download/i.test(tag+" "+JSON.stringify(attrs)))items.push({tag,attrs});
+  });
+  console.log(JSON.stringify({outcome:"SUCCEEDED",items}));
 }
-main().catch(e=>{console.error(JSON.stringify({outcome:"FAILED",code:e instanceof Error?e.message:"PT_PRICE_ROUTE_DISCOVERY_FAILED"}));process.exitCode=1;});
+main().catch(e=>{console.error(JSON.stringify({outcome:"FAILED",code:e instanceof Error?e.message:"PT_MENU_ROUTE_FAILED"}));process.exitCode=1;});

@@ -126,7 +126,55 @@
     return data;
   }
 
-  async function fetchNailaBrowse(root, destination) {
+  // Ordinary catalogue GETs only. Naila's capability request and all mutations
+  // retain their existing request policy.
+  async function fetchBrowseJson(url, signal) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      if (signal.aborted) throw new DOMException("Browse request replaced", "AbortError");
+      const controller = new AbortController();
+      const abort = () => controller.abort();
+      signal.addEventListener("abort", abort, { once: true });
+      const timeout = setTimeout(abort, 15000);
+      let retry = false, backoff = 350;
+      try {
+        const response = await fetch(url, {
+          method: "GET", credentials: url.startsWith(location.origin) ? "same-origin" : "omit",
+          mode: "cors", headers: { Accept: "application/json" }, signal: controller.signal,
+        });
+        let data;
+        try { data = await response.json(); }
+        catch (error) { if (controller.signal.aborted || response.ok) throw error; data = {}; }
+        if (response.ok) return data;
+        retry = [429, 500, 502, 503, 504].includes(response.status);
+        const error = new Error(data.error || "The fabrics could not be refreshed just now.");
+        error.status = response.status;
+        if (response.status === 429) {
+          const value = response.headers.get("Retry-After");
+          error.retryAfter = value === null ? 0 : /^\d+(\.\d+)?$/.test(value) ? Number(value) : Infinity;
+          if (error.retryAfter <= 2) backoff = Math.max(backoff, error.retryAfter * 1000);
+        }
+        throw error;
+      } catch (error) {
+        if (signal.aborted) throw new DOMException("Browse request replaced", "AbortError");
+        // Fetch failures and timeouts are retryable; ordinary 4xx and other
+        // server responses are not. A long Retry-After must not hold the UI.
+        const retryAfter = error.status === 429 ? Number(error.retryAfter) : 0;
+        if (error.name === "AbortError" || error instanceof TypeError) retry = true;
+        if (attempt === 1 || !retry || (error.status === 429 && retryAfter > 2)) throw error;
+      } finally {
+        clearTimeout(timeout);
+        signal.removeEventListener("abort", abort);
+      }
+      await new Promise((resolve, reject) => {
+        const wait = setTimeout(() => { signal.removeEventListener("abort", cancelled); resolve(); }, backoff);
+        const cancelled = () => { clearTimeout(wait); reject(new DOMException("Browse request replaced", "AbortError")); };
+        signal.addEventListener("abort", cancelled, { once: true });
+        if (signal.aborted) cancelled();
+      });
+    }
+  }
+
+  async function fetchNailaBrowse(root, destination, signal) {
     const url = new URL(destination, location.origin);
     if (root.dataset.nailaEnabled !== 'true' || root.dataset.nailaActive !== 'true' ||
       url.protocol !== 'https:' || url.origin !== location.origin || url.username || url.password || url.hash ||
@@ -136,13 +184,14 @@
       typeof root.cukNailaBrowseProof !== 'function')
       throw new Error('Your consultation connection is not ready. Please continue with Naila and retry.');
     const proof = await root.cukNailaBrowseProof(url.href);
+    if (signal?.aborted) throw new DOMException("Browse request replaced", "AbortError");
     if (root.dataset.nailaEnabled !== 'true' || root.dataset.nailaActive !== 'true' ||
       typeof proof?.['x-curtainsuk-naila-capability'] !== 'string' || !proof['x-curtainsuk-naila-capability'] ||
       proof['x-curtainsuk-naila-capability'].length > 180 ||
       !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(proof?.['x-curtainsuk-naila-session'] ?? ''))
       throw new Error('Your consultation connection is not ready. Please continue with Naila and retry.');
     return fetchJson(url.href, {
-      method: 'GET', credentials: 'same-origin', redirect: 'error',
+      method: 'GET', credentials: 'same-origin', redirect: 'error', signal,
       headers: { Accept: 'application/json', 'Content-Type': 'application/json',
         'x-curtainsuk-naila-capability': proof['x-curtainsuk-naila-capability'],
         'x-curtainsuk-naila-session': proof['x-curtainsuk-naila-session'] },
@@ -284,15 +333,48 @@
     const params = new URLSearchParams(location.search);
     const windowSlug = params.get("window") || readJson(PROJECT_KEY, {}).windowSlug || "";
     let page = Math.max(1, Number(params.get("page")) || 1), generation = 0, timer;
+    let activeRequest, hasResults = false;
+    const status = root.querySelector("[data-cuk-browse-status]");
+    const errorBox = root.querySelector("[data-cuk-error]");
+    const previous = navigation.querySelector("[data-cuk-previous]");
+    const next = navigation.querySelector("[data-cuk-next]");
+    const cancelPending = () => {
+      ++generation;
+      clearTimeout(timer);
+      activeRequest?.abort();
+      activeRequest = null;
+    };
+    const setLoading = () => {
+      if (status) status.textContent = hasResults ? "Refreshing fabrics. Previous results are shown while we check prices and availability." : "Loading fabrics…";
+      grid.setAttribute("aria-busy", "true");
+      grid.inert = hasResults;
+      grid.dataset.cukStale = hasResults ? "true" : "false";
+      previous.disabled = true; next.disabled = true;
+      errorBox.hidden = true;
+    };
+    const showBrowseError = (error, isNaila) => {
+      errorBox.querySelector("[data-cuk-error-message]").textContent = isNaila
+        ? error.message || "Your consultation connection could not be refreshed."
+        : "We couldn't refresh fabrics just now. Please try again.";
+      errorBox.hidden = false;
+      if (status) status.textContent = hasResults
+        ? "Previous results are shown. Prices and availability have not been refreshed."
+        : "Fabrics are unavailable just now.";
+      if (!hasResults) grid.replaceChildren();
+      grid.inert = hasResults;
+      grid.dataset.cukStale = hasResults ? "true" : "false";
+      previous.disabled = true; next.disabled = true;
+    };
     // Additive presentation bridge. Completely absent when Naila is disabled.
     let nailaPaused = false;
     if (root.dataset.nailaEnabled === 'true') {
-      root.addEventListener('cuk:naila:pause', () => { nailaPaused = true; ++generation; clearTimeout(timer); });
+      root.addEventListener('cuk:naila:pause', () => { nailaPaused = true; cancelPending(); grid.removeAttribute('aria-busy'); });
       root.addEventListener('cuk:naila:browse', () => { nailaPaused = false; });
       root.addEventListener('cuk:naila:render', event => {
         if (root.dataset.nailaActive !== 'true') return;
-        ++generation; clearTimeout(timer); root.removeAttribute('aria-busy');
+        cancelPending(); grid.removeAttribute('aria-busy'); grid.inert = false; grid.dataset.cukStale = "false";
         renderFabricCards(root, event.detail);
+        hasResults = true; if (status) status.textContent = ""; errorBox.hidden = true;
       });
       filters.addEventListener('input', () => { nailaPaused = false; });
       filters.addEventListener('reset', () => { nailaPaused = false; });
@@ -335,7 +417,10 @@
       }
       const load = async () => {
         if (nailaPaused) return;
-        const current = ++generation;
+        cancelPending();
+        const current = generation;
+        const controller = new AbortController();
+        activeRequest = controller;
         const url = root.hasAttribute('data-cuk-shopping') && root.dataset.browsePreviewEndpoint ? new URL(root.dataset.browsePreviewEndpoint) : apiUrl();
         url.searchParams.set("view", "retail"); url.searchParams.set("page", String(page));
         if (root.hasAttribute('data-cuk-shopping')) url.searchParams.set('browseGuide','1');
@@ -344,10 +429,12 @@
           url.searchParams.set('naila', '1');
           if (root.dataset.nailaPriceLevel) url.searchParams.set('nailaPriceLevel', root.dataset.nailaPriceLevel);
         }
-        root.setAttribute("aria-busy", "true");
+        setLoading();
         try {
-          const catalog = root.dataset.nailaEnabled === 'true' && root.dataset.nailaActive === 'true'
-            ? await fetchNailaBrowse(root, url.href) : await fetchJson(url.href); if (current !== generation) return;
+          const isNaila = root.dataset.nailaEnabled === 'true' && root.dataset.nailaActive === 'true';
+          const catalog = isNaila
+            ? await fetchNailaBrowse(root, url.href, controller.signal) : await fetchBrowseJson(url.href, controller.signal);
+          if (current !== generation || controller.signal.aborted) return;
           // Publish the current form state before the Browse presentation renders.
           // Active filter chips deliberately read the URL because hidden fields are
           // replaced by the controller during refresh/reset.
@@ -383,24 +470,32 @@
             else root.querySelector('[data-cuk-active-filters]').textContent = [...new FormData(filters)].filter(([,value])=>String(value).trim()).map(([key,value])=>key === 'guidePrice' ? `Curtains from: ${catalog.facets.guidePrices.find(band=>band.value===value)?.label || ''}` : humanise(String(value))).join(' · ') || 'All fabrics';
           }
           renderFabricCards(root, catalog);
-          navigation.querySelector("[data-cuk-previous]").disabled = page <= 1;
-          navigation.querySelector("[data-cuk-next]").disabled = page >= catalog.pages;
-          root.querySelector("[data-cuk-error]").hidden = true;
+          hasResults = true;
+          grid.inert = false; grid.dataset.cukStale = "false";
+          if (status) status.textContent = "";
+          previous.disabled = page <= 1;
+          next.disabled = page >= catalog.pages;
+          errorBox.hidden = true;
           if (root.dataset.nailaEnabled === 'true') root.dispatchEvent(new CustomEvent('cuk:naila:loaded'));
-        } catch (error) { if (current === generation) showError(error); } finally { if (current === generation) root.removeAttribute("aria-busy"); }
+        } catch (error) {
+          if (current === generation && !controller.signal.aborted) showBrowseError(error, root.dataset.nailaActive === 'true');
+        } finally {
+          if (current === generation) { grid.removeAttribute("aria-busy"); activeRequest = null; }
+        }
       };
       for (const [key, value] of params) if (filters.elements[key]) {
         const element = filters.elements[key]; if (element.tagName === "SELECT" && value && ![...element.options].some((o) => o.value === value)) element.appendChild(option(value, value)); element.value = value;
       }
-      filters.addEventListener('reset', () => { clearTimeout(timer); timer = setTimeout(() => {
+      filters.addEventListener('reset', () => { cancelPending(); setLoading(); timer = setTimeout(() => {
         // Hidden visual-choice inputs reflect value into defaultValue; native reset alone retains them.
         if (root.hasAttribute('data-cuk-shopping')) for (const field of filters.elements) if (field.type === 'hidden') field.value = '';
         page = 1; load();
       }, 0); });
       filters.addEventListener("submit", (event) => event.preventDefault());
-      filters.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(() => { page = 1; load(); }, 300); });
-      navigation.querySelector("[data-cuk-previous]").addEventListener("click", async () => { page = Math.max(1, page - 1); await load(); grid.scrollIntoView({ block: "start" }); });
-      navigation.querySelector("[data-cuk-next]").addEventListener("click", async () => { page++; await load(); grid.scrollIntoView({ block: "start" }); });
+      filters.addEventListener("input", () => { cancelPending(); setLoading(); timer = setTimeout(() => { page = 1; load(); }, 300); });
+      errorBox.querySelector("[data-cuk-retry]")?.addEventListener("click", () => { clearTimeout(timer); load(); });
+      previous.addEventListener("click", async () => { page = Math.max(1, page - 1); await load(); grid.scrollIntoView({ block: "start" }); });
+      next.addEventListener("click", async () => { page++; await load(); grid.scrollIntoView({ block: "start" }); });
       await load();
     } catch (error) { showError(error); }
   }

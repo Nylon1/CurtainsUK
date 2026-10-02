@@ -1,0 +1,46 @@
+name: Live PT pricing smoke
+
+on:
+  push:
+    branches:
+      - "validate/live-pt-pricing-20261002"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Read public PT pricing controls
+        run: |
+          node <<'NODE'
+          const controls = [
+            {id:'pt-1315-517', expectedGuideMinor:7020, basis:'PDF Cut Price 23.40'},
+            {id:'pt-1204-212', expectedGuideMinor:6120, basis:'legacy Standard fallback 20.40'},
+          ];
+          for (const c of controls) {
+            const u = new URL('https://www.curtainsuk.com/apps/curtainsuk-decision/catalog');
+            u.searchParams.set('view','retail');
+            u.searchParams.set('browseGuide','1');
+            u.searchParams.set('fabric',c.id);
+            const r = await fetch(u,{cache:'no-store'});
+            if (r.status !== 200) throw new Error(`HTTP_${r.status}:${c.id}`);
+            const body = await r.json();
+            const f = body.fabric;
+            if (!f || f.id !== c.id) throw new Error(`IDENTITY_MISMATCH:${c.id}`);
+            if (f.browseGuide?.amountMinor !== c.expectedGuideMinor || f.browseGuide?.currency !== 'GBP') {
+              throw new Error(`GUIDE_MISMATCH:${c.id}:actual=${JSON.stringify(f.browseGuide)}`);
+            }
+            const json=JSON.stringify(f);
+            for (const forbidden of ['standard_trade_price','cut_trade_price','supplierCost','supplier_cost']) {
+              if (json.includes(forbidden)) throw new Error(`PRIVATE_PRICE_LEAK:${forbidden}`);
+            }
+            console.log(JSON.stringify({id:c.id,status:'PASS',guideMinor:f.browseGuide.amountMinor,basis:c.basis}));
+          }
+          NODE

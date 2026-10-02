@@ -149,7 +149,11 @@ export async function fabricMasterRecordById(fabricId: string) {
 
 export async function verifiedSupplierCostMinor(supplierId: string, supplierSku: string) {
   const database = createSupplierServiceClient();
-  // Walk bounded pages so repeated stock-only observations never age a genuine price out of the lookup.
+  // PT Cut Price is primary and can be older than a later stock-only/legacy
+  // Standard observation, so gather the bounded history before selecting its
+  // commercial basis. Other suppliers can continue to return page-by-page.
+  const ptSnapshots: SupplierPriceSnapshotCandidate[] = [];
+  const ptPromotionEvents: SupplierPromotionObservation[] = [];
   for (let from=0; ; from+=100) {
     const {data:snapshots,error:snapshotError}=await database.from("supplier_snapshots")
       .select("snapshot_id,checked_at,price_expires_at,prices:supplier_snapshot_prices!inner(standard_trade_price,cut_trade_price,currency)")
@@ -161,9 +165,20 @@ export async function verifiedSupplierCostMinor(supplierId: string, supplierSku:
     const {data:promotionEvents,error:promotionError}=await database.from("supplier_promotion_events")
       .select("snapshot_id,promotion_state,created_at").in("snapshot_id",candidates.map(s=>s.snapshot_id)).order("created_at",{ascending:false});
     databaseError(promotionError);
-    const price=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots:candidates,promotionEvents:(promotionEvents??[]) as SupplierPromotionObservation[]});
-    if(price!==null) return price;
+
+    if(supplierId==="prestigious-textiles") {
+      ptSnapshots.push(...candidates);
+      ptPromotionEvents.push(...((promotionEvents??[]) as SupplierPromotionObservation[]));
+    } else {
+      const price=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots:candidates,promotionEvents:(promotionEvents??[]) as SupplierPromotionObservation[]});
+      if(price!==null) return price;
+    }
     if(candidates.length<100) break;
+  }
+
+  if(supplierId==="prestigious-textiles") {
+    const price=selectCurrentApprovedSupplierCostMinor({supplierId,snapshots:ptSnapshots,promotionEvents:ptPromotionEvents});
+    if(price!==null) return price;
   }
   throw new Error("PRICE_REQUIRES_VERIFICATION");
 }

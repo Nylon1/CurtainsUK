@@ -1,0 +1,238 @@
+[
+  {
+    "fabric_id": "pt-1204-212",
+    "supplier_id": "prestigious-textiles",
+    "supplier_sku": "1204/212",
+    "brand_id": "prestigious-textiles",
+    "design_id": "pt-design-1204",
+    "approved_image_type": "MAIN",
+    "approved_image_hash": "94e7ba21e8111d08a7e47afad97461e14b2636c8e80c879d11c5aa09ec0928a1",
+    "approved_image_url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-94e7ba21e8111d08a7e47afad97461e14b2636c8e80c879d11c5aa09ec0928a1.jpg",
+    "base_visual_fields_hash": "19118fbfc5891bec1b96498f13bd7234c5d48db99266a972084dc3eb32e4632a",
+    "base_provenance_hash": "bb9bc09aa080a3f1856eae548fa8e9fb3e1b5d8ebbedcc4102fc28588538ef0c",
+    "requested_missing_fields": [
+      "colourComplexity",
+      "colourTemperature",
+      "contrast",
+      "lightness",
+      "primaryColour",
+      "saturation",
+      "secondaryColours",
+      "visualWeight"
+    ],
+    "new_values_only": {
+      "colourComplexity": "limited-palette",
+      "colourTemperature": "warm",
+      "contrast": "low",
+      "lightness": "light",
+      "primaryColour": "pink",
+      "saturation": "muted",
+      "secondaryColours": [
+        "white"
+      ],
+      "visualWeight": "light"
+    },
+    "confidence_per_new_field": {
+      "colourComplexity": "HIGH",
+      "colourTemperature": "HIGH",
+      "contrast": "HIGH",
+      "lightness": "HIGH",
+      "primaryColour": "HIGH",
+      "saturation": "HIGH",
+      "secondaryColours": "HIGH",
+      "visualWeight": "HIGH"
+    },
+    "provenance_per_new_field": {
+      "colourComplexity": "IMAGE",
+      "colourTemperature": "BOTH",
+      "contrast": "IMAGE",
+      "lightness": "IMAGE",
+      "primaryColour": "BOTH",
+      "saturation": "IMAGE",
+      "secondaryColours": "IMAGE",
+      "visualWeight": "IMAGE"
+    },
+    "source_manifest_digest": "6102b6336ce13d1bd788e46f6e5d24bd8432fb8015dfc1de1918fc80d5d9a723",
+    "source_artifact_reference": [
+      {
+        "artifact_id": "11193280772",
+        "run_id": "36921873665"
+      }
+    ]
+  },
+  {
+    "fabric_id": "pt-8500-123",
+    "supplier_id": "prestigious-textiles",
+    "supplier_sku": "8500/123",
+    "brand_id": "prestigious-textiles",
+    "design_id": "pt-design-8500",
+    "approved_image_type": "MAIN",
+    "approved_image_hash": "92edea8cfa61af9f2b4714ab4e41db7b5f215bbe56f17f7a2c3b7cc56342911f",
+    "approved_image_url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-92edea8cfa61af9f2b4714ab4e41db7b5f215bbe56f17f7a2c3b7cc56342911f.jpg",
+    "base_visual_fields_hash": "3f61b083319eabacdd70a4cdc15fd0d1e26c08174a2fa3ee2839c18750194249",
+    "base_provenance_hash": "bb9bc09aa080a3f1856eae548fa8e9fb3e1b5d8ebbedcc4102fc28588538ef0c",
+    "requested_missing_fields": [
+      "character",
+      "colourComplexity",
+      "colourTemperature",
+      "contrast",
+      "lightness",
+      "motif",
+      "patternClass",
+      "primaryColour",
+      "saturation",
+      "secondaryColours",
+      "sheenAppearance",
+      "visualActivity",
+      "visualSurface",
+      "visualWeight"
+    ],
+    "new_values_only": {
+      "character": [
+        "expressive",
+        "decorative",
+        "sophisticated"
+      ],
+      "colourComplexity": "multicolour",
+      "colourTemperature": "warm",
+      "contrast": "high",
+      "lightness": "light",
+      "motif": [
+        "tree",
+        "architectural",
+        "landscape"
+      ],
+      "patternClass": "statement",
+      "primaryColour": "cream",
+      "saturation": "muted",
+      "secondaryColours": [
+        "green",
+        "grey",
+        "yellow",
+        "brown",
+        "blue",
+        "red"
+      ],
+      "sheenAppearance": "matte",
+      "visualActivity": "statement",
+      "visualSurface": [
+        "subtle-texture"
+      ],
+      "visualWeight": "balanced"
+    },
+    "confidence_per_new_field": {
+      "character": "HIGH",
+      "colourComplexity": "HIGH",
+      "colourTemperature": "HIGH",
+      "contrast": "HIGH",
+      "lightness": "HIGH",
+      "motif": "HIGH",
+      "patternClass": "HIGH",
+      "primaryColour": "HIGH",
+      "saturation": "HIGH",
+      "secondaryColours": "HIGH",
+      "sheenAppearance": "MEDIUM",
+      "visualActivity": "HIGH",
+      "visualSurface": "MEDIUM",
+      "visualWeight": "MEDIUM"
+    },
+    "provenance_per_new_field": {
+      "character": "IMAGE",
+      "colourComplexity": "IMAGE",
+      "colourTemperature": "BOTH",
+      "contrast": "IMAGE",
+      "lightness": "IMAGE",
+      "motif": "IMAGE",
+      "patternClass": "IMAGE",
+      "primaryColour": "IMAGE",
+      "saturation": "IMAGE",
+      "secondaryColours": "IMAGE",
+      "sheenAppearance": "IMAGE",
+      "visualActivity": "IMAGE",
+      "visualSurface": "IMAGE",
+      "visualWeight": "IMAGE"
+    },
+    "source_manifest_digest": "6102b6336ce13d1bd788e46f6e5d24bd8432fb8015dfc1de1918fc80d5d9a723",
+    "source_artifact_reference": [
+      {
+        "artifact_id": "11210621127",
+        "run_id": "36964999798"
+      }
+    ]
+  },
+  {
+    "fabric_id": "sdg-aarc520006",
+    "supplier_id": "sanderson-design-group",
+    "supplier_sku": "AARC520006",
+    "brand_id": "sdg-morris-co",
+    "design_id": "sdg-morris-co-design-catalogue-morris-and-co-bedford-park-fabrics-fruit",
+    "approved_image_type": "MAIN",
+    "approved_image_hash": "e4a41f153b797bfb73e35e9a90441a1a43a6ca9eed9642e0541b3387661ee0a5",
+    "approved_image_url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e4a41f153b797bfb73e35e9a90441a1a43a6ca9eed9642e0541b3387661ee0a5.jpg",
+    "base_visual_fields_hash": "5e841b25cfb59dbe7bfb61e5c5749d6c6ad8b8498aaa30c9d93a99757a4b585c",
+    "base_provenance_hash": "bb9bc09aa080a3f1856eae548fa8e9fb3e1b5d8ebbedcc4102fc28588538ef0c",
+    "requested_missing_fields": [
+      "colourComplexity",
+      "colourTemperature",
+      "contrast",
+      "lightness",
+      "primaryColour",
+      "saturation",
+      "secondaryColours",
+      "sheenAppearance",
+      "visualSurface",
+      "visualWeight"
+    ],
+    "new_values_only": {
+      "colourComplexity": "multicolour",
+      "colourTemperature": "warm",
+      "contrast": "high",
+      "lightness": "light",
+      "primaryColour": "pink",
+      "saturation": "balanced",
+      "secondaryColours": [
+        "green",
+        "yellow",
+        "orange",
+        "blue",
+        "brown"
+      ],
+      "sheenAppearance": "matte",
+      "visualSurface": [
+        "smooth"
+      ],
+      "visualWeight": "substantial"
+    },
+    "confidence_per_new_field": {
+      "colourComplexity": "HIGH",
+      "colourTemperature": "HIGH",
+      "contrast": "HIGH",
+      "lightness": "HIGH",
+      "primaryColour": "HIGH",
+      "saturation": "HIGH",
+      "secondaryColours": "HIGH",
+      "sheenAppearance": "MEDIUM",
+      "visualSurface": "MEDIUM",
+      "visualWeight": "HIGH"
+    },
+    "provenance_per_new_field": {
+      "colourComplexity": "IMAGE",
+      "colourTemperature": "IMAGE",
+      "contrast": "IMAGE",
+      "lightness": "IMAGE",
+      "primaryColour": "IMAGE",
+      "saturation": "IMAGE",
+      "secondaryColours": "IMAGE",
+      "sheenAppearance": "IMAGE",
+      "visualSurface": "IMAGE",
+      "visualWeight": "IMAGE"
+    },
+    "source_manifest_digest": "6102b6336ce13d1bd788e46f6e5d24bd8432fb8015dfc1de1918fc80d5d9a723",
+    "source_artifact_reference": [
+      {
+        "artifact_id": "11210621127",
+        "run_id": "36964999798"
+      }
+    ]
+  }
+]

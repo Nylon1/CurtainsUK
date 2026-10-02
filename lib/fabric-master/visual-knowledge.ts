@@ -1,6 +1,10 @@
 import "server-only";
 
 import { createSupplierServiceClient } from "@/lib/supabase/supplier-service";
+import { queryVisualKnowledgeWithFallback } from "./visual-knowledge-source";
+
+const enrichedSource = "fabric_visual_knowledge_enriched" as const;
+const cacheSource = "fabric_visual_knowledge_read_cache" as const;
 
 
 
@@ -104,13 +108,11 @@ export async function visualKnowledgeByFabricIds(ids: string[]) {
 
   if (!ids.length) return new Map<string, FabricVisualIntelligence>();
 
-  const { data, error } = await createSupplierServiceClient()
-
-    .from("fabric_visual_knowledge_read_cache")
-
+  const db = createSupplierServiceClient();
+  const { data, error } = await queryVisualKnowledgeWithFallback((source) => db
+    .from(source)
     .select("fabric_id,knowledge_state,visual_fields")
-
-    .in("fabric_id", ids);
+    .in("fabric_id", ids), enrichedSource, cacheSource);
 
   if (error) throw new Error("FABRIC_VISUAL_KNOWLEDGE_UNAVAILABLE");
 

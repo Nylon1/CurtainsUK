@@ -3,7 +3,7 @@
   "productionBranch": "release/production",
   "owner": "Nylon1",
   "fabricMaster": true,
-  "fabricKnowledgeReader": "fabric_visual_knowledge_read_cache",
+  "fabricKnowledgeReader": "fabric_visual_knowledge_enriched",
   "fabricKnowledgeControl": "pt-1223-374",
   "completeControls": [
     "pt-1223-374",

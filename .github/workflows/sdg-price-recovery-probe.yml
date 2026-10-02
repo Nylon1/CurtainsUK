@@ -8,8 +8,11 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     env:
+      CURTAINSUK_SUPABASE_PROJECT_REF: hqysjumypgeapgmqkcrx
+      SUPABASE_URL: ${{ secrets.SDG_STOCK_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SDG_STOCK_SUPABASE_SECRET_KEY }}
       SDG_TRADE_EMAIL: ${{ secrets.SDG_TRADE_EMAIL }}
       SDG_TRADE_PASSWORD: ${{ secrets.SDG_TRADE_PASSWORD }}
     steps:
@@ -19,5 +22,5 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
-      - name: Probe authenticated SDG price fields
+      - name: Run read-only SDG price census
         run: npx --no-install tsx scripts/curtainsuk-sdg-price-probe.ts

@@ -19,10 +19,8 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
-      - name: Focused PT price-basis regression
-        run: npx --no-install tsx --test lib/fabric-master/__tests__/prestigious-standard-price.test.ts
-      - name: Fabric Master tests
-        run: npm run test:fabric-master
+      - name: PT price-basis regressions
+        run: npx --no-install tsx --test lib/fabric-master/__tests__/prestigious-standard-price.test.ts lib/fabric-master/__tests__/browse-price-guide.test.ts
       - name: Storefront tests
         run: npm run test:storefront
       - name: TypeScript

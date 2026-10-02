@@ -8,9 +8,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: sdg-price-recovery-20261002
-  cancel-in-progress: false
 
 jobs:
   recover:

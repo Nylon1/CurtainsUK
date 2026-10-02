@@ -5,6 +5,8 @@ import json
 import subprocess
 from pathlib import Path
 
+from curtainsuk_partial_hybrid_seed_source import validated_seed_groups
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -24,12 +26,11 @@ def main():
         raise ValueError("DESIGN_SOURCE_ARTIFACT_MISMATCH")
     args.out.mkdir(parents=True, exist_ok=True)
     subprocess.run(["gh", "run", "download", str(run_id), "-R", "Nylon1/CurtainsUK", "-n", name, "-D", str(args.out)], check=True)
-    verification = json.loads((args.out / "verification.json").read_text(encoding="utf-8"))
-    if verification.get("verdict") != "CLEAN" or verification.get("production_database_writes") != 0 or verification.get("known_fields_changed_outside_requested_delta") != 0:
-        raise ValueError("DESIGN_SOURCE_VERIFICATION_FAILED")
+    _, successful_groups = validated_seed_groups(args.out)
     for group in selection["pilot_b"]:
         source_id = group["design_reuse_source_fabric_id"]
-        if group["design_reuse_source_run_id"] != run_id or group["design_reuse_source_artifact_id"] != artifact_id or not (args.out / "fabrics" / f"{source_id}.json").is_file():
+        key = (group["supplier_id"], group["design_id"])
+        if group["design_reuse_source_run_id"] != run_id or group["design_reuse_source_artifact_id"] != artifact_id or key not in successful_groups or successful_groups[key]["design_seed_source_fabric_id"] != source_id or not (args.out / "fabrics" / f"{source_id}.json").is_file():
             raise ValueError(f"DESIGN_SOURCE_FABRIC_MISSING_{source_id}")
     print(json.dumps({"source_run_id": run_id, "source_artifact_id": artifact_id, "designs": len({g["design_id"] for g in selection["pilot_b"]})}))
 

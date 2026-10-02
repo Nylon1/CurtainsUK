@@ -6,6 +6,8 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
+from curtainsuk_partial_hybrid_seed_source import validated_seed_groups
+
 
 def digest(items):
     return hashlib.sha256("\n".join(sorted(items)).encode()).hexdigest()
@@ -81,14 +83,8 @@ def main():
     if args.kind == "design-reuse":
         if not args.design_source_dir or not args.design_source_run_id or not args.design_source_artifact_id:
             raise ValueError("DESIGN_REUSE_SOURCE_REQUIRED")
-        verification = json.loads((args.design_source_dir / "verification.json").read_text(encoding="utf-8"))
-        if verification.get("verdict") != "CLEAN" or verification.get("production_database_writes") != 0 or verification.get("known_fields_changed_outside_requested_delta") != 0:
-            raise ValueError("DESIGN_REUSE_SOURCE_NOT_CLEAN")
-        seed = json.loads((args.design_source_dir / "selection.json").read_text(encoding="utf-8"))
-        if seed["selection_subtype"] != "design-seed":
-            raise ValueError("DESIGN_REUSE_SOURCE_NOT_SEED")
-        for group in seed["pilot_b"]:
-            key = (group["supplier_id"], group["design_id"])
+        _, successful_groups = validated_seed_groups(args.design_source_dir)
+        for key, group in successful_groups.items():
             source_id = group["design_seed_source_fabric_id"]
             source = json.loads((args.design_source_dir / "fabrics" / f"{source_id}.json").read_text(encoding="utf-8"))
             if source["fabric_id"] != source_id or source["manufacturer_context_used"]["design_id"] != key[1] or source["manufacturer_context_used"]["supplier_id"] != key[0] or source["known_fields_changed_outside_requested_delta"] != 0 or source["model"] != "gpt-5.6-terra" or source["reasoning"] != "medium":
@@ -129,7 +125,7 @@ def main():
                     raise ValueError("DESIGN_REUSE_REQUIRES_UNPATCHED_COLOURWAY")
                 key = (record["supplier_id"], record["design_id"])
                 if key not in design_sources:
-                    raise ValueError(f"DESIGN_REUSE_SOURCE_MISSING_{key}")
+                    continue
                 source_patch = design_sources[key][1]["patch"]
                 covered = set(source_patch["new_values_only"]) | {g["field"] for g in source_patch["legitimate_remaining_gaps"]}
                 if set(design_fields) - covered:

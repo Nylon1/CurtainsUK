@@ -12,20 +12,19 @@ async function main(){
   const results=[];
   for(const sku of SKUS){
     const xmlText=await internal.invoke(`${DETAIL}/callbackGetProductDetails`,{
-      l_stPassTag:sku,
-      l_stPassProdCode:sku,
+      l_stPassTag:sku,l_stPassProdCode:sku,
     });
     const $=load(xmlText,{xmlMode:true});
     const packet=$("RETURNPACKET");
-    const nodes:Record<string,string>={};
-    packet.find("*").each((_,node)=>{
-      const name=(node as any).tagName?.toUpperCase?.()||"";
-      if(!name||node.children?.some?.((c:any)=>c.type==="tag")) return;
-      const value=$(node).text().trim();
-      if(value) nodes[name]=value;
+    const elements:any[]=[];
+    packet.find("*").each((_,node:any)=>{
+      const name=(node.tagName||"").toUpperCase();
+      const attrs=Object.fromEntries(Object.entries(node.attribs||{}).map(([k,v])=>[k,String(v)]));
+      const text=$(node).children().length===0?$(node).text().trim():"";
+      if(Object.keys(attrs).length || text) elements.push({name,attrs,text});
     });
-    results.push({sku,status:packet.children("STATUS").text().trim(),nodes});
+    results.push({sku,status:packet.children("STATUS").text().trim(),elements});
   }
-  console.log(JSON.stringify({event:"PT_PRODUCT_DETAIL_CALLBACK_PROBE",results}));
+  console.log(JSON.stringify({event:"PT_PRODUCT_DETAIL_ATTRIBUTE_PROBE",results}));
 }
 void main();

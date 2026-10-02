@@ -16,12 +16,14 @@ migration and application reader deployment remain pending.
    `visual_fields`, `provenance`, and `refreshed_at` matched with
    **0 differences**. Browse dirty rows remained `0` and
    `knowledge_cache_dirty=false`.
-3. Only after that parity gate, apply
-   `20261002083409_fabric_visual_knowledge_overlay_browse_source.sql` and
-   deploy the two FI read-source changes. The Browse SQL is byte-equivalent to
-   its prior definition apart from `CREATE OR REPLACE` and the knowledge source
-   relation. Check all `11,815` Browse rows and the FI mappings again. No patch
-   publication is part of these steps.
+3. The parity-gated Browse source migration
+   `20261002202411_fabric_visual_knowledge_overlay_browse_source.sql` is now
+   **applied**. It switches only the Browse knowledge relation to the enriched
+   view; the patch table remains empty. The prepared Browse model remains at
+   **11,815 rows**, dirty rows remain `0`, and
+   `knowledge_cache_dirty=false`. The two FI application reader changes still
+   require deployment from the exact protected production source. No patch
+   publication is part of this step.
 4. The three canary rows in `canary-insert-payloads.json` are **proposed only**.
    They require fresh base-hash, identity, approved-image, missing-target, and
    vocabulary checks immediately before any separately authorised insert.

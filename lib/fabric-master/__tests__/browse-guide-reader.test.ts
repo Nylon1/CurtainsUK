@@ -30,8 +30,8 @@ test('owner-confirmed PT Cut guide is the same prepared Browse guide on detail',
   const amount = await resolveBrowseGuideMinor({ fabricId: 'pt-7245-902', supplierId: 'prestigious-textiles', supplierSku: '7245/902', preparedEnabled: true, now }, fixture.reads);
   assert.equal(customerBrowseGuide(amount)?.amountMinor, 8040);
   assert.deepEqual(fixture.calls, ['control', 'dirty', 'prepared:pt-7245-902:governed-generation']);
-  // The checkout selector still rejects PT Cut-only evidence.
-  assert.equal(selectCurrentApprovedSupplierCostMinor({ supplierId: 'prestigious-textiles', snapshots: [{ snapshot_id: 'pt-pdf-cut:7245/902', checked_at: now.toISOString(), price_expires_at: null, prices: { standard_trade_price: null, cut_trade_price: 26.8, currency: 'GBP' } }], promotionEvents: [{ snapshot_id: 'pt-pdf-cut:7245/902', promotion_state: 'APPROVED_FOR_PROJECTION', created_at: now.toISOString() }], now }), null);
+  // Builder/checkout uses the same approved PT Cut Price basis as Browse.
+  assert.equal(selectCurrentApprovedSupplierCostMinor({ supplierId: 'prestigious-textiles', snapshots: [{ snapshot_id: 'pt-pdf-cut:7245/902', checked_at: now.toISOString(), price_expires_at: null, prices: { standard_trade_price: null, cut_trade_price: 26.8, currency: 'GBP' } }], promotionEvents: [{ snapshot_id: 'pt-pdf-cut:7245/902', promotion_state: 'APPROVED_FOR_PROJECTION', created_at: now.toISOString() }], now }), 2680);
 });
 
 test('ordinary PT Standard and SDG Cut guides retain their governed Browse amounts', async () => {

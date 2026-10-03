@@ -56,7 +56,7 @@ Selection fails closed and requires:
 - current Browse sample eligibility;
 - a Shopify CDN fabric image;
 - governed COMPLETE or PARTIAL_GOVERNED Fabric Intelligence;
-- concrete colour, pattern, surface and character intelligence;
+- concrete pattern intelligence plus at least three supporting visual dimensions (colour, activity, surface, finish, presence or character); exact manufacturer colourway remains present even when visual primary colour is unavailable;
 - deterministic handle and canonical URL generation;
 - every required field in the live metaobject definition to be present.
 

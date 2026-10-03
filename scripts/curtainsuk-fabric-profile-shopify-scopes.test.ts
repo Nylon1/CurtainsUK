@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { assertFabricProfileShopifyScopes } from "../fabric-profile-shopify-scopes";
+import { assertFabricProfileShopifyScopes } from "../lib/fabric-master/fabric-profile-shopify-scopes";
 
 test("dry run accepts write scopes as their corresponding read grants", () => {
   const scopes = new Set(["write_metaobjects", "write_metaobject_definitions"]);

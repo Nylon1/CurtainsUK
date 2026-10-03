@@ -226,6 +226,18 @@ export function fabricProfilePublicationRichEnough(publication: FabricProfilePub
   return supportingDimensions >= 3;
 }
 
+/** Fabric Profile creation policy; other Fabric Master consumers keep their existing filters. */
+export function eligibleFabricProfileCreateBase(
+  record: FabricMasterRecord,
+  sampleCurrent: boolean,
+  publication: FabricProfilePublication | null,
+) {
+  if (record.staging_catalog_visible !== true || record.storefront_selectable !== true) return null;
+  if (record.lifecycle_state === "DISCONTINUED" || !sampleCurrent) return null;
+  if (!publication || !fabricProfilePublicationRichEnough(publication)) return null;
+  return buildFabricProfileCreateBase(record);
+}
+
 export function fabricProfileSupplierFactsPatch(
   existing: Readonly<Record<string, string | null | undefined>>,
   desired: string | undefined,

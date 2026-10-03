@@ -36,6 +36,8 @@
     "fabric:discover:plan": "tsx scripts/curtainsuk-plan-portal-discovery.ts",
     "fabric:apply:media": "tsx scripts/curtainsuk-apply-media-mappings.ts",
     "fabric:preview:retail": "tsx scripts/curtainsuk-retail-local-preview.ts",
+    "fabric:profiles:refresh": "tsx scripts/curtainsuk-refresh-fabric-profile-metaobjects.ts",
+    "fabric:profiles:expand": "tsx scripts/curtainsuk-expand-fabric-profile-metaobjects.ts",
     "preview:curtainsuk-6a": "tsx scripts/curtainsuk-phase6a-preview.mts"
   },
   "dependencies": {

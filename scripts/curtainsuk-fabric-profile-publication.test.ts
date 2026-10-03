@@ -5,6 +5,7 @@ import type { FabricMasterRecord } from "../lib/fabric-master/types";
 import {
   assertFabricProfilePatchAllowed,
   buildFabricProfileCreateBase,
+  eligibleFabricProfileCreateBase,
   buildFabricProfilePublication,
   buildFabricProfileSupplierFacts,
   fabricProfilePatch,
@@ -115,6 +116,45 @@ test("Fabric Profile publication richness requires colour, pattern, surface and 
   });
   assert.ok(thin);
   assert.equal(fabricProfilePublicationRichEnough(thin), false);
+});
+
+test("Fabric Profile publisher permits CURRENT and UNKNOWN while preserving every create gate", () => {
+  const record = {
+    fabric_id: "pt-safe", supplier_id: "prestigious-textiles", supplier_name: "Prestigious Textiles",
+    brand_id: "prestigious", brand_name: "Prestigious Textiles", collection_id: "safe",
+    collection_name: "Safe", supplier_collection_code: null, design_id: "safe",
+    supplier_design_code: null, design_name: "Safe", supplier_sku: "SAFE/001",
+    colourway_code: null, colour_name: "Blue", full_width_mm: 1400, usable_width_mm: 1400,
+    vertical_repeat_mm: null, horizontal_repeat_mm: null, pattern_match_type: null,
+    composition: [], weight_gsm: null, care_instructions: [], usage_suitability: [],
+    imagery: ["https://cdn.shopify.com/s/files/1/safe.jpg"], sample_available: true,
+    lifecycle_state: "UNKNOWN", price_verification_status: "VERIFIED",
+    storefront_selectable: true, staging_catalog_visible: true,
+    source_type: "SUPPLIER_PORTAL", source_name: "Supplier", source_reference: null,
+    source_effective_date: null,
+  } satisfies FabricMasterRecord;
+  const rich = buildFabricProfilePublication({
+    fabric_id: record.fabric_id, knowledge_state: "PARTIAL_GOVERNED",
+    visual_fields: {
+      patternClass: { value: "plain" }, primaryColour: { value: "blue" },
+      visualSurface: { value: ["visible-weave"] }, character: { value: ["natural"] },
+    },
+  });
+  assert.ok(rich);
+  assert.ok(eligibleFabricProfileCreateBase(record, true, rich));
+  assert.ok(eligibleFabricProfileCreateBase({ ...record, lifecycle_state: "CURRENT" }, true, rich));
+  assert.equal(eligibleFabricProfileCreateBase({ ...record, lifecycle_state: "DISCONTINUED" }, true, rich), null);
+  assert.equal(eligibleFabricProfileCreateBase({ ...record, storefront_selectable: false }, true, rich), null);
+  assert.equal(eligibleFabricProfileCreateBase({ ...record, staging_catalog_visible: false }, true, rich), null);
+  assert.equal(eligibleFabricProfileCreateBase(record, false, rich), null);
+  assert.equal(eligibleFabricProfileCreateBase({ ...record, imagery: ["https://example.com/image.jpg"] }, true, rich), null);
+  assert.equal(eligibleFabricProfileCreateBase(record, true, null), null);
+  const thin = buildFabricProfilePublication({
+    fabric_id: record.fabric_id, knowledge_state: "COMPLETE",
+    visual_fields: { patternClass: { value: "plain" }, primaryColour: { value: "blue" } },
+  });
+  assert.ok(thin);
+  assert.equal(eligibleFabricProfileCreateBase(record, true, thin), null);
 });
 
 test("complete governed reading maps to the existing Fabric Profile field format", () => {

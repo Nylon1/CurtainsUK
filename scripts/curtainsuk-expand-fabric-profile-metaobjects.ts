@@ -6,10 +6,9 @@ import {
   FABRIC_PROFILE_CREATE_BASE_FIELDS,
   FABRIC_PROFILE_KNOWLEDGE_FIELDS,
   FABRIC_PROFILE_SYNC_FIELD,
-  buildFabricProfileCreateBase,
+  eligibleFabricProfileCreateBase,
   buildFabricProfilePublication,
   fabricProfileCreateFields,
-  fabricProfilePublicationRichEnough,
 } from "../lib/fabric-master/fabric-profile-publication";
 import { queryVisualKnowledgeWithFallback } from "../lib/fabric-master/visual-knowledge-source";
 import { assertFabricProfileShopifyScopes } from "../lib/fabric-master/fabric-profile-shopify-scopes";
@@ -444,11 +443,13 @@ async function main() {
   }
 
   const [records, sampleEligible] = await Promise.all([
-    listFabricMasterRecords({ storefrontOnly: true }),
+    listFabricMasterRecords({ stagingCatalogOnly: true }),
     currentSampleEligibleIds(),
   ]);
   const candidateRecords = records.filter((record) =>
     !existingByFabricId.has(record.fabric_id)
+    && record.storefront_selectable === true
+    && record.lifecycle_state !== "DISCONTINUED"
     && sampleEligible.has(record.fabric_id)
   );
 
@@ -459,8 +460,8 @@ async function main() {
     const row = rows.get(record.fabric_id);
     if (!row) continue;
     const publication = buildFabricProfilePublication(row);
-    if (!publication || !fabricProfilePublicationRichEnough(publication)) continue;
-    const base = buildFabricProfileCreateBase(record);
+    if (!publication) continue;
+    const base = eligibleFabricProfileCreateBase(record, sampleEligible.has(record.fabric_id), publication);
     if (!base) continue;
     if (existingHandles.has(base.handle)) throw new Error("FABRIC_PROFILE_HANDLE_COLLISION:" + base.handle);
 
@@ -535,7 +536,9 @@ async function main() {
     intelligenceSource: "fabric_visual_knowledge_enriched",
     selectionRules: {
       existingFabricIdsExcluded: true,
-      currentStorefrontEligibilityRequired: true,
+      stagingCatalogVisibleRequired: true,
+      storefrontSelectableRequired: true,
+      lifecycleNotDiscontinuedRequired: true,
       currentSampleEligibilityRequired: true,
       shopifyCdnImageRequired: true,
       completeOrPartialGovernedRequired: true,

@@ -1,11 +1,95 @@
 import "./curtainsuk-server-script-loader.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
+import type { FabricMasterRecord } from "../lib/fabric-master/types";
 import {
   assertFabricProfilePatchAllowed,
+  buildFabricProfileCreateBase,
   buildFabricProfilePublication,
+  buildFabricProfileSupplierFacts,
   fabricProfilePatch,
+  fabricProfilePublicationRichEnough,
 } from "../lib/fabric-master/fabric-profile-publication";
+
+
+test("Fabric Profile creation derives stable public commerce fields from Fabric Master", () => {
+  const record: FabricMasterRecord = {
+    fabric_id: "sdg-dkh17a204",
+    supplier_id: "sanderson-design-group",
+    supplier_name: "Sanderson Design Group",
+    brand_id: "sanderson",
+    brand_name: "Sanderson",
+    collection_id: "sanderson-one-sixty",
+    collection_name: "Sanderson One Sixty Fabrics",
+    supplier_collection_code: null,
+    design_id: "avening",
+    supplier_design_code: null,
+    design_name: "Avening",
+    supplier_sku: "DKH17A204",
+    colourway_code: null,
+    colour_name: "Neutral/Multi",
+    full_width_mm: 1370,
+    usable_width_mm: 1370,
+    vertical_repeat_mm: 630,
+    horizontal_repeat_mm: 1370,
+    pattern_match_type: "STRAIGHT_MATCH",
+    composition: [
+      { material: "Linen", percentage: 53 },
+      { material: "Cotton", percentage: 35 },
+      { material: "Nylon", percentage: 12 },
+    ],
+    weight_gsm: 380,
+    care_instructions: ["dry_clean"],
+    usage_suitability: ["curtains", "blinds"],
+    imagery: ["https://cdn.shopify.com/s/files/1/example/avening.jpg"],
+    sample_available: true,
+    lifecycle_state: "CURRENT",
+    price_verification_status: "VERIFIED",
+    storefront_selectable: true,
+    staging_catalog_visible: true,
+    source_type: "SUPPLIER_PORTAL",
+    source_name: "Supplier",
+    source_reference: null,
+    source_effective_date: null,
+  };
+
+  const base = buildFabricProfileCreateBase(record);
+  assert.ok(base);
+  assert.equal(base.handle, "sdg-dkh17a204-avening-neutral-multi");
+  assert.equal(base.fields.canonical_url, "https://www.curtainsuk.com/pages/fabric/sdg-dkh17a204-avening-neutral-multi");
+  assert.equal(base.fields.sample_price, "2.50");
+  assert.equal(base.fields.sample_offer_label, "Fabric sample — £2.50");
+  assert.match(base.fields.supplier_facts, /Composition: 53% Linen, 35% Cotton, 12% Nylon/);
+  assert.match(base.fields.supplier_facts, /Usage: curtains, blinds/);
+  assert.match(base.fields.supplier_facts, /Care: dry clean/);
+  assert.equal(buildFabricProfileSupplierFacts(record), base.fields.supplier_facts);
+});
+
+test("Fabric Profile publication richness requires colour, pattern, surface and character", () => {
+  const rich = buildFabricProfilePublication({
+    fabric_id: "pt-rich",
+    knowledge_state: "COMPLETE",
+    visual_fields: {
+      primaryColour: { value: "green" },
+      patternClass: { value: "botanical" },
+      visualSurface: { value: ["visible-weave"] },
+      character: { value: ["natural"] },
+    },
+  });
+  assert.ok(rich);
+  assert.equal(fabricProfilePublicationRichEnough(rich), true);
+
+  const thin = buildFabricProfilePublication({
+    fabric_id: "pt-thin",
+    knowledge_state: "PARTIAL_GOVERNED",
+    visual_fields: {
+      primaryColour: { value: "green" },
+      patternClass: { value: "plain" },
+    },
+  });
+  assert.ok(thin);
+  assert.equal(fabricProfilePublicationRichEnough(thin), false);
+});
 
 test("complete governed reading maps to the existing Fabric Profile field format", () => {
   const publication = buildFabricProfilePublication({
@@ -148,6 +232,7 @@ test("allowlist rejects any attempt to modify commerce or identity fields", () =
   assert.doesNotThrow(() => assertFabricProfilePatchAllowed([
     { key: "knowledge_colour", value: "Colour: green" },
     { key: "sync_revision", value: "fi-manual-123" },
+    { key: "supplier_facts", value: "Usage: curtains" },
   ]));
   assert.throws(
     () => assertFabricProfilePatchAllowed([{ key: "sample_price", value: "0.00" }]),

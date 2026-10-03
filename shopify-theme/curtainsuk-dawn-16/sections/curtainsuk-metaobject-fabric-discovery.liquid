@@ -100,10 +100,14 @@
 <script>
   (() => {
     const root = document.querySelector('[data-cuk-canonical-fabric-detail]');
-    const hero = root?.querySelector('[data-cuk-profile-hero]');
+    const purchaseButton = root?.querySelector('.cuk-profile__purchase [data-sample]');
     const bar = root?.querySelector('[data-cuk-profile-sticky]');
-    if (!hero || !bar || !('IntersectionObserver' in window)) return;
-    new IntersectionObserver(([entry]) => { bar.hidden = entry.isIntersecting; root.classList.toggle('cuk-profile--sticky-visible', !entry.isIntersecting); }, { threshold: 0 }).observe(hero);
+    if (!purchaseButton || !bar || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(([entry]) => {
+      const purchaseVisible = entry.intersectionRatio >= 0.99;
+      bar.hidden = purchaseVisible;
+      root.classList.toggle('cuk-profile--sticky-visible', !purchaseVisible);
+    }, { threshold: [0, 0.99] }).observe(purchaseButton);
   })();
 </script>
 {% stylesheet %}

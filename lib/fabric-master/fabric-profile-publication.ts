@@ -2,6 +2,7 @@ import "server-only";
 
 import { createHash } from "node:crypto";
 import type { FabricMasterRecord } from "./types";
+import { SAMPLE_VARIANT_ID } from "../storefront/sample-order";
 import {
   customerGuidance,
   mapVisualKnowledgeRow,
@@ -25,6 +26,7 @@ export const FABRIC_PROFILE_SUPPLIER_FIELD = "supplier_facts" as const;
 
 export const FABRIC_PROFILE_CREATE_BASE_FIELDS = [
   "fabric_master_id",
+  "supplier",
   "display_title",
   "brand",
   "design",
@@ -32,8 +34,13 @@ export const FABRIC_PROFILE_CREATE_BASE_FIELDS = [
   "canonical_url",
   "image_url",
   "image_alt",
+  "sample_variant_id",
   "sample_price",
   "sample_offer_label",
+  "sample_identity",
+  "sample_eligible",
+  "seo_title",
+  "seo_description",
   FABRIC_PROFILE_SUPPLIER_FIELD,
 ] as const;
 
@@ -169,20 +176,41 @@ export function buildFabricProfileCreateBase(record: FabricMasterRecord) {
   const image = record.imagery.find((value) => /^https:\/\/cdn\.shopify\.com\//i.test(value));
   if (!image) return null;
   const handle = fabricProfileHandle(record);
+  const displayTitle = `${record.brand_name} ${record.design_name} — ${record.colour_name}`;
   const fields: Record<FabricProfileCreateBaseField, string> = {
     fabric_master_id: record.fabric_id,
-    display_title: `${record.brand_name} ${record.design_name} — ${record.colour_name}`,
+    supplier: record.supplier_name,
+    display_title: displayTitle,
     brand: record.brand_name,
     design: record.design_name,
     colourway: record.colour_name,
     canonical_url: `https://www.curtainsuk.com/pages/fabric/${handle}`,
     image_url: image,
     image_alt: `${record.design_name} fabric in ${record.colour_name} by ${record.brand_name}`,
+    sample_variant_id: String(SAMPLE_VARIANT_ID),
     sample_price: "2.50",
     sample_offer_label: "Fabric sample — £2.50",
+    sample_identity: `Fabric Master ${record.fabric_id}; Shopify sample variant ${SAMPLE_VARIANT_ID}`,
+    sample_eligible: "true",
+    seo_title: `${displayTitle} Curtain Fabric Sample | CurtainsUK`,
+    seo_description: `Explore ${displayTitle} through CurtainsUK colour, pattern and interior guidance. Order the exact physical fabric sample for £2.50.`,
     supplier_facts: buildFabricProfileSupplierFacts(record),
   };
   return { handle, fields };
+}
+
+export function fabricProfileCreateFields(
+  base: NonNullable<ReturnType<typeof buildFabricProfileCreateBase>>,
+  publication: FabricProfilePublication,
+) {
+  return [
+    ...FABRIC_PROFILE_CREATE_BASE_FIELDS.map((key) => ({ key, value: base.fields[key] })),
+    ...FABRIC_PROFILE_KNOWLEDGE_FIELDS.flatMap((key) => {
+      const value = publication.fields[key];
+      return value ? [{ key, value }] : [];
+    }),
+    { key: FABRIC_PROFILE_SYNC_FIELD, value: publication.revision },
+  ];
 }
 
 export function fabricProfilePublicationRichEnough(publication: FabricProfilePublication) {

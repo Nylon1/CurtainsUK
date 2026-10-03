@@ -1,12 +1,17 @@
 import "./curtainsuk-server-script-loader.mjs";
 import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
+import { listFabricMasterRecords } from "../lib/fabric-master/repository";
+import { queryVisualKnowledgeWithFallback } from "../lib/fabric-master/visual-knowledge-source";
 import {
   FABRIC_PROFILE_KNOWLEDGE_FIELDS,
+  FABRIC_PROFILE_SUPPLIER_FIELD,
   FABRIC_PROFILE_SYNC_FIELD,
   assertFabricProfilePatchAllowed,
   buildFabricProfilePublication,
+  buildFabricProfileSupplierFacts,
   fabricProfilePatch,
+  fabricProfileSupplierFactsPatch,
 } from "../lib/fabric-master/fabric-profile-publication";
 import type { VisualRow } from "../lib/fabric-master/visual-knowledge";
 
@@ -35,7 +40,7 @@ const PROFILE_DEFINITION_QUERY = `
   query CurtainsUKFabricProfileDefinition($type: String!) {
     metaobjectDefinitionByType(type: $type) {
       type
-      fieldDefinitions { key }
+      fieldDefinitions { key required }
     }
   }
 `;
@@ -218,7 +223,7 @@ async function verifyProfileDefinition(
   const keys = new Set(definition.fieldDefinitions.flatMap((field) =>
     isRecord(field) && typeof field.key === "string" ? [field.key] : [],
   ));
-  for (const key of ["fabric_master_id", ...FABRIC_PROFILE_KNOWLEDGE_FIELDS, FABRIC_PROFILE_SYNC_FIELD]) {
+  for (const key of ["fabric_master_id", FABRIC_PROFILE_SUPPLIER_FIELD, ...FABRIC_PROFILE_KNOWLEDGE_FIELDS, FABRIC_PROFILE_SYNC_FIELD]) {
     if (!keys.has(key)) throw new Error(`FABRIC_PROFILE_DEFINITION_FIELD_MISSING:${key}`);
   }
 }
@@ -276,10 +281,15 @@ async function visualRows(ids: string[]) {
   const database = createSupplierServiceClient();
   const rows: VisualRow[] = [];
   for (let from = 0; from < ids.length; from += 400) {
-    const { data, error } = await database
-      .from("fabric_visual_knowledge_read_cache")
-      .select("fabric_id,knowledge_state,visual_fields")
-      .in("fabric_id", ids.slice(from, from + 400));
+    const batch = ids.slice(from, from + 400);
+    const { data, error } = await queryVisualKnowledgeWithFallback(
+      (source) => database
+        .from(source)
+        .select("fabric_id,knowledge_state,visual_fields")
+        .in("fabric_id", batch),
+      "fabric_visual_knowledge_enriched",
+      "fabric_visual_knowledge_read_cache",
+    );
     if (error) throw new Error("FABRIC_PROFILE_DATABASE_READ_FAILED");
     rows.push(...((data ?? []) as VisualRow[]));
   }
@@ -332,6 +342,8 @@ async function main() {
   if (!profiles.length) throw new Error("FABRIC_PROFILE_NONE_DISCOVERED");
   const ids = profiles.map(exactFabricId);
   const rows = await visualRows(ids);
+  const records = await listFabricMasterRecords();
+  const recordsById = new Map(records.map((record) => [record.fabric_id, record]));
   const changes: Array<{
     fabricId: string;
     handle: string;
@@ -353,7 +365,11 @@ async function main() {
     }
 
     const existing = fieldsMap(profile);
-    const patch = fabricProfilePatch(existing, publication);
+    const record = recordsById.get(fabricId);
+    const patch = [
+      ...fabricProfilePatch(existing, publication),
+      ...fabricProfileSupplierFactsPatch(existing, record ? buildFabricProfileSupplierFacts(record) : undefined),
+    ];
     assertFabricProfilePatchAllowed(patch);
     if (!patch.length) continue;
 
@@ -379,6 +395,8 @@ async function main() {
     profileCreates: 0,
     profileDeletes: 0,
     identityOrCommerceFieldsWritable: false,
+    supplierFactsWritableFromFabricMaster: true,
+    intelligenceSource: "fabric_visual_knowledge_enriched",
     discoveredProfiles: byFabricId.size,
     selectedProfiles: profiles.length,
     governedRowsFound: rows.size,

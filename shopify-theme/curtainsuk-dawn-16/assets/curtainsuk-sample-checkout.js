@@ -1,18 +1,24 @@
 (() => {
+  if (window.__curtainsukSampleCheckoutInstalled) return;
+  window.__curtainsukSampleCheckoutInstalled = true;
+  function setStatus(root, message) {
+    root.querySelectorAll('[data-cuk-sample-status]').forEach(node => { node.textContent = message; });
+  }
   async function sampleJson(url, options) {
     const response=await fetch(url,{...options,headers:{'Content-Type':'application/json'}});
     const data=await response.json(); if(!response.ok) throw Error(data.error || 'Sample availability could not be confirmed.'); return data;
   }
   window.addEventListener('curtainsuk:sample-add', async (event) => {
     const {root,sample,button}=event.detail;
-    if(button.disabled) return;
+    if(button.disabled || root.dataset.sampleBusy === 'true') return;
+    root.dataset.sampleBusy = 'true';
           button.disabled = true;
-          const status = root.querySelector('[data-cuk-sample-status]');
+          setStatus(root, 'Checking this fabric sample…');
           try {
             const prepared = await sampleJson((root.dataset.engineBase || '/apps/curtainsuk-decision').replace(/\/$/,'')+'/sample-order', {method:'POST',body:JSON.stringify({fabricId:sample.fabricId,hciCommerceToken:sample.consultationContext?.commerceToken})});
-            status.textContent = `${prepared.properties.Fabric} · SKU ${prepared.properties['Supplier SKU']} · ${new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(prepared.priceMinor/100)} per sample. Delivery calculated at checkout.`;
+            setStatus(root, `${prepared.properties.Fabric} · SKU ${prepared.properties['Supplier SKU']} · ${new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(prepared.priceMinor/100)} per sample. Delivery calculated at checkout.`);
             if (root.dataset.purchaseControlsEnabled !== 'true' || prepared.purchaseEnabled !== true) {
-              status.textContent += ' Sample purchasing is not yet enabled.'; return;
+              setStatus(root, 'Sample purchasing is not yet enabled.'); return;
             }
             const cartResponse = await fetch('/cart.js',{cache:'no-store'});
             if (!cartResponse.ok) throw Error('Unable to check your basket. Please retry.');
@@ -26,8 +32,20 @@
             }
             // No automatic retry after an uncertain write. A repeat first reads the cart.
             location.assign('/cart');
-          } catch(error) { status.textContent = error.message || 'Sample availability could not be confirmed. Please retry.'; }
-          finally {button.disabled = false;}
+          } catch(error) { setStatus(root, error.message || 'Sample availability could not be confirmed. Please retry.'); }
+          finally {delete root.dataset.sampleBusy; button.disabled = false;}
+  });
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-cuk-canonical-fabric-detail] [data-sample]');
+    if (!button) return;
+    event.preventDefault();
+    const root = button.closest('[data-cuk-canonical-fabric-detail]');
+    let consultationContext = null;
+    try {
+      const saved = JSON.parse(window.localStorage.getItem('curtainsuk:hci:commerce') || 'null');
+      if (saved?.fabricMasterId === root.dataset.fabricMasterId) consultationContext = saved;
+    } catch (_) {}
+    window.dispatchEvent(new CustomEvent('curtainsuk:sample-add', {detail:{root,button,sample:{fabricId:root.dataset.fabricMasterId,consultationContext}}}));
   });
   document.addEventListener('click', async (event) => {
     const button = event.target.closest('[data-cuk-sample-checkout]');

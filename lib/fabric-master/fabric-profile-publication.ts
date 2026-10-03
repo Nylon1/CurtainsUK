@@ -122,7 +122,7 @@ function centimetres(mm: number | null) {
 
 function humanise(value: string | null | undefined) {
   if (!value) return undefined;
-  return value.replace(/[_-]+/g, " ").replace(/\\s+/g, " ").trim();
+  return value.replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
 export function buildFabricProfileSupplierFacts(record: FabricMasterRecord) {
@@ -147,13 +147,13 @@ export function buildFabricProfileSupplierFacts(record: FabricMasterRecord) {
     record.usage_suitability.length ? `Usage: ${record.usage_suitability.map((value) => humanise(value)).filter(Boolean).join(", ")}` : undefined,
     record.care_instructions.length ? `Care: ${record.care_instructions.map((value) => humanise(value)).filter(Boolean).join(", ")}` : undefined,
   ];
-  return lines.filter((value): value is string => Boolean(value)).join("\\n");
+  return lines.filter((value): value is string => Boolean(value)).join("\n");
 }
 
 export function fabricProfileHandle(record: FabricMasterRecord) {
   const slug = (value: string) => value
     .normalize("NFKD")
-    .replace(/[\\u0300-\\u036f]/g, "")
+    .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .replace(/&/g, " and ")
     .replace(/[^a-z0-9]+/g, "-")

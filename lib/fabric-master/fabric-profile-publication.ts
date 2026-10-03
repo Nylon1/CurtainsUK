@@ -166,7 +166,7 @@ export function fabricProfileHandle(record: FabricMasterRecord) {
 }
 
 export function buildFabricProfileCreateBase(record: FabricMasterRecord) {
-  const image = record.imagery.find((value) => /^https:\\/\\/cdn\\.shopify\\.com\\//i.test(value));
+  const image = record.imagery.find((value) => /^https:\/\/cdn\.shopify\.com\//i.test(value));
   if (!image) return null;
   const handle = fabricProfileHandle(record);
   const fields: Record<FabricProfileCreateBaseField, string> = {

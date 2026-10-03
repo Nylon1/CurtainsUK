@@ -186,12 +186,16 @@ export function buildFabricProfileCreateBase(record: FabricMasterRecord) {
 }
 
 export function fabricProfilePublicationRichEnough(publication: FabricProfilePublication) {
-  return Boolean(
-    publication.fields.knowledge_colour
-    && publication.fields.knowledge_pattern
-    && publication.fields.knowledge_surface
-    && publication.fields.knowledge_character
-  );
+  if (!publication.fields.knowledge_pattern) return false;
+  const supportingDimensions = [
+    publication.fields.knowledge_colour,
+    publication.fields.knowledge_activity,
+    publication.fields.knowledge_surface,
+    publication.fields.knowledge_finish,
+    publication.fields.knowledge_weight,
+    publication.fields.knowledge_character,
+  ].filter(Boolean).length;
+  return supportingDimensions >= 3;
 }
 
 export function fabricProfileSupplierFactsPatch(

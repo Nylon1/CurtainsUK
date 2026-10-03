@@ -1,6 +1,7 @@
 import "./curtainsuk-server-script-loader.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
+import type { FabricMasterRecord } from "../lib/fabric-master/types";
 import {
   assertFabricProfilePatchAllowed,
   buildFabricProfileCreateBase,
@@ -12,7 +13,7 @@ import {
 
 
 test("Fabric Profile creation derives stable public commerce fields from Fabric Master", () => {
-  const record = {
+  const record: FabricMasterRecord = {
     fabric_id: "sdg-dkh17a204",
     supplier_id: "sanderson-design-group",
     supplier_name: "Sanderson Design Group",
@@ -50,7 +51,7 @@ test("Fabric Profile creation derives stable public commerce fields from Fabric 
     source_name: "Supplier",
     source_reference: null,
     source_effective_date: null,
-  } as const;
+  };
 
   const base = buildFabricProfileCreateBase(record);
   assert.ok(base);

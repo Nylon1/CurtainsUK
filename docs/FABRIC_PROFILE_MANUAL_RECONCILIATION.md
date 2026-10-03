@@ -10,8 +10,9 @@ This is deliberately manual. There is no trigger, cron, webhook or database list
 
 Source of truth read:
 
-- Supabase `fabric_visual_knowledge_read_cache`
+- Supabase `fabric_visual_knowledge_enriched`, with fallback to `fabric_visual_knowledge_read_cache` only if the enriched relation is unavailable
 - allowed states: `COMPLETE`, `PARTIAL_GOVERNED`
+- Fabric Master for current `supplier_facts`
 
 Shopify destination:
 
@@ -32,10 +33,11 @@ Writable fields are hard-allowlisted to:
 - `knowledge_character`
 - `knowledge_advice`
 - `sync_revision`
+- `supplier_facts` (Fabric Master only)
 
 The script does not write to Supabase. The target type is the live MAIN-theme metaobject binding verified on 1 October 2026.
 
-It will not clear a populated Shopify intelligence field simply because a newer governed reading is unknown, and it will not downgrade an already published `COMPLETE` profile to `PARTIAL`.
+It will not clear a populated Shopify intelligence field simply because a newer governed reading is unknown, and it will not downgrade an already published `COMPLETE` profile to `PARTIAL`. Supplier facts may be refreshed only from the current Fabric Master record; identity, URL, sample price, stock and checkout fields remain unwritable.
 
 ## Credentials and store guard
 
@@ -97,7 +99,6 @@ This tool does not:
 - create Shopify metaobjects
 - add Merchant Center items
 - change sitemap or canonical URLs
-- modify supplier facts
 - modify sample products or variants
 - modify prices, stock, checkout or Draft Orders
 - change HCI or Naila

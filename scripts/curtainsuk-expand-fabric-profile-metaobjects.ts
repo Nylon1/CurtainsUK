@@ -556,7 +556,7 @@ async function main() {
       currentSampleEligibilityRequired: true,
       shopifyCdnImageRequired: true,
       completeOrPartialGovernedRequired: true,
-      colourPatternSurfaceCharacterRequired: true,
+      patternPlusThreeSupportingDimensionsRequired: true,
       completePreferredBeforePartial: true,
     },
     stateCounts,

@@ -33,6 +33,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
+
 function errorResponse(error: unknown, fallback: string) {
   const rateLimit = endpointRateLimitResponse(error);
   const code = error instanceof Error ? error.message : "";
@@ -95,6 +96,7 @@ async function operation(request: Request, rawOperation: string) {
 export async function GET(request: Request, context: { params: Promise<{ operation: string }> }) {
   try {
     const selected = await operation(request, (await context.params).operation);
+    if (selected === 'fabric-sitemap') return (await import('@/lib/storefront/fabric-sitemap-response')).fabricSitemapResponse();
     if(selected==='consultation')return new URL(request.url).searchParams.get('experience')==='premium' ? premiumProxyPage() : proxyConsultationAsset('consultation.html');
     if(selected==='premium-asset')return premiumProxyAsset(new URL(request.url).searchParams.get('name')??'');
     if(selected==='premium-catalog') {

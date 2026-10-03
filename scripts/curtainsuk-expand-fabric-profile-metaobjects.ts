@@ -8,6 +8,7 @@ import {
   FABRIC_PROFILE_SYNC_FIELD,
   buildFabricProfileCreateBase,
   buildFabricProfilePublication,
+  fabricProfileCreateFields,
   fabricProfilePublicationRichEnough,
 } from "../lib/fabric-master/fabric-profile-publication";
 import { queryVisualKnowledgeWithFallback } from "../lib/fabric-master/visual-knowledge-source";
@@ -463,14 +464,7 @@ async function main() {
     if (!base) continue;
     if (existingHandles.has(base.handle)) throw new Error("FABRIC_PROFILE_HANDLE_COLLISION:" + base.handle);
 
-    const fields = [
-      ...FABRIC_PROFILE_CREATE_BASE_FIELDS.map((key) => ({ key, value: base.fields[key] })),
-      ...FABRIC_PROFILE_KNOWLEDGE_FIELDS.flatMap((key) => {
-        const value = publication.fields[key];
-        return value ? [{ key, value }] : [];
-      }),
-      { key: FABRIC_PROFILE_SYNC_FIELD, value: publication.revision },
-    ];
+    const fields = fabricProfileCreateFields(base, publication);
 
     const candidate = {
       fabricId: record.fabric_id,

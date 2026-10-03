@@ -8,6 +8,7 @@ import {
   buildFabricProfilePublication,
   buildFabricProfileSupplierFacts,
   fabricProfilePatch,
+  fabricProfileCreateFields,
   fabricProfilePublicationRichEnough,
 } from "../lib/fabric-master/fabric-profile-publication";
 
@@ -59,10 +60,35 @@ test("Fabric Profile creation derives stable public commerce fields from Fabric 
   assert.equal(base.fields.canonical_url, "https://www.curtainsuk.com/pages/fabric/sdg-dkh17a204-avening-neutral-multi");
   assert.equal(base.fields.sample_price, "2.50");
   assert.equal(base.fields.sample_offer_label, "Fabric sample — £2.50");
+  assert.equal(base.fields.supplier, record.supplier_name);
+  assert.notEqual(base.fields.supplier, base.fields.supplier_facts);
+  assert.equal(base.fields.sample_variant_id, "56120226873723");
+  assert.equal(base.fields.sample_identity, "Fabric Master sdg-dkh17a204; Shopify sample variant 56120226873723");
+  assert.equal(base.fields.sample_eligible, "true");
+  assert.equal(base.fields.seo_title, "Sanderson Avening — Neutral/Multi Curtain Fabric Sample | CurtainsUK");
+  assert.equal(base.fields.seo_description, "Explore Sanderson Avening — Neutral/Multi through CurtainsUK colour, pattern and interior guidance. Order the exact physical fabric sample for £2.50.");
   assert.match(base.fields.supplier_facts, /Composition: 53% Linen, 35% Cotton, 12% Nylon/);
   assert.match(base.fields.supplier_facts, /Usage: curtains, blinds/);
   assert.match(base.fields.supplier_facts, /Care: dry clean/);
   assert.equal(buildFabricProfileSupplierFacts(record), base.fields.supplier_facts);
+  const publication = buildFabricProfilePublication({
+    fabric_id: record.fabric_id,
+    knowledge_state: "PARTIAL_GOVERNED",
+    visual_fields: { patternClass: { value: "plain" } },
+  });
+  assert.ok(publication);
+  const candidate = fabricProfileCreateFields(base, publication);
+  const values = new Map<string, string>(candidate.map((field) => [field.key, field.value]));
+  // Snapshot of the app-owned production definition read on 3 October 2026.
+  const requiredLiveFields = [
+    "fabric_master_id", "supplier", "brand", "design", "colourway", "display_title",
+    "canonical_url", "image_url", "sample_variant_id", "sample_price",
+    "sample_offer_label", "sample_identity", "sample_eligible", "knowledge_state",
+    "seo_title", "seo_description", "sync_revision",
+  ];
+  assert.deepEqual(requiredLiveFields.filter((key) => !values.get(key)), []);
+  assert.equal(values.get("supplier"), record.supplier_name);
+  assert.equal(values.get("knowledge_state"), "PARTIAL");
 });
 
 test("Fabric Profile publication richness requires colour, pattern, surface and character", () => {

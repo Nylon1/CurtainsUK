@@ -3,6 +3,7 @@ import { loadEnvConfig } from "@next/env";
 import { createSupplierServiceClient } from "../lib/supabase/supplier-service";
 import { listFabricMasterRecords } from "../lib/fabric-master/repository";
 import { queryVisualKnowledgeWithFallback } from "../lib/fabric-master/visual-knowledge-source";
+import { assertFabricProfileShopifyScopes } from "../lib/fabric-master/fabric-profile-shopify-scopes";
 import {
   FABRIC_PROFILE_KNOWLEDGE_FIELDS,
   FABRIC_PROFILE_SUPPLIER_FIELD,
@@ -23,9 +24,6 @@ const EXPECTED_CURTAINSUK_APP_ID = "gid://shopify/App/328390344705";
 const EXPECTED_CURTAINSUK_APP_HANDLE = "curtains-uk-mtm";
 const PRODUCTION_SHOP = "carpetup.myshopify.com";
 const SHOPIFY_ADMIN_API_VERSION = "2026-07" as const;
-const READ_SCOPE = "read_metaobjects" as const;
-const READ_DEFINITIONS_SCOPE = "read_metaobject_definitions" as const;
-const WRITE_SCOPE = "write_metaobjects" as const;
 
 const LIST_PROFILES_QUERY = `
   query CurtainsUKFabricProfiles($type: String!, $after: String) {
@@ -129,15 +127,6 @@ function parseScopes(value: unknown) {
   return new Set(value.split(/[\s,]+/).map((scope) => scope.trim()).filter(Boolean));
 }
 
-function assertScopes(scopes: ReadonlySet<string>, apply: boolean) {
-  const required = apply
-    ? [READ_SCOPE, READ_DEFINITIONS_SCOPE, WRITE_SCOPE]
-    : [READ_SCOPE, READ_DEFINITIONS_SCOPE];
-  for (const scope of required) {
-    if (!scopes.has(scope)) throw new Error(`FABRIC_PROFILE_SCOPE_MISSING:${scope}`);
-  }
-}
-
 async function accessToken(config: ReturnType<typeof runtimeConfig>, apply: boolean) {
   const response = await fetch(`https://${config.shopDomain}/admin/oauth/access_token`, {
     method: "POST",
@@ -157,7 +146,7 @@ async function accessToken(config: ReturnType<typeof runtimeConfig>, apply: bool
     throw new Error("FABRIC_PROFILE_TOKEN_INVALID");
   }
   const scopes = parseScopes(body.scope);
-  assertScopes(scopes, apply);
+  assertFabricProfileShopifyScopes(scopes, apply);
   return body.access_token;
 }
 
@@ -207,7 +196,7 @@ async function verifyInstalledScopes(
   const scopes = new Set(installation.accessScopes.flatMap((entry) =>
     isRecord(entry) && typeof entry.handle === "string" ? [entry.handle] : [],
   ));
-  assertScopes(scopes, apply);
+  assertFabricProfileShopifyScopes(scopes, apply);
 }
 
 async function verifyProfileDefinition(

@@ -31,6 +31,65 @@
     return String(value ?? "").replaceAll("_", " ").toLowerCase().replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
   }
 
+  const fabricProfileChecks = new Map();
+  const fabricProfileSlug = (value) => String(value ?? "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  function fabricProfileCandidate(fabric) {
+    const handle = [fabric.id, fabricProfileSlug(fabric.design), fabricProfileSlug(fabric.colour)]
+      .filter(Boolean)
+      .join("-")
+      .slice(0, 240)
+      .replace(/-+$/g, "");
+    return `/pages/fabric/${handle}`;
+  }
+
+  function fabricBrowseFallback(fabric, windowSlug) {
+    return `/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(windowSlug)}`;
+  }
+
+  async function resolveFabricProfile(fabric) {
+    const candidate = fabricProfileCandidate(fabric);
+    if (!fabricProfileChecks.has(candidate)) {
+      fabricProfileChecks.set(candidate, (async () => {
+        try {
+          let response = await fetch(candidate, { method: "HEAD", credentials: "same-origin", cache: "force-cache" });
+          if (response.status === 405) response = await fetch(candidate, { method: "GET", credentials: "same-origin", cache: "force-cache", headers: { Accept: "text/html" } });
+          return response.ok ? candidate : null;
+        } catch {
+          return null;
+        }
+      })());
+    }
+    return fabricProfileChecks.get(candidate);
+  }
+
+  function bindFabricProfileLink(link, fabric, windowSlug) {
+    if (!link) return;
+    const candidate = fabricProfileCandidate(fabric);
+    const fallback = fabricBrowseFallback(fabric, windowSlug);
+    link.href = candidate;
+    link.dataset.cukFabricProfileCandidate = candidate;
+    const warm = () => {
+      void resolveFabricProfile(fabric).then((resolved) => {
+        if (!resolved) link.href = fallback;
+      });
+    };
+    link.addEventListener("pointerenter", warm, { once: true });
+    link.addEventListener("focus", warm, { once: true });
+    link.addEventListener("click", async (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      const resolved = await resolveFabricProfile(fabric);
+      location.assign(resolved || fallback);
+    });
+  }
+
   function reviewedResumeCapability() {
     const fragment = new URLSearchParams(location.hash.startsWith("#") ? location.hash.slice(1) : location.hash);
     const fragmentContainsCapability = fragment.has("cuk_review") || fragment.has("cuk_token");
@@ -285,7 +344,7 @@
           <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric__actions">
             ${sampleAction}
-            <a class="cuk-button" href="/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}">View Fabric</a>
+            <a class="cuk-button" href="/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}" data-cuk-fabric-profile-link>View Fabric</a>
           </div>
         </div>`;
       if (root.hasAttribute("data-cuk-shopping")) {
@@ -315,6 +374,7 @@
       }
       if (root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience) window.CurtainsUKFabricExperience.enhanceCard(card,fabric,selectedWindow,addSample);
       else card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
+      if (root.hasAttribute('data-cuk-shopping')) bindFabricProfileLink(card.querySelector("[data-cuk-fabric-profile-link]"), fabric, selectedWindow);
       card.querySelector("img")?.addEventListener("error", (event) => {
         const swatch = event.currentTarget.closest(".cuk-fabric__swatch");
         if (swatch) swatch.innerHTML = `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;

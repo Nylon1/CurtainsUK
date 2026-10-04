@@ -9,8 +9,8 @@ import { pgcrypto } from '@electric-sql/pglite/contrib/pgcrypto';
 import { mapVisualKnowledgeRow, customerGuidance, customerIntelligence } from '../visual-knowledge';
 import { mapHciFabricKnowledge } from '../hci-visual-knowledge';
 
-const migration = readFileSync(resolve('supabase/migrations/20261002081604_fabric_visual_knowledge_overlay_empty.sql'), 'utf8');
-const browseSourceMigration = readFileSync(resolve('supabase/migrations/20261002083409_fabric_visual_knowledge_overlay_browse_source.sql'), 'utf8');
+const migration = readFileSync(resolve('supabase/migrations/20261002201534_fabric_visual_knowledge_overlay_empty.sql'), 'utf8');
+const browseSourceMigration = readFileSync(resolve('supabase/migrations/20261002202411_fabric_visual_knowledge_overlay_browse_source.sql'), 'utf8');
 const rollback = readFileSync(resolve('docs/fabric-visual-overlay/ROLLBACK.sql'), 'utf8');
 const browseMigration = readFileSync(resolve('supabase/migrations/20260925085148_browse_governed_projection_sources.sql'), 'utf8');
 const oldBrowseView = browseMigration.slice(browseMigration.indexOf('CREATE VIEW curtainsuk_private.browse_eligible_set_v1'));

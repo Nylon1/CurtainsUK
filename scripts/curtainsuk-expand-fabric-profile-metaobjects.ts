@@ -1,7 +1,9 @@
 import "./curtainsuk-server-script-loader.mjs";
 import { createHash } from "node:crypto";
+import { readFile, readdir } from "node:fs/promises";
+import { join } from "node:path";
 import { loadEnvConfig } from "@next/env";
-import { listFabricMasterRecords } from "../lib/fabric-master/repository";
+import { listFabricMasterRecords, mapFabricMasterRow } from "../lib/fabric-master/repository";
 import {
   FABRIC_PROFILE_CREATE_BASE_FIELDS,
   FABRIC_PROFILE_KNOWLEDGE_FIELDS,
@@ -66,6 +68,7 @@ type Args = {
   confirmedShopifyOnly: boolean;
   addCount: number;
   expectedSelection: string | null;
+  sourceSnapshotDir: string | null;
 };
 
 type ShopifyProfile = {
@@ -96,6 +99,7 @@ function parseArgs(argv: string[]): Args {
   let confirmedShopifyOnly = false;
   let addCount = 0;
   let expectedSelection: string | null = null;
+  let sourceSnapshotDir: string | null = null;
 
   for (const arg of argv) {
     if (arg === "--apply") apply = true;
@@ -106,6 +110,8 @@ function parseArgs(argv: string[]): Args {
       addCount = value;
     } else if (arg.startsWith("--expected-selection=")) {
       expectedSelection = arg.slice("--expected-selection=".length).trim() || null;
+    } else if (arg.startsWith("--source-snapshot-dir=")) {
+      sourceSnapshotDir = arg.slice("--source-snapshot-dir=".length).trim() || null;
     } else {
       throw new Error("FABRIC_PROFILE_ARGUMENT_INVALID:" + arg);
     }
@@ -118,7 +124,50 @@ function parseArgs(argv: string[]): Args {
     throw new Error("FABRIC_PROFILE_EXPECTED_SELECTION_INVALID");
   }
 
-  return { apply, confirmedShopifyOnly, addCount, expectedSelection };
+  return { apply, confirmedShopifyOnly, addCount, expectedSelection, sourceSnapshotDir };
+}
+
+type ProfileSnapshotRow = {
+  fabricId: string;
+  registrationActive: boolean;
+  rawMaster: Record<string, unknown>;
+  visual: VisualRow;
+  sampleCurrent: boolean;
+  generationId: string;
+  capturedAt: string;
+};
+
+async function readProfileSnapshot(directory: string) {
+  const files = (await readdir(directory)).filter((name) => /^profile-snapshot-\d{2}\.json$/.test(name)).sort();
+  if (files.length !== 14) throw new Error("FABRIC_PROFILE_SNAPSHOT_PART_COUNT_INVALID");
+  const rows = (await Promise.all(files.map(async (name) =>
+    JSON.parse(await readFile(join(directory, name), "utf8")) as ProfileSnapshotRow[]
+  ))).flat();
+  if (rows.length !== 1358) throw new Error("FABRIC_PROFILE_SNAPSHOT_COHORT_COUNT_INVALID");
+  const ids = new Set<string>();
+  const generations = new Set<string>();
+  const now = Date.now();
+  for (const row of rows) {
+    if (!row.registrationActive || typeof row.fabricId !== "string" || ids.has(row.fabricId)
+      || row.rawMaster?.fabric_id !== row.fabricId || row.visual?.fabric_id !== row.fabricId
+      || !["COMPLETE", "PARTIAL_GOVERNED"].includes(row.visual.knowledge_state)
+      || typeof row.sampleCurrent !== "boolean" || typeof row.generationId !== "string") {
+      throw new Error("FABRIC_PROFILE_SNAPSHOT_ROW_INVALID");
+    }
+    const age = now - Date.parse(row.capturedAt);
+    if (!Number.isFinite(age) || age < 0 || age > 2 * 60 * 60 * 1000) {
+      throw new Error("FABRIC_PROFILE_SNAPSHOT_STALE");
+    }
+    ids.add(row.fabricId);
+    generations.add(row.generationId);
+  }
+  if (generations.size !== 1) throw new Error("FABRIC_PROFILE_SNAPSHOT_GENERATION_CHANGED");
+  return {
+    records: rows.map((row) => mapFabricMasterRow(row.rawMaster))
+      .filter((record) => record.staging_catalog_visible === true),
+    sampleEligible: new Set(rows.filter((row) => row.sampleCurrent).map((row) => row.fabricId)),
+    visual: new Map(rows.map((row) => [row.fabricId, row.visual])),
+  };
 }
 
 function runtimeConfig(environment: NodeJS.ProcessEnv = process.env) {
@@ -438,14 +487,24 @@ async function main() {
   for (const profile of profiles) {
     const fabricId = exactFabricId(profile);
     if (existingByFabricId.has(fabricId)) throw new Error("FABRIC_PROFILE_DUPLICATE_IDENTITY:" + fabricId);
+    if (existingHandles.has(profile.handle)) throw new Error("FABRIC_PROFILE_DUPLICATE_HANDLE:" + profile.handle);
     existingByFabricId.set(fabricId, profile);
     existingHandles.add(profile.handle);
   }
+  const existingCanonicals = new Set<string>();
+  for (const profile of profiles) {
+    const canonical = fieldsMap(profile).canonical_url;
+    if (!canonical || existingCanonicals.has(canonical)) throw new Error("FABRIC_PROFILE_DUPLICATE_CANONICAL:" + canonical);
+    existingCanonicals.add(canonical);
+  }
 
-  const [records, sampleEligible] = await Promise.all([
-    listFabricMasterRecords({ stagingCatalogOnly: true }),
-    currentSampleEligibleIds(),
-  ]);
+  const snapshot = args.sourceSnapshotDir ? await readProfileSnapshot(args.sourceSnapshotDir) : null;
+  const [records, sampleEligible] = snapshot
+    ? [snapshot.records, snapshot.sampleEligible]
+    : await Promise.all([
+      listFabricMasterRecords({ stagingCatalogOnly: true }),
+      currentSampleEligibleIds(),
+    ]);
   const candidateRecords = records.filter((record) =>
     !existingByFabricId.has(record.fabric_id)
     && record.storefront_selectable === true
@@ -453,7 +512,7 @@ async function main() {
     && sampleEligible.has(record.fabric_id)
   );
 
-  const rows = await visualRows(candidateRecords.map((record) => record.fabric_id));
+  const rows = snapshot?.visual ?? await visualRows(candidateRecords.map((record) => record.fabric_id));
   const candidates: Candidate[] = [];
 
   for (const record of candidateRecords) {
@@ -494,16 +553,36 @@ async function main() {
   }, {});
 
   if (args.apply) {
+    let created = 0;
     await runPool(selected, WRITE_CONCURRENCY, async (candidate) => {
       await upsertProfile(config, token, candidate);
+      created += 1;
+      if (created % 50 === 0 || created === selected.length) {
+        console.log(JSON.stringify({ event: "FABRIC_PROFILE_CREATE_PROGRESS", created, total: selected.length }));
+      }
     });
 
     const after = await existingProfiles(config, token);
-    const afterIds = new Set(after.map(exactFabricId));
-    for (const candidate of selected) {
-      if (!afterIds.has(candidate.fabricId)) throw new Error("FABRIC_PROFILE_POST_APPLY_MISSING:" + candidate.fabricId);
+    const afterById = new Map(after.map((profile) => [exactFabricId(profile), profile]));
+    const afterHandles = new Set(after.map((profile) => profile.handle));
+    const afterCanonicals = new Set(after.map((profile) => fieldsMap(profile).canonical_url));
+    if (afterById.size !== after.length || afterHandles.size !== after.length
+      || afterCanonicals.size !== after.length || afterCanonicals.has(null)) {
+      throw new Error("FABRIC_PROFILE_POST_APPLY_DUPLICATE_IDENTITY");
     }
-    if (after.length < profiles.length + selected.length) {
+    for (const candidate of selected) {
+      const profile = afterById.get(candidate.fabricId);
+      if (!profile || profile.handle !== candidate.handle) {
+        throw new Error("FABRIC_PROFILE_POST_APPLY_MISSING:" + candidate.fabricId);
+      }
+      const fields = fieldsMap(profile);
+      for (const field of candidate.fields) {
+        if (fields[field.key] !== field.value) {
+          throw new Error("FABRIC_PROFILE_POST_APPLY_FIELD_MISMATCH:" + candidate.fabricId + ":" + field.key);
+        }
+      }
+    }
+    if (after.length !== profiles.length + selected.length) {
       throw new Error("FABRIC_PROFILE_POST_APPLY_COUNT_MISMATCH");
     }
 

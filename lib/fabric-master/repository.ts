@@ -22,7 +22,7 @@ function databaseError(error: { code?: string; message?: string } | null) {
   }
 }
 
-function mapFabricMasterRow(row: Row): FabricMasterRecord {
+export function mapFabricMasterRow(row: Row): FabricMasterRecord {
   const design = row.fabric_designs as Row;
   const collection = design.fabric_collections as Row;
   const brand = row.supplier_brands as Row;

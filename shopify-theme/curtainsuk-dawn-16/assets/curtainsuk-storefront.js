@@ -275,6 +275,11 @@
       const sampleAction = fabric.sampleAvailable === true
         ? `<button class="cuk-button cuk-button--secondary" type="button" data-sample>Order sample</button>`
         : `<button class="cuk-button cuk-button--secondary" type="button" disabled>${fabric.sampleAvailable === false ? "Sample unavailable" : "Sample to be confirmed"}</button>`;
+      const legacyDetailUrl = `/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}`;
+      const profileUrl = /^https:\/\/www\.curtainsuk\.com\/pages\/fabric\/[a-z0-9-]+$/i.test(fabric.fabricProfileUrl || "")
+        ? fabric.fabricProfileUrl
+        : null;
+      const viewFabricUrl = profileUrl || legacyDetailUrl;
       card.innerHTML = `
         <div class="cuk-fabric__swatch">${visual}</div>
         <div class="cuk-fabric__body">
@@ -285,7 +290,7 @@
           <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric__actions">
             ${sampleAction}
-            <a class="cuk-button" href="/pages/fabric-library?view=browse-fabrics&fabric=${encodeURIComponent(fabric.id)}&window=${encodeURIComponent(selectedWindow)}">View Fabric</a>
+            <a class="cuk-button" data-cuk-view-fabric href="${escapeHtml(viewFabricUrl)}">View Fabric</a>
           </div>
         </div>`;
       if (root.hasAttribute("data-cuk-shopping")) {
@@ -307,7 +312,7 @@
           disclosure.textContent = 'Price guide. Final price depends on measurements and options.';
           price.after(disclosure);
         }
-        const productLink = card.querySelector('a[href*="fabric="]');
+        const productLink = card.querySelector('[data-cuk-view-fabric]');
         const imageLink = document.createElement('a'); imageLink.href = productLink.href;
         imageLink.setAttribute('aria-label', `View ${fabric.design} in ${fabric.colour}`);
         const swatch = card.querySelector('.cuk-fabric__swatch');

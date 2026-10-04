@@ -12,6 +12,7 @@ import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './brow
 import { browseSearchRpcName } from './browse-rpc';
 import { readNailaPreparedSelection } from './naila-prepared-browse';
 import { browseGuideMinorForFabric } from './browse-guide-reader';
+import { publishedFabricProfileUrl } from './fabric-profile-links';
 
 export async function retailFabricDetail(id: string, withGuide = false) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
@@ -43,12 +44,14 @@ async function hydrateRetailFabrics(ids: string[], withGuide = false) {
   }).filter((i) => /^https:\/\/cdn\.shopify\.com\/[^?#]+$/.test(i.url)).sort((a, b) => Number(b.imageType === "MAIN") - Number(a.imageType === "MAIN"));
   if (retailLaunchBlockers(record, profile ?? null, images).length) return [];
   const safe = projectCustomerSafeFabric(record);
+  const fabricProfileUrl = publishedFabricProfileUrl(id);
   const commercial = readiness?.get(id);
   if(commercial?.commercialStockState==='DISCONTINUED') return [];
   // Explicit public shape: supplier SKU remains in canonical server records.
   const result = {
     ...(withGuide ? { supplierFacts: { facts: supplierFacts(record).facts } } : {}),
     id: safe.id, supplier: safe.supplier, brand: safe.brand, collection: safe.collection, design: safe.design, colour: safe.colour,
+    ...(fabricProfileUrl ? { fabricProfileUrl } : {}),
     composition: safe.composition, fullWidthMm: safe.fullWidthMm, usableWidthMm: safe.usableWidthMm, verticalRepeatMm: safe.verticalRepeatMm, horizontalRepeatMm: safe.horizontalRepeatMm,
     patternMatchType: safe.patternMatchType, weightGsm: record.weight_gsm, careInstructions: record.care_instructions,
     sampleAvailable: commercial?.sampleReady ?? false, availability: commercial?.stockMessage ?? 'Check availability' as const, configurable: safe.configurable, configurationMessage: commercial?.priceReady ? 'Ready to configure' as const : 'Price and availability to be confirmed' as const,

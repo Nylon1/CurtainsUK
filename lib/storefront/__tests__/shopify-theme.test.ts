@@ -143,6 +143,9 @@ test("Dawn uses paginated retail imagery and retains canonical sample identity w
   const section = read("sections", "curtainsuk-fabric-browser.liquid");
   assert.match(script, /fabricId: fabric\.id, supplier: fabric\.supplier, brand: fabric\.brand/);
   assert.match(script, /fabric\.imageReferences\?\.\[0\]/);
+  assert.match(script, /fabric\.fabricProfileUrl/);
+  assert.match(script, /data-cuk-view-fabric/);
+  assert.match(script, /profileUrl \|\| legacyDetailUrl/);
   assert.match(script, /fabric\.availability/);
   assert.match(script, /fabric\.browseReady \?/);
   assert.match(script, /We couldn't confirm this fabric for made-to-measure curtains/);

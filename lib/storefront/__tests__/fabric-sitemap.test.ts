@@ -11,6 +11,7 @@ import {
 } from '../fabric-sitemap';
 import { SHOPIFY_PROXY_OPERATION_POLICY, isShopifyProxyOperation } from '../security/shopify-proxy-operations';
 import { fabricSitemapResponse } from '../fabric-sitemap-response';
+import { publishedFabricProfileUrl } from '../../fabric-master/fabric-profile-links';
 
 test('dedicated Fabric sitemap is GET-only within the Shopify proxy', () => {
   assert.equal(isShopifyProxyOperation('fabric-sitemap'), true);
@@ -35,6 +36,14 @@ test('live-generated manifest produces one valid XML URL per canonical Fabric Pr
   assert.equal(new Set(urls).size, urls.length);
   assert.ok(urls.every((url) => url.startsWith('https://www.curtainsuk.com/pages/fabric/')));
   assert.ok(Buffer.byteLength(xml, 'utf8') < FABRIC_SITEMAP_MAX_BYTES);
+});
+
+test('published Fabric Profile lookup uses the same authoritative manifest as the sitemap', () => {
+  assert.equal(
+    publishedFabricProfileUrl('pt-1204-212'),
+    'https://www.curtainsuk.com/pages/fabric/pt-1204-212-mellora-blush',
+  );
+  assert.equal(publishedFabricProfileUrl('not-a-published-fabric'), null);
 });
 
 test('sitemap response uses XML content type and the deterministic generated body', async () => {

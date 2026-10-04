@@ -74,15 +74,28 @@ titles and descriptions, governed colour/material/pattern, the exact
 `/pages/fabric/...` canonical landing URL, `cuk-sample:<fabric_id>` ID and
 £2.50 offer. The one item labelled as edited in Merchant also read back with
 the new copy. Newly added items may remain under Google's policy review and
-image processing. A full post-update Merchant product export is still needed
-to independently compare every live item ID/title/description with the
-11,514-row file; browser download was blocked during this read-back. The
-source's exact processed count and sampled item screens do not substitute
-for that item-by-item export proof.
+image processing.
 
-An independent 25-item “Found by Google” inventory appears in the overall
-Merchant account dashboard. It is separate from source `10741855241` and is
-not included in the 11,514-item source reconciliation.
+A fresh post-update Google Merchant product export was provided on 4 October
+at 21:21 UK. The ZIP SHA-256 is
+`ef5b22e635951a66f80e8af79d6ef1c2cf1dc7e400b714f25a495868f698a79e`;
+its TSV SHA-256 is
+`3a6e9e41517b8d56c096c9970d354c28ac2ef0c3ae54001722e866b8ec8b63ef`.
+The export has 11,539 account-wide rows: all 11,514 expected file-source
+IDs and 25 separate “Found by Google” IDs. For the 11,514 source items,
+live export comparison found **zero missing IDs, zero duplicate IDs, zero
+duplicate titles, zero duplicate descriptions, zero legacy negative claims,
+and zero mismatches** in title, description, canonical landing link, price,
+brand, colour, material, pattern, product type, condition, availability or
+structured product details. Google serializes `product_detail` as
+`name:value:section`; the comparison normalised this to the feed's
+`section:name:value` order before comparing every item. The local audit
+result is `merchant-live-proof.json` in the evidence directory.
+
+The 25 “Found by Google” items are separate from source `10741855241` and
+are not included in the 11,514-item source reconciliation. Duplicate
+descriptions among those separately discovered items do not occur in the
+11,514 governed source items.
 
 ## Other production layers
 
@@ -103,6 +116,8 @@ not included in the 11,514-item source reconciliation.
 
 Shopify profile publication and bounded read-back finished with zero
 mismatches. Merchant file acceptance, source count, representative old/new
-product details and the three-exclusion equation were read back. Full live
-Merchant ID/title/description uniqueness remains pending a fresh product
-export from source `10741855241`.
+product details, the three-exclusion equation, and every live source item
+in the fresh account export were read back. All checked Merchant source
+identity, copy, canonical, offer and structured detail fields matched the
+accepted file exactly. Google policy approval and image processing remain
+asynchronous after publication.

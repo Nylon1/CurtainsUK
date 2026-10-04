@@ -49,7 +49,15 @@ function tsvCell(value: string) {
 }
 
 function toTsv(rows: FeedRow[]) {
-  return [HEADERS.join("\t"), ...rows.map((row) => HEADERS.map((header) => tsvCell(row[header])).join("\t"))].join("\n") + "\n";
+  return [HEADERS.join("\t"), ...rows.map((row) => HEADERS.map((header) => {
+    // Google parses product_detail's own quoted subattributes. Wrapping the
+    // whole TSV cell adds a second quote layer and invalidates comma values.
+    if (header === "product_detail") {
+      if (/[\r\n\t]/.test(row[header])) throw new Error("MERCHANT_PRODUCT_DETAIL_MULTILINE");
+      return row[header];
+    }
+    return tsvCell(row[header]);
+  }).join("\t"))].join("\n") + "\n";
 }
 
 function duplicateCount(values: string[]) {

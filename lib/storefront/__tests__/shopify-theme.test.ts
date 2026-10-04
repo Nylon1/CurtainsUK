@@ -158,6 +158,16 @@ test("Dawn uses paginated retail imagery and retains canonical sample identity w
   assert.equal(/supplierCost|tradePrice|stockMetres|batchReference/i.test(script + section), false);
 });
 
+test("Browse View Fabric prefers the published Fabric Profile and safely falls back to the legacy detail", () => {
+  const script = read("assets", "curtainsuk-storefront.js");
+  assert.match(script, /fabricProfileCandidate/);
+  assert.match(script, /\/pages\/fabric\//);
+  assert.match(script, /method: "HEAD"/);
+  assert.match(script, /fabricBrowseFallback/);
+  assert.match(script, /data-cuk-fabric-profile-link/);
+  assert.match(script, /location\.assign\(resolved \|\| fallback\)/);
+});
+
 test("a Fabric Master deep link is validated, hydrated through the catalogue, and fails closed when unresolved", () => {
   const script = read("assets", "curtainsuk-storefront.js");
   assert.match(script, /FABRIC_MASTER_ID/);

@@ -21,7 +21,7 @@ test('dedicated Fabric sitemap is GET-only within the Shopify proxy', () => {
 
 test('live-generated manifest produces one valid XML URL per canonical Fabric Profile', () => {
   assert.equal(manifest.version, 1);
-  assert.equal(manifest.profileCount, 10_208);
+  assert.equal(manifest.profileCount, 11_517);
   assert.equal(manifest.profiles.length, manifest.profileCount);
   validateFabricSitemapEntries(manifest.profiles, manifest.profileCount);
   assert.deepEqual(manifest.profiles.map((entry) => entry.canonicalUrl),
@@ -31,7 +31,7 @@ test('live-generated manifest produces one valid XML URL per canonical Fabric Pr
   const $ = load(xml, { xmlMode: true });
   assert.equal($('urlset').attr('xmlns'), 'http://www.sitemaps.org/schemas/sitemap/0.9');
   const urls = $('urlset > url > loc').toArray().map((node) => $(node).text());
-  assert.equal(urls.length, 10_208);
+  assert.equal(urls.length, 11_517);
   assert.deepEqual(urls, manifest.profiles.map((entry) => entry.canonicalUrl));
   assert.equal(new Set(urls).size, urls.length);
   assert.ok(urls.every((url) => url.startsWith('https://www.curtainsuk.com/pages/fabric/')));

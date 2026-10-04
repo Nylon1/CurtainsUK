@@ -34,12 +34,14 @@
   {% if heading == 'eyelet' %}
     <rect x="9" y="83" width="582" height="10" rx="5" fill="url(#{{ uid }}-rail)"/>
   {% elsif heading == 'pencil' %}
+    <g opacity=".62">
     <rect x="9" y="49" width="582" height="10" rx="5" fill="url(#{{ uid }}-rail)"/>
     {% for ring in (0..12) %}{% assign x = ring | times: 42 | plus: 48 %}
       <ellipse cx="{{ x }}" cy="62" rx="4.5" ry="19" fill="none" stroke="#736d61" stroke-width="3"/>
       <path d="M{{ x | minus: 1 }} 44 Q{{ x | minus: 7 }} 59 {{ x | minus: 1 }} 80" fill="none" stroke="#f5f1e8" stroke-width="1.5"/>
       <path d="M{{ x }} 79V89" stroke="#8a8376" stroke-width="2"/>
     {% endfor %}
+    </g>
   {% elsif heading == 'wave' %}
     <rect x="22" y="39" width="556" height="6" rx="2" fill="url(#{{ uid }}-rail)"/>
     {% for hook in (0..4) %}{% assign x = hook | times: 106 | plus: 62 %}<path d="M{{ x }} 45V61" stroke="#a69e90" stroke-width="2"/>{% endfor %}

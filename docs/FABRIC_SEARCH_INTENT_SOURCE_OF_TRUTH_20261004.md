@@ -110,7 +110,10 @@ descriptions among those separately discovered items do not occur in the
   checked final 20-minute window.
 - Google approval, under-review and disapproval counts are asynchronous and
   must be reported as timestamped Merchant snapshots, not treated as a
-  fixed publication count.
+  fixed publication count. At **21:30 UK on 4 October 2026**, the
+  source-filtered Merchant views showed **11,253 approved, 127 under review,
+  and 134 not approved**. These sum exactly to the 11,514 items in source
+  `10741855241` at that snapshot.
 
 ## Verification boundary
 

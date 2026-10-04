@@ -1,0 +1,101 @@
+{% doc %}
+  Renders a close-up curtain heading in the selected Fabric Profile material.
+  @param {string} image_url - Selected fabric image URL, shared by every style.
+  @param {string} heading - wave, pinch, pencil, or eyelet.
+  @param {string} preview_id - Unique identifier for this instance.
+{% enddoc %}
+{%- assign uid = preview_id | append: '-' | append: heading | handleize -%}
+{%- capture edge -%}
+  {%- case heading -%}
+    {%- when 'wave' -%}M34 80 C48 54 69 55 87 71 S121 94 140 80 C154 54 175 55 193 71 S227 94 246 80 C260 54 281 55 299 71 S333 94 352 80 C366 54 387 55 405 71 S439 94 458 80 C472 54 493 55 511 71 S545 94 566 80
+    {%- when 'pinch' -%}M34 70 L58 69 Q59 57 66 59 L72 62 Q77 56 81 61 L83 71 Q125 76 174 69 Q175 57 182 59 L188 62 Q193 56 197 61 L199 71 Q241 76 290 69 Q291 57 298 59 L304 62 Q309 56 313 61 L315 71 Q357 76 406 69 Q407 57 414 59 L420 62 Q425 56 429 61 L431 71 Q473 76 522 69 Q523 57 530 59 L536 62 Q541 56 545 61 L547 71 L566 70
+    {%- when 'eyelet' -%}M34 65 Q46 53 69 55 Q95 53 116 65 Q131 75 140 65 Q152 53 175 55 Q201 53 222 65 Q237 75 246 65 Q258 53 281 55 307 53 328 65 Q343 75 352 65 Q364 53 387 55 Q413 53 434 65 Q449 75 458 65 Q470 53 493 55 Q519 53 540 65 Q555 75 566 65
+    {%- else -%}M36 87{% for fold in (0..43) %}q3 -5 6 -2 q3 4 6 2{% endfor %}
+  {%- endcase -%}
+{%- endcapture -%}
+<svg class="cuk-heading-preview" viewBox="0 0 600 410" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="{{ uid }}-wall" x2="0" y2="1"><stop stop-color="#e9e5dd"/><stop offset="1" stop-color="#d4cec2"/></linearGradient>
+    <linearGradient id="{{ uid }}-fold"><stop stop-color="#1b1813" stop-opacity=".48"/><stop offset=".1" stop-color="#211c14" stop-opacity=".18"/><stop offset=".27" stop-color="#fff" stop-opacity=".24"/><stop offset=".44" stop-color="#fff" stop-opacity=".12"/><stop offset=".63" stop-color="#fff" stop-opacity="0"/><stop offset=".82" stop-color="#241f17" stop-opacity=".2"/><stop offset=".95" stop-color="#17140f" stop-opacity=".52"/><stop offset="1" stop-color="#17140f" stop-opacity=".48"/></linearGradient>
+    <linearGradient id="{{ uid }}-crease"><stop stop-color="#16130f" stop-opacity=".6"/><stop offset=".22" stop-color="#211b13" stop-opacity=".2"/><stop offset=".46" stop-color="#fff" stop-opacity=".33"/><stop offset=".7" stop-color="#fff" stop-opacity=".09"/><stop offset="1" stop-color="#211b13" stop-opacity=".42"/></linearGradient>
+    <linearGradient id="{{ uid }}-metal" x2=".2" y2="1"><stop stop-color="#6e6a61"/><stop offset=".2" stop-color="#f5f3ed"/><stop offset=".42" stop-color="#b7b4aa"/><stop offset=".62" stop-color="#817e74"/><stop offset=".84" stop-color="#dedbd3"/><stop offset="1" stop-color="#68665c"/></linearGradient>
+    <linearGradient id="{{ uid }}-rail" x2="0" y2="1"><stop stop-color="#8a857a"/><stop offset=".25" stop-color="#f9f6ef"/><stop offset=".48" stop-color="#d9d4c9"/><stop offset=".76" stop-color="#8a8579"/><stop offset="1" stop-color="#b5afa2"/></linearGradient>
+    <linearGradient id="{{ uid }}-gather-fade" x1="0" y1="80" x2="0" y2="211" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".42" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <linearGradient id="{{ uid }}-body-fade" x1="0" y1="95" x2="0" y2="195" gradientUnits="userSpaceOnUse"><stop stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>
+    <mask id="{{ uid }}-gathers"><rect width="600" height="410" fill="url(#{{ uid }}-gather-fade)"/></mask>
+    <mask id="{{ uid }}-body"><rect width="600" height="410" fill="url(#{{ uid }}-body-fade)"/></mask>
+    <pattern id="{{ uid }}-wave-fold" width="106" height="410" patternUnits="userSpaceOnUse" x="34"><rect width="106" height="410" fill="url(#{{ uid }}-fold)"/></pattern>
+    <image id="{{ uid }}-fabric" href="{{ image_url | escape }}" x="18" y="46" width="564" height="380" preserveAspectRatio="xMidYMid slice"/>
+    <path id="{{ uid }}-edge" d="{{ edge }}"/>
+    <clipPath id="{{ uid }}-cloth"><path d="{{ edge }} L578 430 H22Z"/></clipPath>
+  </defs>
+  <rect width="600" height="410" fill="url(#{{ uid }}-wall)"/>
+  <path d="M0 22H600" stroke="#fff" stroke-opacity=".22"/>
+  {% if heading == 'eyelet' %}
+    <rect x="9" y="83" width="582" height="10" rx="5" fill="url(#{{ uid }}-rail)"/>
+  {% elsif heading == 'pencil' %}
+    <g opacity=".62">
+    <rect x="9" y="49" width="582" height="10" rx="5" fill="url(#{{ uid }}-rail)"/>
+    {% for ring in (0..12) %}{% assign x = ring | times: 42 | plus: 48 %}
+      <ellipse cx="{{ x }}" cy="62" rx="4.5" ry="19" fill="none" stroke="#736d61" stroke-width="3"/>
+      <path d="M{{ x | minus: 1 }} 44 Q{{ x | minus: 7 }} 59 {{ x | minus: 1 }} 80" fill="none" stroke="#f5f1e8" stroke-width="1.5"/>
+      <path d="M{{ x }} 79V89" stroke="#8a8376" stroke-width="2"/>
+    {% endfor %}
+    </g>
+  {% elsif heading == 'wave' %}
+    <rect x="22" y="39" width="556" height="6" rx="2" fill="url(#{{ uid }}-rail)"/>
+    {% for hook in (0..4) %}{% assign x = hook | times: 106 | plus: 62 %}<path d="M{{ x }} 45V61" stroke="#a69e90" stroke-width="2"/>{% endfor %}
+  {% endif %}
+  <g class="cuk-heading-preview__cloth">
+    <g clip-path="url(#{{ uid }}-cloth)">
+      <rect x="18" y="46" width="564" height="380" fill="#c8c1b1"/>
+      {% if image_url != blank %}<use href="#{{ uid }}-fabric"/>{% endif %}
+      {% case heading %}
+        {% when 'wave' %}
+          <rect x="18" y="46" width="564" height="380" fill="url(#{{ uid }}-wave-fold)"/>
+          <use href="#{{ uid }}-edge" transform="translate(0 9)" fill="none" stroke="#342c20" stroke-opacity=".14"/>
+        {% when 'pinch' %}
+          {% for fold in (0..4) %}{% assign x = fold | times: 116 | plus: 72 %}
+            <g transform="translate({{ x }} 0)">
+              <path d="M-3 167 C-18 194-38 205-44 266 L-51 430 H65 L57 280 C54 220 14 191 3 167Z" fill="url(#{{ uid }}-fold)"/>
+              <path d="M0 169 C19 189 38 220 39 270 L44 430 H59 L53 266 C48 215 16 183 3 167Z" fill="url(#{{ uid }}-crease)" opacity=".65"/>
+              <path d="M-3 169 C-19 190-29 222-30 272 L-35 430 H-43 L-39 270 C-37 216-14 184-3 169Z" fill="#fff" fill-opacity=".12"/>
+              <path d="M-14 61 Q-13 115-4 167 Q0 176 4 167 Q13 120 10 59 L2 61 Q2 118 0 158 Q-4 116-5 59Z" fill="url(#{{ uid }}-crease)"/>
+              <path d="M-4 62 Q-2 115 0 160 L3 167 Q7 119 6 62Z" fill="#211b15" fill-opacity=".32"/>
+              <path d="M-12 63 C-11 113-8 153-3 166 M2 63 Q5 118 1 165" fill="none" stroke="#fff" stroke-opacity=".36" stroke-width="2.2"/>
+              <path d="M-3 165 Q0 171 4 165" fill="none" stroke="#2d241b" stroke-opacity=".65" stroke-width="2.3"/>
+              <path d="M-3 170 Q-21 193-29 226" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="2"/>
+            </g>
+          {% endfor %}
+        {% when 'pencil' %}
+          <g mask="url(#{{ uid }}-body)">
+            {% for fold in (0..5) %}{% assign x = fold | times: 90 | plus: 31 %}
+              <path d="M{{ x }} 104 c14 33-7 83-10 148 l-7 178 h101 l-4 -167 c-3 -78-4 -116-15 -159Z" fill="url(#{{ uid }}-fold)" opacity=".85"/>
+            {% endfor %}
+          </g>
+          <g mask="url(#{{ uid }}-gathers)">
+            {% for fold in (0..43) %}
+              {% assign x = fold | times: 12 | plus: 36 %}
+              {% assign drift = fold | modulo: 7 | minus: 3 | times: 3 %}
+              {% assign length = fold | modulo: 4 | times: 7 | plus: 92 %}
+              <path d="M{{ x }} 81 c-2 23 3 38 0 57 q{{ drift }} 30 {{ drift }} {{ length }} h14 q{{ drift | times: -1 }} -60 -3 -95 q-4 -30 1 -57Z" fill="url(#{{ uid }}-crease)"/>
+              <path d="M{{ x | plus: 4 }} 86 q-3 24 0 46 q{{ drift }} 26 {{ drift }} 45" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.7"/>
+            {% endfor %}
+          </g>
+        {% when 'eyelet' %}
+          <rect x="18" y="46" width="564" height="380" fill="url(#{{ uid }}-wave-fold)"/>
+          <path d="M34 119 Q87 106 140 119 T246 119 T352 119 T458 119 T566 119" fill="none" stroke="#292116" stroke-opacity=".1"/>
+      {% endcase %}
+      <use href="#{{ uid }}-edge" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+    </g>
+  </g>
+  {% if heading == 'eyelet' %}
+    {% for ring in (0..4) %}{% assign x = ring | times: 106 | plus: 117 %}
+      <ellipse cx="{{ x }}" cy="88" rx="12" ry="19" fill="#332e25" fill-opacity=".35"/>
+      <ellipse cx="{{ x }}" cy="87" rx="10" ry="17" fill="url(#{{ uid }}-metal)" stroke="#777165" stroke-width="1"/>
+      <ellipse cx="{{ x }}" cy="87" rx="6" ry="12" fill="url(#{{ uid }}-wall)" stroke="#575248" stroke-width="1.5"/>
+      <path d="M{{ x | minus: 6 }} 83h12v9h-12Z" fill="url(#{{ uid }}-rail)"/>
+      <path d="M{{ x | minus: 1 }} 72 Q{{ x | minus: 12 }} 86 {{ x | minus: 1 }} 103" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.3"/>
+    {% endfor %}
+  {% endif %}
+</svg>

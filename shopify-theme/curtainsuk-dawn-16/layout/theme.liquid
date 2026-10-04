@@ -28,16 +28,22 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- if metaobject.fabric_master_id.value != blank and metaobject.seo_title.value != blank -%}
+    <title>{{ metaobject.seo_title.value | escape }}</title>
+    {%- else -%}
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
+    {%- endif -%}
 
-    {% if page_description %}
+    {%- if metaobject.fabric_master_id.value != blank and metaobject.seo_description.value != blank -%}
+      <meta name="description" content="{{ metaobject.seo_description.value | escape }}">
+    {%- elsif page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {%- endif -%}
 
     {% render 'meta-tags' %}
 

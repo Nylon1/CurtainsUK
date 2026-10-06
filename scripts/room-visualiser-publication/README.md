@@ -39,7 +39,7 @@ and quality-gate holds remain reproducible from the evidence queue.
 Then run the **same entrypoint** with `--verify-live` and the same queue/ledger.
 It checks each pending ID against the public retail projection and CDN bytes,
 hash, MIME and immutable cache header. It promotes only passing IDs in the
-ledger. Any live fault blocks another batch. Subsequent batches may use 50,
+ledger. Any live fault blocks another batch. Subsequent controlled batches may use up to 250,
 but must start from the new protected HEAD. The high-resolution masters and
 audit exports remain private; reports and ledgers are outside the repository.
 

@@ -4,6 +4,7 @@
 import {spawnSync,execFileSync} from 'node:child_process';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {resolve,join,dirname} from 'node:path';
+import {MAX_BATCH_SIZE} from './core.mjs';
 
 const values=process.argv.slice(2);
 const arg=name=>{const index=values.indexOf(`--${name}`);return index<0?null:values[index+1]};
@@ -12,7 +13,7 @@ const stage=values.includes('--stage'),verify=values.includes('--verify-live');
 if(!queue||!ledger||!reports||stage===verify)
   throw Error('Pass --queue, --ledger, --report-dir and exactly one of --stage or --verify-live');
 const batchSize=Number(arg('batch-size')||25);
-if(!Number.isInteger(batchSize)||batchSize<1||batchSize>50)throw Error('Batch size must be 1–50');
+if(!Number.isInteger(batchSize)||batchSize<1||batchSize>MAX_BATCH_SIZE)throw Error(`Batch size must be 1–${MAX_BATCH_SIZE}`);
 await mkdir(resolve(reports),{recursive:true});
 const report=join(resolve(reports),verify?'live.json':'stage.json');
 const node=process.execPath;
@@ -50,7 +51,8 @@ if(stage){
   run(node,['--test','tests/room-visualiser/publication-policy.test.mjs']);
   packageTool('npm',['test']);packageTool('npx',['tsc','--noEmit']);packageTool('npm',['run','build']);
   const staged=JSON.parse(await readFile(resolve(ledger),'utf8')).staged;
-  console.log(JSON.stringify({state:'READY_FOR_PROTECTED_RELEASE',staged:staged.length,
+  const stageReport=JSON.parse(await readFile(report,'utf8'));
+  console.log(JSON.stringify({state:'READY_FOR_PROTECTED_RELEASE',attempted:stageReport.attempted,staged:staged.length,newlyHeld:stageReport.newlyHeld,
     next:'Merge green protected PR, deploy READY, then run this same entrypoint with --verify-live.'}));
 }else{
   if(!ledgerState.staged.length)throw Error('No staged batch to verify');

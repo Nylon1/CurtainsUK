@@ -2260,6 +2260,209 @@
         "matchedAnchors": 199,
         "horizontalCrosscheck": "INCONCLUSIVE"
       }
+    },
+    {
+      "id": "sdg-mind237574",
+      "fabricId": "sdg-mind237574",
+      "mode": "patterned",
+      "hRepeat": 71,
+      "vRepeat": 67,
+      "image": "textures/14d4e0a5530c445aa678ece613fc136b07905d4214939621840c179fac15046c.webp",
+      "sha256": "14d4e0a5530c445aa678ece613fc136b07905d4214939621840c179fac15046c",
+      "encodedBytes": 1398296,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "4b7b85ec33f59d5be612ba82338695f7157645f6ba7f8d9d085fb86b20649b4d",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.47887323943662,
+        "repeatsV": 3.7313432835820897,
+        "sourcePixelsPerCm": 9.357801,
+        "detectedVRepeatPx": 626.97266,
+        "anchorConsensus": 1,
+        "matchedAnchors": 134,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hmtf133470",
+      "fabricId": "sdg-hmtf133470",
+      "mode": "patterned",
+      "hRepeat": 35.2,
+      "vRepeat": 32.5,
+      "image": "textures/62b37c06c0b2a1ef5ef1f5d682d91c9fa6681c755523fdee9dc6a089e603dbb0.webp",
+      "sha256": "62b37c06c0b2a1ef5ef1f5d682d91c9fa6681c755523fdee9dc6a089e603dbb0",
+      "encodedBytes": 971100,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "9009972a46b248d5afe4c629f8287369971e524a5f84934e16cc200d487e4f4c",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.068181818181817,
+        "repeatsV": 7.6923076923076925,
+        "sourcePixelsPerCm": 10.425601,
+        "detectedVRepeatPx": 338.83203,
+        "anchorConsensus": 1,
+        "matchedAnchors": 185,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hmmf133014",
+      "fabricId": "sdg-hmmf133014",
+      "mode": "patterned",
+      "hRepeat": 65,
+      "vRepeat": 37.2,
+      "image": "textures/79b3e517afbd5468b5b6f85274cd703b93ba7c79b77a258c7f83e62ff7c665d4.webp",
+      "sha256": "79b3e517afbd5468b5b6f85274cd703b93ba7c79b77a258c7f83e62ff7c665d4",
+      "encodedBytes": 1318174,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "54d9c96af5f4ca4252f14c18d5cf73a6a425a8714153a0381dc55e736032380f",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 7.076923076923077,
+        "repeatsV": 6.720430107526881,
+        "sourcePixelsPerCm": 10.901378,
+        "detectedVRepeatPx": 405.53125,
+        "anchorConsensus": 1,
+        "matchedAnchors": 185,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-mhcb237673",
+      "fabricId": "sdg-mhcb237673",
+      "mode": "patterned",
+      "hRepeat": 67.2,
+      "vRepeat": 65,
+      "image": "textures/911b75f1903d57ebe9b726e92d779fb595f8092c1dae0e1f127273ce3069b73e.webp",
+      "sha256": "911b75f1903d57ebe9b726e92d779fb595f8092c1dae0e1f127273ce3069b73e",
+      "encodedBytes": 1109504,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "715208028b56c9517c22d647925925e25ae03c75454ef5040d664830624e8db1",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.845238095238095,
+        "repeatsV": 3.8461538461538463,
+        "sourcePixelsPerCm": 9.276322,
+        "detectedVRepeatPx": 602.96094,
+        "anchorConsensus": 0.993506,
+        "matchedAnchors": 153,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-nspi120309",
+      "fabricId": "sdg-nspi120309",
+      "mode": "patterned",
+      "hRepeat": 45.7,
+      "vRepeat": 64,
+      "image": "textures/efbfcb826242f8e1f8a1bc77fc19a87eaa1b7c6e00a08d1a419510e4ec44257e.webp",
+      "sha256": "efbfcb826242f8e1f8a1bc77fc19a87eaa1b7c6e00a08d1a419510e4ec44257e",
+      "encodedBytes": 802686,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "77c988343d9ae68d2cebcbc8beb269ee447cf44fc7c7727c7e36047ef82b8c37",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 10.065645514223194,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 6.461487,
+        "detectedVRepeatPx": 413.53516,
+        "anchorConsensus": 1,
+        "matchedAnchors": 161,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hmmf133009",
+      "fabricId": "sdg-hmmf133009",
+      "mode": "patterned",
+      "hRepeat": 70,
+      "vRepeat": 63,
+      "image": "textures/1057e717386480790f8e61c7043193e22d0614f1b48200b2cae3e992a481c587.webp",
+      "sha256": "1057e717386480790f8e61c7043193e22d0614f1b48200b2cae3e992a481c587",
+      "encodedBytes": 719682,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "69bbf2eed65739d2b82c5d30297c4a27159041c7d7231fc363cff6dfddeafe91",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.571428571428571,
+        "repeatsV": 3.9682539682539684,
+        "sourcePixelsPerCm": 9.613157,
+        "detectedVRepeatPx": 605.62891,
+        "anchorConsensus": 1,
+        "matchedAnchors": 135,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hmni132837",
+      "fabricId": "sdg-hmni132837",
+      "mode": "patterned",
+      "hRepeat": 35,
+      "vRepeat": 19.5,
+      "image": "textures/27686c632c096e1844e84f01fb18fbd5f5f6a917d25c2066db95bfc80f2d7d26.webp",
+      "sha256": "27686c632c096e1844e84f01fb18fbd5f5f6a917d25c2066db95bfc80f2d7d26",
+      "encodedBytes": 493544,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "74586133813dc47752ebb0fc4722e9aa492e9b33b3e9fe1123c7bb54c7ea5db3",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.142857142857142,
+        "repeatsV": 12.820512820512821,
+        "sourcePixelsPerCm": 9.98778,
+        "detectedVRepeatPx": 194.76172,
+        "anchorConsensus": 1,
+        "matchedAnchors": 197,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
     }
   ]
 }

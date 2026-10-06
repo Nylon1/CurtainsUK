@@ -1,0 +1,26 @@
+{{ 'curtainsuk-room-visualiser.css' | asset_url | stylesheet_tag }}
+<section class="cuk-visualiser-entry page-width">
+  <h2>{{ section.settings.heading | default: 'Visualise fabrics in your room' | escape }}</h2>
+  <p>{{ section.settings.text | default: 'Explore curtain fabrics with your walls, flooring, furniture and cushions. Find a colour scheme you enjoy, then choose with a physical sample.' | escape }}</p>
+  <div class="cuk-visualiser-entry__actions">
+    <a class="button" href="/pages/room-visualiser">Explore the Room Visualiser</a>
+    {% for block in section.blocks %}
+      <div {{ block.shopify_attributes }}>
+        {% render 'curtainsuk-room-preview-link', fabric_id: block.settings.fabric_id %}
+      </div>
+    {% endfor %}
+  </div>
+  <p><small>Visual guide only — designed for fabric, colour and interior inspiration rather than an exact representation of finished curtains.</small></p>
+</section>
+{% schema %}
+{
+  "name":"Room Visualiser feature",
+  "settings":[
+    {"type":"text","id":"heading","label":"Heading","default":"Visualise fabrics in your room"},
+    {"type":"textarea","id":"text","label":"Introduction","default":"Explore curtain fabrics with your walls, flooring, furniture and cushions. Find a colour scheme you enjoy, then choose with a physical sample."}
+  ],
+  "blocks":[{"type":"fabric","name":"Supported fabric link","settings":[{"type":"text","id":"fabric_id","label":"Fabric Master ID","info":"Only approved preview fabrics show See in room. Other fabrics show the availability message."}]}],
+  "max_blocks":4,
+  "presets":[{"name":"Room Visualiser feature"}]
+}
+{% endschema %}

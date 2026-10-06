@@ -1,7 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {withRoomPreview} from '../../lib/room-visualiser/server';
+import {withRoomPreview,visualiserPage} from '../../lib/room-visualiser/server';
+
+test('production HTML uses the canonical production CDN and local previews stay local',async()=>{
+ for(const [input,origin] of [['https://www.curtainsuk.com/apps/curtainsuk-decision/room-visualiser','https://curtainsuk-production-api.vercel.app'],['http://127.0.0.1:4380/room-visualiser','http://127.0.0.1:4380']]){
+  const response=await visualiserPage(new Request(input));const html=await response.text();
+  assert.ok(html.includes(`<base href="${origin}/room-visualiser/`));assert.ok(!html.includes('curtainsuk-staging-api'));
+  assert.equal(response.headers.get('Cache-Control'),'no-store');
+ }
+});
 test('eligibility is additive and never modifies catalogue or commerce data',()=>{
  const original={id:'sdg-f1541-01',horizontalRepeatMm:450,verticalRepeatMm:465,sampleAvailable:false,orderReady:false,fabricProfileUrl:'existing'};
  const result=withRoomPreview(original);assert.equal(result.roomPreview.available,true);assert.equal(result.sampleAvailable,false);assert.equal(result.fabricProfileUrl,'existing');assert.ok(!('roomPreview' in original));

@@ -58,6 +58,24 @@ test('runtime derivatives match approved bytes and all patterned assets are 2048
  for(const f of manifest.fabrics){const bytes=await readFile(new URL('runtime/'+f.image,root));assert.equal(digest(bytes),f.sha256);assert.equal(bytes.length,f.encodedBytes);
   if(f.mode==='patterned'){const m=await sharp(bytes).metadata();assert.equal(m.width,2048);assert.equal(m.height,1113);assert.equal(m.format,'webp');}}
 });
+test('expanded designs preserve the measured physical repeat and live identity contract',()=>{
+ const ids=new Set(),names=new Set();
+ for(const f of manifest.fabrics){
+  assert.ok(!ids.has(f.fabricId));ids.add(f.fabricId);
+  assert.ok(!names.has(f.id));names.add(f.id);
+  if(!f.sourceMasterSha256)continue;
+  assert.equal(f.mode,'patterned');assert.deepEqual(f.physicalClothCm,[460,250]);
+  assert.equal(f.calibration.repeatsH,460/f.hRepeat);
+  assert.equal(f.calibration.repeatsV,250/f.vRepeat);
+  assert.ok(Math.abs(f.calibration.detectedVRepeatPx-f.calibration.sourcePixelsPerCm*f.vRepeat)<.05);
+  assert.ok(f.calibration.anchorConsensus>=.95&&f.calibration.matchedAnchors>=100);
+  assert.equal(f.calibration.horizontalCrosscheck,'CORROBORATES');
+  const record={id:f.fabricId,horizontalRepeatMm:f.hRepeat*10,verticalRepeatMm:f.vRepeat*10};
+  assert.equal(previewPlan(record,FABRICS).engineId,f.id);
+  assert.equal(previewPlan({...record,verticalRepeatMm:record.verticalRepeatMm+1},FABRICS).state,'unavailable');
+ }
+ for(const id of ['park-west','lyra','paper-straw-stripe'])assert.equal(previewPlan({id},FABRICS).state,'unavailable');
+});
 test('fixed views are independent of geometry and exclude microscope controls',()=>{
  const before=identity();for(const room of ['living','bedroom','lounge','office']){assert.ok(cameraForView(room,'room'));assert.equal(cameraForView(room,'curtain').fov,36);assert.throws(()=>cameraForView(room,'detail'));}assert.equal(identity(),before);
 });

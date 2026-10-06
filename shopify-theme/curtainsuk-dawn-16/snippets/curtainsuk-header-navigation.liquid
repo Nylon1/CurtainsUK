@@ -18,7 +18,14 @@
       </div>
     </details>
   </li>
-  <li class="cuknav__item"><a href="/pages/fabric-library">Fabrics</a></li>
+  <li class="cuknav__item"><details class="cuknav__disclosure">
+    <summary aria-expanded="false" aria-controls="CukFabrics-{{ location }}-{{ section_id }}">Fabrics <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
+    <div class="cuknav__dropdown" id="CukFabrics-{{ location }}-{{ section_id }}"><ul>
+      <li><a href="/pages/fabric-library">Fabric collection</a></li>
+      <li><a href="/pages/fabric-library?view=browse-fabrics">Browse fabrics</a></li>
+      <li><a href="/pages/room-visualiser">Room Visualiser</a></li>
+    </ul></div>
+  </details></li>
   <li class="cuknav__item"><a href="/pages/fabric-library?view=browse-fabrics">Browse Fabrics</a></li>
   <li class="cuknav__item"><a href="/pages/solve-my-window">Shop by Window</a></li>
   <li class="cuknav__item"><a href="/pages/fabric-library?view=curtain-style">{{ 'curtain_style.navigation' | t }}</a></li>

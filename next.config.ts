@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
-  outputFileTracingIncludes: { "/api/staging/shopify-proxy/*": ["./lib/storefront/hci/consultation.html", "./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg", "./lib/storefront/hci/privacy.html", "./lib/storefront/hci/premium/*"], "/curtain-consultation": ["./lib/storefront/hci/consultation.html"], "/api/curtain-consultation/assets/*": ["./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg"], "/admin/curtain-consultation": ["./lib/storefront/hci/consultation.html"], "/api/admin/curtain-consultation/assets/*": ["./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg"] },
+  outputFileTracingIncludes: { "/api/staging/shopify-proxy/*": ["./lib/room-visualiser/runtime/rooms/customer.html","./lib/storefront/hci/consultation.html", "./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg", "./lib/storefront/hci/privacy.html", "./lib/storefront/hci/premium/*"], "/curtain-consultation": ["./lib/storefront/hci/consultation.html"], "/api/curtain-consultation/assets/*": ["./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg"], "/admin/curtain-consultation": ["./lib/storefront/hci/consultation.html"], "/api/admin/curtain-consultation/assets/*": ["./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg"] },
   // Shopify app proxies can forward a trailing slash. Serving both forms
   // directly avoids a redirect back onto the storefront host.
   skipTrailingSlashRedirect: true,
@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "www.prestigious.co.uk", pathname: "/assets/**" },
       { protocol: "https", hostname: "trade.sandersondesigngroup.com", pathname: "/static/media/catalog/product/**" },
     ],
+  },
+  async headers() {
+    return [{source:'/room-visualiser/:version/:path*',headers:[
+      {key:'Cache-Control',value:'public, max-age=31536000, immutable'},
+      {key:'Access-Control-Allow-Origin',value:'https://www.curtainsuk.com'},
+      {key:'Timing-Allow-Origin',value:'https://www.curtainsuk.com'},
+      {key:'X-Content-Type-Options',value:'nosniff'},
+    ]}];
   },
   async redirects() {
     return [

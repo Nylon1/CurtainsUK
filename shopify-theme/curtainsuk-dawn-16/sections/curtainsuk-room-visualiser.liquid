@@ -1,0 +1,15 @@
+<iframe id="CurtainsUKVisualiser-{{ section.id }}" title="CurtainsUK Room Visualiser" src="/apps/curtainsuk-decision/room-visualiser" style="display:block;width:100%;height:max(640px,calc(100dvh - 100px));border:0" allow="fullscreen"></iframe>
+<script>
+(() => {
+  const frame=document.getElementById('CurtainsUKVisualiser-{{ section.id }}');
+  const source=new URL('/apps/curtainsuk-decision/room-visualiser',location.origin);
+  const params=new URLSearchParams(location.search);
+  if(params.has('fabric')) for(const value of params.getAll('fabric')) source.searchParams.append('fabric',value);
+  if(params.has('room')) source.searchParams.set('room',params.get('room'));
+  frame.src=source.href;
+})();
+</script>
+<noscript><p>Please enable JavaScript to explore the Room Visualiser. You can still <a href="/pages/fabric-library">browse fabrics and order samples</a>.</p></noscript>
+{% schema %}
+{"name":"Room Visualiser","settings":[]}
+{% endschema %}

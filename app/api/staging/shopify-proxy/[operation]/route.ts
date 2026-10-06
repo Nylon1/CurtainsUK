@@ -1,3 +1,4 @@
+import {visualiserPage,withRoomPreview} from '@/lib/room-visualiser/server';
 import { NextResponse } from "next/server";
 import { roomsCommand } from '@/lib/storefront/rooms-server';
 import { roomsCustomerError } from '@/lib/storefront/rooms-core';
@@ -96,6 +97,7 @@ async function operation(request: Request, rawOperation: string) {
 export async function GET(request: Request, context: { params: Promise<{ operation: string }> }) {
   try {
     const selected = await operation(request, (await context.params).operation);
+    if (selected === 'room-visualiser') return visualiserPage(request);
     if (selected === 'fabric-sitemap') return (await import('@/lib/storefront/fabric-sitemap-response')).fabricSitemapResponse();
     if(selected==='consultation')return new URL(request.url).searchParams.get('experience')==='premium' ? premiumProxyPage() : proxyConsultationAsset('consultation.html');
     if(selected==='premium-asset')return premiumProxyAsset(new URL(request.url).searchParams.get('name')??'');
@@ -111,15 +113,18 @@ export async function GET(request: Request, context: { params: Promise<{ operati
     }
     if (selected !== "catalog") throw new Error("SHOPIFY_PROXY_METHOD_DENIED");
     const params = new URL(request.url).searchParams;
+    const visualiser=params.get('visualiser')==='1';
+    if(visualiser){params.delete('naila');params.delete('browseGuide');params.delete('guidePrice');}
     if (params.get('naila') === '1') assertNailaRehearsalRequest(request);
     if (params.get("view") === "retail") {
       if (params.has("fabric")) {
-        const fabric = await retailFabricDetail(params.get("fabric") ?? "", params.get('browseGuide') === '1');
-        return NextResponse.json({ fabric }, { status: fabric ? 200 : 404, headers: PUBLIC_NO_STORE_HEADERS });
+        const fabric = await retailFabricDetail(params.get("fabric") ?? "", params.get('browseGuide') === '1', visualiser ? {includeIntelligence:false} : {});
+        return NextResponse.json({ fabric: fabric ? withRoomPreview(fabric) : null }, { status: fabric ? 200 : 404, headers: PUBLIC_NO_STORE_HEADERS });
       }
       const naila = params.get('naila') === '1';
       if (naila) return NextResponse.json(await serveNailaCatalog(params, nailaEnabled(), searchNailaRetailFabrics), { headers: PUBLIC_NO_STORE_HEADERS });
-      return NextResponse.json(await searchRetailFabrics(params), { headers: PUBLIC_NO_STORE_HEADERS });
+      const result=await searchRetailFabrics(params,visualiser?{includeIntelligence:false}:{});
+      return NextResponse.json({...result,fabrics:result.fabrics.map(withRoomPreview)}, { headers: PUBLIC_NO_STORE_HEADERS });
     }
     return NextResponse.json(await buildDatabaseShopifyCatalogPayload(params.get("fabric") ?? undefined), { headers: PUBLIC_NO_STORE_HEADERS });
   } catch (error) {

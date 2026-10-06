@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import sharp from 'sharp';
-import {classify,assessPlain,assessStraight,verifyRetail,makeEntry,RUNTIME_SIZE,WIDTH_CM,DROP_CM} from './core.mjs';
+import {classify,assessPlain,assessStraight,verifyRetail,makeEntry,RUNTIME_SIZE,WIDTH_CM,DROP_CM,MAX_BATCH_SIZE} from './core.mjs';
 import {normaliseLedger,recordHold} from './ledger.mjs';
 
 const values=process.argv.slice(2);
@@ -17,7 +17,7 @@ if(stage&&verify)throw Error('Use either --stage or --verify-live');
 const ledgerPath=arg('ledger');
 if((stage||verify)&&!ledgerPath)throw Error('Stage and live verification require --ledger');
 const batchSize=Number(arg('batch-size')||25);
-if(!Number.isInteger(batchSize)||batchSize<1||batchSize>50)throw Error('Batch size must be 1–50');
+if(!Number.isInteger(batchSize)||batchSize<1||batchSize>MAX_BATCH_SIZE)throw Error(`Batch size must be 1–${MAX_BATCH_SIZE}`);
 const root=resolve('lib/room-visualiser');
 const manifestPath=join(root,'assets.json');
 const manifest=JSON.parse(await readFile(manifestPath,'utf8'));
@@ -31,7 +31,7 @@ const rows=(await readFile(resolve(queuePath),'utf8')).split(/\r?\n/).filter(Boo
 if(new Set(rows.map(row=>row.fabricId)).size!==rows.length)throw Error('Duplicate fabric ID in publication queue');
 const sourceHash=buffer=>createHash('sha256').update(buffer).digest('hex');
 const results=[],staged=[];
-let newHolds=0;
+let newHolds=0,attempted=0;
 const reason=(row,mode,status,detail)=>({fabricId:row.fabricId,designId:row.designId,mode,status,reason:detail||null});
 function hold(row,mode,detail,persist=false){
   results.push(reason(row,mode,'HOLD',detail));
@@ -90,6 +90,8 @@ async function liveCheck(row,entry){
   if(mismatch)throw Error(mismatch);
   if(fabric.roomPreview?.available!==true||fabric.roomPreview?.url!==`/pages/room-visualiser?fabric=${encodeURIComponent(row.fabricId)}`)throw Error('PUBLIC_PREVIEW_UNAVAILABLE');
   if(sourceHash(asset.body)!==entry.sha256||asset.body.length!==entry.encodedBytes)throw Error('CDN_HASH_MISMATCH');
+  const metadata=await sharp(asset.body).metadata();
+  if(metadata.format!=='webp'||metadata.width!==RUNTIME_SIZE[0]||metadata.height!==RUNTIME_SIZE[1])throw Error('CDN_FORMAT_OR_DIMENSIONS_MISMATCH');
   if(asset.response.headers.get('cache-control')!=='public, max-age=31536000, immutable'||asset.response.headers.get('content-type')!=='image/webp')throw Error('CDN_CACHE_OR_MIME_MISMATCH');
   return {cache:asset.response.headers.get('x-vercel-cache'),bytes:asset.body.length};
 }
@@ -109,6 +111,7 @@ for(const row of rows){
   const gate=mode==='plain'?assessPlain(row):assessStraight(row);
   if(gate){hold(row,mode,gate);continue;}
   if(!stage||staged.length>=batchSize){results.push(reason(row,mode,'REMAINING'));continue;}
+  attempted++;
   try{
     const catalogue=JSON.parse((await boundedFetch(retailUrl(row.fabricId),3_000_000)).body.toString());
     const retailGate=verifyRetail(row,catalogue.fabric,mode);
@@ -145,7 +148,7 @@ if(verify&&ledger?.staged.length){
 }
 const count=status=>results.filter(item=>item.status===status).length;
 const reasons=Object.entries(results.filter(item=>item.status==='HOLD').reduce((all,item)=>{all[item.reason]=(all[item.reason]||0)+1;return all;},{})).sort((a,b)=>b[1]-a[1]);
-const report={queue:resolve(queuePath),processed:rows.length,staged:count('STAGED'),published:count('PUBLISHED'),held:count('HOLD'),remaining:count('REMAINING'),liveFaults:count('LIVE_FAULT'),liveVisualiserTotal:ledger?.published.length??count('PUBLISHED'),manifestTotal:manifest.fabrics.length,
+const report={queue:resolve(queuePath),processed:rows.length,attempted,newlyHeld:newHolds,staged:count('STAGED'),published:count('PUBLISHED'),held:count('HOLD'),remaining:count('REMAINING'),liveFaults:count('LIVE_FAULT'),liveVisualiserTotal:ledger?.published.length??count('PUBLISHED'),manifestTotal:manifest.fabrics.length,
   holdReasons:Object.fromEntries(reasons),stagedFabricIds:staged.map(item=>item.row.fabricId),results};
 await writeFile(output,JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({processed:report.processed,staged:report.staged,published:report.published,held:report.held,remaining:report.remaining,liveVisualiserTotal:report.liveVisualiserTotal,manifestTotal:report.manifestTotal,holdReasons:report.holdReasons,report:output},null,2));

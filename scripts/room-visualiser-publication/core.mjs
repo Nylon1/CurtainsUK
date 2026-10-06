@@ -2,6 +2,7 @@
 export const WIDTH_CM = 460;
 export const DROP_CM = 250;
 export const RUNTIME_SIZE = Object.freeze([2048, 1113]);
+export const MAX_BATCH_SIZE = 250;
 export const HELD_DESIGNS = /^(?:park west|lyra|paper straw stripe)$/i;
 const OFFSET = /HALF|OFFSET|STAGGER|BRICK/i;
 

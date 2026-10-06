@@ -107,6 +107,7 @@
 {%- assign structured_material = metaobject.search_material.value | default: structured_material -%}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":{{ structured_title | json }},"sku":{{ 'cuk-sample:' | append: metaobject.fabric_master_id.value | json }},"brand":{"@type":"Brand","name":{{ metaobject.brand.value | json }}},"category":"Curtain Fabric Sample","color":{{ structured_colourway | json }}{% if structured_pattern != blank %},"pattern":{{ structured_pattern | json }}{% endif %}{% if structured_material != blank %},"material":{{ structured_material | json }}{% endif %},"image":[{{ image | json }}],"description":{{ structured_copy | json }},"url":{{ canonical | json }},"offers":{"@type":"Offer","url":{{ canonical | json }},"priceCurrency":"GBP","price":{{ sample_price | json }},"availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition"}}</script>
 <script src="{{ 'curtainsuk-sample-checkout.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'curtainsuk-room-preview-link.js' | asset_url }}" defer="defer"></script>
 <script>
   (() => {
     const root = document.querySelector('[data-cuk-canonical-fabric-detail]');

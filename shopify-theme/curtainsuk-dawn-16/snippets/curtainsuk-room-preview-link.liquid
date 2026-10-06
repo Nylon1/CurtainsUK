@@ -1,6 +1,10 @@
-{%- assign approved_preview_ids = 'sdg-f1541-01,sdg-f1239-30,pt-3697-770,sdg-dstr237715' | split: ',' -%}
-{%- if approved_preview_ids contains fabric_id -%}
-  <a class="cuk-profile__button cuk-profile__button--secondary" href="/pages/room-visualiser?fabric={{ fabric_id | url_encode }}">See in room</a>
-{%- else -%}
-  <p class="cuk-hint">Room preview not available for this fabric yet.</p>
+{% doc %}
+  Shows a visualiser link only when the production catalogue confirms this exact fabric is preview-ready.
+  @param {string} fabric_id - Fabric Master ID from the existing catalogue.
+{% enddoc %}
+{%- if fabric_id != blank -%}
+  <span data-cuk-room-preview data-fabric-id="{{ fabric_id | escape }}">
+    <a class="cuk-profile__button cuk-profile__button--secondary" data-cuk-room-preview-link href="/pages/room-visualiser?fabric={{ fabric_id | url_encode }}" hidden style="display:none">See in room</a>
+    <span class="cuk-hint" data-cuk-room-preview-status role="status">Checking room preview…</span>
+  </span>
 {%- endif -%}

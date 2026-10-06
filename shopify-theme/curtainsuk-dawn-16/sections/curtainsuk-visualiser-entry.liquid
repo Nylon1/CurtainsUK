@@ -1,4 +1,5 @@
 {{ 'curtainsuk-room-visualiser.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-room-preview-link.js' | asset_url }}" defer="defer"></script>
 <section class="cuk-visualiser-entry page-width">
   <h2>{{ section.settings.heading | default: 'Visualise fabrics in your room' | escape }}</h2>
   <p>{{ section.settings.text | default: 'Explore curtain fabrics with your walls, flooring, furniture and cushions. Find a colour scheme you enjoy, then choose with a physical sample.' | escape }}</p>

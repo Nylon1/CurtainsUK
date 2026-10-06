@@ -40,7 +40,7 @@
         <div class="cuk-profile__purchase">
           <div class="cuk-profile__purchase-heading"><div><span>Experience the fabric</span><strong>Sample £{{ sample_price | escape }}</strong></div><span class="cuk-profile__purchase-marker" aria-hidden="true">01 / 02</span></div>
           <p>See the real colour and texture in your own light. Free UK mainland sample delivery.</p>
-          <div class="cuk-profile__actions"><button type="button" class="cuk-profile__button cuk-profile__button--primary" data-sample>Order sample · £{{ sample_price | escape }}</button><a class="cuk-profile__button cuk-profile__button--secondary" href="{{ make_curtains_url | escape }}">Make curtains with this fabric</a></div>
+          <div class="cuk-profile__actions"><button type="button" class="cuk-profile__button cuk-profile__button--primary" data-sample>Order sample · £{{ sample_price | escape }}</button><a class="cuk-profile__button cuk-profile__button--secondary" href="{{ make_curtains_url | escape }}">Make curtains with this fabric</a>{% render 'curtainsuk-room-preview-link', fabric_id: metaobject.fabric_master_id.value %}</div>
           <p class="cuk-profile__status" data-cuk-sample-status role="status" aria-live="polite"></p>
           <p class="cuk-profile__lead">Typical made-to-measure lead time: 4–5 weeks</p>
         </div>

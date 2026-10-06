@@ -14,15 +14,17 @@ import { readNailaPreparedSelection } from './naila-prepared-browse';
 import { browseGuideMinorForFabric } from './browse-guide-reader';
 import { publishedFabricProfileUrl } from './fabric-profile-links';
 
-export async function retailFabricDetail(id: string, withGuide = false) {
+export type RetailReadOptions = { includeIntelligence?: boolean };
+
+export async function retailFabricDetail(id: string, withGuide = false, options: RetailReadOptions = {}) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
-  const fabric = (await hydrateRetailFabrics([id], withGuide))[0] ?? null;
+  const fabric = (await hydrateRetailFabrics([id], withGuide, options))[0] ?? null;
   if (!fabric || !withGuide) return fabric;
   const record = (await fabricMasterRecordsByIds([id]))[0];
   const guideMinor = record ? await browseGuideMinorForFabric(record.fabric_id, record.supplier_id, record.supplier_sku).catch(() => null) : null;
   return { ...fabric, browseGuide: customerBrowseGuide(guideMinor) };
 }
-async function hydrateRetailFabrics(ids: string[], withGuide = false) {
+async function hydrateRetailFabrics(ids: string[], withGuide = false, options: RetailReadOptions = {}) {
   if (!ids.length) return [];
   const db = createSupplierServiceClient();
   const [records, profileResult, imageResult] = await Promise.all([
@@ -33,7 +35,9 @@ async function hydrateRetailFabrics(ids: string[], withGuide = false) {
   if (profileResult.error || imageResult.error) throw new Error("RETAIL_CATALOGUE_UNAVAILABLE");
   // A stock service outage must not take browsing offline or imply available stock.
   const readiness = await commercialReadiness(records).catch(()=>null);
-  const visual = await visualKnowledgeByFabricIds(records.map((record) => record.fabric_id));
+  // Isolated visualiser review needs existing catalogue facts, without an FI read.
+  // Existing callers retain their current projection unless they explicitly opt out.
+  const visual: Awaited<ReturnType<typeof visualKnowledgeByFabricIds>> = options.includeIntelligence === false ? new Map() : await visualKnowledgeByFabricIds(records.map((record) => record.fabric_id));
   return ids.flatMap((id) => {
   const record = records.find((r) => r.fabric_id === id);
   if (!record?.staging_catalog_visible || record.lifecycle_state === "DISCONTINUED") return [];
@@ -66,7 +70,7 @@ async function hydrateRetailFabrics(ids: string[], withGuide = false) {
   assertCustomerSafeProjection(result); return [result];
   });
 }
-export async function searchRetailFabrics(params: URLSearchParams) {
+export async function searchRetailFabrics(params: URLSearchParams, options: RetailReadOptions = {}) {
   const page = Math.max(1, Math.min(10000, Number.parseInt(params.get("page") ?? "1", 10) || 1));
   const pageSize = 24;
   const filters = governedBrowseFilters(params);
@@ -74,12 +78,12 @@ export async function searchRetailFabrics(params: URLSearchParams) {
   const band = withGuide ? browsePriceBand(params.get('guidePrice')) : null;
   const { data, error } = await createSupplierServiceClient().rpc(browseSearchRpcName(process.env.CURTAINSUK_BROWSE_READ_PROJECTION), {
     p_filters: filters, p_page: page, p_size: pageSize,
-    ...(withGuide ? { p_guide_min: band?.minimumMinor ?? null, p_guide_max: band?.maximumMinor ?? null } : {}),
+    ...(withGuide || options.includeIntelligence === false ? { p_guide_min: band?.minimumMinor ?? null, p_guide_max: band?.maximumMinor ?? null } : {}),
   });
   if (error) throw new Error("RETAIL_SEARCH_UNAVAILABLE");
   const value = data as { ids: string[]; total: number; brands: string[]; collections: string[]; guidePrices?: Record<string, number>; facetOptions?: Partial<Record<BrowseFacetKey, { value: string; label: string; count: number }[]>> };
   // At most 24 records are ever hydrated for a response.
-  const fabrics = await hydrateRetailFabrics(value.ids, withGuide);
+  const fabrics = await hydrateRetailFabrics(value.ids, withGuide, options);
   const result = { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(fabric => ({ ...fabric, browseGuide: customerBrowseGuide(value.guidePrices?.[fabric.id]) })) : fabrics,
     page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize),
     facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY,

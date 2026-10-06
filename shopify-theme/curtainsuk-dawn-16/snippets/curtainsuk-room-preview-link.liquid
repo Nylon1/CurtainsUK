@@ -1,0 +1,6 @@
+{%- assign approved_preview_ids = 'sdg-f1541-01,sdg-f1239-30,pt-3697-770,sdg-dstr237715' | split: ',' -%}
+{%- if approved_preview_ids contains fabric_id -%}
+  <a class="cuk-profile__button cuk-profile__button--secondary" href="/pages/room-visualiser?fabric={{ fabric_id | url_encode }}">See in room</a>
+{%- else -%}
+  <p class="cuk-hint">Room preview not available for this fabric yet.</p>
+{%- endif -%}

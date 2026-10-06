@@ -1,0 +1,14 @@
+{
+  "core.mjs": "a671ae21257feade086c0b2424eac9474e0fadd7ce29b497d3bd015fce7c89c4",
+  "open.mjs": "879faaddf186033dfadb92e8a36d9724a6f827305c660cb88a3985af0014c3a6",
+  "motion.mjs": "e9b2810e6c7c615beb6e71190ca262a18c185121550cda3f65b69760945f3300",
+  "rooms/travel-poses.mjs": "aba6bb52d04dc2cbe4402095f272930c14a3788bc6ffce75d5753bdcee31b391",
+  "rooms/travel-controller.mjs": "f2893b749ea22dd0fa7640a8210668486dea8e865f3a4cce435d53ad54cd8e41",
+  "rooms/views.mjs": "47d6dc3d6215799be5554b33c6be56dbfc5d3ef68d3e19a60edf4ddaff07ff89",
+  "rooms/catalog.mjs": "c94d5e75f3d22f1737bcd597df08dd6a9072f10c56c44ffc4ddaebcb05aabc09",
+  "rooms/lighting.mjs": "2b70e2dde9fd80c4ceb792e7cbd09f79c6548c206f866cc3b997f4f1fe370fca",
+  "rooms/packs/living.glb": "24396fe1f47fbb3db3af25d176c64d4bd5bbdd986d7cf4ccf0e77ef6c2e7364b",
+  "rooms/packs/bedroom.glb": "c51aceb0d471d7835de770157ae40d19e88c5af468f9e1d142acfd9ba6ffa239",
+  "rooms/packs/lounge.glb": "f47c22cbb4431cced1117eed74cea03814264b0dc099b5210b832d79b713df98",
+  "rooms/packs/office.glb": "98876fd5600c2403caecaa9decd0123240b9c019a5cb9612c12b46210263e7f1"
+}

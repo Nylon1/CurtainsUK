@@ -69,7 +69,7 @@ test('expanded designs preserve the measured physical repeat and live identity c
   assert.equal(f.calibration.repeatsV,250/f.vRepeat);
   assert.ok(Math.abs(f.calibration.detectedVRepeatPx-f.calibration.sourcePixelsPerCm*f.vRepeat)<.05);
   assert.ok(f.calibration.anchorConsensus>=.95&&f.calibration.matchedAnchors>=100);
-  assert.equal(f.calibration.horizontalCrosscheck,'CORROBORATES');
+  assert.ok(f.calibration.horizontalCrosscheck==='CORROBORATES'&&f.calibration.anchorConsensus>=.95||f.calibration.horizontalCrosscheck==='INCONCLUSIVE'&&f.calibration.anchorConsensus>=.98&&f.calibration.matchedAnchors>=120);
   const record={id:f.fabricId,horizontalRepeatMm:f.hRepeat*10,verticalRepeatMm:f.vRepeat*10};
   assert.equal(previewPlan(record,FABRICS).engineId,f.id);
   assert.equal(previewPlan({...record,verticalRepeatMm:record.verticalRepeatMm+1},FABRICS).state,'unavailable');

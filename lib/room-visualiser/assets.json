@@ -810,6 +810,1456 @@
         "matchedAnchors": 124,
         "horizontalCrosscheck": "CORROBORATES"
       }
+    },
+    {
+      "id": "sdg-mlif227255",
+      "fabricId": "sdg-mlif227255",
+      "mode": "patterned",
+      "hRepeat": 23.5,
+      "vRepeat": 21,
+      "image": "textures/86e28c7c32f24436d47456d0357a0b2159d6952cacb389f3f1bac36f5289382e.webp",
+      "sha256": "86e28c7c32f24436d47456d0357a0b2159d6952cacb389f3f1bac36f5289382e",
+      "encodedBytes": 1657300,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "504568a63eb35f56b509a5492530646a4f1fe6acf11ea89fafc5ad4b4ba54f1e",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 19.574468085106382,
+        "repeatsV": 11.904761904761905,
+        "sourcePixelsPerCm": 9.782552,
+        "detectedVRepeatPx": 205.43359,
+        "anchorConsensus": 1,
+        "matchedAnchors": 202,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hhhd134194",
+      "fabricId": "sdg-hhhd134194",
+      "mode": "patterned",
+      "hRepeat": 66.7,
+      "vRepeat": 57.5,
+      "image": "textures/d8b8d9461cf409bcd6b44016feb3228751b8c831f13a9be7c68db230f9c26614.webp",
+      "sha256": "d8b8d9461cf409bcd6b44016feb3228751b8c831f13a9be7c68db230f9c26614",
+      "encodedBytes": 507136,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "cd8778c55796493b07a4337159aadeba8c8e905698f06f21f560f6bc3e7bca59",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.896551724137931,
+        "repeatsV": 4.3478260869565215,
+        "sourcePixelsPerCm": 10.532677,
+        "detectedVRepeatPx": 605.62891,
+        "anchorConsensus": 1,
+        "matchedAnchors": 144,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-disw236736",
+      "fabricId": "sdg-disw236736",
+      "mode": "patterned",
+      "hRepeat": 35.5,
+      "vRepeat": 36,
+      "image": "textures/2f2ebf4f14c25e7eeb17984b14c995c12a3843e766f7d0dd0dbe2bce6b00a088.webp",
+      "sha256": "2f2ebf4f14c25e7eeb17984b14c995c12a3843e766f7d0dd0dbe2bce6b00a088",
+      "encodedBytes": 975064,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "bacf1797c8c63786417176aca26b417162338fd4f97e795c28ded365172e2995",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 12.95774647887324,
+        "repeatsV": 6.944444444444445,
+        "sourcePixelsPerCm": 10.004883,
+        "detectedVRepeatPx": 360.17578,
+        "anchorConsensus": 1,
+        "matchedAnchors": 180,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-nfik120356",
+      "fabricId": "sdg-nfik120356",
+      "mode": "patterned",
+      "hRepeat": 68.6,
+      "vRepeat": 64,
+      "image": "textures/ddcfda5380213c3a76b9f9aec41e2e13ae29408d580505d71b0e9e9bc6876c74.webp",
+      "sha256": "ddcfda5380213c3a76b9f9aec41e2e13ae29408d580505d71b0e9e9bc6876c74",
+      "encodedBytes": 1078708,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "4a48980b76028f27701cf68c4fc7782e3a71240276791eb988c6e2e9bbaf4a3e",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.705539358600584,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.838135,
+        "detectedVRepeatPx": 629.64062,
+        "anchorConsensus": 1,
+        "matchedAnchors": 130,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hdmf134708",
+      "fabricId": "sdg-hdmf134708",
+      "mode": "patterned",
+      "hRepeat": 68,
+      "vRepeat": 31,
+      "image": "textures/e972aa3f48afa29dd24e2d6b09a2f2a2dc7b2e20c4681791a19b18d6f382e888.webp",
+      "sha256": "e972aa3f48afa29dd24e2d6b09a2f2a2dc7b2e20c4681791a19b18d6f382e888",
+      "encodedBytes": 946966,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "3144706fa412a2b55d661b0d4d95471c5825855184126a92a90e0655bfd96097",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.764705882352941,
+        "repeatsV": 8.064516129032258,
+        "sourcePixelsPerCm": 10.241557,
+        "detectedVRepeatPx": 317.48828,
+        "anchorConsensus": 0.983146,
+        "matchedAnchors": 175,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-dsaf237498",
+      "fabricId": "sdg-dsaf237498",
+      "mode": "patterned",
+      "hRepeat": 23,
+      "vRepeat": 22.5,
+      "image": "textures/c28bcda61f9772b0f1b8884021a95077a27c99299108702b931ca8938c15ac61.webp",
+      "sha256": "c28bcda61f9772b0f1b8884021a95077a27c99299108702b931ca8938c15ac61",
+      "encodedBytes": 533144,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "3f8dfcc2eb31e666f61f47962aa2e138f092038f1ba6b1a5a8e910511e1285a9",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 20,
+        "repeatsV": 11.11111111111111,
+        "sourcePixelsPerCm": 10.078993,
+        "detectedVRepeatPx": 226.77734,
+        "anchorConsensus": 1,
+        "matchedAnchors": 205,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hdmv134746",
+      "fabricId": "sdg-hdmv134746",
+      "mode": "patterned",
+      "hRepeat": 35.5,
+      "vRepeat": 43,
+      "image": "textures/cdce5e7b1b2b06dbedb401206d4d21f83c552e9dfe769c0cda150108be53d1c2.webp",
+      "sha256": "cdce5e7b1b2b06dbedb401206d4d21f83c552e9dfe769c0cda150108be53d1c2",
+      "encodedBytes": 864818,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "1431d70dec9b379fd122de7aa2d1ab4e1b089b0dff8f48348e799046e41d04b3",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 12.95774647887324,
+        "repeatsV": 5.813953488372093,
+        "sourcePixelsPerCm": 10.113463,
+        "detectedVRepeatPx": 434.87891,
+        "anchorConsensus": 1,
+        "matchedAnchors": 163,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-f1693-03",
+      "fabricId": "sdg-f1693-03",
+      "mode": "patterned",
+      "hRepeat": 34,
+      "vRepeat": 62,
+      "image": "textures/a56ecc65ef9763a174e9d86a298eb56f95a14e98441c9a07379c0738ad996fa4.webp",
+      "sha256": "a56ecc65ef9763a174e9d86a298eb56f95a14e98441c9a07379c0738ad996fa4",
+      "encodedBytes": 614128,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "f29055e47371de2bf0027b0d1332f1cf8961a2ecc6b695ef9cbc517d63b2c29f",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.529411764705882,
+        "repeatsV": 4.032258064516129,
+        "sourcePixelsPerCm": 10.327621,
+        "detectedVRepeatPx": 640.3125,
+        "anchorConsensus": 1,
+        "matchedAnchors": 128,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-f1631-02",
+      "fabricId": "sdg-f1631-02",
+      "mode": "patterned",
+      "hRepeat": 33.5,
+      "vRepeat": 51.5,
+      "image": "textures/6d47133500b8cf32a5f0c739a29d054643a4eb93c7bbbcbafaee4c312804a756.webp",
+      "sha256": "6d47133500b8cf32a5f0c739a29d054643a4eb93c7bbbcbafaee4c312804a756",
+      "encodedBytes": 1278934,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "23b77a348fbf1698dea3e11f330e65170a1e12290d52ef3bfa3eb393498f813d",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.73134328358209,
+        "repeatsV": 4.854368932038835,
+        "sourcePixelsPerCm": 10.568265,
+        "detectedVRepeatPx": 544.26562,
+        "anchorConsensus": 1,
+        "matchedAnchors": 148,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-dgla236779",
+      "fabricId": "sdg-dgla236779",
+      "mode": "patterned",
+      "hRepeat": 47,
+      "vRepeat": 68,
+      "image": "textures/d8bcab9bcb9a2ff16defd115b2d2458a61d68f5acd79b77eb4a064d082b565c1.webp",
+      "sha256": "d8bcab9bcb9a2ff16defd115b2d2458a61d68f5acd79b77eb4a064d082b565c1",
+      "encodedBytes": 566300,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "ddf8137b3a73ad9110cc1fe34fba07b17498610b0a9ce7d58442842b7d9bf4cb",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 9.787234042553191,
+        "repeatsV": 3.676470588235294,
+        "sourcePixelsPerCm": 9.298656,
+        "detectedVRepeatPx": 632.30859,
+        "anchorConsensus": 0.992647,
+        "matchedAnchors": 135,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hhhu134231",
+      "fabricId": "sdg-hhhu134231",
+      "mode": "patterned",
+      "hRepeat": 35,
+      "vRepeat": 36,
+      "image": "textures/fef769a6ce26aceefd495494b7a2d3e7356d51e6fb55f2f36628e607b39f5b70.webp",
+      "sha256": "fef769a6ce26aceefd495494b7a2d3e7356d51e6fb55f2f36628e607b39f5b70",
+      "encodedBytes": 993390,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "e77e15685db71070ad0092c9c09db10f24fc7c0ec3dd0cad548d2daaf96a6311",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.142857142857142,
+        "repeatsV": 6.944444444444445,
+        "sourcePixelsPerCm": 10.153103,
+        "detectedVRepeatPx": 365.51172,
+        "anchorConsensus": 1,
+        "matchedAnchors": 182,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-f1546-03",
+      "fabricId": "sdg-f1546-03",
+      "mode": "patterned",
+      "hRepeat": 69,
+      "vRepeat": 64,
+      "image": "textures/52419f91351edd4efce49bd03c174280df45e861e77ee5576829349e69253e0d.webp",
+      "sha256": "52419f91351edd4efce49bd03c174280df45e861e77ee5576829349e69253e0d",
+      "encodedBytes": 1099582,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "522d5a6866fd83b2fb0278c1a6f0e7187ff75a7694dccfe0465bbc465c9f6452",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.666666666666667,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.713074,
+        "detectedVRepeatPx": 621.63672,
+        "anchorConsensus": 1,
+        "matchedAnchors": 132,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-f1813-01",
+      "fabricId": "sdg-f1813-01",
+      "mode": "patterned",
+      "hRepeat": 16.5,
+      "vRepeat": 15.5,
+      "image": "textures/15c6e991b2e356929bb157fb7c29e5d387706b986b7f279650ab037f2fe5ebb7.webp",
+      "sha256": "15c6e991b2e356929bb157fb7c29e5d387706b986b7f279650ab037f2fe5ebb7",
+      "encodedBytes": 1679286,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "885676246244c62b7f8321206e482d737ac19bafee5e65dcb83f5738c6e60afb",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 27.87878787878788,
+        "repeatsV": 16.129032258064516,
+        "sourcePixelsPerCm": 11.53251,
+        "detectedVRepeatPx": 178.75391,
+        "anchorConsensus": 0.981221,
+        "matchedAnchors": 209,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-dcac226643",
+      "fabricId": "sdg-dcac226643",
+      "mode": "patterned",
+      "hRepeat": 35,
+      "vRepeat": 42,
+      "image": "textures/d50151bbbf5a93f03827fe810d70ea6333115a0566c046408debfc9ccb183d16.webp",
+      "sha256": "d50151bbbf5a93f03827fe810d70ea6333115a0566c046408debfc9ccb183d16",
+      "encodedBytes": 409874,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "381a6d3073358792b19f5092fbfd93db4800f9fad0a5f013194c7dcf16029d3c",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.142857142857142,
+        "repeatsV": 5.9523809523809526,
+        "sourcePixelsPerCm": 10.036644,
+        "detectedVRepeatPx": 421.53906,
+        "anchorConsensus": 1,
+        "matchedAnchors": 188,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hsrf133982",
+      "fabricId": "sdg-hsrf133982",
+      "mode": "patterned",
+      "hRepeat": 42,
+      "vRepeat": 39,
+      "image": "textures/1008b3c6441962aa63d3c9e2c67083aa97a3efdee3e97f0c944c1d238fb472de.webp",
+      "sha256": "1008b3c6441962aa63d3c9e2c67083aa97a3efdee3e97f0c944c1d238fb472de",
+      "encodedBytes": 911726,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "02916e3fdd60258672bdd3112f454de37f153031f42c66957ae4c381b649810b",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 10.952380952380953,
+        "repeatsV": 6.410256410256411,
+        "sourcePixelsPerCm": 10.261418,
+        "detectedVRepeatPx": 400.19531,
+        "anchorConsensus": 1,
+        "matchedAnchors": 159,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hrtf134051",
+      "fabricId": "sdg-hrtf134051",
+      "mode": "patterned",
+      "hRepeat": 49.5,
+      "vRepeat": 46.8,
+      "image": "textures/4bc99849bc32dcce8458f331ef069d0f07391f3baa3e36c6964f3dade160820a.webp",
+      "sha256": "4bc99849bc32dcce8458f331ef069d0f07391f3baa3e36c6964f3dade160820a",
+      "encodedBytes": 460928,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "e856d0879c19dc4ddc4dd76c699547de7167c07c08a127b1c96ee3a1eed1b7b8",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 9.292929292929292,
+        "repeatsV": 5.341880341880342,
+        "sourcePixelsPerCm": 9.121261,
+        "detectedVRepeatPx": 426.875,
+        "anchorConsensus": 1,
+        "matchedAnchors": 160,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hzap132647",
+      "fabricId": "sdg-hzap132647",
+      "mode": "patterned",
+      "hRepeat": 70,
+      "vRepeat": 64,
+      "image": "textures/1e72728d2bf59793933d45bd403200ab135efd6e49acab49c210767669758d6e.webp",
+      "sha256": "1e72728d2bf59793933d45bd403200ab135efd6e49acab49c210767669758d6e",
+      "encodedBytes": 743022,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "ea9ea14a7787047015605dbb54c670029b721fe3fd58833b1eebe903a18b8329",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.571428571428571,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.588013,
+        "detectedVRepeatPx": 613.63281,
+        "anchorConsensus": 1,
+        "matchedAnchors": 112,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-dm6f220322",
+      "fabricId": "sdg-dm6f220322",
+      "mode": "patterned",
+      "hRepeat": 22.5,
+      "vRepeat": 67,
+      "image": "textures/3d2f8e3f10a6927a49e1ab9fcb544451cea698b536dc91f168f95195497890e8.webp",
+      "sha256": "3d2f8e3f10a6927a49e1ab9fcb544451cea698b536dc91f168f95195497890e8",
+      "encodedBytes": 1630294,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "921e6b7af874e3e6f23fdb69f4ba8c380688e004a6a0008d16604b199ef8e8d3",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 20.444444444444443,
+        "repeatsV": 3.7313432835820897,
+        "sourcePixelsPerCm": 9.596723,
+        "detectedVRepeatPx": 642.98047,
+        "anchorConsensus": 1,
+        "matchedAnchors": 131,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-dstr237737",
+      "fabricId": "sdg-dstr237737",
+      "mode": "patterned",
+      "hRepeat": 12.5,
+      "vRepeat": 15.5,
+      "image": "textures/a4573375b4d8b041e9e6f6dde0a256c7dfec2c5add465df175c6f59682b56e96.webp",
+      "sha256": "a4573375b4d8b041e9e6f6dde0a256c7dfec2c5add465df175c6f59682b56e96",
+      "encodedBytes": 424002,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "0a78e48c2d2d1c576bb514954bb3da0b4f78a5439579fbcf7e18190b83f051f8",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 36.8,
+        "repeatsV": 16.129032258064516,
+        "sourcePixelsPerCm": 12.737399,
+        "detectedVRepeatPx": 197.42969,
+        "anchorConsensus": 1,
+        "matchedAnchors": 203,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hama120338",
+      "fabricId": "sdg-hama120338",
+      "mode": "patterned",
+      "hRepeat": 68.6,
+      "vRepeat": 64,
+      "image": "textures/d47da3b0738d161facf1b1b755acf3353e31f158ea2a073242ca7788afb0210f.webp",
+      "sha256": "d47da3b0738d161facf1b1b755acf3353e31f158ea2a073242ca7788afb0210f",
+      "encodedBytes": 719040,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "9dc8191d025e162e44eb46f964577516ff243f6c3d6f808ce35a46199cfd2e53",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.705539358600584,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 10.004883,
+        "detectedVRepeatPx": 640.3125,
+        "anchorConsensus": 1,
+        "matchedAnchors": 133,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-nnou120584",
+      "fabricId": "sdg-nnou120584",
+      "mode": "patterned",
+      "hRepeat": 67.5,
+      "vRepeat": 64,
+      "image": "textures/a4501adbb0338373c038ad73cb70a855a5fb0d252c7ba2ede1459f8c03330179.webp",
+      "sha256": "a4501adbb0338373c038ad73cb70a855a5fb0d252c7ba2ede1459f8c03330179",
+      "encodedBytes": 674322,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "9c477474553ad4730f9f7fc2520a3b28b26bb6ebca282d7169ca1aa290bbabf3",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.814814814814815,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 10.04657,
+        "detectedVRepeatPx": 642.98047,
+        "anchorConsensus": 1,
+        "matchedAnchors": 134,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-nsck120463",
+      "fabricId": "sdg-nsck120463",
+      "mode": "patterned",
+      "hRepeat": 27.5,
+      "vRepeat": 12.5,
+      "image": "textures/441bcda4d8e7b6525a6cb3a9baf039550728a4a2a37fe4c6b7c16721571b0c02.webp",
+      "sha256": "441bcda4d8e7b6525a6cb3a9baf039550728a4a2a37fe4c6b7c16721571b0c02",
+      "encodedBytes": 272594,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "c05c4b9da4ccf7dfe71077652dae4e173ee78e2b53efc00a849d105c3bc70b65",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 16.727272727272727,
+        "repeatsV": 20,
+        "sourcePixelsPerCm": 10.031562,
+        "detectedVRepeatPx": 125.39453,
+        "anchorConsensus": 0.99537,
+        "matchedAnchors": 215,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-nloh120488",
+      "fabricId": "sdg-nloh120488",
+      "mode": "patterned",
+      "hRepeat": 68.6,
+      "vRepeat": 64,
+      "image": "textures/8261f219d8723fea6384e7ef3f9f7d6949eb313eb51ed0e557f67b3c2abd6fa5.webp",
+      "sha256": "8261f219d8723fea6384e7ef3f9f7d6949eb313eb51ed0e557f67b3c2abd6fa5",
+      "encodedBytes": 408162,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "39746191313898bca9a8d1f3a1798ef1996cf4ad6758a05df2b0f1d4c43b52ff",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.705539358600584,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.754761,
+        "detectedVRepeatPx": 624.30469,
+        "anchorConsensus": 1,
+        "matchedAnchors": 129,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-nscn131122",
+      "fabricId": "sdg-nscn131122",
+      "mode": "patterned",
+      "hRepeat": 17,
+      "vRepeat": 16.2,
+      "image": "textures/5f6ee182bed02582216438744e6b4ae60582c34e3a923460ebe66d3821f442f1.webp",
+      "sha256": "5f6ee182bed02582216438744e6b4ae60582c34e3a923460ebe66d3821f442f1",
+      "encodedBytes": 729264,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "25df8323756ffc1e143612835df2f59e24114a085c40b4014e7bc82107eceac2",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 27.058823529411764,
+        "repeatsV": 15.4320987654321,
+        "sourcePixelsPerCm": 10.210745,
+        "detectedVRepeatPx": 165.41406,
+        "anchorConsensus": 1,
+        "matchedAnchors": 194,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-f1714-01",
+      "fabricId": "sdg-f1714-01",
+      "mode": "patterned",
+      "hRepeat": 34.5,
+      "vRepeat": 56,
+      "image": "textures/2b345fc8e9f910feab32007840168ddf1965cb0ce2a7a3de39bf49853660bf97.webp",
+      "sha256": "2b345fc8e9f910feab32007840168ddf1965cb0ce2a7a3de39bf49853660bf97",
+      "encodedBytes": 1543180,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "22df545db9845729ac20fa9a06a253dc6cf4c2844c3f872316d260ed651320f8",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.333333333333334,
+        "repeatsV": 4.464285714285714,
+        "sourcePixelsPerCm": 10.100167,
+        "detectedVRepeatPx": 565.60938,
+        "anchorConsensus": 1,
+        "matchedAnchors": 123,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-dbot237529",
+      "fabricId": "sdg-dbot237529",
+      "mode": "patterned",
+      "hRepeat": 34.5,
+      "vRepeat": 39,
+      "image": "textures/29655bdf362bf32ab84f0d6d5aa17fc24dd5912ba69b8269c78c8134af5ae714.webp",
+      "sha256": "29655bdf362bf32ab84f0d6d5aa17fc24dd5912ba69b8269c78c8134af5ae714",
+      "encodedBytes": 542814,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "a0232af219095ee28899cab0699cbb68572a7cf7bc541c21d9ba55e13a8eddbb",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.333333333333334,
+        "repeatsV": 6.410256410256411,
+        "sourcePixelsPerCm": 9.98778,
+        "detectedVRepeatPx": 389.52344,
+        "anchorConsensus": 1,
+        "matchedAnchors": 174,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-nzac132942",
+      "fabricId": "sdg-nzac132942",
+      "mode": "patterned",
+      "hRepeat": 17.5,
+      "vRepeat": 15,
+      "image": "textures/91971e46715c7d0ce6915521c8735f5ebecb8e96cf01eec96f9800815b4a77de.webp",
+      "sha256": "91971e46715c7d0ce6915521c8735f5ebecb8e96cf01eec96f9800815b4a77de",
+      "encodedBytes": 1212616,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "dead4a8faa6538170faee6e98018da545941ea1b62f79daa543901ceea524a09",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 26.285714285714285,
+        "repeatsV": 16.666666666666668,
+        "sourcePixelsPerCm": 9.960417,
+        "detectedVRepeatPx": 149.40625,
+        "anchorConsensus": 0.990385,
+        "matchedAnchors": 206,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-disw236748",
+      "fabricId": "sdg-disw236748",
+      "mode": "patterned",
+      "hRepeat": 28,
+      "vRepeat": 30,
+      "image": "textures/8c4802ee6306ef7c6661bf19812452a846e60d931d2135b159ab2dab57f97071.webp",
+      "sha256": "8c4802ee6306ef7c6661bf19812452a846e60d931d2135b159ab2dab57f97071",
+      "encodedBytes": 829312,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "d216dbe0ab68d2eea8c1db27574f132658a18b5aabb6d7073f3e71ca2291d454",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 16.428571428571427,
+        "repeatsV": 8.333333333333334,
+        "sourcePixelsPerCm": 9.871484,
+        "detectedVRepeatPx": 296.14453,
+        "anchorConsensus": 0.977901,
+        "matchedAnchors": 177,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-dfab223975",
+      "fabricId": "sdg-dfab223975",
+      "mode": "patterned",
+      "hRepeat": 68.5,
+      "vRepeat": 65,
+      "image": "textures/0a60ede59d114eab212342a4dc1001583a1dd21e9fbe864867a948336bc4c770.webp",
+      "sha256": "0a60ede59d114eab212342a4dc1001583a1dd21e9fbe864867a948336bc4c770",
+      "encodedBytes": 977628,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "12b98e069378214c6a125bcd9616dd33ed479258115518697e4a7daeb37989d2",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.7153284671532845,
+        "repeatsV": 3.8461538461538463,
+        "sourcePixelsPerCm": 9.974099,
+        "detectedVRepeatPx": 648.31641,
+        "anchorConsensus": 0.992481,
+        "matchedAnchors": 132,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-f1550-02",
+      "fabricId": "sdg-f1550-02",
+      "mode": "patterned",
+      "hRepeat": 60,
+      "vRepeat": 64,
+      "image": "textures/e2e01ed4f429cc957e052f7a8e6fc7a74009c1817e3a499ac1c3b8b225a2cc57.webp",
+      "sha256": "e2e01ed4f429cc957e052f7a8e6fc7a74009c1817e3a499ac1c3b8b225a2cc57",
+      "encodedBytes": 1222182,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "7d243c3a355fa8e95b75dfb18d1700461108edc14bc1447208cbef79990d1ca1",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 7.666666666666667,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.879822,
+        "detectedVRepeatPx": 632.30859,
+        "anchorConsensus": 1,
+        "matchedAnchors": 118,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-nswe134648",
+      "fabricId": "sdg-nswe134648",
+      "mode": "patterned",
+      "hRepeat": 35.5,
+      "vRepeat": 41,
+      "image": "textures/8d33d0986f32ccd220cbc00b25be82b4657273b2a2f672f9c9246fb54b089f21.webp",
+      "sha256": "8d33d0986f32ccd220cbc00b25be82b4657273b2a2f672f9c9246fb54b089f21",
+      "encodedBytes": 845664,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "94841119c6f3ac563686462785edc8ec1a3ad2c3ebb17daf7591b6b881c2fba1",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 12.95774647887324,
+        "repeatsV": 6.097560975609756,
+        "sourcePixelsPerCm": 10.346513,
+        "detectedVRepeatPx": 424.20703,
+        "anchorConsensus": 0.994819,
+        "matchedAnchors": 192,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hfau120518",
+      "fabricId": "sdg-hfau120518",
+      "mode": "patterned",
+      "hRepeat": 69,
+      "vRepeat": 63,
+      "image": "textures/7bdbe77d8e410d62e8b8f1ecaab5ed9358e30c5cbef1263791d82e0cebcc1bac.webp",
+      "sha256": "7bdbe77d8e410d62e8b8f1ecaab5ed9358e30c5cbef1263791d82e0cebcc1bac",
+      "encodedBytes": 676500,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "643185764b325846fff91be7425b4dfb00472cbbe1462258494d2114bb4b253a",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.666666666666667,
+        "repeatsV": 3.9682539682539684,
+        "sourcePixelsPerCm": 9.86725,
+        "detectedVRepeatPx": 621.63672,
+        "anchorConsensus": 1,
+        "matchedAnchors": 136,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hfra131901",
+      "fabricId": "sdg-hfra131901",
+      "mode": "patterned",
+      "hRepeat": 24,
+      "vRepeat": 33,
+      "image": "textures/1575ff429a9cd12856d0f2457849a93799bada1237147b8475919b1a9d0b161f.webp",
+      "sha256": "1575ff429a9cd12856d0f2457849a93799bada1237147b8475919b1a9d0b161f",
+      "encodedBytes": 1145730,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "47d8ed7c338a6dcaaa00028e9206d09bff0411604f9c4a4df2667bbd0c37d9c7",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 19.166666666666668,
+        "repeatsV": 7.575757575757576,
+        "sourcePixelsPerCm": 9.944247,
+        "detectedVRepeatPx": 328.16016,
+        "anchorConsensus": 1,
+        "matchedAnchors": 196,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hsrf134002",
+      "fabricId": "sdg-hsrf134002",
+      "mode": "patterned",
+      "hRepeat": 16,
+      "vRepeat": 15.5,
+      "image": "textures/49b4b3d3a91ebe8d99f202510062c0ba67cfc6766bf229fbfe78008931e01800.webp",
+      "sha256": "49b4b3d3a91ebe8d99f202510062c0ba67cfc6766bf229fbfe78008931e01800",
+      "encodedBytes": 1371448,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "0ed9053f0b39ef8ca79898c5499a2f477551eefac2810e4ba3a4b6e506576ae9",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 28.75,
+        "repeatsV": 16.129032258064516,
+        "sourcePixelsPerCm": 10.844002,
+        "detectedVRepeatPx": 168.08203,
+        "anchorConsensus": 1,
+        "matchedAnchors": 215,
+        "horizontalCrosscheck": "CORROBORATES"
+      }
+    },
+    {
+      "id": "sdg-hblv130985",
+      "fabricId": "sdg-hblv130985",
+      "mode": "patterned",
+      "hRepeat": 35,
+      "vRepeat": 53,
+      "image": "textures/724388cec21151ab18aaa9e63152c1a6b0e4186e374c9ab4209dc4acf8f42fd5.webp",
+      "sha256": "724388cec21151ab18aaa9e63152c1a6b0e4186e374c9ab4209dc4acf8f42fd5",
+      "encodedBytes": 1024984,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "672ae448af46471e563594917f2c44110c55efbca1584c3e17c1c483eea94215",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.142857142857142,
+        "repeatsV": 4.716981132075472,
+        "sourcePixelsPerCm": 8.255601,
+        "detectedVRepeatPx": 437.54688,
+        "anchorConsensus": 0.993007,
+        "matchedAnchors": 142,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hmte132767",
+      "fabricId": "sdg-hmte132767",
+      "mode": "patterned",
+      "hRepeat": 7,
+      "vRepeat": 20,
+      "image": "textures/effed146148d7429f6fcc4fb9391cec4a51ca04ed1a0cd9c002525376a4f0b58.webp",
+      "sha256": "effed146148d7429f6fcc4fb9391cec4a51ca04ed1a0cd9c002525376a4f0b58",
+      "encodedBytes": 1151122,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "e88e475a1f32dd901fbdb4c436afcfa979e0e0299014f9415b19a7f9616f3fb1",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 65.71428571428571,
+        "repeatsV": 12.5,
+        "sourcePixelsPerCm": 10.138281,
+        "detectedVRepeatPx": 202.76562,
+        "anchorConsensus": 1,
+        "matchedAnchors": 192,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-dcoa226495",
+      "fabricId": "sdg-dcoa226495",
+      "mode": "patterned",
+      "hRepeat": 69,
+      "vRepeat": 62,
+      "image": "textures/e293cc6db5c6c6e968e1d3457be908090ddfb995478a8b49c2dd0aeb5062ee7e.webp",
+      "sha256": "e293cc6db5c6c6e968e1d3457be908090ddfb995478a8b49c2dd0aeb5062ee7e",
+      "encodedBytes": 217162,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "cbeb24533be425e7ac340cd820ac53da9aadc0f600fd02c0d73a9959b968b77b",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.666666666666667,
+        "repeatsV": 4.032258064516129,
+        "sourcePixelsPerCm": 9.983367,
+        "detectedVRepeatPx": 618.96875,
+        "anchorConsensus": 1,
+        "matchedAnchors": 127,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "pt-4225-006",
+      "fabricId": "pt-4225-006",
+      "mode": "patterned",
+      "hRepeat": 34.3,
+      "vRepeat": 23,
+      "image": "textures/e5be8d6813e42018ff3eb5f347f2cf2c27f1c52b9765d90627232c14c222fb5d.webp",
+      "sha256": "e5be8d6813e42018ff3eb5f347f2cf2c27f1c52b9765d90627232c14c222fb5d",
+      "encodedBytes": 1137188,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "bc7e98fd14ec38ecffc80335e9d3de09c826b2642dcf3070b20b03109ac1ab11",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.411078717201168,
+        "repeatsV": 10.869565217391305,
+        "sourcePixelsPerCm": 14.266304,
+        "detectedVRepeatPx": 328.125,
+        "anchorConsensus": 1,
+        "matchedAnchors": 183,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-nscd134671",
+      "fabricId": "sdg-nscd134671",
+      "mode": "patterned",
+      "hRepeat": 64.5,
+      "vRepeat": 47.5,
+      "image": "textures/137f12de5d8dc329b5dfaa91930225efab3b547657fa0320a292718b0663ff4f.webp",
+      "sha256": "137f12de5d8dc329b5dfaa91930225efab3b547657fa0320a292718b0663ff4f",
+      "encodedBytes": 836920,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "cda2b8647eb2a389748025e24d63283a62ea06b86aec1d577086b47b8d0fc353",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 7.131782945736434,
+        "repeatsV": 5.2631578947368425,
+        "sourcePixelsPerCm": 10.559539,
+        "detectedVRepeatPx": 501.57812,
+        "anchorConsensus": 0.993671,
+        "matchedAnchors": 157,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-msim226906",
+      "fabricId": "sdg-msim226906",
+      "mode": "patterned",
+      "hRepeat": 68.5,
+      "vRepeat": 64,
+      "image": "textures/df336451029aeccf97bcbc3bcaa04862fb6a226bc6d0f46dea5dc79c04986196.webp",
+      "sha256": "df336451029aeccf97bcbc3bcaa04862fb6a226bc6d0f46dea5dc79c04986196",
+      "encodedBytes": 1048852,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "2ddc75cb5f362b11503cb6c90f43916d98a35bf5ee41158e5eda27ad1fd04b14",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.7153284671532845,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.671387,
+        "detectedVRepeatPx": 618.96875,
+        "anchorConsensus": 1,
+        "matchedAnchors": 142,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-dmc1fu205",
+      "fabricId": "sdg-dmc1fu205",
+      "mode": "patterned",
+      "hRepeat": 68.5,
+      "vRepeat": 64,
+      "image": "textures/0e67a766a1f32a0884236902653959d05661e157e4d9e361f900ca22e0905b72.webp",
+      "sha256": "0e67a766a1f32a0884236902653959d05661e157e4d9e361f900ca22e0905b72",
+      "encodedBytes": 1170310,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "69cc2dc7a1fe5f1adbfe1854558f3d2be7113fb713fdde63e7a5ab4923f821a3",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.7153284671532845,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.546326,
+        "detectedVRepeatPx": 610.96484,
+        "anchorConsensus": 1,
+        "matchedAnchors": 135,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-mstr237696",
+      "fabricId": "sdg-mstr237696",
+      "mode": "patterned",
+      "hRepeat": 33.6,
+      "vRepeat": 40,
+      "image": "textures/add9aceddfbc27bce6f1450e060da22379929fb6afda3c0e193eb3468ff2b407.webp",
+      "sha256": "add9aceddfbc27bce6f1450e060da22379929fb6afda3c0e193eb3468ff2b407",
+      "encodedBytes": 887252,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "e101a892f8ebe4149dc8c1e053f87dcc88f4c70b060fdb69cab18571cf0fcf49",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.69047619047619,
+        "repeatsV": 6.25,
+        "sourcePixelsPerCm": 10.27168,
+        "detectedVRepeatPx": 410.86719,
+        "anchorConsensus": 1,
+        "matchedAnchors": 166,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hqn2133890",
+      "fabricId": "sdg-hqn2133890",
+      "mode": "patterned",
+      "hRepeat": 44.4,
+      "vRepeat": 44.8,
+      "image": "textures/50a70103af705b64386fd4a106410100c28616ab45045c3d631ed39614da67d9.webp",
+      "sha256": "50a70103af705b64386fd4a106410100c28616ab45045c3d631ed39614da67d9",
+      "encodedBytes": 1426172,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "ecac31d4966e8eeaab20050ea8510eb4b534986d7bea0a96bb3f6676cec78082",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 10.36036036036036,
+        "repeatsV": 5.580357142857143,
+        "sourcePixelsPerCm": 10.719517,
+        "detectedVRepeatPx": 480.23438,
+        "anchorConsensus": 1,
+        "matchedAnchors": 161,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-f1542-04",
+      "fabricId": "sdg-f1542-04",
+      "mode": "patterned",
+      "hRepeat": 69,
+      "vRepeat": 65,
+      "image": "textures/20ffe707737acabcb2ec8c26c9496fc117e56eb2b03f0b2df059f1a224827be5.webp",
+      "sha256": "20ffe707737acabcb2ec8c26c9496fc117e56eb2b03f0b2df059f1a224827be5",
+      "encodedBytes": 1330136,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "3fc23a840f885cf800c2cee3a383792c4c6b543f56b21db7ddf2633ad6b3fa55",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.666666666666667,
+        "repeatsV": 3.8461538461538463,
+        "sourcePixelsPerCm": 9.522596,
+        "detectedVRepeatPx": 618.96875,
+        "anchorConsensus": 1,
+        "matchedAnchors": 141,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hhhu134223",
+      "fabricId": "sdg-hhhu134223",
+      "mode": "patterned",
+      "hRepeat": 64,
+      "vRepeat": 25.6,
+      "image": "textures/e2ced5bf921eac33d6475f589e620d9ed94a9a8a44949b430ce09427ab7d34af.webp",
+      "sha256": "e2ced5bf921eac33d6475f589e620d9ed94a9a8a44949b430ce09427ab7d34af",
+      "encodedBytes": 1359326,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "330e38a8d488818c6a615ba2185f3dfa539a5e5acce21398262f8c8f8411abfa",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 7.1875,
+        "repeatsV": 9.765625,
+        "sourcePixelsPerCm": 10.734406,
+        "detectedVRepeatPx": 274.80078,
+        "anchorConsensus": 1,
+        "matchedAnchors": 191,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-mhtf227367",
+      "fabricId": "sdg-mhtf227367",
+      "mode": "patterned",
+      "hRepeat": 34.3,
+      "vRepeat": 30.7,
+      "image": "textures/7c7192b15eb3b56c31123a4bdee6a99588f3c7aeaa8a96bcb6431131a2470ca0.webp",
+      "sha256": "7c7192b15eb3b56c31123a4bdee6a99588f3c7aeaa8a96bcb6431131a2470ca0",
+      "encodedBytes": 1683452,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "9225e8248fe99e8276e276ff9d64ee5c5fb10385efd26afa7aa022cfacc62666",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.411078717201168,
+        "repeatsV": 8.143322475570033,
+        "sourcePixelsPerCm": 9.646402,
+        "detectedVRepeatPx": 296.14453,
+        "anchorConsensus": 1,
+        "matchedAnchors": 187,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hmte132792",
+      "fabricId": "sdg-hmte132792",
+      "mode": "patterned",
+      "hRepeat": 70.5,
+      "vRepeat": 64.2,
+      "image": "textures/8bae333eaca73c71a3d0fab3c4a844241ba9c8794266b7dee3eb6da27d4eace4.webp",
+      "sha256": "8bae333eaca73c71a3d0fab3c4a844241ba9c8794266b7dee3eb6da27d4eace4",
+      "encodedBytes": 862530,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "c3e1e5a15a52fd570f78600ffe71fe44390b98dc63f46cf2271730d45821c375",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.524822695035461,
+        "repeatsV": 3.894080996884735,
+        "sourcePixelsPerCm": 9.807486,
+        "detectedVRepeatPx": 629.64062,
+        "anchorConsensus": 1,
+        "matchedAnchors": 128,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-hmmc133038",
+      "fabricId": "sdg-hmmc133038",
+      "mode": "patterned",
+      "hRepeat": 34.2,
+      "vRepeat": 38,
+      "image": "textures/478c2e10d76fa3c77d57de141d73e04caf52382d425a2ce49bac0e1570ab0490.webp",
+      "sha256": "478c2e10d76fa3c77d57de141d73e04caf52382d425a2ce49bac0e1570ab0490",
+      "encodedBytes": 1241264,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "f6e7086a59f0308161522e042098174fe4ac97e5fe1c8ad97dc02741593385c9",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 13.450292397660817,
+        "repeatsV": 6.578947368421052,
+        "sourcePixelsPerCm": 10.742085,
+        "detectedVRepeatPx": 408.19922,
+        "anchorConsensus": 0.987179,
+        "matchedAnchors": 154,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-dkh147205",
+      "fabricId": "sdg-dkh147205",
+      "mode": "patterned",
+      "hRepeat": 67,
+      "vRepeat": 64,
+      "image": "textures/6a9b11abad7d15f0aa40e281c9e210a31a37ffd5456bdfa1cd401622c4690276.webp",
+      "sha256": "6a9b11abad7d15f0aa40e281c9e210a31a37ffd5456bdfa1cd401622c4690276",
+      "encodedBytes": 995978,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "f8f4be183d8b1de566de9196622151f8220a49822c0237432821eda804d400a6",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 6.865671641791045,
+        "repeatsV": 3.90625,
+        "sourcePixelsPerCm": 9.6297,
+        "detectedVRepeatPx": 616.30078,
+        "anchorConsensus": 1,
+        "matchedAnchors": 137,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "sdg-ccf0880-02",
+      "fabricId": "sdg-ccf0880-02",
+      "mode": "patterned",
+      "hRepeat": 46.5,
+      "vRepeat": 25.5,
+      "image": "textures/4b814b1115afbff732243a6f4efa3c9eaec023397f79a51967b961fa7629a6e1.webp",
+      "sha256": "4b814b1115afbff732243a6f4efa3c9eaec023397f79a51967b961fa7629a6e1",
+      "encodedBytes": 1366762,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "physicalClothCm": [
+        460,
+        250
+      ],
+      "sourceMasterSha256": "4c17675c2433edac05f0f9f8cd944048913ffc8ebc30165769ee087e2ea0139f",
+      "calibration": {
+        "kind": "multiple-repeats",
+        "repeatsH": 9.89247311827957,
+        "repeatsV": 9.803921568627452,
+        "sourcePixelsPerCm": 10.462623,
+        "detectedVRepeatPx": 266.79688,
+        "anchorConsensus": 1,
+        "matchedAnchors": 199,
+        "horizontalCrosscheck": "INCONCLUSIVE"
+      }
     }
   ]
 }

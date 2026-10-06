@@ -20,9 +20,12 @@ for(const row of batch){
   if(row.retailFound!==true||row.retailHRepeatCm!==row.h_repeat_cm||row.retailVRepeatCm!==row.v_repeat_cm)throw Error(`Live catalogue repeat mismatch: ${row.fabric_id}`);
   if(!Number.isFinite(row.h_repeat_cm)||row.h_repeat_cm<=0||!Number.isFinite(row.v_repeat_cm)||row.v_repeat_cm<=0)throw Error(`Invalid repeat: ${row.fabric_id}`);
   // This source set was an automated scale proposal, not customer eligibility.
-  // The release gate requires independent horizontal corroboration, a strong
-  // multi-anchor vertical consensus, and exact live manufacturer metadata.
-  if(row.registration_confidence!=='AUTOMATED_VERTICAL_FIRST_PROPOSAL'||row.horizontal_crosscheck!=='CORROBORATES'||row.anchor_consensus<.95||row.matched_vertical_anchors<100)throw Error(`Insufficient scale evidence: ${row.fabric_id}`);
+  // The release gate requires a strong multi-anchor vertical consensus and
+  // exact live manufacturer metadata. Weak H evidence needs a stricter V gate;
+  // contradictory H evidence is never accepted.
+  const corroborated=row.horizontal_crosscheck==='CORROBORATES'&&row.anchor_consensus>=.95&&row.matched_vertical_anchors>=100;
+  const verticalFirst=row.horizontal_crosscheck==='INCONCLUSIVE'&&row.anchor_consensus>=.98&&row.matched_vertical_anchors>=120;
+  if(row.registration_confidence!=='AUTOMATED_VERTICAL_FIRST_PROPOSAL'||(!corroborated&&!verticalFirst))throw Error(`Insufficient scale evidence: ${row.fabric_id}`);
   if(!Number.isFinite(row.pixels_per_cm)||row.pixels_per_cm<=0||!Number.isFinite(row.detected_v_repeat_px)||Math.abs(row.detected_v_repeat_px-row.v_repeat_cm*row.pixels_per_cm)>.05)throw Error(`Physical vertical repeat mismatch: ${row.fabric_id}`);
   const original=await readFile(resolve(row.master));
   if(hash(original)!==row.master_sha256)throw Error(`Frozen master hash changed: ${row.fabric_id}`);

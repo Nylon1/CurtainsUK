@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {classify,assessPlain,assessStraight,verifyRetail,makeEntry} from '../../scripts/room-visualiser-publication/core.mjs';
+import {normaliseLedger,recordHold} from '../../scripts/room-visualiser-publication/ledger.mjs';
 
 const base={fabricId:'pt-1234-567',designId:'pt-design-1234',design:'Example',colourway:'Sage',sourceUrl:'https://cdn.shopify.com/example.jpg',
   hRepeatCm:45,vRepeatCm:46.5,patternMatchType:'STRAIGHT_MATCH'};
@@ -41,4 +42,12 @@ test('retail checks prevent stale image and repeat data from publishing',()=>{
   assert.equal(verifyRetail(base,fabric,'straight'),null);
   assert.equal(verifyRetail(base,{...fabric,verticalRepeatMm:500},'straight'),'LIVE_REPEAT_MISMATCH');
   assert.equal(verifyRetail(base,{...fabric,images:[{...fabric.images[0],url:'https://cdn.shopify.com/other.jpg'}]},'straight'),'LIVE_MAIN_IMAGE_MISMATCH');
+});
+test('runtime failures remain held across batches without counting as published',()=>{
+  const ledger=normaliseLedger({version:1,published:['live'],staged:[]},['live']);
+  recordHold(ledger,'unavailable','BUILD_OR_SOURCE:HTTP_404');
+  assert.equal(ledger.holds.unavailable,'BUILD_OR_SOURCE:HTTP_404');
+  assert.equal(normaliseLedger(structuredClone(ledger),['live']).holds.unavailable,'BUILD_OR_SOURCE:HTTP_404');
+  assert.throws(()=>recordHold(ledger,'live','bad'),/Cannot hold/);
+  assert.throws(()=>normaliseLedger({...ledger,staged:['unavailable']},['live','unavailable']),/both published\/staged and held/);
 });

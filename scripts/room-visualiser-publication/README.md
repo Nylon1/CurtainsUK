@@ -30,6 +30,12 @@ unreleased entries. Review the contact sheet and the held reasons before the
 small protected PR. Release the exact staged manifest/assets through the normal
 green-check merge and real production deployment; wait for READY.
 
+Retail-contract failures and source/build failures are persisted in the private
+ledger's `holds` map with their reason, so a later batch cannot silently retry
+or publish them. Corrected source evidence requires an explicit review and
+removal of that HOLD entry before the pipeline will retry it. Classification
+and quality-gate holds remain reproducible from the evidence queue.
+
 Then run the **same entrypoint** with `--verify-live` and the same queue/ledger.
 It checks each pending ID against the public retail projection and CDN bytes,
 hash, MIME and immutable cache header. It promotes only passing IDs in the

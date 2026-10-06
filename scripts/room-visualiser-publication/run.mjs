@@ -6,6 +6,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import sharp from 'sharp';
 import {classify,assessPlain,assessStraight,verifyRetail,makeEntry,RUNTIME_SIZE,WIDTH_CM,DROP_CM} from './core.mjs';
+import {normaliseLedger,recordHold} from './ledger.mjs';
 
 const values=process.argv.slice(2);
 const arg=name=>{const i=values.indexOf(`--${name}`);return i<0?null:values[i+1]};
@@ -23,18 +24,19 @@ const manifest=JSON.parse(await readFile(manifestPath,'utf8'));
 const known=new Map(manifest.fabrics.map(f=>[f.fabricId,f]));
 let ledger=null;
 if(ledgerPath){
-  ledger=JSON.parse(await readFile(resolve(ledgerPath),'utf8'));
-  if(ledger.version!==1||!Array.isArray(ledger.published)||!Array.isArray(ledger.staged))throw Error('Invalid publication ledger');
-  const accounted=new Set([...ledger.published,...ledger.staged]);
-  if(accounted.size!==ledger.published.length+ledger.staged.length)throw Error('Duplicate publication ledger ID');
-  if([...known.keys()].some(id=>!accounted.has(id)))throw Error('Manifest contains unaccounted fabric IDs');
+  ledger=normaliseLedger(JSON.parse(await readFile(resolve(ledgerPath),'utf8')),[...known.keys()]);
   if(ledger.staged.length&&stage)throw Error('Verify or resolve the pending staged batch before staging another');
 }
 const rows=(await readFile(resolve(queuePath),'utf8')).split(/\r?\n/).filter(Boolean).map(JSON.parse);
 if(new Set(rows.map(row=>row.fabricId)).size!==rows.length)throw Error('Duplicate fabric ID in publication queue');
 const sourceHash=buffer=>createHash('sha256').update(buffer).digest('hex');
 const results=[],staged=[];
+let newHolds=0;
 const reason=(row,mode,status,detail)=>({fabricId:row.fabricId,designId:row.designId,mode,status,reason:detail||null});
+function hold(row,mode,detail,persist=false){
+  results.push(reason(row,mode,'HOLD',detail));
+  if(persist&&ledger&&stage){recordHold(ledger,row.fabricId,detail);newHolds++;}
+}
 const retailUrl=id=>`https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&fabric=${encodeURIComponent(id)}`;
 async function boundedFetch(url,limit=22_000_000){
   const response=await fetch(url,{signal:AbortSignal.timeout(30_000),headers:{Accept:url.includes('/catalog?')?'application/json':'image/jpeg'}});
@@ -102,14 +104,15 @@ for(const row of rows){
     }else results.push(reason(row,mode,pending?'STAGED':'PUBLISHED'));
     continue;
   }
-  if(mode==='hold'){results.push(reason(row,mode,'HOLD',classification.reason));continue;}
+  if(ledger?.holds[row.fabricId]){hold(row,mode,ledger.holds[row.fabricId]);continue;}
+  if(mode==='hold'){hold(row,mode,classification.reason);continue;}
   const gate=mode==='plain'?assessPlain(row):assessStraight(row);
-  if(gate){results.push(reason(row,mode,'HOLD',gate));continue;}
+  if(gate){hold(row,mode,gate);continue;}
   if(!stage||staged.length>=batchSize){results.push(reason(row,mode,'REMAINING'));continue;}
   try{
     const catalogue=JSON.parse((await boundedFetch(retailUrl(row.fabricId),3_000_000)).body.toString());
     const retailGate=verifyRetail(row,catalogue.fabric,mode);
-    if(retailGate){results.push(reason(row,mode,'HOLD',retailGate));continue;}
+    if(retailGate){hold(row,mode,retailGate,true);continue;}
     const built=mode==='plain'?await plainDerivative(row,(await boundedFetch(row.sourceUrl)).body):await straightDerivative(row);
     const metadata=await sharp(built.bytes).metadata();
     if(metadata.format!=='webp'||metadata.width!==RUNTIME_SIZE[0]||metadata.height!==RUNTIME_SIZE[1])throw Error('DERIVATIVE_SIZE_OR_FORMAT');
@@ -117,7 +120,7 @@ for(const row of rows){
     const entry=makeEntry(row,mode,image,sha256,built.bytes.length,built.sourceSha256);
     staged.push({row,entry,bytes:built.bytes,quality:built.quality});
     results.push({...reason(row,mode,'STAGED'),sha256,encodedBytes:built.bytes.length,quality:built.quality});
-  }catch(error){results.push(reason(row,mode,'HOLD',`BUILD_OR_SOURCE:${error.message}`));}
+  }catch(error){hold(row,mode,`BUILD_OR_SOURCE:${error.message}`,true);}
 }
 if(staged.length){
   const textures=resolve('public/room-visualiser/textures');await mkdir(textures,{recursive:true});
@@ -132,8 +135,8 @@ if(staged.length){
   if(updated===contract)throw Error('Catalogue link update failed');
   await writeFile(contractFile,updated);
   ledger.staged.push(...staged.map(item=>item.row.fabricId));
-  await writeFile(resolve(ledgerPath),JSON.stringify(ledger,null,2)+'\n');
 }
+if(stage&&(staged.length||newHolds))await writeFile(resolve(ledgerPath),JSON.stringify(ledger,null,2)+'\n');
 if(verify&&ledger?.staged.length){
   const good=new Set(results.filter(item=>item.status==='PUBLISHED').map(item=>item.fabricId));
   ledger.published.push(...ledger.staged.filter(id=>good.has(id)));

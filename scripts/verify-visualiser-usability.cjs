@@ -46,7 +46,14 @@ for(const [label,width,height] of [['desktop',1440,1050],['mobile',390,844]]){
     shot('fabric-drawer');ev('document.querySelector("#close-fabric-dialog").click()');
    }
   }
-  scrollToControl('[data-zone="CUSHION_UPHOLSTERY"] button');shot('sticky-palette');
+  scrollToControl('[data-zone="CUSHION_UPHOLSTERY"] button');
+  if(label==='mobile')for(const pose of ['1','0']){
+   assert.deepEqual(tappable(`[data-pose="${pose}"]`),{visible:true,hit:true},'Sticky curtain action');
+   ev(`document.querySelector('[data-pose="${pose}"]').click()`);
+   until(`!document.querySelector('[data-room-frame]').contentWindow.roomProof.motion.running`);
+   assert.deepEqual(ev('roomProof.colours'),expected.lounge);
+  }
+  shot('sticky-palette');
   const renders=ev('roomProof.renders.length');raw('scrollBy({top:40,behavior:"instant"})');
   assert.equal(ev('roomProof.renders.length'),renders,'Scrolling alone must not render/rebuild the scene');
   const aspect=ev('(()=>{const r=document.querySelector("canvas").getBoundingClientRect();return r.width/r.height})()');assert.ok(Math.abs(aspect-1.6)<.002);

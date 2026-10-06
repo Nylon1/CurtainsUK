@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {createRoomPalettes} from '../../lib/room-visualiser/runtime/rooms/palette-state.mjs';
 import {viewportLayout} from '../../lib/room-visualiser/runtime/rooms/sticky-viewport.mjs';
 import {ROOMS,PALETTES} from '../../lib/room-visualiser/runtime/rooms/catalog.mjs';
@@ -37,4 +38,13 @@ test('sticky offset tracks host header/scroll and limits canvas to leave control
   const landscape=viewportLayout({frameTop:-400,top:80,height:320,mobile:true});
   assert.ok(landscape.canvasHeight+54<landscape.available*.65);
   assert.equal(viewportLayout({height:0,mobile:true}).canvasHeight,1);
+});
+
+test('one existing Open/Close action group stays inside the sticky viewport',()=>{
+  const html=readFileSync('lib/room-visualiser/runtime/rooms/customer.html','utf8');
+  const viewport=html.slice(html.indexOf('class="scene-viewport"'),html.indexOf('class="scene-meta"'));
+  for(const pose of ['0','1']){
+    assert.equal(html.split(`data-pose="${pose}"`).length-1,1);
+    assert.ok(viewport.includes(`data-pose="${pose}"`));
+  }
 });

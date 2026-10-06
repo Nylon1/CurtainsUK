@@ -27,6 +27,9 @@
     </ul></div>
   </details></li>
   <li class="cuknav__item"><a href="/pages/fabric-library?view=browse-fabrics">Browse Fabrics</a></li>
+  {% if location == 'mobile' or location == 'fallback' %}
+    <li class="cuknav__item"><a href="/pages/room-visualiser">Room Visualiser</a></li>
+  {% endif %}
   <li class="cuknav__item"><a href="/pages/solve-my-window">Shop by Window</a></li>
   <li class="cuknav__item"><a href="/pages/fabric-library?view=curtain-style">{{ 'curtain_style.navigation' | t }}</a></li>
   <li class="cuknav__item">

@@ -39,12 +39,22 @@ function hold(row,mode,detail,persist=false){
 }
 const retailUrl=id=>`https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&fabric=${encodeURIComponent(id)}`;
 async function boundedFetch(url,limit=22_000_000){
-  const response=await fetch(url,{signal:AbortSignal.timeout(30_000),headers:{Accept:url.includes('/catalog?')?'application/json':'image/jpeg'}});
-  if(!response.ok)throw Error(`HTTP_${response.status}`);
-  if(Number(response.headers.get('content-length'))>limit)throw Error('SOURCE_TOO_LARGE');
-  const body=Buffer.from(await response.arrayBuffer());
-  if(body.length>limit)throw Error('SOURCE_TOO_LARGE');
-  return {response,body};
+  for(let attempt=0;attempt<3;attempt++){
+    try{
+      const response=await fetch(url,{signal:AbortSignal.timeout(30_000),headers:{Accept:url.includes('/catalog?')?'application/json':'image/jpeg'}});
+      if(!response.ok){
+        if([502,503,504].includes(response.status)&&attempt<2){await new Promise(done=>setTimeout(done,500*(attempt+1)));continue;}
+        throw Error(`HTTP_${response.status}`);
+      }
+      if(Number(response.headers.get('content-length'))>limit)throw Error('SOURCE_TOO_LARGE');
+      const body=Buffer.from(await response.arrayBuffer());
+      if(body.length>limit)throw Error('SOURCE_TOO_LARGE');
+      return {response,body};
+    }catch(error){
+      if(attempt===2||!['TimeoutError','TypeError'].includes(error.name))throw error;
+      await new Promise(done=>setTimeout(done,500*(attempt+1)));
+    }
+  }
 }
 function hexRgb(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16));}
 function stableNoise(x,y,seed){let n=(Math.imul(x+seed,374761393)+Math.imul(y+seed,668265263))|0;n=Math.imul(n^(n>>>13),1274126177);return ((n^(n>>>16))>>>0)/4294967295-.5;}
@@ -112,8 +122,11 @@ for(const row of rows){
   if(gate){hold(row,mode,gate);continue;}
   if(!stage||staged.length>=batchSize){results.push(reason(row,mode,'REMAINING'));continue;}
   attempted++;
+  let catalogue;
   try{
-    const catalogue=JSON.parse((await boundedFetch(retailUrl(row.fabricId),3_000_000)).body.toString());
+    catalogue=JSON.parse((await boundedFetch(retailUrl(row.fabricId),3_000_000)).body.toString());
+  }catch(error){hold(row,mode,`RETAIL:${error.message}`,true);continue;}
+  try{
     const retailGate=verifyRetail(row,catalogue.fabric,mode);
     if(retailGate){hold(row,mode,retailGate,true);continue;}
     const built=mode==='plain'?await plainDerivative(row,(await boundedFetch(row.sourceUrl)).body):await straightDerivative(row);

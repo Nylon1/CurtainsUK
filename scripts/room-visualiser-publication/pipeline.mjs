@@ -45,8 +45,8 @@ if(stage){
   }else if(!values.includes('--resume-staged')){
     throw Error('A staged batch awaits protected release. Use --resume-staged to rerun quality checks.');
   }
+  run(node,['scripts/room-visualiser-publication/preflight-staged.mjs',resolve(queue),resolve(ledger),report]);
   run(node,['scripts/build-room-visualiser.mjs']);
-  run(node,['scripts/room-visualiser-publication/preflight-staged.mjs',resolve(queue),resolve(ledger)]);
   run(node,['scripts/room-visualiser-publication/verify-assets.mjs']);
   run(node,['--test','tests/room-visualiser/publication-policy.test.mjs']);
   packageTool('npm',['test']);packageTool('npx',['tsc','--noEmit']);packageTool('npm',['run','build']);

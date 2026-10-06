@@ -9,7 +9,7 @@
       "mode": "patterned",
       "hRepeat": 45,
       "vRepeat": 46.5,
-      "image": "textures/0a49d656930f2a2ec09d719a3b597d09d5ef1e2e4f30cc2984fa1c9425638e4b.webp",
+      "image": "/room-visualiser/textures/0a49d656930f2a2ec09d719a3b597d09d5ef1e2e4f30cc2984fa1c9425638e4b.webp",
       "sha256": "0a49d656930f2a2ec09d719a3b597d09d5ef1e2e4f30cc2984fa1c9425638e4b",
       "encodedBytes": 622834,
       "pixelSize": [
@@ -32,7 +32,7 @@
       "mode": "patterned",
       "hRepeat": 35.7,
       "vRepeat": 41.5,
-      "image": "textures/d534dfa793e4626f6515f22a655b3f9ee5221cd66589a9c75ff725a7cf451628.webp",
+      "image": "/room-visualiser/textures/d534dfa793e4626f6515f22a655b3f9ee5221cd66589a9c75ff725a7cf451628.webp",
       "sha256": "d534dfa793e4626f6515f22a655b3f9ee5221cd66589a9c75ff725a7cf451628",
       "encodedBytes": 1041642,
       "pixelSize": [
@@ -55,7 +55,7 @@
       "mode": "patterned",
       "hRepeat": 5,
       "vRepeat": 8.5,
-      "image": "textures/92c0e0497edd1fcbcca6a1ec4f2a464fc0579f10d89c830dbf01b705f5d6f620.webp",
+      "image": "/room-visualiser/textures/92c0e0497edd1fcbcca6a1ec4f2a464fc0579f10d89c830dbf01b705f5d6f620.webp",
       "sha256": "92c0e0497edd1fcbcca6a1ec4f2a464fc0579f10d89c830dbf01b705f5d6f620",
       "encodedBytes": 548686,
       "pixelSize": [
@@ -76,7 +76,7 @@
       "id": "amalfi",
       "fabricId": "sdg-f1239-30",
       "mode": "plain",
-      "image": "textures/77879e5224472b5c2156d773028a3fd8dc515618a8dde36e734f134c6d4af6e2.webp",
+      "image": "/room-visualiser/textures/77879e5224472b5c2156d773028a3fd8dc515618a8dde36e734f134c6d4af6e2.webp",
       "sha256": "77879e5224472b5c2156d773028a3fd8dc515618a8dde36e734f134c6d4af6e2",
       "encodedBytes": 305436,
       "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
@@ -92,7 +92,7 @@
       "mode": "patterned",
       "hRepeat": 35.3,
       "vRepeat": 63,
-      "image": "textures/eefbd29f09f0417edc6b32af01dc039390f5e08a9aa85af8d9e5a6fe573bd856.webp",
+      "image": "/room-visualiser/textures/eefbd29f09f0417edc6b32af01dc039390f5e08a9aa85af8d9e5a6fe573bd856.webp",
       "sha256": "eefbd29f09f0417edc6b32af01dc039390f5e08a9aa85af8d9e5a6fe573bd856",
       "encodedBytes": 619702,
       "pixelSize": [
@@ -121,7 +121,7 @@
       "mode": "patterned",
       "hRepeat": 17,
       "vRepeat": 23.5,
-      "image": "textures/9de493a89048bcdb349c0853fe6132a236da392196c8c943b96d17bab8cb114d.webp",
+      "image": "/room-visualiser/textures/9de493a89048bcdb349c0853fe6132a236da392196c8c943b96d17bab8cb114d.webp",
       "sha256": "9de493a89048bcdb349c0853fe6132a236da392196c8c943b96d17bab8cb114d",
       "encodedBytes": 573020,
       "pixelSize": [
@@ -150,7 +150,7 @@
       "mode": "patterned",
       "hRepeat": 15.5,
       "vRepeat": 15.8,
-      "image": "textures/ddc8b9fd104de9686b6c6261bbba9e3c109dc223658210d2c8cc75a20b59b657.webp",
+      "image": "/room-visualiser/textures/ddc8b9fd104de9686b6c6261bbba9e3c109dc223658210d2c8cc75a20b59b657.webp",
       "sha256": "ddc8b9fd104de9686b6c6261bbba9e3c109dc223658210d2c8cc75a20b59b657",
       "encodedBytes": 963538,
       "pixelSize": [
@@ -179,7 +179,7 @@
       "mode": "patterned",
       "hRepeat": 43.3,
       "vRepeat": 32.5,
-      "image": "textures/75a227b545f75a0d28efd909c4a1c7cbeedbca5d2e96c1e92310b129e1b575df.webp",
+      "image": "/room-visualiser/textures/75a227b545f75a0d28efd909c4a1c7cbeedbca5d2e96c1e92310b129e1b575df.webp",
       "sha256": "75a227b545f75a0d28efd909c4a1c7cbeedbca5d2e96c1e92310b129e1b575df",
       "encodedBytes": 726196,
       "pixelSize": [
@@ -208,7 +208,7 @@
       "mode": "patterned",
       "hRepeat": 35,
       "vRepeat": 56.7,
-      "image": "textures/343a8a66cb76b46a95785c337a8a1741616c912a8b5a1909cf5b7c88bbe445db.webp",
+      "image": "/room-visualiser/textures/343a8a66cb76b46a95785c337a8a1741616c912a8b5a1909cf5b7c88bbe445db.webp",
       "sha256": "343a8a66cb76b46a95785c337a8a1741616c912a8b5a1909cf5b7c88bbe445db",
       "encodedBytes": 1103066,
       "pixelSize": [
@@ -237,7 +237,7 @@
       "mode": "patterned",
       "hRepeat": 34.6,
       "vRepeat": 31.6,
-      "image": "textures/cfe24e1daa0898a23ca827c989627e2d0f7c2eaadbb98ec465c3b6ff17afea16.webp",
+      "image": "/room-visualiser/textures/cfe24e1daa0898a23ca827c989627e2d0f7c2eaadbb98ec465c3b6ff17afea16.webp",
       "sha256": "cfe24e1daa0898a23ca827c989627e2d0f7c2eaadbb98ec465c3b6ff17afea16",
       "encodedBytes": 363640,
       "pixelSize": [
@@ -266,7 +266,7 @@
       "mode": "patterned",
       "hRepeat": 69.5,
       "vRepeat": 64,
-      "image": "textures/d31bfb9f5bb107ae9fd4b16652cea86f00c180c56419b7b666f4350693372cae.webp",
+      "image": "/room-visualiser/textures/d31bfb9f5bb107ae9fd4b16652cea86f00c180c56419b7b666f4350693372cae.webp",
       "sha256": "d31bfb9f5bb107ae9fd4b16652cea86f00c180c56419b7b666f4350693372cae",
       "encodedBytes": 193694,
       "pixelSize": [
@@ -295,7 +295,7 @@
       "mode": "patterned",
       "hRepeat": 35,
       "vRepeat": 63,
-      "image": "textures/4dc56dab424b12a616b8360b72e3e55d16a5ea3ad5211a5f92733d53ed76445a.webp",
+      "image": "/room-visualiser/textures/4dc56dab424b12a616b8360b72e3e55d16a5ea3ad5211a5f92733d53ed76445a.webp",
       "sha256": "4dc56dab424b12a616b8360b72e3e55d16a5ea3ad5211a5f92733d53ed76445a",
       "encodedBytes": 1077714,
       "pixelSize": [
@@ -324,7 +324,7 @@
       "mode": "patterned",
       "hRepeat": 17.5,
       "vRepeat": 16.5,
-      "image": "textures/01d2e5483cbbe0d1215b64bef1c2d0af59d40c4a541e9bd3f39a916958441b98.webp",
+      "image": "/room-visualiser/textures/01d2e5483cbbe0d1215b64bef1c2d0af59d40c4a541e9bd3f39a916958441b98.webp",
       "sha256": "01d2e5483cbbe0d1215b64bef1c2d0af59d40c4a541e9bd3f39a916958441b98",
       "encodedBytes": 842800,
       "pixelSize": [
@@ -353,7 +353,7 @@
       "mode": "patterned",
       "hRepeat": 23.5,
       "vRepeat": 16,
-      "image": "textures/9d58740586301a209a0dd4ccf115455362912f8a6abf8ce4ce22a21427f96ba6.webp",
+      "image": "/room-visualiser/textures/9d58740586301a209a0dd4ccf115455362912f8a6abf8ce4ce22a21427f96ba6.webp",
       "sha256": "9d58740586301a209a0dd4ccf115455362912f8a6abf8ce4ce22a21427f96ba6",
       "encodedBytes": 868612,
       "pixelSize": [
@@ -382,7 +382,7 @@
       "mode": "patterned",
       "hRepeat": 17.5,
       "vRepeat": 18,
-      "image": "textures/0fe98ba4bd40727670b0ee7212e698eeadb122e174349aa2c3b7a24f57c6269e.webp",
+      "image": "/room-visualiser/textures/0fe98ba4bd40727670b0ee7212e698eeadb122e174349aa2c3b7a24f57c6269e.webp",
       "sha256": "0fe98ba4bd40727670b0ee7212e698eeadb122e174349aa2c3b7a24f57c6269e",
       "encodedBytes": 1277786,
       "pixelSize": [
@@ -411,7 +411,7 @@
       "mode": "patterned",
       "hRepeat": 27.8,
       "vRepeat": 27.3,
-      "image": "textures/f328de550f462a1e765b4a2dbdb0046c695c2a9cbd0708f729766b90331e1518.webp",
+      "image": "/room-visualiser/textures/f328de550f462a1e765b4a2dbdb0046c695c2a9cbd0708f729766b90331e1518.webp",
       "sha256": "f328de550f462a1e765b4a2dbdb0046c695c2a9cbd0708f729766b90331e1518",
       "encodedBytes": 1160560,
       "pixelSize": [
@@ -440,7 +440,7 @@
       "mode": "patterned",
       "hRepeat": 11.5,
       "vRepeat": 14.3,
-      "image": "textures/c3cc741be8a16301714ba9a8d60536ce1f7f4f746861b647121d67b14211e804.webp",
+      "image": "/room-visualiser/textures/c3cc741be8a16301714ba9a8d60536ce1f7f4f746861b647121d67b14211e804.webp",
       "sha256": "c3cc741be8a16301714ba9a8d60536ce1f7f4f746861b647121d67b14211e804",
       "encodedBytes": 1210956,
       "pixelSize": [
@@ -469,7 +469,7 @@
       "mode": "patterned",
       "hRepeat": 32.5,
       "vRepeat": 32,
-      "image": "textures/7bca96e62d8c0a16803bb519aa1aa8387478983a5345fa24a2f33ebab46dea3f.webp",
+      "image": "/room-visualiser/textures/7bca96e62d8c0a16803bb519aa1aa8387478983a5345fa24a2f33ebab46dea3f.webp",
       "sha256": "7bca96e62d8c0a16803bb519aa1aa8387478983a5345fa24a2f33ebab46dea3f",
       "encodedBytes": 648772,
       "pixelSize": [
@@ -498,7 +498,7 @@
       "mode": "patterned",
       "hRepeat": 14.2,
       "vRepeat": 14,
-      "image": "textures/227bbaa9361531fc00be8dd560b1c965958ed677315bbd644db3020a1fefec51.webp",
+      "image": "/room-visualiser/textures/227bbaa9361531fc00be8dd560b1c965958ed677315bbd644db3020a1fefec51.webp",
       "sha256": "227bbaa9361531fc00be8dd560b1c965958ed677315bbd644db3020a1fefec51",
       "encodedBytes": 1287110,
       "pixelSize": [
@@ -527,7 +527,7 @@
       "mode": "patterned",
       "hRepeat": 23.5,
       "vRepeat": 32.5,
-      "image": "textures/3cf168e846734b51e95f3218923a80a40785d7301e08ee4f7cc6aa572f2a8af7.webp",
+      "image": "/room-visualiser/textures/3cf168e846734b51e95f3218923a80a40785d7301e08ee4f7cc6aa572f2a8af7.webp",
       "sha256": "3cf168e846734b51e95f3218923a80a40785d7301e08ee4f7cc6aa572f2a8af7",
       "encodedBytes": 1020890,
       "pixelSize": [
@@ -556,7 +556,7 @@
       "mode": "patterned",
       "hRepeat": 17,
       "vRepeat": 17.5,
-      "image": "textures/6f312fea18900d8fcd62221552bcc26963f56ecd55b09702d434a720768a2870.webp",
+      "image": "/room-visualiser/textures/6f312fea18900d8fcd62221552bcc26963f56ecd55b09702d434a720768a2870.webp",
       "sha256": "6f312fea18900d8fcd62221552bcc26963f56ecd55b09702d434a720768a2870",
       "encodedBytes": 1482654,
       "pixelSize": [
@@ -585,7 +585,7 @@
       "mode": "patterned",
       "hRepeat": 23,
       "vRepeat": 22,
-      "image": "textures/c6f56707b55e7ed54613ae5270302dd108d2f547ad3d5a78565eb7aa7b22dcf3.webp",
+      "image": "/room-visualiser/textures/c6f56707b55e7ed54613ae5270302dd108d2f547ad3d5a78565eb7aa7b22dcf3.webp",
       "sha256": "c6f56707b55e7ed54613ae5270302dd108d2f547ad3d5a78565eb7aa7b22dcf3",
       "encodedBytes": 1108034,
       "pixelSize": [
@@ -614,7 +614,7 @@
       "mode": "patterned",
       "hRepeat": 19.8,
       "vRepeat": 18.6,
-      "image": "textures/7896c582990ee51393aaeee221013d2166f9b357729506c256f42d8b58760ff1.webp",
+      "image": "/room-visualiser/textures/7896c582990ee51393aaeee221013d2166f9b357729506c256f42d8b58760ff1.webp",
       "sha256": "7896c582990ee51393aaeee221013d2166f9b357729506c256f42d8b58760ff1",
       "encodedBytes": 1542406,
       "pixelSize": [
@@ -643,7 +643,7 @@
       "mode": "patterned",
       "hRepeat": 34.6,
       "vRepeat": 35.3,
-      "image": "textures/38e8bef64e63c7f31095aa942b54fd58750224683e9e3d8e9aaa9244335f39bd.webp",
+      "image": "/room-visualiser/textures/38e8bef64e63c7f31095aa942b54fd58750224683e9e3d8e9aaa9244335f39bd.webp",
       "sha256": "38e8bef64e63c7f31095aa942b54fd58750224683e9e3d8e9aaa9244335f39bd",
       "encodedBytes": 1174108,
       "pixelSize": [
@@ -672,7 +672,7 @@
       "mode": "patterned",
       "hRepeat": 24,
       "vRepeat": 29.4,
-      "image": "textures/a03b988c6e0c166c5bc0cbc268e055cbf8d82e5cbc2a4d3aecd2183583f174c1.webp",
+      "image": "/room-visualiser/textures/a03b988c6e0c166c5bc0cbc268e055cbf8d82e5cbc2a4d3aecd2183583f174c1.webp",
       "sha256": "a03b988c6e0c166c5bc0cbc268e055cbf8d82e5cbc2a4d3aecd2183583f174c1",
       "encodedBytes": 1140656,
       "pixelSize": [
@@ -701,7 +701,7 @@
       "mode": "patterned",
       "hRepeat": 34.5,
       "vRepeat": 32,
-      "image": "textures/cf08433a3072fa5d891f9054b6f1e4190f0bcd88db2ff797932ed8ecd212fcf8.webp",
+      "image": "/room-visualiser/textures/cf08433a3072fa5d891f9054b6f1e4190f0bcd88db2ff797932ed8ecd212fcf8.webp",
       "sha256": "cf08433a3072fa5d891f9054b6f1e4190f0bcd88db2ff797932ed8ecd212fcf8",
       "encodedBytes": 938242,
       "pixelSize": [
@@ -730,7 +730,7 @@
       "mode": "patterned",
       "hRepeat": 34.7,
       "vRepeat": 35.3,
-      "image": "textures/9d4097c6b568022ef7b8d05de4da54e211d3254578cf0f3f7a83bc6c0c7dc1a1.webp",
+      "image": "/room-visualiser/textures/9d4097c6b568022ef7b8d05de4da54e211d3254578cf0f3f7a83bc6c0c7dc1a1.webp",
       "sha256": "9d4097c6b568022ef7b8d05de4da54e211d3254578cf0f3f7a83bc6c0c7dc1a1",
       "encodedBytes": 605974,
       "pixelSize": [
@@ -759,7 +759,7 @@
       "mode": "patterned",
       "hRepeat": 23,
       "vRepeat": 27.8,
-      "image": "textures/4c24eb2ff8cf10e6e61af4fa9f45190789154389cba012e4099bbeea8eab8e3b.webp",
+      "image": "/room-visualiser/textures/4c24eb2ff8cf10e6e61af4fa9f45190789154389cba012e4099bbeea8eab8e3b.webp",
       "sha256": "4c24eb2ff8cf10e6e61af4fa9f45190789154389cba012e4099bbeea8eab8e3b",
       "encodedBytes": 1311670,
       "pixelSize": [
@@ -788,7 +788,7 @@
       "mode": "patterned",
       "hRepeat": 69.5,
       "vRepeat": 68,
-      "image": "textures/0a3b71c651a250d409af3ad43f44f3655c8adfe6cddbf0ee63e4bdcb38d813fc.webp",
+      "image": "/room-visualiser/textures/0a3b71c651a250d409af3ad43f44f3655c8adfe6cddbf0ee63e4bdcb38d813fc.webp",
       "sha256": "0a3b71c651a250d409af3ad43f44f3655c8adfe6cddbf0ee63e4bdcb38d813fc",
       "encodedBytes": 1138856,
       "pixelSize": [
@@ -817,7 +817,7 @@
       "mode": "patterned",
       "hRepeat": 23.5,
       "vRepeat": 21,
-      "image": "textures/86e28c7c32f24436d47456d0357a0b2159d6952cacb389f3f1bac36f5289382e.webp",
+      "image": "/room-visualiser/textures/86e28c7c32f24436d47456d0357a0b2159d6952cacb389f3f1bac36f5289382e.webp",
       "sha256": "86e28c7c32f24436d47456d0357a0b2159d6952cacb389f3f1bac36f5289382e",
       "encodedBytes": 1657300,
       "pixelSize": [
@@ -846,7 +846,7 @@
       "mode": "patterned",
       "hRepeat": 66.7,
       "vRepeat": 57.5,
-      "image": "textures/d8b8d9461cf409bcd6b44016feb3228751b8c831f13a9be7c68db230f9c26614.webp",
+      "image": "/room-visualiser/textures/d8b8d9461cf409bcd6b44016feb3228751b8c831f13a9be7c68db230f9c26614.webp",
       "sha256": "d8b8d9461cf409bcd6b44016feb3228751b8c831f13a9be7c68db230f9c26614",
       "encodedBytes": 507136,
       "pixelSize": [
@@ -875,7 +875,7 @@
       "mode": "patterned",
       "hRepeat": 35.5,
       "vRepeat": 36,
-      "image": "textures/2f2ebf4f14c25e7eeb17984b14c995c12a3843e766f7d0dd0dbe2bce6b00a088.webp",
+      "image": "/room-visualiser/textures/2f2ebf4f14c25e7eeb17984b14c995c12a3843e766f7d0dd0dbe2bce6b00a088.webp",
       "sha256": "2f2ebf4f14c25e7eeb17984b14c995c12a3843e766f7d0dd0dbe2bce6b00a088",
       "encodedBytes": 975064,
       "pixelSize": [
@@ -904,7 +904,7 @@
       "mode": "patterned",
       "hRepeat": 68.6,
       "vRepeat": 64,
-      "image": "textures/ddcfda5380213c3a76b9f9aec41e2e13ae29408d580505d71b0e9e9bc6876c74.webp",
+      "image": "/room-visualiser/textures/ddcfda5380213c3a76b9f9aec41e2e13ae29408d580505d71b0e9e9bc6876c74.webp",
       "sha256": "ddcfda5380213c3a76b9f9aec41e2e13ae29408d580505d71b0e9e9bc6876c74",
       "encodedBytes": 1078708,
       "pixelSize": [
@@ -933,7 +933,7 @@
       "mode": "patterned",
       "hRepeat": 68,
       "vRepeat": 31,
-      "image": "textures/e972aa3f48afa29dd24e2d6b09a2f2a2dc7b2e20c4681791a19b18d6f382e888.webp",
+      "image": "/room-visualiser/textures/e972aa3f48afa29dd24e2d6b09a2f2a2dc7b2e20c4681791a19b18d6f382e888.webp",
       "sha256": "e972aa3f48afa29dd24e2d6b09a2f2a2dc7b2e20c4681791a19b18d6f382e888",
       "encodedBytes": 946966,
       "pixelSize": [
@@ -962,7 +962,7 @@
       "mode": "patterned",
       "hRepeat": 23,
       "vRepeat": 22.5,
-      "image": "textures/c28bcda61f9772b0f1b8884021a95077a27c99299108702b931ca8938c15ac61.webp",
+      "image": "/room-visualiser/textures/c28bcda61f9772b0f1b8884021a95077a27c99299108702b931ca8938c15ac61.webp",
       "sha256": "c28bcda61f9772b0f1b8884021a95077a27c99299108702b931ca8938c15ac61",
       "encodedBytes": 533144,
       "pixelSize": [
@@ -991,7 +991,7 @@
       "mode": "patterned",
       "hRepeat": 35.5,
       "vRepeat": 43,
-      "image": "textures/cdce5e7b1b2b06dbedb401206d4d21f83c552e9dfe769c0cda150108be53d1c2.webp",
+      "image": "/room-visualiser/textures/cdce5e7b1b2b06dbedb401206d4d21f83c552e9dfe769c0cda150108be53d1c2.webp",
       "sha256": "cdce5e7b1b2b06dbedb401206d4d21f83c552e9dfe769c0cda150108be53d1c2",
       "encodedBytes": 864818,
       "pixelSize": [
@@ -1020,7 +1020,7 @@
       "mode": "patterned",
       "hRepeat": 34,
       "vRepeat": 62,
-      "image": "textures/a56ecc65ef9763a174e9d86a298eb56f95a14e98441c9a07379c0738ad996fa4.webp",
+      "image": "/room-visualiser/textures/a56ecc65ef9763a174e9d86a298eb56f95a14e98441c9a07379c0738ad996fa4.webp",
       "sha256": "a56ecc65ef9763a174e9d86a298eb56f95a14e98441c9a07379c0738ad996fa4",
       "encodedBytes": 614128,
       "pixelSize": [
@@ -1049,7 +1049,7 @@
       "mode": "patterned",
       "hRepeat": 33.5,
       "vRepeat": 51.5,
-      "image": "textures/6d47133500b8cf32a5f0c739a29d054643a4eb93c7bbbcbafaee4c312804a756.webp",
+      "image": "/room-visualiser/textures/6d47133500b8cf32a5f0c739a29d054643a4eb93c7bbbcbafaee4c312804a756.webp",
       "sha256": "6d47133500b8cf32a5f0c739a29d054643a4eb93c7bbbcbafaee4c312804a756",
       "encodedBytes": 1278934,
       "pixelSize": [
@@ -1078,7 +1078,7 @@
       "mode": "patterned",
       "hRepeat": 47,
       "vRepeat": 68,
-      "image": "textures/d8bcab9bcb9a2ff16defd115b2d2458a61d68f5acd79b77eb4a064d082b565c1.webp",
+      "image": "/room-visualiser/textures/d8bcab9bcb9a2ff16defd115b2d2458a61d68f5acd79b77eb4a064d082b565c1.webp",
       "sha256": "d8bcab9bcb9a2ff16defd115b2d2458a61d68f5acd79b77eb4a064d082b565c1",
       "encodedBytes": 566300,
       "pixelSize": [
@@ -1107,7 +1107,7 @@
       "mode": "patterned",
       "hRepeat": 35,
       "vRepeat": 36,
-      "image": "textures/fef769a6ce26aceefd495494b7a2d3e7356d51e6fb55f2f36628e607b39f5b70.webp",
+      "image": "/room-visualiser/textures/fef769a6ce26aceefd495494b7a2d3e7356d51e6fb55f2f36628e607b39f5b70.webp",
       "sha256": "fef769a6ce26aceefd495494b7a2d3e7356d51e6fb55f2f36628e607b39f5b70",
       "encodedBytes": 993390,
       "pixelSize": [
@@ -1136,7 +1136,7 @@
       "mode": "patterned",
       "hRepeat": 69,
       "vRepeat": 64,
-      "image": "textures/52419f91351edd4efce49bd03c174280df45e861e77ee5576829349e69253e0d.webp",
+      "image": "/room-visualiser/textures/52419f91351edd4efce49bd03c174280df45e861e77ee5576829349e69253e0d.webp",
       "sha256": "52419f91351edd4efce49bd03c174280df45e861e77ee5576829349e69253e0d",
       "encodedBytes": 1099582,
       "pixelSize": [
@@ -1165,7 +1165,7 @@
       "mode": "patterned",
       "hRepeat": 16.5,
       "vRepeat": 15.5,
-      "image": "textures/15c6e991b2e356929bb157fb7c29e5d387706b986b7f279650ab037f2fe5ebb7.webp",
+      "image": "/room-visualiser/textures/15c6e991b2e356929bb157fb7c29e5d387706b986b7f279650ab037f2fe5ebb7.webp",
       "sha256": "15c6e991b2e356929bb157fb7c29e5d387706b986b7f279650ab037f2fe5ebb7",
       "encodedBytes": 1679286,
       "pixelSize": [
@@ -1194,7 +1194,7 @@
       "mode": "patterned",
       "hRepeat": 35,
       "vRepeat": 42,
-      "image": "textures/d50151bbbf5a93f03827fe810d70ea6333115a0566c046408debfc9ccb183d16.webp",
+      "image": "/room-visualiser/textures/d50151bbbf5a93f03827fe810d70ea6333115a0566c046408debfc9ccb183d16.webp",
       "sha256": "d50151bbbf5a93f03827fe810d70ea6333115a0566c046408debfc9ccb183d16",
       "encodedBytes": 409874,
       "pixelSize": [
@@ -1223,7 +1223,7 @@
       "mode": "patterned",
       "hRepeat": 42,
       "vRepeat": 39,
-      "image": "textures/1008b3c6441962aa63d3c9e2c67083aa97a3efdee3e97f0c944c1d238fb472de.webp",
+      "image": "/room-visualiser/textures/1008b3c6441962aa63d3c9e2c67083aa97a3efdee3e97f0c944c1d238fb472de.webp",
       "sha256": "1008b3c6441962aa63d3c9e2c67083aa97a3efdee3e97f0c944c1d238fb472de",
       "encodedBytes": 911726,
       "pixelSize": [
@@ -1252,7 +1252,7 @@
       "mode": "patterned",
       "hRepeat": 49.5,
       "vRepeat": 46.8,
-      "image": "textures/4bc99849bc32dcce8458f331ef069d0f07391f3baa3e36c6964f3dade160820a.webp",
+      "image": "/room-visualiser/textures/4bc99849bc32dcce8458f331ef069d0f07391f3baa3e36c6964f3dade160820a.webp",
       "sha256": "4bc99849bc32dcce8458f331ef069d0f07391f3baa3e36c6964f3dade160820a",
       "encodedBytes": 460928,
       "pixelSize": [
@@ -1281,7 +1281,7 @@
       "mode": "patterned",
       "hRepeat": 70,
       "vRepeat": 64,
-      "image": "textures/1e72728d2bf59793933d45bd403200ab135efd6e49acab49c210767669758d6e.webp",
+      "image": "/room-visualiser/textures/1e72728d2bf59793933d45bd403200ab135efd6e49acab49c210767669758d6e.webp",
       "sha256": "1e72728d2bf59793933d45bd403200ab135efd6e49acab49c210767669758d6e",
       "encodedBytes": 743022,
       "pixelSize": [
@@ -1310,7 +1310,7 @@
       "mode": "patterned",
       "hRepeat": 22.5,
       "vRepeat": 67,
-      "image": "textures/3d2f8e3f10a6927a49e1ab9fcb544451cea698b536dc91f168f95195497890e8.webp",
+      "image": "/room-visualiser/textures/3d2f8e3f10a6927a49e1ab9fcb544451cea698b536dc91f168f95195497890e8.webp",
       "sha256": "3d2f8e3f10a6927a49e1ab9fcb544451cea698b536dc91f168f95195497890e8",
       "encodedBytes": 1630294,
       "pixelSize": [
@@ -1339,7 +1339,7 @@
       "mode": "patterned",
       "hRepeat": 12.5,
       "vRepeat": 15.5,
-      "image": "textures/a4573375b4d8b041e9e6f6dde0a256c7dfec2c5add465df175c6f59682b56e96.webp",
+      "image": "/room-visualiser/textures/a4573375b4d8b041e9e6f6dde0a256c7dfec2c5add465df175c6f59682b56e96.webp",
       "sha256": "a4573375b4d8b041e9e6f6dde0a256c7dfec2c5add465df175c6f59682b56e96",
       "encodedBytes": 424002,
       "pixelSize": [
@@ -1368,7 +1368,7 @@
       "mode": "patterned",
       "hRepeat": 68.6,
       "vRepeat": 64,
-      "image": "textures/d47da3b0738d161facf1b1b755acf3353e31f158ea2a073242ca7788afb0210f.webp",
+      "image": "/room-visualiser/textures/d47da3b0738d161facf1b1b755acf3353e31f158ea2a073242ca7788afb0210f.webp",
       "sha256": "d47da3b0738d161facf1b1b755acf3353e31f158ea2a073242ca7788afb0210f",
       "encodedBytes": 719040,
       "pixelSize": [
@@ -1397,7 +1397,7 @@
       "mode": "patterned",
       "hRepeat": 67.5,
       "vRepeat": 64,
-      "image": "textures/a4501adbb0338373c038ad73cb70a855a5fb0d252c7ba2ede1459f8c03330179.webp",
+      "image": "/room-visualiser/textures/a4501adbb0338373c038ad73cb70a855a5fb0d252c7ba2ede1459f8c03330179.webp",
       "sha256": "a4501adbb0338373c038ad73cb70a855a5fb0d252c7ba2ede1459f8c03330179",
       "encodedBytes": 674322,
       "pixelSize": [
@@ -1426,7 +1426,7 @@
       "mode": "patterned",
       "hRepeat": 27.5,
       "vRepeat": 12.5,
-      "image": "textures/441bcda4d8e7b6525a6cb3a9baf039550728a4a2a37fe4c6b7c16721571b0c02.webp",
+      "image": "/room-visualiser/textures/441bcda4d8e7b6525a6cb3a9baf039550728a4a2a37fe4c6b7c16721571b0c02.webp",
       "sha256": "441bcda4d8e7b6525a6cb3a9baf039550728a4a2a37fe4c6b7c16721571b0c02",
       "encodedBytes": 272594,
       "pixelSize": [
@@ -1455,7 +1455,7 @@
       "mode": "patterned",
       "hRepeat": 68.6,
       "vRepeat": 64,
-      "image": "textures/8261f219d8723fea6384e7ef3f9f7d6949eb313eb51ed0e557f67b3c2abd6fa5.webp",
+      "image": "/room-visualiser/textures/8261f219d8723fea6384e7ef3f9f7d6949eb313eb51ed0e557f67b3c2abd6fa5.webp",
       "sha256": "8261f219d8723fea6384e7ef3f9f7d6949eb313eb51ed0e557f67b3c2abd6fa5",
       "encodedBytes": 408162,
       "pixelSize": [
@@ -1484,7 +1484,7 @@
       "mode": "patterned",
       "hRepeat": 17,
       "vRepeat": 16.2,
-      "image": "textures/5f6ee182bed02582216438744e6b4ae60582c34e3a923460ebe66d3821f442f1.webp",
+      "image": "/room-visualiser/textures/5f6ee182bed02582216438744e6b4ae60582c34e3a923460ebe66d3821f442f1.webp",
       "sha256": "5f6ee182bed02582216438744e6b4ae60582c34e3a923460ebe66d3821f442f1",
       "encodedBytes": 729264,
       "pixelSize": [
@@ -1513,7 +1513,7 @@
       "mode": "patterned",
       "hRepeat": 34.5,
       "vRepeat": 56,
-      "image": "textures/2b345fc8e9f910feab32007840168ddf1965cb0ce2a7a3de39bf49853660bf97.webp",
+      "image": "/room-visualiser/textures/2b345fc8e9f910feab32007840168ddf1965cb0ce2a7a3de39bf49853660bf97.webp",
       "sha256": "2b345fc8e9f910feab32007840168ddf1965cb0ce2a7a3de39bf49853660bf97",
       "encodedBytes": 1543180,
       "pixelSize": [
@@ -1542,7 +1542,7 @@
       "mode": "patterned",
       "hRepeat": 34.5,
       "vRepeat": 39,
-      "image": "textures/29655bdf362bf32ab84f0d6d5aa17fc24dd5912ba69b8269c78c8134af5ae714.webp",
+      "image": "/room-visualiser/textures/29655bdf362bf32ab84f0d6d5aa17fc24dd5912ba69b8269c78c8134af5ae714.webp",
       "sha256": "29655bdf362bf32ab84f0d6d5aa17fc24dd5912ba69b8269c78c8134af5ae714",
       "encodedBytes": 542814,
       "pixelSize": [
@@ -1571,7 +1571,7 @@
       "mode": "patterned",
       "hRepeat": 17.5,
       "vRepeat": 15,
-      "image": "textures/91971e46715c7d0ce6915521c8735f5ebecb8e96cf01eec96f9800815b4a77de.webp",
+      "image": "/room-visualiser/textures/91971e46715c7d0ce6915521c8735f5ebecb8e96cf01eec96f9800815b4a77de.webp",
       "sha256": "91971e46715c7d0ce6915521c8735f5ebecb8e96cf01eec96f9800815b4a77de",
       "encodedBytes": 1212616,
       "pixelSize": [
@@ -1600,7 +1600,7 @@
       "mode": "patterned",
       "hRepeat": 28,
       "vRepeat": 30,
-      "image": "textures/8c4802ee6306ef7c6661bf19812452a846e60d931d2135b159ab2dab57f97071.webp",
+      "image": "/room-visualiser/textures/8c4802ee6306ef7c6661bf19812452a846e60d931d2135b159ab2dab57f97071.webp",
       "sha256": "8c4802ee6306ef7c6661bf19812452a846e60d931d2135b159ab2dab57f97071",
       "encodedBytes": 829312,
       "pixelSize": [
@@ -1629,7 +1629,7 @@
       "mode": "patterned",
       "hRepeat": 68.5,
       "vRepeat": 65,
-      "image": "textures/0a60ede59d114eab212342a4dc1001583a1dd21e9fbe864867a948336bc4c770.webp",
+      "image": "/room-visualiser/textures/0a60ede59d114eab212342a4dc1001583a1dd21e9fbe864867a948336bc4c770.webp",
       "sha256": "0a60ede59d114eab212342a4dc1001583a1dd21e9fbe864867a948336bc4c770",
       "encodedBytes": 977628,
       "pixelSize": [
@@ -1658,7 +1658,7 @@
       "mode": "patterned",
       "hRepeat": 60,
       "vRepeat": 64,
-      "image": "textures/e2e01ed4f429cc957e052f7a8e6fc7a74009c1817e3a499ac1c3b8b225a2cc57.webp",
+      "image": "/room-visualiser/textures/e2e01ed4f429cc957e052f7a8e6fc7a74009c1817e3a499ac1c3b8b225a2cc57.webp",
       "sha256": "e2e01ed4f429cc957e052f7a8e6fc7a74009c1817e3a499ac1c3b8b225a2cc57",
       "encodedBytes": 1222182,
       "pixelSize": [
@@ -1687,7 +1687,7 @@
       "mode": "patterned",
       "hRepeat": 35.5,
       "vRepeat": 41,
-      "image": "textures/8d33d0986f32ccd220cbc00b25be82b4657273b2a2f672f9c9246fb54b089f21.webp",
+      "image": "/room-visualiser/textures/8d33d0986f32ccd220cbc00b25be82b4657273b2a2f672f9c9246fb54b089f21.webp",
       "sha256": "8d33d0986f32ccd220cbc00b25be82b4657273b2a2f672f9c9246fb54b089f21",
       "encodedBytes": 845664,
       "pixelSize": [
@@ -1716,7 +1716,7 @@
       "mode": "patterned",
       "hRepeat": 69,
       "vRepeat": 63,
-      "image": "textures/7bdbe77d8e410d62e8b8f1ecaab5ed9358e30c5cbef1263791d82e0cebcc1bac.webp",
+      "image": "/room-visualiser/textures/7bdbe77d8e410d62e8b8f1ecaab5ed9358e30c5cbef1263791d82e0cebcc1bac.webp",
       "sha256": "7bdbe77d8e410d62e8b8f1ecaab5ed9358e30c5cbef1263791d82e0cebcc1bac",
       "encodedBytes": 676500,
       "pixelSize": [
@@ -1745,7 +1745,7 @@
       "mode": "patterned",
       "hRepeat": 24,
       "vRepeat": 33,
-      "image": "textures/1575ff429a9cd12856d0f2457849a93799bada1237147b8475919b1a9d0b161f.webp",
+      "image": "/room-visualiser/textures/1575ff429a9cd12856d0f2457849a93799bada1237147b8475919b1a9d0b161f.webp",
       "sha256": "1575ff429a9cd12856d0f2457849a93799bada1237147b8475919b1a9d0b161f",
       "encodedBytes": 1145730,
       "pixelSize": [
@@ -1774,7 +1774,7 @@
       "mode": "patterned",
       "hRepeat": 16,
       "vRepeat": 15.5,
-      "image": "textures/49b4b3d3a91ebe8d99f202510062c0ba67cfc6766bf229fbfe78008931e01800.webp",
+      "image": "/room-visualiser/textures/49b4b3d3a91ebe8d99f202510062c0ba67cfc6766bf229fbfe78008931e01800.webp",
       "sha256": "49b4b3d3a91ebe8d99f202510062c0ba67cfc6766bf229fbfe78008931e01800",
       "encodedBytes": 1371448,
       "pixelSize": [
@@ -1803,7 +1803,7 @@
       "mode": "patterned",
       "hRepeat": 35,
       "vRepeat": 53,
-      "image": "textures/724388cec21151ab18aaa9e63152c1a6b0e4186e374c9ab4209dc4acf8f42fd5.webp",
+      "image": "/room-visualiser/textures/724388cec21151ab18aaa9e63152c1a6b0e4186e374c9ab4209dc4acf8f42fd5.webp",
       "sha256": "724388cec21151ab18aaa9e63152c1a6b0e4186e374c9ab4209dc4acf8f42fd5",
       "encodedBytes": 1024984,
       "pixelSize": [
@@ -1832,7 +1832,7 @@
       "mode": "patterned",
       "hRepeat": 7,
       "vRepeat": 20,
-      "image": "textures/effed146148d7429f6fcc4fb9391cec4a51ca04ed1a0cd9c002525376a4f0b58.webp",
+      "image": "/room-visualiser/textures/effed146148d7429f6fcc4fb9391cec4a51ca04ed1a0cd9c002525376a4f0b58.webp",
       "sha256": "effed146148d7429f6fcc4fb9391cec4a51ca04ed1a0cd9c002525376a4f0b58",
       "encodedBytes": 1151122,
       "pixelSize": [
@@ -1861,7 +1861,7 @@
       "mode": "patterned",
       "hRepeat": 69,
       "vRepeat": 62,
-      "image": "textures/e293cc6db5c6c6e968e1d3457be908090ddfb995478a8b49c2dd0aeb5062ee7e.webp",
+      "image": "/room-visualiser/textures/e293cc6db5c6c6e968e1d3457be908090ddfb995478a8b49c2dd0aeb5062ee7e.webp",
       "sha256": "e293cc6db5c6c6e968e1d3457be908090ddfb995478a8b49c2dd0aeb5062ee7e",
       "encodedBytes": 217162,
       "pixelSize": [
@@ -1890,7 +1890,7 @@
       "mode": "patterned",
       "hRepeat": 34.3,
       "vRepeat": 23,
-      "image": "textures/e5be8d6813e42018ff3eb5f347f2cf2c27f1c52b9765d90627232c14c222fb5d.webp",
+      "image": "/room-visualiser/textures/e5be8d6813e42018ff3eb5f347f2cf2c27f1c52b9765d90627232c14c222fb5d.webp",
       "sha256": "e5be8d6813e42018ff3eb5f347f2cf2c27f1c52b9765d90627232c14c222fb5d",
       "encodedBytes": 1137188,
       "pixelSize": [
@@ -1919,7 +1919,7 @@
       "mode": "patterned",
       "hRepeat": 64.5,
       "vRepeat": 47.5,
-      "image": "textures/137f12de5d8dc329b5dfaa91930225efab3b547657fa0320a292718b0663ff4f.webp",
+      "image": "/room-visualiser/textures/137f12de5d8dc329b5dfaa91930225efab3b547657fa0320a292718b0663ff4f.webp",
       "sha256": "137f12de5d8dc329b5dfaa91930225efab3b547657fa0320a292718b0663ff4f",
       "encodedBytes": 836920,
       "pixelSize": [
@@ -1948,7 +1948,7 @@
       "mode": "patterned",
       "hRepeat": 68.5,
       "vRepeat": 64,
-      "image": "textures/df336451029aeccf97bcbc3bcaa04862fb6a226bc6d0f46dea5dc79c04986196.webp",
+      "image": "/room-visualiser/textures/df336451029aeccf97bcbc3bcaa04862fb6a226bc6d0f46dea5dc79c04986196.webp",
       "sha256": "df336451029aeccf97bcbc3bcaa04862fb6a226bc6d0f46dea5dc79c04986196",
       "encodedBytes": 1048852,
       "pixelSize": [
@@ -1977,7 +1977,7 @@
       "mode": "patterned",
       "hRepeat": 68.5,
       "vRepeat": 64,
-      "image": "textures/0e67a766a1f32a0884236902653959d05661e157e4d9e361f900ca22e0905b72.webp",
+      "image": "/room-visualiser/textures/0e67a766a1f32a0884236902653959d05661e157e4d9e361f900ca22e0905b72.webp",
       "sha256": "0e67a766a1f32a0884236902653959d05661e157e4d9e361f900ca22e0905b72",
       "encodedBytes": 1170310,
       "pixelSize": [
@@ -2006,7 +2006,7 @@
       "mode": "patterned",
       "hRepeat": 33.6,
       "vRepeat": 40,
-      "image": "textures/add9aceddfbc27bce6f1450e060da22379929fb6afda3c0e193eb3468ff2b407.webp",
+      "image": "/room-visualiser/textures/add9aceddfbc27bce6f1450e060da22379929fb6afda3c0e193eb3468ff2b407.webp",
       "sha256": "add9aceddfbc27bce6f1450e060da22379929fb6afda3c0e193eb3468ff2b407",
       "encodedBytes": 887252,
       "pixelSize": [
@@ -2035,7 +2035,7 @@
       "mode": "patterned",
       "hRepeat": 44.4,
       "vRepeat": 44.8,
-      "image": "textures/50a70103af705b64386fd4a106410100c28616ab45045c3d631ed39614da67d9.webp",
+      "image": "/room-visualiser/textures/50a70103af705b64386fd4a106410100c28616ab45045c3d631ed39614da67d9.webp",
       "sha256": "50a70103af705b64386fd4a106410100c28616ab45045c3d631ed39614da67d9",
       "encodedBytes": 1426172,
       "pixelSize": [
@@ -2064,7 +2064,7 @@
       "mode": "patterned",
       "hRepeat": 69,
       "vRepeat": 65,
-      "image": "textures/20ffe707737acabcb2ec8c26c9496fc117e56eb2b03f0b2df059f1a224827be5.webp",
+      "image": "/room-visualiser/textures/20ffe707737acabcb2ec8c26c9496fc117e56eb2b03f0b2df059f1a224827be5.webp",
       "sha256": "20ffe707737acabcb2ec8c26c9496fc117e56eb2b03f0b2df059f1a224827be5",
       "encodedBytes": 1330136,
       "pixelSize": [
@@ -2093,7 +2093,7 @@
       "mode": "patterned",
       "hRepeat": 64,
       "vRepeat": 25.6,
-      "image": "textures/e2ced5bf921eac33d6475f589e620d9ed94a9a8a44949b430ce09427ab7d34af.webp",
+      "image": "/room-visualiser/textures/e2ced5bf921eac33d6475f589e620d9ed94a9a8a44949b430ce09427ab7d34af.webp",
       "sha256": "e2ced5bf921eac33d6475f589e620d9ed94a9a8a44949b430ce09427ab7d34af",
       "encodedBytes": 1359326,
       "pixelSize": [
@@ -2122,7 +2122,7 @@
       "mode": "patterned",
       "hRepeat": 34.3,
       "vRepeat": 30.7,
-      "image": "textures/7c7192b15eb3b56c31123a4bdee6a99588f3c7aeaa8a96bcb6431131a2470ca0.webp",
+      "image": "/room-visualiser/textures/7c7192b15eb3b56c31123a4bdee6a99588f3c7aeaa8a96bcb6431131a2470ca0.webp",
       "sha256": "7c7192b15eb3b56c31123a4bdee6a99588f3c7aeaa8a96bcb6431131a2470ca0",
       "encodedBytes": 1683452,
       "pixelSize": [
@@ -2151,7 +2151,7 @@
       "mode": "patterned",
       "hRepeat": 70.5,
       "vRepeat": 64.2,
-      "image": "textures/8bae333eaca73c71a3d0fab3c4a844241ba9c8794266b7dee3eb6da27d4eace4.webp",
+      "image": "/room-visualiser/textures/8bae333eaca73c71a3d0fab3c4a844241ba9c8794266b7dee3eb6da27d4eace4.webp",
       "sha256": "8bae333eaca73c71a3d0fab3c4a844241ba9c8794266b7dee3eb6da27d4eace4",
       "encodedBytes": 862530,
       "pixelSize": [
@@ -2180,7 +2180,7 @@
       "mode": "patterned",
       "hRepeat": 34.2,
       "vRepeat": 38,
-      "image": "textures/478c2e10d76fa3c77d57de141d73e04caf52382d425a2ce49bac0e1570ab0490.webp",
+      "image": "/room-visualiser/textures/478c2e10d76fa3c77d57de141d73e04caf52382d425a2ce49bac0e1570ab0490.webp",
       "sha256": "478c2e10d76fa3c77d57de141d73e04caf52382d425a2ce49bac0e1570ab0490",
       "encodedBytes": 1241264,
       "pixelSize": [
@@ -2209,7 +2209,7 @@
       "mode": "patterned",
       "hRepeat": 67,
       "vRepeat": 64,
-      "image": "textures/6a9b11abad7d15f0aa40e281c9e210a31a37ffd5456bdfa1cd401622c4690276.webp",
+      "image": "/room-visualiser/textures/6a9b11abad7d15f0aa40e281c9e210a31a37ffd5456bdfa1cd401622c4690276.webp",
       "sha256": "6a9b11abad7d15f0aa40e281c9e210a31a37ffd5456bdfa1cd401622c4690276",
       "encodedBytes": 995978,
       "pixelSize": [
@@ -2238,7 +2238,7 @@
       "mode": "patterned",
       "hRepeat": 46.5,
       "vRepeat": 25.5,
-      "image": "textures/4b814b1115afbff732243a6f4efa3c9eaec023397f79a51967b961fa7629a6e1.webp",
+      "image": "/room-visualiser/textures/4b814b1115afbff732243a6f4efa3c9eaec023397f79a51967b961fa7629a6e1.webp",
       "sha256": "4b814b1115afbff732243a6f4efa3c9eaec023397f79a51967b961fa7629a6e1",
       "encodedBytes": 1366762,
       "pixelSize": [
@@ -2267,7 +2267,7 @@
       "mode": "patterned",
       "hRepeat": 71,
       "vRepeat": 67,
-      "image": "textures/14d4e0a5530c445aa678ece613fc136b07905d4214939621840c179fac15046c.webp",
+      "image": "/room-visualiser/textures/14d4e0a5530c445aa678ece613fc136b07905d4214939621840c179fac15046c.webp",
       "sha256": "14d4e0a5530c445aa678ece613fc136b07905d4214939621840c179fac15046c",
       "encodedBytes": 1398296,
       "pixelSize": [
@@ -2296,7 +2296,7 @@
       "mode": "patterned",
       "hRepeat": 35.2,
       "vRepeat": 32.5,
-      "image": "textures/62b37c06c0b2a1ef5ef1f5d682d91c9fa6681c755523fdee9dc6a089e603dbb0.webp",
+      "image": "/room-visualiser/textures/62b37c06c0b2a1ef5ef1f5d682d91c9fa6681c755523fdee9dc6a089e603dbb0.webp",
       "sha256": "62b37c06c0b2a1ef5ef1f5d682d91c9fa6681c755523fdee9dc6a089e603dbb0",
       "encodedBytes": 971100,
       "pixelSize": [
@@ -2325,7 +2325,7 @@
       "mode": "patterned",
       "hRepeat": 65,
       "vRepeat": 37.2,
-      "image": "textures/79b3e517afbd5468b5b6f85274cd703b93ba7c79b77a258c7f83e62ff7c665d4.webp",
+      "image": "/room-visualiser/textures/79b3e517afbd5468b5b6f85274cd703b93ba7c79b77a258c7f83e62ff7c665d4.webp",
       "sha256": "79b3e517afbd5468b5b6f85274cd703b93ba7c79b77a258c7f83e62ff7c665d4",
       "encodedBytes": 1318174,
       "pixelSize": [
@@ -2354,7 +2354,7 @@
       "mode": "patterned",
       "hRepeat": 67.2,
       "vRepeat": 65,
-      "image": "textures/911b75f1903d57ebe9b726e92d779fb595f8092c1dae0e1f127273ce3069b73e.webp",
+      "image": "/room-visualiser/textures/911b75f1903d57ebe9b726e92d779fb595f8092c1dae0e1f127273ce3069b73e.webp",
       "sha256": "911b75f1903d57ebe9b726e92d779fb595f8092c1dae0e1f127273ce3069b73e",
       "encodedBytes": 1109504,
       "pixelSize": [
@@ -2383,7 +2383,7 @@
       "mode": "patterned",
       "hRepeat": 45.7,
       "vRepeat": 64,
-      "image": "textures/efbfcb826242f8e1f8a1bc77fc19a87eaa1b7c6e00a08d1a419510e4ec44257e.webp",
+      "image": "/room-visualiser/textures/efbfcb826242f8e1f8a1bc77fc19a87eaa1b7c6e00a08d1a419510e4ec44257e.webp",
       "sha256": "efbfcb826242f8e1f8a1bc77fc19a87eaa1b7c6e00a08d1a419510e4ec44257e",
       "encodedBytes": 802686,
       "pixelSize": [
@@ -2412,7 +2412,7 @@
       "mode": "patterned",
       "hRepeat": 70,
       "vRepeat": 63,
-      "image": "textures/1057e717386480790f8e61c7043193e22d0614f1b48200b2cae3e992a481c587.webp",
+      "image": "/room-visualiser/textures/1057e717386480790f8e61c7043193e22d0614f1b48200b2cae3e992a481c587.webp",
       "sha256": "1057e717386480790f8e61c7043193e22d0614f1b48200b2cae3e992a481c587",
       "encodedBytes": 719682,
       "pixelSize": [
@@ -2441,7 +2441,7 @@
       "mode": "patterned",
       "hRepeat": 35,
       "vRepeat": 19.5,
-      "image": "textures/27686c632c096e1844e84f01fb18fbd5f5f6a917d25c2066db95bfc80f2d7d26.webp",
+      "image": "/room-visualiser/textures/27686c632c096e1844e84f01fb18fbd5f5f6a917d25c2066db95bfc80f2d7d26.webp",
       "sha256": "27686c632c096e1844e84f01fb18fbd5f5f6a917d25c2066db95bfc80f2d7d26",
       "encodedBytes": 493544,
       "pixelSize": [
@@ -2462,6 +2462,631 @@
         "anchorConsensus": 1,
         "matchedAnchors": 197,
         "horizontalCrosscheck": "INCONCLUSIVE"
+      }
+    },
+    {
+      "id": "pt-1267-152",
+      "fabricId": "pt-1267-152",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/158337274eb73b183139dbf84340935a05d909fc131366b84c02fa75ea18fa52.webp",
+      "sha256": "158337274eb73b183139dbf84340935a05d909fc131366b84c02fa75ea18fa52",
+      "encodedBytes": 36016,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "bbb0a7b8db18b2d480d073753c24e31af45821acb4dfb99675672c797c9bfe4a",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8c0d42f8522ed8513648e3ee64c916a07a1298d4c1a502e61a47cf56995092f9.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#281c17",
+        "tonalStrength": 0.209,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1267-902",
+      "fabricId": "pt-1267-902",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/d06b015a032c823ec52f672001ca99aa0a56da9854e82edf180508540a894f4f.webp",
+      "sha256": "d06b015a032c823ec52f672001ca99aa0a56da9854e82edf180508540a894f4f",
+      "encodedBytes": 40040,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "e6b38eb0941c4ea228d95e81ffcd4de4b0b56a63ea0d2df6cbafa29204bab012",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-11970b0b0ca2ae5b72849a971dbdfff14eee4cadd37072c1e5ed2939fc0afef0.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#232227",
+        "tonalStrength": 0.272,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1706-769",
+      "fabricId": "pt-1706-769",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/47e6d3b48d731f60c5f0928789cc30745706199d4c191a15829b4a64edc028c4.webp",
+      "sha256": "47e6d3b48d731f60c5f0928789cc30745706199d4c191a15829b4a64edc028c4",
+      "encodedBytes": 43048,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "93459f2d9593a85a2e1109c0b6cb9985307533d679358e563c709c880b70c6b6",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4da7ddbbbe94700270c848739f26f486eb27860cc286e37546a687d5159838aa.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#929d92",
+        "tonalStrength": 0.391,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1706-906",
+      "fabricId": "pt-1706-906",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/2d064453da5e223be920644869b78a73e47ee0a3da7f6542185a21aefab1a95c.webp",
+      "sha256": "2d064453da5e223be920644869b78a73e47ee0a3da7f6542185a21aefab1a95c",
+      "encodedBytes": 63432,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "ee0c875daabdd84e7fd1de64892b651bbebcae2668195b8564370e322988a331",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4a0a700123ef75917d1b3ff2dda8e10a953d7f8c0860a0029ae7cc7ccfe32026.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#807d7b",
+        "tonalStrength": 0.559,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1725-153",
+      "fabricId": "pt-1725-153",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/6be93ff1a1c3ee5ca8067cc0b1d9e1b2957a4c7b91962c2b6599901784e09db0.webp",
+      "sha256": "6be93ff1a1c3ee5ca8067cc0b1d9e1b2957a4c7b91962c2b6599901784e09db0",
+      "encodedBytes": 38326,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "6305064b79ec6ddd555b40df208e50d12db8bf9c2897ae123adb85ec5d476b11",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3eb4f772344d04f079e34a71d2d18207ce70b6285373a2989c505066afd6d8b6.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#a67e77",
+        "tonalStrength": 0.221,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1725-697",
+      "fabricId": "pt-1725-697",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/9bfb2a3b6044bbe7da00b7df07f1c597b7d9360f23186e1e2b72bdafc0b9f07e.webp",
+      "sha256": "9bfb2a3b6044bbe7da00b7df07f1c597b7d9360f23186e1e2b72bdafc0b9f07e",
+      "encodedBytes": 38742,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "774fdc73ad54f7655e63cb0c394057d06cd6c2a285e551daede2f8ba0595d9fb",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-da158c622241120bda8b999351f69cf5a8f5f4e06a351bdf85f153fe24dde590.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#626f6d",
+        "tonalStrength": 0.231,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1726-015",
+      "fabricId": "pt-1726-015",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/9600fb3d7ea6fece0272be6ba984e53f466b90a6b91114da11a56d25dfd60e09.webp",
+      "sha256": "9600fb3d7ea6fece0272be6ba984e53f466b90a6b91114da11a56d25dfd60e09",
+      "encodedBytes": 40386,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "323822797c1571908323dee8413c2b911f7d7eb94fe1426ef08debff24e479c7",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c49aa2997ca9343dd26fe121ac524901ced0011579fbdeac164749565bf3b9f7.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#afa999",
+        "tonalStrength": 0.301,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-003",
+      "fabricId": "pt-1769-003",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/19b284323f443892b84127f3c4c9feead5aaacc0ac8fa7ac3cf461517bd6170f.webp",
+      "sha256": "19b284323f443892b84127f3c4c9feead5aaacc0ac8fa7ac3cf461517bd6170f",
+      "encodedBytes": 23976,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "fcc55ddb189b8152d02a8a349198625eb8fa9d400d460bd3703dbb8cff3c8550",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e075a8e0284ae6d8bce4cda140c238491694b928462c927d831f86b83f62d044.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d9d1c6",
+        "tonalStrength": 0.053,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-004",
+      "fabricId": "pt-1769-004",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/0c8136beac601c1531a4737e18eaf1351426441891ce31532e906989cd3aef3b.webp",
+      "sha256": "0c8136beac601c1531a4737e18eaf1351426441891ce31532e906989cd3aef3b",
+      "encodedBytes": 27322,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "d8ec07da6483bb0500939bbaf2a5a621cbcdc0b8786592ddb0fd36b8a26ea9d1",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-48fb6fca61c6047b48fd4e7b5a9ecdb122e2e4f3901064f37f25442d923fdc26.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#e7e7e7",
+        "tonalStrength": 0.206,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-022",
+      "fabricId": "pt-1769-022",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/d9235828c2dac6edcb25c4bf7993826faa2f3e70e18fba587e017bd54e9752b9.webp",
+      "sha256": "d9235828c2dac6edcb25c4bf7993826faa2f3e70e18fba587e017bd54e9752b9",
+      "encodedBytes": 27902,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "9f3bc65610dcb024254ca237bee091e01b08970b8e25999a8ad86d96b49152e3",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-dc79468c6bbfdb44dd080ee2df6d7ddd37a3a23b78f198a59958ff743371b7e2.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d1d3c6",
+        "tonalStrength": 0.227,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-031",
+      "fabricId": "pt-1769-031",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/1a040ebd67dc85b533687e39bd6c09457cfac44c9be45bb96a73555fe1ed819f.webp",
+      "sha256": "1a040ebd67dc85b533687e39bd6c09457cfac44c9be45bb96a73555fe1ed819f",
+      "encodedBytes": 35014,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "c2957c230f3625cf0c23b52713b6ef6ff056245c80b1210138c90a3911ff7639",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-bb4e6d5283927752965e8c88ded2c8a7489548c1a48406faf5fdd3efdf7ebf8f.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#b4a28e",
+        "tonalStrength": 0.1,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-077",
+      "fabricId": "pt-1769-077",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/b435d725e9aa7c1ebde835f2c15d87990099ae855c99d0e8ac1d077f7f19fd7e.webp",
+      "sha256": "b435d725e9aa7c1ebde835f2c15d87990099ae855c99d0e8ac1d077f7f19fd7e",
+      "encodedBytes": 27416,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "c475f74c3b6ed911febe85f235f019bec0808aab4d02af4559af7d69644845c0",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-05d31d12c2538e4b81a10d07f18f321540fc0094f5fae8b3cb7dceb57789c877.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#949696",
+        "tonalStrength": 0.126,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-114",
+      "fabricId": "pt-1769-114",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/10f8055908530f344c2bc942c8dc1c41cd99835dab151d785142f7cea138e152.webp",
+      "sha256": "10f8055908530f344c2bc942c8dc1c41cd99835dab151d785142f7cea138e152",
+      "encodedBytes": 38768,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "74ddb0a51456f74bfc1a2830b0cae891c59eb2a1ecd0452e13347ea0b01e1f63",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f2aa61ca8d23c3b6db10a0e844ac9a02f3add01adee01b9014856f02c4bdd6a0.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#4d443d",
+        "tonalStrength": 0.226,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-327",
+      "fabricId": "pt-1769-327",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/2eccedd1fcf923009304f299c389dbff4534187637b30314c2f81eb08aba4d07.webp",
+      "sha256": "2eccedd1fcf923009304f299c389dbff4534187637b30314c2f81eb08aba4d07",
+      "encodedBytes": 38094,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "d39bdebcd4f1a7366c80563294dcbbf5eb3d08133441f29112e3ad81ab20bb4f",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-cc20252aadfee6d7ff55b7b0d3d15777459d06893f57ae9d573511f8244501f9.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#473731",
+        "tonalStrength": 0.214,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-638",
+      "fabricId": "pt-1769-638",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/509a9e093844fe6684420339247b1d14c7c66675e939dd097dc47f01d793ef2e.webp",
+      "sha256": "509a9e093844fe6684420339247b1d14c7c66675e939dd097dc47f01d793ef2e",
+      "encodedBytes": 29252,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "fb49ddf9f8c37c724c3cbfb80987f058f27683ff9d1a63e2c70a02df7d35f881",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-928a0a533f49fec56982e943cf004d8fc012a72009b27ce058379d6b425d45b6.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#a29469",
+        "tonalStrength": 0.274,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-707",
+      "fabricId": "pt-1769-707",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/9c4fda0ea8249250bbfa9a6a61d56b3331e46a01b92c9846fea3721d704fd1b2.webp",
+      "sha256": "9c4fda0ea8249250bbfa9a6a61d56b3331e46a01b92c9846fea3721d704fd1b2",
+      "encodedBytes": 37106,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "a7bd3dd3bc7e977b01053beeffdf9f720e1446952fa426c1812b45614ad0e864",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e360c54c3c140f665e094496647e76abec3c8a73097f322a6653cd71439f142e.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#859f9c",
+        "tonalStrength": 0.262,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-905",
+      "fabricId": "pt-1769-905",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/ceaf25c39df9e298938268553e99ffd0681ec2ef4b9ac13b2edabcb2e4b48d69.webp",
+      "sha256": "ceaf25c39df9e298938268553e99ffd0681ec2ef4b9ac13b2edabcb2e4b48d69",
+      "encodedBytes": 32232,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "4f531d6bdb2b852bc14d9c1a8274bbd090aef383084698f5e54099243d1bc493",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-eade3e729784affa4f662494c00f1e7126ac0b8dd249dac0950475b90aaf7229.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#262328",
+        "tonalStrength": 0.1,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-907",
+      "fabricId": "pt-1769-907",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/5e527a118a9924294d8908a69467e0e8c5622b9235ef6cd4b4385cf90c7586f9.webp",
+      "sha256": "5e527a118a9924294d8908a69467e0e8c5622b9235ef6cd4b4385cf90c7586f9",
+      "encodedBytes": 34790,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "37bdd5e17eb801a64fae4454c474d7da83627579fbfa88f4e5ebc0202e03ba85",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2d0ed35de43c2a54caf01f5bc681e8d1ead8f34c7fe6e41c776fa5624e06ae2f.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#837a75",
+        "tonalStrength": 0.153,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1769-911",
+      "fabricId": "pt-1769-911",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/63cddf7648631e18c24de8c49d0f1a5bdcbaa9647eb426eeefd50ebb99127ed5.webp",
+      "sha256": "63cddf7648631e18c24de8c49d0f1a5bdcbaa9647eb426eeefd50ebb99127ed5",
+      "encodedBytes": 33026,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "40574bfd269a7b2ec6b7986b98558f0c3ea6dbeec5f83f2f8fd870bf19633f12",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-5d3a819e74786bf2a1c75db20c8cbbab6262d5c9f8ec73d80f266e5699140f10.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#9b9192",
+        "tonalStrength": 0.126,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1770-003",
+      "fabricId": "pt-1770-003",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/cc774634fdb7ca311779ac6bac0cd7270c25fdc2eef5c9cfc87896f706ee26ef.webp",
+      "sha256": "cc774634fdb7ca311779ac6bac0cd7270c25fdc2eef5c9cfc87896f706ee26ef",
+      "encodedBytes": 33222,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "e71c9e6290f36613efbe461c7375b85ab914fa5cc97f2a0fd5ff61d04447026c",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7c8b31ce993af20b2151c1137d7e3b40dc478a75e980656dc7b6cc3710c46d75.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d7d1d1",
+        "tonalStrength": 0.045,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1770-022",
+      "fabricId": "pt-1770-022",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/ed545ad0042dbcd963433270010884b9cc35d2d013dee54463199d6f5f2b3511.webp",
+      "sha256": "ed545ad0042dbcd963433270010884b9cc35d2d013dee54463199d6f5f2b3511",
+      "encodedBytes": 24632,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "1c0c899de03457308e34fc3439a2b11e6e4973ca377b714c603b53fc122254d9",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1a60b162d68034dc3534e49c73819ecc8e29166f0bae2a293f89d96e0a92780d.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cbb39b",
+        "tonalStrength": 0.081,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1770-033",
+      "fabricId": "pt-1770-033",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/2842a42f5614a18a987cb6244dac06489b5cde0fff70429c92d0b37eba58f1da.webp",
+      "sha256": "2842a42f5614a18a987cb6244dac06489b5cde0fff70429c92d0b37eba58f1da",
+      "encodedBytes": 35140,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "2b34a93d6f99ccc9f8be8aad448163c13c9507955981de5c020bf34d97fe66c5",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4e8c49a0cb08acf78f60411e904d264764104739671e59a73128f299c0f02ae4.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#a28f87",
+        "tonalStrength": 0.096,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1770-120",
+      "fabricId": "pt-1770-120",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/69003c62f5f5cb181390eb65e9c33d2eb696de6f56599b24b096434d382c898a.webp",
+      "sha256": "69003c62f5f5cb181390eb65e9c33d2eb696de6f56599b24b096434d382c898a",
+      "encodedBytes": 36676,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "15744c87a0c6a87c8370e64072909c35dbc70f4382a8807fc6461f33ec731d49",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-01f7f0ca158fa69481e1067838c2f20cf731f819e07f69998490deaff99a0233.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#b28a64",
+        "tonalStrength": 0.158,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1770-170",
+      "fabricId": "pt-1770-170",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/64a70661fd69f0f88bd699fddd208278209fbb29c871e08a4d7bde5c2421fad2.webp",
+      "sha256": "64a70661fd69f0f88bd699fddd208278209fbb29c871e08a4d7bde5c2421fad2",
+      "encodedBytes": 34494,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "7c0d92bd1218fac0ce2c0baf0586f2bfc20d5423ee05d31dff04c446174b37e9",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f5c67d0b933b85d8758a1db30b6178a189a65164470cf3e06a1fc4aec99a4d18.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#b09179",
+        "tonalStrength": 0.161,
+        "materialProfile": "GENERAL_TEXTILE"
+      }
+    },
+    {
+      "id": "pt-1770-311",
+      "fabricId": "pt-1770-311",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/41eecb2f50de94587330bdb03a5da88360aa0c6030fdac5149bb69848a7e5333.webp",
+      "sha256": "41eecb2f50de94587330bdb03a5da88360aa0c6030fdac5149bb69848a7e5333",
+      "encodedBytes": 26286,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "5ca72e5a40e6f015e9ba620c87cc7a3daaaa171e0ed8491995da04b3fe730f35",
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-918a0e37f4be8d000ad30bed3d8eb834ab3acc1e8dbd69f5c9bd63930939833a.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      },
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#90060e",
+        "tonalStrength": 0.083,
+        "materialProfile": "GENERAL_TEXTILE"
       }
     }
   ]

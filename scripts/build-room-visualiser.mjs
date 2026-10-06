@@ -12,10 +12,12 @@ await writeFile(resolve(root,'open.bin'),Buffer.from(open.position.buffer));
 await writeFile(resolve(root,'metrics.json'),JSON.stringify({spec:SPEC,byteLengths:chunks.map(b=>b.length),sha256:createHash('sha256').update(Buffer.concat(chunks)).digest('hex'),vertices:closed.position.length/3,triangles:closed.indices.length/3}));
 await mkdir(resolve(root,'rooms/shared'),{recursive:true});
 await cp('shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-storefront.js',resolve(root,'rooms/shared/curtainsuk-storefront.js'));
-async function files(dir){const result=[];for(const e of await readdir(dir,{withFileTypes:true})){const p=resolve(dir,e.name);if(e.isDirectory())result.push(...await files(p));else result.push(p);}return result.sort();}
+// Textures have independent hash-stable URLs. Versioning the renderer must not
+// copy the entire catalogue into every new room pack.
+async function files(dir){const result=[];for(const e of await readdir(dir,{withFileTypes:true})){if(e.name==='textures'&&dir===root)continue;const p=resolve(dir,e.name);if(e.isDirectory())result.push(...await files(p));else result.push(p);}return result.sort();}
 const hash=createHash('sha256');let bytes=0;
 for(const p of await files(root)){const data=await readFile(p);hash.update(relative(root,p).replaceAll('\\','/'));hash.update(data);bytes+=data.length;}
 const version=hash.digest('hex').slice(0,24),out=resolve('public/room-visualiser',version);
-await mkdir(out,{recursive:true});await cp(root,out,{recursive:true});
+await mkdir(out,{recursive:true});await cp(root,out,{recursive:true,filter:path=>path!==resolve(root,'textures')});
 await writeFile('lib/room-visualiser/build.json',JSON.stringify({version,assetBase:`/room-visualiser/${version}/`,bytes},null,2)+'\n');
 console.log(JSON.stringify({version,bytes,vertices:closed.position.length/3,triangles:closed.indices.length/3}));

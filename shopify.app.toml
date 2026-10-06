@@ -2,7 +2,7 @@
 
 client_id = "d18f79c0a0d1db2df7babeb26906443e"
 name = "curtains-uk-mtm"
-application_url = "https://curtainsuk-staging-gateway.vercel.app"
+application_url = "https://curtainsuk-production-api.vercel.app"
 embedded = true
 
 [webhooks]
@@ -19,9 +19,9 @@ scopes = "read_metaobject_definitions,read_metaobjects,read_orders,write_app_pro
 optional_scopes = ["write_draft_orders"]
 
 [auth]
-redirect_urls = [ "https://curtainsuk-staging-gateway.vercel.app/api/shopify/auth/callback" ]
+redirect_urls = [ "https://curtainsuk-production-api.vercel.app/api/shopify/auth/callback", "https://curtainsuk-staging-gateway.vercel.app/api/shopify/auth/callback" ]
 
 [app_proxy]
-url = "https://curtainsuk-staging-api.vercel.app/api/staging/shopify-proxy"
+url = "https://curtainsuk-production-api.vercel.app/api/staging/shopify-proxy"
 subpath = "curtainsuk-decision"
 prefix = "apps"

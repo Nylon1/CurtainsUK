@@ -9,12 +9,17 @@
  */
 {
   "sections": {
+    "visualiser": {
+      "type": "curtainsuk-visualiser-entry",
+      "settings": {}
+    },
     "editorial": {
       "type": "curtainsuk-fabric-editorial",
       "settings": {}
     }
   },
   "order": [
-    "editorial"
+    "editorial",
+    "visualiser"
   ]
 }

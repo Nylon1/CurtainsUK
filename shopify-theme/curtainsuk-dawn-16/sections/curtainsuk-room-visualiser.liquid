@@ -1,15 +1,30 @@
-<iframe id="CurtainsUKVisualiser-{{ section.id }}" title="CurtainsUK Room Visualiser" src="/apps/curtainsuk-decision/room-visualiser" style="display:block;width:100%;height:max(640px,calc(100dvh - 100px));border:0" allow="fullscreen"></iframe>
-<script>
-(() => {
-  const frame=document.getElementById('CurtainsUKVisualiser-{{ section.id }}');
-  const source=new URL('/apps/curtainsuk-decision/room-visualiser',location.origin);
-  const params=new URLSearchParams(location.search);
-  if(params.has('fabric')) for(const value of params.getAll('fabric')) source.searchParams.append('fabric',value);
-  if(params.has('room')) source.searchParams.set('room',params.get('room'));
-  frame.src=source.href;
-})();
-</script>
-<noscript><p>Please enable JavaScript to explore the Room Visualiser. You can still <a href="/pages/fabric-library">browse fabrics and order samples</a>.</p></noscript>
+{{ 'curtainsuk-room-visualiser.css' | asset_url | stylesheet_tag }}
+<section class="cuk-room-tool" data-cuk-room-tool data-default-room="{{ section.settings.default_room | default: 'living' | escape }}" aria-label="Room Visualiser">
+  <div class="cuk-room-tool__intro page-width">
+    <h1>{{ section.settings.heading | default: 'Room Visualiser' | escape }}</h1>
+    <p>{{ section.settings.introduction | default: 'Explore colours together. Start with a fabric you like, then adjust the room colours around it.' | escape }}</p>
+  </div>
+  <div class="cuk-room-tool__status page-width" data-room-status role="status" aria-live="polite">
+    <p data-room-status-text>Preparing your fabric</p>
+    <p class="cuk-room-tool__steps">Preparing your fabric → Dressing the window → Bringing your room together</p>
+    <div data-room-recovery hidden>
+      <button type="button" class="button" data-room-retry>Try again</button>
+      <a href="/pages/fabric-library">Browse fabrics and order samples</a>
+    </div>
+  </div>
+  <iframe id="CurtainsUKVisualiser-{{ section.id }}" title="CurtainsUK Room Visualiser" data-room-frame data-source="/apps/curtainsuk-decision/room-visualiser" allow="fullscreen"></iframe>
+  <p class="cuk-room-tool__advisory page-width">Visual guide only — designed for fabric, colour and interior inspiration rather than an exact representation of finished curtains. Always use a physical fabric sample when making your final colour and fabric choice.</p>
+  <noscript><p class="page-width">Please enable JavaScript to explore the Room Visualiser. You can still <a href="/pages/fabric-library">browse fabrics and order samples</a>.</p></noscript>
+</section>
+<script src="{{ 'curtainsuk-room-visualiser.js' | asset_url }}" defer="defer"></script>
 {% schema %}
-{"name":"Room Visualiser","settings":[]}
+{
+  "name": "Room Visualiser",
+  "settings": [
+    {"type":"text","id":"heading","label":"Heading","default":"Room Visualiser"},
+    {"type":"textarea","id":"introduction","label":"Introduction","default":"Explore colours together. Start with a fabric you like, then adjust the room colours around it."},
+    {"type":"select","id":"default_room","label":"Starting room","default":"living","options":[{"value":"living","label":"Living Room"},{"value":"bedroom","label":"Bedroom"},{"value":"lounge","label":"Lounge"},{"value":"office","label":"Office"}]}
+  ],
+  "presets": [{"name":"Room Visualiser"}]
+}
 {% endschema %}

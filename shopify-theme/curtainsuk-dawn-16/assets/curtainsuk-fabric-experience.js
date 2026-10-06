@@ -70,7 +70,9 @@
     descriptor.textContent = (fabric.intelligence?.dimensions || []).filter(d=>['pattern','texture'].includes(d.key)).flatMap(d=>d.values).slice(0,2).map(title).join(' · ');
     const host = card.querySelector('.cuk-fabric__actions');
     const view = host.querySelector('a'); view.className = 'cuk-text-link cuk-view-fabric';
+    const roomPreview = fabric.roomPreview?.available ? host.querySelector('a[href^="/pages/room-visualiser?fabric="]') : null;
     host.replaceChildren(view); host.insertAdjacentHTML('beforeend',actions(fabric,windowSlug));
+    if (roomPreview) host.append(roomPreview);
     card.querySelector('.cuk-fabric__body > .cuk-hint')?.remove();
     card.querySelector('[data-sample]')?.addEventListener('click',event=>orderSample(card,fabric,windowSlug,event.currentTarget,saveSample));
   }

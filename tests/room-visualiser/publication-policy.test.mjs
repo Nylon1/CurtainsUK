@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {classify,assessPlain,assessStraight,verifyRetail,makeEntry} from '../../scripts/room-visualiser-publication/core.mjs';
-import {normaliseLedger,recordHold} from '../../scripts/room-visualiser-publication/ledger.mjs';
+import {normaliseLedger,recordHold,holdPreflightFailures} from '../../scripts/room-visualiser-publication/ledger.mjs';
 
 const base={fabricId:'pt-1234-567',designId:'pt-design-1234',design:'Example',colourway:'Sage',sourceUrl:'https://cdn.shopify.com/example.jpg',
   hRepeatCm:45,vRepeatCm:46.5,patternMatchType:'STRAIGHT_MATCH'};
@@ -50,4 +50,29 @@ test('runtime failures remain held across batches without counting as published'
   assert.equal(normaliseLedger(structuredClone(ledger),['live']).holds.unavailable,'BUILD_OR_SOURCE:HTTP_404');
   assert.throws(()=>recordHold(ledger,'live','bad'),/Cannot hold/);
   assert.throws(()=>normaliseLedger({...ledger,staged:['unavailable']},['live','unavailable']),/both published\/staged and held/);
+});
+test('a few preflight failures become individual holds while valid staged fabrics continue',()=>{
+  const ledger={version:1,published:['live'],staged:['good-a','bad','good-b'],holds:{}};
+  const manifest={fabrics:['live','good-a','bad','good-b'].map(fabricId=>({fabricId,image:`/room-visualiser/textures/${'a'.repeat(64)}.webp`}))};
+  const report={staged:3,newlyHeld:0,held:1,manifestTotal:4,stagedFabricIds:[...ledger.staged],
+    holdReasons:{OLDER:1},results:ledger.staged.map(fabricId=>({fabricId,status:'STAGED',sha256:'a'}))};
+  const removed=holdPreflightFailures(ledger,manifest,report,[{id:'bad',reason:'HTTP_503'}]);
+  assert.deepEqual(ledger.staged,['good-a','good-b']);
+  assert.equal(ledger.holds.bad,'PREFLIGHT:HTTP_503');
+  assert.deepEqual(manifest.fabrics.map(entry=>entry.fabricId),['live','good-a','good-b']);
+  assert.deepEqual(removed.map(entry=>entry.fabricId),['bad']);
+  assert.equal(report.staged,2);
+  assert.equal(report.newlyHeld,1);
+  assert.equal(report.held,2);
+  assert.equal(report.results.find(item=>item.fabricId==='bad').status,'HOLD');
+  assert.equal(report.holdReasons['PREFLIGHT:HTTP_503'],1);
+});
+test('a systemic preflight outage cannot be hidden as individual holds',()=>{
+  const staged=Array.from({length:100},(_,i)=>`id-${i}`);
+  const ledger={version:1,published:[],staged,holds:{}};
+  const manifest={fabrics:staged.map(fabricId=>({fabricId}))};
+  const report={staged:100,newlyHeld:0,held:0,manifestTotal:100,stagedFabricIds:staged,
+    holdReasons:{},results:staged.map(fabricId=>({fabricId,status:'STAGED'}))};
+  assert.throws(()=>holdPreflightFailures(ledger,manifest,report,staged.slice(0,11).map(id=>({id,reason:'HTTP_503'}))),/SYSTEMIC_PREFLIGHT_FAILURE/);
+  assert.equal(ledger.staged.length,100);
 });

@@ -55,7 +55,7 @@ test('invalid repeats fail safely and plain mode has no invented repeat requirem
  assert.equal(texturePlan({...f,hRepeat:null}).reason,'MISSING_REPEAT_METADATA');assert.equal(texturePlan({mode:'plain'}).state,'plain');
 });
 test('runtime derivatives match approved bytes and all patterned assets are 2048 x 1113',async()=>{
- for(const f of manifest.fabrics){const bytes=await readFile(new URL('runtime/'+f.image,root));assert.equal(digest(bytes),f.sha256);assert.equal(bytes.length,f.encodedBytes);
+ for(const f of manifest.fabrics){assert.match(f.image,/^\/room-visualiser\/textures\/[a-f0-9]{64}\.webp$/);const bytes=await readFile(new URL('../../public'+f.image,import.meta.url));assert.equal(digest(bytes),f.sha256);assert.equal(bytes.length,f.encodedBytes);
   if(f.mode==='patterned'){const m=await sharp(bytes).metadata();assert.equal(m.width,2048);assert.equal(m.height,1113);assert.equal(m.format,'webp');}}
 });
 test('expanded designs preserve the measured physical repeat and live identity contract',()=>{

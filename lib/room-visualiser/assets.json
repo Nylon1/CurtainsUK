@@ -76838,6 +76838,1906 @@
         "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-67b71117db574c0521dbac755cb21ded032d989071b7ef6fd134573afc3b0087.jpg",
         "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
       }
+    },
+    {
+      "id": "sdg-hmnl134291",
+      "fabricId": "sdg-hmnl134291",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/1106e38cd8b192a88bf11ebb97bd9f6dd7623121150f733c972dffcb7eb329bc.webp",
+      "sha256": "1106e38cd8b192a88bf11ebb97bd9f6dd7623121150f733c972dffcb7eb329bc",
+      "encodedBytes": 36720,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "eaf966a86ec84ce3542341161fb882dfa4e36171ba7c221690026e02c66cb991",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#b0b7bd",
+        "tonalStrength": 0.15,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3e6b3f652a2341a9312d9a6de788b86f4dc693061d6bbf0fc514608fba831863.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134292",
+      "fabricId": "sdg-hmnl134292",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/36baba45cc315d3177d1373a185d42b460673293d635e60420dd3fd163ec010b.webp",
+      "sha256": "36baba45cc315d3177d1373a185d42b460673293d635e60420dd3fd163ec010b",
+      "encodedBytes": 26928,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "bf91acb48485ffa2e82088a7a6d089e4b291ce5d8c511ad9ef59cacc586ebb2f",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#dbd7d4",
+        "tonalStrength": 0.104,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7dc3c5127eb298e0a431b0b959ae34524ec6c6d77eddc639ad139d87ebfcfedc.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134293",
+      "fabricId": "sdg-hmnl134293",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/d778abb6e126da04ba9e018ff11f52fe26b9d1987e17d506f7d900c669c02cbe.webp",
+      "sha256": "d778abb6e126da04ba9e018ff11f52fe26b9d1987e17d506f7d900c669c02cbe",
+      "encodedBytes": 32886,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "051b43625d6a8c48f2f200c0ee85cd77ad5bac1b16392a21d61b22dbfe05662c",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cecac7",
+        "tonalStrength": 0.12,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-bed674ece481e7eeca19dca6d0631581585510bfcb9572f9296d060f2e4b12b2.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134294",
+      "fabricId": "sdg-hmnl134294",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/adcfcc9dbf30a309d3887d21496e4ad0968c8b444ef9c60c733de8a413914413.webp",
+      "sha256": "adcfcc9dbf30a309d3887d21496e4ad0968c8b444ef9c60c733de8a413914413",
+      "encodedBytes": 35094,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "83ab0d6dd7a3036f83713d83c50072deaf3cf1659ba5ca26c285e770a4bb5b4c",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cec4b8",
+        "tonalStrength": 0.105,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-182336c5d5be635032544e48b993cbad5e591449503e1e2c67d712fdb8027016.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134295",
+      "fabricId": "sdg-hmnl134295",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/227ccf8cce32ca6330492affa8db48052ecb766c68712b16f0016965615e4743.webp",
+      "sha256": "227ccf8cce32ca6330492affa8db48052ecb766c68712b16f0016965615e4743",
+      "encodedBytes": 37476,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "2029901fa2da6eccbae6c0fed4acc83d6728f0881be36807d9ae4db207955123",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#6b7483",
+        "tonalStrength": 0.186,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2ad1d825f4699b082e1c4f269366db74ed47c20f3dc9ff734fc5b7de84b93e4e.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134296",
+      "fabricId": "sdg-hmnl134296",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/14376c158f3fed51de77cc4b13433f4b67f421c34321ab24d8e74a0ac503535c.webp",
+      "sha256": "14376c158f3fed51de77cc4b13433f4b67f421c34321ab24d8e74a0ac503535c",
+      "encodedBytes": 58798,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "e86e0cbfe821acefd9b083613ea9daaedfc2295a53b61807c815541155390462",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#817a74",
+        "tonalStrength": 0.308,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7cbac367e9f3465ac1d0c8eb7daf63ad38eb38091217b1ca28824a98880d8084.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134297",
+      "fabricId": "sdg-hmnl134297",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/5f2ce8b5c29a844d0fe0577948b6d7530b6baa2a196efec5941b2313b4ae75f4.webp",
+      "sha256": "5f2ce8b5c29a844d0fe0577948b6d7530b6baa2a196efec5941b2313b4ae75f4",
+      "encodedBytes": 35768,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "29d857cfe06886bb1ce11c120a3320f2f1dfd97b34cc01c1ff1d83c4623bf9a6",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#5c5249",
+        "tonalStrength": 0.124,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e2f180c7b63d2a45008145354ed3608478960126040dc1b9c90c52bb2b367a36.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134298",
+      "fabricId": "sdg-hmnl134298",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/8bfd3cc855aefdaf54c09c68b11895aa8976b67c45d1216d73d57566b1d15621.webp",
+      "sha256": "8bfd3cc855aefdaf54c09c68b11895aa8976b67c45d1216d73d57566b1d15621",
+      "encodedBytes": 35950,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "c6f88d77fd9f7fd641277b72d48e6b8b4aa4daff4521549adaa24d54b968bd8b",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#4e4e4e",
+        "tonalStrength": 0.124,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-97a7f42d346bdd49079b8425a47e6df9dab3b2972b2b6876ab6ace41767d3160.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134299",
+      "fabricId": "sdg-hmnl134299",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/f88525b5c8dd6e49002dafda2cf35e69b9f5c3a16be6c7ff7d19bb31ad07bfc4.webp",
+      "sha256": "f88525b5c8dd6e49002dafda2cf35e69b9f5c3a16be6c7ff7d19bb31ad07bfc4",
+      "encodedBytes": 32788,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "04e332bd202d3d9a71abf3d6050f879f55e458a7b336659b302c028638c7041e",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#30333a",
+        "tonalStrength": 0.086,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1df240065f941a6b6884788ad3b1a936fec66101fb22830047e544b5695e9c2e.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134300",
+      "fabricId": "sdg-hmnl134300",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/2c7cfc47d9ccd818342dc49511848b18e961a758c4747fe2bb571ad0d275e08d.webp",
+      "sha256": "2c7cfc47d9ccd818342dc49511848b18e961a758c4747fe2bb571ad0d275e08d",
+      "encodedBytes": 26172,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "899c1f7d3aaf4c51898475af1539d86cf5c6c23afdfe86a622220af75ad554c4",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#343031",
+        "tonalStrength": 0.077,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-54d34b499554d1586df4225c9b8a2ccbdc3826c5e23679d764904c5efaab74bf.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134301",
+      "fabricId": "sdg-hmnl134301",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/b82e5daebaf467e4b0258f0f791389851532e5c46382326ceb3bcf711a50f141.webp",
+      "sha256": "b82e5daebaf467e4b0258f0f791389851532e5c46382326ceb3bcf711a50f141",
+      "encodedBytes": 43896,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "ccf802ae99f3d2a904e7bdfd1c5d783cc2b661b9d88a7f14a4becd54ed059b5c",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#6c655f",
+        "tonalStrength": 0.417,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-87502c08f4230a9eacdec67f24058b91c482697d1a67226746f350ded959c013.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134302",
+      "fabricId": "sdg-hmnl134302",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/372404152d8b058a055a843bab9c2e3860c6f12f64f6b91ec9e6d5f7a027d14b.webp",
+      "sha256": "372404152d8b058a055a843bab9c2e3860c6f12f64f6b91ec9e6d5f7a027d14b",
+      "encodedBytes": 38712,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "55c602637546a116b2a385a17c884cf7662ad8c4a9cbb604bd55f70c99aa8dc6",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#7b706c",
+        "tonalStrength": 0.333,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-30a287ac738e3053e09f2d4aa3a462827e4a59161b8e58df9a808d940f2cf1e4.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134303",
+      "fabricId": "sdg-hmnl134303",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/655c24b352624dfcb4bccddaf7df883f91697edea8a78a6a2df940e43e51955c.webp",
+      "sha256": "655c24b352624dfcb4bccddaf7df883f91697edea8a78a6a2df940e43e51955c",
+      "encodedBytes": 31196,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "94c59feb141c8a4ac240e57fd9092e81ffea985ada66e9922987b54543593892",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#3e3835",
+        "tonalStrength": 0.29,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-852eea1c3c08f3331e2f757dbb9b019c1d541bf5ea091592279a3a622934f5ca.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134304",
+      "fabricId": "sdg-hmnl134304",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/b89773649155fd63d216997a66f35206befd808f040e802b0949744f77727ff8.webp",
+      "sha256": "b89773649155fd63d216997a66f35206befd808f040e802b0949744f77727ff8",
+      "encodedBytes": 41444,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "5c304df2c67e74a989b403eab579f1a1cb40df332374f4959d52d5191278bda7",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#dcd5cb",
+        "tonalStrength": 0.126,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a227b03bfa7eb046e574639768b0d3bcf8243b3261772a6bd52056e04f0e53de.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134305",
+      "fabricId": "sdg-hmnl134305",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/20dbbd9b5601a5b89209c02b9168e9e8240108fb69132f160cd860cb672aa7d0.webp",
+      "sha256": "20dbbd9b5601a5b89209c02b9168e9e8240108fb69132f160cd860cb672aa7d0",
+      "encodedBytes": 36322,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "c034bfa1d9e8354ad06c47d427531bba4a60f9c6bcd0a7862ab696f59fa4d398",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#b1b99c",
+        "tonalStrength": 0.147,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e1e932cf902bc1a9ced1748325a659593b7b410f574ccbff9901001db3abcd0b.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134306",
+      "fabricId": "sdg-hmnl134306",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/a9a9fda463df3749f6f85c66865ca8d449369e6f91a472c811c60d805cbac009.webp",
+      "sha256": "a9a9fda463df3749f6f85c66865ca8d449369e6f91a472c811c60d805cbac009",
+      "encodedBytes": 36952,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "39f15230dd6856be50a095fa685f34dd4e73ba925630812467d795e7e00e1856",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#9aa28a",
+        "tonalStrength": 0.171,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-101955c8a47653f27d3e536bbd34d0dd2839de982aa300a9b1669ecff6ce2dfb.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134307",
+      "fabricId": "sdg-hmnl134307",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/eb28c02021dd514e5806e77581dc3abc937197cc6616b39a569a0d17167c9adf.webp",
+      "sha256": "eb28c02021dd514e5806e77581dc3abc937197cc6616b39a569a0d17167c9adf",
+      "encodedBytes": 35436,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "241de997b7d17451600fa87063cfbeb618ea0dafae7807dda75f94b2c09be76b",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#527d45",
+        "tonalStrength": 0.116,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-15dc4da235b269a9a7bf1c55b848c5972eddfcea8a8ca9241002a6e3bb192293.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134308",
+      "fabricId": "sdg-hmnl134308",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/ef4fadb3de855afd38265cda796defc53884e10c914393c5c6c6dedb3206d51b.webp",
+      "sha256": "ef4fadb3de855afd38265cda796defc53884e10c914393c5c6c6dedb3206d51b",
+      "encodedBytes": 40278,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "a32420a38cd9a16c53da7da202c6b3c39c22f93bd40db9fa7dc8d933c7e5e4f2",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#767756",
+        "tonalStrength": 0.412,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-5c092ec3a16a7178d50660959bfcb4cb45f7a705992b1c70b9d442bd8e38e5fa.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134309",
+      "fabricId": "sdg-hmnl134309",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/0f91d05666ad173b37aa638521bf7dbb6e5c182992a28b332daaa7fcb3161c80.webp",
+      "sha256": "0f91d05666ad173b37aa638521bf7dbb6e5c182992a28b332daaa7fcb3161c80",
+      "encodedBytes": 43652,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "a722aaae16418530b167a8cae064fef2c461ea61ce8ecb4e2afb06bf923a937c",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#5a6135",
+        "tonalStrength": 0.142,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-51f866846e82a76590760f28fe610ba684368b5d545a790b1e3aea0239626fa4.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134310",
+      "fabricId": "sdg-hmnl134310",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/81db031cc5d6bd39fe9eb2ca1f62ba2a631e45807e6b19ced5f11f1ad6aa819d.webp",
+      "sha256": "81db031cc5d6bd39fe9eb2ca1f62ba2a631e45807e6b19ced5f11f1ad6aa819d",
+      "encodedBytes": 35728,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "25dcae3dd6790fc3e2cbd0847649435a0f6e8f5f449ccc17c2e2ba140cf76cc4",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#4c6432",
+        "tonalStrength": 0.126,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8c4b264360cec18edcf4744abd2c183c52db53a5012c33571cf239317b6bbc17.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134311",
+      "fabricId": "sdg-hmnl134311",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/dca153e19590e7fa633437fd4fd69836a1f5d47a897a053c1bd7d76dd2a5f33b.webp",
+      "sha256": "dca153e19590e7fa633437fd4fd69836a1f5d47a897a053c1bd7d76dd2a5f33b",
+      "encodedBytes": 27864,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "fbd3295d56af0ba21e585c5504a918fb3064dd87324b8c652e5b53d1bc360a8b",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#7f8640",
+        "tonalStrength": 0.139,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7c4aa8e9832d7e790feafe261782a2bec64b79402208dc8dd633aa5cecacd9b5.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134312",
+      "fabricId": "sdg-hmnl134312",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/56fad03f0dbbbd1a23013ec7cca31f27f66b4399c732f0a198dea0892e2dded0.webp",
+      "sha256": "56fad03f0dbbbd1a23013ec7cca31f27f66b4399c732f0a198dea0892e2dded0",
+      "encodedBytes": 35402,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "fb750d54a616dd26c8ddf13bf97dbff9df8f421e9980724a1c00f47e1d11c14f",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#c9b26b",
+        "tonalStrength": 0.115,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ec84fcdd3ca0c4cee35e9e6d54b778df05d4bc255a8f9eedfb8fc1be210d8db4.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134313",
+      "fabricId": "sdg-hmnl134313",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/5817e916a951a97f79351f4f246b6b3e7919989d2562337b3c9e4d5eb2a18421.webp",
+      "sha256": "5817e916a951a97f79351f4f246b6b3e7919989d2562337b3c9e4d5eb2a18421",
+      "encodedBytes": 25332,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "3373fc8ed43c8e304fcb1f471a9985c93b7b7fd3d8a9f45934b159ff61a006ca",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#b89458",
+        "tonalStrength": 0.109,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8287c31f01dee480c17b64eb71862035b1ac7a49f0c11a6e463feac86de255c9.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134314",
+      "fabricId": "sdg-hmnl134314",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/05ac0d12146f1bc288d1e1ab58aa44e746a08efd6775025d2c7b54b1b6d67e67.webp",
+      "sha256": "05ac0d12146f1bc288d1e1ab58aa44e746a08efd6775025d2c7b54b1b6d67e67",
+      "encodedBytes": 36368,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "0df17832bd2151e2020e9fe94b752d1f12369756cd5cf537c271a5b9e9659e5d",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#c6b692",
+        "tonalStrength": 0.138,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e1877677b93220c92ae2f563d5039eb703ef2ae83e8bd9452c398260d0e04266.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134315",
+      "fabricId": "sdg-hmnl134315",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/4dfb2cd5328b39488cdd91bc1beb9744ac98f8101cfeafc9d5b1c96f6e7d4e7f.webp",
+      "sha256": "4dfb2cd5328b39488cdd91bc1beb9744ac98f8101cfeafc9d5b1c96f6e7d4e7f",
+      "encodedBytes": 41456,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "8c0910a297c9f811f45d1c1fdd5828f9c678f3476af41caf6e2afe38edcaee33",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d0c2ab",
+        "tonalStrength": 0.331,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-47244ed4474817fcb99cd11578539a03b7bca1575365d93c3fbd6f5f09e75a66.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134316",
+      "fabricId": "sdg-hmnl134316",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/4b6907a7a4705c247b978760879662d1bc8ed3aa77d0e00425ca318b17a83ebc.webp",
+      "sha256": "4b6907a7a4705c247b978760879662d1bc8ed3aa77d0e00425ca318b17a83ebc",
+      "encodedBytes": 29294,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "9db48caea8dc401bdd3ed3ae1c3fdb85d799eb0e3c455bf5602e376df2171793",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#bdaf95",
+        "tonalStrength": 0.198,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b6a31b081c235f6709314a4d085f5703a3f934963ff58fe86311473846cabb6b.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134317",
+      "fabricId": "sdg-hmnl134317",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/f68e0068becfbe3413465f70ca26e073bdbc6989a9a48264a565fdb125f7cacd.webp",
+      "sha256": "f68e0068becfbe3413465f70ca26e073bdbc6989a9a48264a565fdb125f7cacd",
+      "encodedBytes": 44914,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "02b94ecfbdccd79322400dcdf9baa3e1ad0ba120649600cd83c909712e5480e3",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#ac9d88",
+        "tonalStrength": 0.171,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8432d8bec1426d052c07d25199c440db0b60d3cfdeaa7e4e3cf1b120bacd239b.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134318",
+      "fabricId": "sdg-hmnl134318",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/8fdb404456d1f3f5176ad87c8503cc859e225ef910d463ba70cc8fda5ae33dd2.webp",
+      "sha256": "8fdb404456d1f3f5176ad87c8503cc859e225ef910d463ba70cc8fda5ae33dd2",
+      "encodedBytes": 42198,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "62f05902ce0918e73c1289d685a6c8b4a1cd35c52137d5253866d3d30b4411c1",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#907d6f",
+        "tonalStrength": 0.285,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-761c12b61b9205736117834a263454e20c8b001a30cec23f56a46779322fa06f.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134319",
+      "fabricId": "sdg-hmnl134319",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/cd07cf7f042802d36d6b92a49aa4a58416fa2d6d2fe55c603a1bbeb470fd2cbb.webp",
+      "sha256": "cd07cf7f042802d36d6b92a49aa4a58416fa2d6d2fe55c603a1bbeb470fd2cbb",
+      "encodedBytes": 41498,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "fed77d884a8d7e883788bf083488d6b6c6f2454bd1c4b2dbe44b3589181f9119",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#887770",
+        "tonalStrength": 0.319,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d1a9313ad27a4ac4a66b8a04ed607bc07ca4bf42dca15947306aba3f19e62027.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134320",
+      "fabricId": "sdg-hmnl134320",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/c8005b65747d8a99153a7ec0ed2445efe84271a712978f8e275eac54c114b6a8.webp",
+      "sha256": "c8005b65747d8a99153a7ec0ed2445efe84271a712978f8e275eac54c114b6a8",
+      "encodedBytes": 36242,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "4a9624c86494957ca0fb717fad13e3ae8bf1b3135fe8025f47d74c7515e9c3b0",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#685e52",
+        "tonalStrength": 0.143,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-75b9b4d2fe4ff6bf799d8a3ff6e886799cec647b327397a5a600b37d0109ec03.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134321",
+      "fabricId": "sdg-hmnl134321",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/9a04ef50f4e1ac3c008e7a861d926ee3eda19699343ea35586ede1ee38ed75b5.webp",
+      "sha256": "9a04ef50f4e1ac3c008e7a861d926ee3eda19699343ea35586ede1ee38ed75b5",
+      "encodedBytes": 38070,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "3e1ac837633097f745dff204949b6c046a73af1e9a65abfe24536c0e56b2fc0c",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#9f8d79",
+        "tonalStrength": 0.209,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-92f74469a31dfc47259dc0ab7b587a963baee923dde64f03ba3d2cdb3c2c6f60.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134324",
+      "fabricId": "sdg-hmnl134324",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/ab8855f1e8c3be1846bcee98a2b4ef0ce2c62062ce108b66f2d0aeea27fe609a.webp",
+      "sha256": "ab8855f1e8c3be1846bcee98a2b4ef0ce2c62062ce108b66f2d0aeea27fe609a",
+      "encodedBytes": 41570,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "5f5c6973af8c9a4a82ce115550f9eae0a8b9359687724837a1aac9366ed12c28",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#765b46",
+        "tonalStrength": 0.357,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-31c47f01b9c8323b5682a87208bd3948f48aebf0e1ddc48c22030edeb7f5ee56.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134325",
+      "fabricId": "sdg-hmnl134325",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/872c3098b651367c4aa98b399857cfc90dc6c09b783137a6ed43a1e861277092.webp",
+      "sha256": "872c3098b651367c4aa98b399857cfc90dc6c09b783137a6ed43a1e861277092",
+      "encodedBytes": 30062,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "3ce7d7dc37a366853341a15ef47c877dc6120e16fe0497566a500d98f8a8673e",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cfc4b1",
+        "tonalStrength": 0.232,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e01c0767321fea12449367f405600658c2492cf802cb1d38267c019a0f64fa5a.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134327",
+      "fabricId": "sdg-hmnl134327",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/7f82b611da10b8e4e830da5f6ef4d68cd7fb60c8403e02043b5b94696cae8c79.webp",
+      "sha256": "7f82b611da10b8e4e830da5f6ef4d68cd7fb60c8403e02043b5b94696cae8c79",
+      "encodedBytes": 25298,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "ef56b88260f35e2c33c9f14f7c3988e8d76d05093f8845c77934545b9ddb5e63",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#a95227",
+        "tonalStrength": 0.111,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d64fd49212184a14b2d48076a613649c3e0a424014a2fa58f09e1dab89a32b00.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134328",
+      "fabricId": "sdg-hmnl134328",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/dab6e0829ade4bf1f0a5770560578094640f46fbc91168eb8a08e29dd54b51b1.webp",
+      "sha256": "dab6e0829ade4bf1f0a5770560578094640f46fbc91168eb8a08e29dd54b51b1",
+      "encodedBytes": 24908,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "4a721957db4fc1c18abc1587afb7b1cf05ee0275371853a9e0eb142f8d507826",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#ce8f8a",
+        "tonalStrength": 0.094,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c5bbada4c7107fff2a487d7e00225e693d74f36dc14f37a4e95bcd90b0c05923.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134329",
+      "fabricId": "sdg-hmnl134329",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/93dc91a935ef293c9f2a32dfaf92127eb6d3de0cd3b278b1d885e41301b2a808.webp",
+      "sha256": "93dc91a935ef293c9f2a32dfaf92127eb6d3de0cd3b278b1d885e41301b2a808",
+      "encodedBytes": 33676,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "2a4453d49df8e09b14c2131f75eb7902761c8b34a9242098b6380aa4c6c46ba2",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#edeae3",
+        "tonalStrength": 0.058,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-eef4e91da00caa4448b4aa195c618fcf01c2482c23721978ffb5a6a2302705d7.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134330",
+      "fabricId": "sdg-hmnl134330",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/71fb3008b574186a22f7d79be3ab0db6f5843277e6a6e30e454390b956ff6318.webp",
+      "sha256": "71fb3008b574186a22f7d79be3ab0db6f5843277e6a6e30e454390b956ff6318",
+      "encodedBytes": 33598,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "dad0c0269eec9540a66055049ebfabb579fef92cd370beffea66716cec8630cc",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d9d2cc",
+        "tonalStrength": 0.117,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f3f71931e6e8dc0ecf9442e675f4cceffc64e8fae53403a4adb1f599680e5189.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134331",
+      "fabricId": "sdg-hmnl134331",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/5b4dc5196d30a22311ef3b85962f7ee9f46e5b063e3cdc7eb76ea7f425909456.webp",
+      "sha256": "5b4dc5196d30a22311ef3b85962f7ee9f46e5b063e3cdc7eb76ea7f425909456",
+      "encodedBytes": 33872,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "19833b3c423b3686d4615665a06800b40ceffc3dd20a779fb6acfe8f3f85eed5",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#e7e5d9",
+        "tonalStrength": 0.061,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-fbace12cced690215913d1352adee7ef100d17c9d89378ed36bd9883e64f707d.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134332",
+      "fabricId": "sdg-hmnl134332",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/284f425e0c3aa0bf24ef70663e1be86e563139b2998257cddcd4339303403fed.webp",
+      "sha256": "284f425e0c3aa0bf24ef70663e1be86e563139b2998257cddcd4339303403fed",
+      "encodedBytes": 36346,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "9f2fc8b7e6cf1ce8053408a2e4361c69916ec042c28c487e9890bf73863f4fb1",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d0c7bb",
+        "tonalStrength": 0.15,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ea8d9a5afd9295f6a726f1702efaf6f850d81918abe2663d267d63071b06b2f1.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134333",
+      "fabricId": "sdg-hmnl134333",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/ce956ca975d3fb07616699871724b7a4ff7413041a6d42cc11f6e9f2fb5942ed.webp",
+      "sha256": "ce956ca975d3fb07616699871724b7a4ff7413041a6d42cc11f6e9f2fb5942ed",
+      "encodedBytes": 36720,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "031fcc27002119b53fc7c16adf56984c97f429138946732025ba055cdeb33f73",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cec4b8",
+        "tonalStrength": 0.16,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-de25effdde334a479e801ece6dff45cac608cb40d441740f334992d1ab3ac45f.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134334",
+      "fabricId": "sdg-hmnl134334",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/6c317b84dd5eb9972002b2eb335da3b7a8128b4902c942594b6de583c20f0494.webp",
+      "sha256": "6c317b84dd5eb9972002b2eb335da3b7a8128b4902c942594b6de583c20f0494",
+      "encodedBytes": 37550,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "0ee9e2e226b15ecc0eb21db42ec087fbeada2c07b66a771638e4519759c7fcd3",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#c3baad",
+        "tonalStrength": 0.186,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-92e750b25e59428d3c4bc450a5d47ff20aaae00bd57980b5c4130c2f3d0177a6.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134335",
+      "fabricId": "sdg-hmnl134335",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/a07bf66fee4feb159f41a645ce0f93a7d4040f75c4dd3c93e640c995b4f02200.webp",
+      "sha256": "a07bf66fee4feb159f41a645ce0f93a7d4040f75c4dd3c93e640c995b4f02200",
+      "encodedBytes": 39708,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "3e873fe46676d1ce1fde866b4faf93ca39b3a748c665d8a644d2a18dbd184123",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#dfd7c2",
+        "tonalStrength": 0.076,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b4c10a70826bf18e32f442e09709512c3fe464dcef550852392230e5741334e2.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134336",
+      "fabricId": "sdg-hmnl134336",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/e0d8e1632966eec935136bb0943c6ed091b9a83baae5f773687aefb0232122cb.webp",
+      "sha256": "e0d8e1632966eec935136bb0943c6ed091b9a83baae5f773687aefb0232122cb",
+      "encodedBytes": 34844,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "ca1b68d43729bce9b8ba09336ef1636a81ffa1f08507900fdcd35419ff0329b6",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d5c7ad",
+        "tonalStrength": 0.09,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7511e9790f9525496e53446ceeb5366851c1205012bb31498dc140ff01ce1ff7.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134337",
+      "fabricId": "sdg-hmnl134337",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/b2ad5f333481d49a57b4faf1d0b3c6adf9e0c6dd30e9d85b53ccef9ce1715d3f.webp",
+      "sha256": "b2ad5f333481d49a57b4faf1d0b3c6adf9e0c6dd30e9d85b53ccef9ce1715d3f",
+      "encodedBytes": 27278,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "54d36eb3d1435ee66c2693752bb6f6431d01e3241ae9c394accdd48c905b2929",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d3c3a2",
+        "tonalStrength": 0.117,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-aa4be133328c21567286213610b8137c84fe4bdac6389e151fbf657ea7bae034.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134338",
+      "fabricId": "sdg-hmnl134338",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/495dd0a3fbfe35a02f1ed7f60fb9799fa0e24a14799c0758b615d4845ec134e5.webp",
+      "sha256": "495dd0a3fbfe35a02f1ed7f60fb9799fa0e24a14799c0758b615d4845ec134e5",
+      "encodedBytes": 33450,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "ef1c0ecabb91f8e2b13d580c6f2b7a2509578313eca4c4884de23f34034dd451",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cab78f",
+        "tonalStrength": 0.139,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-0e92e5e911229b469e9b4c4fbc9f19b89cb3a44c8131c49d074e99a60de441be.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134339",
+      "fabricId": "sdg-hmnl134339",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/0653b138e319ef1d50135a5f76af149275e7f3364871b352330bbe8b9ca2db11.webp",
+      "sha256": "0653b138e319ef1d50135a5f76af149275e7f3364871b352330bbe8b9ca2db11",
+      "encodedBytes": 36230,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "e22bd6ce88a4317e2a5af6ad0a9aac58fe991c53540bed66a85404a01cce683e",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#bcb4a1",
+        "tonalStrength": 0.142,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7d6849e8416bd987a562be762dd09bc10f0cbc05c7038092ce46a9a3e8e39c31.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134340",
+      "fabricId": "sdg-hmnl134340",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/37de39b85e2312a4fd98c306d7272e17aa75172300ff54452d77d5ac9566430b.webp",
+      "sha256": "37de39b85e2312a4fd98c306d7272e17aa75172300ff54452d77d5ac9566430b",
+      "encodedBytes": 39158,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "015fa108176812a3065cd7205418fd43d7aef700100a1f4fc3c5f12865175175",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#c1b7a5",
+        "tonalStrength": 0.238,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-25b958368589c419d28f7ec428acc1e1041c87a92ecd73c26d3bcea13b1ecf8c.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134341",
+      "fabricId": "sdg-hmnl134341",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/919ea72bb2934265f5974bbf4cd4ad6562cc8f325661778f3e148238c3cbbfd5.webp",
+      "sha256": "919ea72bb2934265f5974bbf4cd4ad6562cc8f325661778f3e148238c3cbbfd5",
+      "encodedBytes": 33846,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "aecc6634db8d24c658e278cf2bd04f4014463a1b988b7288487fd7ab45f6ecc3",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cec0a3",
+        "tonalStrength": 0.123,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-10c75133dc13ebf2ce1ee3c9e4cfc44e297e1e2dce15a65421279c49cd938268.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134342",
+      "fabricId": "sdg-hmnl134342",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/f40cb9ffc1d3579855d3dc57440eae57c887b724d6e5766a14a07f017a46fc94.webp",
+      "sha256": "f40cb9ffc1d3579855d3dc57440eae57c887b724d6e5766a14a07f017a46fc94",
+      "encodedBytes": 25354,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "ddc129a2b88a2a00d8753de4b58a858af790634663d337261259b068e70e703a",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#cebfa6",
+        "tonalStrength": 0.118,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d1c7d8ee550c104fcee91f1b22b74a079667fbcbe89a69617bb81c6d6bccfbc5.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134343",
+      "fabricId": "sdg-hmnl134343",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/e8f93bbcbb82eb7a80c9582cede31664bd461254fdca25c3206f0b16812f6348.webp",
+      "sha256": "e8f93bbcbb82eb7a80c9582cede31664bd461254fdca25c3206f0b16812f6348",
+      "encodedBytes": 33248,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "a8aac781275285656efd17ea93123ee489737b74d832418463fceb3a244cfec8",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#c8bfa9",
+        "tonalStrength": 0.124,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-399720abc128f8c03da04ba583c2b760cbd6dd86593b41bf784e0820c96f8cbe.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134344",
+      "fabricId": "sdg-hmnl134344",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/ea430aa6faa8837fc06cc4f35f531c203568f7a9b83f6babcce2da9bff4566f1.webp",
+      "sha256": "ea430aa6faa8837fc06cc4f35f531c203568f7a9b83f6babcce2da9bff4566f1",
+      "encodedBytes": 35844,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "045d01bce8d27141650afb26bad221909904908374d2cec1c57b89e6db2f7e48",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#dedad7",
+        "tonalStrength": 0.119,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ec8b4e8c87ca43bd0541bf29d647b8735173e52ca8d4c49b038132d2a536034d.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134501",
+      "fabricId": "sdg-hmnl134501",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/559cb8c348ec50bbe2260af2dfcaa06248ad564bbe2b4e4960d0ba2878888909.webp",
+      "sha256": "559cb8c348ec50bbe2260af2dfcaa06248ad564bbe2b4e4960d0ba2878888909",
+      "encodedBytes": 27162,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "dd8496e680e0567c31f2477b5dc635c6c4142e15a32560a88b627e21971d4338",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#ab3a36",
+        "tonalStrength": 0.11,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-13ba3ba2dc7b7d1d31b023b025b86fa356619df1ea5ca296681648c071844829.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134502",
+      "fabricId": "sdg-hmnl134502",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/8f82c4ee12ed541324a541bcd9375e4adc7be5d36f7a28bd3d67348546ced4da.webp",
+      "sha256": "8f82c4ee12ed541324a541bcd9375e4adc7be5d36f7a28bd3d67348546ced4da",
+      "encodedBytes": 24948,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "c26759d4f7e72da18d071f279618f4d25d5d1d485b9410364843e57219749354",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#a03040",
+        "tonalStrength": 0.096,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-46b88dddf342ebe5ec58ebbe9f4bde45e19c3d3f71719b52c17bf7bf9dddedfd.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134504",
+      "fabricId": "sdg-hmnl134504",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/c6cf4521bdd35f4ee2eb17d6d50e46456d6a5ce96ffd7a1dede4de236e577ca1.webp",
+      "sha256": "c6cf4521bdd35f4ee2eb17d6d50e46456d6a5ce96ffd7a1dede4de236e577ca1",
+      "encodedBytes": 38380,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "cb7d73b3ce3a17b07909ae5163a7f38b984a444f02e7cd448e6580daf94e5239",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#7ca177",
+        "tonalStrength": 0.321,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-817563a716c9be1bebf0e8bb0b73271734aad0393032c90bb70ce14d4386e0ce.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134505",
+      "fabricId": "sdg-hmnl134505",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/91835307ccd875f0d0ad2a3ba7530918cc3415a58dae83a8172c9c9aaaf16cc9.webp",
+      "sha256": "91835307ccd875f0d0ad2a3ba7530918cc3415a58dae83a8172c9c9aaaf16cc9",
+      "encodedBytes": 46620,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "77a5870b81b3d561508077f6831f0a11a14f0fd19296bb09995255e80247f619",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#a77560",
+        "tonalStrength": 0.52,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e93548ad358fc18deefdd6926f2117cbd6d8e8977a7dcec1a3e797810fcdbae2.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hmnl134506",
+      "fabricId": "sdg-hmnl134506",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/b4e2a71bd0f41f871065ed8bd3407d58c04b89db87caa6618136afe46d61154b.webp",
+      "sha256": "b4e2a71bd0f41f871065ed8bd3407d58c04b89db87caa6618136afe46d61154b",
+      "encodedBytes": 35412,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "6d3031bf424635f6f117c0757d3e17bc2f91c5dd321afa0b66e40a1f38f7e58c",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#e58b9a",
+        "tonalStrength": 0.106,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-16baa45a7ce50692b6cb076e110b385c99faff6bfa5b7862083fa8dfb9705c5d.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hsgr131863",
+      "fabricId": "sdg-hsgr131863",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/550753923b0041e53f30ebe0ad1775cd25c90cb54856a318b024b49fbfdbde4a.webp",
+      "sha256": "550753923b0041e53f30ebe0ad1775cd25c90cb54856a318b024b49fbfdbde4a",
+      "encodedBytes": 46132,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "bc68322df5e5dcabec87134f8d34aa9aed4de43d9f34ab3ac5d1a943a273979a",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#d7c8b8",
+        "tonalStrength": 0.519,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8051a8b45f75a509cedea17727063bd7d23a4c1e9037822283bd9f4054c427d7.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-hsgr131873",
+      "fabricId": "sdg-hsgr131873",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/c5f0c0e6edf21b56d94b828c11f3c02bc6851af76510872310c873bbf7028125.webp",
+      "sha256": "c5f0c0e6edf21b56d94b828c11f3c02bc6851af76510872310c873bbf7028125",
+      "encodedBytes": 42232,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "1ab5a6768dae8dd4ecf46b73a41462833cc141ad8d1fe19c1ebef22304c3ac8a",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#c3c1c1",
+        "tonalStrength": 0.599,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1a78b85f77788b21270025af415023f8edc279a06034d8f171dfe09c827534ed.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133211",
+      "fabricId": "sdg-npec133211",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/d7b1f04ea1f6c75a2fcf3a4886296b71fd9b10c2aa3bf69d27d5193f9cd79587.webp",
+      "sha256": "d7b1f04ea1f6c75a2fcf3a4886296b71fd9b10c2aa3bf69d27d5193f9cd79587",
+      "encodedBytes": 35140,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "82c01449cda64b6148e8a1a8a4aef86f5d8f3c60bdf5d51401ed6467028de493",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#677879",
+        "tonalStrength": 0.107,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e65f14f42e3422069f720ebf5a6ad14d0a7a3810f52f364047af986cf874b877.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133214",
+      "fabricId": "sdg-npec133214",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/6e9d97d8bc1dcf9c4f6f348742e72c30e30ec7a4eb87b44484f855c5bf4f53a5.webp",
+      "sha256": "6e9d97d8bc1dcf9c4f6f348742e72c30e30ec7a4eb87b44484f855c5bf4f53a5",
+      "encodedBytes": 36514,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "58a495e56613513d93f77683aca08dfc2e7c29a994bc70348916c536666be5c5",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#565d6f",
+        "tonalStrength": 0.154,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-074aef7e284d0d212b8cdeaa4270c25c965aae8335aa6030d1f510ae724519e3.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133215",
+      "fabricId": "sdg-npec133215",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/15d3118a095a98a39da154f8261fca9b6ad8e5ad3d4bcc55716b77923320e52b.webp",
+      "sha256": "15d3118a095a98a39da154f8261fca9b6ad8e5ad3d4bcc55716b77923320e52b",
+      "encodedBytes": 30796,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "e6fd9cbc17987e2ecffb6912665bb70206eb66c69ea89dce86b9d3e374ad60a2",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#3b3a47",
+        "tonalStrength": 0.1,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-024d896b140d0749da651bd5dba9e507a6ea45cc8dea9a496b16ce79fb2a59ce.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133217",
+      "fabricId": "sdg-npec133217",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/6c9a618aead82c93508fed9303df3774b5af2bc116c128ddf11cb78be499cfc8.webp",
+      "sha256": "6c9a618aead82c93508fed9303df3774b5af2bc116c128ddf11cb78be499cfc8",
+      "encodedBytes": 24870,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "05929b5c8f7daa66104717113b318d65cad8f2c47af24d1b93993037adad8ad3",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#3b4739",
+        "tonalStrength": 0.091,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a5c198e3f248b72c1d5d3dc8c22a4e98b3386dd9bda4963778d8a7dedac07f71.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133218",
+      "fabricId": "sdg-npec133218",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/71fdc281d43aedbaaedc688f1e4b306b50656f2a927b3d73b4f86de58a7a5751.webp",
+      "sha256": "71fdc281d43aedbaaedc688f1e4b306b50656f2a927b3d73b4f86de58a7a5751",
+      "encodedBytes": 37084,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "9fdac0cd8514883e0d1c2d53b277c3f8886c1522989cd35b736b86f469e0726b",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#798577",
+        "tonalStrength": 0.162,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4289522babe6b5985aef0199106a72981f92fca3ce53067b04915b1b37b5b8c0.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133219",
+      "fabricId": "sdg-npec133219",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/13e2da51cb1c775d599ee95550f669af84b62a7cebe915185fef97ce56c641c4.webp",
+      "sha256": "13e2da51cb1c775d599ee95550f669af84b62a7cebe915185fef97ce56c641c4",
+      "encodedBytes": 35264,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "1332d19b240098fd308e58655d25cd5e1ecfc58ee1dd396c3677730f075a5cee",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#59674c",
+        "tonalStrength": 0.19,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4d7671e06141651da723730d1e57bcf54cc17aedb19e25bf56a8d38cc550225c.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133220",
+      "fabricId": "sdg-npec133220",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/071f8381778bc9a3b6cc6fb899c8363c76681e4fd4267e5f76b7b8805463c6b7.webp",
+      "sha256": "071f8381778bc9a3b6cc6fb899c8363c76681e4fd4267e5f76b7b8805463c6b7",
+      "encodedBytes": 26864,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "1330116340166e009957d425141cb53f11f37ebca8cd946592e3bf906de8eac3",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#8b8958",
+        "tonalStrength": 0.1,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a12c09bfc723c849b4684986dbe86a38afdb5feaaf8c661416b8cf9a7500bdb0.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133222",
+      "fabricId": "sdg-npec133222",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/1f6370d6071187a84ba4cf81acd28f2c7361bb4e741ef70505b9958fdd4f4532.webp",
+      "sha256": "1f6370d6071187a84ba4cf81acd28f2c7361bb4e741ef70505b9958fdd4f4532",
+      "encodedBytes": 28048,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "e7736e81baca7aa9d55f61c30b26b418ef13866640f852e3a8e1bf1a7427d100",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#ae9e7a",
+        "tonalStrength": 0.142,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f2549cd415c674f63d391ff6a16b572bd013a4489704373805c36b0438f0faff.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133223",
+      "fabricId": "sdg-npec133223",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/a7d8e06bccea544df685189d72fd95643993f368c3468d1ee212845ea17793c0.webp",
+      "sha256": "a7d8e06bccea544df685189d72fd95643993f368c3468d1ee212845ea17793c0",
+      "encodedBytes": 35418,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "8d4e37be6d33d5e625ff06254e48e05c41c884040158841e071b1ccfefd25526",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#a1814e",
+        "tonalStrength": 0.117,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d94f572cd79f267625c5651237e337244b2f9a1dd67a0f659429fc751c3d9307.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133224",
+      "fabricId": "sdg-npec133224",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/4f503adc927b22721dde37a9f4070a3de457c0e08a4cc5c3498d7ffd467134b3.webp",
+      "sha256": "4f503adc927b22721dde37a9f4070a3de457c0e08a4cc5c3498d7ffd467134b3",
+      "encodedBytes": 25684,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "2d5332d7598765d9fc8aa55e6a4f1b9a9654573a0d75af48dcff1bb731cf7753",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#b39650",
+        "tonalStrength": 0.058,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-debae135056a11649dd799fbb9a01064fecff58007fd98a7bc14152c34496707.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133225",
+      "fabricId": "sdg-npec133225",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/4679f1b8e4eaa29fb7ec9ec522849c1bb08a243f748a60556928da8a6cb798c7.webp",
+      "sha256": "4679f1b8e4eaa29fb7ec9ec522849c1bb08a243f748a60556928da8a6cb798c7",
+      "encodedBytes": 25216,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "39931c9f4bcd85681ef2f8a5f2daaef7e96805309b52452602e42dfbff2dfc9b",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#bc9256",
+        "tonalStrength": 0.047,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-cd6df6df364f50c79d209529c744a7afd458bb0a255f5f40e3b3914aa2f8aee7.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133226",
+      "fabricId": "sdg-npec133226",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/01353d8c399a306c9ea4ad929ae81c6c382045974ef1a9fa5593638423b74e52.webp",
+      "sha256": "01353d8c399a306c9ea4ad929ae81c6c382045974ef1a9fa5593638423b74e52",
+      "encodedBytes": 32596,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "24ca4fe121ca7771f1332dacada9d58812a830a41f107667cbef2a075003363f",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#ac814c",
+        "tonalStrength": 0.08,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7f4f47d7eed903182ff9e1f507593bbb17901584c9c9acc3f25380d6c13d5061.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133227",
+      "fabricId": "sdg-npec133227",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/839c656352589ddde52266d2e90b82ee2e3aa73edef0fc546db3f5d37fa46128.webp",
+      "sha256": "839c656352589ddde52266d2e90b82ee2e3aa73edef0fc546db3f5d37fa46128",
+      "encodedBytes": 36066,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "3900a19b56f1a955e76eed4001c72278743b9aeb9ce26e31c5e97bff76694f09",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#ab8a6b",
+        "tonalStrength": 0.127,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2e1cfd3cfef46e3c07bcaa7b456699643fe3d24a55fadcf3b611dedb57e6ed5a.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133228",
+      "fabricId": "sdg-npec133228",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/d222a6caaeca14f99b70b0896ca70e2f5e6610d40f340f3e645594ff56c017c3.webp",
+      "sha256": "d222a6caaeca14f99b70b0896ca70e2f5e6610d40f340f3e645594ff56c017c3",
+      "encodedBytes": 34020,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "92038660ba4d408a8bf4e32ff084d1ced7f4d9faa45e21450ff6cdfd384a91f3",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#623a3a",
+        "tonalStrength": 0.071,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ffd6277063689ef61e1132b3aa672cea9ca5ce6052494493df4950fa1ebf5c3a.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133229",
+      "fabricId": "sdg-npec133229",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/77373b250126ac9cc8d6ec5595b68c2bab26c89e02074423fe1890dc6e0aa9c8.webp",
+      "sha256": "77373b250126ac9cc8d6ec5595b68c2bab26c89e02074423fe1890dc6e0aa9c8",
+      "encodedBytes": 30758,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "994d9458d0a9d1bfb31b6aa2188d66cc8668df264f445b1af45a7a320b68c4dd",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#6f3333",
+        "tonalStrength": 0.052,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9c1471a2309329151b7ab00a5df07a39cfa9ecd06b992cc14cacd2ee8b1781f7.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133231",
+      "fabricId": "sdg-npec133231",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/d726a4c6147297667e8578a8a0befede2766d5cd8ae678d711488bb39f6394c2.webp",
+      "sha256": "d726a4c6147297667e8578a8a0befede2766d5cd8ae678d711488bb39f6394c2",
+      "encodedBytes": 27786,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "a71d26ebb6299f34a17a8920b4b35a5663de018c7287cd3a627ae79a13af7c26",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#8d5c46",
+        "tonalStrength": 0.134,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-aa220638471fe0e4f85ad7f9c56448d62e5b42ec0d1b91c0e0f10c507c233712.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133239",
+      "fabricId": "sdg-npec133239",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/86a28fcc4529e16e00eaa560ec5226186b4046b89b07ed4e8e5ccc0e78cbd35e.webp",
+      "sha256": "86a28fcc4529e16e00eaa560ec5226186b4046b89b07ed4e8e5ccc0e78cbd35e",
+      "encodedBytes": 35436,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "21f4b96c6dde284024edcb733eed99cdebc2b09654582e46c094787d9016851c",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#bbada2",
+        "tonalStrength": 0.116,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7298c7ef68a065f191ca113f3c5721282e19ec22b2f5ad7a4ffef6c698274732.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
+    },
+    {
+      "id": "sdg-npec133241",
+      "fabricId": "sdg-npec133241",
+      "mode": "plain",
+      "image": "/room-visualiser/textures/18b1e46c99afb6b67eda6c961edf1314e2eb2fa47bc6ab619e4eeff0c63d408a.webp",
+      "sha256": "18b1e46c99afb6b67eda6c961edf1314e2eb2fa47bc6ab619e4eeff0c63d408a",
+      "encodedBytes": 24682,
+      "pixelSize": [
+        2048,
+        1113
+      ],
+      "scaleClaim": "Colour and general fabric character only; no physical weave scale claim.",
+      "sourceSha256": "d3f9e0f867b4ea100b65d56bf34ac5a35025b6eb8ed5683d812b3443000e0ced",
+      "colourMaster": {
+        "algorithm": "plain-colour-v1",
+        "representativeColour": "#6d6b6c",
+        "tonalStrength": 0.085,
+        "materialProfile": "GENERAL_TEXTILE"
+      },
+      "publication": {
+        "method": "plain-colour-v1",
+        "sourceImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f14ca3f86561721554ece09f165886dfcebaae794453618cbbe10de07eb4f141.jpg",
+        "sourceEvidence": "Existing evidence-based no-repeat classification; identity-matched approved image; design-family flat-image review; central ROI colour/layout screen."
+      }
     }
   ]
 }

@@ -1,0 +1,199 @@
+{
+  "detailCamera": {
+    "position": [
+      -60,
+      229,
+      118
+    ],
+    "target": [
+      -77,
+      218,
+      0
+    ],
+    "fov": 36,
+    "aspect": 1.6
+  },
+  "cushions": {
+    "count": 2,
+    "spec": {
+      "widthCm": 45,
+      "heightCm": 45,
+      "maximumDepthCm": 14,
+      "zone": "CUSHION_UPHOLSTERY",
+      "colourMode": "solid",
+      "segments": 20
+    },
+    "placements": [
+      {
+        "position": [
+          -32,
+          80,
+          -41
+        ],
+        "rotation": [
+          -0.28,
+          0,
+          -0.08
+        ],
+        "parent": "Upholstered bed and linen",
+        "sizeCm": [
+          45,
+          45
+        ],
+        "zone": "CUSHION_UPHOLSTERY"
+      },
+      {
+        "position": [
+          33,
+          80,
+          -41
+        ],
+        "rotation": [
+          -0.28,
+          0,
+          0.09
+        ],
+        "parent": "Upholstered bed and linen",
+        "sizeCm": [
+          45,
+          45
+        ],
+        "zone": "CUSHION_UPHOLSTERY"
+      }
+    ]
+  },
+  "id": "bedroom",
+  "name": "Bedroom",
+  "file": "bedroom.glb",
+  "sha256": "c51aceb0d471d7835de770157ae40d19e88c5af468f9e1d142acfd9ba6ffa239",
+  "bytes": 852956,
+  "vertices": 19415,
+  "triangles": 35388,
+  "drawMeshes": 16,
+  "materials": [
+    "FLOOR_MATERIAL",
+    "WALL_MATERIAL",
+    "CEILING_MATERIAL",
+    "TRIM",
+    "GLASS_VIEW",
+    "RUG_FIXED",
+    "DARK_TIMBER",
+    "HEADBOARD",
+    "LINEN_FIXED",
+    "BED_COVER",
+    "CUSHION_UPHOLSTERY",
+    "TIMBER",
+    "BRASS",
+    "SHADE",
+    "CERAMIC",
+    "FOLIAGE"
+  ],
+  "editableZones": [
+    "CEILING_MATERIAL",
+    "WALL_MATERIAL",
+    "FLOOR_MATERIAL",
+    "BED_COVER",
+    "HEADBOARD",
+    "CUSHION_UPHOLSTERY"
+  ],
+  "assets": [
+    {
+      "name": "Custom architectural shell",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Bound wool rug",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Upholstered bed and linen",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Bed-end timber bench",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Lamps, ceramics, books, foliage and window joinery",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    }
+  ],
+  "camera": {
+    "position": [
+      275,
+      230,
+      730
+    ],
+    "target": [
+      -22,
+      112,
+      90
+    ],
+    "fov": 43,
+    "aspect": 1.6
+  },
+  "mount": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "opening": {
+      "width": 212,
+      "bottom": 10,
+      "top": 238,
+      "backZ": -25
+    },
+    "track": {
+      "width": 234,
+      "y": 251.4
+    },
+    "clearClothEnvelope": {
+      "x": [
+        -115,
+        115
+      ],
+      "y": [
+        0,
+        250
+      ],
+      "z": [
+        -18,
+        18
+      ]
+    }
+  },
+  "units": "metres in GLB; room root x100 in centimetre preview",
+  "supports": {
+    "closed": true,
+    "open": true,
+    "motionReady": true
+  },
+  "lighting": {
+    "hemisphere": 1.05,
+    "key": 0.55,
+    "areaKey": 5,
+    "areaFill": 1.2,
+    "exposure": 1.08
+  }
+}

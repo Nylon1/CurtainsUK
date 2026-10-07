@@ -1,0 +1,169 @@
+{
+  "detailCamera": {
+    "position": [
+      -60,
+      229,
+      118
+    ],
+    "target": [
+      -77,
+      218,
+      0
+    ],
+    "fov": 36,
+    "aspect": 1.6
+  },
+  "cushions": {
+    "count": 0,
+    "spec": {
+      "widthCm": 45,
+      "heightCm": 45,
+      "maximumDepthCm": 14,
+      "zone": "CUSHION_UPHOLSTERY",
+      "colourMode": "solid",
+      "segments": 20
+    },
+    "placements": []
+  },
+  "id": "office",
+  "name": "Office",
+  "file": "office.glb",
+  "sha256": "98876fd5600c2403caecaa9decd0123240b9c019a5cb9612c12b46210263e7f1",
+  "bytes": 876880,
+  "vertices": 19822,
+  "triangles": 36844,
+  "drawMeshes": 18,
+  "materials": [
+    "FLOOR_MATERIAL",
+    "WALL_MATERIAL",
+    "CEILING_MATERIAL",
+    "TRIM",
+    "GLASS_VIEW",
+    "RUG_FIXED",
+    "DESK_SURFACE",
+    "BRASS",
+    "DARK_METAL",
+    "SCREEN",
+    "CERAMIC",
+    "SHADE",
+    "PAPER",
+    "LINEN_FIXED",
+    "DARK_TIMBER",
+    "OFFICE_CHAIR_UPHOLSTERY",
+    "TIMBER",
+    "FOLIAGE"
+  ],
+  "editableZones": [
+    "CEILING_MATERIAL",
+    "WALL_MATERIAL",
+    "FLOOR_MATERIAL",
+    "DESK_SURFACE",
+    "OFFICE_CHAIR_UPHOLSTERY"
+  ],
+  "assets": [
+    {
+      "name": "Custom architectural shell",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Bound wool rug",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Timber writing desk",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Upholstered swivel task chair",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Low open bookcase",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Lamps, ceramics, books, foliage and window joinery",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    }
+  ],
+  "camera": {
+    "position": [
+      240,
+      210,
+      690
+    ],
+    "target": [
+      -10,
+      116,
+      60
+    ],
+    "fov": 43,
+    "aspect": 1.6
+  },
+  "mount": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "opening": {
+      "width": 212,
+      "bottom": 10,
+      "top": 238,
+      "backZ": -25
+    },
+    "track": {
+      "width": 234,
+      "y": 251.4
+    },
+    "clearClothEnvelope": {
+      "x": [
+        -115,
+        115
+      ],
+      "y": [
+        0,
+        250
+      ],
+      "z": [
+        -18,
+        18
+      ]
+    }
+  },
+  "units": "metres in GLB; room root x100 in centimetre preview",
+  "supports": {
+    "closed": true,
+    "open": true,
+    "motionReady": true
+  },
+  "lighting": {
+    "hemisphere": 1.05,
+    "key": 0.55,
+    "areaKey": 5,
+    "areaFill": 1.2,
+    "exposure": 1.08
+  }
+}

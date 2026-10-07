@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 import assets from '../../lib/room-visualiser/assets.json';
+import fixed140 from '../../lib/room-visualiser/fixed140-assignments.json';
 import {searchVisualiserFabrics} from '../../lib/room-visualiser/visualiser-catalogue';
 import type {searchRetailFabrics} from '../../lib/fabric-master/retail-repository';
 
@@ -38,6 +39,20 @@ test('visualiser searches only approved, current, scale-matched fabrics across p
   assert.equal(new Set([...first.fabrics, ...second.fabrics].map(fabric => fabric.id)).size, 26);
   assert.ok(calls.every(call => call.get('query') === 'flowers' && call.get('colour') === 'pink' && call.get('pattern') === 'floral'));
   assert.ok(calls.every(call => !call.has('brand') && !call.has('sample')));
+});
+
+test('visualiser Browse includes published FIXED140 assignments and routes them to V1', async () => {
+  const id = 'pt-1204-212';
+  assert.ok(id in fixed140.assignments);
+  const browse = (async (_params: URLSearchParams, options: {candidateIds?: ReadonlySet<string>}) => {
+    assert.equal(options.candidateIds?.has(id), true);
+    return {sourceIds:[id],total:1,facets:{},fabrics:[{id}]};
+  }) as typeof searchRetailFabrics;
+  const result = await searchVisualiserFabrics(new URLSearchParams(), browse);
+  assert.equal(result.fabrics.length, 1);
+  assert.equal(result.fabrics[0].id, id);
+  assert.equal(result.fabrics[0].roomPreview.available, true);
+  assert.equal(result.fabrics[0].roomPreview.rendererProfile, 'FIXED140_SINGLE_WIDTH_V1');
 });
 
 test('sparse supported results scan past empty Browse pages but stop at a bounded refinement state', async () => {

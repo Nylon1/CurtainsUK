@@ -1,15 +1,20 @@
 import assets from './assets.json';
+import fixed140 from './fixed140-assignments.json';
 import type {searchRetailFabrics} from '../fabric-master/retail-repository';
 import {withRoomPreview} from './server';
 
 const PAGE_SIZE = 24;
 const MAX_SOURCE_PAGES = 16;
 const ALLOWED_FILTERS = ['query', 'colour', 'pattern'] as const;
-const candidateIds = new Set(assets.fabrics.map(fabric => fabric.fabricId));
+const candidateIds = new Set([
+  ...assets.fabrics.map(fabric => fabric.fabricId),
+  ...Object.keys(fixed140.assignments),
+]);
 
 // Browse still supplies the live catalogue facts, ordering, and governed
-// filters. The approved asset manifest only restricts which identities the
-// visualiser may hydrate; it is not a second catalogue.
+// filters. The approved STANDARD manifest and FIXED140 assignment registry
+// only restrict which identities the visualiser may hydrate; neither is a
+// second catalogue.
 export async function searchVisualiserFabrics(
   params: URLSearchParams,
   browse?: typeof searchRetailFabrics,

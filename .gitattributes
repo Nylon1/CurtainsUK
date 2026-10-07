@@ -8,3 +8,7 @@
 # This already-applied migration's stored statement contains CRLF bytes.
 /supabase/migrations/20260927192625_naila_prepared_only_read.sql -text whitespace=cr-at-eol,-blank-at-eof
 /supabase/migrations/20260926113327_pt_ingestion_orchestration.sql -text whitespace=cr-at-eol
+# V1 asset URLs are content hashes. Keep renderer source and shipped modules
+# byte-identical on Windows and Linux checkouts.
+/lib/room-visualiser/runtime/fixed140-v1/** text eol=lf
+/public/room-visualiser/fixed140-v1/** text eol=lf

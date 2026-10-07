@@ -1,7 +1,7 @@
 /** Package only V1 modules. Never regenerate or re-version the STANDARD pack. */
-import {readFile,writeFile,readdir,mkdir,cp,rm} from 'node:fs/promises';
+import {readFile,writeFile,readdir,mkdir,rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {resolve,relative} from 'node:path';
+import {resolve,relative,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 
 const regression=spawnSync(process.execPath,['--test','tests/room-visualiser/fixed140-v1.test.mjs'],{stdio:'inherit'});
@@ -17,16 +17,21 @@ async function files(dir){
   return result.sort();
 }
 const hash=createHash('sha256');let bytes=0;
+const packaged=[];
 for(const path of await files(root)){
-  const data=await readFile(path);
+  const data=Buffer.from((await readFile(path,'utf8')).replace(/\r\n/g,'\n'),'utf8');
   hash.update(relative(root,path).replaceAll('\\','/'));hash.update(data);
-  if(path!==resolve(root,'customer.html'))bytes+=data.length;
+  if(path!==resolve(root,'customer.html')){bytes+=data.length;packaged.push({path,data});}
 }
 const version=hash.digest('hex').slice(0,24);
 const assetBase=`/room-visualiser/fixed140-v1/${version}/`;
 const out=resolve(`public${assetBase}`);
 await mkdir(out,{recursive:true});
-await cp(root,out,{recursive:true,filter:path=>path!==resolve(root,'customer.html')});
+for(const {path,data} of packaged){
+  const destination=resolve(out,relative(root,path));
+  await mkdir(dirname(destination),{recursive:true});
+  await writeFile(destination,data);
+}
 await rm(resolve(out,'customer.html'),{force:true});
 await writeFile('lib/room-visualiser/fixed140-build.json',JSON.stringify({version,assetBase,bytes},null,2)+'\n');
 console.log(JSON.stringify({version,assetBase,bytes}));

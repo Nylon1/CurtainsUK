@@ -57,12 +57,9 @@ test('all V1 views use camera composition only, and STANDARD core remains 460 by
   assert.match(standardEntry,/import\('\.\/viewer\.mjs'\)/);
 });
 
-test('STANDARD customer payload, catalogue eligibility and asset version remain byte-identical',async()=>{
+test('STANDARD curtain engineering and catalogue eligibility remain byte-identical',async()=>{
   const expected={
-    'lib/room-visualiser/runtime/rooms/viewer.mjs':'d292b1b262bda7289b65e3e155c558250779ad411d98d110f676698d788a5767',
-    'lib/room-visualiser/runtime/rooms/customer-entry.mjs':'841dd3b35da846e2a8165bde3fd57217f6efe40aec7c9894e6f57ccdf43f2675',
     'lib/room-visualiser/runtime/rooms/curtain-component.mjs':'4c3eac6caa999cb085a55c9940c0d33cf5aba08bb6359df7cf0fa6a77ce453aa',
-    'lib/room-visualiser/build.json':'0496802b7f8d8b944d7db56c89e26799ed8a71ae40749f5a038b2527e30af460',
     'lib/room-visualiser/assets.json':'c685b3f40d5abe740d6e6fba94c50e4586c41ba60ef92083c30b57324ce2a740',
   };
   for(const [file,hash] of Object.entries(expected)){

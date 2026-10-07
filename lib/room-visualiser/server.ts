@@ -11,19 +11,16 @@ import {resolveRendererProfile,v1AssignmentForId,type Fixed140Registry} from './
 export async function visualiserPage(request:Request,registry:Fixed140Registry=fixed140 as Fixed140Registry) {
   const url=new URL(request.url);
   const origin=['localhost','127.0.0.1'].includes(url.hostname)?url.origin:'https://curtainsuk-production-api.vercel.app';
-  const assignment=v1AssignmentForId(url.searchParams.get('fabric')??'',assets.fabrics,registry);
-  const html=assignment
-    ?await readFile(join(process.cwd(),'lib/room-visualiser/runtime/fixed140-v1/customer.html'),'utf8')
-    :await readFile(join(process.cwd(),'lib/room-visualiser/runtime/rooms/customer.html'),'utf8');
-  const config=assignment?JSON.stringify(assignment).replaceAll('<','\\u003c'):'';
-  const assetBase=assignment?fixed140Build.assetBase:build.assetBase;
-  return new Response(html.replace('__VISUALISER_ASSET_BASE__',`${origin}${assetBase}`).replace('__STANDARD_ASSET_BASE__',`${origin}${build.assetBase}`).replace('__FIXED140_CONFIG__',config),{
+  const html=await readFile(join(process.cwd(),'lib/room-visualiser/runtime/rooms/customer.html'),'utf8');
+  return new Response(html.replace('__VISUALISER_ASSET_BASE__',`${origin}${build.assetBase}`).replace('__FIXED140_ASSET_BASE__',`${origin}${fixed140Build.assetBase}`),{
     headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'},
   });
 }
 
 type Fabric = {id:string;horizontalRepeatMm?:number|null;verticalRepeatMm?:number|null;patternMatchType?:string|null};
 export function withRoomPreview<T extends Fabric>(fabric:T) {
-  const available=resolveRendererProfile(fabric,assets.fabrics,fixed140 as Fixed140Registry)!=='NOT_ELIGIBLE';
-  return {...fabric,roomPreview:{available,url:available?`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`:null,message:available?null:'Room preview not available for this fabric yet.'}};
+  const profile=resolveRendererProfile(fabric,assets.fabrics,fixed140 as Fixed140Registry);
+  const available=profile!=='NOT_ELIGIBLE';
+  const assignment=profile==='FIXED140_SINGLE_WIDTH_V1'?v1AssignmentForId(fabric.id,assets.fabrics,fixed140 as Fixed140Registry):null;
+  return {...fabric,roomPreview:{available,url:available?`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`:null,message:available?null:'Room preview not available for this fabric yet.',rendererProfile:profile,...(assignment?{assignment}:{})}};
 }

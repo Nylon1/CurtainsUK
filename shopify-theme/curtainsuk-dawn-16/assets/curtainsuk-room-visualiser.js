@@ -18,7 +18,8 @@
         if (!section.isConnected) { stop(); return; }
         try {
           const child = frame.contentWindow;
-          if (child.visualiserCustomer?.proof.ready && child.roomProof?.ready) {
+          if ((child.visualiserCustomer?.proof.ready && child.roomProof?.ready) ||
+              (child.fixed140Proof?.ready && child.fixed140Proof.profile === 'FIXED140_SINGLE_WIDTH_V1')) {
             stop(); section.dataset.state = 'ready'; status.hidden = true; return;
           }
           const stage = child.document.querySelector('#loading-status')?.textContent;

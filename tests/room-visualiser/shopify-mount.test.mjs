@@ -28,6 +28,14 @@ test('native loading waits for both runtime and fabric readiness; never changes 
   assert.equal(m.section.dataset.state,'ready');assert.equal(m.status.hidden,true);
   assert.equal(m.child.roomProof.curtain.progress,.37);assert.equal(m.child.visualiserCustomer.proof.selectedId,'sdg-f1541-01');
 });
+test('native loading accepts a ready frozen V1 renderer without STANDARD globals',()=>{
+  const m=mount('?fabric=pt-1204-212');
+  m.child.fixed140Proof={ready:false,profile:'FIXED140_SINGLE_WIDTH_V1'};m.tick();
+  assert.equal(m.section.dataset.state,'loading');
+  m.child.fixed140Proof.ready=true;m.tick();
+  assert.equal(m.section.dataset.state,'ready');assert.equal(m.status.hidden,true);
+  m.advance(45001);assert.equal(m.section.dataset.state,'ready');
+});
 test('blocked proxy or stalled WebGL has a bounded recoverable fallback',()=>{
   const m=mount('?fabric=sdg-f1541-01');m.advance(45001);
   assert.equal(m.section.dataset.state,'error');assert.equal(m.recovery.hidden,false);

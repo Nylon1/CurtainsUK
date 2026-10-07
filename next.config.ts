@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
       {key:'X-Content-Type-Options',value:'nosniff'},
     ]}];
   },
+  async rewrites() {
+    return [{
+      source: '/room-visualiser/fixed140/:asset',
+      destination: 'https://74iymdcvkhmv4pak.public.blob.vercel-storage.com/room-visualiser/fixed140/:asset',
+    }];
+  },
   async redirects() {
     return [
       {

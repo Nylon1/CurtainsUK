@@ -14,7 +14,7 @@ import { readNailaPreparedSelection } from './naila-prepared-browse';
 import { browseGuideMinorForFabric } from './browse-guide-reader';
 import { publishedFabricProfileUrl } from './fabric-profile-links';
 
-export type RetailReadOptions = { includeIntelligence?: boolean };
+export type RetailReadOptions = { includeIntelligence?: boolean; candidateIds?: ReadonlySet<string> };
 
 export async function retailFabricDetail(id: string, withGuide = false, options: RetailReadOptions = {}) {
   if (!/^[a-zA-Z0-9-]{1,150}$/.test(id)) return null;
@@ -83,11 +83,16 @@ export async function searchRetailFabrics(params: URLSearchParams, options: Reta
   if (error) throw new Error("RETAIL_SEARCH_UNAVAILABLE");
   const value = data as { ids: string[]; total: number; brands: string[]; collections: string[]; guidePrices?: Record<string, number>; facetOptions?: Partial<Record<BrowseFacetKey, { value: string; label: string; count: number }[]>> };
   // At most 24 records are ever hydrated for a response.
-  const fabrics = await hydrateRetailFabrics(value.ids, withGuide, options);
+  // The visualiser can intersect a Browse result page with its separately
+  // approved asset IDs before hydration. Ordinary Browse passes no candidate
+  // set and retains its exact existing query and result behaviour.
+  const candidateIds = options.candidateIds;
+  const fabrics = await hydrateRetailFabrics(candidateIds ? value.ids.filter(id => candidateIds.has(id)) : value.ids, withGuide, options);
   const result = { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(fabric => ({ ...fabric, browseGuide: customerBrowseGuide(value.guidePrices?.[fabric.id]) })) : fabrics,
     page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize),
     facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY,
-      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.facetOptions?.[dimension.key] ?? [] })) } : {}) } };
+      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.facetOptions?.[dimension.key] ?? [] })) } : {}) },
+    ...(candidateIds ? { sourceIds: value.ids } : {}) };
   assertCustomerSafeProjection(result);
   return result;
 }

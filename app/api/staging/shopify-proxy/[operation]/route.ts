@@ -1,4 +1,5 @@
 import {visualiserPage,withRoomPreview} from '@/lib/room-visualiser/server';
+import {searchVisualiserFabrics} from '@/lib/room-visualiser/visualiser-catalogue';
 import { NextResponse } from "next/server";
 import { roomsCommand } from '@/lib/storefront/rooms-server';
 import { roomsCustomerError } from '@/lib/storefront/rooms-core';
@@ -121,6 +122,7 @@ export async function GET(request: Request, context: { params: Promise<{ operati
         const fabric = await retailFabricDetail(params.get("fabric") ?? "", params.get('browseGuide') === '1', visualiser ? {includeIntelligence:false} : {});
         return NextResponse.json({ fabric: fabric ? withRoomPreview(fabric) : null }, { status: fabric ? 200 : 404, headers: PUBLIC_NO_STORE_HEADERS });
       }
+      if (visualiser) return NextResponse.json(await searchVisualiserFabrics(params), { headers: PUBLIC_NO_STORE_HEADERS });
       const naila = params.get('naila') === '1';
       if (naila) return NextResponse.json(await serveNailaCatalog(params, nailaEnabled(), searchNailaRetailFabrics), { headers: PUBLIC_NO_STORE_HEADERS });
       const result=await searchRetailFabrics(params,visualiser?{includeIntelligence:false}:{});

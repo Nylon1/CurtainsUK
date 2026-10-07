@@ -1,0 +1,320 @@
+{
+  "profile": "FIXED140_SINGLE_WIDTH_V1",
+  "schemaVersion": 1,
+  "frozenCoreSha256": "9a7dfb1c474d0a672a72bbf2f51b160ba976b28b868c5c1c695a91ad2e78b0fa",
+  "baseline": {
+    "file": "tests/room-visualiser/fixtures/fixed140-six-widths.jpg",
+    "sha256": "5420c71df2554713c4083fc05c2cecb4c51e3f65fba7c1d6c2bb00bda7ccb204"
+  },
+  "contract": {
+    "finishedPairWidthCm": 140,
+    "finishedPanelWidthCm": 70,
+    "dropCm": 120,
+    "panels": 2,
+    "wavesPerPanel": 5,
+    "columns": 220,
+    "rows": 24,
+    "wavePitchCm": 14,
+    "flatPanelRule": "min(usableFabricWidthCm,140)",
+    "widthOver140Crop": "centred 140 cm physical source interval",
+    "sourceScale": "sourceWidthPx / usableFabricWidthCm; identical X and Y",
+    "sourceHeight": "no extension",
+    "internalPanelJoins": 0
+  },
+  "cases": [
+    {
+      "widthCm": 120,
+      "sourceDimensionsPx": [
+        1200,
+        1600
+      ],
+      "sourcePlan": {
+        "pixelsPerCmX": 10,
+        "pixelsPerCmY": 10,
+        "sourcePhysicalCm": [
+          120,
+          160
+        ],
+        "flatPanelWidthCm": 120,
+        "cropStartCm": 0,
+        "sourceURange": [
+          0,
+          1
+        ],
+        "dropCovered": true,
+        "sourceVAtHem": 0.25
+      },
+      "metrics": {
+        "vertices": 11050,
+        "triangles": 21120,
+        "finishedPairWidthCm": 140,
+        "flatPanelWidthCm": 120,
+        "flatPairWidthCm": 240,
+        "fullness": 1.7142857142857142,
+        "renderedRowLengthCm": [
+          119.99999509326089,
+          120.0000032540144
+        ],
+        "depthRangeCm": 8.605898380279541,
+        "wavePitchCm": 14,
+        "angleRangeRad": [
+          1.3746503763713918,
+          1.3765422867045345
+        ],
+        "minimumForwardStepCm": -0.5454559326171875,
+        "maxVerticalStrain": 0.00021864318307551756
+      },
+      "hashes": {
+        "position": "c175b659e6705b96b597c1c879a6a9871a5c7d8a85c673dddc80922355b91191",
+        "materialCm": "a285ac77660713910c142ade09058313731c90450a9253d291959c798b532071",
+        "indices": "113443c6eeed4848204c6c871fb7a71f13e4bd0b55935f048d3845c2f69a53f2",
+        "uv": "cb02ba3c901b604a56f19b611ccf6c7b5ad7b737b55c5c4bf7e2c922d8dac303"
+      }
+    },
+    {
+      "widthCm": 135,
+      "sourceDimensionsPx": [
+        1350,
+        1600
+      ],
+      "sourcePlan": {
+        "pixelsPerCmX": 10,
+        "pixelsPerCmY": 10,
+        "sourcePhysicalCm": [
+          135,
+          160
+        ],
+        "flatPanelWidthCm": 135,
+        "cropStartCm": 0,
+        "sourceURange": [
+          0,
+          1
+        ],
+        "dropCovered": true,
+        "sourceVAtHem": 0.25
+      },
+      "metrics": {
+        "vertices": 11050,
+        "triangles": 21120,
+        "finishedPairWidthCm": 140,
+        "flatPanelWidthCm": 135,
+        "flatPairWidthCm": 270,
+        "fullness": 1.9285714285714286,
+        "renderedRowLengthCm": [
+          134.99999382811959,
+          135.0000079628014
+        ],
+        "depthRangeCm": 10.002444744110107,
+        "wavePitchCm": 14,
+        "angleRangeRad": [
+          1.4953510733002986,
+          1.4988467787579793
+        ],
+        "minimumForwardStepCm": -0.6136361956110505,
+        "maxVerticalStrain": 0.000256334919647383
+      },
+      "hashes": {
+        "position": "add0a590f4b7b1913a6e75347fc9113af80490c4827d526a01aec9f2bd5807b9",
+        "materialCm": "dc358df4e1840a86324c0a8bd377dab2aa1f1e4b9d35bc3f5f83915427be8a9c",
+        "indices": "113443c6eeed4848204c6c871fb7a71f13e4bd0b55935f048d3845c2f69a53f2",
+        "uv": "f789a837968492f663e3701f2e26b6e6f981a2de785a00c340cd0020f9fc74ce"
+      }
+    },
+    {
+      "widthCm": 137,
+      "sourceDimensionsPx": [
+        1370,
+        1600
+      ],
+      "sourcePlan": {
+        "pixelsPerCmX": 10,
+        "pixelsPerCmY": 10,
+        "sourcePhysicalCm": [
+          137,
+          160
+        ],
+        "flatPanelWidthCm": 137,
+        "cropStartCm": 0,
+        "sourceURange": [
+          0,
+          1
+        ],
+        "dropCovered": true,
+        "sourceVAtHem": 0.25
+      },
+      "metrics": {
+        "vertices": 11050,
+        "triangles": 21120,
+        "finishedPairWidthCm": 140,
+        "flatPanelWidthCm": 137,
+        "flatPairWidthCm": 274,
+        "fullness": 1.957142857142857,
+        "renderedRowLengthCm": [
+          136.99999371588058,
+          137.00000365441122
+        ],
+        "depthRangeCm": 10.181963920593262,
+        "wavePitchCm": 14,
+        "angleRangeRad": [
+          1.5092152671850272,
+          1.5129241462318532
+        ],
+        "minimumForwardStepCm": -0.6227273941040039,
+        "maxVerticalStrain": 0.0002615365428428884
+      },
+      "hashes": {
+        "position": "bfe26c08f68b20a3586f06805e2e4d01dc220b9455a1047d8306d75f24f1d0c9",
+        "materialCm": "3efd9994d906c0131dee0fa6fb3915d198122c53422205f61a42920f70553ce7",
+        "indices": "113443c6eeed4848204c6c871fb7a71f13e4bd0b55935f048d3845c2f69a53f2",
+        "uv": "591ca0de8458493be8a4445c23d8612b3caf0a69f43953e8d658984d1f14eb0a"
+      }
+    },
+    {
+      "widthCm": 140,
+      "sourceDimensionsPx": [
+        1400,
+        1600
+      ],
+      "sourcePlan": {
+        "pixelsPerCmX": 10,
+        "pixelsPerCmY": 10,
+        "sourcePhysicalCm": [
+          140,
+          160
+        ],
+        "flatPanelWidthCm": 140,
+        "cropStartCm": 0,
+        "sourceURange": [
+          0,
+          1
+        ],
+        "dropCovered": true,
+        "sourceVAtHem": 0.25
+      },
+      "metrics": {
+        "vertices": 11050,
+        "triangles": 21120,
+        "finishedPairWidthCm": 140,
+        "flatPanelWidthCm": 140,
+        "flatPairWidthCm": 280,
+        "fullness": 2,
+        "renderedRowLengthCm": [
+          139.99999452181322,
+          140.00000485590223
+        ],
+        "depthRangeCm": 10.448821544647217,
+        "wavePitchCm": 14,
+        "angleRangeRad": [
+          1.5291994481876827,
+          1.5332269734508372
+        ],
+        "minimumForwardStepCm": -0.6363639831542969,
+        "maxVerticalStrain": 0.00026941747373632197
+      },
+      "hashes": {
+        "position": "6f45c0e46dca17e30bfc56d0184d53b0725a873aca157907ceb813aa929fccd6",
+        "materialCm": "d34c00ecec05986d47d19f2499aa413a34120f37b5563cfac35018294f457535",
+        "indices": "113443c6eeed4848204c6c871fb7a71f13e4bd0b55935f048d3845c2f69a53f2",
+        "uv": "4ee453af0213d29543fe4d00184100ed660c52143e664c51f57ca9a838f90343"
+      }
+    },
+    {
+      "widthCm": 150,
+      "sourceDimensionsPx": [
+        1500,
+        1600
+      ],
+      "sourcePlan": {
+        "pixelsPerCmX": 10,
+        "pixelsPerCmY": 10,
+        "sourcePhysicalCm": [
+          150,
+          160
+        ],
+        "flatPanelWidthCm": 140,
+        "cropStartCm": 5,
+        "sourceURange": [
+          0.03333333333333333,
+          0.9666666666666667
+        ],
+        "dropCovered": true,
+        "sourceVAtHem": 0.25
+      },
+      "metrics": {
+        "vertices": 11050,
+        "triangles": 21120,
+        "finishedPairWidthCm": 140,
+        "flatPanelWidthCm": 140,
+        "flatPairWidthCm": 280,
+        "fullness": 2,
+        "renderedRowLengthCm": [
+          139.99999452181322,
+          140.00000485590223
+        ],
+        "depthRangeCm": 10.448821544647217,
+        "wavePitchCm": 14,
+        "angleRangeRad": [
+          1.5291994481876827,
+          1.5332269734508372
+        ],
+        "minimumForwardStepCm": -0.6363639831542969,
+        "maxVerticalStrain": 0.00026941747373632197
+      },
+      "hashes": {
+        "position": "6f45c0e46dca17e30bfc56d0184d53b0725a873aca157907ceb813aa929fccd6",
+        "materialCm": "d34c00ecec05986d47d19f2499aa413a34120f37b5563cfac35018294f457535",
+        "indices": "113443c6eeed4848204c6c871fb7a71f13e4bd0b55935f048d3845c2f69a53f2",
+        "uv": "3a52209db59e099da1bf06f7ce71d40898d8e98849519e70f1d286927a9168c6"
+      }
+    },
+    {
+      "widthCm": 160,
+      "sourceDimensionsPx": [
+        1600,
+        1600
+      ],
+      "sourcePlan": {
+        "pixelsPerCmX": 10,
+        "pixelsPerCmY": 10,
+        "sourcePhysicalCm": [
+          160,
+          160
+        ],
+        "flatPanelWidthCm": 140,
+        "cropStartCm": 10,
+        "sourceURange": [
+          0.0625,
+          0.9375
+        ],
+        "dropCovered": true,
+        "sourceVAtHem": 0.25
+      },
+      "metrics": {
+        "vertices": 11050,
+        "triangles": 21120,
+        "finishedPairWidthCm": 140,
+        "flatPanelWidthCm": 140,
+        "flatPairWidthCm": 280,
+        "fullness": 2,
+        "renderedRowLengthCm": [
+          139.99999452181322,
+          140.00000485590223
+        ],
+        "depthRangeCm": 10.448821544647217,
+        "wavePitchCm": 14,
+        "angleRangeRad": [
+          1.5291994481876827,
+          1.5332269734508372
+        ],
+        "minimumForwardStepCm": -0.6363639831542969,
+        "maxVerticalStrain": 0.00026941747373632197
+      },
+      "hashes": {
+        "position": "6f45c0e46dca17e30bfc56d0184d53b0725a873aca157907ceb813aa929fccd6",
+        "materialCm": "d34c00ecec05986d47d19f2499aa413a34120f37b5563cfac35018294f457535",
+        "indices": "113443c6eeed4848204c6c871fb7a71f13e4bd0b55935f048d3845c2f69a53f2",
+        "uv": "e5fa42373466186aa24dea9326cd2423a004de405052d45bb2fa381bebc969d3"
+      }
+    }
+  ]
+}

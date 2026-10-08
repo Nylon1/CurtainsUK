@@ -15,7 +15,20 @@ test('V1 tranche never reselects STANDARD or non-retail/ambiguous imagery',()=>{
   assert.equal(preflight(fabric,new Set()),null);
   assert.equal(preflight({...fabric,staging_catalog_visible:false},new Set()),'NOT_CURRENT_RETAIL');
   assert.equal(preflight({...fabric,main_count:2},new Set()),'AMBIGUOUS_APPROVED_MAIN');
-  assert.equal(preflight({...fabric,horizontal_repeat_mm:0,vertical_repeat_mm:0},new Set()),'NO_PATTERN_EVIDENCE');
+  assert.equal(preflight({...fabric,horizontal_repeat_mm:0,vertical_repeat_mm:0},new Set()),
+    'NO_PATTERN_OR_PLAIN_EVIDENCE');
+});
+
+test('no-repeat candidates require an exact governed plain classification and provisional selection',()=>{
+  const noRepeat={...fabric,horizontal_repeat_mm:null,vertical_repeat_mm:null};
+  assert.equal(preflight({...noRepeat,selection_basis:'BROWSE_PLAIN_PROVISIONAL',
+    pattern_class:'plain'},new Set()),null);
+  assert.equal(preflight({...noRepeat,selection_basis:'BROWSE_TEXTURED_PLAIN_PROVISIONAL',
+    pattern_class:'textured-plain'},new Set()),null);
+  assert.equal(preflight({...noRepeat,selection_basis:'BROWSE_PLAIN_PROVISIONAL',
+    pattern_class:'stripe'},new Set()),'NO_PATTERN_OR_PLAIN_EVIDENCE');
+  assert.equal(preflight({...noRepeat,selection_basis:'PUBLISHED_REPEAT',
+    pattern_class:'plain'},new Set()),'NO_PATTERN_OR_PLAIN_EVIDENCE');
 });
 
 test('Tranche 3 rejects both existing renderer manifests before source work',()=>{

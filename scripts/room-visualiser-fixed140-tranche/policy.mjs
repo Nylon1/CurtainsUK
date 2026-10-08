@@ -19,7 +19,11 @@ export function physicalWidth(row) {
 export function preflight(row,standardIds) {
   if(!row?.fabric_id||standardIds.has(row.fabric_id))return 'STANDARD_OR_INVALID_ID';
   if(!row.staging_catalog_visible||!row.storefront_selectable||row.lifecycle_state==='DISCONTINUED')return 'NOT_CURRENT_RETAIL';
-  if(!(Number(row.horizontal_repeat_mm)>0||Number(row.vertical_repeat_mm)>0))return 'NO_PATTERN_EVIDENCE';
+  const hasRepeat=Number(row.horizontal_repeat_mm)>0||Number(row.vertical_repeat_mm)>0;
+  const governedPlain=
+    row.selection_basis==='BROWSE_PLAIN_PROVISIONAL'&&row.pattern_class==='plain'||
+    row.selection_basis==='BROWSE_TEXTURED_PLAIN_PROVISIONAL'&&row.pattern_class==='textured-plain';
+  if(!hasRepeat&&!governedPlain)return 'NO_PATTERN_OR_PLAIN_EVIDENCE';
   const width=physicalWidth(row);
   if(width.cm===null||width.cm<70||width.cm>200)return 'INVALID_PHYSICAL_WIDTH';
   if(!row.source_url||!/^https:\/\/cdn\.shopify\.com\/[^?#]+\.(?:jpe?g|webp)$/i.test(row.source_url))return 'APPROVED_MAIN_MISSING_OR_UNSAFE_URL';

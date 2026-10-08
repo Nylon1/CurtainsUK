@@ -1,5 +1,5 @@
 /** Resumable, unpublished V1 source preparation. No catalogue or assignment writes. */
-import {readFile,readdir,appendFile,mkdir,writeFile,rename,stat,unlink} from 'node:fs/promises';
+import {readFile,readdir,appendFile,mkdir,writeFile,rename,stat,statfs,unlink} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import {createHash} from 'node:crypto';
 import sharp from 'sharp';
@@ -41,13 +41,23 @@ const standardIds=new Set(manifest.fabrics.map(f=>f.fabricId));
 if(standardIds.size!==3137)throw Error('STANDARD manifest count changed; reselect tranche');
 const assignedBytes=await readFile(resolve('lib/room-visualiser/fixed140-assignments.json'));
 const assignedIds=new Set(Object.keys(JSON.parse(assignedBytes).assignments));
-if(assignedIds.size!==2940)throw Error('Existing V1 assignment count changed; reselect tranche');
+if(assignedIds.size!==5266)throw Error('Existing V1 assignment count changed; reselect tranche');
 assertUnassigned(rows,standardIds,assignedIds);
 const standardHash=createHash('sha256').update(await readFile(resolve('lib/room-visualiser/assets.json'))).digest('hex');
 const assignedHash=createHash('sha256').update(assignedBytes).digest('hex');
 const snapshotHash=createHash('sha256').update(await readFile(snapshot)).digest('hex');
 await mkdir(output,{recursive:true});
 await mkdir(join(output,'prepared-assets'),{recursive:true});
+async function freeGiB(){
+  const disk=await statfs(output);
+  return Number(disk.bavail)*Number(disk.bsize)/2**30;
+}
+async function assertDiskHeadroom(){
+  const free=await freeGiB();
+  if(free<25.15)throw Error(`C: storage hard-stop reserve reached: ${free.toFixed(3)} GiB free`);
+  if(free<30)console.warn(`C: storage warning: ${free.toFixed(3)} GiB free`);
+}
+await assertDiskHeadroom();
 const ledgerPath=join(output,'ledger.jsonl');
 let completed=[];
 try{completed=(await readFile(ledgerPath,'utf8')).trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);}
@@ -70,6 +80,7 @@ async function checkpoint(){
 async function processOne(row){
   const base={candidate_order:row.candidate_order,fabric_id:row.fabric_id,supplier:row.supplier_id,
     design_id:row.design_id,design:row.design,colourway:row.colour_name,
+    selection_basis:row.selection_basis,
     lifecycle_state:row.lifecycle_state,width:physicalWidth(row),source_url:row.source_url,
     source_sha256:null,source_width_px:null,source_height_px:null,source_height_cm:null,
     asset_path:null,asset_bytes:0,standard_manifest_sha256:standardHash,
@@ -122,6 +133,7 @@ async function processOne(row){
 }
 const started=Date.now();
 for(let batchStart=completed.length;batchStart<stopAfter;batchStart+=batchSize){
+  await assertDiskHeadroom();
   const end=Math.min(stopAfter,batchStart+batchSize),pending=new Map();
   let next=batchStart;
   function start(){while(next<end&&pending.size<concurrency){
@@ -143,6 +155,7 @@ for(let batchStart=completed.length;batchStart<stopAfter;batchStart+=batchSize){
     start();
     if(completed.length%25===0)console.log(JSON.stringify({processed:completed.length,last:result.fabric_id,
       elapsedSeconds:Math.round((Date.now()-started)/1000)}));
+    if(completed.length%25===0)await assertDiskHeadroom();
   }
 }
 await checkpoint();

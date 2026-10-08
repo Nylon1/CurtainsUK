@@ -22,15 +22,25 @@ if(rows.length!==count||rows.some((row,index)=>
   throw Error('Hydrated source rows do not match the exact Browse-selected ID order');
 if(rows.some(row=>!row.supplier_id||!row.design_id))
   throw Error('A Browse-selected ID has no governed source record');
-if(rows.some(row=>!(Number(row.horizontal_repeat_mm)>0||Number(row.vertical_repeat_mm)>0)))
-  throw Error('A selected V1 ID has lost its repeat-metadata eligibility');
+if(rows.some((row,index)=>{
+  const basis=selected[index].selection_basis;
+  const hasRepeat=Number(row.horizontal_repeat_mm)>0||Number(row.vertical_repeat_mm)>0;
+  if(basis==='PUBLISHED_REPEAT')return !hasRepeat;
+  if(basis==='BROWSE_PLAIN_PROVISIONAL')return hasRepeat||row.pattern_class!=='plain';
+  if(basis==='BROWSE_TEXTURED_PLAIN_PROVISIONAL')return hasRepeat||row.pattern_class!=='textured-plain';
+  return true;
+}))throw Error('A selected V1 ID has lost its published repeat or provisional plain evidence');
 const generation=selected[0].browse_generation;
 if(selected.some(row=>row.browse_generation!==generation))throw Error('Mixed Browse generations');
-const body=rows.map((row,index)=>JSON.stringify({...row,browse_generation:selected[index].browse_generation})).join('\n')+'\n';
+const body=rows.map((row,index)=>JSON.stringify({...row,
+  selection_basis:selected[index].selection_basis,
+  browse_generation:selected[index].browse_generation})).join('\n')+'\n';
 await writeFile(resolve(arg('output')),body,{flag:'wx'});
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 console.log(JSON.stringify({
   selected:rows.length,browse_generation:generation,
+  published_repeat:rows.filter((row,index)=>selected[index].selection_basis==='PUBLISHED_REPEAT').length,
+  provisional_plain:rows.filter((row,index)=>selected[index].selection_basis!=='PUBLISHED_REPEAT').length,
   selected_snapshot_sha256:hash(await readFile(resolve(arg('selected')))),
   hydrated_snapshot_sha256:hash(body),
   suppliers:Object.fromEntries([...new Set(rows.map(row=>row.supplier_id))]

@@ -15,7 +15,7 @@ test('eligibility is additive and never modifies catalogue or commerce data',()=
  const result=withRoomPreview(original);assert.equal(result.roomPreview.available,true);assert.equal(result.sampleAvailable,false);assert.equal(result.fabricProfileUrl,'existing');assert.ok(!('roomPreview' in original));
  assert.equal(withRoomPreview({...original,verticalRepeatMm:464}).roomPreview.available,false);
  assert.equal(withRoomPreview({...original,patternMatchType:'HALF_DROP'}).roomPreview.available,false);
- assert.equal(withRoomPreview({id:'pt-4270-147'}).roomPreview.message,'Room preview not available for this fabric yet.');
+ assert.equal(withRoomPreview({id:'pt-3697-575'}).roomPreview.message,'Room preview not available for this fabric yet.');
  assert.equal(withRoomPreview({id:'sdg-f1239-30'}).roomPreview.available,true);
 });
 test('visualiser stays behind signed proxy authentication and excludes FI reads',()=>{

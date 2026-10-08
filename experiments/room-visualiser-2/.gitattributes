@@ -1,0 +1,5 @@
+# Preserve downloaded assets and their source checksums on Windows checkouts.
+assets/**/*.gltf -text
+assets/**/*.bin -text
+assets/**/*.jpg -text
+assets/**/*.webp -text

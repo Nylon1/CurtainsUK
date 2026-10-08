@@ -14,7 +14,7 @@ const explicit:Fixed140Assignment={rendererProfile:'FIXED140_SINGLE_WIDTH_V1',fa
 const assigned:Fixed140Registry={version:1,assignments:{[explicit.fabricId]:explicit}};
 
 test('the published V1 registry is explicit and every approved STANDARD asset retains precedence',()=>{
-  assert.equal(Object.keys(empty.assignments).length,2940);
+  assert.equal(Object.keys(empty.assignments).length,5266);
   for(const asset of assets.fabrics){
     const record={id:asset.fabricId,horizontalRepeatMm:(asset.hRepeat??0)*10,verticalRepeatMm:(asset.vRepeat??0)*10};
     assert.equal(resolveRendererProfile(record,assets.fabrics,empty),'STANDARD',asset.fabricId);

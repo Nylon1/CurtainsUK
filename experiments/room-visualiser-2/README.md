@@ -1,4 +1,6 @@
-> Source merge authorized 9 October 2026: [scope and release boundary](MERGE-SCOPE.md). These sources remain a local prototype; customer activation and deployment are separate.
+> **Release update — 9 October 2026:** the approved four-room design is now integrated and live through PR #164. The [current release/source-of-truth record](../../docs/room-visualiser-2-customer-release.md) is authoritative for production. This folder remains the archived local review; the no-publication statements below describe its earlier phases. Its server is pinned to the original runtime pack. The customer implementation lives under `lib/room-visualiser/runtime/rooms/environment/`.
+
+> Historical source merge: [scope and release boundary](MERGE-SCOPE.md). PR #163 merged these prototype sources; the later PR #164 performed customer activation and deployment.
 
 > Latest fabric review: [before/after across all four rooms](http://127.0.0.1:4382/rooms-review?review=fabric-detail), now including plain and fine-pattern comparisons. [Repeated GPU checks and retained rendering](FABRIC-EFFICIENCY-RESULTS.md). [First material pass](FABRIC-DETAIL-RESULTS.md). Original geometry, repeat scale and artwork preserved; no publication.
 

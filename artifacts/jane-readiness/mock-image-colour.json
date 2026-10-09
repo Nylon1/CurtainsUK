@@ -1,0 +1,76 @@
+{
+  "id": "image-colour",
+  "reviewCriteria": [
+    "Explain image processing is not connected",
+    "No exact colour guarantee; sample advice uses verified source"
+  ],
+  "transcript": [
+    {
+      "customer": "I have uploaded a screenshot. Tell me exactly what colour my walls are.",
+      "advice": {
+        "text": "Screenshot processing is not connected in this development preview, so I cannot see an image. Describe the room colours and what feels wrong, or share the structured result fields with your permission.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Can you guarantee the curtains will match exactly in real life?",
+      "advice": {
+        "text": "I cannot guarantee an exact colour match from a screen. A warm ivory may feel softer beside timber, but its undertone can shift with daylight and evening lamps. Compare physical samples against your walls and furnishings before deciding.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [
+          "guide:samples:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:samples:v1",
+          "source": "shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-trust-footer.liquid",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": []
+    },
+    {
+      "customer": "What should I look for when comparing samples?",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

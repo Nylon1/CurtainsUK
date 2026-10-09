@@ -1,0 +1,13 @@
+✔ cloud RPC persistence: consent, durable creation replay, recovery, ownership, revision and deletion (3960.1456ms)
+✔ two workers: lease contention, expired lease fencing, CAS and released lease recovery (3193.8818ms)
+✔ distributed rate and durable spend limits: no reset on new worker, concurrent hard cap, ambiguous failures charged (3049.9646ms)
+✔ verified cloud principals reject revoked, anonymous, forged owner and wrong issuer tokens (2.0614ms)
+✔ protected HTTP composition uses verified principal, consent and awaited distributed limits (3201.9459ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13841.681

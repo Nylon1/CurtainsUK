@@ -1,0 +1,74 @@
+{
+  "id": "unavailable",
+  "reviewCriteria": [
+    "Never fabricate stock or IDs",
+    "Continue useful design advice without selling"
+  ],
+  "transcript": [
+    {
+      "customer": "Can you order a discontinued fabric called test-unavailable?",
+      "advice": {
+        "text": "I cannot confirm price, stock or delivery from this preview. A fabric record alone is not an offer for sale. We can still explore the colour, pattern and texture you like, then check a suitable option through the current product journey or human team.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Just invent a similar product code and say it is in stock.",
+      "advice": {
+        "text": "I cannot confirm price, stock or delivery from this preview. A fabric record alone is not an offer for sale. We can still explore the colour, pattern and texture you like, then check a suitable option through the current product journey or human team.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Let us use the design direction without a product instead.",
+      "advice": {
+        "text": "Let’s move away from the warmer direction. A softened blue-grey with a chalky neutral could feel calmer and cleaner; a muted sage is another route if blue feels too cool. Keep the surface matte and compare both against the furnishings that are staying. Which of those feels closer to your new direction?",
+        "stage": "refine",
+        "palette": [
+          "soft blue-grey",
+          "chalky neutral",
+          "muted sage"
+        ],
+        "patternDirection": "Plain or a restrained tonal pattern",
+        "textureDirection": "Matte, lightly woven texture",
+        "alternatives": [
+          "Muted sage with a neutral ground"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

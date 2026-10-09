@@ -35,7 +35,17 @@ function render(){
     log.replaceChildren(bubble('assistant','Welcome to the studio. What would you like your room to feel like, and what isn’t quite working at the moment?'));log.dataset.session=session.id;
   }
   // Keep existing log nodes so assistive technology announces only new replies.
-  for(const m of session.messages.slice(Math.max(0,log.children.length-1))){const node=bubble(m.role,m.text);node.dataset.message=m.id;log.append(node);}
+  for(const m of session.messages.slice(Math.max(0,log.children.length-1))){
+    const node=bubble(m.role,m.text);node.dataset.message=m.id;
+    if(m.fabrics?.length){const cards=document.createElement('div');cards.className='verified-fabrics';
+      for(const fabric of m.fabrics){
+        const a=document.createElement('a');a.href=fabric.url;a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label','View '+fabric.design+' in '+fabric.colour+', fabric '+fabric.id);
+        const img=document.createElement('img');img.src=fabric.imageUrl;img.alt=fabric.design+' · '+fabric.colour;img.loading='lazy';img.width=120;img.height=120;
+        const label=document.createElement('span');label.textContent=fabric.design+' · '+fabric.colour;
+        const identity=document.createElement('small');identity.textContent=fabric.id;a.append(img,label,identity);cards.append(a);
+      }node.append(cards);
+    }log.append(node);
+  }
   log.scrollTop=log.scrollHeight;
   const summary=session.summary;if(summary){$('palette').replaceChildren(...summary.palette.map(colour=>{const span=document.createElement('span');span.textContent=colour;return span;}));$('pattern').textContent=summary.patternDirection;$('texture').textContent=summary.textureDirection;$('alternatives').textContent=summary.alternatives.length?'Another direction: '+summary.alternatives.join(' · '):'';$('next-steps').textContent=summary.nextSteps.join(' · ');}
 }

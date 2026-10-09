@@ -1,0 +1,94 @@
+{
+  "id": "return-context",
+  "reviewCriteria": [
+    "Retain calm objective while revising plainness",
+    "Distinguish authorised result context from authoritative product facts"
+  ],
+  "transcript": [
+    {
+      "customer": "My lounge has oak flooring; I want it calm.",
+      "advice": {
+        "text": "For a calm lounge with oak flooring, I’d start with softly layered neutrals rather than a strong contrast: warm ivory, oatmeal or a gentle stone shade. A plain curtain with subtle woven texture would add interest without making the room feel busy. The best undertone depends on your oak—golden oak can make some cooler greys feel rather stark.\n\nIf you’d prefer a little colour, muted sage could be a lovely alternative, bringing a quiet contrast to the wood.\n\nWhat colours are your walls and sofa? And does the room get plenty of daylight, or feel quite shaded?",
+        "stage": "understand",
+        "palette": [
+          "Warm ivory",
+          "Oatmeal",
+          "Gentle stone",
+          "Muted sage as an alternative"
+        ],
+        "patternDirection": "Plain or very understated pattern for a calm effect.",
+        "textureDirection": "Subtle woven texture with a soft, matt appearance.",
+        "alternatives": [
+          "Muted sage for a gentle colour contrast with the oak."
+        ],
+        "questions": [
+          "What colours are your walls and sofa?",
+          "Does the room get plenty of daylight, or feel quite shaded?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "After trying ivory in the visualiser it feels too plain. Could we revisit that?",
+      "advice": {
+        "text": "Absolutely—if ivory feels too plain, let’s bring in some gentle definition while keeping the lounge calm. Against oak flooring, muted sage or a soft olive-grey could give the curtains more presence without creating a sharp contrast. A subtle woven texture would add depth, too.\n\nIf you’d rather stay neutral, a deeper oatmeal with a quiet, small-scale pattern could feel more considered than flat ivory. Calm needn’t mean colourless; it can come from softened colours and restrained pattern.\n\nWhat colours are your walls and sofa? Was it the ivory colour that felt bland, or the lack of pattern?",
+        "stage": "refine",
+        "palette": [
+          "Muted sage",
+          "Soft olive-grey",
+          "Deeper oatmeal"
+        ],
+        "patternDirection": "Plain with tonal depth, or a quiet small-scale pattern rather than a bold motif.",
+        "textureDirection": "Subtle woven texture to add depth without visual busyness.",
+        "alternatives": [
+          "Deeper oatmeal with a quiet small-scale pattern if you prefer to remain neutral."
+        ],
+        "questions": [
+          "What colours are your walls and sofa?",
+          "Was it the ivory colour that felt bland, or the lack of pattern?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Keep the calm feeling, but add a little depth.",
+      "advice": {
+        "text": "Yes—let’s keep the softness, but move away from flat ivory. A muted sage with a subtle woven texture would be my first direction: it introduces gentle colour alongside the oak, while the weave adds depth without a busy pattern.\n\nIf you’d rather stay neutral, try a mid-tone oatmeal or soft mushroom with a slight tonal variation. The aim is a little more definition, not a dramatic contrast.\n\nWhat colours are your walls and sofa? That will help us choose between the greener and warmer neutral directions.",
+        "stage": "refine",
+        "palette": [
+          "Muted sage",
+          "Mid-tone oatmeal",
+          "Soft mushroom"
+        ],
+        "patternDirection": "Plain or very subtle tonal variation rather than a pronounced pattern.",
+        "textureDirection": "A softly woven texture to add depth without visual busyness.",
+        "alternatives": [
+          "Mid-tone oatmeal or soft mushroom for a calm neutral direction with more definition than ivory."
+        ],
+        "questions": [
+          "What colours are your walls and sofa?"
+        ],
+        "nextSteps": [
+          "Choose the green or neutral direction once the wall and sofa colours are known."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

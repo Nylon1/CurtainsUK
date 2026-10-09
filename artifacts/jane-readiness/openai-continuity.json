@@ -1,0 +1,93 @@
+{
+  "id": "continuity",
+  "reviewCriteria": [
+    "Remember fixed furnishings and dislike across turns",
+    "No fabricated decisions; distinguish outstanding questions"
+  ],
+  "transcript": [
+    {
+      "customer": "My bedroom has pale pink walls and a grey carpet; I prefer matte textures.",
+      "advice": {
+        "text": "With pale pink walls and a grey carpet, I’d start with a matte, softly textured curtain in warm stone or muted rose-taupe. These could bridge the pink and grey without adding shine, keeping the bedroom gentle rather than overly sweet. A plain weave with subtle variation would give depth without a busy pattern.\n\nIf you’d prefer more contrast, muted sage could introduce a quiet colour accent; its undertone would need to sit comfortably with both the walls and carpet.\n\nDoes your grey carpet lean warm and greige, or cool and silvery? And do you want the curtains to blend quietly into the room or make more of a feature?",
+        "stage": "understand",
+        "palette": [
+          "Warm stone",
+          "Muted rose-taupe",
+          "Muted sage as an alternative"
+        ],
+        "patternDirection": "Plain, with subtle woven variation rather than a prominent motif.",
+        "textureDirection": "Matte, softly textured weave without sheen.",
+        "alternatives": [
+          "Muted sage for a gentle colour contrast."
+        ],
+        "questions": [
+          "Does your grey carpet lean warm and greige, or cool and silvery?",
+          "Would you like the curtains to blend into the room or make more of a feature?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Please remember I dislike strong patterns.",
+      "advice": {
+        "text": "Absolutely — I’ll keep strong patterns out of our direction. With your pale pink walls, grey carpet and preference for matte textures, a plain fabric with a gentle woven texture would add depth without making the bedroom feel busy.\n\nWarm stone or muted rose-taupe remain promising for a soft, blended look. Muted sage is an alternative if you’d like a little colour contrast, still in a plain, matte finish.\n\nDoes the grey carpet look warm and greige, or cool and silvery? That will help us choose a curtain undertone that sits comfortably alongside it.",
+        "stage": "refine",
+        "palette": [
+          "Warm stone",
+          "Muted rose-taupe",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain; avoid strong patterns.",
+        "textureDirection": "Matte finish with gentle woven texture.",
+        "alternatives": [
+          "Plain muted sage for quiet colour contrast."
+        ],
+        "questions": [
+          "Does the grey carpet look warm and greige, or cool and silvery?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Summarise what is staying, the options and the open questions.",
+      "advice": {
+        "text": "Staying: your pale pink walls and grey carpet, with matte textures and no strong patterns guiding the curtain choice.\n\nOptions: warm stone or muted rose-taupe for a gentle, blended look; plain muted sage for a little more colour contrast. A subtle woven texture would add depth without making the bedroom feel busy.\n\nStill to settle: the carpet’s undertone and whether you’d like the curtains to blend in or become a quiet feature.",
+        "stage": "conclude",
+        "palette": [
+          "Warm stone",
+          "Muted rose-taupe",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain; avoid strong patterns.",
+        "textureDirection": "Matte with a subtle woven texture.",
+        "alternatives": [
+          "Muted sage for quiet colour contrast rather than a blended neutral scheme."
+        ],
+        "questions": [
+          "Does the grey carpet lean warm and greige, or cool and silvery?",
+          "Would you like the curtains to blend quietly into the room or make more of a feature?"
+        ],
+        "nextSteps": [
+          "Confirm the carpet’s undertone and your preferred level of contrast before narrowing the curtain colour."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

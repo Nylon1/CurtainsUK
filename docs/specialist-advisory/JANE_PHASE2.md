@@ -1,5 +1,7 @@
 # Jane consultation foundation — development implementation
 
+**Historical initial implementation.** The [Jane readiness record](JANE_READINESS.md) supersedes the catalogue HTTP 400, cloud-control implementation and real-model evaluation blockers described here. This report remains evidence for its original revision; it is not the latest activation status.
+
 9 October 2026. Implements Issue #168 on `feat/jane-consultation-phase2-20261009`, based on PR #167 release-candidate commit `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`. Protected production remained `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. This is an isolated mock-backed implementation, not an operational public AI adviser.
 
 ## Run and review

@@ -1,0 +1,213 @@
+{
+  "id": "fabric-search",
+  "reviewCriteria": [
+    "Descriptive tool query includes colour/pattern/texture/composition",
+    "Only verified retail cards, precise identities; knowledge-only not purchasable"
+  ],
+  "transcript": [
+    {
+      "customer": "Can you search for a matte botanical fabric with cotton, in muted olive?",
+      "advice": {
+        "text": "I searched for a matte botanical fabric containing cotton in muted olive, but the retail search returned no matches. The descriptive fabric index is also unavailable, so I can’t verify a suitable fabric just now; that doesn’t mean one doesn’t exist.\n\nYour direction is lovely: a softened olive botanical on a warm ivory or flax ground could feel natural without becoming stark. I’d favour a softly spaced leaf design and a low-sheen cotton or cotton-blend cloth; cotton content alone doesn’t guarantee a matte finish. A tonal olive botanical would be a quieter alternative.\n\nWould you prefer an olive background, or olive leaves on a lighter ground?",
+        "stage": "investigate",
+        "palette": [
+          "muted olive",
+          "warm ivory",
+          "flax"
+        ],
+        "patternDirection": "Softly spaced botanical leaves; alternatively, a quieter tonal olive botanical.",
+        "textureDirection": "Matte, low-sheen cotton or cotton-blend cloth, with finish to be verified.",
+        "alternatives": [
+          "Tonal olive botanical for less contrast"
+        ],
+        "questions": [
+          "Would you prefer an olive background, or olive leaves on a lighter ground?"
+        ],
+        "nextSteps": [
+          "Clarify the preferred background colour before narrowing the fabric search."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "search_fabric_knowledge",
+          "input": {
+            "query": "muted olive matte botanical cotton",
+            "colour": "muted olive",
+            "pattern": "botanical",
+            "texture": "matte",
+            "composition": "cotton"
+          },
+          "status": "unavailable",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": null,
+          "error": "KNOWLEDGE_INDEX_NOT_ACTIVATED"
+        },
+        {
+          "tool": "search_retail_fabrics",
+          "input": {
+            "query": "matte botanical cotton muted olive",
+            "colour": "muted olive",
+            "pattern": "botanical"
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        }
+      ]
+    },
+    {
+      "customer": "Does finding a Fabric Master record mean I can buy it?",
+      "advice": {
+        "text": "No — finding a Fabric Master record doesn’t mean the fabric is available to buy. It can confirm an identity or provide design information, but it may include unpublished or unverified fabrics.\n\nA fabric needs to appear in the approved retail results before I can offer it as a purchase option; even then, that doesn’t confirm current stock or price.\n\nFor your matte, muted-olive botanical containing cotton, the earlier approved retail search returned no matches, and the descriptive knowledge index was unavailable. So we haven’t verified a purchasable option yet.",
+        "stage": "investigate",
+        "palette": [
+          "muted olive"
+        ],
+        "patternDirection": "Botanical",
+        "textureDirection": "Matte fabric containing cotton",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "Could you show approved Shambala fabrics instead?",
+      "advice": {
+        "text": "Yes — I found three approved retail Shambala fabrics by Prestigious Textiles: Amber, Jonquil and Lagoon, all from the Parade Collection.\n\nEach contains 8% cotton and 92% polyester, with a vertical pattern repeat of 41.5 cm. They meet your request for some cotton content, but the returned information doesn’t verify a matte finish, botanical motif or muted-olive colouring, so I wouldn’t present them as confirmed matches to your original brief.\n\nYou can explore the three verified fabric cards here; current price and availability need checking in the product journey. Would you like to keep muted olive as the priority, or explore these Shambala colourways instead?",
+        "stage": "investigate",
+        "palette": [
+          "muted olive"
+        ],
+        "patternDirection": "Botanical preferred; not verified for these Shambala results.",
+        "textureDirection": "Matte preferred; finish not verified for these results.",
+        "alternatives": [
+          "Shambala Amber",
+          "Shambala Jonquil",
+          "Shambala Lagoon"
+        ],
+        "questions": [
+          "Would you like to keep muted olive as the priority, or explore these Shambala colourways instead?"
+        ],
+        "nextSteps": [
+          "Explore the approved Shambala fabric cards.",
+          "Verify current price and availability in the product journey."
+        ],
+        "evidenceIds": [
+          "retail:pt-3697-502",
+          "retail:pt-3697-569",
+          "retail:pt-3697-770"
+        ],
+        "fabricIds": [
+          "pt-3697-502",
+          "pt-3697-569",
+          "pt-3697-770"
+        ]
+      },
+      "citations": [
+        {
+          "id": "retail:pt-3697-502",
+          "source": "Existing governed customer catalogue",
+          "retrievedAt": "2026-10-09T20:59:34.273Z"
+        },
+        {
+          "id": "retail:pt-3697-569",
+          "source": "Existing governed customer catalogue",
+          "retrievedAt": "2026-10-09T20:59:34.275Z"
+        },
+        {
+          "id": "retail:pt-3697-770",
+          "source": "Existing governed customer catalogue",
+          "retrievedAt": "2026-10-09T20:59:34.275Z"
+        }
+      ],
+      "fabrics": [
+        {
+          "id": "pt-3697-502",
+          "brand": "Prestigious Textiles",
+          "design": "SHAMBALA",
+          "colour": "AMBER",
+          "description": "SHAMBALA in AMBER is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.",
+          "imageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9e8fc04b794ea91e372ccd1d0b1f95518ff1fa14d7cd6872fb4fd0ca4863a164.jpg",
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-3697-502-shambala-amber",
+          "availability": "Verify price and availability in the product journey",
+          "purchasable": true,
+          "provenance": {
+            "id": "retail:pt-3697-502",
+            "source": "Existing governed customer catalogue",
+            "retrievedAt": "2026-10-09T20:59:34.273Z"
+          }
+        },
+        {
+          "id": "pt-3697-569",
+          "brand": "Prestigious Textiles",
+          "design": "SHAMBALA",
+          "colour": "JONQUIL",
+          "description": "SHAMBALA in JONQUIL is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.",
+          "imageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-881b4b107584ab2af8f15cec1626ef32ea02c1016ed8fc9bdd984368d271a8b0.jpg",
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-3697-569-shambala-jonquil",
+          "availability": "Verify price and availability in the product journey",
+          "purchasable": true,
+          "provenance": {
+            "id": "retail:pt-3697-569",
+            "source": "Existing governed customer catalogue",
+            "retrievedAt": "2026-10-09T20:59:34.275Z"
+          }
+        },
+        {
+          "id": "pt-3697-770",
+          "brand": "Prestigious Textiles",
+          "design": "SHAMBALA",
+          "colour": "LAGOON",
+          "description": "SHAMBALA in LAGOON is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.",
+          "imageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9136d93cd8b3d1a51a4c4a6783ef6763208663ade671d68c9b9b530c750e8388.jpg",
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-3697-770-shambala-lagoon",
+          "availability": "Verify price and availability in the product journey",
+          "purchasable": true,
+          "provenance": {
+            "id": "retail:pt-3697-770",
+            "source": "Existing governed customer catalogue",
+            "retrievedAt": "2026-10-09T20:59:34.275Z"
+          }
+        }
+      ],
+      "retrievals": [
+        {
+          "tool": "search_retail_fabrics",
+          "input": {
+            "query": "Shambala",
+            "colour": "",
+            "pattern": ""
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "retail:pt-3697-502",
+            "retail:pt-3697-569",
+            "retail:pt-3697-770"
+          ],
+          "resultIds": [
+            "pt-3697-502",
+            "pt-3697-569",
+            "pt-3697-770"
+          ],
+          "resultCount": 3
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

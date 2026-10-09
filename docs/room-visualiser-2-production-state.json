@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-09T09:04:32.607Z",
+  "status": "LIVE_RUNTIME_VERIFIED_DEVICE_QA_PENDING",
+  "fullySynchronised": false,
+  "scope": "Room Visualiser 2 release and its supporting production surfaces; not a full platform/data reconciliation",
+  "source": {
+    "repository": "https://github.com/Nylon1/CurtainsUK",
+    "releaseBranch": "release/production",
+    "deployedCommit": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
+    "deployedGitTree": "1150dad1d55649597d03df2dbaad01348ea98d63",
+    "sourceOnlyPrototypePr": 163,
+    "customerReleasePr": 164,
+    "documentationSyncBranch": "sync/room-visualiser-2-source-of-truth-20261009",
+    "documentationOnlyCommitsMayFollowDeployedCommit": true
+  },
+  "deployment": {
+    "id": "dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD",
+    "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
+    "projectName": "curtainsuk-staging-api",
+    "teamId": "team_U8WXxsKS9LT2DmEllVkOpihz",
+    "url": "https://curtainsuk-staging-1ur8idqz1-hamzas-projects-4ef62f35.vercel.app",
+    "canonicalOrigin": "https://curtainsuk-production-api.vercel.app",
+    "readyState": "READY",
+    "target": "production",
+    "metadataReadAt": "2026-10-09T09:01:01.3173336Z",
+    "metadataReleaseSha": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
+    "metadataGitCommitSha": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
+    "metadataGitCommitRef": "HEAD",
+    "metadataGitTree": null,
+    "treeEvidence": "Independently read from the deployed Git commit; not present in Vercel deployment metadata.",
+    "rollbackDeploymentId": "dpl_FqkeuFMtFwnJAELn9kXChF2eXRfE",
+    "rollbackDeploymentUrl": "https://curtainsuk-staging-j4a9sngq7-hamzas-projects-4ef62f35.vercel.app"
+  },
+  "shopify": {
+    "store": "carpetup.myshopify.com",
+    "publicUrl": "https://www.curtainsuk.com/pages/room-visualiser",
+    "theme": {
+      "id": 182339731835,
+      "role": "main",
+      "name": "CurtainsUK - Curtain Style V1 review"
+    },
+    "nativePageStatus": 200,
+    "signedProxyStatus": 200,
+    "proxyPath": "/apps/curtainsuk-decision/room-visualiser",
+    "proxyAssetBase": "https://curtainsuk-production-api.vercel.app/room-visualiser/d5908d6eaf486ce33e2f72a5/rooms/",
+    "themeFilesChangedByRelease": false,
+    "activeAppConfigAndScopedThemeFilesRecheckedDuringSync": false
+  },
+  "runtime": {
+    "version": "d5908d6eaf486ce33e2f72a5",
+    "assetBase": "/room-visualiser/d5908d6eaf486ce33e2f72a5/",
+    "bytes": 16094157,
+    "fixed140ModulePack": "3ef99c8970b0b92d4b5986f7",
+    "rooms": [
+      "living",
+      "bedroom",
+      "lounge",
+      "office"
+    ],
+    "supportedFabrics": {
+      "standard": 3137,
+      "fixed140": 7866,
+      "unique": 11003
+    },
+    "geometryUvScaleMotionRoutingAssignmentsUnchanged": true
+  },
+  "readback": {
+    "checkedAt": "2026-10-09T09:00:23.259Z",
+    "matchingPackFiles": 96,
+    "packReadbackManifestSha256": "57469873f7ccdb6e3e12a2b49cc47fd4ab5b7c9a842cc574f89a2e1d6e53b9d5",
+    "domains": [
+      {
+        "name": "curtainsuk-production-api.vercel.app",
+        "servesCurrentPack": true,
+        "viewerSha256": "f4ade4c129715f9d9627bca66242620c4a3fdbf4360ea34986337a2c95af35e5",
+        "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
+        "verifiedProjectDomain": true
+      },
+      {
+        "name": "curtainsuk-staging-api.vercel.app",
+        "servesCurrentPack": true,
+        "viewerSha256": "f4ade4c129715f9d9627bca66242620c4a3fdbf4360ea34986337a2c95af35e5",
+        "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
+        "verifiedProjectDomain": true
+      },
+      {
+        "name": "curtainsuk-staging-gateway.vercel.app",
+        "servesCurrentPack": true,
+        "viewerSha256": "f4ade4c129715f9d9627bca66242620c4a3fdbf4360ea34986337a2c95af35e5",
+        "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
+        "verifiedProjectDomain": true
+      }
+    ],
+    "referenceTextures": [
+      {
+        "id": "sdg-f1541-01",
+        "sha256": "0a49d656930f2a2ec09d719a3b597d09d5ef1e2e4f30cc2984fa1c9425638e4b",
+        "width": 2048,
+        "height": 1113,
+        "bytes": 622834,
+        "cacheControl": "public, max-age=31536000, immutable",
+        "cors": "https://www.curtainsuk.com"
+      },
+      {
+        "id": "pt-3697-770",
+        "sha256": "d534dfa793e4626f6515f22a655b3f9ee5221cd66589a9c75ff725a7cf451628",
+        "width": 2048,
+        "height": 1113,
+        "bytes": 1041642,
+        "cacheControl": "public, max-age=31536000, immutable",
+        "cors": "https://www.curtainsuk.com"
+      },
+      {
+        "id": "sdg-dstr237715",
+        "sha256": "92c0e0497edd1fcbcca6a1ec4f2a464fc0579f10d89c830dbf01b705f5d6f620",
+        "width": 2048,
+        "height": 1113,
+        "bytes": 548686,
+        "cacheControl": "public, max-age=31536000, immutable",
+        "cors": "https://www.curtainsuk.com"
+      },
+      {
+        "id": "sdg-f1239-30",
+        "sha256": "77879e5224472b5c2156d773028a3fd8dc515618a8dde36e734f134c6d4af6e2",
+        "width": 2048,
+        "height": 1113,
+        "bytes": 305436,
+        "cacheControl": "public, max-age=31536000, immutable",
+        "cors": "https://www.curtainsuk.com"
+      }
+    ]
+  },
+  "validation": {
+    "localAutomatedTests": 63,
+    "protectedCandidateTests": 133,
+    "protectedTrustedTests": 133,
+    "localCases": 16,
+    "stagedCases": 16,
+    "liveCases": 16,
+    "pixelIdenticalScreenshots": 68,
+    "graphicsFallback": true,
+    "failedRoomImageRetry": true,
+    "physicalIphoneSafari": false
+  },
+  "performance": {
+    "measurementDate": "2026-10-09",
+    "matchedColdDesktopStandard": {
+      "runsPerVariant": 3,
+      "customerNavigationMedianMs": 4889.7,
+      "approvedPrototypeNavigationMedianMs": 4795.9,
+      "originalRendererNavigationMedianMs": 5918.8,
+      "condition": "Fresh Chrome; same machine/GPU, 1440x1000 viewport and fabric; disabled shader disk cache; loopback assets and public catalogue"
+    },
+    "liveSingleRunNavigationMs": {
+      "desktopStandard": 5811.5,
+      "narrowStandard": 5532.4,
+      "desktopFixed140": 5909.9,
+      "narrowFixed140": 5425.6
+    },
+    "liveObservationsAreNotEquivalentToLocalBenchmark": true
+  },
+  "storage": {
+    "checkedDate": "2026-10-09",
+    "freeGiB": 30.09,
+    "targetFreeGiB": 35,
+    "cleanup": "OWNER_DEFERRED",
+    "worktreesEvidenceAndUncommittedWorkPreserved": true
+  },
+  "remaining": [
+    "Physical iPhone Safari acceptance",
+    "Deferred disk-headroom recovery above 35 GiB",
+    "Full active Shopify app-configuration and scoped theme-file read-back not repeated in this sync",
+    "Vercel source-tree metadata absent; include tree attestation with a future authorised runtime release"
+  ],
+  "knownUnrelatedIssue": "External Extendons price-calculator HTTP 403 on this non-product page reproduced with the previous renderer; no visualiser JavaScript/asset/catalogue HTTP errors.",
+  "evidence": {
+    "directory": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009",
+    "releaseReceipt": "release-receipt.json",
+    "sourceReadback": "source-sync-readback.json",
+    "deploymentMetadata": "source-sync-deployment.json",
+    "liveChecks": "live-verification.json",
+    "gallery": "review.html",
+    "releaseReceiptSha256": "82e251638d5fcb43f8a7f2f15867c5c9987bb68b2b88b32b54e7a7fe4e502c43"
+  }
+}

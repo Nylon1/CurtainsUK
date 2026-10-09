@@ -1,5 +1,7 @@
 # CurtainsUK Project Ledger — 16 September 2026
 
+> **Current release pointer — 9 October 2026:** this ledger's dated counts and deployment/theme IDs remain historical. The live four-room Room Visualiser, 11,003 supported fabrics, deployed protected commit `800f42a27a0a6e9beb1abd92821145bf4a4b98c4` and current evidence are recorded in [Room Visualiser source of truth](room-visualiser-2-customer-release.md) and [Production surfaces](PRODUCTION_SURFACES.md). Physical iPhone verification and storage recovery remain outstanding. Preserve the source/evidence below; use `release/production` for current release authority.
+
 > **Purpose:** authoritative handover to prevent repetitive work. Check this ledger before rebuilding, re-auditing or retesting CurtainsUK.
 >
 > This ledger records the read-only Codex audit supplied by the owner on 16 September 2026. Counts are the database snapshot at approximately 16:12 UTC. Newer persisted state supersedes snapshot counts.

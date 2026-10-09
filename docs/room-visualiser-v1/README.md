@@ -1,5 +1,7 @@
 # Room Visualiser v1 release
 
+> Historical release record. The [current four-room release and source of truth](../room-visualiser-2-customer-release.md) supersedes this page's active deployment, catalogue-count and rollback details. Its frozen engineering evidence remains valid; preserve this history. The current release supports 11,003 fabrics and was published through PR #164 on 9 October 2026.
+
 Selective runtime integration from `01226c5cd248dd4a35fe5036acede214f8289cb0`
 and the approved view/texture study `987bc41207764dc2d6bd0d6f46ed56ba91166add`.
 Production base: `0d7b2d9c310d2d157ecb9a3ed5c5ddb4644ff653`, tree

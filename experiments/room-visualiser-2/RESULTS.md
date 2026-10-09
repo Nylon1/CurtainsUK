@@ -1,5 +1,7 @@
 # Phase 1 review results — 8 October 2026
 
+> Historical Phase 1 evidence. The later approved four-room design was integrated and published on 9 October through PR #164; see the [current source of truth](../../docs/room-visualiser-2-customer-release.md). The production/version and performance statements below retain their original Phase 1 meaning.
+
 Experimental local prototype only. Production remains at a83b38fd8f71b967e51ebe0173603df7c29b87d3 / tree 543ef8484e74b3871cadc09ec10fac4e9fc10ccc.
 
 ## Tests and evidence

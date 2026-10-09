@@ -1,0 +1,70 @@
+{
+  "sourceRelease": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
+  "treatment": "WebP encoding only; no scene, colour, crop, fabric, scale or content edits.",
+  "items": [
+    {
+      "room": "living",
+      "mode": "daylight",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/living-desktop-STANDARD-daylight.png",
+      "sourceSha256": "79fb74ee04d5bcd0c2cb3daa47990adcc4aea7a19f353fcf132016bd8fc5a14c",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-living-daylight.webp",
+      "bytes": 35666
+    },
+    {
+      "room": "living",
+      "mode": "evening",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/living-desktop-STANDARD-evening.png",
+      "sourceSha256": "8218e49736f9600261b9a3eccf757487b28ae370c6269c9bf2ef5e57343c2fcd",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-living-evening.webp",
+      "bytes": 33004
+    },
+    {
+      "room": "bedroom",
+      "mode": "daylight",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/bedroom-desktop-STANDARD-daylight.png",
+      "sourceSha256": "e0dd7e30f722b5a2b1ad1cc105ff6a8d84454f3a48b500af14ba1e6f2ee0567f",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-bedroom-daylight.webp",
+      "bytes": 34850
+    },
+    {
+      "room": "bedroom",
+      "mode": "evening",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/bedroom-desktop-STANDARD-evening.png",
+      "sourceSha256": "b691a56d018d3eb6294c8c0f92c1e0bff59e80a4a83a8f303d40ad46a02f1096",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-bedroom-evening.webp",
+      "bytes": 34632
+    },
+    {
+      "room": "lounge",
+      "mode": "daylight",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/lounge-desktop-STANDARD-daylight.png",
+      "sourceSha256": "7fd0bec18319832a480c2b71e21362778d47af9acbf7ab6acbf7a63a62c847f9",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-lounge-daylight.webp",
+      "bytes": 28872
+    },
+    {
+      "room": "lounge",
+      "mode": "evening",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/lounge-desktop-STANDARD-evening.png",
+      "sourceSha256": "a45291845a119147df2cc9d2e0dd816702e041a81ad70918ddc235f4ce19cea8",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-lounge-evening.webp",
+      "bytes": 25546
+    },
+    {
+      "room": "office",
+      "mode": "daylight",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/office-desktop-STANDARD-daylight.png",
+      "sourceSha256": "be334a159eb45c009f860115707b8496f077e8fa8633cc554b467b6a011367c0",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-office-daylight.webp",
+      "bytes": 29594
+    },
+    {
+      "room": "office",
+      "mode": "evening",
+      "source": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009/office-desktop-STANDARD-evening.png",
+      "sourceSha256": "65ed0d9da060b7a51c7721d4cc93e43abdba4a5b7d3b0ba91759f3973c7b411b",
+      "filename": "shopify-theme/curtainsuk-dawn-16/assets/cuk-home-office-evening.webp",
+      "bytes": 26964
+    }
+  ]
+}

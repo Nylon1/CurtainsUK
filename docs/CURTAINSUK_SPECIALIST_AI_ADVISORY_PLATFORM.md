@@ -4,7 +4,7 @@
 
 ## Latest implementation — Jane Phase 2
 
-[Jane implementation, contracts, security, costs and activation steps](specialist-advisory/JANE_PHASE2.md) is the detailed implementation record for Issue #168. The approved Shopify design is preserved. PR #167 now has release-candidate head `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; both required checks passed on that head. The permanent page remains hidden and the 20-file scoped candidate is unpublished.
+[Jane implementation, contracts, security, costs and activation steps](specialist-advisory/JANE_PHASE2.md) is the detailed implementation record for Issue #168. [Draft PR #169](https://github.com/Nylon1/CurtainsUK/pull/169) contains the isolated implementation, initially committed as `076b85a2032224df1b30084c15817b635ebb3d1e`, stacked on PR #167. Its current feature-branch base does not trigger the protected-production checks; those remain mandatory when retargeted for release. The approved Shopify design is preserved. PR #167 now has release-candidate head `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; both required checks passed on that head. The permanent page remains hidden and the 20-file scoped candidate is unpublished.
 
 Jane's functioning **local-only, explicitly scripted mock preview** is `http://127.0.0.1:8789/`, started with `node scripts/jane-preview.mjs`. Implemented code includes versioned profiles, validated tools and handoffs, adaptive conversation contracts, SSE delivery after validation/storage, summaries, cookie/CSRF/rate guards, local encrypted consented save/recovery/deletion, and an inactive OpenAI Responses adapter. The proposed isolated Supabase schema is tested locally, not migrated. The Vercel route fails closed; no remote service was deployed.
 
@@ -12,7 +12,7 @@ The latest run passes **22 Jane/security/storage/adapter tests**, **20 Phase 1 i
 
 Actual bounded Fabric Master reads succeeded and used existing identity indexes. However the existing public retail lookup returned HTTP 400; product recommendations remain blocked pending investigation. Full-master ID/prefix access is implemented, but comprehensive descriptive/semantic search of unpublished records is not yet complete. Screenshot processing, cloud recovery, real-model quality, distributed spending/rate controls and physical-device/screen-reader checks remain pending. No success is claimed for these items.
 
-At the later storage observation C: had **37.44 GiB free**; the previously observed restic process was no longer listed. That does not verify a successful snapshot. No cleanup, backup script, manifest or historical worktree was changed; this development needs a subsequent verified backup. No paid model calls or additional service purchases were made.
+At the final storage observation C: had **37.05 GiB free**; the previously observed restic process was no longer listed. That does not verify a successful snapshot. No cleanup, backup script, manifest or historical worktree was changed; this development needs a subsequent verified backup. No paid model calls or additional service purchases were made.
 
 ## Owner direction and release preparation — Issue #168
 

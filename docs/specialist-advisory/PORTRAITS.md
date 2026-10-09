@@ -59,4 +59,3 @@ Style/medium: Photorealistic premium interior-consultancy editorial portrait, au
 Composition/framing: Square 1:1 image, chest-up portrait. Face looking toward the camera, head centred horizontally in the upper third. Entire head, hair and both shoulders visible, with generous margin above and on both sides. Calm upright posture and an assured, personable smile.
 Lighting/mood: Soft natural window light, gently modelled face, warm neutral colour balance, refined and welcoming.
 Constraints: Exactly one person; fictional adult only; no resemblance to a named real person; no text, labels, logo, watermark, border, collage, props, extra people or hands in frame.
-

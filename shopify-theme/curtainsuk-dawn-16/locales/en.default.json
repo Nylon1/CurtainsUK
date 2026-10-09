@@ -8,6 +8,200 @@
  * ------------------------------------------------------------
  */
 {
+  "advisory_team": {
+    "hero": {
+      "eyebrow": "Meet our team · CurtainsUK",
+      "title": "A little expertise.",
+      "title_emphasis": "A lot of possibility.",
+      "intro": "A new kind of conversation about your home. Meet six specialist AI advisers, each with a different perspective and one shared purpose: understanding what matters to you.",
+      "meet": "Meet the specialists",
+      "how": "The consultation experience",
+      "notice": "Design preview · AI consultations are coming soon",
+      "art_top": "The art of a considered home",
+      "art_bottom": "Different perspectives. Thoughtful possibilities."
+    },
+    "promise": {
+      "specialists": "Six distinct AI specialists",
+      "personal": "Your project. Your priorities.",
+      "free": "Free 10-minute format · coming soon"
+    },
+    "common": {
+      "ai_adviser": "AI adviser · Coming soon",
+      "ai": "AI",
+      "illustrated_identity": "Illustrated specialist identity",
+      "featured": "A specialist perspective · Featured adviser",
+      "explore": "Explore together",
+      "try_asking": "A conversation could begin…",
+      "coming_soon": "Consultations coming soon",
+      "free_consultation": "Free · 10-minute format",
+      "preview": "Preview the consultation",
+      "preview_for": "Preview {{ name }}’s consultation experience",
+      "fabric_intelligence": "Fabric Intelligence",
+      "room_visualiser": "Room Visualiser",
+      "noscript": "Enable JavaScript to try the waiting-room demonstration. The advisers are not available for live conversations yet. You can still explore every profile and our existing tools."
+    },
+    "profiles": {
+      "eyebrow": "Individual minds. A shared philosophy.",
+      "title": "Find your kind of expertise.",
+      "intro": "From the first colour idea to the more technical questions, our forthcoming advisers are being designed to listen, investigate and help you find a considered next step. These are AI identities, not members of our human staff."
+    },
+    "jane": {
+      "name": "Jane",
+      "title": "Fabric & interior design adviser",
+      "approach": "Warm · Imaginative · Thoughtful",
+      "intro": "Start with how you want your room to feel. Jane’s approach brings together colour, pattern, texture and light to help shape a design direction that feels personal, before you choose a fabric.",
+      "expertise": "Colour harmony, pattern scale, textures, curtain headings and the atmosphere of a room.",
+      "question": "I love these colours separately. Why don’t they feel right together?",
+      "preparation": "Think about the feeling you want in your room, the colours you already have and anything you would love to change. You won’t need to upload anything for this preview.",
+      "opening": "Hello, I’m Jane, your AI fabric and interior design adviser. Before we think about fabrics, tell me a little about your room. How would you like it to feel when you walk in?",
+      "tools_copy": "Jane’s planned role includes helping you explore Fabric Intelligence and the Room Visualiser, then reflect on what you like. These tools are already available to explore independently."
+    },
+    "anne": {
+      "name": "Anne",
+      "title": "Customer concierge & administration adviser",
+      "approach": "Friendly · Organised · Reassuring",
+      "intro": "For the practical questions that make a project feel manageable. Anne’s focus is clear guidance on ordering and next steps, with the right questions passed to our human team when needed.",
+      "expertise": "Ordering, House of Curtains, pricing processes, availability enquiries and human assistance.",
+      "question": "I’ve chosen my curtains. What should I expect next?",
+      "preparation": "Think about the stage your project has reached and the question you most want answered. Please do not share order details or personal information in this demonstration.",
+      "opening": "Hello, I’m Anne, your AI customer concierge. I’ll help you work out the practical next step. Are you exploring your options, putting an order together or looking for help with an existing order?"
+    },
+    "noah": {
+      "name": "Noah",
+      "title": "Measuring adviser",
+      "approach": "Patient · Precise · Encouraging",
+      "intro": "One measurement at a time. Noah’s approach is calm and methodical, helping you understand where to measure, what to check and when a professional visit is the sensible next step.",
+      "expertise": "Window width and drop, tracks and poles, recesses, bay windows and measuring guidance.",
+      "question": "Where should I start measuring for a ceiling-mounted track?",
+      "preparation": "Think about your window shape and whether a track or pole is already fitted. There is no need to take measurements for this demonstration.",
+      "opening": "Hello, I’m Noah, your AI measuring adviser. We can take this one step at a time. What kind of window are you working with, and is the track or pole already fitted?"
+    },
+    "james": {
+      "name": "James",
+      "title": "Fitting & installation adviser",
+      "approach": "Practical · Direct · Approachable",
+      "intro": "Good installation starts with the right questions. James’s focus is the practical side of tracks, mounting and access, including knowing when a fitter needs to see the space in person.",
+      "expertise": "Tracks, wall and ceiling mounting, installation planning, access and professional fitting.",
+      "question": "What should I check before choosing a curtain track?",
+      "preparation": "Consider where your curtains will hang, what you know about the wall or ceiling and any access difficulties. This preview cannot assess fixings or structural suitability.",
+      "opening": "Hello, I’m James, your AI fitting and installation adviser. Let’s start with the space. Are you fitting to a wall or ceiling, and what do you know about the surface behind it?"
+    },
+    "ben": {
+      "name": "Ben",
+      "title": "Acoustic solutions adviser",
+      "approach": "Investigative · Analytical · Clear",
+      "intro": "An echoing room and noise travelling through a wall need different thinking. Ben’s approach begins with the sound problem, then explores where curtains could help and where they may not.",
+      "expertise": "Reverberation, sound absorption, acoustic evidence and the limits of curtain treatments.",
+      "question": "Can curtains make our meeting room less echoey?",
+      "preparation": "Think about where the sound starts and what is bothering you: echo inside the room, or noise passing into or out of it. No acoustic performance is being assessed in this preview.",
+      "opening": "Hello, I’m Ben, your AI acoustic adviser. Before we discuss materials, I’d like to understand the sound itself. Is the main concern echo within the room, or noise travelling between spaces?"
+    },
+    "natalie": {
+      "name": "Natalie",
+      "title": "Apex curtain adviser",
+      "approach": "Attentive · Design-focused · Confident",
+      "intro": "Unusual windows deserve considered attention. Natalie’s role is to explore your ideas and the shape of your space, helping prepare a useful brief for the human Apex Curtains team.",
+      "expertise": "Apex and gable windows, angled tracks, headings, bespoke project briefs and human handover.",
+      "question": "How could curtains work with our triangular gable window?",
+      "preparation": "Think about your window’s shape, the look you prefer and your approximate timescale. Perfect measurements are not needed to begin exploring a project.",
+      "opening": "Hello, I’m Natalie, your AI apex curtain adviser. Tell me about your window and what you would love the finished room to feel like. We can explore the possibilities before a human specialist reviews the details."
+    },
+    "custom": {
+      "name": "New specialist",
+      "title": "Specialist AI adviser",
+      "approach": "Attentive · Thoughtful · Helpful",
+      "intro": "A new specialist perspective is being prepared for the CurtainsUK team.",
+      "expertise": "Personalised guidance and thoughtful next steps.",
+      "question": "Where should I begin with my project?",
+      "preparation": "Think about your project and the question you most want to explore.",
+      "opening": "Hello, I’m an AI specialist adviser. What would you like to explore together?"
+    },
+    "human": {
+      "eyebrow": "A human touch, always",
+      "title": "Some questions deserve a person.",
+      "copy": "Our AI advisers will be here to guide, not to replace the judgement of our human team. For help with an order, a bespoke project or a question today, get in touch with CurtainsUK.",
+      "cta": "Contact our human team",
+      "note": "Human support is available through our existing contact routes. AI consultations are not yet open."
+    },
+    "journey": {
+      "eyebrow": "The planned consultation experience",
+      "title": "A conversation. Not a sales pitch.",
+      "intro": "The best advice starts with understanding. Each specialist will follow the same thoughtful approach, while bringing their own voice and expertise.",
+      "title_1": "Make yourself at home",
+      "copy_1": "Choose a specialist. A short welcome will give you a moment to gather your thoughts, without an appointment or a pretend queue.",
+      "title_2": "Tell us what matters",
+      "copy_2": "Share your ideas, your problem or the part you are unsure about. Your adviser will ask useful questions and explore the context.",
+      "title_3": "Explore. Reflect. Refine.",
+      "copy_3": "Consider a direction and its alternatives. Tell your adviser what you like, what feels wrong and what you would like to change.",
+      "title_4": "Leave with a next step",
+      "copy_4": "A personal summary will bring together ideas, open questions and appropriate tools, samples or human help. A purchase is never the point of the conversation.",
+      "time": "Free 10-minute consultations are planned. Ten minutes is a guide, never an abrupt ending.",
+      "availability": "Future experience · Live advice is not available in this preview"
+    },
+    "preview": {
+      "eyebrow": "Step inside · Design preview",
+      "title": "A moment to settle in.",
+      "copy": "Try the welcome to Jane’s consultation space. This interactive demonstration shows the waiting room and a sample conversation opening, so you can get a feel for the experience.",
+      "detail_1": "A 30-second welcome, with the option to skip ahead.",
+      "detail_2": "An example opening, clearly labelled as a preview.",
+      "detail_3": "No messages, photographs or contact details collected.",
+      "cta": "Try Jane’s room preview",
+      "notice": "This is a demonstration. No AI adviser is connected and no live advice is given.",
+      "mini_title": "Jane · AI design adviser",
+      "mini_heading": "A little space for your ideas.",
+      "mini_caption": "Waiting-room design · Demonstration only"
+    },
+    "faq": {
+      "eyebrow": "A few things to know",
+      "title": "Before we begin.",
+      "intro": "Clear expectations are part of good advice. Here is what this preview means, and what we are planning next.",
+      "question_1": "Are these real people?",
+      "answer_1": "Jane, Anne, Noah, James, Ben and Natalie are proposed AI advisers, each with a distinct specialist focus and personality. Their illustrations are visual identities, not photographs of employees. Our human CurtainsUK team remains available through the existing contact routes.",
+      "question_2": "Can I have a consultation today?",
+      "answer_2": "Not yet. This page is a design preview of the team and consultation experience. You can try a waiting-room demonstration and read an illustrative opening, but no live AI adviser is connected. Our existing Fabric Intelligence, Room Visualiser and other tools are available separately.",
+      "question_3": "Will the consultations be free?",
+      "answer_3": "We are planning free personalised AI consultations in a 10-minute format. That is time to explore and refine an idea, not a hard countdown that cuts you off. The final live service and its terms will be confirmed before launch.",
+      "question_4": "Will an adviser recommend something to buy?",
+      "answer_4": "Only when it is a suitable next step. A consultation might instead help you find a colour direction, understand a measurement or recognise that professional help is needed. Specific fabrics, availability and prices will need verified product information.",
+      "question_5": "Will I be able to return to my conversation?",
+      "answer_5": "Secure consultation continuity is planned, so you can explore ideas and return with feedback. It is not available in this preview. The demonstration does not save messages or project details, and the live service’s privacy and retention information will be provided before you use it.",
+      "question_6": "Can an AI approve an installation or acoustic result?",
+      "answer_6": "No. Advice cannot replace an appropriate physical inspection, verified manufacturer specifications or professional judgement. Technical uncertainty must be made clear. Bespoke Apex Curtains projects, installation suitability and final quotations remain decisions for the relevant human specialists."
+    },
+    "tools": {
+      "eyebrow": "A good place to start, today",
+      "title": "Let your ideas take shape.",
+      "copy": "While the advisers are being developed, our existing design tools and guides are ready to explore.",
+      "library": "Browse the Fabric Library",
+      "house": "House of Curtains",
+      "measure": "Measuring guidance",
+      "fit": "Fitting guidance",
+      "samples": "Fabric samples",
+      "window": "Find your window solution"
+    },
+    "room": {
+      "preview": "Design preview · AI consultations coming soon",
+      "close": "Close preview",
+      "waiting": "A moment to settle in.",
+      "waiting_copy": "A 30-second demonstration of your consultation welcome. There is no queue and no adviser is connected.",
+      "seconds": "seconds remaining",
+      "progress": "Waiting-room welcome progress",
+      "preparation": "While you settle in",
+      "format": "A free 10-minute conversation, designed around you.",
+      "format_copy": "The planned format leaves time to explore, reflect and refine. Ten minutes is a guide, never an abrupt cut-off.",
+      "skip": "Skip to room preview",
+      "room_title": "Your consultation space",
+      "example_label": "Illustrative opening · not a live response",
+      "composer": "Live conversations are coming soon.",
+      "send": "Messaging unavailable in preview",
+      "privacy": "This demonstration does not collect or save messages, photographs or contact details.",
+      "wait_status": "Waiting-room demonstration started. The room preview opens after 30 seconds.",
+      "room_status": "The consultation-room preview is ready. Live messaging is not available.",
+      "unavailable": "The interactive preview could not open. Please try again in a current browser.",
+      "next": "Keep exploring",
+      "return": "Return to the team"
+    }
+  },
   "rooms": {
     "navigation": "House of Curtains",
     "title": "House of Curtains",

@@ -1,0 +1,61 @@
+# Specialist advisory platform — Phase 1 owner review
+
+9 October 2026. **Implemented and previewed; not approved or published.** All six AI services remain upcoming. No customer data is captured or sent by this prototype.
+
+## Review
+
+- [Working Shopify preview](https://www.curtainsuk.com/pages/fabric-library?view=meet-our-team&preview_theme_id=182472573307)
+- [Desktop/mobile screenshot gallery](review-gallery.html)
+- [Programme source of truth and Phase 2 plan](../../docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md)
+- Draft pull request: awaiting creation in this review run; the final handoff supplies its URL.
+- [Exact changed-file manifest](changed-files.txt)
+
+The preview theme is **182472573307**, role **DEVELOPMENT**. It is separate from the live theme and temporary: Shopify can remove development themes after seven days of inactivity or CLI logout. Preserve these committed captures/source if it expires. The existing Fabric Library page hosts the alternate template for review only, so browser metadata still says Fabric Library. The requested `/pages/meet-our-team` native page and navigation entry are not published. The inherited preview banner says checkout disabled. Do not use this review theme for purchases.
+
+## Verified starting authority
+
+Repository `Nylon1/CurtainsUK`; protected `release/production` HEAD **3649c879a4a5ddf88c2093a4172d20fbc58cd265**, rechecked at the end of implementation with no advance. PR #166 is merged. The actual storefront shows its interactive homepage, four room environments, heading comparisons and approved studio assets. Historical unpublished wording in `docs/homepage-studio-review-20261009.md` is superseded.
+
+The live theme remains **182339731835**, named **CurtainsUK - Curtain Style V1 review**, role MAIN, store `carpetup.myshopify.com`, public origin `www.curtainsuk.com`. [Admin checksum evidence](preview-readback.json) verifies **all 505 live theme files unchanged** before/after this work. The nine preview files match local source (text/newline comparison, or semantic JSON comparison excluding Shopify's generated header).
+
+Production API `https://curtainsuk-production-api.vercel.app` remains READY on **dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD**, project **prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA**. Room Visualiser 2 release remains commit **800f42a27a0a6e9beb1abd92821145bf4a4b98c4**, documented tree **1150dad1d55649597d03df2dbaad01348ea98d63**. No Vercel deployment was performed. Naila, renderer/geometry/shaders/eligibility, Fabric Intelligence decisions, stock, pricing, checkout and live Theme Editor settings are unchanged.
+
+Read-only preflight covered all seven requested release/project documents, existing theme/navigation/style patterns, Fabric Master/projections, FI/Fabric Library, House of Curtains, measuring/fitting tools and API boundaries. See [preflight receipt](preflight.json). Four historical guessed Apex routes returned 404; none is used by the page. Natalie's future destination must be confirmed before activation.
+
+## Completed implementation
+
+The native Shopify JSON page template uses a reusable Liquid section, adviser blocks, card/art snippets, shared dialog, scoped CSS and a small dependency-free controller. Jane receives the prominent featured layout. Six original lightweight SVG illustrations give Jane, Anne, Noah, James, Ben and Natalie distinct specialist identities without pretending to depict real employees. Additional advisers can be configured with blocks; a new bespoke illustration requires authoring and otherwise receives generic artwork.
+
+Warm ivory, deep forest green, serif editorial headings, spacious layout and existing navigation follow the verified live homepage. The page includes specialist introductions/expertise, example questions, the planned free ten-minute format, consultation journey, FAQ and eight existing tool/service links. AI identity and coming-soon state are explicit throughout.
+
+Every profile opens the shared 30-second waiting demonstration, with its own introduction and preparation guidance. A deadline based on actual elapsed time handles background/resume; users can skip or exit. The consultation-room example has no text entry and a disabled send control. It clearly states it is illustrative. No model call, session storage, enquiry, upload, queue claim or live consultation is implemented. Ten minutes is described as a flexible format, not a cutoff.
+
+Six separately versioned personality specifications and the shared consultation policy are supplied for future implementation. The architecture keeps Shopify discovery/UI, Vercel server orchestration and governed tools, isolated Supabase consultation/knowledge/enquiry records, and an upgradeable OpenAI Responses adapter. Privacy, recovery, source rights/provenance, customer-safe product projections, durable handovers, security tests and operating-cost assumptions are documented as **designed/planned**, not running services.
+
+## Preview safety
+
+Attempts to duplicate the current live theme through Shopify Admin and the official CLI failed without creating a normal unpublished theme. No historical draft was overwritten or deleted. An isolated development theme was created instead. Its base was assembled from the current live 505-file manifest: matching bytes were reused locally, and changed editor-managed JSON files were freshly retrieved from Shopify. Only the nine new/updated advisory files were overlaid. A transient SSL upload error was resolved by retrying the same development target; no certificate validation was bypassed.
+
+The new sparse Git worktree is `C:/Users/hamza/curtainsuk-specialist-advisory-phase1`, branch `feat/specialist-advisory-phase1-20261009`. All existing checkouts/uncommitted work/evidence were preserved. The preview snapshot is outside the repository at `C:/Users/hamza/curtainsuk-advisory-preview-20261009`; it is not a future whole-theme release candidate.
+
+## Validation
+
+**42 automated tests passed:** 10 new controller/content tests, 18 existing Shopify-theme tests, 10 existing security-boundary tests, two MTM production-policy tests and two Guided Measure checkout-allowlist tests. [Test log](regression-tests.log). The Guided Measure test initially lacked an existing sparse-checkout migration fixture; materialising the tracked migrations resolved that environment issue without changing source. New tests execute the actual controller and actual dialog structure, including absolute-time/no-early-opening, background restoration, reopen/skip/close/focus, all six profiles, no network/persistence, unsupported/error fallback, lifecycle cleanup and additive translations.
+
+Official installed Shopify Theme Check reports **zero errors, 13 existing warnings and no new-file findings**. [Theme Check receipt](theme-check.json). The plugin's standalone validator lacked its existing theme-check dependency; the installed CLI supplied the official equivalent without a dependency installation.
+
+[Chrome responsive checks](responsive-browser.json): **320, 390, 412, 768 and 1440 CSS px**, all six profiles, one H1, no missing translation, no horizontal overflow, minimum preview target height 52px. Windows display scaling was compensated when setting viewport sizes. [Six live-browser preview flows](consultation-browser.json) verify separate introductions, skip, disabled send/no input, closure and focus restoration. The natural timer was observed to have opened the room after 42,214ms; the exact 30-second boundary/background rules are deterministic unit-test evidence, not a 30.000-second browser timing claim. [Mobile keyboard checks](keyboard-browser.json) verify both focus-wrap directions, visible outline and Escape return at 390px.
+
+Twelve existing storefront/cart routes returned HTTP 200, including homepage, Library, FI, Visualiser, House, measuring/fitting and samples. Existing regression contracts cover commerce boundaries. These are reachability/source-contract checks, **not a new paid checkout or exhaustive end-to-end order test**. Read-only console inspection showed extension sandbox/storage errors, with no advisory-controller error in the captured error entries; no unrelated extension/site code was changed.
+
+**Remaining acceptance limits:** no physical iPhone Safari/touch test, screen-reader audit or runtime reduced-motion browser emulation. Reduced-motion rules were inspected in CSS; dialog/progressive fallback was unit-tested, not tested in every legacy browser. The preview requires native dialog support; unsupported browsers retain profiles and normal links. No portrait photography or generated product images are used. These limits also do not close the prior Room Visualiser physical-iPhone item.
+
+## Storage and backup
+
+C: measured **42.28 GiB free initially; 41.89 GiB at 18:34 UTC**, above the earlier 35GiB target. A `restic` process remained active (PID 45016). Its success/completion was not established. No backup script, manifest, repository or process was altered; no cleanup/deletion was performed. The sparse worktree, small evidence files and one approximately 94MB current-theme snapshot avoided a full repository/dependency duplication. Existing dependencies were reused and no intensive local production build or supplier ingestion ran. **This new work needs a later backup; it is not assumed included in an earlier snapshot.** [Final storage observation](storage-final.json).
+
+## Next phase and release
+
+Phase 2 should implement the server-only registry/tool contracts and mock adapter first; isolated authenticated persistence and secure recovery next; then mock-connected consultation UI, consented context, deletion lifecycle, idempotent handover/outbox and controlled synthetic conversations. Validate privacy, abuse/spend limits, prompt injection, cross-customer isolation and failures before any real customer service. Jane is the first complete agent in Phase 3. See the source-of-truth document for data models, costs, tests and all subsequent phases.
+
+This is an owner-review candidate. Both existing required checks (`curtainsuk-production-gate`, `protected-production-policy`) must pass on the final PR head, followed by protected merge and explicit owner approval before publication. Do not publish the whole preview theme. For a later approved release, refresh protected/live state and current editor-managed locale, apply only the scoped advisory diff, assign the native page and add approved navigation. Capture before/after receipts. Rollback restores only the scoped bytes/page assignment and removes the approved entry; no Vercel release is needed.

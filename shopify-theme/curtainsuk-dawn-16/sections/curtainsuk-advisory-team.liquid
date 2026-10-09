@@ -1,0 +1,97 @@
+{{ 'curtainsuk-advisory-team.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-advisory-team.js' | asset_url }}" defer></script>
+<div class="cukad" data-advisory-team data-wait-status="{{ 'advisory_team.room.wait_status' | t | escape }}" data-room-status="{{ 'advisory_team.room.room_status' | t | escape }}" data-unavailable="{{ 'advisory_team.room.unavailable' | t | escape }}">
+  <section class="cukad__hero cukad__wrap" aria-labelledby="advisory-heading-{{ section.id }}">
+    <div class="cukad__hero-copy">
+      <p class="cukad__eyebrow"><span class="cukad__fine-line" aria-hidden="true"></span>{{ 'advisory_team.hero.eyebrow' | t }}</p>
+      <h1 id="advisory-heading-{{ section.id }}">{{ 'advisory_team.hero.title' | t }} <em>{{ 'advisory_team.hero.title_emphasis' | t }}</em></h1>
+      <p class="cukad__hero-intro">{{ 'advisory_team.hero.intro' | t }}</p>
+      <div class="cukad__hero-actions"><a class="cukad__button" href="#advisory-specialists-{{ section.id }}">{{ 'advisory_team.hero.meet' | t }} <span aria-hidden="true">↓</span></a><a class="cukad__text-link" href="#advisory-experience-{{ section.id }}">{{ 'advisory_team.hero.how' | t }} <span aria-hidden="true">↗</span></a></div>
+      <p class="cukad__preview-notice"><span aria-hidden="true"></span>{{ 'advisory_team.hero.notice' | t }}</p>
+    </div>
+    <div class="cukad__hero-art" aria-hidden="true">
+      <div class="cukad__hero-art-top"><span>{{ 'advisory_team.hero.art_top' | t }}</span><span>01 — 06</span></div>
+      <div class="cukad__hero-arch">{% render 'curtainsuk-adviser-art', adviser: 'jane' %}</div>
+      <div class="cukad__hero-swatches"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="cukad__hero-art-bottom"><span>{{ 'advisory_team.hero.art_bottom' | t }}</span><span class="cukad__hero-star">✳</span></div>
+    </div>
+  </section>
+  <div class="cukad__promise-strip"><div class="cukad__wrap"><span>{{ 'advisory_team.promise.specialists' | t }}</span><span>{{ 'advisory_team.promise.personal' | t }}</span><span>{{ 'advisory_team.promise.free' | t }}</span></div></div>
+  <section class="cukad__specialists cukad__wrap" id="advisory-specialists-{{ section.id }}" aria-labelledby="advisory-specialists-heading-{{ section.id }}">
+    <div class="cukad__section-heading"><div><p class="cukad__eyebrow">{{ 'advisory_team.profiles.eyebrow' | t }}</p><h2 id="advisory-specialists-heading-{{ section.id }}">{{ 'advisory_team.profiles.title' | t }}</h2></div><p>{{ 'advisory_team.profiles.intro' | t }}</p></div>
+    {% for block in section.blocks %}
+      {% if block.settings.featured %}{% render 'curtainsuk-adviser-card', block: block, featured: true, section_id: section.id %}{% endif %}
+    {% endfor %}
+    <div class="cukad__profile-grid">
+      {% for block in section.blocks %}
+        {% unless block.settings.featured %}{% render 'curtainsuk-adviser-card', block: block, featured: false, section_id: section.id %}{% endunless %}
+      {% endfor %}
+      <aside class="cukad__human-card"><span class="cukad__human-star" aria-hidden="true">✳</span><p class="cukad__eyebrow">{{ 'advisory_team.human.eyebrow' | t }}</p><h3>{{ 'advisory_team.human.title' | t }}</h3><p>{{ 'advisory_team.human.copy' | t }}</p><a class="cukad__button cukad__button--light" href="/#curtainsuk-help">{{ 'advisory_team.human.cta' | t }} <span aria-hidden="true">↗</span></a><span class="cukad__human-note">{{ 'advisory_team.human.note' | t }}</span></aside>
+    </div>
+    <noscript><p class="cukad__noscript">{{ 'advisory_team.common.noscript' | t }}</p></noscript>
+    <p class="cukad__error" data-advisory-error role="alert" hidden></p>
+  </section>
+  <section class="cukad__journey" id="advisory-experience-{{ section.id }}" aria-labelledby="advisory-journey-heading-{{ section.id }}"><div class="cukad__wrap">
+    <div class="cukad__section-heading"><div><p class="cukad__eyebrow">{{ 'advisory_team.journey.eyebrow' | t }}</p><h2 id="advisory-journey-heading-{{ section.id }}">{{ 'advisory_team.journey.title' | t }}</h2></div><p>{{ 'advisory_team.journey.intro' | t }}</p></div>
+    <ol class="cukad__journey-steps">
+      {% for step in (1..4) %}{% liquid
+        assign step_title = step | prepend: 'advisory_team.journey.title_'
+        assign step_copy = step | prepend: 'advisory_team.journey.copy_'
+      %}<li><span class="cukad__step-number" aria-hidden="true">0{{ step }}</span><h3>{{ step_title | t }}</h3><p>{{ step_copy | t }}</p></li>{% endfor %}
+    </ol>
+    <div class="cukad__journey-footer"><p>{{ 'advisory_team.journey.time' | t }}</p><span>{{ 'advisory_team.journey.availability' | t }}</span></div>
+  </div></section>
+  <section class="cukad__preview-section cukad__wrap" aria-labelledby="advisory-preview-heading-{{ section.id }}">
+    <div class="cukad__preview-visual" aria-hidden="true"><div class="cukad__mini-top"><span class="cukad__mini-dot"></span>{{ 'advisory_team.preview.mini_title' | t }}<span>✳</span></div><div class="cukad__mini-avatar">J</div><p>{{ 'advisory_team.preview.mini_heading' | t }}</p><span class="cukad__mini-timer">00:30</span><div class="cukad__mini-progress"><span></span></div><small>{{ 'advisory_team.preview.mini_caption' | t }}</small></div>
+    <div class="cukad__preview-copy"><p class="cukad__eyebrow">{{ 'advisory_team.preview.eyebrow' | t }}</p><h2 id="advisory-preview-heading-{{ section.id }}">{{ 'advisory_team.preview.title' | t }}</h2><p>{{ 'advisory_team.preview.copy' | t }}</p><ul><li>{{ 'advisory_team.preview.detail_1' | t }}</li><li>{{ 'advisory_team.preview.detail_2' | t }}</li><li>{{ 'advisory_team.preview.detail_3' | t }}</li></ul>
+      {% for block in section.blocks %}{% if block.settings.adviser == 'jane' %}<button class="cukad__button" type="button" data-advisory-open data-adviser="{{ block.id }}" hidden>{{ 'advisory_team.preview.cta' | t }} <span aria-hidden="true">↗</span></button>{% break %}{% endif %}{% endfor %}
+      <p class="cukad__small-note">{{ 'advisory_team.preview.notice' | t }}</p>
+    </div>
+  </section>
+  <section class="cukad__faq cukad__wrap" aria-labelledby="advisory-faq-heading-{{ section.id }}"><div><p class="cukad__eyebrow">{{ 'advisory_team.faq.eyebrow' | t }}</p><h2 id="advisory-faq-heading-{{ section.id }}">{{ 'advisory_team.faq.title' | t }}</h2><p>{{ 'advisory_team.faq.intro' | t }}</p></div><div class="cukad__faq-list">
+    {% for question in (1..6) %}{% liquid
+      assign question_key = question | prepend: 'advisory_team.faq.question_'
+      assign answer_key = question | prepend: 'advisory_team.faq.answer_'
+    %}<details><summary>{{ question_key | t }}<span aria-hidden="true">+</span></summary><p>{{ answer_key | t }}</p></details>{% endfor %}
+  </div></section>
+  <section class="cukad__tools" aria-labelledby="advisory-tools-heading-{{ section.id }}"><div class="cukad__wrap"><div class="cukad__section-heading"><div><p class="cukad__eyebrow">{{ 'advisory_team.tools.eyebrow' | t }}</p><h2 id="advisory-tools-heading-{{ section.id }}">{{ 'advisory_team.tools.title' | t }}</h2></div><p>{{ 'advisory_team.tools.copy' | t }}</p></div><div class="cukad__tool-links">
+    <a href="/pages/fabric-library?view=browse-fabrics"><span>{{ 'advisory_team.tools.library' | t }}</span><span aria-hidden="true">↗</span></a>
+    <a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided"><span>{{ 'advisory_team.common.fabric_intelligence' | t }}</span><span aria-hidden="true">↗</span></a>
+    <a href="/pages/room-visualiser"><span>{{ 'advisory_team.common.room_visualiser' | t }}</span><span aria-hidden="true">↗</span></a>
+    <a href="/pages/build-my-rooms"><span>{{ 'advisory_team.tools.house' | t }}</span><span aria-hidden="true">↗</span></a>
+    <a href="/pages/how-to-measure"><span>{{ 'advisory_team.tools.measure' | t }}</span><span aria-hidden="true">↗</span></a>
+    <a href="/pages/how-to-fit"><span>{{ 'advisory_team.tools.fit' | t }}</span><span aria-hidden="true">↗</span></a>
+    <a href="/pages/samples"><span>{{ 'advisory_team.tools.samples' | t }}</span><span aria-hidden="true">↗</span></a>
+    <a href="/pages/solve-my-window"><span>{{ 'advisory_team.tools.window' | t }}</span><span aria-hidden="true">↗</span></a>
+  </div></div></section>
+  {% render 'curtainsuk-advisory-room', section_id: section.id %}
+</div>
+{% schema %}
+{
+  "name": "Specialist adviser team",
+  "tag": "section",
+  "class": "curtainsuk-advisory-section",
+  "limit": 1,
+  "max_blocks": 20,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "adviser",
+      "name": "AI adviser",
+      "settings": [
+        { "type": "select", "id": "adviser", "label": "Adviser identity", "options": [ { "value": "jane", "label": "Jane — Fabric & interior design" }, { "value": "anne", "label": "Anne — Customer service" }, { "value": "noah", "label": "Noah — Measuring" }, { "value": "james", "label": "James — Fitting & installation" }, { "value": "ben", "label": "Ben — Acoustic solutions" }, { "value": "natalie", "label": "Natalie — Apex curtains" }, { "value": "custom", "label": "Additional adviser" } ], "default": "jane" },
+        { "type": "checkbox", "id": "featured", "label": "Feature prominently", "default": false },
+        { "type": "text", "id": "name", "label": "Name override" },
+        { "type": "text", "id": "title", "label": "Specialist title override" },
+        { "type": "text", "id": "approach", "label": "Personality override" },
+        { "type": "textarea", "id": "intro", "label": "Introduction override" },
+        { "type": "textarea", "id": "expertise", "label": "Expertise override" },
+        { "type": "textarea", "id": "question", "label": "Example customer question override" },
+        { "type": "textarea", "id": "opening", "label": "Illustrative consultation opening override" },
+        { "type": "textarea", "id": "preparation", "label": "Waiting-room preparation override" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Specialist adviser team", "blocks": [ { "type": "adviser", "settings": { "adviser": "jane", "featured": true } }, { "type": "adviser", "settings": { "adviser": "anne" } }, { "type": "adviser", "settings": { "adviser": "noah" } }, { "type": "adviser", "settings": { "adviser": "james" } }, { "type": "adviser", "settings": { "adviser": "ben" } }, { "type": "adviser", "settings": { "adviser": "natalie" } } ] } ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-09T18:33:52.043Z",
+  "previewTheme": "gid://shopify/OnlineStoreTheme/182472573307",
+  "previewRole": "DEVELOPMENT",
+  "scopedFiles": [
+    {
+      "filename": "assets/curtainsuk-advisory-room.css",
+      "comparison": "text equality after newline normalization",
+      "matches": true,
+      "sourceSha256": "0c4fe5f38fdabdc7ce0d46ee348845b0bb2ccc55a00c78370ddb1856bbc528c2",
+      "previewChecksumMd5": "9d1b38a0bb5ac42514c3f5358d7ccb83"
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-team.css",
+      "comparison": "text equality after newline normalization",
+      "matches": true,
+      "sourceSha256": "684e890c8129e69180563bf27983a191afb7c953f66951b2a8be461e241401ed",
+      "previewChecksumMd5": "1078fd5d3a645e47d2ff857a56577a9a"
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-team.js",
+      "comparison": "text equality after newline normalization",
+      "matches": true,
+      "sourceSha256": "adc504fd09e85a5fe044d62c93345b3618b5fdb5b51cb1730e0155bfc7665434",
+      "previewChecksumMd5": "f5e01d89a7e678887a03ee4882ad2fac"
+    },
+    {
+      "filename": "locales/en.default.json",
+      "comparison": "JSON semantic equality (Shopify generated header excluded)",
+      "matches": true,
+      "sourceSha256": "28990c05f19f814c038662a15f23e5bf34e48837624983beebce5adc8b8a0c36",
+      "previewChecksumMd5": "db67bfcbf9ebbdb460e06de45e6211f6"
+    },
+    {
+      "filename": "sections/curtainsuk-advisory-team.liquid",
+      "comparison": "text equality after newline normalization",
+      "matches": true,
+      "sourceSha256": "670f88ee4abe13f8ac257af0d2a72de2eed26f55ef1e4e8d8fbd7aa16e72846b",
+      "previewChecksumMd5": "ce2a89ac422d733605601dbed485b9fd"
+    },
+    {
+      "filename": "snippets/curtainsuk-adviser-art.liquid",
+      "comparison": "text equality after newline normalization",
+      "matches": true,
+      "sourceSha256": "790039a3b07e1cd1b434128c6fdeb9fc32c584cecbd2f7b54871b86484d1b68f",
+      "previewChecksumMd5": "bd129216ff1e84dc9ad6a2cdd24e4681"
+    },
+    {
+      "filename": "snippets/curtainsuk-adviser-card.liquid",
+      "comparison": "text equality after newline normalization",
+      "matches": true,
+      "sourceSha256": "9373fb87a063dbd9d38d17703b14d60513a63c2dd1bd84fed3998ec8c099a58c",
+      "previewChecksumMd5": "e601e6ab62db0442cf78a10c0750bbf9"
+    },
+    {
+      "filename": "snippets/curtainsuk-advisory-room.liquid",
+      "comparison": "text equality after newline normalization",
+      "matches": true,
+      "sourceSha256": "723777b831fdb2bd019fe8c9fde1afb681b38afa7d8f5d5ac7ad52546f778665",
+      "previewChecksumMd5": "e1be7e11d459caa6af1181a87818ec5b"
+    },
+    {
+      "filename": "templates/page.meet-our-team.json",
+      "comparison": "JSON semantic equality (Shopify generated header excluded)",
+      "matches": true,
+      "sourceSha256": "3d371f99f4bd9259ffbf0370ef39dd53ccede8dbb1f56404796867e663c22d9d",
+      "previewChecksumMd5": "918a1c50e3bfb684f69f610ec4653e8d"
+    }
+  ],
+  "liveThemePreservation": {
+    "checkedAt": "2026-10-09T18:33:28.227Z",
+    "liveTheme": "gid://shopify/OnlineStoreTheme/182339731835",
+    "liveRole": "MAIN",
+    "filesBefore": 505,
+    "filesAfter": 505,
+    "changed": [],
+    "added": []
+  }
+}

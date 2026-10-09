@@ -1,0 +1,55 @@
+{% doc %}
+  A configurable specialist profile with an explicitly non-operational preview.
+  @param {object} block - Adviser theme section block
+  @param {boolean} [featured] - Whether to use the prominent editorial layout
+  @param {string} section_id - Parent section identity for unique headings
+{% enddoc %}
+{% liquid
+  assign adviser = block.settings.adviser
+  assign translation_root = adviser | prepend: 'advisory_team.'
+  assign name_key = translation_root | append: '.name'
+  assign title_key = translation_root | append: '.title'
+  assign intro_key = translation_root | append: '.intro'
+  assign approach_key = translation_root | append: '.approach'
+  assign expertise_key = translation_root | append: '.expertise'
+  assign question_key = translation_root | append: '.question'
+  assign preparation_key = translation_root | append: '.preparation'
+  assign opening_key = translation_root | append: '.opening'
+  assign translated_name = name_key | t
+  assign translated_title = title_key | t
+  assign translated_intro = intro_key | t
+  assign translated_approach = approach_key | t
+  assign translated_expertise = expertise_key | t
+  assign translated_question = question_key | t
+  assign translated_preparation = preparation_key | t
+  assign translated_opening = opening_key | t
+  assign name = block.settings.name | default: translated_name
+  assign title = block.settings.title | default: translated_title
+  assign intro = block.settings.intro | default: translated_intro
+  assign approach = block.settings.approach | default: translated_approach
+  assign expertise = block.settings.expertise | default: translated_expertise
+  assign question = block.settings.question | default: translated_question
+  assign preparation = block.settings.preparation | default: translated_preparation
+  assign opening = block.settings.opening | default: translated_opening
+%}
+<article class="cukad__profile cukad__profile--{{ adviser }}{% if featured %} cukad__profile--featured{% endif %}" id="adviser-{{ section_id }}-{{ block.id }}" aria-labelledby="adviser-name-{{ section_id }}-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="cukad__profile-art">
+    <div class="cukad__art-label"><span>{{ 'advisory_team.common.ai_adviser' | t }}</span><span aria-hidden="true">✳</span></div>
+    {% render 'curtainsuk-adviser-art', adviser: adviser %}
+    <div class="cukad__art-caption"><span>{{ name | escape_once }}</span><span>{{ 'advisory_team.common.illustrated_identity' | t }}</span></div>
+  </div>
+  <div class="cukad__profile-content">
+    {% if featured %}<p class="cukad__eyebrow">{{ 'advisory_team.common.featured' | t }}</p>{% endif %}
+    <div class="cukad__profile-heading"><h3 id="adviser-name-{{ section_id }}-{{ block.id }}">{{ name | escape_once }}</h3><span class="cukad__ai-tag">{{ 'advisory_team.common.ai' | t }}</span></div>
+    <p class="cukad__specialism">{{ title | escape_once }}</p>
+    <p class="cukad__approach">{{ approach | escape_once }}</p>
+    <p class="cukad__profile-intro">{{ intro | escape_once }}</p>
+    <p class="cukad__expertise"><span>{{ 'advisory_team.common.explore' | t }}</span>{{ expertise | escape_once }}</p>
+    <blockquote class="cukad__question"><span>{{ 'advisory_team.common.try_asking' | t }}</span><p>“{{ question | escape_once }}”</p></blockquote>
+    {% if featured and adviser == 'jane' %}
+      <div class="cukad__jane-tools"><p>{{ 'advisory_team.jane.tools_copy' | t }}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided">{{ 'advisory_team.common.fabric_intelligence' | t }} <span aria-hidden="true">↗</span></a><a href="/pages/room-visualiser">{{ 'advisory_team.common.room_visualiser' | t }} <span aria-hidden="true">↗</span></a></div>
+    {% endif %}
+    <div class="cukad__profile-footer"><p><span class="cukad__availability">{{ 'advisory_team.common.coming_soon' | t }}</span><span>{{ 'advisory_team.common.free_consultation' | t }}</span></p><button class="cukad__preview-link" type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}" hidden>{{ 'advisory_team.common.preview' | t }} <span aria-hidden="true">↗</span></button></div>
+  </div>
+  <template data-advisory-profile="{{ block.id }}" data-adviser="{{ block.id }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" data-intro="{{ opening | escape_once }}" data-preparation="{{ preparation | escape_once }}">{% render 'curtainsuk-adviser-art', adviser: adviser %}</template>
+</article>

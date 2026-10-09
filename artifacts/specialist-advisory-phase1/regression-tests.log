@@ -1,0 +1,156 @@
+Read-only existing regression suites
+Started UTC: 2026-10-09T18:18:18.6020820Z
+Source HEAD: 3649c879a4a5ddf88c2093a4172d20fbc58cd265
+Runtime: existing tsx installation; no package installation; no browser automation; no Shopify/DB write
+Command: node C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/tsx/dist/cli.mjs --test lib/storefront/__tests__/shopify-theme.test.ts lib/storefront/__tests__/security.test.ts lib/storefront/__tests__/guided-measure-checkout-allowlist.test.ts lib/storefront/__tests__/mtm-production-policy.test.ts
+
+node:fs:440
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\supabase\migrations\20260929183102_restore_guided_measure_checkout_measurement_allowlist.sql'
+    at readFileSync (node:fs:440:20)
+    at assert (C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\storefront\__tests__\guided-measure-checkout-allowlist.test.ts:6:19)
+    at Object.<anonymous> (C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\storefront\__tests__\guided-measure-checkout-allowlist.test.ts:64:2)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object.transformer (C:\Users\hamza\curtainsuk-visualiser-v1-production\node_modules\tsx\dist\register-OY9cqBEN.cjs:9:3619)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:328:3)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:233:7) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\supabase\\migrations\\20260929183102_restore_guided_measure_checkout_measurement_allowlist.sql'
+}
+
+Node.js v24.14.0
+✖ lib\storefront\__tests__\guided-measure-checkout-allowlist.test.ts (905.5878ms)
+✔ production policy enforces the approved hardware and heading matrix (5.6051ms)
+✔ measurement anchors preserve the customer raw measurement contract (0.7936ms)
+✔ Shopify official app-proxy signature vectors canonicalize exactly (5.3391ms)
+✔ app-proxy auth verifies HMAC, shop, path and replay window independently of Origin (7.3265ms)
+✔ ambiguous duplicate signatures are rejected (0.8498ms)
+✔ proxy rate keys bind the signed shop, operation and client address (0.6935ms)
+✔ evidence verification uses magic bytes, MIME, extension and hard size limits (4.4843ms)
+✔ malware scanning is fail-closed and never promotes unavailable scans (1.7188ms)
+✔ retention and orphan cleanup plans preserve held, current and referenced evidence (4.2602ms)
+✔ staff evidence tokens are short-lived and bound to evidence plus actor (1.8273ms)
+✔ gateway and staff responses are no-store and request envelopes are bounded (53.9228ms)
+✔ multipart bodies have a hard streaming cap without trusting Content-Length (10.262ms)
+✔ Dawn contains the 14 unique Window Type route definitions (5.3862ms)
+✔ Dawn delegates decisions to the signed app proxy and retains isolated test-checkout support (66.9077ms)
+✔ the specialist workflow has no upload requirement and never renders a payment control (4.8508ms)
+✔ manual quote results suppress numeric prices and expose review submission without checkout (5.9639ms)
+✔ Bay uses one fitted-track route width and drop without angles or segment controls (4.6352ms)
+✔ Only supported automated windows are actionable and unsupported routes cannot price (3.0755ms)
+✔ Review evidence appears only after a server review outcome, without uploads or premature checkout (3.8082ms)
+✔ task navigation uses resolvable theme-owned inspiration, help and sample anchors (24.793ms)
+✔ the Dawn header uses the task navigation instead of the production main menu (2.7096ms)
+✔ Dawn uses paginated retail imagery and retains canonical sample identity without commercial fields (5.0312ms)
+✔ a Fabric Master deep link is validated, hydrated through the catalogue, and fails closed when unresolved (1.7739ms)
+✔ Dawn purchase controls stay off independently of production indexing and Shopify Markets (5.298ms)
+✔ all inherited Dawn commerce controls are disabled in the unpublished staging theme (12.0896ms)
+✔ results always show VAT, availability and delivery while standard results avoid specialist warnings (3.7855ms)
+✔ reviewed configurations resume through a fragment capability and revalidate the exact revision server-side (2.991ms)
+✔ Dawn emits the launch funnel without supplier-commercial analytics fields (1.9551ms)
+✔ mobile controls meet the 44px staging target and avoid iOS input zoom (2.9036ms)
+✔ persistent task, logo and footer navigation meet the 44px staging target (2.4541ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 30
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1592.0971
+
+✖ failing tests:
+
+test at lib\storefront\__tests__\guided-measure-checkout-allowlist.test.ts:1:1
+✖ lib\storefront\__tests__\guided-measure-checkout-allowlist.test.ts (905.5878ms)
+  'test failed'
+Exit code: 1
+
+Supported-scope confirmation: the initial optional Guided Measure suite could not load its migration fixture in this sparse checkout. No source or fixtures changed.
+Command: node C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/tsx/dist/cli.mjs --test lib/storefront/__tests__/shopify-theme.test.ts lib/storefront/__tests__/security.test.ts lib/storefront/__tests__/mtm-production-policy.test.ts
+
+✔ production policy enforces the approved hardware and heading matrix (4.5992ms)
+✔ measurement anchors preserve the customer raw measurement contract (0.7072ms)
+✔ Shopify official app-proxy signature vectors canonicalize exactly (5.1143ms)
+✔ app-proxy auth verifies HMAC, shop, path and replay window independently of Origin (6.8695ms)
+✔ ambiguous duplicate signatures are rejected (0.8693ms)
+✔ proxy rate keys bind the signed shop, operation and client address (0.76ms)
+✔ evidence verification uses magic bytes, MIME, extension and hard size limits (5.4867ms)
+✔ malware scanning is fail-closed and never promotes unavailable scans (1.7665ms)
+✔ retention and orphan cleanup plans preserve held, current and referenced evidence (3.66ms)
+✔ staff evidence tokens are short-lived and bound to evidence plus actor (1.4274ms)
+✔ gateway and staff responses are no-store and request envelopes are bounded (79.833ms)
+✔ multipart bodies have a hard streaming cap without trusting Content-Length (5.666ms)
+✔ Dawn contains the 14 unique Window Type route definitions (4.8433ms)
+✔ Dawn delegates decisions to the signed app proxy and retains isolated test-checkout support (6.6693ms)
+✔ the specialist workflow has no upload requirement and never renders a payment control (3.4019ms)
+✔ manual quote results suppress numeric prices and expose review submission without checkout (3.9934ms)
+✔ Bay uses one fitted-track route width and drop without angles or segment controls (3.8317ms)
+✔ Only supported automated windows are actionable and unsupported routes cannot price (4.0492ms)
+✔ Review evidence appears only after a server review outcome, without uploads or premature checkout (3.5554ms)
+✔ task navigation uses resolvable theme-owned inspiration, help and sample anchors (16.7697ms)
+✔ the Dawn header uses the task navigation instead of the production main menu (2.2828ms)
+✔ Dawn uses paginated retail imagery and retains canonical sample identity without commercial fields (4.5295ms)
+✔ a Fabric Master deep link is validated, hydrated through the catalogue, and fails closed when unresolved (4.7025ms)
+✔ Dawn purchase controls stay off independently of production indexing and Shopify Markets (32.7871ms)
+✔ all inherited Dawn commerce controls are disabled in the unpublished staging theme (7.9853ms)
+✔ results always show VAT, availability and delivery while standard results avoid specialist warnings (2.9419ms)
+✔ reviewed configurations resume through a fragment capability and revalidate the exact revision server-side (3.0612ms)
+✔ Dawn emits the launch funnel without supplier-commercial analytics fields (2.1783ms)
+✔ mobile controls meet the 44px staging target and avoid iOS input zoom (2.0907ms)
+✔ persistent task, logo and footer navigation meet the 44px staging target (2.1111ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 665.0446
+Supported-scope exit code: 0
+
+Specialist advisory controller/content tests UTC: 2026-10-09T18:23:45.7847770Z
+Command: node --test scripts/tests/specialist-advisory.test.mjs
+
+✔ real controller waits for 30 seconds of elapsed time, never interval count (14.5579ms)
+✔ backgrounded tab catches up on visibility restoration and pageshow (12.6097ms)
+✔ close restores focus and scroll; reopening starts a fresh full interval (5.6885ms)
+✔ skip enters the labelled room and native Escape closure restores its opener (4.0368ms)
+✔ keyboard focus wraps using only currently visible, enabled dialog controls (4.3482ms)
+✔ every adviser uses its own profile and the preview makes no network or persistence access (8.0876ms)
+✔ unsupported or failed modal opening keeps the page usable and exposes no fake chat (5.6397ms)
+✔ repeated section initialisation and unload do not duplicate timers or leak listeners (5.0818ms)
+✔ six versioned AI profiles, theme blocks and customer names agree; Jane is featured (4.8717ms)
+✔ the English locale is additive against the verified production baseline (117.8004ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 375.6568
+Specialist advisory test exit code: 0
+
+Guided Measure fixture recovery UTC: 2026-10-09T18:24:15.1947691Z
+Existing tracked supabase/migrations materialised by git sparse-checkout add: 93 files, 903990 bytes; no fixture source modified.
+Command: node C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/tsx/dist/cli.mjs --test lib/storefront/__tests__/guided-measure-checkout-allowlist.test.ts
+
+✔ guarded repair adds exactly the seven Guided Measure keys to the existing measurement allowlist (4.0102ms)
+✔ House measurement keys pass the repaired predicate; unknown and private keys remain rejected (1.4886ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 895.6743
+Guided Measure recovered test exit code: 0

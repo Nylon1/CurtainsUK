@@ -1,0 +1,11 @@
+# Preserve downloaded assets and their source checksums on Windows checkouts.
+assets/**/*.gltf -text
+assets/**/*.bin -text
+assets/**/*.jpg -text
+assets/**/*.webp -text
+assets/**/*.hdr -text
+assets/**/*.png -text
+# Keep upstream loaders and historical measurement snapshots byte-preserved.
+HDRLoader.js whitespace=-blank-at-eof
+RGBELoader.js whitespace=-blank-at-eof
+performance-snapshot/living.mjs whitespace=-blank-at-eof

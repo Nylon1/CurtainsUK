@@ -1,0 +1,98 @@
+[
+  {
+    "path": "textile/Diffuse.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denmin_fabric_02/denmin_fabric_02_diff_1k.jpg",
+    "bytes": 1306211,
+    "sha256": "fba56bdb36b4a68cd5b01e8afa69c59f52970508e0042d4189562a08c77021cc",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "textile/nor_gl.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denmin_fabric_02/denmin_fabric_02_nor_gl_1k.jpg",
+    "bytes": 1046367,
+    "sha256": "665e0bc009f29c2fdeb5e72791e66f6955e2e7b90c317112a6c873f9492cb3c4",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "textile/Rough.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denmin_fabric_02/denmin_fabric_02_rough_1k.jpg",
+    "bytes": 981756,
+    "sha256": "950fbf74a861bbb1c50f62a4fe36e999e657252ab5a7aaab55c0ba674f5f36a0",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "garden.hdr",
+    "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/garden_nook_1k.hdr",
+    "bytes": 1836222,
+    "sha256": "f8c7970483be873487fabc0f07891be7e1551220dba911ea9dadd56f8a336a00",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/model.gltf",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/potted_plant_01/potted_plant_01_1k.gltf",
+    "bytes": 7969,
+    "sha256": "23b30294407684b02f14800d6685bd8938da5d2111e17753ac8dd3c37d8c88a0",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/textures/potted_plant_01_pot_rough_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_01/potted_plant_01_pot_rough_1k.jpg",
+    "bytes": 173192,
+    "sha256": "1256199fe3a88a0534bcd4c8bf141cfa9a28b68fce3f286193d0713796fd8561",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/textures/potted_plant_01_leaves_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_01/potted_plant_01_leaves_nor_gl_1k.jpg",
+    "bytes": 177105,
+    "sha256": "2faa756e0ee2b8341c752b283b93599157bf56f4083a9f61b825cdfa0c7138ff",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/textures/potted_plant_01_pot_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_01/potted_plant_01_pot_diff_1k.jpg",
+    "bytes": 204900,
+    "sha256": "51c9d80e8abe585bd3dbcebe7cba1d3ed1a22b137c7cb66baf0e462c08dca312",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/potted_plant_01.bin",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/potted_plant_01/potted_plant_01.bin",
+    "bytes": 5345188,
+    "sha256": "a8dd1f7ce75f50dc25bbedc20809da02ee4193815c155b883a329925fa5548f7",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/textures/potted_plant_01_leaves_rough_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_01/potted_plant_01_leaves_rough_1k.jpg",
+    "bytes": 91706,
+    "sha256": "765e3bd1bfdad39dd0d1cd755eafd1f9f1d46cbbb6013988cbfd1197de27a1f9",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/textures/potted_plant_01_pot_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_01/potted_plant_01_pot_nor_gl_1k.jpg",
+    "bytes": 200349,
+    "sha256": "ec02e51751e0822d229d48bea1373b06e2675c3725ff04fd1f87ac516719e620",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  },
+  {
+    "path": "plant/textures/potted_plant_01_leaves_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/potted_plant_01/potted_plant_01_leaves_diff_1k.jpg",
+    "bytes": 124730,
+    "sha256": "b73891a0a606e139d0fcdd9e6fe503cd1210be3fc9c55fbd033941288231ccaa",
+    "license": "CC0",
+    "publisher": "Poly Haven"
+  }
+]

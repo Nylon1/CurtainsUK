@@ -1,0 +1,13 @@
+import {createRequire} from 'node:module';
+import {writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const {chromium}=createRequire(import.meta.url)('C:/Users/hamza/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const out='C:/Users/hamza/curtainsuk-visualiser-2-room-views-evidence-20261009',records=[];
+for(const room of ['office','bedroom','lounge'])for(const version of ['previous','current']){
+ const b=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--enable-webgl','--use-gl=angle','--use-angle=d3d11','--disable-gpu-shader-disk-cache']});
+ try{const p=await b.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'}),errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  await p.goto('http://127.0.0.1:4382/?room='+room+'&fabric=sdg-f1541-01'+(version==='previous'?'&roomViews=previous':''));await p.waitForFunction(()=>window.roomProof?.ready,null,{timeout:120000});
+  const data=await p.evaluate(()=>({viewerMs:roomProof.firstRenderMs,navigationMs:roomProof.navigationToReadyMs,gpu:roomProof.gpu,dpr:roomRefinement.renderer.getPixelRatio(),setupMs:roomProof.prototype.setupMs,assetPhases:roomProof.prototype.assetPhases,preparation:roomProof.prototype.preparation,programs:roomRefinement.renderer.info.programs.length,draw:roomProof.draw,photoRequests:performance.getEntriesByType('resource').filter(r=>r.name.includes('/assets/window/')).map(r=>({url:r.name,durationMs:r.duration,transferBytes:r.transferSize})),catalogueMs:performance.getEntriesByType('resource').find(r=>r.name.includes('/catalog?'))?.duration,photo:(()=>{const m=roomRefinement.scene.getObjectByName('PVC window and garden').children.find(o=>o.visible).children.find(o=>o.material?.name==='User garden photograph').material.map;return{url:m.image.src,width:m.image.width,height:m.image.height,estimatedBytes:m.image.width*m.image.height*4*4/3};})()}));
+  assert.equal(data.photoRequests.length,1,'Unneeded room views downloaded at startup');assert.deepEqual(errors,[]);records.push({room,version,...data,errors});await writeFile(out+'/performance.json',JSON.stringify({conditions:'One exploratory fresh Chrome process per room/version, desktop 1440x1000 DPR1, STANDARD, same AMD ANGLE D3D11, browser shader disk cache disabled. No competing browser, network/CPU throttling or physical phone. Actual catalogue latency retained; these are single runs, not medians.',records},null,2));console.log(JSON.stringify({room,version,viewerMs:data.viewerMs,navigationMs:data.navigationMs,photoRequests:data.photoRequests}));
+ }finally{await b.close();}
+}

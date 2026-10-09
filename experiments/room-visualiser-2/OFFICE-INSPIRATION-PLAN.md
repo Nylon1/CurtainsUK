@@ -1,0 +1,14 @@
+# Office inspiration — 9 October 2026
+
+Use the user's supplied White Office reference (`9F0BDABA-A411-4B86-8A1C-681AD1A6CF6B/1-Photo-1.jpg`) for its walnut joinery, inset warm shelves, tailored taupe chair, slender executive desk and ceiling cove. Author original geometry; do not embed the photograph or its branding.
+
+1. Fit dark walnut cabinetry beside the existing window, with closed doors, fine reveals and recessed open shelves. Keep tall furniture outside the window's camera sight lines. Place the desk, pedestal and chair on the left, with a low guest bench and a restrained woven rug. The existing window and curtains remain the central subject.
+2. Keep the approved camera views and all curtain functionality. Check both physical clearance and camera rays to the entire curtain/window envelope in the room view, including open, intermediate and closed poses. Closing curtains still covers the glass as designed; new furniture must never obstruct either curtain panel.
+3. Use shared PBR materials with restrained roughness and original small walnut/rug textures. Preserve the desk, chair, wall, ceiling and floor colour controls. Merge static geometry by material, reuse shapes and load the module only for Office. No large model or texture downloads.
+4. Reuse the three existing point-light slots for shelf/cove illumination; no additional shadow lights or renderer shader variants. All warm sources and emissive shelf/cove surfaces switch off in neutral Fabric Inspection and when room lighting is off.
+5. Save the sixteen existing Office screenshots before replacement. Capture STANDARD and FIXED140 on desktop and narrow viewports in Daylight open/closed, Evening and Inspection. Verify geometry/UV/camera hashes, fabric routing, colour retention, motion, keyboard controls and other-room regressions.
+6. Measure the previous and updated Office under equivalent fresh-browser conditions, with the same shader-cache policy and renderer settings. Retain the 5.2-second loading target, record GPU time and estimated memory, then add Office before/after to the four-room local review gallery.
+
+Disk checked before work: about **33.95 GiB free**, below the 35 GiB headroom aim. This update uses code and small review images only. Preserve all existing worktrees, evidence and uncommitted changes. Remain on `experiment/living-photo-composition-20261008`; no merge, push, deployment or publication. The 11,003 supported fabrics and protected curtain/runtime sources stay unchanged.
+
+User addition during the first visual check: add a luxury armchair on the right. Add one curved ivory upholstered lounge chair with separate cushions, welt seams and a recessed walnut base, angled towards the desk. Include its geometry in all physical and camera sight-line tests, repeat the screenshots, and include its cost in the final matched performance measurements.

@@ -1,0 +1,1052 @@
+{
+  "blend": {
+    "16k": {
+      "blend": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/16k/wooden_floor_02/wooden_floor_02_16k.blend",
+        "md5": "abd17f606ce9d19bec0577ff74d377ef",
+        "size": 205196,
+        "include": {
+          "textures/wooden_floor_02_diff_16k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_diff_16k.jpg",
+            "md5": "d152d8f8970feeabdf65fd936cb5397b",
+            "size": 191793243
+          },
+          "textures/wooden_floor_02_disp_16k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_disp_16k.png",
+            "md5": "4c027174eb77f6c6dedf86532193d5ad",
+            "size": 414749715
+          },
+          "textures/wooden_floor_02_nor_gl_16k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_nor_gl_16k.exr",
+            "md5": "9cd5ccb70b9a400f3d709f08be900927",
+            "size": 278742413
+          },
+          "textures/wooden_floor_02_rough_16k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_rough_16k.exr",
+            "md5": "0e780c6c51d3383f2b24a5e1da9fb069",
+            "size": 302436646
+          }
+        }
+      }
+    },
+    "1k": {
+      "blend": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/1k/wooden_floor_02/wooden_floor_02_1k.blend",
+        "md5": "e78fe737f9016e649b9e9830c901b562",
+        "size": 204897,
+        "include": {
+          "textures/wooden_floor_02_diff_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_diff_1k.jpg",
+            "md5": "7395f558aa2e2e898bb26fdc8bd5468b",
+            "size": 729028
+          },
+          "textures/wooden_floor_02_disp_1k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_disp_1k.png",
+            "md5": "9e2bd4e2a2c4b70e5dea1bc8e4391028",
+            "size": 1596798
+          },
+          "textures/wooden_floor_02_nor_gl_1k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_nor_gl_1k.exr",
+            "md5": "56f96c6cadab35d4677e9b22fe700917",
+            "size": 1004545
+          },
+          "textures/wooden_floor_02_rough_1k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_rough_1k.exr",
+            "md5": "2764c165585b9504c12ad86fce720686",
+            "size": 1036018
+          }
+        }
+      }
+    },
+    "2k": {
+      "blend": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/2k/wooden_floor_02/wooden_floor_02_2k.blend",
+        "md5": "1f7f19050c93d90c4895018d30aef52e",
+        "size": 204947,
+        "include": {
+          "textures/wooden_floor_02_diff_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_diff_2k.jpg",
+            "md5": "bbe0d48cc577f6af31bf845216ad3a3c",
+            "size": 3023675
+          },
+          "textures/wooden_floor_02_disp_2k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_disp_2k.png",
+            "md5": "03b293ea7460fc701e96d8656ee23420",
+            "size": 6553189
+          },
+          "textures/wooden_floor_02_nor_gl_2k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_nor_gl_2k.exr",
+            "md5": "371883c622a3ef685407ef35344b04dd",
+            "size": 5767890
+          },
+          "textures/wooden_floor_02_rough_2k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_rough_2k.exr",
+            "md5": "831c8d3fcfa8bc281657bea1ada1f543",
+            "size": 4483973
+          }
+        }
+      }
+    },
+    "4k": {
+      "blend": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/4k/wooden_floor_02/wooden_floor_02_4k.blend",
+        "md5": "12d49e735d9b3c9c88427621e263fc1f",
+        "size": 205015,
+        "include": {
+          "textures/wooden_floor_02_diff_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_diff_4k.jpg",
+            "md5": "8f8849e866275113920b5baec8eea259",
+            "size": 12691365
+          },
+          "textures/wooden_floor_02_disp_4k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_disp_4k.png",
+            "md5": "e5f7798880b7e9296ebd3c30ec5c12c1",
+            "size": 26591437
+          },
+          "textures/wooden_floor_02_nor_gl_4k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_nor_gl_4k.exr",
+            "md5": "6d0b95534bd86705745f84f7f491a789",
+            "size": 27299119
+          },
+          "textures/wooden_floor_02_rough_4k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_rough_4k.exr",
+            "md5": "4d9edb14e8550268f6f7fdcca34471f9",
+            "size": 18610016
+          }
+        }
+      }
+    },
+    "8k": {
+      "blend": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/8k/wooden_floor_02/wooden_floor_02_8k.blend",
+        "md5": "9e8da96314b086dccfaf38ef1b36b6dd",
+        "size": 204919,
+        "include": {
+          "textures/wooden_floor_02_diff_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_diff_8k.jpg",
+            "md5": "5fb8ccd38db37b39fda55f555c524e2b",
+            "size": 52256846
+          },
+          "textures/wooden_floor_02_disp_8k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_disp_8k.png",
+            "md5": "794fc6383f3384f947c46e154273b2ab",
+            "size": 107214215
+          },
+          "textures/wooden_floor_02_nor_gl_8k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_nor_gl_8k.exr",
+            "md5": "e47ae9861ca1903dac0a8159bc32f5aa",
+            "size": 99965066
+          },
+          "textures/wooden_floor_02_rough_8k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_rough_8k.exr",
+            "md5": "5abe889815bcb28562ae5941de23cfba",
+            "size": 76360129
+          }
+        }
+      }
+    }
+  },
+  "AO": {
+    "16k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_ao_16k.exr",
+        "md5": "954a703b3ef5126f50d2d54324fc0f9e",
+        "size": 193389301
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_ao_16k.jpg",
+        "md5": "6d6361b6481ffb0a84cbafe92e812ec4",
+        "size": 163710169
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_ao_16k.png",
+        "md5": "2e16b809fae3bd8dd19bfc5fbeff244a",
+        "size": 208118066
+      }
+    },
+    "1k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_ao_1k.exr",
+        "md5": "43c36c982fb2c1bf8362703bf5ad7bc1",
+        "size": 795961
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_ao_1k.jpg",
+        "md5": "e91a66e1c13b0a9b083d871de4201dc6",
+        "size": 386894
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_ao_1k.png",
+        "md5": "90c61640fbf090a82f26f2d93665c718",
+        "size": 1694724
+      }
+    },
+    "2k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_ao_2k.exr",
+        "md5": "6c8f0e711bf0433baf4250e195de2ebc",
+        "size": 3539115
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_ao_2k.jpg",
+        "md5": "09d93e3002cc1d606784493b9491a0ca",
+        "size": 1851447
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_ao_2k.png",
+        "md5": "f2c9b7b6039cbe5fc8b35011c16f9910",
+        "size": 7020910
+      }
+    },
+    "4k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_ao_4k.exr",
+        "md5": "41f1012ee78683b7955b41a6567852c2",
+        "size": 16354328
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_ao_4k.jpg",
+        "md5": "5a26fd6d86aec9d27207959b62b49c67",
+        "size": 8791198
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_ao_4k.png",
+        "md5": "20a9936d61743683340a7c7641b4851f",
+        "size": 27876752
+      }
+    },
+    "8k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_ao_8k.exr",
+        "md5": "fb942aabdda682b08f1c1c00e727ac57",
+        "size": 66225072
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_ao_8k.jpg",
+        "md5": "e3f7475786fd65d360d407c3f87bbde1",
+        "size": 40282237
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_ao_8k.png",
+        "md5": "931c5d5ab38ce47bc4b933cdc80f15b6",
+        "size": 85313401
+      }
+    }
+  },
+  "arm": {
+    "16k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_arm_16k.exr",
+        "md5": "f9cada4c08c571c71b5b43326e9eb51f",
+        "size": 422116764
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_arm_16k.jpg",
+        "md5": "eb331e3f83f1c45590f9d48c67e8f29f",
+        "size": 197631474
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_arm_16k.png",
+        "md5": "1c64b649f4833b50b406f4bcde8abb70",
+        "size": 899359750
+      }
+    },
+    "1k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_arm_1k.exr",
+        "md5": "43a7763bba471c24fc825c7ad149f52d",
+        "size": 1353704
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_arm_1k.jpg",
+        "md5": "10e0183ee8a1c155307661da9b80e419",
+        "size": 575240
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_arm_1k.png",
+        "md5": "be675b249e52218d2071b5c0bb90df65",
+        "size": 4098153
+      }
+    },
+    "2k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_arm_2k.exr",
+        "md5": "a25f042450d7990d7cb6f6a203383e05",
+        "size": 6357055
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_arm_2k.jpg",
+        "md5": "1995edcf57a3f47e672f7bc89a80bb65",
+        "size": 2697749
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_arm_2k.png",
+        "md5": "ec481c478429fdc0ce7d4fbe2808f431",
+        "size": 16978663
+      }
+    },
+    "4k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_arm_4k.exr",
+        "md5": "0e42a171265cec34ff70bb7bdeb2727f",
+        "size": 27281857
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_arm_4k.jpg",
+        "md5": "6eac2c9dc32bceb6a56114e3ad61844a",
+        "size": 11929346
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_arm_4k.png",
+        "md5": "5b473c9c9ebd6c78257008677bd1cbb9",
+        "size": 69127376
+      }
+    },
+    "8k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_arm_8k.exr",
+        "md5": "6d31ee20b9062c8558fe6ec2ae707ca9",
+        "size": 113784356
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_arm_8k.jpg",
+        "md5": "f78c5f0a055b37dac7b0742ef01109c2",
+        "size": 50172020
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_arm_8k.png",
+        "md5": "6d6b17e703d0f381536c646cadb61c4b",
+        "size": 267190659
+      }
+    }
+  },
+  "Diffuse": {
+    "16k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_diff_16k.exr",
+        "md5": "5d78509f3680ebd43c1863e055d62476",
+        "size": 327526958
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_diff_16k.jpg",
+        "md5": "d152d8f8970feeabdf65fd936cb5397b",
+        "size": 191793243
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_diff_16k.png",
+        "md5": "49ce75fe718b5a81fff411dcc3fce58f",
+        "size": 1185476216
+      }
+    },
+    "1k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_diff_1k.exr",
+        "md5": "31435dfc81bb50532e497c253a56f765",
+        "size": 1178197
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_diff_1k.jpg",
+        "md5": "7395f558aa2e2e898bb26fdc8bd5468b",
+        "size": 729028
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_diff_1k.png",
+        "md5": "8c455c902d58dbe9568dc2a033966970",
+        "size": 5472142
+      }
+    },
+    "2k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_diff_2k.exr",
+        "md5": "527d8cad559bdc29fd9d4b47081620c5",
+        "size": 5025808
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_diff_2k.jpg",
+        "md5": "bbe0d48cc577f6af31bf845216ad3a3c",
+        "size": 3023675
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_diff_2k.png",
+        "md5": "d65e6c0e18e5ab04f3256a59dbe0071f",
+        "size": 22155693
+      }
+    },
+    "4k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_diff_4k.exr",
+        "md5": "5486712e025c7dae4db9e07bfb12b1f3",
+        "size": 21354094
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_diff_4k.jpg",
+        "md5": "8f8849e866275113920b5baec8eea259",
+        "size": 12691365
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_diff_4k.png",
+        "md5": "c986ccaf2de2bdde96cb5e47d4288d00",
+        "size": 88915950
+      }
+    },
+    "8k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_diff_8k.exr",
+        "md5": "5c699bb8db7d9633b90a4d2dcd73134a",
+        "size": 88777234
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_diff_8k.jpg",
+        "md5": "5fb8ccd38db37b39fda55f555c524e2b",
+        "size": 52256846
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_diff_8k.png",
+        "md5": "8169ad84d9e327cf390bf3928111da8c",
+        "size": 341939226
+      }
+    }
+  },
+  "Displacement": {
+    "16k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_disp_16k.exr",
+        "md5": "2900ee6bd9d229dd87a9f92d58172afa",
+        "size": 206377078
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_disp_16k.jpg",
+        "md5": "5c18219c2bcd29a6a6acc04d62239e65",
+        "size": 86514684
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_disp_16k.png",
+        "md5": "4c027174eb77f6c6dedf86532193d5ad",
+        "size": 414749715
+      }
+    },
+    "1k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_disp_1k.exr",
+        "md5": "e9a64265ef230cdb77e9f37c09d6f065",
+        "size": 706603
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_disp_1k.jpg",
+        "md5": "037361d1f35b4e89f9c7e1e97695320c",
+        "size": 289431
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_disp_1k.png",
+        "md5": "9e2bd4e2a2c4b70e5dea1bc8e4391028",
+        "size": 1596798
+      }
+    },
+    "2k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_disp_2k.exr",
+        "md5": "0fc4724ddeffeadf621e631e566fe5e5",
+        "size": 2971813
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_disp_2k.jpg",
+        "md5": "aae2f55a384f9cb41ba0d07b4c54db51",
+        "size": 1288323
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_disp_2k.png",
+        "md5": "03b293ea7460fc701e96d8656ee23420",
+        "size": 6553189
+      }
+    },
+    "4k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_disp_4k.exr",
+        "md5": "8589c16ef6a963cc617f1dd8c887dd1e",
+        "size": 12432315
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_disp_4k.jpg",
+        "md5": "72e3ae0dcae8f5ee625c5d85c0c9ed9e",
+        "size": 5625710
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_disp_4k.png",
+        "md5": "e5f7798880b7e9296ebd3c30ec5c12c1",
+        "size": 26591437
+      }
+    },
+    "8k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_disp_8k.exr",
+        "md5": "35866ab2631d23adb88b997bbb85a786",
+        "size": 51786547
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_disp_8k.jpg",
+        "md5": "c8927e12df8f9882f8693750810805fe",
+        "size": 23590497
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_disp_8k.png",
+        "md5": "794fc6383f3384f947c46e154273b2ab",
+        "size": 107214215
+      }
+    }
+  },
+  "nor_dx": {
+    "16k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_nor_dx_16k.exr",
+        "md5": "6d669ed14c6a3dd6ba8869e08f0ff2e8",
+        "size": 278281245
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_nor_dx_16k.jpg",
+        "md5": "eeb4c61c5691987207ac3ddeca9dbcbc",
+        "size": 154021483
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_nor_dx_16k.png",
+        "md5": "d7a7d97d799bcef9a501d78a687b4c85",
+        "size": 1213392406
+      }
+    },
+    "1k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_nor_dx_1k.exr",
+        "md5": "fe8bfbab05a095fbdf6b6449f115585f",
+        "size": 1005942
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_nor_dx_1k.jpg",
+        "md5": "e295eecd63fca5ee6968be88cc0bae5d",
+        "size": 435376
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_nor_dx_1k.png",
+        "md5": "655b3f602d0ad3a92802e62ab2907afb",
+        "size": 4927402
+      }
+    },
+    "2k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_nor_dx_2k.exr",
+        "md5": "d26bc7698a64bd8529a6d69bc894e120",
+        "size": 5771496
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_nor_dx_2k.jpg",
+        "md5": "3fda3a19aaebb46b320ad9a7e79d3973",
+        "size": 2317173
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_nor_dx_2k.png",
+        "md5": "8ebe7968d765b65f57f683f09e41e756",
+        "size": 20553884
+      }
+    },
+    "4k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_nor_dx_4k.exr",
+        "md5": "02ba9a52bea3d0671a697f432b712fdb",
+        "size": 27346656
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_nor_dx_4k.jpg",
+        "md5": "fa3e7009b63ca30d8895625d698b8747",
+        "size": 11547267
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_nor_dx_4k.png",
+        "md5": "242d5d15333c233c8afff3f09b4656e6",
+        "size": 83971626
+      }
+    },
+    "8k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_nor_dx_8k.exr",
+        "md5": "8c833a799995dee3ff0783eb108c9d95",
+        "size": 100114759
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_nor_dx_8k.jpg",
+        "md5": "6be09708a0c67e9f26b70ca18f4fcaae",
+        "size": 47811101
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_nor_dx_8k.png",
+        "md5": "61261efa4aa1fafca2582c93511d8bf9",
+        "size": 332772752
+      }
+    }
+  },
+  "nor_gl": {
+    "16k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_nor_gl_16k.exr",
+        "md5": "9cd5ccb70b9a400f3d709f08be900927",
+        "size": 278742413
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_nor_gl_16k.jpg",
+        "md5": "dd393cb7f3a10d17e964b3aced0fa14a",
+        "size": 150477702
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_nor_gl_16k.png",
+        "md5": "ff7263cbc4205dd11bef5589fc8e69b5",
+        "size": 1216698241
+      }
+    },
+    "1k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_nor_gl_1k.exr",
+        "md5": "56f96c6cadab35d4677e9b22fe700917",
+        "size": 1004545
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_nor_gl_1k.jpg",
+        "md5": "ce5dd5957548694d8aecc92ee16f34bf",
+        "size": 434460
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_nor_gl_1k.png",
+        "md5": "958d421eaf150a7bdf519e3b219f5d84",
+        "size": 4927844
+      }
+    },
+    "2k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_nor_gl_2k.exr",
+        "md5": "371883c622a3ef685407ef35344b04dd",
+        "size": 5767890
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_nor_gl_2k.jpg",
+        "md5": "86b855fbc8c909a08e87dcd3b04273cd",
+        "size": 2314571
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_nor_gl_2k.png",
+        "md5": "63d158c01a0316adbdc40c770de7e392",
+        "size": 20554897
+      }
+    },
+    "4k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_nor_gl_4k.exr",
+        "md5": "6d0b95534bd86705745f84f7f491a789",
+        "size": 27299119
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_nor_gl_4k.jpg",
+        "md5": "c2411dba3be2259aa12bfadf0616b0a3",
+        "size": 11491062
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_nor_gl_4k.png",
+        "md5": "a2c9b8b1db71ff42a6ed170093bdb415",
+        "size": 83972155
+      }
+    },
+    "8k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_nor_gl_8k.exr",
+        "md5": "e47ae9861ca1903dac0a8159bc32f5aa",
+        "size": 99965066
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_nor_gl_8k.jpg",
+        "md5": "1ca31c3fdedf73699da78f59db6d3d0d",
+        "size": 46975439
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_nor_gl_8k.png",
+        "md5": "34c9cb8ff0644ffcbec40dc39f662978",
+        "size": 332781747
+      }
+    }
+  },
+  "Rough": {
+    "16k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_rough_16k.exr",
+        "md5": "0e780c6c51d3383f2b24a5e1da9fb069",
+        "size": 302436646
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_rough_16k.jpg",
+        "md5": "fa4034e1bb9e716a83c67a0b632b7a8d",
+        "size": 176431468
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_rough_16k.png",
+        "md5": "92c3068a2c552c42a911351c3bc7e54b",
+        "size": 481381365
+      }
+    },
+    "1k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_rough_1k.exr",
+        "md5": "2764c165585b9504c12ad86fce720686",
+        "size": 1036018
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_rough_1k.jpg",
+        "md5": "6db55374b4c0cf65f2841b4c0d7bed4c",
+        "size": 548918
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_rough_1k.png",
+        "md5": "12bc457b5275692c3b3849a2952236a5",
+        "size": 1814046
+      }
+    },
+    "2k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_rough_2k.exr",
+        "md5": "831c8d3fcfa8bc281657bea1ada1f543",
+        "size": 4483973
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_rough_2k.jpg",
+        "md5": "c7d93e39d6cb043a60dcaa1718f126bd",
+        "size": 2549743
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_rough_2k.png",
+        "md5": "5f61ece26ac3770d5c03e5be22b8e0f9",
+        "size": 7458672
+      }
+    },
+    "4k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_rough_4k.exr",
+        "md5": "4d9edb14e8550268f6f7fdcca34471f9",
+        "size": 18610016
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_rough_4k.jpg",
+        "md5": "9d1fec52c3c2a6db11888d1804bbf0ce",
+        "size": 11141886
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_rough_4k.png",
+        "md5": "5e421a85d0500e70d6af432543a3505e",
+        "size": 30198057
+      }
+    },
+    "8k": {
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_rough_8k.exr",
+        "md5": "5abe889815bcb28562ae5941de23cfba",
+        "size": 76360129
+      },
+      "jpg": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_rough_8k.jpg",
+        "md5": "7e48f1534cdce0141aec39e49181be10",
+        "size": 46958653
+      },
+      "png": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_rough_8k.png",
+        "md5": "ad1e5c4a88132667dd0246278f8d4550",
+        "size": 121836012
+      }
+    }
+  },
+  "gltf": {
+    "16k": {
+      "gltf": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/16k/wooden_floor_02/wooden_floor_02_16k.gltf",
+        "md5": "aca2c326f59c289bb6b8921793f4e422",
+        "size": 2807,
+        "include": {
+          "textures/wooden_floor_02_nor_gl_16k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_nor_gl_16k.jpg",
+            "md5": "dd393cb7f3a10d17e964b3aced0fa14a",
+            "size": 150477702
+          },
+          "textures/wooden_floor_02_diff_16k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_diff_16k.jpg",
+            "md5": "d152d8f8970feeabdf65fd936cb5397b",
+            "size": 191793243
+          },
+          "textures/wooden_floor_02_arm_16k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_arm_16k.jpg",
+            "md5": "eb331e3f83f1c45590f9d48c67e8f29f",
+            "size": 197631474
+          },
+          "wooden_floor_02.bin": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/wooden_floor_02/wooden_floor_02.bin",
+            "md5": "56d7981425dfaa8ae993f706fa311e13",
+            "size": 2370068
+          }
+        }
+      }
+    },
+    "1k": {
+      "gltf": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/1k/wooden_floor_02/wooden_floor_02_1k.gltf",
+        "md5": "1de1b2d58c0f4de4116ec08fb26a0cdd",
+        "size": 2804,
+        "include": {
+          "textures/wooden_floor_02_nor_gl_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_nor_gl_1k.jpg",
+            "md5": "ce5dd5957548694d8aecc92ee16f34bf",
+            "size": 434460
+          },
+          "textures/wooden_floor_02_diff_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_diff_1k.jpg",
+            "md5": "7395f558aa2e2e898bb26fdc8bd5468b",
+            "size": 729028
+          },
+          "textures/wooden_floor_02_arm_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_arm_1k.jpg",
+            "md5": "10e0183ee8a1c155307661da9b80e419",
+            "size": 575240
+          },
+          "wooden_floor_02.bin": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/wooden_floor_02/wooden_floor_02.bin",
+            "md5": "56d7981425dfaa8ae993f706fa311e13",
+            "size": 2370068
+          }
+        }
+      }
+    },
+    "2k": {
+      "gltf": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/2k/wooden_floor_02/wooden_floor_02_2k.gltf",
+        "md5": "b4707afa6cff44ce9b8c1fffeccf8894",
+        "size": 2804,
+        "include": {
+          "textures/wooden_floor_02_nor_gl_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_nor_gl_2k.jpg",
+            "md5": "86b855fbc8c909a08e87dcd3b04273cd",
+            "size": 2314571
+          },
+          "textures/wooden_floor_02_diff_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_diff_2k.jpg",
+            "md5": "bbe0d48cc577f6af31bf845216ad3a3c",
+            "size": 3023675
+          },
+          "textures/wooden_floor_02_arm_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_arm_2k.jpg",
+            "md5": "1995edcf57a3f47e672f7bc89a80bb65",
+            "size": 2697749
+          },
+          "wooden_floor_02.bin": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/wooden_floor_02/wooden_floor_02.bin",
+            "md5": "56d7981425dfaa8ae993f706fa311e13",
+            "size": 2370068
+          }
+        }
+      }
+    },
+    "4k": {
+      "gltf": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/4k/wooden_floor_02/wooden_floor_02_4k.gltf",
+        "md5": "6014420f3f9584bb1d9da8ce76ccae67",
+        "size": 2804,
+        "include": {
+          "textures/wooden_floor_02_nor_gl_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_nor_gl_4k.jpg",
+            "md5": "c2411dba3be2259aa12bfadf0616b0a3",
+            "size": 11491062
+          },
+          "textures/wooden_floor_02_diff_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_diff_4k.jpg",
+            "md5": "8f8849e866275113920b5baec8eea259",
+            "size": 12691365
+          },
+          "textures/wooden_floor_02_arm_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_arm_4k.jpg",
+            "md5": "6eac2c9dc32bceb6a56114e3ad61844a",
+            "size": 11929346
+          },
+          "wooden_floor_02.bin": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/wooden_floor_02/wooden_floor_02.bin",
+            "md5": "56d7981425dfaa8ae993f706fa311e13",
+            "size": 2370068
+          }
+        }
+      }
+    },
+    "8k": {
+      "gltf": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/wooden_floor_02/wooden_floor_02_8k.gltf",
+        "md5": "e82148b8b087863b3774dc70380db57e",
+        "size": 2804,
+        "include": {
+          "textures/wooden_floor_02_nor_gl_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_nor_gl_8k.jpg",
+            "md5": "1ca31c3fdedf73699da78f59db6d3d0d",
+            "size": 46975439
+          },
+          "textures/wooden_floor_02_diff_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_diff_8k.jpg",
+            "md5": "5fb8ccd38db37b39fda55f555c524e2b",
+            "size": 52256846
+          },
+          "textures/wooden_floor_02_arm_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_arm_8k.jpg",
+            "md5": "f78c5f0a055b37dac7b0742ef01109c2",
+            "size": 50172020
+          },
+          "wooden_floor_02.bin": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/wooden_floor_02/wooden_floor_02.bin",
+            "md5": "56d7981425dfaa8ae993f706fa311e13",
+            "size": 2370068
+          }
+        }
+      }
+    }
+  },
+  "mtlx": {
+    "16k": {
+      "mtlx": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/16k/wooden_floor_02/wooden_floor_02_16k.mtlx",
+        "md5": "f08b335294dd57fcf115be32d768d7a7",
+        "size": 4746,
+        "include": {
+          "textures/wooden_floor_02_diff_16k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/16k/wooden_floor_02/wooden_floor_02_diff_16k.jpg",
+            "md5": "d152d8f8970feeabdf65fd936cb5397b",
+            "size": 191793243
+          },
+          "textures/wooden_floor_02_disp_16k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/16k/wooden_floor_02/wooden_floor_02_disp_16k.png",
+            "md5": "4c027174eb77f6c6dedf86532193d5ad",
+            "size": 414749715
+          },
+          "textures/wooden_floor_02_nor_gl_16k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_nor_gl_16k.exr",
+            "md5": "9cd5ccb70b9a400f3d709f08be900927",
+            "size": 278742413
+          },
+          "textures/wooden_floor_02_rough_16k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/16k/wooden_floor_02/wooden_floor_02_rough_16k.exr",
+            "md5": "0e780c6c51d3383f2b24a5e1da9fb069",
+            "size": 302436646
+          }
+        }
+      }
+    },
+    "1k": {
+      "mtlx": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/1k/wooden_floor_02/wooden_floor_02_1k.mtlx",
+        "md5": "113d8dac7e13f12d8ec9efb3adee4f97",
+        "size": 4742,
+        "include": {
+          "textures/wooden_floor_02_diff_1k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_floor_02/wooden_floor_02_diff_1k.jpg",
+            "md5": "7395f558aa2e2e898bb26fdc8bd5468b",
+            "size": 729028
+          },
+          "textures/wooden_floor_02_disp_1k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/wooden_floor_02/wooden_floor_02_disp_1k.png",
+            "md5": "9e2bd4e2a2c4b70e5dea1bc8e4391028",
+            "size": 1596798
+          },
+          "textures/wooden_floor_02_nor_gl_1k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_nor_gl_1k.exr",
+            "md5": "56f96c6cadab35d4677e9b22fe700917",
+            "size": 1004545
+          },
+          "textures/wooden_floor_02_rough_1k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/wooden_floor_02/wooden_floor_02_rough_1k.exr",
+            "md5": "2764c165585b9504c12ad86fce720686",
+            "size": 1036018
+          }
+        }
+      }
+    },
+    "2k": {
+      "mtlx": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/2k/wooden_floor_02/wooden_floor_02_2k.mtlx",
+        "md5": "a72b8506e27dac4a58a15eee24179cef",
+        "size": 4742,
+        "include": {
+          "textures/wooden_floor_02_diff_2k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wooden_floor_02/wooden_floor_02_diff_2k.jpg",
+            "md5": "bbe0d48cc577f6af31bf845216ad3a3c",
+            "size": 3023675
+          },
+          "textures/wooden_floor_02_disp_2k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/wooden_floor_02/wooden_floor_02_disp_2k.png",
+            "md5": "03b293ea7460fc701e96d8656ee23420",
+            "size": 6553189
+          },
+          "textures/wooden_floor_02_nor_gl_2k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_nor_gl_2k.exr",
+            "md5": "371883c622a3ef685407ef35344b04dd",
+            "size": 5767890
+          },
+          "textures/wooden_floor_02_rough_2k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/wooden_floor_02/wooden_floor_02_rough_2k.exr",
+            "md5": "831c8d3fcfa8bc281657bea1ada1f543",
+            "size": 4483973
+          }
+        }
+      }
+    },
+    "4k": {
+      "mtlx": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/4k/wooden_floor_02/wooden_floor_02_4k.mtlx",
+        "md5": "a4debac7b85e0477d0d86eb373b6e79d",
+        "size": 4742,
+        "include": {
+          "textures/wooden_floor_02_diff_4k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/wooden_floor_02/wooden_floor_02_diff_4k.jpg",
+            "md5": "8f8849e866275113920b5baec8eea259",
+            "size": 12691365
+          },
+          "textures/wooden_floor_02_disp_4k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/wooden_floor_02/wooden_floor_02_disp_4k.png",
+            "md5": "e5f7798880b7e9296ebd3c30ec5c12c1",
+            "size": 26591437
+          },
+          "textures/wooden_floor_02_nor_gl_4k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_nor_gl_4k.exr",
+            "md5": "6d0b95534bd86705745f84f7f491a789",
+            "size": 27299119
+          },
+          "textures/wooden_floor_02_rough_4k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/wooden_floor_02/wooden_floor_02_rough_4k.exr",
+            "md5": "4d9edb14e8550268f6f7fdcca34471f9",
+            "size": 18610016
+          }
+        }
+      }
+    },
+    "8k": {
+      "mtlx": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/8k/wooden_floor_02/wooden_floor_02_8k.mtlx",
+        "md5": "d6a58b6a83dc7f2fd808ed3043f89986",
+        "size": 4742,
+        "include": {
+          "textures/wooden_floor_02_diff_8k.jpg": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/wooden_floor_02/wooden_floor_02_diff_8k.jpg",
+            "md5": "5fb8ccd38db37b39fda55f555c524e2b",
+            "size": 52256846
+          },
+          "textures/wooden_floor_02_disp_8k.png": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/wooden_floor_02/wooden_floor_02_disp_8k.png",
+            "md5": "794fc6383f3384f947c46e154273b2ab",
+            "size": 107214215
+          },
+          "textures/wooden_floor_02_nor_gl_8k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_nor_gl_8k.exr",
+            "md5": "e47ae9861ca1903dac0a8159bc32f5aa",
+            "size": 99965066
+          },
+          "textures/wooden_floor_02_rough_8k.exr": {
+            "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/wooden_floor_02/wooden_floor_02_rough_8k.exr",
+            "md5": "5abe889815bcb28562ae5941de23cfba",
+            "size": 76360129
+          }
+        }
+      }
+    }
+  }
+}

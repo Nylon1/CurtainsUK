@@ -1092,5 +1092,75 @@
     "eyelet_description": "Smooth, generous folds with metal eyelets threaded directly onto a pole.",
     "eyelet_link": "Explore Eyelet",
     "scale_note": "Illustrative view only — fabric pattern shown is not to scale."
+  },
+  "homepage_studio": {
+    "hero": {
+      "eyebrow": "Made-to-measure curtains · Made in the UK",
+      "title": "Beautiful curtains. A room that feels like you.",
+      "intro": "Find your fabric, explore it in a room and shape the details. A more considered way to create your made-to-measure curtains.",
+      "visualiser": "Try the Room Visualiser",
+      "discovery": "Help me find my fabric",
+      "browse": "Browse the fabric collection",
+      "image_alt": "Botanical curtains beside a sunlit window in a furnished living room",
+      "shortcuts": "Explore CurtainsUK tools"
+    },
+    "visualiser": {
+      "name": "Room Visualiser",
+      "eyebrow": "See the whole room come together",
+      "title": "Your fabric. Four rooms. Endless possibilities.",
+      "intro": "Explore curtain fabrics in a Living Room, Bedroom, Lounge or Office. Change the colours around them and see how the whole scheme feels.",
+      "subtitle": "A little imagination. A clearer picture.",
+      "copy": "Start with a fabric you love, then explore different combinations before choosing your samples.",
+      "fabric": "Explore thousands of supported fabrics",
+      "palette": "Adjust walls, flooring, furniture and accents",
+      "light": "Compare daylight and evening lighting",
+      "motion": "See the curtains open and close",
+      "cta": "Explore the Room Visualiser",
+      "image_alt": "Preview captured from the CurtainsUK Room Visualiser",
+      "preview_label": "Room Visualiser preview",
+      "inspiration_alt": "Interior inspiration with neutral curtains, seating and a coffee table",
+      "inspiration_label": "Interior inspiration · Open the tool to explore our interactive rooms",
+      "advisory": "Visual guide for fabric, colour and interior inspiration. Always choose your final fabric and colour with a physical sample.",
+      "samples": "Order fabric samples"
+    },
+    "rooms": {
+      "living_title": "Living Room",
+      "living_text": "Generous seating, quiet details",
+      "bedroom_title": "Bedroom",
+      "bedroom_text": "A softer, restful setting",
+      "lounge_title": "Lounge",
+      "lounge_text": "A space for evening comfort",
+      "office_title": "Office",
+      "office_text": "A considered working space"
+    },
+    "discovery": {
+      "name": "Find your fabric"
+    },
+    "intelligence": {
+      "eyebrow": "CurtainsUK Fabric Intelligence™",
+      "title": "A fabric choice that understands your room.",
+      "copy": "Show us your room or tell us the feeling you want to create. We bring colour, light, furnishings, pattern and texture together to help you find a fabric direction.",
+      "image_alt": "Curtain fabrics and coordinated interior colours arranged as a moodboard",
+      "colour_title": "Blend, complement or contrast?",
+      "colour_copy": "Explore a calm tonal scheme, a supporting colour or a bolder focal point. Your walls are the beginning of the palette.",
+      "cta": "Let us read my room"
+    },
+    "style": {
+      "name": "Curtain Style",
+      "eyebrow": "The details make the difference",
+      "title": "Find your curtain’s character.",
+      "intro": "Explore headings, length and curtain presence. See how the finish changes the feeling of a window.",
+      "cta": "Explore Curtain Style"
+    },
+    "headings": {
+      "wave_title": "Wave",
+      "wave_text": "An even rhythm of flowing folds.",
+      "double_pinch_title": "Double pinch pleat",
+      "double_pinch_text": "A tailored, structured finish.",
+      "pencil_pleat_title": "Pencil pleat",
+      "pencil_pleat_text": "Soft, closely gathered folds.",
+      "eyelet_title": "Eyelet",
+      "eyelet_text": "A clean finish for a curtain pole."
+    }
   }
 }

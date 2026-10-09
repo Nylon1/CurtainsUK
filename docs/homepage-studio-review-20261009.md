@@ -1,0 +1,37 @@
+# Visual homepage review — 9 October 2026
+
+The homepage previously devoted its main editorial story to Fabric Intelligence and did not present the live Room Visualiser. The candidate adds a shorter hero, a prominent four-room visualiser feature, existing fabric-discovery cards, a concise colour-intelligence story and visual heading comparisons. House of Curtains, its saved-room behaviour, window guidance, measurement help, customer trust and footer content remain in the existing theme sections.
+
+## Source and boundaries
+
+- Base: protected `release/production`, `9dbad8098083a6800ea0b1d1a972dba9e616d9d2` (PR #165).
+- Branch: `feat/homepage-visual-tools-20261009`.
+- Source: `shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-home-studio.liquid`, its scoped CSS, homepage template, English translations and five optimised WebP assets.
+- The old editorial section is disabled and preserved. The new studio section is homepage-only.
+- Shopify draft: `182466478459`, duplicated from live theme `182339731835`; no live-theme write or publication is part of this review.
+- No Vercel release, visualiser runtime change, catalogue read/rebuild, pricing update or checkout change is needed for this theme-only candidate.
+
+## Visual and loading behaviour
+
+- Hero CTA opens the existing native Room Visualiser. All four room links use its existing `room` query parameter.
+- No renderer, WebGL context, fabric catalogue or iframe is loaded by the new homepage section.
+- Only the hero image is eager/high-priority; feature and heading images are lazy. New WebP assets total 250,950 bytes, derived without semantic changes from existing approved theme imagery.
+- Existing interior artwork is visibly labelled **Interior inspiration**. The Theme Editor screenshot setting accepts a capture of the current approved visualiser and switches the label to **Room Visualiser preview**. No older visualiser or generated interior is claimed to be a current runtime screenshot.
+- The feature retains the physical-sample advisory. It does not claim every catalogue fabric is supported or promise exact finished-curtain appearance.
+- Existing translation keys and Shopify sections remain intact. New customer copy uses `homepage_studio` translation keys.
+
+## Validation
+
+- Existing theme suite: 18 passed, zero failed.
+- Shopify Liquid validator 3.24.0: new section, CSS, English locale and homepage JSON all passed. The validator used its bundled documentation fallback when the latest documentation manifest could not be fetched.
+- JSON structure, existing translations, image dimensions and compressed asset hashes checked; `git diff --check` passed.
+- Scoped live source read-back confirmed the existing homepage sections/CSS and translations match protected source after line-ending normalisation.
+- Cloud Chrome cannot create a WebGL context, so it cannot produce new runtime screenshots; the native visualiser correctly shows its recovery path in that environment. This observation is not a physical-device or ordinary customer-browser result.
+
+## Review and release
+
+Desktop/narrow preview evidence and file read-back are recorded with the candidate after the draft-theme verification. Physical iPhone Safari acceptance remains pending. The earlier room-visualiser release and disk-cleanup pending work are unchanged.
+
+Before publication, merge the reviewed candidate through both required protected checks and upload only the nine scoped theme files from that exact protected source. Re-read the target homepage template/locale immediately before upload to preserve any intervening Theme Editor changes. Use an existing capture of the current approved runtime if replacing the labelled inspiration image.
+
+Rollback is limited to these theme files: restore the prior homepage JSON and English locale from the pre-change live snapshot, then remove/disable the new studio section. Preserve the live Room Visualiser deployment and all unrelated files. Do not invoke a Vercel rollback for this theme-only change.

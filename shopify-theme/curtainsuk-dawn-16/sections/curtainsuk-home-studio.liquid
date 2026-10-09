@@ -1,0 +1,117 @@
+{{ 'curtainsuk-home-studio.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign hero_image = section.settings.hero_image | default: images['curtainsuk-more-than-curtains-botanical.png']
+  assign hero_alt = 'homepage_studio.hero.image_alt' | t
+  assign preview_alt = 'homepage_studio.visualiser.image_alt' | t
+%}
+<div class="cukstudio">
+  <section class="cukstudio__hero" aria-labelledby="cukstudio-title-{{ section.id }}">
+    <div class="cukstudio__hero-copy">
+      <p class="cukstudio__eyebrow">{{ 'homepage_studio.hero.eyebrow' | t }}</p>
+      <h1 id="cukstudio-title-{{ section.id }}">{{ 'homepage_studio.hero.title' | t }}</h1>
+      <p class="cukstudio__intro">{{ 'homepage_studio.hero.intro' | t }}</p>
+      <div class="cukstudio__actions">
+        <a class="cukstudio__button cukstudio__button--light" href="/pages/room-visualiser">{{ 'homepage_studio.hero.visualiser' | t }} <span aria-hidden="true">↗</span></a>
+        <a class="cukstudio__button cukstudio__button--outline" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'homepage_studio.hero.discovery' | t }} <span aria-hidden="true">→</span></a>
+      </div>
+      <a class="cukstudio__hero-link" href="/pages/fabric-library?view=browse-fabrics">{{ 'homepage_studio.hero.browse' | t }} <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="cukstudio__hero-image">{{ hero_image | image_url: width: 1800 | image_tag: widths: '360, 540, 750, 1100, 1500, 1800', sizes: '(min-width: 1000px) 56vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: hero_alt }}</div>
+  </section>
+  <nav class="cukstudio__shortcuts" aria-label="{{ 'homepage_studio.hero.shortcuts' | t | escape }}">
+    <a href="#homepage-room-visualiser">{{ 'homepage_studio.visualiser.name' | t }} <span aria-hidden="true">↓</span></a>
+    <a href="#cuk-fabric-discovery">{{ 'homepage_studio.discovery.name' | t }} <span aria-hidden="true">↓</span></a>
+    <a href="#homepage-curtain-style">{{ 'homepage_studio.style.name' | t }} <span aria-hidden="true">↓</span></a>
+    {% if settings.curtainsuk_rooms_enabled %}<a href="/pages/build-my-rooms">{{ 'rooms.title' | t }} <span aria-hidden="true">↗</span></a>{% endif %}
+  </nav>
+  <section class="cukstudio__visualiser cukstudio__wrap" id="homepage-room-visualiser" aria-labelledby="cukstudio-room-{{ section.id }}">
+    <div class="cukstudio__section-head">
+      <div><p class="cukstudio__eyebrow">{{ 'homepage_studio.visualiser.eyebrow' | t }}</p><h2 id="cukstudio-room-{{ section.id }}">{{ 'homepage_studio.visualiser.title' | t }}</h2></div>
+      <p>{{ 'homepage_studio.visualiser.intro' | t }}</p>
+    </div>
+    <div class="cukstudio__room-feature">
+      <div class="cukstudio__room-image">
+        {% if section.settings.visualiser_image != blank %}
+          {{ section.settings.visualiser_image | image_url: width: 1600 | image_tag: widths: '360, 540, 750, 1100, 1600', sizes: '(min-width: 1500px) 840px, (min-width: 1000px) 60vw, calc(100vw - 48px)', loading: 'lazy', alt: preview_alt }}
+          <p class="cukstudio__image-label">{{ 'homepage_studio.visualiser.preview_label' | t }}</p>
+        {% else %}
+          <img src="{{ 'cuk-home-room-inspiration.webp' | asset_url }}" width="1400" height="700" loading="lazy" alt="{{ 'homepage_studio.visualiser.inspiration_alt' | t | escape }}">
+          <p class="cukstudio__image-label">{{ 'homepage_studio.visualiser.inspiration_label' | t }}</p>
+        {% endif %}
+      </div>
+      <div class="cukstudio__room-copy">
+        <p class="cukstudio__eyebrow">{{ 'homepage_studio.visualiser.name' | t }}</p>
+        <h3>{{ 'homepage_studio.visualiser.subtitle' | t }}</h3>
+        <p>{{ 'homepage_studio.visualiser.copy' | t }}</p>
+        <ul class="cukstudio__room-features">
+          <li>{{ 'homepage_studio.visualiser.fabric' | t }}</li>
+          <li>{{ 'homepage_studio.visualiser.palette' | t }}</li>
+          <li>{{ 'homepage_studio.visualiser.light' | t }}</li>
+          <li>{{ 'homepage_studio.visualiser.motion' | t }}</li>
+        </ul>
+        <a class="cukstudio__button" href="/pages/room-visualiser">{{ 'homepage_studio.visualiser.cta' | t }} <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="cukstudio__rooms">
+      {% assign room_names = 'living,bedroom,lounge,office' | split: ',' %}
+      {% for room in room_names %}
+        {% liquid
+          assign title_key = room | prepend: 'homepage_studio.rooms.' | append: '_title'
+          assign text_key = room | prepend: 'homepage_studio.rooms.' | append: '_text'
+        %}
+        <a href="/pages/room-visualiser?room={{ room }}" class="cukstudio__room-link">
+          <span class="cukstudio__room-number" aria-hidden="true">0{{ forloop.index }}</span>
+          <span><strong>{{ title_key | t }}</strong><span>{{ text_key | t }}</span></span>
+          <span class="cukstudio__room-arrow" aria-hidden="true">↗</span>
+        </a>
+      {% endfor %}
+    </div>
+    <p class="cukstudio__advisory">{{ 'homepage_studio.visualiser.advisory' | t }} <a href="/pages/samples">{{ 'homepage_studio.visualiser.samples' | t }}</a></p>
+  </section>
+  <div id="cuk-fabric-discovery">{% render 'curtainsuk-three-ways' %}</div>
+  <section class="cukstudio__intelligence cukstudio__wrap" id="fabric-intelligence" aria-labelledby="cukstudio-fi-{{ section.id }}">
+    <div class="cukstudio__intelligence-image">{% assign moodboard_alt = 'homepage_studio.intelligence.image_alt' | t %}{{ images['curtainsuk-fabric-moodboard.jpg'] | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 1100', sizes: '(min-width: 1000px) 43vw, calc(100vw - 48px)', loading: 'lazy', alt: moodboard_alt }}</div>
+    <div class="cukstudio__intelligence-copy" id="what-we-consider">
+      <p class="cukstudio__eyebrow">{{ 'homepage_studio.intelligence.eyebrow' | t }}</p>
+      <h2 id="cukstudio-fi-{{ section.id }}">{{ 'homepage_studio.intelligence.title' | t }}</h2>
+      <p>{{ 'homepage_studio.intelligence.copy' | t }}</p>
+      <div class="cukstudio__colour-note" id="colour-intelligence"><h3>{{ 'homepage_studio.intelligence.colour_title' | t }}</h3><p>{{ 'homepage_studio.intelligence.colour_copy' | t }}</p></div>
+      <a class="cukstudio__text-link" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'homepage_studio.intelligence.cta' | t }} <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+  <section class="cukstudio__style" id="homepage-curtain-style" aria-labelledby="cukstudio-style-{{ section.id }}">
+    <div class="cukstudio__wrap">
+      <div class="cukstudio__section-head"><div><p class="cukstudio__eyebrow">{{ 'homepage_studio.style.eyebrow' | t }}</p><h2 id="cukstudio-style-{{ section.id }}">{{ 'homepage_studio.style.title' | t }}</h2></div><p>{{ 'homepage_studio.style.intro' | t }}</p></div>
+      <div class="cukstudio__headings">
+        {% assign headings = 'wave,double-pinch,pencil-pleat,eyelet' | split: ',' %}
+        {% for heading in headings %}
+          {% liquid
+            assign translation_key = heading | replace: '-', '_'
+            assign title_key = translation_key | prepend: 'homepage_studio.headings.' | append: '_title'
+            assign text_key = translation_key | prepend: 'homepage_studio.headings.' | append: '_text'
+            assign image_key = heading | prepend: 'cuk-home-heading-' | append: '.webp'
+            assign image_alt = title_key | t
+          %}
+          <a href="/pages/fabric-library?view=curtain-style" class="cukstudio__heading">
+            <div class="cukstudio__heading-image"><img src="{{ image_key | asset_url }}" width="750" height="562" loading="lazy" alt="{{ image_alt | escape }}"></div>
+            <h3>{{ title_key | t }} <span aria-hidden="true">↗</span></h3><p>{{ text_key | t }}</p>
+          </a>
+        {% endfor %}
+      </div>
+      <a class="cukstudio__text-link" href="/pages/fabric-library?view=curtain-style">{{ 'homepage_studio.style.cta' | t }} <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "CurtainsUK home studio",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": { "templates": ["index"] },
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "image_picker", "id": "visualiser_image", "label": "Room Visualiser screenshot", "info": "Use a capture of the current approved Room Visualiser. When empty, the room image is labelled as interior inspiration." }
+  ],
+  "presets": [{ "name": "CurtainsUK home studio" }]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-09T20:08:29.522Z",
+  "url": "http://127.0.0.1:8789/",
+  "mode": "scripted-mock",
+  "responsive": [
+    {
+      "overflow": false,
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 397,
+      "width": 412
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 1425,
+      "width": 1440
+    }
+  ],
+  "automaticEntry": {
+    "observedAfterMs": 36264,
+    "opened": true,
+    "exactBoundary": "deterministic clock test",
+    "backgroundVisibility": "not confirmed"
+  },
+  "handoff": {
+    "consent": true,
+    "fixtureId": "pt-3697-770",
+    "room": "living",
+    "submitted": true
+  },
+  "feedbackRefinement": "warm ivory -> quieter pattern -> cool blue-grey",
+  "savedContinuity": {
+    "consent": true,
+    "reload": true,
+    "serverRestart": true,
+    "ownershipRecovery": "automated security tests"
+  },
+  "keyboard": {
+    "escapeClosesNamedDialog": true,
+    "focusReturnsToOpener": true,
+    "textareaTabReachesSend": true
+  },
+  "errorsObserved": [],
+  "pending": [
+    "Physical iPhone Safari/touch",
+    "Real screen-reader testing",
+    "Actual enabled reduced-motion browser preference",
+    "Confirmed hidden-tab browser timer test",
+    "Paid-model quality and latency",
+    "Cloud persistence/authentication"
+  ],
+  "liveRetailSmoke": "HTTP 400; blocked",
+  "noScreenshotsProcessed": true
+}

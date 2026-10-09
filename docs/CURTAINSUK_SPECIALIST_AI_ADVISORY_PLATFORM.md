@@ -1,6 +1,46 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 9 October 2026 · Phase 1 visually approved; controlled release candidate**
+**Programme source of truth · 9 October 2026 · Team release candidate verified; Jane completion increment locally tested, hosted activation pending**
+
+## Latest implementation: encrypted persistence, indexed knowledge and concise Jane
+
+[Jane completion record](specialist-advisory/JANE_COMPLETION.md) is the current detailed source of truth. Work starts from `fefa6029287dcacb4ac924a50767e27351f2ac7c` in draft PR #169. PR #167 remains independent and unchanged at `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; protected HEAD is still `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. Fresh read-back verifies all 20 scoped theme files and unchanged checksums for all 505 live files. The permanent team page remains unpublished.
+
+Jane `2.2.0-preview.1` targets 40–90 words for ordinary replies and avoids em dashes. New customer-language hygiene removes internal feedback codes. The profile improves useful questioning, feedback refinement, meaningful alternatives and room-to-fabric query interpretation. Its intelligence has **not yet been re-evaluated with a real model**. Earlier paid transcripts and US$0.132574 ledger receipts remain unchanged; the new 16-scenario/48-turn mock suite is infrastructure evidence only. No additional paid calls were made, and the runner rejects the previous approval for the new profile/suite.
+
+Implemented/local-tested additions include AES-GCM cloud record encryption with authenticated ownership metadata; separate application-process tests for shared locks, replay, recovery, rates and retention; guarded hosted mock composition; and five-minute consented context handoffs. The incremental index worker processes six records per batch, atomically checkpoints, rejects duplicate pages and requires an approved exact denominator/source attestation before claiming completion. Five exact live Master records were read and indexed locally, with commercial filtering verified separately. **Full-master index population and hosted Auth/database tests remain pending** because there is no approved isolated hosted environment. No production schema, source record, supplier operation or customer tool changed.
+
+Current validation: **78 scoped tests pass** (40 Jane/security/storage/index, 20 Phase 1, 18 theme), scoped lint passes, both previews show no overflow at 320/390/412/768/1440 CSS px. All six spotlights, mobile navigation, welcome auto-entry and keyboard dialog exit were observed. Physical iPhone/touch, actual screen reader, enabled reduced motion and confirmed hidden-tab checks remain pending. [Evidence and exact changed files](../artifacts/jane-completion/IMPLEMENTATION.md), [updated owner review](http://127.0.0.1:8789/readiness), [scripted consultation](http://127.0.0.1:8789/).
+
+**Recommendation:** PR #167 is prepared for scoped owner publication review, with device limitations explicit. Keep Jane inactive until isolated hosted security/privacy, actual index coverage and fresh budgeted real-model/human evaluation pass. The earlier exposed key's retirement is unverified; no key exists in this process or checked private evaluation env file. No merge, publication, deployment, live AI activation or infrastructure purchase occurred. C: measured 36.02 GiB; the earlier restic process is no longer listed, which does not establish backup success. A later verified backup remains required.
+
+## Historical implementation — Jane intelligence readiness
+
+[Jane readiness, contracts, security, evaluation and activation record](specialist-advisory/JANE_READINESS.md) is the current detailed source of truth. The earlier Phase 2 report below is historical where superseded. Work continues in [draft PR #169](https://github.com/Nylon1/CurtainsUK/pull/169), separately from unchanged [PR #167](https://github.com/Nylon1/CurtainsUK/pull/167). Starting Jane HEAD was `90722cd22a1485611f5464c03e7c98e51a2a39a7`; protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. MAIN theme `182339731835`, hidden permanent team page and Vercel deployment `dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD` were verified independently. Neither PR was merged or published.
+
+**Implemented and demonstrated:** the retail HTTP 400 correction in Jane's adapter, safe approved product cards, bounded descriptive full-text indexing, cloud-ready owner-scoped persistence/one-use recovery/deletion, fenced distributed leases, shared rate limits and durable spending caps. Cloud SQL runs in local PostgreSQL tests only. No production schema, Fabric Master record, supplier process or existing customer tool was changed. Comprehensive descriptive coverage remains pending approved index population; the actual model honestly reports that index as unavailable.
+
+The owner approved **US$5 for invented-scenario OpenAI evaluation only**. The Responses adapter completed **36 real conversation turns** (ten initial scenarios plus two targeted retests), with zero service errors and **US$0.132574** charged by the conservative local ledger. An initial search-history contradiction was found and fixed using persistent server-generated tool receipts; the targeted retest verified the correction. Human design-quality approval is still pending. The supplied test credential was not saved in code, artifacts, browser or the interactive preview.
+
+Review the [real-vs-mock conversation gallery](http://127.0.0.1:8789/evaluation), [local scripted consultation with verified products](http://127.0.0.1:8789/), and [evidence report](../artifacts/jane-readiness/IMPLEMENTATION.md). The interactive UI is still explicitly **scripted mock**; the gallery contains actual model responses. No public AI was activated. The latest scoped results are **31 Jane/security/index/storage tests, 20 Phase 1 tests and 18 existing theme tests passing**. Five browser widths have no overflow. Physical iPhone, actual screen reader, enabled reduced motion and confirmed hidden-tab testing remain pending.
+
+**Release recommendation:** keep Jane behind the inactive gate. Next obtain an approved isolated cloud environment, verify real Auth/RPC and multi-worker persistence, populate and measure the incremental knowledge index, complete privacy/retention operations and human/accessibility review. PR #167 remains the independent scoped Shopify publication candidate, awaiting separate owner release approval. The new test paths still require normal exact-head policy approval and both protected checks when retargeted for production.
+
+C: started at **37.03 GiB free** and restic PID **45016** was observed again, superseding the earlier process observation below. No cleanup, backup alteration, dependency installation or bulk ingestion occurred. A later verified backup is required; see final storage observation in the evidence report.
+
+## Historical implementation — initial Jane Phase 2
+
+The following paragraphs describe the initial implementation, before the readiness correction and approved paid evaluation above. Their catalogue, cloud-control and paid-call limitations are superseded only where explicitly demonstrated in the latest record.
+
+[Jane implementation, contracts, security, costs and activation steps](specialist-advisory/JANE_PHASE2.md) is the detailed implementation record for Issue #168. [Draft PR #169](https://github.com/Nylon1/CurtainsUK/pull/169) contains the isolated implementation, initially committed as `076b85a2032224df1b30084c15817b635ebb3d1e`, stacked on PR #167. Its current feature-branch base does not trigger the protected-production checks; those remain mandatory when retargeted for release. The approved Shopify design is preserved. PR #167 now has release-candidate head `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; both required checks passed on that head. The permanent page remains hidden and the 20-file scoped candidate is unpublished.
+
+Jane's functioning **local-only, explicitly scripted mock preview** is `http://127.0.0.1:8789/`, started with `node scripts/jane-preview.mjs`. Implemented code includes versioned profiles, validated tools and handoffs, adaptive conversation contracts, SSE delivery after validation/storage, summaries, cookie/CSRF/rate guards, local encrypted consented save/recovery/deletion, and an inactive OpenAI Responses adapter. The proposed isolated Supabase schema is tested locally, not migrated. The Vercel route fails closed; no remote service was deployed.
+
+The latest run passes **22 Jane/security/storage/adapter tests**, **20 Phase 1 interaction/controller tests** and **18 existing Shopify theme tests**. Browser testing confirms countdown auto-entry, consented handoff, preference refinement, saved resumption including a server restart, labelled modal Escape/focus return, and no horizontal overflow at 320/390/412/768/1440 CSS px. See the [review evidence](../artifacts/jane-phase2/IMPLEMENTATION.md) and [gallery](../artifacts/jane-phase2/review-gallery.html). These are mock infrastructure evaluations, not validation of a live AI model.
+
+Actual bounded Fabric Master reads succeeded and used existing identity indexes. However the existing public retail lookup returned HTTP 400; product recommendations remain blocked pending investigation. Full-master ID/prefix access is implemented, but comprehensive descriptive/semantic search of unpublished records is not yet complete. Screenshot processing, cloud recovery, real-model quality, distributed spending/rate controls and physical-device/screen-reader checks remain pending. No success is claimed for these items.
+
+At the final storage observation C: had **37.05 GiB free**; the previously observed restic process was no longer listed. That does not verify a successful snapshot. No cleanup, backup script, manifest or historical worktree was changed; this development needs a subsequent verified backup. No paid model calls or additional service purchases were made.
 
 ## Owner direction and release preparation — Issue #168
 
@@ -45,9 +85,9 @@ Required records were read: [production surfaces](PRODUCTION_SURFACES.md), [Room
 | Interactive visual revision | Implemented and tested in the development preview; 20 focused tests passed and all 18 scoped files matched source; current-head CI remains governed by PR checks |
 | Waiting room and consultation-room examples | Prototyped and tested for all six advisers; no model, messaging or persistence connected |
 | Six separate personality profiles and shared behaviour | Designed, versioned in this change; not attached to a live model |
-| Shared platform, data model, contracts and security boundaries | Designed below; not implemented |
-| Secure continuity, uploads, knowledge ingestion, enquiries and staff dashboard | Planned; no live service or destination enabled |
-| Jane / Anne / Noah / James / Ben / Natalie operational agents | Planned for Phases 3–7 |
+| Shared platform, data model, contracts and security boundaries | Isolated Jane framework and cloud runtime implemented and locally tested; hosted wiring/activation pending. See JANE_READINESS.md. |
+| Secure continuity, uploads, knowledge ingestion, enquiries and staff dashboard | Local encrypted continuity and cloud-ready session controls tested; cloud deployment, index population, uploads and human workflows pending. |
+| Jane / Anne / Noah / James / Ben / Natalie operational agents | Jane has real-model evaluation evidence and a scripted interactive preview; human quality approval and public activation pending. Other five remain planned. |
 | Commercial & Acoustic landing area | Planned in Phase 6; extensible disciplines, no premature theatre/healthcare/hotel implementation |
 | Owner approval / publication | Visual design approved by owner / not published; release approval remains separate |
 

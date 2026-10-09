@@ -1,0 +1,97 @@
+{
+  "id": "warm-contemporary",
+  "reviewCriteria": [
+    "Connect undertones to oak and north light without assuming light guarantees",
+    "Offer a meaningful alternative; no forced SKU"
+  ],
+  "transcript": [
+    {
+      "customer": "I want warm contemporary curtains. The room has oak flooring and cream walls.",
+      "advice": {
+        "text": "With the timber you mentioned, warm ivory is a useful starting point: it can soften the room without adding strong contrast. Muted olive is an alternative if you want more colour and a gentle connection to natural materials. I’d compare a softly woven plain with a restrained tonal geometric, keeping the pattern scale modest beside busy furnishings. What colour are the walls, and would you like the curtains to blend in or become a feature?",
+        "stage": "recommend",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "The room faces north. I want a warm feel without yellow or gold.",
+      "advice": {
+        "text": "With the timber you mentioned, warm ivory is a useful starting point: it can soften the room without adding strong contrast. Muted olive is an alternative if you want more colour and a gentle connection to natural materials. I’d compare a softly woven plain with a restrained tonal geometric, keeping the pattern scale modest beside busy furnishings. What colour are the walls, and would you like the curtains to blend in or become a feature?",
+        "stage": "recommend",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "Summarise two different directions and why each might work.",
+      "advice": {
+        "text": "Your direction so far is warm ivory, muted olive, soft stone. Restrained tonal geometric or textured plain. Compare the options in consistent light, then use physical samples in your own room. We can keep refining; ten minutes is a guide, not an ending.",
+        "stage": "conclude",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [
+          "Which option feels closest to the atmosphere you want?"
+        ],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

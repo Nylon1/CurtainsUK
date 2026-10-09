@@ -1,0 +1,30 @@
+✔ adaptive mock: warm room, visualiser return, changed preference, personalised summary (16.6592ms)
+✔ mock teaches existing FI, declines unavailable guarantees and unsupported screenshot processing (6.5542ms)
+✔ session ownership, consent, invalid IDs and input injection fail before mutation (4.3237ms)
+✔ duplicate requests are idempotent; conflicting revision or reused key is rejected (2.4667ms)
+✔ concurrent replies cannot fork the same consultation (1.9461ms)
+✔ provider, knowledge and durable storage failures leave valid prior work intact (5.629ms)
+✔ saved consent, encrypted restart, one-time recovery transfer and deletion (49.6366ms)
+✔ expiry prevents access and removes the expired record (1.0381ms)
+✔ welcome deadline catches up after suspension; six profiles retain separate identities (0.5178ms)
+✔ forged model evidence and commercial promises fail closed (4.2858ms)
+✔ source-traceable guides exist and correctly separate headings from visualiser (9.0533ms)
+✔ catalogue allowlist drops supplier secrets and unverified visual fields (4.9726ms)
+✔ master reads are bounded, indexed identity queries with no lifecycle filter; cached, validated and isolated (49.3714ms)
+✔ retail recommendations require governed eligibility, exact URL and approved real image (1.7807ms)
+✔ tools reject arbitrary SQL, excess calls and upstream payloads beyond limits (0.9916ms)
+✔ HTTP enforces origin, CSRF, body limits and rate limits without logging private content (14.6661ms)
+✔ production route is disabled even if flags and preview key accidentally exist (1.014ms)
+✔ OpenAI activation requires explicit paid-test flag and budget controller (0.5637ms)
+✔ test budget reserves atomically, retains ambiguous charges and blocks session/day overspend (1.2926ms)
+✔ Responses adapter preserves context, strict tools and store:false, retries with reserved cost and resumes function results (3.8162ms)
+✔ OpenAI upstream secrets do not leak through HTTP failures (0.9054ms)
+✔ proposed additive schema: real PostgreSQL RLS, consent, owner isolation, CAS, tampering and deletion (3802.2279ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4281.664

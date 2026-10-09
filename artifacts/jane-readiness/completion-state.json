@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-09",
+  "protectedHead": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+  "phase1Head": "851078c674ac2e9231e51dffbd5949ed4ea7c6d1",
+  "diskFreeGiB": 36.44,
+  "backupProcess": 45016,
+  "tests": {
+    "jane": 31,
+    "phase1": 20,
+    "existingTheme": 18,
+    "scopedLintExit": 0
+  },
+  "realModel": {
+    "initialCases": 10,
+    "initialTurns": 30,
+    "targetedCases": 2,
+    "targetedTurns": 6,
+    "apiResponses": 53,
+    "serviceErrors": 0,
+    "inputTokens": 87409,
+    "outputTokens": 8744,
+    "estimatedUsd": 0.132543,
+    "ledgerUsd": 0.132574,
+    "approvedMaxUsd": 5,
+    "perConsultationMaxUsd": 1,
+    "humanApproval": "pending"
+  },
+  "productionChanges": false,
+  "publicActivation": false,
+  "cloudMigration": false,
+  "backupCoverage": "not verified; subsequent backup required"
+}

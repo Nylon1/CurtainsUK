@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-09T20:48:15.677Z",
+  "requests": [
+    {
+      "url": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&query=Shambala&colour=&pattern=&page=1",
+      "status": 200
+    }
+  ],
+  "accepted": [
+    {
+      "id": "pt-3697-502",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-3697-502-shambala-amber",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9e8fc04b794ea91e372ccd1d0b1f95518ff1fa14d7cd6872fb4fd0ca4863a164.jpg",
+      "purchasable": true
+    },
+    {
+      "id": "pt-3697-569",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-3697-569-shambala-jonquil",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-881b4b107584ab2af8f15cec1626ef32ea02c1016ed8fc9bdd984368d271a8b0.jpg",
+      "purchasable": true
+    },
+    {
+      "id": "pt-3697-770",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-3697-770-shambala-lagoon",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9136d93cd8b3d1a51a4c4a6783ef6763208663ade671d68c9b9b530c750e8388.jpg",
+      "purchasable": true
+    }
+  ],
+  "safeFieldsOnly": true,
+  "legacyStatusObserved": 400,
+  "publishedBrowserSearch": "4 Shambala results; Zest has disabled purchasing and is excluded from Jane cards",
+  "rootCause": "Prepared RPC has five required arguments; Jane omitted browseGuide=1 and therefore invoked only three arguments"
+}

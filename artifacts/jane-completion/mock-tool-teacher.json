@@ -1,0 +1,160 @@
+{
+  "id": "tool-teacher",
+  "reviewCriteria": [
+    "Use verified tool guidance",
+    "No invented visualiser heading selector or fixed questionnaire"
+  ],
+  "transcript": [
+    {
+      "customer": "How does Fabric Intelligence help me choose curtains?",
+      "advice": {
+        "text": "Fabric Intelligence helps turn your priorities and taste into a fabric direction. “Help me choose” starts with what matters most, such as privacy, softer daylight or mainly the look. You can add a reference image and refine the brief or give feedback on directions and fabrics. If the edit feels wrong, change the preference that caused it, such as pattern or colour, rather than changing everything together. Which part of the results feels least like you?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v1"
+          ],
+          "resultIds": [
+            "guide:fi:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "customer": "I dislike the recommendations. What should I change?",
+      "advice": {
+        "text": "Fabric Intelligence helps turn your priorities and taste into a fabric direction. “Help me choose” starts with what matters most, such as privacy, softer daylight or mainly the look. You can add a reference image and refine the brief or give feedback on directions and fabrics. If the edit feels wrong, change the preference that caused it, such as pattern or colour, rather than changing everything together. Which part of the results feels least like you?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v1"
+          ],
+          "resultIds": [
+            "guide:fi:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "customer": "Where do I change the heading in Room Visualiser 2?",
+      "advice": {
+        "text": "Headings change the rhythm and silhouette of a curtain. The separate Curtain Style journey is the place to compare their appearance; the published Room Visualiser does not currently have a heading selector. Would you prefer a crisp, tailored line or a more relaxed gathered effect?",
+        "stage": "refine",
+        "palette": [
+          "warm ivory",
+          "soft stone"
+        ],
+        "patternDirection": "Low-contrast tonal motif or a quiet plain",
+        "textureDirection": "Softly textured, matte surface",
+        "alternatives": [
+          "Small tonal motif",
+          "Plain fabric with a subtle woven texture"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [
+          "guide:headings:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:headings:v1",
+          "source": "shopify-theme/curtainsuk-dawn-16/templates/page.curtain-style.json",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        },
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "curtain-style"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:headings:v1"
+          ],
+          "resultIds": [
+            "guide:headings:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

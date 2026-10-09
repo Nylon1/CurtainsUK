@@ -1,0 +1,55 @@
+✖ cloud RPC persistence: consent, durable creation replay, recovery, ownership, revision and deletion (1722.0788ms)
+
+<--- Last few GCs --->
+
+[41456:0000020EA0A5C000]     2770 ms: Scavenge (interleaved) 18.5 (20.5) -> 17.7 (20.5) MB, pooled: 0 MB, 2.62 / 0.00 ms  (average mu = 0.813, current mu = 0.674) allocation failure;
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF797C7C36F
+ 2: 00007FF7988C4D77
+ 3: 00007FF79823FBD6
+ 4: 00007FF7980C6E4B
+ 5: 00007FF79809FCA3
+ 6: 00007FF7980C4F27
+ 7: 00007FF7980C7D01
+ 8: 00007FF7980CBFA5
+ 9: 00007FF7980CA1E3
+10: 00007FF7980C9FCB
+11: 00007FF7980A0DE8
+12: 00007FF798118EC6
+13: 00007FF798117BE0
+14: 00007FF7981159DA
+15: 00007FF7988389AF
+16: 00007FF7981174BB
+17: 00007FF7990A570F
+18: 00007FF797BCCD8E
+19: 00007FF79891A096
+20: 00007FF799B792B3
+21: 00007FFCFAAFCD87
+22: 00007FFCFB1ACAEC
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3001.2009
+
+✖ failing tests:
+
+test at lib\advisory\__tests__\cloud.test.mjs:25:1
+✖ cloud RPC persistence: consent, durable creation replay, recovery, ownership, revision and deletion (1722.0788ms)
+  RangeError: Array buffer allocation failed
+      at new ArrayBuffer (<anonymous>)
+      at new Uint8Array (<anonymous>)
+      at Object.expandFileStorage (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:2:3629)
+      at Object.write (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:2:5759)
+      at Object.write (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:2:33560)
+      at doWritev (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:7090)
+      at _fd_pwrite (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:7293)
+      at wasm://wasm/0267bb86:wasm-function[13501]:0x6a063e
+      at wasm://wasm/0267bb86:wasm-function[10699]:0x5935fe
+      at wasm://wasm/0267bb86:wasm-function[1368]:0x100875

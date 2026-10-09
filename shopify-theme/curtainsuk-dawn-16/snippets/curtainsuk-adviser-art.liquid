@@ -1,85 +1,28 @@
 {% doc %}
-  Decorative editorial illustrations identifying each specialist's discipline.
+  AI-generated adviser portraits, with a generic illustration for future profiles.
   @param {string} adviser - Adviser identity or custom profile key
+  @param {string} [name] - Optional display name for the portrait alternative text
 {% enddoc %}
-<svg class="cukad__illustration" viewBox="0 0 420 360" fill="none" aria-hidden="true" focusable="false">
-  {% case adviser %}
-    {% when 'jane' %}
-      <circle cx="210" cy="169" r="132" fill="#e4dfcc"/>
-      <path d="M107 294V143a103 103 0 0 1 206 0v151" fill="#faf5e8" stroke="#788574" stroke-width="1.5"/>
-      <path d="M125 287V143a85 85 0 0 1 170 0v144M210 60v226M126 165h169" stroke="#b0b6a2" stroke-width="1.5"/>
-      <circle cx="247" cy="124" r="25" fill="#d5ae78"/>
-      <path d="M107 76c20 7 36 8 57 0v218c-24-9-39-6-57 0V76Z" fill="#526f59"/>
-      <path d="M122 81v207M143 83v202" stroke="#94a385" stroke-width="2"/>
-      <path d="M257 76c21 7 36 8 56 0v218c-20-9-37-6-56 0V76Z" fill="#526f59"/>
-      <path d="M271 81v207M292 83v202" stroke="#94a385" stroke-width="2"/>
-      <path d="M100 77h220" stroke="#173d35" stroke-width="3" stroke-linecap="round"/>
-      <rect x="88" y="254" width="167" height="47" rx="16" fill="#c5a28c"/>
-      <rect x="99" y="235" width="145" height="43" rx="19" fill="#d4b8a4"/>
-      <path d="M106 299v16M234 299v16" stroke="#173d35" stroke-width="3"/>
-      <rect x="115" y="241" width="35" height="30" rx="5" fill="#efebd8" transform="rotate(-9 115 241)"/>
-      <path d="M317 285v-68m0 37c-37 0-39-26-18-22 13 3 18 22 18 22Zm0-16c0-33 28-47 28-25 0 17-28 25-28 25Z" stroke="#526f59" stroke-width="2" fill="#829274"/>
-      <path d="m304 282 4 31h20l4-31" fill="#aa785e"/>
-      <path d="M63 318h294" stroke="#788574"/>
-      <circle cx="74" cy="166" r="6" fill="#a67762"/><circle cx="350" cy="108" r="4" fill="#a67762"/>
-    {% when 'anne' %}
-      <circle cx="215" cy="168" r="122" fill="#e6cfc1"/>
-      <rect x="144" y="72" width="131" height="190" rx="5" fill="#faf4e9" stroke="#976d59" transform="rotate(9 144 72)"/>
-      <path d="m166 117 72 11m-76 14 72 11m-76 13 44 7" stroke="#b3947c" stroke-width="2" stroke-linecap="round"/>
-      <rect x="94" y="160" width="228" height="139" rx="8" fill="#bb8d72"/>
-      <path d="m96 164 103 74a16 16 0 0 0 19 0l101-74" stroke="#f3e5d5" stroke-width="2"/>
-      <path d="m96 295 80-62m143 62-80-62" stroke="#e2c2aa" stroke-width="2"/>
-      <circle cx="210" cy="244" r="21" fill="#f3e5d5"/>
-      <path d="m201 244 6 6 12-13" stroke="#704e3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M327 158v-43m0 14c-24 0-27-20-11-17 8 2 11 17 11 17Zm0-5c0-26 22-38 22-21 0 14-22 21-22 21Z" stroke="#8c8261" stroke-width="2" fill="#b8b796"/>
-      <path d="M75 314h274" stroke="#b3947c"/><circle cx="82" cy="124" r="5" fill="#976d59"/>
-    {% when 'noah' %}
-      <circle cx="210" cy="171" r="124" fill="#d4e1df"/>
-      <path d="M131 283V103h163v180H131Z" fill="#f3f2e5" stroke="#617e80" stroke-width="2"/>
-      <path d="M146 267V119h134v148H146Zm68-148v148M146 193h134" stroke="#91aaa7" stroke-width="1.5"/>
-      <path d="M129 80h167M130 73v14m164-14v14M108 104v177m-7-176h14m-14 176h14" stroke="#53787a" stroke-width="1.5"/>
-      <path d="m205 78 5-5 5 5m-12 8 7 7 7-7" stroke="#53787a" stroke-width="1.5"/>
-      <path d="M166 278h148v31H166z" fill="#6c8b88"/>
-      <path d="M179 278v17m14-17v10m14-10v17m14-17v10m14-10v17m14-17v10m14-10v17m14-17v10m14-10v17" stroke="#f3f2e5" stroke-width="1.5"/>
-      <circle cx="125" cy="278" r="39" fill="#aac1b5" stroke="#53787a" stroke-width="1.5"/>
-      <circle cx="125" cy="278" r="25" stroke="#f3f2e5" stroke-width="2"/><circle cx="125" cy="278" r="10" fill="#53787a"/>
-      <path d="M73 321h274" stroke="#91aaa7"/>
-    {% when 'james' %}
-      <circle cx="210" cy="172" r="125" fill="#dedbcf"/>
-      <path d="M85 116h246v19H85z" fill="#647464"/>
-      <path d="M86 125h245" stroke="#dce1ce" stroke-width="2"/>
-      <path d="M131 117V88h33v29m95 0V88h33v29" stroke="#445e51" stroke-width="5"/>
-      <path d="M109 139v146m35-146v146m35-146v146m35-146v146m35-146v146m35-146v146m35-146v146" stroke="#b0b79d" stroke-width="11"/>
-      <path d="M105 150c38-24 37 24 73 0s36 24 71 0 35 24 71 0v145c-36 24-36-24-71 0s-35-24-71 0-35-24-73 0V150Z" fill="#e4e6d5"/>
-      <path d="M124 152v131m36-128v128m36-131v131m36-128v128m36-131v131m36-128v128" stroke="#c2cbb2" stroke-width="2"/>
-      <path d="m74 285 48-49 14 14-48 49z" fill="#a5815c"/>
-      <path d="m118 234 18-18 15 16-17 18" fill="#516658"/>
-      <path d="M73 319h274" stroke="#91a18a"/>
-      <circle cx="323" cy="81" r="7" stroke="#a5815c" stroke-width="2"/>
-    {% when 'ben' %}
-      <circle cx="210" cy="176" r="123" fill="#d8d8e2"/>
-      <rect x="231" y="89" width="83" height="214" rx="5" fill="#727c92"/>
-      <path d="M244 99v193m15-193v193m15-193v193m15-193v193m14-193v193" stroke="#a4abc0" stroke-width="2"/>
-      <path d="M95 130c22-27 43 27 65 0s43 27 65 0M95 168c22-27 43 27 65 0s43 27 65 0M95 206c22-27 43 27 65 0s43 27 65 0M95 244c22-27 43 27 65 0s43 27 65 0" stroke="#6f7b91" stroke-width="2" stroke-linecap="round"/>
-      <path d="m319 130 15-4m-15 42 10-2m-10 40 15 4m-15 34 10 2" stroke="#9ba1b2" stroke-width="2" stroke-linecap="round"/>
-      <path d="M112 290v13m19-27v27m19-44v44m19-32v32m19-18v18m19-10v10" stroke="#b9a58c" stroke-width="6"/>
-      <path d="M73 320h274" stroke="#969ba8"/>
-      <circle cx="147" cy="83" r="7" fill="#b9a58c"/>
-    {% when 'natalie' %}
-      <circle cx="210" cy="177" r="125" fill="#e1d1d0"/>
-      <path d="m99 172 111-104 111 104v130H99V172Z" fill="#fbf2e6" stroke="#9b7270" stroke-width="1.5"/>
-      <path d="m117 181 93-87 93 87v105H117V181Zm93-87v192M117 200h186" stroke="#c2a59a" stroke-width="1.5"/>
-      <path d="m99 172 111-104v26l-33 67-39 36-3 97H99V172Z" fill="#976c6b"/>
-      <path d="m321 172-111-104v26l33 67 39 36 3 97h36V172Z" fill="#976c6b"/>
-      <path d="m111 178 77-79-36 85-16 20m172-26-77-79 36 85 16 20M112 183v103m13-87v87m183-103v103m-13-87v87" stroke="#cda9a0" stroke-width="1.5"/>
-      <path d="m138 192-38 10m182-10 38 10" stroke="#dac28d" stroke-width="4"/>
-      <path d="m88 165 122-115 123 115M73 319h274" stroke="#9b7270" stroke-width="1.5"/>
-      <circle cx="210" cy="216" r="21" fill="#e9d3a5"/>
-      <path d="M193 283h34l-4-42h-26l-4 42Z" fill="#bda685"/>
-    {% else %}
-      <circle cx="210" cy="180" r="123" fill="#d9dfcc"/>
-      <path d="M134 282V152a76 76 0 0 1 152 0v130H134Z" stroke="#647464" stroke-width="2" fill="#f8f6ef"/>
-      <circle cx="210" cy="153" r="31" fill="#a9b697"/><path d="M161 263a49 49 0 0 1 98 0" fill="#a9b697"/>
-      <path d="M73 319h274" stroke="#91a18a"/>
-  {% endcase %}
-</svg>
+{% liquid
+  assign portrait_advisers = 'jane,anne,noah,james,ben,natalie' | split: ','
+  assign portrait_loading = 'lazy'
+  if adviser == 'jane'
+    assign portrait_loading = 'eager'
+  endif
+%}
+{% if portrait_advisers contains adviser %}
+  {% liquid
+    assign portrait_asset = adviser | prepend: 'curtainsuk-adviser-' | append: '.webp'
+    assign portrait_name_key = adviser | prepend: 'advisory_team.' | append: '.name'
+    assign portrait_default_name = portrait_name_key | t
+    assign portrait_name = name | default: portrait_default_name
+  %}
+  <img class="cukad__portrait" src="{{ portrait_asset | asset_url }}" width="1024" height="1024" loading="{{ portrait_loading }}" decoding="async" alt="{{ 'advisory_team.common.portrait_alt' | t: name: portrait_name | escape_once }}">
+{% else %}
+  <svg class="cukad__illustration" viewBox="0 0 420 360" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="210" cy="180" r="123" fill="#d9dfcc"/>
+    <path d="M134 282V152a76 76 0 0 1 152 0v130H134Z" stroke="#647464" stroke-width="2" fill="#f8f6ef"/>
+    <circle cx="210" cy="153" r="31" fill="#a9b697"/><path d="M161 263a49 49 0 0 1 98 0" fill="#a9b697"/>
+    <path d="M73 319h274" stroke="#91a18a"/>
+  </svg>
+{% endif %}

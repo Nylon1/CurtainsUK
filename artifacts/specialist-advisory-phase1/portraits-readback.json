@@ -1,0 +1,102 @@
+{
+  "checkedAt": "2026-10-09T18:53:48.508Z",
+  "theme": "gid://shopify/OnlineStoreTheme/182472573307",
+  "role": "DEVELOPMENT",
+  "checks": [
+    {
+      "filename": "assets/curtainsuk-advisory-room.css",
+      "matches": true,
+      "sourceSha256": "0c4fe5f38fdabdc7ce0d46ee348845b0bb2ccc55a00c78370ddb1856bbc528c2"
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-team.css",
+      "matches": true,
+      "sourceSha256": "e8166bea09d5d62b1fb5403a90498d8d205fabbef490da89dab8da2db2a107d3"
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-team.js",
+      "matches": true,
+      "sourceSha256": "adc504fd09e85a5fe044d62c93345b3618b5fdb5b51cb1730e0155bfc7665434"
+    },
+    {
+      "filename": "locales/en.default.json",
+      "matches": true,
+      "sourceSha256": "d96ddf864fbbcfb7c865b027f2fa2cf39629c663976124992eecf3fd4e968df1"
+    },
+    {
+      "filename": "sections/curtainsuk-advisory-team.liquid",
+      "matches": true,
+      "sourceSha256": "670f88ee4abe13f8ac257af0d2a72de2eed26f55ef1e4e8d8fbd7aa16e72846b"
+    },
+    {
+      "filename": "snippets/curtainsuk-adviser-art.liquid",
+      "matches": true,
+      "sourceSha256": "b32d6b8356114b54c3d5a1c05c9e2dbc226a403f6e27ac98c7ba6b509b5945b2"
+    },
+    {
+      "filename": "snippets/curtainsuk-adviser-card.liquid",
+      "matches": true,
+      "sourceSha256": "f980db578651c6f209392f5a7aa832c9ca5504bbc4ef9589218ba3c60e9f70e2"
+    },
+    {
+      "filename": "snippets/curtainsuk-advisory-room.liquid",
+      "matches": true,
+      "sourceSha256": "723777b831fdb2bd019fe8c9fde1afb681b38afa7d8f5d5ac7ad52546f778665"
+    },
+    {
+      "filename": "templates/page.meet-our-team.json",
+      "matches": true,
+      "sourceSha256": "3d371f99f4bd9259ffbf0370ef39dd53ccede8dbb1f56404796867e663c22d9d"
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-jane.webp",
+      "matches": true,
+      "bytes": 70906,
+      "sourceSha256": "da058911d67d3a566a52ccd1252d6ed4a76ba0fd814bcd798b431f80d8df4934",
+      "previewMd5": "531f7ceec73a463164c989e1303c0fd1"
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-anne.webp",
+      "matches": true,
+      "bytes": 61792,
+      "sourceSha256": "d37c3a61df7317b5741e1c4ff75ca06f4a73bb88c90235587873be4efafc26df",
+      "previewMd5": "51622029dc379fb555cf6c190e98fb09"
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-noah.webp",
+      "matches": true,
+      "bytes": 68798,
+      "sourceSha256": "5c4fb535dd7da002bc40cd69d5c709ce41688b3874fea1938e637e18df286c7f",
+      "previewMd5": "61a0220d88a56a3ba1d3de7475cd61d4"
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-james.webp",
+      "matches": true,
+      "bytes": 50714,
+      "sourceSha256": "8a139e65fe9e5b04a156d414d21ff4e35b05f8b5f150d2b9c9834b9ad4f4ae4a",
+      "previewMd5": "245276cb85d53306ac0c0be275a8a4d9"
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-ben.webp",
+      "matches": true,
+      "bytes": 103662,
+      "sourceSha256": "78c5bb10b354318ece1c4b0a182440e2bf31db154fbbb7a28ee6bc766e55a9f3",
+      "previewMd5": "5e7b369fcaa290118c350124e4094347"
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-natalie.webp",
+      "matches": true,
+      "bytes": 80478,
+      "sourceSha256": "9b5e53a88ace5bf86a878bf91b54475fe964c516c3f22261138f5d49decc0196",
+      "previewMd5": "3d81be7d3422b21aabff466a5fbb865b"
+    }
+  ],
+  "live": {
+    "theme": "gid://shopify/OnlineStoreTheme/182339731835",
+    "role": "MAIN",
+    "before": 505,
+    "after": 505,
+    "changed": []
+  },
+  "method": "Semantic JSON or newline-normalized text for code; exact binary MD5 for portrait uploads; Admin checksums for live preservation."
+}

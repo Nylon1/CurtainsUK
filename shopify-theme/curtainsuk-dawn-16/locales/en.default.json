@@ -17,8 +17,8 @@
       "meet": "Meet the specialists",
       "how": "The consultation experience",
       "notice": "Design preview · AI consultations are coming soon",
-      "art_top": "The art of a considered home",
-      "art_bottom": "Different perspectives. Thoughtful possibilities."
+      "art_top": "Meet Jane · AI design adviser",
+      "art_bottom": "AI-generated adviser portrait"
     },
     "promise": {
       "specialists": "Six distinct AI specialists",
@@ -29,6 +29,8 @@
       "ai_adviser": "AI adviser · Coming soon",
       "ai": "AI",
       "illustrated_identity": "Illustrated specialist identity",
+      "portrait_identity": "AI-generated adviser portrait",
+      "portrait_alt": "AI-generated portrait of {{ name }}, a CurtainsUK AI adviser.",
       "featured": "A specialist perspective · Featured adviser",
       "explore": "Explore together",
       "try_asking": "A conversation could begin…",
@@ -156,7 +158,7 @@
       "title": "Before we begin.",
       "intro": "Clear expectations are part of good advice. Here is what this preview means, and what we are planning next.",
       "question_1": "Are these real people?",
-      "answer_1": "Jane, Anne, Noah, James, Ben and Natalie are proposed AI advisers, each with a distinct specialist focus and personality. Their illustrations are visual identities, not photographs of employees. Our human CurtainsUK team remains available through the existing contact routes.",
+      "answer_1": "Jane, Anne, Noah, James, Ben and Natalie are proposed AI advisers, each with a distinct specialist focus and personality. Their portraits are AI-generated fictional identities, not photographs of real employees. Our human CurtainsUK team remains available through the existing contact routes.",
       "question_2": "Can I have a consultation today?",
       "answer_2": "Not yet. This page is a design preview of the team and consultation experience. You can try a waiting-room demonstration and read an illustrative opening, but no live AI adviser is connected. Our existing Fabric Intelligence, Room Visualiser and other tools are available separately.",
       "question_3": "Will the consultations be free?",

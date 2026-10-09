@@ -29,6 +29,7 @@ Required records were read: [production surfaces](PRODUCTION_SURFACES.md), [Room
 | Component | Status in this record |
 | --- | --- |
 | Native six-adviser page, reusable profiles, responsive assets | Implemented and tested in Shopify development theme `182472573307`; unpublished owner-review preview |
+| Six synthetic portrait assets | Generated and encoded for the portrait revision; current-revision preview receipt and PR checks must be consulted separately from the initial illustration-version evidence |
 | Waiting room and consultation-room examples | Prototyped and tested for all six advisers; no model, messaging or persistence connected |
 | Six separate personality profiles and shared behaviour | Designed, versioned in this change; not attached to a live model |
 | Shared platform, data model, contracts and security boundaries | Designed below; not implemented |
@@ -206,9 +207,13 @@ Regression evidence must cover the homepage, Fabric Library, FI, Room Visualiser
 
 ### Verified Phase 1 integration and evidence
 
-[Open the working Shopify preview](https://www.curtainsuk.com/pages/fabric-library?view=meet-our-team&preview_theme_id=182472573307). It runs on **DEVELOPMENT theme `182472573307`**, using an alternate template on the existing Fabric Library page for review. The intended `/pages/meet-our-team` destination remains unpublished. The page presents six distinct illustrated AI identities, gives Jane the featured position and offers the labelled waiting/consultation-room demonstration from each profile.
+[Open the working Shopify preview](https://www.curtainsuk.com/pages/fabric-library?view=meet-our-team&preview_theme_id=182472573307). It runs on **DEVELOPMENT theme `182472573307`**, using an alternate template on the existing Fabric Library page for review. The intended `/pages/meet-our-team` destination remains unpublished. The portrait revision presents six distinct AI-generated fictional adviser identities, gives Jane the featured position and retains the labelled waiting/consultation-room demonstration from each profile.
 
-Ordinary theme duplication failed. The isolated development preview was built using the preserved **505-file current-live snapshot**, with only the **nine scoped theme files** below added or changed. No historical draft was reused or deleted. The canonical live theme was not modified. Development previews are temporary: Shopify can remove them after seven days of inactivity or when the CLI session is logged out. The owner-review link should therefore be checked before a later review; this is not a permanent unpublished-theme guarantee.
+All six portraits depict fictional adults in their thirties. The requested representation is white British for Jane, Anne, James, Ben and Natalie, and brown British for Noah; these are creative specifications for synthetic characters, not claims about real staff. Each original was generated with the built-in image-generation tool. The six **1024 × 1024 WebP** theme assets total **436,350 bytes**, as recorded in `C:/Users/hamza/curtainsuk-advisory-portraits/encoding.json`. Original generated images and exact prompts are preserved outside the repository in that folder. See [portrait prompts and provenance](specialist-advisory/PORTRAITS.md). The custom-adviser generic SVG remains available for future profiles without bespoke artwork.
+
+Ordinary theme duplication failed. The isolated development preview was built using the preserved **505-file current-live snapshot**, initially with nine scoped advisory files added or changed. The portrait revision expands the scoped theme change to **15 files**, including six WebP assets listed below. No historical draft was reused or deleted. The canonical live theme was not modified. Development previews are temporary: Shopify can remove them after seven days of inactivity or when the CLI session is logged out. The owner-review link should therefore be checked before a later review; this is not a permanent unpublished-theme guarantee.
+
+The following checks record the initial Phase 1 implementation. They do not by themselves verify the later portrait revision or establish CI success on a newer commit; use the refreshed preview receipt, gallery and current PR checks for that revision.
 
 | Verification | Recorded result / limit |
 | --- | --- |
@@ -224,11 +229,17 @@ Ordinary theme duplication failed. The isolated development preview was built us
 
 Evidence is preserved in [the Phase 1 artifact folder](../artifacts/specialist-advisory-phase1/): [preflight](../artifacts/specialist-advisory-phase1/preflight.json), [responsive results](../artifacts/specialist-advisory-phase1/responsive-browser.json), [consultation interactions](../artifacts/specialist-advisory-phase1/consultation-browser.json), [test log](../artifacts/specialist-advisory-phase1/regression-tests.log) and [Theme Check output](../artifacts/specialist-advisory-phase1/theme-check.json). Captures include the [desktop hero](../artifacts/specialist-advisory-phase1/desktop-1440-hero.jpg), [featured Jane](../artifacts/specialist-advisory-phase1/desktop-1440-jane.jpg), [other advisers](../artifacts/specialist-advisory-phase1/desktop-1440-advisers.jpg), [desktop waiting room](../artifacts/specialist-advisory-phase1/desktop-waiting-room.jpg), [desktop consultation example](../artifacts/specialist-advisory-phase1/desktop-consultation-room.jpg), [390 px Jane](../artifacts/specialist-advisory-phase1/mobile-390-jane.jpg), [390 px waiting room](../artifacts/specialist-advisory-phase1/mobile-390-waiting.jpg) and [390 px consultation example](../artifacts/specialist-advisory-phase1/mobile-390-room.jpg), plus captures at every required viewport.
 
-The nine-file theme scope, relative to `shopify-theme/curtainsuk-dawn-16/`, is:
+The 15-file theme scope, relative to `shopify-theme/curtainsuk-dawn-16/`, is:
 
 - `assets/curtainsuk-advisory-team.css`
 - `assets/curtainsuk-advisory-room.css`
 - `assets/curtainsuk-advisory-team.js`
+- `assets/curtainsuk-adviser-jane.webp`
+- `assets/curtainsuk-adviser-anne.webp`
+- `assets/curtainsuk-adviser-noah.webp`
+- `assets/curtainsuk-adviser-james.webp`
+- `assets/curtainsuk-adviser-ben.webp`
+- `assets/curtainsuk-adviser-natalie.webp`
 - `sections/curtainsuk-advisory-team.liquid`
 - `snippets/curtainsuk-adviser-art.liquid`
 - `snippets/curtainsuk-adviser-card.liquid`
@@ -236,7 +247,7 @@ The nine-file theme scope, relative to `shopify-theme/curtainsuk-dawn-16/`, is:
 - `templates/page.meet-our-team.json`
 - `locales/en.default.json` — additive `advisory_team` namespace only; existing translations verified unchanged.
 
-The [implementation report](../artifacts/specialist-advisory-phase1/IMPLEMENTATION.md), [review gallery](../artifacts/specialist-advisory-phase1/review-gallery.html), [44-file manifest](../artifacts/specialist-advisory-phase1/changed-files.txt) and [source/upload read-back](../artifacts/specialist-advisory-phase1/preview-readback.json) form the review package. [Draft PR #167](https://github.com/Nylon1/CurtainsUK/pull/167) targets `release/production`; its checks tab is authoritative for CI on the current head. All **505 live-theme file checksums remained unchanged**, and all nine scoped preview files matched the source. These facts do not imply release approval.
+The [implementation report](../artifacts/specialist-advisory-phase1/IMPLEMENTATION.md), [review gallery](../artifacts/specialist-advisory-phase1/review-gallery.html), [changed-file manifest](../artifacts/specialist-advisory-phase1/changed-files.txt) and [source/upload read-back](../artifacts/specialist-advisory-phase1/preview-readback.json) form the review package. [Draft PR #167](https://github.com/Nylon1/CurtainsUK/pull/167) targets `release/production`; its checks tab is authoritative for CI on the current head. The initial read-back verified that all **505 live-theme file checksums remained unchanged** and the original nine scoped preview files matched source. The [portrait revision read-back](../artifacts/specialist-advisory-phase1/portraits-readback.json) confirms all 15 scoped files match source and all 505 live-theme files remain unchanged. The [portrait browser checks](../artifacts/specialist-advisory-phase1/portraits-browser.json) reconfirm six loaded portraits and no overflow at all five widths. These facts do not imply release approval.
 
 C: had **42.28 GiB free at preflight and 41.89 GiB at 18:34 UTC**; the `restic` process was still present. [Final storage observation](../artifacts/specialist-advisory-phase1/storage-final.json). No completed backup or later snapshot coverage is claimed. This new work requires a later backup. All production release and owner-approval requirements below remain in force.
 

@@ -7,6 +7,7 @@
 - [Working Shopify preview](https://www.curtainsuk.com/pages/fabric-library?view=meet-our-team&preview_theme_id=182472573307)
 - [Desktop/mobile screenshot gallery](review-gallery.html)
 - [Programme source of truth and Phase 2 plan](../../docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md)
+- [Portrait prompts and provenance](../../docs/specialist-advisory/PORTRAITS.md)
 - [Draft pull request #167](https://github.com/Nylon1/CurtainsUK/pull/167), targeting `release/production`. Consult its checks tab for the required gates on the current head; local results below are distinct from CI results.
 - [Exact changed-file manifest](changed-files.txt)
 
@@ -16,7 +17,7 @@ The preview theme is **182472573307**, role **DEVELOPMENT**. It is separate from
 
 Repository `Nylon1/CurtainsUK`; protected `release/production` HEAD **3649c879a4a5ddf88c2093a4172d20fbc58cd265**, rechecked at the end of implementation with no advance. PR #166 is merged. The actual storefront shows its interactive homepage, four room environments, heading comparisons and approved studio assets. Historical unpublished wording in `docs/homepage-studio-review-20261009.md` is superseded.
 
-The live theme remains **182339731835**, named **CurtainsUK - Curtain Style V1 review**, role MAIN, store `carpetup.myshopify.com`, public origin `www.curtainsuk.com`. [Admin checksum evidence](preview-readback.json) verifies **all 505 live theme files unchanged** before/after this work. The nine preview files match local source (text/newline comparison, or semantic JSON comparison excluding Shopify's generated header).
+The live theme remains **182339731835**, named **CurtainsUK - Curtain Style V1 review**, role MAIN, store `carpetup.myshopify.com`, public origin `www.curtainsuk.com`. The initial [Admin checksum evidence](preview-readback.json) verified **all 505 live theme files unchanged** and the original nine preview files matching local source (text/newline comparison, or semantic JSON comparison excluding Shopify's generated header). The [portrait revision read-back](portraits-readback.json) additionally confirms all 15 scoped files match source and all 505 live-theme files remain unchanged.
 
 Production API `https://curtainsuk-production-api.vercel.app` remains READY on **dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD**, project **prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA**. Room Visualiser 2 release remains commit **800f42a27a0a6e9beb1abd92821145bf4a4b98c4**, documented tree **1150dad1d55649597d03df2dbaad01348ea98d63**. No Vercel deployment was performed. Naila, renderer/geometry/shaders/eligibility, Fabric Intelligence decisions, stock, pricing, checkout and live Theme Editor settings are unchanged.
 
@@ -24,7 +25,18 @@ Read-only preflight covered all seven requested release/project documents, exist
 
 ## Completed implementation
 
-The native Shopify JSON page template uses a reusable Liquid section, adviser blocks, card/art snippets, shared dialog, scoped CSS and a small dependency-free controller. Jane receives the prominent featured layout. Six original lightweight SVG illustrations give Jane, Anne, Noah, James, Ben and Natalie distinct specialist identities without pretending to depict real employees. Additional advisers can be configured with blocks; a new bespoke illustration requires authoring and otherwise receives generic artwork.
+The native Shopify JSON page template uses a reusable Liquid section, adviser blocks, card/art snippets, shared dialog, scoped CSS and a small dependency-free controller. Jane receives the prominent featured layout. The portrait revision gives Jane, Anne, Noah, James, Ben and Natalie distinct AI-generated fictional identities. All are adults in their thirties; the requested representation is white British except Noah, who is brown British. These are synthetic creative specifications, not biographies of real employees. Additional advisers can be configured with blocks; the generic SVG remains available until bespoke artwork is supplied.
+
+The six portraits were generated with the built-in image-generation tool and encoded as **1024 × 1024 WebP** theme assets, totalling **436,350 bytes**. Their exact prompts and provenance are recorded in [PORTRAITS.md](../../docs/specialist-advisory/PORTRAITS.md). Generated originals and exact prompt files are preserved outside the repository at `C:/Users/hamza/curtainsuk-advisory-portraits`; the encoding receipt there records these sizes:
+
+| Theme asset | Bytes |
+| --- | ---: |
+| `curtainsuk-adviser-jane.webp` | 70,906 |
+| `curtainsuk-adviser-anne.webp` | 61,792 |
+| `curtainsuk-adviser-noah.webp` | 68,798 |
+| `curtainsuk-adviser-james.webp` | 50,714 |
+| `curtainsuk-adviser-ben.webp` | 103,662 |
+| `curtainsuk-adviser-natalie.webp` | 80,478 |
 
 Warm ivory, deep forest green, serif editorial headings, spacious layout and existing navigation follow the verified live homepage. The page includes specialist introductions/expertise, example questions, the planned free ten-minute format, consultation journey, FAQ and eight existing tool/service links. AI identity and coming-soon state are explicit throughout.
 
@@ -34,11 +46,13 @@ Six separately versioned personality specifications and the shared consultation 
 
 ## Preview safety
 
-Attempts to duplicate the current live theme through Shopify Admin and the official CLI failed without creating a normal unpublished theme. No historical draft was overwritten or deleted. An isolated development theme was created instead. Its base was assembled from the current live 505-file manifest: matching bytes were reused locally, and changed editor-managed JSON files were freshly retrieved from Shopify. Only the nine new/updated advisory files were overlaid. A transient SSL upload error was resolved by retrying the same development target; no certificate validation was bypassed.
+Attempts to duplicate the current live theme through Shopify Admin and the official CLI failed without creating a normal unpublished theme. No historical draft was overwritten or deleted. An isolated development theme was created instead. Its base was assembled from the current live 505-file manifest: matching bytes were reused locally, and changed editor-managed JSON files were freshly retrieved from Shopify. The initial overlay comprised nine new/updated advisory files. The portrait revision expands that scope to **15 theme files: the original nine plus six WebP assets**. Current-revision upload parity is confirmed in the portrait read-back receipt. A transient SSL upload error during the initial preview was resolved by retrying the same development target; no certificate validation was bypassed.
 
 The new sparse Git worktree is `C:/Users/hamza/curtainsuk-specialist-advisory-phase1`, branch `feat/specialist-advisory-phase1-20261009`. All existing checkouts/uncommitted work/evidence were preserved. The preview snapshot is outside the repository at `C:/Users/hamza/curtainsuk-advisory-preview-20261009`; it is not a future whole-theme release candidate.
 
 ## Validation
+
+The results below record the initial Phase 1 implementation. The portrait revision additionally passed all 10 controller/content tests again, all six portraits loaded, and all five required viewport widths remained free of horizontal overflow. Noah's room preview still opens with his own introduction and no message input. See [portrait browser checks](portraits-browser.json), [portrait tests](portraits-tests.log), [current gallery](review-gallery.html) and [15-file upload read-back](portraits-readback.json). All 15 files match source, including exact binary checksums for the six portraits; all 505 live-theme files remain unchanged. CI on the latest PR head is reported on the PR checks tab.
 
 **42 automated tests passed:** 10 new controller/content tests, 18 existing Shopify-theme tests, 10 existing security-boundary tests, two MTM production-policy tests and two Guided Measure checkout-allowlist tests. [Test log](regression-tests.log). The Guided Measure test initially lacked an existing sparse-checkout migration fixture; materialising the tracked migrations resolved that environment issue without changing source. New tests execute the actual controller and actual dialog structure, including absolute-time/no-early-opening, background restoration, reopen/skip/close/focus, all six profiles, no network/persistence, unsupported/error fallback, lifecycle cleanup and additive translations.
 
@@ -48,7 +62,7 @@ Official installed Shopify Theme Check reports **zero errors, 13 existing warnin
 
 Twelve existing storefront/cart routes returned HTTP 200, including homepage, Library, FI, Visualiser, House, measuring/fitting and samples. Existing regression contracts cover commerce boundaries. These are reachability/source-contract checks, **not a new paid checkout or exhaustive end-to-end order test**. Read-only console inspection showed extension sandbox/storage errors, with no advisory-controller error in the captured error entries; no unrelated extension/site code was changed.
 
-**Remaining acceptance limits:** no physical iPhone Safari/touch test, screen-reader audit or runtime reduced-motion browser emulation. Reduced-motion rules were inspected in CSS; dialog/progressive fallback was unit-tested, not tested in every legacy browser. The preview requires native dialog support; unsupported browsers retain profiles and normal links. No portrait photography or generated product images are used. These limits also do not close the prior Room Visualiser physical-iPhone item.
+**Remaining acceptance limits:** no physical iPhone Safari/touch test, screen-reader audit or runtime reduced-motion browser emulation. Reduced-motion rules were inspected in CSS; dialog/progressive fallback was unit-tested, not tested in every legacy browser. The preview requires native dialog support; unsupported browsers retain profiles and normal links. Adviser portraits are explicitly synthetic AI identities; product imagery is unchanged. These limits also do not close the prior Room Visualiser physical-iPhone item.
 
 ## Storage and backup
 

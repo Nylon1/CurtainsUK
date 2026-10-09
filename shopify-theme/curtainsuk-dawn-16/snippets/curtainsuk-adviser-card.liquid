@@ -6,6 +6,7 @@
 {% enddoc %}
 {% liquid
   assign adviser = block.settings.adviser
+  assign portrait_advisers = 'jane,anne,noah,james,ben,natalie' | split: ','
   assign translation_root = adviser | prepend: 'advisory_team.'
   assign name_key = translation_root | append: '.name'
   assign title_key = translation_root | append: '.title'
@@ -33,10 +34,10 @@
   assign opening = block.settings.opening | default: translated_opening
 %}
 <article class="cukad__profile cukad__profile--{{ adviser }}{% if featured %} cukad__profile--featured{% endif %}" id="adviser-{{ section_id }}-{{ block.id }}" aria-labelledby="adviser-name-{{ section_id }}-{{ block.id }}" {{ block.shopify_attributes }}>
-  <div class="cukad__profile-art">
+  <div class="cukad__profile-art{% if portrait_advisers contains adviser %} cukad__profile-art--portrait{% endif %}">
     <div class="cukad__art-label"><span>{{ 'advisory_team.common.ai_adviser' | t }}</span><span aria-hidden="true">✳</span></div>
-    {% render 'curtainsuk-adviser-art', adviser: adviser %}
-    <div class="cukad__art-caption"><span>{{ name | escape_once }}</span><span>{{ 'advisory_team.common.illustrated_identity' | t }}</span></div>
+    {% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}
+    <div class="cukad__art-caption"><span>{{ name | escape_once }}</span><span>{% if portrait_advisers contains adviser %}{{ 'advisory_team.common.portrait_identity' | t }}{% else %}{{ 'advisory_team.common.illustrated_identity' | t }}{% endif %}</span></div>
   </div>
   <div class="cukad__profile-content">
     {% if featured %}<p class="cukad__eyebrow">{{ 'advisory_team.common.featured' | t }}</p>{% endif %}
@@ -51,5 +52,5 @@
     {% endif %}
     <div class="cukad__profile-footer"><p><span class="cukad__availability">{{ 'advisory_team.common.coming_soon' | t }}</span><span>{{ 'advisory_team.common.free_consultation' | t }}</span></p><button class="cukad__preview-link" type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}" hidden>{{ 'advisory_team.common.preview' | t }} <span aria-hidden="true">↗</span></button></div>
   </div>
-  <template data-advisory-profile="{{ block.id }}" data-adviser="{{ block.id }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" data-intro="{{ opening | escape_once }}" data-preparation="{{ preparation | escape_once }}">{% render 'curtainsuk-adviser-art', adviser: adviser %}</template>
+  <template data-advisory-profile="{{ block.id }}" data-adviser="{{ block.id }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" data-intro="{{ opening | escape_once }}" data-preparation="{{ preparation | escape_once }}">{% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}</template>
 </article>

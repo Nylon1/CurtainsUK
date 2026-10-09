@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-10-09T18:34:50.7508601Z",
+  "freeGiB": 41.89,
+  "sizeGiB": 475.88,
+  "backupProcesses": [
+    {
+      "ProcessName": "restic",
+      "Id": 45016,
+      "StartTime": "2026-10-09T15:11:13.2990025+01:00"
+    }
+  ],
+  "initialFreeGiB": 42.28,
+  "cleanupPerformed": false,
+  "backupAltered": false,
+  "newWorkRequiresLaterBackup": true,
+  "dependencyInstallPerformed": false
+}

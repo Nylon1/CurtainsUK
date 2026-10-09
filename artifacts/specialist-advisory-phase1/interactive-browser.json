@@ -1,0 +1,292 @@
+{
+  "checkedAt": "2026-10-09T19:18:14.89Z",
+  "previewTheme": "182472573307",
+  "responsive": [
+    {
+      "bodyWidth": 308,
+      "documentWidth": 308,
+      "h1": 1,
+      "missingTranslation": false,
+      "portraitLoaded": true,
+      "selected": "Noah",
+      "selectors": [
+        {
+          "height": 69,
+          "name": "Meet Jane",
+          "width": 73
+        },
+        {
+          "height": 69,
+          "name": "Meet Anne",
+          "width": 73
+        },
+        {
+          "height": 69,
+          "name": "Meet Noah",
+          "width": 73
+        },
+        {
+          "height": 69,
+          "name": "Meet James",
+          "width": 73
+        },
+        {
+          "height": 69,
+          "name": "Meet Ben",
+          "width": 73
+        },
+        {
+          "height": 69,
+          "name": "Meet Natalie",
+          "width": 73
+        }
+      ],
+      "visiblePanels": 1,
+      "width": 320
+    },
+    {
+      "bodyWidth": 378,
+      "documentWidth": 378,
+      "h1": 1,
+      "missingTranslation": false,
+      "portraitLoaded": true,
+      "selected": "Noah",
+      "selectors": [
+        {
+          "height": 72,
+          "name": "Meet Jane",
+          "width": 47
+        },
+        {
+          "height": 72,
+          "name": "Meet Anne",
+          "width": 47
+        },
+        {
+          "height": 72,
+          "name": "Meet Noah",
+          "width": 47
+        },
+        {
+          "height": 72,
+          "name": "Meet James",
+          "width": 47
+        },
+        {
+          "height": 72,
+          "name": "Meet Ben",
+          "width": 47
+        },
+        {
+          "height": 72,
+          "name": "Meet Natalie",
+          "width": 47
+        }
+      ],
+      "visiblePanels": 1,
+      "width": 390
+    },
+    {
+      "bodyWidth": 400,
+      "documentWidth": 400,
+      "h1": 1,
+      "missingTranslation": false,
+      "portraitLoaded": true,
+      "selected": "Noah",
+      "selectors": [
+        {
+          "height": 73,
+          "name": "Meet Jane",
+          "width": 50
+        },
+        {
+          "height": 73,
+          "name": "Meet Anne",
+          "width": 50
+        },
+        {
+          "height": 73,
+          "name": "Meet Noah",
+          "width": 50
+        },
+        {
+          "height": 73,
+          "name": "Meet James",
+          "width": 50
+        },
+        {
+          "height": 73,
+          "name": "Meet Ben",
+          "width": 50
+        },
+        {
+          "height": 73,
+          "name": "Meet Natalie",
+          "width": 50
+        }
+      ],
+      "visiblePanels": 1,
+      "width": 412
+    },
+    {
+      "bodyWidth": 756,
+      "documentWidth": 756,
+      "h1": 1,
+      "missingTranslation": false,
+      "portraitLoaded": true,
+      "selected": "Jane",
+      "selectors": [
+        {
+          "height": 68,
+          "name": "Meet Jane",
+          "width": 83
+        },
+        {
+          "height": 68,
+          "name": "Meet Anne",
+          "width": 83
+        },
+        {
+          "height": 68,
+          "name": "Meet Noah",
+          "width": 83
+        },
+        {
+          "height": 68,
+          "name": "Meet James",
+          "width": 83
+        },
+        {
+          "height": 68,
+          "name": "Meet Ben",
+          "width": 83
+        },
+        {
+          "height": 68,
+          "name": "Meet Natalie",
+          "width": 83
+        }
+      ],
+      "visiblePanels": 1,
+      "width": 768
+    },
+    {
+      "bodyWidth": 1428,
+      "documentWidth": 1428,
+      "h1": 1,
+      "missingTranslation": false,
+      "portraitLoaded": true,
+      "selected": "Jane",
+      "selectors": [
+        {
+          "height": 73,
+          "name": "Meet Jane",
+          "width": 80
+        },
+        {
+          "height": 73,
+          "name": "Meet Anne",
+          "width": 80
+        },
+        {
+          "height": 73,
+          "name": "Meet Noah",
+          "width": 80
+        },
+        {
+          "height": 73,
+          "name": "Meet James",
+          "width": 80
+        },
+        {
+          "height": 73,
+          "name": "Meet Ben",
+          "width": 80
+        },
+        {
+          "height": 73,
+          "name": "Meet Natalie",
+          "width": 80
+        }
+      ],
+      "visiblePanels": 1,
+      "width": 1440
+    }
+  ],
+  "adviserSelection": [
+    {
+      "focused": "Meet Jane",
+      "imageLoaded": true,
+      "pressed": 1,
+      "previewId": "jane",
+      "selected": "Jane",
+      "visiblePanels": 1
+    },
+    {
+      "focused": "Meet Anne",
+      "imageLoaded": false,
+      "pressed": 1,
+      "previewId": "anne",
+      "selected": "Anne",
+      "visiblePanels": 1
+    },
+    {
+      "focused": "Meet Noah",
+      "imageLoaded": false,
+      "pressed": 1,
+      "previewId": "noah",
+      "selected": "Noah",
+      "visiblePanels": 1
+    },
+    {
+      "focused": "Meet James",
+      "imageLoaded": false,
+      "pressed": 1,
+      "previewId": "james",
+      "selected": "James",
+      "visiblePanels": 1
+    },
+    {
+      "focused": "Meet Ben",
+      "imageLoaded": false,
+      "pressed": 1,
+      "previewId": "ben",
+      "selected": "Ben",
+      "visiblePanels": 1
+    },
+    {
+      "focused": "Meet Natalie",
+      "imageLoaded": false,
+      "pressed": 1,
+      "previewId": "natalie",
+      "selected": "Natalie",
+      "visiblePanels": 1
+    }
+  ],
+  "keyboard": {
+    "homeThenArrowRight": "Anne",
+    "endThenArrowLeft": "Ben",
+    "focusOutline": "solid"
+  },
+  "pointer": {
+    "finePointer": true,
+    "observedStyle": "--tilt-x: 0.99deg; --tilt-y: -0.00deg; --glow-x: 50.0%; --glow-y: 33.5%;"
+  },
+  "room": {
+    "selectedAdviser": "Noah",
+    "openedCorrectWaitingRoom": true,
+    "escapeRestoresOpener": true,
+    "skipOpensIllustrativeRoom": true,
+    "messageInputCount": 0,
+    "sendDisabled": true
+  },
+  "limits": [
+    "Chrome viewport checks, not physical devices",
+    "OS reduced-motion preference false; reduced-motion branch verified with unit tests only",
+    "Early lazy image observations during selection are followed by all-six-loaded responsive checks"
+  ],
+  "sixProfilesConfirmedAtWidths": [
+    320,
+    1440
+  ]
+}

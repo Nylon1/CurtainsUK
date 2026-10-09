@@ -1,0 +1,70 @@
+{% doc %}
+  A progressively enhanced editorial spotlight for the section's adviser profiles.
+  @param {object} section - Specialist team section and its configurable adviser blocks
+{% enddoc %}
+{{ 'curtainsuk-advisory-motion.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign default_adviser_index = 1
+  assign portrait_advisers = 'jane,anne,noah,james,ben,natalie' | split: ','
+  for block in section.blocks
+    if block.settings.adviser == 'jane'
+      assign default_adviser_index = forloop.index
+      break
+    endif
+  endfor
+%}
+<div class="cukad-spotlight" data-advisory-spotlight>
+  <div class="cukad-spotlight__heading"><p>{{ 'advisory_team.hero.meet' | t }}</p><span aria-hidden="true">✳</span></div>
+  <div class="cukad-spotlight__controls" data-spotlight-controls hidden>
+    <p class="cukad-spotlight__selector-label">{{ 'advisory_team.spotlight.perspective' | t }} <span aria-hidden="true">↓</span></p>
+    <div class="cukad-spotlight__selectors" role="group" aria-label="{{ 'advisory_team.spotlight.choose' | t | escape_once }}">
+      {% for block in section.blocks %}
+        {% liquid
+          assign adviser = block.settings.adviser
+          assign name_key = adviser | prepend: 'advisory_team.' | append: '.name'
+          assign translated_name = name_key | t
+          assign name = block.settings.name | default: translated_name
+          assign portrait_asset = adviser | prepend: 'curtainsuk-adviser-' | append: '.webp'
+        %}
+        <button class="cukad-spotlight__selector" type="button" data-spotlight-select data-adviser="{{ block.id }}" aria-controls="adviser-spotlight-{{ section.id }}-{{ block.id }}" aria-pressed="{% if forloop.index == default_adviser_index %}true{% else %}false{% endif %}" aria-label="{{ 'advisory_team.spotlight.meet' | t: name: name | escape_once }}">
+          <span class="cukad-spotlight__thumbnail">{% if portrait_advisers contains adviser %}<img src="{{ portrait_asset | asset_url }}" width="1024" height="1024" loading="lazy" decoding="async" alt="">{% else %}<span aria-hidden="true">{{ name | slice: 0 | escape_once }}</span>{% endif %}</span>
+          <span class="cukad-spotlight__selector-name">{{ name | escape_once }}</span>
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="cukad-spotlight__panels" data-spotlight-stage>
+    {% for block in section.blocks %}
+      {% liquid
+        assign adviser = block.settings.adviser
+        assign translation_root = adviser | prepend: 'advisory_team.'
+        assign name_key = translation_root | append: '.name'
+        assign title_key = translation_root | append: '.title'
+        assign approach_key = translation_root | append: '.approach'
+        assign question_key = translation_root | append: '.question'
+        assign translated_name = name_key | t
+        assign translated_title = title_key | t
+        assign translated_approach = approach_key | t
+        assign translated_question = question_key | t
+        assign name = block.settings.name | default: translated_name
+        assign title = block.settings.title | default: translated_title
+        assign approach = block.settings.approach | default: translated_approach
+        assign question = block.settings.question | default: translated_question
+      %}
+      <div class="cukad-spotlight__panel cukad-spotlight__panel--{{ adviser }}" data-spotlight-panel data-adviser="{{ block.id }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" id="adviser-spotlight-{{ section.id }}-{{ block.id }}" role="group" aria-labelledby="adviser-spotlight-name-{{ section.id }}-{{ block.id }}"{% unless forloop.index == default_adviser_index %} hidden{% endunless %}>
+        <div class="cukad-spotlight__stage">
+          <div class="cukad-spotlight__portrait">{% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}</div>
+          <span class="cukad-spotlight__ai">{{ 'advisory_team.common.ai_adviser' | t }}</span>
+          <div class="cukad-spotlight__identity"><div><h2 id="adviser-spotlight-name-{{ section.id }}-{{ block.id }}">{{ name | escape_once }}</h2><p>{{ title | escape_once }}</p></div><a class="cukad-spotlight__explore-icon" href="#adviser-{{ section.id }}-{{ block.id }}" aria-label="{{ 'advisory_team.spotlight.explore' | t: name: name | escape_once }}"><span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="cukad-spotlight__details">
+          <p class="cukad-spotlight__personality">{{ approach | escape_once }}</p>
+          <blockquote class="cukad-spotlight__question"><span>{{ 'advisory_team.common.try_asking' | t }}</span><p>“{{ question | escape_once }}”</p></blockquote>
+          <div class="cukad-spotlight__actions"><a href="#adviser-{{ section.id }}-{{ block.id }}">{{ 'advisory_team.spotlight.explore' | t: name: name }} <span aria-hidden="true">↘</span></a><button type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}" hidden>{{ 'advisory_team.common.preview' | t }} <span aria-hidden="true">↗</span></button></div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <p class="cukad-spotlight__caption">{{ 'advisory_team.common.portrait_identity' | t }}</p>
+  <p class="cukad-spotlight__status" data-spotlight-status role="status" aria-live="polite"></p>
+</div>

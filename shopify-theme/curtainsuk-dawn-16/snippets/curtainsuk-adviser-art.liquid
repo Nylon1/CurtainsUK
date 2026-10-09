@@ -1,0 +1,28 @@
+{% doc %}
+  AI-generated adviser portraits, with a generic illustration for future profiles.
+  @param {string} adviser - Adviser identity or custom profile key
+  @param {string} [name] - Optional display name for the portrait alternative text
+{% enddoc %}
+{% liquid
+  assign portrait_advisers = 'jane,anne,noah,james,ben,natalie' | split: ','
+  assign portrait_loading = 'lazy'
+  if adviser == 'jane'
+    assign portrait_loading = 'eager'
+  endif
+%}
+{% if portrait_advisers contains adviser %}
+  {% liquid
+    assign portrait_asset = adviser | prepend: 'curtainsuk-adviser-' | append: '.webp'
+    assign portrait_name_key = adviser | prepend: 'advisory_team.' | append: '.name'
+    assign portrait_default_name = portrait_name_key | t
+    assign portrait_name = name | default: portrait_default_name
+  %}
+  <img class="cukad__portrait" src="{{ portrait_asset | asset_url }}" width="1024" height="1024" loading="{{ portrait_loading }}" decoding="async" alt="{{ 'advisory_team.common.portrait_alt' | t: name: portrait_name | escape_once }}">
+{% else %}
+  <svg class="cukad__illustration" viewBox="0 0 420 360" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="210" cy="180" r="123" fill="#d9dfcc"/>
+    <path d="M134 282V152a76 76 0 0 1 152 0v130H134Z" stroke="#647464" stroke-width="2" fill="#f8f6ef"/>
+    <circle cx="210" cy="153" r="31" fill="#a9b697"/><path d="M161 263a49 49 0 0 1 98 0" fill="#a9b697"/>
+    <path d="M73 319h274" stroke="#91a18a"/>
+  </svg>
+{% endif %}

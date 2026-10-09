@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-09T10:34:01.527Z",
+  "routes": [
+    {
+      "route": "/pages/fabric-library?view=browse-fabrics",
+      "status": 200
+    },
+    {
+      "route": "/pages/fabric-library?view=curtain-style",
+      "status": 200
+    },
+    {
+      "route": "/pages/samples",
+      "status": 200
+    },
+    {
+      "route": "/pages/solve-my-window",
+      "status": 200
+    },
+    {
+      "route": "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+      "status": 200
+    },
+    {
+      "route": "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+      "status": 200
+    }
+  ],
+  "noOrdersOrPayments": true,
+  "mobileMenu": true,
+  "imageFailureAndRetry": true,
+  "rapidSwitchFinalState": "lounge:daylight",
+  "roomHandoff": {
+    "url": "https://www.curtainsuk.com/pages/room-visualiser?room=lounge&fabric=sdg-f1541-01",
+    "theme": 182466478459,
+    "frames": [
+      "https://www.curtainsuk.com/apps/curtainsuk-decision/room-visualiser?fabric=sdg-f1541-01&room=lounge"
+    ]
+  },
+  "complete": true
+}

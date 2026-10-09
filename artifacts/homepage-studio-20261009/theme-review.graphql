@@ -1,0 +1,3 @@
+query HomepageReview($draft: ID!, $live: ID!, $files: [String!]!) { draft: theme(id:$draft) { id name role files(first:50,filenames:$files) { nodes { filename checksumMd5 body { ... on OnlineStoreThemeFileBodyText { content } } } pageInfo { hasNextPage endCursor } } } live: theme(id:$live) { id name role files(first:10,filenames:["templates/index.json","locales/en.default.json"]) { nodes { filename checksumMd5 } pageInfo { hasNextPage endCursor } } } }
+
+mutation HomepageRefinement($themeId:ID!,$files:[OnlineStoreThemeFilesUpsertFileInput!]!) { themeFilesUpsert(themeId:$themeId,files:$files) { upsertedThemeFiles { filename } job { id } userErrors { field message } } }

@@ -1,6 +1,18 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 9 October 2026 · Phase 1 visually approved; controlled release candidate**
+**Programme source of truth · 9 October 2026 · Phase 1 release candidate; Jane Phase 2 implemented in an isolated mock preview**
+
+## Latest implementation — Jane Phase 2
+
+[Jane implementation, contracts, security, costs and activation steps](specialist-advisory/JANE_PHASE2.md) is the detailed implementation record for Issue #168. The approved Shopify design is preserved. PR #167 now has release-candidate head `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; both required checks passed on that head. The permanent page remains hidden and the 20-file scoped candidate is unpublished.
+
+Jane's functioning **local-only, explicitly scripted mock preview** is `http://127.0.0.1:8789/`, started with `node scripts/jane-preview.mjs`. Implemented code includes versioned profiles, validated tools and handoffs, adaptive conversation contracts, SSE delivery after validation/storage, summaries, cookie/CSRF/rate guards, local encrypted consented save/recovery/deletion, and an inactive OpenAI Responses adapter. The proposed isolated Supabase schema is tested locally, not migrated. The Vercel route fails closed; no remote service was deployed.
+
+The latest run passes **22 Jane/security/storage/adapter tests**, **20 Phase 1 interaction/controller tests** and **18 existing Shopify theme tests**. Browser testing confirms countdown auto-entry, consented handoff, preference refinement, saved resumption including a server restart, labelled modal Escape/focus return, and no horizontal overflow at 320/390/412/768/1440 CSS px. See the [review evidence](../artifacts/jane-phase2/IMPLEMENTATION.md) and [gallery](../artifacts/jane-phase2/review-gallery.html). These are mock infrastructure evaluations, not validation of a live AI model.
+
+Actual bounded Fabric Master reads succeeded and used existing identity indexes. However the existing public retail lookup returned HTTP 400; product recommendations remain blocked pending investigation. Full-master ID/prefix access is implemented, but comprehensive descriptive/semantic search of unpublished records is not yet complete. Screenshot processing, cloud recovery, real-model quality, distributed spending/rate controls and physical-device/screen-reader checks remain pending. No success is claimed for these items.
+
+At the later storage observation C: had **37.44 GiB free**; the previously observed restic process was no longer listed. That does not verify a successful snapshot. No cleanup, backup script, manifest or historical worktree was changed; this development needs a subsequent verified backup. No paid model calls or additional service purchases were made.
 
 ## Owner direction and release preparation — Issue #168
 
@@ -45,9 +57,9 @@ Required records were read: [production surfaces](PRODUCTION_SURFACES.md), [Room
 | Interactive visual revision | Implemented and tested in the development preview; 20 focused tests passed and all 18 scoped files matched source; current-head CI remains governed by PR checks |
 | Waiting room and consultation-room examples | Prototyped and tested for all six advisers; no model, messaging or persistence connected |
 | Six separate personality profiles and shared behaviour | Designed, versioned in this change; not attached to a live model |
-| Shared platform, data model, contracts and security boundaries | Designed below; not implemented |
-| Secure continuity, uploads, knowledge ingestion, enquiries and staff dashboard | Planned; no live service or destination enabled |
-| Jane / Anne / Noah / James / Ben / Natalie operational agents | Planned for Phases 3–7 |
+| Shared platform, data model, contracts and security boundaries | Isolated Jane framework implemented and tested; cloud persistence/activation pending. See JANE_PHASE2.md. |
+| Secure continuity, uploads, knowledge ingestion, enquiries and staff dashboard | Local encrypted consented continuity implemented/tested; cloud continuity, uploads, ingestion and human workflows remain planned. |
+| Jane / Anne / Noah / James / Ben / Natalie operational agents | Jane has a tested mock and guarded real-provider adapter; live intelligence unvalidated/unactivated. Other five remain planned. |
 | Commercial & Acoustic landing area | Planned in Phase 6; extensible disciplines, no premature theatre/healthcare/hotel implementation |
 | Owner approval / publication | Visual design approved by owner / not published; release approval remains separate |
 

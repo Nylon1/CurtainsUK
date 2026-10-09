@@ -18,7 +18,7 @@
 .cukstudio__hero h1 { font-size:clamp(48px,5.6vw,86px); line-height:1.015; letter-spacing:-.05em; margin-top:28px; max-width:9.5em; }
 .cukstudio p.cukstudio__intro { font-size:16px; line-height:1.75; margin-top:28px; max-width:29em; color:var(--muted); }
 .cukstudio__hero-image { min-width:0; min-height:660px; position:relative; overflow:hidden; }
-.cukstudio__hero-image > img { position:absolute; inset:0; object-position:54% center; }
+.cukstudio__hero-image > img { position:absolute; inset:0; object-position:65% center; }
 .cukstudio__hero-caption { display:flex; justify-content:space-between; align-items:center; gap:24px; position:absolute; inset:auto 28px 28px; padding:20px 24px; background:#f8f6eff2; color:var(--ink); border:1px solid #fff9; backdrop-filter:blur(12px); }
 .cukstudio__hero-caption small { display:block; font-size:9px; text-transform:uppercase; letter-spacing:.15em; }
 .cukstudio__hero-caption strong { display:block; font:24px/1.2 var(--serif); margin-top:8px; }
@@ -154,8 +154,10 @@
   .cukstudio p.cukstudio__intro { font-size:15px; margin-top:22px; }
   .cukstudio__actions { margin-top:24px; gap:10px; }
   .cukstudio__actions .cukstudio__button { flex:1 1 100%; min-width:0; }
-  .cukstudio__hero-image { aspect-ratio:1.05; }
-  .cukstudio__hero-caption { inset:auto 18px 18px; padding:18px; gap:12px; }
+  .cukstudio__hero-image { order:-1; aspect-ratio:1.55; }
+  .cukstudio__hero-caption { inset:auto 12px 12px; padding:10px 14px; gap:12px; }
+  .cukstudio__hero-caption strong,.cukstudio__hero-caption .cukstudio__circle { display:none; }
+  .cukstudio__hero-caption small { font-size:9px; }
   .cukstudio__hero-caption strong { font-size:22px; }
   .cukstudio__shortcuts { padding-inline:20px; }
   .cukstudio__shortcuts a { font-size:11px; gap:10px; }

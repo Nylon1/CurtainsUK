@@ -1,7 +1,7 @@
 {{ 'curtainsuk-home-studio.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curtainsuk-home-studio.js' | asset_url }}" defer></script>
 {% liquid
-  assign hero_image = section.settings.hero_image | default: images['curtainsuk-more-than-curtains-botanical.png']
+  assign hero_image = section.settings.hero_image
   assign hero_alt = 'homepage_studio.hero.image_alt' | t
   assign room_names = 'living,bedroom,lounge,office' | split: ','
   assign headings = 'wave,double-pinch,pencil-pleat,eyelet' | split: ','
@@ -20,7 +20,11 @@
       <div class="cukstudio__hero-foot"><span>{{ 'homepage_studio.hero.detail' | t }}</span><span aria-hidden="true">✳</span></div>
     </div>
     <div class="cukstudio__hero-image">
-      {{ hero_image | image_url: width: 1800 | image_tag: widths: '360, 540, 750, 1100, 1500, 1800', sizes: '(min-width: 1000px) 56vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: hero_alt }}
+      {% if hero_image != blank %}
+        {{ hero_image | image_url: width: 1800 | image_tag: widths: '360, 540, 750, 1100, 1500, 1800', sizes: '(min-width: 1000px) 56vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: hero_alt }}
+      {% else %}
+        <img src="{{ 'cuk-home-room-inspiration.webp' | asset_url }}" width="1400" height="700" loading="eager" fetchpriority="high" alt="{{ 'homepage_studio.visualiser.inspiration_alt' | t | escape }}">
+      {% endif %}
       <a class="cukstudio__hero-caption" href="#homepage-room-visualiser"><span><small>{{ 'homepage_studio.hero.caption_kicker' | t }}</small><strong>{{ 'homepage_studio.hero.caption' | t }}</strong></span><span class="cukstudio__circle" aria-hidden="true">↗</span></a>
     </div>
   </section>

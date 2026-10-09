@@ -7,7 +7,8 @@ import {resolve,sep,extname} from 'node:path';
 import {instrumentViewer} from './viewer-bridge.mjs';
 import {instrumentFabricLighting} from './fabric-lighting-bridge.mjs';
 const directory=resolve(fileURLToPath(new URL('.',import.meta.url)));
-const runtime=resolve(directory,'../../lib/room-visualiser/runtime');
+// Preserve the accepted review against its original runtime after customer integration.
+const runtime=resolve(directory,'../../public/room-visualiser/2bfef31e733fa962d19cde85');
 const port=Number(globalThis.process?.env?.ROOM_V2_PORT||4382),origin=`http://127.0.0.1:${port}`;
 const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.html':'text/html','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.glb':'model/gltf-binary','.gltf':'model/gltf+json','.bin':'application/octet-stream'};
 createServer(async(req,res)=>{

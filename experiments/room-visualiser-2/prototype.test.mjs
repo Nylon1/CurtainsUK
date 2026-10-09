@@ -26,8 +26,8 @@ test('all four rooms retain independent ambience while fireplace stays in the li
   assert.deepEqual(state.get('lounge'),{mode:'evening',lamps:true,fire:false});
   assert.equal(state.get('living').fire,true);assert.throws(()=>state.set('garage','lamps',true));
 });
-test('local scene hooks fail closed on production viewer drift and never touch curtain functions',async()=>{
-  const source=await readFile(new URL('../../lib/room-visualiser/runtime/rooms/viewer.mjs',import.meta.url),'utf8');
+test('archived review hooks fail closed on their frozen viewer and never touch curtain functions',async()=>{
+  const source=await readFile(new URL('../../public/room-visualiser/2bfef31e733fa962d19cde85/rooms/viewer.mjs',import.meta.url),'utf8');
   const changed=instrumentViewer(source);assert.match(changed,/mode.*baseline/);assert.match(changed,/roomV2\?\.attach/);
   assert.throws(()=>instrumentViewer(source.replace('dress(activeRoom);scene.add(activeRoom);','different code')),/VIEWER_BRIDGE_DRIFT/);
   const unchanged=source.slice(source.indexOf('  function tick(now)'),source.indexOf('  for(const b of document.querySelectorAll(\'[data-pose]\')'));
@@ -44,7 +44,9 @@ test('radiator clears every sampled V1 pose across all six frozen widths includi
   }
   assert.ok(lowest-RADIATOR.top>=17.9,`Minimum clearance: ${lowest-RADIATOR.top} cm`);
 });
-test('all production runtime, eligibility, theme and catalogue bytes remain unchanged',()=>{
-  const diff=execFileSync('git',['diff','a83b38fd8f71b967e51ebe0173603df7c29b87d3','--','lib','public','app','shopify-theme','package.json','package-lock.json'],{encoding:'utf8'});
-  assert.equal(diff,'');
+test('customer integration changes only room presentation and its new immutable pack',async()=>{
+  const build=JSON.parse(await readFile(new URL('../../lib/room-visualiser/build.json',import.meta.url)));
+  const files=execFileSync('git',['diff','--name-only','a83b38fd8f71b967e51ebe0173603df7c29b87d3','--','lib','public','app','shopify-theme','package.json','package-lock.json'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+  const allowed=new Set(['lib/room-visualiser/build.json','lib/room-visualiser/runtime/rooms/viewer.mjs','lib/room-visualiser/runtime/rooms/customer.html']);
+  assert.deepEqual(files.filter(file=>!allowed.has(file)&&!file.startsWith('lib/room-visualiser/runtime/rooms/environment/')&&!file.startsWith('public'+build.assetBase)),[]);
 });

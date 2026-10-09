@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-10-09T21:44:58.696Z",
+  "janeWidths": [
+    {
+      "overflow": false,
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 397,
+      "width": 412
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 1425,
+      "width": 1440
+    }
+  ],
+  "teamWidths": [
+    {
+      "overflow": false,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 400,
+      "width": 412
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 756,
+      "width": 768
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 1428,
+      "width": 1440
+    }
+  ],
+  "profiles": [
+    {
+      "name": "Anne",
+      "pressed": "true",
+      "visible": true
+    },
+    {
+      "name": "Noah",
+      "pressed": "true",
+      "visible": true
+    },
+    {
+      "name": "James",
+      "pressed": "true",
+      "visible": true
+    },
+    {
+      "name": "Ben",
+      "pressed": "true",
+      "visible": true
+    },
+    {
+      "name": "Natalie",
+      "pressed": "true",
+      "visible": true
+    },
+    {
+      "name": "Jane",
+      "pressed": "true",
+      "visible": true
+    }
+  ],
+  "janeAutomaticEntry": "observed",
+  "teamAutomaticEntryObservedByMs": 53820,
+  "keyboardEscapeFocusReturn": "PASS",
+  "mobileNavigation": "opens and follows preview adviser link",
+  "noEmDashReply": "observed in scripted FI reply",
+  "pending": [
+    "physical iPhone Safari and genuine touch",
+    "actual screen reader",
+    "enabled browser/OS reduced motion",
+    "confirmed hidden-tab transition"
+  ],
+  "reducedMotionPreference": false,
+  "visibilityObserved": "visible",
+  "viewportNotes": "Team tab has 1.25 device scale; capability dimensions adjusted until actual innerWidth matched each CSS breakpoint. Overrides reset."
+}

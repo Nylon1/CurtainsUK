@@ -25,11 +25,11 @@ begin
     or p_colour is null or length(p_colour)>50 or p_pattern is null or length(p_pattern)>50
     or p_texture is null or length(p_texture)>50 or p_composition is null or length(p_composition)>50 then raise exception 'INVALID_INPUT'; end if;
   return query select k.fabric_id from advisory.knowledge_search k
-    where k.document @@ plainto_tsquery('english',p_query)
-      and (p_colour='' or k.colour @@ plainto_tsquery('english',p_colour))
-      and (p_pattern='' or k.pattern @@ plainto_tsquery('english',p_pattern))
-      and (p_texture='' or k.texture @@ plainto_tsquery('english',p_texture))
-      and (p_composition='' or k.composition @@ plainto_tsquery('english',p_composition))
+    where k.document @@ websearch_to_tsquery('english',p_query)
+      and (p_colour='' or k.colour @@ websearch_to_tsquery('english',p_colour))
+      and (p_pattern='' or k.pattern @@ websearch_to_tsquery('english',p_pattern))
+      and (p_texture='' or k.texture @@ websearch_to_tsquery('english',p_texture))
+      and (p_composition='' or k.composition @@ websearch_to_tsquery('english',p_composition))
     order by k.fabric_id limit 6;
 end $$;
 revoke all on function advisory.search_knowledge(text,text,text,text,text) from public,anon,authenticated;

@@ -10,11 +10,12 @@ import {createMockProvider} from '../lib/advisory/mock-provider.mjs';
 import {createOpenAIProvider,MODEL_RATES} from '../lib/advisory/openai-provider.mjs';
 import {CloudSessionStore} from '../lib/advisory/cloud-store.mjs';
 import {createCatalogue} from '../lib/advisory/catalogue.mjs';
-import {fail,UUID} from '../lib/advisory/contracts.mjs';
+import {fail} from '../lib/advisory/contracts.mjs';
+import {completionCases,completionRubric,EVALUATION_VERSION,requireFreshEvaluationApproval} from '../lib/advisory/evaluation-v2.mjs';
 const mode=process.argv[2]??'mock';if(!['mock','openai'].includes(mode))throw Error('Use mock or openai.');
 const tag=process.argv[4]??mode;if(!/^[a-z0-9-]{1,40}$/.test(tag))throw Error('Invalid evidence tag');
 const caseIds=process.argv[5]?.split(',')??null;
-const output=path.resolve('artifacts/jane-readiness');await mkdir(output,{recursive:true});
+const output=path.resolve('artifacts/jane-completion');await mkdir(output,{recursive:true});
 let catalogue={lookup:async()=>[],identities:async()=>[],retail:async()=>[],descriptive:async()=>({fabrics:[],coverage:{complete:false,state:'evaluation-fixture'}})};
 let providerFactory=()=>createMockProvider(),db,lockPath,locked=false;
 const usage=[];
@@ -24,7 +25,7 @@ try{
     // precede writing one, and approval never authorises production activation.
     const approvalPath=process.argv[3];if(!approvalPath)fail('OWNER_BUDGET_APPROVAL_REQUIRED',403);
     const a=JSON.parse(await readFile(approvalPath,'utf8'));
-    if(a.approved!==true||!a.ownerApprovalReference||!new RegExp(UUID).test(a.runId??'')||a.model!==MODEL_RATES.model||a.maxUsd!==5||a.purpose!=='invented-jane-evaluation'||!Number.isFinite(Date.parse(a.expiresAt))||Date.parse(a.expiresAt)<=Date.now()||Date.parse(a.expiresAt)>Date.now()+86400000)fail('OWNER_BUDGET_APPROVAL_REQUIRED',403);
+    requireFreshEvaluationApproval(a,{model:MODEL_RATES.model});
     let apiKey=process.env.OPENAI_API_KEY;
     if(!apiKey){try{const text=await readFile(path.join(os.homedir(),'.curtainsuk-jane-private-preview','.env.evaluation'),'utf8');apiKey=text.match(/^OPENAI_API_KEY\s*=\s*["']?([^\s"']+)["']?\s*$/m)?.[1];}catch(error){if(error.code!=='ENOENT')fail('MODEL_CREDENTIAL_REQUIRED',503);}}
     if(!apiKey)fail('MODEL_CREDENTIAL_REQUIRED',503);
@@ -44,7 +45,7 @@ try{
     const owner=randomUUID(),store=new CloudSessionStore({ownerId:owner,rpc:async p=>{try{return {data:(await db.query('select advisory.runtime($1,$2,$3) as value',[p.p_owner,p.p_action,p.p_payload])).rows[0].value};}catch(error){return {error};}}});
     providerFactory=id=>createOpenAIProvider({apiKey,allowPaidTest:true,budget:store.budget(a.runId,id),usage:e=>usage.push(e)});
   }
-  const report=await runEvaluation({providerFactory,catalogue,caseIds,onCase:r=>writeFile(path.join(output,tag+'-'+r.id+'.json'),JSON.stringify(r,null,2))});
+  const report=await runEvaluation({providerFactory,catalogue,caseIds,cases:completionCases,version:EVALUATION_VERSION,onCase:r=>writeFile(path.join(output,tag+'-'+r.id+'.json'),JSON.stringify(r,null,2))});report.humanRubric=completionRubric;
   const ledger=db?(await db.query('select limit_micro,used_micro,expires_at from advisory.evaluation_runs')).rows:null;
   await writeFile(path.join(output,tag+'-evaluation.json'),JSON.stringify({...report,mode,usage,ledger,realModelStatus:mode==='mock'?'SCRIPTED_BASELINE_NOT_REAL_MODEL':'HUMAN_REVIEW_REQUIRED'},null,2));
   console.log(JSON.stringify({mode,cases:report.cases.length,turns:report.cases.reduce((n,c)=>n+c.transcript.length,0),errors:report.cases.flatMap(c=>c.transcript).filter(t=>t.error).length,paidCalls:usage.length,output}));

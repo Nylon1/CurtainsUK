@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 9 October 2026 · Phase 1 release candidate; Jane real-model evaluation completed, cloud activation pending**
+**Programme source of truth · 9 October 2026 · Team release candidate verified; Jane completion increment locally tested, hosted activation pending**
 
-## Latest implementation — Jane intelligence readiness
+## Latest implementation: encrypted persistence, indexed knowledge and concise Jane
+
+[Jane completion record](specialist-advisory/JANE_COMPLETION.md) is the current detailed source of truth. Work starts from `fefa6029287dcacb4ac924a50767e27351f2ac7c` in draft PR #169. PR #167 remains independent and unchanged at `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; protected HEAD is still `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. Fresh read-back verifies all 20 scoped theme files and unchanged checksums for all 505 live files. The permanent team page remains unpublished.
+
+Jane `2.2.0-preview.1` targets 40–90 words for ordinary replies and avoids em dashes. New customer-language hygiene removes internal feedback codes. The profile improves useful questioning, feedback refinement, meaningful alternatives and room-to-fabric query interpretation. Its intelligence has **not yet been re-evaluated with a real model**. Earlier paid transcripts and US$0.132574 ledger receipts remain unchanged; the new 16-scenario/48-turn mock suite is infrastructure evidence only. No additional paid calls were made, and the runner rejects the previous approval for the new profile/suite.
+
+Implemented/local-tested additions include AES-GCM cloud record encryption with authenticated ownership metadata; separate application-process tests for shared locks, replay, recovery, rates and retention; guarded hosted mock composition; and five-minute consented context handoffs. The incremental index worker processes six records per batch, atomically checkpoints, rejects duplicate pages and requires an approved exact denominator/source attestation before claiming completion. Five exact live Master records were read and indexed locally, with commercial filtering verified separately. **Full-master index population and hosted Auth/database tests remain pending** because there is no approved isolated hosted environment. No production schema, source record, supplier operation or customer tool changed.
+
+Current validation: **78 scoped tests pass** (40 Jane/security/storage/index, 20 Phase 1, 18 theme), scoped lint passes, both previews show no overflow at 320/390/412/768/1440 CSS px. All six spotlights, mobile navigation, welcome auto-entry and keyboard dialog exit were observed. Physical iPhone/touch, actual screen reader, enabled reduced motion and confirmed hidden-tab checks remain pending. [Evidence and exact changed files](../artifacts/jane-completion/IMPLEMENTATION.md), [updated owner review](http://127.0.0.1:8789/readiness), [scripted consultation](http://127.0.0.1:8789/).
+
+**Recommendation:** PR #167 is prepared for scoped owner publication review, with device limitations explicit. Keep Jane inactive until isolated hosted security/privacy, actual index coverage and fresh budgeted real-model/human evaluation pass. The earlier exposed key's retirement is unverified; no key exists in this process or checked private evaluation env file. No merge, publication, deployment, live AI activation or infrastructure purchase occurred. C: measured 36.02 GiB; the earlier restic process is no longer listed, which does not establish backup success. A later verified backup remains required.
+
+## Historical implementation — Jane intelligence readiness
 
 [Jane readiness, contracts, security, evaluation and activation record](specialist-advisory/JANE_READINESS.md) is the current detailed source of truth. The earlier Phase 2 report below is historical where superseded. Work continues in [draft PR #169](https://github.com/Nylon1/CurtainsUK/pull/169), separately from unchanged [PR #167](https://github.com/Nylon1/CurtainsUK/pull/167). Starting Jane HEAD was `90722cd22a1485611f5464c03e7c98e51a2a39a7`; protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. MAIN theme `182339731835`, hidden permanent team page and Vercel deployment `dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD` were verified independently. Neither PR was merged or published.
 

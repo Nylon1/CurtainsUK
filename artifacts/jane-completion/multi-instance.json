@@ -1,0 +1,16 @@
+{
+  "classification": "LOCAL_SEPARATE_NODE_PROCESSES_SHARED_PGLITE_NOT_HOSTED",
+  "instances": 3,
+  "simultaneousInstances": 2,
+  "checks": [
+    "encrypted-at-rest",
+    "lease-contention",
+    "idempotent-replay",
+    "foreign-owner-denied",
+    "process-restart-recovery",
+    "single-use-recovery",
+    "shared-rate-limit",
+    "expiry-and-purge"
+  ],
+  "result": "PASS"
+}

@@ -1,5 +1,7 @@
 # Jane Phase 2 — intelligence readiness and controlled evaluation
 
+**Latest increment:** [Jane completion and release readiness](JANE_COMPLETION.md) records profile `2.2.0-preview.1`, concise replies without em dashes, encrypted cloud records, separate-process testing, resumable indexing, five real-record local search checks and 78 passing tests. Hosted validation and complete-master coverage remain pending. No new paid evaluation was run. The report below and its paid receipts are preserved as historical evidence for the previously evaluated profile.
+
 9 October 2026. This record supersedes the blockers in [JANE_PHASE2.md](JANE_PHASE2.md), while preserving that report as evidence for its earlier revision. Implementation remains on `feat/jane-consultation-phase2-20261009`, draft [PR #169](https://github.com/Nylon1/CurtainsUK/pull/169), stacked on the independent approved-design [PR #167](https://github.com/Nylon1/CurtainsUK/pull/167). No merge, production migration, publication or live AI activation occurred.
 
 ## Verified authority

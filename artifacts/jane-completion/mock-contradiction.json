@@ -1,0 +1,89 @@
+{
+  "id": "contradiction",
+  "reviewCriteria": [
+    "Latest preference replaces earlier assumption",
+    "Clarify incompatible priorities without being dismissive"
+  ],
+  "transcript": [
+    {
+      "customer": "I want warm ivory curtains with a minimal look.",
+      "advice": {
+        "text": "warm ivory is a useful starting point: it can soften the room without adding strong contrast. Muted olive is an alternative if you want more colour and a gentle connection to natural materials. I’d compare a softly woven plain with a restrained tonal geometric, keeping the pattern scale modest beside busy furnishings. What colour are the walls, and would you like the curtains to blend in or become a feature?",
+        "stage": "recommend",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "I have changed my mind: cool blue tones instead.",
+      "advice": {
+        "text": "Let’s move away from the warmer direction. A softened blue-grey with a chalky neutral could feel calmer and cleaner; a muted sage is another route if blue feels too cool. Keep the surface matte and compare both against the furnishings that are staying. Which of those feels closer to your new direction?",
+        "stage": "refine",
+        "palette": [
+          "soft blue-grey",
+          "chalky neutral",
+          "muted sage"
+        ],
+        "patternDirection": "Plain or a restrained tonal pattern",
+        "textureDirection": "Matte, lightly woven texture",
+        "alternatives": [
+          "Muted sage with a neutral ground"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "I want both no visible pattern and a bold high-contrast geometric. What should I prioritise?",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

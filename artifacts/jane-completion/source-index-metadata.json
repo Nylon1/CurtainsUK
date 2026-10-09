@@ -1,0 +1,112 @@
+{
+  "checkedAt": "2026-10-09T21:44:19.240Z",
+  "classification": "READ_ONLY_METADATA_ESTIMATES_AND_FIVE_ID_PLAN_NOT_COVERAGE",
+  "results": [
+    {
+      "query": "select c.relname,c.reltuples::bigint as estimated_rows,pg_relation_size(c.oid) as heap_bytes from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='curtainsuk_private' and c.relname in ('fabric_colourways','fabric_designs','fabric_retail_profiles','fabric_visual_knowledge_read_cache');",
+      "rows": [
+        {
+          "relname": "fabric_colourways",
+          "estimated_rows": 16883,
+          "heap_bytes": 12066816
+        },
+        {
+          "relname": "fabric_designs",
+          "estimated_rows": 3863,
+          "heap_bytes": 3457024
+        },
+        {
+          "relname": "fabric_retail_profiles",
+          "estimated_rows": 256,
+          "heap_bytes": 376832
+        },
+        {
+          "relname": "fabric_visual_knowledge_read_cache",
+          "estimated_rows": 11815,
+          "heap_bytes": 23388160
+        }
+      ]
+    },
+    {
+      "query": "explain (analyze,buffers,format json) select fabric_id,colour_name from curtainsuk_private.fabric_colourways where fabric_id in ('pt-3697-502','pt-3697-569','pt-3697-575','pt-3697-770','sdg-f1541-01') order by fabric_id limit 6;",
+      "rows": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Limit",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 0.29,
+                "Total Cost": 11.87,
+                "Plan Rows": 5,
+                "Plan Width": 21,
+                "Actual Startup Time": 6.902,
+                "Actual Total Time": 15.111,
+                "Actual Rows": 5,
+                "Actual Loops": 1,
+                "Shared Hit Blocks": 9,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Index Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Scan Direction": "Forward",
+                    "Index Name": "fabric_colourways_pkey",
+                    "Relation Name": "fabric_colourways",
+                    "Alias": "fabric_colourways",
+                    "Startup Cost": 0.29,
+                    "Total Cost": 11.87,
+                    "Plan Rows": 5,
+                    "Plan Width": 21,
+                    "Actual Startup Time": 6.9,
+                    "Actual Total Time": 15.103,
+                    "Actual Rows": 5,
+                    "Actual Loops": 1,
+                    "Index Cond": "(fabric_id = ANY ('{pt-3697-502,pt-3697-569,pt-3697-575,pt-3697-770,sdg-f1541-01}'::text[]))",
+                    "Rows Removed by Index Recheck": 0,
+                    "Shared Hit Blocks": 9,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              },
+              "Planning": {
+                "Shared Hit Blocks": 206,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              },
+              "Planning Time": 35.617,
+              "Triggers": [],
+              "Execution Time": 15.252
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "return-context",
+  "reviewCriteria": [
+    "Retain calm objective while revising plainness",
+    "Distinguish authorised result context from authoritative product facts"
+  ],
+  "transcript": [
+    {
+      "customer": "My lounge has oak flooring; I want it calm.",
+      "advice": {
+        "text": "With the timber you mentioned, warm ivory is a useful starting point: it can soften the room without adding strong contrast. Muted olive is an alternative if you want more colour and a gentle connection to natural materials. I’d compare a softly woven plain with a restrained tonal geometric, keeping the pattern scale modest beside busy furnishings. What colour are the walls, and would you like the curtains to blend in or become a feature?",
+        "stage": "recommend",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "After trying ivory in the visualiser it feels too plain. Could we revisit that?",
+      "advice": {
+        "text": "if the patterns feel too busy, I’d reduce contrast before ruling out pattern altogether. Try a softly textured plain in warm ivory, or a small tonal motif with little difference between the ground and pattern. Keep the same room, view and lighting in the visualiser when comparing them. Is it the size of the pattern or the contrast that draws too much attention?",
+        "stage": "refine",
+        "palette": [
+          "warm ivory",
+          "soft stone"
+        ],
+        "patternDirection": "Low-contrast tonal motif or a quiet plain",
+        "textureDirection": "Softly textured, matte surface",
+        "alternatives": [
+          "Small tonal motif",
+          "Plain fabric with a subtle woven texture"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "customer": "Keep the calm feeling, but add a little depth.",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

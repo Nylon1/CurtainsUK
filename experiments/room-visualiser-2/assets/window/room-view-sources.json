@@ -1,0 +1,29 @@
+{
+  "office": {
+    "attachment": "1F567A56-78DF-49A2-A000-D40DF70FA252/1-Photo-1.jpg",
+    "file": "office-garden.jpg",
+    "bytes": 193657,
+    "width": 700,
+    "height": 933,
+    "sha256": "ef70131ed5d5428953201fa85bd177bc4c5b4b2513a5df094fe2d2316f15f042",
+    "altered": false
+  },
+  "bedroom": {
+    "attachment": "20D5260D-9AE4-4DBA-8896-2EF63577242A/1-Photo-1.jpg",
+    "file": "bedroom-view.jpg",
+    "bytes": 89094,
+    "width": 479,
+    "height": 640,
+    "sha256": "d2081f34901f32a664a000d0bf3de8ed0d904a8a73042e5a5e3656cdf331f167",
+    "altered": false
+  },
+  "lounge": {
+    "attachment": "67A17547-BFD3-4F76-8701-D2E17F00740A/1-Photo-1.jpg",
+    "file": "lounge-garden.jpg",
+    "bytes": 517744,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "c6e08ae651a3355b146aa3459fa6226554151bdafd38f69ecd2a53c02da3cf53",
+    "altered": false
+  }
+}

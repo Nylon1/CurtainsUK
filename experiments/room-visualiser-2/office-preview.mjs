@@ -1,0 +1,10 @@
+import {createRequire} from 'node:module';
+import {writeFile} from 'node:fs/promises';
+const {chromium}=createRequire(import.meta.url)('C:/Users/hamza/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const out='C:/Users/hamza/curtainsuk-visualiser-2-office-inspiration-evidence-20261009';
+const b=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--enable-webgl','--use-gl=angle','--use-angle=d3d11']});
+try{const p=await b.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});p.on('pageerror',e=>console.log('ERROR',e.message));await p.goto('http://127.0.0.1:4382/?room=office&fabric=sdg-f1541-01');await p.waitForFunction(()=>window.roomProof?.ready,null,{timeout:120000});await p.evaluate(()=>roomReview.setProgress(1));
+for(const mode of ['daylight','evening','inspection']){await p.evaluate(mode=>{roomAmbience.set('mode',mode);roomAmbience.set('lamps',mode!=='daylight');},mode);await p.locator('#room-canvas').screenshot({path:out+'/preview-'+mode+'.png'});}
+const result=await p.evaluate(async()=>{const T=await import('three'),root=roomRefinement.scene.getObjectByName('Office — walnut executive'),camera=roomRefinement.camera,ray=new T.Raycaster(),target=new T.Vector3(),direction=new T.Vector3(),hits=[];let count=0;root.updateWorldMatrix(true,true);
+for(let x=-115;x<=115;x+=5)for(let y=0;y<=250;y+=5){target.set(x,y,18);direction.copy(target).sub(camera.position);ray.set(camera.position,direction.clone().normalize());ray.far=direction.length()-.2;const hit=ray.intersectObjects(root.children,true).find(h=>h.object.visible&&!(h.object.material.transparent&&h.object.material.opacity===0));count++;if(hit)hits.push({target:target.toArray(),material:hit.object.material.name,point:hit.point.toArray()});}
+return{rays:count,hits,draw:roomProof.draw,setup:roomProof.prototype.setupMs};});console.log(JSON.stringify(result));await writeFile(out+'/preview-visibility.json',JSON.stringify(result,null,2));}finally{await b.close();}

@@ -17,6 +17,15 @@ test('inspection is neutral and every mode has finite exposure/light intensities
   assert.equal(MODES.inspection.warmth,0);
   for(const mode of Object.values(MODES))for(const value of Object.values(mode))assert.ok(Number.isFinite(value)&&value>=0);
 });
+test('all four rooms retain independent ambience while fireplace stays in the living room',()=>{
+  const state=createAmbienceState();
+  for(const id of ['living','bedroom','lounge','office']){state.set(id,'mode','evening');state.set(id,'lamps',true);}
+  state.set('office','mode','inspection');state.set('bedroom','lamps',false);state.set('living','fire',true);
+  assert.deepEqual(state.get('office'),{mode:'inspection',lamps:true,fire:false});
+  assert.deepEqual(state.get('bedroom'),{mode:'evening',lamps:false,fire:false});
+  assert.deepEqual(state.get('lounge'),{mode:'evening',lamps:true,fire:false});
+  assert.equal(state.get('living').fire,true);assert.throws(()=>state.set('garage','lamps',true));
+});
 test('local scene hooks fail closed on production viewer drift and never touch curtain functions',async()=>{
   const source=await readFile(new URL('../../lib/room-visualiser/runtime/rooms/viewer.mjs',import.meta.url),'utf8');
   const changed=instrumentViewer(source);assert.match(changed,/mode.*baseline/);assert.match(changed,/roomV2\?\.attach/);

@@ -1,0 +1,16 @@
+{
+  "source": {
+    "width": 4096,
+    "height": 2048
+  },
+  "output": {
+    "width": 1024,
+    "height": 768
+  },
+  "horizontalFovDegrees": 95,
+  "yawTurns": 0.327,
+  "horizonTurns": 0.49,
+  "exposure": 0.95,
+  "method": "Bilinear rectilinear HDR projection, Reinhard highlight compression, sRGB encoding",
+  "sourceFileOfflineOnly": true
+}

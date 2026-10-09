@@ -1,0 +1,86 @@
+{
+  "tonemapped": {
+    "size": 62836504,
+    "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/garden_nook.jpg",
+    "md5": "e9db80ff4705ea7c03942c3a5bbf3619"
+  },
+  "colorchart": {
+    "size": 67136396,
+    "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Color%20Charts/garden_nook.zip",
+    "md5": "0b0ab837232d8cbdbef8ddcd51eb7024"
+  },
+  "hdri": {
+    "8k": {
+      "hdr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/8k/garden_nook_8k.hdr",
+        "size": 112036275,
+        "md5": "d0436d71a523f8f8d4842708712e9913"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/8k/garden_nook_8k.exr",
+        "size": 389485316,
+        "md5": "1ce24d29c07a821f93813a87a1936d1e"
+      }
+    },
+    "16k": {
+      "hdr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/16k%2B/garden_nook_16k.hdr",
+        "size": 421039162,
+        "md5": "fe344ab2e88d9ed626bd41c7a7d04192"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/16k%2B/garden_nook_16k.exr",
+        "size": 1537057817,
+        "md5": "1dd87f84651d68d3b20e2151aaebf049"
+      }
+    },
+    "4k": {
+      "hdr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/garden_nook_4k.hdr",
+        "size": 28767460,
+        "md5": "547fa7fe70a728975f1f46b04d5bf3df"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/4k/garden_nook_4k.exr",
+        "size": 97997046,
+        "md5": "1e49571637a4d296ead4f650c2e6106f"
+      }
+    },
+    "24k": {
+      "hdr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/16k%2B/garden_nook_24k.hdr",
+        "size": 921383323,
+        "md5": "6695c4d4725ba533c6972ec6d8c9a3ce"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/16k%2B/garden_nook_24k.exr",
+        "size": 3416185585,
+        "md5": "3c30e97ec8fdba0cb32c15a01dfdbe29"
+      }
+    },
+    "2k": {
+      "hdr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/garden_nook_2k.hdr",
+        "size": 7279910,
+        "md5": "99142053fd20c3fdba96cbde5cdafe11"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/2k/garden_nook_2k.exr",
+        "size": 24593050,
+        "md5": "99755d1591c8cd6628cf5f207a7a5bab"
+      }
+    },
+    "1k": {
+      "hdr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/garden_nook_1k.hdr",
+        "size": 1836222,
+        "md5": "cd28a312e9275e1fca8dd5e8bbd9c29d"
+      },
+      "exr": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/1k/garden_nook_1k.exr",
+        "size": 6167110,
+        "md5": "a3b5f860feb72b7e4ff2829f6e73ed9e"
+      }
+    }
+  }
+}

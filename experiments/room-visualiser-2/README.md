@@ -1,3 +1,9 @@
+> Source merge authorized 9 October 2026: [scope and release boundary](MERGE-SCOPE.md). These sources remain a local prototype; customer activation and deployment are separate.
+
+> Latest fabric review: [before/after across all four rooms](http://127.0.0.1:4382/rooms-review?review=fabric-detail), now including plain and fine-pattern comparisons. [Repeated GPU checks and retained rendering](FABRIC-EFFICIENCY-RESULTS.md). [First material pass](FABRIC-DETAIL-RESULTS.md). Original geometry, repeat scale and artwork preserved; no publication.
+
+> Latest local review (9 October 2026): [all four rooms](http://127.0.0.1:4382/rooms-review), with recessed PVC windows and the user's separate Living garden, Office patio, Bedroom city skyline and Lounge garden photographs. Lounge now includes a wall-mounted TV and floating oak cabinet: [TV results](LOUNGE-TV-RESULTS.md). [Room-view results](ROOM-VIEWS-RESULTS.md), [window results](WINDOW-REALISM-RESULTS.md). Room design history: [Living](LIVING-INSPIRATION-RESULTS.md), [Office](OFFICE-INSPIRATION-RESULTS.md), [Bedroom](BEDROOM-INSPIRATION-RESULTS.md), [Lounge](LOUNGE-INSPIRATION-RESULTS.md), [four-room checkpoint](FOUR-ROOMS-RESULTS.md). Saved before/after views are included. No publication.
+
 # Living Room 2.0 — isolated prototype
 
 Experimental only. **No production route, build manifest, curtain module, fabric assignment or Shopify theme file is changed.** No catalogue processing takes place. The existing 11,003 supported and 812 held fabrics retain their status.

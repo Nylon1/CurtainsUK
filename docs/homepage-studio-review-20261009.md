@@ -1,5 +1,33 @@
 # Visual homepage review — 9 October 2026
 
+## Current refinement — interactive visual homepage
+
+The owner requested a more visual page with stronger interactions. The existing unpublished theme and draft PR [#166](https://github.com/Nylon1/CurtainsUK/pull/166) now contain the refined design. **Nothing has been merged or published.**
+
+[Open the current Shopify preview](https://www.curtainsuk.com/?preview_theme_id=182466478459&homepage_review=09abc566) · [Screenshot gallery](../artifacts/homepage-studio-20261009/review.html)
+
+- Warm ivory and deep green presentation, larger editorial typography, clean interior imagery and an image-first mobile opening. Find my curtains leads into the existing fabric catalogue.
+- Four clickable room thumbnails switch genuine captures from the approved Room Visualiser. Daylight/Evening controls change the preview. The room CTA retains the selected room and captured Fabric Master identity `sdg-f1541-01`; the full visualiser opens in its existing Daylight mode.
+- Eight room images total **249,128 bytes**. They were encoded from the approved runtime screenshots without changing their scene, colour, fabric or scale. Provenance is saved beside the evidence. The 102,006-byte hero remains clearly labelled interior inspiration.
+- Larger interactive Wave, Double pinch pleat, Pencil pleat and Eyelet studies. Shorter fabric discovery cards, colour story and a choose/sample/make journey lead into the existing customer routes.
+- Progressive enhancement retains ordinary room/style links with JavaScript disabled. Tabs support keyboard navigation, touch, visible focus and reduced motion. Failed room images retain the previous valid selection and support retry; rapid selections cannot overwrite the latest choice.
+- No homepage WebGL renderer, GLB, catalogue fetch or 3D iframe was introduced. New controller: **5,338 bytes** uncompressed. Existing House of Curtains, guidance, sample/order routes, customer trust, header and footer remain intact. No curtain geometry, UV, repeat, scaling, motion, supported-fabric assignment, pricing or checkout logic changed.
+
+### Current verification
+
+- 18 existing Shopify-theme tests passed. Shopify Theme Check reported **zero errors**, zero findings in changed files and 13 pre-existing warnings across eight unrelated files. The skill's standalone Liquid validator lacked its local package dependency; the installed official Shopify CLI Theme Check was used successfully instead.
+- Chromium at **320, 390, 412, 768 and 1440 px**: all eight room/lighting combinations, four headings, keyboard switching, loaded images, no horizontal overflow, one H1, no missing translations, reduced-motion behaviour and no visualiser-engine resource requests passed. Mobile interactive targets meet the 44px height check. See `interactive-review.json`.
+- Mobile menu, failed-image retry, rapid switching, selected-room/fabric handoff to the native visualiser iframe and all six distinct shopping/help destination reads passed. No order or payment was made. See `journey-review.json`.
+- All **18 scoped theme files** read back with matching source checksums. The preview remains `UNPUBLISHED`; live theme `182339731835` remains `MAIN`, and its homepage template and English locale checksums are unchanged. Source uploaded to the draft: `09abc566618e32fe52c71dff8c2f1da6e81bc3d9`. See `draft-readback.json`.
+- The latest disk reading was **41.78 GiB free**, above the earlier 35 GiB headroom target. This refinement did not delete worktrees, evidence or uncommitted work, or restart OneDrive. No storage cleanup is claimed.
+- Physical iPhone Safari acceptance remains outstanding. Chromium viewport/touch checks are not a physical-iPhone result. No new customer-network speed or conversion-uplift claim is made.
+
+Keep PR #166 in draft for owner visual review. For any later authorized publication, merge through both protected checks and upload only the 18 files listed in `source-check.json` from the exact protected source, after a fresh scoped comparison against the canonical live theme. Do not publish the entire draft theme or its draft-only `index.home-review.liquid`, settings, announcement or checkout-disabled state. This work requires no Vercel deployment. Roll back only the scoped theme changes if required.
+
+## Archived first-draft review
+
+The notes below record the first draft before the interactive refinement and narrow-browser acceptance above. Their pending screenshot/mobile statements and nine-file release scope are superseded by the current record.
+
 The homepage previously devoted its main editorial story to Fabric Intelligence and did not present the live Room Visualiser. The candidate adds a shorter hero, a prominent four-room visualiser feature, existing fabric-discovery cards, a concise colour-intelligence story and visual heading comparisons. House of Curtains, its saved-room behaviour, window guidance, measurement help, customer trust and footer content remain in the existing theme sections.
 
 ## Source and boundaries

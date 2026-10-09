@@ -1,0 +1,498 @@
+{
+  "at": "2026-10-09T10:35:46.758Z",
+  "surface": "unpublished theme 182466478459",
+  "physicalIphone": false,
+  "cases": [
+    {
+      "width": 390,
+      "theme": 182466478459,
+      "rooms": [
+        "living:daylight",
+        "living:evening",
+        "bedroom:daylight",
+        "bedroom:evening",
+        "lounge:daylight",
+        "lounge:evening",
+        "office:daylight",
+        "office:evening"
+      ],
+      "headings": [
+        "wave",
+        "double-pinch",
+        "pencil-pleat",
+        "eyelet"
+      ],
+      "layout": {
+        "width": 390,
+        "scroll": 390,
+        "h1": 1,
+        "missingTranslations": false,
+        "studioOverflow": []
+      },
+      "keyboardRoomSwitch": true,
+      "images": [
+        {
+          "alt": "Interior inspiration with neutral curtains, seating and a coffee table",
+          "loaded": true
+        },
+        {
+          "alt": "Bedroom Visualiser with an upholstered bed, built-in wardrobe and curtains beside a city view",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "Close-up of sage green and cream patterned woven curtain fabric",
+          "loaded": true
+        },
+        {
+          "alt": "Interior inspiration with watercolour curtains in a dining room",
+          "loaded": true
+        },
+        {
+          "alt": "Blue curtains and coordinated furnishings in an interior inspiration setting",
+          "loaded": true
+        },
+        {
+          "alt": "Curtain fabrics and coordinated interior colours arranged as a moodboard",
+          "loaded": true
+        },
+        {
+          "alt": "Wave",
+          "loaded": true
+        }
+      ],
+      "ctaTargets": [
+        "/pages/fabric-library?view=browse-fabrics",
+        "#homepage-room-visualiser",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+        "#cuk-fabric-discovery",
+        "#homepage-curtain-style",
+        "/pages/samples",
+        "https://www.curtainsuk.com/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=living&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=lounge&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=office&fabric=sdg-f1541-01",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+        "/pages/fabric-library?view=curtain-style",
+        "/pages/solve-my-window"
+      ],
+      "smallTargets": [],
+      "rendererRequests": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 320,
+      "theme": 182466478459,
+      "rooms": [
+        "living:daylight",
+        "living:evening",
+        "bedroom:daylight",
+        "bedroom:evening",
+        "lounge:daylight",
+        "lounge:evening",
+        "office:daylight",
+        "office:evening"
+      ],
+      "headings": [
+        "wave",
+        "double-pinch",
+        "pencil-pleat",
+        "eyelet"
+      ],
+      "layout": {
+        "width": 320,
+        "scroll": 320,
+        "h1": 1,
+        "missingTranslations": false,
+        "studioOverflow": []
+      },
+      "keyboardRoomSwitch": true,
+      "images": [
+        {
+          "alt": "Interior inspiration with neutral curtains, seating and a coffee table",
+          "loaded": true
+        },
+        {
+          "alt": "Bedroom Visualiser with an upholstered bed, built-in wardrobe and curtains beside a city view",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "Close-up of sage green and cream patterned woven curtain fabric",
+          "loaded": true
+        },
+        {
+          "alt": "Interior inspiration with watercolour curtains in a dining room",
+          "loaded": true
+        },
+        {
+          "alt": "Blue curtains and coordinated furnishings in an interior inspiration setting",
+          "loaded": true
+        },
+        {
+          "alt": "Curtain fabrics and coordinated interior colours arranged as a moodboard",
+          "loaded": true
+        },
+        {
+          "alt": "Wave",
+          "loaded": true
+        }
+      ],
+      "ctaTargets": [
+        "/pages/fabric-library?view=browse-fabrics",
+        "#homepage-room-visualiser",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+        "#cuk-fabric-discovery",
+        "#homepage-curtain-style",
+        "/pages/samples",
+        "https://www.curtainsuk.com/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=living&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=lounge&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=office&fabric=sdg-f1541-01",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+        "/pages/fabric-library?view=curtain-style",
+        "/pages/solve-my-window"
+      ],
+      "smallTargets": [],
+      "rendererRequests": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 412,
+      "theme": 182466478459,
+      "rooms": [
+        "living:daylight",
+        "living:evening",
+        "bedroom:daylight",
+        "bedroom:evening",
+        "lounge:daylight",
+        "lounge:evening",
+        "office:daylight",
+        "office:evening"
+      ],
+      "headings": [
+        "wave",
+        "double-pinch",
+        "pencil-pleat",
+        "eyelet"
+      ],
+      "layout": {
+        "width": 412,
+        "scroll": 412,
+        "h1": 1,
+        "missingTranslations": false,
+        "studioOverflow": []
+      },
+      "keyboardRoomSwitch": true,
+      "images": [
+        {
+          "alt": "Interior inspiration with neutral curtains, seating and a coffee table",
+          "loaded": true
+        },
+        {
+          "alt": "Bedroom Visualiser with an upholstered bed, built-in wardrobe and curtains beside a city view",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "Close-up of sage green and cream patterned woven curtain fabric",
+          "loaded": true
+        },
+        {
+          "alt": "Interior inspiration with watercolour curtains in a dining room",
+          "loaded": true
+        },
+        {
+          "alt": "Blue curtains and coordinated furnishings in an interior inspiration setting",
+          "loaded": true
+        },
+        {
+          "alt": "Curtain fabrics and coordinated interior colours arranged as a moodboard",
+          "loaded": true
+        },
+        {
+          "alt": "Wave",
+          "loaded": true
+        }
+      ],
+      "ctaTargets": [
+        "/pages/fabric-library?view=browse-fabrics",
+        "#homepage-room-visualiser",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+        "#cuk-fabric-discovery",
+        "#homepage-curtain-style",
+        "/pages/samples",
+        "https://www.curtainsuk.com/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=living&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=lounge&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=office&fabric=sdg-f1541-01",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+        "/pages/fabric-library?view=curtain-style",
+        "/pages/solve-my-window"
+      ],
+      "smallTargets": [],
+      "rendererRequests": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 768,
+      "theme": 182466478459,
+      "rooms": [
+        "living:daylight",
+        "living:evening",
+        "bedroom:daylight",
+        "bedroom:evening",
+        "lounge:daylight",
+        "lounge:evening",
+        "office:daylight",
+        "office:evening"
+      ],
+      "headings": [
+        "wave",
+        "double-pinch",
+        "pencil-pleat",
+        "eyelet"
+      ],
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "h1": 1,
+        "missingTranslations": false,
+        "studioOverflow": []
+      },
+      "keyboardRoomSwitch": true,
+      "images": [
+        {
+          "alt": "Interior inspiration with neutral curtains, seating and a coffee table",
+          "loaded": true
+        },
+        {
+          "alt": "Bedroom Visualiser with an upholstered bed, built-in wardrobe and curtains beside a city view",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "Close-up of sage green and cream patterned woven curtain fabric",
+          "loaded": true
+        },
+        {
+          "alt": "Interior inspiration with watercolour curtains in a dining room",
+          "loaded": true
+        },
+        {
+          "alt": "Blue curtains and coordinated furnishings in an interior inspiration setting",
+          "loaded": true
+        },
+        {
+          "alt": "Curtain fabrics and coordinated interior colours arranged as a moodboard",
+          "loaded": true
+        },
+        {
+          "alt": "Wave",
+          "loaded": true
+        }
+      ],
+      "ctaTargets": [
+        "/pages/fabric-library?view=browse-fabrics",
+        "#homepage-room-visualiser",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+        "#cuk-fabric-discovery",
+        "#homepage-curtain-style",
+        "/pages/samples",
+        "https://www.curtainsuk.com/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=living&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=lounge&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=office&fabric=sdg-f1541-01",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+        "/pages/fabric-library?view=curtain-style",
+        "/pages/solve-my-window"
+      ],
+      "smallTargets": [
+        {
+          "text": "☀ Daylight",
+          "height": 40
+        },
+        {
+          "text": "☾ Evening",
+          "height": 40
+        }
+      ],
+      "rendererRequests": [],
+      "reducedMotion": true
+    },
+    {
+      "width": 1440,
+      "theme": 182466478459,
+      "rooms": [
+        "living:daylight",
+        "living:evening",
+        "bedroom:daylight",
+        "bedroom:evening",
+        "lounge:daylight",
+        "lounge:evening",
+        "office:daylight",
+        "office:evening"
+      ],
+      "headings": [
+        "wave",
+        "double-pinch",
+        "pencil-pleat",
+        "eyelet"
+      ],
+      "layout": {
+        "width": 1440,
+        "scroll": 1440,
+        "h1": 1,
+        "missingTranslations": false,
+        "studioOverflow": []
+      },
+      "keyboardRoomSwitch": true,
+      "images": [
+        {
+          "alt": "Interior inspiration with neutral curtains, seating and a coffee table",
+          "loaded": true
+        },
+        {
+          "alt": "Bedroom Visualiser with an upholstered bed, built-in wardrobe and curtains beside a city view",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "Close-up of sage green and cream patterned woven curtain fabric",
+          "loaded": true
+        },
+        {
+          "alt": "Interior inspiration with watercolour curtains in a dining room",
+          "loaded": true
+        },
+        {
+          "alt": "Blue curtains and coordinated furnishings in an interior inspiration setting",
+          "loaded": true
+        },
+        {
+          "alt": "Curtain fabrics and coordinated interior colours arranged as a moodboard",
+          "loaded": true
+        },
+        {
+          "alt": "Wave",
+          "loaded": true
+        }
+      ],
+      "ctaTargets": [
+        "/pages/fabric-library?view=browse-fabrics",
+        "#homepage-room-visualiser",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+        "#cuk-fabric-discovery",
+        "#homepage-curtain-style",
+        "/pages/samples",
+        "https://www.curtainsuk.com/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=living&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=bedroom&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=lounge&fabric=sdg-f1541-01",
+        "/pages/room-visualiser?room=office&fabric=sdg-f1541-01",
+        "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+        "/pages/fabric-library?view=curtain-style",
+        "/pages/solve-my-window"
+      ],
+      "smallTargets": [
+        {
+          "text": "☀ Daylight",
+          "height": 40
+        },
+        {
+          "text": "☾ Evening",
+          "height": 40
+        }
+      ],
+      "rendererRequests": [],
+      "reducedMotion": true
+    }
+  ],
+  "browserErrors": [],
+  "browser": "153.0.8010.12",
+  "noJavascript": {
+    "roomLinks": 4,
+    "headingLinks": 4,
+    "lightingHidden": true
+  },
+  "complete": true
+}

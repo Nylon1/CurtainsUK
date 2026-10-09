@@ -1,0 +1,99 @@
+{
+  "at": "2026-10-09T10:38:12.660Z",
+  "source": "09abc566618e32fe52c71dff8c2f1da6e81bc3d9",
+  "nonHomepageTranslationsPreserved": true,
+  "changedThemeFilesWithoutFindings": true,
+  "unrelatedThemeFilesWithFindings": 8,
+  "files": [
+    {
+      "filename": "templates/index.json",
+      "bytes": 1202,
+      "md5": "2b7a3ff4c709ae8b46a6dacbe0d1845d"
+    },
+    {
+      "filename": "locales/en.default.json",
+      "bytes": 65934,
+      "md5": "cbee66e11bef0fdd24e90a3cd687f3d1"
+    },
+    {
+      "filename": "sections/curtainsuk-home-studio.liquid",
+      "bytes": 14787,
+      "md5": "90e7818001405eef500cb5ec614ba2aa"
+    },
+    {
+      "filename": "assets/curtainsuk-home-studio.css",
+      "bytes": 18778,
+      "md5": "61e4a50fdae502bb1a08ece4a8622bce"
+    },
+    {
+      "filename": "assets/curtainsuk-home-studio.js",
+      "bytes": 5338,
+      "md5": "db21738637663b17fc56dc22d679bae6"
+    },
+    {
+      "filename": "assets/cuk-home-room-inspiration.webp",
+      "bytes": 102006,
+      "md5": "c80d493a5449d1bfe346fc812cefe69b"
+    },
+    {
+      "filename": "assets/cuk-home-heading-wave.webp",
+      "bytes": 35718,
+      "md5": "408ea67fbeb25dce503962872fec7b9a"
+    },
+    {
+      "filename": "assets/cuk-home-heading-double-pinch.webp",
+      "bytes": 36472,
+      "md5": "922aa2ac67b7a9f0b151a443fb32c8f3"
+    },
+    {
+      "filename": "assets/cuk-home-heading-pencil-pleat.webp",
+      "bytes": 41066,
+      "md5": "c1cdd4ef84a9a5f651d643ed1bb20636"
+    },
+    {
+      "filename": "assets/cuk-home-heading-eyelet.webp",
+      "bytes": 35688,
+      "md5": "82be4044c393fcb13507c7c6dd77776b"
+    },
+    {
+      "filename": "assets/cuk-home-living-daylight.webp",
+      "bytes": 35666,
+      "md5": "a61a58b15bbe5fb5939496dab4d0761b"
+    },
+    {
+      "filename": "assets/cuk-home-living-evening.webp",
+      "bytes": 33004,
+      "md5": "cd170d7681beda7fed7fff208684e167"
+    },
+    {
+      "filename": "assets/cuk-home-bedroom-daylight.webp",
+      "bytes": 34850,
+      "md5": "90dad8ae3869e3e5267d1c4c573397fa"
+    },
+    {
+      "filename": "assets/cuk-home-bedroom-evening.webp",
+      "bytes": 34632,
+      "md5": "bcb3fd7c6393d00063b14abd2db693dc"
+    },
+    {
+      "filename": "assets/cuk-home-lounge-daylight.webp",
+      "bytes": 28872,
+      "md5": "d157f9dc87d1ed032b0c324426bd06ba"
+    },
+    {
+      "filename": "assets/cuk-home-lounge-evening.webp",
+      "bytes": 25546,
+      "md5": "54ebeab19b71d14e3ed726132d750838"
+    },
+    {
+      "filename": "assets/cuk-home-office-daylight.webp",
+      "bytes": 29594,
+      "md5": "c64253f27ef318cb70b8b9844bc80acd"
+    },
+    {
+      "filename": "assets/cuk-home-office-evening.webp",
+      "bytes": 26964,
+      "md5": "df1f2f07f606b4f9437f19b47795164e"
+    }
+  ]
+}

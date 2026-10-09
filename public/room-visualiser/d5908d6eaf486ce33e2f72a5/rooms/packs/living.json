@@ -1,0 +1,212 @@
+{
+  "detailCamera": {
+    "position": [
+      -60,
+      229,
+      118
+    ],
+    "target": [
+      -77,
+      218,
+      0
+    ],
+    "fov": 36,
+    "aspect": 1.6
+  },
+  "cushions": {
+    "count": 2,
+    "spec": {
+      "widthCm": 45,
+      "heightCm": 45,
+      "maximumDepthCm": 14,
+      "zone": "CUSHION_UPHOLSTERY",
+      "colourMode": "solid",
+      "segments": 20
+    },
+    "placements": [
+      {
+        "position": [
+          -58.5,
+          72,
+          -8
+        ],
+        "rotation": [
+          0.1,
+          0,
+          -0.14
+        ],
+        "parent": "Tailored sofa",
+        "sizeCm": [
+          45,
+          45
+        ],
+        "zone": "CUSHION_UPHOLSTERY"
+      },
+      {
+        "position": [
+          59.5,
+          72,
+          -8
+        ],
+        "rotation": [
+          0.1,
+          0,
+          0.17
+        ],
+        "parent": "Tailored sofa",
+        "sizeCm": [
+          45,
+          45
+        ],
+        "zone": "CUSHION_UPHOLSTERY"
+      }
+    ]
+  },
+  "id": "living",
+  "name": "Living Room",
+  "file": "living.glb",
+  "sha256": "24396fe1f47fbb3db3af25d176c64d4bd5bbdd986d7cf4ccf0e77ef6c2e7364b",
+  "bytes": 917780,
+  "vertices": 20937,
+  "triangles": 37932,
+  "drawMeshes": 17,
+  "materials": [
+    "FLOOR_MATERIAL",
+    "WALL_MATERIAL",
+    "CEILING_MATERIAL",
+    "TRIM",
+    "GLASS_VIEW",
+    "RUG_FIXED",
+    "DARK_TIMBER",
+    "SOFA_UPHOLSTERY",
+    "CUSHION_UPHOLSTERY",
+    "ARMCHAIR_UPHOLSTERY",
+    "TIMBER",
+    "PAPER",
+    "LINEN_FIXED",
+    "CERAMIC",
+    "BRASS",
+    "SHADE",
+    "FOLIAGE"
+  ],
+  "editableZones": [
+    "CEILING_MATERIAL",
+    "WALL_MATERIAL",
+    "FLOOR_MATERIAL",
+    "SOFA_UPHOLSTERY",
+    "ARMCHAIR_UPHOLSTERY",
+    "CUSHION_UPHOLSTERY"
+  ],
+  "assets": [
+    {
+      "name": "Custom architectural shell",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Bound wool rug",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Tailored sofa",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Upholstered accent chair",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Coffee table",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Original neutral relief artwork",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Lamps, ceramics, books, foliage and window joinery",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    }
+  ],
+  "camera": {
+    "position": [
+      245,
+      205,
+      690
+    ],
+    "target": [
+      -6,
+      117,
+      70
+    ],
+    "fov": 43,
+    "aspect": 1.6
+  },
+  "mount": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "opening": {
+      "width": 212,
+      "bottom": 10,
+      "top": 238,
+      "backZ": -25
+    },
+    "track": {
+      "width": 234,
+      "y": 251.4
+    },
+    "clearClothEnvelope": {
+      "x": [
+        -115,
+        115
+      ],
+      "y": [
+        0,
+        250
+      ],
+      "z": [
+        -18,
+        18
+      ]
+    }
+  },
+  "units": "metres in GLB; room root x100 in centimetre preview",
+  "supports": {
+    "closed": true,
+    "open": true,
+    "motionReady": true
+  },
+  "lighting": {
+    "hemisphere": 1.05,
+    "key": 0.55,
+    "areaKey": 5,
+    "areaFill": 1.2,
+    "exposure": 1.08
+  }
+}

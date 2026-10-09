@@ -7,7 +7,7 @@
 - [Working Shopify preview](https://www.curtainsuk.com/pages/fabric-library?view=meet-our-team&preview_theme_id=182472573307)
 - [Desktop/mobile screenshot gallery](review-gallery.html)
 - [Programme source of truth and Phase 2 plan](../../docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md)
-- Draft pull request: awaiting creation in this review run; the final handoff supplies its URL.
+- [Draft pull request #167](https://github.com/Nylon1/CurtainsUK/pull/167), targeting `release/production`. Consult its checks tab for the required gates on the current head; local results below are distinct from CI results.
 - [Exact changed-file manifest](changed-files.txt)
 
 The preview theme is **182472573307**, role **DEVELOPMENT**. It is separate from the live theme and temporary: Shopify can remove development themes after seven days of inactivity or CLI logout. Preserve these committed captures/source if it expires. The existing Fabric Library page hosts the alternate template for review only, so browser metadata still says Fabric Library. The requested `/pages/meet-our-team` native page and navigation entry are not published. The inherited preview banner says checkout disabled. Do not use this review theme for purchases.

@@ -7,6 +7,20 @@ artifacts/specialist-advisory-phase1/desktop-1440-jane.jpg
 artifacts/specialist-advisory-phase1/desktop-consultation-room.jpg
 artifacts/specialist-advisory-phase1/desktop-waiting-room.jpg
 artifacts/specialist-advisory-phase1/IMPLEMENTATION.md
+artifacts/specialist-advisory-phase1/interactive-1440.jpg
+artifacts/specialist-advisory-phase1/interactive-320.jpg
+artifacts/specialist-advisory-phase1/interactive-390.jpg
+artifacts/specialist-advisory-phase1/interactive-412.jpg
+artifacts/specialist-advisory-phase1/interactive-768.jpg
+artifacts/specialist-advisory-phase1/interactive-browser.json
+artifacts/specialist-advisory-phase1/interactive-desktop-jane.jpg
+artifacts/specialist-advisory-phase1/interactive-desktop-natalie.jpg
+artifacts/specialist-advisory-phase1/interactive-readback.json
+artifacts/specialist-advisory-phase1/interactive-room-tests.log
+artifacts/specialist-advisory-phase1/interactive-room.jpg
+artifacts/specialist-advisory-phase1/interactive-storage.json
+artifacts/specialist-advisory-phase1/interactive-tests.log
+artifacts/specialist-advisory-phase1/interactive-theme-check.json
 artifacts/specialist-advisory-phase1/keyboard-browser.json
 artifacts/specialist-advisory-phase1/live-theme-before.json
 artifacts/specialist-advisory-phase1/mobile-390-jane.jpg
@@ -42,6 +56,7 @@ docs/specialist-advisory/natalie.v1.json
 docs/specialist-advisory/noah.v1.json
 docs/specialist-advisory/PORTRAITS.md
 docs/specialist-advisory/shared-consultation.v1.md
+scripts/tests/specialist-advisory-interactions.test.mjs
 scripts/tests/specialist-advisory.test.mjs
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-adviser-anne.webp
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-adviser-ben.webp
@@ -49,6 +64,8 @@ shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-adviser-james.webp
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-adviser-jane.webp
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-adviser-natalie.webp
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-adviser-noah.webp
+shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-advisory-interactions.js
+shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-advisory-motion.css
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-advisory-room.css
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-advisory-team.css
 shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-advisory-team.js
@@ -57,4 +74,5 @@ shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-advisory-team.liquid
 shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-adviser-art.liquid
 shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-adviser-card.liquid
 shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-advisory-room.liquid
+shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-advisory-spotlight.liquid
 shopify-theme/curtainsuk-dawn-16/templates/page.meet-our-team.json

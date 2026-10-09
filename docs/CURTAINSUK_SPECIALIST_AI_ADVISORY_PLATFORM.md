@@ -30,6 +30,7 @@ Required records were read: [production surfaces](PRODUCTION_SURFACES.md), [Room
 | --- | --- |
 | Native six-adviser page, reusable profiles, responsive assets | Implemented and tested in Shopify development theme `182472573307`; unpublished owner-review preview |
 | Six synthetic portrait assets | Generated and encoded for the portrait revision; current-revision preview receipt and PR checks must be consulted separately from the initial illustration-version evidence |
+| Interactive visual revision | Implemented and tested in the development preview; 20 focused tests passed and all 18 scoped files matched source; current-head CI remains governed by PR checks |
 | Waiting room and consultation-room examples | Prototyped and tested for all six advisers; no model, messaging or persistence connected |
 | Six separate personality profiles and shared behaviour | Designed, versioned in this change; not attached to a live model |
 | Shared platform, data model, contracts and security boundaries | Designed below; not implemented |
@@ -87,6 +88,18 @@ Shared loop: understand → investigate → reason → recommend → listen/refi
 Phase 1 demonstrates a roughly 30-second welcome with identity, preparation guidance, elapsed-time progress, accessible skip/exit and an automatically opened example consultation room. There is no invented queue or claim that an adviser is busy. Use an absolute start/deadline and recalculate on visibility changes; do not decrement a counter once per timer tick. Reduced motion removes decorative animation without suppressing progress information. Countdown announcements should be throttled so assistive technology is not interrupted each second.
 
 Future service readiness must be server-authoritative, independently enabled per adviser after evaluation and approval. Theme settings and browser state cannot turn an adviser operational. Initialisation failures show recovery and preserve valid customer input. A genuine outage must not transition into a fake consultation or fabricate a response.
+
+## Interactive visual revision
+
+**Implemented and tested in the unpublished owner-review preview.** The hero now includes a six-adviser spotlight selector with Jane selected initially. Keyboard-operable buttons select each adviser's original portrait, title, personality and example question. The spotlight links to the actual profile on the page and opens the existing labelled shared consultation demonstration.
+
+Layered cards add visual depth, with gentle portrait tilt for pointer input and a one-time entrance as content scrolls into view. Reduced-motion handling suppresses decorative motion. There is no autoplay, network request from the interaction controller, browser storage or model call. All six services remain upcoming, with no live consultation introduced.
+
+This revision adds `assets/curtainsuk-advisory-interactions.js`, `assets/curtainsuk-advisory-motion.css` and `snippets/curtainsuk-advisory-spotlight.liquid`, plus scoped edits to the existing advisory section and additive advisory locale text. The total theme scope is now **18 files**. Earlier tests, screenshots and nine-/15-file receipts remain evidence for their respective revisions.
+
+The [interactive test run](../artifacts/specialist-advisory-phase1/interactive-tests.log) passed **20 tests: the 10 shared controller/content tests rerun plus 10 new interaction tests**. This count must not be added to the initial 42 as if every test were new. The new tests include reduced motion at startup and when the preference changes, coarse-pointer behaviour, bounded pointer effects, observer fallback and lifecycle cleanup. [Theme Check](../artifacts/specialist-advisory-phase1/interactive-theme-check.json) recorded **zero errors and 13 existing warnings**. The [interactive read-back](../artifacts/specialist-advisory-phase1/interactive-readback.json) confirms **18/18 scoped preview files match source and all 505 MAIN-theme files remain unchanged**.
+
+[Connected Chrome checks](../artifacts/specialist-advisory-phase1/interactive-browser.json) cover **320, 390, 412, 768 and 1440 CSS px**: no horizontal overflow, loaded portraits after lazy-image completion, exactly one active spotlight panel and selector targets at least **47 px wide and 68 px high**. All six adviser selections showed the correct identity and demo target. Home then ArrowRight selected Anne; End then ArrowLeft selected Ben, with visible focus. Fine-pointer portrait tilt was observed in the browser. Noah's hero action opened his waiting room, and Escape restored its opener. At 320 px, skip opened Noah's illustrative room with zero inputs and a disabled send control; six profile cards were confirmed at 320 and 1440 px. The [current gallery](../artifacts/specialist-advisory-phase1/review-gallery.html) shows this revision. Physical iPhone, screen-reader and actual reduced-motion browser checks remain outstanding; reduced-motion evidence is automated, not an OS/browser emulation result. Current-head CI is reported by the PR checks tab, not inferred from these local results.
 
 ## Proposed data model — no migrations in Phase 1
 
@@ -211,7 +224,7 @@ Regression evidence must cover the homepage, Fabric Library, FI, Room Visualiser
 
 All six portraits depict fictional adults in their thirties. The requested representation is white British for Jane, Anne, James, Ben and Natalie, and brown British for Noah; these are creative specifications for synthetic characters, not claims about real staff. Each original was generated with the built-in image-generation tool. The six **1024 × 1024 WebP** theme assets total **436,350 bytes**, as recorded in `C:/Users/hamza/curtainsuk-advisory-portraits/encoding.json`. Original generated images and exact prompts are preserved outside the repository in that folder. See [portrait prompts and provenance](specialist-advisory/PORTRAITS.md). The custom-adviser generic SVG remains available for future profiles without bespoke artwork.
 
-Ordinary theme duplication failed. The isolated development preview was built using the preserved **505-file current-live snapshot**, initially with nine scoped advisory files added or changed. The portrait revision expands the scoped theme change to **15 files**, including six WebP assets listed below. No historical draft was reused or deleted. The canonical live theme was not modified. Development previews are temporary: Shopify can remove them after seven days of inactivity or when the CLI session is logged out. The owner-review link should therefore be checked before a later review; this is not a permanent unpublished-theme guarantee.
+Ordinary theme duplication failed. The isolated development preview was built using the preserved **505-file current-live snapshot**, initially with nine scoped advisory files added or changed. The portrait revision expanded the scoped theme change to 15 files; the interactive visual revision adds three files, bringing the current scope to **18 files** listed below. No historical draft was reused or deleted. The canonical live theme was not modified. Development previews are temporary: Shopify can remove them after seven days of inactivity or when the CLI session is logged out. The owner-review link should therefore be checked before a later review; this is not a permanent unpublished-theme guarantee.
 
 The following checks record the initial Phase 1 implementation. They do not by themselves verify the later portrait revision or establish CI success on a newer commit; use the refreshed preview receipt, gallery and current PR checks for that revision.
 
@@ -225,15 +238,17 @@ The following checks record the initial Phase 1 implementation. They do not by t
 | Timer | The real browser automatically reached the room when observed **42.214 seconds** after entry. The exact 30-second boundary and background-tab catch-up passed deterministic controller tests; the browser record is not a precise transition-time measurement. |
 | Preview honesty | No free-text input; disabled send control; coming-soon and illustrative-opening notices. The controller tests reject network, cookie and browser-storage access. No live AI, uploads, enquiries or consultation persistence are enabled. |
 | Extensibility | Reusable adviser blocks and one shared room/controller; up to 20 configured blocks with a custom identity/text option. Additional advisers use the generic illustration until their own artwork is supplied. |
-| Remaining device/accessibility checks | **Physical iPhone Safari, screen-reader testing and an actual reduced-motion browser run were not performed.** Reduced-motion handling is present in CSS/static source; Chrome viewport checks are not physical-device results. Native `dialog` support is required for the demonstration; unsupported browsers retain the profiles/tools while hiding demo entry controls. |
+| Remaining device/accessibility checks | **Physical iPhone Safari, screen-reader testing and an actual reduced-motion browser run were not performed.** CSS rules were inspected; the later interaction tests verify reduced-motion startup and preference changes. Chrome viewport checks are not physical-device results. Native `dialog` support is required for the demonstration; unsupported browsers retain the profiles/tools while hiding demo entry controls. |
 
 Evidence is preserved in [the Phase 1 artifact folder](../artifacts/specialist-advisory-phase1/): [preflight](../artifacts/specialist-advisory-phase1/preflight.json), [responsive results](../artifacts/specialist-advisory-phase1/responsive-browser.json), [consultation interactions](../artifacts/specialist-advisory-phase1/consultation-browser.json), [test log](../artifacts/specialist-advisory-phase1/regression-tests.log) and [Theme Check output](../artifacts/specialist-advisory-phase1/theme-check.json). Captures include the [desktop hero](../artifacts/specialist-advisory-phase1/desktop-1440-hero.jpg), [featured Jane](../artifacts/specialist-advisory-phase1/desktop-1440-jane.jpg), [other advisers](../artifacts/specialist-advisory-phase1/desktop-1440-advisers.jpg), [desktop waiting room](../artifacts/specialist-advisory-phase1/desktop-waiting-room.jpg), [desktop consultation example](../artifacts/specialist-advisory-phase1/desktop-consultation-room.jpg), [390 px Jane](../artifacts/specialist-advisory-phase1/mobile-390-jane.jpg), [390 px waiting room](../artifacts/specialist-advisory-phase1/mobile-390-waiting.jpg) and [390 px consultation example](../artifacts/specialist-advisory-phase1/mobile-390-room.jpg), plus captures at every required viewport.
 
-The 15-file theme scope, relative to `shopify-theme/curtainsuk-dawn-16/`, is:
+The 18-file theme scope, relative to `shopify-theme/curtainsuk-dawn-16/`, is:
 
 - `assets/curtainsuk-advisory-team.css`
 - `assets/curtainsuk-advisory-room.css`
 - `assets/curtainsuk-advisory-team.js`
+- `assets/curtainsuk-advisory-interactions.js`
+- `assets/curtainsuk-advisory-motion.css`
 - `assets/curtainsuk-adviser-jane.webp`
 - `assets/curtainsuk-adviser-anne.webp`
 - `assets/curtainsuk-adviser-noah.webp`
@@ -244,12 +259,13 @@ The 15-file theme scope, relative to `shopify-theme/curtainsuk-dawn-16/`, is:
 - `snippets/curtainsuk-adviser-art.liquid`
 - `snippets/curtainsuk-adviser-card.liquid`
 - `snippets/curtainsuk-advisory-room.liquid`
+- `snippets/curtainsuk-advisory-spotlight.liquid`
 - `templates/page.meet-our-team.json`
 - `locales/en.default.json` — additive `advisory_team` namespace only; existing translations verified unchanged.
 
 The [implementation report](../artifacts/specialist-advisory-phase1/IMPLEMENTATION.md), [review gallery](../artifacts/specialist-advisory-phase1/review-gallery.html), [changed-file manifest](../artifacts/specialist-advisory-phase1/changed-files.txt) and [source/upload read-back](../artifacts/specialist-advisory-phase1/preview-readback.json) form the review package. [Draft PR #167](https://github.com/Nylon1/CurtainsUK/pull/167) targets `release/production`; its checks tab is authoritative for CI on the current head. The initial read-back verified that all **505 live-theme file checksums remained unchanged** and the original nine scoped preview files matched source. The [portrait revision read-back](../artifacts/specialist-advisory-phase1/portraits-readback.json) confirms all 15 scoped files match source and all 505 live-theme files remain unchanged. The [portrait browser checks](../artifacts/specialist-advisory-phase1/portraits-browser.json) reconfirm six loaded portraits and no overflow at all five widths. These facts do not imply release approval.
 
-C: had **42.28 GiB free at preflight and 41.89 GiB at 18:34 UTC**; the `restic` process was still present. [Final storage observation](../artifacts/specialist-advisory-phase1/storage-final.json). No completed backup or later snapshot coverage is claimed. This new work requires a later backup. All production release and owner-approval requirements below remain in force.
+C: had **42.28 GiB free at preflight and 41.89 GiB at 18:34 UTC**; see the [initial delivery storage observation](../artifacts/specialist-advisory-phase1/storage-final.json). The interactive revision started at 38.56 GiB free; its [latest storage receipt](../artifacts/specialist-advisory-phase1/interactive-storage.json) records **38.45 GiB free at 19:19:12 UTC**, with `restic` PID 45016 still present. No dependency installation or cleanup was performed. No completed backup or later snapshot coverage is claimed. This new work requires a later backup. All production release and owner-approval requirements below remain in force.
 
 Only the new scoped files are candidates for a later theme release. The owner-review preview is unpublished and is not live-theme parity evidence. Do not publish an entire draft or copy historical theme settings/navigation. Before any authorised release: re-read protected HEAD and live target files, compare the scoped diff with current Theme Editor state, pass `curtainsuk-production-gate` and `protected-production-policy`, merge through the protected process and obtain explicit owner publication approval. This theme-only phase requires **no Vercel deployment**.
 

@@ -9,6 +9,13 @@
  */
 {
   "advisory_team": {
+    "spotlight": {
+      "perspective": "Choose a different perspective",
+      "choose": "Choose your specialist",
+      "meet": "Meet {{ name }}",
+      "explore": "Explore {{ name }}’s expertise",
+      "helper": "Choose a face to explore their perspective."
+    },
     "hero": {
       "eyebrow": "Meet our team · CurtainsUK",
       "title": "A little expertise.",

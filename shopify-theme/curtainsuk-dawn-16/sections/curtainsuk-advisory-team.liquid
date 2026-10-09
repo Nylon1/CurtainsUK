@@ -1,5 +1,6 @@
 {{ 'curtainsuk-advisory-team.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curtainsuk-advisory-team.js' | asset_url }}" defer></script>
+<script src="{{ 'curtainsuk-advisory-interactions.js' | asset_url }}" defer></script>
 <div class="cukad" data-advisory-team data-wait-status="{{ 'advisory_team.room.wait_status' | t | escape }}" data-room-status="{{ 'advisory_team.room.room_status' | t | escape }}" data-unavailable="{{ 'advisory_team.room.unavailable' | t | escape }}">
   <section class="cukad__hero cukad__wrap" aria-labelledby="advisory-heading-{{ section.id }}">
     <div class="cukad__hero-copy">
@@ -9,12 +10,7 @@
       <div class="cukad__hero-actions"><a class="cukad__button" href="#advisory-specialists-{{ section.id }}">{{ 'advisory_team.hero.meet' | t }} <span aria-hidden="true">↓</span></a><a class="cukad__text-link" href="#advisory-experience-{{ section.id }}">{{ 'advisory_team.hero.how' | t }} <span aria-hidden="true">↗</span></a></div>
       <p class="cukad__preview-notice"><span aria-hidden="true"></span>{{ 'advisory_team.hero.notice' | t }}</p>
     </div>
-    <div class="cukad__hero-art" aria-hidden="true">
-      <div class="cukad__hero-art-top"><span>{{ 'advisory_team.hero.art_top' | t }}</span><span>01 — 06</span></div>
-      <div class="cukad__hero-arch">{% render 'curtainsuk-adviser-art', adviser: 'jane' %}</div>
-      <div class="cukad__hero-swatches"><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="cukad__hero-art-bottom"><span>{{ 'advisory_team.hero.art_bottom' | t }}</span><span class="cukad__hero-star">✳</span></div>
-    </div>
+    {% render 'curtainsuk-advisory-spotlight', section: section %}
   </section>
   <div class="cukad__promise-strip"><div class="cukad__wrap"><span>{{ 'advisory_team.promise.specialists' | t }}</span><span>{{ 'advisory_team.promise.personal' | t }}</span><span>{{ 'advisory_team.promise.free' | t }}</span></div></div>
   <section class="cukad__specialists cukad__wrap" id="advisory-specialists-{{ section.id }}" aria-labelledby="advisory-specialists-heading-{{ section.id }}">

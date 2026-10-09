@@ -1,0 +1,15 @@
+{
+  "data": {
+    "pageCreate": {
+      "page": {
+        "id": "gid://shopify/Page/693751873915",
+        "title": "Meet Our Team",
+        "handle": "meet-our-team",
+        "isPublished": false,
+        "publishedAt": null,
+        "templateSuffix": "meet-our-team"
+      },
+      "userErrors": []
+    }
+  }
+}

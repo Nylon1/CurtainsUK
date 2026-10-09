@@ -1,0 +1,16 @@
+{% doc %}
+  Links to the permanent adviser page only when Shopify exposes a published page.
+  Development themes retain the alternate-template owner-review destination.
+{% enddoc %}
+{% liquid
+  assign advisory_page = pages['meet-our-team']
+  assign advisory_url = blank
+  if advisory_page != blank and advisory_page.published_at != blank
+    assign advisory_url = advisory_page.url
+  elsif theme.role == 'development'
+    assign advisory_url = '/pages/fabric-library?view=meet-our-team'
+  endif
+%}
+{% if advisory_url != blank %}
+  <li class="cuknav__item"><a href="{{ advisory_url }}"{% if page.handle == 'meet-our-team' or template.suffix == 'meet-our-team' %} aria-current="page"{% endif %}>{{ 'advisory_team.hero.meet' | t }}</a></li>
+{% endif %}

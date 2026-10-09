@@ -1,6 +1,18 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 9 October 2026 · Phase 1 owner-review candidate**
+**Programme source of truth · 9 October 2026 · Phase 1 visually approved; controlled release candidate**
+
+## Owner direction and release preparation — Issue #168
+
+The owner approved the six advisers, portraits and interactive design and authorised implementation of Jane's isolated Phase 2 framework. This is not merge, publication, paid-model activation or production-migration approval. [Issue #168](https://github.com/Nylon1/CurtainsUK/issues/168) and the direct owner brief govern the next stage. The following Phase 1 history remains evidence for its original revisions.
+
+Protected HEAD was freshly re-read as `3649c879a4a5ddf88c2093a4172d20fbc58cd265`, PR #167 as `4e71193e17ab91bec9f8ab732a882ec1bf18d87a` with both required checks successful before this release-preparation revision. MAIN theme remains `182339731835`; Vercel remains READY on `dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD`. No deployment occurred.
+
+The permanent Shopify page has now been created **hidden**, ID `693751873915`, handle and template suffix `meet-our-team`, `isPublished:false`. The shared navigation uses its permanent URL only after publication; DEVELOPMENT themes use the existing working review URL. All approved portraits, cards, motion and room demonstrations are unchanged. See [exact 20-file manifest](../artifacts/specialist-advisory-release/release-manifest.json), [scoped release/rollback instructions](specialist-advisory/RELEASE.md), and [fresh read-back](../artifacts/specialist-advisory-release/readback.json).
+
+The latest local run passed the 20 advisory tests and 18 existing theme tests. Theme Check reported zero errors and 13 existing warnings. At 390 CSS px the mobile menu opens and follows the new adviser link without overflow. Jane's automatic room opening was observed after 39.599 seconds; exact boundary and background restoration remain deterministic test evidence. Physical iPhone/touch, screen-reader, actual-browser reduced-motion and confirmed hidden-tab visibility checks remain pending due unavailable control surfaces; no simulated result closes those items. See [browser limits/evidence](../artifacts/specialist-advisory-release/browser.json).
+
+C: measured 38.41 GiB free at this phase's start; restic PID 45016 remained present. Existing dependencies are reused via a local junction, with no install, backup change, cleanup or supplier ingestion. New work needs a later verified backup.
 
 The immediate deliverable is the native Shopify **Meet Our Team** page and an explicitly non-operational consultation demonstration. It introduces Jane, Anne, Noah, James, Ben and Natalie. No live AI consultation, production deployment, catalogue change, database migration or human notification is authorised or claimed by this Phase 1 record.
 
@@ -37,7 +49,7 @@ Required records were read: [production surfaces](PRODUCTION_SURFACES.md), [Room
 | Secure continuity, uploads, knowledge ingestion, enquiries and staff dashboard | Planned; no live service or destination enabled |
 | Jane / Anne / Noah / James / Ben / Natalie operational agents | Planned for Phases 3–7 |
 | Commercial & Acoustic landing area | Planned in Phase 6; extensible disciplines, no premature theatre/healthcare/hotel implementation |
-| Owner approval / publication | Pending / not published |
+| Owner approval / publication | Visual design approved by owner / not published; release approval remains separate |
 
 ## Selected architecture
 

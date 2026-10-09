@@ -58,8 +58,8 @@
 .cukstudio__hotspot { position:absolute; left:54%; top:43%; display:flex; align-items:center; gap:8px; padding:7px 14px 7px 7px; min-height:44px; background:#f8f6eff5; box-shadow:0 2px 18px #193b3433; border-radius:28px; font-size:11px; transition:transform .2s; }
 .cukstudio__hotspot > span { display:grid; place-items:center; width:29px; height:29px; background:var(--ink); color:#fff; border-radius:50%; font-size:20px; }
 .cukstudio__hotspot:hover { transform:scale(1.035); }
-.cukstudio__stage-caption { position:absolute; left:18px; bottom:18px; right:18px; display:flex; justify-content:space-between; align-items:center; font-size:11px; gap:12px; }
-.cukstudio__stage-caption > span { background:#f8f6eff2; padding:8px 12px; border-radius:2px; }
+.cukstudio__stage-caption { position:absolute; left:0; bottom:0; right:0; display:flex; justify-content:space-between; align-items:center; min-height:64px; padding:10px 20px; background:#f8f6eff5; font-size:11px; gap:12px; }
+.cukstudio__stage-caption > span { padding:8px 0; }
 .cukstudio__room-tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-top:10px; }
 .cukstudio__room-tab { min-width:0; display:flex; gap:11px; align-items:center; padding:9px; border:1px solid transparent; border-radius:3px; }
 .cukstudio__room-tab img { width:72px; height:52px; border-radius:2px; flex-shrink:0; }
@@ -172,8 +172,8 @@
   .cukstudio__room-stage { border-radius:2px; }
   .cukstudio__hotspot { left:50%; top:40%; transform:translateX(-50%); white-space:nowrap; font-size:10px; padding:4px 10px 4px 4px; min-height:44px; }
   .cukstudio__hotspot:hover { transform:translateX(-50%); }
-  .cukstudio__stage-caption { left:8px; right:8px; bottom:8px; font-size:9px; }
-  .cukstudio__stage-caption > span { padding:5px 8px; }
+  .cukstudio__stage-caption { min-height:36px; padding:4px 10px; font-size:10px; }
+  .cukstudio__stage-caption > span { padding:5px 0; }
   .cukstudio__room-tabs { grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px; margin-top:6px; }
   .cukstudio__room-tab { padding:6px; gap:7px; }
   .cukstudio__room-tab img { width:48px; height:44px; }

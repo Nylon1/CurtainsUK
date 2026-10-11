@@ -1,5 +1,7 @@
 # Jane monitoring access and indexing preflight
 
+**Superseded monitoring-window decision, 11 October 22:06 UTC:** the owner explicitly approved up to 120 seconds for this one eligible population, while keeping source freshness at 60 seconds and every pressure threshold unchanged. Targeted tests and a genuine 66.55-second host window now pass. A bounded backup watcher is running and Codex continuation is active; indexing still waits for the newer completed backup. See [current overnight run state](JANE_OVERNIGHT_RUN.md). The original 60-second stop below is preserved as historical evidence.
+
 11 October 2026. Starting PR #169 HEAD `0787e09e1e6b964526e98d28a03988674e4242ca`; protected `release/production` remains `c7ca2d0eff1c128386863536d4ce46a877d874a8`. This report supersedes the missing-token status without changing population approval or safety thresholds.
 
 ## Completed

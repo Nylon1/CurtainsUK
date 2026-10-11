@@ -1,8 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Replacement monitoring access verified; 138 local checks pass; hosted population still stopped at backup/source-window prerequisites; six historical hosted rows; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · One-time overnight backup watcher running and Codex follow-up active; approved 120-second host window verified; indexing waits for a new completed backup; Jane remains publicly inactive**
 
-## Current milestone: secure monitoring access verified
+## Current milestone: overnight follow-up active
+
+The [new owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325) permits genuine host counter windows up to 120 seconds for this exact one-time eligible population. The latest source sample must still be no older than 60 seconds. All other safety limits remain unchanged. **22 targeted local checks pass**; the previous 138-check evidence is preserved. A live 66.55-second exporter window passed host thresholds at 22:06 UTC: CPU 2.66%, I/O busy 0.74%, memory 63.63%, root disk 78.61%, data disk 49.97%.
+
+A bounded read-only backup watcher is running locally, and the Codex thread follow-up `jane-one-time-overnight-indexing` is ACTIVE every ten minutes until 12 October 10:00 UTC. This is not an ongoing database refresh schedule. **The database indexing worker has not started.** The current completed backup still predates Jane's writes. The operator must verify a newer completed recovery point, refresh every admission condition, then run the approved 120-ID canary and healthy continuation without another routine approval. The watcher cannot write SQL; execution uses the existing Codex Supabase connector. Laptop power, wakefulness, network and the running Codex app remain necessary. [Run state and exact continuation procedure](specialist-advisory/JANE_OVERNIGHT_RUN.md), [new evidence](../artifacts/jane-overnight-readiness-20261011/).
+
+## Previous milestone: secure monitoring access verified
 
 The replacement scoped token reads Supabase backups and host metrics successfully. It is encrypted outside Git; the owner confirmed revocation of the token posted in chat. The owner also accepted recovery responsibility and a maximum backup age of 24 hours. [Current preflight report](specialist-advisory/JANE_MONITORING_PREFLIGHT.md).
 

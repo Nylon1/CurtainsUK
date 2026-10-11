@@ -1,8 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Protected synthetic hosted trial passed and closed; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · First indexing batch approved; temporary indexer permission review pending; Jane remains publicly inactive**
 
-## Current milestone: approved synthetic hosted trial
+## Current milestone: first six-identity indexing trial prepared
+
+The owner approved one bounded six-fabric batch after the hosted trial. [Current implementation and evidence](../artifacts/jane-first-index-batch-20261011/README.md) records a fresh matching 16,883-identity manifest, six narrow read-only source records and **104 passing local tests**. Hosted coverage remains **0/16,883**, with zero index jobs and unchanged 81-entry migration history.
+
+Preflight found the connector's existing `postgres` membership in `advisory_indexer` is ADMIN=true, INHERIT=false, SET=false. The narrow-role write cannot run. A tested [transaction-only permission proposal](../artifacts/jane-first-index-batch-20261011/PERMISSION_REVIEW.md) adds and revokes only a self-granted SET membership inside the same transaction, asserting the original `supabase_admin` grant is unchanged. It requires explicit approval of that additional production permission. The six-record data approval is retained; no hosted grant or indexing write has occurred. New code is operator-only and preserves the existing resumable worker, checkpoint/rollback format and security boundaries.
+
+## Previous milestone: approved synthetic hosted trial
 
 The owner approved the protected mock trial and confirmed two dedicated Supabase Auth test users. [Current trial record](specialist-advisory/HOSTED_TRIAL.md) and [executed evidence](../artifacts/jane-hosted-trial-20261011/README.md) supersede earlier pending-trial statements below. **100 local tests, 14 protected Vercel HTTP checks and five additional hosted boundary groups pass.** Separately, two independent local application processes completed 14 checks against hosted Supabase, including seven ciphertext inspections. Concurrent Vercel requests alone do not prove distinct Vercel instances.
 

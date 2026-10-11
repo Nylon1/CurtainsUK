@@ -1,8 +1,18 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Auth permission correction locally verified; no hosted migration applied**
+**Programme source of truth · 11 October 2026 · Exact migration approved; protected release candidate checks pass; no hosted migration applied**
 
-## Current milestone: corrected migration ready for owner review
+## Current execution status: migration approved, release merge pending
+
+The user has approved the exact corrected SQL checksum `eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50`. This approval is recorded and does not need to be requested again for unchanged SQL. **The database migration has not run.**
+
+A separate [migration-only release PR #170](https://github.com/Nylon1/CurtainsUK/pull/170), candidate `134954ff7c942d099b8799fb3bd95667bf4e6440`, contains just the approved SQL file on protected base `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. Both `curtainsuk-production-gate` and `protected-production-policy` pass. PR #167 and the broader PR #169 remain independent drafts. No worktree, backup or existing evidence was replaced.
+
+The fresh read-only preflight confirms ACTIVE_HEALTHY, 699,214,995 database bytes, 17/60 connections, zero lock waiters, no advisory objects and unchanged 78-entry migration history. The latest visible physical backup remains 11 October 01:03:26 UTC. C: has 40.21 GiB free; no restic process is visible, but Toshiba completion remains unverified. [Approval, checks and preflight receipt](../artifacts/jane-migration-approval-20261011/README.md).
+
+The remaining authorization is to merge the single-file PR #170 into the protected branch, under the user's separate merge boundary. After that, the unchanged database migration is already approved, subject to final execution preflight and exact-file history reconciliation. No application deployment, catalogue population, account provisioning, model spending or public activation is authorized by the migration approval.
+
+## Previous milestone: corrected migration ready for owner review
 
 [Jane Auth migration correction](specialist-advisory/JANE_AUTH_MIGRATION_FIX.md) is the current detailed record. Work starts from PR #169 `6d0890ab782d274ce5a0e82cac71494004f7eb18`. Protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`; independent PR #167 remains `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`.
 

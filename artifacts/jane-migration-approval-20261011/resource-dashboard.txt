@@ -1,0 +1,85 @@
+Browser tab: 538217764, Title: "Overview | Observability | CurtainsUK | Supabase", URL: "https://supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~			111 container spec-click-target
+~				112 heading Observability, Value: 4
++					113 text Observability
++				114 menu Sidebar
++					115 content list
++						116 text GENERAL
++						117 link Description: Overview, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability
++						118 link Description: Query Performance, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/query-performance
++						119 link Description: API Gateway, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/api-overview
++						120 link Description: Database Connections, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/connections
++						121 text PRODUCT
++						122 link Description: Database, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database
++						123 link Description: Data API, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/postgrest
++						124 link Description: Auth, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/auth
++						125 link Description: Edge Functions, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/edge-functions
++						126 link Description: Storage, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/storage
++						127 link Description: Realtime, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/realtime
++				128 container Sidebar
++					129 content list
++						130 text CUSTOM REPORTS
++				131 text No custom reports yet
++				132 text Create and save custom reports to track your project metrics
++				133 button New custom report
++			134 container
++				135 heading Overview, Value: 1
++					136 text Overview
++				137 text BETA
++				138 link Description: Overview documentation (opens in new tab), Value: supabase.com/docs/guides/telemetry/reports
++				139 button Refresh
++				140 pop up button (collapsed) Last 24 hours, ID: radix-_r_69_, Secondary Actions: Expand
++				141 heading Database, Value: 2
++					142 text Database
++				143 link Description: SLOW QUERIES More information More information 952, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/query-performance?totalTimeFilter=%7B%22operator%22%3A%22%3E%22%2C%22value%22%3A1000%7D
++				144 link Description: PEAK CONNECTIONS More information More information 11/60, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database?its=2026-10-10T17%3A01%3A44.234Z&ite=2026-10-11T17%3A01%3A44.234Z&isHelper=true&helperText=Last+24+hours
++				145 link Description: DISK USAGE More information More information 50%, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database?its=2026-10-10T17%3A01%3A44.234Z&ite=2026-10-11T17%3A01%3A44.234Z&isHelper=true&helperText=Last+24+hours
++				146 link Description: DISK IO More information More information 1%, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database?its=2026-10-10T17%3A01%3A44.234Z&ite=2026-10-11T17%3A01%3A44.234Z&isHelper=true&helperText=Last+24+hours
++				147 link Description: MEMORY More information More information 62%, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database?its=2026-10-10T17%3A01%3A44.234Z&ite=2026-10-11T17%3A01%3A44.234Z&isHelper=true&helperText=Last+24+hours
++				148 link Description: CPU More information More information 6%, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database?its=2026-10-10T17%3A01%3A44.234Z&ite=2026-10-11T17%3A01%3A44.234Z&isHelper=true&helperText=Last+24+hours
++				149 heading Service Health, Value: 2
++					150 text Service Health
++				151 heading API GATEWAY, Value: 3
++					152 link Description: API GATEWAY, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/logs?filter=log_type%3Aeq%3Aedge
++				153 button About API Gateway
++					154 image
++				155 text 0.10% warnings
++				156 link Description: Go to API Gateway report, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/logs?filter=log_type%3Aeq%3Aedge
++				157 heading DATABASE, Value: 3
++					158 link Description: DATABASE, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database
++				159 button About Database
++					160 image
++				161 text 0.74% errors
++				162 link Description: Go to Database report, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/database
++				163 heading POSTGREST, Value: 3
++					164 link Description: POSTGREST, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/postgrest
++				165 button About PostgREST
++					166 image
++				167 text 14 requests
++				168 link Description: Go to PostgREST report, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/postgrest
++				169 heading AUTH, Value: 3
++					170 link Description: AUTH, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/auth
++				171 button About Auth
++					172 image
++				173 link Description: Go to Auth report, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/auth
++				174 heading EDGE FUNCTIONS, Value: 3
++					175 link Description: EDGE FUNCTIONS, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/edge-functions
++				176 button About Edge Functions
++					177 image
++				178 link Description: Go to Edge Functions report, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/edge-functions
++				179 heading STORAGE, Value: 3
++					180 link Description: STORAGE, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/storage
++				181 button About Storage
++					182 image
++				183 text 9.4% warnings
++				184 link Description: Go to Storage report, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/storage
++				185 heading REALTIME, Value: 3
++					186 link Description: REALTIME, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability/realtime
++				187 button About Realtime
++					188 image
++				189 text 12.5% warnings
++				190 link Description: Go to Realtime report, Value: …
++				191 link Description: View our troubleshooting guides, Value: …
++				192 text for solutions to common Supabase issues.
+The focused UI element is 108 link Description: Observability, URL: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability

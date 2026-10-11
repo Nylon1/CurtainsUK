@@ -1,0 +1,40 @@
+{
+  "base": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+  "approvedSource": "8b879baedc0e0d24dd269b71335d606e3cf94ec8",
+  "releaseCandidate": "134954ff7c942d099b8799fb3bd95667bf4e6440",
+  "branch": "release/jane-advisory-schema-20261011",
+  "changedFiles": [
+    "supabase/migrations/20261011142747_jane_isolated_advisory.sql"
+  ],
+  "sha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "approvalScope": "Exact migration approved in chat; no application merge, deployment, population or activation approval",
+  "migrationApplied": false,
+  "worktreePreserved": true,
+  "approved": true,
+  "approvalText": "Approved",
+  "approvalSource": "Direct user reply to the exact corrected migration request in this task",
+  "releasePr": "https://github.com/Nylon1/CurtainsUK/pull/170",
+  "releaseMergeApproved": false,
+  "productionUnchanged": true,
+  "preflight": {
+    "observedAt": "2026-10-11T16:58:02.391943Z",
+    "project": "hqysjumypgeapgmqkcrx",
+    "status": "ACTIVE_HEALTHY",
+    "databaseBytes": 699214995,
+    "connections": 17,
+    "maxConnections": 60,
+    "lockWaits": 0,
+    "otherActiveQueries": 0,
+    "advisorySchemaExists": false,
+    "advisoryRoles": [],
+    "canCreateSchema": true,
+    "canCreateRole": true,
+    "migrationHistoryCount": 78,
+    "lastMigration": "20261004064841 browse_twice_daily_low_io",
+    "latestVisibleBackup": "2026-10-11T01:03:26Z",
+    "restoreRehearsed": false,
+    "cDriveFreeGiB": 40.21,
+    "resticRunning": false,
+    "toshibaCompletionVerified": false
+  }
+}

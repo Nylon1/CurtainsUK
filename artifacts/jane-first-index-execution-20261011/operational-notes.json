@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-11T19:00:21.673Z",
+  "cFreeGiB": 39.11,
+  "resticOrRobocopyProcessVisible": false,
+  "toshibaBackupCompletion": "unverified",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "plan": "Pro (dashboard)",
+  "projectStatus": "ACTIVE_HEALTHY",
+  "postgresVersion": "17.6.1.166",
+  "latestVisibleDatabaseBackup": "2026-10-11T01:03:26Z",
+  "backupType": "Physical",
+  "restoreActionVisible": true,
+  "restoreRehearsal": "not performed",
+  "recoveryCaveat": "Visible backup predates advisory migration and this trial. Preserve SQL/source/receipts and include new work in a subsequent verified recovery point.",
+  "resourceWindow": "Last 60 minutes, 17:54:57.923–18:54:57.923 UTC",
+  "resourceNote": "Overview aggregate CPU 13%, Disk IO 2%, Memory 66%, Disk 50%. Detailed per-second CPU/IO charts unavailable. These are not instantaneous or batch-attributable measurements.",
+  "diagnostics": [
+    {
+      "operation": "Initial post-write read-only ACL verification",
+      "error": "42P01: advisory.sessions does not exist",
+      "resolution": "Corrected verifier reference to existing advisory.consultations. No writes, grant or batch retry resulted."
+    },
+    {
+      "operation": "Offline receipt verifier first run",
+      "error": "assert.match received a string instead of RegExp",
+      "resolution": "Corrected the verifier; final 14 groups pass."
+    }
+  ],
+  "protectedHead": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "sourceHead": "dee5227092bd243b408b9ddd65a0617580d0ecaf"
+}

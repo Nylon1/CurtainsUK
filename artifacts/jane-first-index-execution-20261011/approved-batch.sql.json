@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "classification": "APPROVED_FIRST_BATCH_SQL_NOT_EXECUTION",
+  "jobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+  "ids": [
+    "pt-1200-907",
+    "pt-1204-212",
+    "pt-1223-374",
+    "pt-1224-002",
+    "pt-1225-314",
+    "pt-1225-722"
+  ],
+  "items": [
+    {
+      "id": "pt-1200-907",
+      "hash": "e1650cb5e32acdf5eb7de6b1a298ed0a1a5633959f6761fdcfccea32122556e3",
+      "fields": {
+        "colour": true,
+        "tone": false,
+        "pattern": false,
+        "patternScale": false,
+        "texture": false,
+        "description": false,
+        "identity": true,
+        "design": true,
+        "collection": true,
+        "brand": true,
+        "composition": true,
+        "width": true,
+        "weight": false,
+        "verticalRepeat": true,
+        "horizontalRepeat": true,
+        "care": false,
+        "technical": false
+      }
+    },
+    {
+      "id": "pt-1204-212",
+      "hash": "1d11bfc36b2579d606b6a17e8e5d0ed064e4bbb7f965b5d72f5a8bc4411dd378",
+      "fields": {
+        "colour": true,
+        "tone": true,
+        "pattern": true,
+        "patternScale": true,
+        "texture": true,
+        "description": false,
+        "identity": true,
+        "design": true,
+        "collection": true,
+        "brand": true,
+        "composition": true,
+        "width": true,
+        "weight": false,
+        "verticalRepeat": true,
+        "horizontalRepeat": true,
+        "care": false,
+        "technical": false
+      }
+    },
+    {
+      "id": "pt-1223-374",
+      "hash": "0cd678a1363c9538eda71180ed34504866cddfb5dc63f3dfcbf66f4ece4eaafb",
+      "fields": {
+        "colour": true,
+        "tone": true,
+        "pattern": true,
+        "patternScale": true,
+        "texture": true,
+        "description": false,
+        "identity": true,
+        "design": true,
+        "collection": true,
+        "brand": true,
+        "composition": true,
+        "width": true,
+        "weight": false,
+        "verticalRepeat": true,
+        "horizontalRepeat": true,
+        "care": false,
+        "technical": false
+      }
+    },
+    {
+      "id": "pt-1224-002",
+      "hash": "57da8f4dd452c979723cc2d868a099272970163f567283477865e4d6810b37bc",
+      "fields": {
+        "colour": true,
+        "tone": true,
+        "pattern": true,
+        "patternScale": true,
+        "texture": true,
+        "description": false,
+        "identity": true,
+        "design": true,
+        "collection": true,
+        "brand": true,
+        "composition": true,
+        "width": true,
+        "weight": false,
+        "verticalRepeat": true,
+        "horizontalRepeat": true,
+        "care": false,
+        "technical": false
+      }
+    },
+    {
+      "id": "pt-1225-314",
+      "hash": "06a583331c9dee743a5044ba44fdbcd7f8c501a149ee90e97bea14080ac6857e",
+      "fields": {
+        "colour": true,
+        "tone": true,
+        "pattern": true,
+        "patternScale": true,
+        "texture": true,
+        "description": false,
+        "identity": true,
+        "design": true,
+        "collection": true,
+        "brand": true,
+        "composition": true,
+        "width": true,
+        "weight": false,
+        "verticalRepeat": true,
+        "horizontalRepeat": true,
+        "care": false,
+        "technical": false
+      }
+    },
+    {
+      "id": "pt-1225-722",
+      "hash": "eb6c3a2f0f4e9e40b739e6cd10b95b5aa0db516079325cbf4028727100f7bb48",
+      "fields": {
+        "colour": true,
+        "tone": true,
+        "pattern": true,
+        "patternScale": true,
+        "texture": true,
+        "description": false,
+        "identity": true,
+        "design": true,
+        "collection": true,
+        "brand": true,
+        "composition": true,
+        "width": true,
+        "weight": false,
+        "verticalRepeat": true,
+        "horizontalRepeat": true,
+        "care": false,
+        "technical": false
+      }
+    }
+  ],
+  "cursor": {
+    "manifestHash": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405",
+    "offset": 6
+  },
+  "sourceSnapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405",
+  "expectedCount": 16883,
+  "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "approval": {
+    "approved": true,
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "schema": "advisory",
+    "purpose": "bounded-advisory-index-only",
+    "ownerApprovalReference": "User Proceed approved one six-identity hosted batch; latest user Approve on 11 October 2026 approved PERMISSION_REVIEW.md transaction-only role use.",
+    "jobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+    "sourceAttestationReference": "artifacts/jane-first-index-execution-20261011/input.json:attestation",
+    "sourceSnapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405",
+    "expectedCount": 16883,
+    "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+    "maxBatches": 1,
+    "expiresAt": "2026-10-11T19:25:34.809Z",
+    "temporaryRoleUse": {
+      "approved": true,
+      "member": "postgres",
+      "role": "advisory_indexer",
+      "grantor": "postgres",
+      "scope": "same-transaction-revoke-before-commit",
+      "ownerApprovalReference": "Latest user Approve, 11 October 2026; exact PERMISSION_REVIEW.md permission sequence."
+    }
+  },
+  "deadline": "2026-10-11T18:55:57.923Z",
+  "sqlSha256": "6fc695b15f00b171cea6d4027a25300b7a967b54cee991f1f69bc8d34399b2d4"
+}

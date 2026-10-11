@@ -1,0 +1,681 @@
+{
+  "source": {
+    "observed_at": "2026-10-11 18:55:11.989048+00",
+    "records": [
+      {
+        "visual": {
+          "visual_fields": null,
+          "knowledge_state": null
+        },
+        "profile": {
+          "description": null,
+          "description_validated": null
+        },
+        "fabric_id": "pt-1200-907",
+        "colour_name": "Smoke",
+        "fabric_designs": {
+          "weight_gsm": null,
+          "composition": [
+            {
+              "material": "LIN",
+              "percentage": 32
+            },
+            {
+              "material": "POLY",
+              "percentage": 24
+            },
+            {
+              "material": "COTT",
+              "percentage": 22
+            },
+            {
+              "material": "VISC",
+              "percentage": 22
+            }
+          ],
+          "display_name": "Bliss",
+          "full_width_mm": 1360,
+          "usable_width_mm": 1340,
+          "care_instructions": [],
+          "usage_suitability": [],
+          "fabric_collections": {
+            "display_name": "Clover"
+          },
+          "pattern_match_type": null,
+          "vertical_repeat_mm": 545,
+          "horizontal_repeat_mm": 335
+        },
+        "supplier_brands": {
+          "display_name": "Prestigious Textiles"
+        }
+      },
+      {
+        "visual": {
+          "visual_fields": {
+            "motif": {
+              "value": [
+                "geometric"
+              ],
+              "confidence": "HIGH"
+            },
+            "contrast": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "character": {
+              "value": [
+                "graphic",
+                "refined",
+                "understated"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "lightness": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "saturation": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "patternClass": {
+              "value": "geometric",
+              "confidence": "HIGH"
+            },
+            "patternScale": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualWeight": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "primaryColour": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualSurface": {
+              "value": [
+                "subtle-texture",
+                "visible-weave"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "directionality": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualActivity": {
+              "value": "balanced",
+              "confidence": "MEDIUM"
+            },
+            "sheenAppearance": {
+              "value": "low",
+              "confidence": "MEDIUM"
+            },
+            "colourComplexity": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "secondaryColours": {
+              "value": [],
+              "confidence": "REVIEW"
+            },
+            "colourTemperature": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            }
+          },
+          "knowledge_state": "PARTIAL_GOVERNED"
+        },
+        "profile": {
+          "description": null,
+          "description_validated": null
+        },
+        "fabric_id": "pt-1204-212",
+        "colour_name": "Blush",
+        "fabric_designs": {
+          "weight_gsm": null,
+          "composition": [
+            {
+              "material": "LINEN",
+              "percentage": 52
+            },
+            {
+              "material": "VISCOSE",
+              "percentage": 34
+            },
+            {
+              "material": "POLY",
+              "percentage": 14
+            }
+          ],
+          "display_name": "Mellora",
+          "full_width_mm": 1400,
+          "usable_width_mm": 1380,
+          "care_instructions": [],
+          "usage_suitability": [],
+          "fabric_collections": {
+            "display_name": "Clover"
+          },
+          "pattern_match_type": null,
+          "vertical_repeat_mm": 200,
+          "horizontal_repeat_mm": 172
+        },
+        "supplier_brands": {
+          "display_name": "Prestigious Textiles"
+        }
+      },
+      {
+        "visual": {
+          "visual_fields": {
+            "motif": {
+              "value": [
+                "stripe"
+              ],
+              "confidence": "HIGH"
+            },
+            "contrast": {
+              "value": "high",
+              "confidence": "HIGH"
+            },
+            "character": {
+              "value": [
+                "decorative",
+                "graphic",
+                "sophisticated"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "lightness": {
+              "value": "deep",
+              "confidence": "MEDIUM"
+            },
+            "saturation": {
+              "value": "muted",
+              "confidence": "MEDIUM"
+            },
+            "patternClass": {
+              "value": "stripe",
+              "confidence": "HIGH"
+            },
+            "patternScale": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualWeight": {
+              "value": "substantial",
+              "confidence": "MEDIUM"
+            },
+            "primaryColour": {
+              "value": "black",
+              "confidence": "HIGH"
+            },
+            "visualSurface": {
+              "value": [
+                "relief",
+                "visible-weave"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "directionality": {
+              "value": "vertical",
+              "confidence": "HIGH"
+            },
+            "visualActivity": {
+              "value": "balanced",
+              "confidence": "HIGH"
+            },
+            "sheenAppearance": {
+              "value": "low",
+              "confidence": "MEDIUM"
+            },
+            "colourComplexity": {
+              "value": "limited-palette",
+              "confidence": "HIGH"
+            },
+            "secondaryColours": {
+              "value": [
+                "gold",
+                "red"
+              ],
+              "confidence": "HIGH"
+            },
+            "colourTemperature": {
+              "value": "warm",
+              "confidence": "HIGH"
+            }
+          },
+          "knowledge_state": "COMPLETE"
+        },
+        "profile": {
+          "description": null,
+          "description_validated": null
+        },
+        "fabric_id": "pt-1223-374",
+        "colour_name": "Gemstone",
+        "fabric_designs": {
+          "weight_gsm": null,
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 54
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 46
+            }
+          ],
+          "display_name": "Dunbar",
+          "full_width_mm": 1420,
+          "usable_width_mm": 1400,
+          "care_instructions": [],
+          "usage_suitability": [],
+          "fabric_collections": {
+            "display_name": "Heritage"
+          },
+          "pattern_match_type": null,
+          "vertical_repeat_mm": 0,
+          "horizontal_repeat_mm": 0
+        },
+        "supplier_brands": {
+          "display_name": "Prestigious Textiles"
+        }
+      },
+      {
+        "visual": {
+          "visual_fields": {
+            "motif": {
+              "value": [
+                "geometric"
+              ],
+              "confidence": "HIGH"
+            },
+            "contrast": {
+              "value": "medium",
+              "confidence": "HIGH"
+            },
+            "character": {
+              "value": [
+                "decorative",
+                "graphic",
+                "refined"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "lightness": {
+              "value": "light",
+              "confidence": "HIGH"
+            },
+            "saturation": {
+              "value": "muted",
+              "confidence": "MEDIUM"
+            },
+            "patternClass": {
+              "value": "geometric",
+              "confidence": "HIGH"
+            },
+            "patternScale": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualWeight": {
+              "value": "balanced",
+              "confidence": "MEDIUM"
+            },
+            "primaryColour": {
+              "value": "gold",
+              "confidence": "HIGH"
+            },
+            "visualSurface": {
+              "value": [
+                "relief",
+                "visible-weave"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "directionality": {
+              "value": "structured-repeat",
+              "confidence": "HIGH"
+            },
+            "visualActivity": {
+              "value": "balanced",
+              "confidence": "HIGH"
+            },
+            "sheenAppearance": {
+              "value": "gentle",
+              "confidence": "MEDIUM"
+            },
+            "colourComplexity": {
+              "value": "limited-palette",
+              "confidence": "HIGH"
+            },
+            "secondaryColours": {
+              "value": [
+                "blue",
+                "cream"
+              ],
+              "confidence": "HIGH"
+            },
+            "colourTemperature": {
+              "value": "warm",
+              "confidence": "HIGH"
+            }
+          },
+          "knowledge_state": "COMPLETE"
+        },
+        "profile": {
+          "description": null,
+          "description_validated": null
+        },
+        "fabric_id": "pt-1224-002",
+        "colour_name": "Caramel",
+        "fabric_designs": {
+          "weight_gsm": null,
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 55
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 45
+            }
+          ],
+          "display_name": "Inverness",
+          "full_width_mm": 1420,
+          "usable_width_mm": 1400,
+          "care_instructions": [],
+          "usage_suitability": [],
+          "fabric_collections": {
+            "display_name": "Heritage"
+          },
+          "pattern_match_type": null,
+          "vertical_repeat_mm": 63,
+          "horizontal_repeat_mm": 0
+        },
+        "supplier_brands": {
+          "display_name": "Prestigious Textiles"
+        }
+      },
+      {
+        "visual": {
+          "visual_fields": {
+            "motif": {
+              "value": [
+                "check",
+                "geometric"
+              ],
+              "confidence": "HIGH"
+            },
+            "contrast": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "character": {
+              "value": [
+                "decorative",
+                "graphic",
+                "sophisticated"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "lightness": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "saturation": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "patternClass": {
+              "value": "geometric",
+              "confidence": "HIGH"
+            },
+            "patternScale": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualWeight": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "primaryColour": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualSurface": {
+              "value": [
+                "subtle-texture",
+                "visible-weave"
+              ],
+              "confidence": "HIGH"
+            },
+            "directionality": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualActivity": {
+              "value": "busy",
+              "confidence": "MEDIUM"
+            },
+            "sheenAppearance": {
+              "value": "gentle",
+              "confidence": "MEDIUM"
+            },
+            "colourComplexity": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "secondaryColours": {
+              "value": [],
+              "confidence": "REVIEW"
+            },
+            "colourTemperature": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            }
+          },
+          "knowledge_state": "PARTIAL_GOVERNED"
+        },
+        "profile": {
+          "description": null,
+          "description_validated": null
+        },
+        "fabric_id": "pt-1225-314",
+        "colour_name": "Mulberry",
+        "fabric_designs": {
+          "weight_gsm": null,
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "display_name": "Stirling",
+          "full_width_mm": 1420,
+          "usable_width_mm": 1400,
+          "care_instructions": [],
+          "usage_suitability": [],
+          "fabric_collections": {
+            "display_name": "Heritage"
+          },
+          "pattern_match_type": null,
+          "vertical_repeat_mm": 161,
+          "horizontal_repeat_mm": 0
+        },
+        "supplier_brands": {
+          "display_name": "Prestigious Textiles"
+        }
+      },
+      {
+        "visual": {
+          "visual_fields": {
+            "motif": {
+              "value": [
+                "check",
+                "geometric"
+              ],
+              "confidence": "HIGH"
+            },
+            "contrast": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "character": {
+              "value": [
+                "decorative",
+                "graphic",
+                "sophisticated"
+              ],
+              "confidence": "MEDIUM"
+            },
+            "lightness": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "saturation": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "patternClass": {
+              "value": "geometric",
+              "confidence": "HIGH"
+            },
+            "patternScale": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualWeight": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "primaryColour": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualSurface": {
+              "value": [
+                "subtle-texture",
+                "visible-weave"
+              ],
+              "confidence": "HIGH"
+            },
+            "directionality": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "visualActivity": {
+              "value": "busy",
+              "confidence": "MEDIUM"
+            },
+            "sheenAppearance": {
+              "value": "gentle",
+              "confidence": "MEDIUM"
+            },
+            "colourComplexity": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            },
+            "secondaryColours": {
+              "value": [],
+              "confidence": "REVIEW"
+            },
+            "colourTemperature": {
+              "value": "unknown",
+              "confidence": "REVIEW"
+            }
+          },
+          "knowledge_state": "PARTIAL_GOVERNED"
+        },
+        "profile": {
+          "description": null,
+          "description_validated": null
+        },
+        "fabric_id": "pt-1225-722",
+        "colour_name": "Blueberry",
+        "fabric_designs": {
+          "weight_gsm": null,
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "display_name": "Stirling",
+          "full_width_mm": 1420,
+          "usable_width_mm": 1400,
+          "care_instructions": [],
+          "usage_suitability": [],
+          "fabric_collections": {
+            "display_name": "Heritage"
+          },
+          "pattern_match_type": null,
+          "vertical_repeat_mm": 161,
+          "horizontal_repeat_mm": 0
+        },
+        "supplier_brands": {
+          "display_name": "Prestigious Textiles"
+        }
+      }
+    ],
+    "projectRef": "hqysjumypgeapgmqkcrx"
+  },
+  "attestation": {
+    "observed_at": "2026-10-11 18:55:13.044547+00",
+    "mvcc_snapshot": "214475:214475:",
+    "identity_count": 16883,
+    "inventory_complete": true,
+    "identity_sha256": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405",
+    "projectRef": "hqysjumypgeapgmqkcrx"
+  },
+  "resources": {
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "source": "trusted-operator-telemetry",
+    "observedAt": 1791744897923,
+    "cpuPercent": 13,
+    "ioPercent": 2,
+    "memoryPercent": 66,
+    "diskPercent": 50,
+    "connections": 16,
+    "maxConnections": 60,
+    "lockWaits": 0,
+    "newDeadlocks": 0,
+    "newDatabaseErrors": 0,
+    "supplierRefreshActive": false,
+    "measurementNote": "Freshly refreshed dashboard last-60-minute aggregate, not instantaneous telemetry. Connection/lock/activity counters from fresh SQL. Error baseline query in preflight evidence.",
+    "windowStart": "2026-10-11T17:54:57.923Z",
+    "windowEnd": "2026-10-11T18:54:57.923Z"
+  },
+  "approval": {
+    "approved": true,
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "schema": "advisory",
+    "purpose": "bounded-advisory-index-only",
+    "ownerApprovalReference": "User Proceed approved one six-identity hosted batch; latest user Approve on 11 October 2026 approved PERMISSION_REVIEW.md transaction-only role use.",
+    "jobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+    "sourceAttestationReference": "artifacts/jane-first-index-execution-20261011/input.json:attestation",
+    "sourceSnapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405",
+    "expectedCount": 16883,
+    "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+    "maxBatches": 1,
+    "expiresAt": "2026-10-11T19:25:34.809Z",
+    "temporaryRoleUse": {
+      "approved": true,
+      "member": "postgres",
+      "role": "advisory_indexer",
+      "grantor": "postgres",
+      "scope": "same-transaction-revoke-before-commit",
+      "ownerApprovalReference": "Latest user Approve, 11 October 2026; exact PERMISSION_REVIEW.md permission sequence."
+    }
+  },
+  "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50"
+}

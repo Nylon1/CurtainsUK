@@ -1,8 +1,22 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · First indexing batch approved; temporary indexer permission review pending; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · First hosted six-fabric index batch verified; coverage 6/16,883; Jane remains publicly inactive**
 
-## Current milestone: first six-identity indexing trial prepared
+## Current milestone: first hosted six-identity indexing trial completed
+
+The owner approved both the six-record scope and the transaction-only permission sequence. One batch committed at 18:55 UTC in existing Pro project `hqysjumypgeapgmqkcrx`, job `a6c0d329-935e-4c31-b8ef-71a52f6d9149`. [Executed report, exact SQL and evidence](../artifacts/jane-first-index-execution-20261011/README.md). Starting PR #169 source was `dee5227092bd243b408b9ddd65a0617580d0ecaf`; protected `c7ca2d0e` is unchanged.
+
+Hosted coverage is **6/16,883 (0.03554%)**, with six matching hashes and receipts, checkpoint offset 6, one batch, `complete=false`, and a released gate. The original ADMIN-only indexer membership is restored; no SET privilege or new login persists. Canonical migration checksum and all 81 history entries are unchanged. Browser/service roles retain no advisory access, and consultation/usage/spending rows remain empty. No later batch is authorized or scheduled.
+
+**14 hosted-receipt verification groups pass**, including four descriptive search results and a missing-result case. The unchanged implementation retains its **104 passing local tests**. The tested search uses GIN and took 0.177 ms execution with no physical or temporary reads; this six-record result is not a full-catalogue benchmark. Refreshed hourly resource aggregates were CPU 13%, I/O 2%, memory 66%, disk 50%; fresh SQL showed 16/60 connections and zero lock waiters.
+
+Meaningful knowledge in this batch includes six colours/compositions/widths, two tones, five patterns and five textures. Pattern scale, validated descriptions, weight and care remain unknown for all six. Historical receipt presence flags can include literal `unknown` values; the new report distinguishes meaningful-value counts and does not silently rewrite receipts. Knowledge identities remain non-purchasable until the governed retail journey verifies eligibility.
+
+Next review a bounded continuation from offset 6 with the existing monitored worker, fresh evidence and an explicit permission scope. No further indexing, deployment, model spending or customer activation follows from this trial. The latest visible physical backup still predates the advisory changes; Toshiba completion and restore rehearsal remain unverified. C: had 39.11 GiB free. Human design scoring, fresh model-budget/key approval, exposed-key retirement, physical iPhone and spoken screen-reader checks remain pending. PR #167 stays independent and unpublished, and PR #169 stays draft.
+
+The following sections preserve earlier checkpoints; their zero-coverage and pending-permission statements are superseded by the executed receipt above.
+
+## Previous milestone: first six-identity indexing trial prepared
 
 The owner approved one bounded six-fabric batch after the hosted trial. [Current implementation and evidence](../artifacts/jane-first-index-batch-20261011/README.md) records a fresh matching 16,883-identity manifest, six narrow read-only source records and **104 passing local tests**. Hosted coverage remains **0/16,883**, with zero index jobs and unchanged 81-entry migration history.
 

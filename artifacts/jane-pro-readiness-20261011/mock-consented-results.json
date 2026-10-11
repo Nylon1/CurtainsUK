@@ -1,0 +1,151 @@
+{
+  "id": "consented-results",
+  "reviewCriteria": [
+    "Use actual consented context and distinguish supplied settings from retrieved evidence",
+    "Retain fixed furnishings, reject previous green preference and vary scale/contrast without pretending to see an image"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My olive sofa and oak floor are staying. I want a quiet, warm room, but no green curtains.",
+      "advice": {
+        "text": "With the timber you mentioned, warm ivory is a useful starting point: it can soften the room without adding strong contrast. Muted olive is an alternative if you want more colour and a gentle connection to natural materials. I’d compare a softly woven plain with a restrained tonal geometric, keeping the pattern scale modest beside busy furnishings. What colour are the walls, and would you like the curtains to blend in or become a feature?",
+        "stage": "recommend",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "context",
+      "status": "completed",
+      "revision": 2,
+      "contexts": 1,
+      "messages": 2
+    },
+    {
+      "action": "message",
+      "customer": "What would you change about that direction while keeping the room calm?",
+      "advice": {
+        "text": "In your lounge, if the patterns feel too busy, I’d reduce contrast before ruling out pattern altogether. Try a softly textured plain in warm ivory, or a small tonal motif with little difference between the ground and pattern. Keep the same room, view and lighting in the visualiser when comparing them. Is it the size of the pattern or the contrast that draws too much attention?",
+        "stage": "refine",
+        "palette": [
+          "warm ivory",
+          "soft stone"
+        ],
+        "patternDirection": "Low-contrast tonal motif or a quiet plain",
+        "textureDirection": "Softly textured, matte surface",
+        "alternatives": [
+          "Small tonal motif",
+          "Plain fabric with a subtle woven texture"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "I now prefer a restrained pattern. Please suggest two approaches without repeating green.",
+      "advice": {
+        "text": "In your lounge, if the patterns feel too busy, I’d reduce contrast before ruling out pattern altogether. Try a softly textured plain in warm ivory, or a small tonal motif with little difference between the ground and pattern. Keep the same room, view and lighting in the visualiser when comparing them. Is it the size of the pattern or the contrast that draws too much attention?",
+        "stage": "refine",
+        "palette": [
+          "warm ivory",
+          "soft stone"
+        ],
+        "patternDirection": "Low-contrast tonal motif or a quiet plain",
+        "textureDirection": "Softly textured, matte surface",
+        "alternatives": [
+          "Small tonal motif",
+          "Plain fabric with a subtle woven texture"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

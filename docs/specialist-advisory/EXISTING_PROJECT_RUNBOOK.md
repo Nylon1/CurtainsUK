@@ -4,19 +4,19 @@
 
 ## Preconditions for a migration request
 
-1. Resolve the observed 142% Free-plan database-size quota before proposing added storage. The owner chooses any capacity action; this task authorises neither purchase nor cleanup.
+1. Pro is independently reverified on 11 October; the prior Free quota blocker is resolved. Recheck actual provisioned disk, CPU, I/O, memory and connections before work. The plan's 8 GB allowance is not the same as the dashboard's 2 GB provisioned disk. See [current Pro readiness](JANE_PRO_READINESS.md).
 2. Re-read protected/source HEADs, existing migration history, PostgreSQL version, advisory schema/role-name availability and current grants through an approved metadata-only workflow. Stop on an existing advisory schema or role collision, rather than blindly merging or dropping objects. Confirm `auth.sessions` has the three proposed columns and that the migration operator may grant them. No Auth data scan is needed.
-3. Review all six files in `artifacts/jane-foundations-20261011/migration-review-manifest.json`, including the Auth SELECT exception. Verify hashes from the actual Git blob bytes. The last advisory role file revokes the intermediate historical grants, so the full bundle must be transactional and remain private.
+3. Review the [exact combined SQL manifest](../../artifacts/jane-pro-readiness-20261011/MIGRATION_REVIEW.md), including the Auth SELECT exception and full local object/ACL inventory. Six source files are unchanged. Verify canonical UTF-8/LF hashes from Git. The final grants revoke intermediate historical access, so the full bundle must remain atomic and private.
 4. Review backup/snapshot evidence, restore responsibility, encrypted-key custody, rotation and backup-aware erasure. Set operational query/connection ceilings. Verify private schema exclusion from Data API exposure, approved HTTPS preview origin, deployment protection and restricted synthetic account list.
 5. Obtain explicit owner approval naming project, exact commit, bundle hash, role grants, intended synthetic scope and rollback operator. This is separate from later index population, real-model spend and customer activation approvals.
 
-## Migration packaging after approval
+## Prepared migration and execution after approval
 
-Use the repository-approved Supabase CLI workflow and `supabase migration new jane_advisory_foundations` to generate the real migration filename. The CLI is not installed in this process and no migration file was fabricated. Review installation/resource impact before obtaining it. Copy the reviewed six-file SQL in manifest order into that generated migration inside one transaction, adding no service credentials, cron jobs, seed customer data or API exposure. Rehearse the exact combined SQL locally with synthetic Auth fixtures and scoped roles. Use the approved migration procedure, not an ad-hoc production SQL editor. Record migration identity, checksum, operator, time and outcome.
+Official checksum-verified portable Supabase CLI 2.120.0 generated `20261011142747_jane_isolated_advisory.sql`. The exact six-part atomic bundle has passed local PostgreSQL tests, including late-failure rollback and collision refusal. It creates no service credentials, schedules, customer rows or API exposure. Before approval/execution, reconcile remote migration history; the local repository contains only a subset. The approved workflow's dry-run must list exactly this new file, with no historical replay. Do not use blanket `db push` or an ad-hoc SQL editor as a bypass. Record exact checksum, protected/source HEAD, operator, backup, start/end time and result. No hosted execution has occurred.
 
 The runtime/indexer/retention/Auth-verifier roles are initially NOLOGIN and have no memberships. Provision separate server-only connection identities or approved scoped role selection outside Git after role review. The injected transaction must enter exactly the expected role and use TLS, bounded pools and timeouts. Runtime and Auth verifier reject broader `current_user` roles. Do not wire a database-owner or `service_role` connection into the application.
 
-The approval fixture used by tests is not deployment configuration. Create a private, expiring hosted approval only after migration verification. It must bind the manifest hash, existing project, advisory schema, `synthetic-mock-only`, owner approval reference and 1–10 synthetic Auth user IDs. Maximum lifetime is 24 hours. Configure the data-key ring and CSRF key through approved server-only secret management. No OpenAI credential is needed for hosted mock validation.
+The approval fixture used by tests is not deployment configuration. Create a private, expiring hosted approval only after migration verification. It must bind the manifest hash, existing Supabase and Vercel projects, exact protected preview deployment/origin, advisory schema, `synthetic-mock-only`, owner approval reference and 1–10 synthetic Auth user IDs. Maximum lifetime is 24 hours. The current Vercel project reports no deployment protection; verify separately approved protection before setting the attestation. Configure the data-key ring and CSRF key through approved server-only secret management. No OpenAI credential is needed for hosted mock validation.
 
 ## Hosted verification checklist after migration approval
 
@@ -31,13 +31,13 @@ Keep the public route disabled. On a separately approved protected preview, use 
 
 ## Controlled source inventory and index population
 
-Before population, choose an **existing** authorised changed-ID feed or approved identity manifest. Record permission to include unpublished knowledge and field/provenance coverage. If an initial complete ID inventory is needed, authorise it explicitly: `identityPage` uses the existing `fabric_id` primary-key keyset, six IDs per page, no OFFSET, counts or wide scans. Pace it separately with the same resource envelope and durable cursor. Do not rebuild Browse or interfere with refresh jobs.
+The authorised read-only inventory now establishes 16,883 unique IDs at 11 October 14:20 UTC. Use its [verified identity manifest](../../artifacts/jane-pro-readiness-20261011/source-manifest.json) and checksum-bound `createManifestSource` adapter. All 2,814 pages were traversed locally without descriptive reads. Population remains unapproved. Attest identities again using a bounded, timed, read-only count/hash query before each invocation and at EOF. Record subsequent changed-ID reconciliation. Never claim the identity inventory is completed descriptive indexing.
 
 A moving keyset traversal is not a database snapshot. Require a versioned source manifest, exact unique count, last checkpoint and a reconciled change/tombstone feed before certifying completeness. Source attestation must verify that manifest version, not just return `true`. New/changed IDs need later incremental jobs. If the source cannot supply a stable manifest and reconciliation evidence, retain partial coverage. Never run an expensive full-table count to fill an unknown denominator by convenience.
 
 Prepare a trusted server-side approval with `approved:true` only after the owner approves the exact population: project, schema, purpose `bounded-advisory-index-only`, bundle hash, job UUID, source snapshot, exact count, source-attestation reference, owner approval reference, expiry within 24 hours and `maxBatches` from 1 to 20. Persist a matching `index_jobs` record through the index operator only. Approvals/job creation are not model or browser operations.
 
-Supply `createIndexWorker` with a scoped indexer transaction, the existing strict catalogue projection and the approved source adapter. `source.page` must return at most six unique IDs, bounded cursor, matching snapshot and EOF; it must honour AbortSignal. `verifySnapshot` validates the actual manifest on EOF. `runPopulationSlice` stops at its bounded allowance or first error, never self-schedules, and resumes from the durable job cursor on a later approved invocation.
+Supply `createIndexWorker` with a scoped indexer transaction, the existing strict catalogue projection and the approved source adapter. `source.page` returns at most six unique IDs, a checksum-bound cursor and EOF. `verifySnapshot` requires a fresh source attestation. Hosted operators must use `runMonitoredPopulationSlice`, which wraps `runPopulationSlice` with fresh resource admission before each batch and stops on the first error/ceiling. It never self-schedules and resumes the durable checkpoint only on a later approved invocation. The low-level function alone is not the hosted procedure.
 
 | Limit | Initial ceiling |
 | --- | --- |
@@ -45,7 +45,7 @@ Supply `createIndexWorker` with a scoped indexer transaction, the existing stric
 | Source identities per batch | 6 |
 | Gap after successful commit | At least 5 seconds |
 | Batches per approved invocation | At most 20, at most 120 identities |
-| Standard batch reads | One six-ID page plus three narrow fact/visual/profile reads |
+| Standard batch reads | Six IDs from the local manifest plus three narrow fact/visual/profile reads; separate bounded attestation per invocation/EOF |
 | Catalogue response cap | 250,000 bytes per read; approximately 1 MB standard batch ceiling including ID page |
 | Source read deadline / per-request deadline | 12 seconds / 4.5 seconds |
 | SQL statement / lock timeout | 3 seconds / 500 ms |

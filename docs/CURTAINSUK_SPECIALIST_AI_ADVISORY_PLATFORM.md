@@ -1,8 +1,22 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Jane foundations locally tested; existing-project migration and activation unapproved**
+**Programme source of truth · 11 October 2026 · Supabase Pro verified; exact migration and population review prepared, neither applied**
 
-## Current milestone: existing-project foundations and evaluation preparation
+## Current milestone: Pro integration and exact migration readiness
+
+[Jane Pro readiness](specialist-advisory/JANE_PRO_READINESS.md) is the current detailed record. Work starts from PR #169 `996d804f63bfcde48bd58d48a37598ead638451e`. Protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`; independent PR #167 remains `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`. No production change has run.
+
+The existing Supabase project `hqysjumypgeapgmqkcrx` is ACTIVE_HEALTHY on **Pro**. The earlier Free quota blocker below is superseded. Current database bytes are 692,268,179; the dashboard displays 2 GB provisioned disk, distinct from the plan's 8 GB allowance. The latest visible daily physical backup is 11 October 01:03:26 UTC; restore rehearsal and Toshiba completion remain unverified. Live resource charts are partly unavailable, so fresh per-batch telemetry is required before approved indexing.
+
+**Exact permitted identity denominator: 16,883. Hosted descriptive index coverage: 0/16,883.** The bounded primary-key inventory took 12.4 ms with zero physical blocks read/written in that execution. The saved ID-only manifest and checksum are complete. All IDs passed local six-ID traversal tests. Five historical Master records and a separate 120-row synthetic fixture remain the descriptive indexing evidence; whole-Master field completeness and purchasable counts are unknown.
+
+Implemented: checksum-bound source paging, fresh identity attestation, fail-closed resource monitoring, more detailed field coverage and exact-deployment protection binding. The six existing SQL files are assembled into a CLI-generated atomic migration with collision checks. Its exact local rollback/object/ACL tests pass. [SQL review manifest](../artifacts/jane-pro-readiness-20261011/MIGRATION_REVIEW.md), SHA-256 `2c78e6173d5e807890d7de229ad11002a552534b6e2b445819214832cf049d73`. The sole existing-object grant is read-only access to three Auth session columns for a new verifier role. No source records, job population, credentials, public API or schedules are changed.
+
+**89 scoped local tests pass**, plus scoped lint. The refreshed mock suite completes 20 scenarios, 60 advice turns and three context/save/recover actions with no service errors. Jane's approved 40–90-word, no-em-dash profile remains unchanged. No new paid calls; previous ledger US$0.132574 preserved. Proposed fresh evaluation cap remains US$5 total/US$1 per consultation, requiring new approval and a new key. The owner's last confirmation says the old key still needs revocation.
+
+Review the [working local gallery](http://127.0.0.1:8789/pro-readiness), [scripted Jane](http://127.0.0.1:8789/) and [implementation evidence/file list](../artifacts/jane-pro-readiness-20261011/IMPLEMENTATION.md). **Next approval:** the exact additive migration on the existing project, subject to fresh backup/resource/history preflight. Full population, protected hosted deployment, synthetic account setup, paid evaluation and public activation remain separate. Current Vercel protection is not configured. Hosted PostgreSQL/Auth tests, human design scores, physical iPhone and spoken screen reader checks remain pending. PR #167 is preserved with its own 20-file release/rollback procedure and requires a fresh live comparison before approved publication.
+
+## Historical milestone: existing-project foundations and evaluation preparation
 
 [Jane foundations readiness](specialist-advisory/JANE_FOUNDATIONS.md) is the current detailed record; [existing-project operator runbook](specialist-advisory/EXISTING_PROJECT_RUNBOOK.md) is the migration/indexing proposal. Older environment proposals below are superseded: use only existing Supabase project `hqysjumypgeapgmqkcrx`, with no separate project or branch. Work started from PR #169 `0f07dfab163406f065351cbfa9be090e16c063c2`. Protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`; PR #167 remains unchanged at `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`.
 

@@ -1,0 +1,466 @@
+{
+  "jobs": [
+    {
+      "id": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+      "cursor": {
+        "offset": 6,
+        "manifestHash": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+      },
+      "status": "ready",
+      "batches": 1,
+      "indexed": 6,
+      "complete": false,
+      "failures": 0,
+      "processed": 6,
+      "created_at": "2026-10-11T18:55:39.275182+00:00",
+      "last_error": null,
+      "updated_at": "2026-10-11T18:55:39.439584+00:00",
+      "expected_count": 16883,
+      "source_snapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+    }
+  ],
+  "columns": [
+    {
+      "type": "text",
+      "table": "fabric_collections",
+      "column": "collection_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_collections",
+      "column": "supplier_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_collections",
+      "column": "brand_id"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "fabric_collections",
+      "column": "created_at"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "fabric_collections",
+      "column": "updated_at"
+    },
+    {
+      "type": "text",
+      "table": "fabric_colourways",
+      "column": "fabric_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_colourways",
+      "column": "supplier_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_colourways",
+      "column": "brand_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_colourways",
+      "column": "design_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_colourways",
+      "column": "price_verification_status"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "fabric_colourways",
+      "column": "created_at"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "fabric_colourways",
+      "column": "updated_at"
+    },
+    {
+      "type": "text",
+      "table": "fabric_designs",
+      "column": "design_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_designs",
+      "column": "supplier_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_designs",
+      "column": "brand_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_designs",
+      "column": "collection_id"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "fabric_designs",
+      "column": "created_at"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "fabric_designs",
+      "column": "updated_at"
+    },
+    {
+      "type": "text",
+      "table": "fabric_retail_profiles",
+      "column": "fabric_id"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "fabric_retail_profiles",
+      "column": "updated_at"
+    },
+    {
+      "type": "uuid",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "ledger_id"
+    },
+    {
+      "type": "uuid",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "run_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "fabric_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "supplier_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "brand_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "design_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "source_image_hash"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "visual_version"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "vocabulary_version"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "prompt_version"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "schema_version"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "model_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "output_hash"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "evidence_id"
+    },
+    {
+      "type": "uuid",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "design_fingerprint_id"
+    },
+    {
+      "type": "uuid",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "colourway_fingerprint_id"
+    },
+    {
+      "type": "text",
+      "table": "fabric_visual_enrichment_ledger",
+      "column": "analysis_asset_hash"
+    },
+    {
+      "type": "text",
+      "table": "supplier_brands",
+      "column": "brand_id"
+    },
+    {
+      "type": "text",
+      "table": "supplier_brands",
+      "column": "supplier_id"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "supplier_brands",
+      "column": "created_at"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "supplier_brands",
+      "column": "updated_at"
+    },
+    {
+      "type": "text",
+      "table": "supplier_promotion_events",
+      "column": "event_id"
+    },
+    {
+      "type": "text",
+      "table": "supplier_promotion_events",
+      "column": "snapshot_id"
+    },
+    {
+      "type": "uuid",
+      "table": "supplier_promotion_events",
+      "column": "actor_id"
+    },
+    {
+      "type": "text",
+      "table": "supplier_promotion_events",
+      "column": "previous_approved_snapshot_id"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "supplier_promotion_events",
+      "column": "created_at"
+    },
+    {
+      "type": "text",
+      "table": "supplier_snapshots",
+      "column": "snapshot_id"
+    },
+    {
+      "type": "text",
+      "table": "supplier_snapshots",
+      "column": "supplier_id"
+    },
+    {
+      "type": "text",
+      "table": "supplier_snapshots",
+      "column": "brand_id"
+    },
+    {
+      "type": "text",
+      "table": "supplier_snapshots",
+      "column": "run_id"
+    },
+    {
+      "type": "text",
+      "table": "supplier_snapshots",
+      "column": "verification_status"
+    },
+    {
+      "type": "text",
+      "table": "supplier_snapshots",
+      "column": "validation_status"
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "supplier_snapshots",
+      "column": "created_at"
+    }
+  ],
+  "indexes": [
+    {
+      "name": "fabric_collections_pkey",
+      "table": "fabric_collections",
+      "definition": "CREATE UNIQUE INDEX fabric_collections_pkey ON curtainsuk_private.fabric_collections USING btree (collection_id)"
+    },
+    {
+      "name": "fabric_collections_supplier_id_brand_id_display_name_key",
+      "table": "fabric_collections",
+      "definition": "CREATE UNIQUE INDEX fabric_collections_supplier_id_brand_id_display_name_key ON curtainsuk_private.fabric_collections USING btree (supplier_id, brand_id, display_name)"
+    },
+    {
+      "name": "fabric_collections_brand_idx",
+      "table": "fabric_collections",
+      "definition": "CREATE INDEX fabric_collections_brand_idx ON curtainsuk_private.fabric_collections USING btree (brand_id, display_name)"
+    },
+    {
+      "name": "fabric_colourways_pkey",
+      "table": "fabric_colourways",
+      "definition": "CREATE UNIQUE INDEX fabric_colourways_pkey ON curtainsuk_private.fabric_colourways USING btree (fabric_id)"
+    },
+    {
+      "name": "fabric_colourways_supplier_id_supplier_sku_key",
+      "table": "fabric_colourways",
+      "definition": "CREATE UNIQUE INDEX fabric_colourways_supplier_id_supplier_sku_key ON curtainsuk_private.fabric_colourways USING btree (supplier_id, supplier_sku)"
+    },
+    {
+      "name": "fabric_colourways_design_idx",
+      "table": "fabric_colourways",
+      "definition": "CREATE INDEX fabric_colourways_design_idx ON curtainsuk_private.fabric_colourways USING btree (design_id, colour_name)"
+    },
+    {
+      "name": "fabric_colourways_projection_idx",
+      "table": "fabric_colourways",
+      "definition": "CREATE INDEX fabric_colourways_projection_idx ON curtainsuk_private.fabric_colourways USING btree (storefront_selectable, lifecycle_state, price_verification_status)"
+    },
+    {
+      "name": "fabric_colourways_staging_catalog_idx",
+      "table": "fabric_colourways",
+      "definition": "CREATE INDEX fabric_colourways_staging_catalog_idx ON curtainsuk_private.fabric_colourways USING btree (staging_catalog_visible, supplier_id, brand_id) WHERE staging_catalog_visible"
+    },
+    {
+      "name": "fabric_colourways_review_identity_unique",
+      "table": "fabric_colourways",
+      "definition": "CREATE UNIQUE INDEX fabric_colourways_review_identity_unique ON curtainsuk_private.fabric_colourways USING btree (fabric_id, supplier_id, supplier_sku)"
+    },
+    {
+      "name": "fabric_designs_pkey",
+      "table": "fabric_designs",
+      "definition": "CREATE UNIQUE INDEX fabric_designs_pkey ON curtainsuk_private.fabric_designs USING btree (design_id)"
+    },
+    {
+      "name": "fabric_designs_collection_idx",
+      "table": "fabric_designs",
+      "definition": "CREATE INDEX fabric_designs_collection_idx ON curtainsuk_private.fabric_designs USING btree (collection_id, display_name)"
+    },
+    {
+      "name": "fabric_designs_supplier_code_unique_idx",
+      "table": "fabric_designs",
+      "definition": "CREATE UNIQUE INDEX fabric_designs_supplier_code_unique_idx ON curtainsuk_private.fabric_designs USING btree (supplier_id, supplier_design_code) WHERE (supplier_design_code IS NOT NULL)"
+    },
+    {
+      "name": "fabric_retail_profiles_pkey",
+      "table": "fabric_retail_profiles",
+      "definition": "CREATE UNIQUE INDEX fabric_retail_profiles_pkey ON curtainsuk_private.fabric_retail_profiles USING btree (fabric_id)"
+    },
+    {
+      "name": "fabric_visual_enrichment_ledger_pkey",
+      "table": "fabric_visual_enrichment_ledger",
+      "definition": "CREATE UNIQUE INDEX fabric_visual_enrichment_ledger_pkey ON curtainsuk_private.fabric_visual_enrichment_ledger USING btree (ledger_id)"
+    },
+    {
+      "name": "fabric_visual_enrichment_ledger_fabric_current",
+      "table": "fabric_visual_enrichment_ledger",
+      "definition": "CREATE INDEX fabric_visual_enrichment_ledger_fabric_current ON curtainsuk_private.fabric_visual_enrichment_ledger USING btree (fabric_id, approval_state, review_state) WHERE (superseded_at IS NULL)"
+    },
+    {
+      "name": "fabric_visual_enrichment_ledger_image_hash",
+      "table": "fabric_visual_enrichment_ledger",
+      "definition": "CREATE INDEX fabric_visual_enrichment_ledger_image_hash ON curtainsuk_private.fabric_visual_enrichment_ledger USING btree (source_image_hash)"
+    },
+    {
+      "name": "fabric_visual_enrichment_ledger_exact_lineage",
+      "table": "fabric_visual_enrichment_ledger",
+      "definition": "CREATE UNIQUE INDEX fabric_visual_enrichment_ledger_exact_lineage ON curtainsuk_private.fabric_visual_enrichment_ledger USING btree (analysis_level, fabric_id, supplier_id, supplier_sku, source_image_hash, visual_version, vocabulary_version, prompt_version, schema_version, model_id) WHERE (superseded_at IS NULL)"
+    },
+    {
+      "name": "fabric_visual_enrichment_ledger_design_level",
+      "table": "fabric_visual_enrichment_ledger",
+      "definition": "CREATE INDEX fabric_visual_enrichment_ledger_design_level ON curtainsuk_private.fabric_visual_enrichment_ledger USING btree (supplier_id, brand_id, design_id, analysis_level, approval_state, review_state) WHERE (superseded_at IS NULL)"
+    },
+    {
+      "name": "fabric_visual_enrichment_ledger_analysis_asset_hash",
+      "table": "fabric_visual_enrichment_ledger",
+      "definition": "CREATE INDEX fabric_visual_enrichment_ledger_analysis_asset_hash ON curtainsuk_private.fabric_visual_enrichment_ledger USING btree (analysis_asset_hash)"
+    },
+    {
+      "name": "fabric_visual_enrichment_ledger_source_analysis_asset",
+      "table": "fabric_visual_enrichment_ledger",
+      "definition": "CREATE INDEX fabric_visual_enrichment_ledger_source_analysis_asset ON curtainsuk_private.fabric_visual_enrichment_ledger USING btree (source_image_hash, analysis_asset_hash)"
+    },
+    {
+      "name": "fabric_visual_knowledge_read_cache_id",
+      "table": "fabric_visual_knowledge_read_cache",
+      "definition": "CREATE UNIQUE INDEX fabric_visual_knowledge_read_cache_id ON curtainsuk_private.fabric_visual_knowledge_read_cache USING btree (fabric_id)"
+    },
+    {
+      "name": "supplier_brands_supplier_idx",
+      "table": "supplier_brands",
+      "definition": "CREATE INDEX supplier_brands_supplier_idx ON curtainsuk_private.supplier_brands USING btree (supplier_id, display_name)"
+    },
+    {
+      "name": "supplier_brands_pkey",
+      "table": "supplier_brands",
+      "definition": "CREATE UNIQUE INDEX supplier_brands_pkey ON curtainsuk_private.supplier_brands USING btree (brand_id)"
+    },
+    {
+      "name": "supplier_promotion_events_pkey",
+      "table": "supplier_promotion_events",
+      "definition": "CREATE UNIQUE INDEX supplier_promotion_events_pkey ON curtainsuk_private.supplier_promotion_events USING btree (event_id)"
+    },
+    {
+      "name": "supplier_promotion_events_state_idx",
+      "table": "supplier_promotion_events",
+      "definition": "CREATE INDEX supplier_promotion_events_state_idx ON curtainsuk_private.supplier_promotion_events USING btree (snapshot_id, created_at DESC)"
+    },
+    {
+      "name": "supplier_promotion_events_previous_approved_idx",
+      "table": "supplier_promotion_events",
+      "definition": "CREATE INDEX supplier_promotion_events_previous_approved_idx ON curtainsuk_private.supplier_promotion_events USING btree (previous_approved_snapshot_id) WHERE (previous_approved_snapshot_id IS NOT NULL)"
+    },
+    {
+      "name": "supplier_promotion_events_browse_price_read_idx",
+      "table": "supplier_promotion_events",
+      "definition": "CREATE INDEX supplier_promotion_events_browse_price_read_idx ON curtainsuk_private.supplier_promotion_events USING btree (snapshot_id, created_at DESC) INCLUDE (promotion_state)"
+    },
+    {
+      "name": "supplier_snapshots_pkey",
+      "table": "supplier_snapshots",
+      "definition": "CREATE UNIQUE INDEX supplier_snapshots_pkey ON curtainsuk_private.supplier_snapshots USING btree (snapshot_id)"
+    },
+    {
+      "name": "supplier_snapshots_history_idx",
+      "table": "supplier_snapshots",
+      "definition": "CREATE INDEX supplier_snapshots_history_idx ON curtainsuk_private.supplier_snapshots USING btree (supplier_id, supplier_sku, checked_at DESC)"
+    },
+    {
+      "name": "supplier_snapshots_approval_queue_idx",
+      "table": "supplier_snapshots",
+      "definition": "CREATE INDEX supplier_snapshots_approval_queue_idx ON curtainsuk_private.supplier_snapshots USING btree (validation_status, checked_at DESC)"
+    },
+    {
+      "name": "supplier_snapshots_expiry_idx",
+      "table": "supplier_snapshots",
+      "definition": "CREATE INDEX supplier_snapshots_expiry_idx ON curtainsuk_private.supplier_snapshots USING btree (stock_expires_at, price_expires_at, lifecycle_expires_at)"
+    },
+    {
+      "name": "supplier_snapshots_sdg_price_recovery_once_per_sku",
+      "table": "supplier_snapshots",
+      "definition": "CREATE UNIQUE INDEX supplier_snapshots_sdg_price_recovery_once_per_sku ON curtainsuk_private.supplier_snapshots USING btree (supplier_id, supplier_sku) WHERE ((supplier_id = 'sanderson-design-group'::text) AND (source_name = 'SDG authenticated trade portal Product/detail live price recovery'::text))"
+    },
+    {
+      "name": "supplier_snapshots_browse_price_read_idx",
+      "table": "supplier_snapshots",
+      "definition": "CREATE INDEX supplier_snapshots_browse_price_read_idx ON curtainsuk_private.supplier_snapshots USING btree (snapshot_id) INCLUDE (supplier_id, supplier_sku, checked_at, validation_status) WHERE (validation_status = 'VALIDATED'::text)"
+    },
+    {
+      "name": "supplier_snapshots_run_id_idx",
+      "table": "supplier_snapshots",
+      "definition": "CREATE INDEX supplier_snapshots_run_id_idx ON curtainsuk_private.supplier_snapshots USING btree (run_id)"
+    }
+  ],
+  "connections": 16,
+  "observed_at": "2026-10-11T19:27:00.801878+00:00",
+  "advisory_rows": 6,
+  "database_bytes": 699772051,
+  "max_connections": "60"
+}

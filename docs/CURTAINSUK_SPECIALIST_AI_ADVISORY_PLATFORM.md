@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Bounded continuation implemented and locally tested; hosted coverage remains 6/16,883; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · Journaled continuation, change-only refresh preparation and ranked search locally tested; hosted coverage remains 6/16,883; Jane remains publicly inactive**
 
-## Current milestone: bounded continuation ready for scope review
+## Current milestone: Fabric Knowledge integration preparation
+
+From PR #169 `faadb8b8`, the existing worker now has a journaled operator runner that resumes the approved range, verifies each commit and never blindly retries an ambiguous write. A changed-identity manifest adapter reuses existing jobs, receipts, hashes and the six-record worker; unchanged vectors are skipped. Search ranks genuine attribute matches using the existing GIN index, with six-result limits and separate retail eligibility. The optional hosted ranking function replacement and rollback are prepared but unapplied. [Full implementation, estimates and approval report](specialist-advisory/JANE_FABRIC_KNOWLEDGE.md).
+
+**117 local tests pass**, retaining all migration, security, concurrency and 38 team/theme regression checks. The next prepared tranche remains exactly **120 new identities**, offsets 6–126, with at most 20 transaction-only SET/revoke sequences. Use the [new checksum-bound proposal](../artifacts/jane-knowledge-integration-20261011/continuation-proposal.json); its approval flags are false. No further hosted write, migration, schedule, deployment or paid call ran.
+
+Read-only verification at 19:34 UTC confirms **6/16,883** indexed, 16,877 remaining, the unchanged identity hash, 81 migrations and zero advisory schedules. Remaining population requires **2,813 batches / 141 invocations**. The conditional estimate is 6–9 hours plus longer approval/resource pauses. Synthetic local storage measurements project about 62 MiB for search/initial receipts; allow 128 MiB for review and measure actual hosted growth. Current short-window telemetry and backup recovery evidence remain execution prerequisites.
+
+Automatic change discovery is **not yet activated or proven complete**. Relevant updates can be supplied through verified publication/export ID lists; no timestamps or Browse dirty queue are scanned as a substitute for a durable complete feed. Deletions require reviewed tombstones. Complete capture, dependency fan-out and changes during population must be reconciled before claiming freshness. Missing properties and unverified supplier code mappings remain unknown. [Evidence and limitations](../artifacts/jane-knowledge-integration-20261011/README.md).
+
+PR #167 remains independent. Jane's approved concise style, Naila, Fabric Intelligence, Room Visualiser, source fabric records, stock/supplier refreshes, pricing and commerce remain unchanged. No new project or product database was introduced. Historical milestones below preserve earlier observations.
+
+## Previous milestone: bounded continuation ready for scope review
 
 Starting from PR #169 `38dd895f`, the connector continuation port now resumes the existing job without replaying the first-batch bootstrap. It reuses the established projections, index terms, schema, checkpoint/gate and temporary-permission pattern. The next review scope names exactly 120 identities, in at most 20 six-record transactions, from offset 6 to 126. The approval range remains binding after restarts. [Implementation and test report](../artifacts/jane-index-continuation-20261011/README.md), [exact scope/permission review](../artifacts/jane-index-continuation-20261011/APPROVAL_REVIEW.md).
 

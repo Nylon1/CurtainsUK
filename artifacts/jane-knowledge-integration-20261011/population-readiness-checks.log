@@ -1,0 +1,12 @@
+✔ all 16883 recorded identities traverse once in 2814 bounded pages; this is not knowledge population (46.6852ms)
+✔ manifest rejects duplicates, tampering, wrong project, truncation and crossed checkpoints (100.7631ms)
+✔ resource admission refuses stale/missing telemetry, load spikes and concurrent supplier work (1.0699ms)
+✔ monitored population requires approval, bounds invocations and stops before next write on pressure (21.7636ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 500.2858

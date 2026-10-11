@@ -1,0 +1,43 @@
+{
+  "project": {
+    "ref": "hqysjumypgeapgmqkcrx",
+    "status": "ACTIVE_HEALTHY",
+    "postgresVersion": "17.6.1.166",
+    "region": "eu-central-1"
+  },
+  "state": {
+    "jobs": [
+      {
+        "id": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+        "status": "ready",
+        "batches": 1,
+        "indexed": 6,
+        "complete": false,
+        "failures": 0,
+        "processed": 6,
+        "updatedAt": "2026-10-11T18:55:39.439584+00:00"
+      }
+    ],
+    "roles": [
+      {
+        "set": false,
+        "admin": true,
+        "member": "postgres",
+        "grantor": "supabase_admin",
+        "inherit": false
+      }
+    ],
+    "observedAt": "2026-10-11T21:31:03.455562+00:00",
+    "searchRows": 6,
+    "connections": 16,
+    "lockWaiters": 0,
+    "databaseBytes": 699780243,
+    "maxConnections": 60,
+    "migrationCount": 81,
+    "latestMigration": "20261011180354",
+    "cumulativeDeadlocks": 0,
+    "otherActiveStatements": 0,
+    "activeAdvisorySchedules": 0
+  },
+  "classification": "READ_ONLY_PREFLIGHT_NOT_INDEXING_ADMISSION"
+}

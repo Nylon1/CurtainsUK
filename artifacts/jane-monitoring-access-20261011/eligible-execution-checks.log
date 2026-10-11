@@ -1,0 +1,15 @@
+✔ eligible admission blocks stale backup, missing operator, hourly telemetry, source drift and changed no-op data (99.3152ms)
+✔ actual SQL creates separate job, verifies five no-ops, enforces canary and preserves historical rows and role grants (4308.7309ms)
+✔ historical drift, collision and active lease roll back eligible SQL without granting lasting access (2970.4386ms)
+✔ one approval completes synthetic 11517 manifest in bounded invocations and reports every 1000 (28545.3669ms)
+✔ lost commit recovers exact readback without duplicate submission; uncommitted ambiguity stays stopped (47.4206ms)
+✔ unhealthy canary, missing backup, load and permission failures stop automatically without retries (73.4053ms)
+✔ second operator is excluded and altered implementation or journal cannot submit a batch (56.1378ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36498.1235

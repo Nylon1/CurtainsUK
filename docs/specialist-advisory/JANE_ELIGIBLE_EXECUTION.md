@@ -1,5 +1,7 @@
 # Jane eligible population: execution binding and safety stop
 
+**Later preflight, 11 October:** [Replacement monitoring access is verified](JANE_MONITORING_PREFLIGHT.md), and the owner accepted recovery responsibility/24-hour maximum backup age. 138 local checks pass. No new hosted indexing occurred. The newest completed backup still predates advisory writes; observed cached metrics did not yield an admissible at-most-60-second source window. Missing-token statements below describe the earlier checkpoint.
+
 11 October 2026. Starting PR #169 `3eb42b82b7f256af984cc53d446d6eb3e13fafc8`. Protected `release/production` remains `c7ca2d0eff1c128386863536d4ce46a877d874a8`. [Owner continuation instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113454744), [implementation evidence](../../artifacts/jane-eligible-execution-20261011/).
 
 **The missing separate-job SQL binding is implemented and locally tested. Hosted eligible indexing has not started.** The owner has already conditionally approved the 120-ID canary and healthy bounded continuation. No repeated batch approvals are needed. Two prerequisite groups remain unsatisfied: a recoverable backup after the previous advisory writes with recovery operator/RPO, and usable current host telemetry with verified secure operator access.

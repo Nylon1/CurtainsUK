@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-11T21:42:29.846Z",
+  "testsPassed": 138,
+  "allTestsPassed": true,
+  "scopedEslint": "pass",
+  "whitespace": "pass",
+  "existingExecutionGitBlobHashesMatch": true,
+  "gitMismatches": [],
+  "worktreeByteDifferences": [
+    {
+      "path": "lib/advisory/hosted-test.mjs",
+      "reason": "CRLF-only; source unchanged"
+    },
+    {
+      "path": "lib/advisory/index-worker.mjs",
+      "reason": "CRLF-only; source unchanged"
+    }
+  ],
+  "runtimeBindingRequirement": "Recompute/check exact current execution bytes when binding an actual hosted run; no hash guard was bypassed.",
+  "hostMetricsSha256": "32d0667278b4351a5878b6317c4d44a786ec0a94e469a6a2b78ba62aefdcd785",
+  "migrationSha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "hostedWrites": 0,
+  "paidModelCalls": 0
+}

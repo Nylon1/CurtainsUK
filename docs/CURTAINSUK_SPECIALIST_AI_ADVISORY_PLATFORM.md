@@ -1,8 +1,16 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Eligible execution binding implemented; 129 local tests pass; six historical hosted rows, five inside the 11,517 published eligible-ID snapshot; hosted population stopped at backup/telemetry prerequisites; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · Replacement monitoring access verified; 138 local checks pass; hosted population still stopped at backup/source-window prerequisites; six historical hosted rows; Jane remains publicly inactive**
 
-## Current milestone: eligible execution binding complete locally
+## Current milestone: secure monitoring access verified
+
+The replacement scoped token reads Supabase backups and host metrics successfully. It is encrypted outside Git; the owner confirmed revocation of the token posted in chat. The owner also accepted recovery responsibility and a maximum backup age of 24 hours. [Current preflight report](specialist-advisory/JANE_MONITORING_PREFLIGHT.md).
+
+The latest completed physical backup returned at 21:29 UTC is still **11 October 01:03:26 UTC**, before Jane's 18:55:39 UTC writes. Host gauges are available, but repeated payloads were cached and observed distinct source samples were **68.18 seconds apart**, beyond the unchanged 60-second window. The new read-only metrics adapter rejects these as admission evidence. **138 local checks pass**, including nine telemetry checks.
+
+Read-only hosted checks confirm six search rows, the original checkpoint of six, 81 migrations, no advisory schedules and unchanged permissions. No eligible job or canary has started. A newer recoverable backup and valid current short-window telemetry remain required. Existing conditional approval covers the 120-ID canary and healthy eligible continuation once all safeguards pass, without repeated batch approvals. No production deployment, publication, model call or unrelated change occurred. [New evidence](../artifacts/jane-monitoring-access-20261011/). Earlier milestones below are historical.
+
+## Previous milestone: eligible execution binding complete locally
 
 The [20:34 UTC owner go-ahead](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113454744) authorises clearing prerequisites, a monitored first 120 eligible IDs, then healthy bounded continuation under one approval. From PR #169 `3eb42b82`, the separate-job SQL connector now starts at a null cursor, verifies five unchanged existing rows without rewriting them, preserves the historical job/receipts, restores transaction-local permissions before COMMIT, and verifies exact durable outcomes. The journaled runner enforces the canary assessment, six-record transactions, five-second gate, 20-batch invocations, safety stops and progress reports every 1,000. [Implementation and current readiness](specialist-advisory/JANE_ELIGIBLE_EXECUTION.md).
 

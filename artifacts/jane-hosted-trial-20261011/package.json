@@ -1,8 +1,8 @@
 {
-  "sourceCommit": "6b0bd370f7f43f3cb7bf1c57270341b6a6d170c4",
+  "sourceCommit": "8cfff3883aad190a3174bc336bf20e0aba895904",
   "classification": "PREVIEW_ONLY_API_PACKAGE",
-  "bytes": 821948,
-  "sha256": "07b4e7270cadff10e215138eb55c9e76c0c05b02d691498c5a53b3cdfe9d7752",
+  "bytes": 821986,
+  "sha256": "0569d885e0fe235a7f97672a1a7d0b993bef984474781ad981985b72c684c587",
   "inputs": [
     "lib/advisory/contracts.mjs",
     "lib/advisory/security.mjs",

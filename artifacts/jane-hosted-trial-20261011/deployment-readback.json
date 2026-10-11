@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-11T17:58:20.241Z",
+  "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
+  "deploymentId": "dpl_6DWt8tqv6x9eRgcGxpeh7CA5sLsT",
+  "hostname": "curtainsuk-staging-7b54vvcjn-hamzas-projects-4ef62f35.vercel.app",
+  "target": "preview",
+  "rawTarget": null,
+  "state": "READY",
+  "sourceCommit": "8cfff3883aad190a3174bc336bf20e0aba895904",
+  "bundleSha256": "0569d885e0fe235a7f97672a1a7d0b993bef984474781ad981985b72c684c587",
+  "protection": "vercel-authentication-preview",
+  "unauthenticatedStatus": 302,
+  "productionDeployment": "dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD",
+  "sourceVerification": "Vercel v13 deployment metadata read-back matches local package receipt; CLI source, no Git link"
+}

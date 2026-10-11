@@ -1,12 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Hosted Auth and encrypted persistence trial; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · Protected synthetic hosted trial passed and closed; Jane remains publicly inactive**
 
 ## Current milestone: approved synthetic hosted trial
 
-The owner approved the protected mock trial. [Current trial record](specialist-advisory/HOSTED_TRIAL.md) and [executed evidence](../artifacts/jane-hosted-trial-20261011/README.md) supersede earlier pending-trial statements below. Two owner-confirmed synthetic Auth accounts have passed real login, getUser and cryptographic verification. Two independent local application processes have completed 14 protocol checks against the actual existing Supabase project, including ciphertext inspection, recovery, isolation and concurrency. Test consultation rows were deleted. **100 local tests pass.**
+The owner approved the protected mock trial and confirmed two dedicated Supabase Auth test users. [Current trial record](specialist-advisory/HOSTED_TRIAL.md) and [executed evidence](../artifacts/jane-hosted-trial-20261011/README.md) supersede earlier pending-trial statements below. **100 local tests, 14 protected Vercel HTTP checks and five additional hosted boundary groups pass.** Separately, two independent local application processes completed 14 checks against hosted Supabase, including seven ciphertext inspections. Concurrent Vercel requests alone do not prove distinct Vercel instances.
 
-The consultation route now has a bounded TLS PostgreSQL adapter, exact-deployment signed trial grants and authenticated CSRF bootstrap. A four-hour, restricted trial database login was provisioned; its expiry and SQL hash are in the receipt. Vercel Authentication has been enabled for previews only. The existing Vercel project has no Git connection; no Git linking or project-wide secret expansion is planned. API-only Preview packaging uses deployment-scoped credentials. The Vercel-hosted application test is still pending at this checkpoint.
+The consultation route now has a bounded TLS PostgreSQL adapter, exact-deployment signed trial grants and authenticated CSRF bootstrap. The protected API-only Vercel Preview is `dpl_6DWt8tqv6x9eRgcGxpeh7CA5sLsT`, built from `8cfff3883aad190a3174bc336bf20e0aba895904`. Vercel Authentication covers Preview only. The manually deployed project remains unlinked to Git; credentials were deployment-scoped. Real sign-out rejection, owner isolation, encrypted recovery/deletion, expiry, shared rates and simulated spending limits passed. No model call was made.
+
+The trial is now closed. Both latest test sessions were signed out, synthetic consultation/usage/ledger rows were removed, and the temporary login was set NOLOGIN with runtime membership revoked. No trial connections remain. The two audit migrations are `20261011174507_jane_synthetic_trial_connection_20261011` and `20261011180354_jane_synthetic_trial_connection_closed_20261011`; the canonical advisory SQL checksum is unchanged. Final read-back shows 81 migration entries, 699,673,747 database bytes, 15 connections and zero lock waiters. The disabled temporary role is retained as an audit record, not usable access.
 
 No paid model calls, production application deployment, source-data change, catalogue population, Shopify publication or PR #167/#169 merge occurred. Full descriptive coverage remains 0/16,883. The following sections preserve historical checkpoints and their original limitations.
 

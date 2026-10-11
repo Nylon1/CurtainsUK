@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-11",
+  "result": "PASS",
+  "exitCode": 0,
+  "scope": [
+    "scripts/jane-vercel-check.mjs",
+    "scripts/jane-hosted-boundaries.mjs",
+    "scripts/jane-trial-closure-check.mjs",
+    "scripts/jane-preview.mjs",
+    "lib/advisory/trial-grant.mjs",
+    "scripts/deploy-jane-trial.mjs"
+  ],
+  "note": "Final scoped lint; earlier runtime and provisioning lint passed before runtime commits. No hosted operations were repeated for lint."
+}

@@ -1,4 +1,5 @@
-// LOCAL ONLY. No network, credentials, migrations, job writes or scheduling.
+// HISTORICAL LOCAL REVIEW ONLY. This all-Master proposal is superseded by the
+// 11 October eligible-only owner decision and MUST NOT be executed remotely.
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
@@ -15,7 +16,7 @@ const hashes={},visit=async filename=>{
 for(const file of ['continuation-runner','index-journal','index-coverage','knowledge-changes','knowledge-search'])await visit('lib/advisory/'+file+'.mjs');
 const codeManifest=Object.fromEntries(Object.entries(hashes).sort(([a],[b])=>a.localeCompare(b)));
 const implementationSha256=sha(JSON.stringify(codeManifest));
-const proposal={...previous,approved:false,temporaryRoleUse:{...previous.temporaryRoleUse,approved:false},implementationSha256,codeManifest,
+const proposal={...previous,approved:false,executionProhibited:true,supersededBy:'https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113025170',temporaryRoleUse:{...previous.temporaryRoleUse,approved:false},implementationSha256,codeManifest,
  executionRequirements:[...previous.executionRequirements,'Use the append-only fsynced journal; preserve and reconcile any pending plan before another submission','No unattended schedule or full-catalogue approval is implied','Change-feed production wiring and ranking RPC replacement require separate review']};
 await writeFile(dir+'/continuation-proposal.json',JSON.stringify(proposal,null,2)+'\n');
 await writeFile(dir+'/population-estimate.json',JSON.stringify(remainingPopulationPlan({total:16883,indexed:6}),null,2)+'\n');

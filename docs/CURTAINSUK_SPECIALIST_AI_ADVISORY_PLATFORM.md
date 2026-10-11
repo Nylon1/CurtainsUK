@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Journaled continuation, change-only refresh preparation and ranked search locally tested; hosted coverage remains 6/16,883; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · Eligible-only scope reconciled; six historical hosted rows, five inside the 11,517 published eligible-ID snapshot; hosted population blocked at mandatory preflight; Jane remains publicly inactive**
 
-## Current milestone: Fabric Knowledge integration preparation
+## Current milestone: eligible-only population scope
+
+The [19:48 UTC owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113025170) supersedes all all-Master continuation proposals below. **Do not execute the old offsets 6–126 plan.** It included 39 discontinued identities. The owner conditionally authorises one eligible-only initial run, beginning with up to 120 eligible IDs, then bounded continuation without repeated routine approvals after successful checks. It does not waive backup, telemetry, source, permission or implementation review.
+
+Fresh bounded read-only reconciliation found **16,883 historical Master IDs; 11,815 prepared Browse IDs; 11,790 selectable/visible/price-verified candidates; 11,517 exact IDs also published in Shopify's current native Fabric Profile sitemaps**. All 11,790 have a governed Browse price guide. The 273 unpublished candidates are explicitly excluded from this manifest. The published eligible snapshot overlaps **10,757** of the released Visualiser's 11,003 calibration identities; neither set substitutes for the other. [Exact manifest, overlap, evidence and blockers](specialist-advisory/JANE_ELIGIBLE_POPULATION.md).
+
+The new operator-only manifest source binds policy, evidence and ID hashes, rechecks each six-ID page and refuses an all-Master cursor. Local PostgreSQL testing demonstrates a separate job with the existing worker, five no-op existing rows, preserved historical receipts and no duplicate search rows. The original six-row job remains unchanged remotely. `pt-1200-907` is discontinued and excluded; no destructive suppression or rollback ran. Existing retail revalidation remains purchase authority.
+
+**122 local tests pass**, including all security/concurrency checks and 38 theme/team regressions. Live read-only retail checks return 404 for the discontinued row and suppress purchase cards for out-of-stock examples. The revised population needs 1,920 batches / 96 bounded invocations; 11,512 unique rows would be new. No full hosted coverage is claimed.
+
+**No hosted writes in this increment.** Latest visible backup is still 01:03:26 UTC, before the 18:55 advisory writes; PITR is not enabled. Short-window CPU/I/O metrics and rotated operator credentials are not available/verified. The old connector port cannot bootstrap this new eligible job or handle the five existing rows, so its safe binding must be reviewed rather than reusing the old SQL. The reviewed local code and source hashes are in the new evidence directory. No new migration, schedule, deployment, paid call or public activation is included. Historical milestones retain their original counts and are not current execution instructions.
+
+## Previous milestone: Fabric Knowledge integration preparation (all-Master execution scope superseded)
 
 From PR #169 `faadb8b8`, the existing worker now has a journaled operator runner that resumes the approved range, verifies each commit and never blindly retries an ambiguous write. A changed-identity manifest adapter reuses existing jobs, receipts, hashes and the six-record worker; unchanged vectors are skipped. Search ranks genuine attribute matches using the existing GIN index, with six-result limits and separate retail eligibility. The optional hosted ranking function replacement and rollback are prepared but unapplied. [Full implementation, estimates and approval report](specialist-advisory/JANE_FABRIC_KNOWLEDGE.md).
 

@@ -1,0 +1,83 @@
+[
+  {
+    "snapshot": {
+      "bytes": 699772051,
+      "objects": [
+        {
+          "kind": "r",
+          "name": "browse_read_projection",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "browse_projection_control",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "browse_projection_dirty",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "fabric_retail_profiles",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "daily_stock_snapshots",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "daily_stock_usage",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "daily_stock_runs",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "daily_stock_refresh_events",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "daily_stock_snapshot_history",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "r",
+          "name": "daily_stock_materialization_events",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "v",
+          "name": "browse_current_guide_prices_set_v1",
+          "schema": "curtainsuk_private"
+        },
+        {
+          "kind": "v",
+          "name": "browse_eligible_set_v1",
+          "schema": "curtainsuk_private"
+        }
+      ],
+      "observedAt": "2026-10-11T20:06:51.231606+00:00",
+      "connections": 16,
+      "lockWaiters": 0,
+      "advisoryRows": 6,
+      "maxConnections": "60",
+      "indexerMembership": [
+        {
+          "set": false,
+          "admin": true,
+          "member": "postgres",
+          "grantor": "supabase_admin",
+          "inherit": false
+        }
+      ]
+    }
+  }
+]

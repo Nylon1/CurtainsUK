@@ -1,0 +1,12 @@
+✔ automatic operator invocation stops at 20 batches and resumes the durable checkpoint without a schedule (250.5568ms)
+✔ lost COMMIT response is read back before continuation; uncommitted outcomes never trigger a blind retry (223.3235ms)
+✔ approval/code mismatch, load, source failure and permission mismatch stop further work (21.4172ms)
+✔ fsynced operator journal survives reopening, excludes another process and refuses truncated evidence (52.8215ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 856.9664

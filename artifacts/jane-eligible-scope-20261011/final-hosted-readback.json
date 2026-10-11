@@ -1,0 +1,46 @@
+[
+  {
+    "finalsnapshot": {
+      "roles": [
+        {
+          "set": false,
+          "admin": true,
+          "member": "postgres",
+          "grantor": "supabase_admin",
+          "inherit": false
+        }
+      ],
+      "migrations": {
+        "count": 81,
+        "latest": "20261011180354"
+      },
+      "observedAt": "2026-10-11T20:18:09.526292+00:00",
+      "connections": 16,
+      "lockWaiters": 0,
+      "advisoryJobs": [
+        {
+          "id": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+          "cursor": {
+            "offset": 6,
+            "manifestHash": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+          },
+          "status": "ready",
+          "batches": 1,
+          "indexed": 6,
+          "complete": false,
+          "failures": 0,
+          "processed": 6,
+          "created_at": "2026-10-11T18:55:39.275182+00:00",
+          "last_error": null,
+          "updated_at": "2026-10-11T18:55:39.439584+00:00",
+          "expected_count": 16883,
+          "source_snapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+        }
+      ],
+      "advisoryRows": 6,
+      "databaseBytes": 699780243,
+      "masterIdentities": 16883,
+      "activeAdvisoryCron": 0
+    }
+  }
+]

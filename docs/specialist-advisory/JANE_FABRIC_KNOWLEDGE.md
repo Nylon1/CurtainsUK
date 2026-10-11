@@ -1,5 +1,7 @@
 # Jane Fabric Master integration: bounded population and change-only refresh
 
+> **Execution scope superseded, 11 October 2026:** The all-Master 120-ID proposal and offsets 6–126 below must not run. See [eligible-only scope, implementation and preflight](JANE_ELIGIBLE_POPULATION.md). The owner subsequently approved one conditional eligible-only run; historical receipts/checkpoints remain unchanged. This document is retained as historical implementation evidence, not current execution authority.
+
 11 October 2026. PR #169, starting `faadb8b8b02c9055e5f489234c84e6d7eded5a5f`; protected source `c7ca2d0eff1c128386863536d4ce46a877d874a8`. This milestone is local implementation plus read-only hosted verification. No new hosted write, migration, schedule, deployment or OpenAI call ran.
 
 ## Verified coverage

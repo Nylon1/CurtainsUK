@@ -1,0 +1,90 @@
+{
+  "observedAt": "2026-10-11T20:17:39.488Z",
+  "classification": "BOUNDED_LIVE_RETAIL_READ_ONLY",
+  "rows": [
+    {
+      "id": "pt-1200-907",
+      "status": 404,
+      "returnedId": null,
+      "browseReady": false,
+      "launchReady": false,
+      "priceReady": false,
+      "orderReady": false,
+      "commercialStockState": null,
+      "approvedRetailCard": false,
+      "elapsedMs": 1571
+    },
+    {
+      "id": "pt-1204-212",
+      "status": 200,
+      "returnedId": "pt-1204-212",
+      "browseReady": true,
+      "launchReady": true,
+      "priceReady": true,
+      "orderReady": true,
+      "commercialStockState": "AVAILABLE",
+      "approvedRetailCard": true,
+      "elapsedMs": 1893
+    },
+    {
+      "id": "pt-1223-374",
+      "status": 200,
+      "returnedId": "pt-1223-374",
+      "browseReady": true,
+      "launchReady": true,
+      "priceReady": true,
+      "orderReady": false,
+      "commercialStockState": "OUT_OF_STOCK",
+      "approvedRetailCard": false,
+      "elapsedMs": 2282
+    },
+    {
+      "id": "pt-1224-002",
+      "status": 200,
+      "returnedId": "pt-1224-002",
+      "browseReady": true,
+      "launchReady": true,
+      "priceReady": true,
+      "orderReady": false,
+      "commercialStockState": "OUT_OF_STOCK",
+      "approvedRetailCard": false,
+      "elapsedMs": 1901
+    },
+    {
+      "id": "pt-1225-314",
+      "status": 200,
+      "returnedId": "pt-1225-314",
+      "browseReady": true,
+      "launchReady": true,
+      "priceReady": true,
+      "orderReady": true,
+      "commercialStockState": "AVAILABLE",
+      "approvedRetailCard": true,
+      "elapsedMs": 1458
+    },
+    {
+      "id": "pt-1225-722",
+      "status": 200,
+      "returnedId": "pt-1225-722",
+      "browseReady": true,
+      "launchReady": true,
+      "priceReady": true,
+      "orderReady": true,
+      "commercialStockState": "AVAILABLE",
+      "approvedRetailCard": true,
+      "elapsedMs": 1667
+    },
+    {
+      "id": "pt-1227-634",
+      "status": 200,
+      "returnedId": "pt-1227-634",
+      "browseReady": true,
+      "launchReady": true,
+      "priceReady": true,
+      "orderReady": false,
+      "commercialStockState": "OUT_OF_STOCK",
+      "approvedRetailCard": false,
+      "elapsedMs": 2239
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-11T17:16:23Z",
+  "scope": "Supabase security advisors after exact Jane migration",
+  "advisoryFindings": [],
+  "otherFindingsSummary": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 65,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "note": "Other findings refer to existing systems outside this change and were not modified. No baseline advisor snapshot was taken in this execution, so no new/old comparison is claimed."
+}

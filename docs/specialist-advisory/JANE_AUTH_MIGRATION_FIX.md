@@ -1,6 +1,8 @@
 # Jane Auth permission correction
 
-11 October 2026. **Implemented and locally verified. Hosted migration and Auth verification remain pending.** This supersedes the proposed direct Auth grants in the Pro readiness and foundations records; their evidence is preserved.
+11 October 2026. **Correction implemented and locally verified; exact migration now applied with hosted metadata verification. Hosted application Auth verification remains pending.** [Approved execution and verification receipt](../../artifacts/jane-migration-execution-20261011/README.md), protected merge `c7ca2d0e`, hosted version `20261011171354`. This supersedes the proposed direct Auth grants in the Pro readiness and foundations records; their evidence is preserved.
+
+The implementation report below records the earlier correction milestone. Its original pending-migration statements are historical and superseded by the executed receipt; do not reapply the migration.
 
 ## Decision and evidence
 

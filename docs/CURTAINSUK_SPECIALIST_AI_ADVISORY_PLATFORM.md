@@ -1,8 +1,24 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Exact migration approved; protected release candidate checks pass; no hosted migration applied**
+**Programme source of truth · 11 October 2026 · Approved advisory migration applied and hosted metadata verified; Jane inactive**
 
-## Current execution status: migration approved, release merge pending
+## Current milestone: private hosted advisory schema established
+
+The owner approved the single-file merge and migration. [PR #170](https://github.com/Nylon1/CurtainsUK/pull/170) is merged after both required checks; protected HEAD is `c7ca2d0eff1c128386863536d4ce46a877d874a8`. Exactly one migration was applied to existing Pro project `hqysjumypgeapgmqkcrx`. Supabase recorded hosted version `20261011171354_jane_isolated_advisory`; its stored SQL is byte-for-byte identical to source file `20261011142747_jane_isolated_advisory.sql`, SHA-256 `eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50`. All 78 earlier history entries remain unchanged. Do not reapply the source filename or use a blanket CLI push; the API-generated hosted version mapping is explicit in the receipt.
+
+[Execution report and next-stage requirements](../artifacts/jane-migration-execution-20261011/README.md), [receipt](../artifacts/jane-migration-execution-20261011/execution-receipt.json), [hosted verification](../artifacts/jane-migration-execution-20261011/verification-results.json).
+
+All 15 metadata comparison groups pass: nine tables with RLS, 21 indexes, three invoker functions, 15 policies and three private NOLOGIN roles. Auth ACLs are unchanged; no advisory role has Auth schema access; browser/service roles have no advisory access; advisory is excluded from Data API schemas. All eight data tables remain empty, with only the approved coordination row present. Initial advisory relation/index storage is 280 KiB. Supabase security advisors report no advisory-schema findings.
+
+An existing Browse refresh was left untouched and allowed to finish before submission. Project status remains ACTIVE_HEALTHY; postflight at 17:16 UTC shows 14 connections, zero active competing queries and zero lock waiters. The visible 01:03:26 UTC physical backup predates this migration, so a later recovery point is still required. Toshiba completion and restore rehearsal remain unverified.
+
+**Completed:** exact protected migration, hosted object/ACL/history verification, local verification-query test. **Still pending:** hosted application Auth/revocation, restricted connection provisioning, encrypted application round trips, multi-instance concurrency, retention execution and protected synthetic deployment. Local 93-test evidence is preserved; it is not relabelled as hosted application testing.
+
+PR #167 remains an independent draft, and Jane application PR #169 remains unmerged. No application deployment, catalogue population, real customer records, account provisioning, paid model calls, Shopify publication or public AI activation occurred. Descriptive coverage is still 0/16,883. Next prepare a concrete protected synthetic-only hosted trial package for separate approval; population and real-model evaluation budgets remain independent boundaries.
+
+The following sections preserve earlier checkpoints. Their pending-migration statements are superseded by this executed receipt.
+
+## Historical approval checkpoint: migration approved, release merge pending
 
 The user has approved the exact corrected SQL checksum `eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50`. This approval is recorded and does not need to be requested again for unchanged SQL. **The database migration has not run.**
 

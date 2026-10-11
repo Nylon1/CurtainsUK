@@ -1,0 +1,14 @@
+{
+  "observedAt": "2026-10-11T17:16:25.24961Z",
+  "databaseBytes": 699444371,
+  "connections": 14,
+  "lockWaiters": 0,
+  "otherActiveQueries": 0,
+  "configuredApiSchemas": [
+    "public",
+    "graphql_public",
+    "curtainsuk_private"
+  ],
+  "advisoryExposed": false,
+  "projectStatus": "ACTIVE_HEALTHY"
+}

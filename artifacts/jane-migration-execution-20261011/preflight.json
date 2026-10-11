@@ -1,0 +1,369 @@
+{
+  "approval": "User: Proceed",
+  "scope": "Merge PR 170 only and apply the exact already-approved migration",
+  "protectedCommit": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "sourceFile": "supabase/migrations/20261011142747_jane_isolated_advisory.sql",
+  "sha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "bytes": 24553,
+  "preflight": [
+    {
+      "observed_at": "2026-10-11 17:10:06.02881+00",
+      "operator": "postgres",
+      "database_bytes": 699894931,
+      "connections": 18,
+      "lock_waiters": 0,
+      "other_active_queries": [
+        {
+          "waiting": null,
+          "age_seconds": 421,
+          "application": "mgmt-api"
+        }
+      ],
+      "advisory_exists": false,
+      "advisory_roles": 0,
+      "migration_count": 78,
+      "latest_migration": "20261004064841",
+      "auth_acl": "{supabase_admin=UC/supabase_admin,anon=U/supabase_admin,authenticated=U/supabase_admin,service_role=U/supabase_admin,supabase_auth_admin=UC/supabase_admin,dashboard_user=UC/supabase_admin,postgres=U/supabase_admin}"
+    }
+  ],
+  "originalHistory": [
+    {
+      "version": "20260907213533",
+      "name": "curtainsuk_phase5e_shipping_classes"
+    },
+    {
+      "version": "20260907220705",
+      "name": "curtainsuk_email_evidence_workflow"
+    },
+    {
+      "version": "20260907221340",
+      "name": "curtainsuk_email_evidence_request_reset"
+    },
+    {
+      "version": "20260907223610",
+      "name": "phase5f_retail_media"
+    },
+    {
+      "version": "20260908035811",
+      "name": "phase5g_browse_gate"
+    },
+    {
+      "version": "20260908071543",
+      "name": "catalogue_browse_activation"
+    },
+    {
+      "version": "20260908161000",
+      "name": "phase5l_shipping_vat_and_large_snapshot"
+    },
+    {
+      "version": "20260908161125",
+      "name": "phase5l_bonded_review_layer"
+    },
+    {
+      "version": "20260908165151",
+      "name": "phase5m_draft_creation_claim"
+    },
+    {
+      "version": "20260909171827",
+      "name": "phase5m_single_rate_launch_shipping"
+    },
+    {
+      "version": "20260913054411",
+      "name": "phase5n_daily_stock_and_bay_instant"
+    },
+    {
+      "version": "20260913213912",
+      "name": "hci_staging_integration"
+    },
+    {
+      "version": "20260914085436",
+      "name": "hci_checkout_provenance_allowlist"
+    },
+    {
+      "version": "20260914090002",
+      "name": "hci_checkout_initial_context"
+    },
+    {
+      "version": "20260914094011",
+      "name": "daily_stock_partial_morning_refresh"
+    },
+    {
+      "version": "20260914171336",
+      "name": "production_checkout_execution"
+    },
+    {
+      "version": "20260914191404",
+      "name": "daily_stock_operator_audit"
+    },
+    {
+      "version": "20260915121859",
+      "name": "fabric_commercial_readiness"
+    },
+    {
+      "version": "20260915122801",
+      "name": "stock_revision_source_consistency"
+    },
+    {
+      "version": "20260915153058",
+      "name": "prestigious_standard_price"
+    },
+    {
+      "version": "20260918175144",
+      "name": "scoped_sdg_stock_canary"
+    },
+    {
+      "version": "20260918175153",
+      "name": "sample_stock_independent_of_curtain_floor"
+    },
+    {
+      "version": "20260918185515",
+      "name": "supplier_stock_96_hour_freshness"
+    },
+    {
+      "version": "20260918210421",
+      "name": "pt_webtex_stock_policy"
+    },
+    {
+      "version": "20260919055017",
+      "name": "browse_fabric_price_guide"
+    },
+    {
+      "version": "20260919061348",
+      "name": "fabric_visual_enrichment_ledger"
+    },
+    {
+      "version": "20260919063701",
+      "name": "browse_exact_sku_search"
+    },
+    {
+      "version": "20260919065104",
+      "name": "optimised_fabric_visual_fingerprints"
+    },
+    {
+      "version": "20260919073438",
+      "name": "visual_analysis_asset_provenance"
+    },
+    {
+      "version": "20260919165007",
+      "name": "fabric_visual_knowledge_read_model"
+    },
+    {
+      "version": "20260919200223",
+      "name": "fabric_knowledge_browse_filters"
+    },
+    {
+      "version": "20260919201008",
+      "name": "bound_fabric_knowledge_browse_evaluation"
+    },
+    {
+      "version": "20260919201615",
+      "name": "bounded_knowledge_consumption"
+    },
+    {
+      "version": "20260919203544",
+      "name": "fabric_knowledge_read_cache"
+    },
+    {
+      "version": "20260919204441",
+      "name": "remove_unused_knowledge_payload_helper"
+    },
+    {
+      "version": "20260919205306",
+      "name": "bound_approved_price_projection_reads"
+    },
+    {
+      "version": "20260919205442",
+      "name": "bound_browse_projection_working_memory"
+    },
+    {
+      "version": "20260919205556",
+      "name": "cache_governed_discovery_options"
+    },
+    {
+      "version": "20260919205731",
+      "name": "make_discovery_cache_independently_refreshable"
+    },
+    {
+      "version": "20260919205855",
+      "name": "plan_browse_for_requested_filters"
+    },
+    {
+      "version": "20260919210042",
+      "name": "avoid_unused_browse_stock_and_knowledge_scans"
+    },
+    {
+      "version": "20260919210406",
+      "name": "bound_price_projection_columns"
+    },
+    {
+      "version": "20260919210541",
+      "name": "bound_browse_join_work"
+    },
+    {
+      "version": "20260919210705",
+      "name": "avoid_browse_jit_startup_cost"
+    },
+    {
+      "version": "20260919211532",
+      "name": "read_live_price_guides_for_visible_page"
+    },
+    {
+      "version": "20260919211603",
+      "name": "bound_filtered_price_joins"
+    },
+    {
+      "version": "20260919211846",
+      "name": "reuse_filtered_live_price_evidence"
+    },
+    {
+      "version": "20260919212106",
+      "name": "index_governed_browse_price_reads"
+    },
+    {
+      "version": "20260920192346",
+      "name": "mtm_paid_order_lifecycle"
+    },
+    {
+      "version": "20260921103025",
+      "name": "guided_measure_checkout_measurement_allowlist"
+    },
+    {
+      "version": "20260921205826",
+      "name": "multi_curtain_paid_order_contract"
+    },
+    {
+      "version": "20260922130000",
+      "name": "browse_fabric_intelligence_facets"
+    },
+    {
+      "version": "20260925085148",
+      "name": "browse_governed_projection_sources"
+    },
+    {
+      "version": "20260925085155",
+      "name": "browse_governed_projection_read_model"
+    },
+    {
+      "version": "20260925190000",
+      "name": "prestigious_cut_price_basis"
+    },
+    {
+      "version": "20260926113327",
+      "name": "pt_ingestion_orchestration"
+    },
+    {
+      "version": "20260927192625",
+      "name": "naila_prepared_only_read"
+    },
+    {
+      "version": "20260927225121",
+      "name": "naila_prepared_price_level_ids"
+    },
+    {
+      "version": "20260928232459",
+      "name": "fi_patch_b_additive_private_readers_v1"
+    },
+    {
+      "version": "20260929043347",
+      "name": "browse_projection_latest_stock_time_boundary_only"
+    },
+    {
+      "version": "20260929185242",
+      "name": "restore_guided_measure_checkout_measurement_allowlist"
+    },
+    {
+      "version": "20261001172709",
+      "name": "sdg_exact_run_stock_materialization"
+    },
+    {
+      "version": "20261001181017",
+      "name": "supplier_stock_retention_compaction"
+    },
+    {
+      "version": "20261001182943",
+      "name": "supplier_stock_refresh_retention"
+    },
+    {
+      "version": "20261002102003",
+      "name": "protect_supplier_price_evidence_from_stock_retention"
+    },
+    {
+      "version": "20261002104833",
+      "name": "guard_sdg_incident_price_recovery_duplicates"
+    },
+    {
+      "version": "20261002105813",
+      "name": "skip_browse_dirty_lock_for_price_recovery"
+    },
+    {
+      "version": "20261002105909",
+      "name": "supplier_price_incident_recovery_batch"
+    },
+    {
+      "version": "20261002112351",
+      "name": "protect_pt_pdf_cut_price_evidence_from_stock_retention"
+    },
+    {
+      "version": "20261002112638",
+      "name": "pt_august_2026_published_price_list_source"
+    },
+    {
+      "version": "20261002114034",
+      "name": "pt_cut_price_primary_commercial_basis"
+    },
+    {
+      "version": "20261002114617",
+      "name": "pt_retained_webtex_cut_design_source"
+    },
+    {
+      "version": "20261002201534",
+      "name": "fabric_visual_knowledge_overlay_empty"
+    },
+    {
+      "version": "20261002202411",
+      "name": "fabric_visual_knowledge_overlay_browse_source"
+    },
+    {
+      "version": "20261003064551",
+      "name": "fabric_visual_retry_superseded_by_resolved"
+    },
+    {
+      "version": "20261003071017",
+      "name": "fabric_hybrid_artifact_registration"
+    },
+    {
+      "version": "20261003174058",
+      "name": "browse_knowledge_dirty_scope_columns"
+    },
+    {
+      "version": "20261004064841",
+      "name": "browse_twice_daily_low_io"
+    }
+  ],
+  "existingRefreshObserved": [
+    {
+      "application": "mgmt-api",
+      "ageSeconds": 444,
+      "locks": [
+        {
+          "mode": "RowExclusiveLock",
+          "schema": "curtainsuk_private",
+          "granted": true,
+          "relation": "browse_read_projection"
+        },
+        {
+          "mode": "RowShareLock",
+          "schema": "curtainsuk_private",
+          "granted": true,
+          "relation": "browse_projection_control"
+        },
+        {
+          "mode": "RowShareLock",
+          "schema": "curtainsuk_private",
+          "granted": true,
+          "relation": "browse_projection_control_pkey"
+        }
+      ]
+    }
+  ]
+}

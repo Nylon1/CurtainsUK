@@ -1,0 +1,29 @@
+{
+  "approval": "User: Proceed",
+  "protectedHead": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "pullRequest": 170,
+  "sourceFilename": "supabase/migrations/20261011142747_jane_isolated_advisory.sql",
+  "approvedSha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "hostedVersion": "20261011171354",
+  "name": "jane_isolated_advisory",
+  "startedAt": "2026-10-11T17:13:51.360Z",
+  "endedAt": "2026-10-11T17:13:53.858Z",
+  "toolSuccess": true,
+  "ledgerProof": {
+    "version": "20261011171354",
+    "name": "jane_isolated_advisory",
+    "statement_count": 1,
+    "stored_sql_bytes": 24553,
+    "stored_sql_sha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50"
+  },
+  "original78EntriesPreserved": true,
+  "historyCount": 79,
+  "project": "hqysjumypgeapgmqkcrx",
+  "postStatus": "ACTIVE_HEALTHY",
+  "newLogins": 0,
+  "customerRecords": 0,
+  "indexedRecords": 0,
+  "modelCalls": 0,
+  "applicationDeployment": false,
+  "publicActivation": false
+}

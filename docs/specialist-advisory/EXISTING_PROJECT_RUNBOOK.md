@@ -1,6 +1,8 @@
 # Existing-project advisory migration and indexing review procedure
 
-**Not executable approval. No production actions have run.** Target only `hqysjumypgeapgmqkcrx`. No separate Supabase project/branch. Local PostgreSQL synthetic tests remain the development environment.
+**Current status, 11 October 17:16 UTC:** the exact additive migration is applied and hosted metadata verified following explicit owner approval. [Execution receipt and read-back](../../artifacts/jane-migration-execution-20261011/README.md). Source filename `20261011142747_jane_isolated_advisory.sql` maps to API-assigned hosted version `20261011171354`; both have SHA-256 `eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50`. Do not reapply it or repair earlier history. PR #170 is merged at protected `c7ca2d0e`. No application, indexing or account provisioning approval is implied.
+
+The pre-approval procedure below is preserved as the historical review plan. Its statements that execution has not occurred are superseded by the receipt. The actual exact-file workflow used Supabase's single-migration API, with a local submission plan and complete ledger/hash read-back, rather than CLI `db push`. Target only `hqysjumypgeapgmqkcrx`; no separate project/branch. Local PostgreSQL synthetic tests remain the application development environment.
 
 ## Preconditions for a migration request
 

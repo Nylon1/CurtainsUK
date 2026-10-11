@@ -1,0 +1,1238 @@
+{
+  "roles": [
+    {
+      "rolname": "advisory_indexer",
+      "rolsuper": false,
+      "rolinherit": false,
+      "rolcanlogin": false,
+      "rolcreatedb": false,
+      "rolbypassrls": false,
+      "rolcreaterole": false
+    },
+    {
+      "rolname": "advisory_retention",
+      "rolsuper": false,
+      "rolinherit": false,
+      "rolcanlogin": false,
+      "rolcreatedb": false,
+      "rolbypassrls": false,
+      "rolcreaterole": false
+    },
+    {
+      "rolname": "advisory_runtime",
+      "rolsuper": false,
+      "rolinherit": false,
+      "rolcanlogin": false,
+      "rolcreatedb": false,
+      "rolbypassrls": false,
+      "rolcreaterole": false
+    }
+  ],
+  "columns": [
+    {
+      "data_type": "uuid",
+      "table_name": "consultations",
+      "column_name": "id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "consultations",
+      "column_name": "owner_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "integer",
+      "table_name": "consultations",
+      "column_name": "revision",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "jsonb",
+      "table_name": "consultations",
+      "column_name": "state",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "text",
+      "table_name": "consultations",
+      "column_name": "consent_version",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "consultations",
+      "column_name": "expires_at",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "consultations",
+      "column_name": "created_at",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "evaluation_runs",
+      "column_name": "id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "boolean",
+      "table_name": "evaluation_runs",
+      "column_name": "enabled",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "data_type": "bigint",
+      "table_name": "evaluation_runs",
+      "column_name": "limit_micro",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "bigint",
+      "table_name": "evaluation_runs",
+      "column_name": "used_micro",
+      "is_nullable": "NO",
+      "column_default": "0"
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "evaluation_runs",
+      "column_name": "expires_at",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "integer",
+      "table_name": "index_gate",
+      "column_name": "id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "index_gate",
+      "column_name": "token",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "index_gate",
+      "column_name": "lease_until",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "index_gate",
+      "column_name": "next_at",
+      "is_nullable": "NO",
+      "column_default": "'-infinity'::timestamp with time zone"
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "index_job_items",
+      "column_name": "job_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "text",
+      "table_name": "index_job_items",
+      "column_name": "fabric_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "jsonb",
+      "table_name": "index_job_items",
+      "column_name": "before_row",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "data_type": "text",
+      "table_name": "index_job_items",
+      "column_name": "after_hash",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "jsonb",
+      "table_name": "index_job_items",
+      "column_name": "fields",
+      "is_nullable": "NO",
+      "column_default": "'{}'::jsonb"
+    },
+    {
+      "data_type": "boolean",
+      "table_name": "index_job_items",
+      "column_name": "rolled_back",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "data_type": "bigint",
+      "table_name": "index_job_items",
+      "column_name": "write_sequence",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "index_jobs",
+      "column_name": "id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "text",
+      "table_name": "index_jobs",
+      "column_name": "source_snapshot",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "integer",
+      "table_name": "index_jobs",
+      "column_name": "expected_count",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "data_type": "jsonb",
+      "table_name": "index_jobs",
+      "column_name": "cursor",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "data_type": "integer",
+      "table_name": "index_jobs",
+      "column_name": "processed",
+      "is_nullable": "NO",
+      "column_default": "0"
+    },
+    {
+      "data_type": "integer",
+      "table_name": "index_jobs",
+      "column_name": "indexed",
+      "is_nullable": "NO",
+      "column_default": "0"
+    },
+    {
+      "data_type": "boolean",
+      "table_name": "index_jobs",
+      "column_name": "complete",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "data_type": "integer",
+      "table_name": "index_jobs",
+      "column_name": "batches",
+      "is_nullable": "NO",
+      "column_default": "0"
+    },
+    {
+      "data_type": "text",
+      "table_name": "index_jobs",
+      "column_name": "status",
+      "is_nullable": "NO",
+      "column_default": "'ready'::text"
+    },
+    {
+      "data_type": "integer",
+      "table_name": "index_jobs",
+      "column_name": "failures",
+      "is_nullable": "NO",
+      "column_default": "0"
+    },
+    {
+      "data_type": "text",
+      "table_name": "index_jobs",
+      "column_name": "last_error",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "index_jobs",
+      "column_name": "created_at",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "index_jobs",
+      "column_name": "updated_at",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "data_type": "text",
+      "table_name": "knowledge_search",
+      "column_name": "fabric_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "tsvector",
+      "table_name": "knowledge_search",
+      "column_name": "document",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "tsvector",
+      "table_name": "knowledge_search",
+      "column_name": "colour",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "tsvector",
+      "table_name": "knowledge_search",
+      "column_name": "pattern",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "tsvector",
+      "table_name": "knowledge_search",
+      "column_name": "texture",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "tsvector",
+      "table_name": "knowledge_search",
+      "column_name": "composition",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "text",
+      "table_name": "knowledge_search",
+      "column_name": "source_hash",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "knowledge_search",
+      "column_name": "indexed_at",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "leases",
+      "column_name": "owner_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "text",
+      "table_name": "leases",
+      "column_name": "resource",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "leases",
+      "column_name": "token",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "leases",
+      "column_name": "expires_at",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "spend_reservations",
+      "column_name": "id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "spend_reservations",
+      "column_name": "run_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "spend_reservations",
+      "column_name": "owner_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "spend_reservations",
+      "column_name": "session_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "bigint",
+      "table_name": "spend_reservations",
+      "column_name": "reserved_micro",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "bigint",
+      "table_name": "spend_reservations",
+      "column_name": "charged_micro",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "boolean",
+      "table_name": "spend_reservations",
+      "column_name": "settled",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "spend_reservations",
+      "column_name": "created_at",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "data_type": "uuid",
+      "table_name": "usage_windows",
+      "column_name": "owner_id",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "timestamp with time zone",
+      "table_name": "usage_windows",
+      "column_name": "window_start",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "text",
+      "table_name": "usage_windows",
+      "column_name": "kind",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "data_type": "integer",
+      "table_name": "usage_windows",
+      "column_name": "used",
+      "is_nullable": "NO",
+      "column_default": null
+    }
+  ],
+  "indexes": [
+    {
+      "indexdef": "CREATE INDEX advisory_consultations_owner_expiry ON advisory.consultations USING btree (owner_id, expires_at)",
+      "indexname": "advisory_consultations_owner_expiry",
+      "tablename": "consultations"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_knowledge_colour ON advisory.knowledge_search USING gin (colour)",
+      "indexname": "advisory_knowledge_colour",
+      "tablename": "knowledge_search"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_knowledge_composition ON advisory.knowledge_search USING gin (composition)",
+      "indexname": "advisory_knowledge_composition",
+      "tablename": "knowledge_search"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_knowledge_pattern ON advisory.knowledge_search USING gin (pattern)",
+      "indexname": "advisory_knowledge_pattern",
+      "tablename": "knowledge_search"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_knowledge_terms ON advisory.knowledge_search USING gin (document)",
+      "indexname": "advisory_knowledge_terms",
+      "tablename": "knowledge_search"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_knowledge_texture ON advisory.knowledge_search USING gin (texture)",
+      "indexname": "advisory_knowledge_texture",
+      "tablename": "knowledge_search"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_retention_leases ON advisory.leases USING btree (expires_at)",
+      "indexname": "advisory_retention_leases",
+      "tablename": "leases"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_retention_sessions ON advisory.consultations USING btree (expires_at)",
+      "indexname": "advisory_retention_sessions",
+      "tablename": "consultations"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_retention_spend ON advisory.spend_reservations USING btree (created_at)",
+      "indexname": "advisory_retention_spend",
+      "tablename": "spend_reservations"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_retention_windows ON advisory.usage_windows USING btree (window_start)",
+      "indexname": "advisory_retention_windows",
+      "tablename": "usage_windows"
+    },
+    {
+      "indexdef": "CREATE INDEX advisory_spend_session ON advisory.spend_reservations USING btree (run_id, session_id)",
+      "indexname": "advisory_spend_session",
+      "tablename": "spend_reservations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX advisory_start_request ON advisory.consultations USING btree (owner_id, ((state ->> 'startRequest'::text)))",
+      "indexname": "advisory_start_request",
+      "tablename": "consultations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX consultations_pkey ON advisory.consultations USING btree (id)",
+      "indexname": "consultations_pkey",
+      "tablename": "consultations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX evaluation_runs_pkey ON advisory.evaluation_runs USING btree (id)",
+      "indexname": "evaluation_runs_pkey",
+      "tablename": "evaluation_runs"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX index_gate_pkey ON advisory.index_gate USING btree (id)",
+      "indexname": "index_gate_pkey",
+      "tablename": "index_gate"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX index_job_items_pkey ON advisory.index_job_items USING btree (job_id, fabric_id)",
+      "indexname": "index_job_items_pkey",
+      "tablename": "index_job_items"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX index_jobs_pkey ON advisory.index_jobs USING btree (id)",
+      "indexname": "index_jobs_pkey",
+      "tablename": "index_jobs"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX knowledge_search_pkey ON advisory.knowledge_search USING btree (fabric_id)",
+      "indexname": "knowledge_search_pkey",
+      "tablename": "knowledge_search"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX leases_pkey ON advisory.leases USING btree (owner_id, resource)",
+      "indexname": "leases_pkey",
+      "tablename": "leases"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX spend_reservations_pkey ON advisory.spend_reservations USING btree (id)",
+      "indexname": "spend_reservations_pkey",
+      "tablename": "spend_reservations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX usage_windows_pkey ON advisory.usage_windows USING btree (owner_id, window_start, kind)",
+      "indexname": "usage_windows_pkey",
+      "tablename": "usage_windows"
+    }
+  ],
+  "schemas": [
+    {
+      "acl": "{postgres=UC/postgres,advisory_runtime=U/postgres,advisory_indexer=U/postgres,advisory_retention=U/postgres}",
+      "nspname": "advisory"
+    },
+    {
+      "acl": "{supabase_admin=UC/supabase_admin,anon=U/supabase_admin,authenticated=U/supabase_admin,service_role=U/supabase_admin,supabase_auth_admin=UC/supabase_admin,dashboard_user=UC/supabase_admin,postgres=U/supabase_admin}",
+      "nspname": "auth"
+    }
+  ],
+  "operator": "postgres",
+  "policies": [
+    {
+      "cmd": "ALL",
+      "qual": "(expires_at < clock_timestamp())",
+      "roles": [
+        "advisory_retention"
+      ],
+      "tablename": "consultations",
+      "policyname": "advisory_retention_sessions",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)",
+      "roles": [
+        "advisory_runtime"
+      ],
+      "tablename": "consultations",
+      "policyname": "advisory_runtime_consultations",
+      "with_check": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(expires_at < clock_timestamp())",
+      "roles": [
+        "advisory_retention"
+      ],
+      "tablename": "evaluation_runs",
+      "policyname": "advisory_retention_runs",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "qual": "true",
+      "roles": [
+        "advisory_runtime"
+      ],
+      "tablename": "evaluation_runs",
+      "policyname": "advisory_runtime_runs",
+      "with_check": "true"
+    },
+    {
+      "cmd": "ALL",
+      "qual": "true",
+      "roles": [
+        "advisory_indexer"
+      ],
+      "tablename": "index_gate",
+      "policyname": "advisory_index_gate",
+      "with_check": "true"
+    },
+    {
+      "cmd": "ALL",
+      "qual": "true",
+      "roles": [
+        "advisory_indexer"
+      ],
+      "tablename": "index_job_items",
+      "policyname": "advisory_index_items",
+      "with_check": "true"
+    },
+    {
+      "cmd": "ALL",
+      "qual": "true",
+      "roles": [
+        "advisory_indexer"
+      ],
+      "tablename": "index_jobs",
+      "policyname": "advisory_index_jobs",
+      "with_check": "true"
+    },
+    {
+      "cmd": "ALL",
+      "qual": "true",
+      "roles": [
+        "advisory_indexer"
+      ],
+      "tablename": "knowledge_search",
+      "policyname": "advisory_index_knowledge",
+      "with_check": "true"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "true",
+      "roles": [
+        "advisory_runtime"
+      ],
+      "tablename": "knowledge_search",
+      "policyname": "advisory_runtime_knowledge",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(expires_at < clock_timestamp())",
+      "roles": [
+        "advisory_retention"
+      ],
+      "tablename": "leases",
+      "policyname": "advisory_retention_leases",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)",
+      "roles": [
+        "advisory_runtime"
+      ],
+      "tablename": "leases",
+      "policyname": "advisory_runtime_leases",
+      "with_check": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(created_at < (clock_timestamp() - '90 days'::interval))",
+      "roles": [
+        "advisory_retention"
+      ],
+      "tablename": "spend_reservations",
+      "policyname": "advisory_retention_spend",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)",
+      "roles": [
+        "advisory_runtime"
+      ],
+      "tablename": "spend_reservations",
+      "policyname": "advisory_runtime_spend",
+      "with_check": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(window_start < (clock_timestamp() - '2 days'::interval))",
+      "roles": [
+        "advisory_retention"
+      ],
+      "tablename": "usage_windows",
+      "policyname": "advisory_retention_windows",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)",
+      "roles": [
+        "advisory_runtime"
+      ],
+      "tablename": "usage_windows",
+      "policyname": "advisory_runtime_windows",
+      "with_check": "(owner_id = (NULLIF(current_setting('advisory.owner'::text, true), ''::text))::uuid)"
+    }
+  ],
+  "functions": [
+    {
+      "acl": "{postgres=X/postgres,advisory_retention=X/postgres}",
+      "proname": "purge_expired",
+      "arguments": "",
+      "proconfig": [
+        "search_path=\"\"",
+        "statement_timeout=3s"
+      ],
+      "prosecdef": false
+    },
+    {
+      "acl": "{postgres=X/postgres,advisory_runtime=X/postgres}",
+      "proname": "runtime",
+      "arguments": "p_owner uuid, p_action text, p_payload jsonb",
+      "proconfig": [
+        "search_path=\"\""
+      ],
+      "prosecdef": false
+    },
+    {
+      "acl": "{postgres=X/postgres,advisory_runtime=X/postgres}",
+      "proname": "search_knowledge",
+      "arguments": "p_query text, p_colour text, p_pattern text, p_texture text, p_composition text",
+      "proconfig": [
+        "search_path=\"\"",
+        "statement_timeout=2s"
+      ],
+      "prosecdef": false
+    }
+  ],
+  "relations": [
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_consultations_owner_expiry",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_knowledge_colour",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_knowledge_composition",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_knowledge_pattern",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_knowledge_terms",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_knowledge_texture",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_retention_leases",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_retention_sessions",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_retention_spend",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_retention_windows",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_spend_session",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "advisory_start_request",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_runtime=arwd/postgres,advisory_retention=rd/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "consultations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "consultations_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_runtime=rw/postgres,advisory_retention=r/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "evaluation_runs",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "evaluation_runs_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_indexer=rw/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "index_gate",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "index_gate_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_indexer=arw/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "index_job_items",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "index_job_items_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=rwU/postgres,advisory_indexer=U/postgres}",
+      "owner": "postgres",
+      "relkind": "S",
+      "relname": "index_job_items_write_sequence_seq",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_indexer=arw/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "index_jobs",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "index_jobs_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_runtime=r/postgres,advisory_indexer=arwd/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "knowledge_search",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "knowledge_search_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_runtime=arwd/postgres,advisory_retention=rd/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "leases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "leases_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_runtime=arwd/postgres,advisory_retention=rd/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "spend_reservations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "spend_reservations_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": "{postgres=arwdDxtm/postgres,advisory_runtime=arwd/postgres,advisory_retention=rd/postgres}",
+      "owner": "postgres",
+      "relkind": "r",
+      "relname": "usage_windows",
+      "relrowsecurity": true,
+      "relforcerowsecurity": false
+    },
+    {
+      "acl": null,
+      "owner": "postgres",
+      "relkind": "i",
+      "relname": "usage_windows_pkey",
+      "relrowsecurity": false,
+      "relforcerowsecurity": false
+    }
+  ],
+  "rowCounts": {
+    "leases": 0,
+    "index_gate": 1,
+    "index_jobs": 0,
+    "consultations": 0,
+    "usage_windows": 0,
+    "evaluation_runs": 0,
+    "index_job_items": 0,
+    "knowledge_search": 0,
+    "spend_reservations": 0
+  },
+  "emptyBytes": 286720,
+  "observedAt": "2026-10-11T17:14:10.312095+00:00",
+  "connections": 14,
+  "constraints": [
+    {
+      "conname": "consultations_check",
+      "relname": "consultations",
+      "definition": "CHECK ((((jsonb_typeof(state) = 'object'::text) AND (octet_length((state)::text) <= 400000) AND (state ?& ARRAY['id'::text, 'owner'::text, 'revision'::text, 'saved'::text, 'expiresAt'::text]) AND ((state ->> 'id'::text) = (id)::text) AND ((state ->> 'owner'::text) = (owner_id)::text) AND (((state ->> 'revision'::text))::integer = revision) AND ((state -> 'saved'::text) = 'true'::jsonb)) IS TRUE))"
+    },
+    {
+      "conname": "consultations_check1",
+      "relname": "consultations",
+      "definition": "CHECK (((expires_at = to_timestamp((((state ->> 'expiresAt'::text))::double precision / (1000)::double precision))) IS TRUE))"
+    },
+    {
+      "conname": "consultations_consent_version_check",
+      "relname": "consultations",
+      "definition": "CHECK ((consent_version = 'advisory-preview-v1'::text))"
+    },
+    {
+      "conname": "consultations_pkey",
+      "relname": "consultations",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "conname": "consultations_revision_check",
+      "relname": "consultations",
+      "definition": "CHECK ((revision >= 0))"
+    },
+    {
+      "conname": "evaluation_runs_limit_micro_check",
+      "relname": "evaluation_runs",
+      "definition": "CHECK (((limit_micro >= 1) AND (limit_micro <= 5000000)))"
+    },
+    {
+      "conname": "evaluation_runs_pkey",
+      "relname": "evaluation_runs",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "conname": "evaluation_runs_used_micro_check",
+      "relname": "evaluation_runs",
+      "definition": "CHECK ((used_micro >= 0))"
+    },
+    {
+      "conname": "index_gate_id_check",
+      "relname": "index_gate",
+      "definition": "CHECK ((id = 1))"
+    },
+    {
+      "conname": "index_gate_pkey",
+      "relname": "index_gate",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "conname": "index_job_items_job_id_fkey",
+      "relname": "index_job_items",
+      "definition": "FOREIGN KEY (job_id) REFERENCES advisory.index_jobs(id) ON DELETE CASCADE"
+    },
+    {
+      "conname": "index_job_items_pkey",
+      "relname": "index_job_items",
+      "definition": "PRIMARY KEY (job_id, fabric_id)"
+    },
+    {
+      "conname": "index_jobs_cursor_check",
+      "relname": "index_jobs",
+      "definition": "CHECK ((octet_length((cursor)::text) <= 2048))"
+    },
+    {
+      "conname": "index_jobs_expected_count_check",
+      "relname": "index_jobs",
+      "definition": "CHECK ((expected_count >= 0))"
+    },
+    {
+      "conname": "index_jobs_pkey",
+      "relname": "index_jobs",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "conname": "index_jobs_source_snapshot_check",
+      "relname": "index_jobs",
+      "definition": "CHECK (((length(source_snapshot) >= 1) AND (length(source_snapshot) <= 256)))"
+    },
+    {
+      "conname": "index_jobs_status_check",
+      "relname": "index_jobs",
+      "definition": "CHECK ((status = ANY (ARRAY['ready'::text, 'exhausted'::text, 'rolling_back'::text, 'rolled_back'::text])))"
+    },
+    {
+      "conname": "knowledge_search_fabric_id_check",
+      "relname": "knowledge_search",
+      "definition": "CHECK ((fabric_id ~ '^[A-Za-z0-9][A-Za-z0-9-]{0,149}$'::text))"
+    },
+    {
+      "conname": "knowledge_search_pkey",
+      "relname": "knowledge_search",
+      "definition": "PRIMARY KEY (fabric_id)"
+    },
+    {
+      "conname": "leases_pkey",
+      "relname": "leases",
+      "definition": "PRIMARY KEY (owner_id, resource)"
+    },
+    {
+      "conname": "leases_resource_check",
+      "relname": "leases",
+      "definition": "CHECK ((length(resource) <= 100))"
+    },
+    {
+      "conname": "spend_reservations_charged_micro_check",
+      "relname": "spend_reservations",
+      "definition": "CHECK ((charged_micro >= 0))"
+    },
+    {
+      "conname": "spend_reservations_pkey",
+      "relname": "spend_reservations",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "conname": "spend_reservations_reserved_micro_check",
+      "relname": "spend_reservations",
+      "definition": "CHECK ((reserved_micro > 0))"
+    },
+    {
+      "conname": "spend_reservations_run_id_fkey",
+      "relname": "spend_reservations",
+      "definition": "FOREIGN KEY (run_id) REFERENCES advisory.evaluation_runs(id)"
+    },
+    {
+      "conname": "usage_windows_pkey",
+      "relname": "usage_windows",
+      "definition": "PRIMARY KEY (owner_id, window_start, kind)"
+    },
+    {
+      "conname": "usage_windows_used_check",
+      "relname": "usage_windows",
+      "definition": "CHECK ((used >= 0))"
+    }
+  ],
+  "lockWaiters": 0,
+  "memberships": [
+    {
+      "role": "advisory_indexer",
+      "member": "postgres",
+      "grantor": "supabase_admin",
+      "set_option": false,
+      "admin_option": true,
+      "inherit_option": false
+    },
+    {
+      "role": "advisory_retention",
+      "member": "postgres",
+      "grantor": "supabase_admin",
+      "set_option": false,
+      "admin_option": true,
+      "inherit_option": false
+    },
+    {
+      "role": "advisory_runtime",
+      "member": "postgres",
+      "grantor": "supabase_admin",
+      "set_option": false,
+      "admin_option": true,
+      "inherit_option": false
+    }
+  ],
+  "accessMatrix": [
+    {
+      "rolname": "advisory_indexer",
+      "auth_usage": false,
+      "advisory_usage": true,
+      "sequence_usage": true,
+      "knowledge_insert": true,
+      "consultations_select": false
+    },
+    {
+      "rolname": "advisory_retention",
+      "auth_usage": false,
+      "advisory_usage": true,
+      "sequence_usage": false,
+      "knowledge_insert": false,
+      "consultations_select": true
+    },
+    {
+      "rolname": "advisory_runtime",
+      "auth_usage": false,
+      "advisory_usage": true,
+      "sequence_usage": false,
+      "knowledge_insert": false,
+      "consultations_select": true
+    },
+    {
+      "rolname": "anon",
+      "auth_usage": true,
+      "advisory_usage": false,
+      "sequence_usage": false,
+      "knowledge_insert": false,
+      "consultations_select": false
+    },
+    {
+      "rolname": "authenticated",
+      "auth_usage": true,
+      "advisory_usage": false,
+      "sequence_usage": false,
+      "knowledge_insert": false,
+      "consultations_select": false
+    },
+    {
+      "rolname": "service_role",
+      "auth_usage": true,
+      "advisory_usage": false,
+      "sequence_usage": false,
+      "knowledge_insert": false,
+      "consultations_select": false
+    }
+  ],
+  "databaseBytes": 699444371,
+  "postgresVersion": "PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+  "existingColumnGrants": 0,
+  "existingObjectGrants": 0,
+  "browserObjectPrivileges": 0,
+  "browserFunctionPrivileges": 0
+}

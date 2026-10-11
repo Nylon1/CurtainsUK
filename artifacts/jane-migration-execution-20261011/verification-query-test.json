@@ -1,0 +1,12 @@
+{
+  "classification": "LOCAL_VERIFICATION_QUERY_TEST_ONLY",
+  "checkedAt": "2026-10-11T17:13:10.361Z",
+  "passed": true,
+  "tables": 9,
+  "indexes": 21,
+  "policies": 15,
+  "functions": 3,
+  "roles": 3,
+  "unexpectedBrowserGrants": 0,
+  "unexpectedExistingObjectGrants": 0
+}

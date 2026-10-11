@@ -6,7 +6,7 @@ const wasm=['--liftoff-only','--wasm-num-compilation-tasks=1','--test'];
 const checks=[
  ['consultation',['--test','lib/advisory/__tests__/consultation.test.mjs','lib/advisory/__tests__/evaluation.test.mjs','lib/advisory/__tests__/completion.test.mjs']],
  ...['cloud RPC persistence','two workers','distributed rate','verified cloud principals','protected HTTP'].map((pattern,i)=>['cloud-'+(i+1),[...wasm,'--test-name-pattern='+pattern,'lib/advisory/__tests__/cloud.test.mjs']]),
- ...['auth-api','knowledge-search','index-worker','foundations','storage-rls','multi-instance','population-readiness','migration-candidate'].map(name=>[name,[...wasm,'lib/advisory/__tests__/'+name+'.test.mjs']]),
+ ...['auth-api','knowledge-search','index-worker','foundations','storage-rls','multi-instance','population-readiness','migration-candidate','hosted-runtime'].map(name=>[name,[...wasm,'lib/advisory/__tests__/'+name+'.test.mjs']]),
  ['phase1',['--test','scripts/tests/specialist-advisory.test.mjs','scripts/tests/specialist-advisory-interactions.test.mjs']],
  ['theme',['--import','tsx','--test','lib/storefront/__tests__/shopify-theme.test.ts']]
 ];

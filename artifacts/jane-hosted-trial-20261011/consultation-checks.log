@@ -1,0 +1,42 @@
+✔ human-review gate never turns missing scores or critical failures into approval (2.1802ms)
+✔ population controller bounds each invocation, requires fresh approval and stops on a failed step (6.2687ms)
+✔ revised evaluation executes consented context and saved-return actions without paid calls (51.2591ms)
+✔ new evaluation requires fresh approval for this profile and suite before credentials or network (0.7937ms)
+✔ hosted composition accepts only approved existing-project synthetic trials (3.3952ms)
+✔ cloud ciphertext binds owner, identity, revision and expiry; rotation reads old records, no plaintext fallback (5.2352ms)
+✔ cloud read fails closed before RPC without encryption configuration (0.6403ms)
+✔ consented handoff is bound to customer, consultation and expiry; rejects invented visualiser controls (3.1128ms)
+✔ customer wording removes internal feedback codes without changing provenance (0.6594ms)
+✔ safe extended fabric facts and bounded keyset pages omit commercial fields (47.3429ms)
+✔ adaptive mock: warm room, visualiser return, changed preference, personalised summary (16.4203ms)
+✔ mock teaches existing FI, declines unavailable guarantees and unsupported screenshot processing (6.8873ms)
+✔ session ownership, consent, invalid IDs and input injection fail before mutation (3.3988ms)
+✔ duplicate requests are idempotent; conflicting revision or reused key is rejected (1.9314ms)
+✔ concurrent replies cannot fork the same consultation (1.7642ms)
+✔ provider, knowledge and durable storage failures leave valid prior work intact (4.7862ms)
+✔ saved consent, encrypted restart, one-time recovery transfer and deletion (47.453ms)
+✔ expiry prevents access and removes the expired record (1.5016ms)
+✔ welcome deadline catches up after suspension; six profiles retain separate identities (0.5297ms)
+✔ forged model evidence and commercial promises fail closed (3.6969ms)
+✔ source-traceable guides exist and correctly separate headings from visualiser (8.2559ms)
+✔ catalogue allowlist drops supplier secrets and unverified visual fields (3.7563ms)
+✔ master reads are bounded, indexed identity queries with no lifecycle filter; cached, validated and isolated (50.2863ms)
+✔ retail recommendations require governed eligibility, exact URL and approved real image (1.6454ms)
+✔ tools reject arbitrary SQL, excess calls and upstream payloads beyond limits (0.8416ms)
+✔ HTTP enforces origin, CSRF, body limits and rate limits without logging private content (11.8977ms)
+✔ production route is disabled even if flags and preview key accidentally exist (0.7818ms)
+✔ OpenAI activation requires explicit paid-test flag and budget controller (0.44ms)
+✔ test budget reserves atomically, retains ambiguous charges and blocks session/day overspend (1.1303ms)
+✔ Responses adapter preserves context, strict tools and store:false, retries with reserved cost and resumes function results (3.1187ms)
+✔ OpenAI upstream secrets do not leak through HTTP failures (0.6918ms)
+✔ 30-turn evaluation preserves mock baseline and requires separate human judgement (36.5081ms)
+✔ Responses can continue design advice after unavailable retrieval; standard pricing tier remains explicit (48.9215ms)
+✔ saved tool receipts preserve completed and unavailable searches in subsequent model turns (5.487ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 507.8903

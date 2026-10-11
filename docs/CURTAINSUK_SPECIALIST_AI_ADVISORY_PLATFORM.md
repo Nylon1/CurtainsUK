@@ -1,8 +1,16 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Approved advisory migration applied and hosted metadata verified; Jane inactive**
+**Programme source of truth · 11 October 2026 · Hosted Auth and encrypted persistence trial; Jane remains publicly inactive**
 
-## Current milestone: private hosted advisory schema established
+## Current milestone: approved synthetic hosted trial
+
+The owner approved the protected mock trial. [Current trial record](specialist-advisory/HOSTED_TRIAL.md) and [executed evidence](../artifacts/jane-hosted-trial-20261011/README.md) supersede earlier pending-trial statements below. Two owner-confirmed synthetic Auth accounts have passed real login, getUser and cryptographic verification. Two independent local application processes have completed 14 protocol checks against the actual existing Supabase project, including ciphertext inspection, recovery, isolation and concurrency. Test consultation rows were deleted. **100 local tests pass.**
+
+The consultation route now has a bounded TLS PostgreSQL adapter, exact-deployment signed trial grants and authenticated CSRF bootstrap. A four-hour, restricted trial database login was provisioned; its expiry and SQL hash are in the receipt. Vercel Authentication has been enabled for previews only. The existing Vercel project has no Git connection; no Git linking or project-wide secret expansion is planned. API-only Preview packaging uses deployment-scoped credentials. The Vercel-hosted application test is still pending at this checkpoint.
+
+No paid model calls, production application deployment, source-data change, catalogue population, Shopify publication or PR #167/#169 merge occurred. Full descriptive coverage remains 0/16,883. The following sections preserve historical checkpoints and their original limitations.
+
+## Previous milestone: private hosted advisory schema established
 
 The owner approved the single-file merge and migration. [PR #170](https://github.com/Nylon1/CurtainsUK/pull/170) is merged after both required checks; protected HEAD is `c7ca2d0eff1c128386863536d4ce46a877d874a8`. Exactly one migration was applied to existing Pro project `hqysjumypgeapgmqkcrx`. Supabase recorded hosted version `20261011171354_jane_isolated_advisory`; its stored SQL is byte-for-byte identical to source file `20261011142747_jane_isolated_advisory.sql`, SHA-256 `eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50`. All 78 earlier history entries remain unchanged. Do not reapply the source filename or use a blanket CLI push; the API-generated hosted version mapping is explicit in the receipt.
 

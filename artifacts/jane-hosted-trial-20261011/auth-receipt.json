@@ -1,0 +1,19 @@
+{
+  "classification": "HOSTED_AUTH_VERIFIED_DATABASE_ACCESS_NOT_PROVISIONED",
+  "checkedAt": "2026-10-11T17:44:26.282Z",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "owners": [
+    "4b7ebe61-d6ee-4132-b3d0-700820fea727",
+    "cf8f5141-8aaa-49d4-a0bd-f170df717b96"
+  ],
+  "authChecks": [
+    "password-login",
+    "getUser",
+    "cryptographic-getClaims",
+    "issuer-and-session-ownership"
+  ],
+  "role": "advisory_trial_9e73644e63680488",
+  "expiresAt": "2026-10-11T21:43:25.808Z",
+  "provisioningSha256": "7d63a059a94d007eb6bffc2f762b12ddc2a1fed807df8db6e958152dac37298e",
+  "privateConfigurationPath": "C:\\Users\\hamza\\.curtainsuk-jane-private-preview\\hosted-trial-1791740665813.dpapi"
+}

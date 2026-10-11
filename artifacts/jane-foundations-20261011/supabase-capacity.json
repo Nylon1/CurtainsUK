@@ -1,0 +1,16 @@
+{
+  "observedDate": "2026-10-11",
+  "source": "Authenticated Supabase dashboard, read-only visible usage page",
+  "url": "https://supabase.com/dashboard/org/bhnoekmrlyvtubzdargw/usage",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "plan": "Free",
+  "billingCycle": "07 Oct 2026 - 07 Nov 2026",
+  "banner": "EXCEEDING USAGE LIMITS",
+  "databaseSummary": "0.708 / 0.5 GB (142%)",
+  "projectDatabaseSizeDisplayed": "674.76 MB",
+  "egress": "0.04 / 5 GB",
+  "interpretation": "Capacity review required before advisory migration or indexing. Dashboard display units retained verbatim. No live query-plan or I/O test performed.",
+  "planChanges": 0,
+  "databaseWrites": 0,
+  "cleanup": false
+}

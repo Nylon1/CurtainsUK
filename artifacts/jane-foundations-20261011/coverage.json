@@ -1,0 +1,38 @@
+{
+  "classification": "FIVE_HISTORICAL_MASTER_RECORDS_REINDEXED_LOCALLY_NOT_PRODUCTION_COVERAGE",
+  "sourceCapturedAt": "2026-10-09T21:36:52.167Z",
+  "uniqueIdentities": 5,
+  "ids": [
+    "pt-3697-502",
+    "pt-3697-569",
+    "pt-3697-575",
+    "pt-3697-770",
+    "sdg-f1541-01"
+  ],
+  "fieldsPresent": {
+    "colour": 5,
+    "tone": 5,
+    "pattern": 5,
+    "patternScale": 5,
+    "texture": 5,
+    "description": 0,
+    "composition": 4,
+    "width": 5,
+    "weight": 1,
+    "technical": 4
+  },
+  "fieldDenominator": 5,
+  "fullMasterExactDenominator": null,
+  "productionIndexedByThisProgramme": 0,
+  "complete": false,
+  "productionIndexingAuthorised": false,
+  "syntheticPerformanceRecords": 120,
+  "limits": {
+    "batch": 6,
+    "intervalMs": 5000,
+    "leaseMs": 30000,
+    "readTimeoutMs": 12000,
+    "maxInvocationBatches": 20
+  },
+  "liveDatabaseMetadata": "CONNECTOR_FAILED_2026_10_11_NOT_REVERIFIED"
+}

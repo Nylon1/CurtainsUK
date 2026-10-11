@@ -1,10 +1,26 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 9 October 2026 · Team release candidate verified; Jane completion increment locally tested, hosted activation pending**
+**Programme source of truth · 11 October 2026 · Jane foundations locally tested; existing-project migration and activation unapproved**
 
-## Latest implementation: encrypted persistence, indexed knowledge and concise Jane
+## Current milestone: existing-project foundations and evaluation preparation
 
-[Jane completion record](specialist-advisory/JANE_COMPLETION.md) is the current detailed source of truth. Work starts from `fefa6029287dcacb4ac924a50767e27351f2ac7c` in draft PR #169. PR #167 remains independent and unchanged at `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; protected HEAD is still `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. Fresh read-back verifies all 20 scoped theme files and unchanged checksums for all 505 live files. The permanent team page remains unpublished.
+[Jane foundations readiness](specialist-advisory/JANE_FOUNDATIONS.md) is the current detailed record; [existing-project operator runbook](specialist-advisory/EXISTING_PROJECT_RUNBOOK.md) is the migration/indexing proposal. Older environment proposals below are superseded: use only existing Supabase project `hqysjumypgeapgmqkcrx`, with no separate project or branch. Work started from PR #169 `0f07dfab163406f065351cbfa9be090e16c063c2`. Protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`; PR #167 remains unchanged at `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`.
+
+Implemented and locally tested: global six-record index pacing, source reads outside SQL transactions, fenced commits, resumable checkpoints, strict upstream completeness, field coverage and bounded before-image rollback; separate runtime/indexer/retention roles; owner-scoped pooled access; a narrow Auth-session verifier; bounded all-owner retention; and an existing-project-only synthetic hosted composition gate. Six hashed review SQL files remain unapplied. Separate-process local tests now exercise the restricted runtime role. No production migration, population, route wiring or hosted test ran.
+
+**Coverage is partial:** five historical Master records reindexed locally, not five newly read records. Current exact Master denominator is unknown; production identities indexed by this programme are zero. A separate 120-record synthetic fixture tests performance/recovery. Field completeness and limitations are in the coverage receipt. Supplier records, refreshes, canonical eligibility and the completed retail `browseGuide=1` correction are untouched.
+
+Jane's approved `2.2.0-preview.1` concise, design-first style is preserved. The new v3 suite has 20 scenarios, 60 mock advice turns plus three context/save/recovery actions, all completed without service errors. Twelve historical blind comparisons and 24 blank human scorecards are ready. Revised real-model quality is **not yet established**; no fresh budget is approved and no paid calls occurred. Prior receipts remain US$0.132574. The owner confirms the exposed temporary key **still needs revocation**; this development does not use it.
+
+**84 scoped tests pass**, plus scoped lint. Actual Chrome checks found no overflow at all five required widths. All six profiles, auto-opening previews and keyboard exit were exercised. Actual reduced-motion behaviour passed with the OS setting temporarily changed and restored. Physical iPhone/touch, spoken screen reader and confirmed hidden-tab timing remain pending. The earlier 20-file live-theme comparison is preserved, not represented as newly repeated; rerun it before any approved publication.
+
+Read-only Supabase dashboard evidence shows the existing Free-plan database at **0.708/0.5 GB (142%)**. Capacity is a hosted-migration/indexing blocker; no purchase or cleanup was made. C: began at 40.43 GiB free; the initially active restic process later disappeared, without proof of successful backup. Preserve all evidence and include this milestone in a subsequent verified backup.
+
+Review [the running local gallery](http://127.0.0.1:8789/foundations), [scripted consultation](http://127.0.0.1:8789/), and [exact changes/test evidence](../artifacts/jane-foundations-20261011/IMPLEMENTATION.md). **Recommendation:** approve the local milestone for continued review. Resolve capacity and review the exact migration/roles/privacy procedure before authorising synthetic hosted tests or bounded indexing. Jane stays inactive. PR #167 retains its independent scoped publication procedure and requires separate owner approval. No production system was changed.
+
+## Historical implementation: encrypted persistence, indexed knowledge and concise Jane
+
+[Jane completion record](specialist-advisory/JANE_COMPLETION.md) records the preceding increment. Work starts from `fefa6029287dcacb4ac924a50767e27351f2ac7c` in draft PR #169. PR #167 remains independent and unchanged at `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`; protected HEAD is still `3649c879a4a5ddf88c2093a4172d20fbc58cd265`. That increment's read-back verifies all 20 scoped theme files and unchanged checksums for all 505 live files. The permanent team page remains unpublished.
 
 Jane `2.2.0-preview.1` targets 40–90 words for ordinary replies and avoids em dashes. New customer-language hygiene removes internal feedback codes. The profile improves useful questioning, feedback refinement, meaningful alternatives and room-to-fabric query interpretation. Its intelligence has **not yet been re-evaluated with a real model**. Earlier paid transcripts and US$0.132574 ledger receipts remain unchanged; the new 16-scenario/48-turn mock suite is infrastructure evidence only. No additional paid calls were made, and the runner rejects the previous approval for the new profile/suite.
 

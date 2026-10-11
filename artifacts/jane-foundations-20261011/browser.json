@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-10-11T13:43:23.556Z",
+  "classification": "ACTUAL_CHROME_BROWSER_NOT_PHYSICAL_IPHONE",
+  "janeWidths": [
+    {
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "width": 412
+    },
+    {
+      "overflow": false,
+      "width": 768
+    },
+    {
+      "overflow": false,
+      "width": 1440
+    }
+  ],
+  "galleryWidths": [
+    {
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "width": 412
+    },
+    {
+      "overflow": false,
+      "width": 768
+    },
+    {
+      "overflow": false,
+      "width": 1440
+    }
+  ],
+  "teamWidths": [
+    {
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "width": 412
+    },
+    {
+      "overflow": false,
+      "width": 768
+    },
+    {
+      "overflow": false,
+      "width": 1440
+    }
+  ],
+  "profileChecks": [
+    {
+      "name": "Anne",
+      "pressed": "true"
+    },
+    {
+      "name": "Noah",
+      "pressed": "true"
+    },
+    {
+      "name": "James",
+      "pressed": "true"
+    },
+    {
+      "name": "Ben",
+      "pressed": "true"
+    },
+    {
+      "name": "Natalie",
+      "pressed": "true"
+    },
+    {
+      "name": "Jane",
+      "pressed": "true"
+    }
+  ],
+  "reducedMotion": {
+    "windowsAnimationsTemporarilyOff": true,
+    "detected": true,
+    "allTwelveTeamPortraitsTransitionSeconds": 0,
+    "janePortraitTransitionSeconds": 0,
+    "restored": true,
+    "restoredJanePortraitTransitionSeconds": 0.8
+  },
+  "autoRoomOpeningObserved": true,
+  "keyboardEscapeFocusRestored": true,
+  "screenReader": "Accessibility tree inspected; spoken screen-reader verification pending",
+  "physicalIphone": "unavailable",
+  "touch": "physical touch unavailable",
+  "hiddenTab": "Not verified: document.visibilityState stayed visible through tool-controlled tab changes"
+}

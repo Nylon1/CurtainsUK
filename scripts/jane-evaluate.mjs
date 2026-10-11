@@ -11,11 +11,11 @@ import {createOpenAIProvider,MODEL_RATES} from '../lib/advisory/openai-provider.
 import {CloudSessionStore} from '../lib/advisory/cloud-store.mjs';
 import {createCatalogue} from '../lib/advisory/catalogue.mjs';
 import {fail} from '../lib/advisory/contracts.mjs';
-import {completionCases,completionRubric,EVALUATION_VERSION,requireFreshEvaluationApproval} from '../lib/advisory/evaluation-v2.mjs';
+import {foundationsCases as completionCases,foundationsRubric as completionRubric,EVALUATION_VERSION,requireFreshEvaluationApproval} from '../lib/advisory/evaluation-v3.mjs';
 const mode=process.argv[2]??'mock';if(!['mock','openai'].includes(mode))throw Error('Use mock or openai.');
 const tag=process.argv[4]??mode;if(!/^[a-z0-9-]{1,40}$/.test(tag))throw Error('Invalid evidence tag');
 const caseIds=process.argv[5]?.split(',')??null;
-const output=path.resolve('artifacts/jane-completion');await mkdir(output,{recursive:true});
+const output=path.resolve(process.env.ADVISORY_EVIDENCE_DIR??'artifacts/jane-foundations-20261011');await mkdir(output,{recursive:true});
 let catalogue={lookup:async()=>[],identities:async()=>[],retail:async()=>[],descriptive:async()=>({fabrics:[],coverage:{complete:false,state:'evaluation-fixture'}})};
 let providerFactory=()=>createMockProvider(),db,lockPath,locked=false;
 const usage=[];

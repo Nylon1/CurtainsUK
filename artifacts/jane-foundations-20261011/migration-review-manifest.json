@@ -1,0 +1,42 @@
+{
+  "classification": "REVIEW_ONLY_NOT_A_PRODUCTION_MIGRATION",
+  "hashFormat": "UTF8_LF_matches_normalised_Git_blobs",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "schema": "advisory",
+  "applyOrder": [
+    {
+      "path": "lib/advisory/schema.review.sql",
+      "sha256": "b1d9ba0f18a468e4045f1f057a485261bdaadd8d3c08bb75eac01fde90e849cd",
+      "bytes": 2431
+    },
+    {
+      "path": "lib/advisory/runtime.review.sql",
+      "sha256": "6bab92fb852174fbc050d84990d4f19280787a38a09eec79d588d7569a2652d9",
+      "bytes": 10255
+    },
+    {
+      "path": "lib/advisory/search.review.sql",
+      "sha256": "1bcd63e5c572b464c606eafe4e36b1cfabb6cedab6e39c749ef440207f3a46d8",
+      "bytes": 2603
+    },
+    {
+      "path": "lib/advisory/index-worker.review.sql",
+      "sha256": "877af38004f9879bc78b5b24a580ff569f15bbbeb0f1b2ce15a1ec9fb03866d2",
+      "bytes": 2023
+    },
+    {
+      "path": "lib/advisory/operations.review.sql",
+      "sha256": "f699d61e7603bec75c9c13bbaf4cd333ecb0820540483b5adf5b1a43e8e88abd",
+      "bytes": 6693
+    },
+    {
+      "path": "lib/advisory/auth-session.review.sql",
+      "sha256": "cd280d11b8d1bba2d3257cd4760de902f6f91036eda590ccaccf84ce557c3b29",
+      "bytes": 571
+    }
+  ],
+  "bundleHash": "3c23159271945d210d8cce38ea3c3920c6b9ea39f0c247490a661b2f66cae1bd",
+  "approved": false,
+  "applied": false,
+  "cliMigrationRequired": true
+}

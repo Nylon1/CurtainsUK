@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-11",
+  "startingCommit": "0f07dfab163406f065351cbfa9be090e16c063c2",
+  "protectedHead": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+  "teamPr167Head": "851078c674ac2e9231e51dffbd5949ed4ea7c6d1",
+  "branch": "feat/jane-consultation-phase2-20261009",
+  "startFreeGiB": 40.43,
+  "backupObserved": {
+    "process": "restic",
+    "pid": 26724,
+    "completion": "not verified"
+  },
+  "supabaseExistingProject": "hqysjumypgeapgmqkcrx",
+  "supabaseConnectorRead": "failed, no changes attempted",
+  "newProjectsOrBranches": 0,
+  "migrationsApplied": 0,
+  "productionIndexBatches": 0,
+  "keyRetirement": "Owner confirms still needs revocation",
+  "newPaidCalls": 0,
+  "endFreeGiB": 40.42,
+  "backupAtEnd": "No restic process visible, success not verified",
+  "finalProtectedHead": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+  "finalTeamPr167Head": "851078c674ac2e9231e51dffbd5949ed4ea7c6d1"
+}

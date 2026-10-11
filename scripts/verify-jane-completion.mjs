@@ -1,12 +1,12 @@
 // Serial, bounded checks reuse existing dependencies on this constrained host.
 import {spawnSync} from 'node:child_process';
 import {writeFile,mkdir} from 'node:fs/promises';
-const dir='artifacts/jane-completion';await mkdir(dir,{recursive:true});
+const dir=process.env.ADVISORY_EVIDENCE_DIR??'artifacts/jane-foundations-20261011';await mkdir(dir,{recursive:true});
 const wasm=['--liftoff-only','--wasm-num-compilation-tasks=1','--test'];
 const checks=[
  ['consultation',['--test','lib/advisory/__tests__/consultation.test.mjs','lib/advisory/__tests__/evaluation.test.mjs','lib/advisory/__tests__/completion.test.mjs']],
  ...['cloud RPC persistence','two workers','distributed rate','verified cloud principals','protected HTTP'].map((pattern,i)=>['cloud-'+(i+1),[...wasm,'--test-name-pattern='+pattern,'lib/advisory/__tests__/cloud.test.mjs']]),
- ...['knowledge-search','index-worker','storage-rls','multi-instance'].map(name=>[name,[...wasm,'lib/advisory/__tests__/'+name+'.test.mjs']]),
+ ...['knowledge-search','index-worker','foundations','storage-rls','multi-instance'].map(name=>[name,[...wasm,'lib/advisory/__tests__/'+name+'.test.mjs']]),
  ['phase1',['--test','scripts/tests/specialist-advisory.test.mjs','scripts/tests/specialist-advisory-interactions.test.mjs']],
  ['theme',['--import','tsx','--test','lib/storefront/__tests__/shopify-theme.test.ts']]
 ];

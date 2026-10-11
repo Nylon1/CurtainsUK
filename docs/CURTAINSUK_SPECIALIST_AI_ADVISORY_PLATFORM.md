@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · First hosted six-fabric index batch verified; coverage 6/16,883; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · Bounded continuation implemented and locally tested; hosted coverage remains 6/16,883; Jane remains publicly inactive**
 
-## Current milestone: first hosted six-identity indexing trial completed
+## Current milestone: bounded continuation ready for scope review
+
+Starting from PR #169 `38dd895f`, the connector continuation port now resumes the existing job without replaying the first-batch bootstrap. It reuses the established projections, index terms, schema, checkpoint/gate and temporary-permission pattern. The next review scope names exactly 120 identities, in at most 20 six-record transactions, from offset 6 to 126. The approval range remains binding after restarts. [Implementation and test report](../artifacts/jane-index-continuation-20261011/README.md), [exact scope/permission review](../artifacts/jane-index-continuation-20261011/APPROVAL_REVIEW.md).
+
+**109 local tests pass**, including migration, security, concurrency and all 38 team/theme regression checks. New cases verify 20 batches, late failure, original-permission restoration, replay refusal, final short pages and continued use of the original worker. No new hosted write or model call ran. Hosted coverage stays **6/16,883**, with unchanged 81-entry history and restored original permissions.
+
+New field receipts now distinguish meaningful known values from literal `unknown` or missing data, using version metadata in the existing receipt JSON. Coverage reports exclude legacy presence flags from known-value counts and report those legacy receipts explicitly. The original six receipts, catalogue term hashes and canonical Fabric Master are unchanged. No migration is needed for this reporting correction.
+
+Read-only checks reattested the unchanged 16,883-identity manifest at 19:17 UTC. Pro/ACTIVE_HEALTHY, 16/60 connections, zero lock waiters and no other active statements were observed. Hourly dashboard aggregates were CPU 11%, I/O 1%, memory 62%, disk 50%; these are not future execution admission. Latest visible backup remains 01:03:26 UTC, C: had 39.10 GiB free, and Toshiba completion/restore rehearsal remain unverified.
+
+The first single-batch approval is complete. The larger 120-identity scope and up to 20 transaction-only role grants are prepared for explicit review. No further population, paid model test, deployment, publication or activation is implied. Historical milestones below retain their original observations.
+
+## Previous milestone: first hosted six-identity indexing trial completed
 
 The owner approved both the six-record scope and the transaction-only permission sequence. One batch committed at 18:55 UTC in existing Pro project `hqysjumypgeapgmqkcrx`, job `a6c0d329-935e-4c31-b8ef-71a52f6d9149`. [Executed report, exact SQL and evidence](../artifacts/jane-first-index-execution-20261011/README.md). Starting PR #169 source was `dee5227092bd243b408b9ddd65a0617580d0ecaf`; protected `c7ca2d0e` is unchanged.
 

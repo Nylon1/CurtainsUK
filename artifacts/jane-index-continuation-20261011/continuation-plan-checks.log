@@ -1,0 +1,13 @@
+✔ unknown values are excluded from meaningful field coverage, including empty array members (2.1617ms)
+✔ continuation refuses old approval, scope overrun, stale evidence, wrong IDs and changed checkpoints (116.2885ms)
+✔ 20 resumable connector batches preserve original worker format, ACLs and truthful legacy coverage (4812.5192ms)
+✔ active gate, late failure, changed null denominator and supplier SQL text cannot bypass the transaction (3173.5463ms)
+✔ final short batch requires fresh whole-manifest attestation before declaring complete (2977.5625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11509.1064

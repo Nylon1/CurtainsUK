@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-11T19:18:26.957Z",
+  "preflight": {
+    "job": {
+      "id": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+      "cursor": {
+        "offset": 6,
+        "manifestHash": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+      },
+      "status": "ready",
+      "batches": 1,
+      "indexed": 6,
+      "complete": false,
+      "failures": 0,
+      "processed": 6,
+      "created_at": "2026-10-11T18:55:39.275182+00:00",
+      "last_error": null,
+      "updated_at": "2026-10-11T18:55:39.439584+00:00",
+      "expected_count": 16883,
+      "source_snapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+    },
+    "indexed": 6,
+    "lock_waits": 0,
+    "connections": 16,
+    "observed_at": "2026-10-11T19:08:48.867093+00:00",
+    "other_active": 0,
+    "database_bytes": 699772051,
+    "can_set_indexer": false,
+    "migration_count": 81
+  },
+  "project": {
+    "id": "hqysjumypgeapgmqkcrx",
+    "ref": "hqysjumypgeapgmqkcrx",
+    "organization_id": "bhnoekmrlyvtubzdargw",
+    "organization_slug": "bhnoekmrlyvtubzdargw",
+    "name": "CurtainsUK",
+    "region": "eu-central-1",
+    "status": "ACTIVE_HEALTHY",
+    "database": {
+      "host": "db.hqysjumypgeapgmqkcrx.supabase.co",
+      "version": "17.6.1.166",
+      "postgres_engine": "17",
+      "release_channel": "ga"
+    },
+    "created_at": "2026-09-07T07:14:56.035535Z"
+  },
+  "attestation": {
+    "observed_at": "2026-10-11 19:17:08.940413+00",
+    "identity_count": 16883,
+    "inventory_complete": true,
+    "identity_sha256": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+  },
+  "resourceDashboard": {
+    "source": "Supabase Overview",
+    "window": "Last 60 minutes",
+    "windowEnd": "2026-10-11T19:17:13.241Z",
+    "cpuPercent": 11,
+    "ioPercent": 1,
+    "memoryPercent": 62,
+    "diskPercent": 50,
+    "note": "Dashboard aggregate, not an instantaneous measurement or execution admission token."
+  },
+  "cFreeGiB": 39.1,
+  "resticOrRobocopyVisible": false,
+  "toshibaCompletion": "unverified",
+  "hostedWritesThisTurn": 0
+}

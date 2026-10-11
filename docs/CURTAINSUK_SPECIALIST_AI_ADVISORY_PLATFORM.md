@@ -1,8 +1,18 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Eligible-only scope reconciled; six historical hosted rows, five inside the 11,517 published eligible-ID snapshot; hosted population blocked at mandatory preflight; Jane remains publicly inactive**
+**Programme source of truth · 11 October 2026 · Eligible execution binding implemented; 129 local tests pass; six historical hosted rows, five inside the 11,517 published eligible-ID snapshot; hosted population stopped at backup/telemetry prerequisites; Jane remains publicly inactive**
 
-## Current milestone: eligible-only population scope
+## Current milestone: eligible execution binding complete locally
+
+The [20:34 UTC owner go-ahead](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113454744) authorises clearing prerequisites, a monitored first 120 eligible IDs, then healthy bounded continuation under one approval. From PR #169 `3eb42b82`, the separate-job SQL connector now starts at a null cursor, verifies five unchanged existing rows without rewriting them, preserves the historical job/receipts, restores transaction-local permissions before COMMIT, and verifies exact durable outcomes. The journaled runner enforces the canary assessment, six-record transactions, five-second gate, 20-batch invocations, safety stops and progress reports every 1,000. [Implementation and current readiness](specialist-advisory/JANE_ELIGIBLE_EXECUTION.md).
+
+**129 local tests pass.** Real local PostgreSQL tests exercise bootstrap, no-ops, rollback, collisions, lease protection, replay and permissions. A synthetic 11,517-ID run completes 1,920 batches in 96 invocations; this does not establish hosted coverage or throughput. No hosted eligible job or canary has started. The original six-row job remains unchanged; only five rows overlap the eligible scope.
+
+**Remaining mandatory prerequisites:** latest visible backup is still 11 October 01:03:26 UTC, before the 18:55 writes; a newer recoverable backup, named recovery operator and accepted RPO are needed. Database reports do support a custom one-minute interval, but CPU/disk telemetry fails to load and Overview reverts to daily aggregates. Appropriate current metrics access and secure operator credential verification remain unavailable. Read-only SQL shows ACTIVE_HEALTHY, 699,780,243 database bytes, 16/60 connections, zero lock waiters/deadlocks and unchanged migration history. These observations do not replace missing host metrics.
+
+The owner's existing conditional approval covers routine healthy continuation once all safeguards pass. No additional batch approval, new migration, source change, paid call, schedule, deployment, publication or public activation is included. PR #167 remains independent. The [evidence directory](../artifacts/jane-eligible-execution-20261011/) preserves test logs, code checksum, historical baseline, current resource observations and exact changed files. Older milestones below are historical records, not current execution instructions.
+
+## Previous milestone: eligible-only population scope
 
 The [19:48 UTC owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113025170) supersedes all all-Master continuation proposals below. **Do not execute the old offsets 6–126 plan.** It included 39 discontinued identities. The owner conditionally authorises one eligible-only initial run, beginning with up to 120 eligible IDs, then bounded continuation without repeated routine approvals after successful checks. It does not waive backup, telemetry, source, permission or implementation review.
 

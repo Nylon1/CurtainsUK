@@ -1,5 +1,7 @@
 # Jane eligible-only population: reconciliation and execution stop
 
+**Update:** the separate eligible SQL execution binding is now implemented and passes local tests under the owner's 20:34 UTC continuation instruction. See [current execution report](JANE_ELIGIBLE_EXECUTION.md). Backup/current telemetry prerequisites remain unsatisfied; no eligible hosted job has started. The report below preserves the earlier scope-reconciliation evidence and earlier implementation status.
+
 11 October 2026. Starting PR #169 source `47512d856d4ab72e4b97ecd2cf5468d2296ad90d`; protected branch unchanged at `c7ca2d0eff1c128386863536d4ce46a877d874a8`. [Evidence directory](../../artifacts/jane-eligible-scope-20261011/). No hosted write, paid call, publication or deployment occurred in this increment.
 
 ## Current scope and source evidence

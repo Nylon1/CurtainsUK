@@ -1,0 +1,11 @@
+✔ existing-project bundle isolates roles, pooled owners, retention and throttled rollback (3614.5003ms)
+✔ degraded catalogue lookup cannot poison the governed index or reuse its weak cache (78.1899ms)
+✔ expired indexing workers cannot commit or release replacement leases (2833.8059ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6903.9738

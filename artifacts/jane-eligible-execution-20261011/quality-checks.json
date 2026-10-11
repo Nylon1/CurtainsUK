@@ -1,0 +1,12 @@
+{
+  "classification": "LOCAL_ONLY",
+  "testsPassed": 129,
+  "testsFailed": 0,
+  "scopedEslintExitCode": 0,
+  "gitDiffCheckExitCode": 0,
+  "hostedWrites": 0,
+  "newMigrations": 0,
+  "paidOpenAiCalls": 0,
+  "newHostedJobCreated": false,
+  "eligibleCanaryStarted": false
+}

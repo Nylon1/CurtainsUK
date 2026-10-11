@@ -1,15 +1,13 @@
 -- OWNER APPROVAL REQUIRED. Existing hqysjumypgeapgmqkcrx project only.
 -- No index population, customer rows, LOGIN credentials, membership, cron,
--- API exposure or public activation. All six reviewed parts are atomic.
+-- API exposure or public activation. All five reviewed parts are atomic.
+-- Authentication uses the official server-side Auth API, with no Auth grants.
 begin;
 set local lock_timeout='500ms';
 set local statement_timeout='3s';
 do $$begin
  if exists(select 1 from pg_namespace where nspname='advisory') or exists(select 1 from pg_roles where rolname in ('advisory_runtime','advisory_indexer','advisory_retention','advisory_auth_verifier')) then
    raise exception 'ADVISORY_OBJECT_CONFLICT_REVIEW_REQUIRED';
- end if;
- if (select count(*) from information_schema.columns where table_schema='auth' and table_name='sessions' and ((column_name in ('id','user_id') and udt_name='uuid') or (column_name='not_after' and udt_name='timestamptz')))<>3 then
-   raise exception 'AUTH_SCHEMA_PREFLIGHT_REQUIRED';
  end if;
 end $$;
 
@@ -19,7 +17,6 @@ end $$;
 -- No service-role grants, anon access, catalogue writes or existing-table edits.
 create schema advisory;
 revoke all on schema advisory from public;
-grant usage on schema advisory to authenticated;
 create table advisory.consultations (
   id uuid primary key,
   owner_id uuid not null,
@@ -38,16 +35,8 @@ create index advisory_consultations_owner_expiry on advisory.consultations(owner
 alter table advisory.consultations enable row level security;
 alter table advisory.consultations force row level security;
 revoke all on advisory.consultations from public;
-grant select, insert, update, delete on advisory.consultations to authenticated;
-create policy consultation_read on advisory.consultations for select to authenticated
-  using (owner_id = (select auth.uid()) and expires_at > now());
-create policy consultation_create on advisory.consultations for insert to authenticated
-  with check (owner_id = (select auth.uid()) and expires_at > now() and expires_at <= now() + interval '91 days');
-create policy consultation_update on advisory.consultations for update to authenticated
-  using (owner_id = (select auth.uid()) and expires_at > now())
-  with check (owner_id = (select auth.uid()) and expires_at > now() and expires_at <= now() + interval '91 days');
-create policy consultation_delete on advisory.consultations for delete to authenticated
-  using (owner_id = (select auth.uid()));
+-- No browser role receives access. The complete atomic bundle installs private
+-- runtime RLS using an owner verified server-side through the official Auth API.
 -- Before cloud activation: reviewed migration via Supabase CLI, distributed
 -- session lease/idempotency, authenticated recovery, expiry worker, private
 -- API schema exposure decision, and encrypted backup/deletion procedures.
@@ -349,17 +338,6 @@ end $$;
 revoke all on function advisory.purge_expired() from public,anon,authenticated,service_role;
 grant execute on function advisory.purge_expired() to advisory_retention;
 -- END lib/advisory/operations.review.sql
-
--- BEGIN lib/advisory/auth-session.review.sql
--- REVIEW ONLY. Explicit additional read grant, separate from advisory storage.
--- Validate these existing Auth columns before migration approval. Never writes
--- to Auth, changes its policies, creates customers or exposes Auth to browsers.
-create role advisory_auth_verifier nologin noinherit;
-grant usage on schema auth to advisory_auth_verifier;
-grant select(id,user_id,not_after) on auth.sessions to advisory_auth_verifier;
--- Rollback only these new privileges/role after disabling its server credential.
--- Do not revoke any pre-existing application's Auth access.
--- END lib/advisory/auth-session.review.sql
 
 -- Final defence against deployment-specific default grants on new sequences.
 revoke all on all sequences in schema advisory from public,anon,authenticated,service_role;

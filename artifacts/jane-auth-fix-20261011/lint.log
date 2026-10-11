@@ -1,0 +1,2 @@
+Command: node node_modules/eslint/bin/eslint.js lib/advisory scripts/prepare-jane-migration.mjs scripts/verify-jane-completion.mjs scripts/jane-preview.mjs
+Result: exit 0, no diagnostics.

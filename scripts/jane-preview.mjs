@@ -39,6 +39,7 @@ const files=new Map([
   ['/preview.mjs',['experiments/jane-advisory-preview/preview.mjs','text/javascript; charset=utf-8']],
   ['/evaluation',['artifacts/jane-readiness/review-gallery.html','text/html; charset=utf-8']],
   ['/foundations',['artifacts/jane-foundations-20261011/review-gallery.html','text/html; charset=utf-8']],
+  ['/auth-fix',['artifacts/jane-auth-fix-20261011/review-gallery.html','text/html; charset=utf-8']],
   ['/pro-readiness',['artifacts/jane-pro-readiness-20261011/review-gallery.html','text/html; charset=utf-8']],
   ['/readiness',['artifacts/jane-completion/review-gallery.html','text/html; charset=utf-8']],
   ['/review-gallery.css',['artifacts/jane-readiness/review-gallery.css','text/css; charset=utf-8']],

@@ -1,5 +1,7 @@
 # Jane: existing Supabase Pro integration review
 
+> Auth migration update, 11 October 2026: [the corrected migration and API verification](JANE_AUTH_MIGRATION_FIX.md) supersede this historical record's direct Auth grants, verifier hook and old SQL checksum. Preserve the measurements below as historical evidence; do not execute the older migration proposal.
+
 11 October 2026. **Implemented and locally verified. No hosted migration, population or consultation test has run.**
 
 ## Verified source and release separation

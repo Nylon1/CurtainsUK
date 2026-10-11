@@ -1,5 +1,7 @@
 # Jane foundations review, 11 October 2026
 
+> Auth migration update, 11 October 2026: [the corrected migration and API verification](JANE_AUTH_MIGRATION_FIX.md) supersede this historical record's direct Auth grants, verifier hook and old SQL checksum. Preserve the measurements below as historical evidence; do not execute the older migration proposal.
+
 This is the current detailed readiness record, superseding the environment proposals in [JANE_COMPLETION.md](JANE_COMPLETION.md) and [JANE_READINESS.md](JANE_READINESS.md). Historical receipts remain unchanged. The only permitted hosted destination is existing Supabase project `hqysjumypgeapgmqkcrx`. No new project or branch is proposed.
 
 Work began at PR #169 commit `0f07dfab163406f065351cbfa9be090e16c063c2`, branch `feat/jane-consultation-phase2-20261009`. Protected HEAD was read as `3649c879a4a5ddf88c2093a4172d20fbc58cd265`; independent PR #167 remains `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`. Issue #168 and the production/Room Visualiser records were reconciled before development.

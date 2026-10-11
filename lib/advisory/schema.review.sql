@@ -3,7 +3,6 @@
 -- No service-role grants, anon access, catalogue writes or existing-table edits.
 create schema advisory;
 revoke all on schema advisory from public;
-grant usage on schema advisory to authenticated;
 create table advisory.consultations (
   id uuid primary key,
   owner_id uuid not null,
@@ -22,16 +21,8 @@ create index advisory_consultations_owner_expiry on advisory.consultations(owner
 alter table advisory.consultations enable row level security;
 alter table advisory.consultations force row level security;
 revoke all on advisory.consultations from public;
-grant select, insert, update, delete on advisory.consultations to authenticated;
-create policy consultation_read on advisory.consultations for select to authenticated
-  using (owner_id = (select auth.uid()) and expires_at > now());
-create policy consultation_create on advisory.consultations for insert to authenticated
-  with check (owner_id = (select auth.uid()) and expires_at > now() and expires_at <= now() + interval '91 days');
-create policy consultation_update on advisory.consultations for update to authenticated
-  using (owner_id = (select auth.uid()) and expires_at > now())
-  with check (owner_id = (select auth.uid()) and expires_at > now() and expires_at <= now() + interval '91 days');
-create policy consultation_delete on advisory.consultations for delete to authenticated
-  using (owner_id = (select auth.uid()));
+-- No browser role receives access. The complete atomic bundle installs private
+-- runtime RLS using an owner verified server-side through the official Auth API.
 -- Before cloud activation: reviewed migration via Supabase CLI, distributed
 -- session lease/idempotency, authenticated recovery, expiry worker, private
 -- API schema exposure decision, and encrypted backup/deletion procedures.

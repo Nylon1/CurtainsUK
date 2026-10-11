@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · Supabase Pro verified; exact migration and population review prepared, neither applied**
+**Programme source of truth · 11 October 2026 · Auth permission correction locally verified; no hosted migration applied**
 
-## Current milestone: Pro integration and exact migration readiness
+## Current milestone: corrected migration ready for owner review
+
+[Jane Auth migration correction](specialist-advisory/JANE_AUTH_MIGRATION_FIX.md) is the current detailed record. Work starts from PR #169 `6d0890ab782d274ce5a0e82cac71494004f7eb18`. Protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`; independent PR #167 remains `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`.
+
+The protected Auth schema cannot be delegated by `postgres`. Jane now uses the official server-side Auth API and verified claims, with no Auth database role or protected-table dependency. The corrected five-part atomic migration creates only advisory objects: nine tables, 21 indexes, three invoker functions, 15 policies and three NOLOGIN roles. [Exact approval/rollback manifest](../artifacts/jane-auth-fix-20261011/MIGRATION_REVIEW.md), SHA-256 `eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50`. Earlier direct Auth grants and checksums below are superseded, not approved for execution.
+
+**93 scoped tests pass locally**, including the original permission failure reproduced without superuser privileges, corrected migration/rollback, cryptographic SDK authentication with synthetic Auth responses, encryption, ownership, concurrency, recovery, rates/spend, indexing and Phase 1/theme regression. Hosted PostgreSQL/Auth verification remains pending. Profile, catalogue logic, full identity manifest (16,883), hosted descriptive coverage (0), encryption and incremental population controls remain unchanged.
+
+Read-only preflight reverified Pro/ACTIVE_HEALTHY, 692,268,179 database bytes, 16/60 connections and zero lock waiters. Daily physical backup 11 October 01:03:26 UTC is visible; restore rehearsal and Toshiba completion remain unverified. C: is approximately 40.16 GiB free. Initial restic PID 20836 later disappeared, without proof of success. Preserve current historical evidence and include these changes in a later verified backup.
+
+[Current local review](http://127.0.0.1:8789/auth-fix), [scripted Jane](http://127.0.0.1:8789/), [exact changed files](../artifacts/jane-auth-fix-20261011/CHANGED_FILES.txt). **Next approval:** the exact corrected migration on the existing project, subject to protected release policy and fresh preflight. No migration, indexing, deployment, merge, publication, customer activation or paid call ran. Hosted testing, model/human quality, old-key revocation, physical iPhone and spoken screen reader remain separate pending items. The following milestones preserve historical evidence and are not current Auth migration instructions.
+
+## Historical milestone: Pro integration and exact migration readiness
 
 [Jane Pro readiness](specialist-advisory/JANE_PRO_READINESS.md) is the current detailed record. Work starts from PR #169 `996d804f63bfcde48bd58d48a37598ead638451e`. Protected HEAD remains `3649c879a4a5ddf88c2093a4172d20fbc58cd265`; independent PR #167 remains `851078c674ac2e9231e51dffbd5949ed4ea7c6d1`. No production change has run.
 

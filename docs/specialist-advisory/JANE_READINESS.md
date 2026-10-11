@@ -1,5 +1,7 @@
 # Jane Phase 2 — intelligence readiness and controlled evaluation
 
+> Auth migration update, 11 October 2026: [the corrected migration and API verification](JANE_AUTH_MIGRATION_FIX.md) supersede this historical record's direct Auth grants, verifier hook and old SQL checksum. Preserve the measurements below as historical evidence; do not execute the older migration proposal.
+
 **Current record, 11 October:** [Jane foundations readiness](JANE_FOUNDATIONS.md) and [existing-project runbook](EXISTING_PROJECT_RUNBOOK.md) supersede the earlier environment/migration proposals below. Use only existing project `hqysjumypgeapgmqkcrx`. The approved concise profile is preserved; 84 scoped tests pass, v3 mock evaluation is prepared, and hosted/full-coverage/real-model readiness remain pending. Actual reduced motion was verified. Capacity is blocked by the observed 142% database-size quota, and the owner confirms the old key still needs revocation. No paid calls, hosted migration or production indexing occurred. The report below and its receipts remain historical evidence for the previously evaluated profile.
 
 9 October 2026. This record supersedes the blockers in [JANE_PHASE2.md](JANE_PHASE2.md), while preserving that report as evidence for its earlier revision. Implementation remains on `feat/jane-consultation-phase2-20261009`, draft [PR #169](https://github.com/Nylon1/CurtainsUK/pull/169), stacked on the independent approved-design [PR #167](https://github.com/Nylon1/CurtainsUK/pull/167). No merge, production migration, publication or live AI activation occurred.

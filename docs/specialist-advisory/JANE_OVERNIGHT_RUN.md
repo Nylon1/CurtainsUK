@@ -1,5 +1,13 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest readmission: 6,750 verified; additive update work stays disabled
+
+The unchanged operator reached **6,750 / 11,517** at18:26:57UTC. The earlier6642→6648 expired SQL plan was independently proven uncommitted by two readbacks and resolved using the already-tested journal procedure; no plan was blindly replayed. At18:27 a read-only monitoring request returned HTTP400 with `Project must be active and healthy`. Independent6750 reconciliation at18:30:39 confirms exact receipts/history/permissions and no pending write. Subsequent official project readback is ACTIVE_HEALTHY; metrics and backup reads are HTTP200. The same runner is readmitting under its unchanged controls.
+
+The owner separately requested preparation of automatic updates. [New local components and evidence](JANE_AUTOMATIC_UPDATES.md) are additive and excluded from the active operator manifest. **35 scoped tests pass.** Do not enable them, apply their review SQL, start a second population or consume Browse's queue. Complete the original job first, reconcile changes since the earliest baseline, then run the gated read-only recommendation review. Complete source-change discovery remains an explicit review requirement.
+
+Backup1945273696 is PENDING at the latest read; it is not a recovery point yet. The existing completed1937679152 remains checked under the24-hour RPO. Monitoring renewal is still pending before20:25UTC. No running code, scope or safety limit was changed by this work.
+
 ## Latest continuation: 6,612 verified
 
 The repaired run reached **6,612 / 11,517** at 18:07 UTC. Two temporary read-service failures were independently reconciled without retrying writes. At 18:10 UTC the exact latest receipt, historical records and restored permissions were verified, with no pending plan. Confirmed read-only MCP timeouts and monitoring HTTP 500/502/503/504 now enter the existing readback, 15-second backoff and fresh-admission flow. Unknown/access failures and ambiguous writes still stop. **23 targeted tests passed.** Scope and safety limits are unchanged; the same job is being readmitted. [Evidence](../../artifacts/jane-recovery-6384-20261012/README.md).

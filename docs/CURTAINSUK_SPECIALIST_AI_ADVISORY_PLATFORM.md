@@ -1,6 +1,16 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 6,612 eligible identities verified; read-service recovery strengthened; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 6,750 eligible identities verified; automatic update components locally tested and disabled; Jane publicly inactive**
+
+## Incremental updates prepared while the existing population continues
+
+The owner requested a missing automatic update connection without changing the running indexer. New additive modules reuse existing catalogue observations and hybrid visual events as exact-ID change evidence. They prepare bounded immutable manifests, a disabled transactional update consumer, before/after receipts, confirmed withdrawal/re-entry handling and a catch-up gate covering changes made during population. **35 scoped local tests passed**, including 20 new tests. The running operator code, bound implementation checksum and all limits remain unchanged. [Exact changes, SQL review scope, source gaps and test evidence](specialist-advisory/JANE_AUTOMATIC_UPDATES.md).
+
+Automatic discovery of every source change is **not yet proven**. Browse's temporary dirty queue cannot serve as a lossless history. Direct edits, dependency fan-out and all withdrawal paths need a reviewed complete publication/capture connection. No update migration, trigger, scheduler or new hosted write path was enabled. Initial population and reconciliation must finish before the prepared read-only recommendation checks; the revised 20-scenario real-model evaluation still requires fresh budget and human review.
+
+Actual population receipt at **18:26:57 UTC** confirms **6,750 / 11,517**, with 4,767 remaining. Independent hosted reconciliation at **18:30:39 UTC** confirms no pending write, exact receipts/history and restored permissions. Monitoring briefly returned HTTP400 (`Project must be active and healthy`); subsequent official project readback is ACTIVE_HEALTHY and metrics/backup reads returned200. The same operator is readmitting with fresh evidence. New backup1945273696 is PENDING and is not a completed recovery point; existing completed backup1937679152 remains subject to the24-hour RPO. Monitoring renewal remains pending before20:25UTC. No gate was relaxed.
+
+[Local evidence](../artifacts/jane-automatic-updates-20261012/README.md). PR #169 remains the existing draft review destination; PR #167 and protected customer systems are unchanged by this work.
 
 ## Latest continuation: 6,612 verified
 

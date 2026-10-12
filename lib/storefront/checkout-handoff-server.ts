@@ -43,6 +43,10 @@ export interface ServerStagingCheckoutHandoffInput {
   shippingPostcode?: string;
   parcelClass?: ShippingParcelClass;
   hciCommerceToken?: string;
+  openAiAttribution?: {
+    oppref?: string;
+    obref?: string;
+  };
 }
 
 export type ServerStagingCheckoutHandoffResult = {
@@ -105,6 +109,23 @@ function positiveMetres(value: unknown) {
   return Number.isFinite(metres) && metres > 0 ? metres : null;
 }
 
+function validatedOpenAiAttribution(value: ServerStagingCheckoutHandoffInput["openAiAttribution"]) {
+  if (value === undefined) return undefined;
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error("OPENAI_ADS_ATTRIBUTION_INVALID");
+  }
+  const clean = (candidate: unknown, maximum: number) => {
+    if (candidate === undefined) return undefined;
+    if (typeof candidate !== "string" || candidate.length < 1 || candidate.length > maximum || /[\u0000-\u001f\u007f]/.test(candidate)) {
+      throw new Error("OPENAI_ADS_ATTRIBUTION_INVALID");
+    }
+    return candidate;
+  };
+  const oppref = clean(value.oppref, 2048);
+  const obref = clean(value.obref, 512);
+  return oppref || obref ? { ...(oppref ? { oppref } : {}), ...(obref ? { obref } : {}) } : undefined;
+}
+
 async function currentAvailability(input: {
   supplierId: string;
   supplierSku: string;
@@ -151,6 +172,7 @@ async function prepareCheckout(
     throw new Error("CHECKOUT_REQUEST_INVALID");
   }
   const now = new Date().toISOString();
+  const openAiAttribution = validatedOpenAiAttribution(input.openAiAttribution);
 
   let configurationId: string;
   let reviewRequestId: string | null = null;
@@ -399,6 +421,7 @@ async function prepareCheckout(
     handoff,
     customerEmail,
     fabricLabel,
+    openAiAttribution,
   });
   if (shopifyExecution.status !== "DISABLED") {
     enter("EXECUTION_RECEIPT");

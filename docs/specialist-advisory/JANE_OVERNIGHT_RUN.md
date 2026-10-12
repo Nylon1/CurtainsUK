@@ -1,5 +1,11 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest milestone: 8,004 independently verified
+
+At20:02:48UTC independent read-only SQL confirms **8,004 / 11,517**, leaving **3,513**. All hashes, whole-job digests and1,334 verified batches match the exact journal prefix. Historical six records, five eligible no-ops and permissions are preserved; two expired/uncommitted plans are not counted. The same unchanged operator is continuing. [Evidence](../../artifacts/jane-progress-8000-20261012/README.md).
+
+Resource admission remains healthy in the recorded window; migration history remains81/latest20261011180354. Backup1945273696 is COMPLETED, recovery point18:32:09.471UTC. Monitoring renewal is still pending before20:25UTC. Do not waive credential age, start another job, enable automatic updates or claim complete population/reconciliation.
+
 ## Latest continuation: 7,068 receipts audited
 
 Backup **1945273696** is now officially **COMPLETED** in the19:00:27UTC monitoring read, with physical recovery point12October18:32:09.471UTC. WALGtrue, PITRfalse. It replaces the earlier pending observation as the latest completed backup and remains subject to every normal RPO check. No restore or backup configuration change occurred. [Exact evidence](../../artifacts/jane-baseline-reconciliation-20261012/backup-readback.json). Newer writes need a later verified backup.

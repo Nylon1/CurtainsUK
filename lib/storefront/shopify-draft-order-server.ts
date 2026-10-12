@@ -8,6 +8,7 @@ import {
   asProductionDraftOrderContract,
   SHOPIFY_DRAFT_ORDER_API_VERSION,
   SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES,
+  type OpenAiAdsAttribution,
   type ShopifyDraftOrderExecutionContract,
   type ShopifyDraftOrderFinancialNode,
   type ShopifyDraftOrderMode,
@@ -542,6 +543,7 @@ export async function executeStagingShopifyDraftOrder(input: {
   handoff: Readonly<StagingCheckoutHandoff>;
   customerEmail?: string | null;
   fabricLabel?: string | null;
+  openAiAttribution?: Readonly<OpenAiAdsAttribution>;
   environment?: NodeJS.ProcessEnv;
   fetchImpl?: FetchLike;
 }): Promise<ShopifyDraftOrderExecutionResult> {
@@ -549,6 +551,7 @@ export async function executeStagingShopifyDraftOrder(input: {
     handoff: input.handoff,
     customerEmail: input.customerEmail,
     fabricLabel: input.fabricLabel,
+    openAiAttribution: input.openAiAttribution,
   });
   const config = shopifyDraftOrderConfigFromEnvironment(input.environment);
   const contract = config?.mode === "CREATE_PRODUCTION_DRAFT"

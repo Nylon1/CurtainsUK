@@ -1,0 +1,16 @@
+{
+  "functions": [
+    {
+      "name": "convert_from",
+      "leakproof": false,
+      "volatility": "s"
+    },
+    {
+      "name": "decode",
+      "leakproof": false,
+      "volatility": "i"
+    }
+  ],
+  "colourwaysRls": true,
+  "roleBypassesRls": true
+}

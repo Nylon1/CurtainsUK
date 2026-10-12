@@ -1,0 +1,37 @@
+{
+  "probe": {
+    "kind": "read-only-transport-probe",
+    "at": "2026-10-12T08:40:33.631Z",
+    "value": {
+      "processed": 1866,
+      "permissionRestored": true
+    }
+  },
+  "latestVerifiedReceipt": {
+    "kind": "verified-batch",
+    "at": "2026-10-12T08:44:38.356Z",
+    "value": {
+      "processed": 1914,
+      "indexed": 1914,
+      "batches": 319,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 10175
+    }
+  },
+  "firstVerifiedReceipt": {
+    "kind": "verified-batch",
+    "at": "2026-10-12T08:41:56.388Z",
+    "value": {
+      "processed": 1872,
+      "indexed": 1872,
+      "batches": 312,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 5636
+    }
+  },
+  "observedAt": "2026-10-12T08:45:04.676Z"
+}

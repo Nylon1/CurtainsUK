@@ -1,0 +1,279 @@
+[
+  {
+    "QUERY PLAN": [
+      {
+        "Plan": {
+          "Node Type": "Aggregate",
+          "Strategy": "Plain",
+          "Partial Mode": "Simple",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 30.06,
+          "Total Cost": 30.08,
+          "Plan Rows": 1,
+          "Plan Width": 32,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 30.05,
+              "Total Cost": 30.05,
+              "Plan Rows": 1,
+              "Plan Width": 58,
+              "Sort Key": [
+                "(array_position('{pt-4077-714,pt-4077-725,pt-4077-801,pt-4077-902,pt-4077-918,pt-4078-015}'::text[], s.fabric_id))"
+              ],
+              "Plans": [
+                {
+                  "Node Type": "Subquery Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Alias": "s",
+                  "Startup Cost": 5.27,
+                  "Total Cost": 30.04,
+                  "Plan Rows": 1,
+                  "Plan Width": 58,
+                  "Plans": [
+                    {
+                      "Node Type": "Limit",
+                      "Parent Relationship": "Subquery",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Startup Cost": 5.27,
+                      "Total Cost": 30.03,
+                      "Plan Rows": 1,
+                      "Plan Width": 149,
+                      "Plans": [
+                        {
+                          "Node Type": "Index Scan",
+                          "Parent Relationship": "InitPlan",
+                          "Subplan Name": "InitPlan 1",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Scan Direction": "Forward",
+                          "Index Name": "browse_projection_control_pkey",
+                          "Relation Name": "browse_projection_control",
+                          "Alias": "browse_projection_control",
+                          "Startup Cost": 0.12,
+                          "Total Cost": 2.34,
+                          "Plan Rows": 1,
+                          "Plan Width": 16,
+                          "Index Cond": "(singleton = true)"
+                        },
+                        {
+                          "Node Type": "Nested Loop",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Join Type": "Left",
+                          "Startup Cost": 2.92,
+                          "Total Cost": 27.68,
+                          "Plan Rows": 1,
+                          "Plan Width": 149,
+                          "Inner Unique": true,
+                          "Plans": [
+                            {
+                              "Node Type": "Nested Loop",
+                              "Parent Relationship": "Outer",
+                              "Parallel Aware": false,
+                              "Async Capable": false,
+                              "Join Type": "Left",
+                              "Startup Cost": 2.78,
+                              "Total Cost": 25.29,
+                              "Plan Rows": 1,
+                              "Plan Width": 1431,
+                              "Inner Unique": true,
+                              "Plans": [
+                                {
+                                  "Node Type": "Nested Loop",
+                                  "Parent Relationship": "Outer",
+                                  "Parallel Aware": false,
+                                  "Async Capable": false,
+                                  "Join Type": "Left",
+                                  "Startup Cost": 2.49,
+                                  "Total Cost": 22.79,
+                                  "Plan Rows": 1,
+                                  "Plan Width": 245,
+                                  "Inner Unique": true,
+                                  "Plans": [
+                                    {
+                                      "Node Type": "Nested Loop",
+                                      "Parent Relationship": "Outer",
+                                      "Parallel Aware": false,
+                                      "Async Capable": false,
+                                      "Join Type": "Inner",
+                                      "Startup Cost": 2.22,
+                                      "Total Cost": 22.44,
+                                      "Plan Rows": 1,
+                                      "Plan Width": 269,
+                                      "Inner Unique": true,
+                                      "Plans": [
+                                        {
+                                          "Node Type": "Nested Loop",
+                                          "Parent Relationship": "Outer",
+                                          "Parallel Aware": false,
+                                          "Async Capable": false,
+                                          "Join Type": "Inner",
+                                          "Startup Cost": 0.98,
+                                          "Total Cost": 19.81,
+                                          "Plan Rows": 1,
+                                          "Plan Width": 274,
+                                          "Inner Unique": true,
+                                          "Plans": [
+                                            {
+                                              "Node Type": "Nested Loop",
+                                              "Parent Relationship": "Outer",
+                                              "Parallel Aware": false,
+                                              "Async Capable": false,
+                                              "Join Type": "Inner",
+                                              "Startup Cost": 0.7,
+                                              "Total Cost": 17.31,
+                                              "Plan Rows": 1,
+                                              "Plan Width": 85,
+                                              "Inner Unique": true,
+                                              "Plans": [
+                                                {
+                                                  "Node Type": "Index Scan",
+                                                  "Parent Relationship": "Outer",
+                                                  "Parallel Aware": false,
+                                                  "Async Capable": false,
+                                                  "Scan Direction": "Forward",
+                                                  "Index Name": "fabric_colourways_pkey",
+                                                  "Relation Name": "fabric_colourways",
+                                                  "Alias": "c",
+                                                  "Startup Cost": 0.29,
+                                                  "Total Cost": 14.25,
+                                                  "Plan Rows": 2,
+                                                  "Plan Width": 85,
+                                                  "Index Cond": "(fabric_id = ANY ('{pt-4077-714,pt-4077-725,pt-4077-801,pt-4077-902,pt-4077-918,pt-4078-015}'::text[]))",
+                                                  "Filter": "(storefront_selectable AND staging_catalog_visible AND (lifecycle_state <> 'DISCONTINUED'::text) AND (price_verification_status = 'VERIFIED'::text))"
+                                                },
+                                                {
+                                                  "Node Type": "Index Only Scan",
+                                                  "Parent Relationship": "Inner",
+                                                  "Parallel Aware": false,
+                                                  "Async Capable": false,
+                                                  "Scan Direction": "Forward",
+                                                  "Index Name": "browse_read_projection_pkey",
+                                                  "Relation Name": "browse_read_projection",
+                                                  "Alias": "p",
+                                                  "Startup Cost": 0.41,
+                                                  "Total Cost": 1.53,
+                                                  "Plan Rows": 1,
+                                                  "Plan Width": 13,
+                                                  "Index Cond": "((generation_id = (InitPlan 1).col1) AND (fabric_id = c.fabric_id))"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Node Type": "Index Scan",
+                                              "Parent Relationship": "Inner",
+                                              "Parallel Aware": false,
+                                              "Async Capable": false,
+                                              "Scan Direction": "Forward",
+                                              "Index Name": "fabric_designs_pkey",
+                                              "Relation Name": "fabric_designs",
+                                              "Alias": "d",
+                                              "Startup Cost": 0.28,
+                                              "Total Cost": 2.5,
+                                              "Plan Rows": 1,
+                                              "Plan Width": 289,
+                                              "Index Cond": "(design_id = c.design_id)"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Node Type": "Bitmap Heap Scan",
+                                          "Parent Relationship": "Inner",
+                                          "Parallel Aware": false,
+                                          "Async Capable": false,
+                                          "Relation Name": "supplier_brands",
+                                          "Alias": "b",
+                                          "Startup Cost": 1.24,
+                                          "Total Cost": 2.35,
+                                          "Plan Rows": 1,
+                                          "Plan Width": 26,
+                                          "Recheck Cond": "(brand_id = c.brand_id)",
+                                          "Plans": [
+                                            {
+                                              "Node Type": "Bitmap Index Scan",
+                                              "Parent Relationship": "Outer",
+                                              "Parallel Aware": false,
+                                              "Async Capable": false,
+                                              "Index Name": "supplier_brands_pkey",
+                                              "Startup Cost": 0,
+                                              "Total Cost": 1.24,
+                                              "Plan Rows": 1,
+                                              "Plan Width": 0,
+                                              "Index Cond": "(brand_id = c.brand_id)"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Node Type": "Index Scan",
+                                      "Parent Relationship": "Inner",
+                                      "Parallel Aware": false,
+                                      "Async Capable": false,
+                                      "Scan Direction": "Forward",
+                                      "Index Name": "fabric_collections_pkey",
+                                      "Relation Name": "fabric_collections",
+                                      "Alias": "co",
+                                      "Startup Cost": 0.28,
+                                      "Total Cost": 0.35,
+                                      "Plan Rows": 1,
+                                      "Plan Width": 49,
+                                      "Index Cond": "(collection_id = d.collection_id)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Node Type": "Index Scan",
+                                  "Parent Relationship": "Inner",
+                                  "Parallel Aware": false,
+                                  "Async Capable": false,
+                                  "Scan Direction": "Forward",
+                                  "Index Name": "fabric_visual_knowledge_read_cache_id",
+                                  "Relation Name": "fabric_visual_knowledge_read_cache",
+                                  "Alias": "v",
+                                  "Startup Cost": 0.29,
+                                  "Total Cost": 2.5,
+                                  "Plan Rows": 1,
+                                  "Plan Width": 1199,
+                                  "Index Cond": "(fabric_id = c.fabric_id)"
+                                }
+                              ]
+                            },
+                            {
+                              "Node Type": "Index Scan",
+                              "Parent Relationship": "Inner",
+                              "Parallel Aware": false,
+                              "Async Capable": false,
+                              "Scan Direction": "Forward",
+                              "Index Name": "fabric_retail_profiles_pkey",
+                              "Relation Name": "fabric_retail_profiles",
+                              "Alias": "r",
+                              "Startup Cost": 0.14,
+                              "Total Cost": 2.36,
+                              "Plan Rows": 1,
+                              "Plan Width": 553,
+                              "Index Cond": "(fabric_id = c.fabric_id)"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

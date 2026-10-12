@@ -2,6 +2,16 @@
 
 Starting PR #169: `c3cf45f936f3978567ff3c9ece476a4dcfdc8c54`. Protected production: `c7ca2d0eff1c128386863536d4ce46a877d874a8`, unchanged at 22:00 UTC. [Exact owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325).
 
+## Direct identity lookup restored
+
+At **1,866 / 11,517**, the operator switched at a verified read-only recovery wait with no pending write or journal lock. Independent readback confirmed all historical records and permissions unchanged. The new read-only probe passed, then the same job actually resumed beyond1,866. Latest receipt in this evidence snapshot: **1914** at **2026-10-12T08:44:38.356Z**.
+
+Hosted query plans identified the recurring source-lookup problem: encoded ID expressions inherit the **C collation**, while the valid existing fabric identity index uses **default**. PostgreSQL therefore scanned the broader eligibility index and filtered fabric IDs afterward. Strictly validated ASCII identity literals preserve the approved IDs and permit direct use of the existing primary key. No index, schema, source record, eligibility rule or generated write plan was changed.
+
+The estimated plan cost dropped from1,735.85 to30.08. One bounded six-ID execution took20.825ms (planning24.557ms), with104 shared-buffer hits and zero disk reads. This sample does not establish whole-run throughput or cold-cache performance. **Nine focused tests passed**, including rejection of SQL syntax/control characters, all11,517 manifest IDs, local PostgreSQL result/order/null equivalence, index usage, timeout recovery and retail recovery. The canonical source-query fields are unchanged. All pressure, source/publication, supplier, ownership, backup, timeout and grant-restoration gates remain active.
+
+[Exact plans, tests, checksums and changed files](../../artifacts/jane-identity-lookup-repair-20261012/README.md).
+
 ## Read-only timeout recovery at 1,560
 
 A bounded source read was cancelled by the unchanged three-second statement timeout. The last committed checkpoint and original history/permissions reconciled exactly; no next-batch write was pending. Added narrow recovery only for a confirmed timeout of one read-only transaction. Full admission, the clean error window and exact readback remain required. Writes, mixed transactions, access errors and ambiguity cannot be retried. **12 focused tests passed.** The first hosted read-only probe met database gates but received a Shopify profile503; its149-second retry delay was honoured. The subsequent read-only hosted probe passed with zero writes, all six live profiles available, and exact source/checkpoint/permission evidence. The repaired population operator is resuming from1560. [Evidence and exact changed files](../../artifacts/jane-read-timeout-recovery-20261012/README.md).

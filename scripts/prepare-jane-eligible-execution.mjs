@@ -20,6 +20,7 @@ await visit('lib/advisory/active-client-gate.mjs');
 await visit('lib/advisory/operator-recovery.mjs');
 await visit('lib/advisory/retail-read-recovery.mjs');
 await visit('lib/advisory/connector-read-recovery.mjs');
+await visit('lib/advisory/operator-identity-literal.mjs');
 const codeManifest=Object.fromEntries(Object.entries(hashes).sort(([a],[b])=>a.localeCompare(b)));
 const manifest=JSON.parse(await readFile('artifacts/jane-eligible-scope-20261011/eligible-manifest.json','utf8'));
 const historical=JSON.parse(await readFile(dir+'/historical-baseline.json','utf8')),summary=validateEligibleManifest(manifest);

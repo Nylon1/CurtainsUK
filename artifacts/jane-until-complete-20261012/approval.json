@@ -1,0 +1,62 @@
+{
+  "approved": true,
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "schema": "advisory",
+  "purpose": "bounded-advisory-index-only",
+  "ownerApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325",
+  "sourceAttestationReference": "C:/Users/hamza/.codex/tmp/jane-eligible-until-complete-20261012-1035/publication-reconciliation.json",
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "implementationSha256": "39b6fd76b4c8ff4f8e2827557cba8989632d93fb18b40c882d13d0915cb0c782",
+  "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+  "expectedCount": 11517,
+  "maxBatches": 20,
+  "expiresAt": null,
+  "hostMonitoringApproval": {
+    "reference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "latestSampleApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118103282"
+  },
+  "eligiblePopulation": {
+    "startOffset": 0,
+    "endOffset": 11517,
+    "canaryEnd": 120,
+    "historicalJobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+    "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+    "unchangedIds": [
+      "pt-1204-212",
+      "pt-1223-374",
+      "pt-1224-002",
+      "pt-1225-314",
+      "pt-1225-722"
+    ]
+  },
+  "temporaryRoleUse": {
+    "approved": true,
+    "member": "postgres",
+    "role": "advisory_indexer",
+    "grantor": "postgres",
+    "scope": "same-transaction-revoke-before-commit",
+    "ownerApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325"
+  },
+  "batchLatencyApproval": {
+    "reference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118124996",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a"
+  },
+  "activityPolicy": {
+    "reference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118449547",
+    "directOwnerInstruction": "Fix the issues and get to the end; recover temporary safety holds and keep proceeding",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+  },
+  "completionApproval": {
+    "kind": "one-time-until-complete",
+    "recordReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6122415089",
+    "ownerInstruction": "Proceed with no deadline",
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "expectedCount": 11517
+  }
+}

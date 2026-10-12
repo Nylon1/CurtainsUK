@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October2026 · 2,766 eligible identities verified; deadline reached, extension pending; Jane publicly inactive**
+**Programme source of truth · 12 October2026 · 2,766 eligible identities verified; until-complete continuation authorised, preflight in progress; Jane publicly inactive**
 
-## Verified deadline checkpoint
+## Until-complete continuation
+
+On 12 October the owner explicitly instructed this thread: **“Proceed with no deadline.”** [Recorded instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6122415089). This supersedes the prior 10:00 UTC cutoff for existing job `ac425f78-f6ec-4623-97bb-df8763d79d5a` and its exact 11,517-ID snapshot only. The last independently reconciled checkpoint is **2,766**, with **8,751 remaining**. No new job, full rebuild or recurring refresh is authorised.
+
+Implemented a narrowly scoped until-complete approval. Ordinary population approvals still require a future expiry within 24 hours. Infinite deadlines are rejected without the exact project/job/snapshot/count and recorded direct instruction. The resumed job must already exist; a missing job cannot bootstrap. Completion still terminates the runner. Every SQL transaction remains bounded by fresh source/checkpoint/backup attestation expiry, at most 60 seconds, plus the existing 3-second statement and 500 ms lock timeouts. No credential lifetime, 24-hour backup RPO, resource threshold, source/publication check, canary, concurrency control, pacing or batch bound changed.
+
+**45 focused tests passed**, including actual local PostgreSQL execution, grant restoration, concurrency, completed traversal, scoped no-deadline validation, fresh-evidence expiry, bounded host waiting and recovery failures. Publication reconciliation again matches exactly 11,517 identities, with 273 unpublished candidates excluded and no unmapped publications. Migration bundle checksum remains unchanged. New dependency checksum: `39b6fd76b4c8ff4f8e2827557cba8989632d93fb18b40c882d13d0915cb0c782`.
+
+The new private operator binding passed its read-only hosted probe at 2026-10-12T10:33:50.585Z. Exact next-six identity, retail/publication, restored grants, historical state, backup and genuine resource checks passed with zero hosted writes. Population resumption follows this verified probe; the first committed receipt will establish actual execution. The same original fsynced journal and all historical evidence are retained. The heartbeat remains paused to avoid duplicate operators; the foreground bridge is the execution path. No migration, source mutation, paid AI call, deployment, public activation, merge or PR #167 change.
+
+[Implementation and evidence](../artifacts/jane-until-complete-20261012/README.md).
+
+## Previous deadline checkpoint
 
 The one-time operator reached its explicit **12 October 10:00 UTC deadline** and exited. The final transaction committed at **09:59:58.838 UTC**, with its fsynced verified receipt at **09:59:59.658 UTC**. Independent hosted readback at **10:00:47 UTC** confirms **2,766 / 11,517 eligible identities** and **8,751 remaining**. This population is incomplete. The operator process has exited, the journal has no pending write or lock, and the one-time heartbeat remains PAUSED. No continuing execution is claimed.
 

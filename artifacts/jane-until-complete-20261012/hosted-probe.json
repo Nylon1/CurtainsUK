@@ -1,0 +1,146 @@
+{
+  "classification": "READ_ONLY_HOSTED_PROBE",
+  "observedAt": "2026-10-12T10:33:50.585Z",
+  "hostedWrites": 0,
+  "processed": 2766,
+  "permissionRestored": true,
+  "plan": {
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "ids": [
+      "pt-4277-681",
+      "pt-4277-925",
+      "pt-4277-928",
+      "pt-4278-543",
+      "pt-4278-681",
+      "pt-4278-925"
+    ],
+    "unchanged": 0,
+    "sqlSha256": "1e31f80064fd859c1640268b0e509a2d435650247a721196eac9f4eee07537e1"
+  },
+  "resources": {
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "source": "trusted-operator-telemetry",
+    "observedAt": 1791801209856.1138,
+    "windowMs": 64879.9169921875,
+    "windowStartedAt": 1791801144976.1968,
+    "windowEndedAt": 1791801209856.1138,
+    "cpuPercent": 4.524299992388071,
+    "ioPercent": 1.80024891235791,
+    "memoryPercent": 60.996732173239835,
+    "diskPercent": 78.70918057330427,
+    "details": {
+      "cpuCores": 2,
+      "memoryBytes": {
+        "total": 454995968,
+        "available": 177463296
+      },
+      "disks": {
+        "nvme0n1": {
+          "busyPercent": 1.80024891235791,
+          "readIops": 42.863803298867865,
+          "writeIops": 4.099881940848203,
+          "readBytesPerSecond": 475384.0853975497,
+          "writtenBytesPerSecond": 25884.12682775503
+        },
+        "nvme1n1": {
+          "busyPercent": 0.07706545002042946,
+          "readIops": 0.6627628701371155,
+          "writeIops": 0.5394581501116057,
+          "readBytesPerSecond": 8964.746364734669,
+          "writtenBytesPerSecond": 4987.429315591823
+        }
+      },
+      "filesystems": {
+        "/": {
+          "sizeBytes": 10461904896,
+          "availableBytes": 2227425280,
+          "usedPercent": 78.70918057330427
+        },
+        "/data": {
+          "sizeBytes": 2077073408,
+          "availableBytes": 1022709760,
+          "usedPercent": 50.76198289088105
+        }
+      },
+      "ioDefinition": "Maximum observed disk busy-time fraction, not provisioned IOPS capacity"
+    },
+    "connections": 23,
+    "maxConnections": 60,
+    "lockWaits": 0,
+    "newDeadlocks": 0,
+    "newDatabaseErrors": 0,
+    "supplierRefreshActive": false
+  },
+  "retail": [
+    {
+      "id": "pt-4277-681",
+      "browseReady": true,
+      "launchReady": true,
+      "orderReady": true,
+      "stock": "AVAILABLE",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-4277-681-habitat-grassland",
+      "status": 200,
+      "observedAt": "2026-10-12T10:33:46.928Z"
+    },
+    {
+      "id": "pt-4277-925",
+      "browseReady": true,
+      "launchReady": true,
+      "orderReady": true,
+      "stock": "AVAILABLE",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-4277-925-habitat-dusk",
+      "status": 200,
+      "observedAt": "2026-10-12T10:33:48.625Z"
+    },
+    {
+      "id": "pt-4277-928",
+      "browseReady": true,
+      "launchReady": true,
+      "orderReady": true,
+      "stock": "AVAILABLE",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-4277-928-habitat-storm",
+      "status": 200,
+      "observedAt": "2026-10-12T10:33:47.054Z"
+    },
+    {
+      "id": "pt-4278-543",
+      "browseReady": true,
+      "launchReady": true,
+      "orderReady": true,
+      "stock": "AVAILABLE",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-4278-543-pavon-desert",
+      "status": 200,
+      "observedAt": "2026-10-12T10:33:46.859Z"
+    },
+    {
+      "id": "pt-4278-681",
+      "browseReady": true,
+      "launchReady": true,
+      "orderReady": true,
+      "stock": "AVAILABLE",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-4278-681-pavon-grassland",
+      "status": 200,
+      "observedAt": "2026-10-12T10:33:47.399Z"
+    },
+    {
+      "id": "pt-4278-925",
+      "browseReady": true,
+      "launchReady": true,
+      "orderReady": true,
+      "stock": "AVAILABLE",
+      "url": "https://www.curtainsuk.com/pages/fabric/pt-4278-925-pavon-dusk",
+      "status": 200,
+      "observedAt": "2026-10-12T10:33:46.713Z"
+    }
+  ],
+  "backup": {
+    "id": 1937679152,
+    "status": "COMPLETED",
+    "isPhysical": true,
+    "insertedAt": "2026-10-12T01:11:28.231Z",
+    "observedAt": "2026-10-12T10:33:40.441Z",
+    "httpStatus": 200,
+    "walgEnabled": true,
+    "pitrEnabled": false
+  }
+}

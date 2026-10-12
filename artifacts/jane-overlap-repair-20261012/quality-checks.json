@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-10-12T05:48:52.866Z",
+  "command": "node --test lib/advisory/__tests__/active-client-gate.test.mjs lib/advisory/__tests__/eligible-limit-policy.test.mjs lib/advisory/__tests__/eligible-transport.test.mjs",
+  "tests": 12,
+  "passed": 12,
+  "failed": 0,
+  "durationMs": 3867.8541,
+  "localPostgresMetadataAndTransport": true,
+  "codeManifestVerified": true,
+  "credentialPatternScan": "PASS",
+  "migrationChanges": 0,
+  "paidOpenAiCostUsd": 0
+}

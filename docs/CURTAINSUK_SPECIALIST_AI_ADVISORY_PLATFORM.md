@@ -1,8 +1,18 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 150 eligible identities verified; canary passed; paused on concurrent database activity; Jane remains publicly inactive**
+**Programme source of truth · 12 October 2026 · Narrow overlap repair tested; read-only recovery prepared; existing eligible job retained; Jane publicly inactive**
 
-## Current state: 150 verified, paused on concurrent database activity
+## Active operation: overlap correction and recoverable holds
+
+The owner directed a focused correction in [PR comment6118449547](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118449547), then explicitly instructed this thread to repair temporary safety issues and keep proceeding. This authorises the narrow correction below and read-only recovery of temporary holds. It does not waive pressure thresholds, uncertain commits, access/integrity checks or the separately retained10:00UTC deadline.
+
+The operator no longer calls every active client a supplier refresh. It uses sanitised PostgreSQL role/application/state/age/wait, transaction and lock evidence. Observed customer PostgREST and platform exporter SELECT/WITH reads under3 seconds may coexist only without write XIDs, non-read relation locks, advisory locks, blocking or job identity. Unknown short clients trigger a read-only drain; prolonged or conflicting activity blocks admission. Query text and customer parameters never leave PostgreSQL. Explicit supplier recent/running checks are independent and retained.
+
+Temporary activity, load or cached-metric holds stop all writes, reconcile the exact latest committed six-ID receipt against the original fsynced journal, wait5–15 seconds, then repeat complete admission. A pending/ambiguous write, changed record, permission issue, missing metadata, access failure or20-second batch breach cannot be automatically resubmitted. All six-record, five-second pacing,20-batch,3-second SQL,500-ms lock,180-second freshness and120-second counter-window rules remain.
+
+**12 targeted tests passed**, including the actual local PostgreSQL metadata query and transport recovery tests. The existing hosted checkpoint was freshly reconciled at **150/11,517**, with151 total search rows and original history/permissions exact. Full live publication again matched11,517 IDs. Repaired execution is not claimed from preparation; the actual operator probe and verified receipts establish liveness. [Focused diff/evidence](../artifacts/jane-overlap-repair-20261012/README.md).
+
+## Previous state: 150 verified, paused on concurrent database activity
 
 The approved continuation actually ran from the independently verified 120-ID canary. Five more six-ID transactions passed exact post-COMMIT readback and fsynced receipts, with approximate source-through-receipt times **5.051, 4.808, 4.215, 4.612 and 4.390 seconds**. Independent hosted reconciliation at **12 October 05:28:42.725 UTC** confirms **150/11,517 eligible identities**, **11,367 remaining**, **151 total search rows**, **145 new rows** and five eligible historical no-ops. All 150 hashes, receipt fields and before-images reconcile against the 25 prepared plans. The original six rows/job/receipts and permissions remain exact.
 

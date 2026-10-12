@@ -1,6 +1,12 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 6,384 eligible identities verified; transport recovery completed; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 6,612 eligible identities verified; read-service recovery strengthened; Jane publicly inactive**
+
+## Latest continuation: 6,612 verified
+
+The same job reached **6,612 / 11,517** at 18:07 UTC, leaving **4,905**. A temporary monitoring HTTP 500 and later read-only MCP timeout caused safe admission stops. Exact hosted reconciliation at 18:10 UTC confirmed all committed records and permissions, with no pending write. The recovery path now handles only these narrowly classified read-service failures through exact readback, a 15-second wait and fresh admission. **23 targeted tests passed.** Writes and unknown/access errors are never treated as automatically retryable. [Updated recovery evidence](../artifacts/jane-recovery-6384-20261012/README.md).
+
+The advisory search index uses the **existing Supabase project and existing Fabric Master**. It stores allowlisted search terms and source hashes linked to canonical IDs, rather than another product catalogue. Its purpose is descriptive retrieval across colours, patterns, textures, composition and specifications. The AI is not trained by this indexing. Canonical commercial lookups still determine prices, stock and eligibility. An existing service with equivalent safe search coverage should be reused if demonstrated; indexing counts alone do not establish retrieval quality.
 
 ## Latest recovery: checkpoint 6,384 reconciled
 

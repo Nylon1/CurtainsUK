@@ -1,5 +1,9 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest continuation: 6,612 verified
+
+The repaired run reached **6,612 / 11,517** at 18:07 UTC. Two temporary read-service failures were independently reconciled without retrying writes. At 18:10 UTC the exact latest receipt, historical records and restored permissions were verified, with no pending plan. Confirmed read-only MCP timeouts and monitoring HTTP 500/502/503/504 now enter the existing readback, 15-second backoff and fresh-admission flow. Unknown/access failures and ambiguous writes still stop. **23 targeted tests passed.** Scope and safety limits are unchanged; the same job is being readmitted. [Evidence](../../artifacts/jane-recovery-6384-20261012/README.md).
+
 ## Latest recovery: 6,384 verified
 
 At 17:38 UTC a connector send failure left the next write ambiguous. Two independent hosted observations at 17:45:56 and 17:46:05 UTC proved the SQL had expired without committing: unchanged checkpoint 6,384, no next-six rows/receipts, no old/prepared transactions, exact previous receipt, preserved historical records and restored permissions. The original journal remains intact with a separate, fsynced `expired-uncommitted` resolution.

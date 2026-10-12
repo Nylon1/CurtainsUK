@@ -1,0 +1,33 @@
+{
+  "job": {
+    "id": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "cursor": {
+      "offset": 5016,
+      "manifestHash": "007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+    },
+    "status": "ready",
+    "batches": 836,
+    "indexed": 5016,
+    "complete": false,
+    "failures": 0,
+    "processed": 5016,
+    "created_at": "2026-10-12T01:37:48.74983+00:00",
+    "last_error": null,
+    "updated_at": "2026-10-12T13:39:32.671368+00:00",
+    "expected_count": 11517,
+    "source_snapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+  },
+  "receipts": 5016,
+  "observedAt": "2026-10-12T13:39:41.008675+00:00",
+  "advisoryBytes": 10526720,
+  "databaseBytes": 710405267,
+  "matchedHashes": 5016,
+  "migrationCount": 81,
+  "totalKnowledge": 5017,
+  "historicalNoops": 5,
+  "latestMigration": "20261011180354",
+  "newEligibleRows": 5011,
+  "permissionRestored": true,
+  "receiptContentHash": "c3adcaf3eb22aab5c5e4bc175279530104bb3535aef2299d0dff88660df4c0bb",
+  "receiptIdentityHash": "d4c4c4b4b396301f8388c2d4bbb49807ce0bf9eca7d7616e7da304251586eb0f"
+}

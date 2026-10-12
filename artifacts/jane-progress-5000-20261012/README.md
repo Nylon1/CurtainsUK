@@ -1,0 +1,11 @@
+# Verified indexing progress
+
+At this milestone C: has 39,308,156,928 bytes free (about 36.6 GiB). Protected production remains `c4e6d599169ca486cd8ea195ca0744f595298ca8`. The completed physical database backup remains subject to the owner's 24-hour RPO and is rechecked before every batch. It predates the indexing writes; a subsequent verified backup is still required. Toshiba completion remains unverified. No backup or storage cleanup was performed.
+
+At checkpoint 4,452, a read-only checkpoint request timed out while the operator was waiting for the database error window to clear. Independent hosted reconciliation and journal verification found no pending write, exact historical state and restored permissions. The clean error window was verified before the same operator resumed. Its binding and dependency checksums were unchanged. The evidence is retained outside Git as `jane-checkpoint4452-reconciliation.json` and `jane-checkpoint4452-verified.json`; no uncertain transaction was retried.
+
+Independent hosted readback at 2026-10-12T13:39:41.008675+00:00 confirms **5016 / 11,517 eligible identities**, with **6501 remaining**. All 836 saved plans and verified receipts match the exact approved manifest prefix and hosted identity/content digests. The population is incomplete and the same operator is continuing under the owner’s no-deadline instruction.
+
+The resumed binding has verified 375 batches, with source-through-receipt durations 4267–18954 ms. Every admitted resource sample remained below its unchanged threshold. Migration history is 81 entries, latest 20261011180354. Database size: 710405267 bytes; advisory tables/indexes: 10526720 bytes.
+
+Historical six records, five eligible no-ops, exact identities and restored permissions remain protected. No Jane migration, source mutation, paid AI call, AI deployment, public activation or PR #167 change. Separately, the owner authorised the merge of PR #172 and a single-file Shopify tracking release from protected commit c4e6d599; that release did not change this indexer or its source data. Current admission still requires valid monitoring access, a recoverable backup within the 24-hour RPO, fresh observations and all safety gates. Earlier tests are preserved; this milestone adds hosted and journal evidence.

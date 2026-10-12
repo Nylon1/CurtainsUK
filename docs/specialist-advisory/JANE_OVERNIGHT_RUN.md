@@ -18,6 +18,14 @@ The resumed binding has verified 208 batches. Source-through-receipt durations w
 
 [Milestone evidence](../../artifacts/jane-progress-4000-20261012/README.md).
 
+## Verified milestone 5000
+
+Independent hosted readback at **2026-10-12T13:39:41.008675+00:00** confirms **5,016 / 11,517 eligible identities**, with **6,501 remaining**. All **836** saved plans and verified receipts match the exact manifest prefix and hosted identity/content digests. The same until-complete operator is continuing. This is a progress snapshot, not full coverage.
+
+The resumed binding has verified 375 batches. Source-through-receipt durations were 4267–18954 ms. Fresh backup/access, resource/error, source/publication, historical and permission gates remain active. No Jane migration, source mutation, paid AI call, AI deployment, public activation or PR #167 change. The separately owner-authorised PR #172 merge and single-file Shopify tracking release did not change this indexer or its source data.
+
+[Milestone evidence](../../artifacts/jane-progress-5000-20261012/README.md).
+
 ## Until-complete continuation
 
 On 12 October the owner explicitly instructed this thread: **“Proceed with no deadline.”** [Recorded instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6122415089). This supersedes the prior 10:00 UTC cutoff for existing job `ac425f78-f6ec-4623-97bb-df8763d79d5a` and its exact 11,517-ID snapshot only. The last independently reconciled checkpoint is **2,766**, with **8,751 remaining**. No new job, full rebuild or recurring refresh is authorised.

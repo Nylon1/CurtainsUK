@@ -13,7 +13,7 @@ Exact changed files for this milestone:
 - `docs/specialist-advisory/JANE_AUTOMATIC_UPDATES.md`
 - `docs/specialist-advisory/JANE_OVERNIGHT_RUN.md`
 - `docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md`
-- This directory's README, file-manifest and synthetic index-performance evidence.
+- This directory's README, file-manifest, read-only hosted source-metadata and synthetic index-performance evidence.
 
 The local worker is disabled by default, not connected to an API/scheduler and cannot register against an unfinished population. It reuses the existing search projection and shared six-record worker limits; it does not alter the running population implementation. There are two exact-key readers for existing change records. Complete automatic discovery and all source dependency/withdrawal paths still require verified publication-window ports. [Full review and gaps](../../docs/specialist-advisory/JANE_AUTOMATIC_UPDATES.md).
 
@@ -29,3 +29,5 @@ Recorded duration21.172seconds. PGlite uses synthetic records; `index-performanc
 Population checkpoint6750 was independently verified18:30:39UTC using the existing SQL connector. The prior6642 write failure was resolved with two independent post-expiry observations at18:17:21/18:17:28 and the existing fsynced journal resolver. Private readbacks remain outside Git under `.codex/tmp/jane-6642-*` and `jane-checkpoint6750-reconciliation.json`; no credentials are included. The unchanged live journal and operator files remain outside Git.
 
 Automatic update SQL is a two-table review artifact only. No hosted update migration, automatic refresh schedule or reconciliation population has run. Actual full-population recommendation tests remain gated until completion and complete catch-up. The20-scenario real-model suite is reused; fresh paid evaluation approval and human interior-design review are still required.
+
+At18:34:21UTC a bounded read-only query of six named relations verified the existing exact-key source indexes. This establishes safe exact-record access, not complete automatic discovery. Catalogue observations lack an import-ID/global-time index and retail profiles have only their fabric-ID primary key. No data row scan or source change occurred. See `source-metadata.json`; estimated row counts are not measured catalogue coverage.

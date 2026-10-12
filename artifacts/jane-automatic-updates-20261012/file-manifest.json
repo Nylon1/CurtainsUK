@@ -1,6 +1,6 @@
 {
   "classification": "LOCAL_PREPARATION_NOT_HOSTED_ACTIVATION",
-  "observedAt": "2026-10-12T18:33:01.348Z",
+  "observedAt": "2026-10-12T18:35:22.526Z",
   "testResults": {
     "passed": 35,
     "failed": 0,
@@ -39,8 +39,8 @@
       "sha256": "a8f8de8107fbd3e02c22c1c79b8faa319d14a254ef9d2b06956790f4cec09d19"
     },
     "docs/specialist-advisory/JANE_AUTOMATIC_UPDATES.md": {
-      "bytes": 14201,
-      "sha256": "bb1d93de5f3a11c290325385e64c7796be3b3e31b49a71d7c834960cbfe524a3"
+      "bytes": 14763,
+      "sha256": "109e24b64679930256041b0c8d84f536caee21e7d38e7687ba87fe0b58e490e8"
     },
     "docs/specialist-advisory/JANE_OVERNIGHT_RUN.md": {
       "bytes": 40638,

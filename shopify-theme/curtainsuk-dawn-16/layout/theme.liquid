@@ -116,6 +116,18 @@ name: document.title || "CurtainsUK",
 content_type: "page"
 }]
 });
+
+const fabricProfile = window.location.pathname.match(/^\\/pages\\/fabric\\/([^/]+)\\/?$/);
+if (fabricProfile) {
+window.oaiq("measure", "contents_viewed", {
+type: "contents",
+contents: [{
+id: decodeURIComponent(fabricProfile[1]),
+name: document.title || "CurtainsUK fabric",
+content_type: "product"
+}]
+});
+}
 };
 
 const applyShopifyConsent = () => {
@@ -160,47 +172,160 @@ window.oaiq("consent", true);
 sendPageView();
 });
 
+const normaliseCurtainsUkEventName = (name) => {
+  if (typeof name !== "string") return "";
+  return name.replace(/^curtainsuk_/, "");
+};
+
+const customEventData = ({ amountMinor, currency, contentId, contentType = "product" } = {}) => {
+  const data = { type: "custom" };
+  if (Number.isSafeInteger(amountMinor) && amountMinor >= 0) data.amount = amountMinor;
+  if (typeof currency === "string" && /^[A-Za-z]{3}$/.test(currency)) data.currency = currency.toUpperCase();
+  if (contentId !== undefined && contentId !== null && String(contentId)) {
+    data.contents = [{
+      id: String(contentId),
+      content_type: contentType
+    }];
+  }
+  return data;
+};
+
+const sendCustomEvent = (customEventName, data = {}, eventId) => {
+  const options = { custom_event_name: customEventName };
+  if (eventId) options.event_id = String(eventId);
+  window.oaiq("measure", "custom", customEventData(data), options);
+};
+
+const sendLeadCreated = (detail) => {
+  const configurationId = detail.configuration_id || detail.configurationId;
+  const options = configurationId
+    ? { event_id: "lead_" + String(configurationId) }
+    : undefined;
+  if (options) {
+    window.oaiq("measure", "lead_created", { type: "customer_action" }, options);
+  } else {
+    window.oaiq("measure", "lead_created", { type: "customer_action" });
+  }
+};
+
+const sendCheckoutStarted = (detail) => {
+  const handoffId = detail.handoff_id || detail.handoffId;
+  const configurationId = detail.configuration_id || detail.configurationId;
+  const dedupeId = handoffId || configurationId;
+  const options = dedupeId
+    ? { event_id: "checkout_" + String(dedupeId) }
+    : undefined;
+  if (options) {
+    window.oaiq("measure", "checkout_started", { type: "contents" }, options);
+  } else {
+    window.oaiq("measure", "checkout_started", { type: "contents" });
+  }
+};
+
 window.addEventListener("curtainsuk:analytics", (event) => {
   const detail = event.detail || {};
+  const eventName = normaliseCurtainsUkEventName(detail.event);
 
-  if (detail.event === "curtainsuk_review_submitted") {
-    
-const options = detail.configuration_id
-? { event_id: "lead_" + String(detail.configuration_id) }
-: undefined;
-if (options) {
-window.oaiq("measure", "lead_created", { type: "customer_action" }, options);
-} else {
-window.oaiq("measure", "lead_created", { type: "customer_action" });
-}
-return;
-}
+  if (eventName === "review_submitted" || eventName === "quote_review_submitted") {
+    sendLeadCreated(detail);
+    const configurationId = detail.configuration_id || detail.configurationId;
+    sendCustomEvent(
+      "quote_requested",
+      {},
+      configurationId ? "quote_" + String(configurationId) : undefined
+    );
+    return;
+  }
 
-if (
-  detail.event === "curtainsuk_checkout_handoff_reached" ||
-  detail.event === "curtainsuk_checkout_opened"
-) {
-const options = detail.handoff_id
-? { event_id: "checkout_" + String(detail.handoff_id) }
-: undefined;
-if (options) {
-window.oaiq("measure", "checkout_started", { type: "contents" }, options);
-} else {
-window.oaiq("measure", "checkout_started", { type: "contents" });
-}
-return;
-}
+  if (
+    eventName === "checkout_handoff_reached" ||
+    eventName === "checkout_opened" ||
+    eventName === "checkout_started"
+  ) {
+    sendCheckoutStarted(detail);
+    return;
+  }
 
-if (detail.event === "curtainsuk_fabric_selected" && detail.fabric_id) {
-window.oaiq("measure", "contents_viewed", {
-type: "contents",
-contents: [{
-id: String(detail.fabric_id),
-content_type: "product"
-}]
+  if (eventName === "fabric_selected" && detail.fabric_id) {
+    window.oaiq("measure", "contents_viewed", {
+      type: "contents",
+      contents: [{
+        id: String(detail.fabric_id),
+        content_type: "product"
+      }]
+    });
+    sendCustomEvent("fabric_selected", { contentId: detail.fabric_id });
+    return;
+  }
+
+  if (eventName === "sample_intent" || eventName === "sample_ordered_intended") {
+    sendCustomEvent("sample_added", { contentId: detail.fabric_id });
+    return;
+  }
+
+  if (eventName === "configurator_started") {
+    sendCustomEvent("curtain_builder_started");
+    return;
+  }
+
+  if (eventName === "measurement_completion") {
+    sendCustomEvent("measurements_completed");
+    return;
+  }
+
+  if (eventName === "price_displayed") {
+    sendCustomEvent("curtain_price_viewed", {
+      amountMinor: detail.amount_minor,
+      currency: detail.currency,
+      contentId: detail.fabric_id
+    });
+    return;
+  }
+
+  if (eventName === "quote_accepted") {
+    const configurationId = detail.configuration_id || detail.configurationId;
+    sendCustomEvent(
+      "quote_accepted",
+      {},
+      configurationId ? "quote_accepted_" + String(configurationId) : undefined
+    );
+  }
 });
+
+let fabricIntelligenceStartedSent = false;
+
+document.addEventListener("click", (event) => {
+  if (fabricIntelligenceStartedSent || !(event.target instanceof Element)) return;
+  const trigger = event.target.closest(".cuk-naila-primary, .cuk-naila-continue");
+  if (!trigger) return;
+  fabricIntelligenceStartedSent = true;
+  sendCustomEvent("fabric_intelligence_started");
+}, true);
+
+const bindNailaMeasurement = () => {
+  document.querySelectorAll('[data-cuk-fabric-browser][data-naila-enabled="true"]').forEach((root) => {
+    if (root.dataset.openaiNailaMeasurementBound === "true") return;
+    root.dataset.openaiNailaMeasurementBound = "true";
+    root.addEventListener("cuk:naila:render", (event) => {
+      const total = Number(event.detail?.total || event.detail?.fabrics?.length || 0);
+      if (total <= 0 || root.dataset.openaiNailaResultsMeasured === "true") return;
+      root.dataset.openaiNailaResultsMeasured = "true";
+      sendCustomEvent("fabric_intelligence_results_viewed");
+    });
+  });
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bindNailaMeasurement, { once: true });
+} else {
+  bindNailaMeasurement();
 }
+
+document.addEventListener("curtainsuk:visualiser-select", (event) => {
+  const fabricId = event.detail?.fabric?.id;
+  sendCustomEvent("room_visualiser_used", { contentId: fabricId });
 });
+
 })();
 </script>
 

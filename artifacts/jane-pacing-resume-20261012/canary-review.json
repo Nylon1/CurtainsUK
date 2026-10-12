@@ -1,0 +1,443 @@
+{
+  "classification": "HOSTED_CANARY_120_INDEPENDENTLY_VERIFIED",
+  "observedAt": "2026-10-12T05:20:55.189314+00:00",
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "processed": 120,
+  "expectedCount": 11517,
+  "remaining": 11397,
+  "totalSearchRows": 121,
+  "newEligibleRows": 115,
+  "historicalPreserved": 6,
+  "historicalEligibleNoops": 5,
+  "permissionRestored": true,
+  "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+  "transactions": 20,
+  "ambiguousCommits": 0,
+  "writeRetries": 0,
+  "thisInvocation": {
+    "batches": 16,
+    "startingOffset": 24,
+    "endingOffset": 120,
+    "batchTimings": [
+      {
+        "at": "2026-10-12T05:07:44.773Z",
+        "processed": 30,
+        "indexed": 30,
+        "batches": 5,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 5343
+      },
+      {
+        "at": "2026-10-12T05:08:03.674Z",
+        "processed": 36,
+        "indexed": 36,
+        "batches": 6,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4568
+      },
+      {
+        "at": "2026-10-12T05:08:46.447Z",
+        "processed": 42,
+        "indexed": 42,
+        "batches": 7,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 5081
+      },
+      {
+        "at": "2026-10-12T05:09:08.594Z",
+        "processed": 48,
+        "indexed": 48,
+        "batches": 8,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4078
+      },
+      {
+        "at": "2026-10-12T05:09:52.655Z",
+        "processed": 54,
+        "indexed": 54,
+        "batches": 9,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4354
+      },
+      {
+        "at": "2026-10-12T05:10:12.547Z",
+        "processed": 60,
+        "indexed": 60,
+        "batches": 10,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4886
+      },
+      {
+        "at": "2026-10-12T05:10:54.983Z",
+        "processed": 66,
+        "indexed": 66,
+        "batches": 11,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 5999
+      },
+      {
+        "at": "2026-10-12T05:11:17.695Z",
+        "processed": 72,
+        "indexed": 72,
+        "batches": 12,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4158
+      },
+      {
+        "at": "2026-10-12T05:11:55.171Z",
+        "processed": 78,
+        "indexed": 78,
+        "batches": 13,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 5272
+      },
+      {
+        "at": "2026-10-12T05:12:14.451Z",
+        "processed": 84,
+        "indexed": 84,
+        "batches": 14,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4430
+      },
+      {
+        "at": "2026-10-12T05:13:01.965Z",
+        "processed": 90,
+        "indexed": 90,
+        "batches": 15,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 6987
+      },
+      {
+        "at": "2026-10-12T05:13:22.373Z",
+        "processed": 96,
+        "indexed": 96,
+        "batches": 16,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 5384
+      },
+      {
+        "at": "2026-10-12T05:14:04.909Z",
+        "processed": 102,
+        "indexed": 102,
+        "batches": 17,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4283
+      },
+      {
+        "at": "2026-10-12T05:14:24.779Z",
+        "processed": 108,
+        "indexed": 108,
+        "batches": 18,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 5274
+      },
+      {
+        "at": "2026-10-12T05:15:13.358Z",
+        "processed": 114,
+        "indexed": 114,
+        "batches": 19,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 5085
+      },
+      {
+        "at": "2026-10-12T05:15:32.908Z",
+        "processed": 120,
+        "indexed": 120,
+        "batches": 20,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0,
+        "elapsedSinceSourceStartMs": 4737
+      }
+    ],
+    "transportTimings": [
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "44d9e391ee2be6e61a12d3cd661bf972a0b2ba649a5d0d8f1d8195dcf5cc3905",
+        "durationMs": 2336
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "5a59fad8ccae377a3d31e3bb9e339e40912bf946d98835d7da478b7e215ffda4",
+        "durationMs": 1948
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "bb8c1e54adaf7593eee0f0d07f4c1f003c28386809b25986945410aa77327202",
+        "durationMs": 2121
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "75386f724e92a09a8c53b4f9015cfdd9ed656db3e235fec29607aa4f443edf88",
+        "durationMs": 1827
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "996346e33e841e667b80e9dfe0401a2e91e777d1d68459f7020337db7d2feff1",
+        "durationMs": 1951
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "8776333677f7b8f781c15c62b6cf1532fb89140c82dc8d216cd6ac92acd4e133",
+        "durationMs": 2184
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "66d7596ece68967dfbef93f779785577e17dd790191b45e738c2d4f7ad0ce129",
+        "durationMs": 3217
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "4cc421f264579f1e56e76a3a839908f30d7fcd24a1428934b3ca438d152806d9",
+        "durationMs": 2079
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "92777d2ca9a0b7eba7c738d5dd9083bd075036fbd8ad83d7f45ad800e774a2e4",
+        "durationMs": 2909
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "19992b02e83f8eb885772263f23345bc0ee2edfb22f9dc3f9100e1606d455697",
+        "durationMs": 2298
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "bdc591cfddf4b9aa4aaff2e36b52549095a47b6328ec3fef55f13d503a5273a0",
+        "durationMs": 2469
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "bdbd23e91fb12609783399593f57924d5b5a1f1b99117a6619a4e82823ddd6fb",
+        "durationMs": 2656
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "0bd59aa156a8af550e770be7bf28d7770e0b26ddb80420af9a62c0efd841d929",
+        "durationMs": 2123
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "d0ad5f08b7b969d80fb4fb99378294647f105c38790ad5d785843f33a03dce95",
+        "durationMs": 3065
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "dc657c3984d17a81c52abfe8d79cc4d8e103e1ff8e7c48ee8e273ecd55aab657",
+        "durationMs": 2330
+      },
+      {
+        "kind": "commit-and-readback",
+        "planSha256": "6d66c27afacb8698e7c0028c3bb5dd426b9ed4cc2bb33f71935eac3eaf6e8168",
+        "durationMs": 2357
+      }
+    ],
+    "resources": {
+      "cpuPercent": 36.2513863215734,
+      "memoryPercent": 78.818541090896,
+      "diskPercent": 78.59160840913077,
+      "connections": 23
+    },
+    "lastResources": {
+      "projectRef": "hqysjumypgeapgmqkcrx",
+      "source": "trusted-operator-telemetry",
+      "observedAt": 1791782094310.199,
+      "windowMs": 63208.10107421875,
+      "windowStartedAt": 1791782031102.098,
+      "windowEndedAt": 1791782094310.199,
+      "cpuPercent": 11.139876049261728,
+      "ioPercent": 7.141489656064503,
+      "memoryPercent": 62.08870844323614,
+      "diskPercent": 78.59160840913077,
+      "details": {
+        "cpuCores": 2,
+        "memoryBytes": {
+          "total": 454995968,
+          "available": 172494848
+        },
+        "disks": {
+          "nvme0n1": {
+            "busyPercent": 7.141489656064503,
+            "readIops": 216.17482202092694,
+            "writeIops": 18.779238417655172,
+            "readBytesPerSecond": 3777557.3058212018,
+            "writtenBytesPerSecond": 208856.26645386717
+          },
+          "nvme1n1": {
+            "busyPercent": 0.6122632912898183,
+            "readIops": 7.230085894581646,
+            "writeIops": 2.3414720183765505,
+            "readBytesPerSecond": 729474.0898142051,
+            "writtenBytesPerSecond": 365611.86947959004
+          }
+        },
+        "filesystems": {
+          "/": {
+            "sizeBytes": 10461904896,
+            "availableBytes": 2239725568,
+            "usedPercent": 78.59160840913077
+          },
+          "/data": {
+            "sizeBytes": 2077073408,
+            "availableBytes": 1038049280,
+            "usedPercent": 50.02346686439307
+          }
+        },
+        "ioDefinition": "Maximum observed disk busy-time fraction, not provisioned IOPS capacity"
+      },
+      "connections": 23,
+      "maxConnections": 60,
+      "lockWaits": 0,
+      "newDeadlocks": 0,
+      "newDatabaseErrors": 0,
+      "supplierRefreshActive": false
+    },
+    "strictLimits": {
+      "latestHostSampleMs": 60000,
+      "endToEndBatchMs": 10000
+    }
+  },
+  "historicalStop": "The first eligible transaction at offset 6 previously exceeded the 10-second limit, was verified and paused. A reviewed transport correction subsequently passed the three-batch and sixteen-batch resumes. Earlier stop evidence is preserved.",
+  "database": {
+    "at": "2026-10-12T05:20:55.189314+00:00",
+    "rows": 121,
+    "receipts": 120,
+    "deadlocks": 0,
+    "lockWaits": 0,
+    "migrations": 81,
+    "connections": 23,
+    "advisoryBytes": 1007616,
+    "databaseBytes": 700222611,
+    "lastMigration": "20261011180354"
+  },
+  "publication": {
+    "observedAt": "2026-10-12T05:03:03.363Z",
+    "count": 11517,
+    "identitySha256": "90634a31d12f1690ec48d2e6353a23c21be245a00ca431f8ad0cd181faf68488",
+    "unpublishedExcluded": 273,
+    "discontinuedRetailStatus": 404,
+    "verifiedAt": "2026-10-12T05:22:19.122Z"
+  },
+  "executionReview": {
+    "classification": "LOCAL_ELIGIBLE_EXECUTION_REVIEW_NOT_HOSTED_CLEARANCE",
+    "conditionalOwnerApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325",
+    "previousPopulationApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113454744",
+    "hostMonitoringApproval": {
+      "reference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325",
+      "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+    },
+    "maximumHostWindowMs": 120000,
+    "maximumSourceAgeMs": 60000,
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "manifest": {
+      "hash": "007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+      "count": 11517,
+      "snapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+    },
+    "identitySha256": "90634a31d12f1690ec48d2e6353a23c21be245a00ca431f8ad0cd181faf68488",
+    "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+    "implementationSha256": "3ee2b389288817bee71e4ad13f22e22eb9d6e3cd1bc8e7bc43fb30b1e2690943",
+    "codeManifest": {
+      "lib/advisory/catalogue.mjs": "483dce0ba425615b623a4f913445f9fb34c3412187e6e7ccab3bfa89dc3a6b65",
+      "lib/advisory/cloud-handler.mjs": "03db10b990336d9c5eb10e51d09233873d34db1c2184efd8d450e12fb23365f9",
+      "lib/advisory/cloud-store.mjs": "753ab2aeae654a40fff9a6f19b651d962e02e581fb668808ffa2a0637ad829e0",
+      "lib/advisory/contracts.mjs": "ae3f14992d04545ef3c0ea47e0b6af7a485e035468eca10e4f5c155b23eaa7dd",
+      "lib/advisory/customer-language.mjs": "34df21de161edcbca469d779ecc33fe97f749a82611dad76334940a9e662ea1c",
+      "lib/advisory/eligible-admission.mjs": "25ae94e4677dfb838afe645b62b790ba911d09e3a3625fc92fb0a929c89ffa25",
+      "lib/advisory/eligible-manifest.mjs": "c88c15fdb75c41c771fc48fd8cfb7982cfb43b0e1445fe7280e982bd86be6954",
+      "lib/advisory/eligible-plan.mjs": "27e4bfd4989203fad2e98716682bca99c00186e30acf9053d4bb12be07b6cec5",
+      "lib/advisory/eligible-runner.mjs": "1a7bc47e4eb145038ace1b61bce52d9200511f398504c8c40fc1cdf2c9531e09",
+      "lib/advisory/eligible-transport.mjs": "01560edd3e9c82ead97e72db6d56c7b485058a20e0be4e840e1f2b302a8e0f8f",
+      "lib/advisory/guidance.mjs": "4ab6cb7085e1e6a7e4801bf4067f01d5efe73a803e871c190c00a34a26935a3f",
+      "lib/advisory/host-admission-pacing.mjs": "f3b831d85454b327358af7bad33c0a3cb60c24001d56311cd4bde3643a5f546e",
+      "lib/advisory/host-metrics.mjs": "525952704b39ea6d0faee7a519b960f114ada320f5e38b7a2fd6c2bdb29de3cd",
+      "lib/advisory/host-window-policy.mjs": "57bea4deeeb6b60a3980acd5555b288a1afdbaead57698a2793b664be2b94274",
+      "lib/advisory/hosted-test.mjs": "26e09e30f8292720019fdd792f7a826ebc4ad75f5ebd45691165c256ec335314",
+      "lib/advisory/http.mjs": "36a04fa959de0e6e22bcd0eb8034f1f63f61af841b83def25efea2d1ff07a1c7",
+      "lib/advisory/index-journal.mjs": "23351cd23b4d1b51fbaccf75db3a0ef83845eb23fbab3b50ca67800dda167038",
+      "lib/advisory/index-population.mjs": "c75f9d8fa97691d4d7411a7d83be1272acfbd829fcc13af7877cb6721eda5112",
+      "lib/advisory/index-worker.mjs": "a1f0f747896bd13659057c8686a25efc247db8d16d3a3d3afb7f727a80d4e0d3",
+      "lib/advisory/knowledge-query.mjs": "858d8ca78ac7953bab97e041ffef46eede01d32760c98c821148069d6b27dd61",
+      "lib/advisory/knowledge-search.mjs": "ed32e106704d9b100dac153385ae5f322b422e5f44f5d5a765c4fc1ad2c93f2c",
+      "lib/advisory/mock-provider.mjs": "ca3501140b263beed07fc4fbac14b36c460950b9787f024559f026531266b0f8",
+      "lib/advisory/population-resources.mjs": "063fba077965208e8337323dc387ac205713cbcc681f0ccf423b491d91fcffaf",
+      "lib/advisory/profiles.mjs": "28c295848c0b0e0b4cf152e1d9f6f0f87948cd28b4a1ba9c16acd44873509dd3",
+      "lib/advisory/security.mjs": "2531bb8dec1698783bbe9c6dc5996b35c325c2e191acdef3c97e25cff03f3a2b",
+      "lib/advisory/service.mjs": "21119fd8c2722a5473b65b0d530ccb1ee0d53dbb7ea58540dc13adac96debfe9",
+      "lib/advisory/session-cipher.mjs": "24b895664bdf44e4d61d7b77daf8cf7bfe25b1b35bcb5d22f0f06d2bb39a85bb"
+    },
+    "eligiblePopulation": {
+      "startOffset": 0,
+      "endOffset": 11517,
+      "canaryEnd": 120,
+      "historicalJobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+      "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+      "unchangedIds": [
+        "pt-1204-212",
+        "pt-1223-374",
+        "pt-1224-002",
+        "pt-1225-314",
+        "pt-1225-722"
+      ]
+    },
+    "newJobCreated": true,
+    "initialNewRows": 115,
+    "totalNewRows": 11512,
+    "maximumBatchesPerInvocation": 20,
+    "identitiesPerBatch": 6,
+    "minimumPacingMs": 5000,
+    "batchCount": 1920,
+    "invocationCount": 96,
+    "implemented": "Separate bootstrap, unchanged rows, SQL fences, grant restoration, exact readback, canary boundary and single-approval bounded continuation",
+    "executionReady": false,
+    "blockers": [
+      "Fresh admission at execution time",
+      "Canary incomplete"
+    ],
+    "nextAction": "Resume the bounded overnight Codex operator follow-up described in JANE_OVERNIGHT_RUN.md. Owner recovery and 24-hour RPO are settled; monitoring access and a genuine 120-second-or-shorter host window are verified. Recheck every gate and bind fresh project/publication/resource/backup ports before writing. Do not reuse captured admission evidence.",
+    "hostedExecution": "RESUME EXISTING JOB AT OFFSET 24; READ-ONLY PROBE REQUIRED",
+    "paidApiCostUsd": 0,
+    "operatorBindingSha256": "ecb577ffd12c62fff9e444afd6132f7b8127f2f2b1f8173cef6add408caa4394",
+    "existingJobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a"
+  },
+  "localTests": {
+    "passed": 40,
+    "failed": 0
+  },
+  "paidOpenAiCostUsd": 0,
+  "migrationsApplied": 0,
+  "sourceMutations": 0,
+  "deployments": 0,
+  "sharedJournalSha256": "4367b062c0be408b8654b2cb3be079bc74266a51312e301b8534b8ff52530dad",
+  "privateEvidenceDirectory": "C:/Users/hamza/.codex/tmp/jane-eligible-paced-20261012-0500"
+}

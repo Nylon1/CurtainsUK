@@ -5,6 +5,7 @@
   const RECEIPT_KEY = "curtainsuk_staging_submission_v1";
   const REVIEW_RESUME_KEY = "curtainsuk_staging_review_resume_v1";
   const NEW_CURTAIN_DRAFT_KEY = "curtainsuk_new_curtain_draft_v1";
+  const OPENAI_ATTRIBUTION_KEY = "curtainsuk_openai_ads_attribution_v1";
   const REVIEW_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   const REVIEW_ACCEPTANCE_TOKEN = /^v1\.\d{10,12}\.[A-Za-z0-9_-]{43}$/;
   const FABRIC_MASTER_ID = /^[a-zA-Z0-9-]{1,150}$/;
@@ -22,6 +23,17 @@
 
   const readJson = (key, fallback) => {
     try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
+  };
+
+  const openAiAttribution = () => {
+    const saved = readJson(OPENAI_ATTRIBUTION_KEY, null);
+    if (!saved || typeof saved !== "object" || Array.isArray(saved)) return undefined;
+    const safe = {};
+    for (const key of ["oppref", "obref"]) {
+      const value = saved[key];
+      if (typeof value === "string" && value.trim() && value.length <= 1024 && !/[\u0000-\u001f\u007f]/.test(value)) safe[key] = value.trim();
+    }
+    return Object.keys(safe).length ? safe : undefined;
   };
 
   const endpoint = (root, path) => `${root.replace(/\/$/, "")}/${path}`;
@@ -98,7 +110,14 @@
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       link.textContent = handoff.paymentEnabled ? "Continue to secure checkout" : "Continue to Shopify test checkout";
-      link.addEventListener("click", () => emit(handoff.paymentEnabled ? "checkout_opened" : "test_checkout_opened", { handoff_id: handoff.handoffId }));
+      link.addEventListener("click", () => emit(handoff.paymentEnabled ? "checkout_opened" : "test_checkout_opened", {
+        handoff_id: handoff.handoffId,
+        amount_minor: handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor,
+        currency: handoff.currency || "GBP",
+        order_kind: "curtain",
+        content_id: handoff.snapshotId,
+        content_type: "curtain_order",
+      }));
       confirmation.append(link);
     }
     confirmation.classList.remove("cuk-hidden");
@@ -1239,6 +1258,7 @@
             customerAccepted: checkoutForm.elements.customerAccepted.checked,
             shippingRegion: checkoutForm.elements.shippingRegion.value,
             shippingPostcode: checkoutForm.elements.shippingPostcode.value,
+            openaiAttribution: openAiAttribution(),
           }),
         });
         if (!handoff.prepared) {
@@ -1255,6 +1275,11 @@
           outcome: lastEvaluation.calculation.outcome,
           configuration_id: lastEvaluation.calculation.configurationId,
           handoff_id: handoff.handoffId,
+          amount_minor: handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor,
+          currency: handoff.currency || "GBP",
+          order_kind: "curtain",
+          content_id: handoff.snapshotId,
+          content_type: "curtain_order",
         });
       } catch (error) {
         if (!previousAttempt && error.message.includes("previous price confirmation")) localStorage.removeItem(EVALUATION_KEY);

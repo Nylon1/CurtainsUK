@@ -91,6 +91,8 @@ export async function POST(request: Request) {
         });
         if (conversion.status === "sent") {
           console.info(JSON.stringify({ event: "OPENAI_ADS_ORDER_CREATED_SENT", order: orderName }));
+        } else if (conversion.status === "validated") {
+          console.info(JSON.stringify({ event: "OPENAI_ADS_ORDER_CREATED_VALIDATED", order: orderName }));
         }
       }
     } catch (conversionError) {

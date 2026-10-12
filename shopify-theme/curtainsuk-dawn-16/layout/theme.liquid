@@ -116,6 +116,18 @@ name: document.title || "CurtainsUK",
 content_type: "page"
 }]
 });
+
+const fabricProfile = window.location.pathname.match(/^\\/pages\\/fabric\\/([^/]+)\\/?$/);
+if (fabricProfile) {
+window.oaiq("measure", "contents_viewed", {
+type: "contents",
+contents: [{
+id: decodeURIComponent(fabricProfile[1]),
+name: document.title || "CurtainsUK fabric",
+content_type: "product"
+}]
+});
+}
 };
 
 const applyShopifyConsent = () => {

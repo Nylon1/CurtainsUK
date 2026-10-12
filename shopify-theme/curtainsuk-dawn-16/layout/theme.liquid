@@ -89,20 +89,36 @@
 (() => {
 const pixelId = "6LN4GfrhY92CkQR6Uti2NH";
 const attributionKey = "curtainsuk_openai_ads_attribution_v1";
+let pixelConsent = null;
+let pixelInitialized = false;
+const installPixelSdk = !window.oaiq;
 
 if (!window.oaiq) {
 const q = function () { q.q.push(arguments); };
 q.q = [];
 window.oaiq = q;
+}
+
+function setPixelConsent(allowed) {
+pixelConsent = allowed === true;
+window.oaiq("consent", pixelConsent);
+if (pixelInitialized) return;
+pixelInitialized = true;
+window.oaiq("init", { pixelId, debug: true });
+if (installPixelSdk) {
 const js = document.createElement("script");
 js.async = true;
 js.src = "https://bzrcdn.openai.com/sdk/oaiq.min.js";
 const firstScript = document.getElementsByTagName("script")[0];
 firstScript.parentNode.insertBefore(js, firstScript);
 }
+}
 
-window.oaiq("consent", false);
-window.oaiq("init", { pixelId, debug: true });
+function measurePixelEvent(...args) {
+// Unknown consent stays inactive. Never reset other tabs while Shopify loads.
+if (pixelConsent !== true) return;
+window.oaiq("measure", ...args);
+}
 
 const boundedOpaque = (value) => {
   if (typeof value !== "string") return null;
@@ -148,7 +164,7 @@ let pageViewSent = false;
 const sendPageView = () => {
 if (pageViewSent) return;
 pageViewSent = true;
-window.oaiq("measure", "page_viewed", {
+measurePixelEvent("page_viewed", {
 type: "contents",
 contents: [{
 id: window.location.pathname || "/",
@@ -161,7 +177,7 @@ const fabricProfile = window.location.pathname.match(/^\/pages\/fabric\/([^/]+)\
 if (fabricProfile) {
 const fabricId = decodeURIComponent(fabricProfile[1]);
 recordWebsiteDiagnostic("fabric_profile_viewed", { fabric_id: fabricId });
-window.oaiq("measure", "contents_viewed", {
+measurePixelEvent("contents_viewed", {
 type: "contents",
 contents: [{
 id: fabricId,
@@ -179,11 +195,11 @@ window.Shopify &&
 window.Shopify.customerPrivacy &&
 window.Shopify.customerPrivacy.marketingAllowed()
 );
-window.oaiq("consent", allowed);
+setPixelConsent(allowed);
 persistAttribution(allowed);
 if (allowed) sendPageView();
 } catch (_) {
-window.oaiq("consent", false);
+setPixelConsent(false);
 persistAttribution(false);
 }
 };
@@ -207,13 +223,13 @@ document.addEventListener("visitorConsentCollected", (event) => {
 const allowed = typeof event.detail?.marketingAllowed === "boolean"
 ? event.detail.marketingAllowed
 : Boolean(window.Shopify?.customerPrivacy?.marketingAllowed?.());
-window.oaiq("consent", allowed);
+setPixelConsent(allowed);
 persistAttribution(allowed);
 if (allowed) sendPageView();
 });
 
 document.addEventListener("trackingConsentAccepted", () => {
-window.oaiq("consent", true);
+setPixelConsent(true);
 persistAttribution(true);
 sendPageView();
 });
@@ -279,7 +295,7 @@ const customEventData = ({ amountMinor, currency, contentId, contentType = "prod
 const sendCustomEvent = (customEventName, data = {}, eventId) => {
   const options = { custom_event_name: customEventName };
   if (eventId) options.event_id = String(eventId);
-  window.oaiq("measure", "custom", customEventData(data), options);
+  measurePixelEvent("custom", customEventData(data), options);
 };
 
 const sendLeadCreated = (detail) => {
@@ -287,8 +303,8 @@ const sendLeadCreated = (detail) => {
   const options = configurationId
     ? { event_id: "lead_" + String(configurationId) }
     : undefined;
-  if (options) window.oaiq("measure", "lead_created", { type: "customer_action" }, options);
-  else window.oaiq("measure", "lead_created", { type: "customer_action" });
+  if (options) measurePixelEvent("lead_created", { type: "customer_action" }, options);
+  else measurePixelEvent("lead_created", { type: "customer_action" });
 };
 
 const sendCheckoutStarted = (detail) => {
@@ -298,8 +314,8 @@ const sendCheckoutStarted = (detail) => {
   const suppliedEventId = boundedOpaque(detail.event_id);
   const dedupeId = suppliedEventId || (handoffId ? "checkout_" + String(handoffId) : configurationId ? "checkout_" + String(configurationId) : null);
   const data = contentsEventData(detail, detail.order_kind === "sample" ? "sample" : "curtain");
-  if (dedupeId) window.oaiq("measure", "checkout_started", data, { event_id: dedupeId });
-  else window.oaiq("measure", "checkout_started", data);
+  if (dedupeId) measurePixelEvent("checkout_started", data, { event_id: dedupeId });
+  else measurePixelEvent("checkout_started", data);
 };
 
 const sendItemsAdded = (detail) => {
@@ -308,8 +324,8 @@ const sendItemsAdded = (detail) => {
   const fabricId = detail.fabric_id || detail.variant_id;
   const eventId = suppliedEventId || (fabricId ? "sample_add_" + String(fabricId) : null);
   const data = contentsEventData(detail, "sample");
-  if (eventId) window.oaiq("measure", "items_added", data, { event_id: eventId });
-  else window.oaiq("measure", "items_added", data);
+  if (eventId) measurePixelEvent("items_added", data, { event_id: eventId });
+  else measurePixelEvent("items_added", data);
 };
 
 window.addEventListener("curtainsuk:analytics", (event) => {
@@ -344,7 +360,7 @@ window.addEventListener("curtainsuk:analytics", (event) => {
   }
 
   if (eventName === "fabric_selected" && detail.fabric_id) {
-    window.oaiq("measure", "contents_viewed", {
+    measurePixelEvent("contents_viewed", {
       type: "contents",
       contents: [{ id: String(detail.fabric_id), content_type: "product" }]
     });

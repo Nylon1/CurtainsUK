@@ -85,8 +85,6 @@ export async function sendOpenAiOrderCreated(
           id: "made_to_measure_curtains",
           content_type: "product",
           quantity: 1,
-          amount: input.amountMinor,
-          currency: input.currency,
         }],
       },
     }],

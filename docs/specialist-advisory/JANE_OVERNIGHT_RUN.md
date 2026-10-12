@@ -2,6 +2,10 @@
 
 Starting PR #169: `c3cf45f936f3978567ff3c9ece476a4dcfdc8c54`. Protected production: `c7ca2d0eff1c128386863536d4ce46a877d874a8`, unchanged at 22:00 UTC. [Exact owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325).
 
+## Read-only timeout recovery at 1,560
+
+A bounded source read was cancelled by the unchanged three-second statement timeout. The last committed checkpoint and original history/permissions reconciled exactly; no next-batch write was pending. Added narrow recovery only for a confirmed timeout of one read-only transaction. Full admission, the clean error window and exact readback remain required. Writes, mixed transactions, access errors and ambiguity cannot be retried. **12 focused tests passed.** The first hosted read-only probe met database gates but received a Shopify profile503; its149-second retry delay was honoured. The subsequent read-only hosted probe passed with zero writes, all six live profiles available, and exact source/checkpoint/permission evidence. The repaired population operator is resuming from1560. [Evidence and exact changed files](../../artifacts/jane-read-timeout-recovery-20261012/README.md).
+
 ## First 1,000 milestone: continuing
 
 Independent hosted readback at **12 October 07:08:34 UTC** confirms **1,008 / 11,517 eligible identities**, 1,008 matching current/receipt hashes and 1,009 total knowledge rows. All 168 saved plans and receipts match the exact approved manifest prefix without duplicate IDs. Five eligible historical records remain no-ops; the sixth historical excluded record is preserved and must not be offered for purchase. The operator is continuing the same job; this is a progress snapshot, not completion.

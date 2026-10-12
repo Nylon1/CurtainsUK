@@ -1,6 +1,10 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October2026 · 1,008 eligible identities verified; population continuing; Jane publicly inactive**
+**Programme source of truth · 12 October2026 · 1,560 eligible identities verified; repaired continuation resuming; Jane publicly inactive**
+
+## Read-only timeout recovery at 1,560
+
+A bounded source read was cancelled by the unchanged three-second statement timeout. The last committed checkpoint and original history/permissions reconciled exactly; no next-batch write was pending. Added narrow recovery only for a confirmed timeout of one read-only transaction. Full admission, the clean error window and exact readback remain required. Writes, mixed transactions, access errors and ambiguity cannot be retried. **12 focused tests passed.** The first hosted read-only probe met database gates but received a Shopify profile503; its149-second retry delay was honoured. The subsequent read-only hosted probe passed with zero writes, all six live profiles available, and exact source/checkpoint/permission evidence. The repaired population operator is resuming from1560. [Evidence and exact changed files](../artifacts/jane-read-timeout-recovery-20261012/README.md).
 
 ## First 1,000 milestone: continuing
 

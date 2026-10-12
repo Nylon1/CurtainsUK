@@ -1,0 +1,16 @@
+lib/advisory/connector-read-recovery.mjs
+lib/advisory/operator-recovery.mjs
+lib/advisory/__tests__/connector-read-recovery.test.mjs
+scripts/prepare-jane-eligible-execution.mjs
+docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md
+docs/specialist-advisory/JANE_OVERNIGHT_RUN.md
+artifacts/jane-read-timeout-recovery-20261012/operator.mjs
+artifacts/jane-read-timeout-recovery-20261012/execution-review.json
+artifacts/jane-read-timeout-recovery-20261012/bridge-driver.js
+artifacts/jane-read-timeout-recovery-20261012/checkpoint-reconciliation.json
+artifacts/jane-read-timeout-recovery-20261012/hosted-readback.json
+artifacts/jane-read-timeout-recovery-20261012/quality-checks.json
+artifacts/jane-read-timeout-recovery-20261012/observed-failure.json
+artifacts/jane-read-timeout-recovery-20261012/README.md
+artifacts/jane-read-timeout-recovery-20261012/changed-files.txt
+artifacts/jane-read-timeout-recovery-20261012/read-only-probe.json

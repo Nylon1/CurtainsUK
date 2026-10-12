@@ -1,0 +1,158 @@
+[
+  {
+    "kind": "resource-gate",
+    "at": "2026-10-12T08:03:20.817Z",
+    "value": {
+      "projectRef": "hqysjumypgeapgmqkcrx",
+      "source": "trusted-operator-telemetry",
+      "observedAt": 1791792148782.4724,
+      "windowMs": 75048.44775390625,
+      "windowStartedAt": 1791792073734.0247,
+      "windowEndedAt": 1791792148782.4724,
+      "cpuPercent": 8.50194424305716,
+      "ioPercent": 3.896149870530634,
+      "memoryPercent": 75.35986604610967,
+      "diskPercent": 78.62512215289784,
+      "details": {
+        "cpuCores": 2,
+        "memoryBytes": {
+          "total": 454995968,
+          "available": 112111616
+        },
+        "disks": {
+          "nvme0n1": {
+            "busyPercent": 3.896149870530634,
+            "readIops": 103.59974433442315,
+            "writeIops": 25.21038151520625,
+            "readBytesPerSecond": 1442716.9014213807,
+            "writtenBytesPerSecond": 215201.35969979965
+          },
+          "nvme1n1": {
+            "busyPercent": 0.5329890383783925,
+            "readIops": 5.38318928760218,
+            "writeIops": 1.8787863602769985,
+            "readBytesPerSecond": 647896.3583556485,
+            "writtenBytesPerSecond": 402131.27523918945
+          }
+        },
+        "filesystems": {
+          "/": {
+            "sizeBytes": 10461904896,
+            "availableBytes": 2236219392,
+            "usedPercent": 78.62512215289784
+          },
+          "/data": {
+            "sizeBytes": 2077073408,
+            "availableBytes": 1033048064,
+            "usedPercent": 50.264248725098504
+          }
+        },
+        "ioDefinition": "Maximum observed disk busy-time fraction, not provisioned IOPS capacity"
+      },
+      "connections": 23,
+      "maxConnections": 60,
+      "lockWaits": 0,
+      "newDeadlocks": 0,
+      "newDatabaseErrors": 0,
+      "supplierRefreshActive": false
+    }
+  },
+  {
+    "kind": "retail-publication",
+    "at": "2026-10-12T08:03:13.631Z",
+    "value": [
+      {
+        "id": "pt-4025-593",
+        "browseReady": true,
+        "launchReady": true,
+        "orderReady": true,
+        "stock": "AVAILABLE",
+        "url": "https://www.curtainsuk.com/pages/fabric/pt-4025-593-mezze-moonstone",
+        "status": 200,
+        "observedAt": "2026-10-12T08:03:12.984Z"
+      },
+      {
+        "id": "pt-4025-606",
+        "browseReady": true,
+        "launchReady": true,
+        "orderReady": true,
+        "stock": "AVAILABLE",
+        "url": "https://www.curtainsuk.com/pages/fabric/pt-4025-606-mezze-jade",
+        "status": 200,
+        "observedAt": "2026-10-12T08:03:13.572Z"
+      },
+      {
+        "id": "pt-4025-915",
+        "browseReady": true,
+        "launchReady": true,
+        "orderReady": true,
+        "stock": "AVAILABLE",
+        "url": "https://www.curtainsuk.com/pages/fabric/pt-4025-915-mezze-raven",
+        "status": 200,
+        "observedAt": "2026-10-12T08:03:13.118Z"
+      },
+      {
+        "id": "pt-4026-046",
+        "browseReady": true,
+        "launchReady": true,
+        "orderReady": true,
+        "stock": "AVAILABLE",
+        "url": "https://www.curtainsuk.com/pages/fabric/pt-4026-046-nahla-calico",
+        "status": 200,
+        "observedAt": "2026-10-12T08:03:13.019Z"
+      },
+      {
+        "id": "pt-4026-194",
+        "browseReady": true,
+        "launchReady": true,
+        "orderReady": true,
+        "stock": "AVAILABLE",
+        "url": "https://www.curtainsuk.com/pages/fabric/pt-4026-194-nahla-tigers-eye",
+        "status": 200,
+        "observedAt": "2026-10-12T08:03:13.007Z"
+      },
+      {
+        "id": "pt-4026-296",
+        "browseReady": true,
+        "launchReady": true,
+        "orderReady": false,
+        "stock": "OUT_OF_STOCK",
+        "url": "https://www.curtainsuk.com/pages/fabric/pt-4026-296-nahla-orchid",
+        "status": 200,
+        "observedAt": "2026-10-12T08:03:13.631Z"
+      }
+    ]
+  },
+  {
+    "kind": "source-read-timing",
+    "at": "2026-10-12T08:03:14.620Z",
+    "value": {
+      "durationMs": 6153
+    }
+  },
+  {
+    "kind": "read-only-plan-validation",
+    "at": "2026-10-12T08:01:30.542Z",
+    "value": {
+      "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+      "ids": [
+        "pt-4024-526",
+        "pt-4024-593",
+        "pt-4024-606",
+        "pt-4024-788",
+        "pt-4025-046",
+        "pt-4025-302"
+      ],
+      "unchanged": 0,
+      "sqlSha256": "f4b336eeb2ad1cc936b4c6f15af14a3c44e5786d76e84ae5fdac040056c0e2f7"
+    }
+  },
+  {
+    "kind": "read-only-transport-probe",
+    "at": "2026-10-12T08:01:32.752Z",
+    "value": {
+      "processed": 1560,
+      "permissionRestored": true
+    }
+  }
+]

@@ -1,5 +1,11 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Monitoring renewed; same job resumed at 8,148
+
+The masked-form save issue was repaired using equivalent .NET ACL inspection. Encrypted storage and current-user-only permissions passed verification. Replacement monitoring access to metrics, logs and backups returned HTTP200 at20:19UTC; the error gate was clear and backup1945273696 remains COMPLETED within the24-hour RPO. The unchanged23-hour credential ceiling is now13October19:18:30.791UTC. This supersedes earlier pending-renewal statements below.
+
+The20:13 response timeout affected a read-only request. Exact hosted reconciliation confirmed8,148 with no pending write, unchanged historical records and restored permissions. The same unmodified operator actually resumed, reaching **8,160 / 11,517** at20:21:09.272UTC. All safety limits remain active. Automatic updates remain disabled. [Renewal and continuation evidence](../../artifacts/jane-monitoring-renewal-20261012/README.md).
+
 ## Latest milestone: 8,004 independently verified
 
 At20:02:48UTC independent read-only SQL confirms **8,004 / 11,517**, leaving **3,513**. All hashes, whole-job digests and1,334 verified batches match the exact journal prefix. Historical six records, five eligible no-ops and permissions are preserved; two expired/uncommitted plans are not counted. The same unchanged operator is continuing. [Evidence](../../artifacts/jane-progress-8000-20261012/README.md).

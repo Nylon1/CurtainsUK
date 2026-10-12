@@ -1,6 +1,12 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 8,004 eligible identities independently verified; existing population continuing; automatic updates disabled; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 8,148 checkpoint independently reconciled; verified receipts through 8,160; existing population continuing with renewed monitoring; automatic updates disabled; Jane publicly inactive**
+
+## Monitoring renewed and population resumed
+
+The replacement monitoring credential was saved through the repaired masked local form and verified under Windows DPAPI/current-user-only permissions. Metrics, error-log and backup reads returned HTTP200 at20:19UTC. Backup1945273696 remains COMPLETED within the24-hour RPO. The existing23-hour monitoring age ceiling now ends13October19:18:30.791UTC, superseding earlier pending-renewal statements.
+
+A response timeout affected a read-only request at8,148. Independent hosted/journal reconciliation confirmed exact records, original history and restored permissions with no pending write. The same unchanged job resumed and verified **8,160 / 11,517** at20:21:09.272UTC, leaving3,357. No safety limit, source record, migration or active runner changed. Automatic updates remain disabled; population and catch-up are incomplete. [Evidence](../artifacts/jane-monitoring-renewal-20261012/README.md).
 
 ## Verified milestone: 8,004 identities
 

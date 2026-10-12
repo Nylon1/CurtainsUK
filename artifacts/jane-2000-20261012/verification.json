@@ -9,11 +9,12 @@
   "newEligibleRows": 2011,
   "totalKnowledge": 2017,
   "postLookupRepair": {
-    "batches": 24,
+    "batches": 25,
     "minimumSourceThroughReceiptMs": 4674,
     "maximumSourceThroughReceiptMs": 10175,
     "admittedPeakCpuPercent": 38.80439202920459,
-    "admittedPeakMemoryPercent": 79.74037431470163
+    "admittedPeakMemoryPercent": 79.74037431470163,
+    "sampleThroughReceiptAt": "2026-10-12T08:52:16.139Z"
   },
   "protectedProductionHead": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
   "executionCode": "242a2fd3",

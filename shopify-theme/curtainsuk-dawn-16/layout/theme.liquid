@@ -428,11 +428,38 @@ if (document.readyState === "loading") {
   bindNailaMeasurement();
 }
 
-document.addEventListener("curtainsuk:visualiser-select", (event) => {
+const measureVisualiserSelection = (event) => {
   const fabricId = event.detail?.fabric?.id;
   recordWebsiteDiagnostic("room_visualiser_used", { fabric_id: fabricId || null });
   sendCustomEvent("room_visualiser_used", { contentId: fabricId });
-});
+};
+document.addEventListener("curtainsuk:visualiser-select", measureVisualiserSelection);
+
+// DOM events inside the published room iframe do not bubble to the storefront.
+// Listen only to the existing same-origin room document, without changing it.
+const measuredRoomDocuments = new WeakSet();
+const bindRoomMeasurement = () => {
+  document.querySelectorAll('iframe[data-room-frame][title="CurtainsUK Room Visualiser"]').forEach((frame) => {
+    const bindLoadedDocument = () => {
+      try {
+        const roomDocument = frame.contentWindow?.document;
+        if (!roomDocument || measuredRoomDocuments.has(roomDocument)) return;
+        const roomUrl = new URL(roomDocument.URL);
+        const storefrontUrl = new URL(window.location.href);
+        if (roomUrl.origin !== storefrontUrl.origin || roomUrl.pathname !== "/apps/curtainsuk-decision/room-visualiser") return;
+        roomDocument.addEventListener("curtainsuk:visualiser-select", measureVisualiserSelection);
+        measuredRoomDocuments.add(roomDocument);
+      } catch (_) { /* A cross-origin or unavailable frame cannot provide a measurement. */ }
+    };
+    frame.addEventListener("load", bindLoadedDocument);
+    bindLoadedDocument();
+  });
+};
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bindRoomMeasurement, { once: true });
+} else {
+  bindRoomMeasurement();
+}
 
 })();
 </script>

@@ -1,0 +1,49 @@
+{
+  "verifiedAt": "2026-10-12T10:00:49.666Z",
+  "processed": 2766,
+  "remaining": 8751,
+  "expectedCount": 11517,
+  "complete": false,
+  "planHashesVerified": 461,
+  "verifiedReceipts": 461,
+  "exactManifestPrefix": true,
+  "receiptIdentityHash": "1aee7dcecd6ee644a3c52c2938290ffa9a971ce8e1c4cf736d8e3006dbf5f0a6",
+  "receiptContentHash": "47caf9f48911c80b789c5547bf4b60e4dde5c2619fdf51b00ba8b2618530a652",
+  "lastReceipt": {
+    "processed": 2766,
+    "indexed": 2766,
+    "batches": 461,
+    "complete": false,
+    "permissionRestored": true,
+    "unchanged": 0
+  },
+  "historicalPreserved": true,
+  "permissionRestored": true,
+  "pendingWrite": false,
+  "newEligibleRows": 2761,
+  "totalKnowledge": 2767,
+  "postLookupRepair": {
+    "batches": 150,
+    "minimumSourceThroughReceiptMs": 4674,
+    "maximumSourceThroughReceiptMs": 10175,
+    "admittedPeakCpuPercent": 49.71414959501109,
+    "admittedPeakIoPercent": 39.30049459511543,
+    "admittedPeakMemoryPercent": 79.92402077725664,
+    "throughReceiptAt": "2026-10-12T09:59:59.658Z"
+  },
+  "stop": {
+    "kind": "stop",
+    "at": "2026-10-12T10:00:10.859Z",
+    "value": {
+      "code": "INDEX_POPULATION_APPROVAL_REQUIRED",
+      "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a"
+    }
+  },
+  "migrationCount": 81,
+  "latestMigration": "20261011180354",
+  "databaseBytes": 705678483,
+  "advisoryBytes": 6078464,
+  "executionCode": "242a2fd3",
+  "dependencySha256": "a56b1959734589ad5c4c95879149c7de89636deb0abb3afaa433acb55c7df87c",
+  "deadline": "2026-10-12T10:00:00Z"
+}

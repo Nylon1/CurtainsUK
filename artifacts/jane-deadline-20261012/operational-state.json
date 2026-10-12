@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-10-12T10:01:14Z",
+  "operatorRunning": false,
+  "processCheckedAt": "2026-10-12T10:00:26Z",
+  "heartbeatStatus": "PAUSED",
+  "journalLockPresent": false,
+  "freeCBytes": 40693493760,
+  "protectedProductionHead": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "backup": {
+    "id": 1937679152,
+    "status": "COMPLETED",
+    "recoveryPoint": "2026-10-12T01:11:28.231Z",
+    "isPhysical": true,
+    "walgEnabled": true,
+    "pitrEnabled": false,
+    "observedAt": "2026-10-12T10:01:14.285Z",
+    "recoveryOwner": "Nylon1",
+    "maximumAgeHours": 24,
+    "capturesCurrentIndexWrites": false
+  },
+  "toshibaCompletion": "UNVERIFIED",
+  "additionalPaidAiCalls": 0,
+  "deadline": "2026-10-12T10:00:00Z",
+  "extensionApproved": false
+}

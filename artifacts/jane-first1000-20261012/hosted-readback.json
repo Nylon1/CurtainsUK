@@ -1,0 +1,11 @@
+{
+  "receipts": 1008,
+  "processed": 1008,
+  "observedAt": "2026-10-12T07:08:34.122599+00:00",
+  "advisoryBytes": 2678784,
+  "databaseBytes": 702008467,
+  "matchedHashes": 1008,
+  "migrationCount": 81,
+  "totalKnowledge": 1009,
+  "latestMigration": "20261011180354"
+}

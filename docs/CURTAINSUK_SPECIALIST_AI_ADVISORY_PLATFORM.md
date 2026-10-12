@@ -1,6 +1,6 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 3,006 eligible identities verified; until-complete indexing running; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 4,014 eligible identities verified; until-complete indexing running; Jane publicly inactive**
 
 ## Verified milestone 3000
 
@@ -9,6 +9,14 @@ Independent hosted readback at **2026-10-12T10:52:46.814541+00:00** confirms **3
 The resumed binding has verified 40 batches. Source-through-receipt durations were 4358–8673 ms. Fresh backup/access, resource/error, source/publication, historical and permission gates remain active. No migration, source mutation, paid AI call, deployment, activation, merge or PR #167 change.
 
 [Milestone evidence](../artifacts/jane-progress-3000-20261012/README.md).
+
+## Verified milestone 4000
+
+Independent hosted readback at **2026-10-12T12:16:58.976852+00:00** confirms **4,014 / 11,517 eligible identities**, with **7,503 remaining**. All **669** saved plans and verified receipts match the exact manifest prefix and hosted identity/content digests. The same until-complete operator is continuing. This is a progress snapshot, not full coverage.
+
+The resumed binding has verified 208 batches. Source-through-receipt durations were 4267–18954 ms. Fresh backup/access, resource/error, source/publication, historical and permission gates remain active. No Jane migration, source mutation, paid AI call, AI deployment, public activation or PR #167 change. The separately owner-authorised PR #172 merge and single-file Shopify tracking release did not change this indexer or its source data.
+
+[Milestone evidence](../artifacts/jane-progress-4000-20261012/README.md).
 
 ## Until-complete continuation
 

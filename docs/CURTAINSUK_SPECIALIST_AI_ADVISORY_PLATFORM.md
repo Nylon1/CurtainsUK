@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 11 October 2026 · One-time overnight backup watcher running and Codex follow-up active; approved 120-second host window verified; indexing waits for a new completed backup; Jane remains publicly inactive**
+**Programme source of truth · 12 October 2026 · First eligible batch committed and verified, then stopped at the unchanged latency limit; overnight follow-up PAUSED; Jane remains publicly inactive**
 
-## Current milestone: overnight follow-up active
+## Current milestone: first hosted eligible batch verified, latency stop
+
+The completed physical backup `1937679152`, recovery point **12 October 01:11:28.231 UTC**, satisfied the owner's post-write recovery requirement. Fresh publication reconciliation matched all **11,517** approved IDs; CPU, I/O, memory, disk, connections, errors, locks, supplier quiet-state, historical records and permissions passed admission. The existing Supabase connector submitted exactly one six-identity transaction, at **01:37:48 UTC**.
+
+Eligible job **`ac425f78-f6ec-4623-97bb-df8763d79d5a`** has a verified checkpoint of **6**, comprising **five unchanged existing rows and one new row** (`pt-1227-634`). The database now contains **seven** index rows, including the preserved discontinued historical identity outside the eligible scope. Eligible coverage is **6/11,517**, with **11,511 remaining**. The original six rows/job/receipts remain exact, and transaction-local role permissions were restored. The 120-ID canary is **incomplete**.
+
+The runner then raised **`INDEX_BATCH_LATENCY_STOP`**. End-to-end time was approximately **11.36 seconds**, above the unchanged **10-second** limit. This includes source and live-page reads, local/connector transport, the write and exact readback; it is not evidence of an 11-second database query. The one-time automation is **PAUSED**, both local processes have exited, and no second write, retry, rollback or continuation occurred. A separate read-only reconciliation confirms the checkpoint and all six hashes. [Run report and evidence](../artifacts/jane-overnight-stop-20261012/README.md).
+
+Next: review and reduce operator transport overhead while retaining the same latency and freshness limits. Any resumed operation must use this job's offset **6**, recheck all admission conditions and finish the remaining 114 canary identities before considering continuation. Do not create another eligible job or replay the first transaction. No automatic restart is scheduled. The historical 4–6-hour estimate is unvalidated by this partial canary.
+
+Existing local test evidence is preserved; a new offline exact journal/readback verification passed. No new paid AI call, migration, public activation, deployment, merge or customer-system change occurred. PR #167 remains independent. The current backup predates this new index transaction; its exact fsynced plan and verified receipt are retained for recovery, and a later verified backup is still needed for new local work.
+
+## Previous milestone: overnight follow-up active
 
 The [new owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325) permits genuine host counter windows up to 120 seconds for this exact one-time eligible population. The latest source sample must still be no older than 60 seconds. All other safety limits remain unchanged. **22 targeted local checks pass**; the previous 138-check evidence is preserved. A live 66.55-second exporter window passed host thresholds at 22:06 UTC: CPU 2.66%, I/O busy 0.74%, memory 63.63%, root disk 78.61%, data disk 49.97%.
 

@@ -1,0 +1,57 @@
+{
+  "preparedAt": "2026-10-12T01:37:43.422Z",
+  "verifiedAt": "2026-10-12T01:37:51.796Z",
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "sqlSha256": "5f98ed3ea5b4e4cccc5c15ffadce4e96e1ff6b99e6787c17a1e74fc71661b462",
+  "ids": [
+    "pt-1204-212",
+    "pt-1223-374",
+    "pt-1224-002",
+    "pt-1225-314",
+    "pt-1225-722",
+    "pt-1227-634"
+  ],
+  "items": [
+    {
+      "id": "pt-1204-212",
+      "sourceHash": "1d11bfc36b2579d606b6a17e8e5d0ed064e4bbb7f965b5d72f5a8bc4411dd378",
+      "unchanged": true
+    },
+    {
+      "id": "pt-1223-374",
+      "sourceHash": "0cd678a1363c9538eda71180ed34504866cddfb5dc63f3dfcbf66f4ece4eaafb",
+      "unchanged": true
+    },
+    {
+      "id": "pt-1224-002",
+      "sourceHash": "57da8f4dd452c979723cc2d868a099272970163f567283477865e4d6810b37bc",
+      "unchanged": true
+    },
+    {
+      "id": "pt-1225-314",
+      "sourceHash": "06a583331c9dee743a5044ba44fdbcd7f8c501a149ee90e97bea14080ac6857e",
+      "unchanged": true
+    },
+    {
+      "id": "pt-1225-722",
+      "sourceHash": "eb6c3a2f0f4e9e40b739e6cd10b95b5aa0db516079325cbf4028727100f7bb48",
+      "unchanged": true
+    },
+    {
+      "id": "pt-1227-634",
+      "sourceHash": "0611eb830d047add1906ddfab5878ed0e6d1ed14687000f2345df1494e013f99",
+      "unchanged": false
+    }
+  ],
+  "receipt": {
+    "processed": 6,
+    "indexed": 6,
+    "batches": 1,
+    "complete": false,
+    "permissionRestored": true,
+    "unchanged": 5
+  },
+  "historicalExact": true,
+  "permissionRestored": true,
+  "localVerificationPassed": true
+}

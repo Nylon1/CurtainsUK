@@ -1,6 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October2026 · 2,772 eligible identities verified; until-complete indexing running; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 3,006 eligible identities verified; until-complete indexing running; Jane publicly inactive**
+
+## Verified milestone 3000
+
+Independent hosted readback at **2026-10-12T10:52:46.814541+00:00** confirms **3,006 / 11,517 eligible identities**, with **8,511 remaining**. All **501** saved plans and verified receipts match the exact manifest prefix and hosted identity/content digests. The same until-complete operator is continuing. This is a progress snapshot, not full coverage.
+
+The resumed binding has verified 40 batches. Source-through-receipt durations were 4358–8673 ms. Fresh backup/access, resource/error, source/publication, historical and permission gates remain active. No migration, source mutation, paid AI call, deployment, activation, merge or PR #167 change.
+
+[Milestone evidence](../artifacts/jane-progress-3000-20261012/README.md).
 
 ## Until-complete continuation
 

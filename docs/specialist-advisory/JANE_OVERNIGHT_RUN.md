@@ -2,6 +2,14 @@
 
 Starting PR #169: `c3cf45f936f3978567ff3c9ece476a4dcfdc8c54`. Protected production: `c7ca2d0eff1c128386863536d4ce46a877d874a8`, unchanged at 22:00 UTC. [Exact owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325).
 
+## Verified milestone 3000
+
+Independent hosted readback at **2026-10-12T10:52:46.814541+00:00** confirms **3,006 / 11,517 eligible identities**, with **8,511 remaining**. All **501** saved plans and verified receipts match the exact manifest prefix and hosted identity/content digests. The same until-complete operator is continuing. This is a progress snapshot, not full coverage.
+
+The resumed binding has verified 40 batches. Source-through-receipt durations were 4358–8673 ms. Fresh backup/access, resource/error, source/publication, historical and permission gates remain active. No migration, source mutation, paid AI call, deployment, activation, merge or PR #167 change.
+
+[Milestone evidence](../../artifacts/jane-progress-3000-20261012/README.md).
+
 ## Until-complete continuation
 
 On 12 October the owner explicitly instructed this thread: **“Proceed with no deadline.”** [Recorded instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6122415089). This supersedes the prior 10:00 UTC cutoff for existing job `ac425f78-f6ec-4623-97bb-df8763d79d5a` and its exact 11,517-ID snapshot only. The last independently reconciled checkpoint is **2,766**, with **8,751 remaining**. No new job, full rebuild or recurring refresh is authorised.

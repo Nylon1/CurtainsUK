@@ -1,5 +1,21 @@
 # OpenAI Ads measurement validation — 12 Oct 2026
 
+> **CURRENT SOURCE OF TRUTH — synchronized after PR #180**
+>
+> Protected production HEAD: `58a97377359049e621676d01a66d74aeec6283a1`.
+>
+> Shopify MAIN theme: `182339731835` — **CurtainsUK - Curtain Style V1 review**.
+> The live `layout/theme.liquid` readback matches the protected source byte for byte after the PR #180 one-file release. Final SHA-256: `8d055fcdf7a4e412b6f499e8be37226dad234fc6b40bdd6a12885d7160d9ff0f`.
+>
+> OpenAI Ads optimisation remains **only** standard `checkout_started` for the active CurtainsUK conversion campaign. `CurtainsUK Purchase` uses standard `order_created`, 30-day click / 1-day view, and remains unattached to any campaign for measurement only.
+>
+> Server-side purchase CAPI is implemented and the synthetic validation-only request returned HTTP 200. No genuine purchase conversion has yet been proven from a paid CurtainsUK curtain order, and no real payment was made during validation.
+>
+> Live cross-tab consent regression passed after PR #180: opening a second consented storefront tab no longer revokes Pixel consent in the first; explicit denial still blocks measurement before and after reload. The provider's sampled raw feed did not independently surface that exact cross-tab test run, so browser SDK delivery is verified but provider receipt for that specific test is not claimed.
+>
+> PRs #177, #178, #179 and #180 are incorporated into this source of truth. PR #175 remains closed. Jane / PR #169 and its indexing process were not changed.
+
+
 ## Measurement contract
 
 CurtainsUK keeps the existing ChatGPT Ads campaign optimised to the standard `checkout_started` event. Diagnostic interactions remain custom events and are not optimisation goals.
@@ -94,13 +110,17 @@ Live source inspection identified that fabric selection occurs inside the publis
 
 Six additional behavioral tests cover actual bridge execution, website dataLayer output, custom-only dispatch, deferred loading, repeat binding, replacement documents, unrelated origins/paths and denied consent. All 20 consent/House/frame cases passed locally. Owner approval covered exact PR #179 commit `8dff2655aa55801948d70f59e39ef6a3c65b31bc`; both checks passed and the protected merge is `cbceae54a3c84e87f7ba79c835e3217a19157d1f`. Only `layout/theme.liquid` was deployed at 16:29:37 UTC. Fresh live backup matched the previous protected file exactly. Live after MD5 `3233a46f31cffd0140f6b42f18796328`, SHA-256 `64045f33266fc3c5b5069e284e73ee687047159505125442e796faffd1940955`, and full content match the protected release. No other theme file was uploaded in this release. The storefront and published room rendered normally; provider receipt remains a separate test.
 
-### Cross-tab consent correction, not published
+### Cross-tab consent correction, released in PR #180
 
 Live SDK logs showed an existing tab reporting consent revocation from persisted storage when another storefront page opened, despite Shopify's marketing preference remaining checked. The bridge published a temporary `consent=false` before Shopify's asynchronous privacy callback on every page. The official SDK propagates persisted denial across tabs without automatically propagating the later grant. This caused genuine Fabric Intelligence result events to be dropped in the original tab.
 
 The correction waits for Shopify's actual decision before installing and initialising the Pixel, queues that decision before init, and suppresses all measurement while consent is unknown or denied. It does not replay commerce events collected before consent. Actual refusal still reaches the SDK. It changes only the bridge, its regression tests and this record; no Naila, renderer, checkout, indexing, campaign or supplier logic changes.
 
-Three new behavioral regressions cover two tabs with the SDK's denial propagation, delayed denial without commerce replay, and fresh-SDK installation with consent before init. All 23 consent/House/frame tests pass locally. This separate correction requires its own exact-commit protected-policy approval and one-file release; PR #179's approval does not cover it.
+Three new behavioral regressions cover two tabs with the SDK's denial propagation, delayed denial without commerce replay, and fresh-SDK installation with consent before init. All 23 consent/House/frame tests passed. Owner approval covered exact PR #180 head `7c82e70a38414762447aae9de9ab4405698ea6b5`; both required checks passed and the protected merge is `58a97377359049e621676d01a66d74aeec6283a1`.
+
+Only `layout/theme.liquid` was deployed to MAIN theme `182339731835` at 17:07:15 UTC. The live file was backed up first, the previous live content matched the preceding protected source, and the post-release readback matches the PR #180 protected source byte for byte. SHA-256 advanced from `64045f33266fc3c5b5069e284e73ee687047159505125442e796faffd1940955` to `8d055fcdf7a4e412b6f499e8be37226dad234fc6b40bdd6a12885d7160d9ff0f`.
+
+Live cross-tab validation passed: the first tab continued queuing/flushing Pixel diagnostics after a second consented storefront tab opened, without reloading or regranting consent. Explicit denial produced zero queued Pixel events and remained effective after reload; the original consent preference was restored afterward. No checkout, order or payment was created. The provider raw feed remained sampled/older and did not independently expose this exact test run, so provider receipt is not claimed.
 
 Further raw provider samples now include `fabric_intelligence_started`, `fabric_selected`, `measurements_completed`, confirmed sample `items_added` and custom `sample_added`. Sample metadata includes exact fabric `sdg-f1325-02`, GBP 250 and quantity 1. Samples remain incomplete and lack event IDs, so exact provider deduplication and absent events are not inferred.
 

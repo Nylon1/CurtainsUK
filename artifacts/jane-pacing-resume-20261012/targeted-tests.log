@@ -1,0 +1,42 @@
+✔ 120-second exception is bound to the approved eligible snapshot and keeps 60-second freshness (147.964ms)
+✔ eligible admission blocks stale backup, missing operator, hourly telemetry, source drift and changed no-op data (19.8623ms)
+✔ actual SQL creates separate job, verifies five no-ops, enforces canary and preserves historical rows and role grants (4737.0054ms)
+✔ historical drift, collision and active lease roll back eligible SQL without granting lasting access (2360.0065ms)
+✔ combined transport executes real eligible transaction and observes restored grants after COMMIT (2293.625ms)
+✔ complete source, submission and readback duration still stops at ten seconds after verified commit (16.8371ms)
+✔ read-only pacing precedes fresh checkpoint and source evidence, and a pacing failure submits nothing (23.6854ms)
+✔ one approval completes synthetic 11517 manifest in bounded invocations and reports every 1000 (40596.5923ms)
+✔ lost commit recovers exact readback without duplicate submission; uncommitted ambiguity stays stopped (50.0552ms)
+✔ unhealthy canary, missing backup, load and permission failures stop automatically without retries (81.2729ms)
+✔ second operator is excluded and altered implementation or journal cannot submit a batch (59.4426ms)
+✔ one request contains unchanged commit then read-only verification, fsynced first and hash bound (12.1598ms)
+✔ failed journal and lost or empty commit responses cannot be resubmitted (3.1245ms)
+✔ recovery without cached submission is read-only and invalid plans fail closed (4.0435ms)
+✔ Postgres readback failure after COMMIT leaves committed row for read-only recovery (3871.4375ms)
+✔ accepts sufficient genuine headroom without sleeping or changing timestamps (7.3479ms)
+✔ cached samples are read-only waiting, then a genuine new sample permits admission (5.3438ms)
+✔ unchanging exporter has a bounded wait, with no synthetic fresh measurement (6.6963ms)
+✔ hard deadline and access failure terminate pacing without retries (1.6524ms)
+✔ fresh unsafe, invalid, reset or overlong-window samples cannot be admitted (3.2956ms)
+✔ derives CPU, disk busy time, memory, filesystem pressure and I/O rates from source time (11.7014ms)
+✔ cached content cannot be relabelled as fresh by a newer HTTP Date (4.9014ms)
+✔ stale source time and windows above 60 seconds fail closed (5.6594ms)
+✔ owner exception accepts genuine 120-second windows without relaxing freshness or default policy (15.386ms)
+✔ restart, CPU topology changes and counter resets fail closed (6.986ms)
+✔ missing gauges, failed collectors, duplicates and wrong projects are rejected (3.244ms)
+✔ malformed labels, NaN, invalid capacity and read-only data filesystem are rejected (2.5069ms)
+✔ unrelated potentially private metrics and comments are discarded (1.388ms)
+✔ a mounted data disk cannot silently lose all of its I/O series (2.3137ms)
+✔ storage remapping and counters inconsistent with elapsed source time fail closed (5.112ms)
+✔ all 16883 recorded identities traverse once in 2814 bounded pages; this is not knowledge population (63.912ms)
+✔ manifest rejects duplicates, tampering, wrong project, truncation and crossed checkpoints (112.7909ms)
+✔ resource admission refuses stale/missing telemetry, load spikes and concurrent supplier work (1.1455ms)
+✔ monitored population requires approval, bounds invocations and stops before next write on pressure (23.5339ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 50931.0468

@@ -15,6 +15,7 @@ async function visit(file){
 }
 await visit('lib/advisory/eligible-runner.mjs');await visit('lib/advisory/index-journal.mjs');await visit('lib/advisory/host-metrics.mjs');
 await visit('lib/advisory/eligible-transport.mjs');
+await visit('lib/advisory/host-admission-pacing.mjs');
 const codeManifest=Object.fromEntries(Object.entries(hashes).sort(([a],[b])=>a.localeCompare(b)));
 const manifest=JSON.parse(await readFile('artifacts/jane-eligible-scope-20261011/eligible-manifest.json','utf8'));
 const historical=JSON.parse(await readFile(dir+'/historical-baseline.json','utf8')),summary=validateEligibleManifest(manifest);

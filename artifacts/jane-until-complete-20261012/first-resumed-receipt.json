@@ -1,0 +1,13 @@
+{
+  "kind": "verified-batch",
+  "at": "2026-10-12T10:36:11.611Z",
+  "value": {
+    "processed": 2772,
+    "indexed": 2772,
+    "batches": 462,
+    "complete": false,
+    "permissionRestored": true,
+    "unchanged": 0,
+    "elapsedSinceSourceStartMs": 7341
+  }
+}

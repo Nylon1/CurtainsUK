@@ -1,6 +1,6 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October2026 · 2,766 eligible identities verified; until-complete continuation authorised, preflight in progress; Jane publicly inactive**
+**Programme source of truth · 12 October2026 · 2,772 eligible identities verified; until-complete indexing running; Jane publicly inactive**
 
 ## Until-complete continuation
 
@@ -10,7 +10,7 @@ Implemented a narrowly scoped until-complete approval. Ordinary population appro
 
 **45 focused tests passed**, including actual local PostgreSQL execution, grant restoration, concurrency, completed traversal, scoped no-deadline validation, fresh-evidence expiry, bounded host waiting and recovery failures. Publication reconciliation again matches exactly 11,517 identities, with 273 unpublished candidates excluded and no unmapped publications. Migration bundle checksum remains unchanged. New dependency checksum: `39b6fd76b4c8ff4f8e2827557cba8989632d93fb18b40c882d13d0915cb0c782`.
 
-The new private operator binding passed its read-only hosted probe at 2026-10-12T10:33:50.585Z. Exact next-six identity, retail/publication, restored grants, historical state, backup and genuine resource checks passed with zero hosted writes. Population resumption follows this verified probe; the first committed receipt will establish actual execution. The same original fsynced journal and all historical evidence are retained. The heartbeat remains paused to avoid duplicate operators; the foreground bridge is the execution path. No migration, source mutation, paid AI call, deployment, public activation, merge or PR #167 change.
+The new private operator binding passed its read-only hosted probe at 2026-10-12T10:33:50.585Z. Exact next-six identity, retail/publication, restored grants, historical state, backup and genuine resource checks passed with zero hosted writes. The first resumed transaction is now verified at **2026-10-12T10:36:11.611Z**, advancing the same job to **2,772**. The operator is actively continuing; later receipts are recorded in the original journal. The same original fsynced journal and all historical evidence are retained. The heartbeat remains paused to avoid duplicate operators; the foreground bridge is the execution path. No migration, source mutation, paid AI call, deployment, public activation, merge or PR #167 change.
 
 [Implementation and evidence](../artifacts/jane-until-complete-20261012/README.md).
 

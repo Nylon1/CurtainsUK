@@ -345,7 +345,6 @@ export function buildShopifyDraftOrderContract(input: {
     { key: "curtainsuk_construction", value: snapshot.construction },
     { key: "curtainsuk_customer_dimension_summary", value: customerDimensionSummary(snapshot.measurements) },
     { key: "curtainsuk_calculated_fabric_metres", value: String(snapshot.calculatedFabricMetres) },
-    { key: "curtainsuk_openai_order_kind", value: "CURTAIN" },
     ...(
       typeof input.openaiAttribution?.oppref === "string"
       && input.openaiAttribution.oppref.trim()

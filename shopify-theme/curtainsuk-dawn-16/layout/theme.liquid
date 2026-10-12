@@ -117,7 +117,7 @@ content_type: "page"
 }]
 });
 
-const fabricProfile = window.location.pathname.match(/^\\/pages\\/fabric\\/([^/]+)\\/?$/);
+const fabricProfile = window.location.pathname.match(/^\/pages\/fabric\/([^/]+)\/?$/);
 if (fabricProfile) {
 window.oaiq("measure", "contents_viewed", {
 type: "contents",

@@ -223,10 +223,10 @@ const normaliseCurtainsUkEventName = (name) => {
   return name.replace(/^curtainsuk_/, "");
 };
 
-const recordWebsiteDiagnostic = (name, detail = {}) => {
+function recordWebsiteDiagnostic(name, detail = {}) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: "curtainsuk_" + name, ...detail });
-};
+}
 
 const normaliseContents = (contents) => {
   if (!Array.isArray(contents)) return undefined;

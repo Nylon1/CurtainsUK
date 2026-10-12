@@ -130,6 +130,35 @@ content_type: "product"
 }
 };
 
+const OPENAI_ATTRIBUTION_STORAGE_KEY = "curtainsuk_openai_ads_attribution_v1";
+
+const readCookie = (name) => {
+  const prefix = name + "=";
+  return document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(prefix))
+    ?.slice(prefix.length) || "";
+};
+
+const captureOpenAiAttribution = () => {
+  try {
+    const previous = JSON.parse(window.localStorage.getItem(OPENAI_ATTRIBUTION_STORAGE_KEY) || "{}");
+    const oppref = new URL(window.location.href).searchParams.get("oppref") || previous.oppref || "";
+    const obref = readCookie("__obref") || previous.obref || "";
+    const next = {};
+    if (typeof oppref === "string" && oppref.length > 0 && oppref.length <= 2048) next.oppref = oppref;
+    if (typeof obref === "string" && obref.length > 0 && obref.length <= 512) next.obref = obref;
+    if (Object.keys(next).length > 0) {
+      window.localStorage.setItem(OPENAI_ATTRIBUTION_STORAGE_KEY, JSON.stringify(next));
+    }
+  } catch (_) {}
+};
+
+const clearOpenAiAttribution = () => {
+  try { window.localStorage.removeItem(OPENAI_ATTRIBUTION_STORAGE_KEY); } catch (_) {}
+};
+
 const applyShopifyConsent = () => {
 try {
 const allowed = Boolean(
@@ -138,7 +167,12 @@ window.Shopify.customerPrivacy &&
 window.Shopify.customerPrivacy.marketingAllowed()
 );
 window.oaiq("consent", allowed);
-if (allowed) sendPageView();
+if (allowed) {
+captureOpenAiAttribution();
+sendPageView();
+} else {
+clearOpenAiAttribution();
+}
 } catch (_) {
 window.oaiq("consent", false);
 }
@@ -164,11 +198,17 @@ const allowed = typeof event.detail?.marketingAllowed === "boolean"
 ? event.detail.marketingAllowed
 : Boolean(window.Shopify?.customerPrivacy?.marketingAllowed?.());
 window.oaiq("consent", allowed);
-if (allowed) sendPageView();
+if (allowed) {
+captureOpenAiAttribution();
+sendPageView();
+} else {
+clearOpenAiAttribution();
+}
 });
 
 document.addEventListener("trackingConsentAccepted", () => {
 window.oaiq("consent", true);
+captureOpenAiAttribution();
 sendPageView();
 });
 
@@ -211,15 +251,59 @@ const sendLeadCreated = (detail) => {
 const sendCheckoutStarted = (detail) => {
   const handoffId = detail.handoff_id || detail.handoffId;
   const configurationId = detail.configuration_id || detail.configurationId;
-  const dedupeId = handoffId || configurationId;
-  const options = dedupeId
-    ? { event_id: "checkout_" + String(dedupeId) }
-    : undefined;
-  if (options) {
-    window.oaiq("measure", "checkout_started", { type: "contents" }, options);
-  } else {
-    window.oaiq("measure", "checkout_started", { type: "contents" });
+  const suppliedEventId = detail.event_id || detail.eventId;
+  const dedupeId = suppliedEventId || handoffId || configurationId;
+  const data = { type: "contents" };
+
+  if (Array.isArray(detail.items) && detail.items.length > 0) {
+    data.contents = detail.items.slice(0, 20).map((item) => ({
+      id: "sample:" + String(item.fabric_id || item.fabricId || item.variant_id || item.variantId || "unknown"),
+      content_type: "sample",
+      quantity: Number.isSafeInteger(item.quantity) && item.quantity > 0 ? item.quantity : 1,
+      ...(Number.isSafeInteger(item.amount_minor) && item.amount_minor >= 0 ? { amount: item.amount_minor } : {}),
+      ...(typeof detail.currency === "string" && /^[A-Za-z]{3}$/.test(detail.currency)
+        ? { currency: detail.currency.toUpperCase() }
+        : {})
+    }));
   }
+
+  if (Number.isSafeInteger(detail.amount_minor) && detail.amount_minor >= 0) {
+    data.amount = detail.amount_minor;
+    if (typeof detail.currency === "string" && /^[A-Za-z]{3}$/.test(detail.currency)) {
+      data.currency = detail.currency.toUpperCase();
+    }
+  }
+
+  const options = dedupeId ? { event_id: "checkout_" + String(dedupeId) } : undefined;
+  if (options) window.oaiq("measure", "checkout_started", data, options);
+  else window.oaiq("measure", "checkout_started", data);
+};
+
+const sendItemsAdded = (detail) => {
+  const fabricId = detail.fabric_id || detail.fabricId;
+  if (!fabricId) return;
+  const data = {
+    type: "contents",
+    contents: [{
+      id: "sample:" + String(fabricId),
+      content_type: "sample",
+      quantity: 1,
+      ...(Number.isSafeInteger(detail.amount_minor) && detail.amount_minor >= 0 ? { amount: detail.amount_minor } : {}),
+      ...(typeof detail.currency === "string" && /^[A-Za-z]{3}$/.test(detail.currency)
+        ? { currency: detail.currency.toUpperCase() }
+        : {})
+    }]
+  };
+  if (Number.isSafeInteger(detail.amount_minor) && detail.amount_minor >= 0) {
+    data.amount = detail.amount_minor;
+    if (typeof detail.currency === "string" && /^[A-Za-z]{3}$/.test(detail.currency)) {
+      data.currency = detail.currency.toUpperCase();
+    }
+  }
+  const suppliedEventId = detail.event_id || detail.eventId;
+  const options = suppliedEventId ? { event_id: String(suppliedEventId) } : undefined;
+  if (options) window.oaiq("measure", "items_added", data, options);
+  else window.oaiq("measure", "items_added", data);
 };
 
 window.addEventListener("curtainsuk:analytics", (event) => {
@@ -237,11 +321,26 @@ window.addEventListener("curtainsuk:analytics", (event) => {
     return;
   }
 
-  if (
-    eventName === "checkout_handoff_reached" ||
-    eventName === "checkout_opened" ||
-    eventName === "checkout_started"
-  ) {
+  if (eventName === "checkout_handoff_reached") {
+    const handoffId = detail.handoff_id || detail.handoffId;
+    sendCustomEvent(
+      "checkout_handoff_reached",
+      {},
+      handoffId ? "handoff_" + String(handoffId) : undefined
+    );
+    return;
+  }
+
+  if (eventName === "checkout_opened" || eventName === "checkout_started") {
+    if (detail.staging_blocked === true) {
+      sendCustomEvent("checkout_attempt_staging_blocked");
+      return;
+    }
+    sendCheckoutStarted(detail);
+    return;
+  }
+
+  if (eventName === "sample_checkout_started") {
     sendCheckoutStarted(detail);
     return;
   }
@@ -258,8 +357,13 @@ window.addEventListener("curtainsuk:analytics", (event) => {
     return;
   }
 
-  if (eventName === "sample_intent" || eventName === "sample_ordered_intended") {
-    sendCustomEvent("sample_added", { contentId: detail.fabric_id });
+  if (eventName === "sample_intent") {
+    sendCustomEvent("sample_intent", { contentId: detail.fabric_id });
+    return;
+  }
+
+  if (eventName === "sample_added_to_cart" || eventName === "sample_ordered_intended") {
+    sendItemsAdded(detail);
     return;
   }
 

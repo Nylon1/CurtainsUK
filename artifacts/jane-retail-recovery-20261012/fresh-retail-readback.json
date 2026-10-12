@@ -1,0 +1,194 @@
+{
+  "observedAt": "2026-10-12T05:58:03.844Z",
+  "offset": 246,
+  "stop": {
+    "kind": "stop",
+    "at": "2026-10-12T05:57:23.128Z",
+    "value": {
+      "code": "LIVE_RETAIL_OR_PUBLICATION_UNAVAILABLE",
+      "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a"
+    }
+  },
+  "results": [
+    {
+      "id": "pt-2004-286",
+      "records": [
+        {
+          "url": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=pt-2004-286",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 4764,
+          "containsCanonical": true,
+          "fabric": {
+            "id": "pt-2004-286",
+            "browseReady": true,
+            "launchReady": true,
+            "profileUrl": "https://www.curtainsuk.com/pages/fabric/pt-2004-286-platform-whisper"
+          },
+          "error": null
+        },
+        {
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-2004-286-platform-whisper",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 156772,
+          "containsCanonical": true,
+          "fabric": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "pt-2004-946",
+      "records": [
+        {
+          "url": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=pt-2004-946",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 4757,
+          "containsCanonical": true,
+          "fabric": {
+            "id": "pt-2004-946",
+            "browseReady": true,
+            "launchReady": true,
+            "profileUrl": "https://www.curtainsuk.com/pages/fabric/pt-2004-946-platform-sterling"
+          },
+          "error": null
+        },
+        {
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-2004-946-platform-sterling",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 156722,
+          "containsCanonical": true,
+          "fabric": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "pt-2005-005",
+      "records": [
+        {
+          "url": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=pt-2005-005",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 5069,
+          "containsCanonical": true,
+          "fabric": {
+            "id": "pt-2005-005",
+            "browseReady": true,
+            "launchReady": true,
+            "profileUrl": "https://www.curtainsuk.com/pages/fabric/pt-2005-005-cavendish-natural"
+          },
+          "error": null
+        },
+        {
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-2005-005-cavendish-natural",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 157045,
+          "containsCanonical": true,
+          "fabric": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "pt-2005-021",
+      "records": [
+        {
+          "url": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=pt-2005-021",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 5051,
+          "containsCanonical": true,
+          "fabric": {
+            "id": "pt-2005-021",
+            "browseReady": true,
+            "launchReady": true,
+            "profileUrl": "https://www.curtainsuk.com/pages/fabric/pt-2005-021-cavendish-pearl"
+          },
+          "error": null
+        },
+        {
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-2005-021-cavendish-pearl",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 156999,
+          "containsCanonical": true,
+          "fabric": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "pt-2005-022",
+      "records": [
+        {
+          "url": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=pt-2005-022",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 5087,
+          "containsCanonical": true,
+          "fabric": {
+            "id": "pt-2005-022",
+            "browseReady": true,
+            "launchReady": true,
+            "profileUrl": "https://www.curtainsuk.com/pages/fabric/pt-2005-022-cavendish-parchment"
+          },
+          "error": null
+        },
+        {
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-2005-022-cavendish-parchment",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 157079,
+          "containsCanonical": true,
+          "fabric": null,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "pt-2005-031",
+      "records": [
+        {
+          "url": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=pt-2005-031",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 5090,
+          "containsCanonical": true,
+          "fabric": {
+            "id": "pt-2005-031",
+            "browseReady": true,
+            "launchReady": true,
+            "profileUrl": "https://www.curtainsuk.com/pages/fabric/pt-2005-031-cavendish-linen"
+          },
+          "error": null
+        },
+        {
+          "url": "https://www.curtainsuk.com/pages/fabric/pt-2005-031-cavendish-linen",
+          "status": 200,
+          "location": null,
+          "retryAfter": null,
+          "bytes": 157011,
+          "containsCanonical": true,
+          "fabric": null,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

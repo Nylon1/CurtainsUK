@@ -2,7 +2,13 @@
 
 Starting PR #169: `c3cf45f936f3978567ff3c9ece476a4dcfdc8c54`. Protected production: `c7ca2d0eff1c128386863536d4ce46a877d874a8`, unchanged at 22:00 UTC. [Exact owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325).
 
-## Active operation: overlap correction and recoverable holds
+## Retail read recovery added at verified checkpoint 246
+
+The repaired overlap operator committed 16 batches from 150 to **246**, and recovered automatically through three short activity holds using exact read-only reconciliation. At05:57:23 UTC a catalogue/profile status check failed before the next write. The old binding did not capture the failing HTTP status. A bounded independent reread of all six next IDs returned **HTTP200**, exact identities, matching canonical profiles and browse/launch eligibility. Last committed receipt, checkpoint246, original history and permissions were independently reconciled.
+
+The focused follow-up adds retryable read-only holds for HTTP429/5xx and explicit network timeout/reset failures. It honours Retry-After, waits for all parallel read ports to settle, reconciles the last exact commit and re-runs complete fresh admission. HTTP404/400/401/403, redirects, changed eligibility/identity and integrity failures remain closed. No failed write is replayed. **Nine focused tests passed**. [Evidence](../../artifacts/jane-retail-recovery-20261012/README.md). No migration, source change, paid API call, threshold increase or public activation. The10:00UTC deadline remains pending explicit extension.
+
+## Previous implementation: overlap correction and recoverable holds
 
 The owner directed a focused correction in [PR comment6118449547](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118449547), then explicitly instructed this thread to repair temporary safety issues and keep proceeding. This authorises the narrow correction below and read-only recovery of temporary holds. It does not waive pressure thresholds, uncertain commits, access/integrity checks or the separately retained10:00UTC deadline.
 

@@ -1,6 +1,12 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 8,148 checkpoint independently reconciled; verified receipts through 8,160; existing population continuing with renewed monitoring; automatic updates disabled; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 9,012 eligible identities independently verified; existing population continuing with renewed monitoring and one-time supervision; automatic updates disabled; Jane publicly inactive**
+
+## Verified milestone: 9,012 identities
+
+Independent read-only hosted verification at 21:40:54 UTC confirms **9,012 / 11,517**, leaving 2,505. All current/receipt hashes and whole-job digests match 1,502 verified journal batches. Historical six records, five eligible no-ops and permissions remain exact. Active implementation/binding hashes and migration history are unchanged. [Exact evidence](../artifacts/jane-progress-9000-20261012/README.md).
+
+The same job continues. The existing one-time supervision heartbeat has been reactivated under the owner's no-calendar-deadline instruction; it forbids duplicate operators and pauses at completion or an unresolved access/integrity failure. Recurring knowledge updates remain disabled. Monitoring renewal and the completed 18:32 UTC physical backup remain subject to all unchanged gates. C: free space measured 33.54 GiB; Toshiba completion remains unverified and newer work requires a subsequent backup. No migration, source mutation, paid AI call, deployment, public activation or merge.
 
 ## Monitoring renewed and population resumed
 

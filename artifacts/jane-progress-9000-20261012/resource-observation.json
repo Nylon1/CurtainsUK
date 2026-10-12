@@ -1,0 +1,19 @@
+{
+  "classification": "RECORDED_ADMITTED_WINDOW_NOT_FUTURE_CAPACITY_GUARANTEE",
+  "recordedAt": "2026-10-12T21:40:59.390Z",
+  "observedAt": 1791841198751.636,
+  "windowMs": 60852.680908203125,
+  "cpuPercent": 3.808658294778576,
+  "ioPercent": 9.204195963772174,
+  "memoryPercent": 55.95043743982586,
+  "diskPercent": 79.21161266882157,
+  "connections": 30,
+  "maxConnections": 60,
+  "lockWaits": 0,
+  "newDeadlocks": 0,
+  "newDatabaseErrors": 0,
+  "supplierRefreshActive": false,
+  "localCFreeBytes": 36011143168,
+  "localCFreeGiB": 33.54,
+  "ioDefinition": "Maximum observed disk busy-time fraction, not provisioned IOPS capacity"
+}

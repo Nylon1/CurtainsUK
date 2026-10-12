@@ -1,5 +1,11 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest milestone: 9,012 independently verified
+
+At 21:40:54 UTC independent read-only verification confirms **9,012 / 11,517**, leaving 2,505. Whole-job identity/content digests match 1,502 verified batches; original history, five eligible no-ops and restored permissions are exact. The active implementation and binding hashes are unchanged. [Evidence](../../artifacts/jane-progress-9000-20261012/README.md).
+
+The same operator continues. The existing one-time supervision heartbeat is now ACTIVE under the owner's later no-calendar-deadline instruction. It forbids duplicate operators and must pause at completion or an unresolved access/integrity failure. This supersedes the earlier paused/expired follow-up state; it does not activate recurring fabric updates. Monitoring renewal is verified, with the same 23-hour ceiling ending 13 October 19:18:30.791 UTC. All backup, resource, source, publication and transaction limits remain unchanged. C: free space measured 33.54 GiB; no cleanup or heavy build occurred.
+
 ## Monitoring renewed; same job resumed at 8,148
 
 The masked-form save issue was repaired using equivalent .NET ACL inspection. Encrypted storage and current-user-only permissions passed verification. Replacement monitoring access to metrics, logs and backups returned HTTP200 at20:19UTC; the error gate was clear and backup1945273696 remains COMPLETED within the24-hour RPO. The unchanged23-hour credential ceiling is now13October19:18:30.791UTC. This supersedes earlier pending-renewal statements below.

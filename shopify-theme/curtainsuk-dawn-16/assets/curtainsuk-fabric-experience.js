@@ -89,7 +89,7 @@
       <p class="cuk-material-opening">Consider the colour. Look closer at the surface. Imagine the fabric in your light.</p>
       <p class="cuk-browse-price">${escape(guide || 'Price guide unavailable')}</p>${guide ? '<p class="cuk-browse-price-note">Price guide. Final price depends on measurements and options.</p>' : ''}
       ${actions(fabric,windowSlug)}<p class="cuk-material-note">A sample helps you judge colour and feel at home. Final price and availability are checked for your measurements and options. <a href="/pages/curtain-fabric-colour-guide">Fabric Colour, Shade &amp; Variation</a>.</p>
-      <a class="cuk-text-link cuk-material-room" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">See how this works in my room →</a></div></div>
+      ${fabric.roomPreview?.available === true && fabric.roomPreview.url === `/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}` ? `<a class="cuk-text-link cuk-material-room" href="${escape(fabric.roomPreview.url)}">See how this works in my room →</a>` : '<p class="cuk-material-note">Room preview not available for this fabric yet.</p>'}</div></div>
       ${intelligence?.dimensions.length ? `<section class="cuk-material-intelligence"><header><p class="cuk-eyebrow">CURTAINSUK FABRIC INTELLIGENCE</p><h2>A fabric in context.</h2><p>Our reviewed interpretation of its appearance. The supplier’s specifications remain the factual reference.</p></header>
       <div class="cuk-material-dimensions">${intelligence.dimensions.map(d=>`<div class="cuk-material-dimension"><h3>${escape(d.label)}</h3><div>${d.values.map(v=>`<span class="cuk-material-attribute">${d.key === 'colour' && palette[v] ? `<i style="background:${palette[v]}" aria-hidden="true"></i>` : ''}${escape(title(v))}</span>`).join('')}</div></div>`).join('')}</div>
       ${intelligence.dimensions.some(d=>d.key==='colour') ? '<p class="cuk-material-note">Colour-family swatches are guides, not exact fabric colour matches. Check the supplier photograph and a physical sample in your room.</p>' : ''}
@@ -97,6 +97,9 @@
       ${(fabric.images || []).length > 1 ? `<section class="cuk-material-gallery" aria-label="More supplier photography">${fabric.images.slice(1,5).map(asset=>`<figure>${image(asset)}<figcaption>${escape(title(asset.imageType.toLowerCase()))} · supplier photography</figcaption></figure>`).join('')}</section>` : ''}
       <section class="cuk-material-facts"><div><p class="cuk-eyebrow">SUPPLIER FACTS</p><h2>The fabric, precisely.</h2><p>Specifications held against this exact supplier colourway. Full width and usable width are shown separately where supplied.</p></div><dl>${(fabric.supplierFacts?.facts || []).map(f=>`<div><dt>${escape(f.label)}</dt><dd>${escape(f.value)}</dd></div>`).join('')}</dl></section>
       <aside class="cuk-material-close"><div><p class="cuk-eyebrow">FROM SCREEN TO SPACE</p><h2>See it in your own light.</h2><p>Check the colour and surface alongside the furnishings you already love.</p></div><div>${actions(fabric,windowSlug)}</div></aside>`;
+    // Jane's separately loaded private-review adapter is absent in production.
+    // This exact identity also drives PR #183's independent Room Visualiser link.
+    window.CurtainsUKJaneFabricHandoff?.mount(detail,fabric.id);
     detail.querySelectorAll('[data-sample]').forEach(button=>button.addEventListener('click',()=>orderSample(button.closest('.cuk-material-intro, .cuk-material-close'),fabric,windowSlug,button,saveSample)));
     // Existing saved-sample infrastructure is retained, but the detail has its own direct actions.
     const samples = document.querySelector('#samples'); if (samples) samples.hidden = true;

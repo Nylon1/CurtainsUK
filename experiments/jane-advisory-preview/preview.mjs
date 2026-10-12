@@ -1,6 +1,8 @@
 import {welcomeRemaining} from '/welcome-clock.mjs';
+import {mountFabricReference} from '/fabric-reference.mjs';
 const $=id=>document.getElementById(id);
-let session=null,csrf='',busy=false,deadline=null,timer=null,pendingMessage=null;
+let session=null,csrf='',busy=false,deadline=null,timer=null,pendingMessage=null,pendingContext=null;
+const fabricReference=mountFabricReference({share:async context=>{await command('context',{context});$('message').value='What should I consider about this fabric for my room?';if(!$('chat').hidden)$('message').focus();}});
 const savedKey='curtainsuk-jane-local-preview-id';
 const readSaved=()=>{try{return sessionStorage.getItem(savedKey)??localStorage.getItem(savedKey);}catch{return null;}};
 const remember=id=>{try{if(id)localStorage.setItem(savedKey,id);else{localStorage.removeItem(savedKey);sessionStorage.removeItem(savedKey);}}catch{}};
@@ -12,6 +14,7 @@ async function command(action,extra={}){
   const request={requestId:crypto.randomUUID(),sessionId:session?.id??null,revision:session?.revision??null,action,text:null,context:null,consent:false,recoveryToken:null,...extra};
   // Retrying the same unedited draft reuses its request ID after an uncertain response.
   if(action==='message'){if(pendingMessage?.text===request.text&&pendingMessage.sessionId===request.sessionId)request.requestId=pendingMessage.requestId;else pendingMessage={...request};}
+  if(action==='context'){if(pendingContext?.sessionId===request.sessionId&&JSON.stringify(pendingContext.context)===JSON.stringify(request.context))request.requestId=pendingContext.requestId;else pendingContext={...request};}
   lock(true);error('');notice(action==='message'||action==='summary'?'Preparing a scripted demonstration reply…':'');
   try{
     const response=await fetch('/api/consultation',{method:'POST',headers:{'Content-Type':'application/json','X-Advisory-CSRF':csrf,Accept:['message','summary'].includes(action)?'text/event-stream':'application/json'},body:JSON.stringify(request)});
@@ -24,8 +27,9 @@ async function command(action,extra={}){
     }else result=await response.json();
     if(result.session){session=result.session;try{sessionStorage.setItem(savedKey,session.id);}catch{}render();}
     if(action==='message')pendingMessage=null;
+    if(action==='context')pendingContext=null;
     notice('');return result;
-  }finally{lock(false);}
+  }finally{lock(false);fabricReference.setSession(session);}
 }
 function bubble(role,text){const article=document.createElement('article');article.className='bubble'+(role==='user'?' customer':'');const label=document.createElement('strong');label.textContent=role==='user'?'You':'Jane · scripted AI preview';article.append(label,document.createTextNode(text));return article;}
 function render(){
@@ -63,7 +67,7 @@ $('save').addEventListener('close',()=>{$('saved-code').value='';$('saved-result
 $('handoff-form').addEventListener('submit',async e=>{e.preventDefault();try{const context={version:'1',source:$('source').value,consent:$('context-consent').checked,room:$('room').value,fabricIds:$('fabric-id').value?[$('fabric-id').value]:[],colours:$('colours').value.split(',').map(s=>s.trim()).filter(Boolean),heading:null,lighting:$('source').value==='room-visualiser'?$('lighting').value:null,curtainPosition:null,preferences:[],references:[],feedback:$('result-feedback').value};await command('context',{context});$('handoff').close();notice('Your chosen design details were shared with this consultation.');$('message').value='I have shared my results. '+context.feedback;$('message').focus();}catch(e){error(e.message,'handoff-error');notice('');}});
 $('save-open').addEventListener('click',()=>{$('save-consent').checked=false;$('save').showModal();error('','save-error');});
 $('save-confirm').addEventListener('click',async()=>{if(!$('save-consent').checked){error('Please confirm that you want to save this review conversation.','save-error');return;}try{const result=await command('save',{consent:true});remember(session.id);$('saved-code').value=result.recoveryToken;$('saved-result').hidden=false;notice('The consultation was saved successfully on this computer.');}catch(e){error(e.message,'save-error');notice('');}});
-$('delete').addEventListener('click',async()=>{try{await command('delete');remember(null);session=null;pendingMessage=null;clearInterval(timer);deadline=null;$('save').close();$('welcome').hidden=false;$('chat').hidden=true;$('waiting').hidden=true;$('summary-card').hidden=true;$('resume').hidden=true;$('message').value='';notice('The consultation and saved recovery access were deleted.');$('start').focus();}catch(e){error(e.message,'save-error');notice('');}});
+$('delete').addEventListener('click',async()=>{try{await command('delete');remember(null);session=null;pendingMessage=null;pendingContext=null;fabricReference.reset();clearInterval(timer);deadline=null;$('save').close();$('welcome').hidden=false;$('chat').hidden=true;$('waiting').hidden=true;$('summary-card').hidden=true;$('resume').hidden=true;$('message').value='';notice('The consultation and saved recovery access were deleted.');$('start').focus();}catch(e){error(e.message,'save-error');notice('');}});
 $('resume').addEventListener('click',async()=>{try{await command('resume',{sessionId:readSaved(),revision:0});openChat();notice('Your saved consultation is ready to continue.');}catch(e){error(e.message);notice('');}});
 $('recover-form').addEventListener('submit',async e=>{e.preventDefault();try{await command('recover',{sessionId:null,revision:null,recoveryToken:$('recovery-code').value.trim(),consent:$('recover-consent').checked});$('recovery-code').value='';remember(session.id);openChat();notice('Recovered successfully. The one-time code has been consumed; save again for a new code.');}catch(e){error(e.message);notice('');}});
-try{const response=await fetch('/bootstrap',{cache:'no-store'});if(!response.ok)throw Error();csrf=(await response.json()).csrf;$('resume').hidden=!readSaved();}catch{error('The local preview could not connect. Restart the preview server, then reload this page.');lock(true);}
+try{const response=await fetch('/bootstrap',{cache:'no-store'});if(!response.ok)throw Error();csrf=(await response.json()).csrf;$('resume').hidden=!readSaved();fabricReference.setSession(session);}catch{error('The local preview could not connect. Restart the preview server, then reload this page.');lock(true);}

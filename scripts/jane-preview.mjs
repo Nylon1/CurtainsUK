@@ -12,9 +12,12 @@ import {createCatalogue} from '../lib/advisory/catalogue.mjs';
 import {EncryptedPreviewStore} from '../lib/advisory/store.mjs';
 import {createHttpHandler} from '../lib/advisory/http.mjs';
 import {token,digest,BoundedLimiter} from '../lib/advisory/security.mjs';
+import {createFabricDetailReader} from '../lib/advisory/fabric-detail-handoff.mjs';
+import {withFabricDetailPreview} from '../lib/advisory/fabric-detail-preview-provider.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
-const port=8789,host='127.0.0.1:'+port,origin='http://'+host;
-const directory=path.join(os.homedir(),'.curtainsuk-jane-private-preview');await mkdir(directory,{recursive:true});
+const port=Number(process.env.JANE_PREVIEW_PORT??8789);if(![8789,8794].includes(port))throw Error('INVALID_LOCAL_PREVIEW_PORT');
+const host='127.0.0.1:'+port,origin='http://'+host;
+const directory=path.join(os.homedir(),'.curtainsuk-jane-private-preview',port===8789?'':'fabric-handoff-8794');await mkdir(directory,{recursive:true});
 const keyPath=path.join(directory,'storage.key');let key;
 try{key=await readFile(keyPath);}catch(e){if(e.code!=='ENOENT')throw e;key=randomBytes(32);await writeFile(keyPath,key,{flag:'wx',mode:0o600});}
 const store=await new EncryptedPreviewStore(path.join(directory,'sessions'),key).initialise();
@@ -28,8 +31,12 @@ const publicCatalogue=createCatalogue({fetchImpl:async(...args)=>{
   try{const response=await fetch(...args);console.log(JSON.stringify({event:'preview_catalogue',status:response.status,durationMs:Date.now()-started}));return response;}
   catch(error){console.log(JSON.stringify({event:'preview_catalogue',failure:error.name==='TimeoutError'?'timeout':'network',durationMs:Date.now()-started}));throw error;}
 }});
-const catalogue={lookup:async ids=>fixtures.filter(f=>ids.includes(f.id)).map(f=>({...f,purchasable:false,availability:'KNOWLEDGE_ONLY_NOT_A_PURCHASE_OFFER'})),identities:async prefix=>fixtures.filter(f=>f.id.startsWith(prefix)).map(f=>f.id),retail:args=>publicCatalogue.retail(args)};
-const service=createConsultationService({store,provider:createMockProvider(),catalogue});
+const referenceReader=createFabricDetailReader();
+const catalogue={lookup:async ids=>Promise.all(ids.map(async id=>{
+  const f=await referenceReader.read(id);
+  return {...f,purchasable:false,availability:'KNOWLEDGE_ONLY_NOT_A_PURCHASE_OFFER'};
+})),identities:async prefix=>fixtures.filter(f=>f.id.startsWith(prefix)).map(f=>f.id),retail:args=>publicCatalogue.retail(args)};
+const service=createConsultationService({store,provider:withFabricDetailPreview(createMockProvider()),catalogue});
 function principal(request){const cookie=(request.headers.get('cookie')??'').split(';').map(c=>c.trim()).find(c=>c.startsWith('jane_preview='))?.slice(13);if(!/^[A-Za-z0-9_-]{43}$/.test(cookie??''))return null;return {owner:digest(cookie),csrf:digest(cookie+':csrf')};}
 const handler=createHttpHandler({service,origin,authenticate:principal,limiter:new BoundedLimiter({limit:30})});
 const globalLimit=new BoundedLimiter({limit:180});
@@ -37,6 +44,11 @@ const files=new Map([
   ['/', ['experiments/jane-advisory-preview/index.html','text/html; charset=utf-8']],
   ['/preview.css',['experiments/jane-advisory-preview/preview.css','text/css; charset=utf-8']],
   ['/preview.mjs',['experiments/jane-advisory-preview/preview.mjs','text/javascript; charset=utf-8']],
+  ['/fabric-reference.mjs',['experiments/jane-advisory-preview/fabric-reference.mjs','text/javascript; charset=utf-8']],
+  ['/fabric-detail',['experiments/jane-advisory-preview/fabric-detail.html','text/html; charset=utf-8']],
+  ['/fabric-detail.mjs',['experiments/jane-advisory-preview/fabric-detail.mjs','text/javascript; charset=utf-8']],
+  ['/fabric-detail-entry.js',['experiments/jane-advisory-preview/fabric-detail-entry.js','text/javascript; charset=utf-8']],
+  ['/fabric-experience.js',['shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-fabric-experience.js','text/javascript; charset=utf-8']],
   ['/evaluation',['artifacts/jane-readiness/review-gallery.html','text/html; charset=utf-8']],
   ['/foundations',['artifacts/jane-foundations-20261011/review-gallery.html','text/html; charset=utf-8']],
   ['/auth-fix',['artifacts/jane-auth-fix-20261011/review-gallery.html','text/html; charset=utf-8']],
@@ -63,6 +75,15 @@ const server=http.createServer(async(req,res)=>{
     if(url.pathname==='/api/consultation'){
       const request=new Request(origin+url.pathname,{method:req.method,headers,...(!['GET','HEAD'].includes(req.method)?{body:Readable.toWeb(req),duplex:'half'}:{})});
       const response=await handler(request);res.writeHead(response.status,{...security,...Object.fromEntries(response.headers)});for await(const chunk of response.body??[])res.write(chunk);res.end();return;
+    }
+    if(req.method==='GET'&&url.pathname==='/api/fabric-reference'){
+      if(!principal(new Request(origin,{headers}))){res.writeHead(401,security);res.end();return;}
+      try{
+        if(url.searchParams.getAll('fabric').length!==1)throw {status:400};
+        const fabric=await referenceReader.read(url.searchParams.get('fabric'));
+        res.writeHead(200,{...security,'Content-Type':'application/json'});res.end(JSON.stringify({fabric}));
+      }catch(e){res.writeHead([400,404].includes(e.status)?e.status:503,{...security,'Content-Type':'application/json'});res.end(JSON.stringify({error:'FABRIC_REFERENCE_UNAVAILABLE'}));}
+      return;
     }
     if(req.method==='GET'&&files.has(url.pathname)){const [filename,type]=files.get(url.pathname);res.writeHead(200,{...security,'Content-Type':type});res.end(await readFile(path.join(root,filename)));return;}
     res.writeHead(404,security);res.end();

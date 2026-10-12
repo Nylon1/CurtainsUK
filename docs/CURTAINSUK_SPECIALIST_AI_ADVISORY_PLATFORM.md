@@ -4,6 +4,10 @@
 
 ## Verified milestone: 9,012 identities
 
+### Fabric-detail handoff added for private review
+
+The owner's requested **Ask Jane about this fabric** flow is implemented in PR #169's local preview, using the exact same Fabric Master identity as PR #183's room link. A bounded server-side retail read supplies the real approved image/name/ID; explicit consent is required before the selection enters the existing consultation context. Resume/recovery preserves it. The preview remains scripted and publicly inactive. **29 local tests and actual Edge browser checks passed**, including five responsive widths, keyboard sharing, touch emulation, reduced motion, failure/retry and duplicate prevention. All 35 active indexer dependencies and its runner remain unchanged. [Exact scope, coordination and evidence](specialist-advisory/JANE_FABRIC_DETAIL_HANDOFF.md). No deployment or merge.
+
 Independent read-only hosted verification at 21:40:54 UTC confirms **9,012 / 11,517**, leaving 2,505. All current/receipt hashes and whole-job digests match 1,502 verified journal batches. Historical six records, five eligible no-ops and permissions remain exact. Active implementation/binding hashes and migration history are unchanged. [Exact evidence](../artifacts/jane-progress-9000-20261012/README.md).
 
 The same job continues. The existing one-time supervision heartbeat has been reactivated under the owner's no-calendar-deadline instruction; it forbids duplicate operators and pauses at completion or an unresolved access/integrity failure. Recurring knowledge updates remain disabled. Monitoring renewal and the completed 18:32 UTC physical backup remain subject to all unchanged gates. C: free space measured 33.54 GiB; Toshiba completion remains unverified and newer work requires a subsequent backup. No migration, source mutation, paid AI call, deployment, public activation or merge.

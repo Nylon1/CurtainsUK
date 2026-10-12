@@ -217,6 +217,11 @@ const normaliseCurtainsUkEventName = (name) => {
   return name.replace(/^curtainsuk_/, "");
 };
 
+const recordWebsiteDiagnostic = (name, detail = {}) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: "curtainsuk_" + name, ...detail });
+};
+
 const customEventData = ({ amountMinor, currency, contentId, contentType = "product" } = {}) => {
   const data = { type: "custom" };
   if (Number.isSafeInteger(amountMinor) && amountMinor >= 0) data.amount = amountMinor;
@@ -403,6 +408,7 @@ document.addEventListener("click", (event) => {
   const trigger = event.target.closest(".cuk-naila-primary, .cuk-naila-continue");
   if (!trigger) return;
   fabricIntelligenceStartedSent = true;
+  recordWebsiteDiagnostic("fabric_intelligence_started");
   sendCustomEvent("fabric_intelligence_started");
 }, true);
 
@@ -414,6 +420,7 @@ const bindNailaMeasurement = () => {
       const total = Number(event.detail?.total || event.detail?.fabrics?.length || 0);
       if (total <= 0 || root.dataset.openaiNailaResultsMeasured === "true") return;
       root.dataset.openaiNailaResultsMeasured = "true";
+      recordWebsiteDiagnostic("fabric_intelligence_results_viewed", { total_results: total });
       sendCustomEvent("fabric_intelligence_results_viewed");
     });
   });
@@ -427,6 +434,7 @@ if (document.readyState === "loading") {
 
 document.addEventListener("curtainsuk:visualiser-select", (event) => {
   const fabricId = event.detail?.fabric?.id;
+  recordWebsiteDiagnostic("room_visualiser_used", { fabric_id: fabricId || null });
   sendCustomEvent("room_visualiser_used", { contentId: fabricId });
 });
 

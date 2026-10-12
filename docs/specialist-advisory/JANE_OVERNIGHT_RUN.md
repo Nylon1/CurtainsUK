@@ -1,5 +1,11 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest milestone: 10,002 independently verified
+
+At **12 October 23:08:48.774692 UTC** independent bounded read-only verification confirms **10,002 / 11,517**, leaving **1,515**. All receipt/current hashes and whole-job digests match 1,667 verified batches, with zero duplicate identities, preserved history and restored permissions. [Evidence](../../artifacts/jane-progress-10000-20261012/README.md).
+
+At checkpoint 9,936 a committed batch exceeded the unchanged 20-second ceiling (22.376 seconds). Exact readback verified the committed receipt and no pending write before recovery. A subsequent operator timeout occurred on its initial read-only admission query. The same unchanged runner resumed, repeated admission and advanced beyond this milestone. No second operator, blind write retry or safety-limit change. Existing monitoring ceiling and backup RPO remain in force; automatic refresh stays disabled. The authorised PR #183 one-file release used protected production source and did not publish Jane's draft or change the running indexer.
+
 ## Latest milestone: 9,012 independently verified
 
 At 21:40:54 UTC independent read-only verification confirms **9,012 / 11,517**, leaving 2,505. Whole-job identity/content digests match 1,502 verified batches; original history, five eligible no-ops and restored permissions are exact. The active implementation and binding hashes are unchanged. [Evidence](../../artifacts/jane-progress-9000-20261012/README.md).

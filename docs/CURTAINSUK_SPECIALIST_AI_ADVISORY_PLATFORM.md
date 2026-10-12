@@ -1,6 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 9,012 eligible identities independently verified; existing population continuing with renewed monitoring and one-time supervision; automatic updates disabled; Jane publicly inactive**
+**Programme source of truth · 13 October 2026 UK · 10,002 eligible identities independently verified; existing population continuing with renewed monitoring and one-time supervision; automatic updates disabled; Jane publicly inactive**
+
+## Verified milestone: 10,002 identities
+
+Independent read-only hosted verification at **12 October 23:08:48.774692 UTC** confirms **10,002 / 11,517**, leaving **1,515**. Every current/receipt hash and whole-job identity/content digest matches the ordered manifest prefix in 1,667 verified batches. Historical records, five eligible no-ops and grant restoration are exact. All 35 active dependencies and the operator binding retain their approved checksums. [Evidence](../artifacts/jane-progress-10000-20261012/README.md).
+
+The unchanged 20-second batch ceiling stopped a committed batch at checkpoint 9,936 after 22.376 seconds. Exact hosted/journal reconciliation proved its receipt before resumption; a later response timeout affected only an initial read-only admission request. The same operator has resumed and advanced beyond 10,002. No blind transaction retry, rewritten history or relaxed limit occurred. Population, source-change catch-up and recommendation review remain incomplete; automatic updates remain disabled.
+
+The separately authorised PR #183 single-asset Shopify release used protected commit `6f45e63e30ef85e1fa62a804354cd27d0aa23e87`, not this draft's fabric-detail hook. MAIN asset readback was byte-identical and supported/unavailable fabric journeys passed. [Release record](https://github.com/Nylon1/CurtainsUK/pull/183#issuecomment-6134352006). No Jane code was published or activated. PR #169 remains the draft review destination.
 
 ## Verified milestone: 9,012 identities
 

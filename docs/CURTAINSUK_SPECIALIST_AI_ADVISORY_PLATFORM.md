@@ -1,6 +1,16 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 5,016 eligible identities verified; until-complete indexing running; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 6,228 eligible identities verified; until-complete indexing resumed; Jane publicly inactive**
+
+## Latest continuation: checkpoint 6,216 reconciled
+
+At 17:23 UTC, independent read-only hosted reconciliation confirmed checkpoint **6,216**, matching the last fsynced plan/receipt, exact six records, original historical records and restored operator permissions. There was no pending write. The 16:43 UTC operator timeout affected a read-only source request; no uncertain write was replayed.
+
+Fresh backup and monitoring reads returned HTTP 200. The existing until-complete job restarted under unchanged admission controls and reached **6,228 / 11,517** at **2026-10-12T17:25:55.188Z**, with **5,289 remaining** in that snapshot. Actual post-COMMIT readback and fsynced receipts establish progress. This is not complete coverage.
+
+PR #169 remains the existing independent Jane draft. The owner requested updating this PR, not moving the work to a new PR. No migration, catalogue mutation, public activation, deployment or paid AI call was performed. Monitoring renewal remains pending; the current private credential's conservative use ceiling is 20:25 UTC. No safety limit was relaxed.
+
+[Resume evidence](../artifacts/jane-resume-6216-20261012/README.md).
 
 ## Verified milestone 3000
 

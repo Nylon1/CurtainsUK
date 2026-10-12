@@ -1,5 +1,15 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest continuation: 6,228 verified
+
+The owner's Proceed instruction resumed the same approved until-complete job after a read-only source request timed out at 16:43 UTC. Independent hosted reconciliation at 17:23 UTC confirms checkpoint **6,216**, exact last-batch hashes/receipt, original historical records and restored permissions, with no pending write. No uncertain write was replayed.
+
+Fresh backup and monitoring access passed before the existing population operator restarted. Actual fsynced post-COMMIT receipt at **2026-10-12T17:25:55.188Z** confirms **6,228 / 11,517**, leaving **5,289** in this snapshot. The same journal, job and six-record/20-batch invocation limits remain active. This is progress, not completion. The operator must stay connected to the approved SQL connector; a GitHub comment or scheduled follow-up is not execution.
+
+The current private monitoring credential's conservative use ceiling remains **12 October 20:25 UTC**. The existing masked renewal window is waiting for input. Do not extend credential age based on the no-deadline approval. PR #169 remains the review destination, as clarified by the owner. No migration, source mutation, paid AI call, public activation, deployment or PR #167 change.
+
+[Resume evidence](../../artifacts/jane-resume-6216-20261012/README.md).
+
 Starting PR #169: `c3cf45f936f3978567ff3c9ece476a4dcfdc8c54`. Protected production: `c7ca2d0eff1c128386863536d4ce46a877d874a8`, unchanged at 22:00 UTC. [Exact owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325).
 
 ## Verified milestone 3000

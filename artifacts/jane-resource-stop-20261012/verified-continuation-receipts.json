@@ -1,0 +1,257 @@
+[
+  {
+    "sqlSha256": "a795e6c50daea8bd435b4d671efa3892bd46684fd4a5f163fb3d18931c189ad3",
+    "ids": [
+      "pt-1725-697",
+      "pt-1726-015",
+      "pt-1732-003",
+      "pt-1734-167",
+      "pt-1734-397",
+      "pt-1739-324"
+    ],
+    "items": [
+      {
+        "id": "pt-1725-697",
+        "hash": "b917949cd0a76feff85adc4fbf9d8fe75ebdfa3080af1784304a84805a344252",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1726-015",
+        "hash": "9b6b5bf0b168b4b038c76f20b604f99db4b79971b0c5a0e381399c747903ac4b",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1732-003",
+        "hash": "34d8def3a8dd232eba4538b0f74f7d4eb8831ee1cc064c9fd89419be29d3f008",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1734-167",
+        "hash": "bc5f2bb92ade0562aea1ca634c8e75a481be02bf9f49bb17c9e0aa10d269536a",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1734-397",
+        "hash": "7b62cfca70c2b6aa52247d73fe7f0fde78ca88ee8c89b6f9dcea08234b65d151",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1739-324",
+        "hash": "c7d89452b4ecd41a40a5a6e36e4acc6e0732e845f7449d965d6de8206938ea84",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 126,
+      "indexed": 126,
+      "batches": 21,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  },
+  {
+    "sqlSha256": "c9c497bfd74d8c890bdbfb69e930afbfa8ee20f62984a49fc9a065335661762f",
+    "ids": [
+      "pt-1739-397",
+      "pt-1748-710",
+      "pt-1749-502",
+      "pt-1749-807",
+      "pt-1769-003",
+      "pt-1769-004"
+    ],
+    "items": [
+      {
+        "id": "pt-1739-397",
+        "hash": "bc02f1e15e9f6492747bf55ad74785c0a876328d5c4f1abf5aa99a4ee46c27f9",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1748-710",
+        "hash": "116a20dd53a4db84c628faf24bbcfab2cce8feb1edd7a7ff7f30bcb5a4d57c20",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1749-502",
+        "hash": "71451fcd439a3ebd6feb608740d55f9640aff68ff33e920d257233f4487ff1ca",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1749-807",
+        "hash": "e0b81c6c3a675c69122cd7c77df84ef95c97658a945aabd0a1095a6c7d48e277",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-003",
+        "hash": "9e08e8a8bbe188f409167e7899179ae481b1fc1dc7c3b036187bfafce4b90d22",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-004",
+        "hash": "0e28a67f9b97421ba8d25d5678fa7d124df29df3bc8b81ab212ee947178854ad",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 132,
+      "indexed": 132,
+      "batches": 22,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  },
+  {
+    "sqlSha256": "21a54108cf02cf476e557e3cb60cf90288436ed639f1c6959a4530d9c9052764",
+    "ids": [
+      "pt-1769-022",
+      "pt-1769-031",
+      "pt-1769-077",
+      "pt-1769-114",
+      "pt-1769-327",
+      "pt-1769-638"
+    ],
+    "items": [
+      {
+        "id": "pt-1769-022",
+        "hash": "5a8b3a3343861badccf697cd541a62e2fc189879a8018b73f2d1281c1bcff31a",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-031",
+        "hash": "1559fa69883d6d8238c09d25ac53c09e93b28abdfb6004b85781e320f49bf421",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-077",
+        "hash": "157ea5e2c3ecaa9e61751b70602fec11c2cbf74c0611501090dfc78c23d0213a",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-114",
+        "hash": "3cbe22a4c4c44a884ec74aed463cc263fc0c4a553bae66f43c902b89ea31e094",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-327",
+        "hash": "82c48d8ea28f5eb8fcbf5e0fc4a180a595fc6db3a755a0ea5e6f6273130d024a",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-638",
+        "hash": "61ce9dae8402df02dde8553a8fcc0552f6de30b50d635a0f9c97b65654c5e247",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 138,
+      "indexed": 138,
+      "batches": 23,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  },
+  {
+    "sqlSha256": "5453a455206454cf361f481a85099e3324f787efd066dd4ba040815caddef2d6",
+    "ids": [
+      "pt-1769-707",
+      "pt-1769-905",
+      "pt-1769-907",
+      "pt-1769-911",
+      "pt-1770-003",
+      "pt-1770-022"
+    ],
+    "items": [
+      {
+        "id": "pt-1769-707",
+        "hash": "1ed4c592f11fe725df14e3a0d45231d18f044a33d59041d2a66315dcf99251c4",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-905",
+        "hash": "e42d0a91dca4ea979e2cd15abc0a0ff65171a6043910f9e94f50edfe0efe9f2f",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-907",
+        "hash": "f59fa53674d1bbf6a35b9b34e1bef14c1bd27d0d7d93f0f9eb5c0693735c6e59",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1769-911",
+        "hash": "6d70934001cd6d24b4c9a0ffc5afc003e8d3cf409c50ca8d66ca519d86fd6c1d",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1770-003",
+        "hash": "96aee6aef0c93cf08a3566fb94e6e3a0bc2710c9c15daf72a40a1266a3b6e44f",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1770-022",
+        "hash": "a3a739b45ad7e13043a5f6ce3785589eea0cfd40234c589840dc71eeab8e0bdd",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 144,
+      "indexed": 144,
+      "batches": 24,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  },
+  {
+    "sqlSha256": "b1def577b73dbd5b4895832079ff18d6fd07a7262ee6eb96735f165760377461",
+    "ids": [
+      "pt-1770-033",
+      "pt-1770-120",
+      "pt-1770-170",
+      "pt-1770-311",
+      "pt-1770-504",
+      "pt-1770-510"
+    ],
+    "items": [
+      {
+        "id": "pt-1770-033",
+        "hash": "492e44748fe6beb97b2ed88143748f575e5ca724110c05c5ec39f616b2955669",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1770-120",
+        "hash": "ed764a96cd0bf0a193f2c1f8943b47e328e29bfca8a3674774e765aebd51db7a",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1770-170",
+        "hash": "620bea1729a0e075f842ca5ad017f29cfc4b1d22e93a9a54bf754583dfc5d624",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1770-311",
+        "hash": "5939ee44a2eb8bdf40cc1969ab724c4935145fda8e9c7690a81af0fbc7f12774",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1770-504",
+        "hash": "479d4729148eb8df22a8bedb71c30c711e7f57dba9531de3e1f9bc212846f7be",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1770-510",
+        "hash": "02bf38c94cc0dae5b35ea7d0b41db422c9483d507cef675455e1fde13edd454e",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 150,
+      "indexed": 150,
+      "batches": 25,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  }
+]

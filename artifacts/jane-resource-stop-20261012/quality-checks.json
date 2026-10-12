@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-10-12T05:30:53.111Z",
+  "evidenceOnly": true,
+  "previousTargetedTests": 40,
+  "previousTestsPassed": 40,
+  "implementationUnchangedFrom": "10481fdee251c67a616e68fb9429b3f826c19db0",
+  "independentReadbackHashesVerified": 150,
+  "journalPlansVerified": 25,
+  "newContinuationTransactions": 5,
+  "ambiguousTransactions": 0,
+  "historicalExact": true,
+  "grantRestored": true,
+  "operatorExited": true,
+  "automationPaused": true,
+  "credentialPatternScan": "PASS",
+  "paidOpenAiCostUsd": 0
+}

@@ -1,0 +1,183 @@
+{
+  "classification": "HOSTED_CONTINUATION_VERIFIED_THEN_CONCURRENT_CLIENT_SAFETY_STOP",
+  "sourceCommit": "10481fdee251c67a616e68fb9429b3f826c19db0",
+  "protectedCommit": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "observedAt": "2026-10-12T05:28:42.725078+00:00",
+  "stopAt": "2026-10-12T05:27:50.273Z",
+  "stopCode": "INDEX_RESOURCE_STOP",
+  "cause": "One other active client statement triggered the existing conservative overlap guard. No concurrent client identity/query was captured, so its purpose and duration are unknown. supplierRecent was zero; this is not evidence of a supplier refresh or a failed host pressure threshold.",
+  "failedAdmission": {
+    "observedAt": "2026-10-12T05:27:49.900789+00:00",
+    "connections": 23,
+    "maxConnections": 60,
+    "lockWaits": 0,
+    "deadlocks": 0,
+    "supplierRecent": 0,
+    "otherActive": 1,
+    "browseDirty": false,
+    "permissionRestored": true,
+    "newDatabaseErrors": 0,
+    "hostSampleAt": "2026-10-12T05:27:02.715Z",
+    "hostSampleAgeAtStopMs": 47557.309814453125,
+    "cpuPercent": 8.971407352374886,
+    "ioPercent": 5.277586065440067,
+    "memoryPercent": 74.44703509988027,
+    "diskPercent": 78.59384004861059,
+    "metricsSha256": "5b2c184d152de09e06256ebb19f36f4c940313fd44f6dcd34e834d60529cc82e"
+  },
+  "runningOperator": false,
+  "automationStatus": "PAUSED",
+  "coverage": {
+    "eligible": 150,
+    "denominator": 11517,
+    "remaining": 11367,
+    "totalSearchRows": 151,
+    "newRowsThisContinuation": 30,
+    "newRowsThisJob": 145,
+    "historicalEligibleNoops": 5,
+    "historicalRowsPreserved": 6,
+    "canaryComplete": true
+  },
+  "transactions": {
+    "thisContinuation": 5,
+    "total": 25,
+    "ambiguous": 0,
+    "retries": 0,
+    "rollbacks": 0,
+    "unverified": 0
+  },
+  "batchTimings": [
+    {
+      "at": "2026-10-12T05:26:10.333Z",
+      "processed": 126,
+      "indexed": 126,
+      "batches": 21,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 5051
+    },
+    {
+      "at": "2026-10-12T05:26:34.880Z",
+      "processed": 132,
+      "indexed": 132,
+      "batches": 22,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4808
+    },
+    {
+      "at": "2026-10-12T05:26:54.860Z",
+      "processed": 138,
+      "indexed": 138,
+      "batches": 23,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4215
+    },
+    {
+      "at": "2026-10-12T05:27:16.060Z",
+      "processed": 144,
+      "indexed": 144,
+      "batches": 24,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4612
+    },
+    {
+      "at": "2026-10-12T05:27:35.486Z",
+      "processed": 150,
+      "indexed": 150,
+      "batches": 25,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4390
+    }
+  ],
+  "transportTimings": [
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "a795e6c50daea8bd435b4d671efa3892bd46684fd4a5f163fb3d18931c189ad3",
+      "durationMs": 2318
+    },
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "c9c497bfd74d8c890bdbfb69e930afbfa8ee20f62984a49fc9a065335661762f",
+      "durationMs": 2256
+    },
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "21a54108cf02cf476e557e3cb60cf90288436ed639f1c6959a4530d9c9052764",
+      "durationMs": 1918
+    },
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "5453a455206454cf361f481a85099e3324f787efd066dd4ba040815caddef2d6",
+      "durationMs": 2221
+    },
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "b1def577b73dbd5b4895832079ff18d6fd07a7262ee6eb96735f165760377461",
+      "durationMs": 2111
+    }
+  ],
+  "historicalExact": true,
+  "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+  "permissionRestored": true,
+  "database": {
+    "at": "2026-10-12T05:28:42.725078+00:00",
+    "rows": 151,
+    "receipts": 150,
+    "deadlocks": 0,
+    "lockWaits": 0,
+    "migrations": 81,
+    "connections": 23,
+    "advisoryBytes": 1056768,
+    "databaseBytes": 700279955,
+    "lastMigration": "20261011180354"
+  },
+  "backup": {
+    "id": 1937679152,
+    "status": "COMPLETED",
+    "isPhysical": true,
+    "insertedAt": "2026-10-12T01:11:28.231Z"
+  },
+  "recoveryOperator": "Nylon1",
+  "acceptedRpoSeconds": 86400,
+  "limits": {
+    "hostSampleAgeMs": 180000,
+    "counterWindowMs": 120000,
+    "endToEndBatchMs": 20000,
+    "sqlStatementMs": 3000,
+    "sqlLockMs": 500
+  },
+  "migrationSha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "implementationSha256": "cb63197ad50775a539f8f722520054b6af21e023ef50042bed161a4c0d173766",
+  "operatorBindingSha256": "250f841fa798d17b4fc6864003e1c5fa54b0bfa6caa1c222d4daa1ad74fae7d2",
+  "evidenceSha256": {
+    "operator.mjs": "250f841fa798d17b4fc6864003e1c5fa54b0bfa6caa1c222d4daa1ad74fae7d2",
+    "operator-evidence.jsonl": "40751d56911b1b9bb04bef72634714cf34c78f8688b8b76045fb2d260a3f476a",
+    "execution-review.json": "90cc2b1d153677a5422e3377fd2019db148b27eeb57456ab90d7737ab9dafc98",
+    "approval.json": "8f457027b7b5b7ee66daf99c84268d9ba82bb44795228ed52ad47e6a4c24b5f5",
+    "publication-reconciliation.json": "5e3f7cd26785e4531ce91dc1a5556640963fad87cf1c14614bf1f6fe1a4bc9c7",
+    "canary.json": "b13908a4bfe7b4dc8a54a090e3162fbf7694b84226fff38a2607b7e52716536e",
+    "sharedJournal": "b70ee87232ba17a00ebcf17062aaca5bf7d8646fc2178303161da8d8766f1479",
+    "failedAdmissionResponse": "5c0ca5318c815a057ba3e51f94c7b0bc0a34a89b308ea9b1f3f98ef23e2a5328"
+  },
+  "localTests": {
+    "passed": 40,
+    "failed": 0
+  },
+  "paidOpenAiCostUsd": 0,
+  "migrationsApplied": 0,
+  "sourceMutations": 0,
+  "deployments": 0,
+  "nextStep": "Review the concurrent-client stop. Any resumed operation must retain offset150, the same job, verified canary and journal, pass fresh quiet-state/source/publication/backup/resource admission and retain every approved threshold. Do not replay or automatically restart. Original hard deadline remains 2026-10-12T10:00:00Z.",
+  "privateEvidenceDirectory": "C:/Users/hamza/.codex/tmp/jane-eligible-continuation-20261012-0530"
+}

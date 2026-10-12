@@ -2,6 +2,16 @@
 
 Starting PR #169: `c3cf45f936f3978567ff3c9ece476a4dcfdc8c54`. Protected production: `c7ca2d0eff1c128386863536d4ce46a877d874a8`, unchanged at 22:00 UTC. [Exact owner instruction](https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325).
 
+## First 1,000 milestone: continuing
+
+Independent hosted readback at **12 October 07:08:34 UTC** confirms **1,008 / 11,517 eligible identities**, 1,008 matching current/receipt hashes and 1,009 total knowledge rows. All 168 saved plans and receipts match the exact approved manifest prefix without duplicate IDs. Five eligible historical records remain no-ops; the sixth historical excluded record is preserved and must not be offered for purchase. The operator is continuing the same job; this is a progress snapshot, not completion.
+
+Two later interruptions were recovered after exact read-only reconciliation: a read-only operator response timeout at546, then a failed read-only source lookup at978. No pending write existed in either case. The source reread succeeded; monitoring subsequently identified one SQLSTATE57014 cancelled statement. Writes remained blocked until the five-minute error window was clean. Temporary resource/activity holds continue to reconcile and recover automatically without raising limits or replaying uncertain writes.
+
+Migration history is unchanged at81 entries, latest20261011180354. Database size is702,008,467 bytes; advisory tables/indexes total2,678,784 bytes. Completed backup1937679152 remains the recovery point checked before each batch under Nylon1's24-hour RPO. It predates these writes, so a subsequent verified backup is still required. C: free space was41,532,203,008 bytes; Toshiba completion remains unverified. No migration, source mutation, deployment, paid AI call, public activation or PR167 change. The10:00UTC deadline remains pending explicit extension.
+
+[Milestone evidence](../../artifacts/jane-first1000-20261012/README.md).
+
 ## Retail read recovery added at verified checkpoint 246
 
 The repaired overlap operator committed 16 batches from 150 to **246**, and recovered automatically through three short activity holds using exact read-only reconciliation. At05:57:23 UTC a catalogue/profile status check failed before the next write. The old binding did not capture the failing HTTP status. A bounded independent reread of all six next IDs returned **HTTP200**, exact identities, matching canonical profiles and browse/launch eligibility. Last committed receipt, checkpoint246, original history and permissions were independently reconciled.

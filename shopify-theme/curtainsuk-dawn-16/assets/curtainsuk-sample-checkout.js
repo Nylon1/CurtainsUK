@@ -4,6 +4,12 @@
   function setStatus(root, message) {
     root.querySelectorAll('[data-cuk-sample-status]').forEach(node => { node.textContent = message; });
   }
+  function emit(name, detail = {}) {
+    const payload = { event: `curtainsuk_${name}`, ...detail };
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(payload);
+    window.dispatchEvent(new CustomEvent('curtainsuk:analytics', { detail: payload }));
+  }
   async function sampleJson(url, options) {
     const response=await fetch(url,{...options,headers:{'Content-Type':'application/json'}});
     const data=await response.json(); if(!response.ok) throw Error(data.error || 'Sample availability could not be confirmed.'); return data;
@@ -29,6 +35,16 @@
             } else {
               const added = await fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{id:prepared.variantId,quantity:1,properties:prepared.properties}]})});
               if (!added.ok) throw Error('Sample addition could not be confirmed. Review your basket before retrying.');
+              const addedPayload = await added.json().catch(() => ({}));
+              const addedItem = Array.isArray(addedPayload.items) ? addedPayload.items[0] : addedPayload;
+              const eventId = `sample_add_${String(addedItem?.key || prepared.variantId)}_${String(sample.fabricId)}`;
+              emit('sample_added_to_cart', {
+                fabric_id: sample.fabricId,
+                variant_id: prepared.variantId,
+                amount_minor: prepared.priceMinor,
+                currency: 'GBP',
+                event_id: eventId,
+              });
             }
             // No automatic retry after an uncertain write. A repeat first reads the cart.
             location.assign('/cart');
@@ -66,6 +82,19 @@
         if(!response.ok || result.purchaseEnabled!==true) throw Error('Current sample availability could not be confirmed. Your basket is saved; please retry later.');
         if(item.final_price!==result.priceMinor) throw Error('The sample price has changed. Please review your basket.');
       }
+      const items = cart.items.map((item) => ({
+        fabric_id: item.properties?.['Fabric Master ID'] || null,
+        variant_id: item.variant_id,
+        quantity: item.quantity,
+        amount_minor: item.final_price,
+      }));
+      const checkoutEventId = `sample_checkout_${String(cart.token || cart.items.map((item) => item.key).join('|'))}`;
+      emit('sample_checkout_started', {
+        event_id: checkoutEventId,
+        currency: 'GBP',
+        amount_minor: Number.isSafeInteger(cart.total_price) ? cart.total_price : undefined,
+        items,
+      });
       location.assign('/checkout');
     } catch(error) {
       message.textContent=error.message || 'Checkout could not be confirmed. Please retry.';

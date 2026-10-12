@@ -88,6 +88,7 @@
 <script>
 (() => {
 const pixelId = "6LN4GfrhY92CkQR6Uti2NH";
+const attributionKey = "curtainsuk_openai_ads_attribution_v1";
 
 if (!window.oaiq) {
 const q = function () { q.q.push(arguments); };
@@ -102,6 +103,45 @@ firstScript.parentNode.insertBefore(js, firstScript);
 
 window.oaiq("consent", false);
 window.oaiq("init", { pixelId, debug: true });
+
+const boundedOpaque = (value) => {
+  if (typeof value !== "string") return null;
+  const clean = value.trim();
+  if (!clean || clean.length > 1024 || /[\u0000-\u001f\u007f]/.test(clean)) return null;
+  return clean;
+};
+
+const cookieValue = (name) => {
+  const encodedName = encodeURIComponent(name) + "=";
+  for (const part of document.cookie.split(";")) {
+    const item = part.trim();
+    if (item.startsWith(encodedName)) return decodeURIComponent(item.slice(encodedName.length));
+  }
+  return null;
+};
+
+let pendingOppref = null;
+try {
+  pendingOppref = boundedOpaque(new URL(window.location.href).searchParams.get("oppref"));
+} catch (_) {}
+
+const persistAttribution = (allowed) => {
+  try {
+    if (!allowed) {
+      localStorage.removeItem(attributionKey);
+      return;
+    }
+    const previous = JSON.parse(localStorage.getItem(attributionKey) || "null") || {};
+    const oppref = pendingOppref || boundedOpaque(previous.oppref);
+    const obref = boundedOpaque(cookieValue("__obref")) || boundedOpaque(previous.obref);
+    if (oppref || obref) {
+      localStorage.setItem(attributionKey, JSON.stringify({
+        ...(oppref ? { oppref } : {}),
+        ...(obref ? { obref } : {})
+      }));
+    }
+  } catch (_) {}
+};
 
 let pageViewSent = false;
 
@@ -138,9 +178,11 @@ window.Shopify.customerPrivacy &&
 window.Shopify.customerPrivacy.marketingAllowed()
 );
 window.oaiq("consent", allowed);
+persistAttribution(allowed);
 if (allowed) sendPageView();
 } catch (_) {
 window.oaiq("consent", false);
+persistAttribution(false);
 }
 };
 
@@ -164,11 +206,13 @@ const allowed = typeof event.detail?.marketingAllowed === "boolean"
 ? event.detail.marketingAllowed
 : Boolean(window.Shopify?.customerPrivacy?.marketingAllowed?.());
 window.oaiq("consent", allowed);
+persistAttribution(allowed);
 if (allowed) sendPageView();
 });
 
 document.addEventListener("trackingConsentAccepted", () => {
 window.oaiq("consent", true);
+persistAttribution(true);
 sendPageView();
 });
 
@@ -177,11 +221,46 @@ const normaliseCurtainsUkEventName = (name) => {
   return name.replace(/^curtainsuk_/, "");
 };
 
-const customEventData = ({ amountMinor, currency, contentId, contentType = "product" } = {}) => {
+const normaliseContents = (contents) => {
+  if (!Array.isArray(contents)) return undefined;
+  const safe = contents.flatMap((item) => {
+    if (!item || typeof item !== "object" || item.id === undefined || item.id === null || !String(item.id)) return [];
+    const content = {
+      id: String(item.id),
+      content_type: typeof item.content_type === "string" && item.content_type ? item.content_type : "product"
+    };
+    if (Number.isSafeInteger(item.quantity) && item.quantity > 0) content.quantity = item.quantity;
+    return [content];
+  });
+  return safe.length ? safe : undefined;
+};
+
+const contentsEventData = (detail = {}, fallbackContentType = "product") => {
+  const data = { type: "contents" };
+  if (Number.isSafeInteger(detail.amount_minor) && detail.amount_minor >= 0) data.amount = detail.amount_minor;
+  if (typeof detail.currency === "string" && /^[A-Za-z]{3}$/.test(detail.currency)) data.currency = detail.currency.toUpperCase();
+  const contents = normaliseContents(detail.contents);
+  if (contents) data.contents = contents;
+  else {
+    const contentId = detail.fabric_id || detail.content_id || detail.variant_id;
+    if (contentId !== undefined && contentId !== null && String(contentId)) {
+      data.contents = [{
+        id: String(contentId),
+        content_type: detail.content_type || fallbackContentType,
+        ...(Number.isSafeInteger(detail.quantity) && detail.quantity > 0 ? { quantity: detail.quantity } : {})
+      }];
+    }
+  }
+  return data;
+};
+
+const customEventData = ({ amountMinor, currency, contentId, contentType = "product", contents } = {}) => {
   const data = { type: "custom" };
   if (Number.isSafeInteger(amountMinor) && amountMinor >= 0) data.amount = amountMinor;
   if (typeof currency === "string" && /^[A-Za-z]{3}$/.test(currency)) data.currency = currency.toUpperCase();
-  if (contentId !== undefined && contentId !== null && String(contentId)) {
+  const safeContents = normaliseContents(contents);
+  if (safeContents) data.contents = safeContents;
+  else if (contentId !== undefined && contentId !== null && String(contentId)) {
     data.contents = [{
       id: String(contentId),
       content_type: contentType
@@ -201,25 +280,29 @@ const sendLeadCreated = (detail) => {
   const options = configurationId
     ? { event_id: "lead_" + String(configurationId) }
     : undefined;
-  if (options) {
-    window.oaiq("measure", "lead_created", { type: "customer_action" }, options);
-  } else {
-    window.oaiq("measure", "lead_created", { type: "customer_action" });
-  }
+  if (options) window.oaiq("measure", "lead_created", { type: "customer_action" }, options);
+  else window.oaiq("measure", "lead_created", { type: "customer_action" });
 };
 
 const sendCheckoutStarted = (detail) => {
+  if (detail.staging_blocked === true) return;
   const handoffId = detail.handoff_id || detail.handoffId;
   const configurationId = detail.configuration_id || detail.configurationId;
-  const dedupeId = handoffId || configurationId;
-  const options = dedupeId
-    ? { event_id: "checkout_" + String(dedupeId) }
-    : undefined;
-  if (options) {
-    window.oaiq("measure", "checkout_started", { type: "contents" }, options);
-  } else {
-    window.oaiq("measure", "checkout_started", { type: "contents" });
-  }
+  const suppliedEventId = boundedOpaque(detail.event_id);
+  const dedupeId = suppliedEventId || (handoffId ? "checkout_" + String(handoffId) : configurationId ? "checkout_" + String(configurationId) : null);
+  const data = contentsEventData(detail, detail.order_kind === "sample" ? "sample" : "curtain");
+  if (dedupeId) window.oaiq("measure", "checkout_started", data, { event_id: dedupeId });
+  else window.oaiq("measure", "checkout_started", data);
+};
+
+const sendItemsAdded = (detail) => {
+  if (detail.cart_add_confirmed !== true) return;
+  const suppliedEventId = boundedOpaque(detail.event_id);
+  const fabricId = detail.fabric_id || detail.variant_id;
+  const eventId = suppliedEventId || (fabricId ? "sample_add_" + String(fabricId) : null);
+  const data = contentsEventData(detail, "sample");
+  if (eventId) window.oaiq("measure", "items_added", data, { event_id: eventId });
+  else window.oaiq("measure", "items_added", data);
 };
 
 window.addEventListener("curtainsuk:analytics", (event) => {
@@ -229,19 +312,26 @@ window.addEventListener("curtainsuk:analytics", (event) => {
   if (eventName === "review_submitted" || eventName === "quote_review_submitted") {
     sendLeadCreated(detail);
     const configurationId = detail.configuration_id || detail.configurationId;
+    sendCustomEvent("quote_requested", {}, configurationId ? "quote_" + String(configurationId) : undefined);
+    return;
+  }
+
+  if (eventName === "checkout_handoff_reached") {
+    const handoffId = detail.handoff_id || detail.handoffId;
     sendCustomEvent(
-      "quote_requested",
-      {},
-      configurationId ? "quote_" + String(configurationId) : undefined
+      "checkout_handoff_reached",
+      { amountMinor: detail.amount_minor, currency: detail.currency, contents: detail.contents },
+      handoffId ? "handoff_" + String(handoffId) : undefined
     );
     return;
   }
 
-  if (
-    eventName === "checkout_handoff_reached" ||
-    eventName === "checkout_opened" ||
-    eventName === "checkout_started"
-  ) {
+  if (eventName === "checkout_intent") {
+    sendCustomEvent("checkout_intent", { amountMinor: detail.amount_minor, currency: detail.currency });
+    return;
+  }
+
+  if (eventName === "checkout_opened" || eventName === "checkout_started") {
     sendCheckoutStarted(detail);
     return;
   }
@@ -249,17 +339,29 @@ window.addEventListener("curtainsuk:analytics", (event) => {
   if (eventName === "fabric_selected" && detail.fabric_id) {
     window.oaiq("measure", "contents_viewed", {
       type: "contents",
-      contents: [{
-        id: String(detail.fabric_id),
-        content_type: "product"
-      }]
+      contents: [{ id: String(detail.fabric_id), content_type: "product" }]
     });
     sendCustomEvent("fabric_selected", { contentId: detail.fabric_id });
     return;
   }
 
-  if (eventName === "sample_intent" || eventName === "sample_ordered_intended") {
-    sendCustomEvent("sample_added", { contentId: detail.fabric_id });
+  if (eventName === "sample_intent") {
+    sendCustomEvent("sample_intent", { contentId: detail.fabric_id }, detail.fabric_id ? "sample_intent_" + String(detail.fabric_id) : undefined);
+    return;
+  }
+
+  if (eventName === "sample_ordered_intended") {
+    sendItemsAdded(detail);
+    sendCustomEvent(
+      "sample_added",
+      {
+        amountMinor: detail.amount_minor,
+        currency: detail.currency,
+        contentId: detail.fabric_id || detail.variant_id,
+        contentType: "sample"
+      },
+      detail.event_id ? "custom_" + String(detail.event_id) : undefined
+    );
     return;
   }
 
@@ -284,11 +386,7 @@ window.addEventListener("curtainsuk:analytics", (event) => {
 
   if (eventName === "quote_accepted") {
     const configurationId = detail.configuration_id || detail.configurationId;
-    sendCustomEvent(
-      "quote_accepted",
-      {},
-      configurationId ? "quote_accepted_" + String(configurationId) : undefined
-    );
+    sendCustomEvent("quote_accepted", {}, configurationId ? "quote_accepted_" + String(configurationId) : undefined);
   }
 });
 

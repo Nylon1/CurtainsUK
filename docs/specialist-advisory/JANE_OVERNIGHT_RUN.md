@@ -1,5 +1,13 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest recovery: 6,384 verified
+
+At 17:38 UTC a connector send failure left the next write ambiguous. Two independent hosted observations at 17:45:56 and 17:46:05 UTC proved the SQL had expired without committing: unchanged checkpoint 6,384, no next-six rows/receipts, no old/prepared transactions, exact previous receipt, preserved historical records and restored permissions. The original journal remains intact with a separate, fsynced `expired-uncommitted` resolution.
+
+The repair passed **26 targeted tests**. The operator is readmitting the same job with all fresh checks and a newly generated SQL plan; it never resubmits the expired SQL. Scope, six-record transactions, pacing, 20-batch invocation cap, resource thresholds and credential expiry remain unchanged. **5,133 remain in this snapshot.** Monitoring renewal is still pending before the 20:25 UTC conservative use cutoff. This is progress and recovery evidence, not full coverage.
+
+[Recovery evidence](../../artifacts/jane-recovery-6384-20261012/README.md).
+
 ## Latest continuation: 6,228 verified
 
 The owner's Proceed instruction resumed the same approved until-complete job after a read-only source request timed out at 16:43 UTC. Independent hosted reconciliation at 17:23 UTC confirms checkpoint **6,216**, exact last-batch hashes/receipt, original historical records and restored permissions, with no pending write. No uncertain write was replayed.

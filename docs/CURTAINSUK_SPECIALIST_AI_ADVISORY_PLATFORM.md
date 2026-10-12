@@ -1,6 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 6,228 eligible identities verified; until-complete indexing resumed; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 6,384 eligible identities verified; transport recovery completed; Jane publicly inactive**
+
+## Latest recovery: checkpoint 6,384 reconciled
+
+A connector transport failure affected submission of the next six-ID batch at 17:38 UTC. Two independent hosted readbacks after the SQL deadline expired prove that it did not commit: checkpoint 6,384, no six-ID rows/receipts, no old/prepared transactions, exact previous receipt and preserved historical records/permissions. The original prepared plan remains in the fsynced journal with an explicit `expired-uncommitted` resolution, never a fabricated success receipt.
+
+The focused journal recovery implementation passed **26 targeted tests**, including real local PostgreSQL expiry/permission checks and the synthetic 11,517-identity population. The same until-complete job is being readmitted using fresh source, publication, backup and resource checks. This snapshot leaves **5,133** identities and does not claim completion. No gate was relaxed, no hosted migration or source record changed, and no paid AI call occurred. PR #169 remains the owner's requested review destination.
+
+[Transport recovery evidence](../artifacts/jane-recovery-6384-20261012/README.md).
 
 ## Latest continuation: checkpoint 6,216 reconciled
 

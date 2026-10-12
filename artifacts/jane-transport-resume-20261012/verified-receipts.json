@@ -1,0 +1,218 @@
+[
+  {
+    "preparedAt": "2026-10-12T01:37:43.422Z",
+    "verifiedAt": "2026-10-12T01:37:51.796Z",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sqlSha256": "5f98ed3ea5b4e4cccc5c15ffadce4e96e1ff6b99e6787c17a1e74fc71661b462",
+    "ids": [
+      "pt-1204-212",
+      "pt-1223-374",
+      "pt-1224-002",
+      "pt-1225-314",
+      "pt-1225-722",
+      "pt-1227-634"
+    ],
+    "items": [
+      {
+        "id": "pt-1204-212",
+        "hash": "1d11bfc36b2579d606b6a17e8e5d0ed064e4bbb7f965b5d72f5a8bc4411dd378",
+        "unchanged": true
+      },
+      {
+        "id": "pt-1223-374",
+        "hash": "0cd678a1363c9538eda71180ed34504866cddfb5dc63f3dfcbf66f4ece4eaafb",
+        "unchanged": true
+      },
+      {
+        "id": "pt-1224-002",
+        "hash": "57da8f4dd452c979723cc2d868a099272970163f567283477865e4d6810b37bc",
+        "unchanged": true
+      },
+      {
+        "id": "pt-1225-314",
+        "hash": "06a583331c9dee743a5044ba44fdbcd7f8c501a149ee90e97bea14080ac6857e",
+        "unchanged": true
+      },
+      {
+        "id": "pt-1225-722",
+        "hash": "eb6c3a2f0f4e9e40b739e6cd10b95b5aa0db516079325cbf4028727100f7bb48",
+        "unchanged": true
+      },
+      {
+        "id": "pt-1227-634",
+        "hash": "0611eb830d047add1906ddfab5878ed0e6d1ed14687000f2345df1494e013f99",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 6,
+      "indexed": 6,
+      "batches": 1,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 5
+    }
+  },
+  {
+    "preparedAt": "2026-10-12T04:51:15.870Z",
+    "verifiedAt": "2026-10-12T04:51:20.315Z",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sqlSha256": "edf29b7c975219bcf1e2b7668f074d6df4fa3c66c8c55e67902ea8f3f6e8513b",
+    "ids": [
+      "pt-1229-662",
+      "pt-1233-023",
+      "pt-1248-394",
+      "pt-1248-805",
+      "pt-1249-021",
+      "pt-1249-909"
+    ],
+    "items": [
+      {
+        "id": "pt-1229-662",
+        "hash": "cdbc7259ffc7093ae438e30fc3d153c93c23b897edde3c4ab14b624d6d150369",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1233-023",
+        "hash": "1e17a3dbdc0c0c323da21b330d60fe81c9b01e31fdfdf139fe63e09b59774329",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1248-394",
+        "hash": "2a65a0a9159ed6e36203c5341ccb4f3af01b164ced1f8d0f1ab616f51901f340",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1248-805",
+        "hash": "6ca96fbc4ca08bb023090f53212367a919430484b8fbe4a843cb88a69e05a1bc",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1249-021",
+        "hash": "88919e3184991dee32ca64d07fa92d46cdcac07be4f7c85ca348509eb65b76db",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1249-909",
+        "hash": "906e75692aa7e65b4986b278a7330bd1f39a050a72cd6ed7e756871550f6a1cb",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 12,
+      "indexed": 12,
+      "batches": 2,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  },
+  {
+    "preparedAt": "2026-10-12T04:51:36.060Z",
+    "verifiedAt": "2026-10-12T04:51:38.144Z",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sqlSha256": "1e2be54e3f08cbd0dfabdd44cc7a3f9b539070e949a2d70ae7b6956d167484e8",
+    "ids": [
+      "pt-1260-912",
+      "pt-1264-909",
+      "pt-1267-152",
+      "pt-1267-902",
+      "pt-1281-031",
+      "pt-1290-314"
+    ],
+    "items": [
+      {
+        "id": "pt-1260-912",
+        "hash": "31656993a9bbc7cf58bf5425300923187c59f33ee65ae1d89133fe7f3aaa1e1f",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1264-909",
+        "hash": "1d41dcaa0e666de2a6d24502cfeafea06e6de684d5283c84efbc17fe947ffa1b",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1267-152",
+        "hash": "e1e3097ee57fd3d2227d3dff402cb79a48a20775ede9e6e26512469d80cc3b1c",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1267-902",
+        "hash": "078b4350b962b82ad8841c6e698787754f500915800a1704f527b50202f5673d",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1281-031",
+        "hash": "560c9bbc4a5d1cb5301f5f8b66b8278302de5ccf551fc41c53661e5f5d824e93",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1290-314",
+        "hash": "53c2798a4c42c87cbde3fe6273363563fc450b3e6298e13eaef508f6fa458f71",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 18,
+      "indexed": 18,
+      "batches": 3,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  },
+  {
+    "preparedAt": "2026-10-12T04:51:52.869Z",
+    "verifiedAt": "2026-10-12T04:51:55.313Z",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sqlSha256": "e9d5a6123ab3500428b29c0ef6b937670135992cd7171c5ad2764c789488d89f",
+    "ids": [
+      "pt-1291-531",
+      "pt-1291-706",
+      "pt-1292-408",
+      "pt-1292-738",
+      "pt-1294-316",
+      "pt-1295-314"
+    ],
+    "items": [
+      {
+        "id": "pt-1291-531",
+        "hash": "f8a0fc9c0973374286ea2259265480f335165a2c158b2d58bf8a54ed315748ca",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1291-706",
+        "hash": "86d947a9e760a4647189cef42e875123305fc02af9f5c0d80f4ad8bd2de5c159",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1292-408",
+        "hash": "92e7bda572cee8b970eb04f6590e8c55a93fc5c23c129d48d2f1501357aa5704",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1292-738",
+        "hash": "0d05dd31789b678a649eb343cd096455159983df8a02e23a5137a6afd1b89865",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1294-316",
+        "hash": "3d7b3c9c279314b80866e0228b50ec414c55242761ca632119f80b09a6f12af1",
+        "unchanged": false
+      },
+      {
+        "id": "pt-1295-314",
+        "hash": "e48c8a382e84dfa843f3a042e91f9ea3ed006cc01bbef976b1473239fd5bf384",
+        "unchanged": false
+      }
+    ],
+    "receipt": {
+      "processed": 24,
+      "indexed": 24,
+      "batches": 4,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    }
+  }
+]

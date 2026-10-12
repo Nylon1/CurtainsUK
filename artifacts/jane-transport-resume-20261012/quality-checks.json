@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-10-12T04:57:52.879Z",
+  "targetedNodeTests": {
+    "command": "node --test lib/advisory/__tests__/eligible-transport.test.mjs lib/advisory/__tests__/eligible-execution.test.mjs lib/advisory/__tests__/host-metrics.test.mjs lib/advisory/__tests__/population-readiness.test.mjs",
+    "tests": 28,
+    "passed": 28,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 39142.282
+  },
+  "offlineHostedVerification": {
+    "journalPairs": 4,
+    "wireHashes": 3,
+    "receiptHashes": 24,
+    "historicalExact": true,
+    "permissionsRestored": true
+  },
+  "executedCodeManifestUnchanged": true,
+  "operatorBindingHashVerified": true,
+  "credentialPatternScan": "PASS; no credential-like strings found in changed files",
+  "diffWhitespaceCheck": "PASS",
+  "historicalEvidencePreserved": true,
+  "paidOpenAiCostUsd": 0
+}

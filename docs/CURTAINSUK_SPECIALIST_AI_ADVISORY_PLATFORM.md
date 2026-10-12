@@ -1,8 +1,20 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · First eligible batch committed and verified, then stopped at the unchanged latency limit; overnight follow-up PAUSED; Jane remains publicly inactive**
+**Programme source of truth · 12 October 2026 · 24 eligible identities verified; transport latency corrected; stopped at the unchanged metrics freshness limit; overnight follow-up PAUSED; Jane remains publicly inactive**
 
-## Current milestone: first hosted eligible batch verified, latency stop
+## Current milestone: resumed transport verified, metrics freshness stop
+
+From PR #169 `90a6a078`, the owner authorised resumption following the latency review. The operator now submits the unchanged transaction and a separate post-COMMIT read-only verification in one connector request, with exact fsynced wire hashes and no blind retries. **28 targeted local tests passed**, including real local PostgreSQL, grant restoration, ambiguous responses and the unchanged ten-second limit. [Implementation and evidence](../artifacts/jane-transport-resume-20261012/README.md).
+
+Fresh publication reconciliation again matched **11,517** approved IDs. Existing job `ac425f78-f6ec-4623-97bb-df8763d79d5a` resumed from offset 6 and committed three more six-record transactions. Exact verification passed at **12, 18 and 24**, with approximate end-to-end durations **7.569, 4.850 and 4.905 seconds**. The existing historical job/six rows remain exact and permissions were restored after every transaction. Independent read-only reconciliation confirms **24/11,517 eligible coverage**, **11,493 remaining**, **25 total search rows**, five unchanged eligible historical rows and 19 new rows across this eligible job. The **120-ID canary is incomplete**, with 96 still required.
+
+At **04:51:57.471 UTC**, the post-batch check raised `STALE_HOST_METRICS`: the latest genuine sample was **60.313 seconds old**, beyond the unchanged 60-second freshness rule. The preceding genuine sample interval was 74.154 seconds, within the approved 120-second window. No fifth eligible transaction was attempted. The operator exited, the heartbeat remains **PAUSED**, and no retry or rollback occurred.
+
+Next: prepare bounded read-only pacing before admission so each batch has enough genuine sample freshness for its work and immediate post-check. Do not relax the 60-second freshness or ten-second duration gates. Any resumed operation must reattest all prerequisites and continue this job at **offset 24**, not create another job. The authorised hard stop remains **12 October 10:00 UTC**. The short observed commit cadence suggests roughly 9–10 hours for the remaining scope before pauses, so the original 4–6-hour estimate is not established.
+
+No new migration, paid model call, source mutation, deployment, public activation or merge occurred. PR #167 and all protected customer systems remain unchanged. Completed database backup `1937679152` meets the owner's original recovery condition but predates these new commits; exact private plans and readbacks are preserved. Toshiba completion remains unverified. C: had **39.19 GiB free** after verification. New work still needs a later verified backup.
+
+## Previous milestone: first hosted eligible batch verified, latency stop
 
 The completed physical backup `1937679152`, recovery point **12 October 01:11:28.231 UTC**, satisfied the owner's post-write recovery requirement. Fresh publication reconciliation matched all **11,517** approved IDs; CPU, I/O, memory, disk, connections, errors, locks, supplier quiet-state, historical records and permissions passed admission. The existing Supabase connector submitted exactly one six-identity transaction, at **01:37:48 UTC**.
 

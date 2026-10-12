@@ -4,6 +4,16 @@ Starting PR #169: `c3cf45f936f3978567ff3c9ece476a4dcfdc8c54`. Protected producti
 
 ## Actual execution state
 
+**12 October, 04:52 UTC: PAUSED after `STALE_HOST_METRICS`, checkpoint 24.** Following the owner's Proceed instruction, a tested combined submission/post-COMMIT readback transport resumed the same eligible job from offset 6. Three more six-record transactions committed and verified, with approximate batch durations 7.569, 4.850 and 4.905 seconds. The ten-second limit was unchanged. Eligible coverage is **24/11,517**; **25** total search rows include the preserved historical excluded identity. All original rows/job/receipts and permissions remain exact. No ambiguous commit, retry or rollback occurred. [Latest report](../../artifacts/jane-transport-resume-20261012/README.md).
+
+At 04:51:57.471 UTC the immediate post-batch check found the latest genuine sample **60.313 seconds old**. It correctly stopped under the unchanged 60-second freshness requirement. Its 74.154-second counter window itself was permitted. The heartbeat remains PAUSED and no operator is running. The 120-ID canary remains incomplete, with **96** identities left. The new dependency hash is `f9f4c069311ebbe21524166d561506cf3e054bdfafe0e1d0749acea27ae6e5f1`; migration checksum is unchanged. Local targeted tests: **28 passed**.
+
+Before another invocation, prepare bounded read-only pacing to wait for sufficient genuine sample freshness before admission. Never substitute HTTP time, interpolate cached data or waive a stop. Resume the same job at **offset 24**, retaining its shared journal at `%USERPROFILE%\.codex\tmp\jane-eligible-live-20261012-0124\journal`. Latest operator evidence is in `%USERPROFILE%\.codex\tmp\jane-eligible-resume-20261012-0445`. Refresh all admission evidence and observe the original 10:00 UTC hard stop. No restart is scheduled. Current local status is `INDEXING_PAUSED_STALE_HOST_METRICS` with four total eligible write transactions.
+
+The following first-batch account is retained as historical evidence; its offset 6 resume instruction is superseded by offset 24 above.
+
+## Previous execution stop
+
 **12 October, 01:38 UTC: PAUSED after `INDEX_BATCH_LATENCY_STOP`.** The first eligible transaction committed and its exact readback passed. Job `ac425f78-f6ec-4623-97bb-df8763d79d5a` is at offset **6**, with five unchanged historical rows and one newly indexed identity (`pt-1227-634`). Seven search rows exist in total. The 120-ID canary is incomplete. [Exact report](../../artifacts/jane-overnight-stop-20261012/README.md).
 
 The watcher exited normally after discovering completed physical backup `1937679152`, recovery point **12 October 01:11:28.231 UTC**. Fresh official reads confirmed it. The active Codex operator then bound the existing runner to the existing connector and verified current source/publication, metrics, SQL/error/supplier and historical/permission gates. Exactly one indexing transaction was submitted. The unchanged end-to-end latency gate stopped the run at approximately **11.36 seconds**, despite successful commit/readback. Do not interpret this as a failed or absent transaction, and do not replay it.

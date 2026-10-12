@@ -13,6 +13,7 @@ export type StorefrontEventName =
   | "review_approved"
   | "quote_accepted"
   | "checkout_handoff_reached"
+  | "checkout_intent"
   | "checkout_started";
 
 declare global {
@@ -24,6 +25,7 @@ declare global {
 export function trackStorefrontEvent(event: StorefrontEventName, detail: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
   const payload = { event, storefront: "curtainsuk_phase_3_staging", ...detail };
-  window.dataLayer?.push(payload);
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(payload);
   window.dispatchEvent(new CustomEvent("curtainsuk:analytics", { detail: payload }));
 }

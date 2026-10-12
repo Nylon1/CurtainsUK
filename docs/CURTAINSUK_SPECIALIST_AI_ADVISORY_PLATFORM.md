@@ -4,6 +4,8 @@
 
 ## Population passes 7,000; reconciliation baseline prepared
 
+**Backup update at19:00:27UTC:** official monitoring read now reports physical backup **1945273696 COMPLETED**, recovery point **12 October18:32:09.471UTC**, WALG enabled and PITR disabled. The existing runner continues to check it under Nylon1's24-hour RPO. This supersedes the earlier PENDING observations below. Later writes still require a subsequent backup; no restore was performed and Toshiba completion remains unverified. [Provider readback](../artifacts/jane-baseline-reconciliation-20261012/backup-readback.json).
+
 The same job resumed after a read-only operator response timeout at checkpoint **6,990**. Independent hosted readback at **18:50 UTC** confirmed the checkpoint, exact latest records, historical baseline and restored permissions, with no pending write. The unchanged runner then crossed **7,002**, reported on PR #169, and continued.
 
 A new read-only streaming receipt audit verifies the complete saved manifest prefix without taking the active operator lock or querying the database. At **18:56:39 UTC** it verifies **7,068 identities in 1,178 batches**, no duplicate IDs and both explicitly resolved expired/uncommitted plans. The baseline includes the earlier historical records, conservatively starting catch-up at **11 October 18:54:39.275 UTC**. This is local journal evidence; independent final hosted verification and complete source-change reconciliation remain required. **Five new tests pass.** [Implementation and evidence](../artifacts/jane-baseline-reconciliation-20261012/README.md).

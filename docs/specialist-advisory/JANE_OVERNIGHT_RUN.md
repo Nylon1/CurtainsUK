@@ -2,6 +2,8 @@
 
 ## Latest continuation: 7,068 receipts audited
 
+Backup **1945273696** is now officially **COMPLETED** in the19:00:27UTC monitoring read, with physical recovery point12October18:32:09.471UTC. WALGtrue, PITRfalse. It replaces the earlier pending observation as the latest completed backup and remains subject to every normal RPO check. No restore or backup configuration change occurred. [Exact evidence](../../artifacts/jane-baseline-reconciliation-20261012/backup-readback.json). Newer writes need a later verified backup.
+
 At18:48:21UTC the operator stopped waiting for a response to a read-only checkpoint request. Independent hosted reconciliation at18:50UTC confirmed **6,990**, exact records/history/permissions and no pending write. The same unmodified operator resumed, crossed **7,002**, and reported the milestone on PR169. No uncertain write was replayed.
 
 The new read-only `population-baseline.mjs` audited a fixed 64,358,779-byte journal prefix through the18:56:39UTC receipt: **7,068 / 11,517**,1,178 verified batches, zero duplicate IDs, no pending write in that snapshot, and two validated expired/uncommitted resolutions. It never acquires the writer lock, changes a receipt or queries Supabase. This is local receipt evidence, not current full hosted coverage. A later snapshot is required after population finishes. The source catch-up lower bound includes the historical trial and its admitted source freshness:11October18:54:39.275UTC.

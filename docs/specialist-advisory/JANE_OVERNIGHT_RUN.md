@@ -1,5 +1,13 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest continuation: 7,068 receipts audited
+
+At18:48:21UTC the operator stopped waiting for a response to a read-only checkpoint request. Independent hosted reconciliation at18:50UTC confirmed **6,990**, exact records/history/permissions and no pending write. The same unmodified operator resumed, crossed **7,002**, and reported the milestone on PR169. No uncertain write was replayed.
+
+The new read-only `population-baseline.mjs` audited a fixed 64,358,779-byte journal prefix through the18:56:39UTC receipt: **7,068 / 11,517**,1,178 verified batches, zero duplicate IDs, no pending write in that snapshot, and two validated expired/uncommitted resolutions. It never acquires the writer lock, changes a receipt or queries Supabase. This is local receipt evidence, not current full hosted coverage. A later snapshot is required after population finishes. The source catch-up lower bound includes the historical trial and its admitted source freshness:11October18:54:39.275UTC.
+
+Five new tests pass. [Evidence](../../artifacts/jane-baseline-reconciliation-20261012/README.md). Existing population code, binding and safeguards remain unchanged. Automatic updates stay disabled pending complete source-history reconciliation and reviewed activation. Monitoring-token renewal is pending before20:25UTC. No new migration, source mutation, paid AI call or public activation.
+
 ## Latest readmission: 6,750 verified; additive update work stays disabled
 
 The unchanged operator reached **6,750 / 11,517** at18:26:57UTC. The earlier6642→6648 expired SQL plan was independently proven uncommitted by two readbacks and resolved using the already-tested journal procedure; no plan was blindly replayed. At18:27 a read-only monitoring request returned HTTP400 with `Project must be active and healthy`. Independent6750 reconciliation at18:30:39 confirms exact receipts/history/permissions and no pending write. Subsequent official project readback is ACTIVE_HEALTHY; metrics and backup reads are HTTP200. The same runner is readmitting under its unchanged controls.

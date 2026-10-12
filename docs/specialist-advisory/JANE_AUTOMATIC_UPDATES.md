@@ -56,6 +56,8 @@ Rollback: leave activation disabled, stop the future incremental operator, retai
 
 ## Reconcile changes made during this initial run
 
+The additive `population-baseline.mjs` now prepares the initial side of this comparison directly from the existing append-only journal. It streams a fixed newline-complete byte prefix, validates exact manifest order, SQL hashes, receipts, historical no-ops and explicit expired/uncommitted resolutions, and emits only identity/hash metadata. It does not acquire the writer lock or connect to the database. An incomplete or pending population cannot become completed coverage. The historical source-time allowance is included in the catch-up lower bound. [Five tests and an actual7,068-receipt audit](../../artifacts/jane-baseline-reconciliation-20261012/README.md). Complete current-source export/discovery remains a separate requirement.
+
 1. Keep the original population manifest and runner unchanged. Preserve every receipt and its actual read time.
 2. Use the earliest baseline observation, including the six historical records from 11 October, as the lower catch-up boundary. Starting a cursor at population completion would miss changes already made.
 3. Reuse complete approved import/publication records spanning that boundary. Resolve design/collection/brand fan-out with indexed relationships into immutable pages, at most 120 events per manifest and six canonical facts per step. Do not truncate an oversized fan-out or mark partial resolution complete.

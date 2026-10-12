@@ -1,6 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 12 October 2026 · 6,750 eligible identities verified; automatic update components locally tested and disabled; Jane publicly inactive**
+**Programme source of truth · 12 October 2026 · 7,068 eligible receipts audited; existing population continuing; automatic updates disabled; Jane publicly inactive**
+
+## Population passes 7,000; reconciliation baseline prepared
+
+The same job resumed after a read-only operator response timeout at checkpoint **6,990**. Independent hosted readback at **18:50 UTC** confirmed the checkpoint, exact latest records, historical baseline and restored permissions, with no pending write. The unchanged runner then crossed **7,002**, reported on PR #169, and continued.
+
+A new read-only streaming receipt audit verifies the complete saved manifest prefix without taking the active operator lock or querying the database. At **18:56:39 UTC** it verifies **7,068 identities in 1,178 batches**, no duplicate IDs and both explicitly resolved expired/uncommitted plans. The baseline includes the earlier historical records, conservatively starting catch-up at **11 October 18:54:39.275 UTC**. This is local journal evidence; independent final hosted verification and complete source-change reconciliation remain required. **Five new tests pass.** [Implementation and evidence](../artifacts/jane-baseline-reconciliation-20261012/README.md).
+
+The owner approved the reviewed update preparation. No automatic update schedule, source hook, new migration or incremental writer is enabled. The active population implementation and limits remain unchanged. Monitoring renewal is still pending before the existing 20:25 UTC credential ceiling; no paid AI evaluation or public launch is authorised.
 
 ## Incremental updates prepared while the existing population continues
 

@@ -1,0 +1,28 @@
+{
+  "classification": "LOCAL_JOURNAL_BASELINE_NOT_HOSTED_COVERAGE",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+  "expected": 11517,
+  "processed": 7068,
+  "batches": 1178,
+  "remaining": 4449,
+  "complete": false,
+  "pendingWrite": false,
+  "expiredUncommittedResolutions": 2,
+  "duplicateIds": 0,
+  "populationStartedAt": "2026-10-11T18:54:39.275Z",
+  "lastVerifiedAt": "2026-10-12T18:56:39.306Z",
+  "historicalOutsideManifest": [
+    {
+      "id": "pt-1200-907",
+      "sourceHash": "e1650cb5e32acdf5eb7de6b1a298ed0a1a5633959f6761fdcfccea32122556e3"
+    }
+  ],
+  "journalEvidenceSha256": "d85c0143e1a13ca5cbaa795df7fbf596f6ff96a738cb5374fcc60d139b433c29",
+  "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+  "hostedVerificationRequired": true,
+  "reconciliationComplete": false,
+  "hostedWrites": 0,
+  "frozenJournalBytes": 64358779
+}

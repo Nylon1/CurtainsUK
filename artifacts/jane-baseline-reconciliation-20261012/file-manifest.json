@@ -1,0 +1,46 @@
+{
+  "classification": "LOCAL_READ_ONLY_BASELINE_REVIEW",
+  "observedAt": "2026-10-12T18:58:31.799Z",
+  "tests": {
+    "passed": 25,
+    "failed": 0,
+    "new": 5,
+    "durationMs": 7373.2053
+  },
+  "runningImplementationUnchanged": true,
+  "implementationSha256": "13c498432a97f9949b3ef46304976fecc799734db0a021d608eb4721528a08b3",
+  "operatorBindingSha256": "9af9e2ffb08d1b236bc7bdd981a2f345bb113d7777f4558f6b8715878bd5575e",
+  "automaticUpdatesEnabled": false,
+  "hostedWritesFromThisComponent": 0,
+  "paidCalls": 0,
+  "files": {
+    "lib/advisory/population-baseline.mjs": {
+      "bytes": 5480,
+      "sha256": "7fb6b382874bb3eb88f1d3defad0dad93f84ed8f23ed52ffde1f5545b27df4e4"
+    },
+    "lib/advisory/__tests__/population-baseline.test.mjs": {
+      "bytes": 7032,
+      "sha256": "8d1b02acded1929876b0b42560a0835f950c71149574f63a8d993590898af939"
+    },
+    "docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md": {
+      "bytes": 129623,
+      "sha256": "870be68fa1267df504804278fb3d7d47554c8f17e6b520f7f036d3ccbc325b2c"
+    },
+    "docs/specialist-advisory/JANE_OVERNIGHT_RUN.md": {
+      "bytes": 42012,
+      "sha256": "04cf40c82d6f74a3d20d4d71294d2818f727b53be2d6c5a9a429c369185f3560"
+    },
+    "docs/specialist-advisory/JANE_AUTOMATIC_UPDATES.md": {
+      "bytes": 15503,
+      "sha256": "398ca8ea6028df72a8c8d499ce830a7e8fd10387252dd6ab6bf505374011b003"
+    },
+    "artifacts/jane-baseline-reconciliation-20261012/README.md": {
+      "bytes": 2983,
+      "sha256": "f6e99af7c5027e666988b68fe6c473bf97a41b206aab100f7711a4bd8afcc354"
+    },
+    "artifacts/jane-baseline-reconciliation-20261012/snapshot.json": {
+      "bytes": 1040,
+      "sha256": "0536163fe2c9be06091cfffcc35a1c7ea7c0a68f915b71468b32ab185fc0b3cf"
+    }
+  }
+}

@@ -99,7 +99,7 @@ export async function sendOpenAiOrderCreated(
     validateOnly?: boolean;
     fetchImpl?: FetchLike;
   } = {},
-): Promise<{ status: "sent" | "disabled"; responseStatus?: number }> {
+): Promise<{ status: "sent" | "validated" | "disabled"; responseStatus?: number }> {
   const apiKey = options.apiKey ?? process.env.OPENAI_ADS_CONVERSIONS_API_KEY;
   if (!apiKey?.trim()) return { status: "disabled" };
 
@@ -108,6 +108,7 @@ export async function sendOpenAiOrderCreated(
 
   const fetchImpl = options.fetchImpl ?? fetch;
   const event = buildOpenAiOrderCreatedEvent(input);
+  const validateOnly = options.validateOnly ?? process.env.OPENAI_ADS_CONVERSIONS_VALIDATE_ONLY === "true";
   const response = await fetchImpl(`${EVENTS_ENDPOINT}?pid=${encodeURIComponent(pixelId)}`, {
     method: "POST",
     headers: {
@@ -115,7 +116,7 @@ export async function sendOpenAiOrderCreated(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      validate_only: options.validateOnly === true,
+      validate_only: validateOnly,
       integration_source: INTEGRATION_SOURCE,
       events: [event],
     }),
@@ -123,5 +124,5 @@ export async function sendOpenAiOrderCreated(
     signal: AbortSignal.timeout(5_000),
   });
   if (!response.ok) throw new Error(`OPENAI_ADS_CAPI_FAILED_${response.status}`);
-  return { status: "sent", responseStatus: response.status };
+  return { status: validateOnly ? "validated" : "sent", responseStatus: response.status };
 }

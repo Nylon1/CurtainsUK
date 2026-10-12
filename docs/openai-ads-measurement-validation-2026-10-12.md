@@ -2,7 +2,7 @@
 
 > **CURRENT SOURCE OF TRUTH — synchronized after PR #180**
 >
-> Protected production HEAD: `58a97377359049e621676d01a66d74aeec6283a1`.
+> Functional production baseline (last runtime/theme-changing merge): `58a97377359049e621676d01a66d74aeec6283a1`. Later documentation-only source-of-truth merges do not change the deployed runtime.
 >
 > Shopify MAIN theme: `182339731835` — **CurtainsUK - Curtain Style V1 review**.
 > The live `layout/theme.liquid` readback matches the protected source byte for byte after the PR #180 one-file release. Final SHA-256: `8d055fcdf7a4e412b6f499e8be37226dad234fc6b40bdd6a12885d7160d9ff0f`.

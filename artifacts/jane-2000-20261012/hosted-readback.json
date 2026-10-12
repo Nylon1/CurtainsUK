@@ -1,0 +1,11 @@
+{
+  "receipts": 2016,
+  "processed": 2016,
+  "observedAt": "2026-10-12T08:52:15.102637+00:00",
+  "advisoryBytes": 4612096,
+  "databaseBytes": 704097427,
+  "matchedHashes": 2016,
+  "migrationCount": 81,
+  "totalKnowledge": 2017,
+  "latestMigration": "20261011180354"
+}

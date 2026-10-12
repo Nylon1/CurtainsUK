@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-10-12T08:53:35.428Z",
+  "processed": 2016,
+  "expected": 11517,
+  "uniqueIds": 2016,
+  "planHashesVerified": 336,
+  "verifiedReceipts": 336,
+  "manifestPrefixMatches": true,
+  "newEligibleRows": 2011,
+  "totalKnowledge": 2017,
+  "postLookupRepair": {
+    "batches": 24,
+    "minimumSourceThroughReceiptMs": 4674,
+    "maximumSourceThroughReceiptMs": 10175,
+    "admittedPeakCpuPercent": 38.80439202920459,
+    "admittedPeakMemoryPercent": 79.74037431470163
+  },
+  "protectedProductionHead": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "executionCode": "242a2fd3",
+  "dependencySha256": "a56b1959734589ad5c4c95879149c7de89636deb0abb3afaa433acb55c7df87c",
+  "freeCBytes": 41059041280,
+  "deadline": "2026-10-12T10:00:00Z",
+  "complete": false
+}

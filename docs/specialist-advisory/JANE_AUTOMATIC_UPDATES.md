@@ -70,6 +70,10 @@ The complete export/source-window attestation is **not available yet**. The loca
 
 ## Recommendation checks after population and reconciliation
 
+`population-verification.mjs` now supplies the separate final coverage gate. It compares a completed, ordered journal baseline with a fresh independent hosted readback, whole-job identity/content digests, exact job/cursor state, preserved historical records, no-op counts and restored permissions. It supports the final three-record batch at11,517 and requires1,920 verified batches. It is not imported by the active operator and performs no query or write. Its result explicitly leaves reconciliation and launch unapproved.
+
+Four new final-verification tests and eight existing baseline/recommendation tests passed on12October. They cover partial/pending/stale/future evidence, wrong final state, substituted/duplicate/missing identities, changed hashes, historical/permission drift and the actual11,517-count boundary. This is local test evidence, not a claim that hosted population has finished. [Evidence](../../artifacts/jane-final-verification-preparation-20261012/README.md).
+
 `post-population-review.mjs` refuses to run on partial coverage, duplicate identities, unresolved writes or incomplete catch-up. Once those gates pass, it performs six paced read-only descriptive searches: warm neutrals, olive, texture, restrained patterns, natural composition and grey/gray spelling. Returned facts retain explicit unknowns and cannot become a purchase offer. It records latency, exact IDs and facts for human relevance review. Empty or failed search is visible evidence, not a pass.
 
 Then reuse the existing **20-scenario `jane-foundations-v3`** suite and human rubric for design reasoning, alternative directions, feedback changes, tool explanations and concise 40–90-word replies without em dashes. Real-model testing requires fresh budget approval and a securely configured replacement key. No paid calls were made. Human reviewers must assess both recommendation relevance and why each direction suits the room. Retrieval success alone does not approve launch. Current public Jane remains inactive.

@@ -17,6 +17,11 @@ export interface ShopifyMoneyInput {
   currencyCode: "GBP";
 }
 
+export interface OpenAiAdsAttribution {
+  oppref?: string;
+  obref?: string;
+}
+
 export interface ShopifyAttributeInput {
   key: string;
   value: string;
@@ -282,6 +287,7 @@ export function buildShopifyDraftOrderContract(input: {
   handoff: Readonly<StagingCheckoutHandoff>;
   customerEmail?: string | null;
   fabricLabel?: string | null;
+  openAiAttribution?: Readonly<OpenAiAdsAttribution>;
 }): Readonly<ShopifyDraftOrderContract> {
   const handoff = input.handoff;
   const snapshot = handoff.snapshot;
@@ -339,6 +345,8 @@ export function buildShopifyDraftOrderContract(input: {
     { key: "curtainsuk_construction", value: snapshot.construction },
     { key: "curtainsuk_customer_dimension_summary", value: customerDimensionSummary(snapshot.measurements) },
     { key: "curtainsuk_calculated_fabric_metres", value: String(snapshot.calculatedFabricMetres) },
+    ...(input.openAiAttribution?.oppref ? [{ key: "curtainsuk_openai_oppref", value: safeText(input.openAiAttribution.oppref, 2048) }] : []),
+    ...(input.openAiAttribution?.obref ? [{ key: "curtainsuk_openai_obref", value: safeText(input.openAiAttribution.obref, 512) }] : []),
     ...internalMeasurementAttributes(snapshot.measurements),
   ];
   const draftInput: ShopifyDraftOrderInput = {

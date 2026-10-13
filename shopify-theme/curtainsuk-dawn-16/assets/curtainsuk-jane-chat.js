@@ -16,6 +16,7 @@
     const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
     let session = null, csrf = '', csrfExpires = 0, busy = false, pending = null, selectedFabric = null;
+    let renderedSessionId = null, renderedMessages = [];
     const say = (value, isError = false) => { error.hidden = !isError; error.textContent = isError ? value : ''; status.textContent = isError ? '' : value; };
     const setBusy = value => { busy = value; startButton.disabled = value; deleteButton.disabled = value; input.disabled = value; form.querySelector('[data-jane-send]').disabled = value; fabricShare.disabled = value || !fabricConsent.checked; };
     const remember = id => { try { if (id) localStorage.setItem(storageKey, id); else localStorage.removeItem(storageKey); } catch {} };
@@ -36,14 +37,28 @@
       if (fabric.roomPreview === room) { const link = document.createElement('a'); link.href = room; link.textContent = 'See in Room Visualiser'; detail.append(link); }
       card.append(picture, detail); article.append(card);
     };
+    const appendOpening = () => {
+      const opening = document.createElement('article');
+      const name = document.createElement('strong'); name.textContent = 'Jane · AI adviser';
+      const copy = document.createElement('p'); copy.textContent = 'Tell me what is not quite working in your room. We can find a direction together.';
+      opening.append(name, copy); log.append(opening);
+    };
     const render = () => {
-      log.replaceChildren();
+      if (!session || renderedSessionId !== session.id) {
+        log.replaceChildren();
+        renderedSessionId = session?.id ?? null;
+        renderedMessages = [];
+      }
       if (session) {
-        const opening = document.createElement('article');
-        const name = document.createElement('strong'); name.textContent = 'Jane · AI adviser';
-        const copy = document.createElement('p'); copy.textContent = 'Tell me what is not quite working in your room. We can find a direction together.';
-        opening.append(name, copy); log.append(opening);
-        (session.messages || []).forEach(message => {
+        if (!log.childElementCount) appendOpening();
+        const messages = session.messages || [];
+        const fingerprints = messages.map(message => JSON.stringify([message.role, message.text, message.fabrics]));
+        if (renderedMessages.length > fingerprints.length || renderedMessages.some((value, index) => value !== fingerprints[index])) {
+          log.replaceChildren();
+          renderedMessages = [];
+          appendOpening();
+        }
+        messages.slice(renderedMessages.length).forEach(message => {
           const article = document.createElement('article');
           const heading = document.createElement('strong'); heading.textContent = message.role === 'assistant' ? 'Jane · AI adviser' : 'You';
           const p = document.createElement('p'); p.textContent = message.text;
@@ -51,7 +66,8 @@
           if (message.role === 'assistant' && Array.isArray(message.fabrics)) message.fabrics.slice(0, 4).forEach(fabric => showFabricCard(article, fabric));
           log.append(article);
         });
-        log.scrollTop = log.scrollHeight;
+        if (renderedMessages.length !== fingerprints.length) log.scrollTop = log.scrollHeight;
+        renderedMessages = fingerprints;
       }
       startButton.hidden = !!session; deleteButton.hidden = !session; form.hidden = !session;
       if (tools) tools.hidden = !session;

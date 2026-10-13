@@ -16,7 +16,7 @@ const ref = 'hqysjumypgeapgmqkcrx';
 // A manually packaged Build Output API preview embeds its reviewed Git SHA.
 // Git-linked previews use Vercel's own commit SHA instead.
 const compiledCommit = typeof __JANE_PREVIEW_SOURCE_COMMIT__ === 'undefined'
-  ? process.env.VERCEL_GIT_COMMIT_SHA : __JANE_PREVIEW_SOURCE_COMMIT__;
+  ? (process.env.JANE_COMPILED_SOURCE_COMMIT || process.env.VERCEL_GIT_COMMIT_SHA) : __JANE_PREVIEW_SOURCE_COMMIT__;
 let resources;
 function decode(value) {
   if (!value || !/^[A-Za-z0-9+/]{43}=$/.test(value)) throw Error('JANE_KEY_REQUIRED');

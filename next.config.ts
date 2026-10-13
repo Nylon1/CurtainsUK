@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // This project deploys from the protected checkout with Vercel CLI and has
+  // no Git connection. Bake the operator-verified protected SHA into that build.
+  // An omitted value keeps Jane disabled; the SHA is public, never a secret.
+  env: { JANE_COMPILED_SOURCE_COMMIT: process.env.CURTAINSUK_BUILD_SOURCE_COMMIT ?? "" },
   turbopack: { root: process.cwd() },
   outputFileTracingIncludes: { "/api/staging/shopify-proxy/*": ["./lib/room-visualiser/runtime/rooms/customer.html","./lib/storefront/hci/consultation.html", "./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg", "./lib/storefront/hci/privacy.html", "./lib/storefront/hci/premium/*"], "/curtain-consultation": ["./lib/storefront/hci/consultation.html"], "/api/curtain-consultation/assets/*": ["./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg"], "/admin/curtain-consultation": ["./lib/storefront/hci/consultation.html"], "/api/admin/curtain-consultation/assets/*": ["./lib/storefront/hci/consultation.css", "./lib/storefront/hci/consultation.js", "./lib/storefront/hci/visuals/*.svg"] },
   // Shopify app proxies can forward a trailing slash. Serving both forms

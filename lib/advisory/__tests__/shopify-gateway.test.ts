@@ -93,6 +93,21 @@ test('restricted production transport is exact-commit and synthetic-owner only',
   assert.equal((await handle(new Request(url('789')))).status, 401);
   assert.equal((await handle(new Request(url('')))).status, 401);
 });
+
+test('manual protected deployment needs a baked SHA and real deployment identity', () => {
+  const commit = 'c'.repeat(40);
+  const manual = { ...env, VERCEL_ENV: 'production', VERCEL_PROJECT_ID: 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA',
+    VERCEL_GIT_COMMIT_SHA: undefined, VERCEL_DEPLOYMENT_ID: 'dpl_884S7LrjNc77jLu45RAHViPWKR39',
+    ADVISORY_SHOPIFY_APPROVED_COMMIT: commit, CURTAINSUK_ADVISORY_RESTRICTED_LIVE: 'true' };
+  assert.equal(janeRestrictedLiveEnabled(manual, commit), true);
+  assert.equal(janeRestrictedLiveEnabled(manual), false);
+  assert.equal(janeRestrictedLiveEnabled({ ...manual, VERCEL_DEPLOYMENT_ID: undefined }, commit), false);
+  assert.equal(janeRestrictedLiveEnabled({ ...manual, ADVISORY_SHOPIFY_APPROVED_COMMIT: 'd'.repeat(40) }, commit), false);
+  assert.equal(janeRestrictedLiveEnabled({ ...manual, VERCEL_GIT_COMMIT_SHA: 'd'.repeat(40) }, commit), false);
+  const publicMode = { ...manual, CURTAINSUK_ADVISORY_RESTRICTED_LIVE: 'false', ADVISORY_SHOPIFY_PUBLIC_ENABLED: 'true', ADVISORY_SHOPIFY_PROVIDER: 'openai' };
+  assert.equal(janePublicEnabled(publicMode, commit), true);
+  assert.equal(janePublicEnabled({ ...publicMode, VERCEL_DEPLOYMENT_ID: undefined }, commit), false);
+});
 test('public transport needs its separate exact-release switch and retains signed owner isolation', async () => {
   const live = { ...env, VERCEL_ENV: 'production', VERCEL_PROJECT_ID: 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA',
     ADVISORY_SHOPIFY_PUBLIC_ENABLED: 'true', ADVISORY_SHOPIFY_PROVIDER: 'openai' };

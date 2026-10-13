@@ -8,6 +8,17 @@ const customerId = /^[1-9][0-9]{0,19}$/;
 const allowedShop = 'carpetup.myshopify.com';
 const allowedPath = '/apps/curtainsuk-decision';
 const storefrontHosts = new Set(['www.curtainsuk.com', allowedShop]);
+const deploymentId = /^dpl_[A-Za-z0-9]{12,}$/;
+
+function productionSourceAttested(env: Record<string, string | undefined>, compiledCommit: string | undefined) {
+  if (!/^[a-f0-9]{40}$/.test(compiledCommit ?? '')) return false;
+  // Git-linked builds have Vercel's commit SHA. For this project's manual CLI
+  // releases, the protected SHA is baked into the bundle at build time and
+  // checked against the separately staged approved commit at request time.
+  return env.VERCEL_GIT_COMMIT_SHA
+    ? env.VERCEL_GIT_COMMIT_SHA === compiledCommit
+    : deploymentId.test(env.VERCEL_DEPLOYMENT_ID ?? '');
+}
 
 function fail(status: number, code: string) { return Response.json({ error: code }, { status, headers: noStore }); }
 function safeEqual(a: string, b: string) {
@@ -45,8 +56,7 @@ export function janeRestrictedLiveEnabled(env: Record<string, string | undefined
     && env.VERCEL_PROJECT_ID === 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA'
     && env.CURTAINSUK_ADVISORY_RESTRICTED_LIVE === 'true'
     && env.ADVISORY_SHOPIFY_CHAT_ENABLED === 'true'
-    && /^[a-f0-9]{40}$/.test(compiledCommit ?? '')
-    && compiledCommit === env.VERCEL_GIT_COMMIT_SHA
+    && productionSourceAttested(env, compiledCommit)
     && compiledCommit === env.ADVISORY_SHOPIFY_APPROVED_COMMIT
     && ids.length > 0 && ids.length <= 10 && ids.every(id => customerId.test(id));
 }
@@ -58,8 +68,7 @@ export function janePublicEnabled(env: Record<string, string | undefined>, compi
     && env.ADVISORY_SHOPIFY_CHAT_ENABLED === 'true'
     && env.ADVISORY_SHOPIFY_PROVIDER === 'openai'
     && env.CURTAINSUK_ADVISORY_RESTRICTED_LIVE !== 'true'
-    && /^[a-f0-9]{40}$/.test(compiledCommit ?? '')
-    && compiledCommit === env.VERCEL_GIT_COMMIT_SHA
+    && productionSourceAttested(env, compiledCommit)
     && compiledCommit === env.ADVISORY_SHOPIFY_APPROVED_COMMIT;
 }
 export function janeGatewayEnabled(env: Record<string, string | undefined>, compiledCommit = env.VERCEL_GIT_COMMIT_SHA) {

@@ -8,7 +8,9 @@ The starting draft head was `bae95d40b25c314ff1da4854f6e37574e746aa9f`; protecte
 
 The existing Supabase project `hqysjumypgeapgmqkcrx` was healthy and held 11,518 advisory knowledge rows, including the fixed 11,517 eligible identities and one historical trial row. The advisory consultation table held zero rows. A completed physical backup inserted at `2026-10-13T00:54:33.159Z` was read back at 17:21 UTC, within the owner's 24-hour recovery-point limit. A restore was not rehearsed. C: had about 34.86 GiB free. No new project, branch, catalogue rebuild or fabric-source change was made.
 
-The existing Vercel project had no `ADVISORY_*` Production or Preview environment variables at readback. Its expired temporary trial role cannot be used for a launch. The production Shopify app proxy still routes to the production Vercel app, where Jane's draft route does not exist. A protected preview cannot substitute for a real signed Shopify request through that proxy.
+The existing Vercel project initially had no `ADVISORY_*` Production or Preview environment variables. Fifteen Production variables were subsequently staged as **secret** values on the same project, including the permanent DB login, CA, encrypted-record keys and three explicit OFF switches. The Vercel readback confirmed all 15 names, Production targets and redacted secret visibility. No OpenAI key, evaluation run ID, synthetic allowlist or approved commit was installed, and no deployment was made. The current production Shopify app proxy still routes to the production Vercel app, where Jane's draft route does not exist. A protected preview cannot substitute for a real signed Shopify request through that proxy.
+
+With the owner's confirmation that the dedicated test mailbox can receive a Shopify login code, a new Shopify customer `25324252365179` was created and read back with zero orders and the `jane-advisory-test` and `do-not-action` tags. The existing personal customer account was not used. The mailbox holder's first storefront sign-in and the resulting real signed app-proxy identity remain pending. No marketing consent or order was created.
 
 ## Permanent advisory roles and retention
 

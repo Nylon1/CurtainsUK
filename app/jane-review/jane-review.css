@@ -67,6 +67,7 @@
 @keyframes jane-thinking{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
 @keyframes jane-message-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:700px){.jane-review__layout{grid-template-columns:1fr}
+.jane-review header{flex-wrap:wrap;gap:4px 12px}
 .jane-review aside{display:grid;grid-template-columns:82px 1fr;gap:0 14px}
 .jane-review aside img{grid-row:1/4;height:108px;border-radius:40px 40px 2px 2px}
 .jane-review aside h1{font-size:27px;margin:0}

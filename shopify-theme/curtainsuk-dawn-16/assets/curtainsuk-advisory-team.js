@@ -32,6 +32,7 @@
       countdown.textContent = '0';
       status.textContent = root.dataset.roomStatus || '';
       find('room-title').focus({ preventScroll: true });
+      dialog.dispatchEvent(new CustomEvent('curtainsuk:jane-room-open', { detail: { identity: dialog.dataset.adviserIdentity } }));
     };
     const tick = () => {
       if (!dialog.open) { stop(); return; }
@@ -45,6 +46,7 @@
     const open = (button) => {
       const profile = profiles.get(button.dataset.adviser);
       if (!profile || dialog.open) return;
+      dialog.dataset.adviserIdentity = profile.dataset.identity || '';
       opener = button;
       find('name').textContent = profile.dataset.name;
       find('title').textContent = profile.dataset.title;

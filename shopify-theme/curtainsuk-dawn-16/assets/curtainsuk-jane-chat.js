@@ -1,0 +1,117 @@
+// Private Shopify review only. The theme setting and server gate both default off.
+(() => {
+  'use strict';
+  const endpoint = '/apps/curtainsuk-decision/jane';
+  const storageKey = 'curtainsuk-jane-private-session-v1';
+  const commandBase = { text: null, context: null, consent: false, recoveryToken: null };
+  const validFabric = /^[A-Za-z0-9][A-Za-z0-9-]{0,149}$/;
+  const validSession = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+  document.querySelectorAll('[data-advisory-dialog]').forEach(dialog => {
+    const panel = dialog.querySelector('[data-jane-chat]');
+    if (!panel) return;
+    const find = name => panel.querySelector(`[data-jane-${name}]`);
+    const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status');
+    const consent = find('consent'), startButton = find('start'), deleteButton = find('delete');
+    const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
+    const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
+    let session = null, csrf = '', csrfExpires = 0, busy = false, pending = null, selectedFabric = null;
+    const say = (value, isError = false) => { error.hidden = !isError; error.textContent = isError ? value : ''; status.textContent = isError ? '' : value; };
+    const setBusy = value => { busy = value; startButton.disabled = value; deleteButton.disabled = value; input.disabled = value; form.querySelector('[data-jane-send]').disabled = value; fabricShare.disabled = value || !fabricConsent.checked; };
+    const remember = id => { try { if (id) localStorage.setItem(storageKey, id); else localStorage.removeItem(storageKey); } catch {} };
+    const remembered = () => { try { return localStorage.getItem(storageKey); } catch { return null; } };
+    const render = () => {
+      log.replaceChildren();
+      if (session) {
+        const opening = document.createElement('article');
+        const name = document.createElement('strong'); name.textContent = 'Jane · AI adviser';
+        const copy = document.createElement('p'); copy.textContent = 'Tell me what is not quite working in your room. We can find a direction together.';
+        opening.append(name, copy); log.append(opening);
+        (session.messages || []).forEach(message => {
+          const article = document.createElement('article');
+          const heading = document.createElement('strong'); heading.textContent = message.role === 'assistant' ? 'Jane · AI adviser' : 'You';
+          const p = document.createElement('p'); p.textContent = message.text;
+          article.append(heading, p); log.append(article);
+        });
+        log.scrollTop = log.scrollHeight;
+      }
+      startButton.hidden = !!session; deleteButton.hidden = !session; form.hidden = !session;
+      consent.closest('label').hidden = !!session;
+      fabricShare.hidden = !session || !!session?.contexts?.some(c => c.value?.fabricIds?.includes(selectedFabric?.id));
+    };
+    const bootstrap = async () => {
+      if (csrf && csrfExpires > Date.now() + 15000) return;
+      const response = await fetch(endpoint, { cache: 'no-store', credentials: 'same-origin' });
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok || typeof body.csrf !== 'string') throw Error(response.status === 401 ? 'Please sign in to your approved test customer account.' : 'Jane is unavailable in this preview. Your message has not been sent.');
+      csrf = body.csrf; csrfExpires = body.expiresAt;
+    };
+    const request = async (action, extra = {}, requestId = crypto.randomUUID()) => {
+      await bootstrap();
+      const body = { ...commandBase, action, requestId, sessionId: session?.id ?? null, revision: session?.revision ?? null, ...extra };
+      const response = await fetch(endpoint, { method: 'POST', credentials: 'same-origin', cache: 'no-store', headers: { 'Content-Type': 'application/json', 'X-Advisory-CSRF': csrf }, body: JSON.stringify(body) });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw Error(result.error === 'REVISION_CONFLICT' ? 'This consultation changed in another tab. Reopen it before sending again.' : 'Jane could not save that response. Your draft remains here; please try again.');
+      if (result.session) {
+        if (!validSession.test(result.session.id) || (action === 'resume' && result.session.id !== extra.sessionId) || (session && action !== 'start' && result.session.id !== session.id)) throw Error('Jane returned a different consultation. Nothing was shown; please reopen the room.');
+        session = result.session; remember(session.id); render();
+      }
+      return result;
+    };
+    const run = async (operation, waitingText) => {
+      if (busy) return;
+      setBusy(true); say(waitingText);
+      try { await operation(); say(''); }
+      catch (cause) { say(cause.message || 'Jane is temporarily unavailable.', true); }
+      finally { setBusy(false); }
+    };
+    const readFabric = async () => {
+      const values = new URLSearchParams(location.search).getAll('jane_fabric');
+      if (values.length !== 1 || !validFabric.test(values[0])) return;
+      const id = values[0];
+      try {
+        const response = await fetch('/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=' + encodeURIComponent(id), { cache: 'no-store' });
+        const body = await response.json();
+        if (!response.ok || body.fabric?.id !== id || body.fabric.browseReady !== true || body.fabric.launchReady !== true || body.fabric.orderReady !== true) return;
+        selectedFabric = { id, design: body.fabric.design || 'Selected fabric', colour: body.fabric.colour || '' };
+        fabricDescription.textContent = `${selectedFabric.design} ${selectedFabric.colour} (${id})`;
+        fabricPanel.hidden = false; render();
+      } catch { /* A fabric cannot be inferred from an unverified URL. */ }
+    };
+    dialog.addEventListener('curtainsuk:jane-room-open', event => {
+      const jane = event.detail?.identity === 'jane';
+      panel.hidden = !jane; preview.forEach(node => { if (node) node.hidden = jane; });
+      if (!jane) return;
+      say('');
+      run(async () => {
+        await bootstrap();
+        const saved = remembered();
+        if (!session && saved && validSession.test(saved)) {
+          try {
+            const response = await request('resume', { sessionId: saved, revision: 0 });
+            if (!response.session) remember(null);
+          } catch { remember(null); }
+        }
+        render(); await readFabric();
+      }, 'Connecting to Jane…');
+    });
+    startButton.addEventListener('click', () => {
+      if (!consent.checked) { say('Please confirm that this private test consultation may be saved.', true); return; }
+      const id = pending?.action === 'start' ? pending.id : crypto.randomUUID(); pending = { action: 'start', id };
+      run(async () => { await request('start', { sessionId: null, revision: null, consent: true }, id); pending = null; input.focus(); }, 'Opening your consultation…');
+    });
+    form.addEventListener('submit', event => {
+      event.preventDefault(); const text = input.value.trim(); if (!text || !session) return;
+      const id = pending?.action === 'message' && pending.text === text ? pending.id : crypto.randomUUID(); pending = { action: 'message', text, id };
+      run(async () => { await request('message', { text }, id); pending = null; input.value = ''; input.focus(); }, 'Jane is considering your room…');
+    });
+    deleteButton.addEventListener('click', () => run(async () => { await request('delete'); session = null; pending = null; consent.checked = false; fabricConsent.checked = false; remember(null); render(); say('Your consultation was deleted.'); }, 'Deleting your consultation…'));
+    fabricConsent.addEventListener('change', () => { fabricShare.disabled = busy || !fabricConsent.checked; });
+    fabricShare.addEventListener('click', () => {
+      if (!session || !selectedFabric || !fabricConsent.checked) return;
+      const id = pending?.action === 'context' ? pending.id : crypto.randomUUID(); pending = { action: 'context', id };
+      const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [selectedFabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: 'I selected this exact fabric and would like to discuss it.' };
+      run(async () => { await request('context', { context, consent: true }, id); pending = null; say('Jane can now discuss this exact fabric with you.'); }, 'Sharing your selected fabric…');
+    });
+    render();
+  });
+})();

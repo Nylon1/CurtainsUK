@@ -1,6 +1,7 @@
 {% doc %}
   Renders the non-operational specialist consultation demonstration.
   @param {string} section_id - The owning section identifier.
+  @param {boolean} [jane_chat_private_preview] - Enables a gated, unpublished Jane review composer.
 {% enddoc %}
 {{ 'curtainsuk-advisory-room.css' | asset_url | stylesheet_tag }}
 <dialog class="cukad-room" data-advisory-dialog aria-labelledby="advisory-dialog-title-{{ section_id }}" aria-describedby="advisory-preview-notice-{{ section_id }}">
@@ -25,6 +26,19 @@
     <div class="cukad-room__example"><p class="cukad-room__eyebrow">{{ 'advisory_team.room.example_label' | t }}</p><p data-advisory-example></p></div>
     <div class="cukad-room__format"><h4>{{ 'advisory_team.room.format' | t }}</h4><p>{{ 'advisory_team.room.format_copy' | t }}</p></div>
     <div class="cukad-room__composer" aria-disabled="true"><p>{{ 'advisory_team.room.composer' | t }}</p><button disabled type="button" aria-label="{{ 'advisory_team.room.send' | t | escape }}"><span aria-hidden="true">↑</span></button></div>
+    {% if jane_chat_private_preview %}
+      <section class="cukad-room__jane" data-jane-chat hidden aria-label="Private consultation with Jane">
+        <p class="cukad-room__eyebrow">Jane · AI interior design adviser · private test</p>
+        <p>Sign in to your test customer account before entering. This private review saves your conversation in encrypted advisory storage. You can delete it here. Automatic expiry cleanup is still under review. Please use invented details only.</p>
+        <label class="cukad-room__jane-consent"><input type="checkbox" data-jane-consent> I agree to save this private test consultation.</label>
+        <div class="cukad-room__jane-actions"><button type="button" data-jane-start>Start consultation</button><button type="button" data-jane-delete hidden>Delete consultation</button></div>
+        <div class="cukad-room__jane-fabric" data-jane-fabric hidden><p data-jane-fabric-description></p><label><input type="checkbox" data-jane-fabric-consent> Share this exact fabric with Jane</label><button type="button" data-jane-fabric-share disabled>Discuss selected fabric</button></div>
+        <div class="cukad-room__jane-log" data-jane-log role="log" aria-label="Conversation with Jane" aria-live="polite" aria-relevant="additions"></div>
+        <form data-jane-form hidden><label for="jane-message-{{ section_id }}">Your message to Jane</label><textarea id="jane-message-{{ section_id }}" data-jane-input rows="3" maxlength="2000" required></textarea><button type="submit" data-jane-send>Send to Jane</button></form>
+        <p data-jane-status role="status" aria-live="polite"></p>
+        <p data-jane-error role="alert" hidden></p>
+      </section>
+    {% endif %}
     <p class="cukad-room__privacy">{{ 'advisory_team.room.privacy' | t }}</p>
     <button type="button" class="cukad-room__button" data-advisory-close>{{ 'advisory_team.room.return' | t }} <span aria-hidden="true">↗</span></button>
   </div>

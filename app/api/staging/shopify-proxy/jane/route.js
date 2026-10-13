@@ -13,6 +13,10 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 120;
 
 const ref = 'hqysjumypgeapgmqkcrx';
+// A manually packaged Build Output API preview embeds its reviewed Git SHA.
+// Git-linked previews use Vercel's own commit SHA instead.
+const compiledCommit = typeof __JANE_PREVIEW_SOURCE_COMMIT__ === 'undefined'
+  ? process.env.VERCEL_GIT_COMMIT_SHA : __JANE_PREVIEW_SOURCE_COMMIT__;
 let resources;
 function decode(value) {
   if (!value || !/^[A-Za-z0-9+/]{43}=$/.test(value)) throw Error('JANE_KEY_REQUIRED');
@@ -20,7 +24,7 @@ function decode(value) {
 }
 function buildResources() {
   const env = process.env;
-  if (!janePreviewEnabled(env) || env.ADVISORY_TEST_PROJECT_REF !== ref || env.ADVISORY_TEST_SCHEMA !== 'advisory'
+  if (!janePreviewEnabled(env, compiledCommit) || env.ADVISORY_TEST_PROJECT_REF !== ref || env.ADVISORY_TEST_SCHEMA !== 'advisory'
     || env.ADVISORY_CATALOGUE_PROJECT_REF !== ref || !/^sb_secret_[A-Za-z0-9_-]{8,200}$/.test(env.ADVISORY_CATALOGUE_READ_KEY ?? '')) throw Error('JANE_PREVIEW_NOT_CONFIGURED');
   const keys = JSON.parse(env.ADVISORY_DATA_KEYS_JSON ?? '{}');
   if (!keys || typeof keys !== 'object' || Array.isArray(keys) || !env.ADVISORY_ACTIVE_DATA_KEY_ID) throw Error('JANE_KEY_REQUIRED');
@@ -37,12 +41,13 @@ function buildResources() {
 }
 async function handle(request) {
   // This static route never enters the shared commerce/Naila proxy operation.
-  if (!janePreviewEnabled(process.env)) return new Response(null, { status: 404, headers: { 'Cache-Control': 'no-store' } });
+  if (!janePreviewEnabled(process.env, compiledCommit)) return new Response(null, { status: 404, headers: { 'Cache-Control': 'no-store' } });
   try {
     resources ??= buildResources();
     const { rpc, cipher, catalogue, model, env } = resources;
     return createShopifyJaneGateway({
       env,
+      compiledCommit,
       take: owner => new CloudSessionStore({ rpc, cipher, ownerId: owner }).take(),
       execute: async (owner, command) => {
         const store = new CloudSessionStore({ rpc, cipher, ownerId: owner });

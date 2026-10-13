@@ -50,6 +50,7 @@ const result = await build({
   stdin: { contents: adapter, resolveDir: process.cwd(), sourcefile: 'jane-chat-preview-adapter.mjs' },
   bundle: true, platform: 'node', target: 'node24', format: 'cjs',
   outfile: join(functionRoot, 'index.cjs'), external: ['pg-native'], logLevel: 'silent',
+  define: { __JANE_PREVIEW_SOURCE_COMMIT__: JSON.stringify(sourceCommit) },
 });
 if (result.warnings.length) throw Error('BUNDLE_WARNINGS');
 await writeFile(join(functionRoot, '.vc-config.json'), JSON.stringify({

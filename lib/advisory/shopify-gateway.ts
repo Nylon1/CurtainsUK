@@ -25,21 +25,26 @@ export function janeOwner(shop: string, id: string, secret: string) {
 export function janeCsrf(owner: string, bucket: number, secret: string) {
   return createHmac('sha256', key(secret)).update('curtainsuk:jane:csrf:v1\0').update(owner).update('\0').update(String(bucket)).digest('base64url');
 }
-export function janePreviewEnabled(env: Record<string, string | undefined>) {
+export function janePreviewEnabled(env: Record<string, string | undefined>, compiledCommit = env.VERCEL_GIT_COMMIT_SHA) {
+  const prebuilt = !env.VERCEL_GIT_COMMIT_SHA
+    && env.VERCEL_PROJECT_ID === 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA'
+    && /^dpl_[A-Za-z0-9]{12,}$/.test(env.VERCEL_DEPLOYMENT_ID ?? '');
   return env.VERCEL_ENV === 'preview' && env.CURTAINSUK_ADVISORY_PREVIEW === 'true' && env.ADVISORY_SHOPIFY_CHAT_ENABLED === 'true'
     && /^[a-f0-9]{40}$/.test(env.ADVISORY_SHOPIFY_APPROVED_COMMIT ?? '')
-    && env.ADVISORY_SHOPIFY_APPROVED_COMMIT === env.VERCEL_GIT_COMMIT_SHA;
+    && env.ADVISORY_SHOPIFY_APPROVED_COMMIT === compiledCommit
+    && (env.VERCEL_GIT_COMMIT_SHA === compiledCommit || prebuilt);
 }
 type GatewayOptions = {
   env: Record<string, string | undefined>;
+  compiledCommit?: string;
   execute: (owner: string, command: unknown) => Promise<unknown>;
   take: (owner: string) => Promise<unknown>;
   now?: () => number;
 };
 /** Separate from the shared commerce proxy. No Jane request reaches supplier or checkout handlers. */
-export function createShopifyJaneGateway({ env, execute, take, now = Date.now }: GatewayOptions) {
+export function createShopifyJaneGateway({ env, compiledCommit, execute, take, now = Date.now }: GatewayOptions) {
   return async (request: Request) => {
-    if (!janePreviewEnabled(env)) return new Response(null, { status: 404, headers: noStore });
+    if (!janePreviewEnabled(env, compiledCommit)) return new Response(null, { status: 404, headers: noStore });
     if (request.method !== 'GET' && request.method !== 'POST') return fail(405, 'METHOD_NOT_ALLOWED');
     try {
       const signed = verifyShopifyAppProxyQuery(new URL(request.url).search, {

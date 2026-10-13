@@ -55,6 +55,16 @@ test('production, mismatched commit, guest and unsigned requests fail closed', a
   assert.equal((await handle(new Request(url().replace(/signature=[a-f0-9]+/, 'signature=' + '0'.repeat(64))))).status, 401);
   assert.equal(calls.length, 0);
 });
+test('manual protected preview needs exact compiled source and deployment identity', () => {
+  const compiledCommit = 'c'.repeat(40);
+  const manual = { ...env, VERCEL_GIT_COMMIT_SHA: undefined, VERCEL_PROJECT_ID: 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA',
+    VERCEL_DEPLOYMENT_ID: 'dpl_884S7LrjNc77jLu45RAHViPWKR39', ADVISORY_SHOPIFY_APPROVED_COMMIT: compiledCommit };
+  assert.equal(janePreviewEnabled(manual, compiledCommit), true);
+  assert.equal(janePreviewEnabled({ ...manual, VERCEL_PROJECT_ID: 'prj_other' }, compiledCommit), false);
+  assert.equal(janePreviewEnabled({ ...manual, VERCEL_DEPLOYMENT_ID: undefined }, compiledCommit), false);
+  assert.equal(janePreviewEnabled({ ...manual, ADVISORY_SHOPIFY_APPROVED_COMMIT: 'd'.repeat(40) }, compiledCommit), false);
+  assert.equal(janePreviewEnabled({ ...manual, VERCEL_ENV: 'production' }, compiledCommit), false);
+});
 test('origin, CSRF, content limit and recovery transfer are denied before execution', async () => {
   const { handle, calls } = fixture();
   const csrf = (await (await handle(new Request(url()))).json()).csrf;

@@ -1,0 +1,105 @@
+{
+  "classification": "PROTECTED_SYNTHETIC_HOSTED_OPENAI_TRIAL",
+  "checkedAt": "2026-10-13T13:54:51.809Z",
+  "deploymentId": "dpl_9G1VsimfMtJyvBDuAoiPaS34j3oj",
+  "sourceCommit": "2ce5a0a088c23f53c154182219826f65d8ffaf06",
+  "evaluationRunId": "0dcfd945-64fc-4b21-a916-eb226e59ac0f",
+  "calls": [
+    {
+      "phase": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "start",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "fabric_context",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "first_real_reply",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "feedback_refinement",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "verified_fabric_links",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "save",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "recover",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "delete",
+      "status": 200,
+      "error": null
+    }
+  ],
+  "assistantMessages": [
+    {
+      "text": "I’d try a warm oatmeal plain with subtle woven texture: it would connect the cream walls and oak without competing with the olive sofa. Muted clay is a warmer, more contrasting alternative.\n\nShambala Lagoon has a verified room preview. In Room Visualiser, choose Living Room, then Change fabric to compare supported options. Keep the room, view and lighting constant; compare Room view for overall calm and Curtain view for detail. Renders are representative, so confirm colour and texture with physical samples.",
+      "wordCount": 81,
+      "fabricIds": [
+        "pt-3697-770"
+      ],
+      "fabricUrls": [
+        "https://www.curtainsuk.com/pages/fabric/pt-3697-770-shambala-lagoon"
+      ],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "status": "completed",
+          "resultCount": 1
+        },
+        {
+          "tool": "search_retail_fabrics",
+          "status": "completed",
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "text": "I’d move away from pattern towards a plain warm putty with a fine, matte weave. Its slightly deeper tone would distinguish the curtains from the cream wall while sitting gently alongside the olive sofa and oak floor.\n\nFor a quieter but more colourful alternative, try muted olive, a little lighter than the sofa. Keep the texture fine rather than chunky to avoid replacing pattern with visual busyness. These are design directions, not verified retail fabric recommendations.",
+      "wordCount": 76,
+      "fabricIds": [],
+      "fabricUrls": [],
+      "retrievals": []
+    },
+    {
+      "text": "I searched the current CurtainsUK retail catalogue for warm putty or oatmeal plains, then broadened the search to natural-coloured plains, but neither returned a verified match. I therefore can’t show specific fabric cards or links without inventing a recommendation.\n\nFor your cream walls, oak floor and olive sofa, I’d retain warm putty with a fine matte weave as the quieter direction. These search results don’t establish that suitable fabrics are absent from the wider range.",
+      "wordCount": 75,
+      "fabricIds": [],
+      "fabricUrls": [],
+      "retrievals": [
+        {
+          "tool": "search_retail_fabrics",
+          "status": "completed",
+          "resultCount": 0
+        },
+        {
+          "tool": "search_retail_fabrics",
+          "status": "completed",
+          "resultCount": 0
+        }
+      ]
+    }
+  ],
+  "cleanup": "DELETED",
+  "failure": null
+}

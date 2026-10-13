@@ -1,0 +1,161 @@
+{
+  "classification": "READ_ONLY_MONITORING_NOT_PERMISSION_TO_INDEX",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "credential": {
+    "storage": "Windows DPAPI CurrentUser, outside Git; current-user-only file and directory permissions",
+    "scope": "existing project only; Logs Read and Backups Read",
+    "rotation": "Owner confirmed replacement and revocation of chat-exposed token before use",
+    "verification": "Both approved GET endpoints returned HTTP 200; no write permissions requested or tested",
+    "expires": "24 hours selected during creation; exact expiry not independently read from token"
+  },
+  "backups": {
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "kind": "backups",
+    "startedAt": "2026-10-11T21:29:29.628Z",
+    "observedAt": "2026-10-11T21:29:30.371Z",
+    "httpStatus": 200,
+    "serverDate": "Sun, 11 Oct 2026 21:29:30 GMT",
+    "bytes": 952,
+    "sha256": "d9a16f9b6ebd7257a779b71c5e48894a0b9bf94b1a50e4f2b985486d9b681d2a",
+    "backups": [
+      {
+        "id": 1928024708,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-11T01:03:26.503Z"
+      },
+      {
+        "id": 1918582408,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-10T01:23:56.953Z"
+      },
+      {
+        "id": 1908827107,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-09T01:02:20.972Z"
+      },
+      {
+        "id": 1899239474,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-08T01:08:41.003Z"
+      },
+      {
+        "id": 1889582549,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-07T01:01:29.837Z"
+      },
+      {
+        "id": 1879924335,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-06T00:57:11.666Z"
+      },
+      {
+        "id": 1870450270,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-05T01:06:02.390Z"
+      },
+      {
+        "id": 1860953480,
+        "status": "COMPLETED",
+        "isPhysical": true,
+        "insertedAt": "2026-10-04T00:57:57.155Z"
+      }
+    ],
+    "physicalBackupData": {},
+    "pitrEnabled": false,
+    "walgEnabled": true
+  },
+  "metrics": {
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "kind": "metrics",
+    "startedAt": "2026-10-11T21:35:26.628Z",
+    "observedAt": "2026-10-11T21:35:27.075Z",
+    "httpStatus": 200,
+    "serverDate": "Sun, 11 Oct 2026 21:35:26 GMT",
+    "cacheControl": "no-cache",
+    "age": null,
+    "cacheStatus": "DYNAMIC",
+    "requestedNoCache": true,
+    "bytes": 407318,
+    "sha256": "0f746b8113aa5c47940aaaf383a3016ad207432e335c63d405df754225e09cac",
+    "totalMetricFamilies": 315
+  },
+  "windows": [
+    {
+      "receivedAt": "2026-10-11T21:33:35.421Z",
+      "sampledAt": "2026-10-11T21:33:33.227Z",
+      "sampleAgeMs": 2193.180419921875,
+      "sha256": "a7d99c220ea523ee63e28e9b5347b16a32da472aa3b200bed38431cd2b650f1a"
+    },
+    {
+      "receivedAt": "2026-10-11T21:34:09.159Z",
+      "sampledAt": "2026-10-11T21:33:33.227Z",
+      "sampleAgeMs": 35931.180419921875,
+      "sha256": "a7d99c220ea523ee63e28e9b5347b16a32da472aa3b200bed38431cd2b650f1a",
+      "windowRejected": "CACHED_HOST_METRICS",
+      "windowMs": 0
+    },
+    {
+      "receivedAt": "2026-10-11T21:34:41.935Z",
+      "sampledAt": "2026-10-11T21:34:41.408Z",
+      "sampleAgeMs": 526.654296875,
+      "sha256": "0f746b8113aa5c47940aaaf383a3016ad207432e335c63d405df754225e09cac",
+      "windowRejected": "HOST_METRICS_WINDOW_TOO_LONG",
+      "windowMs": 68180.52612304688
+    },
+    {
+      "receivedAt": "2026-10-11T21:35:14.956Z",
+      "sampledAt": "2026-10-11T21:34:41.408Z",
+      "sampleAgeMs": 33547.654296875,
+      "sha256": "0f746b8113aa5c47940aaaf383a3016ad207432e335c63d405df754225e09cac",
+      "windowRejected": "CACHED_HOST_METRICS",
+      "windowMs": 0
+    }
+  ],
+  "gauges": {
+    "sampledAt": "2026-10-11T21:34:41.408Z",
+    "memoryTotalBytes": 454995968,
+    "memoryAvailableBytes": 150212608,
+    "memoryPercent": 66.98594744470351,
+    "filesystems": {
+      "/": {
+        "sizeBytes": 10461904896,
+        "availableBytes": 2237927424,
+        "usedPercent": 78.60879594828234
+      },
+      "/data": {
+        "sizeBytes": 2077073408,
+        "availableBytes": 1039196160,
+        "usedPercent": 49.96825071287996
+      }
+    }
+  },
+  "outcome": {
+    "hostedWrites": 0,
+    "paidModelCalls": 0,
+    "eligibleJobCreated": false,
+    "backupNewerThanHistoricalWrites": false,
+    "completeShortWindowHostClearance": false,
+    "recoveryOperator": "CurtainsUK owner (Nylon1), confirmed in this task",
+    "acceptedRpoSeconds": 86400,
+    "recoveryDecision": "Owner explicitly accepted responsibility and a maximum backup age of 24 hours",
+    "reason": "COMPLETED backup is older than 18:55:39 UTC writes. Repeated metrics payloads were cached; distinct source timestamps spanned 68180.526 milliseconds. Cache-Control no-cache/no-store did not change the cached sample. No limit was relaxed."
+  },
+  "documentation": [
+    "https://supabase.com/docs/reference/api/v1-list-all-backups",
+    "https://supabase.com/docs/reference/api/v1-scrape-project-metrics",
+    "https://supabase.com/docs/guides/observability/metrics/vendor-agnostic"
+  ],
+  "local": {
+    "freeCBytes": 41899008000,
+    "visibleResticOrRobocopy": false,
+    "toshibaBackupCompletion": "not verified",
+    "newDevelopmentIncludedInBackup": false
+  }
+}

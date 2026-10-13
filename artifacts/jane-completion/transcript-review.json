@@ -1,0 +1,14 @@
+{
+  "source": "Preserved initial real model transcripts and targeted retest, previous profile only",
+  "turns": 36,
+  "meanWords": 96,
+  "maximumWords": 125,
+  "over90Words": 25,
+  "withEmDash": 21,
+  "withInternalTokens": 2,
+  "newProfile": "2.2.0-preview.1",
+  "newProfileRealEvaluation": "NOT_RUN_NEW_BUDGET_REQUIRED",
+  "humanReview": "PENDING",
+  "newPaidCalls": 0,
+  "priorLedgerUsd": 0.132574
+}

@@ -1,0 +1,28 @@
+{
+  "classification": "LOCAL_BROWSER_HANDOFF_WITH_BOUNDED_PUBLIC_RETAIL_READ",
+  "fabricId": "pt-3697-770",
+  "checks": [
+    "Existing detail renderer opens Jane with exact selected ID",
+    "No automatic context mutation; keyboard consent/Tab/Enter shares exact ID once",
+    "Mock consultation continues with selected-fabric context",
+    "No horizontal overflow at 320/390/412/768/1440",
+    "Reload/resume restores selected fabric without duplicate context",
+    "Deletion clears selected-fabric consultation display",
+    "Invalid ID refused before retail lookup",
+    "Lookup failure stays visible, retry available, sharing blocked",
+    "Actual reduced-motion media query and zero-duration portrait transition verified",
+    "Browser-emulated touch opens same exact fabric; not physical iPhone testing"
+  ],
+  "screenshots": [
+    "fabric-handoff-390.png",
+    "fabric-handoff-1440.png"
+  ],
+  "paidCalls": 0,
+  "hostedWrites": 0,
+  "publicActivation": false,
+  "consoleErrors": [],
+  "browser": "155.0.4283.45",
+  "physicalIphone": "pending",
+  "spokenScreenReader": "pending",
+  "completedAt": "2026-10-12T22:47:30.237Z"
+}

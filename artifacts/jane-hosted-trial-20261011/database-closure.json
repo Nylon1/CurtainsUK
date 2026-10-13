@@ -1,0 +1,22 @@
+{
+  "classification": "HOSTED_DATABASE_READBACK_AFTER_SYNTHETIC_TRIAL",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "checked_at": "2026-10-11T18:06:14.910219+00:00",
+  "database_bytes": 699673747,
+  "connections": 15,
+  "lock_waiters": 0,
+  "migration_count": 81,
+  "consultations": 0,
+  "evaluation_runs": 0,
+  "spend_reservations": 0,
+  "leases": 0,
+  "usage_windows": 0,
+  "knowledge_search": 0,
+  "trial_role_login": false,
+  "trial_role_runtime_member": false,
+  "trial_connections": 0,
+  "trial_close_migration": {
+    "version": "20261011180354",
+    "name": "jane_synthetic_trial_connection_closed_20261011"
+  }
+}

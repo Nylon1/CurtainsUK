@@ -1,0 +1,74 @@
+{
+  "classification": "READ_ONLY_HOST_TELEMETRY_NOT_INDEXING_ADMISSION",
+  "samples": [
+    {
+      "receivedAt": "2026-10-11T22:05:01.513Z",
+      "sampledAt": "2026-10-11T22:05:00.702Z",
+      "sampleAgeMs": 810.195068359375,
+      "sha256": "f0f6043b4a56a950b3862699a2ba6097d3c8cbe43c09208c37b461692864f733"
+    },
+    {
+      "receivedAt": "2026-10-11T22:05:34.932Z",
+      "sampledAt": "2026-10-11T22:05:00.702Z",
+      "sampleAgeMs": 34229.195068359375,
+      "sha256": "f0f6043b4a56a950b3862699a2ba6097d3c8cbe43c09208c37b461692864f733",
+      "windowRejected": "CACHED_HOST_METRICS",
+      "windowMs": 0
+    },
+    {
+      "receivedAt": "2026-10-11T22:06:08.549Z",
+      "sampledAt": "2026-10-11T22:06:07.250Z",
+      "sampleAgeMs": 1298.23583984375,
+      "sha256": "178bd0ca0d7e4e9f5cb545e87581c63d1383ac714ed680685cd4889382b10cff",
+      "resources": {
+        "projectRef": "hqysjumypgeapgmqkcrx",
+        "source": "trusted-operator-telemetry",
+        "observedAt": 1791756367250.7642,
+        "windowMs": 66547.95922851562,
+        "windowStartedAt": 1791756300702.805,
+        "windowEndedAt": 1791756367250.7642,
+        "cpuPercent": 2.6631657914385256,
+        "ioPercent": 0.7393164353979912,
+        "memoryPercent": 63.63439950307428,
+        "diskPercent": 78.60922661555037,
+        "details": {
+          "cpuCores": 2,
+          "memoryBytes": {
+            "total": 454995968,
+            "available": 165462016
+          },
+          "disks": {
+            "nvme0n1": {
+              "busyPercent": 0.7393164353979912,
+              "readIops": 19.820292241731313,
+              "writeIops": 3.5012343383801334,
+              "readBytesPerSecond": 438540.8709497245,
+              "writtenBytesPerSecond": 27512.669377477454
+            },
+            "nvme1n1": {
+              "busyPercent": 0.08264716249438898,
+              "readIops": 0.766364597671188,
+              "writeIops": 0.5259364885978741,
+              "readBytesPerSecond": 10955.828074252768,
+              "writtenBytesPerSecond": 4985.517269744237
+            }
+          },
+          "filesystems": {
+            "/": {
+              "sizeBytes": 10461904896,
+              "availableBytes": 2237882368,
+              "usedPercent": 78.60922661555037
+            },
+            "/data": {
+              "sizeBytes": 2077073408,
+              "availableBytes": 1039196160,
+              "usedPercent": 49.96825071287996
+            }
+          },
+          "ioDefinition": "Maximum observed disk busy-time fraction, not provisioned IOPS capacity"
+        }
+      },
+      "hostThresholdsPass": true
+    }
+  ]
+}

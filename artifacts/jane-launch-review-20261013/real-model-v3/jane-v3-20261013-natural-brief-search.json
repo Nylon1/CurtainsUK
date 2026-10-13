@@ -1,0 +1,125 @@
+{
+  "id": "natural-brief-search",
+  "reviewCriteria": [
+    "Translate room context into curtain attributes instead of copying all nouns into a query",
+    "Distinguish natural style advice, actual retrieval and partial coverage"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "Show me fabric types for a warm neutral room with oak floors and olive-green furniture.",
+      "advice": {
+        "text": "With oak floors and olive furniture, I’d start with warm oatmeal or flax curtains: they can soften the green without adding more yellow to the oak. My fabric-knowledge search returned no matches, but coverage is partial, so that doesn’t mean these types are unavailable.\n\nConsider a linen-look weave for relaxed softness, a fine herringbone for quiet detail, or matte velvet in mushroom for a richer feel. For a contrasting direction, muted clay would add warmth and make the olive feel more distinct. Compare physical swatches in your room before settling on colour and texture.",
+        "stage": "recommend",
+        "palette": [
+          "Warm oatmeal",
+          "Flax",
+          "Mushroom",
+          "Muted clay"
+        ],
+        "patternDirection": "Plain or fine herringbone, keeping the pattern understated alongside the oak grain.",
+        "textureDirection": "Linen-look weave for relaxed texture, or matte velvet for a richer finish.",
+        "alternatives": [
+          "Mushroom matte velvet offers more depth than oatmeal, with a heavier visual presence.",
+          "Muted clay adds a warm contrast to olive rather than staying entirely neutral."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare physical swatches beside the oak and olive furniture in daylight and evening light."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "search_fabric_knowledge",
+          "input": {
+            "query": "\"linen\" OR \"woven texture\" OR \"herringbone\"",
+            "colour": "warm neutral",
+            "pattern": "",
+            "texture": "",
+            "composition": ""
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "The furniture will stay. I want the curtains softer and lighter, but not a stark white.",
+      "advice": {
+        "text": "Then I’d favour a light oatmeal or soft ivory with a restrained warm undertone, rather than a yellow cream. Against the olive furniture, either could feel gentle and lighter without the sharp contrast of white, while sitting comfortably alongside the oak.\n\nA fine linen-look weave with subtle texture would be my first choice, keeping the pattern quiet. Soft pale mushroom is an alternative if you prefer less creaminess, though it may feel slightly cooler. For this direction, I’d set aside the heavier velvet and clay tones.",
+        "stage": "refine",
+        "palette": [
+          "Light oatmeal",
+          "Soft warm ivory",
+          "Pale mushroom"
+        ],
+        "patternDirection": "Plain or very subtle woven detail, avoiding strong contrast.",
+        "textureDirection": "Fine linen-look weave with gentle texture rather than a heavy, plush finish.",
+        "alternatives": [
+          "Pale mushroom for a less creamy neutral, with a slightly cooler effect."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Can you search for a quiet texture and explain the limits of your results?",
+      "advice": {
+        "text": "I searched fabric knowledge for linen-look, subtle-texture and fine-weave descriptions, but this search returned no matches. The index has partial coverage, so that is not proof these fabrics don’t exist. It also cannot establish purchase availability, prices or stock.\n\nFor your room, I’d keep the direction as light oatmeal or warm ivory with a fine, matte weave: quiet texture without a strong pattern, softening the olive furniture without stark white contrast. Pale mushroom offers a less creamy alternative, though it could feel cooler beside the oak. Colour and feel would still need checking in person.",
+        "stage": "investigate",
+        "palette": [
+          "Light oatmeal",
+          "Warm ivory",
+          "Pale mushroom"
+        ],
+        "patternDirection": "Plain or barely perceptible pattern, avoiding strong contrast.",
+        "textureDirection": "Fine, matte linen-look weave with subtle texture.",
+        "alternatives": [
+          "Pale mushroom for a less creamy neutral, with a potentially cooler effect beside oak."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare physical fabric swatches beside the olive furniture and oak floor in daylight and evening light."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "search_fabric_knowledge",
+          "input": {
+            "query": "\"linen look\" OR \"subtle texture\" OR \"fine weave\"",
+            "colour": "",
+            "pattern": "",
+            "texture": "",
+            "composition": ""
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-10-12T07:51:20.404Z",
+  "stage": "read-only bounded source query",
+  "processed": 1560,
+  "sqlState": "57014",
+  "message": "canceling statement due to statement timeout",
+  "statementTimeoutSeconds": 3,
+  "writeSubmitted": false,
+  "pendingWrite": false
+}

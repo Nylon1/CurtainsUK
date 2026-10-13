@@ -1,0 +1,42 @@
+{
+  "classification": "LOCAL_CHROME_NOT_PHYSICAL_DEVICE_OR_HOSTED_AUTH",
+  "checkedAt": "2026-10-11T15:40:39.636Z",
+  "reviewLayouts": [
+    {
+      "expanded": true,
+      "overflow": false,
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "expanded": true,
+      "overflow": false,
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "expanded": true,
+      "overflow": false,
+      "scrollWidth": 397,
+      "width": 412
+    },
+    {
+      "expanded": true,
+      "overflow": false,
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "expanded": true,
+      "overflow": false,
+      "scrollWidth": 1425,
+      "width": 1440
+    }
+  ],
+  "keyboardDisclosure": "Enter opened the exact-migration details",
+  "physicalIPhone": "pending",
+  "spokenScreenReader": "pending",
+  "mockAutoEntry": "observed after waiting period; hidden-tab timing not certified",
+  "syntheticMessage": "reply rendered, input cleared, controls re-enabled, input focus restored",
+  "hostedAuth": "not exercised"
+}

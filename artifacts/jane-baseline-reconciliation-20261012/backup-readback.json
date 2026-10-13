@@ -1,0 +1,20 @@
+{
+  "classification": "EXISTING_OPERATOR_READ_ONLY_BACKUP_EVIDENCE",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "checkedAt": "2026-10-12T19:00:28.427Z",
+  "observedAt": "2026-10-12T19:00:27.967Z",
+  "httpStatus": 200,
+  "walgEnabled": true,
+  "pitrEnabled": false,
+  "latest": {
+    "id": 1945273696,
+    "status": "COMPLETED",
+    "isPhysical": true,
+    "insertedAt": "2026-10-12T18:32:09.471Z"
+  },
+  "recoveryOwner": "Nylon1",
+  "maximumAgeSeconds": 86400,
+  "restoreTestPerformed": false,
+  "laterWritesRequireSubsequentBackup": true,
+  "toshibaBackupCompletionVerified": false
+}

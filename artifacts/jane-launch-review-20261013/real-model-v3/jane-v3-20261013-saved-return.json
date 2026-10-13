@@ -1,0 +1,109 @@
+{
+  "id": "saved-return",
+  "reviewCriteria": [
+    "Actual save/recover commands precede the return turn",
+    "Recall earlier dislikes and introduce the bedspread without inventing a chosen fabric"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My bedroom walls are pale pink, with grey carpet. I dislike strong patterns and shiny fabric.",
+      "advice": {
+        "text": "For your pale pink walls and grey carpet, I’d start with a matt, softly textured plain in warm stone. It could bridge the pink and grey without making the bedroom feel too sugary or introducing a strong pattern.\n\nFor a little more contrast, muted smoky blue could work, though it would give a cooler feel. In either direction, I’d favour a gentle woven texture over a glossy finish.\n\nWould you like the curtains to blend quietly into the room, or add a little contrast?",
+        "stage": "understand",
+        "palette": [
+          "Warm stone",
+          "Muted smoky blue"
+        ],
+        "patternDirection": "Plain, avoiding strong patterns.",
+        "textureDirection": "Matt fabric with a gentle woven texture; avoid shiny finishes.",
+        "alternatives": [
+          "Muted smoky blue for more contrast and a cooler feel."
+        ],
+        "questions": [
+          "Would you like the curtains to blend quietly into the room, or add a little contrast?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "save",
+      "status": "completed",
+      "revision": 2,
+      "contexts": 0,
+      "messages": 2
+    },
+    {
+      "action": "recover",
+      "status": "completed",
+      "revision": 3,
+      "contexts": 0,
+      "messages": 2
+    },
+    {
+      "action": "message",
+      "customer": "I am back. Keep those preferences, but the new bedspread is a large floral. What changes?",
+      "advice": {
+        "text": "The large floral changes the balance: I’d let the bedspread carry the pattern and keep the curtains plain, matt and gently textured. That respects your dislike of strong patterns without adding another competing motif.\n\nWarm stone remains an option, but I’d now choose the curtain colour in relation to the bedspread. Picking up its background colour could feel quieter; using a muted version of one floral colour could create more contrast.\n\nWhat are the bedspread’s background and main flower colours?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Plain curtains to balance the large floral bedspread.",
+        "textureDirection": "Matt finish with subtle woven texture; avoid shine.",
+        "alternatives": [
+          "Coordinate with the bedspread’s background for a quieter effect.",
+          "Choose a muted floral colour for more contrast."
+        ],
+        "questions": [
+          "What are the bedspread’s background and main flower colours?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Give me a short summary of the direction and what still needs checking.",
+      "advice": {
+        "text": "With pale pink walls, grey carpet and a large floral bedspread, keep the curtains plain, matt and softly textured so the bedspread remains the focal point. Warm stone is a possible starting point, rather than a final colour choice.\n\nStill to check: the bedspread’s background and flower colours, whether you want the curtains to blend or contrast, and how much privacy and light control you need. The final shade and texture should be checked in your bedroom’s daylight and evening light.",
+        "stage": "conclude",
+        "palette": [
+          "Pale pink walls",
+          "Grey carpet",
+          "Warm stone as a provisional curtain colour"
+        ],
+        "patternDirection": "Plain curtains to balance the large floral bedspread.",
+        "textureDirection": "Matt, gently woven texture with no shiny finish.",
+        "alternatives": [
+          "Echo the bedspread’s background colour for a quieter effect.",
+          "Use a muted version of a floral colour for more contrast."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Confirm the bedspread’s background and main flower colours.",
+          "Decide between a blending or contrasting curtain colour.",
+          "Check privacy and light-control needs.",
+          "Check the chosen shade and texture in the bedroom’s daylight and evening light."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

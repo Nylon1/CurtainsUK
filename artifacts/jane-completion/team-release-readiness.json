@@ -1,0 +1,231 @@
+{
+  "checkedAt": "2026-10-09T21:29:01.601Z",
+  "status": "SCOPED_FILES_READY_OWNER_RELEASE_APPROVAL_REQUIRED",
+  "live": "gid://shopify/OnlineStoreTheme/182339731835",
+  "preview": "gid://shopify/OnlineStoreTheme/182472573307",
+  "page": {
+    "id": "gid://shopify/Page/693751873915",
+    "handle": "meet-our-team",
+    "templateSuffix": "meet-our-team",
+    "isPublished": false,
+    "publishedAt": null
+  },
+  "files": [
+    {
+      "filename": "assets/curtainsuk-adviser-anne.webp",
+      "sha256": "d37c3a61df7317b5741e1c4ff75ca06f4a73bb88c90235587873be4efafc26df",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-ben.webp",
+      "sha256": "78c5bb10b354318ece1c4b0a182440e2bf31db154fbbb7a28ee6bc766e55a9f3",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-james.webp",
+      "sha256": "8a139e65fe9e5b04a156d414d21ff4e35b05f8b5f150d2b9c9834b9ad4f4ae4a",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-jane.webp",
+      "sha256": "da058911d67d3a566a52ccd1252d6ed4a76ba0fd814bcd798b431f80d8df4934",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-natalie.webp",
+      "sha256": "9b5e53a88ace5bf86a878bf91b54475fe964c516c3f22261138f5d49decc0196",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-adviser-noah.webp",
+      "sha256": "5c4fb535dd7da002bc40cd69d5c709ce41688b3874fea1938e637e18df286c7f",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-interactions.js",
+      "sha256": "662d94b573f89dc54373743323d8a803fa874274eb48efa4e01be16614250bfc",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-motion.css",
+      "sha256": "af25e5983fcb9a1e9cc7e734d2a45c832da6b5fabc43f48bf3667d93484c48e9",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-room.css",
+      "sha256": "0c4fe5f38fdabdc7ce0d46ee348845b0bb2ccc55a00c78370ddb1856bbc528c2",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-team.css",
+      "sha256": "e8166bea09d5d62b1fb5403a90498d8d205fabbef490da89dab8da2db2a107d3",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "assets/curtainsuk-advisory-team.js",
+      "sha256": "adc504fd09e85a5fe044d62c93345b3618b5fdb5b51cb1730e0155bfc7665434",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "locales/en.default.json",
+      "sha256": "d6c8ce48b906c3d1c22db7f401cd7999418b73d2ddc31ddff37e4224879bfec0",
+      "liveBeforeMd5": "cbee66e11bef0fdd24e90a3cd687f3d1",
+      "operation": "merge advisory_team namespace into fresh live locale",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": "cbee66e11bef0fdd24e90a3cd687f3d1"
+    },
+    {
+      "filename": "sections/curtainsuk-advisory-team.liquid",
+      "sha256": "c95b979f578b65ef30ad35e0cd4160f239873837655d8f620f21a2fb0d31e4f2",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "snippets/curtainsuk-adviser-art.liquid",
+      "sha256": "b32d6b8356114b54c3d5a1c05c9e2dbc226a403f6e27ac98c7ba6b509b5945b2",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "snippets/curtainsuk-adviser-card.liquid",
+      "sha256": "f980db578651c6f209392f5a7aa832c9ca5504bbc4ef9589218ba3c60e9f70e2",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "snippets/curtainsuk-advisory-navigation.liquid",
+      "sha256": "89edae8363de516b61489843aa87d29b4a9852ac46446d63f5eeada93a148b4f",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "snippets/curtainsuk-advisory-room.liquid",
+      "sha256": "723777b831fdb2bd019fe8c9fde1afb681b38afa7d8f5d5ac7ad52546f778665",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "snippets/curtainsuk-advisory-spotlight.liquid",
+      "sha256": "374dfd064950a2e725e9304e34d1d456983c01b0af834d0df3abc6c8b8f0f195",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    },
+    {
+      "filename": "snippets/curtainsuk-header-navigation.liquid",
+      "sha256": "51358e3c43ef6b3e817c12fe9df206c9cf1d9c6dd73235e77a582a1313c3ddd7",
+      "liveBeforeMd5": "cdd19dbe4be5cd740c8315a961e23a0e",
+      "operation": "apply one render line to fresh live navigation",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": "cdd19dbe4be5cd740c8315a961e23a0e"
+    },
+    {
+      "filename": "templates/page.meet-our-team.json",
+      "sha256": "3d371f99f4bd9259ffbf0370ef39dd53ccede8dbb1f56404796867e663c22d9d",
+      "liveBeforeMd5": null,
+      "operation": "add scoped file",
+      "sourceMatchesManifest": true,
+      "previewMatches": true,
+      "liveMatchesPrior": true,
+      "currentLiveMd5": null
+    }
+  ],
+  "liveFileCount": 505,
+  "unrelatedLiveChanges": [],
+  "removedLiveFiles": [],
+  "existingTargets": [
+    {
+      "filename": "locales/en.default.json",
+      "unchanged": true
+    },
+    {
+      "filename": "snippets/curtainsuk-header-navigation.liquid",
+      "unchanged": true
+    }
+  ],
+  "physicalIPhone": "pending",
+  "screenReader": "pending",
+  "actualReducedMotion": "pending"
+}

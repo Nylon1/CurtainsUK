@@ -1,0 +1,248 @@
+{
+  "observedAt": "2026-10-12T06:02:57.705Z",
+  "startingOffset": 150,
+  "verifiedOffset": 246,
+  "verifiedBatches": [
+    {
+      "at": "2026-10-12T05:51:15.140Z",
+      "processed": 156,
+      "indexed": 156,
+      "batches": 26,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 6132
+    },
+    {
+      "at": "2026-10-12T05:51:37.120Z",
+      "processed": 162,
+      "indexed": 162,
+      "batches": 27,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 5028
+    },
+    {
+      "at": "2026-10-12T05:51:56.655Z",
+      "processed": 168,
+      "indexed": 168,
+      "batches": 28,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4970
+    },
+    {
+      "at": "2026-10-12T05:52:18.107Z",
+      "processed": 174,
+      "indexed": 174,
+      "batches": 29,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4692
+    },
+    {
+      "at": "2026-10-12T05:52:36.973Z",
+      "processed": 180,
+      "indexed": 180,
+      "batches": 30,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4173
+    },
+    {
+      "at": "2026-10-12T05:52:56.844Z",
+      "processed": 186,
+      "indexed": 186,
+      "batches": 31,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4860
+    },
+    {
+      "at": "2026-10-12T05:53:41.571Z",
+      "processed": 192,
+      "indexed": 192,
+      "batches": 32,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 8815
+    },
+    {
+      "at": "2026-10-12T05:54:06.987Z",
+      "processed": 198,
+      "indexed": 198,
+      "batches": 33,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 5996
+    },
+    {
+      "at": "2026-10-12T05:54:43.951Z",
+      "processed": 204,
+      "indexed": 204,
+      "batches": 34,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4342
+    },
+    {
+      "at": "2026-10-12T05:55:03.922Z",
+      "processed": 210,
+      "indexed": 210,
+      "batches": 35,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4737
+    },
+    {
+      "at": "2026-10-12T05:55:22.695Z",
+      "processed": 216,
+      "indexed": 216,
+      "batches": 36,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4255
+    },
+    {
+      "at": "2026-10-12T05:55:45.955Z",
+      "processed": 222,
+      "indexed": 222,
+      "batches": 37,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4321
+    },
+    {
+      "at": "2026-10-12T05:56:04.771Z",
+      "processed": 228,
+      "indexed": 228,
+      "batches": 38,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4336
+    },
+    {
+      "at": "2026-10-12T05:56:25.131Z",
+      "processed": 234,
+      "indexed": 234,
+      "batches": 39,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 5110
+    },
+    {
+      "at": "2026-10-12T05:56:47.880Z",
+      "processed": 240,
+      "indexed": 240,
+      "batches": 40,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 6708
+    },
+    {
+      "at": "2026-10-12T05:57:06.759Z",
+      "processed": 246,
+      "indexed": 246,
+      "batches": 41,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4094
+    }
+  ],
+  "holds": [
+    {
+      "kind": "temporary-hold",
+      "at": "2026-10-12T05:53:17.007Z",
+      "value": {
+        "code": "INDEX_ACTIVITY_DRAIN",
+        "holds": 1,
+        "observedAt": "2026-10-12T05:53:17.007Z",
+        "writesPermitted": false
+      }
+    },
+    {
+      "kind": "read-only-hold-reconciliation",
+      "at": "2026-10-12T05:53:19.178Z",
+      "value": {
+        "processed": 186,
+        "indexed": 186,
+        "batches": 31,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0
+      }
+    },
+    {
+      "kind": "temporary-hold",
+      "at": "2026-10-12T05:54:24.285Z",
+      "value": {
+        "code": "INDEX_ACTIVITY_DRAIN",
+        "holds": 2,
+        "observedAt": "2026-10-12T05:54:24.284Z",
+        "writesPermitted": false
+      }
+    },
+    {
+      "kind": "read-only-hold-reconciliation",
+      "at": "2026-10-12T05:54:26.864Z",
+      "value": {
+        "processed": 198,
+        "indexed": 198,
+        "batches": 33,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0
+      }
+    },
+    {
+      "kind": "temporary-hold",
+      "at": "2026-10-12T05:55:26.709Z",
+      "value": {
+        "code": "INDEX_ACTIVITY_DRAIN",
+        "holds": 3,
+        "observedAt": "2026-10-12T05:55:26.709Z",
+        "writesPermitted": false
+      }
+    },
+    {
+      "kind": "read-only-hold-reconciliation",
+      "at": "2026-10-12T05:55:28.633Z",
+      "value": {
+        "processed": 216,
+        "indexed": 216,
+        "batches": 36,
+        "complete": false,
+        "permissionRestored": true,
+        "unchanged": 0
+      }
+    }
+  ],
+  "originalHttpFailure": {
+    "kind": "stop",
+    "at": "2026-10-12T05:57:23.128Z",
+    "value": {
+      "code": "LIVE_RETAIL_OR_PUBLICATION_UNAVAILABLE",
+      "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a"
+    }
+  },
+  "originalHttpStatus": "Not captured by the previous operator; do not infer which status caused the failure",
+  "allSixFreshCatalogueAndProfileStatuses": 200,
+  "exactLastReceiptReconciled": true,
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "paidOpenAiCostUsd": 0
+}

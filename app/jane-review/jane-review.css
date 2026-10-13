@@ -1,0 +1,83 @@
+.jane-review{--ink:#173d35;--paper:#f7f5ee;--accent:#dbe5d8;min-height:100dvh;background:var(--paper);color:var(--ink);font:16px/1.5 Arial,sans-serif}
+.jane-review *{box-sizing:border-box}
+.jane-review header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(16px,4vw,52px);border-bottom:1px solid #d7dfd2}
+.jane-review header a{font:700 22px Georgia,serif;letter-spacing:.1em;color:var(--ink);text-decoration:none}
+.jane-review header a span{font-weight:400}
+.jane-review header strong{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.jane-review__notice{margin:0;padding:10px clamp(16px,4vw,52px);background:#e2e9dd;font-size:12px}
+.jane-review__layout{display:grid;grid-template-columns:minmax(220px,320px) minmax(0,760px);justify-content:center;gap:clamp(18px,4vw,48px);padding:clamp(16px,4vw,48px)}
+.jane-review aside img{display:block;width:100%;height:260px;object-fit:cover;object-position:center 22%;border-radius:120px 120px 4px 4px}
+.jane-review h1,.jane-review h2{font-family:Georgia,serif;font-weight:400;line-height:1.14}
+.jane-review h1{font-size:36px;margin:20px 0 10px}
+.jane-review h2{font-size:27px;margin:0 0 12px}
+.jane-review aside nav{display:grid;gap:7px;margin-top:24px}
+.jane-review a{color:var(--ink)}
+.jane-review__panel{min-width:0;background:#fffdf8;border:1px solid #d4ddcf;padding:clamp(18px,4vw,36px);box-shadow:0 12px 40px #15382c12}
+.jane-review__form,.jane-review__recover,.jane-review__composer{display:grid;gap:10px}
+.jane-review__form p,.jane-review__welcome p{max-width:58ch}
+.jane-review label{font-size:13px;font-weight:600}
+.jane-review label:has(input[type=checkbox]){display:flex;align-items:flex-start;gap:10px;font-weight:400;line-height:1.5}
+.jane-review input:not([type=checkbox]),.jane-review textarea{font:inherit;color:var(--ink);width:100%;padding:12px;border:1px solid #9cad9e;border-radius:2px;background:#fff}
+.jane-review textarea{resize:vertical}
+.jane-review input:focus-visible,.jane-review textarea:focus-visible,.jane-review button:focus-visible,.jane-review a:focus-visible{outline:3px solid #956b37;outline-offset:3px}
+.jane-review button{min-height:44px;width:max-content;max-width:100%;font:600 13px Arial,sans-serif;cursor:pointer;padding:12px 18px;background:var(--ink);color:#fff;border:1px solid var(--ink)}
+.jane-review button:disabled{opacity:.55;cursor:not-allowed}
+.jane-review__bar,.jane-review__actions{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.jane-review__bar{border-bottom:1px solid #d4ddcf;padding-bottom:15px;margin-bottom:20px;font-size:12px}
+.jane-review__bar button,.jane-review__actions button{background:transparent;color:var(--ink)}
+.jane-review__welcome,.jane-review__waiting{display:grid;gap:14px}
+.jane-review__recover{margin-top:36px;padding-top:22px;border-top:1px solid #d4ddcf}
+.jane-review__waiting strong{font:50px Georgia,serif}
+.jane-review__waiting progress{width:100%;accent-color:var(--ink)}
+.jane-review__fabric{background:#eff3e9;padding:16px;margin-bottom:20px}
+.jane-review__fabric h2{font-size:21px}
+.jane-review__fabric a{display:inline-block;margin-right:14px;margin-bottom:12px}
+.jane-review__fabric small{display:block}
+.jane-review__chat{height:min(50dvh,520px);min-height:240px;overflow:auto;display:grid;align-content:start;gap:14px;padding:14px;border:1px solid #d4ddcf;background:#f7f8f3}
+.jane-review__message{justify-self:start;max-width:88%;padding:14px 18px;background:#fff;border:1px solid #d9e0d4;border-radius:3px 18px 18px 18px;white-space:pre-wrap;overflow-wrap:anywhere}
+.jane-review__message:last-child{animation:jane-message-in .35s ease-out both}
+.jane-review__message--user{justify-self:end;background:#e1eadf;border-color:#cbdac7;border-radius:18px 3px 18px 18px}
+.jane-review__message strong{font-size:11px}
+.jane-review__message p{margin:7px 0 0}
+.jane-review__cards{display:grid;gap:10px;margin-top:14px}
+.jane-review__card{display:grid;gap:5px;border-top:1px solid #d7dfd2;padding-top:9px}
+.jane-review__card{border-radius:12px;background:#f1f3e9;padding:12px;transition:transform .2s ease,box-shadow .2s ease}
+.jane-review__card:hover{transform:translateY(-2px);box-shadow:0 8px 20px #173d3514}
+.jane-review__card a:first-child{display:flex;align-items:center;gap:10px}
+.jane-review__card img{width:60px;height:60px;object-fit:cover}
+.jane-review__card small{display:block}
+.jane-review__composer{margin-top:16px}
+.jane-review__starters{margin-top:14px;padding:15px;border:1px solid #d9dece;border-radius:16px;background:#f1f3e9}
+.jane-review__starters>p{margin:0 0 9px;font:18px/1.3 Georgia,serif}
+.jane-review__starters>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.jane-review .jane-review__starters button{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:64px;padding:10px 12px;text-align:left;border:1px solid #c2d0bd;border-radius:12px;background:#fffdf7;color:#173d35;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.jane-review .jane-review__starters button:hover{transform:translateY(-3px);border-color:#62806a;box-shadow:0 8px 20px #173d351a}
+.jane-review__starters button span{color:#a47b46;font-size:18px}
+.jane-review__thinking{display:flex;align-items:center;gap:5px;width:max-content;max-width:100%;margin-top:12px;padding:12px 16px;border-radius:16px 16px 16px 3px;background:#e4eee3}
+.jane-review__thinking>span{width:6px;height:6px;border-radius:50%;background:#315a4a;animation:jane-thinking 1s ease-in-out infinite}
+.jane-review__thinking>span:nth-child(2){animation-delay:.15s}
+.jane-review__thinking>span:nth-child(3){animation-delay:.3s}
+.jane-review__thinking p{margin:0 0 0 6px;font-size:12px}
+.jane-review__actions{justify-content:flex-start;margin-top:12px}
+.jane-review__recovery{margin-top:16px;padding:15px;background:#eff3e9}
+.jane-review__recovery textarea{margin-top:7px}
+.jane-review__status,.jane-review__error{margin-top:16px;padding:12px}
+.jane-review__status{background:#e8eee5}
+.jane-review__error{background:#f9e9e4;color:#6c251a}
+@keyframes jane-thinking{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+@keyframes jane-message-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.jane-review__layout{grid-template-columns:1fr}
+.jane-review header{flex-wrap:wrap;gap:4px 12px}
+.jane-review aside{display:grid;grid-template-columns:82px 1fr;gap:0 14px}
+.jane-review aside img{grid-row:1/4;height:108px;border-radius:40px 40px 2px 2px}
+.jane-review aside h1{font-size:27px;margin:0}
+.jane-review aside p{margin:4px 0}
+.jane-review aside nav{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.jane-review__chat{height:42dvh}
+.jane-review__message{max-width:96%}
+.jane-review__starters>div{grid-template-columns:1fr}
+.jane-review .jane-review__starters button{min-height:48px}
+}
+@media(prefers-reduced-motion:reduce){.jane-review *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+

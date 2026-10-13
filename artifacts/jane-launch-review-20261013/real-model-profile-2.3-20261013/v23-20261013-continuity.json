@@ -1,0 +1,95 @@
+{
+  "id": "continuity",
+  "reviewCriteria": [
+    "Remember fixed furnishings and dislike across turns",
+    "No fabricated decisions; distinguish outstanding questions"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My bedroom has pale pink walls and a grey carpet; I prefer matte textures.",
+      "advice": {
+        "text": "With pale pink walls and a grey carpet, I’d explore a matte mushroom or warm grey curtain with a soft woven texture. That could bridge the two colours without adding shine; I’d avoid a strongly blue-grey if you want a gentle, warm feel.\n\nFor a more contrasting direction, muted sage could bring a little freshness while keeping the bedroom restful. Would you prefer the curtains to blend quietly into the room or add a distinct colour?",
+        "stage": "understand",
+        "palette": [
+          "Mushroom",
+          "Warm grey",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain or softly mottled rather than a prominent pattern.",
+        "textureDirection": "Matte, softly woven texture without sheen.",
+        "alternatives": [
+          "Muted sage for a gentle colour contrast with the pale pink walls, rather than a tonal neutral."
+        ],
+        "questions": [
+          "Would you prefer the curtains to blend quietly into the room or add a distinct colour?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Please remember I dislike strong patterns.",
+      "advice": {
+        "text": "I’ll keep that in mind as we explore: matte textures, with no strong patterns. A plain fabric with a subtle weave would add depth without making the bedroom feel busy.\n\nWarm mushroom remains a gentle bridge between your pink walls and grey carpet; muted sage would offer more colour contrast while staying soft. Neither direction needs a visible motif.",
+        "stage": "refine",
+        "palette": [
+          "Warm mushroom",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain fabrics, avoiding strong patterns.",
+        "textureDirection": "Matte finish with a subtle weave.",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Summarise what is staying, the options and the open questions.",
+      "advice": {
+        "text": "Staying: your pale pink walls and grey carpet, with a preference for matte textures and no strong patterns.\n\nOptions: plain warm mushroom or warm grey could gently connect the walls and carpet. Muted sage offers a more distinct colour contrast while keeping the mood soft. A subtle weave would add depth without a prominent motif.\n\nOpen questions: whether you want the curtains to blend in or introduce colour; how much daylight the bedroom receives; and your privacy and light-blocking needs.\n\nNext step: choose the quieter tonal direction or the sage contrast, then refine the shade and texture around the room’s light.",
+        "stage": "conclude",
+        "palette": [
+          "Warm mushroom",
+          "Warm grey",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain, without strong patterns or prominent motifs.",
+        "textureDirection": "Matte with a subtle woven texture.",
+        "alternatives": [
+          "Warm mushroom or warm grey for a quiet, coordinating effect.",
+          "Muted sage for a soft but more distinct colour contrast."
+        ],
+        "questions": [
+          "Should the curtains blend quietly or introduce a distinct colour?",
+          "How much daylight does the bedroom receive?",
+          "What privacy and light-blocking level do you need?"
+        ],
+        "nextSteps": [
+          "Choose between a tonal neutral and muted sage, then refine the shade and texture for the room’s light."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "classification": "EXISTING_OPERATOR_ADMITTED_RESOURCE_OBSERVATION",
+  "at": "2026-10-12T20:02:44.527Z",
+  "cpuPercent": 14.84375,
+  "ioPercent": 6.666351905455416,
+  "memoryPercent": 55.407928335217036,
+  "diskPercent": 79.14869609611867,
+  "connections": 30,
+  "maxConnections": 60,
+  "lockWaits": 0,
+  "newDeadlocks": 0,
+  "newDatabaseErrors": 0,
+  "supplierRefreshActive": false,
+  "localCFreeBytes": 37818642432,
+  "protectedProductionHead": "5f8186818b52f48a3bfa17ee80a1c06a8a3d1315"
+}

@@ -1,0 +1,33 @@
+{
+  "job": {
+    "id": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "cursor": {
+      "offset": 24,
+      "manifestHash": "007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+    },
+    "status": "ready",
+    "batches": 4,
+    "indexed": 24,
+    "complete": false,
+    "failures": 0,
+    "processed": 24,
+    "created_at": "2026-10-12T01:37:48.74983+00:00",
+    "last_error": null,
+    "updated_at": "2026-10-12T04:51:54.933856+00:00",
+    "expected_count": 11517,
+    "source_snapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+  },
+  "rows": 25,
+  "noops": 5,
+  "deadlocks": 0,
+  "lockWaits": 0,
+  "migrations": 81,
+  "observedAt": "2026-10-12T04:52:46.675512+00:00",
+  "connections": 19,
+  "receiptCount": 24,
+  "advisoryBytes": 688128,
+  "databaseBytes": 699903123,
+  "lastMigration": "20261011180354",
+  "maxConnections": 60,
+  "permissionRestored": true
+}

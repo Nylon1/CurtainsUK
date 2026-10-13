@@ -1,0 +1,23 @@
+{
+  "total": 16883,
+  "indexed": 6,
+  "remaining": 16877,
+  "batches": 2813,
+  "invocations": 141,
+  "finalBatchSize": 5,
+  "pacingSeconds": 14060,
+  "assumedReviewPauseSeconds": 30,
+  "estimatedSeconds": [
+    21960,
+    32325
+  ],
+  "assumptions": "First-batch 1.315s operator round trip is a lower-bound input, not representative throughput. Upper bound uses assumed 5s full batch. Additional approvals, source reads, safety stops and backup delays may take longer.",
+  "initialTranche": {
+    "identities": 120,
+    "batches": 20,
+    "pacingSeconds": 95
+  },
+  "maximumNarrowFactRequests": 8439,
+  "fullRebuild": false,
+  "scheduleEnabled": false
+}

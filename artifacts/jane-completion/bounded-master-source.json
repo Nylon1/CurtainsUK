@@ -1,0 +1,583 @@
+{
+  "checkedAt": "2026-10-09T21:36:52.167Z",
+  "classification": "FIVE_EXACT_READ_ONLY_IDENTITIES_NOT_COMPLETE_MASTER",
+  "query": "with chosen as materialized (select fabric_id,brand_id,design_id,colour_name from curtainsuk_private.fabric_colourways where fabric_id in ('pt-3697-502','pt-3697-569','pt-3697-575','pt-3697-770','sdg-f1541-01') order by fabric_id limit 6)\nselect c.fabric_id,c.colour_name,\njsonb_build_object('display_name',d.display_name,'composition',d.composition,'full_width_mm',d.full_width_mm,'usable_width_mm',d.usable_width_mm,'vertical_repeat_mm',d.vertical_repeat_mm,'horizontal_repeat_mm',d.horizontal_repeat_mm,'pattern_match_type',d.pattern_match_type,'usage_suitability',d.usage_suitability,'weight_gsm',d.weight_gsm,'care_instructions',d.care_instructions,'fabric_collections',jsonb_build_object('display_name',co.display_name)) fabric_designs,\njsonb_build_object('display_name',b.display_name) supplier_brands,\njsonb_build_object('knowledge_state',v.knowledge_state,'visual_fields',v.visual_fields) visual,\njsonb_build_object('description',case when p.description_validated then p.description else null end,'description_validated',p.description_validated) profile\nfrom chosen c left join curtainsuk_private.fabric_designs d on d.design_id=c.design_id left join curtainsuk_private.fabric_collections co on co.collection_id=d.collection_id left join curtainsuk_private.supplier_brands b on b.brand_id=c.brand_id left join curtainsuk_private.fabric_visual_knowledge_read_cache v on v.fabric_id=c.fabric_id left join curtainsuk_private.fabric_retail_profiles p on p.fabric_id=c.fabric_id;",
+  "rows": [
+    {
+      "fabric_id": "pt-3697-502",
+      "colour_name": "AMBER",
+      "fabric_designs": {
+        "weight_gsm": null,
+        "composition": [
+          {
+            "material": "polyester",
+            "percentage": 92
+          },
+          {
+            "material": "cotton",
+            "percentage": 8
+          }
+        ],
+        "display_name": "SHAMBALA",
+        "full_width_mm": 1450,
+        "usable_width_mm": null,
+        "care_instructions": [
+          "COOL WASH (30 DEGREES)",
+          "COOL IRON (1 DOT)"
+        ],
+        "usage_suitability": [],
+        "fabric_collections": {
+          "display_name": "PARADE COLLECTION"
+        },
+        "pattern_match_type": null,
+        "vertical_repeat_mm": 415,
+        "horizontal_repeat_mm": 357
+      },
+      "supplier_brands": {
+        "display_name": "Prestigious Textiles"
+      },
+      "visual": {
+        "visual_fields": {
+          "motif": {
+            "value": [
+              "geometric"
+            ],
+            "confidence": "HIGH"
+          },
+          "contrast": {
+            "value": "high",
+            "confidence": "HIGH"
+          },
+          "character": {
+            "value": [
+              "decorative",
+              "expressive",
+              "graphic"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "lightness": {
+            "value": "mixed",
+            "confidence": "HIGH"
+          },
+          "saturation": {
+            "value": "mixed",
+            "confidence": "MEDIUM"
+          },
+          "patternClass": {
+            "value": "geometric",
+            "confidence": "HIGH"
+          },
+          "patternScale": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualWeight": {
+            "value": "balanced",
+            "confidence": "MEDIUM"
+          },
+          "primaryColour": {
+            "value": "beige",
+            "confidence": "MEDIUM"
+          },
+          "visualSurface": {
+            "value": [
+              "visible-weave"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "directionality": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualActivity": {
+            "value": "busy",
+            "confidence": "HIGH"
+          },
+          "sheenAppearance": {
+            "value": "matte",
+            "confidence": "MEDIUM"
+          },
+          "colourComplexity": {
+            "value": "multicolour",
+            "confidence": "HIGH"
+          },
+          "secondaryColours": {
+            "value": [
+              "brown",
+              "cream",
+              "grey",
+              "orange",
+              "taupe",
+              "white",
+              "yellow"
+            ],
+            "confidence": "HIGH"
+          },
+          "colourTemperature": {
+            "value": "warm",
+            "confidence": "MEDIUM"
+          }
+        },
+        "knowledge_state": "PARTIAL_GOVERNED"
+      },
+      "profile": {
+        "description": null,
+        "description_validated": null
+      }
+    },
+    {
+      "fabric_id": "pt-3697-569",
+      "colour_name": "JONQUIL",
+      "fabric_designs": {
+        "weight_gsm": null,
+        "composition": [
+          {
+            "material": "polyester",
+            "percentage": 92
+          },
+          {
+            "material": "cotton",
+            "percentage": 8
+          }
+        ],
+        "display_name": "SHAMBALA",
+        "full_width_mm": 1450,
+        "usable_width_mm": null,
+        "care_instructions": [
+          "COOL WASH (30 DEGREES)",
+          "COOL IRON (1 DOT)"
+        ],
+        "usage_suitability": [],
+        "fabric_collections": {
+          "display_name": "PARADE COLLECTION"
+        },
+        "pattern_match_type": null,
+        "vertical_repeat_mm": 415,
+        "horizontal_repeat_mm": 357
+      },
+      "supplier_brands": {
+        "display_name": "Prestigious Textiles"
+      },
+      "visual": {
+        "visual_fields": {
+          "motif": {
+            "value": [
+              "geometric"
+            ],
+            "confidence": "HIGH"
+          },
+          "contrast": {
+            "value": "high",
+            "confidence": "HIGH"
+          },
+          "character": {
+            "value": [
+              "refined",
+              "sophisticated"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "lightness": {
+            "value": "mixed",
+            "confidence": "HIGH"
+          },
+          "saturation": {
+            "value": "muted",
+            "confidence": "HIGH"
+          },
+          "patternClass": {
+            "value": "geometric",
+            "confidence": "HIGH"
+          },
+          "patternScale": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualWeight": {
+            "value": "balanced",
+            "confidence": "MEDIUM"
+          },
+          "primaryColour": {
+            "value": "cream",
+            "confidence": "MEDIUM"
+          },
+          "visualSurface": {
+            "value": [
+              "visible-weave"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "directionality": {
+            "value": "structured-repeat",
+            "confidence": "HIGH"
+          },
+          "visualActivity": {
+            "value": "busy",
+            "confidence": "HIGH"
+          },
+          "sheenAppearance": {
+            "value": "matte",
+            "confidence": "MEDIUM"
+          },
+          "colourComplexity": {
+            "value": "limited-palette",
+            "confidence": "HIGH"
+          },
+          "secondaryColours": {
+            "value": [
+              "brown",
+              "gold",
+              "grey"
+            ],
+            "confidence": "HIGH"
+          },
+          "colourTemperature": {
+            "value": "balanced",
+            "confidence": "MEDIUM"
+          }
+        },
+        "knowledge_state": "COMPLETE"
+      },
+      "profile": {
+        "description": null,
+        "description_validated": null
+      }
+    },
+    {
+      "fabric_id": "pt-3697-575",
+      "colour_name": "ZEST",
+      "fabric_designs": {
+        "weight_gsm": null,
+        "composition": [
+          {
+            "material": "polyester",
+            "percentage": 92
+          },
+          {
+            "material": "cotton",
+            "percentage": 8
+          }
+        ],
+        "display_name": "SHAMBALA",
+        "full_width_mm": 1450,
+        "usable_width_mm": null,
+        "care_instructions": [
+          "COOL WASH (30 DEGREES)",
+          "COOL IRON (1 DOT)"
+        ],
+        "usage_suitability": [],
+        "fabric_collections": {
+          "display_name": "PARADE COLLECTION"
+        },
+        "pattern_match_type": null,
+        "vertical_repeat_mm": 415,
+        "horizontal_repeat_mm": 357
+      },
+      "supplier_brands": {
+        "display_name": "Prestigious Textiles"
+      },
+      "visual": {
+        "visual_fields": {
+          "motif": {
+            "value": [
+              "geometric"
+            ],
+            "confidence": "HIGH"
+          },
+          "contrast": {
+            "value": "high",
+            "confidence": "HIGH"
+          },
+          "character": {
+            "value": [],
+            "confidence": "REVIEW"
+          },
+          "lightness": {
+            "value": "mixed",
+            "confidence": "HIGH"
+          },
+          "saturation": {
+            "value": "muted",
+            "confidence": "HIGH"
+          },
+          "patternClass": {
+            "value": "geometric",
+            "confidence": "HIGH"
+          },
+          "patternScale": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualWeight": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "primaryColour": {
+            "value": "white",
+            "confidence": "HIGH"
+          },
+          "visualSurface": {
+            "value": [
+              "visible-weave"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "directionality": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualActivity": {
+            "value": "busy",
+            "confidence": "HIGH"
+          },
+          "sheenAppearance": {
+            "value": "matte",
+            "confidence": "MEDIUM"
+          },
+          "colourComplexity": {
+            "value": "limited-palette",
+            "confidence": "HIGH"
+          },
+          "secondaryColours": {
+            "value": [
+              "green",
+              "grey"
+            ],
+            "confidence": "HIGH"
+          },
+          "colourTemperature": {
+            "value": "balanced",
+            "confidence": "MEDIUM"
+          }
+        },
+        "knowledge_state": "PARTIAL_GOVERNED"
+      },
+      "profile": {
+        "description": null,
+        "description_validated": null
+      }
+    },
+    {
+      "fabric_id": "pt-3697-770",
+      "colour_name": "LAGOON",
+      "fabric_designs": {
+        "weight_gsm": null,
+        "composition": [
+          {
+            "material": "polyester",
+            "percentage": 92
+          },
+          {
+            "material": "cotton",
+            "percentage": 8
+          }
+        ],
+        "display_name": "SHAMBALA",
+        "full_width_mm": 1450,
+        "usable_width_mm": null,
+        "care_instructions": [
+          "COOL WASH (30 DEGREES)",
+          "COOL IRON (1 DOT)"
+        ],
+        "usage_suitability": [],
+        "fabric_collections": {
+          "display_name": "PARADE COLLECTION"
+        },
+        "pattern_match_type": null,
+        "vertical_repeat_mm": 415,
+        "horizontal_repeat_mm": 357
+      },
+      "supplier_brands": {
+        "display_name": "Prestigious Textiles"
+      },
+      "visual": {
+        "visual_fields": {
+          "motif": {
+            "value": [
+              "geometric"
+            ],
+            "confidence": "HIGH"
+          },
+          "contrast": {
+            "value": "high",
+            "confidence": "HIGH"
+          },
+          "character": {
+            "value": [
+              "graphic",
+              "refined"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "lightness": {
+            "value": "light",
+            "confidence": "HIGH"
+          },
+          "saturation": {
+            "value": "muted",
+            "confidence": "HIGH"
+          },
+          "patternClass": {
+            "value": "geometric",
+            "confidence": "HIGH"
+          },
+          "patternScale": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualWeight": {
+            "value": "balanced",
+            "confidence": "MEDIUM"
+          },
+          "primaryColour": {
+            "value": "cream",
+            "confidence": "HIGH"
+          },
+          "visualSurface": {
+            "value": [
+              "visible-weave"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "directionality": {
+            "value": "structured-repeat",
+            "confidence": "HIGH"
+          },
+          "visualActivity": {
+            "value": "busy",
+            "confidence": "HIGH"
+          },
+          "sheenAppearance": {
+            "value": "matte",
+            "confidence": "MEDIUM"
+          },
+          "colourComplexity": {
+            "value": "multicolour",
+            "confidence": "HIGH"
+          },
+          "secondaryColours": {
+            "value": [
+              "blue",
+              "green",
+              "grey",
+              "taupe"
+            ],
+            "confidence": "HIGH"
+          },
+          "colourTemperature": {
+            "value": "balanced",
+            "confidence": "MEDIUM"
+          }
+        },
+        "knowledge_state": "COMPLETE"
+      },
+      "profile": {
+        "description": null,
+        "description_validated": null
+      }
+    },
+    {
+      "fabric_id": "sdg-f1541-01",
+      "colour_name": "Blush/Linen",
+      "fabric_designs": {
+        "weight_gsm": 208,
+        "composition": [],
+        "display_name": "Bergamot",
+        "full_width_mm": 1350,
+        "usable_width_mm": null,
+        "care_instructions": [],
+        "usage_suitability": [],
+        "fabric_collections": {
+          "display_name": "Vintage"
+        },
+        "pattern_match_type": null,
+        "vertical_repeat_mm": 465,
+        "horizontal_repeat_mm": 450
+      },
+      "supplier_brands": {
+        "display_name": "Clarke & Clarke"
+      },
+      "visual": {
+        "visual_fields": {
+          "motif": {
+            "value": [
+              "flower",
+              "leaf",
+              "tree"
+            ],
+            "confidence": "HIGH"
+          },
+          "contrast": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "character": {
+            "value": [
+              "decorative",
+              "natural"
+            ],
+            "confidence": "MEDIUM"
+          },
+          "lightness": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "saturation": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "patternClass": {
+            "value": "botanical",
+            "confidence": "HIGH"
+          },
+          "patternScale": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualWeight": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "primaryColour": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "visualSurface": {
+            "value": [],
+            "confidence": "REVIEW"
+          },
+          "directionality": {
+            "value": "structured-repeat",
+            "confidence": "HIGH"
+          },
+          "visualActivity": {
+            "value": "balanced",
+            "confidence": "MEDIUM"
+          },
+          "sheenAppearance": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "colourComplexity": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          },
+          "secondaryColours": {
+            "value": [],
+            "confidence": "REVIEW"
+          },
+          "colourTemperature": {
+            "value": "unknown",
+            "confidence": "REVIEW"
+          }
+        },
+        "knowledge_state": "PARTIAL_GOVERNED"
+      },
+      "profile": {
+        "description": null,
+        "description_validated": null
+      }
+    }
+  ]
+}

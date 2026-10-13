@@ -1,0 +1,423 @@
+{
+  "classification": "REVIEW_PROPOSAL_NOT_EXECUTION_AUTHORIZATION",
+  "approved": false,
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "schema": "advisory",
+  "purpose": "bounded-advisory-index-only",
+  "jobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+  "sourceSnapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405",
+  "expectedCount": 16883,
+  "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "implementationSha256": "a1aac30609a6eb67b6c131c776da6870be926c2a5a95a3c28ee4381768f434ca",
+  "maxBatches": 20,
+  "continuation": {
+    "startOffset": 6,
+    "startingBatches": 1,
+    "endOffset": 126
+  },
+  "maximumNewIdentities": 120,
+  "maximumTotalIndexed": 126,
+  "minimumPacingMs": 5000,
+  "temporaryRoleUse": {
+    "approved": false,
+    "member": "postgres",
+    "role": "advisory_indexer",
+    "grantor": "postgres",
+    "scope": "same-transaction-revoke-before-commit",
+    "maximumTransactions": 20
+  },
+  "ids": [
+    "pt-1227-634",
+    "pt-1229-662",
+    "pt-1230-707",
+    "pt-1230-709",
+    "pt-1233-023",
+    "pt-1240-949",
+    "pt-1241-629",
+    "pt-1243-811",
+    "pt-1247-909",
+    "pt-1248-394",
+    "pt-1248-805",
+    "pt-1249-021",
+    "pt-1249-909",
+    "pt-1258-769",
+    "pt-1260-506",
+    "pt-1260-912",
+    "pt-1261-147",
+    "pt-1264-125",
+    "pt-1264-152",
+    "pt-1264-909",
+    "pt-1266-909",
+    "pt-1267-152",
+    "pt-1267-902",
+    "pt-1270-001",
+    "pt-1271-107",
+    "pt-1281-031",
+    "pt-1286-005",
+    "pt-1289-005",
+    "pt-1290-314",
+    "pt-1291-531",
+    "pt-1291-706",
+    "pt-1291-906",
+    "pt-1292-408",
+    "pt-1292-738",
+    "pt-1294-314",
+    "pt-1294-316",
+    "pt-1294-408",
+    "pt-1295-314",
+    "pt-1295-316",
+    "pt-1295-531",
+    "pt-1295-906",
+    "pt-1312-047",
+    "pt-1312-211",
+    "pt-1312-314",
+    "pt-1312-511",
+    "pt-1314-511",
+    "pt-1315-159",
+    "pt-1315-211",
+    "pt-1315-517",
+    "pt-1316-511",
+    "pt-1317-159",
+    "pt-1412-107",
+    "pt-1412-109",
+    "pt-1413-637",
+    "pt-1414-614",
+    "pt-1416-109",
+    "pt-1416-637",
+    "pt-1417-107",
+    "pt-1418-005",
+    "pt-1418-007",
+    "pt-1418-387",
+    "pt-1419-005",
+    "pt-1419-387",
+    "pt-1420-022",
+    "pt-1422-007",
+    "pt-1424-387",
+    "pt-1425-005",
+    "pt-1425-022",
+    "pt-1426-007",
+    "pt-1426-387",
+    "pt-1427-005",
+    "pt-1429-387",
+    "pt-1438-005",
+    "pt-1456-031",
+    "pt-1468-768",
+    "pt-1469-273",
+    "pt-1470-003",
+    "pt-1470-273",
+    "pt-1470-946",
+    "pt-1471-946",
+    "pt-1472-032",
+    "pt-1472-273",
+    "pt-1472-768",
+    "pt-1473-159",
+    "pt-1473-316",
+    "pt-1475-031",
+    "pt-1475-637",
+    "pt-1475-945",
+    "pt-1476-003",
+    "pt-1476-031",
+    "pt-1476-707",
+    "pt-1477-031",
+    "pt-1477-945",
+    "pt-1495-106",
+    "pt-1495-296",
+    "pt-1495-460",
+    "pt-1495-770",
+    "pt-1496-296",
+    "pt-1497-296",
+    "pt-1497-629",
+    "pt-1498-629",
+    "pt-1558-807",
+    "pt-1558-925",
+    "pt-1559-302",
+    "pt-1559-502",
+    "pt-1560-207",
+    "pt-1560-917",
+    "pt-1562-207",
+    "pt-1562-560",
+    "pt-1562-574",
+    "pt-1562-743",
+    "pt-1562-917",
+    "pt-1563-574",
+    "pt-1563-743",
+    "pt-1564-022",
+    "pt-1564-207",
+    "pt-1564-560",
+    "pt-1564-917",
+    "pt-1701-030",
+    "pt-1702-030"
+  ],
+  "batches": [
+    {
+      "fromOffset": 6,
+      "toOffset": 12,
+      "ids": [
+        "pt-1227-634",
+        "pt-1229-662",
+        "pt-1230-707",
+        "pt-1230-709",
+        "pt-1233-023",
+        "pt-1240-949"
+      ]
+    },
+    {
+      "fromOffset": 12,
+      "toOffset": 18,
+      "ids": [
+        "pt-1241-629",
+        "pt-1243-811",
+        "pt-1247-909",
+        "pt-1248-394",
+        "pt-1248-805",
+        "pt-1249-021"
+      ]
+    },
+    {
+      "fromOffset": 18,
+      "toOffset": 24,
+      "ids": [
+        "pt-1249-909",
+        "pt-1258-769",
+        "pt-1260-506",
+        "pt-1260-912",
+        "pt-1261-147",
+        "pt-1264-125"
+      ]
+    },
+    {
+      "fromOffset": 24,
+      "toOffset": 30,
+      "ids": [
+        "pt-1264-152",
+        "pt-1264-909",
+        "pt-1266-909",
+        "pt-1267-152",
+        "pt-1267-902",
+        "pt-1270-001"
+      ]
+    },
+    {
+      "fromOffset": 30,
+      "toOffset": 36,
+      "ids": [
+        "pt-1271-107",
+        "pt-1281-031",
+        "pt-1286-005",
+        "pt-1289-005",
+        "pt-1290-314",
+        "pt-1291-531"
+      ]
+    },
+    {
+      "fromOffset": 36,
+      "toOffset": 42,
+      "ids": [
+        "pt-1291-706",
+        "pt-1291-906",
+        "pt-1292-408",
+        "pt-1292-738",
+        "pt-1294-314",
+        "pt-1294-316"
+      ]
+    },
+    {
+      "fromOffset": 42,
+      "toOffset": 48,
+      "ids": [
+        "pt-1294-408",
+        "pt-1295-314",
+        "pt-1295-316",
+        "pt-1295-531",
+        "pt-1295-906",
+        "pt-1312-047"
+      ]
+    },
+    {
+      "fromOffset": 48,
+      "toOffset": 54,
+      "ids": [
+        "pt-1312-211",
+        "pt-1312-314",
+        "pt-1312-511",
+        "pt-1314-511",
+        "pt-1315-159",
+        "pt-1315-211"
+      ]
+    },
+    {
+      "fromOffset": 54,
+      "toOffset": 60,
+      "ids": [
+        "pt-1315-517",
+        "pt-1316-511",
+        "pt-1317-159",
+        "pt-1412-107",
+        "pt-1412-109",
+        "pt-1413-637"
+      ]
+    },
+    {
+      "fromOffset": 60,
+      "toOffset": 66,
+      "ids": [
+        "pt-1414-614",
+        "pt-1416-109",
+        "pt-1416-637",
+        "pt-1417-107",
+        "pt-1418-005",
+        "pt-1418-007"
+      ]
+    },
+    {
+      "fromOffset": 66,
+      "toOffset": 72,
+      "ids": [
+        "pt-1418-387",
+        "pt-1419-005",
+        "pt-1419-387",
+        "pt-1420-022",
+        "pt-1422-007",
+        "pt-1424-387"
+      ]
+    },
+    {
+      "fromOffset": 72,
+      "toOffset": 78,
+      "ids": [
+        "pt-1425-005",
+        "pt-1425-022",
+        "pt-1426-007",
+        "pt-1426-387",
+        "pt-1427-005",
+        "pt-1429-387"
+      ]
+    },
+    {
+      "fromOffset": 78,
+      "toOffset": 84,
+      "ids": [
+        "pt-1438-005",
+        "pt-1456-031",
+        "pt-1468-768",
+        "pt-1469-273",
+        "pt-1470-003",
+        "pt-1470-273"
+      ]
+    },
+    {
+      "fromOffset": 84,
+      "toOffset": 90,
+      "ids": [
+        "pt-1470-946",
+        "pt-1471-946",
+        "pt-1472-032",
+        "pt-1472-273",
+        "pt-1472-768",
+        "pt-1473-159"
+      ]
+    },
+    {
+      "fromOffset": 90,
+      "toOffset": 96,
+      "ids": [
+        "pt-1473-316",
+        "pt-1475-031",
+        "pt-1475-637",
+        "pt-1475-945",
+        "pt-1476-003",
+        "pt-1476-031"
+      ]
+    },
+    {
+      "fromOffset": 96,
+      "toOffset": 102,
+      "ids": [
+        "pt-1476-707",
+        "pt-1477-031",
+        "pt-1477-945",
+        "pt-1495-106",
+        "pt-1495-296",
+        "pt-1495-460"
+      ]
+    },
+    {
+      "fromOffset": 102,
+      "toOffset": 108,
+      "ids": [
+        "pt-1495-770",
+        "pt-1496-296",
+        "pt-1497-296",
+        "pt-1497-629",
+        "pt-1498-629",
+        "pt-1558-807"
+      ]
+    },
+    {
+      "fromOffset": 108,
+      "toOffset": 114,
+      "ids": [
+        "pt-1558-925",
+        "pt-1559-302",
+        "pt-1559-502",
+        "pt-1560-207",
+        "pt-1560-917",
+        "pt-1562-207"
+      ]
+    },
+    {
+      "fromOffset": 114,
+      "toOffset": 120,
+      "ids": [
+        "pt-1562-560",
+        "pt-1562-574",
+        "pt-1562-743",
+        "pt-1562-917",
+        "pt-1563-574",
+        "pt-1563-743"
+      ]
+    },
+    {
+      "fromOffset": 120,
+      "toOffset": 126,
+      "ids": [
+        "pt-1564-022",
+        "pt-1564-207",
+        "pt-1564-560",
+        "pt-1564-917",
+        "pt-1701-030",
+        "pt-1702-030"
+      ]
+    }
+  ],
+  "executionRequirements": [
+    "Explicit owner approval of this 120-identity and temporary-permission scope",
+    "Fresh existing-project backup/resource/source preflight",
+    "Fresh checkpoint, six safe source rows and resource evidence per batch; count/hash attestation at most 60 seconds old",
+    "Persist exact SQL and checksum before each submission",
+    "Read back exact hashes, cursor and restored permissions after each batch; no blind retry",
+    "Stop at 126 total, any guard failure, expired evidence, new database error, supplier refresh or resource ceiling"
+  ],
+  "codeManifest": {
+    "lib/advisory/catalogue.mjs": "483dce0ba425615b623a4f913445f9fb34c3412187e6e7ccab3bfa89dc3a6b65",
+    "lib/advisory/cloud-handler.mjs": "03db10b990336d9c5eb10e51d09233873d34db1c2184efd8d450e12fb23365f9",
+    "lib/advisory/cloud-store.mjs": "753ab2aeae654a40fff9a6f19b651d962e02e581fb668808ffa2a0637ad829e0",
+    "lib/advisory/continuation-plan.mjs": "912eacab7c62e2798e4c57349133540e6241358885179241522543e6d657bdac",
+    "lib/advisory/contracts.mjs": "ae3f14992d04545ef3c0ea47e0b6af7a485e035468eca10e4f5c155b23eaa7dd",
+    "lib/advisory/customer-language.mjs": "34df21de161edcbca469d779ecc33fe97f749a82611dad76334940a9e662ea1c",
+    "lib/advisory/guidance.mjs": "4ab6cb7085e1e6a7e4801bf4067f01d5efe73a803e871c190c00a34a26935a3f",
+    "lib/advisory/hosted-test.mjs": "26e09e30f8292720019fdd792f7a826ebc4ad75f5ebd45691165c256ec335314",
+    "lib/advisory/http.mjs": "36a04fa959de0e6e22bcd0eb8034f1f63f61af841b83def25efea2d1ff07a1c7",
+    "lib/advisory/index-coverage.mjs": "bb36ef876f991c2f90a45df6262c9bcb7d98d44ecaa93a959723f68f57cd49a0",
+    "lib/advisory/index-population.mjs": "fececf49d2da5c29ea5e93ab3148467e827539e1491060ac256501b593b275e2",
+    "lib/advisory/index-worker.mjs": "a1f0f747896bd13659057c8686a25efc247db8d16d3a3d3afb7f727a80d4e0d3",
+    "lib/advisory/knowledge-search.mjs": "cc942fb8be4300e097f96a313990c665aa6aca002d187aaf73eae8a88f86385a",
+    "lib/advisory/mock-provider.mjs": "ca3501140b263beed07fc4fbac14b36c460950b9787f024559f026531266b0f8",
+    "lib/advisory/population-resources.mjs": "063fba077965208e8337323dc387ac205713cbcc681f0ccf423b491d91fcffaf",
+    "lib/advisory/profiles.mjs": "28c295848c0b0e0b4cf152e1d9f6f0f87948cd28b4a1ba9c16acd44873509dd3",
+    "lib/advisory/security.mjs": "2531bb8dec1698783bbe9c6dc5996b35c325c2e191acdef3c97e25cff03f3a2b",
+    "lib/advisory/service.mjs": "21119fd8c2722a5473b65b0d530ccb1ee0d53dbb7ea58540dc13adac96debfe9",
+    "lib/advisory/session-cipher.mjs": "24b895664bdf44e4d61d7b77daf8cf7bfe25b1b35bcb5d22f0f06d2bb39a85bb",
+    "lib/advisory/source-manifest.mjs": "7785c73a70f728aafce06473fa2f1d7f4b7b8c8a666002d764229872528487ae"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "classification": "HOSTED_FIRST_ELIGIBLE_BATCH_VERIFIED_THEN_LATENCY_STOP",
+  "observedAt": "2026-10-12T01:38:32.076134+00:00",
+  "startingCommit": "47bc5680057353865c8d0fad984e97957649143f",
+  "protectedCommit": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "connector": "link_6ab960d9f9ac8191b16ced4d6d2fb91d",
+  "automationStatus": "PAUSED",
+  "stopCode": "INDEX_BATCH_LATENCY_STOP",
+  "approximateEndToEndBatchMs": 11361,
+  "latencyLimitMs": 10000,
+  "latencyNote": "Approximation from immediately preceding resource-gate receipt to stop receipt; gate itself used the runner clock. Includes source/publication reads, local transport, write and exact readback. Not a PostgreSQL query-duration measurement.",
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "checkpoint": {
+    "manifestHash": "007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "offset": 6
+  },
+  "approvedEligibleCount": 11517,
+  "eligibleCovered": 6,
+  "eligibleRemaining": 11511,
+  "newRowsAdded": 1,
+  "totalSearchRows": 7,
+  "unchangedEligibleRows": 5,
+  "historicalRowsPreserved": 6,
+  "canaryTarget": 120,
+  "canaryComplete": false,
+  "hostedWriteTransactions": 1,
+  "ambiguousCommit": false,
+  "permissionRestored": true,
+  "rollbackExecuted": false,
+  "migrationExecuted": false,
+  "sourceMutations": 0,
+  "paidApiCostUsd": 0,
+  "backup": {
+    "id": 1937679152,
+    "status": "COMPLETED",
+    "isPhysical": true,
+    "recoveryPoint": "2026-10-12T01:11:28.231Z",
+    "recoveryOperator": "Nylon1",
+    "acceptedRpoSeconds": 86400
+  },
+  "resources": {
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "source": "trusted-operator-telemetry",
+    "observedAt": 1791769046680.467,
+    "windowMs": 65157.523193359375,
+    "windowStartedAt": 1791768981522.9438,
+    "windowEndedAt": 1791769046680.467,
+    "cpuPercent": 5.412450168673916,
+    "ioPercent": 2.9528439782609106,
+    "memoryPercent": 68.05811870403213,
+    "diskPercent": 78.58123324312811,
+    "details": {
+      "cpuCores": 2,
+      "memoryBytes": {
+        "total": 454995968,
+        "available": 145334272
+      },
+      "disks": {
+        "nvme0n1": {
+          "busyPercent": 2.9528439782609106,
+          "readIops": 68.34206982953326,
+          "writeIops": 5.571114158571878,
+          "readBytesPerSecond": 2143692.533945726,
+          "writtenBytesPerSecond": 45512.841106615815
+        },
+        "nvme1n1": {
+          "busyPercent": 0.5432987361242088,
+          "readIops": 5.770630643589604,
+          "writeIops": 2.609061727154874,
+          "readBytesPerSecond": 744801.300319315,
+          "writtenBytesPerSecond": 560235.4142847515
+        }
+      },
+      "filesystems": {
+        "/": {
+          "sizeBytes": 10461904896,
+          "availableBytes": 2240811008,
+          "usedPercent": 78.58123324312811
+        },
+        "/data": {
+          "sizeBytes": 2077073408,
+          "availableBytes": 1039155200,
+          "usedPercent": 49.97022271829113
+        }
+      },
+      "ioDefinition": "Maximum observed disk busy-time fraction, not provisioned IOPS capacity"
+    },
+    "connections": 18,
+    "maxConnections": 60,
+    "lockWaits": 0,
+    "newDeadlocks": 0,
+    "newDatabaseErrors": 0,
+    "supplierRefreshActive": false
+  },
+  "errorGate": {
+    "httpStatus": 200,
+    "observedAt": "2026-10-12T01:37:36.429Z",
+    "start": "2026-10-12T01:32:35.622Z",
+    "end": "2026-10-12T01:37:35.622Z",
+    "errors": 0,
+    "latest_event": "1970-01-01T00:00:00.000000",
+    "missing_severity": 0,
+    "total": 0
+  },
+  "databaseBytesBefore": 699804819,
+  "databaseBytesAfter": 699837587,
+  "databaseSizeDeltaBytes": 32768,
+  "databaseDeltaNote": "Whole-database change between observations, not attributable exclusively to this transaction.",
+  "publication": {
+    "identities": 11517,
+    "identitySha256": "90634a31d12f1690ec48d2e6353a23c21be245a00ca431f8ad0cd181faf68488",
+    "freshFullReconciliation": true,
+    "sixLiveProfilesVerified": true
+  },
+  "migrationSha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "implementationSha256": "d5625c0574c3ab47b42c22298919e9f156fe4dd5602a20aa12947539946e2bce",
+  "planSqlSha256": "5f98ed3ea5b4e4cccc5c15ffadce4e96e1ff6b99e6787c17a1e74fc71661b462",
+  "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+  "privateEvidenceDirectory": "C:/Users/hamza/.codex/tmp/jane-eligible-live-20261012-0124",
+  "privateEvidenceSha256": {
+    "operator.mjs": "dfd3bd5bb522ab56f8e551f31c2f4b71a213d30b612001cdb38d7012920c196e",
+    "journal/journal.jsonl": "cc984aad465ae440dc121e9b61f92112101b21e4a825030ced661f8c4e242721",
+    "operator-evidence.jsonl": "745c34a41ddff776a15a95494526de2e0c54dc241078fb880b3881de6fdf99e9",
+    "approval.json": "632e13e0b14941aec2280d18e4e72a14177237585fadbf64a85dbf9c06c57a3c",
+    "execution-review.json": "5c0ebccad8bcce9a562a4d7b3fd8e6a5ed85f0ecc84c9872b510f779fcf15ac2",
+    "publication-reconciliation.json": "b95fe3ea4eda137b725bb956a7d3afe2fb3360629c028202f71d472ff3b3c1b4"
+  },
+  "verification": "Offline exact journal/readback verification passed; existing 22 targeted tests and 138-check history preserved, not rerun.",
+  "nextStep": "Review and reduce operator transport latency while preserving the 10-second gate, then explicitly resume from offset 6 only after refreshed admission checks. No automated restart."
+}

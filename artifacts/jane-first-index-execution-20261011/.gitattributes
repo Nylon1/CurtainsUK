@@ -1,0 +1,2 @@
+# Preserve submitted SQL bytes, including its generated blank-line space.
+approved-batch.sql text eol=lf whitespace=-blank-at-eol

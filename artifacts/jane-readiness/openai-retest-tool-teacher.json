@@ -1,0 +1,169 @@
+{
+  "id": "tool-teacher",
+  "reviewCriteria": [
+    "Use verified tool guidance",
+    "No invented visualiser heading selector or fixed questionnaire"
+  ],
+  "transcript": [
+    {
+      "customer": "How does Fabric Intelligence help me choose curtains?",
+      "advice": {
+        "text": "Fabric Intelligence helps turn your priorities into a clearer curtain direction, rather than starting with an overwhelming fabric catalogue.\n\nChoose ‘Help me choose’ and start with what matters most: a darker room, more privacy, soft daylight or mainly the look. Depending on the journey, you can refine atmosphere, colour, pattern, texture and sheen, and mark colours as important, worth considering or to ignore.\n\nYour reactions to suggested directions and fabrics help refine the edit—useful if something feels too busy, too cool or simply not you. It guides your choices; it doesn’t guarantee live stock. I’m Jane, CurtainsUK’s AI adviser, and this conversation is separate from that tool’s session.\n\nWhat would you most like your curtains to achieve?",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "What would you most like your curtains to achieve?"
+        ],
+        "nextSteps": [
+          "Start with ‘Help me choose’ and select your main priority."
+        ],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v1"
+          ],
+          "resultIds": [
+            "guide:fi:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "customer": "I dislike the recommendations. What should I change?",
+      "advice": {
+        "text": "You don’t need to change everything—start with what feels wrong in the recommendations.\n\nIf they’re too busy, refine the pattern towards plain or quieter designs; texture can add interest without a strong motif. If they feel too cold, revisit the colour family and atmosphere. If they look too shiny, refine the sheen towards a matt finish.\n\nIn Fabric Intelligence, use DISLIKE for an unsuitable direction, or NOT_QUITE / NOT_FOR_ME for individual fabrics. Mark unwanted colours ‘ignore’, and use MORE_LIKE_THIS when a fabric gets closer. That feedback helps reshape the edit. I can help you rethink the brief here, but I can’t change your tool session.\n\nWhat bothers you most: the colours, patterns, texture or overall mood?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "What bothers you most: the colours, patterns, texture or overall mood?"
+        ],
+        "nextSteps": [
+          "Identify the main mismatch, then refine that preference and give feedback on the suggested directions or fabrics."
+        ],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v1"
+          ],
+          "resultIds": [
+            "guide:fi:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "customer": "Where do I change the heading in Room Visualiser 2?",
+      "advice": {
+        "text": "You’re not missing a control—Room Visualiser 2 doesn’t currently have a heading selector.\n\nTo compare heading appearances, use the separate **Curtain Style** page. The visualiser is useful for comparing fabric in a room, but its rendered heading and fullness are representative rather than a preview of your exact curtain configuration.\n\nAre you hoping for a tailored, structured look or something softer and more relaxed? I can help you decide which direction suits your room.",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "Are you hoping for a tailored, structured look or something softer and more relaxed?"
+        ],
+        "nextSteps": [
+          "Use the separate Curtain Style page to compare heading appearances."
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1",
+          "guide:headings:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        },
+        {
+          "id": "guide:headings:v1",
+          "source": "shopify-theme/curtainsuk-dawn-16/templates/page.curtain-style.json",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        },
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "curtain-style"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:headings:v1"
+          ],
+          "resultIds": [
+            "guide:headings:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

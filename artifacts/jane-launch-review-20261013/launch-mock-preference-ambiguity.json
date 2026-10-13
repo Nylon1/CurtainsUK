@@ -1,0 +1,86 @@
+{
+  "id": "preference-ambiguity",
+  "reviewCriteria": [
+    "Clarify appearance goals without declaring a universal rule",
+    "Explain light and texture cautiously, no promise of colour transformation"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I love rich colour but want the curtains almost invisible. The walls are deep navy.",
+      "advice": {
+        "text": "warm ivory is a useful starting point: it can soften the room without adding strong contrast. Muted olive is an alternative if you want more colour and a gentle connection to natural materials. I’d compare a softly woven plain with a restrained tonal geometric, keeping the pattern scale modest beside busy furnishings. What colour are the walls, and would you like the curtains to blend in or become a feature?",
+        "stage": "recommend",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The navy walls are staying. I meant unobtrusive in daylight, with a richer feel in the evening.",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "What are the compromises? Please keep it brief.",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

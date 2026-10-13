@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-09T21:44:23.015Z",
+  "scope": "Read-only HTTP rendering smoke, not complete customer transaction verification",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/",
+      "title": "\n      Made to measure curtains\n &ndash; CurtainsUK",
+      "theme": "{\"name\":\"CurtainsUK - Curtain Style V1 review\",\"id\":182339731835,\"schema_name\":\"Dawn\",\"schema_version\":\"16.0.0\",\"theme_store_id\":null,\"role\":\"main\"}"
+    },
+    {
+      "path": "/pages/fabric-library?view=browse-fabrics",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/fabric-library?view=browse-fabrics",
+      "title": "\n      Fabric Library\n &ndash; CurtainsUK",
+      "theme": "{\"name\":\"CurtainsUK - Curtain Style V1 review\",\"id\":182339731835,\"schema_name\":\"Dawn\",\"schema_version\":\"16.0.0\",\"theme_store_id\":null,\"role\":\"main\"}"
+    },
+    {
+      "path": "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+      "title": "Fabric Intelligence | CurtainsUK"
+    },
+    {
+      "path": "/pages/room-visualiser",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/room-visualiser",
+      "title": "\n      Room Visualiser\n &ndash; CurtainsUK",
+      "theme": "{\"name\":\"CurtainsUK - Curtain Style V1 review\",\"id\":182339731835,\"schema_name\":\"Dawn\",\"schema_version\":\"16.0.0\",\"theme_store_id\":null,\"role\":\"main\"}"
+    },
+    {
+      "path": "/pages/build-my-rooms",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/build-my-rooms",
+      "title": "\n      Build My Rooms\n &ndash; CurtainsUK",
+      "theme": "{\"name\":\"CurtainsUK - Curtain Style V1 review\",\"id\":182339731835,\"schema_name\":\"Dawn\",\"schema_version\":\"16.0.0\",\"theme_store_id\":null,\"role\":\"main\"}"
+    },
+    {
+      "path": "/pages/how-to-measure",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/how-to-measure",
+      "title": "\n      Guided Measure\n &ndash; CurtainsUK",
+      "theme": "{\"name\":\"CurtainsUK - Curtain Style V1 review\",\"id\":182339731835,\"schema_name\":\"Dawn\",\"schema_version\":\"16.0.0\",\"theme_store_id\":null,\"role\":\"main\"}"
+    },
+    {
+      "path": "/cart",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/cart",
+      "title": "\n      Your Shopping Cart\n &ndash; CurtainsUK",
+      "theme": "{\"name\":\"CurtainsUK - Curtain Style V1 review\",\"id\":182339731835,\"schema_name\":\"Dawn\",\"schema_version\":\"16.0.0\",\"theme_store_id\":null,\"role\":\"main\"}",
+      "checkoutLink": true
+    }
+  ]
+}

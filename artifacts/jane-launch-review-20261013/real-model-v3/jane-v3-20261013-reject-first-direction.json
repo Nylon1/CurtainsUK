@@ -1,0 +1,89 @@
+{
+  "id": "reject-first-direction",
+  "reviewCriteria": [
+    "Accept rejection without defending the previous recommendation",
+    "Change the relevant design relationship and ask only a useful question"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I want my bedroom to feel calm; the walls are pale blue.",
+      "advice": {
+        "text": "With pale blue walls, warm ivory or soft oatmeal curtains could bring a gentle warmth without losing the calm feeling. A plain fabric with a subtle woven texture would add interest without making the room feel busy.\n\nFor a more cocooning alternative, muted blue-grey curtains could sit tonally with the walls, though they may feel cooler depending on the daylight. What colours are your main furnishings and bedding?",
+        "stage": "understand",
+        "palette": [
+          "Warm ivory",
+          "Soft oatmeal",
+          "Muted blue-grey"
+        ],
+        "patternDirection": "Plain rather than a strong pattern for a quiet starting point.",
+        "textureDirection": "Subtle woven texture with a soft, matt appearance.",
+        "alternatives": [
+          "Muted blue-grey for a tonal, more cocooning direction, with a potentially cooler feel."
+        ],
+        "questions": [
+          "What colours are your main furnishings and bedding?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I dislike all those suggestions. They feel too cold and impersonal.",
+      "advice": {
+        "text": "Let’s move away from those restrained neutrals and blues towards something warmer and more personal. Muted terracotta or dusty rose curtains could soften the pale blue walls, with a matte, softly textured fabric keeping the contrast gentle rather than sharp.\n\nIf plain curtains feel impersonal too, a loose botanical pattern with warm accents could add character, though it would be less visually quiet. Would you prefer warmth through colour alone, or a little pattern as well?",
+        "stage": "refine",
+        "palette": [
+          "Muted terracotta",
+          "Dusty rose"
+        ],
+        "patternDirection": "Plain for visual quiet, or a loose botanical pattern with warm accents for more character.",
+        "textureDirection": "Matte, softly textured fabric.",
+        "alternatives": [
+          "Warm plain curtains for a calm contrast with pale blue walls.",
+          "A loose botanical pattern with warm accents for more personality, with less visual quiet."
+        ],
+        "questions": [
+          "Would you prefer warmth through colour alone, or a little pattern as well?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Please try a different approach and do not repeat the same palette.",
+      "advice": {
+        "text": "Let’s start with what feels personal to you, rather than another colour palette. Calm needn’t mean neutral or minimal: curtains might pick up a colour from a favourite quilt or artwork, while a softly textured fabric adds warmth without extra pattern.\n\nIs there something already in your bedroom whose colours or character you particularly love?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Keep pattern restrained unless it draws on a personally meaningful element in the room.",
+        "textureDirection": "Soft, tactile texture to add warmth and character.",
+        "alternatives": [],
+        "questions": [
+          "Is there something already in your bedroom whose colours or character you particularly love?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

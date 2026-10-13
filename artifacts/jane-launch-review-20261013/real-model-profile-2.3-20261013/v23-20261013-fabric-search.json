@@ -1,0 +1,127 @@
+{
+  "id": "fabric-search",
+  "reviewCriteria": [
+    "Descriptive tool query includes colour/pattern/texture/composition",
+    "Only verified retail cards, precise identities; knowledge-only not purchasable"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "Can you search for a matte botanical fabric with cotton, in muted olive?",
+      "advice": {
+        "text": "I searched for your combination, then tried a broader olive botanical and cotton search, but neither returned a match in the fabric knowledge available to me. That coverage is partial, so it doesn’t mean a suitable fabric doesn’t exist.\n\nYour direction is clear: muted olive foliage on a matt, cotton-containing cloth, avoiding a glossy finish. Would you be open to a soft sage-olive shade, or is the olive colour the priority to keep exact?",
+        "stage": "investigate",
+        "palette": [
+          "Muted olive"
+        ],
+        "patternDirection": "Botanical foliage",
+        "textureDirection": "Matt finish with cotton content",
+        "alternatives": [
+          "Soft sage-olive, if a broader colour direction is acceptable"
+        ],
+        "questions": [
+          "Would you be open to a soft sage-olive shade, or is the olive colour the priority to keep exact?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "search_fabric_knowledge",
+          "input": {
+            "query": "matte botanical",
+            "colour": "muted olive",
+            "pattern": "botanical",
+            "texture": "matte",
+            "composition": "cotton"
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        },
+        {
+          "tool": "search_fabric_knowledge",
+          "input": {
+            "query": "olive botanical cotton",
+            "colour": "",
+            "pattern": "",
+            "texture": "",
+            "composition": ""
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "Does finding a Fabric Master record mean I can buy it?",
+      "advice": {
+        "text": "No. Finding a Fabric Master record means I can use its recorded details to inform advice, but it does not confirm that the fabric is available to buy. Records can include fabrics that are not published in the current retail range.\n\nFor your muted olive botanical, I would need to check an approved retail listing separately before presenting it as a purchase option. Even then, a listing is not a promise of live stock or a final price.",
+        "stage": "investigate",
+        "palette": [
+          "muted olive"
+        ],
+        "patternDirection": "Botanical",
+        "textureDirection": "Matt finish with cotton content",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Check approved retail results separately before treating a Fabric Master fabric as a purchase option."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Could you show approved Shambala fabrics instead?",
+      "advice": {
+        "text": "I checked the approved retail search for Shambala, but it returned no fabrics, so I don’t have verified options to show you. That doesn’t establish that Shambala is unavailable, only that this search hasn’t confirmed a retail listing.\n\nWe can keep your matt, muted olive botanical direction and look for approved alternatives, or check Shambala’s Fabric Master details for design reference only.",
+        "stage": "investigate",
+        "palette": [
+          "muted olive"
+        ],
+        "patternDirection": "Botanical",
+        "textureDirection": "Matt finish, with cotton content",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Search for approved retail alternatives matching the original brief, or inspect Shambala knowledge records without implying purchase availability."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "search_retail_fabrics",
+          "input": {
+            "query": "Shambala",
+            "colour": "",
+            "pattern": ""
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

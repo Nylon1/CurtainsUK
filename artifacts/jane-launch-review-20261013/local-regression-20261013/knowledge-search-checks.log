@@ -1,0 +1,12 @@
+✔ indexed descriptive search: every requested dimension, governance, partial coverage and incremental updates (3351.4187ms)
+✔ descriptive search ranks a recorded colour above an incidental description and rejects unindexable input (2758.7511ms)
+✔ reviewed ranking upgrade preserves the read-only function boundary (2755.1403ms)
+✔ paid evaluation fixture exposes bounded source facts without purchase authority (2764.0845ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11994.1586

@@ -1,0 +1,120 @@
+✖ cloud RPC persistence: consent, durable creation replay, recovery, ownership, revision and deletion (5715.6725ms)
+✖ two workers: lease contention, expired lease fencing, CAS and released lease recovery (585.655ms)
+✖ distributed rate and durable spend limits: no reset on new worker, concurrent hard cap, ambiguous failures charged (406.6535ms)
+✔ verified cloud principals reject revoked, anonymous, forged owner and wrong issuer tokens (5.2479ms)
+✖ protected HTTP composition uses verified principal, consent and awaited distributed limits (403.863ms)
+✔ adaptive mock: warm room, visualiser return, changed preference, personalised summary (19.6217ms)
+✔ mock teaches existing FI, declines unavailable guarantees and unsupported screenshot processing (5.5531ms)
+✔ session ownership, consent, invalid IDs and input injection fail before mutation (3.2939ms)
+✔ duplicate requests are idempotent; conflicting revision or reused key is rejected (1.9451ms)
+✔ concurrent replies cannot fork the same consultation (1.9938ms)
+✔ provider, knowledge and durable storage failures leave valid prior work intact (4.2933ms)
+✔ saved consent, encrypted restart, one-time recovery transfer and deletion (48.3978ms)
+✔ expiry prevents access and removes the expired record (1.268ms)
+✔ welcome deadline catches up after suspension; six profiles retain separate identities (0.5399ms)
+✔ forged model evidence and commercial promises fail closed (3.4471ms)
+✔ source-traceable guides exist and correctly separate headings from visualiser (9.8601ms)
+✔ catalogue allowlist drops supplier secrets and unverified visual fields (7.4568ms)
+✔ master reads are bounded, indexed identity queries with no lifecycle filter; cached, validated and isolated (123.0532ms)
+✔ retail recommendations require governed eligibility, exact URL and approved real image (3.6252ms)
+✔ tools reject arbitrary SQL, excess calls and upstream payloads beyond limits (0.8421ms)
+✔ HTTP enforces origin, CSRF, body limits and rate limits without logging private content (10.2818ms)
+✔ production route is disabled even if flags and preview key accidentally exist (0.694ms)
+✔ OpenAI activation requires explicit paid-test flag and budget controller (0.425ms)
+✔ test budget reserves atomically, retains ambiguous charges and blocks session/day overspend (1.1337ms)
+✔ Responses adapter preserves context, strict tools and store:false, retries with reserved cost and resumes function results (4.8437ms)
+✔ OpenAI upstream secrets do not leak through HTTP failures (0.6178ms)
+✖ indexed descriptive search: every requested dimension, governance, partial coverage and incremental updates (465.6107ms)
+✖ proposed additive schema: real PostgreSQL RLS, consent, owner isolation, CAS, tampering and deletion (458.4699ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 22
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9697.639
+
+✖ failing tests:
+
+test at lib\advisory\__tests__\cloud.test.mjs:23:1
+✖ cloud RPC persistence: consent, durable creation replay, recovery, ownership, revision and deletion (5715.6725ms)
+  RangeError: Array buffer allocation failed
+      at new ArrayBuffer (<anonymous>)
+      at Uint8Array.slice (<anonymous>)
+      at Yr (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:64441)
+      at At (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:66014)
+      at N.Ye (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:292654)
+      at async N._checkReady (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:286252)
+      at async N.exec (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-JDT7TZ73.js:8:463)
+      at async database (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:15:3)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:24:12)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+
+test at lib\advisory\__tests__\cloud.test.mjs:51:1
+✖ two workers: lease contention, expired lease fencing, CAS and released lease recovery (585.655ms)
+  RangeError: WebAssembly.Memory(): could not allocate memory
+      at file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:1:14527
+      at async Yr (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:64451)
+      at async At (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:66008)
+      at async N.Ye (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:292648)
+      at async N._checkReady (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:286252)
+      at async N.exec (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-JDT7TZ73.js:8:463)
+      at async database (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:15:3)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:52:12)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at lib\advisory\__tests__\cloud.test.mjs:68:1
+✖ distributed rate and durable spend limits: no reset on new worker, concurrent hard cap, ambiguous failures charged (406.6535ms)
+  RangeError: WebAssembly.Memory(): could not allocate memory
+      at file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:1:14527
+      at async Yr (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:64451)
+      at async At (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:66008)
+      at async N.Ye (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:292648)
+      at async N._checkReady (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:286252)
+      at async N.exec (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-JDT7TZ73.js:8:463)
+      at async database (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:15:3)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:69:12)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at lib\advisory\__tests__\cloud.test.mjs:101:1
+✖ protected HTTP composition uses verified principal, consent and awaited distributed limits (403.863ms)
+  RangeError: WebAssembly.Memory(): could not allocate memory
+      at file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:1:14527
+      at async Yr (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:64451)
+      at async At (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:66008)
+      at async N.Ye (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:292648)
+      at async N._checkReady (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:286252)
+      at async N.exec (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-JDT7TZ73.js:8:463)
+      at async database (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:15:3)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/cloud.test.mjs:102:12)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at lib\advisory\__tests__\knowledge-search.test.mjs:7:1
+✖ indexed descriptive search: every requested dimension, governance, partial coverage and incremental updates (465.6107ms)
+  RangeError: WebAssembly.Memory(): could not allocate memory
+      at file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:1:14527
+      at async Yr (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:64451)
+      at async At (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:66008)
+      at async N.Ye (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:292648)
+      at async N._checkReady (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:286252)
+      at async N.exec (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-JDT7TZ73.js:8:463)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/knowledge-search.test.mjs:10:5)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at lib\advisory\__tests__\storage-rls.test.mjs:6:1
+✖ proposed additive schema: real PostgreSQL RLS, consent, owner isolation, CAS, tampering and deletion (458.4699ms)
+  RangeError: WebAssembly.Memory(): could not allocate memory
+      at file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:1:14527
+      at async Yr (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:64451)
+      at async At (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-DDJLRBDX.js:2:66008)
+      at async N.Ye (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:292648)
+      at async N._checkReady (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/index.js:3:286252)
+      at async N.exec (file:///C:/Users/hamza/curtainsuk-visualiser-v1-production/node_modules/@electric-sql/pglite/dist/chunk-JDT7TZ73.js:8:463)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/storage-rls.test.mjs:9:5)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)

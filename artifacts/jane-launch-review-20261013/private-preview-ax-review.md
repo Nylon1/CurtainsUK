@@ -1,0 +1,5 @@
+# Private Jane preview accessibility-tree review, 13 October 2026
+
+The running local preview at `http://127.0.0.1:8794/?entry=fabric-detail&fabric=pt-3697-770#consultation` was inspected through the browser accessibility tree. The page identified itself as a private development preview and the conversation as a scripted mock. It exposed a skip link, Jane's synthetic-portrait description, headings for the consultation and selected fabric, and an exact visible fabric ID `pt-3697-770` with a fabric-detail link. The conversation had an accessible name, and the message entry, send control, summary, result handoff, save and recovery controls were present in the tree. The focused element at inspection was **Discuss my results**.
+
+This is a structural accessibility inspection only. It does not establish spoken screen-reader quality, keyboard focus restoration after every dialogue, physical iPhone Safari behaviour, reduced-motion behaviour, or the production customer journey. Those checks remain pending before public activation. No customer data, paid model call or deployment was involved.

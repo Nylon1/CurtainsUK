@@ -1,0 +1,107 @@
+{
+  "id": "tool-teacher",
+  "reviewCriteria": [
+    "Use verified tool guidance",
+    "No invented visualiser heading selector or fixed questionnaire"
+  ],
+  "transcript": [
+    {
+      "customer": "How does Fabric Intelligence help me choose curtains?",
+      "advice": {
+        "text": "Fabric Intelligence helps turn your practical needs and taste into a clearer curtain direction. Choose ‘Help me choose’ and start with what matters most: a darker room, more privacy, soft daylight or mainly the look.\n\nDepending on the journey, you can explore atmosphere, colour and pattern, then refine texture and sheen. You can mark colours as important, worth considering or to ignore, and react to suggested directions and fabrics. That feedback helps shape the edit—particularly useful if you know what feels wrong but cannot yet describe what feels right.\n\nI’m Jane, CurtainsUK’s AI adviser; I can help you reason through those choices here, but I don’t share or change your Fabric Intelligence session.\n\nWhat matters most for your curtains: light control, privacy or the look?",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "What matters most for your curtains: light control, privacy or the look?"
+        ],
+        "nextSteps": [
+          "Choose ‘Help me choose’ in Fabric Intelligence to begin the guided journey."
+        ],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": []
+    },
+    {
+      "customer": "I dislike the recommendations. What should I change?",
+      "advice": {
+        "text": "You needn’t settle for an edit that feels wrong. I’d change the part of the brief causing the mismatch rather than start everything again.\n\nIf the recommendations feel busy, refine pattern towards plain fabrics and use texture for interest. If they feel cold, reconsider the colour family and atmosphere; if too shiny, refine sheen towards a quieter finish.\n\nIn Fabric Intelligence, mark unwanted colours ‘ignore’ and preferred ones ‘important’ or ‘consider’. Use DISLIKE for an unsuitable direction, NOT_FOR_ME for a fabric you want to reject, or NOT_QUITE if it is close. I can help you rethink the brief here, but cannot change your session.\n\nWhat feels wrong most: the colours, patterns, texture, or overall mood?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "What feels wrong most: the colours, patterns, texture, or overall mood?"
+        ],
+        "nextSteps": [
+          "Identify the main mismatch, then refine the relevant brief choices and give feedback on the recommendations."
+        ],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": []
+    },
+    {
+      "customer": "Where do I change the heading in Room Visualiser 2?",
+      "advice": {
+        "text": "You’re not missing a control—Room Visualiser 2 doesn’t currently have a heading selector. To compare heading appearances, use the separate Curtain Style page rather than the visualiser.\n\nThe visualiser’s curtain rendering is representative, so the heading and fullness may differ from your final curtains. Curtain Style can help you explore whether a tailored, relaxed or more rhythmic look suits your room, but it doesn’t change the heading within Room Visualiser 2.\n\nWhich heading were you hoping to try?",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "Which heading were you hoping to try?"
+        ],
+        "nextSteps": [
+          "Use the separate Curtain Style page to compare heading appearances."
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1",
+          "guide:headings:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        },
+        {
+          "id": "guide:headings:v1",
+          "source": "shopify-theme/curtainsuk-dawn-16/templates/page.curtain-style.json",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

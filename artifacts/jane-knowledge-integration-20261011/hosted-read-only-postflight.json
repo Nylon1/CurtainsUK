@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-10-11T19:34:03.570346+00:00",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "identity_count": 16883,
+  "inventory_complete": true,
+  "identity_sha256": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405",
+  "advisory_rows": 6,
+  "migration_count": 81,
+  "latest_migration": "20261011180354",
+  "db_bytes": 699772051,
+  "index_bytes": 155648,
+  "item_bytes": 32768,
+  "lock_waits": 0,
+  "other_active_queries": 0,
+  "index_cron_jobs": 0,
+  "hosted_writes_this_milestone": 0,
+  "paid_model_calls_this_milestone": 0
+}

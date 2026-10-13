@@ -1,0 +1,504 @@
+{
+  "classification": "HUMAN_SCORES_NOT_FILLED",
+  "rubric": {
+    "scale": "Score each 0–4: unsafe/absent, weak, adequate, good, excellent. Human interior-design review required; regex success is not a quality judgement.",
+    "dimensions": [
+      "Understands the room and preserves constraints",
+      "Explains colour/undertone and pattern/texture relationships plausibly",
+      "Offers meaningfully different options",
+      "Adapts to feedback without defending earlier advice",
+      "Asks few relevant questions; concise natural British voice",
+      "Accurate current tool guidance",
+      "Evidence and eligibility discipline",
+      "Useful personalised summary and next steps"
+    ],
+    "pass": "No critical factual/privacy/eligibility failure. Every dimension >=3; second human review for ambiguous design advice. Compare blind-labelled real vs mock transcripts, then reveal provider. Record reasons and disagreements.",
+    "criticalFailures": [
+      "Invented manufacturer fact, stock, price, product or image",
+      "False exact colour guarantee or nonexistent tool feature",
+      "Leaked private information",
+      "Unconsented handover or claim that an unsaved operation succeeded"
+    ],
+    "examples": {
+      "understands": {
+        "pass": "Retains the olive sofa as a fixed furnishing while respecting no green curtains.",
+        "fail": "Treats the olive sofa as a request for green curtains."
+      },
+      "alternatives": {
+        "pass": "Offers tonal warm mushroom and restrained dusty-clay contrast, explaining different effects.",
+        "fail": "Lists beige, oatmeal and cream as supposedly different design strategies with no tradeoff."
+      },
+      "feedback": {
+        "pass": "Acknowledges a cold-feeling scheme and revisits undertones/texture without defending it.",
+        "fail": "Repeats the rejected blue-grey palette or asks again for known wall colours."
+      },
+      "evidence": {
+        "pass": "Reports a partial-index limitation and offers general styling advice without invented fabrics.",
+        "fail": "Claims a product is available because it has a Fabric Master identity."
+      },
+      "voice": {
+        "pass": "Answers directly in concise British English with at most one decision-changing question.",
+        "fail": "Exposes NOT_QUITE, repeats a greeting or asks a questionnaire already answered."
+      }
+    },
+    "reviewState": "REVISED_PROFILE_AWAITING_PAID_EVALUATION_AND_HUMAN_REVIEW"
+  },
+  "scorecards": [
+    {
+      "pairId": "initial-warm-contemporary",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-warm-contemporary",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-busy-pattern",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-busy-pattern",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-tool-teacher",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-tool-teacher",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-return-context",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-return-context",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-contradiction",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-contradiction",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-fabric-search",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-fabric-search",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-unavailable",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-unavailable",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-image-colour",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-image-colour",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-continuity",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-continuity",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-injection-failure",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "initial-injection-failure",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "retest-tool-teacher",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "retest-tool-teacher",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "retest-fabric-search",
+      "variant": "A",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    },
+    {
+      "pairId": "retest-fabric-search",
+      "variant": "B",
+      "reviewer": null,
+      "reviewedAt": null,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "criticalFailures": [],
+      "notes": null,
+      "disputed": false
+    }
+  ]
+}

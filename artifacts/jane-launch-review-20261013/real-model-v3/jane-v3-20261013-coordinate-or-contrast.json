@@ -1,0 +1,93 @@
+{
+  "id": "coordinate-or-contrast",
+  "reviewCriteria": [
+    "Distinguish fixed green furniture from curtain preference",
+    "Explain restrained contrast versus tonal coordination and tradeoffs"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My sofa is olive green, with oak floors and warm neutral walls. Should curtains coordinate or contrast?",
+      "advice": {
+        "text": "Either could work, but I’d lean towards coordination through warmth rather than matching the olive. Oatmeal or warm stone curtains with a softly textured weave would connect the oak and neutral walls, leaving the sofa as the focal point.\n\nFor more contrast, muted clay or soft terracotta could bring out the green and create a warmer, more expressive scheme. Keep the colour subdued if you want it to feel gentle rather than bold.\n\nWould you prefer the room to feel calm and cohesive, or a little more colourful?",
+        "stage": "recommend",
+        "palette": [
+          "Oatmeal",
+          "Warm stone",
+          "Muted clay",
+          "Soft terracotta"
+        ],
+        "patternDirection": "Plain or a restrained tonal pattern, allowing the olive sofa to remain the focal point.",
+        "textureDirection": "A softly textured, matt weave to connect with the warmth of the oak.",
+        "alternatives": [
+          "Coordinate with oatmeal or warm stone for a calm, cohesive effect.",
+          "Contrast with muted clay or soft terracotta for more colour and definition against the olive."
+        ],
+        "questions": [
+          "Would you prefer the room to feel calm and cohesive, or a little more colourful?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I do not want green curtains. Could contrast still feel restful?",
+      "advice": {
+        "text": "Yes, contrast can still feel restful, and there’s no need for green curtains. The key is a softened colour and gentle contrast in lightness, rather than a bright, sharp pairing.\n\nA dusty clay or muted rose-brown could sit quietly against your olive sofa while relating to the warmth of the oak. I’d favour a plain, matt fabric with subtle texture to keep the effect calm. For a quieter alternative, warm mushroom would provide less colour contrast but still keep the curtains distinct from the sofa.",
+        "stage": "recommend",
+        "palette": [
+          "Dusty clay",
+          "Muted rose-brown",
+          "Warm mushroom"
+        ],
+        "patternDirection": "Plain rather than a prominent pattern, to keep the contrast restful.",
+        "textureDirection": "Matt finish with subtle woven texture.",
+        "alternatives": [
+          "Warm mushroom for a quieter, less colourful contrast with the olive sofa."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Give me two genuinely different directions, without choosing a fabric yet.",
+      "advice": {
+        "text": "1. Soft, earthy colour contrast: dusty clay curtains would balance the olive sofa and echo the oak’s warmth. Keep them plain and matt for a restful effect. This brings more colour into the room without a sharp contrast.\n\n2. Quiet, tonal layering: warm mushroom curtains with a gently flecked weave would connect with the neutral walls, letting the olive sofa lead. This feels more restrained; the texture matters so the scheme doesn’t feel flat.\n\nNeither direction needs green curtains or a fabric choice yet.",
+        "stage": "recommend",
+        "palette": [
+          "Dusty clay",
+          "Warm mushroom"
+        ],
+        "patternDirection": "Plain rather than a prominent motif in either direction.",
+        "textureDirection": "Matt and softly textured for dusty clay; a gently flecked weave for warm mushroom.",
+        "alternatives": [
+          "Dusty clay: restful colour contrast with greater warmth and presence.",
+          "Warm mushroom: quieter tonal coordination, relying on texture for interest."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

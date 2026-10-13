@@ -1,0 +1,10 @@
+{
+  "localTests": {"passed": 109, "failed": 0, "receipt": "tests.json"},
+  "eslint": {"passed": true, "scope": "Changed advisory modules, tests and preparation/verification scripts"},
+  "implementationHashVerification": {"passed": true, "modules": 20, "sha256": "a1aac30609a6eb67b6c131c776da6870be926c2a5a95a3c28ee4381768f434ca"},
+  "hostedWrites": 0,
+  "latestVisibleDatabaseBackup": "2026-10-11T01:03:26Z",
+  "restoreActionVisible": true,
+  "backupCaveat": "Predates advisory changes; no restore rehearsal or Toshiba completion confirmation",
+  "preview": {"url": "http://127.0.0.1:8789/", "status": 200, "mode": "scripted-mock"}
+}

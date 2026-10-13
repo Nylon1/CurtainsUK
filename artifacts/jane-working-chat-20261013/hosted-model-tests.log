@@ -1,0 +1,11 @@
+✔ protected model chat saves real turns, budgets usage and rejects another owner (3203.1642ms)
+✔ bounded hosted search uses only the reviewed function and validated terms (3.8815ms)
+✔ server-only Supabase secret is sent as apikey, never a fake bearer JWT (3.2172ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3542.0173

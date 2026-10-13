@@ -1,0 +1,13 @@
+{
+  "classification": "LOCAL_TARGETED_TESTS_NOT_HOSTED_INDEXING",
+  "command": "node --test lib/advisory/__tests__/host-metrics.test.mjs lib/advisory/__tests__/population-readiness.test.mjs lib/advisory/__tests__/eligible-execution.test.mjs",
+  "passed": 22,
+  "failed": 0,
+  "skipped": 0,
+  "durationMs": 35266.5137,
+  "coverage": ["120-second owner exception and exact scope", "unchanged 60-second default and source freshness", "cached/stale/over-limit/missing/reset metrics rejection", "resource and supplier stop gates", "local PostgreSQL transaction rollback and grant restoration", "five unchanged historical rows", "canary assessment", "ambiguous-commit readback", "operator exclusion", "synthetic full eligible traversal"],
+  "historicalFullSuite": "../jane-monitoring-access-20261011/tests.json",
+  "historicalFullSuiteCount": 138,
+  "fullSuiteRepeatedThisIncrement": false,
+  "initialAttempt": "20/21 passed; one timestamp assertion compared fractional milliseconds exactly. Corrected the assertion to sub-microsecond floating-point tolerance; production window limits remain exact and unchanged. The final targeted run above passed all 22 checks."
+}

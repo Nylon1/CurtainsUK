@@ -1,0 +1,94 @@
+{
+  "id": "coordinate-or-contrast",
+  "reviewCriteria": [
+    "Distinguish fixed green furniture from curtain preference",
+    "Explain restrained contrast versus tonal coordination and tradeoffs"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My sofa is olive green, with oak floors and warm neutral walls. Should curtains coordinate or contrast?",
+      "advice": {
+        "text": "Either could work, but I’d lean towards coordinating through warmth rather than matching the olive exactly. Oatmeal or warm stone curtains with a subtle woven texture would connect the oak and neutral walls, leaving the sofa as the focal point.\n\nFor a more expressive contrast, muted terracotta or dusty clay could bring out the olive’s richness and echo the warmth of the floor. The tradeoff is a stronger colour presence rather than a quiet backdrop. Would you prefer the room to feel calm and understated, or richer and more colourful?",
+        "stage": "recommend",
+        "palette": [
+          "Oatmeal",
+          "Warm stone",
+          "Muted terracotta",
+          "Dusty clay"
+        ],
+        "patternDirection": "A plain or restrained tonal pattern would keep attention on the olive sofa.",
+        "textureDirection": "Subtle woven texture for warmth and depth without strong contrast.",
+        "alternatives": [
+          "Coordinate with oatmeal or warm stone for a quiet backdrop.",
+          "Contrast with muted terracotta or dusty clay for a richer, more expressive room."
+        ],
+        "questions": [
+          "Would you prefer the room to feel calm and understated, or richer and more colourful?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I do not want green curtains. Could contrast still feel restful?",
+      "advice": {
+        "text": "Yes, contrast can still feel restful. With your olive sofa and warm oak, I’d choose a softened clay or pinkish taupe rather than a vivid terracotta. The muted colour would contrast with the green without competing strongly, especially in a plain, matt fabric with gentle texture.\n\nIf that feels too colourful, warm mushroom would offer a quieter contrast. Keeping the curtains reasonably close in lightness to your walls would soften their presence, while a darker shade would feel more enveloping.",
+        "stage": "refine",
+        "palette": [
+          "Softened clay",
+          "Pinkish taupe",
+          "Warm mushroom"
+        ],
+        "patternDirection": "Plain rather than a strong pattern, to keep the contrast restful.",
+        "textureDirection": "Matt finish with gentle woven texture.",
+        "alternatives": [
+          "Warm mushroom for quieter contrast and less colour.",
+          "A deeper muted clay for a more enveloping effect."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Give me two genuinely different directions, without choosing a fabric yet.",
+      "advice": {
+        "text": "1. Soft, airy contrast: pale blush-clay curtains in a plain, matt texture. The pink undertone would gently contrast with the olive sofa, while the softened colour connects to the oak’s warmth. Close to your walls in lightness, this could feel restful and open, though noticeably more colourful.\n\n2. Deep, tonal calm: warm cocoa curtains with a softly textured weave. Rather than contrasting through colour, this creates depth against the neutral walls and grounds the olive and oak. It could feel cocooning and restrained, but would give the window a stronger, darker presence.",
+        "stage": "recommend",
+        "palette": [
+          "Pale blush-clay",
+          "Warm cocoa"
+        ],
+        "patternDirection": "Plain in both directions, allowing colour and tonal depth rather than pattern to create the contrast.",
+        "textureDirection": "Matt, gentle texture for blush-clay; a softly textured weave for cocoa.",
+        "alternatives": [
+          "Light blush-clay for soft colour contrast and an airy feel.",
+          "Deep warm cocoa for tonal contrast and a cocooning feel."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

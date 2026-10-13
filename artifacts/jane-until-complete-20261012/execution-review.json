@@ -1,0 +1,112 @@
+{
+  "classification": "LOCAL_ELIGIBLE_EXECUTION_REVIEW_NOT_HOSTED_CLEARANCE",
+  "conditionalOwnerApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6122415089",
+  "previousPopulationApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113454744",
+  "hostMonitoringApproval": {
+    "reference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "latestSampleApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118103282"
+  },
+  "maximumHostWindowMs": 120000,
+  "maximumSourceAgeMs": 60000,
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "manifest": {
+    "hash": "007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "count": 11517,
+    "snapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+  },
+  "identitySha256": "90634a31d12f1690ec48d2e6353a23c21be245a00ca431f8ad0cd181faf68488",
+  "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "implementationSha256": "39b6fd76b4c8ff4f8e2827557cba8989632d93fb18b40c882d13d0915cb0c782",
+  "codeManifest": {
+    "lib/advisory/active-client-gate.mjs": "8ff1057d70db0dc25e121f3e5041a23a2dac5634f107e98cd34963af0f2b5eb4",
+    "lib/advisory/catalogue.mjs": "483dce0ba425615b623a4f913445f9fb34c3412187e6e7ccab3bfa89dc3a6b65",
+    "lib/advisory/cloud-handler.mjs": "03db10b990336d9c5eb10e51d09233873d34db1c2184efd8d450e12fb23365f9",
+    "lib/advisory/cloud-store.mjs": "753ab2aeae654a40fff9a6f19b651d962e02e581fb668808ffa2a0637ad829e0",
+    "lib/advisory/connector-read-recovery.mjs": "ea4ffd75e322bd0f1f0b998f7f816b1afa8523e4ec76fc2ef0e30abb5121c912",
+    "lib/advisory/contracts.mjs": "ae3f14992d04545ef3c0ea47e0b6af7a485e035468eca10e4f5c155b23eaa7dd",
+    "lib/advisory/customer-language.mjs": "34df21de161edcbca469d779ecc33fe97f749a82611dad76334940a9e662ea1c",
+    "lib/advisory/eligible-admission.mjs": "25ae94e4677dfb838afe645b62b790ba911d09e3a3625fc92fb0a929c89ffa25",
+    "lib/advisory/eligible-limit-policy.mjs": "8512e3a413ac79d237b41110e4eb6243b460cba3e6edd21f2bbf6fca55d17340",
+    "lib/advisory/eligible-manifest.mjs": "c88c15fdb75c41c771fc48fd8cfb7982cfb43b0e1445fe7280e982bd86be6954",
+    "lib/advisory/eligible-plan.mjs": "b146c611e5ab3ecf2e9c5f18517cd722e1d518b42c847767f4d195c5722ce26f",
+    "lib/advisory/eligible-runner.mjs": "cd1222321bb4854dcab8c625b40122793d80868d0c3f82ae842f169d6988832f",
+    "lib/advisory/eligible-transport.mjs": "01560edd3e9c82ead97e72db6d56c7b485058a20e0be4e840e1f2b302a8e0f8f",
+    "lib/advisory/guidance.mjs": "4ab6cb7085e1e6a7e4801bf4067f01d5efe73a803e871c190c00a34a26935a3f",
+    "lib/advisory/host-admission-pacing.mjs": "077502cb05005fabfff17ff9cb80b0e8f92ded9ae827f598ffd91e2bc02ca382",
+    "lib/advisory/host-metrics.mjs": "66f5b1089577cefdfbfcc2ac8c5e013077db590620c39018b79f4bab3bec3381",
+    "lib/advisory/host-window-policy.mjs": "57bea4deeeb6b60a3980acd5555b288a1afdbaead57698a2793b664be2b94274",
+    "lib/advisory/hosted-test.mjs": "26e09e30f8292720019fdd792f7a826ebc4ad75f5ebd45691165c256ec335314",
+    "lib/advisory/http.mjs": "36a04fa959de0e6e22bcd0eb8034f1f63f61af841b83def25efea2d1ff07a1c7",
+    "lib/advisory/index-journal.mjs": "23351cd23b4d1b51fbaccf75db3a0ef83845eb23fbab3b50ca67800dda167038",
+    "lib/advisory/index-population.mjs": "a9ea7267664ed241ee015cf176fba559e5597996dd71dc47ddbca1830fda0dc9",
+    "lib/advisory/index-worker.mjs": "a1f0f747896bd13659057c8686a25efc247db8d16d3a3d3afb7f727a80d4e0d3",
+    "lib/advisory/knowledge-query.mjs": "858d8ca78ac7953bab97e041ffef46eede01d32760c98c821148069d6b27dd61",
+    "lib/advisory/knowledge-search.mjs": "ed32e106704d9b100dac153385ae5f322b422e5f44f5d5a765c4fc1ad2c93f2c",
+    "lib/advisory/mock-provider.mjs": "ca3501140b263beed07fc4fbac14b36c460950b9787f024559f026531266b0f8",
+    "lib/advisory/operator-identity-literal.mjs": "1555b7711b7d60b186f2269989bd1b5cafc91720180901baa30117de8616b632",
+    "lib/advisory/operator-recovery.mjs": "c41eb23bb17571cc841d4cb5c48c87c1d3abc7dfc3354e97f0e6aa518e5264c9",
+    "lib/advisory/population-deadline.mjs": "97b98b1628c5c88dab4f5d4f2a64381f2c6a95061802981c45adf4dd9f36c8dc",
+    "lib/advisory/population-resources.mjs": "2658cdce4f5dd4578680a9505201eb27d25b5d8b01517fcf4ebe32c475797c22",
+    "lib/advisory/profiles.mjs": "28c295848c0b0e0b4cf152e1d9f6f0f87948cd28b4a1ba9c16acd44873509dd3",
+    "lib/advisory/retail-read-recovery.mjs": "d33a816c26572a041f2aadd36af9cace91c040eb19dce465a84693c7247704fd",
+    "lib/advisory/security.mjs": "2531bb8dec1698783bbe9c6dc5996b35c325c2e191acdef3c97e25cff03f3a2b",
+    "lib/advisory/service.mjs": "21119fd8c2722a5473b65b0d530ccb1ee0d53dbb7ea58540dc13adac96debfe9",
+    "lib/advisory/session-cipher.mjs": "24b895664bdf44e4d61d7b77daf8cf7bfe25b1b35bcb5d22f0f06d2bb39a85bb"
+  },
+  "eligiblePopulation": {
+    "startOffset": 0,
+    "endOffset": 11517,
+    "canaryEnd": 120,
+    "historicalJobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+    "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+    "unchangedIds": [
+      "pt-1204-212",
+      "pt-1223-374",
+      "pt-1224-002",
+      "pt-1225-314",
+      "pt-1225-722"
+    ]
+  },
+  "newJobCreated": false,
+  "initialNewRows": 115,
+  "totalNewRows": 11512,
+  "maximumBatchesPerInvocation": 20,
+  "identitiesPerBatch": 6,
+  "minimumPacingMs": 5000,
+  "batchCount": 1920,
+  "invocationCount": 96,
+  "implemented": "Separate bootstrap, unchanged rows, SQL fences, grant restoration, exact readback, canary boundary and single-approval bounded continuation",
+  "executionReady": false,
+  "blockers": [
+    "Fresh admission and read-only probe at execution"
+  ],
+  "nextAction": "Continue the existing job from2766 until completion. The owner removed only its calendar cutoff; all credential, RPO, fresh evidence, resource, transaction, journal and permission controls remain.",
+  "hostedExecution": "OFFSET2766 EXACTLY RECONCILED; NEW BINDING NOT YET EXECUTED",
+  "paidApiCostUsd": 0,
+  "completionApproval": {
+    "kind": "one-time-until-complete",
+    "recordReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6122415089",
+    "ownerInstruction": "Proceed with no deadline",
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "expectedCount": 11517
+  },
+  "batchLatencyApproval": {
+    "reference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118124996",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a"
+  },
+  "activityPolicy": {
+    "reference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6118449547",
+    "directOwnerInstruction": "Fix the issues and get to the end; recover temporary safety holds and keep proceeding",
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+  },
+  "maximumHostSampleAgeMs": 180000,
+  "maximumEndToEndBatchMs": 20000,
+  "operatorBindingSha256": "76960e21d64214f12d522358b579149ad45587df1aef14270be1b24784722054",
+  "canaryReceiptSha256": "b13908a4bfe7b4dc8a54a090e3162fbf7694b84226fff38a2607b7e52716536e",
+  "existingJobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a"
+}

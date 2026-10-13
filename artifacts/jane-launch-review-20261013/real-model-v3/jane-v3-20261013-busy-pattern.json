@@ -1,0 +1,106 @@
+{
+  "id": "busy-pattern",
+  "reviewCriteria": [
+    "Identify contrast, scale and competing focal points",
+    "Suggest quiet texture or tonal pattern and controlled comparisons"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I tried three patterned curtains in the visualiser and they all feel busy.",
+      "advice": {
+        "text": "Then I’d change direction rather than try another similar pattern. A plain fabric with a gentle weave could give the window interest without adding more motifs. Keep its colour close to the walls for a quieter effect, or choose a deeper coordinating shade if you still want the curtains to frame the room.\n\nWas it the patterns themselves that felt busy, or the contrast between their colours?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Move away from pattern towards a plain fabric to reduce visual activity.",
+        "textureDirection": "A gentle, subtle weave for interest without additional motifs.",
+        "alternatives": [
+          "A plain close to the wall colour for a quieter, more continuous effect.",
+          "A deeper coordinating plain for stronger framing without pattern."
+        ],
+        "questions": [
+          "Was it the patterns themselves that felt busy, or the contrast between their colours?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The sofa already has a large botanical print. I still want some interest.",
+      "advice": {
+        "text": "With a large botanical print on the sofa, I’d give the curtains interest through texture rather than another motif. A softly mottled weave or subtle herringbone, in a quieter colour drawn from the sofa, could feel layered without competing with it.\n\nIf you still want pattern, a fine, low-contrast stripe would offer a more ordered alternative, though it may feel busier than texture alone. Which colours appear in the sofa print?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Avoid another prominent motif; consider a fine, low-contrast stripe only if more pattern is wanted.",
+        "textureDirection": "A softly mottled weave or subtle herringbone to add interest without competing with the botanical sofa.",
+        "alternatives": [
+          "Fine, low-contrast stripe for more ordered pattern, with a greater risk of feeling busy."
+        ],
+        "questions": [
+          "Which colours appear in the sofa print?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Can I compare texture instead while keeping the room and lighting the same?",
+      "advice": {
+        "text": "Yes. Use Change fabric to compare supported textured plains, keeping the same room, view, surface colours, curtain position and Ambience setting. Fabric inspection gives neutral light for comparison, or keep Daylight selected to judge the effect in the room.\n\nAlongside your botanical sofa, compare a gentle linen-look weave with a more defined herringbone in similar colours. That should help separate texture from colour contrast. The render is representative, so physical samples are still needed to judge the actual texture and feel.",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Avoid competing motifs alongside the large botanical sofa print.",
+        "textureDirection": "Compare a gentle linen-look weave with a more defined herringbone in similar colours.",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Keep room, view, surface colours, curtain position and lighting constant while changing supported fabrics.",
+          "Check physical samples for final texture and feel."
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

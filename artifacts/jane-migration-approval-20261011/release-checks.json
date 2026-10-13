@@ -1,0 +1,28 @@
+{
+  "pullRequest": {
+    "baseRefOid": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+    "files": [
+      {
+        "path": "supabase/migrations/20261011142747_jane_isolated_advisory.sql",
+        "additions": 344,
+        "deletions": 0
+      }
+    ],
+    "headRefOid": "134954ff7c942d099b8799fb3bd95667bf4e6440",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/Nylon1/CurtainsUK/pull/170"
+  },
+  "checks": [
+    {
+      "link": "https://github.com/Nylon1/CurtainsUK/actions/runs/38157823094/job/114524335496",
+      "name": "curtainsuk-production-gate",
+      "state": "SUCCESS"
+    },
+    {
+      "link": "https://github.com/Nylon1/CurtainsUK/actions/runs/38157823094/job/114524335511",
+      "name": "protected-production-policy",
+      "state": "SUCCESS"
+    }
+  ]
+}

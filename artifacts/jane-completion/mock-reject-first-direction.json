@@ -1,0 +1,83 @@
+{
+  "id": "reject-first-direction",
+  "reviewCriteria": [
+    "Accept rejection without defending the previous recommendation",
+    "Change the relevant design relationship and ask only a useful question"
+  ],
+  "transcript": [
+    {
+      "customer": "I want my bedroom to feel calm; the walls are pale blue.",
+      "advice": {
+        "text": "Let’s move away from the warmer direction. A softened blue-grey with a chalky neutral could feel calmer and cleaner; a muted sage is another route if blue feels too cool. Keep the surface matte and compare both against the furnishings that are staying. Which of those feels closer to your new direction?",
+        "stage": "refine",
+        "palette": [
+          "soft blue-grey",
+          "chalky neutral",
+          "muted sage"
+        ],
+        "patternDirection": "Plain or a restrained tonal pattern",
+        "textureDirection": "Matte, lightly woven texture",
+        "alternatives": [
+          "Muted sage with a neutral ground"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "I dislike all those suggestions. They feel too cold and impersonal.",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "Please try a different approach and do not repeat the same palette.",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

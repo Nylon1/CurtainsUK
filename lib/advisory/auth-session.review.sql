@@ -1,0 +1,5 @@
+-- RETIRED before hosted application. Kept as a historical source-file marker.
+-- Server-side getUser(jwt) and getClaims(jwt) replace the proposed direct Auth
+-- read role. This file contains no executable SQL and is excluded from the
+-- corrected migration. Never grant or revoke privileges on protected Auth
+-- objects for Jane. See docs/specialist-advisory/JANE_AUTH_MIGRATION_FIX.md.

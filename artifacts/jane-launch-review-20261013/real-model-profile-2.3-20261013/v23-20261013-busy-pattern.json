@@ -1,0 +1,106 @@
+{
+  "id": "busy-pattern",
+  "reviewCriteria": [
+    "Identify contrast, scale and competing focal points",
+    "Suggest quiet texture or tonal pattern and controlled comparisons"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I tried three patterned curtains in the visualiser and they all feel busy.",
+      "advice": {
+        "text": "That suggests we should reduce the pattern rather than keep trying similar designs. A plain fabric with a softly woven texture could give the curtains depth without competing for attention, especially if there is already pattern elsewhere in the room.\n\nIf you still want a little movement, a low-contrast pattern with plenty of quiet space would be a gentler alternative, though more noticeable than a textured plain. Was it the motifs themselves that felt busy, or the contrast between their colours?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Move towards a plain fabric, or alternatively a low-contrast pattern with generous quiet space.",
+        "textureDirection": "Subtle woven texture to provide depth without prominent pattern.",
+        "alternatives": [
+          "A textured plain for the quietest effect.",
+          "A low-contrast, open pattern for gentle movement with slightly more visual activity."
+        ],
+        "questions": [
+          "Was it the motifs themselves that felt busy, or the contrast between their colours?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The sofa already has a large botanical print. I still want some interest.",
+      "advice": {
+        "text": "With a large botanical print on the sofa, I’d give the curtains interest through texture rather than another motif. A softly flecked weave, drawing on a quieter background colour in the sofa, could feel connected without competing with its leaves and flowers.\n\nFor a more graphic alternative, a subtle, low-contrast stripe would offer a different rhythm, though it would add more pattern to the room. What are the main colours in the sofa print?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Prefer a textured plain; alternatively, a subtle low-contrast stripe to contrast with the botanical motif.",
+        "textureDirection": "A softly flecked weave for interest without an additional motif.",
+        "alternatives": [
+          "A subtle, low-contrast stripe adds a graphic rhythm but introduces more pattern than a textured plain."
+        ],
+        "questions": [
+          "What are the main colours in the sofa print?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Can I compare texture instead while keeping the room and lighting the same?",
+      "advice": {
+        "text": "Yes. Keep the same room, view, room colours and Ambience setting, then use Change fabric to compare supported textured plains. Fabric inspection gives neutral light; keep that setting unchanged across the comparison.\n\nWith your botanical sofa, I’d compare a fine, softly flecked weave with a more pronounced woven texture: both offer interest without another motif. Curtain view can help you judge their appearance, but the render won’t establish the true texture or feel. Physical samples in your room are important for the final choice.",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Plain fabrics to avoid competing with the sofa’s large botanical print.",
+        "textureDirection": "Compare a fine, softly flecked weave with a more pronounced woven texture.",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Keep the room, view, room colours and lighting unchanged while changing supported fabrics.",
+          "Compare physical samples in the room before making a final texture decision."
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

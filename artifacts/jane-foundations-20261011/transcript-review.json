@@ -1,0 +1,17 @@
+{
+  "classification": "AUTOMATED_TRANSCRIPT_AUDIT_NOT_HUMAN_APPROVAL",
+  "realTurns": 36,
+  "meanWords": 96,
+  "over90Words": 25,
+  "maximumWords": 125,
+  "emDashReplies": 21,
+  "internalTokenReplies": 2,
+  "previousLedgerUsd": 0.132574,
+  "newPaidCalls": 0,
+  "newModelSpendUsd": 0,
+  "revisedProfile": "2.2.0-preview.1",
+  "revisedSuite": "jane-foundations-v3",
+  "revisedRealEvaluation": "NOT_RUN",
+  "humanInteriorDesignScores": "PENDING",
+  "keyRetirement": "OWNER_CONFIRMS_STILL_NEEDS_REVOCATION"
+}

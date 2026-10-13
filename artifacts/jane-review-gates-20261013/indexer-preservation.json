@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-13T01:19:37.305Z",
+  "files": 35,
+  "changed": [],
+  "implementationSha256": "13c498432a97f9949b3ef46304976fecc799734db0a021d608eb4721528a08b3",
+  "operatorBindingSha256": "9af9e2ffb08d1b236bc7bdd981a2f345bb113d7777f4558f6b8715878bd5575e",
+  "sourceHashConvention": "LF-normalised, as scripts/prepare-jane-eligible-execution.mjs",
+  "rawByteDifferenceExplainedByCRLF": [
+    "lib/advisory/hosted-test.mjs",
+    "lib/advisory/index-worker.mjs"
+  ],
+  "rawProbeRetained": true
+}

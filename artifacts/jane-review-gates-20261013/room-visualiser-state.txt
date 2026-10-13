@@ -1,0 +1,353 @@
+- link "Skip to content":
+  - /url: "#MainContent"
+- region "Announcement":
+  - paragraph: Made-to-measure curtains · UK delivery
+- banner:
+  - link "Open menu":
+    - /url: "#CukMenu-sections--25688773656955__curtainsuk-editorial-header"
+  - link "CurtainsUK home":
+    - /url: /
+    - img "CurtainsUK"
+  - link "Search":
+    - /url: /search
+  - link "Cart":
+    - /url: /cart
+    - generic: Cart
+- main:
+  - region "Room Visualiser":
+    - heading "Room Visualiser" [level=1]
+    - paragraph: Explore colours together. Start with a fabric you like, then adjust the room colours around it.
+    - iframe [id="CurtainsUKVisualiser-template--25726424973691__main"]:
+      - link "Skip to visualiser":
+        - /url: "#visualiser"
+      - main:
+        - region "Explore colours together":
+          - paragraph: CURTAINSUK ROOM VISUALISER
+          - heading "Explore colours together" [level=1]
+          - paragraph: Use the visualiser to explore how curtain fabrics might work with your walls, flooring, furniture and accessories. Try different combinations to understand the overall colour and interior feel before ordering your fabric samples.
+          - paragraph: Start with a fabric you like, then adjust the room colours around it.
+        - region "Try fabric and room colours":
+          - navigation "Room selection":
+            - button "Living Room" [pressed]
+            - button "Bedroom"
+            - button "Lounge"
+            - button "Office"
+          - region "Your room":
+            - group "View":
+              - button "Room view" [pressed]
+              - button "Curtain view"
+            - generic "Room with your selected curtain fabric and colours"
+            - generic: Sculpted ivory & brass
+            - generic: Room view
+            - group "Curtain state":
+              - button "Open curtains"
+              - button "Close curtains" [pressed]
+            - heading "Living Room" [level=2]
+            - paragraph: An ivory corner sofa, marble tables and warm brass around the original fireplace.
+            - generic: Curtains closed
+          - complementary "Fabric and colour choices":
+            - paragraph: MAKE IT YOUR SCHEME
+            - region "Curtain fabric":
+              - heading "Curtain fabric" [level=2]
+              - paragraph: Prestigious Textiles
+              - heading "SHAMBALA — LAGOON" [level=3]
+              - button "Change fabric"
+              - link "Order a sample of SHAMBALA in LAGOON (opens CurtainsUK in a new tab)":
+                - /url: https://www.curtainsuk.com/pages/fabric/pt-3697-770-shambala-lagoon
+                - text: Order sample
+                - generic: ↗
+              - link "Make curtains with SHAMBALA in LAGOON (opens CurtainsUK in a new tab)":
+                - /url: https://www.curtainsuk.com/pages/curtain-visualiser?fabric=pt-3697-770
+                - text: Make curtains
+                - generic: ↗
+              - paragraph: Fabric available
+              - link "View fabric details (opens CurtainsUK in a new tab)":
+                - /url: https://www.curtainsuk.com/pages/fabric/pt-3697-770-shambala-lagoon
+                - text: View fabric details ↗
+                - generic: (opens CurtainsUK in a new tab)
+            - generic "Adjust curtain position"
+            - region "Room ambience":
+              - heading "Room ambience" [level=3]
+              - group "Lighting":
+                - button "Daylight" [pressed]
+                - button "Evening"
+                - button "Fabric inspection"
+              - button "Chandelier & cove"
+              - button "Fireplace"
+              - paragraph: Fabric inspection uses consistent neutral light. Warm-light settings are remembered separately for each room.
+              - paragraph:
+                - text: "Material textures:"
+                - link "Powered by Poly Haven":
+                  - /url: https://polyhaven.com
+                - text: · CC0
+            - text: Walls
+            - generic: Warm white
+            - group "Walls":
+              - 'button "Walls: Warm white" [pressed]'
+              - 'button "Walls: Soft beige"'
+              - 'button "Walls: Sage"'
+              - 'button "Walls: Pale grey"'
+              - 'button "Walls: Muted blush"'
+              - 'button "Walls: Blue grey"'
+              - 'button "Walls: Warm taupe"'
+            - text: Flooring
+            - generic: Pale grey wood
+            - group "Flooring":
+              - 'button "Flooring: Light oak"'
+              - 'button "Flooring: Natural oak"'
+              - 'button "Flooring: Medium oak"'
+              - 'button "Flooring: Dark walnut"'
+              - 'button "Flooring: Pale grey wood" [pressed]'
+              - 'button "Flooring: Deep grey wood"'
+            - text: Sofa
+            - generic: Cream
+            - group "Sofa":
+              - 'button "Sofa: Cream" [pressed]'
+              - 'button "Sofa: Taupe"'
+              - 'button "Sofa: Beige"'
+              - 'button "Sofa: Sage"'
+              - 'button "Sofa: Olive"'
+              - 'button "Sofa: Blush"'
+              - 'button "Sofa: Terracotta"'
+              - 'button "Sofa: Soft blue"'
+              - 'button "Sofa: Navy"'
+              - 'button "Sofa: Charcoal"'
+            - text: Armchair
+            - generic: Cream
+            - group "Armchair":
+              - 'button "Armchair: Cream" [pressed]'
+              - 'button "Armchair: Taupe"'
+              - 'button "Armchair: Beige"'
+              - 'button "Armchair: Sage"'
+              - 'button "Armchair: Olive"'
+              - 'button "Armchair: Blush"'
+              - 'button "Armchair: Terracotta"'
+              - 'button "Armchair: Soft blue"'
+              - 'button "Armchair: Navy"'
+              - 'button "Armchair: Charcoal"'
+            - text: Cushions
+            - generic: Cream
+            - group "Cushions":
+              - 'button "Cushions: Cream" [pressed]'
+              - 'button "Cushions: Taupe"'
+              - 'button "Cushions: Beige"'
+              - 'button "Cushions: Sage"'
+              - 'button "Cushions: Olive"'
+              - 'button "Cushions: Blush"'
+              - 'button "Cushions: Terracotta"'
+              - 'button "Cushions: Soft blue"'
+              - 'button "Cushions: Navy"'
+              - 'button "Cushions: Charcoal"'
+              - 'button "Cushions: Natural"'
+            - text: Ceiling
+            - generic: Warm white
+            - group "Ceiling":
+              - 'button "Ceiling: Warm white" [pressed]'
+              - 'button "Ceiling: Soft beige"'
+              - 'button "Ceiling: Sage"'
+              - 'button "Ceiling: Pale grey"'
+              - 'button "Ceiling: Muted blush"'
+              - 'button "Ceiling: Blue grey"'
+              - 'button "Ceiling: Warm taupe"'
+            - button "Restore palette"
+            - paragraph: Choose a colour here, or tap a surface in the room.
+          - paragraph: Visual guide only — designed for fabric, colour and interior inspiration rather than an exact representation of finished curtains.
+        - region "Understand your colours":
+          - region "How to use colour in your room":
+            - paragraph: Understand your colours
+            - heading "How to use colour in your room" [level=2]
+            - paragraph: Start with what you love. Then explore how the colours around it feel together.
+            - region "Your current palette":
+              - heading "Your current palette" [level=3]
+              - generic: Living Room
+              - list:
+                - generic: Curtain
+                - generic: SHAMBALA — LAGOON
+                - generic: Walls
+                - generic: Warm white
+                - generic: Flooring
+                - generic: Pale grey wood
+                - generic: Sofa
+                - generic: Cream
+                - generic: Armchair
+                - generic: Cream
+                - generic: Cushions
+                - generic: Cream
+                - generic: Ceiling
+                - generic: Warm white
+              - paragraph: Your selected fabric and room colours, side by side. The fabric thumbnail shows its artwork, not a single matched colour.
+              - status: "Living Room palette: Curtain, SHAMBALA — LAGOON; Walls, Warm white; Flooring, Pale grey wood; Sofa, Cream; Armchair, Cream; Cushions, Cream; Ceiling, Warm white."
+            - article:
+              - paragraph: 01 — Begin with the fabric
+              - heading "Start with your curtain fabric" [level=3]
+              - paragraph: A patterned curtain often already contains several colours. Let it give you a starting point.
+              - list:
+                - strong: Choose a fabric you like.
+                - listitem: Look for its main or background colour.
+                - listitem: Notice one or two accent colours.
+                - listitem: Try those colours or related tones on walls, furniture and cushions.
+              - heading "Choosing a plain?" [level=4]
+              - paragraph:
+                - text: Decide whether your curtain should
+                - strong: blend with the room
+                - text: ", provide"
+                - strong: gentle contrast
+                - text: ", or become the"
+                - strong: main accent colour
+                - text: .
+              - paragraph: Curtains → Walls → Floor → Furniture → Cushions
+            - article "Three ways colours work together":
+              - paragraph: 02 — Explore a relationship
+              - heading "Three ways colours work together" [level=3]
+              - img "Colour relationships at a glance A wheel of colour families, labelled warm orange, yellow, green, blue, violet and pink. Choose Tonal, Analogous or Complementary to see a named example below. The wheel is an illustration, not a colour picker.":
+                - generic: Warm orange
+                - generic: Yellow
+                - generic: Green
+                - generic: Blue
+                - generic: Violet
+                - generic: Pink
+                - generic: Tonal
+                - generic: a starting point
+              - group "Colour relationship examples":
+                - button "Tonal" [pressed]
+                - button "Analogous"
+                - button "Complementary"
+              - heading "One colour family, different depths" [level=4]
+              - paragraph: Try lighter and darker versions of the same colour family.
+              - list:
+                - listitem: Sage
+                - listitem: Olive
+                - listitem: Deep green
+              - paragraph: Calm and coordinated.
+              - paragraph: There are no fixed rules — use these relationships as a starting point and choose combinations you enjoy living with.
+            - paragraph: Helpful tips
+            - heading "A little guidance, room to experiment" [level=3]
+            - article:
+              - heading "Warm or cool?" [level=3]
+              - heading "Warm colours" [level=4]
+              - paragraph: Cream, warm beige, terracotta, blush and warm browns can make a room feel warmer and more inviting.
+              - heading "Cool colours" [level=4]
+              - paragraph: Blue, sage, blue-grey and cooler greens can create a calmer, fresher feel.
+              - paragraph: Neutrals have undertones too. A beige may lean yellow, pink or grey, and these undertones can affect how it works with a curtain fabric.
+            - article:
+              - heading "Remember the floor" [level=3]
+              - paragraph: Flooring is a large area of colour and can strongly affect a scheme.
+              - list:
+                - paragraph:
+                  - strong: Light oak
+                  - text: Often feels lighter and warmer.
+                - paragraph:
+                  - strong: Natural or medium oak
+                  - text: A balanced, neutral base.
+                - paragraph:
+                  - strong: Dark wood
+                  - text: Adds stronger contrast.
+                - paragraph:
+                  - strong: Grey floors
+                  - text: Generally create a cooler base.
+              - paragraph: Choose the closest visualiser floor tone to your existing floor, rather than trying to match it exactly on screen.
+            - article:
+              - heading "A simple way to balance colour" [level=3]
+              - paragraph: The 60–30–10 idea is optional inspiration, not a rule.
+              - 'img "Colour balance illustration: 60 percent main room colour, 30 percent supporting colour, 10 percent accent colour"':
+                - generic: "60"
+                - generic: "30"
+                - generic: "10"
+              - term: 60% — Main room colour
+              - definition: Usually walls and large surfaces.
+              - term: 30% — Supporting colour
+              - definition: Furniture, flooring or curtains.
+              - term: 10% — Accent colour
+              - definition: Cushions and smaller accessories.
+              - paragraph: Patterned curtains can play more than one role because they may contain several colours.
+            - complementary "Colours on screen are a guide":
+              - heading "Colours on screen are a guide" [level=3]
+              - paragraph: Screens, lighting and surrounding colours can all change how a colour appears. The visualiser is designed to help you compare colour relationships and overall interior feel rather than provide an exact colour match.
+              - paragraph:
+                - strong: Always order a physical fabric sample and view it in your own room before making your final fabric choice.
+        - region "Bring your colours home":
+          - paragraph: THE NEXT STEP
+          - heading "Bring your colours home" [level=2]
+          - paragraph: Always order a physical fabric sample and view it in your own room before making your final fabric choice.
+          - paragraph: Look at it beside your walls, floor and furniture, in daylight and with your evening lighting.
+          - link "Explore this fabric sample (opens CurtainsUK in a new tab)":
+            - /url: https://www.curtainsuk.com/pages/fabric/pt-3697-770-shambala-lagoon
+            - text: Explore this fabric sample
+            - generic: ↗
+            - generic: (opens CurtainsUK in a new tab)
+        - generic "Designed to help you visualise your interior"
+        - generic: CurtainsUK Room Visualiser · Explore, compare, then choose with a sample.
+    - paragraph: Visual guide only — designed for fabric, colour and interior inspiration rather than an exact representation of finished curtains. Always use a physical fabric sample when making your final colour and fabric choice.
+- region "CurtainsUK help and information":
+  - paragraph: NEED SOME HELP?
+  - heading "We’re here from inspiration to installation." [level=2]
+  - navigation "CurtainsUK help":
+    - link "Measure Guided Measure":
+      - /url: /pages/how-to-measure
+      - generic: Measure
+      - strong: Guided Measure →
+    - link "Fit How to Fit":
+      - /url: /pages/how-to-fit
+      - generic: Fit
+      - strong: How to Fit →
+    - link "Samples Order Samples":
+      - /url: /pages/samples
+      - generic: Samples
+      - strong: Order Samples →
+    - link "Advice Contact Us":
+      - /url: /pages/contact-us
+      - generic: Advice
+      - strong: Contact Us →
+    - link "Privacy Room-image privacy":
+      - /url: /pages/room-image-ai-privacy
+      - generic: Privacy
+      - strong: Room-image privacy →
+  - navigation "Customer care and policies":
+    - generic "CurtainsUK +"
+    - generic "Help & Customer Care +"
+    - generic "Responsible Business +"
+    - generic "Legal & Privacy +"
+  - paragraph:
+    - strong: Customer support
+    - link "support@curtainsuk.com":
+      - /url: mailto:support@curtainsuk.com
+  - paragraph:
+    - strong: Complaints
+    - link "complaints@curtainsuk.com":
+      - /url: mailto:complaints@curtainsuk.com
+  - paragraph:
+    - strong: Media & Press
+    - link "media@curtainsuk.com":
+      - /url: mailto:media@curtainsuk.com
+  - paragraph: Apex Curtains Ltd trading as Curtains UK
+  - paragraph: "Customer contact and authorised returns: 36–44 Bolton Road, Blackburn, BB2 3FA"
+  - paragraph: Company 15652466
+  - paragraph:
+    - text: "Made-to-measure order-change requests:"
+    - link "enquiries@curtainsuk.com":
+      - /url: mailto:enquiries@curtainsuk.com
+- contentinfo:
+  - text: © 2026,
+  - link "CurtainsUK":
+    - /url: /
+  - link "Powered by Shopify":
+    - /url: https://www.shopify.com?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore
+  - list:
+    - text: ·
+    - link "Refund policy":
+      - /url: /policies/refund-policy
+    - text: ·
+    - link "Privacy policy":
+      - /url: /policies/privacy-policy
+    - text: ·
+    - link "Terms of service":
+      - /url: /policies/terms-of-service
+    - text: ·
+    - link "Shipping policy":
+      - /url: /policies/shipping-policy
+    - text: ·
+    - link "Contact information":
+      - /url: /policies/contact-information
+    - text: ·
+    - link "Cookie preferences":
+      - /url: "#shopifyReshowConsentBanner"

@@ -1,0 +1,184 @@
+{
+  "classification": "HOSTED_RESUMED_THREE_BATCHES_VERIFIED_THEN_METRICS_FRESHNESS_STOP",
+  "startingCommit": "90a6a0785e3eeaa18c24fe683279b84ec1c0a500",
+  "protectedCommit": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "connector": "link_6ab960d9f9ac8191b16ced4d6d2fb91d",
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "observedAt": "2026-10-12T04:52:46.675512+00:00",
+  "stopAt": "2026-10-12T04:51:57.471Z",
+  "stopCode": "STALE_HOST_METRICS",
+  "automationStatus": "PAUSED",
+  "runningOperator": false,
+  "coverage": {
+    "eligible": 24,
+    "denominator": 11517,
+    "remaining": 11493,
+    "totalSearchRows": 25,
+    "historicalPreserved": 6,
+    "historicalEligibleNoops": 5,
+    "newRowsThisResume": 18,
+    "newRowsThisEligibleJob": 19,
+    "canaryTarget": 120,
+    "canaryRemaining": 96,
+    "canaryComplete": false
+  },
+  "transactions": {
+    "thisResume": 3,
+    "totalEligibleJob": 4,
+    "ambiguous": 0,
+    "retries": 0,
+    "rollbacks": 0
+  },
+  "batchTimings": [
+    {
+      "verifiedAt": "2026-10-12T04:51:20.319Z",
+      "processed": 12,
+      "indexed": 12,
+      "batches": 2,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 7569
+    },
+    {
+      "verifiedAt": "2026-10-12T04:51:38.146Z",
+      "processed": 18,
+      "indexed": 18,
+      "batches": 3,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4850
+    },
+    {
+      "verifiedAt": "2026-10-12T04:51:55.316Z",
+      "processed": 24,
+      "indexed": 24,
+      "batches": 4,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0,
+      "elapsedSinceSourceStartMs": 4905
+    }
+  ],
+  "transportTimings": [
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "edf29b7c975219bcf1e2b7668f074d6df4fa3c66c8c55e67902ea8f3f6e8513b",
+      "durationMs": 4432
+    },
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "1e2be54e3f08cbd0dfabdd44cc7a3f9b539070e949a2d70ae7b6956d167484e8",
+      "durationMs": 2072
+    },
+    {
+      "kind": "commit-and-readback",
+      "planSha256": "e9d5a6123ab3500428b29c0ef6b937670135992cd7171c5ad2764c789488d89f",
+      "durationMs": 2433
+    }
+  ],
+  "timingNote": "Approximate end-to-end values from the beginning of source reads through verified journal receipt. The unchanged runner independently enforced its full 10000 ms limit. Transport durations include local operator bridging, not just SQL execution.",
+  "staleObservation": {
+    "sourceSampleAt": "2026-10-12T04:50:57.157Z",
+    "receivedAt": "2026-10-12T04:51:56.397Z",
+    "stopAgeMs": 60313.28076171875,
+    "maximumAgeMs": 60000,
+    "previousValidWindowMs": 74154.470703125,
+    "rawMetricsSha256": "b2bacf0ebe53530078cd2d59987772b9dabbfc1d0b8607c26ff119d4aa79f4c2"
+  },
+  "lastValidResources": {
+    "projectRef": "hqysjumypgeapgmqkcrx",
+    "source": "trusted-operator-telemetry",
+    "observedAt": 1791780657157.7192,
+    "windowMs": 74154.470703125,
+    "windowStartedAt": 1791780583003.2485,
+    "windowEndedAt": 1791780657157.7192,
+    "cpuPercent": 7.422501336188594,
+    "ioPercent": 3.5250740450517952,
+    "memoryPercent": 65.33673019273876,
+    "diskPercent": 78.58436536871383,
+    "details": {
+      "cpuCores": 2,
+      "memoryBytes": {
+        "total": 454995968,
+        "available": 157716480
+      },
+      "disks": {
+        "nvme0n1": {
+          "busyPercent": 3.5250740450517952,
+          "readIops": 75.51803616021233,
+          "writeIops": 3.1420897188088346,
+          "readBytesPerSecond": 1863995.7198720186,
+          "writtenBytesPerSecond": 25408.582680647443
+        },
+        "nvme1n1": {
+          "busyPercent": 0.3034206810037967,
+          "readIops": 2.5487337204071663,
+          "writeIops": 1.9014362676053462,
+          "readBytesPerSecond": 432166.8497682295,
+          "writtenBytesPerSecond": 386486.6369923699
+        }
+      },
+      "filesystems": {
+        "/": {
+          "sizeBytes": 10461904896,
+          "availableBytes": 2240483328,
+          "usedPercent": 78.58436536871383
+        },
+        "/data": {
+          "sizeBytes": 2077073408,
+          "availableBytes": 1039069184,
+          "usedPercent": 49.97436392965462
+        }
+      },
+      "ioDefinition": "Maximum observed disk busy-time fraction, not provisioned IOPS capacity"
+    },
+    "connections": 19,
+    "maxConnections": 60,
+    "lockWaits": 0,
+    "newDeadlocks": 0,
+    "newDatabaseErrors": 0,
+    "supplierRefreshActive": false
+  },
+  "backup": {
+    "id": 1937679152,
+    "status": "COMPLETED",
+    "isPhysical": true,
+    "insertedAt": "2026-10-12T01:11:28.231Z"
+  },
+  "recoveryOperator": "Nylon1",
+  "acceptedRpoSeconds": 86400,
+  "permissionRestored": true,
+  "historicalExact": true,
+  "migrationSha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "implementationSha256": "f9f4c069311ebbe21524166d561506cf3e054bdfafe0e1d0749acea27ae6e5f1",
+  "operatorBindingSha256": "7bc3b35190be4bd4f675fcfa0594a1804292edd5fd58349ebc36e191cb7d3024",
+  "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+  "publication": {
+    "count": 11517,
+    "identitySha256": "90634a31d12f1690ec48d2e6353a23c21be245a00ca431f8ad0cd181faf68488",
+    "freshlyReconciledAt": "2026-10-12T04:47:45.890Z"
+  },
+  "localTests": {
+    "passed": 28,
+    "failed": 0,
+    "newTransportAndLatencyCases": 6,
+    "existingHistoryPreserved": true
+  },
+  "paidOpenAiCostUsd": 0,
+  "migrationsApplied": 0,
+  "sourceMutations": 0,
+  "deployments": 0,
+  "privateEvidenceDirectory": "C:/Users/hamza/.codex/tmp/jane-eligible-resume-20261012-0445",
+  "evidenceSha256": {
+    "operator.mjs": "7bc3b35190be4bd4f675fcfa0594a1804292edd5fd58349ebc36e191cb7d3024",
+    "operator-evidence.jsonl": "3ac7f8d412ed0d8d48cdd210fe8afb511c0f6c27af4390d92b14c8c543a91a8a",
+    "execution-review.json": "12bc37abe17e63d718aa9bbdfd7a983e4d66bd761ea45f84807b12ed17ca4305",
+    "approval.json": "8eb5eb7285b53270a15f4f8b4b2675df2be66d48383d2efef6dde41cd5729da3",
+    "publication-reconciliation.json": "411d583f21ac18de39e5e56335ac17fd4dda64649e1de2d7e9d71838c0224337",
+    "preserved-shared-journal": "a8c2d91a2f6df4a92662967a832daf259b147fadece9cfb70a37f523ed9194cf"
+  },
+  "nextStep": "Add bounded read-only pacing before admission so a batch only starts with sufficient genuine sample freshness for both its work and immediate post-check. Keep the 60-second freshness and 10-second duration gates. Do not automatically restart this stopped invocation. Resume the same job at offset 24 after fresh admission. The hard deadline remains 2026-10-12T10:00:00Z."
+}

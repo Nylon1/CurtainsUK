@@ -1,0 +1,14 @@
+{
+  "command": "node --test lib/advisory/__tests__/connector-read-recovery.test.mjs lib/advisory/__tests__/retail-read-recovery.test.mjs lib/advisory/__tests__/active-client-gate.test.mjs",
+  "tests": 12,
+  "passed": 12,
+  "failed": 0,
+  "durationMs": 3469.7065,
+  "hostedProbe": {
+    "passed": true,
+    "observedAt": "2026-10-12T08:01:32.752Z",
+    "processed": 1560,
+    "hostedWrites": 0,
+    "previous503RetryAfterHonoured": true
+  }
+}

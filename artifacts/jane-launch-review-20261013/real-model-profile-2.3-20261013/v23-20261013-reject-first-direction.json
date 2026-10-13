@@ -1,0 +1,90 @@
+{
+  "id": "reject-first-direction",
+  "reviewCriteria": [
+    "Accept rejection without defending the previous recommendation",
+    "Change the relevant design relationship and ask only a useful question"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I want my bedroom to feel calm; the walls are pale blue.",
+      "advice": {
+        "text": "For a calm bedroom with pale blue walls, I’d start with soft ivory curtains in a gently textured plain. The slight warmth could balance the blue without creating a sharp contrast, while the texture keeps the room from feeling flat.\n\nA different approach is muted blue-grey, close to the wall colour, for a more enveloping, tonal feel. I’d keep pattern subtle rather than adding strong outlines. What colour are your bedding and main furniture?",
+        "stage": "understand",
+        "palette": [
+          "Soft ivory",
+          "Muted blue-grey"
+        ],
+        "patternDirection": "Plain or subtly patterned, with gentle rather than sharp contrast.",
+        "textureDirection": "Soft, understated texture to add depth.",
+        "alternatives": [
+          "Muted blue-grey curtains close to the wall colour for a more tonal, enveloping effect."
+        ],
+        "questions": [
+          "What colour are your bedding and main furniture?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I dislike all those suggestions. They feel too cold and impersonal.",
+      "advice": {
+        "text": "Understood. Let’s move away from cool, restrained tones towards something warmer and more personal. Dusty terracotta curtains with a soft, matte texture could give the pale blue walls an earthy counterpoint without a stark contrast.\n\nAlternatively, a gently faded floral combining warm rose and muted blue could feel more intimate and collected, though less visually quiet than a plain. Does calm, for you, mean cosy and enveloping rather than pared-back?",
+        "stage": "refine",
+        "palette": [
+          "Dusty terracotta",
+          "Warm rose",
+          "Muted blue"
+        ],
+        "patternDirection": "A plain for visual quiet, or a gently faded floral for a more personal, collected feel.",
+        "textureDirection": "Soft, matte texture rather than a cool or crisp finish.",
+        "alternatives": [
+          "A faded floral combining warm rose and muted blue, trading some simplicity for a more intimate feel."
+        ],
+        "questions": [
+          "Does calm, for you, mean cosy and enveloping rather than pared-back?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Please try a different approach and do not repeat the same palette.",
+      "advice": {
+        "text": "Let’s start with character rather than another colour scheme. A relaxed woven fabric with a softly irregular surface could make the bedroom feel more lived-in and less formally styled. I’d favour a plain with visible texture over a crisp, smooth finish.\n\nIf that still feels impersonal, a loose botanical pattern could bring more individuality, with generous space between motifs to keep it restful. Is there a favourite object or textile in the room that captures the feeling you want?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "A loose botanical with generous space between motifs as an alternative to a textured plain.",
+        "textureDirection": "Relaxed weave with a softly irregular, matte surface rather than a crisp, smooth finish.",
+        "alternatives": [
+          "An airy botanical pattern for more individuality, with a little more visual activity than a plain."
+        ],
+        "questions": [
+          "Is there a favourite object or textile in the room that captures the feeling you want?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

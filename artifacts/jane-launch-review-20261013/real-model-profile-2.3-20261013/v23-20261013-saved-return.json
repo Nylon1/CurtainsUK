@@ -1,0 +1,112 @@
+{
+  "id": "saved-return",
+  "reviewCriteria": [
+    "Actual save/recover commands precede the return turn",
+    "Recall earlier dislikes and introduce the bedspread without inventing a chosen fabric"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My bedroom walls are pale pink, with grey carpet. I dislike strong patterns and shiny fabric.",
+      "advice": {
+        "text": "For your pale pink walls and grey carpet, I’d start with a plain, matt fabric with a gentle woven texture. A warm stone or soft taupe could bridge the pink and grey without introducing a strong pattern, especially if the carpet has a cool undertone.\n\nFor a more distinct contrast, muted sage could bring a little colour while keeping the room restful. Would you prefer the curtains to blend quietly into the room, or add a soft contrast?",
+        "stage": "understand",
+        "palette": [
+          "Warm stone",
+          "Soft taupe",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain, avoiding strong patterns.",
+        "textureDirection": "Matt fabric with a gentle woven texture, avoiding sheen.",
+        "alternatives": [
+          "Warm stone or soft taupe for a quiet connection between the pink walls and grey carpet.",
+          "Muted sage for a gentle colour contrast."
+        ],
+        "questions": [
+          "Would you prefer the curtains to blend quietly into the room, or add a soft contrast?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "save",
+      "status": "completed",
+      "revision": 2,
+      "contexts": 0,
+      "messages": 2
+    },
+    {
+      "action": "recover",
+      "status": "completed",
+      "revision": 3,
+      "contexts": 0,
+      "messages": 2
+    },
+    {
+      "action": "message",
+      "customer": "I am back. Keep those preferences, but the new bedspread is a large floral. What changes?",
+      "advice": {
+        "text": "With a large floral bedspread, I’d keep the curtains plain and matt, letting the bedspread carry the pattern. A gentle, even weave would add softness without competing with it; I’d avoid pronounced slubs or stripes.\n\nWarm stone or taupe still offers a quiet link between the pink walls and grey carpet. Alternatively, picking up a muted colour from the floral could make the room feel more connected, provided it suits those undertones. What are the main colours in the new bedspread?",
+        "stage": "refine",
+        "palette": [
+          "Warm stone",
+          "Soft taupe"
+        ],
+        "patternDirection": "Plain curtains to balance the large floral bedspread; avoid strong patterns.",
+        "textureDirection": "Matt finish with a gentle, even weave rather than pronounced slubs or stripes.",
+        "alternatives": [
+          "Pick up a muted colour from the bedspread for a more connected, softly contrasting scheme."
+        ],
+        "questions": [
+          "What are the main colours in the new bedspread?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Give me a short summary of the direction and what still needs checking.",
+      "advice": {
+        "text": "Keep the curtains plain and matt, with a gentle, even woven texture, so the large floral bedspread remains the focal point. Warm stone or soft taupe is the quieter direction alongside your pale pink walls and grey carpet. Alternatively, a muted colour drawn from the floral could create a more connected scheme.\n\nStill to check: the bedspread’s main colours, the carpet’s warm or cool undertone, and how the fabric looks in your bedroom light. Privacy and light-blocking needs also remain undecided.",
+        "stage": "conclude",
+        "palette": [
+          "Warm stone",
+          "Soft taupe"
+        ],
+        "patternDirection": "Plain curtains to balance the large floral bedspread; avoid strong patterns.",
+        "textureDirection": "Matt fabric with a gentle, even weave; avoid shine and pronounced slubs.",
+        "alternatives": [
+          "A muted colour drawn from the bedspread, checked against the pink walls and grey carpet."
+        ],
+        "questions": [
+          "What are the bedspread’s main colours?",
+          "How much privacy and light blocking do you need?"
+        ],
+        "nextSteps": [
+          "Check the carpet’s undertone and the bedspread’s colours together.",
+          "Assess the proposed fabric colour and texture in the bedroom’s daylight and evening lighting."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,48 @@
+✔ 120-second exception is bound to the approved eligible snapshot and keeps 60-second freshness (108.5783ms)
+✔ eligible admission blocks stale backup, missing operator, hourly telemetry, source drift and changed no-op data (18.3653ms)
+✔ actual SQL creates separate job, verifies five no-ops, enforces canary and preserves historical rows and role grants (4150.7238ms)
+✔ historical drift, collision and active lease roll back eligible SQL without granting lasting access (2311.1225ms)
+✔ combined transport executes real eligible transaction and observes restored grants after COMMIT (2232.4719ms)
+✔ complete source, submission and readback duration still stops at ten seconds after verified commit (17.3248ms)
+✔ read-only pacing precedes fresh checkpoint and source evidence, and a pacing failure submits nothing (24.5133ms)
+✔ approved full-batch duration accepts over ten seconds and stops at twenty with exact readback (141.1085ms)
+✔ host freshness extension does not extend source, publication, checkpoint or backup admission age (65.5734ms)
+✔ one approval completes synthetic 11517 manifest in bounded invocations and reports every 1000 (42307.0468ms)
+✔ lost commit recovers exact readback without duplicate submission; uncommitted ambiguity stays stopped (49.2317ms)
+✔ unhealthy canary, missing backup, load and permission failures stop automatically without retries (74.923ms)
+✔ second operator is excluded and altered implementation or journal cannot submit a batch (58.9623ms)
+✔ host freshness exception requires exact scope and leaves the 120-second counter window unchanged (2.4084ms)
+✔ 20-second latency exception is bound to the existing job, project and exact population (0.7056ms)
+✔ one request contains unchanged commit then read-only verification, fsynced first and hash bound (6.0185ms)
+✔ failed journal and lost or empty commit responses cannot be resubmitted (1.9704ms)
+✔ recovery without cached submission is read-only and invalid plans fail closed (1.6565ms)
+✔ Postgres readback failure after COMMIT leaves committed row for read-only recovery (3272.3526ms)
+✔ accepts sufficient genuine headroom without sleeping or changing timestamps (3.5478ms)
+✔ explicit 180-second exception retains thirty seconds of pre-admission headroom (1.077ms)
+✔ cached samples are read-only waiting, then a genuine new sample permits admission (2.73ms)
+✔ unchanging exporter has a bounded wait, with no synthetic fresh measurement (2.6344ms)
+✔ hard deadline and access failure terminate pacing without retries (1.2868ms)
+✔ fresh unsafe, invalid, reset or overlong-window samples cannot be admitted (1.8099ms)
+✔ derives CPU, disk busy time, memory, filesystem pressure and I/O rates from source time (6.3743ms)
+✔ cached content cannot be relabelled as fresh by a newer HTTP Date (2.0802ms)
+✔ stale source time and windows above 60 seconds fail closed (2.6768ms)
+✔ owner exception accepts genuine 120-second windows without relaxing freshness or default policy (8.9497ms)
+✔ new owner exception accepts 60.313 through 180 seconds but rejects older host samples (8.7753ms)
+✔ restart, CPU topology changes and counter resets fail closed (3.8294ms)
+✔ missing gauges, failed collectors, duplicates and wrong projects are rejected (2.8267ms)
+✔ malformed labels, NaN, invalid capacity and read-only data filesystem are rejected (2.8094ms)
+✔ unrelated potentially private metrics and comments are discarded (1.0399ms)
+✔ a mounted data disk cannot silently lose all of its I/O series (1.2042ms)
+✔ storage remapping and counters inconsistent with elapsed source time fail closed (2.7223ms)
+✔ all 16883 recorded identities traverse once in 2814 bounded pages; this is not knowledge population (49.7701ms)
+✔ manifest rejects duplicates, tampering, wrong project, truncation and crossed checkpoints (105.0846ms)
+✔ resource admission refuses stale/missing telemetry, load spikes and concurrent supplier work (1.3119ms)
+✔ monitored population requires approval, bounds invocations and stops before next write on pressure (22.5715ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51979.5932

@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-13T13:45:53.527Z",
+  "classification": "HOSTED_INDEX_READ_AND_PUBLIC_DETAIL",
+  "source": "existing advisory.knowledge_search and published CurtainsUK exact fabric-detail projection",
+  "writeCount": 0,
+  "results": [
+    {"query":"olive","count":6,"ids":["pt-4291-618","pt-4292-618","pt-4293-618","pt-4295-618","pt-4296-618","pt-4297-618"],"allKnowledgeOnly":true,"durationMs":7243},
+    {"query":"linen","count":6,"ids":["pt-7247-031","pt-8833-031","pt-1281-031","pt-4065-031","pt-7208-031","pt-7224-031"],"allKnowledgeOnly":true,"durationMs":8648},
+    {"query":"geometric","count":6,"ids":["pt-4254-076","pt-4254-116","pt-4254-513","pt-4254-655","pt-4255-655","pt-4265-162"],"allKnowledgeOnly":true,"durationMs":4964},
+    {"query":"velvet","count":6,"ids":["sdg-drof236930","sdg-dysi226532","sdg-dysi226533","sdg-f1304-06","sdg-f1304-07","sdg-f1304-08"],"allKnowledgeOnly":true,"durationMs":4967},
+    {"query":"cream","count":6,"ids":["pt-7147-004","pt-7152-004","pt-7154-004","pt-7198-004","pt-7208-004","pt-7217-004"],"allKnowledgeOnly":true,"durationMs":4645},
+    {"query":"floral","count":6,"ids":["pt-4262-162","pt-4262-247","pt-4262-641","pt-4262-770","pt-4263-162","pt-4263-641"],"allKnowledgeOnly":true,"durationMs":4679}
+  ],
+  "limits": "Six fixed read-only queries; each search returns at most six exact IDs; public details are bounded to two concurrent requests. Missing facts remain null, and purchase eligibility requires a separate governed retail check."
+}

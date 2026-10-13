@@ -1,0 +1,41 @@
+{
+  "observedAt": "2026-10-12T07:09:31.632Z",
+  "hostedObservedAt": "2026-10-12T07:08:34.122599+00:00",
+  "processed": 1008,
+  "expected": 11517,
+  "batches": 168,
+  "uniqueIds": 1008,
+  "manifestPrefixMatches": true,
+  "planHashesVerified": 168,
+  "verifiedReceiptCount": 168,
+  "checkpoint546": {
+    "observedAt": "2026-10-12T06:29:33.697Z",
+    "receipt": {
+      "processed": 546,
+      "indexed": 546,
+      "batches": 91,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    },
+    "pendingWrite": false,
+    "interruptedRequestReadOnly": true
+  },
+  "checkpoint978": {
+    "observedAt": "2026-10-12T07:02:08.808Z",
+    "receipt": {
+      "processed": 978,
+      "indexed": 978,
+      "batches": 163,
+      "complete": false,
+      "permissionRestored": true,
+      "unchanged": 0
+    },
+    "pendingWrite": false,
+    "interruptedRequestReadOnly": true
+  },
+  "executionDependencySha256": "a22aee52b6bc46170e60328a7a7bb97500ee667c8aeb4edf90d6c5403f63f70a",
+  "currentCodeCommit": "942556b2018bae90f158940c03b86f0cfb7f69f0",
+  "deadline": "2026-10-12T10:00:00Z",
+  "scope": "One-time customer-eligible population, not all historical Fabric Master identities"
+}

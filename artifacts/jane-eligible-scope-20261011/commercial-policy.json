@@ -1,0 +1,14 @@
+[
+  {
+    "policy": {
+      "guideCounts": {
+        "withGuide": 11790,
+        "candidates": 11790,
+        "stockCurrent": 10059,
+        "stockUnknown": 14,
+        "sampleCurrent": 11576
+      },
+      "commercialRule": "CREATE OR REPLACE FUNCTION curtainsuk_private.fabric_commercial_evidence(p_ids text[])\n RETURNS jsonb\n LANGUAGE plpgsql\n STABLE\n SET search_path TO ''\nAS $function$\r\ndeclare result jsonb;\r\nbegin\r\n if coalesce(array_length(p_ids,1),0)>48 then raise exception 'RETAIL_PAGE_TOO_LARGE'; end if;\r\n select coalesce(jsonb_agg(jsonb_build_object('fabric_id',c.fabric_id,\r\n 'stale',coalesce(s.checked_at<now()-curtainsuk_private.stock_validity_window(),true) or coalesce(s.checked_at>now(),false),\r\n 'stock',case when c.lifecycle_state='DISCONTINUED' or s.lifecycle_state='DISCONTINUED' then 'NO_LONGER_AVAILABLE'\r\n when s.supplier_sku is null or s.checked_at<now()-curtainsuk_private.stock_validity_window() or s.checked_at>now() then 'AVAILABILITY_TO_BE_CONFIRMED'\r\n when s.aggregate_metres-coalesce(u.used,0)>=30 then 'FABRIC_AVAILABLE' else 'TEMPORARILY_UNAVAILABLE' end,\r\n 'sample_stock_available',coalesce(s.checked_at>=now()-curtainsuk_private.stock_validity_window() and s.checked_at<=now()\r\n   and c.lifecycle_state<>'DISCONTINUED' and s.lifecycle_state<>'DISCONTINUED'\r\n   and s.aggregate_metres-coalesce(u.used,0)>0,false),\r\n 'price_confirmed',exists(\r\n select 1 from curtainsuk_private.supplier_snapshots p join curtainsuk_private.supplier_snapshot_prices price using(snapshot_id)\r\n where p.supplier_id=c.supplier_id and p.supplier_sku=c.supplier_sku and p.validation_status='VALIDATED'\r\n and p.checked_at<=now()  and price.currency='GBP' and ((p.supplier_id='prestigious-textiles' AND (coalesce(price.cut_trade_price,0)>0 OR coalesce(price.standard_trade_price,0)>0)) OR (p.supplier_id<>'prestigious-textiles' AND price.cut_trade_price>0))\n and (select e.promotion_state from curtainsuk_private.supplier_promotion_events e where e.snapshot_id=p.snapshot_id order by e.created_at desc limit 1)='APPROVED_FOR_PROJECTION'\r\n ))),'[]'::jsonb) into result\r\n from curtainsuk_private.fabric_colourways c\r\n left join lateral (select * from curtainsuk_private.daily_stock_snapshots s where s.supplier_id=c.supplier_id and s.supplier_sku=c.supplier_sku order by snapshot_date desc limit 1) s on true\r\n left join lateral (select sum(metres) used from curtainsuk_private.daily_stock_usage u where u.supplier_id=c.supplier_id and u.supplier_sku=c.supplier_sku and u.confirmed_at>=s.checked_at) u on true\r\n where c.fabric_id=any(p_ids);\r\n return result;\r\nend $function$\n"
+    }
+  }
+]

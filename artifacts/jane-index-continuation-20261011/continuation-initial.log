@@ -1,0 +1,54 @@
+✔ unknown values are excluded from meaningful field coverage, including empty array members (1.9461ms)
+✔ continuation refuses old approval, scope overrun, stale evidence, wrong IDs and changed checkpoints (130.09ms)
+✖ 20 resumable connector batches preserve original worker format, ACLs and truthful legacy coverage (3568.805ms)
+✖ active gate, late failure, changed null denominator and supplier SQL text cannot bypass the transaction (3086.512ms)
+✖ final short batch requires fresh whole-manifest attestation before declaring complete (3016.0776ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 2
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20234.0539
+
+✖ failing tests:
+
+test at lib\advisory\__tests__\continuation-plan.test.mjs:41:1
+✖ 20 resumable connector batches preserve original worker format, ACLs and truthful legacy coverage (3568.805ms)
+  Error: FIRST_BATCH_SOURCE_MISMATCH
+      at fail (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/contracts.mjs:4:47)
+      at prepareFirstBatch (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/first-batch-plan.mjs:22:332)
+      at setup (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-plan.test.mjs:23:16)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-plan.test.mjs:42:20)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    code: 'FIRST_BATCH_SOURCE_MISMATCH',
+    status: 503
+  }
+
+test at lib\advisory\__tests__\continuation-plan.test.mjs:64:1
+✖ active gate, late failure, changed null denominator and supplier SQL text cannot bypass the transaction (3086.512ms)
+  Error: FIRST_BATCH_SOURCE_MISMATCH
+      at fail (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/contracts.mjs:4:47)
+      at prepareFirstBatch (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/first-batch-plan.mjs:22:332)
+      at setup (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-plan.test.mjs:23:16)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-plan.test.mjs:65:20)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    code: 'FIRST_BATCH_SOURCE_MISMATCH',
+    status: 503
+  }
+
+test at lib\advisory\__tests__\continuation-plan.test.mjs:83:1
+✖ final short batch requires fresh whole-manifest attestation before declaring complete (3016.0776ms)
+  Error: FIRST_BATCH_SOURCE_MISMATCH
+      at fail (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/contracts.mjs:4:47)
+      at prepareFirstBatch (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/first-batch-plan.mjs:22:332)
+      at setup (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-plan.test.mjs:23:16)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-plan.test.mjs:85:23)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    code: 'FIRST_BATCH_SOURCE_MISMATCH',
+    status: 503
+  }

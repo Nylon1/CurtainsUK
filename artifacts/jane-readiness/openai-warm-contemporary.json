@@ -1,0 +1,95 @@
+{
+  "id": "warm-contemporary",
+  "reviewCriteria": [
+    "Connect undertones to oak and north light without assuming light guarantees",
+    "Offer a meaningful alternative; no forced SKU"
+  ],
+  "transcript": [
+    {
+      "customer": "I want warm contemporary curtains. The room has oak flooring and cream walls.",
+      "advice": {
+        "text": "With oak flooring and cream walls, I’d start with warm oatmeal or a soft mushroom curtain in a gently textured, matt fabric. That would keep the room contemporary without losing warmth; a little tonal depth would also stop the curtains disappearing into the walls.\n\nFor a more distinctive alternative, muted clay could introduce colour while sitting comfortably alongside the oak. I’d lean towards a plain weave rather than a pronounced pattern initially, letting texture bring the interest.\n\nWhat colour are your main furnishings, particularly the sofa? And does the room get plenty of daylight, or feel rather shaded?",
+        "stage": "understand",
+        "palette": [
+          "Warm oatmeal",
+          "Soft mushroom",
+          "Muted clay"
+        ],
+        "patternDirection": "Plain or quietly tonal rather than a pronounced pattern.",
+        "textureDirection": "Gently textured, matt fabric.",
+        "alternatives": [
+          "Muted clay for a warmer, more distinctive colour accent."
+        ],
+        "questions": [
+          "What colour are your main furnishings, particularly the sofa?",
+          "Does the room get plenty of daylight, or feel rather shaded?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "The room faces north. I want a warm feel without yellow or gold.",
+      "advice": {
+        "text": "That helps: north-facing light can make pale neutrals feel cooler, so I’d shift towards a warm mushroom with a gentle pink-brown undertone, rather than a yellow-based oatmeal. It should sit comfortably with the oak and cream while giving the curtains enough depth to feel intentional.\n\nA matt, softly textured plain would keep the look contemporary without making it feel stark. For more colour, dusty clay or muted rose-brown would add warmth without yellow or gold; I’d avoid distinctly blue-grey neutrals for this direction.\n\nWhat colour is your sofa or largest upholstered piece?",
+        "stage": "refine",
+        "palette": [
+          "Warm mushroom with pink-brown undertones",
+          "Dusty clay",
+          "Muted rose-brown"
+        ],
+        "patternDirection": "Plain rather than a pronounced pattern, with gentle tonal contrast against the cream walls.",
+        "textureDirection": "Matt, softly textured weave.",
+        "alternatives": [
+          "Dusty clay or muted rose-brown for more colour and warmth without yellow or gold."
+        ],
+        "questions": [
+          "What colour is your sofa or largest upholstered piece?"
+        ],
+        "nextSteps": [
+          "Use the main upholstery colour to narrow the curtain palette."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Summarise two different directions and why each might work.",
+      "advice": {
+        "text": "**1. Quiet and tonal:** warm mushroom with a subtle pink-brown undertone, in a matt, softly textured plain. This would bridge the cream walls and oak flooring, adding depth without a yellow or gold cast. It’s the calmer, more understated contemporary option.\n\n**2. Softly contrasting:** dusty clay or muted rose-brown, again with restrained texture rather than a strong pattern. These shades would introduce gentle colour and help counter the cool feel of north-facing light, while keeping the room warm rather than golden.\n\nFor either direction, check the fabric beside your walls and flooring in the room’s daylight and evening lighting before committing.",
+        "stage": "conclude",
+        "palette": [
+          "Warm mushroom with pink-brown undertones",
+          "Dusty clay",
+          "Muted rose-brown"
+        ],
+        "patternDirection": "Plain rather than strongly patterned, keeping the contemporary look calm.",
+        "textureDirection": "Matt, softly textured fabric for warmth and subtle depth.",
+        "alternatives": [
+          "Quiet, tonal warm mushroom",
+          "Softly contrasting dusty clay or muted rose-brown"
+        ],
+        "questions": [
+          "What colour is your sofa or largest upholstered piece?"
+        ],
+        "nextSteps": [
+          "Compare the two colour directions beside the cream walls and oak flooring in daylight and evening lighting."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "classification": "READ_ONLY_HOSTED_METADATA_NOT_SOURCE_COVERAGE",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "sources": [
+    {
+      "name": "browse_projection_dirty",
+      "exists": true,
+      "indexes": [
+        "CREATE UNIQUE INDEX browse_projection_dirty_pkey ON curtainsuk_private.browse_projection_dirty USING btree (fabric_id)"
+      ],
+      "estimatedRows": 0
+    },
+    {
+      "name": "fabric_catalogue_import_runs",
+      "exists": true,
+      "indexes": [
+        "CREATE UNIQUE INDEX fabric_catalogue_import_runs_pkey ON curtainsuk_private.fabric_catalogue_import_runs USING btree (import_id)",
+        "CREATE INDEX fabric_catalogue_import_runs_supplier_idx ON curtainsuk_private.fabric_catalogue_import_runs USING btree (supplier_id, imported_at DESC)"
+      ],
+      "estimatedRows": 721
+    },
+    {
+      "name": "fabric_catalogue_observations",
+      "exists": true,
+      "indexes": [
+        "CREATE UNIQUE INDEX fabric_catalogue_observations_pkey ON curtainsuk_private.fabric_catalogue_observations USING btree (observation_id)",
+        "CREATE INDEX fabric_catalogue_observations_history_idx ON curtainsuk_private.fabric_catalogue_observations USING btree (supplier_id, supplier_sku, observed_at DESC)"
+      ],
+      "estimatedRows": 16552
+    },
+    {
+      "name": "fabric_hybrid_registration_events",
+      "exists": true,
+      "indexes": [
+        "CREATE UNIQUE INDEX fabric_hybrid_registration_events_pkey ON curtainsuk_private.fabric_hybrid_registration_events USING btree (event_id)"
+      ],
+      "estimatedRows": 2464
+    },
+    {
+      "name": "fabric_retail_profiles",
+      "exists": true,
+      "indexes": [
+        "CREATE UNIQUE INDEX fabric_retail_profiles_pkey ON curtainsuk_private.fabric_retail_profiles USING btree (fabric_id)"
+      ],
+      "estimatedRows": 256
+    },
+    {
+      "name": "fabric_visual_knowledge_patches",
+      "exists": true,
+      "indexes": [
+        "CREATE UNIQUE INDEX fabric_visual_knowledge_patches_pkey ON curtainsuk_private.fabric_visual_knowledge_patches USING btree (patch_id)",
+        "CREATE UNIQUE INDEX fabric_visual_knowledge_patches_active_fabric ON curtainsuk_private.fabric_visual_knowledge_patches USING btree (fabric_id) WHERE (retired_at IS NULL)"
+      ],
+      "estimatedRows": 961
+    }
+  ],
+  "observedAt": "2026-10-12T18:34:21.437988+00:00"
+}

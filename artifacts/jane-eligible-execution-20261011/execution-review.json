@@ -1,0 +1,69 @@
+{
+  "classification": "LOCAL_ELIGIBLE_EXECUTION_REVIEW_NOT_HOSTED_CLEARANCE",
+  "conditionalOwnerApprovalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6113454744",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "manifest": {
+    "hash": "007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+    "count": 11517,
+    "snapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed"
+  },
+  "identitySha256": "90634a31d12f1690ec48d2e6353a23c21be245a00ca431f8ad0cd181faf68488",
+  "bundleHash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "implementationSha256": "c8a59c531a67782ec27d0b118d2323451209a8ed98260548f903a5e9f8f7738c",
+  "codeManifest": {
+    "lib/advisory/catalogue.mjs": "483dce0ba425615b623a4f913445f9fb34c3412187e6e7ccab3bfa89dc3a6b65",
+    "lib/advisory/cloud-handler.mjs": "03db10b990336d9c5eb10e51d09233873d34db1c2184efd8d450e12fb23365f9",
+    "lib/advisory/cloud-store.mjs": "753ab2aeae654a40fff9a6f19b651d962e02e581fb668808ffa2a0637ad829e0",
+    "lib/advisory/contracts.mjs": "ae3f14992d04545ef3c0ea47e0b6af7a485e035468eca10e4f5c155b23eaa7dd",
+    "lib/advisory/customer-language.mjs": "34df21de161edcbca469d779ecc33fe97f749a82611dad76334940a9e662ea1c",
+    "lib/advisory/eligible-admission.mjs": "25ae94e4677dfb838afe645b62b790ba911d09e3a3625fc92fb0a929c89ffa25",
+    "lib/advisory/eligible-manifest.mjs": "c88c15fdb75c41c771fc48fd8cfb7982cfb43b0e1445fe7280e982bd86be6954",
+    "lib/advisory/eligible-plan.mjs": "6a7562edc62afc8c364941fbed9834e6c99affa8653be29009f242f8dc7c4033",
+    "lib/advisory/eligible-runner.mjs": "91a5a07ba15404be04ae95897fe6831b4712ece9761bb83b463d4aa7bdaa9a34",
+    "lib/advisory/guidance.mjs": "4ab6cb7085e1e6a7e4801bf4067f01d5efe73a803e871c190c00a34a26935a3f",
+    "lib/advisory/hosted-test.mjs": "26e09e30f8292720019fdd792f7a826ebc4ad75f5ebd45691165c256ec335314",
+    "lib/advisory/http.mjs": "36a04fa959de0e6e22bcd0eb8034f1f63f61af841b83def25efea2d1ff07a1c7",
+    "lib/advisory/index-journal.mjs": "23351cd23b4d1b51fbaccf75db3a0ef83845eb23fbab3b50ca67800dda167038",
+    "lib/advisory/index-population.mjs": "c75f9d8fa97691d4d7411a7d83be1272acfbd829fcc13af7877cb6721eda5112",
+    "lib/advisory/index-worker.mjs": "a1f0f747896bd13659057c8686a25efc247db8d16d3a3d3afb7f727a80d4e0d3",
+    "lib/advisory/knowledge-query.mjs": "858d8ca78ac7953bab97e041ffef46eede01d32760c98c821148069d6b27dd61",
+    "lib/advisory/knowledge-search.mjs": "ed32e106704d9b100dac153385ae5f322b422e5f44f5d5a765c4fc1ad2c93f2c",
+    "lib/advisory/mock-provider.mjs": "ca3501140b263beed07fc4fbac14b36c460950b9787f024559f026531266b0f8",
+    "lib/advisory/population-resources.mjs": "063fba077965208e8337323dc387ac205713cbcc681f0ccf423b491d91fcffaf",
+    "lib/advisory/profiles.mjs": "28c295848c0b0e0b4cf152e1d9f6f0f87948cd28b4a1ba9c16acd44873509dd3",
+    "lib/advisory/security.mjs": "2531bb8dec1698783bbe9c6dc5996b35c325c2e191acdef3c97e25cff03f3a2b",
+    "lib/advisory/service.mjs": "21119fd8c2722a5473b65b0d530ccb1ee0d53dbb7ea58540dc13adac96debfe9",
+    "lib/advisory/session-cipher.mjs": "24b895664bdf44e4d61d7b77daf8cf7bfe25b1b35bcb5d22f0f06d2bb39a85bb"
+  },
+  "eligiblePopulation": {
+    "startOffset": 0,
+    "endOffset": 11517,
+    "canaryEnd": 120,
+    "historicalJobId": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+    "historicalSha256": "19d99d8ca796f4b73a57b2df01e4ac55189a651d32c0ede452a852302847b0a0",
+    "unchangedIds": [
+      "pt-1204-212",
+      "pt-1223-374",
+      "pt-1224-002",
+      "pt-1225-314",
+      "pt-1225-722"
+    ]
+  },
+  "newJobCreated": false,
+  "initialNewRows": 115,
+  "totalNewRows": 11512,
+  "maximumBatchesPerInvocation": 20,
+  "identitiesPerBatch": 6,
+  "minimumPacingMs": 5000,
+  "batchCount": 1920,
+  "invocationCount": 96,
+  "implemented": "Separate bootstrap, unchanged rows, SQL fences, grant restoration, exact readback, canary boundary and single-approval bounded continuation",
+  "executionReady": false,
+  "blockers": [
+    "Verified backup after 18:55:39 UTC advisory writes, recovery operator and accepted RPO",
+    "Fresh short-window host metrics and secure operator-access verification"
+  ],
+  "nextAction": "Bind fresh trusted read-only project/publication/resource/backup ports. Once prerequisites pass, use the existing conditional approval for the canary and healthy continuation. Do not reuse stale captured evidence.",
+  "hostedExecution": "NOT STARTED",
+  "paidApiCostUsd": 0
+}

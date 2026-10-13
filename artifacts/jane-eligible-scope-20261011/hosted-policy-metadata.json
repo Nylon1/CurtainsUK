@@ -1,0 +1,329 @@
+[
+  {
+    "metadata": {
+      "columns": [
+        {
+          "type": "boolean",
+          "table": "browse_projection_control",
+          "column": "singleton"
+        },
+        {
+          "type": "uuid",
+          "table": "browse_projection_control",
+          "column": "active_generation"
+        },
+        {
+          "type": "timestamp with time zone",
+          "table": "browse_projection_control",
+          "column": "refreshed_at"
+        },
+        {
+          "type": "timestamp with time zone",
+          "table": "browse_projection_control",
+          "column": "knowledge_cache_refreshed_at"
+        },
+        {
+          "type": "boolean",
+          "table": "browse_projection_control",
+          "column": "knowledge_cache_dirty"
+        },
+        {
+          "type": "timestamp with time zone",
+          "table": "browse_projection_control",
+          "column": "next_time_change_at"
+        },
+        {
+          "type": "jsonb",
+          "table": "browse_projection_control",
+          "column": "metadata"
+        },
+        {
+          "type": "uuid",
+          "table": "browse_read_projection",
+          "column": "generation_id"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "fabric_id"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "supplier_id"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "supplier_sku"
+        },
+        {
+          "type": "bigint",
+          "table": "browse_read_projection",
+          "column": "guide_minor"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "colour_name"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "brand"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "design"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "collection"
+        },
+        {
+          "type": "ARRAY",
+          "table": "browse_read_projection",
+          "column": "window_types"
+        },
+        {
+          "type": "ARRAY",
+          "table": "browse_read_projection",
+          "column": "manufacturer_colour_families"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "visual_primary_colour"
+        },
+        {
+          "type": "jsonb",
+          "table": "browse_read_projection",
+          "column": "visual_secondary_colours"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "pattern_class"
+        },
+        {
+          "type": "jsonb",
+          "table": "browse_read_projection",
+          "column": "motif"
+        },
+        {
+          "type": "jsonb",
+          "table": "browse_read_projection",
+          "column": "visual_surface"
+        },
+        {
+          "type": "text",
+          "table": "browse_read_projection",
+          "column": "sheen_appearance"
+        },
+        {
+          "type": "jsonb",
+          "table": "browse_read_projection",
+          "column": "visual_character"
+        },
+        {
+          "type": "boolean",
+          "table": "browse_read_projection",
+          "column": "stock_current"
+        },
+        {
+          "type": "boolean",
+          "table": "browse_read_projection",
+          "column": "sample_current"
+        },
+        {
+          "type": "boolean",
+          "table": "browse_read_projection",
+          "column": "stock_known"
+        },
+        {
+          "type": "text",
+          "table": "daily_stock_runs",
+          "column": "supplier_id"
+        },
+        {
+          "type": "date",
+          "table": "daily_stock_runs",
+          "column": "snapshot_date"
+        },
+        {
+          "type": "timestamp with time zone",
+          "table": "daily_stock_runs",
+          "column": "attempted_at"
+        },
+        {
+          "type": "text",
+          "table": "daily_stock_runs",
+          "column": "status"
+        },
+        {
+          "type": "integer",
+          "table": "daily_stock_runs",
+          "column": "imported"
+        },
+        {
+          "type": "text",
+          "table": "daily_stock_runs",
+          "column": "error_code"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "fabric_id"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "supplier_id"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "brand_id"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "design_id"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "supplier_sku"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "colourway_code"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "colour_name"
+        },
+        {
+          "type": "jsonb",
+          "table": "fabric_colourways",
+          "column": "imagery"
+        },
+        {
+          "type": "boolean",
+          "table": "fabric_colourways",
+          "column": "sample_available"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "lifecycle_state"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "price_verification_status"
+        },
+        {
+          "type": "boolean",
+          "table": "fabric_colourways",
+          "column": "storefront_selectable"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "source_type"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "source_name"
+        },
+        {
+          "type": "text",
+          "table": "fabric_colourways",
+          "column": "source_reference"
+        },
+        {
+          "type": "date",
+          "table": "fabric_colourways",
+          "column": "source_effective_date"
+        },
+        {
+          "type": "timestamp with time zone",
+          "table": "fabric_colourways",
+          "column": "created_at"
+        },
+        {
+          "type": "timestamp with time zone",
+          "table": "fabric_colourways",
+          "column": "updated_at"
+        },
+        {
+          "type": "timestamp with time zone",
+          "table": "fabric_colourways",
+          "column": "source_observed_at"
+        },
+        {
+          "type": "boolean",
+          "table": "fabric_colourways",
+          "column": "staging_catalog_visible"
+        }
+      ],
+      "indexes": [
+        {
+          "index": "CREATE UNIQUE INDEX browse_read_projection_pkey ON curtainsuk_private.browse_read_projection USING btree (generation_id, fabric_id)",
+          "table": "browse_read_projection"
+        },
+        {
+          "index": "CREATE INDEX browse_read_projection_sort_idx ON curtainsuk_private.browse_read_projection USING btree (generation_id, brand, design, colour_name, fabric_id)",
+          "table": "browse_read_projection"
+        },
+        {
+          "index": "CREATE INDEX browse_read_projection_price_idx ON curtainsuk_private.browse_read_projection USING btree (generation_id, guide_minor)",
+          "table": "browse_read_projection"
+        },
+        {
+          "index": "CREATE UNIQUE INDEX daily_stock_runs_pkey ON curtainsuk_private.daily_stock_runs USING btree (supplier_id, snapshot_date)",
+          "table": "daily_stock_runs"
+        },
+        {
+          "index": "CREATE UNIQUE INDEX fabric_colourways_pkey ON curtainsuk_private.fabric_colourways USING btree (fabric_id)",
+          "table": "fabric_colourways"
+        },
+        {
+          "index": "CREATE UNIQUE INDEX fabric_colourways_supplier_id_supplier_sku_key ON curtainsuk_private.fabric_colourways USING btree (supplier_id, supplier_sku)",
+          "table": "fabric_colourways"
+        },
+        {
+          "index": "CREATE INDEX fabric_colourways_design_idx ON curtainsuk_private.fabric_colourways USING btree (design_id, colour_name)",
+          "table": "fabric_colourways"
+        },
+        {
+          "index": "CREATE INDEX fabric_colourways_projection_idx ON curtainsuk_private.fabric_colourways USING btree (storefront_selectable, lifecycle_state, price_verification_status)",
+          "table": "fabric_colourways"
+        },
+        {
+          "index": "CREATE INDEX fabric_colourways_staging_catalog_idx ON curtainsuk_private.fabric_colourways USING btree (staging_catalog_visible, supplier_id, brand_id) WHERE staging_catalog_visible",
+          "table": "fabric_colourways"
+        },
+        {
+          "index": "CREATE UNIQUE INDEX fabric_colourways_review_identity_unique ON curtainsuk_private.fabric_colourways USING btree (fabric_id, supplier_id, supplier_sku)",
+          "table": "fabric_colourways"
+        },
+        {
+          "index": "CREATE UNIQUE INDEX fabric_media_mappings_pkey ON curtainsuk_private.fabric_media_mappings USING btree (fabric_id, image_type, content_hash)",
+          "table": "fabric_media_mappings"
+        },
+        {
+          "index": "CREATE INDEX fabric_media_mappings_hash ON curtainsuk_private.fabric_media_mappings USING btree (content_hash)",
+          "table": "fabric_media_mappings"
+        }
+      ],
+      "browsePolicy": " WITH approved_guides AS MATERIALIZED (\n         SELECT browse_current_guide_prices_set_v1.supplier_id,\n            browse_current_guide_prices_set_v1.supplier_sku,\n            browse_current_guide_prices_set_v1.guide_minor\n           FROM curtainsuk_private.browse_current_guide_prices_set_v1\n        ), media_eligible AS MATERIALIZED (\n         SELECT DISTINCT m_1.fabric_id,\n            m_1.supplier_id,\n            m_1.supplier_sku\n           FROM curtainsuk_private.fabric_media_mappings m_1\n             JOIN curtainsuk_private.fabric_media_assets a USING (content_hash)\n          WHERE m_1.rights_state = 'APPROVED'::text AND m_1.mapping_state = 'VERIFIED'::text AND a.width > 0 AND a.height > 0 AND a.shopify_cdn_url ~ '^https://cdn[.]shopify[.]com/[^?#]+$'::text\n        ), latest_stock AS MATERIALIZED (\n         SELECT DISTINCT ON (daily_stock_snapshots.supplier_id, daily_stock_snapshots.supplier_sku) daily_stock_snapshots.supplier_id,\n            daily_stock_snapshots.supplier_sku,\n            daily_stock_snapshots.snapshot_date,\n            daily_stock_snapshots.checked_at,\n            daily_stock_snapshots.lifecycle_state,\n            daily_stock_snapshots.aggregate_metres\n           FROM curtainsuk_private.daily_stock_snapshots\n          ORDER BY daily_stock_snapshots.supplier_id, daily_stock_snapshots.supplier_sku, daily_stock_snapshots.snapshot_date DESC\n        ), stock_balance AS MATERIALIZED (\n         SELECT st.supplier_id,\n            st.supplier_sku,\n            st.checked_at,\n            st.lifecycle_state,\n            st.aggregate_metres,\n            COALESCE(sum(u.metres), 0::numeric) AS used_metres\n           FROM latest_stock st\n             LEFT JOIN curtainsuk_private.daily_stock_usage u ON u.supplier_id = st.supplier_id AND u.supplier_sku = st.supplier_sku AND u.confirmed_at >= st.checked_at\n          GROUP BY st.supplier_id, st.supplier_sku, st.checked_at, st.lifecycle_state, st.aggregate_metres\n        )\n SELECT c.fabric_id,\n    c.supplier_id,\n    c.supplier_sku,\n    g.guide_minor,\n    c.colour_name,\n    b.display_name AS brand,\n    d.display_name AS design,\n    co.display_name AS collection,\n    r.window_types,\n    curtainsuk_private.manufacturer_colour_families(c.colour_name) AS manufacturer_colour_families,\n    lower(COALESCE((vk.visual_fields -> 'primaryColour'::text) ->> 'value'::text, ''::text)) AS visual_primary_colour,\n        CASE\n            WHEN jsonb_typeof((vk.visual_fields -> 'secondaryColours'::text) -> 'value'::text) = 'array'::text THEN COALESCE(( SELECT jsonb_agg(lower(x.value)) AS jsonb_agg\n               FROM jsonb_array_elements_text((vk.visual_fields -> 'secondaryColours'::text) -> 'value'::text) x(value)), '[]'::jsonb)\n            ELSE '[]'::jsonb\n        END AS visual_secondary_colours,\n    lower(COALESCE((vk.visual_fields -> 'patternClass'::text) ->> 'value'::text, ''::text)) AS pattern_class,\n        CASE\n            WHEN jsonb_typeof((vk.visual_fields -> 'motif'::text) -> 'value'::text) = 'array'::text THEN COALESCE(( SELECT jsonb_agg(lower(x.value)) AS jsonb_agg\n               FROM jsonb_array_elements_text((vk.visual_fields -> 'motif'::text) -> 'value'::text) x(value)), '[]'::jsonb)\n            ELSE '[]'::jsonb\n        END AS motif,\n        CASE\n            WHEN jsonb_typeof((vk.visual_fields -> 'visualSurface'::text) -> 'value'::text) = 'array'::text THEN COALESCE(( SELECT jsonb_agg(lower(x.value)) AS jsonb_agg\n               FROM jsonb_array_elements_text((vk.visual_fields -> 'visualSurface'::text) -> 'value'::text) x(value)), '[]'::jsonb)\n            ELSE '[]'::jsonb\n        END AS visual_surface,\n    lower(COALESCE((vk.visual_fields -> 'sheenAppearance'::text) ->> 'value'::text, ''::text)) AS sheen_appearance,\n        CASE\n            WHEN jsonb_typeof((vk.visual_fields -> 'character'::text) -> 'value'::text) = 'array'::text THEN COALESCE(( SELECT jsonb_agg(lower(x.value)) AS jsonb_agg\n               FROM jsonb_array_elements_text((vk.visual_fields -> 'character'::text) -> 'value'::text) x(value)), '[]'::jsonb)\n            ELSE '[]'::jsonb\n        END AS visual_character,\n    COALESCE(stock.checked_at <= now() AND stock.lifecycle_state <> 'DISCONTINUED'::text AND (stock.aggregate_metres - stock.used_metres) >= 30::numeric, false) AS stock_current,\n    COALESCE(stock.checked_at <= now() AND stock.lifecycle_state <> 'DISCONTINUED'::text AND (stock.aggregate_metres - stock.used_metres) > 0::numeric, false) AS sample_current,\n    COALESCE(stock.checked_at <= now(), false) AS stock_known\n   FROM curtainsuk_private.fabric_colourways c\n     JOIN media_eligible m ON m.fabric_id = c.fabric_id AND m.supplier_id = c.supplier_id AND m.supplier_sku = c.supplier_sku\n     LEFT JOIN approved_guides g ON g.supplier_id = c.supplier_id AND g.supplier_sku = c.supplier_sku\n     JOIN curtainsuk_private.supplier_brands b ON b.brand_id = c.brand_id\n     JOIN curtainsuk_private.fabric_designs d ON d.design_id = c.design_id\n     JOIN curtainsuk_private.fabric_collections co ON co.collection_id = d.collection_id\n     LEFT JOIN curtainsuk_private.fabric_retail_profiles r ON r.fabric_id = c.fabric_id\n     LEFT JOIN curtainsuk_private.fabric_visual_knowledge_enriched vk ON vk.fabric_id = c.fabric_id AND (vk.knowledge_state = ANY (ARRAY['COMPLETE'::text, 'PARTIAL_GOVERNED'::text]))\n     LEFT JOIN stock_balance stock ON stock.supplier_id = c.supplier_id AND stock.supplier_sku = c.supplier_sku AND stock.checked_at >= (now() - curtainsuk_private.stock_validity_window())\n  WHERE c.staging_catalog_visible AND c.lifecycle_state <> 'DISCONTINUED'::text AND length(TRIM(BOTH FROM c.supplier_sku)) > 0 AND length(TRIM(BOTH FROM c.colour_name)) > 0 AND length(TRIM(BOTH FROM b.display_name)) > 0 AND length(TRIM(BOTH FROM d.display_name)) > 0;"
+    }
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "files": [
+    "artifacts/jane-until-complete-20261012/README.md",
+    "artifacts/jane-until-complete-20261012/approval.json",
+    "artifacts/jane-until-complete-20261012/bridge.js",
+    "artifacts/jane-until-complete-20261012/changed-files.json",
+    "artifacts/jane-until-complete-20261012/checksums.json",
+    "artifacts/jane-until-complete-20261012/execution-review.json",
+    "artifacts/jane-until-complete-20261012/hosted-probe.json",
+    "artifacts/jane-until-complete-20261012/operator.mjs",
+    "artifacts/jane-until-complete-20261012/publication-reconciliation.json",
+    "artifacts/jane-until-complete-20261012/tests.tap",
+    "docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md",
+    "docs/specialist-advisory/JANE_OVERNIGHT_RUN.md",
+    "lib/advisory/__tests__/eligible-execution.test.mjs",
+    "lib/advisory/__tests__/host-admission-pacing.test.mjs",
+    "lib/advisory/__tests__/population-deadline.test.mjs",
+    "lib/advisory/eligible-plan.mjs",
+    "lib/advisory/host-admission-pacing.mjs",
+    "lib/advisory/index-population.mjs",
+    "lib/advisory/operator-recovery.mjs",
+    "lib/advisory/population-deadline.mjs"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+  "sourceSnapshot": "eligible-identities-sha256:007a9a160c82d99817bd86665cdef4bd8534244517670a096ebe4b76f2ae90ed",
+  "processed": 120,
+  "healthy": true,
+  "permissionRestored": true,
+  "historicalPreserved": true,
+  "exactHashes": true,
+  "publicationUnchanged": true,
+  "retailExclusionsVerified": true,
+  "newRows": 115,
+  "evidenceReference": "artifacts/jane-pacing-resume-20261012/canary-review.json",
+  "reviewedAt": "2026-10-12T05:22:19.138Z"
+}

@@ -1,0 +1,834 @@
+{
+  "classification": "OBSERVED_HOSTED_READ_ONLY_SEARCHES_NOT_RECOMMENDATION_OR_LAUNCH_APPROVAL",
+  "sourceCommit": "75157161633872605d502d5d262d02310f0f5af3",
+  "project": "hqysjumypgeapgmqkcrx",
+  "population": {
+    "jobId": "ac425f78-f6ec-4623-97bb-df8763d79d5a",
+    "expected": 11517,
+    "processed": 11517,
+    "batches": 1920,
+    "observedAt": "2026-10-13T05:13:18.962331Z"
+  },
+  "notes": [
+    "Existing hosted advisory.search_knowledge returns first six matching identities ordered alphabetically, without rank.",
+    "Results are source facts, not retail eligibility; exact live retail validation is still required before a shopping offer.",
+    "Missing governed descriptions and physical weights remain unknown."
+  ],
+  "queries": [
+    {
+      "id": "warm-neutrals",
+      "input": [
+        "ivory OR cream OR beige",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "elapsedMs": 908,
+      "rows": [
+        {
+          "fabric_id": "pt-1224-002",
+          "colour_name": "Caramel",
+          "design": "Inverness",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 55
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 45
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1248-394",
+          "colour_name": "Eucalyptus",
+          "design": "Beauvoir",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 58
+            },
+            {
+              "material": "COTTON",
+              "percentage": 42
+            }
+          ],
+          "full_width_mm": 1400,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1290-314",
+          "colour_name": "Mulberry",
+          "design": "Austin",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "VISCOSE",
+              "percentage": 44
+            },
+            {
+              "material": "COTTON",
+              "percentage": 37
+            },
+            {
+              "material": "LINEN",
+              "percentage": 19
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1314-511",
+          "colour_name": "Honey",
+          "design": "Lecco",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 62
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 38
+            }
+          ],
+          "full_width_mm": 1460,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1316-511",
+          "colour_name": "Honey",
+          "design": "Maggiore",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 80
+            },
+            {
+              "material": "VISCOSE",
+              "percentage": 20
+            }
+          ],
+          "full_width_mm": 1390,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1413-637",
+          "colour_name": "Avocado",
+          "design": "Carmen",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTT",
+              "percentage": 31
+            },
+            {
+              "material": "VISC",
+              "percentage": 31
+            },
+            {
+              "material": "LIN",
+              "percentage": 19
+            },
+            {
+              "material": "POLY",
+              "percentage": 19
+            }
+          ],
+          "full_width_mm": 1380,
+          "weight_gsm": null,
+          "governed_description": null
+        }
+      ]
+    },
+    {
+      "id": "muted-olive",
+      "input": [
+        "olive",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "started": "2026-10-13T05:14:52.015Z",
+      "elapsedMs": 2955,
+      "isError": false,
+      "rows": [
+        {
+          "fabric_id": "pt-2000-618",
+          "colour_name": "Olive",
+          "design": "Franklin",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER FR",
+              "percentage": 100
+            }
+          ],
+          "full_width_mm": 1480,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-2007-618",
+          "colour_name": "Olive",
+          "design": "Kensington",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER FR",
+              "percentage": 100
+            }
+          ],
+          "full_width_mm": 3000,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-3829-618",
+          "colour_name": "Olive",
+          "design": "Charleston",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLY",
+              "percentage": 65
+            },
+            {
+              "material": "COTTON",
+              "percentage": 34
+            },
+            {
+              "material": "LYCRA",
+              "percentage": 1
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-3832-618",
+          "colour_name": "Olive",
+          "design": "Rosecliff",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 93
+            },
+            {
+              "material": "METALLIC",
+              "percentage": 7
+            }
+          ],
+          "full_width_mm": 1410,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-3859-618",
+          "colour_name": "Olive",
+          "design": "Secret",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 59
+            },
+            {
+              "material": "cotton",
+              "percentage": 41
+            }
+          ],
+          "full_width_mm": 1410,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-4107-618",
+          "colour_name": "Olive",
+          "design": "Hattie",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 50
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 50
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        }
+      ]
+    },
+    {
+      "id": "quiet-texture",
+      "input": [
+        "weave OR texture",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "started": "2026-10-13T05:14:59.982Z",
+      "elapsedMs": 1896,
+      "isError": false,
+      "rows": [
+        {
+          "fabric_id": "pt-1204-212",
+          "colour_name": "Blush",
+          "design": "Mellora",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "LINEN",
+              "percentage": 52
+            },
+            {
+              "material": "VISCOSE",
+              "percentage": 34
+            },
+            {
+              "material": "POLY",
+              "percentage": 14
+            }
+          ],
+          "full_width_mm": 1400,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1223-374",
+          "colour_name": "Gemstone",
+          "design": "Dunbar",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 54
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 46
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1224-002",
+          "colour_name": "Caramel",
+          "design": "Inverness",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 55
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 45
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1225-314",
+          "colour_name": "Mulberry",
+          "design": "Stirling",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1225-722",
+          "colour_name": "Blueberry",
+          "design": "Stirling",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1227-634",
+          "colour_name": "Moss",
+          "design": "St Andrews",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        }
+      ]
+    },
+    {
+      "id": "restrained-pattern",
+      "input": [
+        "geometric OR stripe",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "started": "2026-10-13T05:15:06.895Z",
+      "elapsedMs": 967,
+      "isError": false,
+      "rows": [
+        {
+          "fabric_id": "pt-1204-212",
+          "colour_name": "Blush",
+          "design": "Mellora",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "LINEN",
+              "percentage": 52
+            },
+            {
+              "material": "VISCOSE",
+              "percentage": 34
+            },
+            {
+              "material": "POLY",
+              "percentage": 14
+            }
+          ],
+          "full_width_mm": 1400,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1223-374",
+          "colour_name": "Gemstone",
+          "design": "Dunbar",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 54
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 46
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1224-002",
+          "colour_name": "Caramel",
+          "design": "Inverness",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 55
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 45
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1225-314",
+          "colour_name": "Mulberry",
+          "design": "Stirling",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1225-722",
+          "colour_name": "Blueberry",
+          "design": "Stirling",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1227-634",
+          "colour_name": "Moss",
+          "design": "St Andrews",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        }
+      ]
+    },
+    {
+      "id": "natural-composition",
+      "input": [
+        "linen OR cotton",
+        "",
+        "",
+        "",
+        "linen OR cotton"
+      ],
+      "started": "2026-10-13T05:15:12.876Z",
+      "elapsedMs": 869,
+      "isError": false,
+      "rows": [
+        {
+          "fabric_id": "pt-1204-212",
+          "colour_name": "Blush",
+          "design": "Mellora",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "LINEN",
+              "percentage": 52
+            },
+            {
+              "material": "VISCOSE",
+              "percentage": 34
+            },
+            {
+              "material": "POLY",
+              "percentage": 14
+            }
+          ],
+          "full_width_mm": 1400,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1223-374",
+          "colour_name": "Gemstone",
+          "design": "Dunbar",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 54
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 46
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1224-002",
+          "colour_name": "Caramel",
+          "design": "Inverness",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 55
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 45
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1225-314",
+          "colour_name": "Mulberry",
+          "design": "Stirling",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1225-722",
+          "colour_name": "Blueberry",
+          "design": "Stirling",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1227-634",
+          "colour_name": "Moss",
+          "design": "St Andrews",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 52
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 48
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        }
+      ]
+    },
+    {
+      "id": "spelling-equivalence",
+      "input": [
+        "grey",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "started": "2026-10-13T05:15:18.748Z",
+      "elapsedMs": 948,
+      "isError": false,
+      "rows": [
+        {
+          "fabric_id": "pt-1248-394",
+          "colour_name": "Eucalyptus",
+          "design": "Beauvoir",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 58
+            },
+            {
+              "material": "COTTON",
+              "percentage": 42
+            }
+          ],
+          "full_width_mm": 1400,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1248-805",
+          "colour_name": "Lavender",
+          "design": "Beauvoir",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 58
+            },
+            {
+              "material": "COTTON",
+              "percentage": 42
+            }
+          ],
+          "full_width_mm": 1400,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1267-902",
+          "colour_name": "Noire",
+          "design": "Speckle",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 100
+            }
+          ],
+          "full_width_mm": 1420,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1426-387",
+          "colour_name": "Peppermint",
+          "design": "Needlepoint",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTT",
+              "percentage": 46
+            },
+            {
+              "material": "LIN",
+              "percentage": 18
+            },
+            {
+              "material": "VISC",
+              "percentage": 18
+            },
+            {
+              "material": "POLY",
+              "percentage": 18
+            }
+          ],
+          "full_width_mm": 1410,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1468-768",
+          "colour_name": "Bluebell",
+          "design": "Avena",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTTON",
+              "percentage": 57
+            },
+            {
+              "material": "POLYESTER",
+              "percentage": 43
+            }
+          ],
+          "full_width_mm": 1380,
+          "weight_gsm": null,
+          "governed_description": null
+        },
+        {
+          "fabric_id": "pt-1558-807",
+          "colour_name": "Amethyst",
+          "design": "Istana",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "COTT",
+              "percentage": 50
+            },
+            {
+              "material": "LIN",
+              "percentage": 23
+            },
+            {
+              "material": "VISC",
+              "percentage": 19
+            },
+            {
+              "material": "POLY",
+              "percentage": 8
+            }
+          ],
+          "full_width_mm": 1400,
+          "weight_gsm": null,
+          "governed_description": null
+        }
+      ]
+    }
+  ],
+  "quality": {
+    "warmNeutrals": "FAIL_TOP_6_NOT_RELIABLY_WARM_NEUTRAL_BY_COLOURWAY",
+    "mutedOlive": "REVIEW_ALL_6_EXACT_OLIVE_BUT_MUTED_TONE_NOT_ASSURED",
+    "quietTexture": "REVIEW_SAME_FIRST_6_AS_PATTERN_AND_COMPOSITION",
+    "restrainedPattern": "FAIL_UNRANKED_FIRST_6_REPEATS_UNRELATED_SCENARIOS",
+    "naturalComposition": "REVIEW_COMPOSITIONS_MATCH_BUT_UNRANKED_REPEATED_IDS",
+    "spellingEquivalence": "REVIEW_GREY_TERM_MATCHES_CLASSIFICATION_NOT_COLOURWAY_NAME"
+  },
+  "writes": 0,
+  "paidCalls": 0,
+  "launchApproved": false
+}

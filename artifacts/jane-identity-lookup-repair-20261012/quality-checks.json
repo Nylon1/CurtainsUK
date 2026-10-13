@@ -1,0 +1,21 @@
+{
+  "command": "node --test lib/advisory/__tests__/operator-identity-literal.test.mjs lib/advisory/__tests__/connector-read-recovery.test.mjs lib/advisory/__tests__/retail-read-recovery.test.mjs",
+  "tests": 9,
+  "passed": 9,
+  "failed": 0,
+  "durationMs": 3368.6386,
+  "allApprovedIdentitiesTested": 11517,
+  "localPostgresResults": "Same identity selection/order and null values as encoded expressions; identity index used",
+  "hostedDiagnostic": {
+    "planningMs": 24.557,
+    "executionMs": 20.825,
+    "sharedHits": 104,
+    "sharedReads": 0,
+    "scope": "One bounded six-ID sample; not a full-run throughput guarantee"
+  },
+  "hostedProbe": {
+    "passed": true,
+    "processed": 1866,
+    "hostedWrites": 0
+  }
+}

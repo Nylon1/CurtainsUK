@@ -1,0 +1,70 @@
+{
+  "classification": "HOSTED_SYNTHETIC_APPLICATION_HTTP",
+  "checks": [
+    {
+      "name": "authenticated bootstrap 0",
+      "result": "PASS"
+    },
+    {
+      "name": "authenticated bootstrap 1",
+      "result": "PASS"
+    },
+    {
+      "name": "missing CSRF denied",
+      "result": "PASS"
+    },
+    {
+      "name": "consent required",
+      "result": "PASS"
+    },
+    {
+      "name": "durable start",
+      "result": "PASS"
+    },
+    {
+      "name": "mock design reply",
+      "result": "PASS"
+    },
+    {
+      "name": "idempotent replay",
+      "result": "PASS"
+    },
+    {
+      "name": "foreign consultation denied",
+      "result": "PASS"
+    },
+    {
+      "name": "save",
+      "result": "PASS"
+    },
+    {
+      "name": "recovery",
+      "result": "PASS"
+    },
+    {
+      "name": "replayed recovery denied",
+      "result": "PASS"
+    },
+    {
+      "name": "second owner start",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent revision has one winner",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent revision conflict",
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS",
+  "limitations": [
+    "Concurrency does not prove distinct Vercel instances.",
+    "Physical ciphertext, expiry, revocation and connection-role inspection require separate hosted evidence."
+  ],
+  "checkedAt": "2026-10-11T17:59:52.187Z",
+  "deploymentId": "dpl_6DWt8tqv6x9eRgcGxpeh7CA5sLsT",
+  "sourceCommit": "8cfff3883aad190a3174bc336bf20e0aba895904",
+  "previewOrigin": "https://curtainsuk-staging-7b54vvcjn-hamzas-projects-4ef62f35.vercel.app"
+}

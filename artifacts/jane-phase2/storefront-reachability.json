@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-10-09T20:04:03.844Z",
+  "scope": "Read-only route reachability, not exhaustive interaction or checkout testing",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/fabric-library",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/fabric-library",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/fabric-library?view=browse-fabrics",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/fabric-library?view=browse-fabrics",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/room-visualiser",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/room-visualiser",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/build-my-rooms",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/build-my-rooms",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/how-to-measure",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/how-to-measure",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/how-to-fit",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/how-to-fit",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/samples",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/samples",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/contact-us",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/pages/contact-us",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/cart",
+      "status": 200,
+      "finalUrl": "https://www.curtainsuk.com/cart",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "route": "/pages/meet-our-team",
+      "status": 404,
+      "finalUrl": "https://www.curtainsuk.com/pages/meet-our-team",
+      "contentType": "text/html; charset=utf-8"
+    }
+  ],
+  "customerSubmissions": 0,
+  "purchases": 0
+}

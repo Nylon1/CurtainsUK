@@ -1,0 +1,91 @@
+{
+  "id": "busy-pattern",
+  "reviewCriteria": [
+    "Identify contrast, scale and competing focal points",
+    "Suggest quiet texture or tonal pattern and controlled comparisons"
+  ],
+  "transcript": [
+    {
+      "customer": "I tried three patterned curtains in the visualiser and they all feel busy.",
+      "advice": {
+        "text": "That’s useful feedback—we needn’t keep pursuing pattern. Across a large curtain area, even a motif that looks gentle on a swatch can feel more dominant than expected, especially alongside other details in the room.\n\nI’d shift towards a plain fabric with subtle woven texture: it can bring softness and depth without adding another motif. A colour close to the walls would make the curtains quieter; alternatively, a deeper plain tone could frame the window without the visual activity of pattern.\n\nWhat colour are your walls and main seating? And were the curtains themselves too busy, or did they seem to compete with a rug, wallpaper or other furnishings?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Move away from patterned curtains towards a plain textile.",
+        "textureDirection": "Subtle woven texture for softness and depth without a prominent motif.",
+        "alternatives": [
+          "A wall-toned plain for a quieter, more continuous look.",
+          "A deeper plain tone to frame the window without adding pattern."
+        ],
+        "questions": [
+          "What colour are your walls and main seating?",
+          "Were the curtains themselves too busy, or did they compete with a rug, wallpaper or other furnishings?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "The sofa already has a large botanical print. I still want some interest.",
+      "advice": {
+        "text": "With a large botanical print already on the sofa, I’d let that remain the main pattern and give the curtains interest through texture instead. A softly slubbed weave or a subtle tonal variation could feel rich without adding another competing motif.\n\nFor colour, we could pick up a quieter shade from the botanical print—not necessarily its boldest accent—to connect the curtains to the sofa. If you’d still like pattern, a fine, low-contrast stripe is a worthwhile alternative: its simple rhythm may sit more calmly beside the leafy shapes.\n\nWhich colours feature in the sofa print, and what colour are the walls?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Prefer plain or subtly tonal curtains; consider a fine, low-contrast stripe as an alternative to another botanical motif.",
+        "textureDirection": "A softly slubbed weave or subtle woven variation for interest without a competing motif.",
+        "alternatives": [
+          "A fine, low-contrast stripe that complements rather than echoes the sofa’s botanical print."
+        ],
+        "questions": [
+          "Which colours feature in the sofa print, and what colour are the walls?"
+        ],
+        "nextSteps": [
+          "Choose a quieter colour from the sofa print as a starting point for the curtains."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Can I compare texture instead while keeping the room and lighting the same?",
+      "advice": {
+        "text": "Yes—keeping the room, view and lighting unchanged is a good way to judge texture without other changes distracting you. Use Change fabric to compare supported fabrics, leaving the room colours and curtain position the same. Compare each in Room view, then Curtain view for a closer look.\n\nBeside your botanical sofa, I’d compare a smooth plain with a softly slubbed weave in similar tones: that helps you judge whether texture adds enough interest without introducing another motif. Fabric inspection offers neutral light; if you use it, keep it selected for both comparisons.\n\nThe render is representative, so physical samples in your room are still needed to judge the final texture and feel.",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Let the sofa’s large botanical print remain the main motif; compare plain curtains.",
+        "textureDirection": "Compare smooth plain and softly slubbed weaves in similar tones.",
+        "alternatives": [
+          "A subtle tonal weave for interest without a distinct motif."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Keep room, view, lighting, room colours and curtain position constant while changing supported fabrics.",
+          "Compare Room view and Curtain view.",
+          "Confirm texture and feel with physical samples in your room."
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

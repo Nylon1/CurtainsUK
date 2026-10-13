@@ -1,0 +1,55 @@
+[
+  {
+    "snapshot": {
+      "stats": {
+        "blocksHit": 2216323440,
+        "deadlocks": 0,
+        "blocksRead": 66451636,
+        "readTimeMs": 0,
+        "statsReset": "2026-08-25T20:33:23.891825+00:00",
+        "writeTimeMs": 0
+      },
+      "observedAt": "2026-10-11T20:47:56.257008+00:00",
+      "connections": 16,
+      "lockWaiters": 0,
+      "supplierRuns": [
+        {
+          "status": "SUCCESS",
+          "error_code": null,
+          "supplier_id": "sanderson-design-group",
+          "attempted_at": "2026-10-11T05:00:00.262644+00:00",
+          "snapshot_date": "2026-10-11"
+        },
+        {
+          "status": "SUCCESS",
+          "error_code": null,
+          "supplier_id": "prestigious-textiles",
+          "attempted_at": "2026-10-11T05:00:00.262644+00:00",
+          "snapshot_date": "2026-10-11"
+        },
+        {
+          "status": "SUCCESS",
+          "error_code": null,
+          "supplier_id": "prestigious-textiles",
+          "attempted_at": "2026-10-10T05:00:00.261109+00:00",
+          "snapshot_date": "2026-10-10"
+        },
+        {
+          "status": "SUCCESS",
+          "error_code": null,
+          "supplier_id": "sanderson-design-group",
+          "attempted_at": "2026-10-10T05:00:00.261109+00:00",
+          "snapshot_date": "2026-10-10"
+        }
+      ],
+      "browseControl": {
+        "cacheDirty": false,
+        "generation": "c77230da-f6ed-4d7f-bf56-b1e7864979d3",
+        "refreshedAt": "2026-10-11T17:03:04.77406+00:00",
+        "nextTimeChange": "2026-10-15T15:39:08.582+00:00"
+      },
+      "maxConnections": "60",
+      "otherActiveStatements": 0
+    }
+  }
+]

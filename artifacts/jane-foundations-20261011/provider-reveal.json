@@ -1,0 +1,62 @@
+[
+  {
+    "id": "initial-warm-contemporary",
+    "A": "historical mock",
+    "B": "historical OpenAI"
+  },
+  {
+    "id": "initial-busy-pattern",
+    "A": "historical mock",
+    "B": "historical OpenAI"
+  },
+  {
+    "id": "initial-tool-teacher",
+    "A": "historical mock",
+    "B": "historical OpenAI"
+  },
+  {
+    "id": "initial-return-context",
+    "A": "historical OpenAI",
+    "B": "historical mock"
+  },
+  {
+    "id": "initial-contradiction",
+    "A": "historical OpenAI",
+    "B": "historical mock"
+  },
+  {
+    "id": "initial-fabric-search",
+    "A": "historical mock",
+    "B": "historical OpenAI"
+  },
+  {
+    "id": "initial-unavailable",
+    "A": "historical mock",
+    "B": "historical OpenAI"
+  },
+  {
+    "id": "initial-image-colour",
+    "A": "historical OpenAI",
+    "B": "historical mock"
+  },
+  {
+    "id": "initial-continuity",
+    "A": "historical OpenAI",
+    "B": "historical mock"
+  },
+  {
+    "id": "initial-injection-failure",
+    "A": "historical OpenAI",
+    "B": "historical mock"
+  },
+  {
+    "id": "retest-tool-teacher",
+    "A": "historical mock",
+    "B": "historical OpenAI"
+  },
+  {
+    "id": "retest-fabric-search",
+    "A": "historical mock",
+    "B": "historical OpenAI"
+  }
+]

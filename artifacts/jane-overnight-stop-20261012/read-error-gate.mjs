@@ -1,0 +1,24 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {dirname,join} from 'node:path';
+import {createHash} from 'node:crypto';
+import {readPrivateFile,writePrivateFile} from 'file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/scripts/jane-private-file.mjs';
+const projectRef='hqysjumypgeapgmqkcrx';
+const saved=JSON.parse((await readFile('C:/Users/hamza/.codex/tmp/jane-monitoring-token-status.json','utf8')).replace(/^\uFEFF/,''));
+if(saved.status!=='saved')throw Error('MONITORING_CREDENTIAL_UNAVAILABLE');
+let secret=await readPrivateFile(saved.secretPath);
+if(secret.projectRef!==projectRef||!/^sbp_fc[A-Za-z0-9_.-]{20,2000}$/.test(secret.token)||Date.now()-Date.parse(secret.capturedAt)>23*3600000)throw Error('INVALID_PRIVATE_CONFIGURATION');
+const end=new Date(),start=new Date(end.getTime()-5*60000);
+const sql="select count() as total, countIf(log_attributes['parsed.error_severity'] in ('ERROR','FATAL','PANIC')) as errors, countIf(log_attributes['parsed.error_severity'] = '') as missing_severity, max(timestamp) as latest_event from logs where source='postgres_logs' limit 1";
+const url=new URL('https://api.supabase.com/v1/projects/'+projectRef+'/analytics/endpoints/logs');
+url.search=new URLSearchParams({sql,iso_timestamp_start:start.toISOString(),iso_timestamp_end:end.toISOString()});
+const response=await fetch(url,{method:'GET',headers:{Authorization:'Bearer '+secret.token,Accept:'application/json'},redirect:'error',signal:AbortSignal.timeout(20000)});
+const chunks=[];let size=0;for await(const chunk of response.body){size+=chunk.length;if(size>1000000)throw Error('RESPONSE_LIMIT');chunks.push(chunk);}
+secret=null;
+const body=Buffer.concat(chunks).toString('utf8'),observedAt=new Date().toISOString();
+const evidencePath=join(dirname(saved.secretPath),'logs-'+Date.now()+'.dpapi');
+await writePrivateFile(evidencePath,{projectRef,start:start.toISOString(),end:end.toISOString(),observedAt,httpStatus:response.status,body});
+const result={classification:'READ_ONLY_ERROR_GATE_OBSERVATION',projectRef,httpStatus:response.status,observedAt,start:start.toISOString(),end:end.toISOString(),bytes:size,sha256:createHash('sha256').update(body).digest('hex'),privateEvidencePath:evidencePath};
+if(response.ok){const data=JSON.parse(body);result.data=data;}else result.failure='HTTP_'+response.status;
+const path='C:/Users/hamza/.codex/tmp/jane-error-gate-'+Date.now()+'.json';
+await writeFile(path,JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({path,...result}));

@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-11T18:05:09.389Z",
+  "result": "PASS",
+  "databaseAccessAfterClosure": "DENIED",
+  "bothTrialAuthSessions": "SIGNED_OUT_AND_REJECTED",
+  "application": "PUBLICLY_INACTIVE",
+  "scope": "Only trial sessions and temporary runtime membership closed; test accounts retained"
+}

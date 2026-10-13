@@ -1,0 +1,141 @@
+{
+  "classification": "READ_ONLY_HOSTED_OBSERVATIONS_NOT_MIGRATION",
+  "observedAt": "2026-10-11",
+  "identityInventoryPlan": [
+    {
+      "QUERY PLAN": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 0.29,
+            "Total Cost": 821.85,
+            "Plan Rows": 16883,
+            "Plan Width": 13,
+            "Actual Startup Time": 0.121,
+            "Actual Total Time": 11.123,
+            "Actual Rows": 16883,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 3538,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Index Only Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "fabric_colourways_pkey",
+                "Relation Name": "fabric_colourways",
+                "Alias": "fabric_colourways",
+                "Startup Cost": 0.29,
+                "Total Cost": 821.85,
+                "Plan Rows": 16883,
+                "Plan Width": 13,
+                "Actual Startup Time": 0.12,
+                "Actual Total Time": 9.029,
+                "Actual Rows": 16883,
+                "Actual Loops": 1,
+                "Heap Fetches": 5142,
+                "Shared Hit Blocks": 3538,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 170,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 1.533,
+          "Triggers": [],
+          "Execution Time": 12.4
+        }
+      ]
+    }
+  ],
+  "ioStart": [
+    {
+      "at": "2026-10-11 14:20:06.724868+00",
+      "numbackends": 10,
+      "xact_commit": 2738405,
+      "xact_rollback": 1584,
+      "blks_read": 66250956,
+      "blks_hit": 2202919181,
+      "blk_read_time": 0,
+      "blk_write_time": 0,
+      "temp_bytes": 1204390562814,
+      "deadlocks": 0,
+      "stats_reset": "2026-08-25 20:33:23.891825+00"
+    }
+  ],
+  "ioEnd": [
+    {
+      "at": "2026-10-11 14:21:47.065958+00",
+      "numbackends": 10,
+      "xact_commit": 2738493,
+      "xact_rollback": 1586,
+      "blks_read": 66250956,
+      "blks_hit": 2202962019,
+      "blk_read_time": 0,
+      "blk_write_time": 0,
+      "temp_bytes": 1204449797958,
+      "deadlocks": 0,
+      "stats_reset": "2026-08-25 20:33:23.891825+00"
+    }
+  ],
+  "dashboard": {
+    "window": "Last 24 hours ending 2026-10-11 14:23:39 UTC",
+    "cpuPercent": 6,
+    "diskIoPercent": 1,
+    "memoryPercent": 63,
+    "peakConnections": 10,
+    "maxConnections": 60,
+    "diskUsagePercent": 50,
+    "databaseErrorPercent": 0.72,
+    "slowQueries": 967,
+    "last60MinuteCpuAndIo": "Unavailable in dashboard",
+    "databaseGBDisplayed": 0.66,
+    "provisionedDiskGBDisplayed": 2,
+    "includedPlanDatabaseGB": 8,
+    "note": "Plan allowance is not provisioned disk. Snapshot is not admission telemetry."
+  },
+  "backup": {
+    "latestScheduledUTC": "2026-10-11T01:03:26Z",
+    "restoreActionVisible": true,
+    "restoreTested": false,
+    "toshibaCompletionVerified": false
+  },
+  "vercel": {
+    "project": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
+    "deployment": "dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD",
+    "passwordProtection": false,
+    "ssoProtection": false,
+    "trustedIps": false,
+    "hostedTrialDeployed": false
+  }
+}

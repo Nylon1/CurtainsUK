@@ -1,0 +1,16 @@
+✔ automatic operator invocation stops at 20 batches and resumes the durable checkpoint without a schedule (242.6732ms)
+✔ lost COMMIT response is read back before continuation; uncommitted outcomes never trigger a blind retry (225.0725ms)
+✔ approval/code mismatch, load, source failure and permission mismatch stop further work (22.2244ms)
+✔ fsynced operator journal survives reopening, excludes another process and refuses truncated evidence (51.5775ms)
+✔ relevance uses actual indexed colour/tone/texture/pattern/composition and safe specifications (3280.1578ms)
+✔ change manifests exclude stock-only updates, deduplicate resolved dependencies and reject gaps/deletions (5.0931ms)
+✔ change-only refresh reuses transactional worker, skips unchanged vectors and recovers/rolls back safely (2948.3907ms)
+✔ remaining population is exactly 2813 batches, 141 invocations with a five-fabric final batch (1.002ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6630.9724

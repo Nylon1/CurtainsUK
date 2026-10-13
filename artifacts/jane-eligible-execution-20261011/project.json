@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"id\":\"hqysjumypgeapgmqkcrx\",\"ref\":\"hqysjumypgeapgmqkcrx\",\"organization_id\":\"bhnoekmrlyvtubzdargw\",\"organization_slug\":\"bhnoekmrlyvtubzdargw\",\"name\":\"CurtainsUK\",\"region\":\"eu-central-1\",\"status\":\"ACTIVE_HEALTHY\",\"database\":{\"host\":\"db.hqysjumypgeapgmqkcrx.supabase.co\",\"version\":\"17.6.1.166\",\"postgres_engine\":\"17\",\"release_channel\":\"ga\"},\"created_at\":\"2026-09-07T07:14:56.035535Z\"}"
+    }
+  ],
+  "isError": false
+}

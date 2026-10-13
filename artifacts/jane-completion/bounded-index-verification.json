@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-10-09T21:38:20.119Z",
+  "classification": "FIVE_LIVE_IDENTITIES_IN_LOCAL_INDEX_NOT_FULL_MASTER_COVERAGE",
+  "sourceReadAt": "2026-10-09T21:36:52.167Z",
+  "indexed": 5,
+  "masterDenominator": null,
+  "complete": false,
+  "secondBatchWrites": 0,
+  "searches": [
+    {
+      "args": {
+        "query": "geometric",
+        "colour": "",
+        "pattern": "",
+        "texture": "",
+        "composition": "cotton"
+      },
+      "ids": [
+        "pt-3697-502",
+        "pt-3697-569",
+        "pt-3697-575",
+        "pt-3697-770"
+      ],
+      "coverage": {
+        "state": "partial",
+        "complete": false,
+        "source": "incremental advisory index"
+      },
+      "elapsedMs": 7.701000000000022
+    },
+    {
+      "args": {
+        "query": "amber OR lagoon",
+        "colour": "",
+        "pattern": "",
+        "texture": "",
+        "composition": ""
+      },
+      "ids": [
+        "pt-3697-502",
+        "pt-3697-770"
+      ],
+      "coverage": {
+        "state": "partial",
+        "complete": false,
+        "source": "incremental advisory index"
+      },
+      "elapsedMs": 2.5254000000004453
+    },
+    {
+      "args": {
+        "query": "1450",
+        "colour": "",
+        "pattern": "",
+        "texture": "",
+        "composition": ""
+      },
+      "ids": [
+        "pt-3697-502",
+        "pt-3697-569",
+        "pt-3697-575",
+        "pt-3697-770"
+      ],
+      "coverage": {
+        "state": "partial",
+        "complete": false,
+        "source": "incremental advisory index"
+      },
+      "elapsedMs": 1.9338000000007014
+    }
+  ],
+  "unknownWeightCount": 4,
+  "retailIds": [
+    "pt-3697-502",
+    "pt-3697-569",
+    "pt-3697-770"
+  ],
+  "retailCommercialFilter": "PASS",
+  "productionWrites": 0
+}

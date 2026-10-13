@@ -1,6 +1,7 @@
 {{ 'curtainsuk-advisory-team.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curtainsuk-advisory-team.js' | asset_url }}" defer></script>
 <script src="{{ 'curtainsuk-advisory-interactions.js' | asset_url }}" defer></script>
+{% if section.settings.jane_chat_private_preview %}<script src="{{ 'curtainsuk-jane-chat.js' | asset_url }}" defer></script>{% endif %}
 <div class="cukad" data-advisory-team data-wait-status="{{ 'advisory_team.room.wait_status' | t | escape }}" data-room-status="{{ 'advisory_team.room.room_status' | t | escape }}" data-unavailable="{{ 'advisory_team.room.unavailable' | t | escape }}">
   <section class="cukad__hero cukad__wrap" aria-labelledby="advisory-heading-{{ section.id }}">
     <div class="cukad__hero-copy">
@@ -60,7 +61,7 @@
     <a href="/pages/samples"><span>{{ 'advisory_team.tools.samples' | t }}</span><span aria-hidden="true">↗</span></a>
     <a href="/pages/solve-my-window"><span>{{ 'advisory_team.tools.window' | t }}</span><span aria-hidden="true">↗</span></a>
   </div></div></section>
-  {% render 'curtainsuk-advisory-room', section_id: section.id %}
+  {% render 'curtainsuk-advisory-room', section_id: section.id, jane_chat_private_preview: section.settings.jane_chat_private_preview %}
 </div>
 {% schema %}
 {
@@ -69,7 +70,9 @@
   "class": "curtainsuk-advisory-section",
   "limit": 1,
   "max_blocks": 20,
-  "settings": [],
+  "settings": [
+    { "type": "checkbox", "id": "jane_chat_private_preview", "label": "Jane AI consultation (enable only after the advisory API release)", "default": false }
+  ],
   "blocks": [
     {
       "type": "adviser",

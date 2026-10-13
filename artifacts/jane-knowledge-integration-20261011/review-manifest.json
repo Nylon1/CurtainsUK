@@ -1,0 +1,25 @@
+{
+  "implementationSha256": "e385af33499923d552526081a98163e737d21a6839591bee60389dec2305d045",
+  "canonicalMigrationSha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "canonicalMigrationChanged": false,
+  "ranking": {
+    "path": "artifacts/jane-knowledge-integration-20261011/ranking-review.sql",
+    "sha256": "bae4678fa594563484b78af8f7f86cbc5b50e6deb80cd7113b843e83f2c92f4c",
+    "objects": [
+      "advisory.search_knowledge(text,text,text,text,text)"
+    ],
+    "grantsChanged": false,
+    "tablesChanged": false,
+    "indexRebuild": false,
+    "applied": false,
+    "rollbackSha256": "70e78a892ac8e3c734011f67f2c202e16383328597102091d169887d5f7fe1e3"
+  },
+  "scope": {
+    "hostedIndexed": 6,
+    "denominator": 16883,
+    "newApproved": false,
+    "maximumNew": 120,
+    "maximumTotal": 126,
+    "scheduleEnabled": false
+  }
+}

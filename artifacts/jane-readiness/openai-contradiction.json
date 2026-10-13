@@ -1,0 +1,90 @@
+{
+  "id": "contradiction",
+  "reviewCriteria": [
+    "Latest preference replaces earlier assumption",
+    "Clarify incompatible priorities without being dismissive"
+  ],
+  "transcript": [
+    {
+      "customer": "I want warm ivory curtains with a minimal look.",
+      "advice": {
+        "text": "Warm ivory is a lovely starting point for a minimal look: it can soften a room without adding much visual distraction. I’d lean towards a plain fabric with a fine, matte weave—enough texture to give it depth, but no obvious motif or sheen. A gently creamy ivory, rather than a strongly yellow shade, may give you the warmth you want while keeping the effect restrained.\n\nAn alternative is a slightly oat-toned ivory if your furnishings have earthy undertones.\n\nWhat colours are your walls and main furnishings? And do you want the curtains to filter daylight, or provide more privacy and darkness when closed?",
+        "stage": "understand",
+        "palette": [
+          "Warm ivory",
+          "Alternative: oat-toned ivory"
+        ],
+        "patternDirection": "Plain, without an obvious motif.",
+        "textureDirection": "Fine, subtle matte weave.",
+        "alternatives": [
+          "A slightly oat-toned ivory for a more earthy effect."
+        ],
+        "questions": [
+          "What colours are your walls and main furnishings?",
+          "Do you want the curtains to filter daylight, or provide more privacy and darkness when closed?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "I have changed my mind: cool blue tones instead.",
+      "advice": {
+        "text": "Let’s shift to cool blue while keeping the minimal look. A plain, muted blue with a fine matte weave would feel calm without introducing visual busyness. Mist blue gives a lighter, airier effect; a greyed slate blue offers more depth and definition.\n\nI’d avoid a pronounced sheen if you want the finish to feel understated. If the room already has cool grey walls or receives little sunlight, a softer, less grey blue may feel gentler than an icy shade.\n\nWhat colours are your walls and main furnishings? Do you picture a pale blue or something deeper?",
+        "stage": "refine",
+        "palette": [
+          "Muted cool blue",
+          "Mist blue",
+          "Greyed slate blue"
+        ],
+        "patternDirection": "Plain, without an obvious motif, to retain the minimal look.",
+        "textureDirection": "Fine, matte weave with subtle texture rather than pronounced sheen.",
+        "alternatives": [
+          "Pale mist blue for an airy effect",
+          "Deeper greyed slate blue for greater definition"
+        ],
+        "questions": [
+          "What colours are your walls and main furnishings?",
+          "Do you picture a pale blue or something deeper?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "I want both no visible pattern and a bold high-contrast geometric. What should I prioritise?",
+      "advice": {
+        "text": "For the curtains themselves, I’d prioritise no visible pattern if your main aim is still a minimal, calm room. A plain cool blue with subtle matte texture would support that; a bold, high-contrast geometric would make the window a focal point instead.\n\nYou can combine the two intentions by keeping the curtains plain and using a geometric on one cushion or a small piece of artwork, leaving plenty of unpatterned space around it. Alternatively, if you want the curtains to be the statement, choose the geometric and keep nearby textiles simple.\n\nWhich matters more to you here: a quiet backdrop or a striking window feature?",
+        "stage": "refine",
+        "palette": [
+          "Cool blue"
+        ],
+        "patternDirection": "Prioritise plain curtains for a calm minimal look; alternatively, use a bold high-contrast geometric if the window should be the focal point.",
+        "textureDirection": "Subtle matte weave without prominent surface detail.",
+        "alternatives": [
+          "Plain cool blue curtains with a geometric accent elsewhere.",
+          "Geometric curtains balanced by simple surrounding textiles."
+        ],
+        "questions": [
+          "Which matters more to you here: a quiet backdrop or a striking window feature?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

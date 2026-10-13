@@ -1,0 +1,112 @@
+{
+  "id": "busy-pattern",
+  "reviewCriteria": [
+    "Identify contrast, scale and competing focal points",
+    "Suggest quiet texture or tonal pattern and controlled comparisons"
+  ],
+  "transcript": [
+    {
+      "customer": "I tried three patterned curtains in the visualiser and they all feel busy.",
+      "advice": {
+        "text": "if the patterns feel too busy, I’d reduce contrast before ruling out pattern altogether. Try a softly textured plain in warm ivory, or a small tonal motif with little difference between the ground and pattern. Keep the same room, view and lighting in the visualiser when comparing them. Is it the size of the pattern or the contrast that draws too much attention?",
+        "stage": "refine",
+        "palette": [
+          "warm ivory",
+          "soft stone"
+        ],
+        "patternDirection": "Low-contrast tonal motif or a quiet plain",
+        "textureDirection": "Softly textured, matte surface",
+        "alternatives": [
+          "Small tonal motif",
+          "Plain fabric with a subtle woven texture"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "customer": "The sofa already has a large botanical print. I still want some interest.",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "customer": "Can I compare texture instead while keeping the room and lighting the same?",
+      "advice": {
+        "text": "Let’s move away from the warmer direction. A softened blue-grey with a chalky neutral could feel calmer and cleaner; a muted sage is another route if blue feels too cool. Keep the surface matte and compare both against the furnishings that are staying. Which of those feels closer to your new direction?",
+        "stage": "refine",
+        "palette": [
+          "soft blue-grey",
+          "chalky neutral",
+          "muted sage"
+        ],
+        "patternDirection": "Plain or a restrained tonal pattern",
+        "textureDirection": "Matte, lightly woven texture",
+        "alternatives": [
+          "Muted sage with a neutral ground"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "project": "hqysjumypgeapgmqkcrx",
+  "approval": "User: Proceed, following explicit request to merge PR 170 only and apply already-approved migration",
+  "protectedHead": "c7ca2d0eff1c128386863536d4ce46a877d874a8",
+  "releasePr": 170,
+  "checks": [
+    "curtainsuk-production-gate:SUCCESS",
+    "protected-production-policy:SUCCESS"
+  ],
+  "plannedMigrations": [
+    {
+      "file": "supabase/migrations/20261011142747_jane_isolated_advisory.sql",
+      "sha256": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+      "bytes": 24553,
+      "name": "jane_isolated_advisory"
+    }
+  ],
+  "executor": "Supabase apply_migration connector: exact single query from protected Git blob",
+  "versionHandling": "Supabase Management API assigns an execution timestamp. Read back the appended version and SQL, record source-to-hosted mapping. Do not rewrite either history or filename. Future blanket CLI pushes remain prohibited.",
+  "historicalReplay": false,
+  "historicalRepair": false,
+  "expectedPriorHistoryCount": 78,
+  "expectedPriorLatestVersion": "20261004064841",
+  "state": "PREFLIGHT_PENDING_EXISTING_BROWSE_REFRESH",
+  "backup": "2026-10-11T01:03:26Z physical backup visible; restore not rehearsed",
+  "operator": "postgres",
+  "newAccounts": false,
+  "deployments": false,
+  "population": false,
+  "paidModelCalls": false
+}

@@ -1,0 +1,21 @@
+{
+  "classification": "READ_ONLY_ERROR_CATEGORY_DIAGNOSTIC",
+  "observedAt": "2026-10-12T09:51:03.909Z",
+  "httpStatus": 200,
+  "start": "2026-10-12T09:46:02.641Z",
+  "end": "2026-10-12T09:51:02.641Z",
+  "responseSha256": "ce78e63a6ed8114d75389a753f99e2b013b4cc55902fbae4ac481a303d8cefba",
+  "data": {
+    "result": [
+      {
+        "backend_type": "client backend",
+        "count": 1,
+        "latest_event": "2026-10-12T09:48:42.218",
+        "severity": "ERROR",
+        "sql_state": "42703"
+      }
+    ]
+  },
+  "attribution": "Not established; no indexing connector failure observed in this window",
+  "action": "Read-only reconciliation and unchanged five-minute clean-error gate"
+}

@@ -1,0 +1,148 @@
+{
+  "classification": "PRIVATE_SCRIPTED_JOURNEY_NOT_REAL_MODEL_OR_HUMAN_REVIEW",
+  "at": "2026-10-13T01:10:49.937Z",
+  "selectedFabric": "pt-3697-770",
+  "consentRequired": true,
+  "keyboardShare": true,
+  "dialogEscapeFocusRestored": "handoff-open",
+  "automaticWelcomeOpened": true,
+  "backgroundHiddenStateObserved": false,
+  "paidCalls": 0,
+  "hostedWrites": 0,
+  "publicActivation": false,
+  "viewportChecks": [
+    {
+      "overflow": false,
+      "scrollWidth": 1265,
+      "selected": "Prestigious Textiles · SHAMBALA · LAGOON\nFabric ID: pt-3697-770\n\nSHAMBALA in LAGOON is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.\n\nView fabric details",
+      "status": "Shared with this consultation. Price and availability still need checking on the fabric page.",
+      "width": 1280
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 1265,
+      "selected": "Prestigious Textiles · SHAMBALA · LAGOON\nFabric ID: pt-3697-770\n\nSHAMBALA in LAGOON is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.\n\nView fabric details",
+      "status": "Shared with this consultation. Price and availability still need checking on the fabric page.",
+      "width": 1280
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 1265,
+      "selected": "Prestigious Textiles · SHAMBALA · LAGOON\nFabric ID: pt-3697-770\n\nSHAMBALA in LAGOON is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.\n\nView fabric details",
+      "status": "Shared with this consultation. Price and availability still need checking on the fabric page.",
+      "width": 1280
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 1265,
+      "selected": "Prestigious Textiles · SHAMBALA · LAGOON\nFabric ID: pt-3697-770\n\nSHAMBALA in LAGOON is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.\n\nView fabric details",
+      "status": "Shared with this consultation. Price and availability still need checking on the fabric page.",
+      "width": 1280
+    },
+    {
+      "overflow": false,
+      "scrollWidth": 1265,
+      "selected": "Prestigious Textiles · SHAMBALA · LAGOON\nFabric ID: pt-3697-770\n\nSHAMBALA in LAGOON is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.\n\nView fabric details",
+      "status": "Shared with this consultation. Price and availability still need checking on the fabric page.",
+      "width": 1280
+    }
+  ],
+  "chromeDetailViewports": [
+    {
+      "askJane": "/?entry=fabric-detail&fabric=pt-3697-770#consultation",
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "askJane": "/?entry=fabric-detail&fabric=pt-3697-770#consultation",
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "askJane": "/?entry=fabric-detail&fabric=pt-3697-770#consultation",
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 397,
+      "width": 412
+    },
+    {
+      "askJane": "/?entry=fabric-detail&fabric=pt-3697-770#consultation",
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "askJane": "/?entry=fabric-detail&fabric=pt-3697-770#consultation",
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 1425,
+      "width": 1440
+    }
+  ],
+  "chromeWelcomeStart": 1791854044775,
+  "chromeAutomaticOpenObservedAfterMs": 37544,
+  "chromeConsultationViewports": [
+    {
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 305,
+      "selectedFabricVisible": true,
+      "status": true,
+      "width": 320
+    },
+    {
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 375,
+      "selectedFabricVisible": true,
+      "status": true,
+      "width": 390
+    },
+    {
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 397,
+      "selectedFabricVisible": true,
+      "status": true,
+      "width": 412
+    },
+    {
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 753,
+      "selectedFabricVisible": true,
+      "status": true,
+      "width": 768
+    },
+    {
+      "height": 900,
+      "overflow": false,
+      "scrollWidth": 1425,
+      "selectedFabricVisible": true,
+      "status": true,
+      "width": 1440
+    }
+  ],
+  "chromeResumed": {
+    "conversationText": "Jane · scripted AI previewWelcome to the studio. What would you like your room to feel like, and what isn’t quite working at the moment?YouMy room has oak flooring and cream walls. What should I consider about this selected fabric?Jane · scripted AI previewYou’ve brought SHAMBALA in LAGOON into the conversation. Let’s consider how it fits your room before making a recommendation. The existing colours, natural light and the amount of pattern around it can all change the effect. What would you like the curtains to bring to the space, and which furnishings are staying?",
+    "fabricShown": true,
+    "liveAnnouncement": "polite",
+    "liveRole": "log",
+    "reducedMotion": false,
+    "replyCount": 0,
+    "replyTextOccurrences": 1,
+    "replyCountProbeNote": "The initial p-only selector matched no nodes because rendered bubbles are not paragraphs; replyTextOccurrences measures the actual rendered transcript."
+  },
+  "chromeEscapeFocus": "handoff-open",
+  "chromeConsoleErrors": [],
+  "screenReader": "SEMANTIC_INSPECTION_ONLY_SPOKEN_REVIEW_PENDING",
+  "physicalIPhone": "PENDING_NO_DEVICE",
+  "reducedMotion": "NOT_RETESTED_THIS_RUN_NORMAL_PREFERENCE_OBSERVED_PRIOR_20261012_EMULATION_SEPARATE",
+  "touch": "NOT_DEVICE_OR_TOUCH_EMULATION_THIS_RUN",
+  "viewportChecksClassification": "IAB_OVERRIDE_INEFFECTIVE_ACTUAL_1280_NOT_MOBILE_PASSES"
+}

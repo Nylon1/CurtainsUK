@@ -1,0 +1,21 @@
+{
+  "classification": "HOSTED_AUTH_AND_DATABASE_BOUNDARIES",
+  "checkedAt": "2026-10-11T18:01:56.118Z",
+  "checks": [
+    "hosted restricted role and no Auth/catalogue/indexer/retention privilege",
+    "hosted expiry denial and bounded owner purge",
+    "distributed rate ceiling across independent pools",
+    "hosted concurrent spend ceiling, ambiguous charge retained, duplicate settlement denied; simulated ledger only",
+    "real Auth sign-out rejects still-unexpired signed token"
+  ],
+  "permissions": {
+    "role": "advisory_runtime",
+    "auth_usage": false,
+    "catalogue_usage": false,
+    "indexer_membership": false,
+    "retention_membership": false
+  },
+  "rateAccepted": 12,
+  "result": "PASS",
+  "paidCalls": 0
+}

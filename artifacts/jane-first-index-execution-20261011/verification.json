@@ -1,0 +1,246 @@
+{
+  "job": {
+    "id": "a6c0d329-935e-4c31-b8ef-71a52f6d9149",
+    "cursor": {
+      "offset": 6,
+      "manifestHash": "77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+    },
+    "status": "ready",
+    "batches": 1,
+    "indexed": 6,
+    "complete": false,
+    "failures": 0,
+    "processed": 6,
+    "created_at": "2026-10-11T18:55:39.275182+00:00",
+    "last_error": null,
+    "updated_at": "2026-10-11T18:55:39.439584+00:00",
+    "expected_count": 16883,
+    "source_snapshot": "master-identities-sha256:77e5fffc3d623ce62993e9804814cdf0e74d5c468b60f1ee534893f2197e1405"
+  },
+  "gate": {
+    "id": 1,
+    "token": null,
+    "next_at": "2026-10-11T18:55:44.440002+00:00",
+    "lease_until": null
+  },
+  "items": [
+    {
+      "id": "pt-1200-907",
+      "hash": "e1650cb5e32acdf5eb7de6b1a298ed0a1a5633959f6761fdcfccea32122556e3",
+      "fields": {
+        "care": false,
+        "tone": false,
+        "brand": true,
+        "width": true,
+        "colour": true,
+        "design": true,
+        "weight": false,
+        "pattern": false,
+        "texture": false,
+        "identity": true,
+        "technical": false,
+        "collection": true,
+        "composition": true,
+        "description": false,
+        "patternScale": false,
+        "verticalRepeat": true,
+        "horizontalRepeat": true
+      },
+      "vectors": {
+        "colour": "'smoke':1",
+        "pattern": "",
+        "texture": "",
+        "document": "'1340':13 '1360':10 '335':21 '545':17 'bliss':3 'clover':4 'cott':8 'horizont':23 'lin':6 'mm':11,14,18,22 'poli':7 'prestigi':1 'repeat':20,24 'smoke':5 'textil':2 'usabl':15 'vertic':19 'visc':9 'width':12,16",
+        "composition": "'cott':3 'lin':1 'poli':2 'visc':4"
+      },
+      "beforeRow": null,
+      "indexedAt": "2026-10-11T18:55:39.275182+00:00",
+      "receiptHash": "e1650cb5e32acdf5eb7de6b1a298ed0a1a5633959f6761fdcfccea32122556e3"
+    },
+    {
+      "id": "pt-1204-212",
+      "hash": "1d11bfc36b2579d606b6a17e8e5d0ed064e4bbb7f965b5d72f5a8bc4411dd378",
+      "fields": {
+        "care": false,
+        "tone": true,
+        "brand": true,
+        "width": true,
+        "colour": true,
+        "design": true,
+        "weight": false,
+        "pattern": true,
+        "texture": true,
+        "identity": true,
+        "technical": false,
+        "collection": true,
+        "composition": true,
+        "description": false,
+        "patternScale": true,
+        "verticalRepeat": true,
+        "horizontalRepeat": true
+      },
+      "vectors": {
+        "colour": "'blush':1 'unknown':2,3,4,5,6",
+        "pattern": "'balanc':4 'geometr':1,2 'unknown':3,5",
+        "texture": "'graphic':8 'low':7 'refin':9 'subtl':2 'subtle-textur':1 'textur':3 'underst':10 'unknown':11 'visibl':5 'visible-weav':4 'weav':6",
+        "document": "'1380':33 '1400':30 '172':41 '200':37 'balanc':14 'blush':5 'clover':4 'geometr':11,12 'graphic':23 'horizont':43 'linen':27 'low':22 'mellora':3 'mm':31,34,38,42 'poli':29 'prestigi':1 'refin':24 'repeat':40,44 'subtl':17 'subtle-textur':16 'textil':2 'textur':18 'underst':25 'unknown':6,7,8,9,10,13,15,26 'usabl':35 'vertic':39 'viscos':28 'visibl':20 'visible-weav':19 'weav':21 'width':32,36",
+        "composition": "'linen':1 'poli':3 'viscos':2"
+      },
+      "beforeRow": null,
+      "indexedAt": "2026-10-11T18:55:39.275182+00:00",
+      "receiptHash": "1d11bfc36b2579d606b6a17e8e5d0ed064e4bbb7f965b5d72f5a8bc4411dd378"
+    },
+    {
+      "id": "pt-1223-374",
+      "hash": "0cd678a1363c9538eda71180ed34504866cddfb5dc63f3dfcbf66f4ece4eaafb",
+      "fields": {
+        "care": false,
+        "tone": true,
+        "brand": true,
+        "width": true,
+        "colour": true,
+        "design": true,
+        "weight": false,
+        "pattern": true,
+        "texture": true,
+        "identity": true,
+        "technical": false,
+        "collection": true,
+        "composition": true,
+        "description": false,
+        "patternScale": true,
+        "verticalRepeat": true,
+        "horizontalRepeat": true
+      },
+      "vectors": {
+        "colour": "'black':2 'deep':6 'gemston':1 'gold':3 'high':8 'mute':7 'red':4 'warm':5",
+        "pattern": "'balanc':4 'stripe':1,2 'unknown':3 'vertic':5",
+        "texture": "'decor':6 'graphic':7 'low':5 'relief':1 'sophist':8 'substanti':9 'visibl':3 'visible-weav':2 'weav':4",
+        "document": "'0':36,40 '1400':32 '1420':29 'balanc':16 'black':6 'cotton':27 'decor':23 'deep':10 'dunbar':3 'gemston':5 'gold':7 'graphic':24 'heritag':4 'high':12 'horizont':42 'low':22 'mm':30,33,37,41 'mute':11 'polyest':28 'prestigi':1 'red':8 'relief':18 'repeat':39,43 'sophist':25 'stripe':13,14 'substanti':26 'textil':2 'unknown':15 'usabl':34 'vertic':17,38 'visibl':20 'visible-weav':19 'warm':9 'weav':21 'width':31,35",
+        "composition": "'cotton':1 'polyest':2"
+      },
+      "beforeRow": null,
+      "indexedAt": "2026-10-11T18:55:39.275182+00:00",
+      "receiptHash": "0cd678a1363c9538eda71180ed34504866cddfb5dc63f3dfcbf66f4ece4eaafb"
+    },
+    {
+      "id": "pt-1224-002",
+      "hash": "57da8f4dd452c979723cc2d868a099272970163f567283477865e4d6810b37bc",
+      "fields": {
+        "care": false,
+        "tone": true,
+        "brand": true,
+        "width": true,
+        "colour": true,
+        "design": true,
+        "weight": false,
+        "pattern": true,
+        "texture": true,
+        "identity": true,
+        "technical": false,
+        "collection": true,
+        "composition": true,
+        "description": false,
+        "patternScale": true,
+        "verticalRepeat": true,
+        "horizontalRepeat": true
+      },
+      "vectors": {
+        "colour": "'blue':3 'caramel':1 'cream':4 'gold':2 'light':6 'medium':8 'mute':7 'warm':5",
+        "pattern": "'balanc':4 'geometr':1,2 'repeat':7 'structur':6 'structured-repeat':5 'unknown':3",
+        "texture": "'balanc':9 'decor':6 'gentl':5 'graphic':7 'refin':8 'relief':1 'visibl':3 'visible-weav':2 'weav':4",
+        "document": "'0':42 '1400':34 '1420':31 '63':38 'balanc':16,28 'blue':7 'caramel':5 'cotton':29 'cream':8 'decor':25 'gentl':24 'geometr':13,14 'gold':6 'graphic':26 'heritag':4 'horizont':44 'inver':3 'light':10 'medium':12 'mm':32,35,39,43 'mute':11 'polyest':30 'prestigi':1 'refin':27 'relief':20 'repeat':19,41,45 'structur':18 'structured-repeat':17 'textil':2 'unknown':15 'usabl':36 'vertic':40 'visibl':22 'visible-weav':21 'warm':9 'weav':23 'width':33,37",
+        "composition": "'cotton':1 'polyest':2"
+      },
+      "beforeRow": null,
+      "indexedAt": "2026-10-11T18:55:39.275182+00:00",
+      "receiptHash": "57da8f4dd452c979723cc2d868a099272970163f567283477865e4d6810b37bc"
+    },
+    {
+      "id": "pt-1225-314",
+      "hash": "06a583331c9dee743a5044ba44fdbcd7f8c501a149ee90e97bea14080ac6857e",
+      "fields": {
+        "care": false,
+        "tone": true,
+        "brand": true,
+        "width": true,
+        "colour": true,
+        "design": true,
+        "weight": false,
+        "pattern": true,
+        "texture": true,
+        "identity": true,
+        "technical": false,
+        "collection": true,
+        "composition": true,
+        "description": false,
+        "patternScale": true,
+        "verticalRepeat": true,
+        "horizontalRepeat": true
+      },
+      "vectors": {
+        "colour": "'mulberri':1 'unknown':2,3,4,5,6",
+        "pattern": "'busi':5 'check':2 'geometr':1,3 'unknown':4,6",
+        "texture": "'decor':8 'gentl':7 'graphic':9 'sophist':10 'subtl':2 'subtle-textur':1 'textur':3 'unknown':11 'visibl':5 'visible-weav':4 'weav':6",
+        "document": "'0':41 '1400':33 '1420':30 '161':37 'busi':15 'check':12 'cotton':28 'decor':24 'gentl':23 'geometr':11,13 'graphic':25 'heritag':4 'horizont':43 'mm':31,34,38,42 'mulberri':5 'polyest':29 'prestigi':1 'repeat':40,44 'sophist':26 'stirl':3 'subtl':18 'subtle-textur':17 'textil':2 'textur':19 'unknown':6,7,8,9,10,14,16,27 'usabl':35 'vertic':39 'visibl':21 'visible-weav':20 'weav':22 'width':32,36",
+        "composition": "'cotton':1 'polyest':2"
+      },
+      "beforeRow": null,
+      "indexedAt": "2026-10-11T18:55:39.275182+00:00",
+      "receiptHash": "06a583331c9dee743a5044ba44fdbcd7f8c501a149ee90e97bea14080ac6857e"
+    },
+    {
+      "id": "pt-1225-722",
+      "hash": "eb6c3a2f0f4e9e40b739e6cd10b95b5aa0db516079325cbf4028727100f7bb48",
+      "fields": {
+        "care": false,
+        "tone": true,
+        "brand": true,
+        "width": true,
+        "colour": true,
+        "design": true,
+        "weight": false,
+        "pattern": true,
+        "texture": true,
+        "identity": true,
+        "technical": false,
+        "collection": true,
+        "composition": true,
+        "description": false,
+        "patternScale": true,
+        "verticalRepeat": true,
+        "horizontalRepeat": true
+      },
+      "vectors": {
+        "colour": "'blueberri':1 'unknown':2,3,4,5,6",
+        "pattern": "'busi':5 'check':2 'geometr':1,3 'unknown':4,6",
+        "texture": "'decor':8 'gentl':7 'graphic':9 'sophist':10 'subtl':2 'subtle-textur':1 'textur':3 'unknown':11 'visibl':5 'visible-weav':4 'weav':6",
+        "document": "'0':41 '1400':33 '1420':30 '161':37 'blueberri':5 'busi':15 'check':12 'cotton':28 'decor':24 'gentl':23 'geometr':11,13 'graphic':25 'heritag':4 'horizont':43 'mm':31,34,38,42 'polyest':29 'prestigi':1 'repeat':40,44 'sophist':26 'stirl':3 'subtl':18 'subtle-textur':17 'textil':2 'textur':19 'unknown':6,7,8,9,10,14,16,27 'usabl':35 'vertic':39 'visibl':21 'visible-weav':20 'weav':22 'width':32,36",
+        "composition": "'cotton':1 'polyest':2"
+      },
+      "beforeRow": null,
+      "indexedAt": "2026-10-11T18:55:39.275182+00:00",
+      "receiptHash": "eb6c3a2f0f4e9e40b739e6cd10b95b5aa0db516079325cbf4028727100f7bb48"
+    }
+  ],
+  "checked_at": "2026-10-11T18:56:25.443089+00:00",
+  "relation_bytes": {
+    "leases": 49152,
+    "index_gate": 24576,
+    "index_jobs": 32768,
+    "consultations": 139264,
+    "usage_windows": 81920,
+    "evaluation_runs": 24576,
+    "index_job_items": 32768,
+    "knowledge_search": 155648,
+    "spend_reservations": 57344
+  },
+  "indexer_auth_access": false,
+  "runtime_index_write": false,
+  "public_schema_access": {
+    "anon": false,
+    "service_role": false,
+    "authenticated": false
+  },
+  "indexer_session_access": false
+}

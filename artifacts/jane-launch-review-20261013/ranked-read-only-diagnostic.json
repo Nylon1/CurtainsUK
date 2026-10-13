@@ -1,0 +1,838 @@
+{
+  "classification": "HOSTED_READ_ONLY_RANKING_DIAGNOSTIC_UNAPPLIED_SQL_NOT_LAUNCH_APPROVAL",
+  "sourceCommit": "75157161633872605d502d5d262d02310f0f5af3",
+  "project": "hqysjumypgeapgmqkcrx",
+  "indexSnapshot": {
+    "eligible": 11517,
+    "processed": 11517
+  },
+  "notes": [
+    "Six fixed queries on existing advisory index, no DDL or DML.",
+    "Candidate rank uses specialist-field weight 8 and document weight 1; deployed function still sorts by fabric ID.",
+    "Exact canonical facts read by bounded IDs; commercial availability was not checked.",
+    "Olive tone, quietness of texture and pattern scale are not proved by colour or design names.",
+    "Null weight and other absent specifications remain unknown."
+  ],
+  "cases": [
+    {
+      "id": "warm-neutrals",
+      "elapsedMs": 940,
+      "rows": [
+        {
+          "fabric_id": "pt-3548-007",
+          "score": "2.0769"
+        },
+        {
+          "fabric_id": "pt-3699-007",
+          "score": "2.0769"
+        },
+        {
+          "fabric_id": "pt-3903-007",
+          "score": "2.0769"
+        },
+        {
+          "fabric_id": "pt-3905-007",
+          "score": "2.0769"
+        },
+        {
+          "fabric_id": "pt-3907-007",
+          "score": "2.0769"
+        },
+        {
+          "fabric_id": "pt-7154-004",
+          "score": "2.0769"
+        }
+      ],
+      "error": false,
+      "facts": [
+        {
+          "fabric_id": "pt-3548-007",
+          "colour_name": "Ivory",
+          "design": "Denver",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 95
+            },
+            {
+              "material": "POLYAMIDE",
+              "percentage": 5
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-3699-007",
+          "colour_name": "IVORY",
+          "design": "BELLUCCI",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 65
+            },
+            {
+              "material": "cotton",
+              "percentage": 35
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-3903-007",
+          "colour_name": "Ivory",
+          "design": "Phineas",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-3905-007",
+          "colour_name": "Ivory",
+          "design": "Verity",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 69
+            },
+            {
+              "material": "cotton",
+              "percentage": 31
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-3907-007",
+          "colour_name": "Ivory",
+          "design": "Constance",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 81
+            },
+            {
+              "material": "cotton",
+              "percentage": 19
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-7154-004",
+          "colour_name": "Cream",
+          "design": "Oslo",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "cotton",
+              "percentage": 50
+            },
+            {
+              "material": "polyester",
+              "percentage": 50
+            }
+          ],
+          "weight_gsm": null
+        }
+      ],
+      "factsElapsedMs": 791
+    },
+    {
+      "id": "muted-olive",
+      "elapsedMs": 1070,
+      "rows": [
+        {
+          "fabric_id": "pt-4291-618",
+          "score": "0.8939"
+        },
+        {
+          "fabric_id": "pt-4292-618",
+          "score": "0.8939"
+        },
+        {
+          "fabric_id": "pt-4293-618",
+          "score": "0.8939"
+        },
+        {
+          "fabric_id": "pt-4295-618",
+          "score": "0.8939"
+        },
+        {
+          "fabric_id": "pt-4296-618",
+          "score": "0.8939"
+        },
+        {
+          "fabric_id": "pt-4297-618",
+          "score": "0.8939"
+        }
+      ],
+      "error": false,
+      "facts": [
+        {
+          "fabric_id": "pt-4291-618",
+          "colour_name": "Olive",
+          "design": "BETTINA",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "poly",
+              "percentage": 68
+            },
+            {
+              "material": "cotton",
+              "percentage": 29
+            },
+            {
+              "material": "linen",
+              "percentage": 3
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-4292-618",
+          "colour_name": "Olive",
+          "design": "Donata",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "poly",
+              "percentage": 68
+            },
+            {
+              "material": "cotton",
+              "percentage": 29
+            },
+            {
+              "material": "linen",
+              "percentage": 3
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-4293-618",
+          "colour_name": "Olive",
+          "design": "Giovanna",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "cotton",
+              "percentage": 70
+            },
+            {
+              "material": "polyester",
+              "percentage": 30
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-4295-618",
+          "colour_name": "Olive",
+          "design": "Chiara",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-4296-618",
+          "colour_name": "Olive",
+          "design": "Leonardo",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-4297-618",
+          "colour_name": "Olive",
+          "design": "Antonia",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 98
+            },
+            {
+              "material": "linen",
+              "percentage": 2
+            }
+          ],
+          "weight_gsm": null
+        }
+      ],
+      "factsElapsedMs": 783
+    },
+    {
+      "id": "quiet-texture",
+      "elapsedMs": 1072,
+      "rows": [
+        {
+          "fabric_id": "sdg-f1787-05",
+          "score": "2.4356"
+        },
+        {
+          "fabric_id": "sdg-dmlf236834",
+          "score": "2.3939"
+        },
+        {
+          "fabric_id": "sdg-f1787-01",
+          "score": "2.3939"
+        },
+        {
+          "fabric_id": "sdg-f1787-02",
+          "score": "2.3939"
+        },
+        {
+          "fabric_id": "sdg-f1787-03",
+          "score": "2.3939"
+        },
+        {
+          "fabric_id": "sdg-f1787-04",
+          "score": "2.3939"
+        }
+      ],
+      "error": false,
+      "facts": [
+        {
+          "fabric_id": "sdg-dmlf236834",
+          "colour_name": "Ochre",
+          "design": "Lethaby Weave",
+          "brand": "Morris & Co.",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 40
+            },
+            {
+              "material": "Viscose",
+              "percentage": 36
+            },
+            {
+              "material": "Acrylic",
+              "percentage": 14
+            },
+            {
+              "material": "Linen",
+              "percentage": 10
+            }
+          ],
+          "weight_gsm": "579.00"
+        },
+        {
+          "fabric_id": "sdg-f1787-01",
+          "colour_name": "Dove",
+          "design": "Astraea",
+          "brand": "Clarke & Clarke",
+          "composition": [
+            {
+              "material": "Recycled Polyester FR",
+              "percentage": 93
+            },
+            {
+              "material": "Polyester FR",
+              "percentage": 7
+            }
+          ],
+          "weight_gsm": "332.00"
+        },
+        {
+          "fabric_id": "sdg-f1787-02",
+          "colour_name": "Ebony",
+          "design": "Astraea",
+          "brand": "Clarke & Clarke",
+          "composition": [
+            {
+              "material": "Recycled Polyester FR",
+              "percentage": 93
+            },
+            {
+              "material": "Polyester FR",
+              "percentage": 7
+            }
+          ],
+          "weight_gsm": "332.00"
+        },
+        {
+          "fabric_id": "sdg-f1787-03",
+          "colour_name": "Espresso",
+          "design": "Astraea",
+          "brand": "Clarke & Clarke",
+          "composition": [
+            {
+              "material": "Recycled Polyester FR",
+              "percentage": 93
+            },
+            {
+              "material": "Polyester FR",
+              "percentage": 7
+            }
+          ],
+          "weight_gsm": "332.00"
+        },
+        {
+          "fabric_id": "sdg-f1787-04",
+          "colour_name": "Midnight",
+          "design": "Astraea",
+          "brand": "Clarke & Clarke",
+          "composition": [
+            {
+              "material": "Recycled Polyester FR",
+              "percentage": 93
+            },
+            {
+              "material": "Polyester FR",
+              "percentage": 7
+            }
+          ],
+          "weight_gsm": "332.00"
+        },
+        {
+          "fabric_id": "sdg-f1787-05",
+          "colour_name": "Parchment",
+          "design": "Astraea",
+          "brand": "Clarke & Clarke",
+          "composition": [
+            {
+              "material": "Recycled Polyester FR",
+              "percentage": 93
+            },
+            {
+              "material": "Polyester FR",
+              "percentage": 7
+            }
+          ],
+          "weight_gsm": "332.00"
+        }
+      ],
+      "factsElapsedMs": 834
+    },
+    {
+      "id": "restrained-pattern",
+      "elapsedMs": 856,
+      "rows": [
+        {
+          "fabric_id": "sdg-dstr237710",
+          "score": "2.1795"
+        },
+        {
+          "fabric_id": "sdg-dstr237711",
+          "score": "2.1795"
+        },
+        {
+          "fabric_id": "sdg-dstr237712",
+          "score": "2.1795"
+        },
+        {
+          "fabric_id": "sdg-dstr237713",
+          "score": "2.1795"
+        },
+        {
+          "fabric_id": "sdg-mstr237685",
+          "score": "2.1795"
+        },
+        {
+          "fabric_id": "sdg-mstr237686",
+          "score": "2.1795"
+        }
+      ],
+      "error": false,
+      "facts": [
+        {
+          "fabric_id": "sdg-dstr237710",
+          "colour_name": "Golden Knot",
+          "design": "Sabu Stripe",
+          "brand": "Sanderson",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 55
+            },
+            {
+              "material": "Linen",
+              "percentage": 45
+            }
+          ],
+          "weight_gsm": "220.00"
+        },
+        {
+          "fabric_id": "sdg-dstr237711",
+          "colour_name": "Olivine/Gold",
+          "design": "Sabu Stripe",
+          "brand": "Sanderson",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 55
+            },
+            {
+              "material": "Linen",
+              "percentage": 45
+            }
+          ],
+          "weight_gsm": "220.00"
+        },
+        {
+          "fabric_id": "sdg-dstr237712",
+          "colour_name": "Muntjac",
+          "design": "Sabu Stripe",
+          "brand": "Sanderson",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 55
+            },
+            {
+              "material": "Linen",
+              "percentage": 45
+            }
+          ],
+          "weight_gsm": "220.00"
+        },
+        {
+          "fabric_id": "sdg-dstr237713",
+          "colour_name": "Jodphur Blue",
+          "design": "Sabu Stripe",
+          "brand": "Sanderson",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 55
+            },
+            {
+              "material": "Linen",
+              "percentage": 45
+            }
+          ],
+          "weight_gsm": "220.00"
+        },
+        {
+          "fabric_id": "sdg-mstr237685",
+          "colour_name": "Woad",
+          "design": "Bexleyheath Stripe",
+          "brand": "Morris & Co.",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": "515.00"
+        },
+        {
+          "fabric_id": "sdg-mstr237686",
+          "colour_name": "Wine",
+          "design": "Bexleyheath Stripe",
+          "brand": "Morris & Co.",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": "515.00"
+        }
+      ],
+      "factsElapsedMs": 732
+    },
+    {
+      "id": "natural-composition",
+      "elapsedMs": 1363,
+      "rows": [
+        {
+          "fabric_id": "pt-8833-031",
+          "score": "2.6797"
+        },
+        {
+          "fabric_id": "pt-7208-031",
+          "score": "2.6247"
+        },
+        {
+          "fabric_id": "pt-7224-031",
+          "score": "2.6247"
+        },
+        {
+          "fabric_id": "sdg-ccf0879-03",
+          "score": "2.6247"
+        },
+        {
+          "fabric_id": "sdg-ccf0882-03",
+          "score": "2.6247"
+        },
+        {
+          "fabric_id": "sdg-darb227092",
+          "score": "2.6247"
+        }
+      ],
+      "error": false,
+      "facts": [
+        {
+          "fabric_id": "pt-7208-031",
+          "colour_name": "LINEN",
+          "design": "MADEIRA",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "poly",
+              "percentage": 70
+            },
+            {
+              "material": "cotton",
+              "percentage": 25
+            },
+            {
+              "material": "linen",
+              "percentage": 5
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-7224-031",
+          "colour_name": "Linen",
+          "design": "Rustic",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "cotton",
+              "percentage": 94
+            },
+            {
+              "material": "linen",
+              "percentage": 6
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-8833-031",
+          "colour_name": "Linen",
+          "design": "Dory",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "BCI COTTON",
+              "percentage": 90
+            },
+            {
+              "material": "LINEN",
+              "percentage": 10
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "sdg-ccf0879-03",
+          "colour_name": "Linen",
+          "design": "Silvan Weave",
+          "brand": "Clarke & Clarke",
+          "composition": [
+            {
+              "material": "Polyester",
+              "percentage": 76
+            },
+            {
+              "material": "Cotton",
+              "percentage": 15
+            },
+            {
+              "material": "Linen",
+              "percentage": 9
+            }
+          ],
+          "weight_gsm": "434.00"
+        },
+        {
+          "fabric_id": "sdg-ccf0882-03",
+          "colour_name": "Linen",
+          "design": "Volu",
+          "brand": "Clarke & Clarke",
+          "composition": [
+            {
+              "material": "Polyester",
+              "percentage": 53
+            },
+            {
+              "material": "Cotton",
+              "percentage": 23
+            },
+            {
+              "material": "Viscose",
+              "percentage": 14
+            },
+            {
+              "material": "Linen",
+              "percentage": 10
+            }
+          ],
+          "weight_gsm": "366.00"
+        },
+        {
+          "fabric_id": "sdg-darb227092",
+          "colour_name": "Linen",
+          "design": "Oxbow",
+          "brand": "Sanderson",
+          "composition": [
+            {
+              "material": "Cotton",
+              "percentage": 90
+            },
+            {
+              "material": "Linen",
+              "percentage": 10
+            }
+          ],
+          "weight_gsm": "252.00"
+        }
+      ],
+      "factsElapsedMs": 795
+    },
+    {
+      "id": "spelling-equivalence",
+      "elapsedMs": 897,
+      "rows": [
+        {
+          "fabric_id": "pt-1769-911",
+          "score": "1.5000"
+        },
+        {
+          "fabric_id": "pt-2011-911",
+          "score": "1.5000"
+        },
+        {
+          "fabric_id": "pt-2012-911",
+          "score": "1.5000"
+        },
+        {
+          "fabric_id": "pt-7141-911",
+          "score": "1.5000"
+        },
+        {
+          "fabric_id": "pt-7197-911",
+          "score": "1.5000"
+        },
+        {
+          "fabric_id": "pt-7208-911",
+          "score": "1.5000"
+        }
+      ],
+      "error": false,
+      "facts": [
+        {
+          "fabric_id": "pt-1769-911",
+          "colour_name": "Grey",
+          "design": "Blythe",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-2011-911",
+          "colour_name": "Grey",
+          "design": "Islington",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER FR",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-2012-911",
+          "colour_name": "Grey",
+          "design": "Islington Wide",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER FR",
+              "percentage": 100
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-7141-911",
+          "colour_name": "Grey",
+          "design": "Saxon",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "polyester",
+              "percentage": 85
+            },
+            {
+              "material": "cotton",
+              "percentage": 15
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-7197-911",
+          "colour_name": "Grey",
+          "design": "Helston",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "POLYESTER",
+              "percentage": 60
+            },
+            {
+              "material": "POLYPROPELENE",
+              "percentage": 40
+            }
+          ],
+          "weight_gsm": null
+        },
+        {
+          "fabric_id": "pt-7208-911",
+          "colour_name": "GREY",
+          "design": "MADEIRA",
+          "brand": "Prestigious Textiles",
+          "composition": [
+            {
+              "material": "poly",
+              "percentage": 70
+            },
+            {
+              "material": "cotton",
+              "percentage": 25
+            },
+            {
+              "material": "linen",
+              "percentage": 5
+            }
+          ],
+          "weight_gsm": null
+        }
+      ],
+      "factsElapsedMs": 761
+    }
+  ]
+}

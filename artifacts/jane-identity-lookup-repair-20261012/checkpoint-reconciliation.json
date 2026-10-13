@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-10-12T08:38:17.606Z",
+  "receipt": {
+    "processed": 1866,
+    "indexed": 1866,
+    "batches": 311,
+    "complete": false,
+    "permissionRestored": true,
+    "unchanged": 0
+  },
+  "pendingWrite": false,
+  "interruptedRequestReadOnly": true
+}

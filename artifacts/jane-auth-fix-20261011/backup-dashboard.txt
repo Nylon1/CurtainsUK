@@ -1,0 +1,112 @@
+Browser tab: 538217758, Title: "Backups | Database | CurtainsUK | Supabase", URL: "https://supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled".
+0 AXWebArea Backups | Database | CurtainsUK | Supabase, URL: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled
+	1 container
+		2 link Description: Skip to content, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled#main
+		3 container
+			4 link Description: Supabase Back to organization home, Value: supabase.com/dashboard/org/bhnoekmrlyvtubzdargw
+			54 link Description: CurtainsUK PRO, Value: supabase.com/dashboard/org/bhnoekmrlyvtubzdargw
+			55 pop up button (collapsed) Description: Show organizations, Secondary Actions: Expand
+			56 link Description: CurtainsUK, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx
+			57 pop up button (collapsed) Description: Show organization projects, Secondary Actions: Expand
+			58 link Description: main PRODUCTION, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx
+			59 pop up button (collapsed) Description: Show project branches, Secondary Actions: Expand
+			60 button Connect
+			5 pop up button (collapsed) Feedback, Secondary Actions: Expand
+			6 pop up button (collapsed) Search..., Secondary Actions: Expand
+				7 image
+				61 text Search...
+			8 button Help, ID: help-dropdown-button
+				9 image
+				62 text Help
+			10 button Advisor Center, ID: advisor-center-trigger
+				11 image
+				63 text Advisor Center
+			12 button SQL Editor, ID: editor-trigger
+				13 image
+				64 text SQL Editor
+			14 button AI Assistant, ID: assistant-trigger
+				65 text AI Assistant
+			15 pop up button (collapsed) ID: radix-_r_20_, Secondary Actions: Expand
+		17 container
+			18 container
+				19 content list
+					20 link Description: Project Overview, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx
+					66 link Description: Table Editor, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/editor
+					67 link Description: SQL Editor, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/sql
+				21 content list
+					68 link Description: Database, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/schemas
+					69 link Description: Authentication, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/auth/users
+					70 link Description: Storage, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/storage/files
+					22 link Description: Edge Functions, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/functions
+					71 link Description: Compute NEW, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/compute
+					72 link Description: Realtime, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/realtime/inspector
+				23 content list
+					73 link Description: Advisors, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/advisors/security
+					74 link Description: Observability, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability
+					24 link Description: Logs, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/logs
+					75 link Description: Integrations, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/integrations
+				25 content list
+					26 link Description: Project Settings, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/settings/general
+			27 pop up button (collapsed) Description: Sidebar control, ID: radix-_r_2g_, Secondary Actions: Expand
+		28 container
+			29 container spec-click-target
+				30 heading Database, Value: 4
+					76 text Database
+				31 menu Sidebar
+					32 content list
+						77 text DATABASE MANAGEMENT
+						33 link Description: Schema Visualizer, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/schemas
+						34 link Description: Tables, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/tables
+						35 link Description: Functions, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/functions
+						36 link Description: Triggers, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/triggers/data
+						37 link Description: Enumerated Types, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/types
+						38 link Description: Extensions, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/extensions
+						39 link Description: Indexes, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/indexes
+						40 link Description: Publications, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/publications
+						78 text ACCESS CONTROL
+						41 link Description: Policies, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/policies
+						42 link Description: Roles, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/roles
+						79 text CONFIGURATION
+						43 link Description: Settings, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/settings
+						80 text PLATFORM
+						44 link Description: Pipelines NEW, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/pipelines
+						45 link Description: Backups, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled
+						46 link Description: Migrations, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/migrations
+			47 container
+				81 heading Database Backups, Value: 1
+					82 text Database Backups
+				83 container
+					84 link Description: Scheduled backups, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled
+					85 link Description: Point in time, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/pitr
+					86 link Description: Restore to new project BETA, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/restore-to-new-project
+				87 text Projects are backed up daily around midnight of your project’s region and can be restored at any time.
+				88 container Note
+					89 text Storage objects are not included
+					90 text Database backups do not include objects stored via the Storage API, as the database only includes metadata about these objects. Restoring an old backup does not restore objects that have been deleted since then.
+				91 text 11 Oct 2026 01:03:26 (+0000)
+				92 button PHYSICAL
+				93 button Restore
+				94 text 10 Oct 2026 01:23:56 (+0000)
+				95 button PHYSICAL
+				96 button Restore
+				97 text 09 Oct 2026 01:02:20 (+0000)
+				98 button PHYSICAL
+				99 button Restore
+				100 text 08 Oct 2026 01:08:41 (+0000)
+				101 button PHYSICAL
+				102 button Restore
+				103 text 07 Oct 2026 01:01:29 (+0000)
+				104 button PHYSICAL
+				105 button Restore
+				106 text 06 Oct 2026 00:57:11 (+0000)
+				107 button PHYSICAL
+				108 button Restore
+				109 text 05 Oct 2026 01:06:02 (+0000)
+				110 button PHYSICAL
+				111 button Restore
+				112 text 04 Oct 2026 00:57:57 (+0000)
+				113 button PHYSICAL
+				114 button Restore
+		53 text Backups | Database | Supabase
+
+The focused UI element is 0 AXWebArea Backups | Database | CurtainsUK | Supabase, URL: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled

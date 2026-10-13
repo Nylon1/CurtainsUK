@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-10-12T12:17:01.679Z",
+  "hostedObservedAt": "2026-10-12T12:16:58.976852+00:00",
+  "processed": 4014,
+  "remaining": 7503,
+  "expected": 11517,
+  "planHashesVerified": 669,
+  "verifiedReceipts": 669,
+  "manifestPrefixMatches": true,
+  "wholeJobDigestsMatch": true,
+  "receiptIdentityHash": "802bc6f572cca1da561749a3445dc0535ce7ba944053b7971124db28a56f27d9",
+  "receiptContentHash": "f6afd0109b24077838fb4c37ba72b58b2e0770eaeb07acc9d59dd56fc0088165",
+  "newRows": 4009,
+  "totalKnowledge": 4015,
+  "completion": false,
+  "untilCompleteApproval": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6122415089",
+  "noCalendarDeadline": true,
+  "executionCode": "ed5c9972",
+  "dependencySha256": "39b6fd76b4c8ff4f8e2827557cba8989632d93fb18b40c882d13d0915cb0c782",
+  "continuation": {
+    "batches": 208,
+    "minimumSourceThroughReceiptMs": 4267,
+    "maximumSourceThroughReceiptMs": 18954,
+    "peakCpuPercent": 50.44771470835207,
+    "peakIoPercent": 37.45094132490981,
+    "peakMemoryPercent": 79.92672146052952,
+    "throughReceiptAt": "2026-10-12T12:16:59.817Z"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-10-11T20:48:04Z",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "source": "Read-only browser inspection of Supabase dashboard",
+  "backup": {
+    "url": "https://supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled",
+    "latestVisibleCompletedAt": "2026-10-11T01:03:26Z",
+    "type": "PHYSICAL",
+    "restoreControlVisible": true,
+    "newerPostAdvisoryWriteBackup": false,
+    "recoveryOperator": null,
+    "acceptedRpoSeconds": null,
+    "restoreAttempted": false
+  },
+  "telemetry": {
+    "databaseReportSupportsCustomRange": true,
+    "verifiedRange": {
+      "start": "2026-10-11T20:46:36.031Z",
+      "end": "2026-10-11T20:47:36.031Z"
+    },
+    "memoryUsageDisplay": "433.92 MB",
+    "cpu": "Unable to load data",
+    "diskIops": "Unable to load data",
+    "diskThroughput": "Unable to load data",
+    "diskUsage": "Unable to load data",
+    "overviewIgnoresCustomMinuteAndShows": "Last 24 hours",
+    "suitableForAdmission": false,
+    "metricsAccessTokenPresentInProcess": false
+  },
+  "capacityDisplay": {
+    "databaseGb": 0.67,
+    "provisionedDiskGb": 2,
+    "proPlanIncludedStorageGb": 8,
+    "note": "Provisioned disk and Pro included billing allowance are different values."
+  },
+  "local": {
+    "cFreeGiB": 39.06,
+    "visibleResticOrRobocopyProcesses": 0,
+    "toshibaCompletionVerified": false,
+    "exposedCredentialRotationVerified": false
+  },
+  "hostedWritesThisIncrement": 0
+}

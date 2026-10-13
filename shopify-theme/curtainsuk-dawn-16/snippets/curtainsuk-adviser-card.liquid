@@ -52,5 +52,5 @@
     {% endif %}
     <div class="cukad__profile-footer"><p><span class="cukad__availability">{{ 'advisory_team.common.coming_soon' | t }}</span><span>{{ 'advisory_team.common.free_consultation' | t }}</span></p><button class="cukad__preview-link" type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}" hidden>{{ 'advisory_team.common.preview' | t }} <span aria-hidden="true">↗</span></button></div>
   </div>
-  <template data-advisory-profile="{{ block.id }}" data-adviser="{{ block.id }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" data-intro="{{ opening | escape_once }}" data-preparation="{{ preparation | escape_once }}">{% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}</template>
+  <template data-advisory-profile="{{ block.id }}" data-adviser="{{ block.id }}" data-identity="{{ adviser | escape }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" data-intro="{{ opening | escape_once }}" data-preparation="{{ preparation | escape_once }}">{% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}</template>
 </article>

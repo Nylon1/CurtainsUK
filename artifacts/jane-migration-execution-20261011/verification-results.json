@@ -1,0 +1,32 @@
+{
+  "classification": "HOSTED_METADATA_VERIFICATION_NOT_HOSTED_APPLICATION_TEST",
+  "checks": {
+    "relations": true,
+    "columns": true,
+    "constraints": true,
+    "indexes": true,
+    "functions": true,
+    "policies": true,
+    "roles": true,
+    "advisorySchemaAcl": true,
+    "authAclUnchanged": true,
+    "creatorMembershipOnly": true,
+    "emptyExpectedTables": true,
+    "noBrowserObjectPrivileges": true,
+    "noBrowserFunctionPrivileges": true,
+    "noExistingObjectGrants": true,
+    "privateAdvisoryNoAuthAccess": true
+  },
+  "passed": true,
+  "normalizations": [
+    "Local migration_operator owner mapped to hosted postgres",
+    "PG18 named NOT NULL constraint entries omitted for PG17 catalog comparison; every column nullability compared separately",
+    "Creator administrative membership grantor is hosted supabase_admin; no SET or INHERIT and no application memberships"
+  ],
+  "tableCount": 9,
+  "indexCount": 21,
+  "policyCount": 15,
+  "functionCount": 3,
+  "roleCount": 3,
+  "relationBytes": 286720
+}

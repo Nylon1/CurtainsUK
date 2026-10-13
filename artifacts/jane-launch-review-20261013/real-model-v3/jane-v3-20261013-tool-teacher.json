@@ -1,0 +1,168 @@
+{
+  "id": "tool-teacher",
+  "reviewCriteria": [
+    "Use verified tool guidance",
+    "No invented visualiser heading selector or fixed questionnaire"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "How does Fabric Intelligence help me choose curtains?",
+      "advice": {
+        "text": "Fabric Intelligence helps turn your priorities into a more focused curtain direction. Its guided journey starts with what matters most: a darker room, more privacy, soft daylight or mainly the look, then helps refine preferences such as colour, pattern, texture and sheen.\n\nYou can indicate which colours matter, react to suggested directions, ask for similar fabrics or explain what feels wrong. That feedback shapes the edit, rather than leaving you to browse everything. I’m Jane, CurtainsUK’s AI adviser; I can help with the design reasoning, but I don’t share or change that tool’s session.",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Start the guided journey with your main priority, then refine the suggestions through your feedback."
+        ],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v1"
+          ],
+          "resultIds": [
+            "guide:fi:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "I dislike the recommendations. What should I change?",
+      "advice": {
+        "text": "Start with what feels wrong, rather than changing everything. If the recommendations feel busy, refine the pattern towards plain or quieter designs; if they feel cold, reconsider the colour and atmosphere; if they look too shiny, refine the sheen and texture.\n\nIn Fabric Intelligence, explain why a direction does not suit you and review which colours you’ve marked as important, worth considering or to ignore. I can help you sharpen that feedback, though I can’t change its session for you.\n\nWhat bothers you most: the colours, patterns or overall feel?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "What bothers you most: the colours, patterns or overall feel?"
+        ],
+        "nextSteps": [
+          "Explain what does not suit you in the recommendations and refine the relevant preferences."
+        ],
+        "evidenceIds": [
+          "guide:fi:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v1",
+          "source": "lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v1"
+          ],
+          "resultIds": [
+            "guide:fi:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "Where do I change the heading in Room Visualiser 2?",
+      "advice": {
+        "text": "There isn’t a heading selector in the current Room Visualiser 2, so you’re not missing a setting. To compare heading appearances, use the separate Curtain Style page instead.\n\nThe visualiser’s curtain appearance is representative, rather than a preview of your exact heading, fullness or finishing. Curtain Style can help you judge whether you prefer a tailored or more relaxed look, but compatibility with your chosen curtain still needs checking.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Use the separate Curtain Style page to compare heading appearances."
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1",
+          "guide:headings:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        },
+        {
+          "id": "guide:headings:v1",
+          "source": "shopify-theme/curtainsuk-dawn-16/templates/page.curtain-style.json",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        },
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "curtain-style"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:headings:v1"
+          ],
+          "resultIds": [
+            "guide:headings:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

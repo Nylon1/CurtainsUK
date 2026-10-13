@@ -1,0 +1,77 @@
+{
+  "id": "fabric-search",
+  "reviewCriteria": [
+    "Descriptive tool query includes colour/pattern/texture/composition",
+    "Only verified retail cards, precise identities; knowledge-only not purchasable"
+  ],
+  "transcript": [
+    {
+      "customer": "Can you search for a matte botanical fabric with cotton, in muted olive?",
+      "advice": {
+        "text": "warm ivory is a useful starting point: it can soften the room without adding strong contrast. Muted olive is an alternative if you want more colour and a gentle connection to natural materials. I’d compare a softly woven plain with a restrained tonal geometric, keeping the pattern scale modest beside busy furnishings. What colour are the walls, and would you like the curtains to blend in or become a feature?",
+        "stage": "recommend",
+        "palette": [
+          "warm ivory",
+          "muted olive",
+          "soft stone"
+        ],
+        "patternDirection": "Restrained tonal geometric or textured plain",
+        "textureDirection": "Soft matte weave",
+        "alternatives": [
+          "Muted olive for a stronger colour presence"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Does finding a Fabric Master record mean I can buy it?",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    },
+    {
+      "customer": "Could you show approved Shambala fabrics instead?",
+      "advice": {
+        "text": "No approved Shambala results were returned by this test source. That does not establish that the design is unavailable. We can still discuss your preferred colour and texture.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

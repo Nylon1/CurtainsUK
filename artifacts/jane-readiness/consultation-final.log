@@ -1,0 +1,32 @@
+✔ adaptive mock: warm room, visualiser return, changed preference, personalised summary (16.4673ms)
+✔ mock teaches existing FI, declines unavailable guarantees and unsupported screenshot processing (6.2919ms)
+✔ session ownership, consent, invalid IDs and input injection fail before mutation (4.2724ms)
+✔ duplicate requests are idempotent; conflicting revision or reused key is rejected (2.376ms)
+✔ concurrent replies cannot fork the same consultation (2.1493ms)
+✔ provider, knowledge and durable storage failures leave valid prior work intact (6.4578ms)
+✔ saved consent, encrypted restart, one-time recovery transfer and deletion (45.9254ms)
+✔ expiry prevents access and removes the expired record (1.7055ms)
+✔ welcome deadline catches up after suspension; six profiles retain separate identities (0.6439ms)
+✔ forged model evidence and commercial promises fail closed (4.7267ms)
+✔ source-traceable guides exist and correctly separate headings from visualiser (10.8143ms)
+✔ catalogue allowlist drops supplier secrets and unverified visual fields (2.9521ms)
+✔ master reads are bounded, indexed identity queries with no lifecycle filter; cached, validated and isolated (54.4645ms)
+✔ retail recommendations require governed eligibility, exact URL and approved real image (1.7395ms)
+✔ tools reject arbitrary SQL, excess calls and upstream payloads beyond limits (0.9202ms)
+✔ HTTP enforces origin, CSRF, body limits and rate limits without logging private content (10.8044ms)
+✔ production route is disabled even if flags and preview key accidentally exist (0.848ms)
+✔ OpenAI activation requires explicit paid-test flag and budget controller (0.4655ms)
+✔ test budget reserves atomically, retains ambiguous charges and blocks session/day overspend (1.1471ms)
+✔ Responses adapter preserves context, strict tools and store:false, retries with reserved cost and resumes function results (4.2899ms)
+✔ OpenAI upstream secrets do not leak through HTTP failures (0.6376ms)
+✔ 30-turn evaluation preserves mock baseline and requires separate human judgement (37.4985ms)
+✔ Responses can continue design advice after unavailable retrieval; standard pricing tier remains explicit (47.4947ms)
+✔ saved tool receipts preserve completed and unavailable searches in subsequent model turns (5.6579ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 453.5357

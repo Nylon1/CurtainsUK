@@ -1,0 +1,28 @@
+✔ all six spotlight selections stay coherent and open the same adviser in the real consultation controller (33.94ms)
+✔ Arrow keys wrap, Home/End select their endpoints, and unrelated keys keep native behavior (12.0318ms)
+✔ reduced-motion startup preserves usable selection without reveal or pointer work (11.6501ms)
+✔ live reduced-motion preference cancels pending work, removes effects and can safely re-enable observation (10.7119ms)
+✔ fine-pointer bursts coalesce into one frame; depth remains bounded and leave cancels it (10.6466ms)
+✔ coarse pointers and touch do no depth work; changing pointer capabilities clears active effects (23.1596ms)
+✔ missing or failing IntersectionObserver preserves readable content and spotlight operation (26.2776ms)
+✔ observed content animates only on entry and completed targets stop being observed (7.3376ms)
+✔ duplicate section load is idempotent and unload cleans up media, pointer, observer and pending frame work (11.9851ms)
+✔ all interaction paths avoid model/network/storage APIs and keep controls outside aria-hidden ancestors (8.2865ms)
+✔ real controller waits for 30 seconds of elapsed time, never interval count (12.8626ms)
+✔ backgrounded tab catches up on visibility restoration and pageshow (8.0648ms)
+✔ close restores focus and scroll; reopening starts a fresh full interval (3.8792ms)
+✔ skip enters the labelled room and native Escape closure restores its opener (3.8923ms)
+✔ keyboard focus wraps using only currently visible, enabled dialog controls (3.8245ms)
+✔ every adviser uses its own profile and the preview makes no network or persistence access (7.6917ms)
+✔ unsupported or failed modal opening keeps the page usable and exposes no fake chat (5.8268ms)
+✔ repeated section initialisation and unload do not duplicate timers or leak listeners (4.0887ms)
+✔ six versioned AI profiles, theme blocks and customer names agree; Jane is featured (21.3615ms)
+✔ the English locale is additive against the verified production baseline (196.5167ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 487.5509

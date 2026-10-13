@@ -1,0 +1,83 @@
+{
+  "id": "outside-product-range",
+  "reviewCriteria": [
+    "No sound-isolation guarantee or unsupported numeric performance",
+    "Suggest appropriate building/acoustic investigation without a forced sale"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "Can curtains completely stop road noise coming through my old windows?",
+      "advice": {
+        "text": "No, curtains cannot completely stop road noise coming through old windows. Heavy, generously gathered curtains may soften some sound and reduce echo within the room, but they are not a substitute for sound insulation, particularly against low traffic rumble.\n\nFor a meaningful reduction, ask a glazing or acoustic specialist to assess gaps around the frames, seals and suitable secondary glazing. If the windows are listed or protected, check any restrictions before making changes. Curtains can complement that work, rather than solve the noise problem on their own.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "Heavy, generously gathered curtains may offer modest sound softening, not complete soundproofing.",
+        "alternatives": [
+          "Professional assessment of window gaps, seals and suitable secondary glazing."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Ask a glazing or acoustic specialist to assess the windows and recommend appropriate noise-reduction measures.",
+          "Check any listed-building or conservation restrictions before altering the windows."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I need a guarantee before buying; I cannot afford to waste money.",
+      "advice": {
+        "text": "If a guarantee is essential, I would not recommend buying curtains to solve this. I cannot guarantee a reduction in road noise, and spending more on heavy fabric would not remove that uncertainty.\n\nBefore spending, ask a glazing or acoustic specialist to assess the windows and provide written advice on the likely improvement, costs and any performance guarantee they can offer. Make clear that your priority is reducing incoming traffic noise, not simply making the room less echoey.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Seek an assessment of the windows from a glazing or acoustic specialist before buying curtains for noise reduction.",
+          "Request written details of expected noise reduction and any performance guarantee before committing."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "What should I investigate before choosing any fabric?",
+      "advice": {
+        "text": "Before choosing fabric, investigate where the noise is entering: gaps around opening sections, damaged seals, the glazing itself or ventilation openings. Have a window specialist assess these, rather than sealing vents yourself.\n\nAsk whether repairs or secondary glazing would help, what improvement is realistic for your particular road noise, and whether any performance claim is backed by a written guarantee. Check planning or listed-building restrictions if relevant.\n\nGiven your budget, establish the cost of effective window work first. Treat curtains as decoration and comfort, not a guaranteed noise solution.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Arrange an assessment of the windows, seals and noise-entry routes.",
+          "Request written advice on realistic noise reduction, costs and any performance guarantee before committing money.",
+          "Decide whether there is a separate budget for decorative curtains after assessing window improvements."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

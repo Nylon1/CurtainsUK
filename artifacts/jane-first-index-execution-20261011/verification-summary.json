@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-10-11T18:59:09.299Z",
+  "allPassed": true,
+  "checks": [
+    {
+      "name": "Exact saved SQL checksum",
+      "passed": true
+    },
+    {
+      "name": "Explicit one-batch and temporary-role approvals",
+      "passed": true
+    },
+    {
+      "name": "Attested full identity denominator and hash",
+      "passed": true
+    },
+    {
+      "name": "Only six approved exact IDs retained",
+      "passed": true
+    },
+    {
+      "name": "Safe source terms and all six hosted hashes match",
+      "passed": true
+    },
+    {
+      "name": "Atomic resumable checkpoint stays incomplete",
+      "passed": true
+    },
+    {
+      "name": "Server execution inside attestation deadline",
+      "passed": true
+    },
+    {
+      "name": "Original permissions restored with no persistent SET grant",
+      "passed": true
+    },
+    {
+      "name": "Migration checksum and all 81 history entries unchanged",
+      "passed": true
+    },
+    {
+      "name": "Browser, Auth and consultation separation retained",
+      "passed": true
+    },
+    {
+      "name": "Shared gate released and no new deadlocks or lock waiters",
+      "passed": true
+    },
+    {
+      "name": "Four descriptive searches and missing-result case",
+      "passed": true
+    },
+    {
+      "name": "Hosted read plan uses GIN without physical or temporary reads",
+      "passed": true
+    },
+    {
+      "name": "Records remain knowledge-only with no purchase claim",
+      "passed": true
+    }
+  ],
+  "coverage": {
+    "indexed": 6,
+    "expected": 16883,
+    "percent": 0.03553870757566783,
+    "complete": false,
+    "scope": "First six identities only; not a representative sample or full-catalogue quality assessment",
+    "knownFields": {
+      "identity": 6,
+      "colour": 6,
+      "tone": 2,
+      "pattern": 5,
+      "patternScale": 0,
+      "texture": 5,
+      "description": 0,
+      "composition": 6,
+      "width": 6,
+      "weight": 0,
+      "care": 0
+    },
+    "receiptCaveat": "Existing presence flags include unknown sentinel strings. Before wider population, separate known-value coverage from raw field presence. No hosted receipt was silently rewritten."
+  },
+  "sqlSha256": "6fc695b15f00b171cea6d4027a25300b7a967b54cee991f1f69bc8d34399b2d4",
+  "operatorRoundTripMs": 1315,
+  "searchExecutionMs": 0.177,
+  "searchPlanningMs": 4.945,
+  "databaseDeltaBytes": 90112,
+  "ioCaveat": "Global PostgreSQL counter deltas include unrelated activity and are not attributable solely to the six-record batch."
+}

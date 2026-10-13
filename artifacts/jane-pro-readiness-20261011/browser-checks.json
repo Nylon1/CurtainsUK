@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-10-11T14:44:30.636Z",
+  "browser": "Chrome desktop",
+  "reviewWidths": [
+    {
+      "contentWidth": 305,
+      "overflow": false,
+      "width": 320
+    },
+    {
+      "contentWidth": 375,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "contentWidth": 397,
+      "overflow": false,
+      "width": 412
+    },
+    {
+      "contentWidth": 753,
+      "overflow": false,
+      "width": 768
+    },
+    {
+      "contentWidth": 1425,
+      "overflow": false,
+      "width": 1440
+    }
+  ],
+  "expandedMigrationDetails": true,
+  "welcome": {
+    "initialDisplayedSeconds": 30,
+    "automaticEntryObservedBySeconds": 54,
+    "exactTransitionTimeObserved": false
+  },
+  "syntheticMessageSucceeded": true,
+  "inputEnabledAfterMessage": true,
+  "dialogEscapeRestoredFocus": "handoff-open",
+  "transcript": {
+    "role": "log",
+    "ariaLive": "polite"
+  },
+  "mockQualityFinding": "Scripted baseline suggested olive despite no-green constraint. Not a real-model result.",
+  "physicalIPhone": "pending",
+  "spokenScreenReader": "pending",
+  "hiddenTab": "not proven",
+  "reducedMotion": "Prior 11 October OS-enabled/restored evidence retained; no animation change in this increment"
+}

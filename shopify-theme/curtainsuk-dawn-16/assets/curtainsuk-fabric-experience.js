@@ -97,6 +97,9 @@
       ${(fabric.images || []).length > 1 ? `<section class="cuk-material-gallery" aria-label="More supplier photography">${fabric.images.slice(1,5).map(asset=>`<figure>${image(asset)}<figcaption>${escape(title(asset.imageType.toLowerCase()))} · supplier photography</figcaption></figure>`).join('')}</section>` : ''}
       <section class="cuk-material-facts"><div><p class="cuk-eyebrow">SUPPLIER FACTS</p><h2>The fabric, precisely.</h2><p>Specifications held against this exact supplier colourway. Full width and usable width are shown separately where supplied.</p></div><dl>${(fabric.supplierFacts?.facts || []).map(f=>`<div><dt>${escape(f.label)}</dt><dd>${escape(f.value)}</dd></div>`).join('')}</dl></section>
       <aside class="cuk-material-close"><div><p class="cuk-eyebrow">FROM SCREEN TO SPACE</p><h2>See it in your own light.</h2><p>Check the colour and surface alongside the furnishings you already love.</p></div><div>${actions(fabric,windowSlug)}</div></aside>`;
+    // Jane's separately loaded private-review adapter is absent in production.
+    // This exact identity also drives PR #183's independent Room Visualiser link.
+    window.CurtainsUKJaneFabricHandoff?.mount(detail,fabric.id);
     detail.querySelectorAll('[data-sample]').forEach(button=>button.addEventListener('click',()=>orderSample(button.closest('.cuk-material-intro, .cuk-material-close'),fabric,windowSlug,button,saveSample)));
     // Existing saved-sample infrastructure is retained, but the detail has its own direct actions.
     const samples = document.querySelector('#samples'); if (samples) samples.hidden = true;

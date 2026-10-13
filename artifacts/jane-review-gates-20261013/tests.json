@@ -1,0 +1,10 @@
+{
+  "classification": "OBSERVED_LOCAL_TEST_RESULT_NOT_HOSTED_OR_REAL_MODEL_EVALUATION",
+  "command": "node --test --test-concurrency=1 lib/advisory/__tests__/fabric-detail-handoff.test.mjs lib/advisory/__tests__/post-population-review.test.mjs lib/advisory/__tests__/population-verification.test.mjs lib/advisory/__tests__/evaluation.test.mjs",
+  "passed": 19,
+  "failed": 0,
+  "durationMs": 1355.68,
+  "syntaxCheck": "node --check experiments/jane-advisory-preview/fabric-detail.mjs passed",
+  "currentTwentyScenarioRealEvaluation": "NOT_RUN",
+  "paidCalls": 0
+}

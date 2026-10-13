@@ -1,0 +1,20 @@
+{
+  "protectedHead": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+  "startingJaneHead": "90722cd22a1485611f5464c03e7c98e51a2a39a7",
+  "phase1Head": "851078c674ac2e9231e51dffbd5949ed4ea7c6d1",
+  "liveTheme": "182339731835",
+  "previewTheme": "182472573307",
+  "permanentPage": {
+    "id": "693751873915",
+    "handle": "meet-our-team",
+    "isPublished": false
+  },
+  "deployment": "dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD",
+  "deploymentStatus": "READY",
+  "supabaseBranches": [
+    "main"
+  ],
+  "databaseOperations": "read-only metadata and at most two exact Fabric Master IDs; no migration",
+  "diskStartGiB": 37.03,
+  "backupProcessObserved": 45016
+}

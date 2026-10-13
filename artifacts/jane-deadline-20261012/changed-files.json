@@ -1,0 +1,17 @@
+{
+  "classification": "EVIDENCE_ONLY_FOLLOWUP",
+  "files": [
+    "artifacts/jane-deadline-20261012/README.md",
+    "artifacts/jane-deadline-20261012/hosted-readback.json",
+    "artifacts/jane-deadline-20261012/verification.json",
+    "artifacts/jane-deadline-20261012/aggregate-readback.sql",
+    "artifacts/jane-deadline-20261012/verify-evidence.mjs",
+    "artifacts/jane-deadline-20261012/recovery-2118.json",
+    "artifacts/jane-deadline-20261012/recovery-2412.json",
+    "artifacts/jane-deadline-20261012/error-window-0951.json",
+    "artifacts/jane-deadline-20261012/operational-state.json",
+    "artifacts/jane-deadline-20261012/changed-files.json",
+    "docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md",
+    "docs/specialist-advisory/JANE_OVERNIGHT_RUN.md"
+  ]
+}

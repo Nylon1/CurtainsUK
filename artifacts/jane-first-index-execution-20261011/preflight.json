@@ -1,0 +1,30 @@
+{
+  "jobs": 0,
+  "stats": {
+    "blks_hit": 2215756306,
+    "blks_read": 66450452,
+    "deadlocks": 0,
+    "temp_bytes": 1209022205628,
+    "stats_reset": "2026-08-25T20:33:23.891825+00:00"
+  },
+  "indexed": 0,
+  "checked_at": "2026-10-11T18:55:13.858809+00:00",
+  "connections": 16,
+  "lock_waiters": 0,
+  "other_active": 0,
+  "database_bytes": 699673747,
+  "migration_hash": "eeaf8c9da085277783a263c8caf28ac3e1e46dac472ad508d3cb18f584948a50",
+  "can_set_indexer": false,
+  "max_connections": 60,
+  "migration_count": 81,
+  "indexer_memberships": [
+    {
+      "set": false,
+      "role": "advisory_indexer",
+      "admin": true,
+      "member": "postgres",
+      "grantor": "supabase_admin",
+      "inherit": false
+    }
+  ]
+}

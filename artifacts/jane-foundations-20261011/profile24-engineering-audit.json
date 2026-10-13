@@ -1,0 +1,20 @@
+{
+  "classification": "ENGINEERING_REVIEW_NOT_HUMAN_DESIGN_APPROVAL",
+  "source": "artifacts/jane-foundations-20261011/profile24-full-index-review.json",
+  "sourceSha256": "b025095a4b5284f95bbd026230e171dfe1b3b419ef7e3a8a1d051dd1ed7f185d",
+  "profileVersion": "2.4.0-preview.2",
+  "suiteVersion": "jane-foundations-v4",
+  "cases": 20,
+  "adviceReplies": 60,
+  "over90Words": 1,
+  "maxWords": 93,
+  "emDashReplies": 0,
+  "executionErrors": 0,
+  "unavailableToolReceipts": 0,
+  "completedIndexSearches": 3,
+  "completedRetailSearches": 1,
+  "acceptedApiResponses": 71,
+  "totalLedgerUsd": 0.268909,
+  "humanScorecards": "PENDING",
+  "hostedCustomerActivation": "NOT_TESTED"
+}

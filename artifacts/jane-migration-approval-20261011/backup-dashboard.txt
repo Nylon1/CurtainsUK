@@ -1,0 +1,58 @@
+Browser tab: 538217764, Title: "Backups | Database | CurtainsUK | Supabase", URL: "https://supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 5, 22, 27-32, 34-42, 44-46, 48-53, 55-57, 86-91
+~0 AXWebArea Backups | Database | CurtainsUK | Supabase, URL: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled
+~			4 link Description: Supabase Back to organization home, Value: supabase.com/dashboard/org/bhnoekmrlyvtubzdargw
++			93 link Description: CurtainsUK PRO, Value: supabase.com/dashboard/org/bhnoekmrlyvtubzdargw
++			94 pop up button (collapsed) Description: Show organizations, Secondary Actions: Expand
++			95 link Description: CurtainsUK, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx
++			96 pop up button (collapsed) Description: Show organization projects, Secondary Actions: Expand
++			97 link Description: main PRODUCTION, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx
++			98 pop up button (collapsed) Description: Show project branches, Secondary Actions: Expand
++			99 button Connect
++					100 link Description: Table Editor, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/editor
++					101 link Description: SQL Editor, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/sql
++					102 link Description: Database, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/schemas
++					103 link Description: Authentication, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/auth/users
++					104 link Description: Storage, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/storage/files
++					105 link Description: Compute NEW, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/compute
++					106 link Description: Realtime, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/realtime/inspector
++					107 link Description: Advisors, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/advisors/security
++					108 link Description: Observability, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/observability
++					109 link Description: Integrations, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/integrations
+~						82 link Description: Pipelines NEW, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/pipelines
++				110 heading Database Backups, Value: 1
++					111 text Database Backups
++				112 container
++					113 link Description: Scheduled backups, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled
++					114 link Description: Point in time, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/pitr
++					115 link Description: Restore to new project BETA, Value: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/restore-to-new-project
++				116 text Projects are backed up daily around midnight of your project’s region and can be restored at any time.
++				117 container Note
++					118 text Storage objects are not included
++					119 text Database backups do not include objects stored via the Storage API, as the database only includes metadata about these objects. Restoring an old backup does not restore objects that have been deleted since then.
++				120 text 11 Oct 2026 01:03:26 (+0000)
++				121 button PHYSICAL
++				122 button Restore
++				123 text 10 Oct 2026 01:23:56 (+0000)
++				124 button PHYSICAL
++				125 button Restore
++				126 text 09 Oct 2026 01:02:20 (+0000)
++				127 button PHYSICAL
++				128 button Restore
++				129 text 08 Oct 2026 01:08:41 (+0000)
++				130 button PHYSICAL
++				131 button Restore
++				132 text 07 Oct 2026 01:01:29 (+0000)
++				133 button PHYSICAL
++				134 button Restore
++				135 text 06 Oct 2026 00:57:11 (+0000)
++				136 button PHYSICAL
++				137 button Restore
++				138 text 05 Oct 2026 01:06:02 (+0000)
++				139 button PHYSICAL
++				140 button Restore
++				141 text 04 Oct 2026 00:57:57 (+0000)
++				142 button PHYSICAL
++				143 button Restore
+The focused UI element is 0 AXWebArea Backups | Database | CurtainsUK | Supabase, URL: supabase.com/dashboard/project/hqysjumypgeapgmqkcrx/database/backups/scheduled

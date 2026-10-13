@@ -1,0 +1,30 @@
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-first-index-batch-20261011\migration-bundle.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/migration-candidate.test.mjs:7:25 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-first-index-batch-20261011\\migration-bundle.json'
+}
+
+Node.js v24.14.0
+✖ lib\advisory\__tests__\migration-candidate.test.mjs (259.6701ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 279.9165
+
+✖ failing tests:
+
+test at lib\advisory\__tests__\migration-candidate.test.mjs:1:1
+✖ lib\advisory\__tests__\migration-candidate.test.mjs (259.6701ms)
+  'test failed'

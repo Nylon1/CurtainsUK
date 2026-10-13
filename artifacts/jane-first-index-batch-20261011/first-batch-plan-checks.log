@@ -1,0 +1,12 @@
+✔ first batch refuses missing approval, stale source/telemetry, excess scope and crossed identity order (79.7979ms)
+✔ atomic six-record SQL preserves worker checkpoint/rollback, rejects replay and never marks full coverage (3332.8125ms)
+✔ late failure rolls back job, vectors, receipt rows and gate; supplier SQL characters remain data (2828.0832ms)
+✔ explicit temporary role approval preserves original grants on success and interrupted transactions (2875.9149ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9505.4317

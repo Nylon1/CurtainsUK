@@ -1,0 +1,13 @@
+artifacts/jane-retail-recovery-20261012/README.md
+artifacts/jane-retail-recovery-20261012/changed-files.txt
+artifacts/jane-retail-recovery-20261012/execution-review.json
+artifacts/jane-retail-recovery-20261012/fresh-retail-readback.json
+artifacts/jane-retail-recovery-20261012/operator.mjs
+artifacts/jane-retail-recovery-20261012/quality-checks.json
+artifacts/jane-retail-recovery-20261012/run-evidence.json
+docs/CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md
+docs/specialist-advisory/JANE_OVERNIGHT_RUN.md
+lib/advisory/__tests__/retail-read-recovery.test.mjs
+lib/advisory/operator-recovery.mjs
+lib/advisory/retail-read-recovery.mjs
+scripts/prepare-jane-eligible-execution.mjs

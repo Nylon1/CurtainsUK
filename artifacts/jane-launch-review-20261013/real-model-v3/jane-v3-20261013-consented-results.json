@@ -1,0 +1,100 @@
+{
+  "id": "consented-results",
+  "reviewCriteria": [
+    "Use actual consented context and distinguish supplied settings from retrieved evidence",
+    "Retain fixed furnishings, reject previous green preference and vary scale/contrast without pretending to see an image"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My olive sofa and oak floor are staying. I want a quiet, warm room, but no green curtains.",
+      "advice": {
+        "text": "With the olive sofa and oak staying, I’d favour warm oatmeal or soft flax curtains with a gentle woven texture. They could connect the wood’s warmth with the sofa without adding more green, while keeping the overall contrast quiet. Avoid anything too yellow if your oak already has a golden tone.\n\nFor a warmer, more distinct alternative, muted clay could bring a little colour without a busy pattern.\n\nDoes the room’s daylight feel cool and shaded, or warm and sunny?",
+        "stage": "recommend",
+        "palette": [
+          "Warm oatmeal",
+          "Soft flax",
+          "Muted clay"
+        ],
+        "patternDirection": "Plain or a very subtle tonal weave for a quiet effect.",
+        "textureDirection": "Soft, matt woven texture rather than a shiny finish.",
+        "alternatives": [
+          "Muted clay for a warmer colour contrast with the olive sofa, rather than the softer tonal relationship of oatmeal or flax."
+        ],
+        "questions": [
+          "Does the room’s daylight feel cool and shaded, or warm and sunny?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "context",
+      "status": "completed",
+      "revision": 2,
+      "contexts": 1,
+      "messages": 2
+    },
+    {
+      "action": "message",
+      "customer": "What would you change about that direction while keeping the room calm?",
+      "advice": {
+        "text": "I’d keep the warm neutral direction, but move away from a smooth ivory plain. Since that trial felt flat, a flax or oatmeal fabric with softly contrasting threads could add depth without making the room busier. Beside olive and oak, that gentle variation may feel warmer and more layered.\n\nIf you’d prefer some pattern, a widely spaced, low-contrast stripe in oatmeal and warm taupe is another calm option. It would give the curtains more definition, whereas a textured plain would keep the effect softer.",
+        "stage": "refine",
+        "palette": [
+          "warm flax",
+          "oatmeal",
+          "warm taupe"
+        ],
+        "patternDirection": "An optional widely spaced, low-contrast stripe rather than a bold motif.",
+        "textureDirection": "A softly varied weave with visible tonal threads, avoiding a smooth, uniform plain.",
+        "alternatives": [
+          "A low-contrast oatmeal and warm taupe stripe for more definition while retaining a quiet palette."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I now prefer a restrained pattern. Please suggest two approaches without repeating green.",
+      "advice": {
+        "text": "Two restrained approaches would add interest without repeating green:\n\n1. A softly defined stripe in flax and warm taupe, with generous space between the lines. It would bring gentle structure alongside the olive sofa and oak floor. Keep the contrast low so it doesn’t feel crisp or formal.\n\n2. A sparse, softly drawn botanical in muted clay on an oatmeal ground. This would introduce warmer colour and a more relaxed feel, though it would be slightly more noticeable than the stripe.\n\nBoth move beyond the flat ivory effect without making pattern the room’s main feature.",
+        "stage": "recommend",
+        "palette": [
+          "flax",
+          "warm taupe",
+          "muted clay",
+          "oatmeal"
+        ],
+        "patternDirection": "Either a widely spaced, low-contrast stripe or a sparse, softly drawn botanical.",
+        "textureDirection": "A softly woven, matt ground to keep either pattern understated.",
+        "alternatives": [
+          "Flax and warm taupe stripe: quieter colour relationship with gentle structure.",
+          "Muted clay botanical on oatmeal: warmer contrast and a softer, more organic effect."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

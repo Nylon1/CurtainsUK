@@ -1,0 +1,15 @@
+✔ trial grant requires signature, exact deployment/source and a maximum one-hour lifetime (26.2122ms)
+✔ disabled production, invalid grant, origin and oversized body do no Auth/database work (90.9247ms)
+✔ wired runtime verifies owners, bootstraps CSRF and shares encrypted recovery across two instances (3695.1375ms)
+✔ hosted protocol rehearsal uses the wired HTTP runtime and removes synthetic consultations (3247.3106ms)
+✔ temporary connection grant has no inherited access, expires, and rolls back without changing private roles (2788.8117ms)
+✔ database pool configuration refuses privileged roles, alternate projects and TLS overrides (1.8443ms)
+✔ transaction owns one connection, resets role locally, discards failures and never retries writes (1.8313ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10526.7377

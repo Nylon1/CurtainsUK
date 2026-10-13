@@ -1,0 +1,13 @@
+✔ superseded proposal cannot be admitted by flipping its approval flag (2.1159ms)
+✔ eligible manifest excludes unpublished IDs and cannot reuse a historical all-Master cursor (7.9816ms)
+✔ missing publication evidence, identity tampering and unknown mappings fail closed (0.9953ms)
+✔ each six-ID page rechecks live eligibility and rejects expiry, drift, omission and wrong project (1.7887ms)
+✔ existing worker resumes a separate eligible job without duplicate search rows or rewriting historical receipts (3334.6287ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3715.6268

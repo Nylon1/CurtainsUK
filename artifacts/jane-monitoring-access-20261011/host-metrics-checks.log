@@ -1,0 +1,17 @@
+✔ derives CPU, disk busy time, memory, filesystem pressure and I/O rates from source time (6.3634ms)
+✔ cached content cannot be relabelled as fresh by a newer HTTP Date (1.9501ms)
+✔ stale source time and windows above 60 seconds fail closed (2.5418ms)
+✔ restart, CPU topology changes and counter resets fail closed (4.7844ms)
+✔ missing gauges, failed collectors, duplicates and wrong projects are rejected (2.293ms)
+✔ malformed labels, NaN, invalid capacity and read-only data filesystem are rejected (2.0115ms)
+✔ unrelated potentially private metrics and comments are discarded (0.9314ms)
+✔ a mounted data disk cannot silently lose all of its I/O series (1.7574ms)
+✔ storage remapping and counters inconsistent with elapsed source time fail closed (2.5788ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 246.8931

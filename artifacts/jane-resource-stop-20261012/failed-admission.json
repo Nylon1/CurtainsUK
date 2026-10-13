@@ -1,0 +1,19 @@
+{
+  "observedAt": "2026-10-12T05:27:49.900789+00:00",
+  "connections": 23,
+  "maxConnections": 60,
+  "lockWaits": 0,
+  "deadlocks": 0,
+  "supplierRecent": 0,
+  "otherActive": 1,
+  "browseDirty": false,
+  "permissionRestored": true,
+  "newDatabaseErrors": 0,
+  "hostSampleAt": "2026-10-12T05:27:02.715Z",
+  "hostSampleAgeAtStopMs": 47557.309814453125,
+  "cpuPercent": 8.971407352374886,
+  "ioPercent": 5.277586065440067,
+  "memoryPercent": 74.44703509988027,
+  "diskPercent": 78.59384004861059,
+  "metricsSha256": "5b2c184d152de09e06256ebb19f36f4c940313fd44f6dcd34e834d60529cc82e"
+}

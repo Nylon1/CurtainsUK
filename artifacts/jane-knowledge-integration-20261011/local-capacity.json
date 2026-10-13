@@ -1,0 +1,143 @@
+{
+  "classification": "SYNTHETIC_LOCAL_POSTGRES_NOT_HOSTED_BENCHMARK",
+  "rows": 600,
+  "snapshots": [
+    {
+      "rows": 6,
+      "search_bytes": 163840,
+      "receipt_bytes": 32768
+    },
+    {
+      "rows": 126,
+      "search_bytes": 565248,
+      "receipt_bytes": 114688
+    },
+    {
+      "rows": 600,
+      "search_bytes": 2113536,
+      "receipt_bytes": 401408
+    }
+  ],
+  "batchMs": {
+    "p50": 18.313800000000356,
+    "p95": 21.405199999999695,
+    "maximum": 51.84990000000016
+  },
+  "observedBytesPerAdditionalIdentity": 3871.324894514768,
+  "linearProjection16883Bytes": 65359579,
+  "planningReserveBytes": 134217728,
+  "limitations": [
+    "Synthetic vocabulary, not representative Fabric Master samples",
+    "Includes search table/GIN indexes and initial receipts; excludes WAL, replication, backups, future refresh before-images and bloat",
+    "128 MiB is an initial monitoring allowance, not measured hosted impact; stop and review if exceeded",
+    "No throughput or full coverage claim follows from this local benchmark"
+  ],
+  "searchPlan": [
+    {
+      "Plan": {
+        "Node Type": "Limit",
+        "Parallel Aware": false,
+        "Async Capable": false,
+        "Startup Cost": 149.32,
+        "Total Cost": 149.33,
+        "Plan Rows": 6,
+        "Plan Width": 21,
+        "Actual Startup Time": 10.311,
+        "Actual Total Time": 10.331,
+        "Actual Rows": 6,
+        "Actual Loops": 1,
+        "Disabled": false,
+        "Shared Hit Blocks": 103,
+        "Shared Read Blocks": 0,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Plans": [
+          {
+            "Node Type": "Sort",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 149.32,
+            "Total Cost": 150.44,
+            "Plan Rows": 450,
+            "Plan Width": 21,
+            "Actual Startup Time": 10.302,
+            "Actual Total Time": 10.31,
+            "Actual Rows": 6,
+            "Actual Loops": 1,
+            "Disabled": false,
+            "Sort Key": [
+              "((((((((((ts_rank_cd(k.document, '''oliv'''::tsquery, 32) * '1'::double precision) + (ts_rank_cd(k.colour, '''oliv'''::tsquery, 32) * '2'::double precision)) + (ts_rank_cd(k.pattern, '''oliv'''::tsquery, 32) * '2'::double precision)) + (ts_rank_cd(k.texture, '''oliv'''::tsquery, 32) * '2'::double precision)) + (ts_rank_cd(k.composition, '''oliv'''::tsquery, 32) * '2'::double precision)) + (ts_rank_cd(k.colour, ''::tsquery, 32) * '2'::double precision)) + (ts_rank_cd(k.pattern, '''geometr'''::tsquery, 32) * '2'::double precision)) + (ts_rank_cd(k.texture, '''matt'' | ''matt'''::tsquery, 32) * '2'::double precision)) + (ts_rank_cd(k.composition, '''linen'''::tsquery, 32) * '2'::double precision))) DESC",
+              "k.fabric_id"
+            ],
+            "Sort Method": "top-N heapsort",
+            "Sort Space Used": 17,
+            "Sort Space Type": "Memory",
+            "Shared Hit Blocks": 103,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Relation Name": "knowledge_search",
+                "Alias": "k",
+                "Startup Cost": 0,
+                "Total Cost": 141.25,
+                "Plan Rows": 450,
+                "Plan Width": 21,
+                "Actual Startup Time": 0.693,
+                "Actual Total Time": 9.055,
+                "Actual Rows": 450,
+                "Actual Loops": 1,
+                "Disabled": false,
+                "Filter": "((document @@ '''oliv'''::tsquery) AND (pattern @@ '''geometr'''::tsquery) AND (texture @@ '''matt'' | ''matt'''::tsquery) AND (composition @@ '''linen'''::tsquery))",
+                "Rows Removed by Filter": 150,
+                "Shared Hit Blocks": 100,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          }
+        ]
+      },
+      "Planning": {
+        "Shared Hit Blocks": 93,
+        "Shared Read Blocks": 1,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0
+      },
+      "Planning Time": 4.13,
+      "Triggers": [],
+      "Execution Time": 10.501
+    }
+  ]
+}

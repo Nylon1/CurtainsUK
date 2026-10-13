@@ -1,0 +1,74 @@
+{
+  "classification": "REAL_HOSTED_AUTH_DATABASE_TWO_LOCAL_APPLICATION_PROCESSES",
+  "checks": [
+    {
+      "name": "authenticated bootstrap 0",
+      "result": "PASS"
+    },
+    {
+      "name": "authenticated bootstrap 1",
+      "result": "PASS"
+    },
+    {
+      "name": "missing CSRF denied",
+      "result": "PASS"
+    },
+    {
+      "name": "consent required",
+      "result": "PASS"
+    },
+    {
+      "name": "durable start",
+      "result": "PASS"
+    },
+    {
+      "name": "mock design reply",
+      "result": "PASS"
+    },
+    {
+      "name": "idempotent replay",
+      "result": "PASS"
+    },
+    {
+      "name": "foreign consultation denied",
+      "result": "PASS"
+    },
+    {
+      "name": "save",
+      "result": "PASS"
+    },
+    {
+      "name": "recovery",
+      "result": "PASS"
+    },
+    {
+      "name": "replayed recovery denied",
+      "result": "PASS"
+    },
+    {
+      "name": "second owner start",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent revision has one winner",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent revision conflict",
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS",
+  "limitations": [
+    "Application processes ran locally, not on Vercel.",
+    "Auth revocation, expiry and failover need their separate checks."
+  ],
+  "checkedAt": "2026-10-11T17:49:15.148Z",
+  "applicationInstances": [
+    6588,
+    40980
+  ],
+  "tls": "CA and hostname verified",
+  "databaseRole": "advisory_runtime",
+  "ciphertextReads": 7
+}

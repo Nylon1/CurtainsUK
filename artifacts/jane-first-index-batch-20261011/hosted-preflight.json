@@ -1,0 +1,42 @@
+{
+  "classification": "READ_ONLY_HOSTED_PREFLIGHT_NO_POPULATION_EXECUTED",
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "jobs": 0,
+  "indexed": 0,
+  "checked_at": "2026-10-11T18:30:34.146833+00:00",
+  "connections": 15,
+  "lock_waiters": 0,
+  "other_active": 0,
+  "database_bytes": 699673747,
+  "can_set_indexer": false,
+  "migration_count": 81,
+  "indexer_memberships": [
+    {
+      "set": false,
+      "role": "advisory_indexer",
+      "admin": true,
+      "member": "postgres",
+      "grantor": "supabase_admin",
+      "inherit": false
+    }
+  ],
+  "resourceWindow": {
+    "source": "Supabase Overview last 60 minutes",
+    "windowEnd": "2026-10-11T18:18:33.799Z",
+    "cpuPercent": 13,
+    "ioPercent": 2,
+    "memoryPercent": 65,
+    "diskPercent": 50,
+    "note": "Historical aggregate observation, not current execution admission; refresh before running."
+  },
+  "backup": {
+    "latestVisibleUTC": "2026-10-11T01:03:26Z",
+    "restoreActionVisible": true,
+    "restoreTested": false,
+    "toshibaCompletionVerified": false
+  },
+  "storage": {
+    "freeCGiB": 39.15,
+    "resticProcessVisible": false
+  }
+}

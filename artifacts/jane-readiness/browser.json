@@ -1,0 +1,120 @@
+{
+  "responsive": [
+    {
+      "cards": 3,
+      "images": [
+        {
+          "alt": "SHAMBALA · AMBER",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · JONQUIL",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · LAGOON",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "cards": 3,
+      "images": [
+        {
+          "alt": "SHAMBALA · AMBER",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · JONQUIL",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · LAGOON",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "cards": 3,
+      "images": [
+        {
+          "alt": "SHAMBALA · AMBER",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · JONQUIL",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · LAGOON",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 397,
+      "width": 412
+    },
+    {
+      "cards": 3,
+      "images": [
+        {
+          "alt": "SHAMBALA · AMBER",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · JONQUIL",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · LAGOON",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "cards": 3,
+      "images": [
+        {
+          "alt": "SHAMBALA · AMBER",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · JONQUIL",
+          "loaded": true
+        },
+        {
+          "alt": "SHAMBALA · LAGOON",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 1425,
+      "width": 1440
+    }
+  ],
+  "waiting": {
+    "autoOpened": true,
+    "hiddenTabVerified": false,
+    "observedVisibility": "visible"
+  },
+  "physicalIPhone": "pending",
+  "actualScreenReader": "pending",
+  "reducedMotionEnabledDevice": "pending",
+  "finalKeyboard": {
+    "galleryDisclosure": "Enter expanded Warm Contemporary; visible solid focus",
+    "productLink": "Tab moved from Amber to Jonquil; visible solid outline; exact fabric identity in accessible name"
+  },
+  "finalCatalogue": {
+    "status": 200,
+    "durationMs": 2445,
+    "cards": 3,
+    "allImagesLoaded": true,
+    "transientFailuresObserved": 2,
+    "draftPreserved": true,
+    "note": "Two transient failures retained the draft and displayed an error. A later fresh preview request succeeded; no claim that the failed requests succeeded."
+  }
+}

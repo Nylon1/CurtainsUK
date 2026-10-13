@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-10-12T06:02:58.096Z",
+  "command": "node --test lib/advisory/__tests__/retail-read-recovery.test.mjs lib/advisory/__tests__/active-client-gate.test.mjs",
+  "passed": 9,
+  "failed": 0,
+  "durationMs": 3275.24,
+  "credentialPatternScan": "PASS",
+  "writeRetries": 0,
+  "paidOpenAiCostUsd": 0
+}

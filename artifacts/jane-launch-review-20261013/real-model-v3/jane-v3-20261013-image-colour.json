@@ -1,0 +1,103 @@
+{
+  "id": "image-colour",
+  "reviewCriteria": [
+    "Explain image processing is not connected",
+    "No exact colour guarantee; sample advice uses verified source"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I have uploaded a screenshot. Tell me exactly what colour my walls are.",
+      "advice": {
+        "text": "I’m Jane, CurtainsUK’s AI fabric and interior design adviser. I can’t view or analyse uploaded screenshots here, so I can’t tell you exactly what colour your walls are. Even from a photograph, lighting and screen settings can alter how a paint colour appears.\n\nDo you know the paint name, or could you describe whether the walls look creamy, pinkish, grey or green? That would help me suggest a coordinating fabric direction without claiming an exact match.",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "Do you know the paint name, or could you describe the walls’ colour and undertone?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Can you guarantee the curtains will match exactly in real life?",
+      "advice": {
+        "text": "No, I can’t guarantee an exact real-life colour match. Screens can alter colours, and fabric and wall paint reflect light differently, so even a close match may look different throughout the day.\n\nThe most reliable next step is to view a physical fabric sample against your walls in daylight and evening light before deciding. If an exact match proves elusive, a deliberate tonal contrast can look more considered than a near-match.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [
+          "Choose a deliberate tonal contrast rather than an almost-exact match."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "View a physical fabric sample against the walls in daytime and evening light before making a final choice."
+        ],
+        "evidenceIds": [
+          "guide:samples:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:samples:v1",
+          "source": "shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-trust-footer.liquid",
+          "version": "2026-10-09"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "samples"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:samples:v1"
+          ],
+          "resultIds": [
+            "guide:samples:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "What should I look for when comparing samples?",
+      "advice": {
+        "text": "Hold each sample vertically beside the wall, as the curtains will hang, rather than laying it flat. Compare it in daylight and again under your evening lighting.\n\nLook for undertones: does the fabric make the wall seem more yellow, pink, green or grey? Notice whether its texture or sheen changes the colour as you move it, and check it beside your main furnishings too. Aim for a relationship you enjoy in both lighting conditions, rather than an exact match that only works at one time of day.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare samples vertically beside the walls in daylight and evening light.",
+          "Check undertones, texture and sheen alongside your main furnishings."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

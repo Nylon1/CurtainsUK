@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "pid": 53328,
+  "startedAt": "2026-10-11T22:06:27.807Z",
+  "status": "WAITING_FOR_COMPLETED_POST_WRITE_BACKUP",
+  "indexingStarted": false,
+  "hostedWrites": 0,
+  "approvalReference": "https://github.com/Nylon1/CurtainsUK/pull/169#issuecomment-6114221325",
+  "stopAt": "2026-10-12T10:00:00.000Z",
+  "recoveryOperator": "CurtainsUK owner (Nylon1), confirmed in this task",
+  "acceptedRpoSeconds": 86400,
+  "aliveAt": "2026-10-11T22:09:57.865Z",
+  "checkedAt": "2026-10-11T22:06:29.360Z",
+  "httpStatus": 200,
+  "backup": {
+    "id": 1928024708,
+    "status": "COMPLETED",
+    "isPhysical": true,
+    "recoveryPoint": "2026-10-11T01:03:26.503Z"
+  },
+  "backupConditionMet": false,
+  "walgEnabled": true,
+  "pitrEnabled": false,
+  "checks": 1
+}

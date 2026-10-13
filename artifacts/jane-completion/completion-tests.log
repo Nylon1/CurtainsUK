@@ -1,0 +1,13 @@
+✔ cloud ciphertext binds owner, identity, revision and expiry; rotation reads old records, no plaintext fallback (24.6834ms)
+✔ cloud read fails closed before RPC without encryption configuration (1.275ms)
+✔ consented handoff is bound to customer, consultation and expiry; rejects invented visualiser controls (9.4163ms)
+✔ customer wording removes internal feedback codes without changing provenance (0.9669ms)
+✔ safe extended fabric facts and bounded keyset pages omit commercial fields (134.6623ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 522.085

@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-11T14:02:27.120Z",
+  "scopedLintExit": 0,
+  "diffCheckExit": 0,
+  "unexpectedChangedPaths": [],
+  "credentialPatternPaths": [],
+  "openAiKeyInProcess": false,
+  "privateEvaluationEnvPresent": false,
+  "historicalEvidenceChanged": false,
+  "migrationHashesVerified": true,
+  "freeGiB": 40.42,
+  "backupProcessStillVisible": false,
+  "backupCompletionVerified": false,
+  "productionChanges": 0,
+  "paidCalls": 0
+}

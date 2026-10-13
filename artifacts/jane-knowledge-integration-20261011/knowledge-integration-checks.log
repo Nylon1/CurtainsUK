@@ -1,0 +1,12 @@
+✔ relevance uses actual indexed colour/tone/texture/pattern/composition and safe specifications (3295.435ms)
+✔ change manifests exclude stock-only updates, deduplicate resolved dependencies and reject gaps/deletions (5.4698ms)
+✔ change-only refresh reuses transactional worker, skips unchanged vectors and recovers/rolls back safely (2942.34ms)
+✔ remaining population is exactly 2813 batches, 141 invocations with a five-fabric final batch (0.9781ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6612.9558

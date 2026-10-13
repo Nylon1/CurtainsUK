@@ -1,0 +1,86 @@
+{
+  "id": "preference-ambiguity",
+  "reviewCriteria": [
+    "Clarify appearance goals without declaring a universal rule",
+    "Explain light and texture cautiously, no promise of colour transformation"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I love rich colour but want the curtains almost invisible. The walls are deep navy.",
+      "advice": {
+        "text": "You can keep the richness while making the curtains recede: I’d start with a plain deep navy close to the walls, with a matt finish and quiet texture. Matching the undertone matters more than simply choosing a dark blue; a shinier fabric could stand out as it catches the light.\n\nA slightly darker navy would be an alternative, adding depth without a strong colour break, although the window would feel more defined. Do your walls lean towards inky blue or a greener navy?",
+        "stage": "recommend",
+        "palette": [
+          "Deep navy close to the wall colour",
+          "Slightly darker navy as an alternative"
+        ],
+        "patternDirection": "Plain, avoiding contrasting motifs so the curtains visually recede.",
+        "textureDirection": "Matt finish with subtle texture rather than a light-catching sheen.",
+        "alternatives": [
+          "A slightly darker navy for gentle depth, with a more defined window outline."
+        ],
+        "questions": [
+          "Do your walls lean towards inky blue or a greener navy?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The navy walls are staying. I meant unobtrusive in daylight, with a richer feel in the evening.",
+      "advice": {
+        "text": "That distinction helps: I’d keep the curtains close to the navy walls, but choose a plain fabric with a soft, dense texture rather than a completely flat surface. In daylight, low colour contrast and minimal sheen would help them recede; under warm evening lighting, the folds and texture could give the navy more depth.\n\nA softly lustrous weave is an alternative if you want more evening richness, though it would catch daylight too and be less unobtrusive.",
+        "stage": "refine",
+        "palette": [
+          "Deep navy close to the existing walls"
+        ],
+        "patternDirection": "Plain, with minimal visible pattern",
+        "textureDirection": "Soft, dense texture with minimal sheen for subtle daylight presence and evening depth",
+        "alternatives": [
+          "A softly lustrous navy weave for greater evening richness, accepting more visibility in daylight"
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "What are the compromises? Please keep it brief.",
+      "advice": {
+        "text": "The main compromise is sheen: it adds evening richness but also catches daylight, making the curtains more noticeable. A matt, textured navy stays quieter by day, but its evening richness will be subtler and depend on your lighting.\n\nMatching the walls reduces contrast, though folds and shadows will still show. I’d favour matt texture for your brief.",
+        "stage": "refine",
+        "palette": [
+          "Deep navy close to the walls"
+        ],
+        "patternDirection": "Plain, to minimise visual contrast",
+        "textureDirection": "Matt with subtle texture, prioritising daytime discretion over sheen",
+        "alternatives": [
+          "Soft lustre for greater evening richness, with more daytime visibility"
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

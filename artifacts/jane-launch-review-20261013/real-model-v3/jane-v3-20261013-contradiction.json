@@ -1,0 +1,91 @@
+{
+  "id": "contradiction",
+  "reviewCriteria": [
+    "Latest preference replaces earlier assumption",
+    "Clarify incompatible priorities without being dismissive"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I want warm ivory curtains with a minimal look.",
+      "advice": {
+        "text": "For a minimal look, I’d start with a warm ivory plain fabric with a fine, matte texture. It can give the curtains some depth without introducing an obvious pattern. A smoother finish is an alternative if you prefer a crisper, more tailored feel.\n\nThe main thing to watch is the undertone: some ivories can look quite yellow beside cooler whites. What colour are your walls?",
+        "stage": "understand",
+        "palette": [
+          "Warm ivory"
+        ],
+        "patternDirection": "Plain, without an obvious motif.",
+        "textureDirection": "Fine, subtle matte texture for gentle depth.",
+        "alternatives": [
+          "A smoother plain finish for a crisper, more tailored look."
+        ],
+        "questions": [
+          "What colour are your walls?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I have changed my mind: cool blue tones instead.",
+      "advice": {
+        "text": "We’ll move away from warm ivory and keep the minimal look. A muted blue-grey with a fine, matte texture would give a quiet, cool effect without feeling stark. For a more distinct colour statement, a clear mid-blue plain would add contrast while keeping the design uncluttered.\n\nWhat colour are your walls? That will help us choose a blue that feels balanced rather than unexpectedly cold.",
+        "stage": "understand",
+        "palette": [
+          "Muted blue-grey",
+          "Clear mid-blue"
+        ],
+        "patternDirection": "Plain, without an obvious pattern",
+        "textureDirection": "Fine, matte texture",
+        "alternatives": [
+          "Clear mid-blue for stronger colour and contrast"
+        ],
+        "questions": [
+          "What colour are your walls?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I want both no visible pattern and a bold high-contrast geometric. What should I prioritise?",
+      "advice": {
+        "text": "Those two aims pull in opposite directions: a bold, high-contrast geometric will be visibly patterned. Given your earlier wish for a minimal look, I’d prioritise plain cool-blue curtains and create contrast through colour rather than motif.\n\nIf you now want the curtains to be the room’s focal point, prioritise the geometric instead, keeping nearby textiles quieter. Which matters more to you: a calm backdrop or a statement at the window?",
+        "stage": "refine",
+        "palette": [
+          "Cool blue"
+        ],
+        "patternDirection": "Plain for a minimal backdrop; bold high-contrast geometric only if a statement takes priority.",
+        "textureDirection": "",
+        "alternatives": [
+          "Plain cool-blue curtains with contrast supplied by colour rather than pattern.",
+          "Bold high-contrast geometric curtains balanced by quieter surrounding textiles."
+        ],
+        "questions": [
+          "Which matters more to you: a calm backdrop or a statement at the window?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

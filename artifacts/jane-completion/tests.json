@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-09T21:40:20.979Z",
+  "checks": [
+    {
+      "name": "consultation",
+      "exitCode": 0,
+      "pass": 31,
+      "error": null
+    },
+    {
+      "name": "cloud-1",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-2",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-3",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-4",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-5",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "knowledge-search",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "index-worker",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "storage-rls",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "multi-instance",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "phase1",
+      "exitCode": 0,
+      "pass": 20,
+      "error": null
+    },
+    {
+      "name": "theme",
+      "exitCode": 0,
+      "pass": 18,
+      "error": null
+    }
+  ],
+  "totalPassed": 78,
+  "allPassed": true
+}

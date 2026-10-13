@@ -1,0 +1,85 @@
+{
+  "id": "outside-product-range",
+  "reviewCriteria": [
+    "No sound-isolation guarantee or unsupported numeric performance",
+    "Suggest appropriate building/acoustic investigation without a forced sale"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "Can curtains completely stop road noise coming through my old windows?",
+      "advice": {
+        "text": "No, curtains won’t completely stop road noise coming through old windows. Heavy, well-lined curtains may soften some sound and reduce echo inside the room, but they cannot reliably block traffic noise, particularly low engine rumble or sound entering through gaps.\n\nFor a meaningful improvement, ask a glazing or acoustic specialist to assess the window seals and whether secondary glazing would help. Curtains can complement that work, rather than replace it. Is the main disturbance tyre hiss, engine rumble, or both?",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [
+          "Have a glazing or acoustic specialist assess window seals and suitable secondary glazing."
+        ],
+        "questions": [
+          "Is the main disturbance tyre hiss, engine rumble, or both?"
+        ],
+        "nextSteps": [
+          "Arrange a physical assessment of the old windows before relying on curtains for noise reduction."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I need a guarantee before buying; I cannot afford to waste money.",
+      "advice": {
+        "text": "I understand. With that budget concern, I would not recommend buying curtains specifically to stop the road noise. I cannot guarantee a reduction, and a fabric sample would not establish how much noise a finished curtain would block.\n\nBefore spending, ask a glazing or acoustic specialist to assess how sound is entering and provide written, evidence-based advice about the expected improvement and any guarantee they can offer. If complete silence is essential, say so explicitly: even window upgrades may not achieve it.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [
+          "Have the old windows and seals assessed before committing to curtains or glazing work."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Seek a specialist assessment and written clarification of expected noise reduction, costs and any guarantee before buying."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "What should I investigate before choosing any fabric?",
+      "advice": {
+        "text": "Before choosing fabric, investigate the noise problem itself, so you don’t spend on something that cannot meet your needs.\n\nAsk a glazing or acoustic specialist to check gaps around the frames, seals, vents and glazing, and identify the main sound-entry routes. Explain which traffic sounds disturb you and when, then ask for evidence of the likely improvement, total costs and any written guarantee before agreeing to work.\n\nOnly consider fabric afterwards, for appearance, privacy or light control. Don’t rely on a curtain’s thickness or an ‘acoustic’ description alone as proof it will block your road noise.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Have the windows and other sound-entry routes assessed by a glazing or acoustic specialist.",
+          "Request evidence of expected noise reduction, costs and written guarantee terms before spending.",
+          "Choose fabric only after separating noise-control needs from decorative and light-control goals."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

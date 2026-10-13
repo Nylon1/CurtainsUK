@@ -1,6 +1,8 @@
 # Jane Shopify customer-chat gate, 13 October 2026
 
-**Draft PR #169 only. Source implemented and locally exercised; no hosted Shopify chat, public AI activation, theme publication, migration, or paid model call.**
+**Draft PR #169 only. Source implemented and locally exercised; no hosted Shopify chat, public AI activation, Jane theme-file publication, migration, or paid model call.**
+
+**Current publication distinction, 13 October:** PR #167's separate Meet Our Team page is now live at [Meet Our Team](https://www.curtainsuk.com/pages/meet-our-team), from protected commit `ffe63dda7a85b83f400c122f14a64e476a441ad3`. Its 20 uploaded files match the protected source, and its consultation previews remain labelled Coming Soon. None of PR #169's Jane chat files or service switches was published. The owner reported a visual iPhone pass on the unpublished page preview; spoken VoiceOver and the signed-in customer chat journey remain unverified. See the current entry in the master advisory source of truth for the live-page readback and rollback record. The dated implementation history below remains as originally observed.
 
 The approved Meet Our Team design stays intact. A new section checkbox, `jane_chat_private_preview`, defaults to `false`. With the default setting the existing six-adviser waiting-room demonstration and disabled composer remain as published candidates. When the checkbox is deliberately enabled in an unpublished test theme, only Jane's room gains a message form, consent, saved-session resume/delete, and an optional exact-fabric handoff. Other advisers remain previews. No live theme file has been changed.
 

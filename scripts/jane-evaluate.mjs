@@ -11,7 +11,7 @@ import {createOpenAIProvider,MODEL_RATES} from '../lib/advisory/openai-provider.
 import {CloudSessionStore} from '../lib/advisory/cloud-store.mjs';
 import {createEvaluationFixtureCatalogue} from '../lib/advisory/evaluation-fixture.mjs';
 import {fail} from '../lib/advisory/contracts.mjs';
-import {foundationsCases as completionCases,foundationsRubric as completionRubric,EVALUATION_VERSION,requireFreshEvaluationApproval} from '../lib/advisory/evaluation-v3.mjs';
+import {foundationsCases as completionCases,foundationsRubric as completionRubric,EVALUATION_VERSION,requireFreshEvaluationApproval} from '../lib/advisory/evaluation-v4.mjs';
 const mode=process.argv[2]??'mock';if(!['mock','openai'].includes(mode))throw Error('Use mock or openai.');
 const tag=process.argv[4]??mode;if(!/^[a-z0-9-]{1,40}$/.test(tag))throw Error('Invalid evidence tag');
 const caseIds=process.argv[5]?.split(',')??null;

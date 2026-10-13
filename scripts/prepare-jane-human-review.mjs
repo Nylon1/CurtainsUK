@@ -2,7 +2,7 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {foundationsCases,foundationsRubric,EVALUATION_VERSION} from '../lib/advisory/evaluation-v3.mjs';
+import {foundationsCases,foundationsRubric,EVALUATION_VERSION} from '../lib/advisory/evaluation-v4.mjs';
 import {JANE_VERSION} from '../lib/advisory/profiles.mjs';
 const output=path.resolve(process.argv[2]??'artifacts/jane-review-gates-20261013');
 const realPath=process.argv[3]??null;

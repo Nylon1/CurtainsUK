@@ -42,7 +42,7 @@ test('signed synthetic Shopify customer gets a stable, separate advisory owner a
   assert.equal(bindingA, janeBrowserBinding(janeOwner('carpetup.myshopify.com', '123', env.ADVISORY_OWNER_DERIVATION_KEY), env.ADVISORY_CSRF_KEY));
   assert.deepEqual(Object.keys(await (await handle(new Request(url('123')))).json()).sort(), ['csrf', 'expiresAt', 'ownerBinding']);
   assert.match(janeOwner('carpetup.myshopify.com', '123', env.ADVISORY_OWNER_DERIVATION_KEY), /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-8[0-9a-f]{3}-[0-9a-f]{12}$/);
-  const request = (id: string, csrf: string) => handle(new Request(url(id), { method: 'POST', headers: { origin: 'https://www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf }, body: JSON.stringify({ action: 'start' }) }));
+  const request = (id: string, csrf: string) => handle(new Request(url(id), { method: 'POST', headers: { origin: 'https://www.curtainsuk.com', 'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf }, body: JSON.stringify({ action: 'start' }) }));
   assert.equal((await request('123', tokenA)).status, 200);
   assert.equal((await request('456', tokenA)).status, 403);
   assert.equal((await request('456', tokenB)).status, 200);
@@ -74,19 +74,24 @@ test('manual protected preview needs exact compiled source and deployment identi
 test('origin, CSRF, content limit and recovery transfer are denied before execution', async () => {
   const { handle, calls } = fixture();
   const csrf = (await (await handle(new Request(url()))).json()).csrf;
-  const post = (body: unknown, headers: Record<string, string> = {}) => handle(new Request(url(), { method: 'POST', headers: { origin: 'https://www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf, ...headers }, body: JSON.stringify(body) }));
+  const post = (body: unknown, headers: Record<string, string> = {}) => handle(new Request(url(), { method: 'POST', headers: { origin: 'https://www.curtainsuk.com', 'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf, ...headers }, body: JSON.stringify(body) }));
   assert.equal((await post({ action: 'start' }, { origin: 'https://evil.example' })).status, 403);
+  assert.equal((await post({ action: 'start' }, { 'x-forwarded-host': 'evil.example' })).status, 403);
+  const noForwardedHost = new Headers({ origin: 'https://www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf });
+  assert.equal((await handle(new Request(url(), { method: 'POST', headers: noForwardedHost, body: JSON.stringify({ action: 'start' }) }))).status, 403);
+  const noOrigin = new Headers({ 'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf });
+  assert.equal((await handle(new Request(url(), { method: 'POST', headers: noOrigin, body: JSON.stringify({ action: 'start' }) }))).status, 200);
   assert.equal((await post({ action: 'start' }, { 'x-advisory-csrf': 'wrong' })).status, 403);
   assert.equal((await post({ action: 'recover' })).status, 400);
   assert.equal((await post({ action: 'start', payload: 'x'.repeat(16000) })).status, 413);
-  assert.equal(calls.length, 0);
+  assert.equal(calls.length, 1);
 });
 test('signed Shopify ownership reaches the real consultation service and blocks another customer', async () => {
   const store = new MemoryStore();
   const service = createConsultationService({ store, provider: createMockProvider(), catalogue: { lookup: async () => [] } });
   const handle = createShopifyJaneGateway({ env, now: () => now, take: async () => {}, execute: (owner, body) => service.execute(owner, body) });
   const csrf = async (id: string) => (await (await handle(new Request(url(id)))).json()).csrf;
-  const post = (id: string, token: string, action: string, sessionId: string | null = null) => handle(new Request(url(id), { method: 'POST', headers: { origin: 'https://www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': token }, body: JSON.stringify({ requestId: randomUUID(), sessionId, revision: sessionId ? 0 : null, action, text: null, context: null, consent: action === 'start', recoveryToken: null }) }));
+  const post = (id: string, token: string, action: string, sessionId: string | null = null) => handle(new Request(url(id), { method: 'POST', headers: { origin: 'https://www.curtainsuk.com', 'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': token }, body: JSON.stringify({ requestId: randomUUID(), sessionId, revision: sessionId ? 0 : null, action, text: null, context: null, consent: action === 'start', recoveryToken: null }) }));
   const a = await csrf('123'), b = await csrf('456');
   const created = await post('123', a, 'start'); assert.equal(created.status, 200);
   const session = (await created.json()).session;

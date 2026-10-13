@@ -7,6 +7,7 @@ const noStore = { 'Cache-Control': 'no-store', 'Content-Type': 'application/json
 const customerId = /^[1-9][0-9]{0,19}$/;
 const allowedShop = 'carpetup.myshopify.com';
 const allowedPath = '/apps/curtainsuk-decision';
+const storefrontHosts = new Set(['www.curtainsuk.com', allowedShop]);
 
 function fail(status: number, code: string) { return Response.json({ error: code }, { status, headers: noStore }); }
 function safeEqual(a: string, b: string) {
@@ -62,8 +63,13 @@ export function createShopifyJaneGateway({ env, compiledCommit, execute, take, n
         await take(owner);
         return Response.json({ csrf: janeCsrf(owner, bucket, key(env.ADVISORY_CSRF_KEY)), ownerBinding: janeBrowserBinding(owner, key(env.ADVISORY_CSRF_KEY)), expiresAt: (bucket + 1) * 600000 }, { headers: noStore });
       }
+      // Shopify documents X-Forwarded-Host on app-proxy requests, but does not
+      // guarantee that it forwards the browser's Origin. Require the storefront
+      // host and, when Origin is present, require that to be the storefront too.
+      const forwardedHost = request.headers.get('x-forwarded-host')?.toLowerCase();
       const origin = request.headers.get('origin');
-      if (!origin || !['https://www.curtainsuk.com', 'https://carpetup.myshopify.com'].includes(origin)) return fail(403, 'ORIGIN_DENIED');
+      if (!forwardedHost || !storefrontHosts.has(forwardedHost)
+        || (origin !== null && !['https://www.curtainsuk.com', `https://${allowedShop}`].includes(origin))) return fail(403, 'ORIGIN_DENIED');
       const supplied = request.headers.get('x-advisory-csrf') ?? '';
       if (!safeEqual(supplied, janeCsrf(owner, bucket, key(env.ADVISORY_CSRF_KEY))) && !safeEqual(supplied, janeCsrf(owner, bucket - 1, key(env.ADVISORY_CSRF_KEY)))) return fail(403, 'CSRF_DENIED');
       if (!request.headers.get('content-type')?.startsWith('application/json')) return fail(415, 'INVALID_INPUT');

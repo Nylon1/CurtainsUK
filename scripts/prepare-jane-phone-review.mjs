@@ -1,15 +1,19 @@
 // Creates a GitHub-readable review from a saved synthetic evaluation.
 // No provider, key, database or network access.
 import {readFile,writeFile} from 'node:fs/promises';
+import {JANE_VERSION} from '../lib/advisory/profiles.mjs';
+import {EVALUATION_VERSION} from '../lib/advisory/evaluation-v4.mjs';
 
 const [input,output]=process.argv.slice(2);
 if(!input||!output)throw Error('Usage: node scripts/prepare-jane-phone-review.mjs <evaluation.json> <review.md>');
 const report=JSON.parse(await readFile(input,'utf8'));
-if(report.mode!=='openai'||report.version!=='jane-foundations-v3'||report.cases?.length!==20)throw Error('INVALID_REVIEW_SOURCE');
+const current=report.mode==='openai-broker'&&report.version===EVALUATION_VERSION&&report.retrievalSource==='existing-hosted-index-and-live-governed-retail';
+const historical=report.mode==='openai'&&report.version==='jane-foundations-v3';
+if((!current&&!historical)||report.cases?.length!==20)throw Error('INVALID_REVIEW_SOURCE');
 const clean=value=>String(value??'').replace(/\r\n?/g,'\n').trim();
 const text=['# Jane: phone review of 20 conversations',
   '',
-  'These are invented-customer conversations from **profile 2.3.0-preview.1**, tested on 13 October 2026. They are evidence for review, not the current profile or a live customer service. Profile 2.4 has not had a real-model evaluation. The test used a limited 36-fabric knowledge fixture and no live retail offers.',
+  current?`These are invented-customer conversations from **profile ${JANE_VERSION}**, tested against bounded searches of the existing hosted fabric index and the governed live retail catalogue. They are private evaluation evidence, not a live customer service or a completed human design review.`:'These are invented-customer conversations from **profile 2.3.0-preview.1**, tested on 13 October 2026. They are evidence for review, not the current profile or a live customer service. Profile 2.4 has not had a real-model evaluation. The test used a limited 36-fabric knowledge fixture and no live retail offers.',
   '',
   'Please read each full conversation, then tell us which case numbers **work**, **need changes**, or are **uncertain**. For a case needing changes, explain what Jane missed, repeated or said at excessive length. You can reply in this chat or [comment on draft PR #169](https://github.com/Nylon1/CurtainsUK/pull/169) using a label such as `Case 04: ...`. Your qualitative feedback will be recorded separately from the formal two-reviewer scorecards.',
   '',

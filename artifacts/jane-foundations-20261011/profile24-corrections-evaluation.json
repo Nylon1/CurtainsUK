@@ -1,0 +1,518 @@
+{
+  "version": "jane-foundations-v4",
+  "cases": [
+    {
+      "id": "tool-teacher",
+      "reviewCriteria": [
+        "Use verified tool guidance",
+        "No invented visualiser heading selector; direct heading comparisons to Curtain Style with its real link"
+      ],
+      "transcript": [
+        {
+          "action": "message",
+          "customer": "How does Fabric Intelligence help me choose curtains?",
+          "advice": {
+            "text": "Fabric Intelligence helps turn what you want from your curtains, such as privacy, light control or a particular atmosphere, into five design directions with fabric suggestions and explanations of why they may suit.\n\nYou can respond separately to the overall look and each fabric, then refine a shortlist. That means liking a colour direction needn’t mean liking every pattern. It’s a guided starting point, not a guarantee of the perfect fabric; physical samples remain important for judging colour and texture at home.",
+            "stage": "understand",
+            "palette": [],
+            "patternDirection": "",
+            "textureDirection": "",
+            "alternatives": [],
+            "questions": [],
+            "nextSteps": [
+              "Start with what matters most: light, privacy or the look you want."
+            ],
+            "evidenceIds": [
+              "guide:fi:v2"
+            ],
+            "fabricIds": []
+          },
+          "citations": [
+            {
+              "id": "guide:fi:v2",
+              "source": "lib/storefront/hci/consultation.js, lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+              "version": "2026-10-13"
+            }
+          ],
+          "fabrics": [],
+          "retrievals": [
+            {
+              "tool": "get_tool_guidance",
+              "input": {
+                "tool": "fabric-intelligence"
+              },
+              "status": "completed",
+              "evidenceIds": [
+                "guide:fi:v2"
+              ],
+              "resultIds": [
+                "guide:fi:v2"
+              ],
+              "resultCount": 1
+            }
+          ]
+        },
+        {
+          "action": "message",
+          "customer": "I dislike the recommendations. What should I change?",
+          "advice": {
+            "text": "Change the part that feels wrong rather than starting over. If the results are too busy, revisit your pattern preference. If the colours miss the mark, revise your brief or correct the optional image palette. If you like the overall direction but dislike one fabric, keep that direction and give separate feedback on the fabric before refining the shortlist.\n\nIs it mainly the colours, the patterns or the overall atmosphere that doesn’t feel right?",
+            "stage": "refine",
+            "palette": [],
+            "patternDirection": "",
+            "textureDirection": "",
+            "alternatives": [],
+            "questions": [
+              "Is it mainly the colours, the patterns or the overall atmosphere that doesn’t feel right?"
+            ],
+            "nextSteps": [
+              "Adjust the relevant preference or give separate feedback on the design direction and individual fabrics before refining the shortlist."
+            ],
+            "evidenceIds": [
+              "guide:fi:v2"
+            ],
+            "fabricIds": []
+          },
+          "citations": [
+            {
+              "id": "guide:fi:v2",
+              "source": "lib/storefront/hci/consultation.js, lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+              "version": "2026-10-13"
+            }
+          ],
+          "fabrics": [],
+          "retrievals": [
+            {
+              "tool": "get_tool_guidance",
+              "input": {
+                "tool": "fabric-intelligence"
+              },
+              "status": "completed",
+              "evidenceIds": [
+                "guide:fi:v2"
+              ],
+              "resultIds": [
+                "guide:fi:v2"
+              ],
+              "resultCount": 1
+            }
+          ]
+        },
+        {
+          "action": "message",
+          "customer": "Where do I change the heading in Room Visualiser 2?",
+          "advice": {
+            "text": "Room Visualiser 2 doesn’t have a heading selector, so you can’t change it within the room preview.\n\nOpen the separate Curtain Style page at /pages/fabric-library?view=curtain-style to compare Wave, Double Pinch Pleat, Pencil Pleat and Eyelet. These are reference images, not your chosen fabric in your room. For an actual order, the compatible heading is selected in Make Curtains after your window and track or pole choices.",
+            "stage": "recommend",
+            "palette": [],
+            "patternDirection": "",
+            "textureDirection": "",
+            "alternatives": [],
+            "questions": [],
+            "nextSteps": [
+              "Open the Curtain Style comparison at /pages/fabric-library?view=curtain-style."
+            ],
+            "evidenceIds": [
+              "guide:visualiser:v2",
+              "guide:headings:v2"
+            ],
+            "fabricIds": []
+          },
+          "citations": [
+            {
+              "id": "guide:visualiser:v2",
+              "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs, shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-curtain-style.liquid",
+              "version": "2026-10-13"
+            },
+            {
+              "id": "guide:headings:v2",
+              "source": "shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-curtain-style.liquid, shopify-theme/curtainsuk-dawn-16/locales/en.default.json, lib/storefront/mtm-production-policy.ts, lib/room-visualiser/runtime/rooms/shared/curtainsuk-storefront.js",
+              "version": "2026-10-13"
+            }
+          ],
+          "fabrics": [],
+          "retrievals": [
+            {
+              "tool": "get_tool_guidance",
+              "input": {
+                "tool": "room-visualiser"
+              },
+              "status": "completed",
+              "evidenceIds": [
+                "guide:visualiser:v2"
+              ],
+              "resultIds": [
+                "guide:visualiser:v2"
+              ],
+              "resultCount": 1
+            },
+            {
+              "tool": "get_tool_guidance",
+              "input": {
+                "tool": "curtain-style"
+              },
+              "status": "completed",
+              "evidenceIds": [
+                "guide:headings:v2"
+              ],
+              "resultIds": [
+                "guide:headings:v2"
+              ],
+              "resultCount": 1
+            }
+          ]
+        }
+      ],
+      "humanReview": {
+        "status": "pending",
+        "scores": null,
+        "notes": null
+      }
+    },
+    {
+      "id": "contradiction",
+      "reviewCriteria": [
+        "Latest preference replaces earlier assumption",
+        "Clarify incompatible priorities without being dismissive; never assume an unstated wall colour"
+      ],
+      "transcript": [
+        {
+          "action": "message",
+          "customer": "I want warm ivory curtains with a minimal look.",
+          "advice": {
+            "text": "For warm ivory curtains with a minimal look, I’d start with a plain fabric with a fine, softly matt texture. That would give the ivory some depth without adding pattern. Aim for a gentle creamy undertone rather than a strongly yellow one.\n\nA smoother plain would feel more pared back, while a subtle linen-like weave would feel more relaxed. What colour are your walls?",
+            "stage": "understand",
+            "palette": [
+              "Warm ivory"
+            ],
+            "patternDirection": "Plain, without visible motifs",
+            "textureDirection": "Fine, softly matt texture",
+            "alternatives": [
+              "A smooth plain for a more pared-back finish",
+              "A subtle linen-like weave for a more relaxed feel"
+            ],
+            "questions": [
+              "What colour are your walls?"
+            ],
+            "nextSteps": [],
+            "evidenceIds": [],
+            "fabricIds": []
+          },
+          "citations": [],
+          "fabrics": [],
+          "retrievals": []
+        },
+        {
+          "action": "message",
+          "customer": "I have changed my mind: cool blue tones instead.",
+          "advice": {
+            "text": "Let’s shift to cool blue while keeping the minimal look. A muted blue-grey plain with a fine matt texture would feel restrained without looking flat. For a clearer, fresher effect, a pale mist blue offers less grey, though it may feel chillier in cooler light.\n\nI’d keep pattern out of the main fabric and let subtle texture provide the interest.",
+            "stage": "refine",
+            "palette": [
+              "Muted blue-grey",
+              "Pale mist blue"
+            ],
+            "patternDirection": "Plain, without a visible motif",
+            "textureDirection": "Fine, subtle matt texture",
+            "alternatives": [
+              "Pale mist blue for a clearer, fresher look, with a potentially cooler feel"
+            ],
+            "questions": [],
+            "nextSteps": [],
+            "evidenceIds": [],
+            "fabricIds": []
+          },
+          "citations": [],
+          "fabrics": [],
+          "retrievals": []
+        },
+        {
+          "action": "message",
+          "customer": "I want both no visible pattern and a bold high-contrast geometric. What should I prioritise?",
+          "advice": {
+            "text": "Those aims pull in opposite directions: a bold, high-contrast geometric will be visibly patterned. Given your earlier wish for a minimal look, I’d prioritise a plain cool blue with subtle texture for a calmer result.\n\nIf you now want the curtains to be the room’s focal point, prioritise the geometric instead, ideally with generous space between shapes. Which matters more to you: a quiet backdrop or a strong statement?",
+            "stage": "refine",
+            "palette": [
+              "cool blue"
+            ],
+            "patternDirection": "Prioritise no visible pattern for a quiet backdrop; alternatively, a bold high-contrast geometric for a focal point.",
+            "textureDirection": "Subtle texture in a plain fabric.",
+            "alternatives": [
+              "A bold high-contrast geometric with generous space between shapes."
+            ],
+            "questions": [
+              "Which matters more to you: a quiet backdrop or a strong statement?"
+            ],
+            "nextSteps": [],
+            "evidenceIds": [],
+            "fabricIds": []
+          },
+          "citations": [],
+          "fabrics": [],
+          "retrievals": []
+        }
+      ],
+      "humanReview": {
+        "status": "pending",
+        "scores": null,
+        "notes": null
+      }
+    },
+    {
+      "id": "small-dark-room",
+      "reviewCriteria": [
+        "Do not assume every customer wants a brighter room",
+        "Separate lightness, contrast and visual weight; do not repeat an unanswered wall-colour question after the customer gives a different preference"
+      ],
+      "transcript": [
+        {
+          "action": "message",
+          "customer": "Our sitting room is small and quite dark. Must I have white curtains?",
+          "advice": {
+            "text": "No, you needn’t have white curtains. In a small, dark sitting room, a soft mid-tone close to the wall colour can keep contrast gentle, while a subtle woven texture adds interest without a busy pattern. White may look rather stark against warmer finishes.\n\nAlternatively, deeper curtains can create a deliberately cosy, enveloping feel rather than trying to make the room seem brighter. Would you prefer an airy feeling or a snug retreat?",
+            "stage": "understand",
+            "palette": [],
+            "patternDirection": "A plain or quiet pattern to keep visual contrast gentle.",
+            "textureDirection": "Subtle woven texture for interest without busyness.",
+            "alternatives": [
+              "A soft mid-tone related to the wall colour for gentle contrast.",
+              "A deeper colour for a deliberately cosy, enveloping atmosphere."
+            ],
+            "questions": [
+              "Would you prefer an airy feeling or a snug retreat?"
+            ],
+            "nextSteps": [],
+            "evidenceIds": [],
+            "fabricIds": []
+          },
+          "citations": [],
+          "fabrics": [],
+          "retrievals": []
+        },
+        {
+          "action": "message",
+          "customer": "I actually enjoy a cosy, enveloping room and dislike stark white.",
+          "advice": {
+            "text": "Then there’s no need to chase brightness with white. For your small, dark sitting room, I’d lean towards a rich mid-to-deep tone with a soft, matte texture. A colour close to the walls could feel enveloping without sharply outlining the window.\n\nAlternatively, a muted contrasting colour would give the curtains more presence while keeping the mood cosy. What colour are your walls?",
+            "stage": "refine",
+            "palette": [],
+            "patternDirection": "Plain or quietly patterned, keeping contrast gentle.",
+            "textureDirection": "Soft, matte texture for a cosy feel.",
+            "alternatives": [
+              "A muted contrasting colour for a more distinct window feature."
+            ],
+            "questions": [
+              "What colour are your walls?"
+            ],
+            "nextSteps": [],
+            "evidenceIds": [],
+            "fabricIds": []
+          },
+          "citations": [],
+          "fabrics": [],
+          "retrievals": []
+        },
+        {
+          "action": "message",
+          "customer": "Could we keep that mood but avoid everything feeling heavy?",
+          "advice": {
+            "text": "Yes. Keep the cosy colour, but soften the fabric’s visual weight: a muted mid-tone with a matte, gently woven surface could feel enveloping without the density of plush velvet. A plain or quiet pattern would also give the eye somewhere to rest.\n\nRather than making every textile dark, balance the curtains with a few lighter, warm-toned accents. Alternatively, deeper curtains can remain the focal point if surrounding textiles are simpler and less substantial.",
+            "stage": "refine",
+            "palette": [],
+            "patternDirection": "Plain or a quiet, low-contrast pattern to provide visual breathing space.",
+            "textureDirection": "Soft, matte, gently woven texture rather than a dense, plush finish.",
+            "alternatives": [
+              "Keep deeper curtains as the focal point, balanced by simpler, less substantial surrounding textiles."
+            ],
+            "questions": [],
+            "nextSteps": [],
+            "evidenceIds": [],
+            "fabricIds": []
+          },
+          "citations": [],
+          "fabrics": [],
+          "retrievals": []
+        }
+      ],
+      "humanReview": {
+        "status": "pending",
+        "scores": null,
+        "notes": null
+      }
+    }
+  ],
+  "humanRubric": {
+    "scale": "Score each 0–4: unsafe/absent, weak, adequate, good, excellent. Human interior-design review required; regex success is not a quality judgement.",
+    "dimensions": [
+      "Understands the room and preserves constraints",
+      "Explains colour/undertone and pattern/texture relationships plausibly",
+      "Offers meaningfully different options",
+      "Adapts to feedback without defending earlier advice",
+      "Asks few relevant questions; concise natural British voice",
+      "Accurate current tool guidance",
+      "Evidence and eligibility discipline",
+      "Useful personalised summary and next steps"
+    ],
+    "pass": "No critical factual/privacy/eligibility failure. Every dimension >=3; second human review for ambiguous design advice. Compare blind-labelled real vs mock transcripts, then reveal provider. Record reasons and disagreements.",
+    "criticalFailures": [
+      "Invented manufacturer fact, stock, price, product or image",
+      "False exact colour guarantee or nonexistent tool feature",
+      "Leaked private information",
+      "Unconsented handover or claim that an unsaved operation succeeded"
+    ],
+    "examples": {
+      "understands": {
+        "pass": "Retains the olive sofa as a fixed furnishing while respecting no green curtains.",
+        "fail": "Treats the olive sofa as a request for green curtains."
+      },
+      "alternatives": {
+        "pass": "Offers tonal warm mushroom and restrained dusty-clay contrast, explaining different effects.",
+        "fail": "Lists beige, oatmeal and cream as supposedly different design strategies with no tradeoff."
+      },
+      "feedback": {
+        "pass": "Acknowledges a cold-feeling scheme and revisits undertones/texture without defending it.",
+        "fail": "Repeats the rejected blue-grey palette or asks again for known wall colours."
+      },
+      "evidence": {
+        "pass": "Reports a partial-index limitation and offers general styling advice without invented fabrics.",
+        "fail": "Claims a product is available because it has a Fabric Master identity."
+      },
+      "voice": {
+        "pass": "Answers directly in concise British English with at most one decision-changing question.",
+        "fail": "Exposes NOT_QUITE, repeats a greeting or asks a questionnaire already answered."
+      }
+    },
+    "reviewState": "OWNER_FEEDBACK_CORRECTIONS_AWAITING_REAL_MODEL_AND_HUMAN_REVIEW"
+  },
+  "generatedAt": "2026-10-13T10:07:39.899Z",
+  "mode": "openai-broker",
+  "usage": [
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2722,
+      "outputTokens": 22,
+      "estimatedUsd": 0.0005987000000000001,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 3239,
+      "outputTokens": 168,
+      "estimatedUsd": 0.0032504,
+      "round": 1,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2968,
+      "outputTokens": 22,
+      "estimatedUsd": 0.0012137,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 3485,
+      "outputTokens": 181,
+      "estimatedUsd": 0.003405,
+      "round": 1,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 3207,
+      "outputTokens": 23,
+      "estimatedUsd": 0.0018212,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 3665,
+      "outputTokens": 22,
+      "estimatedUsd": 0.0016914,
+      "round": 1,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 4214,
+      "outputTokens": 176,
+      "estimatedUsd": 0.0035047,
+      "round": 2,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2722,
+      "outputTokens": 170,
+      "estimatedUsd": 0.0020786999999999997,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2840,
+      "outputTokens": 164,
+      "estimatedUsd": 0.0023136999999999997,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2964,
+      "outputTokens": 199,
+      "estimatedUsd": 0.0029736999999999997,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2728,
+      "outputTokens": 197,
+      "estimatedUsd": 0.0023637,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2860,
+      "outputTokens": 165,
+      "estimatedUsd": 0.0023737,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2981,
+      "outputTokens": 188,
+      "estimatedUsd": 0.0029062,
+      "round": 0,
+      "attempt": 0
+    }
+  ],
+  "ledger": [
+    {
+      "limit_micro": 5000000,
+      "used_micro": 151472,
+      "expires_at": "2026-10-14T05:51:36.236Z"
+    }
+  ],
+  "retrievalFixtureIdentities": 0,
+  "retrievalSource": "existing-hosted-index-and-live-governed-retail",
+  "realModelStatus": "HUMAN_REVIEW_REQUIRED"
+}

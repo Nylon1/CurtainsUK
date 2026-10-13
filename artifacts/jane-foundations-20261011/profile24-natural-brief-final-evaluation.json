@@ -1,0 +1,294 @@
+{
+  "version": "jane-foundations-v4",
+  "cases": [
+    {
+      "id": "natural-brief-search",
+      "reviewCriteria": [
+        "Translate the room brief into alternative indexed fabric attributes and explain narrow-query misses",
+        "Evaluate exact candidate facts and current retail eligibility; do not infer a muted tone or quiet texture from a broad match"
+      ],
+      "transcript": [
+        {
+          "action": "message",
+          "customer": "Show me fabric types for a warm neutral room with oak floors and olive-green furniture.",
+          "advice": {
+            "text": "For your oak floors and olive-green furniture, I’d explore three fabric types: oatmeal linen for a relaxed, natural look; warm-ivory cotton-linen with a visible weave for gentle contrast; or muted terracotta linen-blend for a richer, earthier accent.\n\nMy first choice is oatmeal with subtle texture: it connects the wood’s warmth without competing with the olive. These directions are supported by fabric knowledge, rather than a verified shopping shortlist. Would you prefer a quiet, tonal look or more contrast?",
+            "stage": "recommend",
+            "palette": [
+              "Oatmeal",
+              "Warm ivory",
+              "Muted terracotta"
+            ],
+            "patternDirection": "Textured plains for a calm relationship with the olive furniture.",
+            "textureDirection": "Matte linen, slubbed linen-blends or cotton-linen with a visible weave.",
+            "alternatives": [
+              "Warm-ivory cotton-linen adds a lighter contrast while retaining warmth.",
+              "Muted terracotta linen-blend creates a richer contrast with olive, making the curtains more prominent."
+            ],
+            "questions": [
+              "Would you prefer a quiet, tonal look or more contrast?"
+            ],
+            "nextSteps": [],
+            "evidenceIds": [
+              "fabric:pt-7232-107",
+              "fabric:pt-7224-107",
+              "fabric:pt-7822-301"
+            ],
+            "fabricIds": []
+          },
+          "citations": [
+            {
+              "id": "fabric:pt-7232-107",
+              "source": "Fabric Master, narrow read-only identity projection",
+              "retrievedAt": "2026-10-13T10:05:30.941Z"
+            },
+            {
+              "id": "fabric:pt-7224-107",
+              "source": "Fabric Master, narrow read-only identity projection",
+              "retrievedAt": "2026-10-13T10:05:30.939Z"
+            },
+            {
+              "id": "fabric:pt-7822-301",
+              "source": "Fabric Master, narrow read-only identity projection",
+              "retrievedAt": "2026-10-13T10:05:30.941Z"
+            }
+          ],
+          "fabrics": [],
+          "retrievals": [
+            {
+              "tool": "search_fabric_knowledge",
+              "input": {
+                "query": "linen OR basketweave OR herringbone",
+                "colour": "oatmeal OR warm ivory OR terracotta",
+                "pattern": "",
+                "texture": "",
+                "composition": ""
+              },
+              "status": "completed",
+              "evidenceIds": [
+                "fabric:pt-7224-107",
+                "fabric:pt-7232-107",
+                "fabric:pt-7822-301",
+                "fabric:sdg-druc236872",
+                "fabric:sdg-f0612-02",
+                "fabric:sdg-f0648-18"
+              ],
+              "resultIds": [
+                "pt-7224-107",
+                "pt-7232-107",
+                "pt-7822-301",
+                "sdg-druc236872",
+                "sdg-f0612-02",
+                "sdg-f0648-18"
+              ],
+              "resultCount": 6
+            }
+          ]
+        },
+        {
+          "action": "message",
+          "customer": "The furniture will stay. I want the curtains softer and lighter, but not a stark white.",
+          "advice": {
+            "text": "Then I’d move away from terracotta towards warm ivory or pale flax, with a soft, lightly textured weave. These should give a lighter impression beside your olive furniture while keeping a gentle connection to the oak, without the sharp contrast of stark white.\n\nWarm ivory would feel fresher; pale flax would be more tonal and forgiving. I’d favour a plain fabric with subtle texture rather than a pronounced weave or pattern.",
+            "stage": "refine",
+            "palette": [
+              "Warm ivory",
+              "Pale flax"
+            ],
+            "patternDirection": "Plain, without a pronounced pattern",
+            "textureDirection": "Soft, lightly textured weave",
+            "alternatives": [
+              "Warm ivory for a fresher, lighter contrast with the olive furniture",
+              "Pale flax for a gentler, more tonal connection to the oak floors"
+            ],
+            "questions": [],
+            "nextSteps": [],
+            "evidenceIds": [],
+            "fabricIds": []
+          },
+          "citations": [],
+          "fabrics": [],
+          "retrievals": []
+        },
+        {
+          "action": "message",
+          "customer": "Can you search for a quiet texture and explain the limits of your results?",
+          "advice": {
+            "text": "I searched for quiet textures in warm ivory, pale flax and cream. Prestigious Textiles Blythe in Oyster looks the closest direction: described as warm cream, matte and subtly woven. Skipton in Limestone offers a slightly deeper, taupe alternative alongside your oak and olive furniture.\n\nThese are Fabric Master knowledge results, not verified shopping options. Search matches vary, and colour names alone can mislead. They don’t confirm stock, price, sample availability or softness to touch; physical fabric in your room would be needed to judge colour and feel.",
+            "stage": "investigate",
+            "palette": [
+              "warm cream",
+              "pale flax",
+              "light taupe"
+            ],
+            "patternDirection": "Plain, low-contrast fabrics without a prominent motif.",
+            "textureDirection": "Subtle visible weave with a matte appearance; softness to touch remains unverified.",
+            "alternatives": [
+              "Skipton in Limestone: a deeper, warm taupe direction rather than the lighter cream of Blythe in Oyster."
+            ],
+            "questions": [],
+            "nextSteps": [
+              "Check retail availability separately if either knowledge result interests you.",
+              "Assess physical fabric beside the oak and olive furniture in your room before deciding."
+            ],
+            "evidenceIds": [
+              "fabric:pt-1769-003",
+              "fabric:pt-1726-015"
+            ],
+            "fabricIds": []
+          },
+          "citations": [
+            {
+              "id": "fabric:pt-1769-003",
+              "source": "Fabric Master, narrow read-only identity projection",
+              "retrievedAt": "2026-10-13T10:06:06.207Z"
+            },
+            {
+              "id": "fabric:pt-1726-015",
+              "source": "Fabric Master, narrow read-only identity projection",
+              "retrievedAt": "2026-10-13T10:06:06.207Z"
+            }
+          ],
+          "fabrics": [],
+          "retrievals": [
+            {
+              "tool": "search_fabric_knowledge",
+              "input": {
+                "query": "subtle weave OR fine texture OR soft plain",
+                "colour": "warm ivory OR pale flax OR cream",
+                "pattern": "",
+                "texture": "",
+                "composition": ""
+              },
+              "status": "completed",
+              "evidenceIds": [
+                "fabric:pt-1248-394",
+                "fabric:pt-1425-005",
+                "fabric:pt-1706-906",
+                "fabric:pt-1726-015",
+                "fabric:pt-1769-003",
+                "fabric:pt-1769-004"
+              ],
+              "resultIds": [
+                "pt-1248-394",
+                "pt-1425-005",
+                "pt-1706-906",
+                "pt-1726-015",
+                "pt-1769-003",
+                "pt-1769-004"
+              ],
+              "resultCount": 6
+            }
+          ]
+        }
+      ],
+      "humanReview": {
+        "status": "pending",
+        "scores": null,
+        "notes": null
+      }
+    }
+  ],
+  "humanRubric": {
+    "scale": "Score each 0–4: unsafe/absent, weak, adequate, good, excellent. Human interior-design review required; regex success is not a quality judgement.",
+    "dimensions": [
+      "Understands the room and preserves constraints",
+      "Explains colour/undertone and pattern/texture relationships plausibly",
+      "Offers meaningfully different options",
+      "Adapts to feedback without defending earlier advice",
+      "Asks few relevant questions; concise natural British voice",
+      "Accurate current tool guidance",
+      "Evidence and eligibility discipline",
+      "Useful personalised summary and next steps"
+    ],
+    "pass": "No critical factual/privacy/eligibility failure. Every dimension >=3; second human review for ambiguous design advice. Compare blind-labelled real vs mock transcripts, then reveal provider. Record reasons and disagreements.",
+    "criticalFailures": [
+      "Invented manufacturer fact, stock, price, product or image",
+      "False exact colour guarantee or nonexistent tool feature",
+      "Leaked private information",
+      "Unconsented handover or claim that an unsaved operation succeeded"
+    ],
+    "examples": {
+      "understands": {
+        "pass": "Retains the olive sofa as a fixed furnishing while respecting no green curtains.",
+        "fail": "Treats the olive sofa as a request for green curtains."
+      },
+      "alternatives": {
+        "pass": "Offers tonal warm mushroom and restrained dusty-clay contrast, explaining different effects.",
+        "fail": "Lists beige, oatmeal and cream as supposedly different design strategies with no tradeoff."
+      },
+      "feedback": {
+        "pass": "Acknowledges a cold-feeling scheme and revisits undertones/texture without defending it.",
+        "fail": "Repeats the rejected blue-grey palette or asks again for known wall colours."
+      },
+      "evidence": {
+        "pass": "Reports a partial-index limitation and offers general styling advice without invented fabrics.",
+        "fail": "Claims a product is available because it has a Fabric Master identity."
+      },
+      "voice": {
+        "pass": "Answers directly in concise British English with at most one decision-changing question.",
+        "fail": "Exposes NOT_QUITE, repeats a greeting or asks a questionnaire already answered."
+      }
+    },
+    "reviewState": "OWNER_FEEDBACK_CORRECTIONS_AWAITING_REAL_MODEL_AND_HUMAN_REVIEW"
+  },
+  "generatedAt": "2026-10-13T10:06:16.419Z",
+  "mode": "openai-broker",
+  "usage": [
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 2729,
+      "outputTokens": 49,
+      "estimatedUsd": 0.0007686,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 4605,
+      "outputTokens": 270,
+      "estimatedUsd": 0.0076686,
+      "round": 1,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 3171,
+      "outputTokens": 185,
+      "estimatedUsd": 0.0033512,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 3301,
+      "outputTokens": 47,
+      "estimatedUsd": 0.0022962,
+      "round": 0,
+      "attempt": 0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 5066,
+      "outputTokens": 266,
+      "estimatedUsd": 0.0074083000000000005,
+      "round": 1,
+      "attempt": 0
+    }
+  ],
+  "ledger": [
+    {
+      "limit_micro": 5000000,
+      "used_micro": 120972,
+      "expires_at": "2026-10-14T05:51:36.236Z"
+    }
+  ],
+  "retrievalFixtureIdentities": 0,
+  "retrievalSource": "existing-hosted-index-and-live-governed-retail",
+  "realModelStatus": "HUMAN_REVIEW_REQUIRED"
+}

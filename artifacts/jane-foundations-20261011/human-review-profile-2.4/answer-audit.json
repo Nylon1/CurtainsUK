@@ -1,0 +1,26 @@
+{
+  "classification": "ENGINEERING_AUDIT_NOT_HUMAN_APPROVAL",
+  "reviewedAt": "2026-10-13T10:13:37.997Z",
+  "historicalInputs": [
+    {
+      "file": "artifacts/jane-readiness/openai-evaluation.json",
+      "sha256": "0c482954182dcea381c91a3fd5f2bb96a4c085e1230df4a075d34c81900c6050"
+    },
+    {
+      "file": "artifacts/jane-readiness/openai-retest-evaluation.json",
+      "sha256": "7d2eb65f5f76c0888a8945d53bb93bdfc1f4cc8be85f5010b46d87e484d9e203"
+    }
+  ],
+  "realTurns": 36,
+  "meanWords": 96,
+  "over90Words": 25,
+  "maximumWords": 125,
+  "emDashReplies": 21,
+  "internalTokenReplies": 2,
+  "revisedProfile": "2.4.0-preview.2",
+  "revisedSuite": "jane-foundations-v4",
+  "revisedRealEvaluation": "RUN_REQUIRES_HUMAN_REVIEW",
+  "humanApproval": "PENDING",
+  "newPaidCalls": 71,
+  "realTranscriptEvidence": "artifacts/jane-foundations-20261011/profile24-full-index-review.json"
+}

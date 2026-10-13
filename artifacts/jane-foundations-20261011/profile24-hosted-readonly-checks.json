@@ -1,0 +1,110 @@
+{
+  "projectRef": "hqysjumypgeapgmqkcrx",
+  "source": "existing advisory.search_knowledge, read-only Supabase connector",
+  "checkedAt": "2026-10-13T10:19:46.289Z",
+  "limitPerQuery": 6,
+  "results": [
+    {
+      "label": "olive-botanical-matte-cotton",
+      "args": [
+        "botanical matte muted olive cotton",
+        "olive",
+        "botanical",
+        "matte",
+        "cotton"
+      ],
+      "ids": [
+        "pt-4291-618",
+        "pt-5139-618",
+        "sdg-f1369-01"
+      ]
+    },
+    {
+      "label": "quiet-texture",
+      "args": [
+        "quiet OR subtle texture",
+        "",
+        "",
+        "texture",
+        ""
+      ],
+      "ids": [
+        "pt-1204-212",
+        "pt-1225-314",
+        "pt-1225-722",
+        "pt-1227-634",
+        "pt-1229-662",
+        "pt-1248-394"
+      ]
+    },
+    {
+      "label": "shambala",
+      "args": [
+        "Shambala",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "ids": [
+        "pt-3697-502",
+        "pt-3697-569",
+        "pt-3697-770"
+      ]
+    },
+    {
+      "label": "grey",
+      "args": [
+        "grey",
+        "grey",
+        "",
+        "",
+        ""
+      ],
+      "ids": [
+        "pt-1248-394",
+        "pt-1248-805",
+        "pt-1267-902",
+        "pt-1426-387",
+        "pt-1468-768",
+        "pt-1558-807"
+      ]
+    },
+    {
+      "label": "stripe",
+      "args": [
+        "stripe",
+        "",
+        "stripe",
+        "",
+        ""
+      ],
+      "ids": [
+        "pt-1223-374",
+        "pt-1227-634",
+        "pt-1249-021",
+        "pt-1249-909",
+        "pt-1264-909",
+        "pt-1314-511"
+      ]
+    },
+    {
+      "label": "warm-neutral",
+      "args": [
+        "warm OR neutral",
+        "ivory OR cream",
+        "",
+        "",
+        ""
+      ],
+      "ids": [
+        "pt-1224-002",
+        "pt-1248-394",
+        "pt-1290-314",
+        "pt-1314-511",
+        "pt-1316-511",
+        "pt-1413-637"
+      ]
+    }
+  ]
+}

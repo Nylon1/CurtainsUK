@@ -9,7 +9,7 @@
 window.fetch=async (url,options={})=>{
   if(String(url).startsWith('/apps/curtainsuk-decision/catalog'))return Response.json({fabric:{id:'test-olive-001',design:'Synthetic weave',colour:'Olive',browseReady:true,launchReady:true,orderReady:true}});
   if(url!=='/apps/curtainsuk-decision/jane')throw Error('Unexpected network request');
-  if(!options.method)return Response.json({csrf:'fixture-csrf',expiresAt:Date.now()+600000});
+  if(!options.method)return window.fixtureBinding ? Response.json({csrf:'fixture-csrf',ownerBinding:window.fixtureBinding,expiresAt:Date.now()+600000}) : Response.json({error:'CUSTOMER_SIGN_IN_REQUIRED'},{status:401});
   const command=JSON.parse(options.body);window.fixtureCalls.push(command);document.getElementById('calls').textContent=window.fixtureCalls.map(c=>c.action+(c.context?.fabricIds?.length?' '+c.context.fabricIds.join(','):'' )).join(' → ');
   if(command.action==='delete'){window.fixtureSession=null;sessionStorage.removeItem('fixture-session');return Response.json({deleted:true});}
   if(command.action==='resume'){if(!window.fixtureSession)return Response.json({error:'SESSION_NOT_FOUND'},{status:404});return Response.json({session:window.fixtureSession});}
@@ -18,7 +18,13 @@ window.fetch=async (url,options={})=>{
   if(command.action==='message'){window.fixtureSession.messages.push({role:'user',text:command.text},{role:'assistant',text:'I hear you. A quiet olive texture could soften the room. Does that feel closer to what you want?',fabrics:[{id:'test-olive-001',design:'Synthetic weave',colour:'Olive',purchasable:true,sampleAvailable:true,url:'https://www.curtainsuk.com/pages/fabric/test-olive-001-synthetic',imageUrl:'https://cdn.shopify.com/synthetic-test.jpg',roomPreview:'/pages/room-visualiser?fabric=test-olive-001'}]});window.fixtureSession.revision++;}
   sessionStorage.setItem('fixture-session',JSON.stringify(window.fixtureSession));return Response.json({session:window.fixtureSession});
 };
-window.fixtureCalls=[];window.fixtureSession=JSON.parse(sessionStorage.getItem('fixture-session')||'null');
+window.fixtureCalls=[];window.fixtureBinding='11111111111111111111111111111111';window.fixtureSession=JSON.parse(sessionStorage.getItem('fixture-session')||'null');
+const testPanel=document.querySelector('[data-jane-chat]');
+for(const [label,binding] of [['Switch synthetic test account','22222222222222222222222222222222'],['Sign out synthetic test account',null]]){
+  const button=document.createElement('button');button.type='button';button.textContent=label;
+  button.onclick=()=>{window.fixtureBinding=binding;window.dispatchEvent(new Event('focus'));};testPanel.prepend(button);
+}
+const signIn=document.createElement('a');signIn.href='#fixture-signin';signIn.dataset.janeSignin='';signIn.hidden=true;signIn.textContent='Sign in to your customer account';testPanel.prepend(signIn);
 document.getElementById('enter').onclick=()=>{const dialog=document.querySelector('dialog');dialog.showModal();dialog.dispatchEvent(new CustomEvent('curtainsuk:jane-room-open',{detail:{identity:'jane'}}));};
 document.getElementById('close').onclick=()=>document.querySelector('dialog').close();
 </script><script src="/shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-jane-chat.js" defer></script>

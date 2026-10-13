@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const endpoint = '/apps/curtainsuk-decision/jane';
-  const storageKey = 'curtainsuk-jane-private-session-v1';
+  const storagePrefix = 'curtainsuk-jane-private-session-v2:';
   const commandBase = { text: null, context: null, consent: false, recoveryToken: null };
   const validFabric = /^[A-Za-z0-9][A-Za-z0-9-]{0,149}$/;
   const validSession = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
@@ -11,16 +11,19 @@
     if (!panel) return;
     const find = name => panel.querySelector(`[data-jane-${name}]`);
     const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status'), tools = find('tools');
-    const starters = find('starters'), thinking = find('thinking');
+    const starters = find('starters'), thinking = find('thinking'), signIn = find('signin');
     const consent = find('consent'), startButton = find('start'), deleteButton = find('delete');
     const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
-    let session = null, csrf = '', csrfExpires = 0, busy = false, pending = null, selectedFabric = null;
+    let session = null, csrf = '', ownerBinding = null, busy = false, pending = null, selectedFabric = null;
     let renderedSessionId = null, renderedMessages = [];
     const say = (value, isError = false) => { error.hidden = !isError; error.textContent = isError ? value : ''; status.textContent = isError ? '' : value; };
     const setBusy = value => { busy = value; startButton.disabled = value; deleteButton.disabled = value; input.disabled = value; form.querySelector('[data-jane-send]').disabled = value; fabricShare.disabled = value || !fabricConsent.checked; };
-    const remember = id => { try { if (id) localStorage.setItem(storageKey, id); else localStorage.removeItem(storageKey); } catch {} };
-    const remembered = () => { try { return localStorage.getItem(storageKey); } catch { return null; } };
+    const storageKey = () => ownerBinding ? storagePrefix + ownerBinding : null;
+    try { localStorage.removeItem('curtainsuk-jane-private-session-v1'); } catch {}
+    const remember = id => { try { const key = storageKey(); if (!key) return; if (id) localStorage.setItem(key, id); else localStorage.removeItem(key); } catch {} };
+    const remembered = () => { try { const key = storageKey(); return key ? localStorage.getItem(key) : null; } catch { return null; } };
+    const clearPrivateView = () => { session = null; pending = null; consent.checked = false; fabricConsent.checked = false; renderedSessionId = null; renderedMessages = []; log.replaceChildren(); render(); };
     const productUrl = value => { try { const url = new URL(value); return url.origin === 'https://www.curtainsuk.com' && /^\/pages\/fabric\/[a-z0-9-]+$/i.test(url.pathname) && !url.search && !url.hash ? url.href : null; } catch { return null; } };
     const imageUrl = value => { try { const url = new URL(value); return url.origin === 'https://cdn.shopify.com' && !url.search && !url.hash ? url.href : null; } catch { return null; } };
     const showFabricCard = (article, fabric) => {
@@ -76,11 +79,19 @@
       fabricShare.hidden = !session || !!session?.contexts?.some(c => c.value?.fabricIds?.includes(selectedFabric?.id));
     };
     const bootstrap = async () => {
-      if (csrf && csrfExpires > Date.now() + 15000) return;
+      // A fresh signed Shopify proxy request detects sign-out and account
+      // switching before any cached conversation is displayed or submitted.
       const response = await fetch(endpoint, { cache: 'no-store', credentials: 'same-origin' });
       const body = await response.json().catch(() => ({}));
-      if (!response.ok || typeof body.csrf !== 'string') throw Error(response.status === 401 ? 'Please sign in to your approved test customer account.' : 'Jane is unavailable in this preview. Your message has not been sent.');
-      csrf = body.csrf; csrfExpires = body.expiresAt;
+      if (!response.ok || typeof body.csrf !== 'string' || !/^[a-f0-9]{32}$/.test(body.ownerBinding || '')) {
+        csrf = ''; ownerBinding = null; clearPrivateView();
+        if (signIn) signIn.hidden = response.status !== 401;
+        throw Error(response.status === 401 ? 'Please sign in to your approved test customer account.' : 'Jane is unavailable in this preview. Your message has not been sent.');
+      }
+      if (ownerBinding && ownerBinding !== body.ownerBinding) clearPrivateView();
+      ownerBinding = body.ownerBinding;
+      csrf = body.csrf;
+      if (signIn) signIn.hidden = true;
     };
     const request = async (action, extra = {}, requestId = crypto.randomUUID()) => {
       await bootstrap();
@@ -119,6 +130,7 @@
       const jane = event.detail?.identity === 'jane';
       panel.hidden = !jane; preview.forEach(node => { if (node) node.hidden = jane; });
       if (!jane) return;
+      log.hidden = true;
       say('');
       run(async () => {
         await bootstrap();
@@ -130,8 +142,15 @@
           } catch { remember(null); }
         }
         render(); await readFabric();
-      }, 'Connecting to Jane…');
+      }, 'Connecting to Jane…').finally(() => { log.hidden = false; });
     });
+    const checkAccountOnReturn = () => {
+      if (!dialog.open || panel.hidden || document.hidden || busy) return;
+      log.hidden = true;
+      run(async () => { await bootstrap(); render(); }, 'Checking your customer session…').finally(() => { log.hidden = false; });
+    };
+    window.addEventListener('focus', checkAccountOnReturn);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) log.hidden = true; else checkAccountOnReturn(); });
     startButton.addEventListener('click', () => {
       if (!consent.checked) { say('Please confirm that this private test consultation may be saved.', true); return; }
       const id = pending?.action === 'start' ? pending.id : crypto.randomUUID(); pending = { action: 'start', id };

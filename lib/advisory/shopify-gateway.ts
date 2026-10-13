@@ -25,6 +25,9 @@ export function janeOwner(shop: string, id: string, secret: string) {
 export function janeCsrf(owner: string, bucket: number, secret: string) {
   return createHmac('sha256', key(secret)).update('curtainsuk:jane:csrf:v1\0').update(owner).update('\0').update(String(bucket)).digest('base64url');
 }
+export function janeBrowserBinding(owner: string, secret: string) {
+  return createHmac('sha256', key(secret)).update('curtainsuk:jane:browser-binding:v1\0').update(owner).digest('hex').slice(0, 32);
+}
 export function janePreviewEnabled(env: Record<string, string | undefined>, compiledCommit = env.VERCEL_GIT_COMMIT_SHA) {
   const prebuilt = !env.VERCEL_GIT_COMMIT_SHA
     && env.VERCEL_PROJECT_ID === 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA'
@@ -57,7 +60,7 @@ export function createShopifyJaneGateway({ env, compiledCommit, execute, take, n
       const bucket = Math.floor(now() / 600000);
       if (request.method === 'GET') {
         await take(owner);
-        return Response.json({ csrf: janeCsrf(owner, bucket, key(env.ADVISORY_CSRF_KEY)), expiresAt: (bucket + 1) * 600000 }, { headers: noStore });
+        return Response.json({ csrf: janeCsrf(owner, bucket, key(env.ADVISORY_CSRF_KEY)), ownerBinding: janeBrowserBinding(owner, key(env.ADVISORY_CSRF_KEY)), expiresAt: (bucket + 1) * 600000 }, { headers: noStore });
       }
       const origin = request.headers.get('origin');
       if (!origin || !['https://www.curtainsuk.com', 'https://carpetup.myshopify.com'].includes(origin)) return fail(403, 'ORIGIN_DENIED');

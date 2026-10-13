@@ -1,0 +1,42 @@
+.cukad-room { --room-ink:#173d35; --room-paper:#f8f6ef; border:1px solid #b9c4b4; padding:0; width:min(680px,calc(100% - 32px)); max-height:calc(100dvh - 32px); overflow-y:auto; color:var(--room-ink); background:var(--room-paper); font-family:var(--font-body-family,Arial,sans-serif); box-shadow:0 30px 100px #082b2352; }
+.cukad-room::backdrop { background:#102b24b8; backdrop-filter:blur(5px); }
+.cukad-room *, .cukad-room *::before, .cukad-room *::after { box-sizing:border-box; }
+.cukad-room [hidden] { display:none!important; }
+.cukad-room p,.cukad-room h2,.cukad-room h3,.cukad-room h4 { margin:0; color:inherit; }
+.cukad-room p { font-size:14px; line-height:1.7; }
+.cukad-room button { font:inherit; cursor:pointer; color:inherit; }
+.cukad-room button:focus-visible,.cukad-room [tabindex]:focus-visible { outline:3px solid #856641; outline-offset:4px; }
+.cukad-room__header { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 22px; border-bottom:1px solid #d6d9ce; }
+.cukad-room__header p { font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+.cukad-room__close { background:transparent; border:1px solid #acb9aa; border-radius:50%; min-width:44px; min-height:44px; font-size:27px!important; line-height:1; }
+.cukad-room__identity { display:flex; align-items:center; gap:18px; padding:26px clamp(20px,5vw,42px); background:#e7ebdf; }
+.cukad-room__identity h2 { font:38px/1.1 Georgia,serif; }
+.cukad-room__identity p { font-size:12px; margin-top:6px; }
+.cukad-room__mark { display:grid; place-items:center; flex-shrink:0; width:64px; height:72px; border-radius:40px 40px 2px 2px; background:#173d35; color:#fffaf0; font:39px/1 Georgia,serif; }
+.cukad-room__waiting,.cukad-room__conversation { padding:28px clamp(20px,5vw,42px) 32px; }
+.cukad-room__eyebrow { font-size:10px!important; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+.cukad-room__clock { display:flex; align-items:baseline; gap:15px; margin-block:16px; }
+.cukad-room__clock [data-advisory-countdown] { font:68px/1 Georgia,serif; font-variant-numeric:tabular-nums; }
+.cukad-room__clock span:last-child { font-size:12px; }
+.cukad-room progress { width:100%; height:5px; border:0; border-radius:0; appearance:none; background:#dbe0d3; display:block; margin-bottom:18px; }
+.cukad-room progress::-webkit-progress-bar { background:#dbe0d3; }
+.cukad-room progress::-webkit-progress-value { background:#173d35; }
+.cukad-room progress::-moz-progress-bar { background:#173d35; }
+.cukad-room__muted,.cukad-room__privacy { color:#526358!important; }
+.cukad-room__preparation { border-left:2px solid #879b7c; padding:2px 0 2px 18px; margin-block:24px; }
+.cukad-room__preparation h3 { font:23px/1.2 Georgia,serif; margin-bottom:8px; }
+.cukad-room__button { display:inline-flex; min-height:48px; align-items:center; justify-content:space-between; gap:24px; background:#173d35; border:1px solid #173d35; padding:13px 20px; color:#fffaf0!important; font-size:12px!important; }
+.cukad-room__button--outline { background:transparent; color:#173d35!important; }
+.cukad-room__button:hover { background:#315a4a; color:#fffaf0!important; }
+.cukad-room__conversation > h3 { font:30px/1.2 Georgia,serif; margin-bottom:20px; }
+.cukad-room__example { background:#fffdf7; border:1px solid #d9dece; padding:22px; border-radius:0 20px 20px 20px; }
+.cukad-room__example p:last-child { font:21px/1.55 Georgia,serif; margin-top:13px; }
+.cukad-room__format { margin-block:24px; }
+.cukad-room__format h4 { font-size:13px; font-weight:600; margin-bottom:7px; }
+.cukad-room__composer { display:flex; align-items:center; gap:12px; justify-content:space-between; border:1px solid #b9c4b4; padding:12px 15px; }
+.cukad-room__composer p { font-size:12px; }
+.cukad-room__composer button { border:0; border-radius:50%; width:44px; height:44px; flex-shrink:0; background:#dde2d5; cursor:not-allowed; }
+.cukad-room__privacy { font-size:11px!important; margin-block:12px 22px!important; }
+.cukad-room__status { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+@media(max-width:389px) { .cukad-room { width:calc(100% - 16px); max-height:calc(100dvh - 16px); } .cukad-room__header { padding:10px 14px; } .cukad-room__identity { padding:20px; } .cukad-room__example { padding:18px; } }
+@media(prefers-reduced-motion:reduce) { .cukad-room,.cukad-room * { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }

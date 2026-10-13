@@ -1,0 +1,32 @@
+{% doc %}
+  Renders the non-operational specialist consultation demonstration.
+  @param {string} section_id - The owning section identifier.
+{% enddoc %}
+{{ 'curtainsuk-advisory-room.css' | asset_url | stylesheet_tag }}
+<dialog class="cukad-room" data-advisory-dialog aria-labelledby="advisory-dialog-title-{{ section_id }}" aria-describedby="advisory-preview-notice-{{ section_id }}">
+  <div class="cukad-room__header">
+    <p id="advisory-preview-notice-{{ section_id }}">{{ 'advisory_team.room.preview' | t }}</p>
+    <button type="button" class="cukad-room__close" data-advisory-close aria-label="{{ 'advisory_team.room.close' | t | escape }}"><span aria-hidden="true">×</span></button>
+  </div>
+  <div class="cukad-room__identity">
+    <div class="cukad-room__mark" data-advisory-mark aria-hidden="true">J</div>
+    <div><h2 id="advisory-dialog-title-{{ section_id }}" data-advisory-name></h2><p data-advisory-title></p></div>
+  </div>
+  <div data-advisory-waiting class="cukad-room__waiting">
+    <p class="cukad-room__eyebrow">{{ 'advisory_team.room.waiting' | t }}</p>
+    <div class="cukad-room__clock"><span data-advisory-countdown aria-hidden="true">30</span><span>{{ 'advisory_team.room.seconds' | t }}</span></div>
+    <progress data-advisory-progress value="0" max="30" aria-label="{{ 'advisory_team.room.progress' | t | escape }}"></progress>
+    <p class="cukad-room__muted">{{ 'advisory_team.room.waiting_copy' | t }}</p>
+    <div class="cukad-room__preparation"><h3>{{ 'advisory_team.room.preparation' | t }}</h3><p data-advisory-preparation></p></div>
+    <button type="button" class="cukad-room__button cukad-room__button--outline" data-advisory-skip>{{ 'advisory_team.room.skip' | t }} <span aria-hidden="true">→</span></button>
+  </div>
+  <div data-advisory-room hidden class="cukad-room__conversation">
+    <h3 data-advisory-room-title tabindex="-1">{{ 'advisory_team.room.room_title' | t }}</h3>
+    <div class="cukad-room__example"><p class="cukad-room__eyebrow">{{ 'advisory_team.room.example_label' | t }}</p><p data-advisory-example></p></div>
+    <div class="cukad-room__format"><h4>{{ 'advisory_team.room.format' | t }}</h4><p>{{ 'advisory_team.room.format_copy' | t }}</p></div>
+    <div class="cukad-room__composer" aria-disabled="true"><p>{{ 'advisory_team.room.composer' | t }}</p><button disabled type="button" aria-label="{{ 'advisory_team.room.send' | t | escape }}"><span aria-hidden="true">↑</span></button></div>
+    <p class="cukad-room__privacy">{{ 'advisory_team.room.privacy' | t }}</p>
+    <button type="button" class="cukad-room__button" data-advisory-close>{{ 'advisory_team.room.return' | t }} <span aria-hidden="true">↗</span></button>
+  </div>
+  <p class="cukad-room__status" role="status" aria-live="polite" data-advisory-status></p>
+</dialog>

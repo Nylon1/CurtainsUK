@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-09T19:38:02.992Z",
+  "automaticRoom": {
+    "elapsedMs": 39599,
+    "opened": true,
+    "backgroundStateNotVerified": true
+  },
+  "mobileNavigation": {
+    "width": 390,
+    "opened": true,
+    "link": "/pages/fabric-library?view=meet-our-team",
+    "followedSuccessfully": true
+  },
+  "pending": [
+    "Physical iPhone/touch device unavailable",
+    "Native screen-reader interface unavailable",
+    "Browser media emulation unavailable; actual preference remains no-preference. Reduced-motion covered by automated tests.",
+    "True background visibility not confirmed in browser; deterministic tests cover deadline restoration."
+  ]
+}

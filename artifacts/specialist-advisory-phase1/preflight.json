@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-09T18:19:40.2018003Z",
+  "completedAt": "2026-10-09T18:19:46.1402303Z",
+  "scope": "Phase 1 read-only preflight; existing-source regression tests; no browser emulation in this evidence",
+  "source": {
+    "repository": "Nylon1/CurtainsUK",
+    "protectedBranch": "release/production",
+    "protectedHead": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+    "workingHead": "3649c879a4a5ddf88c2093a4172d20fbc58cd265",
+    "workingBranch": "feat/specialist-advisory-phase1-20261009",
+    "themeRoot": "shopify-theme/curtainsuk-dawn-16",
+    "homepagePr": 166,
+    "homepageReleaseReceipt": "artifacts/homepage-live-release-20261009/RELEASE.md",
+    "historicalHomepageUnpublishedStatementsSuperseded": true
+  },
+  "shopify": {
+    "store": "carpetup.myshopify.com",
+    "publicOrigin": "https://www.curtainsuk.com",
+    "homepageStatus": 200,
+    "liveTheme": {
+      "name": "CurtainsUK - Curtain Style V1 review",
+      "id": 182339731835,
+      "schema_name": "Dawn",
+      "schema_version": "16.0.0",
+      "theme_store_id": null,
+      "role": "main"
+    },
+    "homepageStudioPresent": true,
+    "homepageTitle": "Beautiful curtains. A home that feels like you.",
+    "publishedRoomNames": [
+      "Living Room",
+      "Bedroom",
+      "Lounge",
+      "Office"
+    ],
+    "homepageAssets": [
+      "curtainsuk-home-studio.css",
+      "curtainsuk-home-studio.js"
+    ],
+    "cdnByteParity": "Not claimed: Shopify serves minified CSS/JS. Admin source/checksum read-back is needed for byte comparison.",
+    "liveThemeMutationPerformed": false,
+    "pagePublicationPerformed": false,
+    "routes": [
+      {
+        "path": "/",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:41.0948387Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/fabric-library",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:41.3240833Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/fabric-library?view=browse-fabrics",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:41.5612529Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:42.3054922Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/room-visualiser",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:42.5315627Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/build-my-rooms",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:42.7402749Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/how-to-measure",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:42.9445348Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/how-to-fit",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:43.1266466Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/samples",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:43.348023Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/pages/solve-my-window",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:43.5940505Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/cart",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:43.7860135Z",
+        "method": "GET",
+        "cartItemsArray": null
+      },
+      {
+        "path": "/cart.js",
+        "status": 200,
+        "checkedAt": "2026-10-09T18:19:43.9104898Z",
+        "method": "GET",
+        "cartItemsArray": true
+      },
+      {
+        "path": "/pages/curtains-for-apex-window",
+        "status": 404,
+        "checkedAt": "2026-10-09T18:19:44.2092766Z",
+        "method": "GET"
+      },
+      {
+        "path": "/pages/apex-window-curtains",
+        "status": 404,
+        "checkedAt": "2026-10-09T18:19:44.3559063Z",
+        "method": "GET"
+      },
+      {
+        "path": "/pages/how-to-measure-apex",
+        "status": 404,
+        "checkedAt": "2026-10-09T18:19:44.58036Z",
+        "method": "GET"
+      },
+      {
+        "path": "/pages/how-to-fit-apex",
+        "status": 404,
+        "checkedAt": "2026-10-09T18:19:44.7602562Z",
+        "method": "GET"
+      }
+    ]
+  },
+  "productionReferences": {
+    "provenance": "Read from required production records; deployment ID also independently verified by parent task",
+    "backendOrigin": "https://curtainsuk-production-api.vercel.app",
+    "vercelProjectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
+    "recordedDeploymentId": "dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD",
+    "recordedDeployedCommit": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
+    "recordedGitTree": "1150dad1d55649597d03df2dbaad01348ea98d63",
+    "runtimePack": "d5908d6eaf486ce33e2f72a5",
+    "fixed140Pack": "3ef99c8970b0b92d4b5986f7",
+    "supportedIdentities": 11003,
+    "vercelDeploymentPerformed": false
+  },
+  "requiredDocumentsRead": [
+    "docs/PRODUCTION_SURFACES.md",
+    "docs/room-visualiser-2-customer-release.md",
+    "docs/room-visualiser-2-production-state.json",
+    "docs/homepage-studio-review-20261009.md",
+    "docs/CURTAINSUK_PROJECT_LEDGER_2026_09_16.md",
+    "docs/CURTAINSUK_FRONTEND_REGISTER_2026_09_16.md",
+    "release/README.md"
+  ],
+  "sourceAudit": {
+    "themePatterns": [
+      "Scoped component CSS and deferred plain JavaScript",
+      "Native page JSON templates and reusable Liquid snippets",
+      "Forest #173d35, ivory #f8f6ef, muted #59675e, border #d6d9ce",
+      "Georgia editorial headings with existing theme body font",
+      "44px or larger interactive controls, focus indicators and reduced-motion treatment"
+    ],
+    "existingFilesInspected": [
+      "shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-home-studio.liquid",
+      "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-home-studio.css",
+      "shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-header-navigation.liquid",
+      "shopify-theme/curtainsuk-dawn-16/templates/page.fabric-library.json",
+      "shopify-theme/curtainsuk-dawn-16/templates/page.room-visualiser.json",
+      "lib/fabric-master/retail-repository.ts",
+      "lib/fabric-master/browse-rpc.ts",
+      "app/api/staging/shopify-proxy/[operation]/route.ts"
+    ],
+    "preservedBoundaries": [
+      "Naila remains independent and unchanged",
+      "Existing Room Visualiser runtime, eligibility and assets unchanged",
+      "Fabric Intelligence decision logic unchanged",
+      "Fabric Master canonical identities and commercial readiness unchanged",
+      "Shopify signed proxy HMAC, request validation, rate limits and replay protection unchanged",
+      "No catalogue rebuild, supplier ingestion or DB mutation"
+    ],
+    "retrievalObservations": [
+      "Retail search uses existing database RPC and hydrates at most 24 records per response",
+      "Public retail projections include only rights-approved and verified images",
+      "Commercial eligibility and stock/price readiness are server-governed",
+      "Internal canonical records and customer-safe retail projections remain distinct"
+    ],
+    "knownRouteIssue": "Four historical Apex routes returned 404; Phase 1 links must use a currently verified destination."
+  },
+  "tests": {
+    "log": "regression-tests.log",
+    "runtime": "v24.14.0",
+    "dependencyInstallationPerformed": false,
+    "existingTsxUsed": true,
+    "supportedSuites": [
+      {
+        "file": "lib/storefront/__tests__/shopify-theme.test.ts",
+        "passed": 18
+      },
+      {
+        "file": "lib/storefront/__tests__/security.test.ts",
+        "passed": 10
+      },
+      {
+        "file": "lib/storefront/__tests__/mtm-production-policy.test.ts",
+        "passed": 2
+      }
+    ],
+    "supportedRun": {
+      "tests": 30,
+      "passed": 30,
+      "failed": 0,
+      "exitCode": 0
+    },
+    "optionalSuiteLimitation": {
+      "file": "lib/storefront/__tests__/guided-measure-checkout-allowlist.test.ts",
+      "result": "Could not load: migration fixture omitted from sparse checkout",
+      "missingPath": "supabase/migrations/20260929183102_restore_guided_measure_checkout_measurement_allowlist.sql",
+      "trackedAtHead": true,
+      "gitBlob": "d9a63bdb9b0c1eff36a29cc799aa1709e7bb611f",
+      "sourceOrFixtureChanged": false,
+      "initialCombinedExitCode": 1,
+      "resolved": true,
+      "resolution": {
+        "method": "Materialised existing tracked supabase/migrations using git sparse-checkout add",
+        "trackedFiles": 93,
+        "bytes": 903990,
+        "sourceChanged": false,
+        "rerunTests": 2,
+        "rerunPassed": 2,
+        "rerunFailed": 0,
+        "rerunExitCode": 0
+      }
+    },
+    "browserEmulationPerformedByThisAudit": false,
+    "physicalIphoneTested": false,
+    "physicalIphoneStatus": "Outstanding; browser emulation is not physical-device verification",
+    "commercePaymentsOrOrdersCreated": false,
+    "specialistAdvisory": {
+      "file": "scripts/tests/specialist-advisory.test.mjs",
+      "checkedAt": "2026-10-09T18:24:33.2280965Z",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "exitCode": 0,
+      "method": "Node vm executes the real controller; minimal DOM adapter parses the actual dialog snippet; controlled wall clock; network/storage globals denied",
+      "coverage": [
+        "30-second actual elapsed time and no early transition",
+        "Background visibility/pageshow completion",
+        "Close/reopen resets deadline",
+        "Skip and native dialog close restore focus",
+        "Visible enabled-control keyboard trap",
+        "Six adviser data binding",
+        "No network or persistence access",
+        "Unavailable modal and failed opening recovery",
+        "Section lifecycle cleanup",
+        "Versioned profile/template/locale agreement and additive translations"
+      ]
+    },
+    "completedPassingTests": 42
+  },
+  "storage": {
+    "drive": "C:",
+    "freeGiB": 42.1,
+    "earlierTargetGiB": 35,
+    "namedBackupProcessesObserved": [
+      "restic"
+    ],
+    "backupCheckLimitation": "Checked common backup executable names only; this does not exclude an active script, snapshot or other backup service.",
+    "cleanupPerformed": false,
+    "existingWorktreesAndEvidencePreserved": true,
+    "newChangesCoveredByEarlierBackup": false
+  },
+  "previewRecommendation": {
+    "status": "Proposed; duplication/upload outcome tracked by parent task",
+    "sourceThemeId": 182339731835,
+    "targetRole": "unpublished",
+    "scope": "New adviser section/snippets/assets and page.meet-our-team JSON; merge only required translation keys",
+    "previewRoutePattern": "/pages/fabric-library?view=meet-our-team&preview_theme_id=NEW_THEME_ID",
+    "livePageCreationRequiredForPreview": false,
+    "publicationAuthorized": false,
+    "readbackRequired": true
+  }
+}

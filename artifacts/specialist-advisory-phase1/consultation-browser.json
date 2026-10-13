@@ -1,0 +1,124 @@
+{
+  "testedAt": "2026-10-09T18:29:07.233Z",
+  "naturalTimer": {
+    "startedAt": "2026-10-09T18:26:55.789Z",
+    "observedAfterMs": 42214,
+    "roomOpenedAutomatically": true
+  },
+  "advisers": [
+    {
+      "name": "Jane",
+      "waitState": {
+        "name": "Jane",
+        "seconds": "30",
+        "waitHidden": false
+      },
+      "roomState": {
+        "active": "Your consultation space",
+        "disabledSend": true,
+        "example": "Hello, I’m Jane, your AI fabric and interior design adviser. Before we think about fabrics, tell me a little about your room. How would you like it to feel when you walk in?",
+        "inputCount": 0,
+        "roomVisible": true
+      },
+      "restore": {
+        "focus": "Preview Jane’s consultation experience",
+        "open": false
+      }
+    },
+    {
+      "name": "Anne",
+      "waitState": {
+        "name": "Anne",
+        "seconds": "30",
+        "waitHidden": false
+      },
+      "roomState": {
+        "active": "Your consultation space",
+        "disabledSend": true,
+        "example": "Hello, I’m Anne, your AI customer concierge. I’ll help you work out the practical next step. Are you exploring your options, putting an order together or looking for help with an existing order?",
+        "inputCount": 0,
+        "roomVisible": true
+      },
+      "restore": {
+        "focus": "Preview Anne’s consultation experience",
+        "open": false
+      }
+    },
+    {
+      "name": "Noah",
+      "waitState": {
+        "name": "Noah",
+        "seconds": "30",
+        "waitHidden": false
+      },
+      "roomState": {
+        "active": "Your consultation space",
+        "disabledSend": true,
+        "example": "Hello, I’m Noah, your AI measuring adviser. We can take this one step at a time. What kind of window are you working with, and is the track or pole already fitted?",
+        "inputCount": 0,
+        "roomVisible": true
+      },
+      "restore": {
+        "focus": "Preview Noah’s consultation experience",
+        "open": false
+      }
+    },
+    {
+      "name": "James",
+      "waitState": {
+        "name": "James",
+        "seconds": "30",
+        "waitHidden": false
+      },
+      "roomState": {
+        "active": "Your consultation space",
+        "disabledSend": true,
+        "example": "Hello, I’m James, your AI fitting and installation adviser. Let’s start with the space. Are you fitting to a wall or ceiling, and what do you know about the surface behind it?",
+        "inputCount": 0,
+        "roomVisible": true
+      },
+      "restore": {
+        "focus": "Preview James’s consultation experience",
+        "open": false
+      }
+    },
+    {
+      "name": "Ben",
+      "waitState": {
+        "name": "Ben",
+        "seconds": "30",
+        "waitHidden": false
+      },
+      "roomState": {
+        "active": "Your consultation space",
+        "disabledSend": true,
+        "example": "Hello, I’m Ben, your AI acoustic adviser. Before we discuss materials, I’d like to understand the sound itself. Is the main concern echo within the room, or noise travelling between spaces?",
+        "inputCount": 0,
+        "roomVisible": true
+      },
+      "restore": {
+        "focus": "Preview Ben’s consultation experience",
+        "open": false
+      }
+    },
+    {
+      "name": "Natalie",
+      "waitState": {
+        "name": "Natalie",
+        "seconds": "30",
+        "waitHidden": false
+      },
+      "roomState": {
+        "active": "Your consultation space",
+        "disabledSend": true,
+        "example": "Hello, I’m Natalie, your AI apex curtain adviser. Tell me about your window and what you would love the finished room to feel like. We can explore the possibilities before a human specialist reviews the details.",
+        "inputCount": 0,
+        "roomVisible": true
+      },
+      "restore": {
+        "focus": "Preview Natalie’s consultation experience",
+        "open": false
+      }
+    }
+  ]
+}

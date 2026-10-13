@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "team": {
+      "type": "curtainsuk-advisory-team",
+      "blocks": {
+        "jane": { "type": "adviser", "settings": { "adviser": "jane", "featured": true } },
+        "anne": { "type": "adviser", "settings": { "adviser": "anne" } },
+        "noah": { "type": "adviser", "settings": { "adviser": "noah" } },
+        "james": { "type": "adviser", "settings": { "adviser": "james" } },
+        "ben": { "type": "adviser", "settings": { "adviser": "ben" } },
+        "natalie": { "type": "adviser", "settings": { "adviser": "natalie" } }
+      },
+      "block_order": ["jane", "anne", "noah", "james", "ben", "natalie"],
+      "settings": {}
+    }
+  },
+  "order": ["team"]
+}

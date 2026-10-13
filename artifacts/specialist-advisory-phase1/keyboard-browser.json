@@ -1,0 +1,28 @@
+{
+  "testedAt": "2026-10-09T18:35:01.296Z",
+  "cssWidth": 390,
+  "shiftTab": {
+    "dialog": {
+      "bottom": 788.4199905395508,
+      "height": 732.6799926757812,
+      "left": 18,
+      "right": 372.3999938964844,
+      "top": 55.73999786376953,
+      "width": 354.3999938964844,
+      "x": 18,
+      "y": 55.73999786376953
+    },
+    "focus": "Skip to room preview →",
+    "outline": "solid",
+    "scrollWidth": 341
+  },
+  "tab": {
+    "focus": "Close preview"
+  },
+  "escape": {
+    "dialogOpen": false,
+    "focus": "Preview Jane’s consultation experience"
+  },
+  "screenReaderTested": false,
+  "reducedMotionRuntimeTested": false
+}

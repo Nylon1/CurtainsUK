@@ -1,0 +1,92 @@
+{
+  "testedAt": "2026-10-09T18:28:28.797Z",
+  "browser": "Chrome via connected browser, CSS viewport widths; Windows display scaling compensated",
+  "viewports": [
+    {
+      "h1": 1,
+      "height": 844,
+      "minButtonHeight": 52,
+      "missingTranslation": false,
+      "overflow": [],
+      "profiles": [
+        "Jane",
+        "Anne",
+        "Noah",
+        "James",
+        "Ben",
+        "Natalie"
+      ],
+      "scrollWidth": 308,
+      "width": 320
+    },
+    {
+      "h1": 1,
+      "height": 844,
+      "minButtonHeight": 52,
+      "missingTranslation": false,
+      "overflow": [],
+      "profiles": [
+        "Jane",
+        "Anne",
+        "Noah",
+        "James",
+        "Ben",
+        "Natalie"
+      ],
+      "scrollWidth": 378,
+      "width": 390
+    },
+    {
+      "h1": 1,
+      "height": 844,
+      "minButtonHeight": 52,
+      "missingTranslation": false,
+      "overflow": [],
+      "profiles": [
+        "Jane",
+        "Anne",
+        "Noah",
+        "James",
+        "Ben",
+        "Natalie"
+      ],
+      "scrollWidth": 400,
+      "width": 412
+    },
+    {
+      "h1": 1,
+      "height": 844,
+      "minButtonHeight": 52,
+      "missingTranslation": false,
+      "overflow": [],
+      "profiles": [
+        "Jane",
+        "Anne",
+        "Noah",
+        "James",
+        "Ben",
+        "Natalie"
+      ],
+      "scrollWidth": 756,
+      "width": 768
+    },
+    {
+      "h1": 1,
+      "height": 844,
+      "minButtonHeight": 52,
+      "missingTranslation": false,
+      "overflow": [],
+      "profiles": [
+        "Jane",
+        "Anne",
+        "Noah",
+        "James",
+        "Ben",
+        "Natalie"
+      ],
+      "scrollWidth": 1428,
+      "width": 1440
+    }
+  ],
+  "physicalIphone": false
+}

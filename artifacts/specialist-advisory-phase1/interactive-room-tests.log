@@ -1,0 +1,18 @@
+✔ real controller waits for 30 seconds of elapsed time, never interval count (24.1437ms)
+✔ backgrounded tab catches up on visibility restoration and pageshow (10.7272ms)
+✔ close restores focus and scroll; reopening starts a fresh full interval (7.4797ms)
+✔ skip enters the labelled room and native Escape closure restores its opener (6.8042ms)
+✔ keyboard focus wraps using only currently visible, enabled dialog controls (16.8962ms)
+✔ every adviser uses its own profile and the preview makes no network or persistence access (13.4484ms)
+✔ unsupported or failed modal opening keeps the page usable and exposes no fake chat (9.3159ms)
+✔ repeated section initialisation and unload do not duplicate timers or leak listeners (6.22ms)
+✔ six versioned AI profiles, theme blocks and customer names agree; Jane is featured (5.9509ms)
+✔ the English locale is additive against the verified production baseline (208.4416ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 647.1008

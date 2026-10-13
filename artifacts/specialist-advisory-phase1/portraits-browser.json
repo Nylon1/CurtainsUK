@@ -1,0 +1,167 @@
+{
+  "testedAt": "2026-10-09T18:52:46.615Z",
+  "viewports": [
+    {
+      "overflow": [],
+      "portraits": [
+        {
+          "alt": "AI-generated portrait of Jane, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Anne, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Noah, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of James, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Ben, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Natalie, a CurtainsUK AI adviser.",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 308,
+      "width": 320
+    },
+    {
+      "overflow": [],
+      "portraits": [
+        {
+          "alt": "AI-generated portrait of Jane, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Anne, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Noah, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of James, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Ben, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Natalie, a CurtainsUK AI adviser.",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 378,
+      "width": 390
+    },
+    {
+      "overflow": [],
+      "portraits": [
+        {
+          "alt": "AI-generated portrait of Jane, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Anne, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Noah, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of James, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Ben, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Natalie, a CurtainsUK AI adviser.",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 400,
+      "width": 412
+    },
+    {
+      "overflow": [],
+      "portraits": [
+        {
+          "alt": "AI-generated portrait of Jane, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Anne, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Noah, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of James, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Ben, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Natalie, a CurtainsUK AI adviser.",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 756,
+      "width": 768
+    },
+    {
+      "overflow": [],
+      "portraits": [
+        {
+          "alt": "AI-generated portrait of Jane, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Anne, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Noah, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of James, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Ben, a CurtainsUK AI adviser.",
+          "loaded": true
+        },
+        {
+          "alt": "AI-generated portrait of Natalie, a CurtainsUK AI adviser.",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 1428,
+      "width": 1440
+    }
+  ],
+  "noahRoom": {
+    "inputCount": 0,
+    "open": true,
+    "roomText": true,
+    "inputScope": ".cukad-room"
+  },
+  "physicalIphone": false
+}

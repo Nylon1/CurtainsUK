@@ -6,6 +6,7 @@ import {join} from 'node:path';
 import {homedir} from 'node:os';
 import {createHash} from 'node:crypto';
 import {readPrivateFile} from './jane-private-file.mjs';
+import {databaseConfig} from '../lib/advisory/pg-transaction.mjs';
 
 const config=await readPrivateFile(process.env.ADVISORY_PRIVATE_TRIAL_PATH);
 const receipt=JSON.parse(await readFile(join(homedir(),'.codex','tmp','jane-hosted-review-package','review-package.json'),'utf8'));
@@ -19,6 +20,7 @@ for(const [path,expected] of Object.entries(receipt.routes)){
 const ui=createHash('sha256').update(await readFile(join(receipt.staging,'.vercel','output','static','jane-review.js'))).digest('hex');
 if(ui!==receipt.uiSha256)throw Error('REVIEW_UI_MISMATCH');
 const env={...config.env,ADVISORY_SOURCE_COMMIT:head};
+databaseConfig(env); // Fail before deployment if the reviewed TLS CA is absent.
 const args=[process.env.ADVISORY_VERCEL_CLI_PATH,'deploy','--prebuilt','--target','preview','--project','prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA','--scope','team_U8WXxsKS9LT2DmEllVkOpihz','--no-wait','--meta','janeSourceCommit='+head,'--meta','janeReviewUiSha256='+ui,...Object.keys(env).flatMap(key=>['--env',key])];
 const child=spawn(process.execPath,args,{cwd:receipt.staging,stdio:['ignore','pipe','pipe'],windowsHide:true,env:{...process.env,...env}});
 const safeOutput=buffer=>{for(const line of buffer.toString().split(/\r?\n/)){const urls=line.match(/https:\/\/[a-z0-9.-]+\.vercel\.app\b/g);if(urls)for(const url of urls)console.log(url);if(/Error:/.test(line))console.error('VERCEL_PREVIEW_DEPLOYMENT_FAILED');}};

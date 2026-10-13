@@ -10,7 +10,7 @@
     const panel = dialog.querySelector('[data-jane-chat]');
     if (!panel) return;
     const find = name => panel.querySelector(`[data-jane-${name}]`);
-    const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status');
+    const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status'), tools = find('tools');
     const consent = find('consent'), startButton = find('start'), deleteButton = find('delete');
     const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
@@ -19,6 +19,22 @@
     const setBusy = value => { busy = value; startButton.disabled = value; deleteButton.disabled = value; input.disabled = value; form.querySelector('[data-jane-send]').disabled = value; fabricShare.disabled = value || !fabricConsent.checked; };
     const remember = id => { try { if (id) localStorage.setItem(storageKey, id); else localStorage.removeItem(storageKey); } catch {} };
     const remembered = () => { try { return localStorage.getItem(storageKey); } catch { return null; } };
+    const productUrl = value => { try { const url = new URL(value); return url.origin === 'https://www.curtainsuk.com' && /^\/pages\/fabric\/[a-z0-9-]+$/i.test(url.pathname) && !url.search && !url.hash ? url.href : null; } catch { return null; } };
+    const imageUrl = value => { try { const url = new URL(value); return url.origin === 'https://cdn.shopify.com' && !url.search && !url.hash ? url.href : null; } catch { return null; } };
+    const showFabricCard = (article, fabric) => {
+      if (!fabric || !validFabric.test(fabric.id) || fabric.purchasable !== true) return;
+      const url = productUrl(fabric.url), image = imageUrl(fabric.imageUrl);
+      if (!url || !image) return;
+      const card = document.createElement('div'); card.className = 'cukad-room__jane-card';
+      const picture = document.createElement('img'); picture.src = image; picture.alt = ''; picture.loading = 'lazy';
+      const detail = document.createElement('div'), title = document.createElement('strong');
+      title.textContent = [fabric.design, fabric.colour].filter(Boolean).join(' · ') || fabric.id;
+      const profile = document.createElement('a'); profile.href = url; profile.textContent = fabric.sampleAvailable === true ? 'View fabric and sample options' : 'View fabric';
+      detail.append(title, document.createElement('br'), profile);
+      const room = `/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`;
+      if (fabric.roomPreview === room) { const link = document.createElement('a'); link.href = room; link.textContent = 'See in Room Visualiser'; detail.append(link); }
+      card.append(picture, detail); article.append(card);
+    };
     const render = () => {
       log.replaceChildren();
       if (session) {
@@ -30,11 +46,14 @@
           const article = document.createElement('article');
           const heading = document.createElement('strong'); heading.textContent = message.role === 'assistant' ? 'Jane · AI adviser' : 'You';
           const p = document.createElement('p'); p.textContent = message.text;
-          article.append(heading, p); log.append(article);
+          article.append(heading, p);
+          if (message.role === 'assistant' && Array.isArray(message.fabrics)) message.fabrics.slice(0, 4).forEach(fabric => showFabricCard(article, fabric));
+          log.append(article);
         });
         log.scrollTop = log.scrollHeight;
       }
       startButton.hidden = !!session; deleteButton.hidden = !session; form.hidden = !session;
+      if (tools) tools.hidden = !session;
       consent.closest('label').hidden = !!session;
       fabricShare.hidden = !session || !!session?.contexts?.some(c => c.value?.fabricIds?.includes(selectedFabric?.id));
     };

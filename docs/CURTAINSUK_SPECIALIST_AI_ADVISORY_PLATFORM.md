@@ -1,6 +1,12 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 13 October 2026 UK · 10,002 eligible identities independently verified; existing population continuing with renewed monitoring and one-time supervision; automatic updates disabled; Jane publicly inactive**
+**Programme source of truth · 13 October 2026 UK · 11,004 eligible identities independently verified; existing population continuing with renewed monitoring and one-time supervision; automatic updates disabled; Jane publicly inactive**
+
+## Verified milestone: 11,004 identities
+
+Independent read-only hosted verification at **13 October 00:24:32.843476 UTC** confirms **11,004 / 11,517**, leaving **513**. All identity/content digests and 1,834 verified batches match, with zero duplicate IDs, five historical no-ops, preserved original records and restored permissions. The 35 active dependencies and operator binding are unchanged. [Evidence](../artifacts/jane-progress-11000-20261012/README.md).
+
+A response timeout left the 10,524-to-10,530 plan uncertain. Two independent observations after expiry proved it uncommitted, with no affected rows, receipts, old transactions or prepared transactions. The existing resolution procedure preserved it in the journal; fresh admission resumed the same job without replaying the expired SQL. Three explicit expired-uncommitted resolutions remain in the audit trail. Population, source-change reconciliation and recommendation review remain incomplete. No indexing limit, migration, schedule or public activation changed.
 
 ## Verified milestone: 10,002 identities
 

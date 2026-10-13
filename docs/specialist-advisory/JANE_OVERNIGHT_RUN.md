@@ -1,5 +1,11 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Latest milestone: 11,004 independently verified
+
+At **13 October 00:24:32.843476 UTC**, independent bounded read-only verification confirms **11,004 / 11,517**, leaving **513**. Every current/receipt hash and whole-job digest matches 1,834 verified batches. Zero duplicate IDs, all history, five eligible no-ops and restored permissions are exact. [Evidence](../../artifacts/jane-progress-11000-20261012/README.md).
+
+The 10,524-to-10,530 response timeout was reconciled by two independent observations after SQL expiry. No affected row or receipt, old transaction or prepared transaction existed; the previous exact receipt and permissions matched. The existing journal resolution retired that uncommitted plan, and fresh admission resumed the unchanged operator. No blind retry or relaxed safeguard. The original date in this document title is historical; the owner's later no-calendar-deadline continuation remains authoritative. Public Jane and automatic updates remain disabled.
+
 ## Latest milestone: 10,002 independently verified
 
 At **12 October 23:08:48.774692 UTC** independent bounded read-only verification confirms **10,002 / 11,517**, leaving **1,515**. All receipt/current hashes and whole-job digests match 1,667 verified batches, with zero duplicate identities, preserved history and restored permissions. [Evidence](../../artifacts/jane-progress-10000-20261012/README.md).

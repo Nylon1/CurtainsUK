@@ -1,4 +1,4 @@
-import { createShopifyJaneGateway, janeGatewayEnabled } from '@/lib/advisory/shopify-gateway';
+import { createShopifyJaneGateway, janeGatewayEnabled, janePublicEnabled } from '@/lib/advisory/shopify-gateway';
 import { createPgTransaction } from '@/lib/advisory/pg-transaction.mjs';
 import { createPrivateAdvisoryRpc, createPrivateAdvisoryKnowledgeSearch } from '@/lib/advisory/private-rpc.mjs';
 import { createSessionCipher } from '@/lib/advisory/session-cipher.mjs';
@@ -55,7 +55,7 @@ async function handle(request) {
         const provider = model
           ? { kind: 'openai', respond: async args => createOpenAIProvider({ apiKey: env.ADVISORY_OPENAI_API_KEY, allowPaidTest: true, budget: store.budget(env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID, args.session.id) }).respond(args) }
           : createMockProvider();
-        return createConsultationService({ store, provider, catalogue }).execute(owner, command);
+        return createConsultationService({ store, provider, catalogue, publicMode: janePublicEnabled(env, compiledCommit) }).execute(owner, command);
       },
     })(request);
   } catch {

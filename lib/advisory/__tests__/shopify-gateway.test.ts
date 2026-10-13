@@ -151,3 +151,16 @@ test('signed Shopify ownership reaches the real consultation service and blocks 
   assert.equal((await post('123', a, 'delete', session.id)).status, 200);
   assert.equal((await post('123', a, 'resume', session.id)).status, 404);
 });
+test('public AI consultation notice is customer-ready while private trials remain labelled', async () => {
+  const input = { requestId: randomUUID(), sessionId: null, revision: null, action: 'start', text: null, context: null, consent: true, recoveryToken: null };
+  const owner = janeOwner('carpetup.myshopify.com', '123', env.ADVISORY_OWNER_DERIVATION_KEY);
+  const catalogue = { lookup: async () => [] };
+  const provider = { kind: 'openai', respond: async () => { throw Error('start must not call model'); } };
+  const publicService = createConsultationService({ store: new MemoryStore(), provider, catalogue, publicMode: true });
+  const trialService = createConsultationService({ store: new MemoryStore(), provider, catalogue });
+  const live = await publicService.execute(owner, input);
+  const trial = await trialService.execute(owner, { ...input, requestId: randomUUID() });
+  assert.match(live.session.notice, /AI adviser/);
+  assert.match(live.session.notice, /availability and prices/);
+  assert.match(trial.session.notice, /development consultation/);
+});

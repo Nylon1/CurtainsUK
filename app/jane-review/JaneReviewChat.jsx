@@ -17,7 +17,7 @@ const startingPoints=[
 export default function JaneReviewChat({projectRef,publishableKey}){
   const auth=useRef(null),authClient=useRef(null),grant=useRef(''),csrf=useRef(''),pending=useRef(null);
   const [ready,setReady]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[status,setStatus]=useState('');
-  const [session,setSession]=useState(null),[email,setEmail]=useState(''),[password,setPassword]=useState(''),[grantText,setGrantText]=useState('');
+  const [session,setSession]=useState(null),[email,setEmail]=useState(''),[password,setPassword]=useState(''),[sessionToken,setSessionToken]=useState(''),[loginMode,setLoginMode]=useState('password'),[grantText,setGrantText]=useState('');
   const [consent,setConsent]=useState(false),[draft,setDraft]=useState(''),[recovery,setRecovery]=useState(''),[newRecovery,setNewRecovery]=useState('');
   const [waitingUntil,setWaitingUntil]=useState(0),[remaining,setRemaining]=useState(30),[roomOpen,setRoomOpen]=useState(false);
   const [fabric,setFabric]=useState(null),[fabricError,setFabricError]=useState(''),[shareFabric,setShareFabric]=useState(false),[shared,setShared]=useState(false);
@@ -59,12 +59,21 @@ export default function JaneReviewChat({projectRef,publishableKey}){
     event.preventDefault();setBusy(true);setError('');
     try{
       const client=createClient('https://'+projectRef+'.supabase.co',publishableKey,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
-      const {data,error:authError}=await client.auth.signInWithPassword({email:email.trim(),password});
-      setPassword('');if(authError||!data.session?.access_token)throw Error('The test account could not be signed in.');
-      const response=await fetch('/api/advisory/review-chat',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+data.session.access_token,'X-Advisory-Trial-Grant':grantText.trim()},body:JSON.stringify({action:'bootstrap'})});
+      let accessToken;
+      if(loginMode==='session'){
+        accessToken=sessionToken.trim();
+        const {data,error:authError}=await client.auth.getUser(accessToken);
+        if(authError||!data.user||data.user.is_anonymous)throw Error('The active test session could not be verified.');
+      }else{
+        const {data,error:authError}=await client.auth.signInWithPassword({email:email.trim(),password});
+        if(authError||!data.session?.access_token)throw Error('The test account could not be signed in.');
+        accessToken=data.session.access_token;
+      }
+      setPassword('');setSessionToken('');
+      const response=await fetch('/api/advisory/review-chat',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+accessToken,'X-Advisory-Trial-Grant':grantText.trim()},body:JSON.stringify({action:'bootstrap'})});
       const result=await response.json().catch(()=>({}));
       if(!response.ok||!result.csrf||!['synthetic-mock-only','synthetic-openai-only'].includes(result.mode))throw Error('The protected review is unavailable for this account or access grant.');
-      auth.current=data.session.access_token;authClient.current=client;grant.current=grantText.trim();csrf.current=result.csrf;
+      auth.current=accessToken;authClient.current=client;grant.current=grantText.trim();csrf.current=result.csrf;
       setGrantText('');setReady(true);setStatus(result.mode==='synthetic-openai-only'?'Protected AI review connected.':'Scripted review connected.');
       const saved=sessionStorage.getItem(sessionKey);
       if(saved&&/^[0-9a-f-]{36}$/.test(saved)){
@@ -104,7 +113,7 @@ export default function JaneReviewChat({projectRef,publishableKey}){
     <p className="jane-review__notice">Private development test for approved synthetic accounts. Jane is an AI adviser. Use invented customer details only. The public service is not active.</p>
     <div className="jane-review__layout"><aside><Image unoptimized src="/jane-review-portrait" alt="Synthetic portrait representing Jane, AI interior design adviser" width={300} height={400}/><h1>Meet Jane</h1><p>Explore a room problem, weigh a few design directions, and tell Jane what feels right. She can refine the suggestion with you.</p><p>The consultation is designed for around ten minutes, with no abrupt cutoff.</p><nav aria-label="CurtainsUK design tools"><a href="https://www.curtainsuk.com/pages/fabric-library?view=browse-fabrics">Browse Fabrics</a><a href="https://www.curtainsuk.com/pages/room-visualiser">Room Visualiser</a><a href="https://www.curtainsuk.com/pages/fabric-library?view=curtain-style">Curtain Style</a></nav></aside>
     <section className="jane-review__panel" aria-label="Consultation with Jane">
-      {!ready?<form className="jane-review__form" onSubmit={login}><h2>Enter the private review</h2><p>Use an approved synthetic Supabase Auth test account and the short-lived signed review grant. Credentials stay in this browser session.</p><label htmlFor="jane-email">Test account email</label><input id="jane-email" type="email" value={email} onChange={e=>setEmail(e.target.value)} required autoComplete="username"/><label htmlFor="jane-password">Password</label><input id="jane-password" type="password" value={password} onChange={e=>setPassword(e.target.value)} required autoComplete="current-password"/><label htmlFor="jane-grant">Signed review grant</label><input id="jane-grant" type="password" value={grantText} onChange={e=>setGrantText(e.target.value)} required autoComplete="off"/><button disabled={busy}>Connect to Jane</button></form>:<>
+      {!ready?<form className="jane-review__form" onSubmit={login}><h2>Enter the private review</h2><p>Use an approved synthetic Supabase Auth test account and the short-lived signed review grant. Credentials stay in this browser session.</p><button type="button" onClick={()=>{setLoginMode(loginMode==='password'?'session':'password');setPassword('');setSessionToken('');}}>{loginMode==='password'?'Use an active test session':'Use test account password'}</button>{loginMode==='password'?<><label htmlFor="jane-email">Test account email</label><input id="jane-email" type="email" value={email} onChange={e=>setEmail(e.target.value)} required autoComplete="username"/><label htmlFor="jane-password">Password</label><input id="jane-password" type="password" value={password} onChange={e=>setPassword(e.target.value)} required autoComplete="current-password"/></>:<><label htmlFor="jane-session-token">Active synthetic test session token</label><input id="jane-session-token" type="password" value={sessionToken} onChange={e=>setSessionToken(e.target.value)} required autoComplete="off"/><p>This short-lived test token is verified by Supabase Auth and is not saved in the browser.</p></>}<label htmlFor="jane-grant">Signed review grant</label><input id="jane-grant" type="password" value={grantText} onChange={e=>setGrantText(e.target.value)} required autoComplete="off"/><button disabled={busy}>Connect to Jane</button></form>:<>
         <div className="jane-review__bar"><span>Authenticated private review</span><button type="button" onClick={signOut}>Sign out</button></div>
         {fabric&&<section className="jane-review__fabric" aria-label="Selected fabric"><h2>Selected fabric</h2><p><strong>{fabric.design} · {fabric.colour}</strong> <small>{fabric.id}</small></p><p>This is a design reference. Check current price and availability on its fabric page.</p>{safeUrl(fabric.url)&&<a href={safeUrl(fabric.url)}>View fabric detail</a>}{roomUrl(fabric)&&<a href={roomUrl(fabric)}>View this fabric in Room Visualiser</a>}{session&&!shared&&<><label><input type="checkbox" checked={shareFabric} onChange={e=>setShareFabric(e.target.checked)}/> Share this exact fabric with Jane</label><button type="button" disabled={busy||!shareFabric} onClick={share}>Discuss this fabric</button></>}</section>}
         {fabricError&&<p role="status">{fabricError}</p>}

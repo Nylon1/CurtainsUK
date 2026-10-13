@@ -43,6 +43,10 @@ export interface ServerStagingCheckoutHandoffInput {
   shippingPostcode?: string;
   parcelClass?: ShippingParcelClass;
   hciCommerceToken?: string;
+  openaiAttribution?: {
+    oppref?: string;
+    obref?: string;
+  };
 }
 
 export type ServerStagingCheckoutHandoffResult = {
@@ -103,6 +107,21 @@ function priceFromRevision(revision: Record<string, unknown>) {
 function positiveMetres(value: unknown) {
   const metres = Number(value);
   return Number.isFinite(metres) && metres > 0 ? metres : null;
+}
+
+function safeOpenAiAttribution(value: ServerStagingCheckoutHandoffInput["openaiAttribution"]) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+  const result: { oppref?: string; obref?: string } = {};
+  for (const key of ["oppref", "obref"] as const) {
+    const candidate = value[key];
+    if (typeof candidate === "string"
+        && candidate.trim()
+        && candidate.length <= 255
+        && !/[\u0000-\u001f\u007f]/.test(candidate)) {
+      result[key] = candidate.trim();
+    }
+  }
+  return Object.keys(result).length ? result : undefined;
 }
 
 async function currentAvailability(input: {
@@ -399,6 +418,7 @@ async function prepareCheckout(
     handoff,
     customerEmail,
     fabricLabel,
+    openaiAttribution: safeOpenAiAttribution(input.openaiAttribution),
   });
   if (shopifyExecution.status !== "DISABLED") {
     enter("EXECUTION_RECEIPT");

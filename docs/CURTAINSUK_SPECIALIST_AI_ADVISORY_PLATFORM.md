@@ -1,6 +1,14 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 13 October 2026 UK · 11,004 eligible identities independently verified; existing population continuing with renewed monitoring and one-time supervision; automatic updates disabled; Jane publicly inactive**
+**Programme source of truth · 13 October 2026 UK · All 11,517 approved eligible identities independently verified; population complete; source-change reconciliation pending; one-time follow-up paused; automatic updates disabled; Jane publicly inactive**
+
+## Approved eligible population complete
+
+The same existing job completed at **13 October 01:00:36.937 UTC**. Independent bounded read-only verification at **01:00:50.117941 UTC** confirms **11,517 / 11,517**, all 1,920 batch receipts and exact whole-job identity/content hashes. Zero duplicate IDs or unresolved writes; all six historical records, five eligible no-ops and transaction-local grant restoration are verified. There are 11,512 newly inserted derived search rows and 11,518 total search rows, including the preserved historical identity outside this eligible manifest. [Completion evidence](../artifacts/jane-population-complete-20261013/README.md).
+
+The unchanged operator exited normally, and the existing one-time follow-up is verified PAUSED. All 35 active dependencies, binding hashes, migration history and safety limits remain unchanged. Three independently reconciled expired-uncommitted plans are preserved in the journal. No uncertain transaction was blindly retried. Observed database size is 724,593,811 bytes and advisory knowledge is 15,892,480 bytes. Later writes still need a subsequent verified backup; Toshiba completion remains unverified. C: free space is 31.59 GiB, with no cleanup or heavy build.
+
+This completes only the authorised 11,517-identity population, not all 16,883 Fabric Master identities or source-change reconciliation. Automatic updates remain disabled pending the existing discovery/publication-window, revision and bounded catch-up review. Recommendations must be checked after reconciliation; the revised real-model suite needs fresh budget approval. Jane remains publicly inactive, and PR #169 remains draft. No new migration, paid AI call or Jane deployment occurred. The separately authorised PR #183 single-asset release is recorded below and used protected production source only.
 
 ## Verified milestone: 11,004 identities
 

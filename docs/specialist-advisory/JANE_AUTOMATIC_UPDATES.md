@@ -1,5 +1,11 @@
 # Jane: incremental update connection review
 
+## Population completion update: 13 October 2026
+
+The approved initial eligible population is now independently verified complete: **11,517 / 11,517**, 1,920 exact receipts, zero duplicates or unresolved writes, preserved historical records and restored permissions. The operator exited and the one-time follow-up is PAUSED. [Final evidence](../../artifacts/jane-population-complete-20261013/README.md). This supersedes the historical partial-population counts below.
+
+The discovery, complete publication-window, dependency fan-out and current-source/revision boundaries described below remain unresolved. Completion does not prove that changes during population have been reconciled. Automatic updates remain disabled, no incremental migration or schedule was enabled, and post-population recommendation review remains gated. The next review must present the exact bounded reconciliation/activation scope and its evidence; do not begin a second full population.
+
 12 October 2026. Development only, on draft PR #169. **No automatic update schedule, source trigger, hosted migration or incremental write has been enabled.** The existing population operator is unchanged and remains the only authorised hosted writer.
 
 ## Current population

@@ -1,5 +1,11 @@
 # Jane: one-time overnight operation, 11–12 October 2026
 
+## Completed and independently verified: 13 October
+
+The same job `ac425f78-f6ec-4623-97bb-df8763d79d5a` completed at **01:00:36.937 UTC**. Independent bounded read-only verification at **01:00:50.117941 UTC** confirms **11,517 / 11,517**, all 1,920 receipts, exact identity/content digests, zero duplicates/unresolved writes, preserved history and restored permissions. [Final evidence](../../artifacts/jane-population-complete-20261013/README.md).
+
+The operator exited normally. The existing one-time follow-up was updated and read back as **PAUSED**. Do not restart population or convert this schedule into recurring refresh. The local status file records POPULATION_VERIFIED_COMPLETE and running false. All existing code and limits remained unchanged; three expired-uncommitted resolutions remain in the original append-only journal. Automatic updates, source-change reconciliation and recommendation review are separate pending work. No public Jane activation, new migration or paid AI call. The historical title and progress entries below are retained as evidence.
+
 ## Latest milestone: 11,004 independently verified
 
 At **13 October 00:24:32.843476 UTC**, independent bounded read-only verification confirms **11,004 / 11,517**, leaving **513**. Every current/receipt hash and whole-job digest matches 1,834 verified batches. Zero duplicate IDs, all history, five eligible no-ops and restored permissions are exact. [Evidence](../../artifacts/jane-progress-11000-20261012/README.md).

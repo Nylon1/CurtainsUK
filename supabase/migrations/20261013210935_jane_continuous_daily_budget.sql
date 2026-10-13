@@ -48,7 +48,10 @@ grant execute on function advisory.ensure_public_daily_run() to advisory_runtime
 
 -- The original per-run guard covers one consultation within one day. A saved
 -- consultation can cross midnight, so enforce its US$1 ceiling across every
--- public daily run as well. Existing private evaluation receipts are untouched.
+-- public daily run as well. Include legacy dated public receipts from before
+-- this migration; session UUIDs are unique to each consultation. Existing
+-- private evaluation receipts are not changed.
+create index advisory_spend_session_global on advisory.spend_reservations(session_id);
 create function advisory.guard_public_consultation_spend() returns trigger
 language plpgsql security definer set search_path = pg_catalog
 as $$
@@ -62,7 +65,6 @@ begin
     'curtainsuk:jane:session:' || new.session_id::text, 0));
   select coalesce(sum(r.charged_micro), 0) into prior_micro
   from advisory.spend_reservations r
-  join advisory.public_daily_runs d on d.run_id = r.run_id
   where r.session_id = new.session_id and r.id <> new.id;
   if prior_micro + new.charged_micro > 1000000 then
     raise exception 'BUDGET_EXHAUSTED';

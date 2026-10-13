@@ -1,0 +1,102 @@
+{
+  "id": "pattern-choice",
+  "reviewCriteria": [
+    "Investigate contrast and competing scale without a universal small-pattern rule",
+    "Propose controlled comparisons using real controls"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I cannot choose between a small geometric and a large floral.",
+      "advice": {
+        "text": "A small geometric usually brings a more ordered, tailored feel, although a tightly packed, high-contrast design can look quite busy. A large floral makes more of a statement, but one with plenty of space around the motifs can feel surprisingly calm.\n\nI’d choose by the role you want the curtains to play: quietly supporting the room or becoming its focal point. What other patterns are already in the room, particularly on the sofa or rug?",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "Compare an ordered small geometric with a more expressive large floral, considering contrast and space around the motifs rather than scale alone.",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "What other patterns are already in the room, particularly on the sofa or rug?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The rug is striped and the cushions are plain. I like an expressive room.",
+      "advice": {
+        "text": "With a striped rug and plain cushions, I’d lean towards the large floral for the expressive room you enjoy. Its flowing shapes would contrast with the stripes rather than repeat their geometry. Look for some breathing space between the flowers, and carry one of the rug’s colours into the fabric to connect the two.\n\nThe small geometric remains a good alternative for a more tailored, rhythmic look, but a dense design could compete with the stripes.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "Large floral with space between motifs, linked to the striped rug through a shared colour.",
+        "textureDirection": "",
+        "alternatives": [
+          "A small geometric for a more tailored, rhythmic look; avoid a dense design that could compete with the rug’s stripes."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "How can I compare them fairly in the visualiser?",
+      "advice": {
+        "text": "If both fabrics are supported, use Change fabric to switch between them, keeping the room, surface colours, lighting and curtain position identical.\n\nStart in Room view: does the floral balance the striped rug, and does the geometric feel lively or too repetitive? Then use Curtain view to compare each pattern’s detail. Check both in Daylight and Evening, comparing like with like; Fabric inspection offers neutral light.\n\nThe render is representative, so confirm colour and feel with physical samples before deciding.",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Compare a large floral against a small geometric, considering how each relates to the striped rug and the desired expressive atmosphere.",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Keep room, surface colours, lighting and curtain position constant when switching fabrics.",
+          "Compare both in Room view, then Curtain view, under the same ambience settings.",
+          "Confirm final colour and feel with physical samples."
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

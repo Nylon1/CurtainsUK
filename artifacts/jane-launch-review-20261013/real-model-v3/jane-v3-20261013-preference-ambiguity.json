@@ -1,0 +1,88 @@
+{
+  "id": "preference-ambiguity",
+  "reviewCriteria": [
+    "Clarify appearance goals without declaring a universal rule",
+    "Explain light and texture cautiously, no promise of colour transformation"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I love rich colour but want the curtains almost invisible. The walls are deep navy.",
+      "advice": {
+        "text": "You can keep the richness while making the curtains quietly recede: a deep navy close to the walls, in a matt plain fabric, would reduce contrast. A subtle woven texture could add depth without drawing much attention; sheen or a strong pattern would make them more noticeable.\n\nA slightly lighter inky blue is an alternative if you want a little definition, though it will be less invisible. Do you mean visually blending into the walls, or also having very little fabric showing when they’re open?",
+        "stage": "understand",
+        "palette": [
+          "Deep navy close to the wall colour",
+          "Slightly lighter inky blue"
+        ],
+        "patternDirection": "Plain, avoiding strong pattern for minimal visual contrast.",
+        "textureDirection": "Matt finish with subtle woven texture.",
+        "alternatives": [
+          "Slightly lighter inky blue for gentle definition, with less of a disappearing effect."
+        ],
+        "questions": [
+          "Do you mean visually blending into the walls, or also having very little fabric showing when they’re open?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The navy walls are staying. I meant unobtrusive in daylight, with a richer feel in the evening.",
+      "advice": {
+        "text": "Then I’d keep the curtains close to the navy walls, with richness coming from texture rather than stronger colour contrast. A plain, softly brushed or finely woven fabric could feel unobtrusive in daylight and more enveloping under warm evening lighting.\n\nA low-sheen velvet is an alternative for greater evening depth, though its pile can catch daylight and make the curtains more noticeable. Is your evening lighting warm-toned or cool?",
+        "stage": "recommend",
+        "palette": [
+          "Deep navy close to the wall colour"
+        ],
+        "patternDirection": "Plain, without a contrasting motif",
+        "textureDirection": "Softly brushed or finely woven texture with a matt finish",
+        "alternatives": [
+          "Low-sheen navy velvet for greater evening depth, with more visible pile variation in daylight"
+        ],
+        "questions": [
+          "Is your evening lighting warm-toned or cool?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "What are the compromises? Please keep it brief.",
+      "advice": {
+        "text": "The main compromise is between blending in and catching the light.\n\nA matt navy weave would be quieter in daylight, but its evening richness would be subtle. Low-sheen velvet would feel more sumptuous at night, but the pile can create visible highlights by day. Matching the walls closely reduces contrast, though the colour may look different under daylight and lamps.\n\nFor your brief, I’d favour the matt weave with a little texture.",
+        "stage": "refine",
+        "palette": [
+          "Deep navy close to the walls"
+        ],
+        "patternDirection": "Plain, without a prominent motif",
+        "textureDirection": "Matt weave with subtle texture",
+        "alternatives": [
+          "Low-sheen navy velvet for greater evening richness, with more visible daylight highlights"
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "warm-contemporary",
+  "reviewCriteria": [
+    "Connect undertones to oak and north light without assuming light guarantees",
+    "Offer a meaningful alternative; no forced SKU"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I want warm contemporary curtains. The room has oak flooring and cream walls.",
+      "advice": {
+        "text": "With oak flooring and cream walls, I’d start with warm oatmeal or light taupe curtains in a softly textured weave. That would connect the existing warm tones while adding enough depth to avoid everything feeling too similar. A plain fabric could give you a relaxed, contemporary finish.\n\nFor a more contrasting direction, muted terracotta could bring warmth and definition, though it would make the curtains more of a feature. What colour is your main sofa or seating?",
+        "stage": "understand",
+        "palette": [
+          "Warm oatmeal",
+          "Light taupe",
+          "Muted terracotta"
+        ],
+        "patternDirection": "Plain, allowing texture rather than pattern to provide interest.",
+        "textureDirection": "A softly textured, matt weave.",
+        "alternatives": [
+          "Muted terracotta for a warmer, more defined contrast against the cream walls."
+        ],
+        "questions": [
+          "What colour is your main sofa or seating?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The room faces north. I want a warm feel without yellow or gold.",
+      "advice": {
+        "text": "North-facing light can make neutrals feel cooler, so I’d move away from creamy oatmeal towards a soft mushroom or taupe with a gentle pink-brown undertone, rather than a yellow base. A subtle woven texture would add warmth without losing the contemporary feel.\n\nMuted clay is a warmer, more contrasting alternative against the cream walls and oak, but would make the curtains more noticeable. What colour is your main seating?",
+        "stage": "recommend",
+        "palette": [
+          "Soft mushroom",
+          "Pink-brown taupe",
+          "Muted clay"
+        ],
+        "patternDirection": "Plain, keeping the overall effect calm and contemporary.",
+        "textureDirection": "Subtle woven texture for warmth and depth.",
+        "alternatives": [
+          "Muted clay for a warmer, more contrasting curtain colour."
+        ],
+        "questions": [
+          "What colour is your main seating?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Summarise two different directions and why each might work.",
+      "advice": {
+        "text": "1. Soft mushroom or pink-brown taupe\nA plain, softly textured weave would sit gently alongside your cream walls and oak flooring. The pink-brown undertone could counter the cool north-facing light without introducing yellow or gold. This is the quieter, more understated contemporary direction.\n\n2. Muted clay or dusty terracotta\nA restrained earthy tone would give the curtains more definition against the cream walls and bring warmth through colour rather than creamy undertones. Keep the fabric matte and the pattern minimal for a contemporary feel. This direction is more expressive, but could dominate if your seating already has a strong colour.",
+        "stage": "conclude",
+        "palette": [
+          "Soft mushroom",
+          "Pink-brown taupe",
+          "Muted clay",
+          "Dusty terracotta"
+        ],
+        "patternDirection": "Plain or minimal pattern, allowing colour and texture to lead.",
+        "textureDirection": "Softly textured weave for the neutral direction; matte, understated texture for the clay direction.",
+        "alternatives": [
+          "Quiet and tonal: mushroom or pink-brown taupe.",
+          "Warmer and more contrasting: muted clay or dusty terracotta."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Consider each direction alongside your seating colour before choosing."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

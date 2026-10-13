@@ -1,0 +1,98 @@
+{
+  "id": "continuity",
+  "reviewCriteria": [
+    "Remember fixed furnishings and dislike across turns",
+    "No fabricated decisions; distinguish outstanding questions"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My bedroom has pale pink walls and a grey carpet; I prefer matte textures.",
+      "advice": {
+        "text": "With pale pink walls and a grey carpet, I’d start with matte curtains in a warm stone or soft mushroom tone. That could bridge the pink’s warmth and the grey without making the room feel overly pink. A subtle woven texture would add depth without sheen.\n\nFor more contrast, muted plum could bring a cosier, more enveloping feel, although it would make the window a stronger feature. Would you prefer the bedroom to feel light and restful or richer and cocooning?",
+        "stage": "understand",
+        "palette": [
+          "Warm stone",
+          "Soft mushroom",
+          "Muted plum"
+        ],
+        "patternDirection": "Plain or softly mottled rather than a prominent pattern.",
+        "textureDirection": "Matte, subtly woven texture without sheen.",
+        "alternatives": [
+          "Muted plum for deeper contrast and a more cocooning atmosphere."
+        ],
+        "questions": [
+          "Would you prefer the bedroom to feel light and restful or richer and cocooning?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Please remember I dislike strong patterns.",
+      "advice": {
+        "text": "I’ll keep strong patterns out of the direction. For your pale pink walls and grey carpet, I’d favour a matte plain in warm stone or soft mushroom, with a fine woven texture to add interest without looking busy. Muted plum remains an option if you want more colour contrast, still as a plain rather than a bold motif.",
+        "stage": "refine",
+        "palette": [
+          "Warm stone",
+          "Soft mushroom",
+          "Muted plum"
+        ],
+        "patternDirection": "Plain fabrics; avoid strong patterns.",
+        "textureDirection": "Matte finish with subtle, fine woven texture.",
+        "alternatives": [
+          "Muted plum in a matte plain for greater colour contrast."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Summarise what is staying, the options and the open questions.",
+      "advice": {
+        "text": "Staying: your pale pink walls and grey carpet, with matte curtain textures and no strong patterns.\n\nOptions: warm stone or soft mushroom curtains for a gentle, cohesive look that links the pink and grey. A fine woven texture would add depth without busyness. Alternatively, a muted plum plain would give more contrast and a richer, cosier feel, making the window more prominent.\n\nStill to decide: whether you want a light, restful atmosphere or a more cocooning one. Daylight and your privacy or blackout needs will also help shape the final choice.",
+        "stage": "conclude",
+        "palette": [
+          "Warm stone",
+          "Soft mushroom",
+          "Muted plum"
+        ],
+        "patternDirection": "Plain fabrics; avoid strong patterns.",
+        "textureDirection": "Matte finish with a fine, subtle woven texture.",
+        "alternatives": [
+          "Warm stone or soft mushroom for gentle coordination.",
+          "Muted plum for richer colour contrast and a more prominent window."
+        ],
+        "questions": [
+          "Do you prefer a light, restful atmosphere or a richer, cocooning one?",
+          "How much daylight does the bedroom receive, and what privacy or blackout level do you need?"
+        ],
+        "nextSteps": [
+          "Choose the preferred atmosphere and colour direction.",
+          "Confirm daylight and light-control needs before finalising the curtains."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

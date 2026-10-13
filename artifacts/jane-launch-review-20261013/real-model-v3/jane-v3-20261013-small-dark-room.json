@@ -1,0 +1,83 @@
+{
+  "id": "small-dark-room",
+  "reviewCriteria": [
+    "Do not assume every customer wants a brighter room",
+    "Separate lightness, contrast, visual weight and privacy requirements"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "Our sitting room is small and quite dark. Must I have white curtains?",
+      "advice": {
+        "text": "No, white curtains aren’t a must. In a small, dark sitting room, curtains close to the wall colour can soften contrast and make the room feel less divided. A warm oatmeal or muted colour may feel gentler than bright white, depending on your furnishings.\n\nAlternatively, deeper curtains can create a cosy, enveloping feel, though with a stronger presence around the window. Keeping them clear of the glass when open helps preserve the daylight you have.\n\nWhat colour are your walls and main sofa?",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [
+          "Curtains close to the wall colour for softer contrast.",
+          "Deeper curtains for a cosier atmosphere and stronger window presence."
+        ],
+        "questions": [
+          "What colour are your walls and main sofa?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I actually enjoy a cosy, enveloping room and dislike stark white.",
+      "advice": {
+        "text": "Then there’s no need to aim for a bright, airy look. A deeper, muted curtain colour could support the cosy atmosphere you enjoy, especially if it sits close to the wall colour rather than creating a sharp contrast.\n\nA softly textured plain would bring warmth without much visual activity. Alternatively, a restrained pattern could add character, though it would make the curtains more noticeable in a small room.\n\nWhat colours are your walls and sofa?",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "A plain for visual calm, or a restrained pattern for more character.",
+        "textureDirection": "Soft, subtle texture to support a cosy, enveloping atmosphere.",
+        "alternatives": [
+          "Deeper, muted curtains close to the wall colour for an enveloping effect.",
+          "A restrained pattern for more character, with greater visual presence."
+        ],
+        "questions": [
+          "What colours are your walls and sofa?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Could we keep that mood but avoid everything feeling heavy?",
+      "advice": {
+        "text": "Yes. Cosiness can come from soft colour and texture rather than very dark, dense fabric. I’d lean towards a muted mid-tone with a matte, softly woven finish, keeping the contrast with your walls gentle. That can feel enveloping without making the window too dominant.\n\nA restrained, open pattern is another option if a plain feels flat, though it adds more visual activity. Allowing the curtains to sit clear of the glass when open will also help preserve daylight.",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Plain, or a restrained pattern with plenty of open space for a little more character.",
+        "textureDirection": "Softly woven, matte texture rather than a dense or strongly lustrous finish.",
+        "alternatives": [
+          "A restrained, open pattern adds character but creates more visual activity than a textured plain."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

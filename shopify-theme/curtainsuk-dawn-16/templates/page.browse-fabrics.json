@@ -13,6 +13,7 @@
       "type": "curtainsuk-fabric-browser",
       "settings": {
         "naila_enabled": true,
+        "jane_handoff_enabled": true,
         "engine_base": "/apps/curtainsuk-decision",
         "browse_preview_endpoint": "https://curtainsuk-staging-55j0se6vy-hamzas-projects-4ef62f35.vercel.app/api/browse-preview/catalog"
       }

@@ -1,6 +1,6 @@
-import { createShopifyJaneGateway, janeGatewayEnabled, janePublicEnabled, janePublicDailyRunId } from '@/lib/advisory/shopify-gateway';
+import { createShopifyJaneGateway, janeGatewayEnabled, janePublicEnabled, janePublicBudgetApproved } from '@/lib/advisory/shopify-gateway';
 import { createPgTransaction } from '@/lib/advisory/pg-transaction.mjs';
-import { createPrivateAdvisoryRpc, createPrivateAdvisoryKnowledgeSearch } from '@/lib/advisory/private-rpc.mjs';
+import { createPrivateAdvisoryRpc, createPrivateAdvisoryKnowledgeSearch, createPrivateAdvisoryDailyRun } from '@/lib/advisory/private-rpc.mjs';
 import { createSessionCipher } from '@/lib/advisory/session-cipher.mjs';
 import { CloudSessionStore } from '@/lib/advisory/cloud-store.mjs';
 import { createConsultationService } from '@/lib/advisory/service.mjs';
@@ -31,24 +31,25 @@ function buildResources() {
   const database = createPgTransaction({ env });
   const rpc = createPrivateAdvisoryRpc({ ...database, projectRef: ref });
   const searchIndex = createPrivateAdvisoryKnowledgeSearch({ ...database, projectRef: ref });
+  const dailyRun = createPrivateAdvisoryDailyRun({ ...database, projectRef: ref });
   // Rehydrate indexed identities through the existing customer-safe detail
   // projection. The guarded Shopify route needs no broad catalogue key.
   const catalogue = createCatalogue({ searchIndex, publicDetailRead: true });
   const model = env.ADVISORY_SHOPIFY_PROVIDER === 'openai';
   const publicMode = janePublicEnabled(env, compiledCommit);
   if (model && (!env.ADVISORY_OPENAI_API_KEY?.startsWith('sk-')
-    || (publicMode ? !janePublicDailyRunId(env)
+    || (publicMode ? !janePublicBudgetApproved(env)
       : !env.ADVISORY_SHOPIFY_PAID_APPROVAL_REFERENCE
         || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID ?? '')))) throw Error('JANE_MODEL_NOT_APPROVED');
   if (!model && env.ADVISORY_SHOPIFY_PROVIDER !== 'mock') throw Error('JANE_PROVIDER_REQUIRED');
-  return { rpc, cipher, catalogue, model, env };
+  return { rpc, cipher, catalogue, model, env, dailyRun };
 }
 async function handle(request) {
   // This static route never enters the shared commerce/Naila proxy operation.
   if (!janeGatewayEnabled(process.env, compiledCommit)) return new Response(null, { status: 404, headers: { 'Cache-Control': 'no-store' } });
   try {
     resources ??= buildResources();
-    const { rpc, cipher, catalogue, model, env } = resources;
+    const { rpc, cipher, catalogue, model, env, dailyRun } = resources;
     return createShopifyJaneGateway({
       env,
       compiledCommit,
@@ -58,7 +59,7 @@ async function handle(request) {
         const provider = model
           ? { kind: 'openai', respond: async args => {
             const runId = janePublicEnabled(env, compiledCommit)
-              ? janePublicDailyRunId(env) : env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID;
+              ? await dailyRun() : env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID;
             if (!runId) throw Error('JANE_PUBLIC_BUDGET_UNAVAILABLE');
             return createOpenAIProvider({ apiKey: env.ADVISORY_OPENAI_API_KEY, allowPaidTest: true, budget: store.budget(runId, args.session.id) }).respond(args);
           } }

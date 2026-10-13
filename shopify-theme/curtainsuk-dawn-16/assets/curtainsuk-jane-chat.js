@@ -129,9 +129,9 @@
       try {
         const response = await fetch('/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=' + encodeURIComponent(id), { cache: 'no-store' });
         const body = await response.json();
-        if (!response.ok || body.fabric?.id !== id || body.fabric.browseReady !== true || body.fabric.launchReady !== true || body.fabric.orderReady !== true) return;
-        selectedFabric = { id, design: body.fabric.design || 'Selected fabric', colour: body.fabric.colour || '' };
-        fabricDescription.textContent = `${selectedFabric.design} ${selectedFabric.colour} (${id})`;
+        if (!response.ok || body.fabric?.id !== id || body.fabric.browseReady !== true || body.fabric.launchReady !== true) return;
+        selectedFabric = { id, design: body.fabric.design || 'Selected fabric', colour: body.fabric.colour || '', orderReady: body.fabric.orderReady === true };
+        fabricDescription.textContent = `${selectedFabric.design} ${selectedFabric.colour} (${id})${selectedFabric.orderReady ? '' : '. Not currently available for made-to-measure curtains.'}`;
         fabricPanel.hidden = false; render();
       } catch { /* A fabric cannot be inferred from an unverified URL. */ }
     };
@@ -175,7 +175,7 @@
     fabricShare.addEventListener('click', () => {
       if (!session || !selectedFabric || !fabricConsent.checked) return;
       const id = pending?.action === 'context' ? pending.id : crypto.randomUUID(); pending = { action: 'context', id };
-      const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [selectedFabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: 'I selected this exact fabric and would like to discuss it.' };
+      const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [selectedFabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: selectedFabric.orderReady ? 'I selected this exact fabric and would like to discuss it.' : 'I selected this fabric, but it is not currently available for curtains. Please help me explore suitable alternatives.' };
       run(async () => { await request('context', { context, consent: true }, id); pending = null; say('Jane can now discuss this exact fabric with you.'); }, 'Sharing your selected fabric…');
     });
     starters?.addEventListener('click', event => {

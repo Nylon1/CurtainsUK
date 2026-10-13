@@ -1,0 +1,72 @@
+{
+  "classification": "PROTECTED_SYNTHETIC_HOSTED_OPENAI_TRIAL",
+  "checkedAt": "2026-10-13T13:58:36.506Z",
+  "deploymentId": "dpl_Bskb4G3YeHbxNwqa8pq5DnYoGJUM",
+  "sourceCommit": "cd99bb9802b9f88e29df4b8b33d8437c14620598",
+  "evaluationRunId": "0dcfd945-64fc-4b21-a916-eb226e59ac0f",
+  "calls": [
+    {
+      "phase": "bootstrap",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "start",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "fabric_context",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "verified_fabric_links",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "save",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "recover",
+      "status": 200,
+      "error": null
+    },
+    {
+      "phase": "delete",
+      "status": 200,
+      "error": null
+    }
+  ],
+  "assistantMessages": [
+    {
+      "text": "Let’s replace Shambala Lagoon’s busy pattern with plain velvet. My warm-neutral search found no matches; broadening to plains returned two verified options: Harlequin Performance Velvets in Avocado and Carnelian.\n\nAvocado offers a tonal direction alongside your olive sofa; Carnelian suggests a warmer, more contrasting accent against cream walls and oak. Both avoid pattern, though velvet adds richness rather than an airy feel. Does either quieter direction feel right?",
+      "wordCount": 68,
+      "fabricIds": [
+        "sdg-hiov134134",
+        "sdg-hiov134147"
+      ],
+      "fabricUrls": [
+        "https://www.curtainsuk.com/pages/fabric/sdg-hiov134134-performance-velvets-avocado",
+        "https://www.curtainsuk.com/pages/fabric/sdg-hiov134147-performance-velvets-carnelian"
+      ],
+      "retrievals": [
+        {
+          "tool": "search_retail_fabrics",
+          "status": "completed",
+          "resultCount": 0
+        },
+        {
+          "tool": "search_retail_fabrics",
+          "status": "completed",
+          "resultCount": 5
+        }
+      ]
+    }
+  ],
+  "cleanup": "DELETED",
+  "failure": null
+}

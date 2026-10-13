@@ -1,4 +1,4 @@
-// Private Shopify review only. The theme setting and server gate both default off.
+// The theme setting and server release gates both default off.
 (() => {
   'use strict';
   const endpoint = '/apps/curtainsuk-decision/jane';
@@ -86,7 +86,7 @@
       if (!response.ok || typeof body.csrf !== 'string' || !/^[a-f0-9]{32}$/.test(body.ownerBinding || '')) {
         csrf = ''; ownerBinding = null; clearPrivateView();
         if (signIn) signIn.hidden = response.status !== 401;
-        throw Error(response.status === 401 ? 'Please sign in to your approved test customer account.' : 'Jane is unavailable in this preview. Your message has not been sent.');
+        throw Error(response.status === 401 ? 'Please sign in to your customer account.' : 'Jane is temporarily unavailable. Your message has not been sent.');
       }
       if (ownerBinding && ownerBinding !== body.ownerBinding) clearPrivateView();
       ownerBinding = body.ownerBinding;
@@ -152,7 +152,7 @@
     window.addEventListener('focus', checkAccountOnReturn);
     document.addEventListener('visibilitychange', () => { if (document.hidden) log.hidden = true; else checkAccountOnReturn(); });
     startButton.addEventListener('click', () => {
-      if (!consent.checked) { say('Please confirm that this private test consultation may be saved.', true); return; }
+      if (!consent.checked) { say('Please confirm that this consultation may be saved.', true); return; }
       const id = pending?.action === 'start' ? pending.id : crypto.randomUUID(); pending = { action: 'start', id };
       run(async () => { await request('start', { sessionId: null, revision: null, consent: true }, id); pending = null; input.focus(); }, 'Opening your consultation…');
     });

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { signShopifyAppProxyQuery } from '../../storefront/security/shopify-app-proxy-core';
-import { createShopifyJaneGateway, janeBrowserBinding, janeGatewayEnabled, janeOwner, janePreviewEnabled, janeRestrictedLiveEnabled } from '../shopify-gateway';
+import { createShopifyJaneGateway, janeBrowserBinding, janeGatewayEnabled, janeOwner, janePreviewEnabled, janePublicEnabled, janeRestrictedLiveEnabled } from '../shopify-gateway';
 import { createConsultationService } from '../service.mjs';
 import { MemoryStore } from '../store.mjs';
 import { createMockProvider } from '../mock-provider.mjs';
@@ -92,6 +92,35 @@ test('restricted production transport is exact-commit and synthetic-owner only',
   assert.equal((await handle(new Request(url('123')))).status, 200);
   assert.equal((await handle(new Request(url('789')))).status, 401);
   assert.equal((await handle(new Request(url('')))).status, 401);
+});
+test('public transport needs its separate exact-release switch and retains signed owner isolation', async () => {
+  const live = { ...env, VERCEL_ENV: 'production', VERCEL_PROJECT_ID: 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA',
+    ADVISORY_SHOPIFY_PUBLIC_ENABLED: 'true', ADVISORY_SHOPIFY_PROVIDER: 'openai' };
+  assert.equal(janePublicEnabled(live), true);
+  const { handle, calls } = fixture(live);
+  assert.equal((await handle(new Request(url('789')))).status, 200);
+  assert.equal((await handle(new Request(url('')))).status, 401);
+  const customerA = await (await handle(new Request(url('789')))).json();
+  const customerB = await (await handle(new Request(url('790')))).json();
+  assert.notEqual(customerA.ownerBinding, customerB.ownerBinding);
+  assert.notEqual(customerA.csrf, customerB.csrf);
+  const post = (id: string, csrf: string) => handle(new Request(url(id), { method: 'POST', headers: {
+    'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf,
+  }, body: JSON.stringify({ action: 'start' }) }));
+  assert.equal((await post('790', customerA.csrf)).status, 403);
+  assert.equal((await post('790', customerB.csrf)).status, 200);
+  assert.equal(calls.length, 1);
+  for (const changes of [
+    { ADVISORY_SHOPIFY_PUBLIC_ENABLED: 'false' }, { VERCEL_PROJECT_ID: 'prj_other' },
+    { VERCEL_GIT_COMMIT_SHA: 'b'.repeat(40) }, { ADVISORY_SHOPIFY_APPROVED_COMMIT: 'b'.repeat(40) },
+    { ADVISORY_SHOPIFY_CHAT_ENABLED: 'false' },
+    { ADVISORY_SHOPIFY_PROVIDER: 'mock' },
+  ]) {
+    assert.equal(janePublicEnabled({ ...live, ...changes }), false);
+    assert.equal((await fixture({ ...live, ...changes }).handle(new Request(url()))).status, 404);
+  }
+  assert.equal(janePublicEnabled({ ...live, CURTAINSUK_ADVISORY_RESTRICTED_LIVE: 'true' }), false);
+  assert.equal((await fixture({ ...live, CURTAINSUK_ADVISORY_RESTRICTED_LIVE: 'true' }).handle(new Request(url('789')))).status, 401);
 });
 test('origin, CSRF, content limit and recovery transfer are denied before execution', async () => {
   const { handle, calls } = fixture();

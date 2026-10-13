@@ -50,8 +50,20 @@ export function janeRestrictedLiveEnabled(env: Record<string, string | undefined
     && compiledCommit === env.ADVISORY_SHOPIFY_APPROVED_COMMIT
     && ids.length > 0 && ids.length <= 10 && ids.every(id => customerId.test(id));
 }
+/** Public access is a separate, exact-release switch. It never uses the test allowlist. */
+export function janePublicEnabled(env: Record<string, string | undefined>, compiledCommit = env.VERCEL_GIT_COMMIT_SHA) {
+  return env.VERCEL_ENV === 'production'
+    && env.VERCEL_PROJECT_ID === 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA'
+    && env.ADVISORY_SHOPIFY_PUBLIC_ENABLED === 'true'
+    && env.ADVISORY_SHOPIFY_CHAT_ENABLED === 'true'
+    && env.ADVISORY_SHOPIFY_PROVIDER === 'openai'
+    && env.CURTAINSUK_ADVISORY_RESTRICTED_LIVE !== 'true'
+    && /^[a-f0-9]{40}$/.test(compiledCommit ?? '')
+    && compiledCommit === env.VERCEL_GIT_COMMIT_SHA
+    && compiledCommit === env.ADVISORY_SHOPIFY_APPROVED_COMMIT;
+}
 export function janeGatewayEnabled(env: Record<string, string | undefined>, compiledCommit = env.VERCEL_GIT_COMMIT_SHA) {
-  return janePreviewEnabled(env, compiledCommit) || janeRestrictedLiveEnabled(env, compiledCommit);
+  return janePreviewEnabled(env, compiledCommit) || janeRestrictedLiveEnabled(env, compiledCommit) || janePublicEnabled(env, compiledCommit);
 }
 type GatewayOptions = {
   env: Record<string, string | undefined>;
@@ -71,7 +83,9 @@ export function createShopifyJaneGateway({ env, compiledCommit, execute, take, n
       });
       const id = signed.loggedInCustomerId;
       const allowed = (env.ADVISORY_SHOPIFY_TEST_CUSTOMER_IDS ?? '').split(',').map(x => x.trim()).filter(Boolean);
-      if (!id || !customerId.test(id) || allowed.length === 0 || allowed.length > 10 || !allowed.includes(id)) return fail(401, 'CUSTOMER_SIGN_IN_REQUIRED');
+      if (!id || !customerId.test(id)
+        || (!janePublicEnabled(env, compiledCommit)
+          && (allowed.length === 0 || allowed.length > 10 || !allowed.includes(id)))) return fail(401, 'CUSTOMER_SIGN_IN_REQUIRED');
       const owner = janeOwner(signed.shop, id, key(env.ADVISORY_OWNER_DERIVATION_KEY));
       const bucket = Math.floor(now() / 600000);
       if (request.method === 'GET') {

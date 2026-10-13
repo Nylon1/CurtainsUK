@@ -24,15 +24,16 @@ function decode(value) {
 }
 function buildResources() {
   const env = process.env;
-  if (!janePreviewEnabled(env, compiledCommit) || env.ADVISORY_TEST_PROJECT_REF !== ref || env.ADVISORY_TEST_SCHEMA !== 'advisory'
-    || env.ADVISORY_CATALOGUE_PROJECT_REF !== ref || !/^sb_secret_[A-Za-z0-9_-]{8,200}$/.test(env.ADVISORY_CATALOGUE_READ_KEY ?? '')) throw Error('JANE_PREVIEW_NOT_CONFIGURED');
+  if (!janePreviewEnabled(env, compiledCommit) || env.ADVISORY_TEST_PROJECT_REF !== ref || env.ADVISORY_TEST_SCHEMA !== 'advisory') throw Error('JANE_PREVIEW_NOT_CONFIGURED');
   const keys = JSON.parse(env.ADVISORY_DATA_KEYS_JSON ?? '{}');
   if (!keys || typeof keys !== 'object' || Array.isArray(keys) || !env.ADVISORY_ACTIVE_DATA_KEY_ID) throw Error('JANE_KEY_REQUIRED');
   const cipher = createSessionCipher({ activeKeyId: env.ADVISORY_ACTIVE_DATA_KEY_ID, keys: Object.fromEntries(Object.entries(keys).map(([id, value]) => [id, decode(value)])) });
   const database = createPgTransaction({ env });
   const rpc = createPrivateAdvisoryRpc({ ...database, projectRef: ref });
   const searchIndex = createPrivateAdvisoryKnowledgeSearch({ ...database, projectRef: ref });
-  const catalogue = createCatalogue({ url: `https://${ref}.supabase.co`, key: env.ADVISORY_CATALOGUE_READ_KEY, searchIndex });
+  // Rehydrate indexed identities through the existing customer-safe detail
+  // projection. The guarded Shopify route needs no broad catalogue key.
+  const catalogue = createCatalogue({ searchIndex, publicDetailRead: true });
   const model = env.ADVISORY_SHOPIFY_PROVIDER === 'openai';
   if (model && (!env.ADVISORY_SHOPIFY_PAID_APPROVAL_REFERENCE || !env.ADVISORY_OPENAI_API_KEY?.startsWith('sk-')
     || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID ?? ''))) throw Error('JANE_MODEL_NOT_APPROVED');

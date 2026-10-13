@@ -28,12 +28,22 @@
     <div class="cukad-room__composer" aria-disabled="true"><p>{{ 'advisory_team.room.composer' | t }}</p><button disabled type="button" aria-label="{{ 'advisory_team.room.send' | t | escape }}"><span aria-hidden="true">↑</span></button></div>
     {% if jane_chat_private_preview %}
       <section class="cukad-room__jane" data-jane-chat hidden aria-label="Private consultation with Jane">
-        <p class="cukad-room__eyebrow">Jane · AI interior design adviser · private test</p>
+        <div class="cukad-room__jane-intro">
+          <img src="{{ 'curtainsuk-adviser-jane.webp' | asset_url }}" width="80" height="96" alt="Illustrated portrait of Jane, AI interior design adviser" loading="lazy">
+          <div><p class="cukad-room__eyebrow">Jane · AI interior design adviser · private test</p><p class="cukad-room__jane-intro-title">Let's find what feels right for your room.</p></div>
+          <span class="cukad-room__jane-spark" aria-hidden="true">✳</span>
+        </div>
         <p>Sign in to your test customer account before entering. This private review saves your conversation in encrypted advisory storage. You can delete it here. Automatic expiry cleanup is still under review. Please use invented details only.</p>
         <label class="cukad-room__jane-consent"><input type="checkbox" data-jane-consent> I agree to save this private test consultation.</label>
         <div class="cukad-room__jane-actions"><button type="button" data-jane-start>Start consultation</button><button type="button" data-jane-delete hidden>Delete consultation</button></div>
         <div class="cukad-room__jane-fabric" data-jane-fabric hidden><p data-jane-fabric-description></p><label><input type="checkbox" data-jane-fabric-consent> Share this exact fabric with Jane</label><button type="button" data-jane-fabric-share disabled>Discuss selected fabric</button></div>
         <div class="cukad-room__jane-log" data-jane-log role="log" aria-label="Conversation with Jane" aria-live="polite" aria-relevant="additions"></div>
+        <div class="cukad-room__jane-thinking" data-jane-thinking hidden aria-hidden="true"><span></span><span></span><span></span><p>Jane is considering your room</p></div>
+        <div class="cukad-room__jane-starters" data-jane-starters hidden aria-label="Design conversation starters"><p>Where shall we begin?</p><div>
+          <button type="button" data-jane-prompt="My room needs a calmer colour palette. Can you help me find a direction?">Find my palette <span aria-hidden="true">↗</span></button>
+          <button type="button" data-jane-prompt="I am choosing between curtain headings. How would they change the feel of my room?">Compare headings <span aria-hidden="true">↗</span></button>
+          <button type="button" data-jane-prompt="I would like to see how curtains could work with my room and furnishings. Where should I start?">Explore my room <span aria-hidden="true">↗</span></button>
+        </div></div>
         <form data-jane-form hidden><label for="jane-message-{{ section_id }}">Your message to Jane</label><textarea id="jane-message-{{ section_id }}" data-jane-input rows="3" maxlength="2000" required></textarea><button type="submit" data-jane-send>Send to Jane</button></form>
         <nav class="cukad-room__jane-tools" data-jane-tools hidden aria-label="CurtainsUK design tools"><a href="/pages/fabric-library?view=browse-fabrics" target="_blank" rel="noopener noreferrer">Browse Fabrics <span class="visually-hidden">(opens in a new tab)</span></a><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided" target="_blank" rel="noopener noreferrer">Fabric Intelligence <span class="visually-hidden">(opens in a new tab)</span></a><a href="/pages/room-visualiser" target="_blank" rel="noopener noreferrer">Room Visualiser <span class="visually-hidden">(opens in a new tab)</span></a><a href="/pages/fabric-library?view=curtain-style" target="_blank" rel="noopener noreferrer">Curtain Style <span class="visually-hidden">(opens in a new tab)</span></a></nav>
         <p data-jane-status role="status" aria-live="polite"></p>

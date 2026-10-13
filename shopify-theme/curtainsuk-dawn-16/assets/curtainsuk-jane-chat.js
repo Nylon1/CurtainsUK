@@ -11,6 +11,7 @@
     if (!panel) return;
     const find = name => panel.querySelector(`[data-jane-${name}]`);
     const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status'), tools = find('tools');
+    const starters = find('starters'), thinking = find('thinking');
     const consent = find('consent'), startButton = find('start'), deleteButton = find('delete');
     const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
@@ -54,6 +55,7 @@
       }
       startButton.hidden = !!session; deleteButton.hidden = !session; form.hidden = !session;
       if (tools) tools.hidden = !session;
+      if (starters) starters.hidden = !session || !!session.messages?.length;
       consent.closest('label').hidden = !!session;
       fabricShare.hidden = !session || !!session?.contexts?.some(c => c.value?.fabricIds?.includes(selectedFabric?.id));
     };
@@ -79,9 +81,10 @@
     const run = async (operation, waitingText) => {
       if (busy) return;
       setBusy(true); say(waitingText);
+      if (thinking) thinking.hidden = waitingText !== 'Jane is considering your room…';
       try { await operation(); say(''); }
       catch (cause) { say(cause.message || 'Jane is temporarily unavailable.', true); }
-      finally { setBusy(false); }
+      finally { if (thinking) thinking.hidden = true; setBusy(false); }
     };
     const readFabric = async () => {
       const values = new URLSearchParams(location.search).getAll('jane_fabric');
@@ -130,6 +133,14 @@
       const id = pending?.action === 'context' ? pending.id : crypto.randomUUID(); pending = { action: 'context', id };
       const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [selectedFabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: 'I selected this exact fabric and would like to discuss it.' };
       run(async () => { await request('context', { context, consent: true }, id); pending = null; say('Jane can now discuss this exact fabric with you.'); }, 'Sharing your selected fabric…');
+    });
+    starters?.addEventListener('click', event => {
+      const button = event.target.closest('[data-jane-prompt]');
+      if (!button || !starters.contains(button) || !session || busy) return;
+      input.value = button.dataset.janePrompt;
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+      say('A starting point is in your message box. Edit it to make it yours.');
     });
     render();
   });

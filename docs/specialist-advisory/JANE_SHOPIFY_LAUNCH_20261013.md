@@ -87,3 +87,18 @@ The owner approved deleting that disposable first-account trial at action time. 
 On the current uncommitted public candidate, 23 theme/interaction tests, 10 signed gateway tests, 53 local advisory security and concurrency tests, 18 storefront theme regressions, and TypeScript checking passed. Shopify Theme Check inspected 219 files with zero errors and 13 warnings in inherited files. No public budget row, paid call for the second customer, MAIN theme upload, or Jane public activation occurred in this check.
 
 The draft Jane-specific privacy addition is in `JANE_PRIVACY_NOTICE_REVIEW_20261013.md`; the live policy has not been changed or signed off. Its processor/retention details, the first scheduled retention run, actual iPhone Jane composer, and spoken screen-reader checks remain release gates.
+
+## MAIN theme six-file read-only comparison, 13 October 20:10 UTC
+
+Shopify CLI confirmed that MAIN is still `CurtainsUK - Curtain Style V1 review` (`182339731835`). It pulled only the six candidate Jane theme paths to `C:\Users\hamza\.curtainsuk-jane-private-preview\theme-backups\2026-10-13-pr187-main-preflight`; `checksums.json` records the full live, protected-base and PR-candidate SHA-256 values. This is a local backup and diff, **not** an upload.
+
+| Candidate path | MAIN relative to protected base `c1a0c587` |
+| --- | --- |
+| `assets/curtainsuk-jane-chat.js` | Absent from MAIN; present in protected source for the private trial. |
+| `locales/en.default.json` | Same content after CRLF normalisation; raw hash differs because of line endings. |
+| `sections/curtainsuk-advisory-team.liquid` | MAIN omits only the previously protected private-chat script, render parameter and setting. |
+| `snippets/curtainsuk-adviser-card.liquid` | MAIN omits only the previously protected `data-identity` attribute needed by Jane's room controller. |
+| `snippets/curtainsuk-advisory-room.liquid` | MAIN omits only the previously protected private Jane composer. |
+| `snippets/curtainsuk-advisory-spotlight.liquid` | Same content after CRLF normalisation; raw hash differs because of line endings. |
+
+No newer unrelated Shopify-only content was found in these six paths. Re-read them before any later scoped upload because Theme Editor changes can occur after this comparison. The MAIN template setting remains disabled, so uploading default-off assets alone would not publicly activate Jane.

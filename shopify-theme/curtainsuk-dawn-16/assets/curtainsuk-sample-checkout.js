@@ -4,6 +4,12 @@
   function setStatus(root, message) {
     root.querySelectorAll('[data-cuk-sample-status]').forEach(node => { node.textContent = message; });
   }
+  function emitAnalytics(name, detail = {}) {
+    const payload = { event: `curtainsuk_${name}`, ...detail };
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(payload);
+    window.dispatchEvent(new CustomEvent('curtainsuk:analytics', { detail: payload }));
+  }
   async function sampleJson(url, options) {
     const response=await fetch(url,{...options,headers:{'Content-Type':'application/json'}});
     const data=await response.json(); if(!response.ok) throw Error(data.error || 'Sample availability could not be confirmed.'); return data;
@@ -29,6 +35,16 @@
             } else {
               const added = await fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{id:prepared.variantId,quantity:1,properties:prepared.properties}]})});
               if (!added.ok) throw Error('Sample addition could not be confirmed. Review your basket before retrying.');
+              emitAnalytics('sample_ordered_intended', {
+                fabric_id: sample.fabricId,
+                variant_id: prepared.variantId,
+                amount_minor: prepared.priceMinor,
+                currency: 'GBP',
+                quantity: 1,
+                order_kind: 'sample',
+                cart_add_confirmed: true,
+                event_id: cart.token ? `sample_add_${cart.token}_${sample.fabricId}` : `sample_add_${sample.fabricId}`,
+              });
             }
             // No automatic retry after an uncertain write. A repeat first reads the cart.
             location.assign('/cart');
@@ -66,6 +82,18 @@
         if(!response.ok || result.purchaseEnabled!==true) throw Error('Current sample availability could not be confirmed. Your basket is saved; please retry later.');
         if(item.final_price!==result.priceMinor) throw Error('The sample price has changed. Please review your basket.');
       }
+      emitAnalytics('checkout_started', {
+        amount_minor: Number.isSafeInteger(cart.total_price) ? cart.total_price : undefined,
+        currency: typeof cart.currency === 'string' ? cart.currency : 'GBP',
+        quantity: cart.item_count,
+        order_kind: 'sample',
+        event_id: cart.token ? `sample_checkout_${cart.token}` : undefined,
+        contents: cart.items.map(item => ({
+          id: String(item.variant_id),
+          content_type: 'sample',
+          quantity: item.quantity,
+        })),
+      });
       location.assign('/checkout');
     } catch(error) {
       message.textContent=error.message || 'Checkout could not be confirmed. Please retry.';

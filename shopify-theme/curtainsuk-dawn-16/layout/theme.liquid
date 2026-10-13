@@ -88,27 +88,83 @@
 <script>
 (() => {
 const pixelId = "6LN4GfrhY92CkQR6Uti2NH";
+const attributionKey = "curtainsuk_openai_ads_attribution_v1";
+let pixelConsent = null;
+let pixelInitialized = false;
+const installPixelSdk = !window.oaiq;
 
 if (!window.oaiq) {
 const q = function () { q.q.push(arguments); };
 q.q = [];
 window.oaiq = q;
+}
+
+function setPixelConsent(allowed) {
+pixelConsent = allowed === true;
+window.oaiq("consent", pixelConsent);
+if (pixelInitialized) return;
+pixelInitialized = true;
+window.oaiq("init", { pixelId, debug: true });
+if (installPixelSdk) {
 const js = document.createElement("script");
 js.async = true;
 js.src = "https://bzrcdn.openai.com/sdk/oaiq.min.js";
 const firstScript = document.getElementsByTagName("script")[0];
 firstScript.parentNode.insertBefore(js, firstScript);
 }
+}
 
-window.oaiq("consent", false);
-window.oaiq("init", { pixelId, debug: true });
+function measurePixelEvent(...args) {
+// Unknown consent stays inactive. Never reset other tabs while Shopify loads.
+if (pixelConsent !== true) return;
+window.oaiq("measure", ...args);
+}
+
+const boundedOpaque = (value) => {
+  if (typeof value !== "string") return null;
+  const clean = value.trim();
+  if (!clean || clean.length > 1024 || /[\u0000-\u001f\u007f]/.test(clean)) return null;
+  return clean;
+};
+
+const cookieValue = (name) => {
+  const encodedName = encodeURIComponent(name) + "=";
+  for (const part of document.cookie.split(";")) {
+    const item = part.trim();
+    if (item.startsWith(encodedName)) return decodeURIComponent(item.slice(encodedName.length));
+  }
+  return null;
+};
+
+let pendingOppref = null;
+try {
+  pendingOppref = boundedOpaque(new URL(window.location.href).searchParams.get("oppref"));
+} catch (_) {}
+
+const persistAttribution = (allowed) => {
+  try {
+    if (!allowed) {
+      localStorage.removeItem(attributionKey);
+      return;
+    }
+    const previous = JSON.parse(localStorage.getItem(attributionKey) || "null") || {};
+    const oppref = pendingOppref || boundedOpaque(previous.oppref);
+    const obref = boundedOpaque(cookieValue("__obref")) || boundedOpaque(previous.obref);
+    if (oppref || obref) {
+      localStorage.setItem(attributionKey, JSON.stringify({
+        ...(oppref ? { oppref } : {}),
+        ...(obref ? { obref } : {})
+      }));
+    }
+  } catch (_) {}
+};
 
 let pageViewSent = false;
 
 const sendPageView = () => {
 if (pageViewSent) return;
 pageViewSent = true;
-window.oaiq("measure", "page_viewed", {
+measurePixelEvent("page_viewed", {
 type: "contents",
 contents: [{
 id: window.location.pathname || "/",
@@ -116,6 +172,20 @@ name: document.title || "CurtainsUK",
 content_type: "page"
 }]
 });
+
+const fabricProfile = window.location.pathname.match(/^\/pages\/fabric\/([^/]+)\/?$/);
+if (fabricProfile) {
+const fabricId = decodeURIComponent(fabricProfile[1]);
+recordWebsiteDiagnostic("fabric_profile_viewed", { fabric_id: fabricId });
+measurePixelEvent("contents_viewed", {
+type: "contents",
+contents: [{
+id: fabricId,
+name: document.title || "CurtainsUK fabric",
+content_type: "product"
+}]
+});
+}
 };
 
 const applyShopifyConsent = () => {
@@ -125,10 +195,12 @@ window.Shopify &&
 window.Shopify.customerPrivacy &&
 window.Shopify.customerPrivacy.marketingAllowed()
 );
-window.oaiq("consent", allowed);
+setPixelConsent(allowed);
+persistAttribution(allowed);
 if (allowed) sendPageView();
 } catch (_) {
-window.oaiq("consent", false);
+setPixelConsent(false);
+persistAttribution(false);
 }
 };
 
@@ -151,56 +223,260 @@ document.addEventListener("visitorConsentCollected", (event) => {
 const allowed = typeof event.detail?.marketingAllowed === "boolean"
 ? event.detail.marketingAllowed
 : Boolean(window.Shopify?.customerPrivacy?.marketingAllowed?.());
-window.oaiq("consent", allowed);
+setPixelConsent(allowed);
+persistAttribution(allowed);
 if (allowed) sendPageView();
 });
 
 document.addEventListener("trackingConsentAccepted", () => {
-window.oaiq("consent", true);
+setPixelConsent(true);
+persistAttribution(true);
 sendPageView();
 });
 
+const normaliseCurtainsUkEventName = (name) => {
+  if (typeof name !== "string") return "";
+  return name.replace(/^curtainsuk_/, "");
+};
+
+function recordWebsiteDiagnostic(name, detail = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: "curtainsuk_" + name, ...detail });
+}
+
+const normaliseContents = (contents) => {
+  if (!Array.isArray(contents)) return undefined;
+  const safe = contents.flatMap((item) => {
+    if (!item || typeof item !== "object" || item.id === undefined || item.id === null || !String(item.id)) return [];
+    const content = {
+      id: String(item.id),
+      content_type: typeof item.content_type === "string" && item.content_type ? item.content_type : "product"
+    };
+    if (Number.isSafeInteger(item.quantity) && item.quantity > 0) content.quantity = item.quantity;
+    return [content];
+  });
+  return safe.length ? safe : undefined;
+};
+
+const contentsEventData = (detail = {}, fallbackContentType = "product") => {
+  const data = { type: "contents" };
+  if (Number.isSafeInteger(detail.amount_minor) && detail.amount_minor >= 0) data.amount = detail.amount_minor;
+  if (typeof detail.currency === "string" && /^[A-Za-z]{3}$/.test(detail.currency)) data.currency = detail.currency.toUpperCase();
+  const contents = normaliseContents(detail.contents);
+  if (contents) data.contents = contents;
+  else {
+    const contentId = detail.fabric_id || detail.content_id || detail.variant_id;
+    if (contentId !== undefined && contentId !== null && String(contentId)) {
+      data.contents = [{
+        id: String(contentId),
+        content_type: detail.content_type || fallbackContentType,
+        ...(Number.isSafeInteger(detail.quantity) && detail.quantity > 0 ? { quantity: detail.quantity } : {})
+      }];
+    }
+  }
+  return data;
+};
+
+const customEventData = ({ amountMinor, currency, contentId, contentType = "product", contents } = {}) => {
+  const data = { type: "custom" };
+  if (Number.isSafeInteger(amountMinor) && amountMinor >= 0) data.amount = amountMinor;
+  if (typeof currency === "string" && /^[A-Za-z]{3}$/.test(currency)) data.currency = currency.toUpperCase();
+  const safeContents = normaliseContents(contents);
+  if (safeContents) data.contents = safeContents;
+  else if (contentId !== undefined && contentId !== null && String(contentId)) {
+    data.contents = [{
+      id: String(contentId),
+      content_type: contentType
+    }];
+  }
+  return data;
+};
+
+const sendCustomEvent = (customEventName, data = {}, eventId) => {
+  const options = { custom_event_name: customEventName };
+  if (eventId) options.event_id = String(eventId);
+  measurePixelEvent("custom", customEventData(data), options);
+};
+
+const sendLeadCreated = (detail) => {
+  const configurationId = detail.configuration_id || detail.configurationId;
+  const options = configurationId
+    ? { event_id: "lead_" + String(configurationId) }
+    : undefined;
+  if (options) measurePixelEvent("lead_created", { type: "customer_action" }, options);
+  else measurePixelEvent("lead_created", { type: "customer_action" });
+};
+
+const sendCheckoutStarted = (detail) => {
+  if (detail.staging_blocked === true) return;
+  const handoffId = detail.handoff_id || detail.handoffId;
+  const configurationId = detail.configuration_id || detail.configurationId;
+  const suppliedEventId = boundedOpaque(detail.event_id);
+  const dedupeId = suppliedEventId || (handoffId ? "checkout_" + String(handoffId) : configurationId ? "checkout_" + String(configurationId) : null);
+  const data = contentsEventData(detail, detail.order_kind === "sample" ? "sample" : "curtain");
+  if (dedupeId) measurePixelEvent("checkout_started", data, { event_id: dedupeId });
+  else measurePixelEvent("checkout_started", data);
+};
+
+const sendItemsAdded = (detail) => {
+  if (detail.cart_add_confirmed !== true) return;
+  const suppliedEventId = boundedOpaque(detail.event_id);
+  const fabricId = detail.fabric_id || detail.variant_id;
+  const eventId = suppliedEventId || (fabricId ? "sample_add_" + String(fabricId) : null);
+  const data = contentsEventData(detail, "sample");
+  if (eventId) measurePixelEvent("items_added", data, { event_id: eventId });
+  else measurePixelEvent("items_added", data);
+};
+
 window.addEventListener("curtainsuk:analytics", (event) => {
   const detail = event.detail || {};
+  const eventName = normaliseCurtainsUkEventName(detail.event);
 
-  if (detail.event === "curtainsuk_review_submitted") {
-    
-const options = detail.configuration_id
-? { event_id: "lead_" + String(detail.configuration_id) }
-: undefined;
-if (options) {
-window.oaiq("measure", "lead_created", { type: "customer_action" }, options);
-} else {
-window.oaiq("measure", "lead_created", { type: "customer_action" });
-}
-return;
-}
+  if (eventName === "review_submitted" || eventName === "quote_review_submitted") {
+    sendLeadCreated(detail);
+    const configurationId = detail.configuration_id || detail.configurationId;
+    sendCustomEvent("quote_requested", {}, configurationId ? "quote_" + String(configurationId) : undefined);
+    return;
+  }
 
-if (
-  detail.event === "curtainsuk_checkout_handoff_reached" ||
-  detail.event === "curtainsuk_checkout_opened"
-) {
-const options = detail.handoff_id
-? { event_id: "checkout_" + String(detail.handoff_id) }
-: undefined;
-if (options) {
-window.oaiq("measure", "checkout_started", { type: "contents" }, options);
-} else {
-window.oaiq("measure", "checkout_started", { type: "contents" });
-}
-return;
-}
+  if (eventName === "checkout_handoff_reached") {
+    const handoffId = detail.handoff_id || detail.handoffId;
+    sendCustomEvent(
+      "checkout_handoff_reached",
+      { amountMinor: detail.amount_minor, currency: detail.currency, contents: detail.contents },
+      handoffId ? "handoff_" + String(handoffId) : undefined
+    );
+    return;
+  }
 
-if (detail.event === "curtainsuk_fabric_selected" && detail.fabric_id) {
-window.oaiq("measure", "contents_viewed", {
-type: "contents",
-contents: [{
-id: String(detail.fabric_id),
-content_type: "product"
-}]
+  if (eventName === "checkout_intent") {
+    sendCustomEvent("checkout_intent", { amountMinor: detail.amount_minor, currency: detail.currency });
+    return;
+  }
+
+  if (eventName === "checkout_opened" || eventName === "checkout_started") {
+    sendCheckoutStarted(detail);
+    return;
+  }
+
+  if (eventName === "fabric_selected" && detail.fabric_id) {
+    measurePixelEvent("contents_viewed", {
+      type: "contents",
+      contents: [{ id: String(detail.fabric_id), content_type: "product" }]
+    });
+    sendCustomEvent("fabric_selected", { contentId: detail.fabric_id });
+    return;
+  }
+
+  if (eventName === "sample_intent") {
+    sendCustomEvent("sample_intent", { contentId: detail.fabric_id }, detail.fabric_id ? "sample_intent_" + String(detail.fabric_id) : undefined);
+    return;
+  }
+
+  if (eventName === "sample_ordered_intended") {
+    sendItemsAdded(detail);
+    sendCustomEvent(
+      "sample_added",
+      {
+        amountMinor: detail.amount_minor,
+        currency: detail.currency,
+        contentId: detail.fabric_id || detail.variant_id,
+        contentType: "sample"
+      },
+      detail.event_id ? "custom_" + String(detail.event_id) : undefined
+    );
+    return;
+  }
+
+  if (eventName === "configurator_started") {
+    sendCustomEvent("curtain_builder_started");
+    return;
+  }
+
+  if (eventName === "measurement_completion") {
+    sendCustomEvent("measurements_completed");
+    return;
+  }
+
+  if (eventName === "price_displayed") {
+    sendCustomEvent("curtain_price_viewed", {
+      amountMinor: detail.amount_minor,
+      currency: detail.currency,
+      contentId: detail.fabric_id
+    });
+    return;
+  }
+
+  if (eventName === "quote_accepted") {
+    const configurationId = detail.configuration_id || detail.configurationId;
+    sendCustomEvent("quote_accepted", {}, configurationId ? "quote_accepted_" + String(configurationId) : undefined);
+  }
 });
+
+let fabricIntelligenceStartedSent = false;
+
+document.addEventListener("click", (event) => {
+  if (fabricIntelligenceStartedSent || !(event.target instanceof Element)) return;
+  const trigger = event.target.closest(".cuk-naila-primary, .cuk-naila-continue");
+  if (!trigger) return;
+  fabricIntelligenceStartedSent = true;
+  recordWebsiteDiagnostic("fabric_intelligence_started");
+  sendCustomEvent("fabric_intelligence_started");
+}, true);
+
+const bindNailaMeasurement = () => {
+  document.querySelectorAll('[data-cuk-fabric-browser][data-naila-enabled="true"]').forEach((root) => {
+    if (root.dataset.openaiNailaMeasurementBound === "true") return;
+    root.dataset.openaiNailaMeasurementBound = "true";
+    root.addEventListener("cuk:naila:render", (event) => {
+      const total = Number(event.detail?.total || event.detail?.fabrics?.length || 0);
+      if (total <= 0 || root.dataset.openaiNailaResultsMeasured === "true") return;
+      root.dataset.openaiNailaResultsMeasured = "true";
+      recordWebsiteDiagnostic("fabric_intelligence_results_viewed", { total_results: total });
+      sendCustomEvent("fabric_intelligence_results_viewed");
+    });
+  });
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bindNailaMeasurement, { once: true });
+} else {
+  bindNailaMeasurement();
 }
-});
+
+const measureVisualiserSelection = (event) => {
+  const fabricId = event.detail?.fabric?.id;
+  recordWebsiteDiagnostic("room_visualiser_used", { fabric_id: fabricId || null });
+  sendCustomEvent("room_visualiser_used", { contentId: fabricId });
+};
+document.addEventListener("curtainsuk:visualiser-select", measureVisualiserSelection);
+
+// DOM events inside the published room iframe do not bubble to the storefront.
+// Listen only to the existing same-origin room document, without changing it.
+const measuredRoomDocuments = new WeakSet();
+const bindRoomMeasurement = () => {
+  document.querySelectorAll('iframe[data-room-frame][title="CurtainsUK Room Visualiser"]').forEach((frame) => {
+    const bindLoadedDocument = () => {
+      try {
+        const roomDocument = frame.contentWindow?.document;
+        if (!roomDocument || measuredRoomDocuments.has(roomDocument)) return;
+        const roomUrl = new URL(roomDocument.URL);
+        const storefrontUrl = new URL(window.location.href);
+        if (roomUrl.origin !== storefrontUrl.origin || roomUrl.pathname !== "/apps/curtainsuk-decision/room-visualiser") return;
+        roomDocument.addEventListener("curtainsuk:visualiser-select", measureVisualiserSelection);
+        measuredRoomDocuments.add(roomDocument);
+      } catch (_) { /* A cross-origin or unavailable frame cannot provide a measurement. */ }
+    };
+    frame.addEventListener("load", bindLoadedDocument);
+    bindLoadedDocument();
+  });
+};
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bindRoomMeasurement, { once: true });
+} else {
+  bindRoomMeasurement();
+}
+
 })();
 </script>
 

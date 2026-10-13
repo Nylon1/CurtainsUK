@@ -22,6 +22,11 @@ export interface ShopifyAttributeInput {
   value: string;
 }
 
+export interface OpenAiAdsAttribution {
+  oppref?: string;
+  obref?: string;
+}
+
 export interface ShopifyDraftOrderInput {
   acceptAutomaticDiscounts: false;
   allowDiscountCodesInCheckout: false;
@@ -282,6 +287,7 @@ export function buildShopifyDraftOrderContract(input: {
   handoff: Readonly<StagingCheckoutHandoff>;
   customerEmail?: string | null;
   fabricLabel?: string | null;
+  openaiAttribution?: Readonly<OpenAiAdsAttribution>;
 }): Readonly<ShopifyDraftOrderContract> {
   const handoff = input.handoff;
   const snapshot = handoff.snapshot;
@@ -339,6 +345,22 @@ export function buildShopifyDraftOrderContract(input: {
     { key: "curtainsuk_construction", value: snapshot.construction },
     { key: "curtainsuk_customer_dimension_summary", value: customerDimensionSummary(snapshot.measurements) },
     { key: "curtainsuk_calculated_fabric_metres", value: String(snapshot.calculatedFabricMetres) },
+    ...(
+      typeof input.openaiAttribution?.oppref === "string"
+      && input.openaiAttribution.oppref.trim()
+      && input.openaiAttribution.oppref.length <= 255
+      && !/[\u0000-\u001f\u007f]/.test(input.openaiAttribution.oppref)
+        ? [{ key: "curtainsuk_openai_oppref", value: input.openaiAttribution.oppref.trim() }]
+        : []
+    ),
+    ...(
+      typeof input.openaiAttribution?.obref === "string"
+      && input.openaiAttribution.obref.trim()
+      && input.openaiAttribution.obref.length <= 255
+      && !/[\u0000-\u001f\u007f]/.test(input.openaiAttribution.obref)
+        ? [{ key: "curtainsuk_openai_obref", value: input.openaiAttribution.obref.trim() }]
+        : []
+    ),
     ...internalMeasurementAttributes(snapshot.measurements),
   ];
   const draftInput: ShopifyDraftOrderInput = {

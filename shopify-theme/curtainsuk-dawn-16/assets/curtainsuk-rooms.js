@@ -20,6 +20,16 @@
       return url.toString();
     } catch { return null; }
   }
+  function recordCheckoutAnalytics(event, detail) {
+    const payload = { event: `curtainsuk_${event}`, ...detail };
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(payload);
+    } catch (_) { /* Analytics must never block checkout. */ }
+    try {
+      window.dispatchEvent(new CustomEvent('curtainsuk:analytics', { detail: payload }));
+    } catch (_) { /* Analytics must never block checkout. */ }
+  }
   async function command(base, action, payload) {
     let response, result;
     try { response = await fetch(`${base.replace(/\/$/, '')}/rooms`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ action, payload }), cache:'no-store' }); result = await response.json(); }
@@ -137,20 +147,16 @@
     );
   }
 
-  try {
-    window.dispatchEvent(
-      new CustomEvent("curtainsuk:analytics", {
-        detail: {
-          event: "curtainsuk_checkout_handoff_reached",
-          handoff_id: `rooms_${house.house_id}_${submittedRevision}`,
-        },
-      })
-    );
-  } catch (_) {
-    // Analytics must never block checkout.
-  }
-
+  const checkoutDetail = {
+    handoff_id: `rooms_${house.house_id}_${submittedRevision}`,
+    amount_minor: review.total,
+    currency: review.currency,
+    order_kind: 'curtain',
+    contents: review.lines.map(line => ({ id: line.configuration_id, content_type: 'curtain_order', quantity: 1 })),
+  };
+  recordCheckoutAnalytics('checkout_handoff_reached', checkoutDetail);
   window.location.assign(checkoutUrl);
+  recordCheckoutAnalytics('checkout_opened', checkoutDetail);
   return;
 }
           if(['PRICE_CHANGED','STOCK_CHANGED','INVALID_CONFIGURATION','REVIEW_REQUIRED'].includes(result.status)) {

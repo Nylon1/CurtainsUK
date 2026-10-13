@@ -1,0 +1,70 @@
+{
+  "classification": "HOSTED_SYNTHETIC_APPLICATION_HTTP",
+  "checks": [
+    {
+      "name": "authenticated bootstrap 0",
+      "result": "PASS"
+    },
+    {
+      "name": "authenticated bootstrap 1",
+      "result": "PASS"
+    },
+    {
+      "name": "missing CSRF denied",
+      "result": "PASS"
+    },
+    {
+      "name": "consent required",
+      "result": "PASS"
+    },
+    {
+      "name": "durable start",
+      "result": "PASS"
+    },
+    {
+      "name": "mock design reply",
+      "result": "PASS"
+    },
+    {
+      "name": "idempotent replay",
+      "result": "PASS"
+    },
+    {
+      "name": "foreign consultation denied",
+      "result": "PASS"
+    },
+    {
+      "name": "save",
+      "result": "PASS"
+    },
+    {
+      "name": "recovery",
+      "result": "PASS"
+    },
+    {
+      "name": "replayed recovery denied",
+      "result": "PASS"
+    },
+    {
+      "name": "second owner start",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent revision has one winner",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent revision conflict",
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS",
+  "limitations": [
+    "Concurrency does not prove distinct Vercel instances.",
+    "Physical ciphertext, expiry, revocation and connection-role inspection require separate hosted evidence."
+  ],
+  "checkedAt": "2026-10-13T13:36:01.117Z",
+  "deploymentId": "dpl_E6uEU8BDDfVEecoyGVpxmhng7r8s",
+  "sourceCommit": "44ba2e75d5b5aa23e17f1249857e3e3540616ea7",
+  "ownerCount": 2
+}

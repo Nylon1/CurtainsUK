@@ -1,0 +1,317 @@
+✔ short customer and exporter reads do not masquerade as supplier refresh (1.7186ms)
+✔ writer, supplier, advisory lock, contention and prolonged queries remain blocked (1.3016ms)
+✔ missing visibility, invalid metadata and excessive inventories fail closed (0.4565ms)
+✔ metadata SQL executes on local Postgres and excludes own observer without returning query text (2885.6497ms)
+✔ temporary safety hold revalidates exact checkpoint before bounded fresh admission (2.8205ms)
+✔ ambiguity, access failures, invalid metadata and deadline never cause automatic resubmission (1.3725ms)
+✔ official Auth SDK verifies real signatures, concurrent owners and revocation without protected SQL (86.7713ms)
+✔ official Auth SDK fails closed for invalid identity, signature, expiry, audience and session claims (30.7229ms)
+✔ Auth outages, bounded responses and configuration failures never fall back to claims alone (12.775ms)
+✔ Auth failure stops protected HTTP before consultation reads, limits or model execution (7.323ms)
+✔ cloud RPC persistence: consent, durable creation replay, recovery, ownership, revision and deletion (3082.5429ms)
+✔ two workers: lease contention, expired lease fencing, CAS and released lease recovery (2208.6123ms)
+✔ distributed rate and durable spend limits: no reset on new worker, concurrent hard cap, ambiguous failures charged (2180.8334ms)
+✔ verified cloud principals reject revoked, anonymous, forged owner and wrong issuer tokens (2.0917ms)
+✔ protected HTTP composition uses verified principal, consent and awaited distributed limits (2229.7449ms)
+✔ human-review gate never turns missing scores or critical failures into approval (2.0261ms)
+✔ population controller bounds each invocation, requires fresh approval and stops on a failed step (5.7297ms)
+✔ revised evaluation executes consented context and saved-return actions without paid calls (43.3286ms)
+✔ new evaluation requires fresh approval for this profile and suite before credentials or network (0.7709ms)
+✔ hosted composition accepts only approved existing-project synthetic trials (4.0939ms)
+✔ cloud ciphertext binds owner, identity, revision and expiry; rotation reads old records, no plaintext fallback (4.1932ms)
+✔ cloud read fails closed before RPC without encryption configuration (0.5591ms)
+✔ consented handoff is bound to customer, consultation and expiry; rejects invented visualiser controls (2.5693ms)
+✔ customer wording removes internal feedback codes without changing provenance (0.4654ms)
+✔ safe extended fabric facts and bounded keyset pages omit commercial fields (41.6483ms)
+✔ only the confirmed statement timeout of a read-only request can recover (3.7541ms)
+✔ read timeout reconciles first, waits and re-enters all admission gates (4.1259ms)
+✔ ambiguous reconciliation and failed writes never enter a retry loop (1.1619ms)
+✔ only the structured MCP network timeout on an entirely read-only request is recoverable (0.5841ms)
+✔ monitoring server failures require reconciliation and fresh admission; denied or unknown access stays stopped (1.6155ms)
+✔ adaptive mock: warm room, visualiser return, changed preference, personalised summary (14.4111ms)
+✔ mock teaches existing FI, declines unavailable guarantees and unsupported screenshot processing (5.1609ms)
+✔ session ownership, consent, invalid IDs and input injection fail before mutation (2.8648ms)
+✔ duplicate requests are idempotent; conflicting revision or reused key is rejected (1.7708ms)
+✔ concurrent replies cannot fork the same consultation (1.4184ms)
+✔ provider, knowledge and durable storage failures leave valid prior work intact (3.8122ms)
+✔ saved consent, encrypted restart, one-time recovery transfer and deletion (36.0691ms)
+✔ expiry prevents access and removes the expired record (1.0839ms)
+✔ welcome deadline catches up after suspension; six profiles retain separate identities (0.4316ms)
+✔ forged model evidence and commercial promises fail closed (2.9895ms)
+✔ source-traceable guides exist and correctly separate headings from visualiser (8.7161ms)
+✔ catalogue allowlist drops supplier secrets and unverified visual fields (2.9469ms)
+✔ master reads are bounded, indexed identity queries with no lifecycle filter; cached, validated and isolated (44.8464ms)
+✔ retail recommendations require governed eligibility, exact URL and approved real image (1.6234ms)
+✔ tools reject arbitrary SQL, excess calls and upstream payloads beyond limits (0.7566ms)
+✔ HTTP enforces origin, CSRF, body limits and rate limits without logging private content (11.6352ms)
+✔ production route is disabled even if flags and preview key accidentally exist (0.6573ms)
+✔ OpenAI activation requires explicit paid-test flag and budget controller (0.4038ms)
+✔ test budget reserves atomically, retains ambiguous charges and blocks session/day overspend (1.028ms)
+✔ Responses adapter preserves context, strict tools and store:false, retries with reserved cost and resumes function results (2.7856ms)
+✔ OpenAI upstream secrets do not leak through HTTP failures (0.5745ms)
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-pro-readiness-20261011\source-manifest.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-plan.test.mjs:11:27 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-pro-readiness-20261011\\source-manifest.json'
+}
+
+Node.js v24.14.0
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\continuation-plan.test.mjs (264.3368ms)
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-pro-readiness-20261011\source-manifest.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/continuation-runner.test.mjs:9:27 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-pro-readiness-20261011\\source-manifest.json'
+}
+
+Node.js v24.14.0
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\continuation-runner.test.mjs (215.2182ms)
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-first-index-batch-20261011\source.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/eligible-execution.test.mjs:17:27 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-first-index-batch-20261011\\source.json'
+}
+
+Node.js v24.14.0
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\eligible-execution.test.mjs (264.2229ms)
+✔ host freshness exception requires exact scope and leaves the 120-second counter window unchanged (1.8535ms)
+✔ 20-second latency exception is bound to the existing job, project and exact population (0.4665ms)
+✔ superseded proposal cannot be admitted by flipping its approval flag (2.0972ms)
+✔ eligible manifest excludes unpublished IDs and cannot reuse a historical all-Master cursor (6.8295ms)
+✔ missing publication evidence, identity tampering and unknown mappings fail closed (1.0126ms)
+✔ each six-ID page rechecks live eligibility and rejects expiry, drift, omission and wrong project (1.9842ms)
+✔ existing worker resumes a separate eligible job without duplicate search rows or rewriting historical receipts (3149.46ms)
+✔ one request contains unchanged commit then read-only verification, fsynced first and hash bound (5.5003ms)
+✔ failed journal and lost or empty commit responses cannot be resubmitted (1.4046ms)
+✔ recovery without cached submission is read-only and invalid plans fail closed (1.442ms)
+✔ Postgres readback failure after COMMIT leaves committed row for read-only recovery (2831.7934ms)
+✔ 30-turn evaluation preserves mock baseline and requires separate human judgement (30.1253ms)
+✔ Responses can continue design advice after unavailable retrieval; standard pricing tier remains explicit (41.2647ms)
+✔ saved tool receipts preserve completed and unavailable searches in subsequent model turns (4.7492ms)
+✔ private room navigation uses the real storefront with only the verified same fabric ID (1.7605ms)
+✔ exact-ID detail read is bounded, public, server-side and strips commerce/private fields (41.4152ms)
+✔ invalid, wrong, unpublished and unavailable fabrics cannot silently substitute another item (7.9034ms)
+✔ mismatched Room Visualiser link is omitted without inventing support (1.0439ms)
+✔ URL state is ID-only and requires consent before existing context contract (1.0074ms)
+✔ same selected identity reaches provider, resumes securely, and context retry is idempotent (10.4099ms)
+✔ existing detail renderer hands exact identity to optional Jane adapter and retains PR183 room contract (6.589ms)
+✔ private adapter stays inactive on live and non-approved hosts (31.6701ms)
+✔ selected-fabric mock introduction uses verified identity without inventing visualiser feedback (2.1626ms)
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-pro-readiness-20261011\source-manifest.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/first-batch-plan.test.mjs:10:27 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-pro-readiness-20261011\\source-manifest.json'
+}
+
+Node.js v24.14.0
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\first-batch-plan.test.mjs (247.9669ms)
+✖ existing-project bundle isolates roles, pooled owners, retention and throttled rollback (3205.1137ms)
+✔ degraded catalogue lookup cannot poison the governed index or reuse its weak cache (52.126ms)
+✔ expired indexing workers cannot commit or release replacement leases (2214.8098ms)
+✔ accepts sufficient genuine headroom without sleeping or changing timestamps (3.2199ms)
+✔ explicit 180-second exception retains thirty seconds of pre-admission headroom (0.8999ms)
+✔ cached samples are read-only waiting, then a genuine new sample permits admission (1.9443ms)
+✔ unchanging exporter has a bounded wait, with no synthetic fresh measurement (2.2275ms)
+✔ until-complete still bounds each host wait and rejects an unscoped infinite cutoff (2.3824ms)
+✔ hard deadline and access failure terminate pacing without retries (0.9598ms)
+✔ fresh unsafe, invalid, reset or overlong-window samples cannot be admitted (1.1812ms)
+✔ derives CPU, disk busy time, memory, filesystem pressure and I/O rates from source time (7.1754ms)
+✔ cached content cannot be relabelled as fresh by a newer HTTP Date (1.8779ms)
+✔ stale source time and windows above 60 seconds fail closed (3.3014ms)
+✔ owner exception accepts genuine 120-second windows without relaxing freshness or default policy (8.466ms)
+✔ new owner exception accepts 60.313 through 180 seconds but rejects older host samples (8.4769ms)
+✔ restart, CPU topology changes and counter resets fail closed (3.4523ms)
+✔ missing gauges, failed collectors, duplicates and wrong projects are rejected (2.1174ms)
+✔ malformed labels, NaN, invalid capacity and read-only data filesystem are rejected (2.8198ms)
+✔ unrelated potentially private metrics and comments are discarded (0.75ms)
+✔ a mounted data disk cannot silently lose all of its I/O series (0.9279ms)
+✔ storage remapping and counters inconsistent with elapsed source time fail closed (2.186ms)
+✔ trial grant requires signature, exact deployment/source and a maximum one-hour lifetime (24.9997ms)
+✔ disabled production, invalid grant, origin and oversized body do no Auth/database work (48.6763ms)
+✔ wired runtime verifies owners, bootstraps CSRF and shares encrypted recovery across two instances (3177.4151ms)
+✔ hosted protocol rehearsal uses the wired HTTP runtime and removes synthetic consultations (2531.1481ms)
+✔ temporary connection grant has no inherited access, expires, and rolls back without changing private roles (2125.6437ms)
+✔ database pool configuration refuses privileged roles, alternate projects and TLS overrides (1.9669ms)
+✔ transaction owns one connection, resets role locally, discards failures and never retries writes (2.1298ms)
+✔ incremental worker checkpoints atomically, resumes failures and measures truthful coverage/performance (3819.0114ms)
+✔ relevance uses actual indexed colour/tone/texture/pattern/composition and safe specifications (3011.5767ms)
+✔ change manifests exclude stock-only updates, deduplicate resolved dependencies and reject gaps/deletions (5.5859ms)
+✔ change-only refresh reuses transactional worker, skips unchanged vectors and recovers/rolls back safely (2328.2652ms)
+✔ remaining population is exactly 2813 batches, 141 invocations with a five-fabric final batch (0.9737ms)
+✔ indexed descriptive search: every requested dimension, governance, partial coverage and incremental updates (3019.7272ms)
+✔ descriptive search ranks a recorded colour above an incidental description and rejects unindexable input (2142.96ms)
+✔ reviewed ranking upgrade preserves the read-only function boundary (2139.1536ms)
+✔ paid evaluation fixture exposes bounded source facts without purchase authority (2141.4896ms)
+✔ change manifests deduplicate exact evidence, reject collisions and coalesce tied/out-of-order events by identity (5.7654ms)
+✔ reconciliation includes additions, changed hashes and withdrawals without rebuilding unchanged identities (0.9651ms)
+✔ launch/recommendation barrier requires coverage spanning changes made during initial population (1.1219ms)
+✔ existing history readers execute bounded primary-key SQL and never read normalized/cost payloads (2965.7557ms)
+▶ disabled update connection and actual local PostgreSQL transaction/concurrency checks
+  ✔ disabled by default and rejected before any transaction (4.9234ms)
+  ✔ cannot register while initial population is active (10.3238ms)
+  ✔ new identity, replayed registration and unchanged hash do not inflate or rewrite (110.9554ms)
+  ✔ changed source refreshes only relevant search terms and preserves historical receipts (30.2737ms)
+  ✔ verified withdrawal removes search entry and re-entry restores it (56.6037ms)
+  ✔ empty response, timeout/error and unverified absence never delete or advance (50.3657ms)
+  ✔ stale projection, unknown eligibility and stale source revision block writes (79.532ms)
+  ✔ two worker instances cannot overlap while one holds shared gate (31.8754ms)
+  ✔ transaction interruption rolls back every update, receipt and cursor (69.3582ms)
+  ✔ permission denial and unchanged source systems (12.0648ms)
+  ✔ 120 identities use at most 20 six-record steps with five-second shared pacing (774.5156ms)
+  ✔ approval expiry and resource failure do not advance (11.8942ms)
+✔ disabled update connection and actual local PostgreSQL transaction/concurrency checks (3431.8057ms)
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-auth-fix-20261011\migration-bundle.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/migration-candidate.test.mjs:7:25 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-auth-fix-20261011\\migration-bundle.json'
+}
+
+Node.js v24.14.0
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\migration-candidate.test.mjs (200.3189ms)
+✔ separate application processes share encrypted sessions, locks, recovery and rate limits (4137.9769ms)
+✔ identity literals reject SQL syntax, controls and unbounded input (2.1785ms)
+✖ all approved fabric identities preserve their exact bytes as constants (6.6239ms)
+✔ local Postgres preserves selection, order and unknown values while using its identity index (2897.1099ms)
+✔ complete journal produces only a local ID/hash baseline and includes earlier historical knowledge (10.1031ms)
+✔ a prepared but unverified batch stays pending and never inflates coverage (1.8873ms)
+✔ duplicate, missing, foreign, tampered and out-of-order receipts cannot become a baseline (12.4218ms)
+✔ expired-uncommitted evidence is verified and contributes no indexed identities (11.8841ms)
+✔ read-only file snapshot preserves journal and existing operator lock; partial tail is refused (32.6487ms)
+✔ ordinary approvals retain finite, future, at-most-24-hour expiry (4.0535ms)
+✔ no-deadline approval is bound to this project, existing job, source, count and direct owner record (0.8882ms)
+✔ until-complete keeps required approval, schema, purpose, bundle and invocation bounds (0.832ms)
+✔ unscoped infinite recovery deadline cannot run or reconcile anything (1.0536ms)
+✔ authorised recovery can cross the old cutoff while reconciling and respecting retry pacing (1.9117ms)
+✔ until-complete never recovers permission, ambiguous commit, or failed reconciliation (0.9711ms)
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-pro-readiness-20261011\source-manifest.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/population-readiness.test.mjs:7:27 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-pro-readiness-20261011\\source-manifest.json'
+}
+
+Node.js v24.14.0
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\population-readiness.test.mjs (193.1068ms)
+✔ exact 11,517 completion accepts the final three-record batch without approving reconciliation or launch (68.1362ms)
+✔ partial, pending, stale, future and non-final receipts cannot become completion (7.2201ms)
+✔ missing, duplicate, substituted or changed identities/hashes fail whole-job verification (4.8004ms)
+✔ history, no-op, rollback-count and permission drift fail closed without mutating evidence (4.9967ms)
+✔ recommendation checks cannot run against a partial population (2.5098ms)
+✔ post-population retrieval is bounded, paced and explicitly waits for human design review (3.8536ms)
+✔ failed knowledge lookup is evidence of failure and prevents further reads (0.4297ms)
+✔ completed snapshot can be reviewed without source-window reconciliation (0.5919ms)
+✔ only timeouts, reset, rate limits and server failures permit fresh read recovery (2.5668ms)
+✔ all read ports settle before reconciliation can start (35.2205ms)
+✔ Retry-After is honoured through short waits and remains bounded by deadline (3.4426ms)
+✔ proposed additive schema: real PostgreSQL RLS, consent, owner isolation, CAS, tampering and deletion (3010.9095ms)
+✔ expired uncommitted reconciliation requires exact prior receipt and two independent drained readbacks (6.3543ms)
+✔ uncertain, committed, partial, stale, in-flight or mismatched evidence cannot retire a plan (7.728ms)
+✔ journal preserves prepared SQL and resolution evidence, requires lock, rejects duplicate resolution and reopens cleanly (65.6686ms)
+ℹ tests 164
+ℹ suites 0
+ℹ pass 156
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79414.4196
+
+✖ failing tests:
+
+test at lib\advisory\__tests__\continuation-plan.test.mjs:1:1
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\continuation-plan.test.mjs (264.3368ms)
+  'test failed'
+
+test at lib\advisory\__tests__\continuation-runner.test.mjs:1:1
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\continuation-runner.test.mjs (215.2182ms)
+  'test failed'
+
+test at lib\advisory\__tests__\eligible-execution.test.mjs:1:1
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\eligible-execution.test.mjs (264.2229ms)
+  'test failed'
+
+test at lib\advisory\__tests__\first-batch-plan.test.mjs:1:1
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\first-batch-plan.test.mjs (247.9669ms)
+  'test failed'
+
+test at lib\advisory\__tests__\foundations.test.mjs:14:1
+✖ existing-project bundle isolates roles, pooled owners, retention and throttled rollback (3205.1137ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-completion\bounded-master-source.json'
+      at async open (node:internal/fs/promises:637:25)
+      at async readFile (node:internal/fs/promises:1269:14)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/foundations.test.mjs:73:27)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-completion\\bounded-master-source.json'
+  }
+
+test at lib\advisory\__tests__\migration-candidate.test.mjs:1:1
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\migration-candidate.test.mjs (200.3189ms)
+  'test failed'
+
+test at lib\advisory\__tests__\operator-identity-literal.test.mjs:8:1
+✖ all approved fabric identities preserve their exact bytes as constants (6.6239ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\hamza\curtainsuk-specialist-advisory-phase1\artifacts\jane-eligible-scope-20261011\eligible-manifest.json'
+      at async open (node:internal/fs/promises:637:25)
+      at async readFile (node:internal/fs/promises:1269:14)
+      at async TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-specialist-advisory-phase1/lib/advisory/__tests__/operator-identity-literal.test.mjs:9:28)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\hamza\\curtainsuk-specialist-advisory-phase1\\artifacts\\jane-eligible-scope-20261011\\eligible-manifest.json'
+  }
+
+test at lib\advisory\__tests__\population-readiness.test.mjs:1:1
+✖ C:\Users\hamza\curtainsuk-specialist-advisory-phase1\lib\advisory\__tests__\population-readiness.test.mjs (193.1068ms)
+  'test failed'

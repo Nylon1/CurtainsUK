@@ -2,6 +2,10 @@
 
 **Programme source of truth · 13 October 2026 UK · All 11,517 approved eligible identities independently verified; population complete; source-change reconciliation pending; one-time follow-up paused; automatic updates disabled; Jane publicly inactive**
 
+## Current Jane launch-review checkpoint, 13 October
+
+The owner approved fixed-snapshot review without requiring source-change catch-up for this launch. Six bounded hosted searches have now run. They exposed poor alphabetical ranking in the deployed search function; a separately reviewed ranking replacement and local evaluation fixture have been implemented without hosted SQL changes. Read-only ranked diagnostics return more relevant recorded colour and design facts, while tone, pattern scale and suitability still require human judgement. The fresh US$5 evaluation budget is approved, but a secure new key is not yet visible in this task, and no paid call has been made. Jane remains private. [Current gate report](specialist-advisory/JANE_LAUNCH_REVIEW_20261013.md). The older post-population paragraphs below are historical and must not be read as the latest gate status.
+
 ## Approved eligible population complete
 
 ### Post-population review and private journey

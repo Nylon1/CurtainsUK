@@ -9,7 +9,7 @@ import {runEvaluation} from '../lib/advisory/evaluation.mjs';
 import {createMockProvider} from '../lib/advisory/mock-provider.mjs';
 import {createOpenAIProvider,MODEL_RATES} from '../lib/advisory/openai-provider.mjs';
 import {CloudSessionStore} from '../lib/advisory/cloud-store.mjs';
-import {createCatalogue} from '../lib/advisory/catalogue.mjs';
+import {createEvaluationFixtureCatalogue} from '../lib/advisory/evaluation-fixture.mjs';
 import {fail} from '../lib/advisory/contracts.mjs';
 import {foundationsCases as completionCases,foundationsRubric as completionRubric,EVALUATION_VERSION,requireFreshEvaluationApproval} from '../lib/advisory/evaluation-v3.mjs';
 const mode=process.argv[2]??'mock';if(!['mock','openai'].includes(mode))throw Error('Use mock or openai.');
@@ -17,7 +17,7 @@ const tag=process.argv[4]??mode;if(!/^[a-z0-9-]{1,40}$/.test(tag))throw Error('I
 const caseIds=process.argv[5]?.split(',')??null;
 const output=path.resolve(process.env.ADVISORY_EVIDENCE_DIR??'artifacts/jane-foundations-20261011');await mkdir(output,{recursive:true});
 let catalogue={lookup:async()=>[],identities:async()=>[],retail:async()=>[],descriptive:async()=>({fabrics:[],coverage:{complete:false,state:'evaluation-fixture'}})};
-let providerFactory=()=>createMockProvider(),db,lockPath,locked=false;
+let providerFactory=()=>createMockProvider(),db,lockPath,locked=false,fixture;
 const usage=[];
 try{
   if(mode==='openai'){
@@ -29,7 +29,11 @@ try{
     let apiKey=process.env.OPENAI_API_KEY;
     if(!apiKey){try{const text=await readFile(path.join(os.homedir(),'.curtainsuk-jane-private-preview','.env.evaluation'),'utf8');apiKey=text.match(/^OPENAI_API_KEY\s*=\s*["']?([^\s"']+)["']?\s*$/m)?.[1];}catch(error){if(error.code!=='ENOENT')fail('MODEL_CREDENTIAL_REQUIRED',503);}}
     if(!apiKey)fail('MODEL_CREDENTIAL_REQUIRED',503);
-    catalogue=createCatalogue(); // Real approved retail; full-master index remains explicitly unavailable until approved.
+    // The fixed, verified 36-identity fixture gives tool-enabled evaluation
+    // without granting this paid runner production database credentials.
+    // A full-index claim or retail purchase offer would be false here.
+    fixture=await createEvaluationFixtureCatalogue(path.resolve('artifacts/jane-launch-review-20261013/ranked-read-only-diagnostic.json'));
+    catalogue=fixture.catalogue;
     const directory=path.join(os.homedir(),'.curtainsuk-jane-private-preview','evaluation',a.runId);await mkdir(directory,{recursive:true});lockPath=path.join(directory,'runner.lock');
     // An abandoned lock is deliberately fail-closed. Operator review is needed
     // after a crash; a restarted process cannot silently create a fresh budget.
@@ -47,6 +51,6 @@ try{
   }
   const report=await runEvaluation({providerFactory,catalogue,caseIds,cases:completionCases,version:EVALUATION_VERSION,onCase:r=>writeFile(path.join(output,tag+'-'+r.id+'.json'),JSON.stringify(r,null,2))});report.humanRubric=completionRubric;
   const ledger=db?(await db.query('select limit_micro,used_micro,expires_at from advisory.evaluation_runs')).rows:null;
-  await writeFile(path.join(output,tag+'-evaluation.json'),JSON.stringify({...report,mode,usage,ledger,realModelStatus:mode==='mock'?'SCRIPTED_BASELINE_NOT_REAL_MODEL':'HUMAN_REVIEW_REQUIRED'},null,2));
+  await writeFile(path.join(output,tag+'-evaluation.json'),JSON.stringify({...report,mode,usage,ledger,retrievalFixtureIdentities:fixture?.identities??0,realModelStatus:mode==='mock'?'SCRIPTED_BASELINE_NOT_REAL_MODEL':'HUMAN_REVIEW_REQUIRED'},null,2));
   console.log(JSON.stringify({mode,cases:report.cases.length,turns:report.cases.reduce((n,c)=>n+c.transcript.length,0),errors:report.cases.flatMap(c=>c.transcript).filter(t=>t.error).length,paidCalls:usage.length,output}));
-}finally{if(db)await db.close();if(locked)await rmdir(lockPath);}
+}finally{if(fixture)await fixture.close();if(db)await db.close();if(locked)await rmdir(lockPath);}

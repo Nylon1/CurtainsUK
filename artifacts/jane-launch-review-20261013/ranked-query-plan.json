@@ -1,0 +1,15 @@
+{
+  "classification": "READ_ONLY_HOSTED_EXPLAIN_NOT_LOAD_TEST",
+  "project": "hqysjumypgeapgmqkcrx",
+  "query": "warm-neutrals candidate rank against advisory.knowledge_search",
+  "executionMs": 141.565,
+  "planningMs": 20.688,
+  "derivedRowsScanned": 11518,
+  "matchedRows": 3686,
+  "returnedRows": 6,
+  "sharedHitBlocks": 1510,
+  "sharedReadBlocks": 0,
+  "sharedWrittenBlocks": 0,
+  "plan": "sequential scan of advisory derived index plus top-N heapsort",
+  "hostedFunctionChanged": false
+}

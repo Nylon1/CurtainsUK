@@ -1,0 +1,131 @@
+{
+  "id": "saved-return",
+  "reviewCriteria": [
+    "Actual save/recover commands precede the return turn",
+    "Recall earlier dislikes and introduce the bedspread without inventing a chosen fabric"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My bedroom walls are pale pink, with grey carpet. I dislike strong patterns and shiny fabric.",
+      "advice": {
+        "text": "if the patterns feel too busy, I’d reduce contrast before ruling out pattern altogether. Try a softly textured plain in warm ivory, or a small tonal motif with little difference between the ground and pattern. Keep the same room, view and lighting in the visualiser when comparing them. Is it the size of the pattern or the contrast that draws too much attention?",
+        "stage": "refine",
+        "palette": [
+          "warm ivory",
+          "soft stone"
+        ],
+        "patternDirection": "Low-contrast tonal motif or a quiet plain",
+        "textureDirection": "Softly textured, matte surface",
+        "alternatives": [
+          "Small tonal motif",
+          "Plain fabric with a subtle woven texture"
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "action": "save",
+      "status": "completed",
+      "revision": 2,
+      "contexts": 0,
+      "messages": 2
+    },
+    {
+      "action": "recover",
+      "status": "completed",
+      "revision": 3,
+      "contexts": 0,
+      "messages": 2
+    },
+    {
+      "action": "message",
+      "customer": "I am back. Keep those preferences, but the new bedspread is a large floral. What changes?",
+      "advice": {
+        "text": "Before choosing a fabric, let’s find the feeling you want. Which colours and larger furnishings are staying, and how much natural light does the room receive?",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Give me a short summary of the direction and what still needs checking.",
+      "advice": {
+        "text": "Your direction so far is warm ivory, soft stone. Low-contrast tonal motif or a quiet plain. Compare the options in consistent light, then use physical samples in your own room. We can keep refining; ten minutes is a guide, not an ending.",
+        "stage": "conclude",
+        "palette": [
+          "warm ivory",
+          "soft stone"
+        ],
+        "patternDirection": "Low-contrast tonal motif or a quiet plain",
+        "textureDirection": "Softly textured, matte surface",
+        "alternatives": [
+          "Small tonal motif",
+          "Plain fabric with a subtle woven texture"
+        ],
+        "questions": [
+          "Which option feels closest to the atmosphere you want?"
+        ],
+        "nextSteps": [
+          "Compare one design variable at a time",
+          "View physical samples before a final colour decision"
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

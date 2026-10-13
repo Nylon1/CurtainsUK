@@ -345,3 +345,24 @@ test('the English locale is additive against the verified production baseline', 
   delete current.advisory_team;
   assert.deepEqual(current, baseline, 'Existing production translations must remain unchanged');
 });
+
+test('public Jane copy is separately gated and the other five remain previews', () => {
+  const locale = themeJson(read('locales/en.default.json')).advisory_team;
+  const section = read('sections/curtainsuk-advisory-team.liquid');
+  const card = read('snippets/curtainsuk-adviser-card.liquid');
+  const room = read('snippets/curtainsuk-advisory-room.liquid');
+  assert.match(section, /"id": "jane_chat_live"[^\n]*"default": false/);
+  assert.match(section, /jane_chat_private_preview or section\.settings\.jane_chat_live/);
+  assert.match(card, /jane_chat_live and adviser == 'jane'/);
+  assert.match(room, /if jane_chat_live/);
+  assert.equal(locale.live.available, 'Jane is available');
+  assert.match(locale.live.profiles_intro, /Anne, Noah, James, Ben and Natalie.*previews/);
+  assert.match(locale.live.faq_answer_5, /90 days/);
+  assert.match(locale.live.room_privacy, /consent/);
+  assert.match(locale.live.journey_step_4_copy, /sample, Room Visualiser or curtains/);
+  assert.match(locale.live.close, /Close consultation/);
+  assert.match(section, /section\.settings\.jane_chat_live and step == 4/);
+  for (const key of section.matchAll(/'advisory_team\.live\.([a-z0-9_]+)'/g)) if (key[1] !== 'faq_answer_') assert.ok(locale.live[key[1]], `Missing live translation: ${key[1]}`);
+  for (let n = 1; n <= 5; n++) assert.ok(locale.live[`faq_answer_${n}`]);
+  for (const key of [...card, ...room].join('').matchAll(/'advisory_team\.live\.([a-z0-9_]+)'/g)) assert.ok(locale.live[key[1]], `Missing live translation: ${key[1]}`);
+});

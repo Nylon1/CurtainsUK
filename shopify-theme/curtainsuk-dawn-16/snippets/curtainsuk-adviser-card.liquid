@@ -3,6 +3,7 @@
   @param {object} block - Adviser theme section block
   @param {boolean} [featured] - Whether to use the prominent editorial layout
   @param {string} section_id - Parent section identity for unique headings
+  @param {boolean} [jane_chat_live] - Jane alone has an active consultation.
 {% enddoc %}
 {% liquid
   assign adviser = block.settings.adviser
@@ -33,9 +34,11 @@
   assign preparation = block.settings.preparation | default: translated_preparation
   assign opening = block.settings.opening | default: translated_opening
 %}
+{% if jane_chat_live and adviser == 'jane' and block.settings.preparation == blank %}{% assign preparation = 'advisory_team.live.jane_preparation' | t %}{% endif %}
+{% if jane_chat_live and adviser == 'jane' and block.settings.intro == blank %}{% assign intro = 'advisory_team.live.jane_intro' | t %}{% endif %}
 <article class="cukad__profile cukad__profile--{{ adviser }}{% if featured %} cukad__profile--featured{% endif %}" id="adviser-{{ section_id }}-{{ block.id }}" aria-labelledby="adviser-name-{{ section_id }}-{{ block.id }}" {{ block.shopify_attributes }}>
   <div class="cukad__profile-art{% if portrait_advisers contains adviser %} cukad__profile-art--portrait{% endif %}">
-    <div class="cukad__art-label"><span>{{ 'advisory_team.common.ai_adviser' | t }}</span><span aria-hidden="true">✳</span></div>
+    <div class="cukad__art-label"><span>{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.ai_adviser' | t }}{% else %}{{ 'advisory_team.common.ai_adviser' | t }}{% endif %}</span><span aria-hidden="true">✳</span></div>
     {% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}
     <div class="cukad__art-caption"><span>{{ name | escape_once }}</span><span>{% if portrait_advisers contains adviser %}{{ 'advisory_team.common.portrait_identity' | t }}{% else %}{{ 'advisory_team.common.illustrated_identity' | t }}{% endif %}</span></div>
   </div>
@@ -48,9 +51,9 @@
     <p class="cukad__expertise"><span>{{ 'advisory_team.common.explore' | t }}</span>{{ expertise | escape_once }}</p>
     <blockquote class="cukad__question"><span>{{ 'advisory_team.common.try_asking' | t }}</span><p>“{{ question | escape_once }}”</p></blockquote>
     {% if featured and adviser == 'jane' %}
-      <div class="cukad__jane-tools"><p>{{ 'advisory_team.jane.tools_copy' | t }}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided">{{ 'advisory_team.common.fabric_intelligence' | t }} <span aria-hidden="true">↗</span></a><a href="/pages/room-visualiser">{{ 'advisory_team.common.room_visualiser' | t }} <span aria-hidden="true">↗</span></a></div>
+      <div class="cukad__jane-tools"><p>{% if jane_chat_live %}{{ 'advisory_team.live.tools_copy' | t }}{% else %}{{ 'advisory_team.jane.tools_copy' | t }}{% endif %}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided">{{ 'advisory_team.common.fabric_intelligence' | t }} <span aria-hidden="true">↗</span></a><a href="/pages/room-visualiser">{{ 'advisory_team.common.room_visualiser' | t }} <span aria-hidden="true">↗</span></a></div>
     {% endif %}
-    <div class="cukad__profile-footer"><p><span class="cukad__availability">{{ 'advisory_team.common.coming_soon' | t }}</span><span>{{ 'advisory_team.common.free_consultation' | t }}</span></p><button class="cukad__preview-link" type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}" hidden>{{ 'advisory_team.common.preview' | t }} <span aria-hidden="true">↗</span></button></div>
+    <div class="cukad__profile-footer"><p><span class="cukad__availability">{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.available' | t }}{% else %}{{ 'advisory_team.common.coming_soon' | t }}{% endif %}</span><span>{{ 'advisory_team.common.free_consultation' | t }}</span></p><button class="cukad__preview-link" type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.enter_for' | t: name: name | escape_once }}{% else %}{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}{% endif %}" hidden>{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.enter' | t }}{% else %}{{ 'advisory_team.common.preview' | t }}{% endif %} <span aria-hidden="true">↗</span></button></div>
   </div>
   <template data-advisory-profile="{{ block.id }}" data-adviser="{{ block.id }}" data-identity="{{ adviser | escape }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" data-intro="{{ opening | escape_once }}" data-preparation="{{ preparation | escape_once }}">{% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}</template>
 </article>

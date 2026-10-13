@@ -9,6 +9,18 @@ const allowedShop = 'carpetup.myshopify.com';
 const allowedPath = '/apps/curtainsuk-decision';
 const storefrontOrigins = new Set(['https://www.curtainsuk.com', `https://${allowedShop}`]);
 const deploymentId = /^dpl_[A-Za-z0-9]{12,}$/;
+const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+
+/** The server selects a pre-approved UTC-day ledger. No browser input chooses a run. */
+export function janePublicDailyRunId(env: Record<string, string | undefined>, now = new Date()) {
+  if (!/^OWNER_APPROVED_JANE_PUBLIC_BUDGET_20261013$/.test(env.ADVISORY_SHOPIFY_PUBLIC_BUDGET_APPROVAL_REFERENCE ?? '')) return null;
+  try {
+    const runs = JSON.parse(env.ADVISORY_SHOPIFY_PUBLIC_DAILY_RUNS_JSON ?? '');
+    if (!runs || typeof runs !== 'object' || Array.isArray(runs)) return null;
+    const id = runs[now.toISOString().slice(0, 10)];
+    return typeof id === 'string' && uuid.test(id) ? id : null;
+  } catch { return null; }
+}
 
 function productionSourceAttested(env: Record<string, string | undefined>, compiledCommit: string | undefined) {
   if (!/^[a-f0-9]{40}$/.test(compiledCommit ?? '')) return false;
@@ -68,6 +80,7 @@ export function janePublicEnabled(env: Record<string, string | undefined>, compi
     && env.ADVISORY_SHOPIFY_CHAT_ENABLED === 'true'
     && env.ADVISORY_SHOPIFY_PROVIDER === 'openai'
     && env.CURTAINSUK_ADVISORY_RESTRICTED_LIVE !== 'true'
+    && janePublicDailyRunId(env) !== null
     && productionSourceAttested(env, compiledCommit)
     && compiledCommit === env.ADVISORY_SHOPIFY_APPROVED_COMMIT;
 }

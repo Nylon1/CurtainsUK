@@ -98,7 +98,16 @@
       const body = { ...commandBase, action, requestId, sessionId: session?.id ?? null, revision: session?.revision ?? null, ...extra };
       const response = await fetch(endpoint, { method: 'POST', credentials: 'same-origin', cache: 'no-store', headers: { 'Content-Type': 'application/json', 'X-Advisory-CSRF': csrf }, body: JSON.stringify(body) });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw Error(result.error === 'REVISION_CONFLICT' ? 'This consultation changed in another tab. Reopen it before sending again.' : 'Jane could not save that response. Your draft remains here; please try again.');
+      if (!response.ok) {
+        const message = result.error === 'REVISION_CONFLICT'
+          ? 'This consultation changed in another tab. Reopen it before sending again.'
+          : result.error === 'BUDGET_EXHAUSTED'
+            ? "Jane has reached today's consultation capacity. Your draft remains here; please try again tomorrow."
+            : result.error === 'RATE_LIMITED'
+              ? 'Please give Jane a moment before sending another message. Your draft remains here.'
+              : 'Jane could not save that response. Your draft remains here; please try again.';
+        throw Error(message);
+      }
       if (result.session) {
         if (!validSession.test(result.session.id) || (action === 'resume' && result.session.id !== extra.sessionId) || (session && action !== 'start' && result.session.id !== session.id)) throw Error('Jane returned a different consultation. Nothing was shown; please reopen the room.');
         session = result.session; remember(session.id); render();

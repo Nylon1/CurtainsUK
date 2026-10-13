@@ -38,6 +38,21 @@ export function janePreviewEnabled(env: Record<string, string | undefined>, comp
     && env.ADVISORY_SHOPIFY_APPROVED_COMMIT === compiledCommit
     && (env.VERCEL_GIT_COMMIT_SHA === compiledCommit || prebuilt);
 }
+/** Allow a production-path transport trial for explicitly listed synthetic customers only. */
+export function janeRestrictedLiveEnabled(env: Record<string, string | undefined>, compiledCommit = env.VERCEL_GIT_COMMIT_SHA) {
+  const ids = (env.ADVISORY_SHOPIFY_TEST_CUSTOMER_IDS ?? '').split(',').map(x => x.trim()).filter(Boolean);
+  return env.VERCEL_ENV === 'production'
+    && env.VERCEL_PROJECT_ID === 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA'
+    && env.CURTAINSUK_ADVISORY_RESTRICTED_LIVE === 'true'
+    && env.ADVISORY_SHOPIFY_CHAT_ENABLED === 'true'
+    && /^[a-f0-9]{40}$/.test(compiledCommit ?? '')
+    && compiledCommit === env.VERCEL_GIT_COMMIT_SHA
+    && compiledCommit === env.ADVISORY_SHOPIFY_APPROVED_COMMIT
+    && ids.length > 0 && ids.length <= 10 && ids.every(id => customerId.test(id));
+}
+export function janeGatewayEnabled(env: Record<string, string | undefined>, compiledCommit = env.VERCEL_GIT_COMMIT_SHA) {
+  return janePreviewEnabled(env, compiledCommit) || janeRestrictedLiveEnabled(env, compiledCommit);
+}
 type GatewayOptions = {
   env: Record<string, string | undefined>;
   compiledCommit?: string;
@@ -48,7 +63,7 @@ type GatewayOptions = {
 /** Separate from the shared commerce proxy. No Jane request reaches supplier or checkout handlers. */
 export function createShopifyJaneGateway({ env, compiledCommit, execute, take, now = Date.now }: GatewayOptions) {
   return async (request: Request) => {
-    if (!janePreviewEnabled(env, compiledCommit)) return new Response(null, { status: 404, headers: noStore });
+    if (!janeGatewayEnabled(env, compiledCommit)) return new Response(null, { status: 404, headers: noStore });
     if (request.method !== 'GET' && request.method !== 'POST') return fail(405, 'METHOD_NOT_ALLOWED');
     try {
       const signed = verifyShopifyAppProxyQuery(new URL(request.url).search, {

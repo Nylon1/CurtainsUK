@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { signShopifyAppProxyQuery } from '../../storefront/security/shopify-app-proxy-core';
-import { createShopifyJaneGateway, janeBrowserBinding, janeOwner, janePreviewEnabled } from '../shopify-gateway';
+import { createShopifyJaneGateway, janeBrowserBinding, janeGatewayEnabled, janeOwner, janePreviewEnabled, janeRestrictedLiveEnabled } from '../shopify-gateway';
 import { createConsultationService } from '../service.mjs';
 import { MemoryStore } from '../store.mjs';
 import { createMockProvider } from '../mock-provider.mjs';
@@ -70,6 +70,28 @@ test('manual protected preview needs exact compiled source and deployment identi
   assert.equal(janePreviewEnabled({ ...manual, VERCEL_DEPLOYMENT_ID: undefined }, compiledCommit), false);
   assert.equal(janePreviewEnabled({ ...manual, ADVISORY_SHOPIFY_APPROVED_COMMIT: 'd'.repeat(40) }, compiledCommit), false);
   assert.equal(janePreviewEnabled({ ...manual, VERCEL_ENV: 'production' }, compiledCommit), false);
+});
+test('restricted production transport is exact-commit and synthetic-owner only', async () => {
+  const live = { ...env, VERCEL_ENV: 'production', VERCEL_PROJECT_ID: 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA',
+    CURTAINSUK_ADVISORY_RESTRICTED_LIVE: 'true' };
+  assert.equal(janeRestrictedLiveEnabled(live), true);
+  assert.equal(janeGatewayEnabled(live), true);
+  for (const changes of [
+    { CURTAINSUK_ADVISORY_RESTRICTED_LIVE: 'false' },
+    { VERCEL_PROJECT_ID: 'prj_other' },
+    { VERCEL_GIT_COMMIT_SHA: 'b'.repeat(40) },
+    { ADVISORY_SHOPIFY_APPROVED_COMMIT: 'b'.repeat(40) },
+    { ADVISORY_SHOPIFY_TEST_CUSTOMER_IDS: '' },
+    { ADVISORY_SHOPIFY_TEST_CUSTOMER_IDS: '123,not-a-customer' },
+  ]) {
+    const candidate = { ...live, ...changes };
+    assert.equal(janeRestrictedLiveEnabled(candidate), false);
+    assert.equal((await fixture(candidate).handle(new Request(url()))).status, 404);
+  }
+  const { handle } = fixture(live);
+  assert.equal((await handle(new Request(url('123')))).status, 200);
+  assert.equal((await handle(new Request(url('789')))).status, 401);
+  assert.equal((await handle(new Request(url('')))).status, 401);
 });
 test('origin, CSRF, content limit and recovery transfer are denied before execution', async () => {
   const { handle, calls } = fixture();

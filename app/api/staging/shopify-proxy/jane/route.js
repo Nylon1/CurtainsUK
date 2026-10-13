@@ -1,4 +1,4 @@
-import { createShopifyJaneGateway, janePreviewEnabled } from '@/lib/advisory/shopify-gateway';
+import { createShopifyJaneGateway, janeGatewayEnabled } from '@/lib/advisory/shopify-gateway';
 import { createPgTransaction } from '@/lib/advisory/pg-transaction.mjs';
 import { createPrivateAdvisoryRpc, createPrivateAdvisoryKnowledgeSearch } from '@/lib/advisory/private-rpc.mjs';
 import { createSessionCipher } from '@/lib/advisory/session-cipher.mjs';
@@ -24,7 +24,7 @@ function decode(value) {
 }
 function buildResources() {
   const env = process.env;
-  if (!janePreviewEnabled(env, compiledCommit) || env.ADVISORY_TEST_PROJECT_REF !== ref || env.ADVISORY_TEST_SCHEMA !== 'advisory') throw Error('JANE_PREVIEW_NOT_CONFIGURED');
+  if (!janeGatewayEnabled(env, compiledCommit) || env.ADVISORY_TEST_PROJECT_REF !== ref || env.ADVISORY_TEST_SCHEMA !== 'advisory') throw Error('JANE_PREVIEW_NOT_CONFIGURED');
   const keys = JSON.parse(env.ADVISORY_DATA_KEYS_JSON ?? '{}');
   if (!keys || typeof keys !== 'object' || Array.isArray(keys) || !env.ADVISORY_ACTIVE_DATA_KEY_ID) throw Error('JANE_KEY_REQUIRED');
   const cipher = createSessionCipher({ activeKeyId: env.ADVISORY_ACTIVE_DATA_KEY_ID, keys: Object.fromEntries(Object.entries(keys).map(([id, value]) => [id, decode(value)])) });
@@ -42,7 +42,7 @@ function buildResources() {
 }
 async function handle(request) {
   // This static route never enters the shared commerce/Naila proxy operation.
-  if (!janePreviewEnabled(process.env, compiledCommit)) return new Response(null, { status: 404, headers: { 'Cache-Control': 'no-store' } });
+  if (!janeGatewayEnabled(process.env, compiledCommit)) return new Response(null, { status: 404, headers: { 'Cache-Control': 'no-store' } });
   try {
     resources ??= buildResources();
     const { rpc, cipher, catalogue, model, env } = resources;

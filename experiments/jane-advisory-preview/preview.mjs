@@ -47,6 +47,9 @@ function render(){
         const img=document.createElement('img');img.src=fabric.imageUrl;img.alt=fabric.design+' · '+fabric.colour;img.loading='lazy';img.width=120;img.height=120;
         const label=document.createElement('span');label.textContent=fabric.design+' · '+fabric.colour;
         const identity=document.createElement('small');identity.textContent=fabric.id;a.append(img,label,identity);cards.append(a);
+        if(fabric.roomPreview===`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`){
+          const room=document.createElement('a');room.href='https://www.curtainsuk.com'+fabric.roomPreview;room.target='_blank';room.rel='noopener noreferrer';room.textContent='View this fabric in Room Visualiser';room.setAttribute('aria-label','View '+fabric.design+' in '+fabric.colour+' in Room Visualiser');cards.append(room);
+        }
       }node.append(cards);
     }log.append(node);
   }

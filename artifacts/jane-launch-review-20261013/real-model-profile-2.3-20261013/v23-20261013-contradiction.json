@@ -1,0 +1,91 @@
+{
+  "id": "contradiction",
+  "reviewCriteria": [
+    "Latest preference replaces earlier assumption",
+    "Clarify incompatible priorities without being dismissive"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I want warm ivory curtains with a minimal look.",
+      "advice": {
+        "text": "For a warm ivory, minimal look, I’d lean towards a plain fabric with a fine, matte texture. That gives the curtains some softness and depth without introducing a noticeable pattern. A gently creamy ivory rather than a yellow cream would keep the effect understated.\n\nA smoother fabric is an alternative if you prefer a crisper, more tailored feel. What colour are your walls? That will help judge how warm the ivory should be.",
+        "stage": "understand",
+        "palette": [
+          "Warm ivory"
+        ],
+        "patternDirection": "Plain, without a noticeable motif",
+        "textureDirection": "Fine, matte texture for subtle depth",
+        "alternatives": [
+          "A smoother plain fabric for a crisper, more tailored feel"
+        ],
+        "questions": [
+          "What colour are your walls?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I have changed my mind: cool blue tones instead.",
+      "advice": {
+        "text": "Let’s move towards cool blue and keep the minimal look. A plain, muted mist blue with a fine matte texture would feel soft and restrained, without the creaminess of ivory.\n\nFor a more defined effect, a deeper slate blue would give the window stronger presence while staying understated. Would you prefer the curtains to feel light and airy, or deeper and more enveloping?",
+        "stage": "refine",
+        "palette": [
+          "Muted mist blue",
+          "Deeper slate blue"
+        ],
+        "patternDirection": "Plain, without a noticeable pattern",
+        "textureDirection": "Fine, matte texture for subtle depth",
+        "alternatives": [
+          "Deeper slate blue for stronger contrast and a more enveloping effect"
+        ],
+        "questions": [
+          "Would you prefer the curtains to feel light and airy, or deeper and more enveloping?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I want both no visible pattern and a bold high-contrast geometric. What should I prioritise?",
+      "advice": {
+        "text": "Those two aims pull in opposite directions: a bold, high-contrast geometric will be clearly visible. Given your earlier minimal brief, I’d prioritise plain cool-blue curtains, using a deeper blue against pale walls if you want impact without pattern.\n\nIf the geometric is what now excites you most, let the curtains become the focal point and keep nearby textiles quiet. Which matters more to you: a calm backdrop or a strong graphic statement?",
+        "stage": "refine",
+        "palette": [
+          "Cool blue"
+        ],
+        "patternDirection": "Prioritise no visible pattern for a minimal backdrop, or choose a bold high-contrast geometric as a deliberate focal point.",
+        "textureDirection": "Fine matte texture for the plain direction.",
+        "alternatives": [
+          "Plain deeper cool blue against pale walls for contrast without pattern.",
+          "Bold high-contrast geometric curtains with quieter surrounding textiles."
+        ],
+        "questions": [
+          "Which matters more to you: a calm backdrop or a strong graphic statement?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

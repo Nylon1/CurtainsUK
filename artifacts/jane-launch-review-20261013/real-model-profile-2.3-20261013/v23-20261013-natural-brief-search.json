@@ -1,0 +1,124 @@
+{
+  "id": "natural-brief-search",
+  "reviewCriteria": [
+    "Translate room context into curtain attributes instead of copying all nouns into a query",
+    "Distinguish natural style advice, actual retrieval and partial coverage"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "Show me fabric types for a warm neutral room with oak floors and olive-green furniture.",
+      "advice": {
+        "text": "With oak floors and olive-green furniture, I’d start with warm neutrals that soften the scheme without turning yellow:\n\n• Oatmeal linen-look: relaxed and softly textured, bridging the oak and olive.\n• Warm stone herringbone: a more tailored option, with subtle pattern rather than a strong motif.\n• Cream textured weave: a lighter contrast that lets the olive furniture stand out.\n\nFor a richer alternative, muted terracotta would bring warmth and more colour contrast. My fabric knowledge search returned no matches, so these are design directions rather than verified products.\n\nWould you prefer an airy feel or something more cocooning?",
+        "stage": "recommend",
+        "palette": [
+          "Oatmeal",
+          "Warm stone",
+          "Cream",
+          "Muted terracotta"
+        ],
+        "patternDirection": "Plain or subtle herringbone, allowing the olive furniture to remain a focal point.",
+        "textureDirection": "Linen-look or softly textured weave; herringbone for a more tailored finish.",
+        "alternatives": [
+          "Muted terracotta for a richer, contrasting direction rather than a neutral scheme."
+        ],
+        "questions": [
+          "Would you prefer an airy feel or something more cocooning?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "search_fabric_knowledge",
+          "input": {
+            "query": "\"linen look\" OR \"woven texture\" OR \"herringbone\"",
+            "colour": "neutral",
+            "pattern": "",
+            "texture": "",
+            "composition": ""
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "The furniture will stay. I want the curtains softer and lighter, but not a stark white.",
+      "advice": {
+        "text": "Then I’d favour a light oatmeal or soft ivory with a muted beige undertone, rather than brilliant white or yellow cream. Against the olive furniture, either could feel gently lighter while relating to the warmth of the oak.\n\nA fine linen-look weave would give the curtains a soft, relaxed appearance without adding busy pattern. If oatmeal feels too brown, pale warm stone is a quieter alternative, though it may look cooler in limited daylight.",
+        "stage": "refine",
+        "palette": [
+          "Light oatmeal",
+          "Soft ivory with a muted beige undertone",
+          "Pale warm stone"
+        ],
+        "patternDirection": "Plain, with no strong motif.",
+        "textureDirection": "Fine linen-look weave with gentle, subtle texture.",
+        "alternatives": [
+          "Pale warm stone for a less brown neutral, with the tradeoff that it may appear cooler in limited daylight."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Can you search for a quiet texture and explain the limits of your results?",
+      "advice": {
+        "text": "I searched for linen-look, fine-weave and subtly textured fabrics in ivory, oatmeal or warm stone, but this search returned no matches. The knowledge index has partial coverage, so that does not mean suitable fabrics do not exist. It also cannot confirm purchase availability, prices or stock.\n\nFor your room, I’d still favour light oatmeal with a fine, low-contrast weave: softer than stark white, with enough texture to sit comfortably beside oak and olive. Soft ivory is a lighter alternative. We could broaden the search by removing the colour restriction, then assess the returned shades separately.",
+        "stage": "investigate",
+        "palette": [
+          "Light oatmeal",
+          "Soft ivory",
+          "Warm stone"
+        ],
+        "patternDirection": "Plain or very low-contrast weave, without a prominent motif.",
+        "textureDirection": "Fine linen-look or subtle woven texture.",
+        "alternatives": [
+          "Soft ivory for a lighter contrast with the olive furniture."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Broaden the knowledge search by removing the colour restriction, then assess any returned shades separately."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "search_fabric_knowledge",
+          "input": {
+            "query": "\"linen look\" OR \"fine weave\" OR \"subtle texture\"",
+            "colour": "ivory OR oatmeal OR warm stone",
+            "pattern": "",
+            "texture": "",
+            "composition": ""
+          },
+          "status": "completed",
+          "evidenceIds": [],
+          "resultIds": [],
+          "resultCount": 0
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

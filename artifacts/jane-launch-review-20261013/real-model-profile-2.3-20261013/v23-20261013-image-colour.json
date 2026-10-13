@@ -1,0 +1,82 @@
+{
+  "id": "image-colour",
+  "reviewCriteria": [
+    "Explain image processing is not connected",
+    "No exact colour guarantee; sample advice uses verified source"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I have uploaded a screenshot. Tell me exactly what colour my walls are.",
+      "advice": {
+        "text": "I can’t view or process your uploaded screenshot here, so I can’t identify your wall colour from it. Even with an image, lighting and screen settings would make an exact paint match uncertain.\n\nIf you describe the colour, I can help you judge its undertone and suggest coordinating fabrics. For the exact paint shade, a tin label or a physical colour-matching check would be more reliable. Do the walls look warm and creamy, cool and grey, or distinctly coloured?",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "Do the walls look warm and creamy, cool and grey, or distinctly coloured?"
+        ],
+        "nextSteps": [
+          "Check the paint tin label or arrange a physical colour-matching check if you need the exact shade."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Can you guarantee the curtains will match exactly in real life?",
+      "advice": {
+        "text": "No, I can’t guarantee an exact match in real life. Wall paint and fabric reflect light differently, and a curtain’s colour can shift with daylight, evening lighting and the folds of the cloth.\n\nThe most reliable check is to compare a physical fabric sample against your wall in both daylight and your usual evening lighting. A deliberately tonal pairing can feel more harmonious than attempting an exact match, especially when the materials have different finishes.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [
+          "Choose a deliberately tonal pairing rather than an exact colour match."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare a physical fabric sample against the wall in daylight and your usual evening lighting before making a final decision."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "What should I look for when comparing samples?",
+      "advice": {
+        "text": "Hold each sample vertically beside the wall, near the window, rather than flat on a table. Compare it in daylight and with your usual evening lights, checking whether it looks noticeably pinker, yellower, greener or greyer than the paint.\n\nAlso notice the weave and sheen: tilt or gently fold the sample to see how shadows change its appearance. Aim for a relationship you enjoy, not necessarily an identical colour. A sample helps judge colour and texture, but won’t fully show the effect of a whole curtain.",
+        "stage": "recommend",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Compare samples vertically beside the wall in daylight and evening lighting.",
+          "Check undertones, weave and sheen before choosing."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "checkedAt": "2026-10-13T08:41:26.488Z",
+  "checks": [
+    {
+      "name": "consultation",
+      "exitCode": 0,
+      "pass": 39,
+      "error": null
+    },
+    {
+      "name": "cloud-1",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-2",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-3",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-4",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "cloud-5",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "auth-api",
+      "exitCode": 0,
+      "pass": 4,
+      "error": null
+    },
+    {
+      "name": "knowledge-search",
+      "exitCode": 0,
+      "pass": 4,
+      "error": null
+    },
+    {
+      "name": "index-worker",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "foundations",
+      "exitCode": 0,
+      "pass": 3,
+      "error": null
+    },
+    {
+      "name": "storage-rls",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "multi-instance",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "population-readiness",
+      "exitCode": 0,
+      "pass": 4,
+      "error": null
+    },
+    {
+      "name": "migration-candidate",
+      "exitCode": 0,
+      "pass": 1,
+      "error": null
+    },
+    {
+      "name": "hosted-runtime",
+      "exitCode": 0,
+      "pass": 7,
+      "error": null
+    },
+    {
+      "name": "first-batch-plan",
+      "exitCode": 0,
+      "pass": 4,
+      "error": null
+    },
+    {
+      "name": "continuation-plan",
+      "exitCode": 0,
+      "pass": 5,
+      "error": null
+    },
+    {
+      "name": "continuation-runner",
+      "exitCode": 0,
+      "pass": 4,
+      "error": null
+    },
+    {
+      "name": "knowledge-integration",
+      "exitCode": 0,
+      "pass": 4,
+      "error": null
+    },
+    {
+      "name": "eligible-manifest",
+      "exitCode": 0,
+      "pass": 5,
+      "error": null
+    },
+    {
+      "name": "eligible-execution",
+      "exitCode": 0,
+      "pass": 15,
+      "error": null
+    },
+    {
+      "name": "host-metrics",
+      "exitCode": 0,
+      "pass": 11,
+      "error": null
+    },
+    {
+      "name": "phase1",
+      "exitCode": 0,
+      "pass": 20,
+      "error": null
+    },
+    {
+      "name": "theme",
+      "exitCode": 0,
+      "pass": 18,
+      "error": null
+    }
+  ],
+  "totalPassed": 156,
+  "allPassed": true
+}

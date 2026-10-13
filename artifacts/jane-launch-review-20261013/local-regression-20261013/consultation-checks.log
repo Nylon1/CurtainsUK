@@ -1,0 +1,47 @@
+✔ human-review gate never turns missing scores or critical failures into approval (2.2349ms)
+✔ population controller bounds each invocation, requires fresh approval and stops on a failed step (5.841ms)
+✔ revised evaluation executes consented context and saved-return actions without paid calls (45.1301ms)
+✔ new evaluation requires fresh approval for this profile and suite before credentials or network (0.6872ms)
+✔ Jane can guide a ready customer to the real curtain journey without granting purchase authority (0.3845ms)
+✔ heading guidance distinguishes appearance from the automated purchase allowlist (0.4864ms)
+✔ Fabric Intelligence guidance reflects the actual guided edit and consent boundaries (0.316ms)
+✔ Browse Fabrics guidance exposes governed filters without claiming stock or a final price (0.3945ms)
+✔ tiebacks and cushions are honest offline styling advice, never a fabricated online offer (0.3906ms)
+✔ hosted composition accepts only approved existing-project synthetic trials (4.6808ms)
+✔ cloud ciphertext binds owner, identity, revision and expiry; rotation reads old records, no plaintext fallback (4.5132ms)
+✔ cloud read fails closed before RPC without encryption configuration (0.452ms)
+✔ consented handoff is bound to customer, consultation and expiry; rejects invented visualiser controls (2.6149ms)
+✔ customer wording removes internal feedback codes without changing provenance (0.3706ms)
+✔ safe extended fabric facts and bounded keyset pages omit commercial fields (40.4195ms)
+✔ adaptive mock: warm room, visualiser return, changed preference, personalised summary (16.0583ms)
+✔ mock teaches existing FI, declines unavailable guarantees and unsupported screenshot processing (5.2778ms)
+✔ session ownership, consent, invalid IDs and input injection fail before mutation (2.8626ms)
+✔ duplicate requests are idempotent; conflicting revision or reused key is rejected (1.8275ms)
+✔ concurrent replies cannot fork the same consultation (1.5638ms)
+✔ provider, knowledge and durable storage failures leave valid prior work intact (3.4311ms)
+✔ saved consent, encrypted restart, one-time recovery transfer and deletion (40.7456ms)
+✔ expiry prevents access and removes the expired record (1.2164ms)
+✔ welcome deadline catches up after suspension; six profiles retain separate identities (0.4936ms)
+✔ forged model evidence and commercial promises fail closed (3.2624ms)
+✔ source-traceable guides exist and correctly separate headings from visualiser (11.5144ms)
+✔ catalogue allowlist drops supplier secrets and unverified visual fields (3.0614ms)
+✔ master reads are bounded, indexed identity queries with no lifecycle filter; cached, validated and isolated (49.0992ms)
+✔ retail recommendations require governed eligibility, exact URL and approved real image (1.8034ms)
+✔ tools reject arbitrary SQL, excess calls and upstream payloads beyond limits (0.7284ms)
+✔ HTTP enforces origin, CSRF, body limits and rate limits without logging private content (11.4522ms)
+✔ production route is disabled even if flags and preview key accidentally exist (0.6321ms)
+✔ OpenAI activation requires explicit paid-test flag and budget controller (0.3652ms)
+✔ test budget reserves atomically, retains ambiguous charges and blocks session/day overspend (1.0617ms)
+✔ Responses adapter preserves context, strict tools and store:false, retries with reserved cost and resumes function results (3.1455ms)
+✔ OpenAI upstream secrets do not leak through HTTP failures (0.7878ms)
+✔ 30-turn evaluation preserves mock baseline and requires separate human judgement (33.783ms)
+✔ Responses can continue design advice after unavailable retrieval; standard pricing tier remains explicit (87.778ms)
+✔ saved tool receipts preserve completed and unavailable searches in subsequent model turns (4.6613ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 521.977

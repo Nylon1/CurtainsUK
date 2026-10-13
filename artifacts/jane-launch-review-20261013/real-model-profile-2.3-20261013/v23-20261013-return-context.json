@@ -1,0 +1,93 @@
+{
+  "id": "return-context",
+  "reviewCriteria": [
+    "Retain calm objective while revising plainness",
+    "Distinguish authorised result context from authoritative product facts"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My lounge has oak flooring; I want it calm.",
+      "advice": {
+        "text": "For a calm lounge with oak flooring, I’d start with warm stone or soft oatmeal curtains in a plain, gently textured fabric. These can sit comfortably with the oak’s warmth without adding much visual contrast.\n\nIf you’d prefer a little colour, muted sage could offer a quieter contrast to the wood. I’d keep the pattern restrained so the floor’s grain has room to breathe.\n\nWhat colour are your walls and sofa?",
+        "stage": "understand",
+        "palette": [
+          "Warm stone",
+          "Soft oatmeal",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain or restrained pattern, allowing the oak grain to remain part of the room’s character.",
+        "textureDirection": "Gentle, understated texture.",
+        "alternatives": [
+          "Muted sage for a soft colour contrast to the oak rather than a tonal neutral scheme."
+        ],
+        "questions": [
+          "What colour are your walls and sofa?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "After trying ivory in the visualiser it feels too plain. Could we revisit that?",
+      "advice": {
+        "text": "Yes, let’s move away from ivory. It sounds as though you want calm with a little more character, rather than an almost blank backdrop.\n\nMuted sage with a soft woven texture could give the curtains more presence while gently contrasting with the oak. Alternatively, a warm stone fabric with a subtle, low-contrast leaf pattern could add interest without making the room feel busy.\n\nWould you rather bring in more colour, or keep the colour neutral and add pattern?",
+        "stage": "refine",
+        "palette": [
+          "Muted sage",
+          "Warm stone"
+        ],
+        "patternDirection": "A subtle, low-contrast leaf pattern as an alternative to plain colour.",
+        "textureDirection": "Soft woven texture to add depth without strong contrast.",
+        "alternatives": [
+          "Muted sage with gentle texture for more colour.",
+          "Warm stone with a restrained leaf pattern for neutral interest."
+        ],
+        "questions": [
+          "Would you rather bring in more colour, or keep the colour neutral and add pattern?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Keep the calm feeling, but add a little depth.",
+      "advice": {
+        "text": "Then I’d move towards a mid-tone warm stone or soft mushroom, with a gently varied weave rather than a flat plain. A little more tonal depth would give the curtains presence beside the oak, while the quiet texture keeps the feeling calm.\n\nMuted sage is a more colourful alternative, offering a gentle contrast to the wood. I’d keep either direction matt and avoid strong pattern for now, so the added depth doesn’t become busyness.",
+        "stage": "refine",
+        "palette": [
+          "Warm stone",
+          "Soft mushroom",
+          "Muted sage"
+        ],
+        "patternDirection": "Plain or subtle tonal variation, avoiding strong contrast.",
+        "textureDirection": "Gently varied weave with a matt finish.",
+        "alternatives": [
+          "Muted sage for a little more colour and gentle contrast with the oak."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

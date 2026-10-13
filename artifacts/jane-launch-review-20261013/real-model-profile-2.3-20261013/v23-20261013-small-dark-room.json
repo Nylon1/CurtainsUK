@@ -1,0 +1,84 @@
+{
+  "id": "small-dark-room",
+  "reviewCriteria": [
+    "Do not assume every customer wants a brighter room",
+    "Separate lightness, contrast, visual weight and privacy requirements"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "Our sitting room is small and quite dark. Must I have white curtains?",
+      "advice": {
+        "text": "No, you needn’t have white curtains. In a small, dark sitting room, warm oatmeal or soft stone can keep contrast gentle without looking stark. A subtle woven texture adds interest without a busy pattern.\n\nAlternatively, a deeper, muted colour close to your walls can create a cosy, enveloping feel rather than trying to make the room look brighter. Curtains won’t create daylight, so the choice is really about the atmosphere you want.\n\nWhat colour are your walls?",
+        "stage": "understand",
+        "palette": [
+          "Warm oatmeal",
+          "Soft stone"
+        ],
+        "patternDirection": "Plain or quietly patterned, depending on the room’s existing details.",
+        "textureDirection": "Subtle woven texture for interest without visual busyness.",
+        "alternatives": [
+          "A deeper, muted colour close to the walls for a cosy, enveloping atmosphere."
+        ],
+        "questions": [
+          "What colour are your walls?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I actually enjoy a cosy, enveloping room and dislike stark white.",
+      "advice": {
+        "text": "Then I’d lean into that cosiness rather than try to brighten the room with white. Curtains close to the wall colour, perhaps a shade deeper, can soften the window’s outline and make the room feel more enveloping. A matt fabric with a gentle woven texture would add depth without fuss.\n\nFor a different effect, a muted contrasting colour could make the window a richer focal point, though the contrast would be more noticeable. What colour are your walls?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Plain or understated pattern for a quiet, enveloping effect.",
+        "textureDirection": "Matt fabric with a gentle woven texture.",
+        "alternatives": [
+          "A muted contrasting curtain colour for a richer, more distinct window focal point."
+        ],
+        "questions": [
+          "What colour are your walls?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Could we keep that mood but avoid everything feeling heavy?",
+      "advice": {
+        "text": "Yes. Cosiness needn’t mean thick, dark fabric everywhere. I’d keep the curtains tonally close to the walls, but choose a softly textured, matt weave rather than a dense velvet. That would preserve the enveloping mood with less visual weight.\n\nAlternatively, a muted mid-tone slightly lighter than the walls would give the window a gentle lift without the starkness of white. Keep pattern understated and let a little contrast elsewhere in the room stop the scheme feeling flat.",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "Understated pattern or plain fabric to keep the scheme calm.",
+        "textureDirection": "Softly textured matt weave rather than dense velvet, for cosiness with less visual weight.",
+        "alternatives": [
+          "A muted mid-tone slightly lighter than the walls, offering gentle contrast without stark white."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

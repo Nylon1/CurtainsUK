@@ -1,0 +1,95 @@
+{
+  "id": "warm-contemporary",
+  "reviewCriteria": [
+    "Connect undertones to oak and north light without assuming light guarantees",
+    "Offer a meaningful alternative; no forced SKU"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "I want warm contemporary curtains. The room has oak flooring and cream walls.",
+      "advice": {
+        "text": "For warm contemporary curtains alongside oak flooring and cream walls, I’d start with oatmeal or warm stone in a softly textured plain. That would link the existing tones without feeling too matched, while a subtle weave adds depth and keeps the look relaxed rather than stark.\n\nFor a more defined contrast, muted terracotta could bring warmth and give the window more presence without relying on pattern.\n\nWhat colour is your main sofa or largest piece of furniture?",
+        "stage": "understand",
+        "palette": [
+          "Oatmeal",
+          "Warm stone",
+          "Muted terracotta"
+        ],
+        "patternDirection": "Plain, with interest coming from the weave rather than a bold motif.",
+        "textureDirection": "Soft, subtly textured weave for a relaxed contemporary feel.",
+        "alternatives": [
+          "Muted terracotta for a warmer, more defined contrast against the cream walls."
+        ],
+        "questions": [
+          "What colour is your main sofa or largest piece of furniture?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "The room faces north. I want a warm feel without yellow or gold.",
+      "advice": {
+        "text": "That helps narrow it: I’d move away from yellow-based oatmeal towards a mushroom or soft taupe with a gentle pink-brown undertone. Against cream walls and oak, that could feel warm and contemporary without turning golden. A softly textured, matt plain would add depth in the cooler north-facing light.\n\nFor a more expressive alternative, consider muted clay or dusty terracotta. It would bring more contrast and warmth, though it would make the curtains a stronger feature rather than a quiet backdrop.",
+        "stage": "refine",
+        "palette": [
+          "Pink-brown mushroom",
+          "Soft warm taupe",
+          "Muted clay"
+        ],
+        "patternDirection": "Plain for a quiet contemporary backdrop.",
+        "textureDirection": "Softly textured, matt weave.",
+        "alternatives": [
+          "Dusty terracotta for greater warmth and contrast, with a more prominent window treatment."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "Summarise two different directions and why each might work.",
+      "advice": {
+        "text": "1. Quiet and tonal: soft mushroom or pink-brown taupe in a matt, subtly textured plain. This would connect the cream walls and oak flooring while bringing gentle warmth to the north-facing room, without yellow or gold. Choose a shade with enough depth to avoid looking flat against the walls.\n\n2. Warm and contrasting: muted clay or dusty terracotta in a restrained plain weave. The earthy red undertone could counterbalance the cooler light and sit comfortably with oak. It would give the window more presence, but feel less neutral than the first direction.\n\nBoth keep the contemporary look through texture rather than busy pattern. Check the undertones beside your walls in daylight and evening lighting before committing.",
+        "stage": "conclude",
+        "palette": [
+          "Soft mushroom",
+          "Pink-brown taupe",
+          "Muted clay",
+          "Dusty terracotta"
+        ],
+        "patternDirection": "Plain rather than busy pattern for a restrained contemporary look.",
+        "textureDirection": "Matt, subtle woven texture to add depth without sheen.",
+        "alternatives": [
+          "Quiet tonal mushroom or taupe: gentle warmth and a softer backdrop.",
+          "Contrasting muted clay or terracotta: earthier warmth and a more prominent window."
+        ],
+        "questions": [],
+        "nextSteps": [
+          "Compare undertones beside the cream walls and oak flooring in daylight and evening lighting."
+        ],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

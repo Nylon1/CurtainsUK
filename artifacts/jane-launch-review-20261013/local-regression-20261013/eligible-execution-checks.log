@@ -1,0 +1,23 @@
+✔ 120-second exception is bound to the approved eligible snapshot and keeps 60-second freshness (152.536ms)
+✔ eligible admission blocks stale backup, missing operator, hourly telemetry, source drift and changed no-op data (17.9923ms)
+✔ until-complete resumes the exact existing job and retains 60-second SQL evidence expiry and safety gates (84.7238ms)
+✔ actual SQL creates separate job, verifies five no-ops, enforces canary and preserves historical rows and role grants (4226.8119ms)
+✔ historical drift, collision and active lease roll back eligible SQL without granting lasting access (2909.6923ms)
+✔ combined transport executes real eligible transaction and observes restored grants after COMMIT (2894.0235ms)
+✔ complete source, submission and readback duration still stops at ten seconds after verified commit (17.1775ms)
+✔ read-only pacing precedes fresh checkpoint and source evidence, and a pacing failure submits nothing (24.2811ms)
+✔ approved full-batch duration accepts over ten seconds and stops at twenty with exact readback (134.4662ms)
+✔ host freshness extension does not extend source, publication, checkpoint or backup admission age (62.1893ms)
+✔ one approval completes synthetic 11517 manifest in bounded invocations and reports every 1000 (41085.5271ms)
+✔ lost commit recovers exact readback without duplicate submission; uncommitted ambiguity stays stopped (48.8994ms)
+✔ unhealthy canary, missing backup, load and permission failures stop automatically without retries (78.0487ms)
+✔ second operator is excluded and altered implementation or journal cannot submit a batch (58.2697ms)
+✔ an expired delayed SQL plan cannot commit or retain grants; a freshly admitted plan still works (2882.0721ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55137.8443

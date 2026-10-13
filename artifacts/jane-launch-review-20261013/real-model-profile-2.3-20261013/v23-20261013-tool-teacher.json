@@ -1,0 +1,146 @@
+{
+  "id": "tool-teacher",
+  "reviewCriteria": [
+    "Use verified tool guidance",
+    "No invented visualiser heading selector or fixed questionnaire"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "How does Fabric Intelligence help me choose curtains?",
+      "advice": {
+        "text": "Fabric Intelligence helps turn your room ideas into a manageable curtain shortlist. Start with ‘Help me choose’ and tell it what matters most, such as privacy, light or atmosphere. It explores your preferences, then offers five design directions with fabric cards and explains the choices.\n\nYou can respond separately to the overall direction and each fabric, so liking a colour scheme needn’t mean liking its pattern. It then refines your shortlist once. I can help interpret the suggestions, but I can’t automatically see your session.",
+        "stage": "understand",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [
+          "Start with ‘Help me choose’ and answer for the result you want, rather than matching every existing furnishing."
+        ],
+        "evidenceIds": [
+          "guide:fi:v2"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v2",
+          "source": "lib/storefront/hci/consultation.js, lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-13"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v2"
+          ],
+          "resultIds": [
+            "guide:fi:v2"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "I dislike the recommendations. What should I change?",
+      "advice": {
+        "text": "Change the part that feels wrong, rather than abandoning everything. If the suggestions are too busy, reconsider your pattern preference. If the colours miss the mark, revisit your brief or, if you used an image, correct its detected palette to reflect the curtain colours you actually want.\n\nIf you like the overall style but dislike a particular fabric, keep that direction and give negative feedback on the fabric separately before refining the shortlist. I can’t see your session automatically: is it mainly the colours, patterns or overall atmosphere that you dislike?",
+        "stage": "refine",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [
+          "Is it mainly the colours, patterns or overall atmosphere that you dislike?"
+        ],
+        "nextSteps": [
+          "Adjust the relevant preference or palette, then respond separately to the design directions and individual fabrics before refining."
+        ],
+        "evidenceIds": [
+          "guide:fi:v2"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:fi:v2",
+          "source": "lib/storefront/hci/consultation.js, lib/storefront/hci-premium-contract.ts, lib/storefront/hci-premium-integration.ts, lib/storefront/hci-premium-journey.ts",
+          "version": "2026-10-13"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "fabric-intelligence"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:fi:v2"
+          ],
+          "resultIds": [
+            "guide:fi:v2"
+          ],
+          "resultCount": 1
+        }
+      ]
+    },
+    {
+      "action": "message",
+      "customer": "Where do I change the heading in Room Visualiser 2?",
+      "advice": {
+        "text": "There isn’t a heading selector in the current Room Visualiser, so you’re not overlooking a control. The heading shown is part of the representative preview, rather than a choice you can change there.\n\nUse it to compare fabrics in consistent room and lighting settings, but don’t treat the curtain folds as a guarantee of the finished result. Your chosen heading, fullness and lining can change how the fabric hangs.",
+        "stage": "investigate",
+        "palette": [],
+        "patternDirection": "",
+        "textureDirection": "",
+        "alternatives": [],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [
+          "guide:visualiser:v1"
+        ],
+        "fabricIds": []
+      },
+      "citations": [
+        {
+          "id": "guide:visualiser:v1",
+          "source": "lib/room-visualiser/runtime/rooms/customer.html, lib/room-visualiser/runtime/rooms/viewer.mjs, lib/room-visualiser/runtime/rooms/environment/index.mjs, lib/room-visualiser/runtime/rooms/palette-state.mjs",
+          "version": "d5908d6eaf486ce33e2f72a5"
+        }
+      ],
+      "fabrics": [],
+      "retrievals": [
+        {
+          "tool": "get_tool_guidance",
+          "input": {
+            "tool": "room-visualiser"
+          },
+          "status": "completed",
+          "evidenceIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultIds": [
+            "guide:visualiser:v1"
+          ],
+          "resultCount": 1
+        }
+      ]
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

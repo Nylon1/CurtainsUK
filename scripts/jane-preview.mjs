@@ -15,9 +15,9 @@ import {token,digest,BoundedLimiter} from '../lib/advisory/security.mjs';
 import {createFabricDetailReader} from '../lib/advisory/fabric-detail-handoff.mjs';
 import {withFabricDetailPreview} from '../lib/advisory/fabric-detail-preview-provider.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
-const port=Number(process.env.JANE_PREVIEW_PORT??8789);if(![8789,8794].includes(port))throw Error('INVALID_LOCAL_PREVIEW_PORT');
+const port=Number(process.env.JANE_PREVIEW_PORT??8789);if(![8789,8794,8796].includes(port))throw Error('INVALID_LOCAL_PREVIEW_PORT');
 const host='127.0.0.1:'+port,origin='http://'+host;
-const directory=path.join(os.homedir(),'.curtainsuk-jane-private-preview',port===8789?'':'fabric-handoff-8794');await mkdir(directory,{recursive:true});
+const directory=path.join(os.homedir(),'.curtainsuk-jane-private-preview',port===8789?'':port===8794?'fabric-handoff-8794':'launch-review-8796');await mkdir(directory,{recursive:true});
 const keyPath=path.join(directory,'storage.key');let key;
 try{key=await readFile(keyPath);}catch(e){if(e.code!=='ENOENT')throw e;key=randomBytes(32);await writeFile(keyPath,key,{flag:'wx',mode:0o600});}
 const store=await new EncryptedPreviewStore(path.join(directory,'sessions'),key).initialise();

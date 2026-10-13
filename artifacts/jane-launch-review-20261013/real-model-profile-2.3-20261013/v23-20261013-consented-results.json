@@ -1,0 +1,96 @@
+{
+  "id": "consented-results",
+  "reviewCriteria": [
+    "Use actual consented context and distinguish supplied settings from retrieved evidence",
+    "Retain fixed furnishings, reject previous green preference and vary scale/contrast without pretending to see an image"
+  ],
+  "transcript": [
+    {
+      "action": "message",
+      "customer": "My olive sofa and oak floor are staying. I want a quiet, warm room, but no green curtains.",
+      "advice": {
+        "text": "With the olive sofa and oak floor staying, I’d lean towards warm oatmeal curtains with a soft, matte weave. That would connect with the oak’s warmth without repeating the green, while keeping the room quiet rather than adding another strong colour.\n\nFor a more enveloping alternative, muted clay could bring gentle contrast to the olive, though it would make the curtains more noticeable. I’d keep either direction plain with subtle texture rather than a distinct pattern.\n\nWhat colour are your walls?",
+        "stage": "understand",
+        "palette": [
+          "Warm oatmeal",
+          "Muted clay"
+        ],
+        "patternDirection": "Plain rather than a distinct pattern, to support a quiet atmosphere.",
+        "textureDirection": "Soft, matte weave with subtle texture.",
+        "alternatives": [
+          "Muted clay for warmer contrast with the olive sofa, with more visual presence than oatmeal."
+        ],
+        "questions": [
+          "What colour are your walls?"
+        ],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "context",
+      "status": "completed",
+      "revision": 2,
+      "contexts": 1,
+      "messages": 2
+    },
+    {
+      "action": "message",
+      "customer": "What would you change about that direction while keeping the room calm?",
+      "advice": {
+        "text": "Given your note that the ivory plain feels flat, I’d change the surface rather than add a stronger colour. Warm oatmeal with a softly flecked weave or a subtle, irregular stripe could give the curtains depth while keeping the contrast low against your olive sofa and oak floor.\n\nIf you’d prefer something less linear, a softly mottled weave would add interest without a recognisable pattern. I’d avoid crisp ivory-and-dark contrasts here: they would draw more attention than your quiet, warm brief calls for.",
+        "stage": "refine",
+        "palette": [
+          "warm oatmeal"
+        ],
+        "patternDirection": "Low-contrast, subtle irregular stripe, or no distinct pattern.",
+        "textureDirection": "Softly flecked or mottled matte weave to add depth without strong contrast.",
+        "alternatives": [
+          "A softly mottled weave rather than a stripe, for interest without a recognisable pattern."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    },
+    {
+      "action": "message",
+      "customer": "I now prefer a restrained pattern. Please suggest two approaches without repeating green.",
+      "advice": {
+        "text": "I’d move away from the flat plain effect in one of two ways:\n\n1. A softly broken stripe in oatmeal and warm ivory. Low contrast would keep it quiet, while the linear rhythm adds definition alongside the olive sofa and oak floor. It would feel slightly more tailored.\n\n2. A sparse, soft-edged botanical in muted clay on a warm neutral ground, with no green. Plenty of space between motifs would keep it restrained, while the clay brings gentle contrast to the olive. This would feel more relaxed, but slightly more noticeable.",
+        "stage": "recommend",
+        "palette": [
+          "warm oatmeal",
+          "warm ivory",
+          "muted clay"
+        ],
+        "patternDirection": "Either a low-contrast broken stripe or a sparse, soft-edged botanical with generous space between motifs; no green.",
+        "textureDirection": "Soft, matte texture to support a quiet, warm atmosphere.",
+        "alternatives": [
+          "Oatmeal and warm ivory broken stripe for subtle definition and a tailored feel.",
+          "Muted clay botanical on a warm neutral ground for gentle contrast and a more relaxed feel."
+        ],
+        "questions": [],
+        "nextSteps": [],
+        "evidenceIds": [],
+        "fabricIds": []
+      },
+      "citations": [],
+      "fabrics": [],
+      "retrievals": []
+    }
+  ],
+  "humanReview": {
+    "status": "pending",
+    "scores": null,
+    "notes": null
+  }
+}

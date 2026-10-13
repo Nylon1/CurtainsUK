@@ -1,6 +1,7 @@
 {% doc %}
   A progressively enhanced editorial spotlight for the section's adviser profiles.
   @param {object} section - Specialist team section and its configurable adviser blocks
+  @param {boolean} [jane_chat_live] - Jane alone has an active consultation.
 {% enddoc %}
 {{ 'curtainsuk-advisory-motion.css' | asset_url | stylesheet_tag }}
 {% liquid
@@ -54,13 +55,13 @@
       <div class="cukad-spotlight__panel cukad-spotlight__panel--{{ adviser }}" data-spotlight-panel data-adviser="{{ block.id }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" id="adviser-spotlight-{{ section.id }}-{{ block.id }}" role="group" aria-labelledby="adviser-spotlight-name-{{ section.id }}-{{ block.id }}"{% unless forloop.index == default_adviser_index %} hidden{% endunless %}>
         <div class="cukad-spotlight__stage">
           <div class="cukad-spotlight__portrait">{% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}</div>
-          <span class="cukad-spotlight__ai">{{ 'advisory_team.common.ai_adviser' | t }}</span>
+          <span class="cukad-spotlight__ai">{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.ai_adviser' | t }}{% else %}{{ 'advisory_team.common.ai_adviser' | t }}{% endif %}</span>
           <div class="cukad-spotlight__identity"><div><h2 id="adviser-spotlight-name-{{ section.id }}-{{ block.id }}">{{ name | escape_once }}</h2><p>{{ title | escape_once }}</p></div><a class="cukad-spotlight__explore-icon" href="#adviser-{{ section.id }}-{{ block.id }}" aria-label="{{ 'advisory_team.spotlight.explore' | t: name: name | escape_once }}"><span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="cukad-spotlight__details">
           <p class="cukad-spotlight__personality">{{ approach | escape_once }}</p>
           <blockquote class="cukad-spotlight__question"><span>{{ 'advisory_team.common.try_asking' | t }}</span><p>“{{ question | escape_once }}”</p></blockquote>
-          <div class="cukad-spotlight__actions"><a href="#adviser-{{ section.id }}-{{ block.id }}">{{ 'advisory_team.spotlight.explore' | t: name: name }} <span aria-hidden="true">↘</span></a><button type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}" hidden>{{ 'advisory_team.common.preview' | t }} <span aria-hidden="true">↗</span></button></div>
+          <div class="cukad-spotlight__actions"><a href="#adviser-{{ section.id }}-{{ block.id }}">{{ 'advisory_team.spotlight.explore' | t: name: name }} <span aria-hidden="true">↘</span></a><button type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.enter_for' | t: name: name | escape_once }}{% else %}{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}{% endif %}" hidden>{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.enter' | t }}{% else %}{{ 'advisory_team.common.preview' | t }}{% endif %} <span aria-hidden="true">↗</span></button></div>
         </div>
       </div>
     {% endfor %}

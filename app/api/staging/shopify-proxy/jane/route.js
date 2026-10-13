@@ -1,4 +1,4 @@
-import { createShopifyJaneGateway, janeGatewayEnabled, janePublicEnabled } from '@/lib/advisory/shopify-gateway';
+import { createShopifyJaneGateway, janeGatewayEnabled, janePublicEnabled, janePublicDailyRunId } from '@/lib/advisory/shopify-gateway';
 import { createPgTransaction } from '@/lib/advisory/pg-transaction.mjs';
 import { createPrivateAdvisoryRpc, createPrivateAdvisoryKnowledgeSearch } from '@/lib/advisory/private-rpc.mjs';
 import { createSessionCipher } from '@/lib/advisory/session-cipher.mjs';
@@ -35,8 +35,11 @@ function buildResources() {
   // projection. The guarded Shopify route needs no broad catalogue key.
   const catalogue = createCatalogue({ searchIndex, publicDetailRead: true });
   const model = env.ADVISORY_SHOPIFY_PROVIDER === 'openai';
-  if (model && (!env.ADVISORY_SHOPIFY_PAID_APPROVAL_REFERENCE || !env.ADVISORY_OPENAI_API_KEY?.startsWith('sk-')
-    || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID ?? ''))) throw Error('JANE_MODEL_NOT_APPROVED');
+  const publicMode = janePublicEnabled(env, compiledCommit);
+  if (model && (!env.ADVISORY_OPENAI_API_KEY?.startsWith('sk-')
+    || (publicMode ? !janePublicDailyRunId(env)
+      : !env.ADVISORY_SHOPIFY_PAID_APPROVAL_REFERENCE
+        || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID ?? '')))) throw Error('JANE_MODEL_NOT_APPROVED');
   if (!model && env.ADVISORY_SHOPIFY_PROVIDER !== 'mock') throw Error('JANE_PROVIDER_REQUIRED');
   return { rpc, cipher, catalogue, model, env };
 }
@@ -53,7 +56,12 @@ async function handle(request) {
       execute: async (owner, command) => {
         const store = new CloudSessionStore({ rpc, cipher, ownerId: owner });
         const provider = model
-          ? { kind: 'openai', respond: async args => createOpenAIProvider({ apiKey: env.ADVISORY_OPENAI_API_KEY, allowPaidTest: true, budget: store.budget(env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID, args.session.id) }).respond(args) }
+          ? { kind: 'openai', respond: async args => {
+            const runId = janePublicEnabled(env, compiledCommit)
+              ? janePublicDailyRunId(env) : env.ADVISORY_SHOPIFY_EVALUATION_RUN_ID;
+            if (!runId) throw Error('JANE_PUBLIC_BUDGET_UNAVAILABLE');
+            return createOpenAIProvider({ apiKey: env.ADVISORY_OPENAI_API_KEY, allowPaidTest: true, budget: store.budget(runId, args.session.id) }).respond(args);
+          } }
           : createMockProvider();
         return createConsultationService({ store, provider, catalogue, publicMode: janePublicEnabled(env, compiledCommit) }).execute(owner, command);
       },

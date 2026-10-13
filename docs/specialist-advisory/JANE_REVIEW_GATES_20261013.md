@@ -1,21 +1,25 @@
 # Jane: post-population review gates, 13 October 2026
 
-Status: **population verified; catch-up blocked; private mock journey tested; revised real-model and human design review pending.** PR #169 remains draft. No merge, deployment, migration, automatic update activation or paid model call is part of this increment.
+Status: **population verified; fixed-snapshot retrieval review can proceed; private mock journey tested; revised real-model and human design review pending.** PR #169 remains draft. No merge, deployment, migration, automatic update activation or paid model call is part of this increment.
 
 Starting draft commit: `af85f498b1c35a821a5aec4645020b0e3049edca`. Protected production remains `6f45e63e30ef85e1fa62a804354cd27d0aa23e87`, containing the separately published PR #183 room link. This increment does not modify any Shopify asset or protected customer runtime.
+
+Owner decision, 13 October: no fabric changes were made during this initial population, according to the owner. The 11,517-ID verified population is the fixed snapshot for this first recommendation review. Complete change-window reconciliation and automatic updates are deferred; neither is a prerequisite for the six read-only searches or initial model/human review. This does not independently certify current-source freshness. New or changed fabrics after this snapshot require a separately reviewed refresh before Jane can represent them as current. Public Jane remains inactive.
+
+The gate table below records the original run and its original **NOT RUN** results; the decision above supersedes its catch-up dependency. The machine-readable artifact also remains a historical record of that run.
 
 ## Gate evidence
 
 | Gate | Result and evidence |
 | --- | --- |
 | Initial eligible population | **PASS:** fresh bounded hosted readback at 01:10:10 UTC reconciled 11,517/11,517 exact identities, 1,920 receipts, zero duplicates/unresolved writes and restored permissions against the completed journal. Five eligible historical no-ops and the one historical identity outside this manifest are preserved. This does not claim coverage of all 16,883 Fabric Master identities. |
-| Source-change catch-up | **BLOCKED:** no complete sealed publication-window evidence spanning 11 October 18:54:39.275 UTC through population completion and a fresh high-water mark across identity, design, collection, brand, description, visual, eligibility and deletion. Existing exact-event adapters are not complete change discovery. |
-| Six prepared read-only searches | **NOT RUN:** passing population plus missing catch-up evidence correctly raised `UPDATE_CATCHUP_INCOMPLETE` before the catalogue adapter was called. Observed search calls: zero. |
-| Revised 20-scenario consultation suite | **NOT RUN:** catch-up, fresh paid-evaluation approval and secure replacement key are required. No earlier approval or exposed key is reused. |
+| Source-change catch-up | **DEFERRED for future automatic updates:** complete sealed change-window evidence has not been produced. It is not required for this fixed-snapshot review. |
+| Six prepared read-only searches | **READY TO RUN, NOT YET RUN:** the original gate blocked all calls; the revised gate uses fresh complete population evidence without change-window reconciliation. Recorded hosted search calls remain zero. |
+| Revised 20-scenario consultation suite | **NOT RUN:** fresh paid-evaluation approval and secure replacement key are still required, followed by human scoring. No earlier approval or exposed key is reused. |
 | Human room-suitability review | **PENDING:** 20 scenario briefs and 40 blank scorecards are prepared for two named people. No human scores or approval are fabricated. Reviewer nomination is awaiting the owner. |
 | Private exact-fabric journey | **PASS within the scripted local preview:** exact `pt-3697-770` / SHAMBALA LAGOON shown, explicit consent required, keyboard sharing succeeds, reload/resume retains fabric and one reply. The Room Visualiser opens the same supported ID and visibly selects SHAMBALA / LAGOON. |
 | Responsive / keyboard / accessibility | Actual Chrome widths 320, 390, 412, 768 and 1440 passed without horizontal overflow on both fabric detail and shared consultation. Keyboard entry/consent, labelled dialog, Escape focus restoration and polite conversation-log semantics passed. Spoken screen-reader, physical iPhone, touch-device and actual background-tab checks remain pending. Reduced motion was not retested in this increment; the separate 12 October emulated result is retained. |
-| Automatic updates / public launch | **OFF.** Update migration, missing source coverage/bindings, bounded catch-up, quality and release reviews remain outstanding. The completed one-time population follow-up remains paused. |
+| Automatic updates / public launch | **OFF.** Update migration and source coverage are deferred. Quality, privacy, device/accessibility and release reviews remain outstanding for public Jane. The completed one-time population follow-up remains paused. |
 
 [Machine-readable gates](../../artifacts/jane-review-gates-20261013/review-gates.json), [browser evidence](../../artifacts/jane-review-gates-20261013/browser-evidence.json), [gallery and review pack](../../artifacts/jane-review-gates-20261013/README.md).
 
@@ -53,9 +57,9 @@ Actual Chrome measured all requested viewport widths. The in-app browser silentl
 
 ## Tests and next dependencies
 
-**19 focused local tests passed, zero failed**, covering handoff identity/consent/ownership/idempotency/recovery, the exact private room destination, incomplete population/catch-up refusal, paced retrieval contracts, final population verification and existing deterministic consultation checks. The 20 current real-model scenarios were not executed. No full build or dependency installation was required.
+The original increment had **19 focused local tests passed, zero failed**, covering handoff identity/consent/ownership/idempotency/recovery, the exact private room destination, incomplete population refusal, paced retrieval contracts, final population verification and existing deterministic consultation checks. The updated post-population review now has **four focused local tests passed**, including fixed-snapshot retrieval without catch-up. The 20 current real-model scenarios were not executed. No full build or dependency installation was required.
 
-Next complete and review the source coverage and production ports listed in [JANE_AUTOMATIC_UPDATES.md](JANE_AUTOMATIC_UPDATES.md). Prepare the exact additive update migration, backup/resource evidence and bounded catch-up manifest for approval before hosted writes. Reconcile changes made during the original run, not only changes after completion. After a fresh complete catch-up attestation, run the six bounded read-only searches, then the approved real-model suite and actual human review. Do not start a second full population.
+Next obtain a fresh completed-population coverage observation and run the six bounded read-only searches against the fixed snapshot; record IDs, facts, latency, empty results and failures for human relevance review. The current code permits this without a source-window reconciliation. The revised real-model suite still needs fresh budget/key and two named human reviewers; complete device/accessibility, privacy and release checks before any public activation. Keep automatic updates off. If future source changes need to be reflected, review the incremental update design, source coverage, backup and bounded catch-up separately before hosted writes. Do not start a second full population.
 
 Proposed later evaluation ceiling remains **US$5 total and US$1 per consultation**, not approved by this report. The 60-turn suite would be about US$0.22 if it matched the historical average cost; this is a rough extrapolation, not a current price quote, and retrieval/history/retries can increase it. Refresh rates and reserve cost before any approved run. This increment used **US$0**, with previous recorded spend **US$0.132574** preserved. The old exposed key must not be reused; retirement and the fresh secure test configuration require verification.
 

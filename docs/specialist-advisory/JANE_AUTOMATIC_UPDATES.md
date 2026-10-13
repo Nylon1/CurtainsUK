@@ -1,10 +1,14 @@
 # Jane: incremental update connection review
 
+## Owner decision: fixed-snapshot review, 13 October 2026
+
+The owner states that no fabrics changed during the one-time population and has deferred source-change catch-up and automatic updates. The completed 11,517-ID snapshot can be used for bounded read-only recommendation searches and initial model/human review without a second full index or exhaustive source sweep. This is a snapshot-based review, not independent proof of current-source freshness. Public Jane remains off. Future incremental refresh and any claims that new changes are reflected require separate source coverage, recovery and activation review. Historical preparation below is retained for that later work.
+
 ## Population completion update: 13 October 2026
 
 The approved initial eligible population is now independently verified complete: **11,517 / 11,517**, 1,920 exact receipts, zero duplicates or unresolved writes, preserved historical records and restored permissions. The operator exited and the one-time follow-up is PAUSED. [Final evidence](../../artifacts/jane-population-complete-20261013/README.md). This supersedes the historical partial-population counts below.
 
-The discovery, complete publication-window, dependency fan-out and current-source/revision boundaries described below remain unresolved. Completion does not prove that changes during population have been reconciled. Automatic updates remain disabled, no incremental migration or schedule was enabled, and post-population recommendation review remains gated. The next review must present the exact bounded reconciliation/activation scope and its evidence; do not begin a second full population.
+The discovery, complete publication-window, dependency fan-out and current-source/revision boundaries described below remain unresolved. Completion does not prove that changes during population have been reconciled. Automatic updates remain disabled, and no incremental migration or schedule was enabled. The missing reconciliation evidence blocks future automatic-update activation, not fixed-snapshot recommendation review. Do not begin a second full population.
 
 12 October 2026. Development only, on draft PR #169. **No automatic update schedule, source trigger, hosted migration or incremental write has been enabled.** The existing population operator is unchanged and remains the only authorised hosted writer.
 
@@ -74,13 +78,13 @@ The additive `population-baseline.mjs` now prepares the initial side of this com
 
 The complete export/source-window attestation is **not available yet**. The local diff and worker demonstrate handling; they do not prove all changes during the hosted run have already been captured.
 
-## Recommendation checks after population and reconciliation
+## Recommendation checks against the completed snapshot
 
 `population-verification.mjs` now supplies the separate final coverage gate. It compares a completed, ordered journal baseline with a fresh independent hosted readback, whole-job identity/content digests, exact job/cursor state, preserved historical records, no-op counts and restored permissions. It supports the final three-record batch at11,517 and requires1,920 verified batches. It is not imported by the active operator and performs no query or write. Its result explicitly leaves reconciliation and launch unapproved.
 
 Four new final-verification tests and eight existing baseline/recommendation tests passed on12October. They cover partial/pending/stale/future evidence, wrong final state, substituted/duplicate/missing identities, changed hashes, historical/permission drift and the actual11,517-count boundary. This is local test evidence, not a claim that hosted population has finished. [Evidence](../../artifacts/jane-final-verification-preparation-20261012/README.md).
 
-`post-population-review.mjs` refuses to run on partial coverage, duplicate identities, unresolved writes or incomplete catch-up. Once those gates pass, it performs six paced read-only descriptive searches: warm neutrals, olive, texture, restrained patterns, natural composition and grey/gray spelling. Returned facts retain explicit unknowns and cannot become a purchase offer. It records latency, exact IDs and facts for human relevance review. Empty or failed search is visible evidence, not a pass.
+`post-population-review.mjs` refuses to run on partial coverage, duplicate identities or unresolved writes. Given fresh complete-population evidence, it performs six paced read-only descriptive searches: warm neutrals, olive, texture, restrained patterns, natural composition and grey/gray spelling. Returned facts retain explicit unknowns and cannot become a purchase offer. It records latency, exact IDs and facts for human relevance review. Empty or failed search is visible evidence, not a pass.
 
 Then reuse the existing **20-scenario `jane-foundations-v3`** suite and human rubric for design reasoning, alternative directions, feedback changes, tool explanations and concise 40–90-word replies without em dashes. Real-model testing requires fresh budget approval and a securely configured replacement key. No paid calls were made. Human reviewers must assess both recommendation relevance and why each direction suits the room. Retrieval success alone does not approve launch. Current public Jane remains inactive.
 
@@ -98,6 +102,6 @@ C: measured **35.52 GiB free** during this work. No dependency install, large bu
 
 ## Next review before automatic activation
 
-First complete the existing population and its exact final readback. Review this additive diff and tests; verify the missing discovery/publication coverage, source revision ports and query plans. Present a final exact migration and bounded catch-up manifest with current backup/resource evidence. Only after explicit activation approval run a monitored incremental canary, inspect every receipt and then consider a single controlled schedule. The current population approval does not activate that schedule.
+The existing population and its exact final readback are complete. Automatic activation is deferred. If incremental refresh becomes necessary, review missing discovery/publication coverage, source revision ports, query plans, exact migration, bounded catch-up manifest and current backup/resource evidence. A later activation decision would precede a monitored incremental canary and schedule. The completed population does not activate one.
 
 References: [PostgreSQL transaction isolation and sequence behaviour](https://www.postgresql.org/docs/current/transaction-iso.html), [Supabase tables](https://supabase.com/docs/guides/database/tables). Existing source definitions and local executable tests are the implementation evidence.

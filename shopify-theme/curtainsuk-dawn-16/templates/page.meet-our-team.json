@@ -11,7 +11,7 @@
         "natalie": { "type": "adviser", "settings": { "adviser": "natalie" } }
       },
       "block_order": ["jane", "anne", "noah", "james", "ben", "natalie"],
-      "settings": {}
+      "settings": { "jane_chat_live": true }
     }
   },
   "order": ["team"]

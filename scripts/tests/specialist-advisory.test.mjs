@@ -156,6 +156,18 @@ test('exact fabric handoff opens Jane only when the opted-in room exists', () =>
   }
 });
 
+test('return from Shopify sign-in reopens Jane without starting a second consultation', () => {
+  const returning = harness({ fabricHandoff: '?jane_return=1' });
+  assert.equal(returning.dialog.open, true);
+  assert.equal(returning.dialog.dataset.adviserIdentity, 'jane');
+  assert.equal(returning.part('countdown').textContent, '30');
+  returning.dialog.close();
+  assert.equal(returning.dialog.open, false);
+  for (const search of ['?jane_return=0', '?jane_return=1&jane_return=1']) {
+    assert.equal(harness({ fabricHandoff: search }).dialog.open, false);
+  }
+});
+
 test('enabled fabric detail link carries only the exact identity and leaves sharing to customer consent', () => {
   const source = read('assets/curtainsuk-jane-fabric-entry.js');
   const appended = [];

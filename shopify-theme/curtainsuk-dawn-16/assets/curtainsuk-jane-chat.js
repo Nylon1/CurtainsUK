@@ -11,7 +11,7 @@
     if (!panel) return;
     const find = name => panel.querySelector(`[data-jane-${name}]`);
     const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status'), tools = find('tools');
-    const starters = find('starters'), thinking = find('thinking'), signIn = find('signin');
+    const starters = find('starters'), thinking = find('thinking'), signIn = find('signin'), signInHelp = find('signin-help');
     const consent = find('consent'), startButton = find('start'), deleteButton = find('delete');
     const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
@@ -72,10 +72,10 @@
         if (renderedMessages.length !== fingerprints.length) log.scrollTop = log.scrollHeight;
         renderedMessages = fingerprints;
       }
-      startButton.hidden = !!session; deleteButton.hidden = !session; form.hidden = !session;
+      startButton.hidden = !!session || !ownerBinding; deleteButton.hidden = !session; form.hidden = !session;
       if (tools) tools.hidden = !session;
       if (starters) starters.hidden = !session || !!session.messages?.length;
-      consent.closest('label').hidden = !!session;
+      consent.closest('label').hidden = !!session || !ownerBinding;
       fabricShare.hidden = !session || !!session?.contexts?.some(c => c.value?.fabricIds?.includes(selectedFabric?.id));
     };
     const bootstrap = async () => {
@@ -86,12 +86,14 @@
       if (!response.ok || typeof body.csrf !== 'string' || !/^[a-f0-9]{32}$/.test(body.ownerBinding || '')) {
         csrf = ''; ownerBinding = null; clearPrivateView();
         if (signIn) signIn.hidden = response.status !== 401;
+        if (signInHelp) signInHelp.hidden = response.status !== 401;
         throw Error(response.status === 401 ? 'Please sign in to your customer account.' : 'Jane is temporarily unavailable. Your message has not been sent.');
       }
       if (ownerBinding && ownerBinding !== body.ownerBinding) clearPrivateView();
       ownerBinding = body.ownerBinding;
       csrf = body.csrf;
       if (signIn) signIn.hidden = true;
+      if (signInHelp) signInHelp.hidden = true;
     };
     const request = async (action, extra = {}, requestId = crypto.randomUUID()) => {
       await bootstrap();
@@ -135,6 +137,20 @@
         fabricPanel.hidden = false; render();
       } catch { /* A fabric cannot be inferred from an unverified URL. */ }
     };
+    if (signIn && location.pathname === '/pages/meet-our-team') {
+      const query = new URLSearchParams(location.search);
+      const fabricIds = query.getAll('jane_fabric');
+      const returnTo = new URL('/pages/meet-our-team', location.origin);
+      returnTo.searchParams.set('jane_return', '1');
+      if (query.getAll('entry').length === 1 && query.get('entry') === 'fabric-detail'
+        && fabricIds.length === 1 && validFabric.test(fabricIds[0])) {
+        returnTo.searchParams.set('entry', 'fabric-detail');
+        returnTo.searchParams.set('jane_fabric', fabricIds[0]);
+      }
+      const login = new URL('/customer_authentication/login', location.origin);
+      login.searchParams.set('return_to', returnTo.pathname + returnTo.search);
+      signIn.href = login.pathname + login.search;
+    }
     dialog.addEventListener('curtainsuk:jane-room-open', event => {
       const jane = event.detail?.identity === 'jane';
       panel.hidden = !jane; preview.forEach(node => { if (node) node.hidden = jane; });

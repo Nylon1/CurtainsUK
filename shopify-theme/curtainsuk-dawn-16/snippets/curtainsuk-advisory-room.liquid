@@ -37,7 +37,8 @@
           <span class="cukad-room__jane-spark" aria-hidden="true">✳</span>
         </div>
         <p>{% if jane_chat_live %}Sign in to your customer account to speak with Jane. With your consent, this conversation is saved in encrypted advisory storage for up to 90 days so you can return to it. You can delete it here at any time. Jane is an AI adviser and may make mistakes; please check product availability and prices on the live product page.{% else %}Sign in to your test customer account before entering. This private review saves your conversation in encrypted advisory storage. You can delete it here. Automatic expiry cleanup is still under review. Please use invented details only.{% endif %}</p>
-        <a data-jane-signin href="{{ routes.storefront_login_url }}" hidden>Sign in to your customer account, then return to Jane</a>
+        <a data-jane-signin href="{{ routes.storefront_login_url }}" hidden>Sign in to speak with Jane</a>
+        <p data-jane-signin-help hidden>After signing in, you will return to Jane. You can also find all advisers from your customer account menu.</p>
         <label class="cukad-room__jane-consent"><input type="checkbox" data-jane-consent> I agree to send my messages to OpenAI for Jane's AI advice and to save this encrypted consultation for up to 90 days so I can return to it.</label>
         <p class="cukad-room__jane-privacy">You can delete it at any time. Please avoid sharing sensitive details. <a href="/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Read our privacy policy <span class="visually-hidden">(opens in a new tab)</span></a>.</p>
         <div class="cukad-room__jane-actions"><button type="button" data-jane-start>Start consultation</button><button type="button" data-jane-delete hidden>Delete consultation</button></div>

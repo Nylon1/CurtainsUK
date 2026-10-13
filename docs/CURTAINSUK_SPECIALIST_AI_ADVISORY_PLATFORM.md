@@ -4,6 +4,12 @@
 
 ## Approved eligible population complete
 
+### Post-population review and private journey
+
+Fresh read-only verification at **13 October 01:10:10 UTC** reconfirmed all **11,517** approved eligible identities. Complete source-change catch-up is still missing across the eight required source domains, so the prepared six-search review correctly stopped with `UPDATE_CATCHUP_INCOMPLETE` and **zero search calls**. The revised 20-scenario real-model suite awaits catch-up, fresh budget/key approval and actual human scoring. An offline review pack now supplies 20 scenario briefs, preserved historical transcripts and 40 blank scorecards. No human approval is claimed.
+
+The private fabric-detail preview now resolves its supported Room Visualiser link to the fixed CurtainsUK origin instead of an unserved localhost route. Exact fabric `pt-3697-770`, consent, keyboard sharing, reload/resume, dialog focus restoration and actual Chrome layouts at all five widths passed. **19 local tests passed.** Spoken screen-reader, physical iPhone and actual background-tab checks remain pending. The live Shopify asset, completed indexer, automatic-update status and public activation are unchanged. [Gate-by-gate evidence, historical answer review and next requirements](specialist-advisory/JANE_REVIEW_GATES_20261013.md).
+
 The same existing job completed at **13 October 01:00:36.937 UTC**. Independent bounded read-only verification at **01:00:50.117941 UTC** confirms **11,517 / 11,517**, all 1,920 batch receipts and exact whole-job identity/content hashes. Zero duplicate IDs or unresolved writes; all six historical records, five eligible no-ops and transaction-local grant restoration are verified. There are 11,512 newly inserted derived search rows and 11,518 total search rows, including the preserved historical identity outside this eligible manifest. [Completion evidence](../artifacts/jane-population-complete-20261013/README.md).
 
 The unchanged operator exited normally, and the existing one-time follow-up is verified PAUSED. All 35 active dependencies, binding hashes, migration history and safety limits remain unchanged. Three independently reconciled expired-uncommitted plans are preserved in the journal. No uncertain transaction was blindly retried. Observed database size is 724,593,811 bytes and advisory knowledge is 15,892,480 bytes. Later writes still need a subsequent verified backup; Toshiba completion remains unverified. C: free space is 31.59 GiB, with no cleanup or heavy build.

@@ -1,4 +1,11 @@
 const identity=/^[a-zA-Z0-9][a-zA-Z0-9-]{0,149}$/;
+// The private harness lives on loopback; the existing renderer supplies a
+// storefront-relative URL. Only the verified, exact-ID supported destination
+// may cross to the real visualiser. No local visualiser or arbitrary redirect.
+export function roomPreviewDestination(id,relative){
+  return typeof id==='string'&&identity.test(id)&&relative===`/pages/room-visualiser?fabric=${encodeURIComponent(id)}`
+    ?'https://www.curtainsuk.com'+relative:null;
+}
 export function selectedFabric(search){
   const p=new URLSearchParams(search);
   if(!p.has('fabric'))return null;

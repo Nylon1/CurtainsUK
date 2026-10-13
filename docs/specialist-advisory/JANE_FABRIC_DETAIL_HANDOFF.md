@@ -2,6 +2,8 @@
 
 Status: implemented and locally tested, **not deployed, merged or publicly active**. Added to draft PR #169 on 12 October 2026. Existing population/indexing continues separately.
 
+**13 October review update:** the original population has completed and is independently verified; source-change catch-up remains blocked. The private harness now converts only a verified same-ID relative room link to the fixed CurtainsUK HTTPS origin, fixing its localhost destination without editing the live PR #183 asset. Exact selected fabric, explicit consent, browser resume, keyboard focus and five actual Chrome widths passed. [Current evidence and remaining review gates](JANE_REVIEW_GATES_20261013.md). The 12 October results below remain historical evidence rather than new device/assistive-technology verification.
+
 ## Customer flow
 
 The existing fabric detail renderer supplies the exact `fabric.id` to an optional Jane adapter. The private loopback harness loads that adapter and shows **Ask Jane about this fabric**. It opens Jane using `/?entry=fabric-detail&fabric=<exact ID>#consultation`.

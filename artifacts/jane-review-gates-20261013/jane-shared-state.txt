@@ -1,0 +1,93 @@
+- link "Skip to consultation":
+  - /url: "#consultation"
+- banner:
+  - link "CURTAINSUK":
+    - /url: https://www.curtainsuk.com/
+  - generic: PRIVATE DEVELOPMENT PREVIEW
+  - link "Meet the team ↗":
+    - /url: https://www.curtainsuk.com/pages/fabric-library?view=meet-our-team&preview_theme_id=182472573307
+- strong: Scripted mock · no AI model connected.
+- text: Use invented room details for this local review. No screenshots are processed or enquiries submitted.
+- main:
+  - region "A little inspiration. A direction that’s you.":
+    - img "Synthetic portrait representing Jane, our AI design adviser"
+    - generic: AI ADVISER · SYNTHETIC PORTRAIT
+    - paragraph: FABRIC & INTERIOR DESIGN
+    - heading "A little inspiration. A direction that’s you." [level=1]:
+      - text: A little inspiration.
+      - text: A direction that’s
+      - emphasis: you.
+    - paragraph: Meet Jane. A thoughtful space to explore colour, pattern and texture, and find what feels right for your room.
+    - generic: Warm
+    - generic: Creative
+    - generic: Considered
+    - paragraph: The proposed consultation is free and around ten minutes, with room to continue. This demonstration tests the experience; Jane’s live intelligence is not activated.
+  - region "In the studio with Jane":
+    - paragraph: YOUR DESIGN CONVERSATION
+    - heading "In the studio with Jane" [level=2]
+    - generic: Mock preview
+    - region "Your selected fabric":
+      - paragraph: FROM YOUR FABRIC DETAIL PAGE
+      - heading "Your selected fabric" [level=3]
+      - img "SHAMBALA · LAGOON"
+      - strong: Prestigious Textiles · SHAMBALA · LAGOON
+      - generic: "Fabric ID: pt-3697-770"
+      - paragraph: SHAMBALA in LAGOON is part of the PARADE COLLECTION collection by Prestigious Textiles. Its composition is 92% polyester and 8% cotton. The vertical pattern repeats every 41.5 cm; consider this scale when planning the finished curtains.
+      - link "View fabric details":
+        - /url: https://www.curtainsuk.com/pages/fabric/pt-3697-770-shambala-lagoon
+      - status: Shared with this consultation. Price and availability still need checking on the fabric page.
+    - log "Conversation with Jane":
+      - article:
+        - strong: Jane · scripted AI preview
+        - text: Welcome to the studio. What would you like your room to feel like, and what isn’t quite working at the moment?
+      - article:
+        - strong: You
+        - text: My room has oak flooring and cream walls. What should I consider about this selected fabric?
+      - article:
+        - strong: Jane · scripted AI preview
+        - text: You’ve brought SHAMBALA in LAGOON into the conversation. Let’s consider how it fits your room before making a recommendation. The existing colours, natural light and the amount of pattern around it can all change the effect. What would you like the curtains to bring to the space, and which furnishings are staying?
+    - generic "Example messages":
+      - button "Try verified fabric search"
+      - button "Find my colour direction"
+      - button "Explain Fabric Intelligence"
+      - button "Explore a different direction"
+    - generic: What’s on your mind?
+    - textbox "What’s on your mind?":
+      - /placeholder: Describe your room, or tell Jane what you’d like to change…
+    - button "Send":
+      - text: Send
+      - generic: ↗
+    - button "My design summary"
+    - button "Discuss my results" [active]
+    - button "Save & return"
+    - status
+    - generic "Recover a saved preview"
+  - region "A conversation that goes with you.":
+    - paragraph: EXPLORE, THEN REFINE
+    - heading "A conversation that goes with you." [level=2]
+    - paragraph: Try a different palette. Compare a quieter pattern. Then bring your thoughts back to Jane.
+    - navigation "Existing CurtainsUK tools":
+      - link "01 Fabric Intelligence Find a considered fabric direction ↗":
+        - /url: https://www.curtainsuk.com/apps/curtainsuk-decision/consultation?experience=premium&entry=guided
+        - text: "01"
+        - text: Fabric Intelligence
+        - generic: Find a considered fabric direction
+        - text: ↗
+      - link "02 Room Visualiser Compare eligible fabrics in four rooms ↗":
+        - /url: https://www.curtainsuk.com/pages/room-visualiser
+        - text: "02"
+        - text: Room Visualiser
+        - generic: Compare eligible fabrics in four rooms
+        - text: ↗
+      - link "03 Physical samples See colour and texture in your own light ↗":
+        - /url: https://www.curtainsuk.com/pages/samples
+        - text: "03"
+        - text: Physical samples
+        - generic: See colour and texture in your own light
+        - text: ↗
+    - paragraph: These open existing services. No selections are automatically read or shared. Use “Discuss my results” to review and share the supported fields yourself.
+- contentinfo:
+  - text: CURTAINSUK · A considered approach to your home.
+  - text: Local development only · no public AI activation ·
+  - link "Readiness & evaluation review":
+    - /url: /auth-fix

@@ -120,7 +120,7 @@ test('public transport needs its separate exact-release switch and retains signe
   assert.notEqual(customerA.ownerBinding, customerB.ownerBinding);
   assert.notEqual(customerA.csrf, customerB.csrf);
   const post = (id: string, csrf: string) => handle(new Request(url(id), { method: 'POST', headers: {
-    'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf,
+    origin: 'https://www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf,
   }, body: JSON.stringify({ action: 'start' }) }));
   assert.equal((await post('790', customerA.csrf)).status, 403);
   assert.equal((await post('790', customerB.csrf)).status, 200);
@@ -142,11 +142,11 @@ test('origin, CSRF, content limit and recovery transfer are denied before execut
   const csrf = (await (await handle(new Request(url()))).json()).csrf;
   const post = (body: unknown, headers: Record<string, string> = {}) => handle(new Request(url(), { method: 'POST', headers: { origin: 'https://www.curtainsuk.com', 'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf, ...headers }, body: JSON.stringify(body) }));
   assert.equal((await post({ action: 'start' }, { origin: 'https://evil.example' })).status, 403);
-  assert.equal((await post({ action: 'start' }, { 'x-forwarded-host': 'evil.example' })).status, 403);
+  assert.equal((await post({ action: 'start' }, { origin: 'https://evil.example' })).status, 403);
   const noForwardedHost = new Headers({ origin: 'https://www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf });
-  assert.equal((await handle(new Request(url(), { method: 'POST', headers: noForwardedHost, body: JSON.stringify({ action: 'start' }) }))).status, 403);
+  assert.equal((await handle(new Request(url(), { method: 'POST', headers: noForwardedHost, body: JSON.stringify({ action: 'start' }) }))).status, 200);
   const noOrigin = new Headers({ 'x-forwarded-host': 'www.curtainsuk.com', 'content-type': 'application/json', 'x-advisory-csrf': csrf });
-  assert.equal((await handle(new Request(url(), { method: 'POST', headers: noOrigin, body: JSON.stringify({ action: 'start' }) }))).status, 200);
+  assert.equal((await handle(new Request(url(), { method: 'POST', headers: noOrigin, body: JSON.stringify({ action: 'start' }) }))).status, 403);
   assert.equal((await post({ action: 'start' }, { 'x-advisory-csrf': 'wrong' })).status, 403);
   assert.equal((await post({ action: 'recover' })).status, 400);
   assert.equal((await post({ action: 'start', payload: 'x'.repeat(16000) })).status, 413);

@@ -71,6 +71,7 @@ class Element {
     for (const listener of [...(this.listeners.get(name) ?? [])]) listener(event);
     return event;
   }
+  dispatchEvent(event) { return this.dispatch(event.type, event); }
 }
 
 function parseDialog(markup, parent) {
@@ -88,7 +89,7 @@ function parseDialog(markup, parent) {
   }
 }
 
-function harness({ modalSupported = true, failOpen = false } = {}) {
+function harness({ modalSupported = true, failOpen = false, fabricHandoff = null } = {}) {
   const document = new Element('#document');
   document.ownerDocument = document;
   document.hidden = false;
@@ -96,6 +97,7 @@ function harness({ modalSupported = true, failOpen = false } = {}) {
   document.body.style.overflow = 'auto';
   document.activeElement = document.body;
   const window = new Element('#window');
+  window.location = { search: fabricHandoff === null ? '' : fabricHandoff };
   const root = document.body.append(new Element('section', {
     'data-advisory-team': '', 'data-wait-status': 'Preview preparation has started.',
     'data-room-status': 'Illustrative room preview. No live AI service.', 'data-unavailable': 'The preview is unavailable.',
@@ -104,6 +106,7 @@ function harness({ modalSupported = true, failOpen = false } = {}) {
   for (const profile of profiles) {
     root.append(new Element('template', {
       'data-advisory-profile': profile.id, 'data-adviser': profile.id, 'data-name': profile.name,
+      'data-identity': profile.id,
       'data-title': profile.specialism, 'data-intro': profile.introductionExample, 'data-preparation': profile.questioning[0],
     }));
     const button = root.append(new Element('button', { 'data-advisory-open': '', 'data-adviser': profile.id, hidden: '' }));
@@ -122,7 +125,8 @@ function harness({ modalSupported = true, failOpen = false } = {}) {
   let nextTimer = 1;
   const forbiddenAccesses = [];
   const sandbox = {
-    document, window,
+    document, window, URLSearchParams,
+    CustomEvent: class { constructor(type, options = {}) { this.type = type; this.detail = options.detail; } },
     Date: { now: () => now },
     setInterval(callback, milliseconds) { const id = nextTimer++; timers.set(id, { callback, milliseconds }); return id; },
     clearInterval(id) { timers.delete(id); },
@@ -141,6 +145,37 @@ function harness({ modalSupported = true, failOpen = false } = {}) {
   const key = (shiftKey = false) => dialog.dispatch('keydown', { key: 'Tab', shiftKey });
   return { document, window, root, dialog, buttons, error, part, click, open, advance, key, timers, forbiddenAccesses };
 }
+
+test('exact fabric handoff opens Jane only when the opted-in room exists', () => {
+  const selected = harness({ fabricHandoff: '?entry=fabric-detail&jane_fabric=sdg-hiov134134' });
+  assert.equal(selected.dialog.open, true);
+  assert.equal(selected.dialog.dataset.adviserIdentity, 'jane');
+  assert.equal(selected.part('countdown').textContent, '30');
+  for (const search of ['?entry=other&jane_fabric=sdg-hiov134134', '?entry=fabric-detail&jane_fabric=../x', '?entry=fabric-detail&jane_fabric=a&jane_fabric=b']) {
+    assert.equal(harness({ fabricHandoff: search }).dialog.open, false);
+  }
+});
+
+test('enabled fabric detail link carries only the exact identity and leaves sharing to customer consent', () => {
+  const source = read('assets/curtainsuk-jane-fabric-entry.js');
+  const appended = [];
+  const host = { querySelector: () => null, append: (...nodes) => appended.push(...nodes) };
+  const detail = { querySelector: (selector) => selector === '.cuk-material-intro' ? host : null };
+  const document = { createElement: () => ({ dataset: {}, setAttribute() {} }) };
+  const window = {};
+  vm.runInNewContext(source, { window, document });
+  const ready = { browseReady: true, launchReady: true, orderReady: true };
+  window.CurtainsUKJaneFabricHandoff.mount(detail, 'sdg-hiov134134', ready);
+  assert.equal(appended[0].href, '/pages/meet-our-team?entry=fabric-detail&jane_fabric=sdg-hiov134134');
+  assert.equal(appended[0].textContent, 'Ask Jane about this fabric');
+  assert.match(appended[1].textContent, /choose to share/);
+  window.CurtainsUKJaneFabricHandoff.mount(detail, '../wrong', ready);
+  window.CurtainsUKJaneFabricHandoff.mount(detail, 'unavailable', { ...ready, orderReady: false });
+  assert.equal(appended.length, 2);
+  const section = read('sections/curtainsuk-fabric-browser.liquid');
+  assert.match(section, /section\.settings\.jane_handoff_enabled/);
+  assert.match(section, /"id": "jane_handoff_enabled"[^\n]+"default": false/);
+});
 
 test('real controller waits for 30 seconds of elapsed time, never interval count', () => {
   const h = harness();

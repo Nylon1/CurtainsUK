@@ -3,6 +3,7 @@
 
 {% if page.handle == 'shop-by-fabric' or page.handle == 'fabric-library' %}
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
+{% if template.suffix == 'browse-fabrics' and section.settings.jane_handoff_enabled %}<script src="{{ 'curtainsuk-jane-fabric-entry.js' | asset_url }}" defer="defer"></script>{% endif %}
 {% if template.suffix == 'browse-fabrics' %}<script src="{{ 'curtainsuk-fabric-experience.js' | asset_url }}" defer="defer"></script>{% endif %}
 {% if template.suffix == 'browse-fabrics' %}<script src="{{ 'curtainsuk-browse-filters.js' | asset_url }}" defer="defer"></script>{% endif %}
 {%- if template.suffix == 'browse-fabrics' and section.settings.naila_enabled -%}
@@ -50,7 +51,7 @@
   "name": "CurtainsUK fabric browser",
   "tag": "section",
   "class": "section",
-  "settings": [{ "type": "checkbox", "id": "naila_enabled", "label": "Enable Naila owner review", "default": false, "info": "Requires the Naila gateway flag. Leave disabled until owner review is complete." }, { "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }, { "type": "url", "id": "browse_preview_endpoint", "label": "Unpublished browse preview API", "info": "Candidate-only read-only catalogue endpoint. Ignored on the live theme." }],
+  "settings": [{ "type": "checkbox", "id": "naila_enabled", "label": "Enable Naila owner review", "default": false, "info": "Requires the Naila gateway flag. Leave disabled until owner review is complete." }, { "type": "checkbox", "id": "jane_handoff_enabled", "label": "Enable Ask Jane fabric handoff", "default": false, "info": "Requires the separately released Jane consultation. Leave disabled until the signed customer journey is verified." }, { "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }, { "type": "url", "id": "browse_preview_endpoint", "label": "Unpublished browse preview API", "info": "Candidate-only read-only catalogue endpoint. Ignored on the live theme." }],
   "presets": [{ "name": "CurtainsUK fabric browser" }]
 }
 {% endschema %}

@@ -106,6 +106,15 @@
     document.addEventListener('shopify:section:unload', unload);
     root.dataset.advisoryReady = 'true';
     root.querySelectorAll('[data-advisory-open]').forEach((button) => { button.hidden = false; });
+    if (root.querySelector('[data-jane-chat]') && window.location?.search?.includes('jane_fabric')) {
+      const query = new URLSearchParams(window.location.search);
+      const selected = query.getAll('jane_fabric');
+      if (query.getAll('entry').length === 1 && query.get('entry') === 'fabric-detail'
+        && selected.length === 1 && /^[A-Za-z0-9][A-Za-z0-9-]{0,149}$/.test(selected[0])) {
+        const jane = [...root.querySelectorAll('[data-advisory-open]')].find((button) => profiles.get(button.dataset.adviser)?.dataset.identity === 'jane');
+        if (jane) open(jane);
+      }
+    }
   };
   const scan = (target) => target.querySelectorAll('[data-advisory-team]').forEach(initialise);
   scan(document);

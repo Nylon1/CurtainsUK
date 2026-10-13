@@ -102,3 +102,11 @@ Shopify CLI confirmed that MAIN is still `CurtainsUK - Curtain Style V1 review` 
 | `snippets/curtainsuk-advisory-spotlight.liquid` | Same content after CRLF normalisation; raw hash differs because of line endings. |
 
 No newer unrelated Shopify-only content was found in these six paths. Re-read them before any later scoped upload because Theme Editor changes can occur after this comparison. The MAIN template setting remains disabled, so uploading default-off assets alone would not publicly activate Jane.
+
+## Development-theme candidate readback, 13 October 20:13 UTC
+
+Before the upload, the six existing development-theme files were saved under `C:\Users\hamza\.curtainsuk-jane-private-preview\theme-backups\2026-10-13-pr187-development-before`. Shopify CLI then uploaded **only** those six candidate paths to existing unpublished theme `182472573307`, with `--nodelete` and `--strict`. The six files were pulled back to `C:\Users\hamza\.curtainsuk-jane-private-preview\theme-backups\2026-10-13-pr187-development-readback`; each readback SHA-256 matched the local candidate byte for byte. No MAIN theme file, page publication, or public API switch was changed.
+
+A signed Chrome smoke check reloaded the existing private preview at `https://www.curtainsuk.com/pages/meet-our-team`, opened Jane, skipped the 30-second welcome and reached the fresh consent screen. The room remained labelled `PRIVATE TEST` and its Start control required consent. No paid reply was sent during this check. The captured console errors came from Chrome extension scripts trying to access sandboxed frames; no site-script error was observed. This is a development-theme browser check, not a physical iPhone or spoken screen-reader pass.
+
+The owner reports that the old OpenAI key previously pasted in chat has been revoked. This is an owner attestation; the account-side revocation was not independently visible to this task. The hosted service uses a separate server-side credential.

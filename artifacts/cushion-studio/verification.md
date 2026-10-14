@@ -26,3 +26,12 @@ Not proven by these checks: physical mobile Safari, hosted account/session integ
 - Merged protected `release/production` through `b926c116388a176f12f618acc9297d51b0269478`, including the separate Room Visualiser restoration and production packaging guard. The two historical ledger conflicts retained the newer 14 October release pointer and the unpublished Cushion Studio note. `git merge-base --is-ancestor origin/release/production HEAD` passed.
 - On the integrated candidate, full `npm test` passed across the existing curtain, supplier, Fabric Master, storefront, theme and Cushion Studio suites. The Cushion Studio suite reported **51 passing checks**. `npx tsc --noEmit` and `git diff --cached --check` passed. The Room Visualiser packaging regression reported **8 passing checks**.
 - GitHub's `curtainsuk-production-gate` passed on the integrated PR head. `protected-production-policy` rejected that head solely because its required exact-head `Nylon1` approval comment has not been posted; the approval for the preceding head is stale. The PR remains a draft and no protected merge or deployment occurred.
+
+
+## Dispatch readiness update
+
+- `npm run test:cushions`: **55 passed** (44 TypeScript + 11 runtime); TypeScript no-emit check passed.
+- Four new scenarios cover absent/proposed/malformed confirmation, exploration without purchase readiness, safe customer projection, exact dispatch wording/version in immutable manufacturing and Shopify line evidence, changes to dispatch invalidating a reviewed quote, and both approved-production cushion and mixed checkout rejecting missing dispatch before any write/transport call.
+- Hosted route test confirms even an enabled test purchase gate cannot expose buying without confirmed dispatch. Mixed review still computes a nonbinding total; a synthetic confirmed dispatch enables only the mocked execution path. No dispatch range or promise was configured in the application defaults, and no network or production operation was performed by these tests.
+
+- Independent browser review also found and corrected bolster review terminology (continuous body plus both matching end caps) and a floor-grain material's unsupported eight-digit Three.js colour. Its RGB colour now uses six digits with the existing explicit material opacity retained. These narrow presentation corrections do not alter geometry, manufacturing or prices.

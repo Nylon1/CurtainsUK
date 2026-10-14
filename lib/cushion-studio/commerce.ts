@@ -1,3 +1,4 @@
+import { customerCushionDispatch } from "./dispatch";
 import {
   SHOPIFY_DRAFT_ORDER_API_VERSION,
   SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES,
@@ -17,6 +18,8 @@ export function customerCushionQuote(quote: CushionQuote) {
     totalMinor: quote.ready ? quote.totalMinor : null,
     deliveryGrossMinor: quote.deliveryGrossMinor,
     ready: quote.ready,
+    purchaseReady: quote.purchaseReady,
+    dispatchEstimate: customerCushionDispatch(quote.dispatchEstimate),
     status: quote.status,
     items: quote.items.map((item) => ({
       specId: item.specId,
@@ -85,6 +88,9 @@ export function cushionDraftLine(
     snapshot.price.goodsVatMinor > snapshot.price.goodsGrossMinor
   )
     throw new Error("CUSHION_PRICE_INVALID");
+  const dispatch = customerCushionDispatch(
+    snapshot.manufacturing.dispatchEstimate,
+  );
   // One custom line represents this entire validated quantity. Shopify cannot
   // multiply a nested set's price by a mutable cart quantity.
   return {
@@ -96,6 +102,15 @@ export function cushionDraftLine(
     sku: `CUK-CUSHION-${snapshot.id}`,
     customAttributes: [
       { key: "Product type", value: "CUSHION" },
+      ...(dispatch
+        ? [
+            { key: "Cushion dispatch estimate", value: dispatch.message },
+            {
+              key: "_curtainsuk_cushion_dispatch_version",
+              value: dispatch.version,
+            },
+          ]
+        : []),
       { key: "Fabric", value: snapshot.fabricIdentity.id },
       { key: "Size", value: snapshot.spec.sizeId },
       { key: "Filling", value: snapshot.spec.filling },

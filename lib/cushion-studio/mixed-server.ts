@@ -1,3 +1,4 @@
+import { customerCushionDispatch } from "./dispatch";
 import "server-only";
 import {
   houseCheckoutServices,
@@ -107,6 +108,9 @@ export async function mixedCommand(
       body as MixedInput,
       services(cushion),
     );
+    const dispatchEstimate = customerCushionDispatch(
+      review.cushion.snapshots[0].manufacturing.dispatchEstimate,
+    );
     return {
       ready: true,
       reviewId: review.reviewId,
@@ -123,7 +127,8 @@ export async function mixedCommand(
       goodsMinor: review.contract.expected.goodsGrossAmountMinor,
       deliveryMinor: review.contract.expected.shippingGrossAmountMinor,
       vatMinor: review.contract.expected.orderVatAmountMinor,
-      purchaseEnabled,
+      purchaseEnabled: purchaseEnabled && dispatchEstimate !== null,
+      dispatchEstimate,
       message:
         "Current curtain and cushion prices, combined fabric stock and one delivery have been checked.",
     };

@@ -93,6 +93,8 @@ export async function prepareCushionCheckout(
     rules.vatBasisPoints === null
   )
     throw new Error("CUSHION_CHECKOUT_REVALIDATION_REQUIRED");
+  if (services.mode === "APPROVED_PRODUCTION" && !quote.dispatchEstimate)
+    throw new Error("CUSHION_DISPATCH_ESTIMATE_REQUIRED");
   const now = services.now();
   const reuse = async (existing: {
     snapshots: CushionOrderSnapshot[];
@@ -149,6 +151,7 @@ export async function prepareCushionCheckout(
         goodsVatMinor: item.goodsVatMinor,
       },
       manufacturing: {
+        dispatchEstimate: structuredClone(quote.dispatchEstimate),
         cutPlan: quote.cutPlan,
         setSpecs: specs,
         setQuoteId: quote.quoteId,

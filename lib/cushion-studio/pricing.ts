@@ -1,3 +1,8 @@
+import {
+  confirmedCushionDispatch,
+  customerCushionDispatch,
+  type CushionDispatchEstimate,
+} from "./dispatch";
 import { createHash } from "node:crypto";
 import { allocateVatFromGross } from "../storefront/shopify-draft-order-core";
 import {
@@ -47,6 +52,9 @@ export type CushionQuote = {
   vatMinor: number | null;
   totalMinor: number | null;
   ready: boolean;
+  purchaseReady: boolean;
+  dispatchEstimate: CushionDispatchEstimate | null;
+  dispatchMessage: string | null;
   status: "priced" | "review-required";
   issues: string[];
   pricingVersion: string;
@@ -390,6 +398,7 @@ export function quoteCushionSet(
       ? items.reduce((sum, item) => sum + item.goodsVatMinor!, 0) +
         deliveryVatMinor!
       : null;
+  const dispatchEstimate = confirmedCushionDispatch(rules.dispatchEstimate);
   const ready = issues.length === 0,
     totalMinor = net !== null && vatMinor !== null ? net + vatMinor : null;
   const previewMaterials: CushionQuote["previewMaterials"] = {};
@@ -460,6 +469,9 @@ export function quoteCushionSet(
     vatMinor,
     totalMinor,
     ready,
+    purchaseReady: ready && dispatchEstimate !== null,
+    dispatchEstimate,
+    dispatchMessage: customerCushionDispatch(dispatchEstimate)?.message ?? null,
     status: ready ? "priced" : "review-required",
     issues: [...new Set(issues)],
     pricingVersion: rules.version,

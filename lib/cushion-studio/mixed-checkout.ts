@@ -1,3 +1,4 @@
+import { confirmedCushionDispatch } from "./dispatch";
 import { createHash } from "node:crypto";
 import {
   prepareHouseCheckout,
@@ -150,6 +151,13 @@ export async function executeMixedCheckout(
   const reviewed = await reviewMixedCheckout(input, services);
   if (reviewed.reviewId !== input.reviewId)
     throw Error("MIXED_PRICE_OR_STOCK_CHANGED");
+  if (
+    services.cushion.mode === "APPROVED_PRODUCTION" &&
+    !confirmedCushionDispatch(
+      reviewed.cushion.snapshots[0].manufacturing.dispatchEstimate,
+    )
+  )
+    throw Error("CUSHION_DISPATCH_ESTIMATE_REQUIRED");
   const tag = `mixed-studio-${input.idempotencyKey}`;
   let contract: ShopifyDraftOrderExecutionContract = {
     ...reviewed.contract,

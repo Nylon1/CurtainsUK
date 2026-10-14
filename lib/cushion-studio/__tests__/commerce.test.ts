@@ -1,3 +1,8 @@
+import {
+  confirmedCushionDispatch,
+  customerCushionDispatch,
+  type CushionDispatchEstimate,
+} from "../dispatch";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createHmac } from "node:crypto";
@@ -713,4 +718,147 @@ test("gross delivery stays 495p once per set, separate from private carrier expe
     /DELIVERY_AUTHORITY_AMBIGUOUS/,
   );
   assert.throws(() => quote({ carrierCostMinor: -1 }), /CARRIER_COST_INVALID/);
+});
+
+const syntheticDispatch: CushionDispatchEstimate = {
+  version: "synthetic-dispatch-v1",
+  status: "confirmed",
+  minimumWorkingDays: 12,
+  maximumWorkingDays: 17,
+  startsFrom: "fabric-availability-confirmation",
+  confirmedAt: "2026-10-14T12:00:00Z",
+  approvalReference: "SYNTHETIC-TEST-NOT-A-WORKROOM-PROMISE",
+};
+
+test("dispatch has no default; only a complete confirmed server authority enables purchasing", () => {
+  assert.equal(PREVIEW_PRICING_RULES.dispatchEstimate, null);
+  for (const value of [
+    undefined,
+    null,
+    {},
+    { ...syntheticDispatch, status: "proposed" },
+    { ...syntheticDispatch, version: "" },
+    { ...syntheticDispatch, approvalReference: " " },
+    { ...syntheticDispatch, confirmedAt: "not-a-date" },
+    { ...syntheticDispatch, minimumWorkingDays: -1 },
+    { ...syntheticDispatch, maximumWorkingDays: 1 },
+    { ...syntheticDispatch, startsFrom: "delivery-date" },
+    { ...syntheticDispatch, startsFrom: ["order-confirmation"] },
+  ])
+    assert.equal(confirmedCushionDispatch(value), null);
+  const noDispatch = quoteCushionSet([{ spec, facts: fabric }], rules);
+  assert.equal(noDispatch.ready, true);
+  assert.equal(noDispatch.purchaseReady, false);
+  assert.notEqual(noDispatch.totalMinor, null);
+  const confirmed = quoteCushionSet([{ spec, facts: fabric }], {
+    ...rules,
+    dispatchEstimate: syntheticDispatch,
+  });
+  assert.equal(confirmed.purchaseReady, true);
+  assert.notEqual(confirmed.quoteId, noDispatch.quoteId);
+  const projected = customerCushionQuote(confirmed);
+  assert.equal(projected.dispatchEstimate?.version, syntheticDispatch.version);
+  assert.match(
+    projected.dispatchEstimate!.message,
+    /Estimated cushion dispatch: 12-17 working days/,
+  );
+  assert.match(
+    projected.dispatchEstimate!.message,
+    /not a guaranteed delivery date/,
+  );
+  assert.doesNotMatch(
+    JSON.stringify(projected),
+    /approvalReference|confirmedAt|SYNTHETIC-TEST-NOT/,
+  );
+  assert.equal(confirmed.dispatchMessage, projected.dispatchEstimate!.message);
+  const changed = quoteCushionSet([{ spec, facts: fabric }], {
+    ...rules,
+    dispatchEstimate: {
+      ...syntheticDispatch,
+      version: "v2",
+      maximumWorkingDays: 18,
+    },
+  });
+  assert.notEqual(confirmed.quoteId, changed.quoteId);
+});
+
+test("production cushion checkout requires dispatch before any write and freezes its exact confirmed evidence", async () => {
+  let currentRules: CushionPricingRules = { ...rules };
+  const facts = {
+    ...fabric,
+    supplierId: "synthetic-supplier",
+    supplierSku: "synthetic-sku",
+  };
+  const effects: string[] = [];
+  const services: CushionCheckoutServices = {
+    mode: "APPROVED_PRODUCTION",
+    now: () => new Date("2026-10-14T12:00:00Z"),
+    rules: async () => currentRules,
+    facts: async () => facts,
+    identity: async (id) => ({
+      id,
+      brand: "Synthetic",
+      design: "Plain",
+      colour: "Test",
+    }),
+    persist: async () => {
+      effects.push("persist");
+    },
+    execute: async () => {
+      effects.push("execute");
+      return {
+        status: "DISABLED",
+        shopifyWritePerformed: false,
+        checkoutUrl: null,
+        draftOrderId: null,
+        draftOrderName: null,
+        paymentEnabled: false,
+      };
+    },
+  };
+  const input = () => ({
+    designId: "dispatch-test",
+    specs: [spec],
+    idempotencyKey: "dispatch-test-one",
+    expectedQuoteId: quoteCushionSet([{ spec, facts }], currentRules).quoteId,
+  });
+  await assert.rejects(
+    prepareCushionCheckout(input(), services),
+    /DISPATCH_ESTIMATE_REQUIRED/,
+  );
+  assert.deepEqual(effects, []);
+  currentRules = {
+    ...rules,
+    dispatchEstimate: structuredClone(syntheticDispatch),
+  };
+  const reviewedInput = input();
+  currentRules.dispatchEstimate!.maximumWorkingDays = 18;
+  await assert.rejects(
+    prepareCushionCheckout(reviewedInput, services),
+    /PRICE_OR_SPEC_CHANGED/,
+  );
+  assert.deepEqual(effects, []);
+  const prepared = await prepareCushionCheckout(input(), services);
+  const frozen = structuredClone(currentRules.dispatchEstimate);
+  assert.deepEqual(
+    prepared.snapshots[0].manufacturing.dispatchEstimate,
+    frozen,
+  );
+  assert.deepEqual(
+    (prepared.snapshots[0].commercial!.rules as CushionPricingRules)
+      .dispatchEstimate,
+    frozen,
+  );
+  assert.equal(
+    prepared.contract.input.lineItems[0].customAttributes.find(
+      (a) => a.key === "Cushion dispatch estimate",
+    )?.value,
+    customerCushionDispatch(frozen)?.message,
+  );
+  currentRules.dispatchEstimate!.maximumWorkingDays = 30;
+  assert.deepEqual(
+    prepared.snapshots[0].manufacturing.dispatchEstimate,
+    frozen,
+  );
+  assert.deepEqual(effects, ["persist", "execute"]);
 });

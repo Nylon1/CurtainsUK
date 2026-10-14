@@ -78,6 +78,7 @@ export async function currentCushionRules(): Promise<CushionPricingRules> {
   const rules = JSON.parse(source);
   const allowed = new Set([
     "version",
+    "dispatchEstimate",
     "construction",
     "marginBasisPoints",
     "vatBasisPoints",

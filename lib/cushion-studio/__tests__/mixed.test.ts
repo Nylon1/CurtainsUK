@@ -304,3 +304,47 @@ test("mixed checkout binds reviewed membership and persists native types; retry 
     /CONFIRMATION/,
   );
 });
+
+test("mixed review remains nonbinding without cushion dispatch and production execution requires confirmed immutable evidence", async () => {
+  const f = await fixture();
+  const first = await reviewMixedCheckout(f.input, f.services);
+  assert.equal(first.cushion.snapshots[0].manufacturing.dispatchEstimate, null);
+  const checkoutInput = (review: typeof first) => ({
+    ...f.input,
+    reviewId: review.reviewId,
+    houseReviewToken: review.house.review.reviewToken!,
+    measurementsConfirmed: true,
+    acceptedPriceChanges: review.acceptedPriceChanges,
+    idempotencyKey: "mixed-dispatch-test",
+  });
+  f.services.cushion.mode = "APPROVED_PRODUCTION";
+  await assert.rejects(
+    executeMixedCheckout(checkoutInput(first), f.services),
+    /DISPATCH_ESTIMATE_REQUIRED/,
+  );
+  assert.deepEqual(f.effects, []);
+  const confirmedRules: CushionPricingRules = {
+    ...rules,
+    dispatchEstimate: {
+      version: "synthetic-mixed-dispatch",
+      status: "confirmed",
+      minimumWorkingDays: 12,
+      maximumWorkingDays: 17,
+      startsFrom: "order-confirmation",
+      confirmedAt: now.toISOString(),
+      approvalReference: "SYNTHETIC-TEST-ONLY",
+    },
+  };
+  f.services.cushion.rules = async () => confirmedRules;
+  f.input.expectedQuoteId = quoteCushion(spec, fabric, confirmedRules).quoteId;
+  const second = await reviewMixedCheckout(f.input, f.services);
+  assert.notEqual(second.reviewId, first.reviewId);
+  await executeMixedCheckout(checkoutInput(second), f.services);
+  const saved = f.stored.get("mixed-dispatch-test");
+  assert.deepEqual(
+    saved.snapshots[0].manufacturing.dispatchEstimate,
+    confirmedRules.dispatchEstimate,
+  );
+  assert.equal(saved.contract.expected.shippingGrossAmountMinor, 1295);
+  assert.deepEqual(f.effects, ["curtains", "cushions", "execute"]);
+});

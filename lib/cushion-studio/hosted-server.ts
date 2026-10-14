@@ -186,7 +186,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
           quotes: resultRaw.quotes.map(customerCushionQuote),
           setQuote: customerCushionQuote(resultRaw.setQuote),
           purchaseEnabled:
-            services.purchasesEnabled() && resultRaw.setQuote.ready,
+            services.purchasesEnabled() && resultRaw.setQuote.purchaseReady,
           source: "server",
         };
       } else if (operation === "designs") {
@@ -306,6 +306,8 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
           { status: 403, headers: responseHeaders },
         );
       const recoverable: Record<string, string> = {
+        CUSHION_DISPATCH_ESTIMATE_REQUIRED:
+          "A cushion dispatch estimate must be confirmed before ordering. You can still save and review your design.",
         CUSHION_DESIGN_SAVE_REQUIRED:
           "Save your cushion design before continuing to checkout.",
         CUSHION_PRICE_OR_SPEC_CHANGED:

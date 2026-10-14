@@ -138,6 +138,7 @@ async function fixture(t: TestContext) {
     enabled: true,
     purchase: false,
     facts: structuredClone(fabric),
+    rules: structuredClone(rules),
     authenticationCalls: 0,
     executions: 0,
   };
@@ -177,8 +178,8 @@ async function fixture(t: TestContext) {
       const specs = (body.specs as unknown[]).map(parseCushionSpec);
       const inputs = specs.map((spec) => ({ spec, facts: state.facts }));
       return {
-        quotes: inputs.map((input) => quoteCushionSet([input], rules)),
-        setQuote: quoteCushionSet(inputs, rules),
+        quotes: inputs.map((input) => quoteCushionSet([input], state.rules)),
+        setQuote: quoteCushionSet(inputs, state.rules),
         audience: "owner-local-review",
         purchaseEnabled: false,
         source: "server",
@@ -191,7 +192,7 @@ async function fixture(t: TestContext) {
         mode: "REVIEW",
         now: () => new Date(nowSeconds * 1000),
         facts: async () => structuredClone(state.facts),
-        rules: async () => rules,
+        rules: async () => state.rules,
         identity: async (id) => ({
           id,
           brand: "Synthetic",
@@ -427,4 +428,31 @@ test("hosted errors retain rate-limit retry guidance and safe client error statu
   const error = await broken(request("quote", "1001", {}), ["api", "quote"]);
   assert.equal(error.status, 503);
   assert.doesNotMatch(await error.text(), /private|supplier|credential/);
+});
+
+test("hosted purchase flag requires a confirmed dispatch estimate while price exploration stays available", async (t) => {
+  const f = await fixture(t);
+  f.state.purchase = true;
+  const body = { specs: design.pieces.map((piece) => piece.spec) };
+  const absent = await (await f.call("quote", "1001", body)).json();
+  assert.equal(absent.setQuote.ready, true);
+  assert.equal(absent.purchaseEnabled, false);
+  assert.equal(absent.setQuote.dispatchEstimate, null);
+  f.state.rules.dispatchEstimate = {
+    version: "synthetic-only",
+    status: "confirmed",
+    minimumWorkingDays: 12,
+    maximumWorkingDays: 17,
+    startsFrom: "order-confirmation",
+    confirmedAt: "2026-10-14T12:00:00Z",
+    approvalReference: "SYNTHETIC-TEST-ONLY",
+  };
+  const confirmed = await (await f.call("quote", "1001", body)).json();
+  assert.equal(confirmed.purchaseEnabled, true);
+  assert.notEqual(confirmed.setQuote.quoteId, absent.setQuote.quoteId);
+  assert.match(confirmed.setQuote.dispatchEstimate.message, /dispatch/);
+  assert.doesNotMatch(
+    JSON.stringify(confirmed),
+    /approvalReference|confirmedAt/,
+  );
 });

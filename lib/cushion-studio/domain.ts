@@ -1,3 +1,4 @@
+import type { CushionDispatchEstimate } from "./dispatch";
 /** Cushion manufacturing is independent of curtain configurations and scene placement. */
 export const CUSHION_SPEC_VERSION = 1 as const;
 export const CUSHION_SIZES = [
@@ -149,6 +150,7 @@ export const PREVIEW_CONSTRUCTION_RULES: ConstructionRules = {
 };
 export type CushionPricingRules = {
   version: string;
+  dispatchEstimate?: CushionDispatchEstimate | null;
   construction: ConstructionRules;
   marginBasisPoints: number | null;
   vatBasisPoints: number | null;
@@ -199,7 +201,7 @@ export const CUSHION_MAKING_RATE_CARD: NonNullable<
   }),
 );
 export const PREVIEW_PRICING_RULES: CushionPricingRules = {
-  version: "cushion-cost-basis-v3-owner-delivery495",
+  version: "cushion-cost-basis-v4-dispatch-required",
   construction: PREVIEW_CONSTRUCTION_RULES,
   // Owner-selected starting target, 14 October 2026; server rules remain editable.
   marginBasisPoints: 4000,
@@ -207,6 +209,7 @@ export const PREVIEW_PRICING_RULES: CushionPricingRules = {
   carriageMinor: null,
   customerDeliveryGrossMinor: 495,
   carrierCostMinor: null,
+  dispatchEstimate: null,
 };
 const idPattern = /^[A-Za-z0-9][A-Za-z0-9_-]{0,149}$/;
 function object(input: unknown): Record<string, unknown> {

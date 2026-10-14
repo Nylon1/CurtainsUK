@@ -8,7 +8,7 @@ import {
   type ConstructionRules,
   type PlacementMm,
 } from "./domain";
-import { squareDrapeFootprint } from "./runtime/geometry.mjs";
+import { squareDrapeFootprint, shapeDrapeFootprints, sizeOf, SHAPED_CONSTRUCTION_VERSION } from "./runtime/geometry.mjs";
 
 export type CutPiece = {
   id: string;
@@ -24,6 +24,8 @@ export type CutPiece = {
   /** Source-image visible origin; front/back equality is explicit and testable. */
   sourcePlacementMm: PlacementMm;
   seamAllowanceMm: number;
+  /** False means a net panel envelope only; never a production-ready cut. */
+  seamAllowanceKnown?: boolean;
   rotation: 0;
 };
 export type FabricCutPlan = {
@@ -50,6 +52,17 @@ const positive = (n: number | null | undefined): n is number =>
 const mod = (n: number, d: number) => ((n % d) + d) % d;
 const roundMm = (n: number) => Math.ceil(n * 1000) / 1000;
 type Pending = Omit<CutPiece, "xMm" | "yMm">;
+function shapedConstruction(spec: CushionSpec, rules: ConstructionRules) {
+  const rule = rules.shapedConstructionBySize?.[spec.sizeId];
+  const known = rule?.profileVersion === spec.constructionProfile &&
+    typeof rule?.seamAllowanceMm === "number" && Number.isFinite(rule.seamAllowanceMm) &&
+    rule.seamAllowanceMm > 0 && rule.seamAllowanceMm <= 100;
+  return {
+    seam: known ? rule!.seamAllowanceMm! : 0,
+    known,
+    confirmed: Boolean(known && rule?.confirmed === true && typeof rule.approvalReference === "string" && rule.approvalReference.trim()),
+  };
+}
 function overlaps(a: CutPiece, b: CutPiece) {
   return (
     a.xMm < b.xMm + b.widthMm - 1e-6 &&
@@ -211,11 +224,14 @@ function pack(
 
 function bodyPieces(spec: CushionSpec, rules: ConstructionRules): Pending[] {
   const size = cushionSize(spec.sizeId),
-    seam = rules.seamAllowanceMm,
+    shaped = spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION,
+    construction = shaped ? shapedConstruction(spec, rules) : null,
+    seam = construction ? construction.seam : rules.seamAllowanceMm,
     d = visiblePanelSize(spec),
+    footprints = shaped ? shapeDrapeFootprints(sizeOf(spec.sizeId)) : null,
     squareDrape = spec.sizeId.startsWith("square-")
       ? squareDrapeFootprint(d.widthMm, d.heightMm)
-      : null,
+      : footprints?.body ?? null,
     panelWidth = squareDrape?.visibleWidthMm ?? d.widthMm,
     panelHeight = squareDrape?.visibleHeightMm ?? d.heightMm,
     panelOrigin = squareDrape
@@ -244,27 +260,31 @@ function bodyPieces(spec: CushionSpec, rules: ConstructionRules): Pending[] {
       heightMm: roundMm(h + 2 * seam),
       sourcePlacementMm: { ...source },
       seamAllowanceMm: seam,
+      ...(construction ? { seamAllowanceKnown: construction.known } : {}),
       rotation: 0,
     });
   }
   for (let unit = 1; unit <= spec.quantity; unit++) {
     if (size.shape === "bolster") {
-      add(unit, "body", d.widthMm, d.heightMm, "rectangle", spec.placementMm);
+      const end = footprints?.end,
+        endPlacement = spec.bolsterEndPlacementMm ?? spec.placementMm,
+        endOrigin = end ? { x: endPlacement.x + end.minX, y: endPlacement.y + end.minY } : endPlacement;
+      add(unit, "body", panelWidth, panelHeight, "rectangle", panelOrigin);
       add(
         unit,
         "end-a",
-        size.heightMm,
-        size.heightMm,
+        end?.visibleWidthMm ?? size.heightMm,
+        end?.visibleHeightMm ?? size.heightMm,
         "circle",
-        spec.bolsterEndPlacementMm ?? spec.placementMm,
+        endOrigin,
       );
       add(
         unit,
         "end-b",
-        size.heightMm,
-        size.heightMm,
+        end?.visibleWidthMm ?? size.heightMm,
+        end?.visibleHeightMm ?? size.heightMm,
         "circle",
-        spec.bolsterEndPlacementMm ?? spec.placementMm,
+        endOrigin,
       );
     } else {
       add(
@@ -369,7 +389,7 @@ export function buildSetCutPlan(
     throw new Error("CUSHION_SET_QUANTITY_LIMIT");
   if (new Set(specs.map((s) => s.id)).size !== specs.length)
     throw new Error("CUSHION_DUPLICATE_ID");
-  if (!rules.confirmed)
+  if (specs.some((spec) => !spec.constructionProfile) && !rules.confirmed)
     issues.push(
       "The 20 mm seam planning allowance and closure construction require workroom approval.",
     );
@@ -390,6 +410,13 @@ export function buildSetCutPlan(
   inputs.forEach((input, index) => {
     const spec = specs[index];
     issues.push(...previewIssues(spec, input.facts));
+    if (spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION) {
+      const construction = shapedConstruction(spec, rules);
+      if (!construction.known)
+        issues.push(`${spec.id}: ${spec.sizeId} seam allowance is unconfirmed; diagram shows net panel envelopes only, with no cutting allowance included.`);
+      if (!construction.confirmed)
+        issues.push(`${spec.id}: ${spec.sizeId} ${spec.constructionProfile} panel dimensions, closure and construction require workroom approval.`);
+    }
     if (
       cushionSize(spec.sizeId).approval === "proposed" &&
       !rules.approvedSizeIds?.includes(spec.sizeId)
@@ -425,6 +452,7 @@ export function buildSetCutPlan(
   });
   const matchingVerified =
     complete &&
+    specs.every((spec) => !spec.constructionProfile || shapedConstruction(spec, rules).confirmed) &&
     (rules.squareDrapeConfirmed === true ||
       !specs.some((spec) => spec.sizeId.startsWith("square-"))) &&
     inputs.every(
@@ -447,17 +475,25 @@ export function buildSetCutPlan(
       "Use the saved fabric ID, colourway, original image and placement coordinates. Check the fabric face and nap before cutting.",
       "Front and back must show the identical motif position, upright when viewed from each outward face. Cut two separate matching pieces; do not mirror or turn one piece upside down.",
       "The supplier Full Width is the owner-approved calculation width. Image width and supplier calculation width retain separate provenance. Diagram coordinates are millimetres from the cloth left edge and start of the allocated roll. Patterned plans reserve one vertical repeat to locate the photographed motif before cutting.",
-      "Transfer the visible placement to both panels and verify the motif against the saved reference before sewing. Dashed seam lines enclose the finished face; outside lines are cut lines.",
+      "Transfer the visible placement to both panels and verify the motif against the saved reference before sewing. Diagram outlines include the stated seam allowance only where confirmed; net-only envelopes with unknown allowances must not be used for cutting.",
       ...(specs.some((s) => s.sizeId.startsWith("square-"))
         ? [
             "Square panels include the measured curved-face fabric extent centred on the selected motif. Confirm this draped panel size and the additional seam allowance with the workroom before purchase.",
           ]
         : []),
+      ...specs.filter((s) => s.constructionProfile).map((spec) => {
+        const construction = shapedConstruction(spec, rules),
+          footprint = shapeDrapeFootprints(sizeOf(spec.sizeId));
+        return `${spec.id}: construction profile ${spec.constructionProfile}; finished ${cushionSize(spec.sizeId).label}. Net ${footprint.body.cutShape} panel ${footprint.body.visibleWidthMm.toFixed(3)} × ${footprint.body.visibleHeightMm.toFixed(3)} mm${footprint.end ? `; two matching circular ends ${footprint.end.visibleWidthMm.toFixed(3)} mm net diameter` : '; two identical upright panels'}. ${construction.known ? `Add ${construction.seam} mm seam allowance per edge as shown.` : 'Seam allowance unknown: diagram is a net envelope, not a cutting instruction.'} Confirm panel dimensions and closure with the workroom; do not apply the standard-square profile.`;
+      }),
       "Keep all pieces upright. Circle bounding boxes are conservative; no unverified circle nesting or 90-degree rotation savings are charged.",
-      ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster")
+      ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && !s.constructionProfile)
         ? [
             "Bolster: cut one continuous body rectangle plus two matching circular end caps. The body length is 560 mm; its wrap is π × 230 mm before seam allowance.",
           ]
+        : []),
+      ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && s.constructionProfile)
+        ? ["Shaped bolster: the body is one continuous unmirrored wrap, with its joining seam underneath. The cylinder stops at the two cap seams; domed caps complete the finished overall length. Both end panels have identical upright outward placement. Opposite body views show different portions of that continuous wrap, not duplicate flat faces."]
         : []),
       "Confirm closure, seam allowance, piping construction and any unresolved review items before manufacturing.",
     ],

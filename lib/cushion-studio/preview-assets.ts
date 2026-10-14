@@ -11,7 +11,11 @@ export async function cushionPreviewAsset(
   },
 ) {
   const root = path.join(process.cwd(), "lib/cushion-studio/runtime");
+  if (asset.startsWith("range-review.") && !options.ownerPreview)
+    return new Response("Not found", { status: 404 });
   const mime: Record<string, string> = {
+    "range-review.html": "text/html; charset=utf-8",
+    "range-review.mjs": "text/javascript; charset=utf-8",
     "index.html": "text/html; charset=utf-8",
     "studio.css": "text/css; charset=utf-8",
     "studio.mjs": "text/javascript; charset=utf-8",
@@ -54,7 +58,7 @@ export async function cushionPreviewAsset(
     ? path.join(process.cwd(), "lib/room-visualiser/runtime/vendor", filename)
     : path.join(root, filename);
   let body: string = await readFile(file, "utf8");
-  if (filename === "index.html")
+  if (filename === "index.html" || filename === "range-review.html")
     body = body.replace(
       "<head>",
       `<head><base href="${options.base}"><meta name="robots" content="noindex,nofollow"><script>window.CUSHION_STUDIO_CONFIG=${JSON.stringify({ apiBase: options.apiBase, threeUrl: `${options.base}three.module.js`, ownerPreview: options.ownerPreview, ownerReview: options.ownerPreview }).replaceAll("<", "\\u003c")};</script>`,

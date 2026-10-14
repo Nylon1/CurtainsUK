@@ -1,65 +1,11 @@
 import type { CushionDispatchEstimate } from "./dispatch";
-import { squareDrapeFitsSource } from "./runtime/geometry.mjs";
+import { squareDrapeFitsSource, CUSHION_VISUAL_SIZES, SHAPED_CONSTRUCTION_VERSION, shapeDrapeFitsSource, sizeOf } from "./runtime/geometry.mjs";
 /** Cushion manufacturing is independent of curtain configurations and scene placement. */
 export const CUSHION_SPEC_VERSION = 1 as const;
-export const CUSHION_SIZES = [
-  ...[38, 45, 50, 55, 60].map((cm) => ({
-    id: `square-${cm}`,
-    label: `${cm} × ${cm} cm`,
-    shape: "rectangle" as const,
-    widthMm: cm * 10,
-    heightMm: cm * 10,
-    approval: "confirmed" as const,
-  })),
-  {
-    id: "rectangle-30-45",
-    label: "30 × 45 cm",
-    shape: "rectangle" as const,
-    widthMm: 450,
-    heightMm: 300,
-    approval: "confirmed" as const,
-  },
-  {
-    id: "rectangle-38-50",
-    label: "38 × 50 cm",
-    shape: "rectangle" as const,
-    widthMm: 500,
-    heightMm: 380,
-    approval: "confirmed" as const,
-  },
-  ...[40, 50].map((cm) => ({
-    id: `round-${cm}`,
-    label: `Round ${cm} cm · proposed`,
-    shape: "round" as const,
-    widthMm: cm * 10,
-    heightMm: cm * 10,
-    approval: "proposed" as const,
-  })),
-  {
-    id: "bed-square-65",
-    label: "Decorative bed square 65 cm · proposed",
-    shape: "rectangle" as const,
-    widthMm: 650,
-    heightMm: 650,
-    approval: "proposed" as const,
-  },
-  {
-    id: "bed-square-70",
-    label: "Decorative bed square 70 cm · proposed",
-    shape: "rectangle" as const,
-    widthMm: 700,
-    heightMm: 700,
-    approval: "proposed" as const,
-  },
-  {
-    id: "bolster-23-56",
-    label: "Bolster Ø23 × 56 cm",
-    shape: "bolster" as const,
-    widthMm: 560,
-    heightMm: 230,
-    approval: "confirmed" as const,
-  },
-] as const;
+export const CUSHION_SIZES = CUSHION_VISUAL_SIZES.map((size) => ({
+  ...size,
+  shape: size.shape === "square" || size.shape === "bed" ? "rectangle" as const : size.shape,
+}));
 export type CushionSize = (typeof CUSHION_SIZES)[number];
 export const CUSHION_SCENES = [
   "sofa-2",
@@ -74,6 +20,8 @@ export type CushionSpec = {
   version: 1;
   id: string;
   sizeId: string;
+  /** Explicit opt-in: earlier saved specs retain their original construction. */
+  constructionProfile?: typeof SHAPED_CONSTRUCTION_VERSION;
   fabricId: string;
   filling: "cover" | "filled";
   edge: "unpiped" | "self" | "contrast";
@@ -134,6 +82,13 @@ export type ConstructionRules = {
   confirmed: boolean;
   /** Workroom approval that the sewn square panels cover the calibrated curved face. */
   squareDrapeConfirmed?: boolean;
+  /** Each new shaped construction needs its own seam and workroom confirmation. */
+  shapedConstructionBySize?: Record<string, {
+    profileVersion: typeof SHAPED_CONSTRUCTION_VERSION;
+    seamAllowanceMm: number | null;
+    confirmed: boolean;
+    approvalReference?: string;
+  }>;
   approvedSizeIds?: string[];
   pipingStripWidthMm: number | null;
   pipingJoinAllowanceMm: number | null;
@@ -269,6 +224,11 @@ export function parseCushionSpec(input: unknown): CushionSpec {
   };
   if (result.edge === "contrast")
     result.pipingFabricId = identifier(p.pipingFabricId);
+  if (p.constructionProfile !== undefined) {
+    if (p.constructionProfile !== SHAPED_CONSTRUCTION_VERSION || sizeId.startsWith("square-"))
+      throw new Error("CUSHION_CONSTRUCTION_PROFILE_UNSUPPORTED");
+    result.constructionProfile = SHAPED_CONSTRUCTION_VERSION;
+  }
   if (p.bolsterEndPlacementMm !== undefined)
     result.bolsterEndPlacementMm = placement(p.bolsterEndPlacementMm);
   return result;
@@ -362,10 +322,12 @@ export function previewIssues(
       p.y + h <= c.physicalHeightMm + 1e-6;
   const sourceFits = spec.sizeId.startsWith("square-")
     ? squareDrapeFitsSource(size, c, spec.placementMm)
-    : fits(spec.placementMm, size.widthMm, size.heightMm);
+    : spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION
+      ? shapeDrapeFitsSource(sizeOf(spec.sizeId), c, spec.placementMm, spec.bolsterEndPlacementMm)
+      : fits(spec.placementMm, size.widthMm, size.heightMm);
   if (!sourceFits)
     errors.push(
-      "Artwork placement or the sewn square's curved surface exceeds the original image; wrapping and extension are not permitted.",
+      "Artwork placement or the curved surface exceeds the original image; wrapping and extension are not permitted.",
     );
   if (
     cushionSize(spec.sizeId).shape === "bolster" &&

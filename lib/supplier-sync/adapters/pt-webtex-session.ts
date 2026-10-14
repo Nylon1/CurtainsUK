@@ -5,6 +5,13 @@ const ORIGIN = "https://www.prestigiousonline.co.uk";
 const LOGIN = "/webtex/Content/Security/Default.aspx";
 const STOCK = "/webtex/Content/StockEnquiry/Default.aspx";
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
+// Retry ONLY transient failures on read-only stock queries. Never retry login,
+// authentication failures, unexpected response formats or reconciliation errors.
+const RETRYABLE_STOCK_FAILURES = new Set([
+  "PT_WEBTEX_REQUEST_TIMEOUT", "PT_WEBTEX_TRANSPORT_FAILURE",
+  "PT_WEBTEX_HTTP_408", "PT_WEBTEX_HTTP_429", "PT_WEBTEX_HTTP_500",
+  "PT_WEBTEX_HTTP_502", "PT_WEBTEX_HTTP_503", "PT_WEBTEX_HTTP_504",
+]);
 
 type QueryType = PtStockRow["queryType"];
 export interface PtQueryResult { rows: PtStockRow[]; total: number; returned: number; observedAt: string }
@@ -14,13 +21,25 @@ export class PtWebtexSession {
   private readonly cookies = new Map<string, string>();
   private authenticated = false;
   private sortOrder = "";
-  constructor(private readonly fetcher: typeof fetch = fetch) {}
+  constructor(
+    private readonly fetcher: typeof fetch = fetch,
+    private readonly pause: (milliseconds: number) => Promise<void> =
+      (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
+  ) {}
 
   private async request(path: string, init: RequestInit = {}, redirectCount = 0): Promise<Response> {
     const headers = new Headers(init.headers);
     headers.set("user-agent", USER_AGENT);
     if (this.cookies.size) headers.set("cookie", [...this.cookies].map(([key, value]) => `${key}=${value}`).join("; "));
-    const response = await this.fetcher(`${ORIGIN}${path}`, { ...init, headers, redirect: "manual", signal: AbortSignal.timeout(30_000) });
+    let response: Response;
+    try {
+      response = await this.fetcher(`${ORIGIN}${path}`, { ...init, headers, redirect: "manual", signal: AbortSignal.timeout(30_000) });
+    } catch (error) {
+      // Do not log raw fetch exceptions: some transports include URLs/headers.
+      const errorName = error instanceof Error ? error.name : "";
+      if (errorName === "TimeoutError" || errorName === "AbortError") throw new Error("PT_WEBTEX_REQUEST_TIMEOUT");
+      throw new Error("PT_WEBTEX_TRANSPORT_FAILURE");
+    }
     for (const cookie of response.headers.getSetCookie()) {
       const first = cookie.split(";", 1)[0];
       const split = first.indexOf("=");
@@ -41,7 +60,13 @@ export class PtWebtexSession {
       method: "POST", headers: { "content-type": "application/json; charset=utf-8", "x-requested-with": "XMLHttpRequest" },
       body: JSON.stringify(parameters),
     });
-    const envelope = await response.json() as { d?: unknown };
+    let envelope: { d?: unknown };
+    try {
+      envelope = await response.json() as { d?: unknown };
+    } catch {
+      // A 200/HTML login page or malformed Webtex JSON is not zero stock.
+      throw new Error("PT_WEBTEX_RESPONSE_NOT_JSON");
+    }
     if (typeof envelope.d !== "string") throw new Error("PT_WEBTEX_RESPONSE_INVALID");
     return envelope.d;
   }
@@ -90,7 +115,19 @@ export class PtWebtexSession {
       l_stPassProdGroupCode: "**NONE**",
     };
     if (queryType === "COLLECTION") base.l_lnPassCollectionCount = 20;
-    const xmlText = await this.invoke(`${STOCK}/${method}`, base);
+    let xmlText: string | undefined;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        xmlText = await this.invoke(`${STOCK}/${method}`, base);
+        break;
+      } catch (error) {
+        const code = error instanceof Error ? error.message : "";
+        if (!RETRYABLE_STOCK_FAILURES.has(code) || attempt === 3) throw error;
+        console.warn(JSON.stringify({ event: "PT_WEBTEX_TRANSIENT_RETRY", queryType, attempt, code }));
+        await this.pause(attempt * 1000);
+      }
+    }
+    if (xmlText === undefined) throw new Error("PT_WEBTEX_RETRY_EXHAUSTED");
     const observedAt = new Date().toISOString();
     const xml = load(xmlText, { xmlMode: true });
     const status = xml("RETURNPACKET > STATUS").text().trim();
@@ -108,7 +145,13 @@ export class PtWebtexSession {
       xml(record).children("fd").each((__, field) => {
         const id = xml(field).attr("id")?.toUpperCase();
         const raw = xml(field).attr("value") ?? "";
-        if (id) fields.set(id, decodeURIComponent(raw));
+        if (id) {
+          try {
+            fields.set(id, decodeURIComponent(raw));
+          } catch {
+            throw new Error("PT_WEBTEX_FIELD_ENCODING_INVALID");
+          }
+        }
       });
       const sku = fields.get("C2")?.trim() ?? "";
       if (sku) rows.push({ sku, stockText: fields.get("C4")?.trim() ?? "", indicator: fields.get("C1")?.trim() ?? "",

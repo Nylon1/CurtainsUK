@@ -91,25 +91,68 @@ async function compactSupersededStock(
 
 async function retrieve(session: PtWebtexSession, identities: readonly PtIdentity[]) {
   const rows: PtStockRow[] = [];
-  const collections = [...new Set(identities.map((item) => item.collection))];
-  for (const collection of collections) rows.push(...(await session.search("COLLECTION", collection)).rows);
-  const found = new Set(rows.map((row) => row.sku));
-  const missing = identities.filter((item) => !found.has(item.supplierSku));
-  const designs = [...new Set(missing.map((item) => item.supplierSku.slice(0, 4)))];
-  for (const design of designs) rows.push(...(await session.search("DESIGN_CODE", design)).rows);
-  const afterDesign = new Set(rows.map((row) => row.sku));
-  const skuFallbacks = identities.filter((item) => !afterDesign.has(item.supplierSku));
-  for (const item of skuFallbacks) {
-    try { rows.push(...(await session.search("PRODUCT_CODE", item.supplierSku)).rows); }
-    catch (error) {
-      // An exact supplier absence is an exception for this SKU. Authentication,
-      // transport and parser failures still stop the run; absent evidence never
-      // becomes an invented zero or a refreshed timestamp.
-      const code = error instanceof Error ? error.message : "";
-      if (!(/^PT_WEBTEX_QUERY_STATUS_/.test(code) || code === "PT_WEBTEX_HTTP_404")) throw error;
+  const startedAt = Date.now();
+  let phase: PtStockRow["queryType"] = "COLLECTION";
+  let completed = 0, total = 0;
+  const phaseDone = () => console.log(JSON.stringify({
+    event: "PT_RETRIEVAL_PHASE_COMPLETED", phase, completed, total,
+    rowsCollected: rows.length, elapsedMs: Date.now() - startedAt,
+  }));
+  const phaseProgress = () => {
+    if (completed > 0 && completed % 50 === 0) console.log(JSON.stringify({
+      event: "PT_RETRIEVAL_PROGRESS", phase, completed, total,
+    }));
+  };
+  try {
+    const collections = [...new Set(identities.map((item) => item.collection))];
+    total = collections.length;
+    for (const collection of collections) {
+      rows.push(...(await session.search("COLLECTION", collection)).rows);
+      completed += 1;
+      phaseProgress();
     }
+    phaseDone();
+
+    const found = new Set(rows.map((row) => row.sku));
+    const missing = identities.filter((item) => !found.has(item.supplierSku));
+    const designs = [...new Set(missing.map((item) => item.supplierSku.slice(0, 4)))];
+    phase = "DESIGN_CODE"; completed = 0; total = designs.length;
+    for (const design of designs) {
+      rows.push(...(await session.search("DESIGN_CODE", design)).rows);
+      completed += 1;
+      phaseProgress();
+    }
+    phaseDone();
+
+    const afterDesign = new Set(rows.map((row) => row.sku));
+    const skuFallbacks = identities.filter((item) => !afterDesign.has(item.supplierSku));
+    phase = "PRODUCT_CODE"; completed = 0; total = skuFallbacks.length;
+    for (const item of skuFallbacks) {
+      try { rows.push(...(await session.search("PRODUCT_CODE", item.supplierSku)).rows); }
+      catch (error) {
+        // An exact supplier absence is an exception for this SKU. Authentication,
+        // transport and parser failures still stop the run; absent evidence never
+        // becomes an invented zero or a refreshed timestamp.
+        const code = error instanceof Error ? error.message : "";
+        if (!(/^PT_WEBTEX_QUERY_STATUS_/.test(code) || code === "PT_WEBTEX_HTTP_404")) throw error;
+      }
+      completed += 1;
+      phaseProgress();
+    }
+    phaseDone();
+    return { rows, collectionQueries: collections.length, designQueries: designs.length, skuQueries: skuFallbacks.length };
+  } catch (error) {
+    // Output only stable, allowlisted diagnostics: no URLs, cookies, raw HTML,
+    // supplier response bodies or credentials. All fetched evidence is discarded.
+    const code = error instanceof Error && /^PT_[A-Z0-9_]+$/.test(error.message)
+      ? error.message : "PT_RETRIEVAL_UNEXPECTED_FAILURE";
+    const errorName = error instanceof Error && /^(TimeoutError|AbortError|TypeError|SyntaxError|URIError|RangeError)$/.test(error.name)
+      ? error.name : "OTHER";
+    console.error(JSON.stringify({ event: "PT_RETRIEVAL_FAILURE_CONTEXT",
+      phase, completed, total, rowsCollected: rows.length, elapsedMs: Date.now() - startedAt,
+      code, errorName }));
+    throw error;
   }
-  return { rows, collectionQueries: collections.length, designQueries: designs.length, skuQueries: skuFallbacks.length };
 }
 
 async function verifyMaterialisation(snapshots: readonly NormalizedSupplierSnapshot[]) {

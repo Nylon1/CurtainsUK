@@ -1,0 +1,30 @@
+name: PT Webtex regression
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "lib/supplier-sync/adapters/pt-webtex-session.ts"
+      - "lib/supplier-sync/__tests__/pt-webtex-session.test.ts"
+      - "lib/supplier-sync/__tests__/pt-stock-reconciliation.test.ts"
+      - "scripts/curtainsuk-pt-routine-stock.ts"
+      - ".github/workflows/pt-webtex-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  stock-retrieval-tests:
+    name: pt-webtex-regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install without lifecycle scripts or privileged secrets
+        run: npm ci --ignore-scripts --no-audit
+      - name: Test Webtex sessions and stock reconciliation
+        run: npx --no-install tsx --test lib/supplier-sync/__tests__/pt-webtex-session.test.ts lib/supplier-sync/__tests__/pt-stock-reconciliation.test.ts

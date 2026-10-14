@@ -14,7 +14,7 @@ This exports the complete Git tree, including paths absent from a sparse checkou
 
 Inspect the explicit existing Vercel project and run `vercel deploy --dry --json` from the export. Confirm the manifest files and catalogue textures are in the upload. Use the existing production environment and source-attestation settings, stage with `--prod --skip-domain`, and verify the exact deployed bytes and unsigned proxy denials before promotion. Preserve the active adviser gates and budgets when updating their approved source SHA. Never infer the deployed source from a Production label alone.
 
-After promotion, verify the canonical production alias and both compatibility aliases, every released module/room asset and catalogue texture, then exercise the live Shopify page. The current UI has two camera views (Room and Curtain) and three lighting modes (Daylight, Evening and Fabric inspection); check all four rooms. Record browser checks separately from physical devices.
+After promotion, verify the canonical production alias and both compatibility aliases, every released module/room asset and catalogue texture, then exercise the live Shopify page. STANDARD has Room and Curtain camera views; FIXED140 additionally has Full curtain view. Check all three FIXED140 views in all four rooms, plus Daylight, Evening and Fabric inspection lighting. Record browser checks separately from physical devices.
 
 For a deliberately new renderer release, retain older immutable packs and extend `lib/room-visualiser/released-assets.json` with the new pack's original file hashes alongside its build manifest. Do not weaken the guard to make an incomplete deployment pass. For an unrelated deployment, no manifest or asset change is needed.
 

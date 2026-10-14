@@ -16,11 +16,11 @@ All three existing aliases point to the restored deployment: `curtainsuk-product
 
 - Staged readback: 102 module/room-pack files and five representative fabric textures matched their expected hashes; three unsigned proxy routes denied access.
 - Full public readback at 18:18 UTC: **11,016 / 11,016** assets returned HTTP 200 with expected SHA-256 and usable CORS: 102 module/room files, 3,048 unique STANDARD textures and 7,866 FIXED140 images. One public FIXED140 image uses wildcard CORS, which is valid for its credential-free image request. All expected bytes matched.
-- Live Shopify browser: Living Room, Bedroom, Lounge and Office each passed Daylight, Evening and Fabric inspection in both Room and Curtain camera views: **24 combinations**, with screenshots and selected-control readback. The existing product has two camera views and three lighting modes.
+- Live Shopify browser: Living Room, Bedroom, Lounge and Office each passed Daylight, Evening and Fabric inspection in both Room and Curtain camera views: **24 combinations**, with screenshots and selected-control readback. A second browser pass selected the FIXED140 Abeja — Blush fabric through Change fabric, then verified Room, Curtain and Full curtain views in every room: **12 further combinations**. STANDARD has two camera views; FIXED140 exposes the third.
 - No physical iPhone or spoken VoiceOver result is claimed.
 - Packaging guard: eight automated checks cover complete packages, missing entry/room/FIXED140/texture files, altered immutable bytes, an unrecorded build pointer and invocation by the normal prebuild. The full local package verifies 3,150 files / 204,383,626 bytes.
 
-Evidence directory: `C:/Users/hamza/curtainsuk-room-visualiser-repair-evidence-20261014`. Key files: `before-pack-readback.json`, `deploy-inputs.json`, `stage-readback.json`, `live-assets.json`, `live-ui-checks.json`, and the 24 named screenshots. Full per-asset hashes remain in the local evidence rather than duplicating the large catalogue in this document.
+Evidence directory: `C:/Users/hamza/curtainsuk-room-visualiser-repair-evidence-20261014`. Key files: `before-pack-readback.json`, `deploy-inputs.json`, `stage-readback.json`, `live-assets.json`, `live-ui-checks.json`, `live-fixed140-ui-checks.json`, and the 36 named screenshots. Full per-asset hashes remain in the local evidence rather than duplicating the large catalogue in this document.
 
 ## Prevention and rollback
 

@@ -10,7 +10,7 @@
     const panel = dialog.querySelector('[data-jane-chat]');
     if (!panel) return;
     const find = name => panel.querySelector(`[data-jane-${name}]`);
-    const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status'), tools = find('tools');
+    const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status'), tools = find('tools'), manage = find('manage');
     const starters = find('starters'), thinking = find('thinking'), signIn = find('signin'), signInHelp = find('signin-help');
     const consent = find('consent'), startButton = find('start'), deleteButton = find('delete');
     const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricHint = find('fabric-hint'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
@@ -123,6 +123,7 @@
       }
       startButton.hidden = !!session || !ownerBinding; deleteButton.hidden = !session; form.hidden = !session;
       if (tools) tools.hidden = !session;
+      if (manage) manage.hidden = !session;
       if (starters) starters.hidden = !session || !!session.messages?.length;
       consent.closest('label').hidden = !!session || !ownerBinding;
       const answered = hasFabricReply(selectedContext());

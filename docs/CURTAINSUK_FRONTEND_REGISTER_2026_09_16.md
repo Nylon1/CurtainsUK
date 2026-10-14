@@ -1,5 +1,7 @@
 # CurtainsUK Frontend Register — 16 September 2026
 
+> **Unpublished feature candidate — 14 October 2026:** [Cushion Studio](CUSHION_STUDIO_IMPLEMENTATION.md) adds two separate signed-proxy views (individual configurator, then sofa/bed layout) within the existing Shopify direction. Its loopback review server is engineering tooling, not a fourth storefront. The native page/CTA and hosted purchase gates remain off; no published frontend is replaced.
+
 > **Current release pointer — 9 October 2026:** the roles and theme IDs below are the preserved September snapshot. Fresh public read-back identifies Shopify theme `182339731835` as `main`. The four-room Room Visualiser runs in that native storefront's signed app-proxy iframe, backed by the existing Vercel production service. See [Production surfaces](PRODUCTION_SURFACES.md) and the [current Room Visualiser release](room-visualiser-2-customer-release.md). The preserved alternative frontends remain protected; this update is documentation only.
 
 > This register exists to prevent future cleanup/reconciliation work from mistaking a deliberately preserved frontend for obsolete residue.

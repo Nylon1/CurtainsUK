@@ -1,0 +1,268 @@
+TAP version 13
+# Subtest: three curtain House is a multi-line non-payable contract with one delivery and exact reconciliation
+ok 1 - three curtain House is a multi-line non-payable contract with one delivery and exact reconciliation
+  ---
+  duration_ms: 19.0983
+  type: 'test'
+  ...
+# Subtest: orders/paid reconstructs exactly the House lines and rejects property tampering
+ok 2 - orders/paid reconstructs exactly the House lines and rejects property tampering
+  ---
+  duration_ms: 6.0241
+  type: 'test'
+  ...
+# Subtest: multi-line execution retains generic exact-total checks and a House-specific idempotency claim
+ok 3 - multi-line execution retains generic exact-total checks and a House-specific idempotency claim
+  ---
+  duration_ms: 299.3683
+  type: 'test'
+  ...
+# Subtest: multi-curtain migration and webhook leave historic single-snapshot lifecycle intact
+ok 4 - multi-curtain migration and webhook leave historic single-snapshot lifecycle intact
+  ---
+  duration_ms: 2.2799
+  type: 'test'
+  ...
+# Subtest: 1-line house contract preserves each immutable line, VAT and one governed delivery charge
+ok 5 - 1-line house contract preserves each immutable line, VAT and one governed delivery charge
+  ---
+  duration_ms: 17.1286
+  type: 'test'
+  ...
+# Subtest: 2-line house contract preserves each immutable line, VAT and one governed delivery charge
+ok 6 - 2-line house contract preserves each immutable line, VAT and one governed delivery charge
+  ---
+  duration_ms: 3.6553
+  type: 'test'
+  ...
+# Subtest: 10-line house contract preserves each immutable line, VAT and one governed delivery charge
+ok 7 - 10-line house contract preserves each immutable line, VAT and one governed delivery charge
+  ---
+  duration_ms: 8.5339
+  type: 'test'
+  ...
+# Subtest: house membership or room-name changes invalidate its order fingerprint
+ok 8 - house membership or room-name changes invalidate its order fingerprint
+  ---
+  duration_ms: 5.749
+  type: 'test'
+  ...
+# Subtest: House promotion changes execution authority only, retaining every checked line and financial value
+ok 9 - House promotion changes execution authority only, retaining every checked line and financial value
+  ---
+  duration_ms: 6.1275
+  type: 'test'
+  ...
+# Subtest: authored comma separators preserve punctuation within exact fabric and room names
+ok 10 - authored comma separators preserve punctuation within exact fabric and room names
+  ---
+  duration_ms: 2.8328
+  type: 'test'
+  ...
+# Subtest: room-specific failures are useful without leaking internal exceptions
+ok 11 - room-specific failures are useful without leaking internal exceptions
+  ---
+  duration_ms: 2.828
+  type: 'test'
+  ...
+# Subtest: theme integration stays gated and new rooms discard only transient evaluations
+ok 12 - theme integration stays gated and new rooms discard only transient evaluations
+  ---
+  duration_ms: 5.1886
+  type: 'test'
+  ...
+# Subtest: final 1-curtain bridge prepares private multi-line contract with stable retry identity and safe public result
+ok 13 - final 1-curtain bridge prepares private multi-line contract with stable retry identity and safe public result
+  ---
+  duration_ms: 32.1059
+  type: 'test'
+  ...
+# Subtest: final 2-curtain bridge prepares private multi-line contract with stable retry identity and safe public result
+ok 14 - final 2-curtain bridge prepares private multi-line contract with stable retry identity and safe public result
+  ---
+  duration_ms: 12.6093
+  type: 'test'
+  ...
+# Subtest: final 10-curtain bridge prepares private multi-line contract with stable retry identity and safe public result
+ok 15 - final 10-curtain bridge prepares private multi-line contract with stable retry identity and safe public result
+  ---
+  duration_ms: 34.4595
+  type: 'test'
+  ...
+# Subtest: final handoff rejects stale review after membership, revision, postcode, room-name or receipt changes
+ok 16 - final handoff rejects stale review after membership, revision, postcode, room-name or receipt changes
+  ---
+  duration_ms: 6.5549
+  type: 'test'
+  ...
+# Subtest: price changes between review and Continue return fresh line review, then require exact per-line amount acceptance
+ok 17 - price changes between review and Continue return fresh line review, then require exact per-line amount acceptance
+  ---
+  duration_ms: 10.5195
+  type: 'test'
+  ...
+# Subtest: combined stock changing after review returns blocked lines and creates no prepared contract
+ok 18 - combined stock changing after review returns blocked lines and creates no prepared contract
+  ---
+  duration_ms: 4.3468
+  type: 'test'
+  ...
+# Subtest: real server binding defaults to no writes and rejects production transport before any network call
+ok 19 - real server binding defaults to no writes and rejects production transport before any network call
+  ---
+  duration_ms: 266.3324
+  type: 'test'
+  ...
+# Subtest: House snapshots use the existing customer-safe snapshot summary allowlist
+ok 20 - House snapshots use the existing customer-safe snapshot summary allowlist
+  ---
+  duration_ms: 7.1513
+  type: 'test'
+  ...
+# Subtest: House release requires both its own gate and the established production checkout approval
+ok 21 - House release requires both its own gate and the established production checkout approval
+  ---
+  duration_ms: 1.9895
+  type: 'test'
+  ...
+# Subtest: new accepted membership, destination or price has distinct execution identity while retained identity stays stable
+ok 22 - new accepted membership, destination or price has distinct execution identity while retained identity stays stable
+  ---
+  duration_ms: 12.5037
+  type: 'test'
+  ...
+# Subtest: retaining independently uses the production engine and exact fabric, without a fixed retail fixture
+ok 23 - retaining independently uses the production engine and exact fabric, without a fixed retail fixture
+  ---
+  duration_ms: 1.0812
+  type: 'test'
+  ...
+# Subtest: old price token and tampered measurements cannot enter a saved room
+ok 24 - old price token and tampered measurements cannot enter a saved room
+  ---
+  duration_ms: 0.9539
+  type: 'test'
+  ...
+# Subtest: saved receipt survives the original two-hour token but always recalculates price
+ok 25 - saved receipt survives the original two-hour token but always recalculates price
+  ---
+  duration_ms: 3.7035
+  type: 'test'
+  ...
+# Subtest: changes are identified per room and window, with explicit acknowledgement required
+ok 26 - changes are identified per room and window, with explicit acknowledgement required
+  ---
+  duration_ms: 1.9494
+  type: 'test'
+  ...
+# Subtest: tampered durable receipt blocks only that curtain and never substitutes fabric
+ok 27 - tampered durable receipt blocks only that curtain and never substitutes fabric
+  ---
+  duration_ms: 1.7129
+  type: 'test'
+  ...
+# Subtest: cumulative stock checks total cloth needed by every window sharing a fabric
+ok 28 - cumulative stock checks total cloth needed by every window sharing a fabric
+  ---
+  duration_ms: 2.2729
+  type: 'test'
+  ...
+# Subtest: deleted blocks review and preserves saved raw dimensions
+ok 29 - deleted blocks review and preserves saved raw dimensions
+  ---
+  duration_ms: 1.4018
+  type: 'test'
+  ...
+# Subtest: non-commercial blocks review and preserves saved raw dimensions
+ok 30 - non-commercial blocks review and preserves saved raw dimensions
+  ---
+  duration_ms: 1.119
+  type: 'test'
+  ...
+# Subtest: stale-stock blocks review and preserves saved raw dimensions
+ok 31 - stale-stock blocks review and preserves saved raw dimensions
+  ---
+  duration_ms: 0.8997
+  type: 'test'
+  ...
+# Subtest: draft-rules blocks review and preserves saved raw dimensions
+ok 32 - draft-rules blocks review and preserves saved raw dimensions
+  ---
+  duration_ms: 0.8957
+  type: 'test'
+  ...
+# Subtest: incompatible blocks review and preserves saved raw dimensions
+ok 33 - incompatible blocks review and preserves saved raw dimensions
+  ---
+  duration_ms: 0.821
+  type: 'test'
+  ...
+# Subtest: duplicate curtain identities and missing delivery fail closed
+ok 34 - duplicate curtain identities and missing delivery fail closed
+  ---
+  duration_ms: 1.5389
+  type: 'test'
+  ...
+# Subtest: ten windows use exactly one delivery quote and summed authoritative goods/VAT
+ok 35 - ten windows use exactly one delivery quote and summed authoritative goods/VAT
+  ---
+  duration_ms: 6.8639
+  type: 'test'
+  ...
+# Subtest: the preview cannot execute even a single Shopify payment handoff
+ok 36 - the preview cannot execute even a single Shopify payment handoff
+  ---
+  duration_ms: 0.3146
+  type: 'test'
+  ...
+# Subtest: 1 immutable curtains survive a reconstructed storage client
+ok 37 - 1 immutable curtains survive a reconstructed storage client
+  ---
+  duration_ms: 4.498
+  type: 'test'
+  ...
+# Subtest: 3 immutable curtains survive a reconstructed storage client
+ok 38 - 3 immutable curtains survive a reconstructed storage client
+  ---
+  duration_ms: 2.8658
+  type: 'test'
+  ...
+# Subtest: 10 immutable curtains survive a reconstructed storage client
+ok 39 - 10 immutable curtains survive a reconstructed storage client
+  ---
+  duration_ms: 11.5028
+  type: 'test'
+  ...
+# Subtest: room rename and removing a middle curtain preserve every other configuration byte-for-byte
+ok 40 - room rename and removing a middle curtain preserve every other configuration byte-for-byte
+  ---
+  duration_ms: 2.707
+  type: 'test'
+  ...
+# Subtest: cross-tab revision conflicts cannot overwrite a newer house
+ok 41 - cross-tab revision conflicts cannot overwrite a newer house
+  ---
+  duration_ms: 0.3954
+  type: 'test'
+  ...
+# Subtest: quota and corrupt storage errors never report Saved or silently discard a house
+ok 42 - quota and corrupt storage errors never report Saved or silently discard a house
+  ---
+  duration_ms: 0.6441
+  type: 'test'
+  ...
+# Subtest: duplicate add is idempotent and never doubles a retained curtain
+ok 43 - duplicate add is idempotent and never doubles a retained curtain
+  ---
+  duration_ms: 0.8597
+  type: 'test'
+  ...
+1..43
+# tests 43
+# suites 0
+# pass 43
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1099.6881

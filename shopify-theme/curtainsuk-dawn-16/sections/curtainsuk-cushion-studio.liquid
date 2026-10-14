@@ -1,0 +1,57 @@
+{% comment %}
+  Dormant candidate. Requires the separately approved, default-off server gate.
+  No existing navigation or published page is changed by this section.
+{% endcomment %}
+{% if section.settings.enabled %}
+  <section class="cuk-cushion-studio" aria-label="Cushion Studio">
+    <header class="page-width cuk-cushion-studio__intro">
+      <h1>{{ section.settings.heading | escape }}</h1>
+      <p>{{ section.settings.introduction | escape }}</p>
+    </header>
+    <iframe
+      data-cuk-cushion-frame
+      data-source="/apps/curtainsuk-decision/cushion-studio"
+      title="Cushion Configurator and Cushion Layout"
+      class="cuk-cushion-studio__frame"
+      loading="eager"
+      allow="fullscreen"
+    ></iframe>
+    <noscript><p class="page-width">Enable JavaScript to configure cushions. You can still <a href="/pages/fabric-library">browse fabrics and order samples</a>.</p></noscript>
+  </section>
+{% elsif request.design_mode %}
+  <div class="page-width">
+    <h2>Cushion Studio — unpublished candidate</h2>
+    <p>Enable only after the protected backend release, manufacturing rules, pricing, persistence and checkout checks have been approved.</p>
+  </div>
+{% endif %}
+{% stylesheet %}
+  .cuk-cushion-studio__intro { padding-top: 3rem; padding-bottom: 2rem; }
+  .cuk-cushion-studio__intro h1 { margin-bottom: 1rem; }
+  .cuk-cushion-studio__frame { display: block; width: 100%; height: max(880px, 85vh); border: 0; background: #f5f1e9; }
+  @media (max-width: 749px) { .cuk-cushion-studio__frame { height: 1250px; } }
+{% endstylesheet %}
+{% javascript %}
+  document.querySelectorAll('[data-cuk-cushion-frame]').forEach(function (frame) {
+    var source = new URL(frame.dataset.source, window.location.origin);
+    var fabric = new URLSearchParams(window.location.search).get('fabric');
+    if (fabric && /^[A-Za-z0-9][A-Za-z0-9_-]{0,149}$/.test(fabric)) source.searchParams.set('fabric', fabric);
+    frame.src = source.pathname + source.search;
+    window.addEventListener('message', function (event) {
+      if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
+      if (event.data && event.data.type === 'cuk-cushion-height' && Number.isFinite(event.data.height)) {
+        frame.style.height = Math.min(20000, Math.max(700, Math.ceil(event.data.height))) + 'px';
+      }
+    });
+  });
+{% endjavascript %}
+{% schema %}
+{
+  "name": "Cushion Studio",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Enable approved Cushion Studio", "default": false },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Cushion Studio" },
+    { "type": "textarea", "id": "introduction", "label": "Introduction", "default": "Create your cushion first, then arrange your collection on a sofa or bed." }
+  ],
+  "presets": [{ "name": "Cushion Studio" }]
+}
+{% endschema %}

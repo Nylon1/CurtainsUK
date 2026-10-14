@@ -1,0 +1,90 @@
+# Cushion Studio implementation candidate
+
+This candidate starts from protected `release/production` commit `d70a3f4ee2bca8f098a3d9acce0c2a6a5d11ed92`. It adds a distinct cushion product domain. Existing curtain specifications, renderer eligibility, room packs, pricing and checkout remain authoritative for curtains. No Shopify page, navigation, hosted schema, public feature flag or paid action is activated by local development.
+
+## Two separate experiences
+
+1. **Cushion Configurator:** select the real fabric, shape, finished size, cover/filled option, edge treatment and linked artwork placement. Inspect either outward face. Front and back use the identical upright motif position, not merely the same colourway. Bolsters use one continuous body strip and two matching end caps.
+2. **Cushion Layout:** add configured cushions to a newly authored two-seat sofa, three-seat sofa, corner sofa, armchair, double bed or king bed. Change furniture/wall/floor colours, position pieces with guided controls, compare arrangements, undo, save and return to individual cushion editing. Furniture and any bedding props are not sale items.
+
+Square sizes are 38/45/50/55/60 cm; rectangles are 30×45 and 38×50 cm. Round 40/50 cm and decorative bed squares 65/70 cm are proposed workroom defaults. Bolster dimensions are Ø23×56 cm. This product does not include seating cushions, sleeping pillows or decorative trims.
+
+## Run the review
+
+```powershell
+npm run preview:cushions
+```
+
+Open `http://127.0.0.1:4357/cushion-studio-preview/`. This loopback server has a separate local-only marker loader; it does not modify dependencies or weaken hosted `server-only` checks. Browser state is editable. Explicit server saves persist atomically under ignored `.cushion-studio-data/` with optimistic revisions. The local preview can show owner cost and manufacturing diagnostics. Customer responses use a strict retail-only projection.
+
+```powershell
+npm run test:cushions
+node --test lib/cushion-studio/runtime/geometry.test.mjs
+npx tsc --noEmit
+```
+
+Manufacturing, commerce, mixed orders, geometry, capacity and saved-revision tests are included in `npm test`. The public catalogue is read-only. Without the configured private database connection, original fabric discovery and physical preview still work, but supplier costs are deliberately unavailable. No demonstration fabric prices are invented. Arithmetic fixtures explicitly use synthetic £20/metre and other test rates.
+
+## Source of truth and physical cloth
+
+`domain.ts` defines the versioned manufacturing specification; `cutting.ts` creates both matching cuts and workroom instructions; `pricing.ts` costs that exact plan. Scene placement is independent of manufacturing placement. The same specification is retained in saved designs and copied into immutable ordered snapshots.
+
+Owner clarification on 14 October 2026 establishes that **original images represent one recorded Full Width ×1000 mm**. X and Y physical extents are independent; square image pixels do not imply square physical coverage. The four first-demonstration original hashes and source records are in `config/cushion-studio-fabric-evidence.json` and `artifacts/cushion-studio-evidence/`. The full active catalogue is not restricted to these examples or to curtain-renderer eligibility. Other approved original MAIN mappings can use the same owner calibration rule.
+
+Supplier **Full Width** is also the existing approved calculation-width policy, as documented by the project ledger and PT Standard Price correction. It retains separate provenance from image calibration even where their numeric values coincide. Missing usable-width data does not override this existing policy.
+
+No image is assumed tileable. Placement stays within finite original coverage. Patterned cutting requires an evidenced repeat lattice, and aligns duplicate pieces through whole repeat shifts. One vertical repeat is reserved to register the photographed motif against the physical bolt; the image origin is not assumed to be the bolt start. Unknown/half-drop matching remains an explicit workroom case. Conservative circle bounding boxes avoid invented nesting savings. Piping fabric cutting requires confirmed strip width, direction and joins; indicative piping appearance is not an exact artwork claim.
+
+The 50 cm plain example becomes two 54 cm cuts across 140 cm only under the stated 20 mm seam planning allowance and no increased supplier minimum. This yields 0.54 raw metres, not a universal per-cushion allowance. Sets are repacked by actual fabric identity after additions, removals and edits. Supplier minimums/increments apply after shared packing.
+
+## Editable commercial rules
+
+Rules are server-authored and versioned; client requests cannot set costs, margin, VAT or retail prices. A local owner can provide `.cushion-studio-data/pricing-rules.json`. The starting values are exported by `PREVIEW_PRICING_RULES`, `CUSHION_MAKING_RATE_CARD` and `CUSHION_FIXED_COSTS`.
+
+The hosted rule source is server-only `CUSHION_STUDIO_PRICING_RULES_JSON`. Supplier minimums/increments and original-source evidence are attached to their exact Fabric Master IDs in the evidence adapter; this is not a second supplier-price list. Commercial unit costs continue to come from current approved database evidence.
+
+Exactly one making rate is selected per piece:
+
+| Size family | Unpiped | Self-piped | Contrast-piped | Status |
+| --- | ---: | ---: | ---: | --- |
+| Standard squares and rectangles | £8 | £11 | £12 | £8 approved; piping defaults proposed |
+| Round 40/50; bed square 65 | £10 | £13 | £14 | Proposed workroom defaults |
+| Bolster Ø23×56; bed square 70 | £12 | £15 | £16 | Proposed workroom defaults |
+
+Making includes cutting, sewing, matching and zip fitting. Piped making rates include the proposed cord and labour allowance. Do not add a separate cord charge or a second £8 baseline. Main fabric and piping fabric metres are separate material requirements at current approved supplier net cost.
+
+Other components are sundries £1.20, standard insert £5 when filled, packaging £1 and overhead £3 (including payment fees). Thus standard fixed cover costs are £13.20/£16.20/£17.20 and filled costs £18.20/£21.20/£22.20. These totals are checks, not additional line items. Round, bolster and large bed inserts need their own compatible supplier costs; no £5 fallback applies.
+
+There is no agreed margin default. Retail ex VAT is `totalCost / (1 - margin)`, rounded to pennies. Current supplier costs and owner component allowances share the net VAT basis. The server imports the existing locked UK store VAT authority (20%), rather than asking for another VAT decision. VAT is rounded per Shopify quantity-one custom line and separately for delivery. Staff diagnostics retain the target and resulting margin after rounding and any explicitly configured discount. Customer delivery and supplier carriage are distinct per-order amounts. Customer projections exclude supplier costs, margin and workroom-only diagnostics.
+
+Each set member receives its attributable making/insert cost and a share of its actual fabric group's cloth cost based on cut area. Only shared cloth waste, minimums and carriage are apportioned. Largest-remainder allocation conserves pennies. The same item totals feed review, immutable snapshots and Shopify reconciliation.
+
+## Persistence, checkout and paid manufacturing
+
+Cushion snapshots have product type `CUSHION` and a separate schema from curtain snapshots. Checkout rereads fabric identity, approved cost, stock, rules and specification, rejects stale quote hashes, persists immutable snapshots, and uses the existing checked Shopify Draft Order transport. Tests inject a transport for a non-purchasing rehearsal; this is not evidence of a live transaction.
+
+Mixed review resolves the existing signed retained House receipts, reruns native curtain pricing and cushion cutting, then aggregates cloth requirements for any shared fabric before a combined stock check. One explicitly approved shared delivery replaces separate delivery charges. The customer acknowledges changed curtain prices and measurements before checkout. Native curtain snapshots and cushion snapshots remain distinct. Retry reuses the original checkout group and snapshot identities.
+
+Paid processing verifies raw-body Shopify authentication, immutable IDs/digests, quantity, currency, all goods/shipping/tax/order totals, the trusted checkout group and its completed Shopify draft-to-order link. A unique paid snapshot claim prevents a second order claiming the same manufacturing snapshot. Mixed curtain lines enter the existing native paid lifecycle in the same database transaction; cushion usage enters shared stock accounting without double-counting curtain usage. Paid events retain staff review: they do not release manufacture. An editable layout is never a manufacturing instruction for an already ordered item.
+
+The offline migration is source only until separately reviewed and applied. Hosted design ownership uses Shopify's signed `logged_in_customer_id`; the app proxy strips cookies, so cookie-based ownership is not assumed. See [Shopify's app-proxy authentication documentation](https://shopify.dev/docs/apps/build/online-store/app-proxies/authenticate-app-proxies).
+
+## Controlled rollout
+
+The Shopify `page.cushion-studio.json` template and section are dormant, with `enabled:false`. Planned navigation is **Cushions & Pillows → `/pages/cushion-studio`**. Do not point customers at the page until the gated backend, source mappings, manufacturing confirmations and commercial readiness are accepted.
+
+Implemented but not activated:
+
+- Signed app-proxy asset/API routes, account-owned save/restore, customer-safe quotes, current sample service and Shopify cart handoff.
+- Cushion and mixed review/checkout, immutable persistence, checked existing Draft Order transport and authenticated paid processing.
+- Offline migration `20261014163749_cushion_studio_distinct_persistence.sql`, owner-only rules, dormant theme page and fabric-profile CTA.
+
+All release gates default off: `CUSHION_STUDIO_HOSTED_ENABLED`, `CUSHION_STUDIO_PURCHASES_ENABLED`, `CUSHION_STUDIO_WEBHOOK_ENABLED`, `CUSHION_STUDIO_MIXED_ENABLED`. Purchases also require `CUSHION_STUDIO_COMMERCIAL_APPROVAL_REFERENCE`, existing production payment approval and production transport configuration. Mixed checkout additionally requires native Rooms release gates and `CUSHION_STUDIO_MIXED_SHIPPING_APPROVAL_REFERENCE`; it does not infer parcel suitability from cloth weight. Admin draft/order read access is needed to reconcile paid identity. The migration has **not** been applied, production credentials have not been exercised and no payment has been made.
+
+Remaining business inputs are not fabricated: retail margin; supplier ordering minimums/increments where absent; supplier carriage and customer delivery; confirmed seams/closure; affected proposed size/making/piping approvals and piping strip construction; compatible nonstandard inserts. The approved full-catalogue suitability and standard fixed cost components are established, not blockers. Only affected configurations are ineligible for binding prices. The public-catalogue local demonstration has no private supplier cost access, so its quotations remain explicitly non-binding.
+
+Before activation: review/applied-schema tests, configured database/server commercial rules, affected manufacturing approvals, configured margin, verified shipping/carriage, hosted account/save/return and mixed paid rehearsal, production capability checks, and physical mobile Safari verification. Deploy only the exact approved protected release HEAD following `release/README.md`; enabling a feature branch or local checkout is not a production deployment path.
+
+Rollback after any future activation: close cushion and mixed purchase gates first; hide the native page entry/profile CTA and navigation; close the hosted preview gate if the customer surface itself is faulty. Retain immutable snapshots, paid records and the schema. Keep an authenticated paid receiver available for already-created unpaid drafts and webhook retries, or deliberately return retryable errors until a repaired receiver is deployed—never acknowledge an unrecorded payment. Revert only this candidate's source through a protected PR, rerun both required checks, and deploy the exact approved protected HEAD. Do not erase ordered specifications or restore a mutable design over an order.
+
+Three.js and asset provenance are recorded in `lib/cushion-studio/runtime/SOURCES.md`. No unidentified MIT configurator code or third-party sofa model was adopted.

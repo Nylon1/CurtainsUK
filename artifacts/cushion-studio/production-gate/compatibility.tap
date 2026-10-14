@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: production policy enforces the approved hardware and heading matrix
+ok 1 - production policy enforces the approved hardware and heading matrix
+  ---
+  duration_ms: 3.2653
+  type: 'test'
+  ...
+# Subtest: measurement anchors preserve the customer raw measurement contract
+ok 2 - measurement anchors preserve the customer raw measurement contract
+  ---
+  duration_ms: 0.4125
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 349.1077

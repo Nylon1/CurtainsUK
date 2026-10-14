@@ -10,7 +10,7 @@ import { retainCurtain, reviewHouse, type HouseReviewRequest } from './rooms-cor
 import { prepareHouseCheckout, type HouseCheckoutInput, type HouseCheckoutServices } from './rooms-checkout';
 import { executePreparedHouseCheckout, houseCheckoutConfigFromEnvironment } from './rooms-checkout-server';
 
-function services(): HouseCheckoutServices {
+export function houseCheckoutServices(): HouseCheckoutServices {
   const secret = process.env.CURTAINSUK_STAGING_REVIEW_SIGNING_SECRET;
   if (!secret || secret.length < 32) throw Error('ROOMS_SIGNING_UNAVAILABLE');
   return {
@@ -49,8 +49,8 @@ export async function roomsCommand(input: unknown) {
   if (!roomsFeatureEnabled()) throw Error('ROOMS_UNAVAILABLE');
   if (!input || typeof input !== 'object') throw Error('ROOMS_REQUEST_INVALID');
   const command = input as { action: string; payload: unknown };
-  if (command.action === 'retain') return retainCurtain(command.payload as Parameters<typeof retainCurtain>[0], services());
-  if (command.action === 'review') return reviewHouse(command.payload as HouseReviewRequest, services());
-  if (command.action === 'checkout') return executePreparedHouseCheckout(await prepareHouseCheckout(command.payload as HouseCheckoutInput, services()), houseCheckoutConfigFromEnvironment());
+  if (command.action === 'retain') return retainCurtain(command.payload as Parameters<typeof retainCurtain>[0], houseCheckoutServices());
+  if (command.action === 'review') return reviewHouse(command.payload as HouseReviewRequest, houseCheckoutServices());
+  if (command.action === 'checkout') return executePreparedHouseCheckout(await prepareHouseCheckout(command.payload as HouseCheckoutInput, houseCheckoutServices()), houseCheckoutConfigFromEnvironment());
   throw Error('ROOMS_REQUEST_INVALID');
 }

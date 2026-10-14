@@ -80,3 +80,6 @@ next-env.d.ts
 /artifacts/curtain-style-v1/
 /artifacts/curtain-style-v2/
 /artifacts/room-visualiser-v1/
+
+# Local Cushion Studio editable designs and immutable trial snapshots.
+/.cushion-studio-data/

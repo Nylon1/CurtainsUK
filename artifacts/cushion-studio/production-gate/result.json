@@ -1,0 +1,57 @@
+{
+  "manifestVersion": "1.0.0",
+  "manifestSha256": "9e7f1867faf7211ce1889ec11bdacec9f3fcad7ccaefdb1b0699ae703467eab8",
+  "candidate": {
+    "commit": "d70a3f4ee2bca8f098a3d9acce0c2a6a5d11ed92",
+    "capabilities": {
+      "fabricMaster": {
+        "status": "PASS",
+        "tests": 23
+      },
+      "fabricKnowledge": {
+        "status": "PASS",
+        "tests": 2
+      },
+      "samples": {
+        "status": "PASS",
+        "tests": 3
+      },
+      "stock": {
+        "status": "PASS",
+        "tests": 9
+      },
+      "pricing": {
+        "status": "PASS",
+        "tests": 4
+      },
+      "compatibility": {
+        "status": "PASS",
+        "tests": 2
+      },
+      "singleCheckout": {
+        "status": "PASS",
+        "tests": 35
+      },
+      "houseCheckout": {
+        "status": "PASS",
+        "tests": 43
+      },
+      "financialReconciliation": {
+        "status": "PASS",
+        "tests": 4
+      },
+      "paidLifecycle": {
+        "status": "PASS",
+        "tests": 4
+      },
+      "policy": {
+        "status": "PASS",
+        "tests": 4
+      }
+    }
+  },
+  "baseline": null,
+  "comparison": "BLOCKED",
+  "scope": "OFFLINE_CONTRACTS_ONLY",
+  "deploymentReady": false
+}

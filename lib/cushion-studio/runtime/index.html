@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f5f1e8" />
+    <title>Cushion Studio · CurtainsUK</title>
+    <link rel="stylesheet" href="./studio.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="wordmark" href="/"
+        >Curtains<span>UK</span><small>MADE FOR YOUR HOME</small></a
+      >
+      <nav aria-label="Studio navigation">
+        <span class="nav-current">Cushion Studio</span
+        ><button id="restore">Return to a design</button
+        ><button id="save" class="outline">
+          Save design <span aria-hidden="true">↗</span>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">THE FINISHING TOUCH, MADE PERSONAL</p>
+          <h1>A little detail.<br /><em>A different room.</em></h1>
+        </div>
+        <p>
+          Find your fabric. Perfect your arrangement.<br />Make cushions that
+          feel entirely yours.
+        </p>
+        <div class="intro-note">
+          <span class="step-number">01</span
+          ><span
+            >DESIGN YOUR CUSHIONS<br /><strong
+              >Made to order. Made to keep.</strong
+            ></span
+          >
+        </div>
+      </section>
+      <div class="workspace">
+        <section class="visual" aria-label="Your cushion arrangement">
+          <div class="scene-top">
+            <span class="scene-caption">YOUR ROOM, REIMAGINED</span>
+            <div class="segmented" role="group" aria-label="Camera view">
+              <button data-camera="wide" class="active">Room view</button
+              ><button data-camera="close">The details</button>
+            </div>
+          </div>
+          <div
+            id="scene"
+            tabindex="0"
+            role="img"
+            aria-label="Interactive cushion arrangement. Select a cushion, then use arrow keys to change its position."
+          >
+            <div class="scene-loading">Preparing your room…</div>
+          </div>
+          <div class="scene-actions">
+            <button id="undo" disabled aria-label="Undo last design change">
+              ↶ <span>Undo</span></button
+            ><button id="compare">◫ <span>Keep for comparison</span></button
+            ><button id="flip">↔ <span>View back</span></button>
+          </div>
+          <div class="room-controls">
+            <label
+              >YOUR SETTING<select id="furniture">
+                <option value="sofa-2">Two-seat sofa</option>
+                <option value="sofa-3">Three-seat sofa</option>
+                <option value="corner">Corner sofa</option>
+                <option value="armchair">Armchair</option>
+                <option value="bed-double">Double bed</option>
+                <option value="bed-king">King bed</option>
+              </select></label
+            >
+            <div>
+              <span>UPHOLSTERY</span>
+              <div class="swatches" id="upholstery"></div>
+            </div>
+            <div>
+              <span>WALL</span>
+              <div class="swatches" id="walls"></div>
+            </div>
+            <label
+              >FLOOR<select id="floor">
+                <option value="oak">Natural oak</option>
+                <option value="dark">Smoked oak</option>
+                <option value="stone">Warm stone</option>
+              </select></label
+            >
+          </div>
+          <div id="comparison" hidden></div>
+          <div class="scene-foot">
+            <span>Original furniture scenes · visual guide</span
+            ><span id="render-status">Real fabric, considered details</span>
+          </div>
+        </section>
+        <aside class="editor" aria-label="Cushion design controls">
+          <div class="editor-heading">
+            <div>
+              <p class="eyebrow">MAKE IT YOURS</p>
+              <h2>Your cushions</h2>
+            </div>
+            <button id="add" class="round" aria-label="Add a cushion">+</button>
+          </div>
+          <div
+            id="pieces"
+            class="pieces"
+            role="group"
+            aria-label="Select cushion"
+          ></div>
+          <div class="editor-section">
+            <div class="section-title">
+              <span class="step">1</span>
+              <h3>Shape & size</h3>
+            </div>
+            <div class="shape-options" id="shapes"></div>
+            <label class="field"
+              >Finished size<select id="size"></select
+            ></label>
+            <p id="size-note" class="help"></p>
+          </div>
+          <div class="editor-section">
+            <div class="section-title">
+              <span class="step">2</span>
+              <h3>A fabric to fall for</h3>
+              <button id="samples" class="text-link">Sample</button>
+            </div>
+            <label class="search"
+              ><span aria-hidden="true">⌕</span
+              ><input
+                id="fabric-search"
+                type="search"
+                placeholder="Search fabric or colour"
+                aria-label="Search fabrics"
+            /></label>
+            <div id="fabrics" class="fabric-grid"></div>
+            <p id="fabric-description" class="help"></p>
+            <details class="placement">
+              <summary>Perfect the pattern placement <span>+</span></summary>
+              <p class="help">
+                Move the artwork on either face. Front and back always share the
+                same upright placement.
+              </p>
+              <label class="field"
+                >Across the cloth <span id="offset-x-value"></span
+                ><input
+                  id="offset-x"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="0" /></label
+              ><label class="field"
+                >Down the cloth <span id="offset-y-value"></span
+                ><input
+                  id="offset-y"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="0"
+              /></label>
+              <p id="calibration-note" class="help"></p>
+            </details>
+          </div>
+          <div class="editor-section">
+            <div class="section-title">
+              <span class="step">3</span>
+              <h3>The finishing touch</h3>
+            </div>
+            <div class="edge-options" id="edges">
+              <button data-edge="none"><i class="edge plain"></i>Unpiped</button
+              ><button data-edge="self">
+                <i class="edge self"></i>Self-piped</button
+              ><button data-edge="contrast">
+                <i class="edge contrast"></i>Contrast
+              </button>
+            </div>
+            <label id="contrast-field" class="field" hidden
+              >Piping fabric<select id="contrast-fabric"></select
+            ></label>
+          </div>
+          <div class="editor-section arrangement">
+            <div class="section-title">
+              <span class="step">4</span>
+              <h3>Find its place</h3>
+            </div>
+            <div class="placement-buttons">
+              <button data-place="left">Left</button
+              ><button data-place="centre">Centre</button
+              ><button data-place="right">Right</button>
+            </div>
+            <div class="piece-actions">
+              <button id="duplicate">Duplicate cushion</button
+              ><button id="remove">Remove</button>
+            </div>
+          </div>
+          <div class="quote">
+            <div>
+              <span>YOUR ARRANGEMENT</span
+              ><strong id="quote-total">Calculating…</strong>
+            </div>
+            <p id="quote-note">
+              Your fabric, size and finish, priced together.
+            </p>
+            <button id="buy-set" class="primary">
+              Review the set <span>↗</span></button
+            ><button id="buy-piece" class="text-link">
+              Review this cushion
+            </button>
+            <details id="cut-plan">
+              <summary>Fabric & making details</summary>
+              <div id="cut-plan-content"></div>
+            </details>
+          </div>
+        </aside>
+      </div>
+      <section class="editorial">
+        <p class="eyebrow">THOUGHTFULLY MADE, BEAUTIFULLY FINISHED</p>
+        <h2>The smallest change can<br />make you feel at home.</h2>
+        <p>
+          Mix a generous square with a smaller rectangle. Repeat a colour,
+          introduce a texture, and leave a little space for life.
+        </p>
+        <div class="trust-row">
+          <span>Made to order in the UK</span
+          ><span>Fabric samples available</span
+          ><span>Placement considered on both sides</span>
+        </div>
+      </section>
+    </main>
+    <div
+      id="status"
+      class="toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+    <dialog id="review-dialog">
+      <button id="close-review" class="dialog-close" aria-label="Close review">
+        ×
+      </button>
+      <p class="eyebrow">YOUR FINISHING TOUCHES</p>
+      <h2>Review your cushions</h2>
+      <div id="review-content"></div>
+      <button id="confirm-review" class="primary">Continue</button>
+    </dialog>
+    <script type="module" src="./studio.mjs"></script>
+  </body>
+</html>

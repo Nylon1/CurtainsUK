@@ -539,6 +539,52 @@ export async function executeShopifyDraftOrder(input: {
   };
 }
 
+/** Read-only paid-order linkage for the separate Cushion Studio receiver.
+ * A copied line property cannot establish that this was our server-created draft. */
+export async function verifyCushionPaidDraftLink(input: {
+  contract: ShopifyDraftOrderExecutionContract;
+  orderGid: string;
+  config: ShopifyDraftOrderRuntimeConfig;
+  fetchImpl?: FetchLike;
+}) {
+  if (
+    input.contract.environment !== "PRODUCTION" ||
+    !input.contract.paymentEnabled ||
+    input.config.mode !== "CREATE_PRODUCTION_DRAFT" ||
+    !input.config.productionApproved
+  ) throw new Error("CUSHION_PAID_CONTRACT_INVALID");
+  const fetchImpl = input.fetchImpl ?? fetch;
+  const accessToken = await clientCredentialsToken({ config: input.config, fetchImpl });
+  const data = await graphql({
+    config: input.config,
+    accessToken,
+    fetchImpl,
+    query: `query CushionPaidDraftLink($query: String!) {
+      draftOrders(first: 2, query: $query) {
+        nodes { id status order { id } customAttributes { key value } }
+      }
+    }`,
+    variables: { query: `tag:${input.contract.idempotencyTag}` },
+  });
+  const connection = data.draftOrders;
+  if (
+    !isRecord(connection) || !Array.isArray(connection.nodes) ||
+    connection.nodes.length !== 1 || !isRecord(connection.nodes[0])
+  ) throw new Error("CUSHION_PAID_DRAFT_LINK_INVALID");
+  const draft = connection.nodes[0];
+  if (
+    draft.status !== "COMPLETED" || !isRecord(draft.order) ||
+    draft.order.id !== input.orderGid || typeof draft.id !== "string" ||
+    !Array.isArray(draft.customAttributes)
+  ) throw new Error("CUSHION_PAID_DRAFT_LINK_INVALID");
+  for (const attribute of input.contract.input.customAttributes) {
+    if (!draft.customAttributes.some(value =>
+      isRecord(value) && value.key === attribute.key && value.value === attribute.value
+    )) throw new Error("CUSHION_PAID_DRAFT_LINK_INVALID");
+  }
+  return draft.id;
+}
+
 export async function executeStagingShopifyDraftOrder(input: {
   handoff: Readonly<StagingCheckoutHandoff>;
   customerEmail?: string | null;

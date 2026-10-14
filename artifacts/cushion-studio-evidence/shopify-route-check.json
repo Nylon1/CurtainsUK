@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-14",
+  "method": "Read-only connected Shopify Admin GraphQL after schema inspection and validation",
+  "query": "query CushionStudioRouteCheck {\n shop { name myshopifyDomain }\n pages(first: 20, query: \"handle:cushion-studio\") { nodes { id handle title isPublished templateSuffix } pageInfo { hasNextPage endCursor } }\n urlRedirects(first: 20, query: \"path:/pages/cushion-studio\") { nodes { id path target } pageInfo { hasNextPage endCursor } }\n}",
+  "result": {
+    "data": {
+      "shop": {
+        "name": "CurtainsUK",
+        "myshopifyDomain": "carpetup.myshopify.com"
+      },
+      "pages": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      },
+      "urlRedirects": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      }
+    }
+  }
+}

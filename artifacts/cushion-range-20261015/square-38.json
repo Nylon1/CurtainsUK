@@ -1,0 +1,413 @@
+{
+  "capturedAt": "2026-10-14T23:30:53.734Z",
+  "sizeId": "square-38",
+  "renderer": "customer scene.mjs",
+  "captures": [
+    {
+      "kind": "plain",
+      "label": "Front",
+      "face": "front",
+      "inspectionAngle": "straight",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-plain",
+        "sizeId": "square-38",
+        "fabricId": "sdg-f1239-30",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1370,
+        "heightMm": 1000,
+        "sourceHash": "2b21891a46b58335e61ab58f2d9805d851defba3504d51f6ef10ec852d78c35e"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "plain",
+      "label": "Three-quarter",
+      "face": "front",
+      "inspectionAngle": "three-quarter",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-plain",
+        "sizeId": "square-38",
+        "fabricId": "sdg-f1239-30",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1370,
+        "heightMm": 1000,
+        "sourceHash": "2b21891a46b58335e61ab58f2d9805d851defba3504d51f6ef10ec852d78c35e"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "plain",
+      "label": "True side",
+      "face": "front",
+      "inspectionAngle": "side",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-plain",
+        "sizeId": "square-38",
+        "fabricId": "sdg-f1239-30",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1370,
+        "heightMm": 1000,
+        "sourceHash": "2b21891a46b58335e61ab58f2d9805d851defba3504d51f6ef10ec852d78c35e"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "plain",
+      "label": "Back",
+      "face": "back",
+      "inspectionAngle": "straight",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-plain",
+        "sizeId": "square-38",
+        "fabricId": "sdg-f1239-30",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1370,
+        "heightMm": 1000,
+        "sourceHash": "2b21891a46b58335e61ab58f2d9805d851defba3504d51f6ef10ec852d78c35e"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "plain",
+      "label": "Furniture",
+      "face": "front",
+      "inspectionAngle": "three-quarter",
+      "mode": "layout",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-plain",
+        "sizeId": "square-38",
+        "fabricId": "sdg-f1239-30",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1370,
+        "heightMm": 1000,
+        "sourceHash": "2b21891a46b58335e61ab58f2d9805d851defba3504d51f6ef10ec852d78c35e"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "stripe",
+      "label": "Front",
+      "face": "front",
+      "inspectionAngle": "straight",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-stripe",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dstr237715",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1415,
+        "heightMm": 1000,
+        "sourceHash": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "stripe",
+      "label": "Three-quarter",
+      "face": "front",
+      "inspectionAngle": "three-quarter",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-stripe",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dstr237715",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1415,
+        "heightMm": 1000,
+        "sourceHash": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "stripe",
+      "label": "True side",
+      "face": "front",
+      "inspectionAngle": "side",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-stripe",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dstr237715",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1415,
+        "heightMm": 1000,
+        "sourceHash": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "stripe",
+      "label": "Back",
+      "face": "back",
+      "inspectionAngle": "straight",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-stripe",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dstr237715",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1415,
+        "heightMm": 1000,
+        "sourceHash": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "stripe",
+      "label": "Furniture",
+      "face": "front",
+      "inspectionAngle": "three-quarter",
+      "mode": "layout",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-stripe",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dstr237715",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1415,
+        "heightMm": 1000,
+        "sourceHash": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "directional",
+      "label": "Front",
+      "face": "front",
+      "inspectionAngle": "straight",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-directional",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dmlf236846",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1375,
+        "heightMm": 1000,
+        "sourceHash": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "directional",
+      "label": "Three-quarter",
+      "face": "front",
+      "inspectionAngle": "three-quarter",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-directional",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dmlf236846",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1375,
+        "heightMm": 1000,
+        "sourceHash": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "directional",
+      "label": "True side",
+      "face": "front",
+      "inspectionAngle": "side",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-directional",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dmlf236846",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1375,
+        "heightMm": 1000,
+        "sourceHash": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "directional",
+      "label": "Back",
+      "face": "back",
+      "inspectionAngle": "straight",
+      "mode": "configurator",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-directional",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dmlf236846",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1375,
+        "heightMm": 1000,
+        "sourceHash": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736"
+      },
+      "rendered": true
+    },
+    {
+      "kind": "directional",
+      "label": "Furniture",
+      "face": "front",
+      "inspectionAngle": "three-quarter",
+      "mode": "layout",
+      "scene": "sofa-2",
+      "spec": {
+        "version": 1,
+        "id": "review-square-38-directional",
+        "sizeId": "square-38",
+        "fabricId": "sdg-dmlf236846",
+        "filling": "filled",
+        "edge": "unpiped",
+        "placementMm": {
+          "x": 100,
+          "y": 100
+        },
+        "quantity": 1
+      },
+      "calibration": {
+        "widthMm": 1375,
+        "heightMm": 1000,
+        "sourceHash": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736"
+      },
+      "rendered": true
+    }
+  ],
+  "errors": []
+}

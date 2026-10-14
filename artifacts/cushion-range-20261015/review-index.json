@@ -1,0 +1,770 @@
+{
+  "round-40": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "round-40/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "round-40/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "round-40/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "round-40/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "round-40/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "round-40/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "round-40/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "round-40/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "round-40/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "round-40/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "round-40/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "round-40/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "round-40/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "round-40/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "round-40/14.png"
+    }
+  ],
+  "bolster-23-56": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "bolster-23-56/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "bolster-23-56/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "bolster-23-56/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "bolster-23-56/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "bolster-23-56/4.png"
+    },
+    {
+      "caption": "plain · End AAmalfi · Herb",
+      "file": "bolster-23-56/5.png"
+    },
+    {
+      "caption": "plain · End BAmalfi · Herb",
+      "file": "bolster-23-56/6.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "bolster-23-56/7.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "bolster-23-56/8.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "bolster-23-56/9.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "bolster-23-56/10.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "bolster-23-56/11.png"
+    },
+    {
+      "caption": "stripe · End ASabu Stripe · Stone/Oak",
+      "file": "bolster-23-56/12.png"
+    },
+    {
+      "caption": "stripe · End BSabu Stripe · Stone/Oak",
+      "file": "bolster-23-56/13.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "bolster-23-56/14.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "bolster-23-56/15.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "bolster-23-56/16.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "bolster-23-56/17.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "bolster-23-56/18.png"
+    },
+    {
+      "caption": "directional · End ABird Weave · Brick",
+      "file": "bolster-23-56/19.png"
+    },
+    {
+      "caption": "directional · End BBird Weave · Brick",
+      "file": "bolster-23-56/20.png"
+    }
+  ],
+  "square-38": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "square-38/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "square-38/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "square-38/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "square-38/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "square-38/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "square-38/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "square-38/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "square-38/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "square-38/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "square-38/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "square-38/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "square-38/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "square-38/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "square-38/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "square-38/14.png"
+    }
+  ],
+  "square-45": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "square-45/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "square-45/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "square-45/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "square-45/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "square-45/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "square-45/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "square-45/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "square-45/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "square-45/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "square-45/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "square-45/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "square-45/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "square-45/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "square-45/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "square-45/14.png"
+    }
+  ],
+  "square-50": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "square-50/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "square-50/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "square-50/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "square-50/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "square-50/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "square-50/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "square-50/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "square-50/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "square-50/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "square-50/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "square-50/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "square-50/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "square-50/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "square-50/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "square-50/14.png"
+    }
+  ],
+  "square-55": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "square-55/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "square-55/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "square-55/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "square-55/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "square-55/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "square-55/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "square-55/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "square-55/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "square-55/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "square-55/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "square-55/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "square-55/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "square-55/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "square-55/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "square-55/14.png"
+    }
+  ],
+  "square-60": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "square-60/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "square-60/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "square-60/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "square-60/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "square-60/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "square-60/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "square-60/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "square-60/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "square-60/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "square-60/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "square-60/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "square-60/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "square-60/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "square-60/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "square-60/14.png"
+    }
+  ],
+  "rectangle-30-45": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "rectangle-30-45/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "rectangle-30-45/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "rectangle-30-45/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "rectangle-30-45/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "rectangle-30-45/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "rectangle-30-45/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "rectangle-30-45/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "rectangle-30-45/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "rectangle-30-45/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "rectangle-30-45/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "rectangle-30-45/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "rectangle-30-45/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "rectangle-30-45/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "rectangle-30-45/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "rectangle-30-45/14.png"
+    }
+  ],
+  "rectangle-38-50": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "rectangle-38-50/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "rectangle-38-50/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "rectangle-38-50/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "rectangle-38-50/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "rectangle-38-50/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "rectangle-38-50/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "rectangle-38-50/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "rectangle-38-50/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "rectangle-38-50/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "rectangle-38-50/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "rectangle-38-50/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "rectangle-38-50/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "rectangle-38-50/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "rectangle-38-50/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "rectangle-38-50/14.png"
+    }
+  ],
+  "round-50": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "round-50/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "round-50/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "round-50/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "round-50/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "round-50/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "round-50/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "round-50/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "round-50/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "round-50/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "round-50/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "round-50/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "round-50/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "round-50/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "round-50/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "round-50/14.png"
+    }
+  ],
+  "bed-square-65": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "bed-square-65/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "bed-square-65/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "bed-square-65/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "bed-square-65/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "bed-square-65/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "bed-square-65/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "bed-square-65/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "bed-square-65/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "bed-square-65/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "bed-square-65/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "bed-square-65/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "bed-square-65/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "bed-square-65/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "bed-square-65/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "bed-square-65/14.png"
+    }
+  ],
+  "bed-square-70": [
+    {
+      "caption": "plain · FrontAmalfi · Herb",
+      "file": "bed-square-70/0.png"
+    },
+    {
+      "caption": "plain · Three-quarterAmalfi · Herb",
+      "file": "bed-square-70/1.png"
+    },
+    {
+      "caption": "plain · True sideAmalfi · Herb",
+      "file": "bed-square-70/2.png"
+    },
+    {
+      "caption": "plain · BackAmalfi · Herb",
+      "file": "bed-square-70/3.png"
+    },
+    {
+      "caption": "plain · FurnitureAmalfi · Herb",
+      "file": "bed-square-70/4.png"
+    },
+    {
+      "caption": "stripe · FrontSabu Stripe · Stone/Oak",
+      "file": "bed-square-70/5.png"
+    },
+    {
+      "caption": "stripe · Three-quarterSabu Stripe · Stone/Oak",
+      "file": "bed-square-70/6.png"
+    },
+    {
+      "caption": "stripe · True sideSabu Stripe · Stone/Oak",
+      "file": "bed-square-70/7.png"
+    },
+    {
+      "caption": "stripe · BackSabu Stripe · Stone/Oak",
+      "file": "bed-square-70/8.png"
+    },
+    {
+      "caption": "stripe · FurnitureSabu Stripe · Stone/Oak",
+      "file": "bed-square-70/9.png"
+    },
+    {
+      "caption": "directional · FrontBird Weave · Brick",
+      "file": "bed-square-70/10.png"
+    },
+    {
+      "caption": "directional · Three-quarterBird Weave · Brick",
+      "file": "bed-square-70/11.png"
+    },
+    {
+      "caption": "directional · True sideBird Weave · Brick",
+      "file": "bed-square-70/12.png"
+    },
+    {
+      "caption": "directional · BackBird Weave · Brick",
+      "file": "bed-square-70/13.png"
+    },
+    {
+      "caption": "directional · FurnitureBird Weave · Brick",
+      "file": "bed-square-70/14.png"
+    }
+  ]
+}

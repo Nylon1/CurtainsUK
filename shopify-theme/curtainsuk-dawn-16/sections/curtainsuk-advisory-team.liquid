@@ -2,27 +2,27 @@
 <script src="{{ 'curtainsuk-advisory-team.js' | asset_url }}" defer></script>
 <script src="{{ 'curtainsuk-advisory-interactions.js' | asset_url }}" defer></script>
 {% if section.settings.jane_chat_private_preview or section.settings.jane_chat_live %}<script src="{{ 'curtainsuk-jane-chat.js' | asset_url }}" defer></script>{% endif %}
-{% if section.settings.specialist_chat_private_preview %}<script src="{{ 'curtainsuk-specialist-chat.js' | asset_url }}" defer></script>{{ 'curtainsuk-specialist-chat.css' | asset_url | stylesheet_tag }}{% endif %}
-<div class="cukad" data-advisory-team data-wait-status="{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.wait_status' | t | escape }}{% else %}{{ 'advisory_team.room.wait_status' | t | escape }}{% endif %}" data-room-status="{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.room_status' | t | escape }}{% else %}{{ 'advisory_team.room.room_status' | t | escape }}{% endif %}" data-unavailable="{{ 'advisory_team.room.unavailable' | t | escape }}">
+{% if section.settings.specialist_chat_private_preview or section.settings.specialist_chat_live %}<script src="{{ 'curtainsuk-specialist-chat.js' | asset_url }}" defer></script>{{ 'curtainsuk-specialist-chat.css' | asset_url | stylesheet_tag }}{% endif %}
+<div class="cukad" data-advisory-team data-wait-status="{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.wait_status' | t | escape }}{% else %}{{ 'advisory_team.room.wait_status' | t | escape }}{% endif %}" data-room-status="{% if section.settings.specialist_chat_live %}The room is ready. Sign in and consent before speaking with your chosen AI adviser.{% elsif section.settings.jane_chat_live %}{{ 'advisory_team.live.room_status' | t | escape }}{% else %}{{ 'advisory_team.room.room_status' | t | escape }}{% endif %}" data-unavailable="{{ 'advisory_team.room.unavailable' | t | escape }}">
   <section class="cukad__hero cukad__wrap" aria-labelledby="advisory-heading-{{ section.id }}">
     <div class="cukad__hero-copy">
       <p class="cukad__eyebrow"><span class="cukad__fine-line" aria-hidden="true"></span>{{ 'advisory_team.hero.eyebrow' | t }}</p>
       <h1 id="advisory-heading-{{ section.id }}">{{ 'advisory_team.hero.title' | t }} <em>{{ 'advisory_team.hero.title_emphasis' | t }}</em></h1>
       <p class="cukad__hero-intro">{{ 'advisory_team.hero.intro' | t }}</p>
       <div class="cukad__hero-actions"><a class="cukad__button" href="#advisory-specialists-{{ section.id }}">{{ 'advisory_team.hero.meet' | t }} <span aria-hidden="true">↓</span></a><a class="cukad__text-link" href="#advisory-experience-{{ section.id }}">{{ 'advisory_team.hero.how' | t }} <span aria-hidden="true">↗</span></a></div>
-      <p class="cukad__preview-notice"><span aria-hidden="true"></span>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.hero_notice' | t }}{% else %}{{ 'advisory_team.hero.notice' | t }}{% endif %}</p>
+      <p class="cukad__preview-notice"><span aria-hidden="true"></span>{% if section.settings.specialist_chat_live %}Jane, James, Noah, Natalie and Ben are available as AI advisers. Anne is coming soon.{% elsif section.settings.jane_chat_live %}{{ 'advisory_team.live.hero_notice' | t }}{% else %}{{ 'advisory_team.hero.notice' | t }}{% endif %}</p>
     </div>
     {% render 'curtainsuk-advisory-spotlight', section: section, jane_chat_live: section.settings.jane_chat_live %}
   </section>
   <div class="cukad__promise-strip"><div class="cukad__wrap"><span>{{ 'advisory_team.promise.specialists' | t }}</span><span>{{ 'advisory_team.promise.personal' | t }}</span><span>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.promise' | t }}{% else %}{{ 'advisory_team.promise.free' | t }}{% endif %}</span></div></div>
   <section class="cukad__specialists cukad__wrap" id="advisory-specialists-{{ section.id }}" aria-labelledby="advisory-specialists-heading-{{ section.id }}">
-    <div class="cukad__section-heading"><div><p class="cukad__eyebrow">{{ 'advisory_team.profiles.eyebrow' | t }}</p><h2 id="advisory-specialists-heading-{{ section.id }}">{{ 'advisory_team.profiles.title' | t }}</h2></div><p>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.profiles_intro' | t }}{% else %}{{ 'advisory_team.profiles.intro' | t }}{% endif %}</p></div>
+    <div class="cukad__section-heading"><div><p class="cukad__eyebrow">{{ 'advisory_team.profiles.eyebrow' | t }}</p><h2 id="advisory-specialists-heading-{{ section.id }}">{{ 'advisory_team.profiles.title' | t }}</h2></div><p>{% if section.settings.specialist_chat_live %}Jane, James, Noah, Natalie and Ben offer individual AI consultations. Anne is still being prepared. Their portraits represent AI identities, not human staff.{% elsif section.settings.jane_chat_live %}{{ 'advisory_team.live.profiles_intro' | t }}{% else %}{{ 'advisory_team.profiles.intro' | t }}{% endif %}</p></div>
     {% for block in section.blocks %}
-      {% if block.settings.featured %}{% render 'curtainsuk-adviser-card', block: block, featured: true, section_id: section.id, jane_chat_live: section.settings.jane_chat_live %}{% endif %}
+      {% if block.settings.featured %}{% render 'curtainsuk-adviser-card', block: block, featured: true, section_id: section.id, jane_chat_live: section.settings.jane_chat_live, specialist_chat_live: section.settings.specialist_chat_live %}{% endif %}
     {% endfor %}
     <div class="cukad__profile-grid">
       {% for block in section.blocks %}
-        {% unless block.settings.featured %}{% render 'curtainsuk-adviser-card', block: block, featured: false, section_id: section.id, jane_chat_live: section.settings.jane_chat_live %}{% endunless %}
+        {% unless block.settings.featured %}{% render 'curtainsuk-adviser-card', block: block, featured: false, section_id: section.id, jane_chat_live: section.settings.jane_chat_live, specialist_chat_live: section.settings.specialist_chat_live %}{% endunless %}
       {% endfor %}
       <aside class="cukad__human-card"><span class="cukad__human-star" aria-hidden="true">✳</span><p class="cukad__eyebrow">{{ 'advisory_team.human.eyebrow' | t }}</p><h3>{{ 'advisory_team.human.title' | t }}</h3><p>{{ 'advisory_team.human.copy' | t }}</p><a class="cukad__button cukad__button--light" href="/#curtainsuk-help">{{ 'advisory_team.human.cta' | t }} <span aria-hidden="true">↗</span></a><span class="cukad__human-note">{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.human_note' | t }}{% else %}{{ 'advisory_team.human.note' | t }}{% endif %}</span></aside>
     </div>
@@ -41,7 +41,7 @@
         endif
       %}<li><span class="cukad__step-number" aria-hidden="true">0{{ step }}</span><h3>{{ step_title | t }}</h3><p>{{ step_copy | t }}</p></li>{% endfor %}
     </ol>
-    <div class="cukad__journey-footer"><p>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.journey_time' | t }}{% else %}{{ 'advisory_team.journey.time' | t }}{% endif %}</p><span>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.journey_availability' | t }}{% else %}{{ 'advisory_team.journey.availability' | t }}{% endif %}</span></div>
+    <div class="cukad__journey-footer"><p>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.journey_time' | t }}{% else %}{{ 'advisory_team.journey.time' | t }}{% endif %}</p><span>{% if section.settings.specialist_chat_live %}Five AI advisers available · Anne coming soon{% elsif section.settings.jane_chat_live %}{{ 'advisory_team.live.journey_availability' | t }}{% else %}{{ 'advisory_team.journey.availability' | t }}{% endif %}</span></div>
   </div></section>
   <section class="cukad__preview-section cukad__wrap" aria-labelledby="advisory-preview-heading-{{ section.id }}">
     <div class="cukad__preview-visual" aria-hidden="true"><div class="cukad__mini-top"><span class="cukad__mini-dot"></span>{{ 'advisory_team.preview.mini_title' | t }}<span>✳</span></div><div class="cukad__mini-avatar">J</div><p>{{ 'advisory_team.preview.mini_heading' | t }}</p><span class="cukad__mini-timer">00:30</span><div class="cukad__mini-progress"><span></span></div><small>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.mini_caption' | t }}{% else %}{{ 'advisory_team.preview.mini_caption' | t }}{% endif %}</small></div>
@@ -50,14 +50,14 @@
       <p class="cukad__small-note">{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.preview_notice' | t }}{% else %}{{ 'advisory_team.preview.notice' | t }}{% endif %}</p>
     </div>
   </section>
-  <section class="cukad__faq cukad__wrap" aria-labelledby="advisory-faq-heading-{{ section.id }}"><div><p class="cukad__eyebrow">{{ 'advisory_team.faq.eyebrow' | t }}</p><h2 id="advisory-faq-heading-{{ section.id }}">{{ 'advisory_team.faq.title' | t }}</h2><p>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.faq_intro' | t }}{% else %}{{ 'advisory_team.faq.intro' | t }}{% endif %}</p></div><div class="cukad__faq-list">
+  <section class="cukad__faq cukad__wrap" aria-labelledby="advisory-faq-heading-{{ section.id }}"><div><p class="cukad__eyebrow">{{ 'advisory_team.faq.eyebrow' | t }}</p><h2 id="advisory-faq-heading-{{ section.id }}">{{ 'advisory_team.faq.title' | t }}</h2><p>{% if section.settings.specialist_chat_live %}Jane, James, Noah, Natalie and Ben are available as AI advisers. Anne is still in preview.{% elsif section.settings.jane_chat_live %}{{ 'advisory_team.live.faq_intro' | t }}{% else %}{{ 'advisory_team.faq.intro' | t }}{% endif %}</p></div><div class="cukad__faq-list">
     {% for question in (1..6) %}{% liquid
       assign question_key = question | prepend: 'advisory_team.faq.question_'
       assign answer_key = question | prepend: 'advisory_team.faq.answer_'
       if section.settings.jane_chat_live and question <= 5
         assign answer_key = question | prepend: 'advisory_team.live.faq_answer_'
       endif
-    %}<details><summary>{{ question_key | t }}<span aria-hidden="true">+</span></summary><p>{{ answer_key | t }}</p></details>{% endfor %}
+    %}<details><summary>{{ question_key | t }}<span aria-hidden="true">+</span></summary><p>{% if section.settings.specialist_chat_live and question == 2 %}You can speak with Jane, James, Noah, Natalie or Ben after signing in and consenting. Anne offers a waiting-room preview for now. Existing design tools remain available separately.{% elsif section.settings.specialist_chat_live and question == 5 %}With your consent, each available adviser saves an encrypted consultation for up to 90 days. You can return while signed in or delete it in the room. Anne's preview does not save messages.{% else %}{{ answer_key | t }}{% endif %}</p></details>{% endfor %}
   </div></section>
   <section class="cukad__tools" aria-labelledby="advisory-tools-heading-{{ section.id }}"><div class="cukad__wrap"><div class="cukad__section-heading"><div><p class="cukad__eyebrow">{{ 'advisory_team.tools.eyebrow' | t }}</p><h2 id="advisory-tools-heading-{{ section.id }}">{{ 'advisory_team.tools.title' | t }}</h2></div><p>{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.tools_section_copy' | t }}{% else %}{{ 'advisory_team.tools.copy' | t }}{% endif %}</p></div><div class="cukad__tool-links">
     <a href="/pages/fabric-library?view=browse-fabrics"><span>{{ 'advisory_team.tools.library' | t }}</span><span aria-hidden="true">↗</span></a>
@@ -69,7 +69,7 @@
     <a href="/pages/samples"><span>{{ 'advisory_team.tools.samples' | t }}</span><span aria-hidden="true">↗</span></a>
     <a href="/pages/solve-my-window"><span>{{ 'advisory_team.tools.window' | t }}</span><span aria-hidden="true">↗</span></a>
   </div></div></section>
-  {% render 'curtainsuk-advisory-room', section_id: section.id, jane_chat_private_preview: section.settings.jane_chat_private_preview, jane_chat_live: section.settings.jane_chat_live, specialist_chat_private_preview: section.settings.specialist_chat_private_preview %}
+  {% render 'curtainsuk-advisory-room', section_id: section.id, jane_chat_private_preview: section.settings.jane_chat_private_preview, jane_chat_live: section.settings.jane_chat_live, specialist_chat_private_preview: section.settings.specialist_chat_private_preview, specialist_chat_live: section.settings.specialist_chat_live %}
 </div>
 {% schema %}
 {
@@ -81,7 +81,8 @@
   "settings": [
     { "type": "checkbox", "id": "jane_chat_private_preview", "label": "Jane private test consultation", "default": false },
     { "type": "checkbox", "id": "jane_chat_live", "label": "Jane public consultation (requires approved API and budget)", "default": false },
-    { "type": "checkbox", "id": "specialist_chat_private_preview", "label": "Four specialist chats (private test only)", "default": false }
+    { "type": "checkbox", "id": "specialist_chat_private_preview", "label": "Four specialist chats (private test only)", "default": false },
+    { "type": "checkbox", "id": "specialist_chat_live", "label": "Four specialist chats (requires approved API, privacy and budget)", "default": false }
   ],
   "blocks": [
     {

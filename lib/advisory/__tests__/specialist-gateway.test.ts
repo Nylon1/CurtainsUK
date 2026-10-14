@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {signShopifyAppProxyQuery} from '../../storefront/security/shopify-app-proxy-core';
-import {createShopifySpecialistGateway,specialistOwner,specialistPreviewEnabled} from '../specialist-gateway';
+import {createShopifySpecialistGateway,specialistOwner,specialistPreviewEnabled,specialistPublicEnabled} from '../specialist-gateway';
 import {janeOwner} from '../shopify-gateway';
 
 const now=Date.UTC(2026,9,14,12);
@@ -45,4 +45,22 @@ test('bad signatures and disabled preview never execute a consultation',async()=
   const live=fixture();
   assert.equal((await live.handle(new Request(url().replace(/signature=[a-f0-9]+/,'signature='+'0'.repeat(64))))).status,401);
   assert.equal(live.calls.length,0);
+});
+test('public gate stays closed without exact release and separate budget approval',async()=>{
+  const publicEnv={...env,VERCEL_ENV:'production',ADVISORY_SPECIALISTS_RESTRICTED_PREVIEW:'false',ADVISORY_SPECIALISTS_PUBLIC_ENABLED:'true',ADVISORY_SPECIALISTS_PROVIDER:'openai',ADVISORY_SPECIALISTS_PUBLIC_BUDGET_APPROVAL_REFERENCE:'OWNER_APPROVED_SPECIALISTS_PUBLIC_BUDGET_20261014'};
+  assert.equal(specialistPublicEnabled(publicEnv,'a'.repeat(40)),true);
+  for(const change of [
+    {ADVISORY_SPECIALISTS_PUBLIC_ENABLED:'false'},
+    {ADVISORY_SPECIALISTS_PUBLIC_BUDGET_APPROVAL_REFERENCE:undefined},
+    {ADVISORY_SPECIALISTS_APPROVED_COMMIT:'b'.repeat(40)},
+    {VERCEL_GIT_COMMIT_SHA:'b'.repeat(40)},
+    {VERCEL_GIT_COMMIT_SHA:undefined,VERCEL_DEPLOYMENT_ID:'dpl_123456789012'},
+    {ADVISORY_SPECIALISTS_PROVIDER:'mock'},
+    {VERCEL_ENV:'preview'},
+    {ADVISORY_SPECIALISTS_RESTRICTED_PREVIEW:'true'}
+  ])assert.equal(specialistPublicEnabled({...publicEnv,...change},'a'.repeat(40)),false);
+  const active=fixture({...publicEnv,ADVISORY_SPECIALISTS_TEST_CUSTOMER_IDS:undefined});
+  assert.equal((await active.handle(new Request(url('789')))).status,200);
+  const blocked=fixture({...publicEnv,ADVISORY_SPECIALISTS_PUBLIC_BUDGET_APPROVAL_REFERENCE:undefined,ADVISORY_SPECIALISTS_TEST_CUSTOMER_IDS:undefined});
+  assert.equal((await blocked.handle(new Request(url('789')))).status,404);
 });

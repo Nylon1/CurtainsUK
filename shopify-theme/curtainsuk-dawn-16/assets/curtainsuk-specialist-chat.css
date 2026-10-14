@@ -1,0 +1,15 @@
+.cukad-specialist[hidden],.cukad-specialist [hidden]{display:none!important}
+.cukad-specialist{display:grid;gap:1rem;padding:1.25rem;border:1px solid #cfdbd1;border-radius:1.2rem;background:linear-gradient(145deg,#f7faf5,#f2f0e9);color:#253d34}
+.cukad-specialist h3{margin:0;font-family:Georgia,serif;font-size:clamp(1.45rem,4vw,2.1rem)}
+.cukad-specialist__opening{font-family:Georgia,serif;font-size:clamp(1.25rem,3.6vw,1.8rem);line-height:1.28;margin:0}
+.cukad-specialist__hints{margin:0;color:#506257;line-height:1.5}.cukad-specialist__hints strong{color:#253d34}
+.cukad-specialist__notice,.cukad-specialist__privacy{margin:0;line-height:1.55;font-size:.9rem}
+.cukad-specialist__consent{display:flex;align-items:flex-start;gap:.7rem;line-height:1.5}.cukad-specialist__consent input{margin-top:.25rem;width:1.15rem;height:1.15rem;flex:none}
+.cukad-specialist__actions{display:flex;flex-wrap:wrap;gap:.6rem}.cukad-specialist button{border:1px solid #274436;border-radius:.45rem;padding:.7rem 1rem;min-height:2.75rem;background:#274436;color:#fff;cursor:pointer}.cukad-specialist button:not(:first-child){background:transparent;color:#274436}.cukad-specialist button:disabled{opacity:.5;cursor:wait}
+.cukad-specialist__confirm{border:1px solid #a64c39;background:#fff7f3;border-radius:.6rem;padding:.8rem}.cukad-specialist__confirm p{margin:0 0 .6rem}.cukad-specialist__confirm button{margin-right:.5rem}
+.cukad-specialist a{color:#1b563e;text-underline-offset:.18em}.cukad-specialist :is(button,a,input,textarea):focus-visible{outline:3px solid #ba7b42;outline-offset:3px}
+.cukad-specialist__recovery{display:grid;gap:.45rem}.cukad-specialist__recovery input{width:100%;min-width:0;padding:.65rem}.cukad-specialist__recovery [data-specialist-recovery-output]{overflow-wrap:anywhere}
+.cukad-specialist__log{display:grid;gap:.8rem;max-height:22rem;overflow:auto;overscroll-behavior:contain}.cukad-specialist__log article{padding:.85rem 1rem;border-radius:.7rem;background:#fff;border:1px solid #e2e6dc;overflow-wrap:anywhere}.cukad-specialist__log article strong{font-size:.8rem;letter-spacing:.04em}.cukad-specialist__log article p{margin:.35rem 0 0;white-space:pre-wrap;line-height:1.5}.cukad-specialist__sources{display:flex;flex-wrap:wrap;gap:.35rem .7rem;margin-top:.65rem;font-size:.84rem}
+.cukad-specialist form{display:grid;gap:.45rem}.cukad-specialist textarea{display:block;width:100%;min-width:0;resize:vertical;border:1px solid #a9b7aa;border-radius:.55rem;padding:.75rem;font:inherit}.cukad-specialist form button{justify-self:start}
+@media(max-width:390px){.cukad-specialist{padding:.85rem}.cukad-specialist__actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){.cukad-specialist *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}

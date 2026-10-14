@@ -3,6 +3,7 @@
   @param {string} section_id - The owning section identifier.
   @param {boolean} [jane_chat_private_preview] - Enables Jane's separately gated consultation composer.
   @param {boolean} [jane_chat_live] - Public copy for Jane alone.
+  @param {boolean} [specialist_chat_private_preview] - Four-role private chat preview.
 {% enddoc %}
 {% assign jane_chat_enabled = jane_chat_private_preview %}
 {% if jane_chat_live %}{% assign jane_chat_enabled = true %}{% endif %}
@@ -55,6 +56,9 @@
         <p data-jane-status role="status" aria-live="polite"></p>
         <p data-jane-error role="alert" hidden></p>
       </section>
+    {% endif %}
+    {% if specialist_chat_private_preview %}
+      {% render 'curtainsuk-specialist-chat', section_id: section_id %}
     {% endif %}
     <p class="cukad-room__privacy">{% if jane_chat_live %}{{ 'advisory_team.live.room_privacy' | t }}{% else %}{{ 'advisory_team.room.privacy' | t }}{% endif %}</p>
     <button type="button" class="cukad-room__button" data-advisory-close>{{ 'advisory_team.room.return' | t }} <span aria-hidden="true">↗</span></button>

@@ -117,6 +117,14 @@
         if (jane) open(jane);
       }
     }
+    if (root.querySelector('[data-specialist-chat]') && window.location?.search) {
+      const query = new URLSearchParams(window.location.search);
+      const returning = query.getAll('specialist_return');
+      if (returning.length === 1 && ['james', 'noah', 'natalie', 'ben'].includes(returning[0])) {
+        const specialist = [...root.querySelectorAll('[data-advisory-open]')].find((button) => profiles.get(button.dataset.adviser)?.dataset.identity === returning[0]);
+        if (specialist) open(specialist);
+      }
+    }
   };
   const scan = (target) => target.querySelectorAll('[data-advisory-team]').forEach(initialise);
   scan(document);

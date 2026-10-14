@@ -13,10 +13,15 @@
   <a data-specialist-signin hidden href="{{ routes.storefront_login_url }}">Sign in to continue</a>
   <label class="cukad-specialist__consent"><input type="checkbox" data-specialist-consent> I agree to send my messages to OpenAI for AI advice and save this encrypted consultation for up to 90 days.</label>
   <p class="cukad-specialist__privacy">You may delete it here at any time. <a href="/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Read our privacy policy <span class="visually-hidden">(opens in a new tab)</span></a>.</p>
-  <div class="cukad-specialist__actions"><button type="button" data-specialist-start>Start consultation</button><button type="button" data-specialist-save hidden>Create recovery code</button><button type="button" data-specialist-delete hidden>Delete consultation</button></div>
-  <div class="cukad-specialist__confirm" data-specialist-delete-confirm hidden role="group" aria-label="Confirm deletion"><p>Delete this consultation permanently? It cannot be recovered.</p><button type="button" data-specialist-delete-yes>Delete permanently</button><button type="button" data-specialist-delete-cancel>Keep consultation</button></div>
-  <div class="cukad-specialist__recovery" data-specialist-recovery hidden><label for="specialist-recovery-{{ section_id }}">Recovery code</label><input id="specialist-recovery-{{ section_id }}" data-specialist-recovery-input autocomplete="off" spellcheck="false"><button type="button" data-specialist-recover>Recover saved conversation</button><p data-specialist-recovery-output hidden></p></div>
+  <div class="cukad-specialist__actions"><button type="button" data-specialist-start>Start consultation</button></div>
   <div class="cukad-specialist__log" data-specialist-log role="log" aria-live="polite" aria-relevant="additions" aria-label="Specialist consultation"></div>
+  <div class="cukad-specialist__thinking" data-specialist-thinking hidden aria-hidden="true"><span></span><span></span><span></span><p>Considering your question</p></div>
   <form data-specialist-form hidden><label for="specialist-message-{{ section_id }}">Your question</label><textarea id="specialist-message-{{ section_id }}" data-specialist-input rows="3" maxlength="2000" required></textarea><button type="submit" data-specialist-send>Send</button></form>
+  <details class="cukad-specialist__tools" data-specialist-tools hidden>
+    <summary>Save, recover or delete a conversation</summary>
+    <div class="cukad-specialist__actions"><button type="button" data-specialist-save hidden>Create recovery code</button><button type="button" data-specialist-delete hidden>Delete consultation</button></div>
+    <div class="cukad-specialist__confirm" data-specialist-delete-confirm hidden role="group" aria-label="Confirm deletion"><p>Delete this consultation permanently? It cannot be recovered.</p><button type="button" data-specialist-delete-yes>Delete permanently</button><button type="button" data-specialist-delete-cancel>Keep consultation</button></div>
+    <div class="cukad-specialist__recovery" data-specialist-recovery hidden><label for="specialist-recovery-{{ section_id }}">Recovery code</label><input id="specialist-recovery-{{ section_id }}" data-specialist-recovery-input autocomplete="off" spellcheck="false"><button type="button" data-specialist-recover>Recover saved conversation</button><p data-specialist-recovery-output hidden></p></div>
+  </details>
   <p data-specialist-status role="status" aria-live="polite"></p><p data-specialist-error role="alert" hidden></p>
 </section>

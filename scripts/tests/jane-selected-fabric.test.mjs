@@ -88,6 +88,7 @@ test('new fabric starts a distinct, consented reply while preserving prior conve
   h.node('fabric-share').emit('click'); await h.settle();
   assert.deepEqual(h.requests.filter(r => r.action !== 'resume').map(r => r.action), ['context', 'message']);
   assert.match(h.requests.at(-1).text, new RegExp(saxon));
+  assert.match(h.requests.at(-1).text, /focus on this fabric/);
   assert.equal(h.saved.messages.length, 4);
   assert.match(h.saved.messages[1].text, /Mellora/);
   assert.match(h.saved.messages.at(-1).text, /Saxon Oak/);

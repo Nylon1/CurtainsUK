@@ -232,7 +232,7 @@
       run(async () => {
         if (!selectedContext()) await request('context', { context, consent: true }, attempt.contextId);
         if (!hasFabricReply(selectedContext())) {
-          const text = `I selected fabric ${fabric.id}. Could we discuss how it might work with my room, using what I have already told you?`;
+          const text = `I've selected fabric ${fabric.id} now. How might this one work with my room? Please keep what I've told you about the room, but focus on this fabric.`;
           await request('message', { text }, attempt.messageId);
         }
         pending = null;

@@ -82,6 +82,7 @@ function room({ unavailable = false, failFirstMessage = false, unansweredContext
 test('new fabric starts a distinct, consented reply while preserving prior conversation', async () => {
   const h = room();
   h.dialog.emit('curtainsuk:jane-room-open', { identity: 'jane' }); await h.settle();
+  assert.equal(h.node('manage').hidden, false);
   assert.match(h.node('fabric-description').textContent, /Saxon Oak/);
   assert.match(h.node('log').children.at(-1).textContent, /Selected Saxon.*Earlier conversation/);
   assert.equal(h.node('fabric-share').hidden, false);

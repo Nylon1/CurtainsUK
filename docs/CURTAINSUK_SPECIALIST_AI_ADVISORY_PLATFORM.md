@@ -1,6 +1,12 @@
 # CurtainsUK specialist AI advisory platform
 
-**Programme source of truth · 13 October 2026 UK · All 11,517 approved eligible identities independently verified; population complete; source-change reconciliation pending; one-time follow-up paused; automatic updates disabled; Jane publicly inactive**
+**Programme source of truth · 13 October 2026 UK · Jane publicly active from protected release `58998518`; 11,517 approved eligible fabric identities indexed; automatic fabric refresh disabled. Historical pre-launch entries below remain as dated evidence.**
+
+## Current follow-up: continuous budget and fabric handoff
+
+Jane's signed customer chat is live on the existing MAIN Shopify theme and production Vercel project. The currently deployed US$5/day allowance uses explicit UTC dates for 13 and 14 October only, with a US$1 per-consultation cap. A local, **unpublished** successor adds one private UTC-day ledger on demand for every future day, retaining both caps. It uses the existing Supabase project and advisory schema. The SQL migration is locally tested but has **not** been applied to the hosted database; the new server code and theme files have **not** been deployed. See [continuous-budget and fabric-handoff release manifest](specialist-advisory/JANE_CONTINUOUS_BUDGET_FABRIC_HANDOFF_20261013.md).
+
+The same unreleased change connects the exact fabric identity to Jane from Browse and the canonical fabric profile, including a truthful alternative-finding path when that fabric cannot currently be made into curtains. The canonical profile's eight curtain links now start disabled and unlock only after a fresh exact-ID retail response says `orderReady: true`. The Browse fallback detail uses the same `orderReady` condition. The live MAIN theme is backed up for the eight-file scoped comparison; no Shopify write has occurred. Current purchase and checkout authority remain with the existing retail and commerce systems.
 
 ## Current Jane launch-review checkpoint, 13 October
 

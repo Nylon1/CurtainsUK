@@ -4,6 +4,8 @@
 
 Read-only hosted preflight at **10:26:54 UTC** found existing project `hqysjumypgeapgmqkcrx` `ACTIVE_HEALTHY`, database size **724,913,299 bytes**, latest migration `20261014005755_jane_continuous_daily_budget`, and no `advisory.specialist_daily_runs` table. The latest advisory spend receipt was **08:30:38 UTC** and latest consultation creation **05:54:00 UTC**. These are freshness markers, not proof that a newer recoverable backup exists. Backup verification is still pending.
 
+At **10:30:57 UTC**, the existing encrypted read-only monitoring credential returned HTTP 401 for the backup listing. No credential value was printed or reused after that failure. A current backup and recovery point therefore remain unverified; the hosted migration must not run on this evidence.
+
 ## What is implemented locally
 
 - The signed Shopify app-proxy route has a separate default-off public gate. It requires the existing production Vercel project, OpenAI mode, an exact approved deployed commit, and a distinct public budget approval reference. The current restricted synthetic-customer gate continues to work. Unsigned customers still cannot start a consultation.
@@ -33,9 +35,15 @@ Operational rollback order: disable `ADVISORY_SPECIALISTS_PUBLIC_ENABLED`, leave
 
 ## Release gates still open
 
-1. **Approval:** Four-role public privacy wording in [the hosted-trial record](FOUR_SPECIALISTS_HOSTED_TRIAL_20261014.md) has not been approved or published. The previous US$2 synthetic OpenAI approval does not cover customer use. The proposed hard cap is US$5/day shared by the four advisers and US$1/consultation, separate from Jane's approved cap. No new paid call was made.
+1. **Approval:** The owner approved the four-role privacy wording in [the hosted-trial record](FOUR_SPECIALISTS_HOSTED_TRIAL_20261014.md) and a separate US$5/day cap shared by the four advisers with US$1 per consultation. The wording has not yet been published to the live Shopify policy. No new paid call was made.
 2. **Security:** Hosted migration and bounded synthetic budget checks, a second signed customer denial, cross-role isolation, recovery replay and post-deletion denial must be read back on the exact protected build. The prior one-customer hosted trial and local tests do not establish this public gate.
 3. **Quality and device:** Independent fitting and acoustic review of precise claims, physical iPhone Safari for the four-role chat, and spoken screen-reader checks remain pending. Do not infer these from Chrome or emulation.
 4. **Release:** Protect the exact PR commit, obtain both required checks and any exact-head policy approval, then reconcile the live MAIN theme against the scoped files. Back up each live file, upload only the approved diff to theme `182339731835`, read back byte-for-byte, test signed login/consent/reply/recovery/deletion for all four roles, and verify Anne still shows Coming Soon. Do not create or publish another theme. Avoid Vercel auto-deployment of a route that calls the new function before its migration is applied. No public switch before all gates pass.
 
+The live Shopify privacy policy was read back and backed up to `C:\Users\hamza\.curtainsuk-jane-private-preview\policy-backups\2026-10-14-pr195-privacy-before.html` (SHA-256 `3066E8DF8384DC5AAB93D3DAD9528264F08C315684921DEAF16EAD3B9D9C39E9`). The approved four-role section was validated as a minimal addition, but the connected Shopify Admin API lacks `write_legal_policies`; its attempted update was denied. The Shopify Admin browser session is at sign-in. The live policy is therefore unchanged. Publish the backed-up, approved wording through an authorised Shopify Admin session and read it back before public access.
+
 The existing private preview and four deleted synthetic trial records remain the only hosted evidence. PR #195 is the draft review area. This document describes a **locally tested foundation**, not a hosted-tested or published four-role release.
+
+## Backup readback, 14 October 2026
+
+The existing encrypted read-only monitoring credential returned HTTP 401 at 10:30:57 UTC, so it was not reused. The authenticated Supabase dashboard for the existing project listed a recoverable PHYSICAL backup at **00:56:09 UTC on 14 October**. Its point-in-time recovery page said that capability is an add-on and is not enabled. The latest observed advisory spending receipt was **08:30:38 UTC**, after the backup. Thus the owner's required completed recovery point newer than affected advisory writes is **not yet verified**. The approved migration remains unapplied. Check the next completed backup and fresh advisory write timestamps before any application; a forecast backup time is not proof of completion.

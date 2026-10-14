@@ -15,7 +15,7 @@ At **10:30:57 UTC**, the existing encrypted read-only monitoring credential retu
 
 ## Exact migration review manifest
 
-Candidate: `supabase/migrations/20261014102247_specialist_public_daily_budget.sql`. Local SHA-256: `8D3DA308057003DDEB8DB79B3B6D11504EEB09002E4361CF7AE0C273D0E328B4`. Recalculate it from the final PR head immediately before approval. **No hosted migration has been applied.**
+Candidate: `supabase/migrations/20261014102247_specialist_public_daily_budget.sql`. Revised local SHA-256: `9D95D69752AD020925AE14C9EBAE14CF7CA7F5F119C5F1B6D216EB5FE48321DE`. The previous checksum-specific owner approval covered `8D3DA308057003DDEB8DB79B3B6D11504EEB09002E4361CF7AE0C273D0E328B4` and does **not** cover this revision. Recalculate the final PR bytes and obtain a new exact-checksum approval before hosted application. **No hosted migration has been applied.**
 
 | Object | Change | Access |
 | --- | --- | --- |
@@ -35,7 +35,7 @@ Operational rollback order: disable `ADVISORY_SPECIALISTS_PUBLIC_ENABLED`, leave
 
 ## Release gates still open
 
-1. **Approval:** The owner approved the four-role privacy wording in [the hosted-trial record](FOUR_SPECIALISTS_HOSTED_TRIAL_20261014.md) and a separate US$5/day cap shared by the four advisers with US$1 per consultation. The wording has not yet been published to the live Shopify policy. No new paid call was made.
+1. **Approval:** The owner approved the four-role privacy wording in [the hosted-trial record](FOUR_SPECIALISTS_HOSTED_TRIAL_20261014.md) and a separate US$5/day cap shared by the four advisers with US$1 per consultation. The revised migration checksum needs approval. The wording has not yet been published to the live Shopify policy. No new paid call was made.
 2. **Security:** Hosted migration and bounded synthetic budget checks, a second signed customer denial, cross-role isolation, recovery replay and post-deletion denial must be read back on the exact protected build. The prior one-customer hosted trial and local tests do not establish this public gate.
 3. **Quality and device:** Independent fitting and acoustic review of precise claims, physical iPhone Safari for the four-role chat, and spoken screen-reader checks remain pending. Do not infer these from Chrome or emulation.
 4. **Release:** Protect the exact PR commit, obtain both required checks and any exact-head policy approval, then reconcile the live MAIN theme against the scoped files. Back up each live file, upload only the approved diff to theme `182339731835`, read back byte-for-byte, test signed login/consent/reply/recovery/deletion for all four roles, and verify Anne still shows Coming Soon. Do not create or publish another theme. Avoid Vercel auto-deployment of a route that calls the new function before its migration is applied. No public switch before all gates pass.
@@ -46,4 +46,6 @@ The existing private preview and four deleted synthetic trial records remain the
 
 ## Backup readback, 14 October 2026
 
-The existing encrypted read-only monitoring credential returned HTTP 401 at 10:30:57 UTC, so it was not reused. The authenticated Supabase dashboard for the existing project listed a recoverable PHYSICAL backup at **00:56:09 UTC on 14 October**. Its point-in-time recovery page said that capability is an add-on and is not enabled. The latest observed advisory spending receipt was **08:30:38 UTC**, after the backup. Thus the owner's required completed recovery point newer than affected advisory writes is **not yet verified**. The approved migration remains unapplied. Check the next completed backup and fresh advisory write timestamps before any application; a forecast backup time is not proof of completion.
+The existing encrypted read-only monitoring credential returned HTTP 401 at 10:30:57 UTC, so it was not reused. The authenticated Supabase dashboard for the existing project listed a recoverable PHYSICAL backup at **00:56:09 UTC on 14 October**. Its point-in-time recovery page said that capability is an add-on and is not enabled. The latest observed advisory spending receipt was **08:30:38 UTC**, after the backup. Thus the owner's required completed recovery point newer than affected advisory writes is **not yet verified**. The migration remains unapplied. Check the next completed backup and fresh advisory write timestamps before any application; a forecast backup time is not proof of completion.
+
+Local review exposed a refund-path bug before hosted application: a settled model call with a lower actual charge would attempt to insert a negative delta into the non-negative session-spend table. The revised trigger updates the existing counter for refunds, blocks specialist receipt identity changes, and leaves Jane receipt updates unchanged. A local PostgreSQL regression covers refunds, limit restoration and identity tampering. This revision invalidated the previous exact-SQL approval.

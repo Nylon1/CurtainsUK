@@ -62,23 +62,35 @@ as $$
 declare
   delta_micro bigint;
 begin
+  if tg_op = 'UPDATE' and (
+    exists (select 1 from advisory.specialist_daily_runs where run_id = old.run_id)
+    or exists (select 1 from advisory.specialist_daily_runs where run_id = new.run_id)
+  ) then
+    if new.run_id is distinct from old.run_id or new.session_id is distinct from old.session_id
+       or new.owner_id is distinct from old.owner_id then
+      raise exception 'INVALID_BUDGET_RECEIPT';
+    end if;
+  end if;
   if not exists (select 1 from advisory.specialist_daily_runs where run_id = new.run_id) then
     return new;
   end if;
-  delta_micro := new.charged_micro;
-  if tg_op = 'UPDATE' then
-    delta_micro := delta_micro - old.charged_micro;
-  end if;
+  delta_micro := new.charged_micro - case when tg_op = 'UPDATE' then old.charged_micro else 0 end;
   if delta_micro = 0 then
     return new;
   end if;
   perform pg_catalog.pg_advisory_xact_lock(pg_catalog.hashtextextended(
     'curtainsuk:specialists:session:' || new.session_id::text, 0));
-  insert into advisory.specialist_session_spend(session_id,used_micro)
-    values (new.session_id,delta_micro)
-  on conflict (session_id) do update
-    set used_micro = advisory.specialist_session_spend.used_micro + excluded.used_micro
-    where advisory.specialist_session_spend.used_micro + excluded.used_micro between 0 and 1000000;
+  if delta_micro > 0 then
+    insert into advisory.specialist_session_spend(session_id,used_micro)
+      values (new.session_id,delta_micro)
+    on conflict (session_id) do update
+      set used_micro = advisory.specialist_session_spend.used_micro + excluded.used_micro
+      where advisory.specialist_session_spend.used_micro + excluded.used_micro between 0 and 1000000;
+  else
+    update advisory.specialist_session_spend
+      set used_micro = used_micro + delta_micro
+      where session_id = new.session_id and used_micro + delta_micro between 0 and 1000000;
+  end if;
   if not found then
     raise exception 'BUDGET_EXHAUSTED';
   end if;
@@ -88,7 +100,7 @@ $$;
 revoke all on function advisory.guard_specialist_consultation_spend() from public, anon, authenticated, service_role,
   advisory_runtime, advisory_indexer, advisory_retention;
 create trigger advisory_specialist_consultation_spend_guard
-before insert or update of charged_micro on advisory.spend_reservations
+before insert or update on advisory.spend_reservations
 for each row execute function advisory.guard_specialist_consultation_spend();
 
 create function advisory.purge_specialist_session_spend() returns trigger

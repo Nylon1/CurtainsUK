@@ -287,6 +287,14 @@ h2 {
   padding: 13px 25px;
   background: var(--paper);
 }
+.visual-note {
+  margin: 0;
+  padding: 0 25px 17px;
+  color: #5e5a50;
+  background: var(--paper);
+  font-size: 12px;
+  line-height: 1.5;
+}
 .editor {
   border-left: 1px solid var(--line);
   padding: 26px 25px;
@@ -855,6 +863,9 @@ dialog::backdrop {
   }
   .scene-foot {
     padding: 10px 17px;
+  }
+  .visual-note {
+    padding: 0 17px 16px;
   }
   .editor {
     border-left: 0;

@@ -476,10 +476,11 @@
           <div><p class="cuk-eyebrow">${escapeHtml(fabric.brand)} · ${escapeHtml(fabric.collection)}</p><h2>${escapeHtml(fabric.design)}</h2><p class="cuk-fabric-detail__colour">${escapeHtml(fabric.colour)}</p>
           ${fabric.description ? `<p>${escapeHtml(fabric.description)}</p>` : ""}<p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric-detail__actions"><button class="cuk-button cuk-button--secondary" data-sample ${fabric.sampleAvailable === true ? "" : "disabled"}>${fabric.sampleAvailable === true ? "Order a Sample" : "Sample availability to be confirmed"}</button>
-          ${fabric.browseReady ? `<a class="cuk-button" href="${configureUrl}">Make Curtains in This Fabric</a>` : ''}</div>
+          ${fabric.orderReady === true ? `<a class="cuk-button" href="${configureUrl}">Make Curtains in This Fabric</a>` : '<button type="button" class="cuk-button" disabled>Make Curtains in This Fabric</button>'}</div>
           <p class="cuk-hint">Price and availability are checked for your measurements before purchase.</p>
           <dl class="cuk-fabric-spec">${spec("Composition", (fabric.composition || []).map((part) => `${part.percentage}% ${part.material}`).join(", "))}${spec("Usable width", fabric.usableWidthMm ? `${fabric.usableWidthMm / 10} cm` : null)}${spec("Full width", fabric.fullWidthMm ? `${fabric.fullWidthMm / 10} cm` : null)}${spec("Vertical repeat", fabric.verticalRepeatMm === null ? null : `${fabric.verticalRepeatMm / 10} cm`)}${spec("Horizontal repeat", fabric.horizontalRepeatMm === null ? null : `${fabric.horizontalRepeatMm / 10} cm`)}${spec("Pattern match", fabric.patternMatchType ? humanise(fabric.patternMatchType) : null)}${spec("Care", (fabric.careInstructions || []).join(", "))}${spec("Headings", (fabric.headings || []).map(humanise).join(", "))}${spec("Applications", (fabric.windowTypes || []).map(humanise).join(", "))}</dl>
           <p class="cuk-hint">Screens vary. A sample helps you check the colour and texture in your own light.</p></div></div>`;
+        window.CurtainsUKJaneFabricHandoff?.mount(detail, fabric.id, { browseReady: fabric.browseReady, launchReady: fabric.launchReady, orderReady: fabric.orderReady });
         detail.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, windowSlug));
         document.title = fabric.metadata.title;
         root.querySelector("h1").textContent = fabric.metadata.h1;

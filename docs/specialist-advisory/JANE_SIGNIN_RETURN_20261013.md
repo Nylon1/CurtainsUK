@@ -17,6 +17,6 @@ To roll back the menu, remove only **Meet our AI advisers** from this menu and s
 
 ## Theme release boundary
 
-The four theme files in this change must pass the protected PR checks and enter `release/production` before any scoped MAIN-theme upload. Back up and compare each corresponding live asset before upload. If a live asset has newer unrelated edits, reconcile them first. Upload only the four changed theme files, read them back, then test signed-out sign-in, signed-in return, exact fabric handoff, account switching, mobile and keyboard behavior. Roll back only these four files from their saved live copies if the journey fails.
+PR #191 now also contains the selected-fabric discussion correction. Its seven changed theme files must pass the protected PR checks and enter `release/production` before any scoped MAIN-theme upload. Back up and compare each corresponding live asset before upload. If a live asset has newer unrelated edits, reconcile them first. Upload only the files that differ from protected source, read them back, then test signed-out sign-in, signed-in return, new-fabric discussion, account switching, mobile and keyboard behavior. Roll back only those uploaded files from their saved live copies if the journey fails. The [selected-fabric record](JANE_SELECTED_FABRIC_TOPIC_20261014.md) lists the exact customer behaviour.
 
-This worktree is separate from Jane PR #190. It makes no Supabase, OpenAI, indexing, Vercel or purchase-flow change.
+This worktree includes the already merged PR #190 source. Its new changes make no Supabase, OpenAI provider, indexing, Vercel or purchase-flow change.

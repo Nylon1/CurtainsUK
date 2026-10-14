@@ -1,6 +1,6 @@
 # Jane selected-fabric conversation correction
 
-Status: draft, locally tested. This change is stacked on the signed-in return candidate in PR #191. It is not uploaded to Shopify or active for customers.
+Status: draft, locally tested. This change is included in the signed-in return candidate, PR #191. It is not uploaded to Shopify or active for customers.
 
 ## Customer behaviour
 
@@ -14,4 +14,4 @@ Status: draft, locally tested. This change is stacked on the signed-in return ca
 
 Local synthetic tests cover Mellora-to-Saxon topic switching with the old conversation preserved, explicit consent, one context and one new message, unavailable fabric copy, a failed reply and idempotent retry, and exact-ID Jane links. The separate Jane sign-in, adviser room, fabric detail and Shopify theme tests also pass. No real OpenAI call or database write was made for this correction.
 
-Before any MAIN upload, merge PR #191 and this stacked change through the protected release process, compare all affected theme assets with MAIN, save the live bytes, and upload only the changed files. Read them back for byte parity. On a signed test account, discuss fabric A, then enter from fabric B and verify Jane's first new answer addresses B while remembering earlier room details. Check a withdrawn/unavailable fabric and the Browse card links. Restore only the saved files if the live journey fails. The current live Jane service and automatic fabric refresh are outside this correction.
+Before any MAIN upload, merge PR #191 through the protected release process, compare its seven changed theme files with MAIN, save the live bytes, and upload only the files whose protected source differs. Read them back for byte parity. On a signed test account, discuss fabric A, then enter from fabric B and verify Jane's first new answer addresses B while remembering earlier room details. Check a withdrawn/unavailable fabric and the Browse card links. Restore only the saved files if the live journey fails. The current live Jane service and automatic fabric refresh are outside this correction.

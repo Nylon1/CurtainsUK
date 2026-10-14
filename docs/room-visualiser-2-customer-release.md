@@ -1,10 +1,12 @@
-# Room Visualiser 2 — current release and source of truth
+# Room Visualiser 2 — original customer release record
+
+> **Superseded deployment checkpoint — 14 October 2026:** the room-design implementation and 9 October evidence below are preserved history. Current hosting, packaging protection and rollback are in the [restoration record](room-visualiser-restoration-20261014.md), [production surfaces](PRODUCTION_SURFACES.md) and [structured current state](room-visualiser-2-production-state.json). Do not use the historical deployment/rollback table below for the current shared service.
 
 **Published on 9 October 2026.** [Open the live Room Visualiser](https://www.curtainsuk.com/pages/room-visualiser). Living Room, Bedroom, Lounge and Office now use the approved room designs, window photographs, lighting/fireplace controls and fabric-detail treatment in the existing customer runtime.
 
 The four approved designs were first merged as review-only source in [PR #163](https://github.com/Nylon1/CurtainsUK/pull/163), then connected to the customer runtime and published through [PR #164](https://github.com/Nylon1/CurtainsUK/pull/164). The implementation plan below is completed work, not an outstanding activation task.
 
-## Current authority and release receipt
+## Historical 9 October authority and release receipt
 
 | Item | Verified value |
 | --- | --- |
@@ -21,7 +23,7 @@ The four approved designs were first merged as review-only source in [PR #163](h
 
 The Vercel deployment was built from a clean checkout of the exact protected HEAD after both required PR checks passed. It was staged with production settings, verified, then promoted without rebuilding. The native Shopify shell, theme and signed-proxy implementation were unchanged. Rollback uses the previous deployment above, not the historical `release/baseline.json` bootstrap target.
 
-The [structured production-state record](room-visualiser-2-production-state.json) is the machine-readable companion. Fresh read-back at 09:00–09:01 UTC confirms Vercel's `gitCommitSha` and `curtainsukReleaseSha`, all 96 pack files, all three project domains, the public theme identity and the four original reference texture hashes/dimensions/cache headers. Vercel has no stored tree metadata field for this deployment; the tree is independently verified from Git. The current protected branch can move forward for documentation-only changes while the deployed commit remains the value above. No new deployment is part of this documentation sync.
+The [structured production-state record](room-visualiser-2-production-state.json) now contains the superseding 14 October restoration checkpoint. The rest of this paragraph records 9 October evidence. Fresh read-back at 09:00–09:01 UTC confirms Vercel's `gitCommitSha` and `curtainsukReleaseSha`, all 96 pack files, all three project domains, the public theme identity and the four original reference texture hashes/dimensions/cache headers. Vercel has no stored tree metadata field for this deployment; the tree is independently verified from Git. The current protected branch can move forward for documentation-only changes while the deployed commit remains the value above. No new deployment is part of this documentation sync.
 
 ## Final release verification and remaining work
 

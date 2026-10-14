@@ -2,6 +2,8 @@
 
 **14 October 2026. Draft only.** This records the next step after PR #194's restricted hosted trial and PR #195's source guidance. James, Noah, Natalie and Ben remain **private**. Jane stays live and unchanged; Anne remains a preview.
 
+Read-only hosted preflight at **10:26:54 UTC** found existing project `hqysjumypgeapgmqkcrx` `ACTIVE_HEALTHY`, database size **724,913,299 bytes**, latest migration `20261014005755_jane_continuous_daily_budget`, and no `advisory.specialist_daily_runs` table. The latest advisory spend receipt was **08:30:38 UTC** and latest consultation creation **05:54:00 UTC**. These are freshness markers, not proof that a newer recoverable backup exists. Backup verification is still pending.
+
 ## What is implemented locally
 
 - The signed Shopify app-proxy route has a separate default-off public gate. It requires the existing production Vercel project, OpenAI mode, an exact approved deployed commit, and a distinct public budget approval reference. The current restricted synthetic-customer gate continues to work. Unsigned customers still cannot start a consultation.

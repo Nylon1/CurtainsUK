@@ -363,6 +363,7 @@
       });
       else if (root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience) window.CurtainsUKFabricExperience.enhanceCard(card,fabric,selectedWindow,addSample);
       else card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
+      if (!visualiser && root.hasAttribute('data-cuk-shopping')) window.CurtainsUKJaneFabricHandoff?.mountCard(card, fabric.id, { browseReady: fabric.browseReady, launchReady: fabric.launchReady });
       card.querySelector("img")?.addEventListener("error", (event) => {
         const swatch = event.currentTarget.closest(".cuk-fabric__swatch");
         if (swatch) swatch.innerHTML = `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;

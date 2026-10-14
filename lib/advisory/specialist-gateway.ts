@@ -27,9 +27,6 @@ export function specialistPreviewEnabled(env:Record<string,string|undefined>,com
 
 /** Public access requires a separate exact-release and spending approval. */
 export function specialistPublicEnabled(env:Record<string,string|undefined>,compiledCommit:string|undefined){
-  const sourceAttested=env.VERCEL_GIT_COMMIT_SHA
-    ?env.VERCEL_GIT_COMMIT_SHA===compiledCommit
-    :/^dpl_[A-Za-z0-9]{12,}$/.test(env.VERCEL_DEPLOYMENT_ID??'');
   return env.VERCEL_ENV==='production'
     &&env.VERCEL_PROJECT_ID==='prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA'
     &&env.ADVISORY_SPECIALISTS_PUBLIC_ENABLED==='true'
@@ -38,7 +35,7 @@ export function specialistPublicEnabled(env:Record<string,string|undefined>,comp
     &&env.ADVISORY_SPECIALISTS_PUBLIC_BUDGET_APPROVAL_REFERENCE==='OWNER_APPROVED_SPECIALISTS_PUBLIC_BUDGET_20261014'
     &&validCommit.test(compiledCommit??'')
     &&compiledCommit===env.ADVISORY_SPECIALISTS_APPROVED_COMMIT
-    &&sourceAttested;
+    &&env.VERCEL_GIT_COMMIT_SHA===compiledCommit;
 }
 
 export function specialistGatewayEnabled(env:Record<string,string|undefined>,compiledCommit:string|undefined){

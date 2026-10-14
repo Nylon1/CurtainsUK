@@ -54,6 +54,7 @@ test('public gate stays closed without exact release and separate budget approva
     {ADVISORY_SPECIALISTS_PUBLIC_BUDGET_APPROVAL_REFERENCE:undefined},
     {ADVISORY_SPECIALISTS_APPROVED_COMMIT:'b'.repeat(40)},
     {VERCEL_GIT_COMMIT_SHA:'b'.repeat(40)},
+    {VERCEL_GIT_COMMIT_SHA:undefined,VERCEL_DEPLOYMENT_ID:'dpl_123456789012'},
     {ADVISORY_SPECIALISTS_PROVIDER:'mock'},
     {VERCEL_ENV:'preview'},
     {ADVISORY_SPECIALISTS_RESTRICTED_PREVIEW:'true'}

@@ -1,0 +1,21 @@
+{% doc %}
+  Four-role signed consultation preview. Inactive unless the owning section's
+  private-preview setting and server's exact-release gate are both enabled.
+  @param {string} section_id - Owning section identifier for unique controls.
+{% enddoc %}
+<section class="cukad-specialist" data-specialist-chat hidden aria-label="Private specialist AI consultation preview">
+  <p class="cukad-room__eyebrow">Private test · AI adviser</p>
+  <h3 data-specialist-heading tabindex="-1"></h3>
+  <p data-specialist-opening class="cukad-specialist__opening"></p>
+  <p class="cukad-specialist__hints"><strong>For example:</strong> <span data-specialist-examples></span></p>
+  <p class="cukad-specialist__notice">Sign in to your customer account to test this adviser. With your consent, messages are sent to OpenAI when the model is enabled and saved encrypted for up to 90 days. You can delete the consultation here. This private preview uses synthetic details only. Exact specifications need a linked source and professional checks may still be needed.</p>
+  <a data-specialist-signin hidden href="{{ routes.storefront_login_url }}">Sign in to continue</a>
+  <label class="cukad-specialist__consent"><input type="checkbox" data-specialist-consent> I agree to send my messages to OpenAI for AI advice and save this encrypted consultation for up to 90 days.</label>
+  <p class="cukad-specialist__privacy">You may delete it here at any time. <a href="/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Read our privacy policy <span class="visually-hidden">(opens in a new tab)</span></a>.</p>
+  <div class="cukad-specialist__actions"><button type="button" data-specialist-start>Start consultation</button><button type="button" data-specialist-save hidden>Create recovery code</button><button type="button" data-specialist-delete hidden>Delete consultation</button></div>
+  <div class="cukad-specialist__confirm" data-specialist-delete-confirm hidden role="group" aria-label="Confirm deletion"><p>Delete this consultation permanently? It cannot be recovered.</p><button type="button" data-specialist-delete-yes>Delete permanently</button><button type="button" data-specialist-delete-cancel>Keep consultation</button></div>
+  <div class="cukad-specialist__recovery" data-specialist-recovery hidden><label for="specialist-recovery-{{ section_id }}">Recovery code</label><input id="specialist-recovery-{{ section_id }}" data-specialist-recovery-input autocomplete="off" spellcheck="false"><button type="button" data-specialist-recover>Recover saved conversation</button><p data-specialist-recovery-output hidden></p></div>
+  <div class="cukad-specialist__log" data-specialist-log role="log" aria-live="polite" aria-relevant="additions" aria-label="Specialist consultation"></div>
+  <form data-specialist-form hidden><label for="specialist-message-{{ section_id }}">Your question</label><textarea id="specialist-message-{{ section_id }}" data-specialist-input rows="3" maxlength="2000" required></textarea><button type="submit" data-specialist-send>Send</button></form>
+  <p data-specialist-status role="status" aria-live="polite"></p><p data-specialist-error role="alert" hidden></p>
+</section>

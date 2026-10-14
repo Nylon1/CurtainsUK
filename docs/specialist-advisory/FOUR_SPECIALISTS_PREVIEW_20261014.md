@@ -1,0 +1,34 @@
+# James, Noah, Natalie and Ben: shared chat preview
+
+**Status, 14 October 2026:** implemented and locally tested on branch `feature/four-specialist-chat`. The Shopify section switch and signed API gate are both off by default. This is a reviewable preview, not a hosted test or a customer launch. Jane and Anne are outside this change.
+
+## Customer experience
+
+The existing Meet Our Team consultation room can open one shared chat interface for James, Noah, Natalie or Ben. Each role has one opening question and plain-text example topics. The examples are neither buttons nor required answers. After the customer signs in and consents, they can type any question immediately. The interface displays source links for verified searches, keeps a saved conversation, offers a one-use recovery code, and confirms permanent deletion in-page.
+
+| Adviser | Opening question | Main boundary |
+| --- | --- | --- |
+| James, fitting | Which track or pole are you fitting? | Ask about the model, fixing location and substrate; do not certify a fixing remotely. |
+| Noah, measuring | What type of window are you measuring? | Record raw dimensions and units; never invent production allowances. |
+| Natalie, specialist windows | What type of window do you need help with? | Plan unusual-window projects; a final design or quote needs a human handover. |
+| Ben, acoustics | What acoustic improvement are you looking for? | Separate room echo from sound transmission; do not imply that curtains soundproof a building. |
+
+The independent role prompts live in `lib/advisory/specialist-profiles.mjs`. No fixed manufacturer list or fabric index was added. Anne remains Coming Soon. Existing Jane routes, prompts, data and budget configuration were not changed.
+
+## Shared implementation
+
+`specialist-service.mjs` uses the existing encrypted advisory session store and its 90-day expiry, distributed lease, owner isolation, idempotent request handling, one-use recovery and deletion. A role-specific HMAC owner ID separates each adviser from the others and from Jane. `specialist-gateway.ts` requires a valid signed Shopify app-proxy request, signed-in allowlisted test customer, origin and CSRF checks, the known Vercel project and an exact approved deployment commit. The theme switch `specialist_chat_private_preview` defaults to false. Server preview mode also defaults to false.
+
+`specialist-provider.mjs` prepares OpenAI Responses calls from server-side credentials only. General advice does not use web search. A bounded search is requested for exact specifications, current manufacturer instructions, named model details or numeric performance claims. It asks the provider for at most five tool calls and rejects a response containing more than six search actions, while reserving a fixed cost before the request. Source links are accepted only when a completed search lists the URL and the response cites it. An uncited exact claim is replaced by a clear verification limit. The existing durable spending ledger reserves and settles each call, including web-search charges. The adapter passed fake Responses tests. A separately approved synthetic real-model smoke is documented below; no customer activation followed.
+
+The local preview at `http://127.0.0.1:8791/` uses synthetic accounts, memory storage and deterministic mock replies. It exercises the same shared service and theme chat asset without contacting Supabase or OpenAI. Start it from this checkout with `node scripts/specialist-preview-server.mjs`. Do not enter personal details. The preview URL works only while that local process is running; it is not a hosted owner preview.
+
+## Verification and remaining gates
+
+Local Node service tests cover all four openings, search selection and citation failure, provider error accounting, consent, cross-owner and cross-role denial, continuation, one-use recovery and deletion. Gateway tests cover the restricted switch, signed identity, CSRF and origin failures. Browser checks in Chrome exercised James's typed question, recovery and reload, Noah's consent rejection and deletion, all four opening texts, Ben's typed question, and 320px and 390px layouts. The latest focused runs passed 35 advisory service/regression tests, 13 signed gateway tests and 18 Shopify theme tests. TypeScript compilation and Shopify theme validation passed. The theme validator reported only its existing unrelated warnings. Physical iPhone, spoken screen reader, real Shopify sign-in and hosted Supabase persistence **have not been tested for these four roles**.
+
+The owner approved a separate US$2 total, US$0.50-per-consultation synthetic OpenAI trial. The private receipts are at `C:\Users\hamza\.curtainsuk-jane-private-preview\specialist-evaluation\four-specialists-20261014-081733.json`, `four-specialists-20261014-082012.json` and `four-specialists-20261014-082209.json`; they contain no key or customer data. James's first general fitting answer was useful. His two exact-manual attempts returned four web-search actions despite requested limits of one and three; the adapter rejected both without showing an unverified claim. The corrected six-action guard passed a focused regression test. Noah, Natalie and Ben then returned real concise general advice. Ben's exact acoustic question produced a linked distributor-hosted copy of a manufacturer datapack and correctly separated absorption from sound isolation. An [original J&C Joel acoustic brochure](https://www.jcjoel.com/wp-content/uploads/2023/07/JC-Joel-Acoustic-Brochure-1.pdf) also documents the cited material and mounting-dependent absorption result. A human technical reviewer has not approved this answer. The conservative local ledger charged **US$0.518807** across the attempts, with zero unsettled reservations, under the approved limits. It is a local synthetic provider check, not hosted signed-customer evidence. No further paid evaluation was run.
+
+Before a protected hosted trial: review the four-role privacy wording and consent, provision a separate bounded evaluation run and approved paid-test budget, set the exact deployment commit and synthetic customer allowlist in server-only configuration, deploy a protected preview from that commit, and verify signed login, model reply, cited manufacturer or test source, recovery, deletion, cross-customer denial and spending readback. Customer activation would require a separate release decision, updated live privacy notice, device/accessibility checks and the protected production process. Do not reuse Jane's public budget automatically.
+
+Rollback for a future release: turn off `ADVISORY_SPECIALISTS_RESTRICTED_PREVIEW` and the Shopify `specialist_chat_private_preview` section setting. Restore only the scoped theme files from their pre-release backups if needed. No migration, fabric data or existing adviser service needs rollback for this preview branch.

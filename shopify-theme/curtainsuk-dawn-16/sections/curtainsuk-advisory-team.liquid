@@ -2,6 +2,7 @@
 <script src="{{ 'curtainsuk-advisory-team.js' | asset_url }}" defer></script>
 <script src="{{ 'curtainsuk-advisory-interactions.js' | asset_url }}" defer></script>
 {% if section.settings.jane_chat_private_preview or section.settings.jane_chat_live %}<script src="{{ 'curtainsuk-jane-chat.js' | asset_url }}" defer></script>{% endif %}
+{% if section.settings.specialist_chat_private_preview %}<script src="{{ 'curtainsuk-specialist-chat.js' | asset_url }}" defer></script>{{ 'curtainsuk-specialist-chat.css' | asset_url | stylesheet_tag }}{% endif %}
 <div class="cukad" data-advisory-team data-wait-status="{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.wait_status' | t | escape }}{% else %}{{ 'advisory_team.room.wait_status' | t | escape }}{% endif %}" data-room-status="{% if section.settings.jane_chat_live %}{{ 'advisory_team.live.room_status' | t | escape }}{% else %}{{ 'advisory_team.room.room_status' | t | escape }}{% endif %}" data-unavailable="{{ 'advisory_team.room.unavailable' | t | escape }}">
   <section class="cukad__hero cukad__wrap" aria-labelledby="advisory-heading-{{ section.id }}">
     <div class="cukad__hero-copy">
@@ -68,7 +69,7 @@
     <a href="/pages/samples"><span>{{ 'advisory_team.tools.samples' | t }}</span><span aria-hidden="true">↗</span></a>
     <a href="/pages/solve-my-window"><span>{{ 'advisory_team.tools.window' | t }}</span><span aria-hidden="true">↗</span></a>
   </div></div></section>
-  {% render 'curtainsuk-advisory-room', section_id: section.id, jane_chat_private_preview: section.settings.jane_chat_private_preview, jane_chat_live: section.settings.jane_chat_live %}
+  {% render 'curtainsuk-advisory-room', section_id: section.id, jane_chat_private_preview: section.settings.jane_chat_private_preview, jane_chat_live: section.settings.jane_chat_live, specialist_chat_private_preview: section.settings.specialist_chat_private_preview %}
 </div>
 {% schema %}
 {
@@ -79,7 +80,8 @@
   "max_blocks": 20,
   "settings": [
     { "type": "checkbox", "id": "jane_chat_private_preview", "label": "Jane private test consultation", "default": false },
-    { "type": "checkbox", "id": "jane_chat_live", "label": "Jane public consultation (requires approved API and budget)", "default": false }
+    { "type": "checkbox", "id": "jane_chat_live", "label": "Jane public consultation (requires approved API and budget)", "default": false },
+    { "type": "checkbox", "id": "specialist_chat_private_preview", "label": "Four specialist chats (private test only)", "default": false }
   ],
   "blocks": [
     {

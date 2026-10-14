@@ -2,18 +2,25 @@
 
 The protected `release/production` branch is the release authority. Deploy only its exact HEAD after both protected checks pass. The Vercel deployment metadata must retain that SHA and tree; theme files have their own scoped upload and read-back. A Vercel `production` label alone is not storefront parity.
 
-## Verified Room Visualiser release — 9 October 2026
+## Current production checkpoint — 14 October 2026
 
-The current Room Visualiser source of truth is the [release/handover record](room-visualiser-2-customer-release.md) and its [structured production state](room-visualiser-2-production-state.json). Source and live assets were read back on 9 October at 09:00–09:01 UTC.
+The [restoration and packaging release record](room-visualiser-restoration-20261014.md) and [structured production state](room-visualiser-2-production-state.json) supersede the 9 October deployment and rollback pointers. The original room-design release remains historical evidence in the [customer release record](room-visualiser-2-customer-release.md).
 
-- Deployed protected commit: `800f42a27a0a6e9beb1abd92821145bf4a4b98c4`, Git tree `1150dad1d55649597d03df2dbaad01348ea98d63`, customer integration PR #164. PR #163 merged the prototype source only.
-- READY deployment: `dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD`. Vercel's `gitCommitSha` and `curtainsukReleaseSha` both match the deployed commit. A tree field was not stored in deployment metadata; the tree above is independently read from Git, with all 96 deployed pack files checked byte-for-byte against the release checkout. Do not describe the tree as a Vercel metadata attestation.
-- Runtime pack: `d5908d6eaf486ce33e2f72a5`; unchanged FIXED140 module pack: `3ef99c8970b0b92d4b5986f7`.
-- All three project domains below serve the current viewer bytes. The native Shopify page and signed proxy return 200; the native page identifies live theme `182339731835` with role `main`.
-- 11,003 supported identities: 3,137 STANDARD and 7,866 FIXED140. This release changes room/material presentation; catalogue eligibility and fabric assignments are unchanged.
-- Physical iPhone Safari verification and storage recovery remain outstanding. Active Shopify app configuration and a complete scoped theme-file read-back were not repeated by this documentation sync; the served native page/proxy and public theme identity were checked. **FULLY SYNCHRONISED is not claimed.**
+- PR #203 passed both required checks and merged into protected `release/production` at `345c553c4553b159a587fdc6a7de7be48ca010e6`, tree `30dc037bd09d6c11836d73686efca22aecfd36e0`.
+- READY deployment: `dpl_2u63hPBwCSynV17cmV62nqRrneDw`. Vercel metadata records that exact source SHA and tree. All three existing project domains target this deployment.
+- Runtime pack `d5908d6eaf486ce33e2f72a5` and FIXED140 module pack `3ef99c8970b0b92d4b5986f7` are unchanged. Final public asset readback at 18:33 UTC verified 11,016/11,016 expected hashes, HTTP 200 and usable CORS.
+- Live Shopify verification covered four rooms: 24 STANDARD combinations (three lighting modes × two camera views per room) and 12 FIXED140 combinations (three camera views per room). A fresh final-deployment reload rendered successfully. Shopify MAIN theme remains `182339731835`; no theme change accompanied this repair.
+- Normal prebuild now rejects missing or altered recorded visualiser assets. Use the [complete protected-source export procedure](room-visualiser-packaging.md) for future deployments.
+- Packaging-release rollback: `dpl_61iUGgFHxn74kyBASisBetx2HBqN`, the verified initial restoration. Do not use the asset-incomplete incident deployment or a pre-specialist historical deployment as a routine rollback.
+- Physical iPhone Safari and spoken VoiceOver remain unverified. Full app-configuration/theme readback and storage recovery were not repeated. **FULLY SYNCHRONISED is not claimed.**
 
-Documentation-only synchronisation commits may advance the protected branch without changing the deployed runtime. Keep the exact deployed commit above separate from the current branch tip and prove any intervening diff is documentation-only. Do not redeploy merely to update a handover record. The preserved historical `main` checkout and experimental worktrees are not deployment authorities.
+### Separate development and scheduler branches
+
+At this checkpoint, Cushion Studio [PR #201](https://github.com/Nylon1/CurtainsUK/pull/201) is OPEN/DRAFT at `437364f31343669970314f800e1c18cdb881eaa9`, with both required checks passed. It is not deployed and does not contain PR #203's latest protected release; integrate that release and rerun checks before a Cushion Studio release. The candidate and its commercial decisions remain separate from this repair.
+
+Stock-scheduler [PR #202](https://github.com/Nylon1/CurtainsUK/pull/202) is merged into `main` at `457ef7e70193fb60559b01d6dbd5d1d45b71d13b`. The owner reports 11/11 regression tests passed and corrected code verified on the live scheduler branch. That `main` commit is not an ancestor of this protected release; this checkpoint does not claim the scheduler change was released through Vercel or independently retest the scheduler.
+
+Documentation-only synchronisation commits may advance the protected branch without changing the deployed runtime. Keep the exact deployed commit above separate from the current branch tip and prove any intervening diff is documentation-only. Do not redeploy merely to update a handover record. `release/production` remains the storefront/API release authority; `main` is a separate scheduler source.
 
 ## Customer route
 

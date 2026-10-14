@@ -1,6 +1,6 @@
 # CurtainsUK Frontend Register — 16 September 2026
 
-> **Current release pointer — 9 October 2026:** the roles and theme IDs below are the preserved September snapshot. Fresh public read-back identifies Shopify theme `182339731835` as `main`. The four-room Room Visualiser runs in that native storefront's signed app-proxy iframe, backed by the existing Vercel production service. See [Production surfaces](PRODUCTION_SURFACES.md) and the [current Room Visualiser release](room-visualiser-2-customer-release.md). The preserved alternative frontends remain protected; this update is documentation only.
+> **Current release pointer — 14 October 2026:** the dated snapshot below remains historical. PR #203 restored the existing Room Visualiser and added packaging protection; deployed protected commit `345c553c4553b159a587fdc6a7de7be48ca010e6` and current rollback/verification are recorded in [Production surfaces](PRODUCTION_SURFACES.md) and the [restoration record](room-visualiser-restoration-20261014.md). Shopify MAIN theme remains `182339731835`. Cushion Studio PR #201 remains a separate undeployed draft; stock-scheduler PR #202 is on `main`. Physical iPhone and spoken VoiceOver remain unverified. Use `release/production` for current storefront/API release authority.
 
 > This register exists to prevent future cleanup/reconciliation work from mistaking a deliberately preserved frontend for obsolete residue.
 

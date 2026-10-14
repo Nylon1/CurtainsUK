@@ -26,6 +26,29 @@
     const clearPrivateView = () => { session = null; pending = null; consent.checked = false; fabricConsent.checked = false; renderedSessionId = null; renderedMessages = []; renderedTopicKey = null; renderedTopicAdded = false; log.replaceChildren(); render(); };
     const productUrl = value => { try { const url = new URL(value); return url.origin === 'https://www.curtainsuk.com' && /^\/pages\/fabric\/[a-z0-9-]+$/i.test(url.pathname) && !url.search && !url.hash ? url.href : null; } catch { return null; } };
     const imageUrl = value => { try { const url = new URL(value); return url.origin === 'https://cdn.shopify.com' && !url.search && !url.hash ? url.href : null; } catch { return null; } };
+    const appendMessageText = (article, value) => {
+      String(value || '').split(/\n{2,}/).forEach(paragraph => {
+        const copy = document.createElement('p');
+        paragraph.split(/(\*\*[^*\n]+\*\*)/g).forEach(part => {
+          if (!part) return;
+          if (part.startsWith('**') && part.endsWith('**')) {
+            const emphasis = document.createElement('strong'); emphasis.textContent = part.slice(2, -2); copy.append(emphasis);
+          } else copy.append(part);
+        });
+        article.append(copy);
+      });
+    };
+    const scrollToReply = () => {
+      if (!log.querySelectorAll) return;
+      const replies = log.querySelectorAll('article[data-role="assistant"]');
+      const reply = replies[replies.length - 1];
+      if (!reply) return;
+      requestAnimationFrame(() => {
+        const scroller = window.matchMedia('(max-width: 600px)').matches ? dialog : log;
+        const top = scroller.scrollTop + reply.getBoundingClientRect().top - scroller.getBoundingClientRect().top - 16;
+        scroller.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+      });
+    };
     const showFabricCard = (article, fabric) => {
       if (!fabric || !validFabric.test(fabric.id) || fabric.purchasable !== true) return;
       const url = productUrl(fabric.url), image = imageUrl(fabric.imageUrl);
@@ -89,15 +112,13 @@
         }
         messages.slice(renderedMessages.length).forEach(message => {
           if (topic && !renderedTopicAdded && message.at >= topic.receivedAt) appendFabricTopic(true);
-          const article = document.createElement('article');
+          const article = document.createElement('article'); article.dataset.role = message.role;
           const heading = document.createElement('strong'); heading.textContent = message.role === 'assistant' ? 'Jane · AI adviser' : 'You';
-          const p = document.createElement('p'); p.textContent = message.text;
-          article.append(heading, p);
+          article.append(heading); appendMessageText(article, message.text);
           if (message.role === 'assistant' && Array.isArray(message.fabrics)) message.fabrics.slice(0, 4).forEach(fabric => showFabricCard(article, fabric));
           log.append(article);
         });
         if (selectedFabric && !renderedTopicAdded) appendFabricTopic(!!topic);
-        if (renderedMessages.length !== fingerprints.length || selectedFabric && renderedMessages.length === 0) log.scrollTop = log.scrollHeight;
         renderedMessages = fingerprints;
       }
       startButton.hidden = !!session || !ownerBinding; deleteButton.hidden = !session; form.hidden = !session;
@@ -218,7 +239,7 @@
     form.addEventListener('submit', event => {
       event.preventDefault(); const text = input.value.trim(); if (!text || !session) return;
       const id = pending?.action === 'message' && pending.text === text ? pending.id : crypto.randomUUID(); pending = { action: 'message', text, id };
-      run(async () => { await request('message', { text }, id); pending = null; input.value = ''; input.focus(); }, 'Jane is considering your room…');
+      run(async () => { await request('message', { text }, id); pending = null; input.value = ''; input.blur?.(); scrollToReply(); }, 'Jane is considering your room…');
     });
     deleteButton.addEventListener('click', () => run(async () => { await request('delete'); session = null; pending = null; consent.checked = false; fabricConsent.checked = false; remember(null); render(); say('Your consultation was deleted.'); }, 'Deleting your consultation…'));
     fabricConsent.addEventListener('change', () => { fabricShare.disabled = busy || !fabricConsent.checked; });
@@ -236,7 +257,7 @@
           await request('message', { text }, attempt.messageId);
         }
         pending = null;
-        input.focus();
+        input.blur?.(); scrollToReply();
       }, 'Jane is considering your selected fabric…');
     });
     starters?.addEventListener('click', event => {

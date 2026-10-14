@@ -15,6 +15,7 @@ export function customerCushionQuote(quote: CushionQuote) {
     currency: quote.currency,
     specs: quote.specs,
     totalMinor: quote.ready ? quote.totalMinor : null,
+    deliveryGrossMinor: quote.deliveryGrossMinor,
     ready: quote.ready,
     status: quote.status,
     items: quote.items.map((item) => ({

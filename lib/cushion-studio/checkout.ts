@@ -88,7 +88,8 @@ export async function prepareCushionCheckout(
   if (
     !quote.ready ||
     quote.netGoodsMinor === null ||
-    quote.carriageMinor === null ||
+    quote.deliveryGrossMinor === null ||
+    quote.deliveryVatMinor === null ||
     rules.vatBasisPoints === null
   )
     throw new Error("CUSHION_CHECKOUT_REVALIDATION_REQUIRED");
@@ -124,11 +125,6 @@ export async function prepareCushionCheckout(
   };
   const previous = await services.existing?.(input.idempotencyKey);
   if (previous) return reuse(previous);
-  const goodsVat = quote.items.reduce(
-    (sum, item) => sum + item.goodsVatMinor!,
-    0,
-  );
-  const shippingVat = quote.vatMinor! - goodsVat;
   const snapshots: CushionOrderSnapshot[] = [];
   for (const spec of specs) {
     const item = quote.items.find((item) => item.specId === spec.id);
@@ -189,6 +185,14 @@ export async function prepareCushionCheckout(
       commercial: {
         rules: structuredClone(rules),
         itemCostAllocation: item,
+        delivery: {
+          scope: "once-per-cushion-order",
+          quoteId: quote.quoteId,
+          grossMinor: quote.deliveryGrossMinor,
+          vatMinor: quote.deliveryVatMinor,
+          netMinor: quote.carriageMinor,
+          carrierCostMinor: quote.staffPricing.carrierCostMinor,
+        },
         supplierRates: records.map((record) => ({
           id: record.id,
           supplierCostMinorPerMetre: record.supplierCostMinorPerMetre,
@@ -202,8 +206,8 @@ export async function prepareCushionCheckout(
     idempotencyKey: input.idempotencyKey,
     shipping: {
       title: "Confirmed cushion delivery",
-      grossMinor: quote.carriageMinor + shippingVat,
-      vatMinor: shippingVat,
+      grossMinor: quote.deliveryGrossMinor,
+      vatMinor: quote.deliveryVatMinor,
     },
     now,
   });

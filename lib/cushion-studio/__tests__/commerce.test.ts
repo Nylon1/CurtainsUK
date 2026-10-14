@@ -17,6 +17,7 @@ import {
 import { quoteCushionSet } from "../pricing";
 import { calibrationForFabric } from "../catalogue";
 import { buildMixedDraftContract, customerCushionQuote } from "../commerce";
+import { PREVIEW_PRICING_RULES } from "../domain";
 import type {
   CushionDesign,
   CushionSpec,
@@ -68,7 +69,9 @@ const rules: CushionPricingRules = {
   marginBasisPoints: 5000,
   vatBasisPoints: 2000,
   supplierCarriageMinor: 0,
-  carriageMinor: 500,
+  carriageMinor: null,
+  customerDeliveryGrossMinor: 495,
+  carrierCostMinor: null,
 };
 const design: CushionDesign = {
   version: 1,
@@ -150,6 +153,23 @@ test("revalidation, immutable shared-price snapshots, transport and paid mixed p
     };
     const prepared = await prepareCushionCheckout(input, services);
     assert.equal(transportCalls, 1);
+    assert.equal(prepared.contract.expected.shippingGrossAmountMinor, 495);
+    assert.equal(
+      prepared.contract.expected.orderVatAmountMinor -
+        prepared.snapshots.reduce(
+          (sum, snapshot) => sum + snapshot.price.goodsVatMinor,
+          0,
+        ),
+      83,
+    );
+    assert.deepEqual(prepared.snapshots[0].commercial!.delivery, {
+      scope: "once-per-cushion-order",
+      quoteId: expected.quoteId,
+      grossMinor: 495,
+      vatMinor: 83,
+      netMinor: 412,
+      carrierCostMinor: null,
+    });
     assert.equal(
       prepared.contract.expected.orderGrossAmountMinor,
       expected.totalMinor,
@@ -229,6 +249,20 @@ test("revalidation, immutable shared-price snapshots, transport and paid mixed p
       snapshots: prepared.snapshots,
       contract: productionContract,
     });
+    assert.throws(
+      () =>
+        verifyPersistedCushionPayment(
+          {
+            ...financialPayload,
+            total_shipping_price_set: {
+              presentment_money: { currency_code: "GBP", amount: "4.96" },
+            },
+          },
+          bindingManifest,
+          { snapshots: prepared.snapshots, contract: productionContract },
+        ),
+      /FINANCIAL_MISMATCH/,
+    );
     assert.throws(
       () =>
         verifyPersistedCushionPayment(
@@ -626,4 +660,57 @@ test("offline SQL keeps snapshots immutable, domains distinct, browser roles den
   } finally {
     await db.close();
   }
+});
+
+test("gross delivery stays 495p once per set, separate from private carrier expense and product margin", () => {
+  assert.equal(PREVIEW_PRICING_RULES.customerDeliveryGrossMinor, 495);
+  assert.equal(PREVIEW_PRICING_RULES.carriageMinor, null);
+  assert.equal(PREVIEW_PRICING_RULES.carrierCostMinor, null);
+  const specs = [spec, { ...spec, id: "another-square" }];
+  const quote = (extra: Partial<CushionPricingRules> = {}, facts = fabric) =>
+    quoteCushionSet(
+      specs.map((spec) => ({ spec, facts })),
+      { ...rules, ...extra },
+    );
+  const unknownCarrier = quote();
+  assert.equal(unknownCarrier.ready, true, unknownCarrier.issues.join("; "));
+  assert.equal(unknownCarrier.deliveryGrossMinor, 495);
+  assert.equal(unknownCarrier.deliveryVatMinor, 83);
+  assert.equal(unknownCarrier.carriageMinor, 412);
+  assert.equal(
+    unknownCarrier.totalMinor,
+    unknownCarrier.items.reduce((sum, item) => sum + item.goodsGrossMinor!, 0) +
+      495,
+  );
+  assert.equal(unknownCarrier.staffPricing.carrierCostMinor, null);
+  assert.equal(unknownCarrier.staffPricing.deliveryContributionMinor, null);
+  const knownCarrier = quote({ carrierCostMinor: 350 });
+  assert.equal(knownCarrier.staffPricing.deliveryContributionMinor, 62);
+  assert.equal(knownCarrier.totalMinor, unknownCarrier.totalMinor);
+  assert.equal(knownCarrier.totalCostMinor, unknownCarrier.totalCostMinor);
+  assert.equal(
+    knownCarrier.staffPricing.resultingMarginBasisPoints,
+    unknownCarrier.staffPricing.resultingMarginBasisPoints,
+  );
+  assert.equal(
+    quote({ carrierCostMinor: 500 }).staffPricing.deliveryContributionMinor,
+    -88,
+  );
+  const publicQuote = customerCushionQuote(knownCarrier);
+  assert.equal(publicQuote.deliveryGrossMinor, 495);
+  assert.doesNotMatch(
+    JSON.stringify(publicQuote),
+    /carrierCost|deliveryContribution|staffPricing/,
+  );
+  const unready = customerCushionQuote(
+    quote({}, { ...fabric, supplierCostMinorPerMetre: null }),
+  );
+  assert.equal(unready.ready, false);
+  assert.equal(unready.totalMinor, null);
+  assert.equal(unready.deliveryGrossMinor, 495);
+  assert.throws(
+    () => quote({ carriageMinor: 413 }),
+    /DELIVERY_AUTHORITY_AMBIGUOUS/,
+  );
+  assert.throws(() => quote({ carrierCostMinor: -1 }), /CARRIER_COST_INVALID/);
 });

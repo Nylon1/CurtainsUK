@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { allocateVatFromGross } from "../storefront/shopify-draft-order-core";
 import {
   CUSHION_MAKING_RATE_CARD,
   cushionSize,
@@ -41,6 +42,8 @@ export type CushionQuote = {
   totalCostMinor: number | null;
   netGoodsMinor: number | null;
   carriageMinor: number | null;
+  deliveryGrossMinor: number | null;
+  deliveryVatMinor: number | null;
   vatMinor: number | null;
   totalMinor: number | null;
   ready: boolean;
@@ -55,6 +58,8 @@ export type CushionQuote = {
     resultingMarginBasisPoints: number | null;
     discountNetMinor: number;
     retailBeforeDiscountNetMinor: number | null;
+    carrierCostMinor: number | null;
+    deliveryContributionMinor: number | null;
   };
   previewMaterials: Record<
     string,
@@ -284,8 +289,35 @@ export function quoteCushionSet(
       vat !== null && Number.isInteger(vat) && vat >= 0 && vat <= 10000;
   if (!marginReady) issues.push("Selling margin is not configured.");
   if (!vatReady) issues.push("VAT rate is not configured.");
-  if (!validMoney(rules.carriageMinor))
+  if (rules.customerDeliveryGrossMinor != null && rules.carriageMinor != null)
+    throw new Error("CUSHION_DELIVERY_AUTHORITY_AMBIGUOUS");
+  if (rules.carrierCostMinor != null && !validMoney(rules.carrierCostMinor))
+    throw new Error("CUSHION_CARRIER_COST_INVALID");
+  const grossAuthority = validMoney(rules.customerDeliveryGrossMinor)
+    ? rules.customerDeliveryGrossMinor
+    : null;
+  const legacyNet = validMoney(rules.carriageMinor)
+    ? rules.carriageMinor
+    : null;
+  const deliveryVatMinor = vatReady
+    ? grossAuthority !== null
+      ? allocateVatFromGross(grossAuthority, vat)
+      : legacyNet !== null
+        ? Math.round((legacyNet * vat) / 10000)
+        : null
+    : null;
+  const deliveryGrossMinor =
+    grossAuthority ??
+    (legacyNet !== null && deliveryVatMinor !== null
+      ? legacyNet + deliveryVatMinor
+      : null);
+  const carriageMinor =
+    deliveryGrossMinor !== null && deliveryVatMinor !== null
+      ? deliveryGrossMinor - deliveryVatMinor
+      : null;
+  if (deliveryGrossMinor === null)
     issues.push("Customer delivery charge is not configured.");
+  const carrierCostMinor = rules.carrierCostMinor ?? null;
   const retailBeforeDiscountNetMinor =
     totalCostMinor !== null && marginReady
       ? Math.round((totalCostMinor * 10000) / (10000 - margin))
@@ -316,10 +348,12 @@ export function quoteCushionSet(
         : null,
     discountNetMinor,
     retailBeforeDiscountNetMinor,
+    carrierCostMinor,
+    deliveryContributionMinor:
+      carriageMinor !== null && carrierCostMinor !== null
+        ? carriageMinor - carrierCostMinor
+        : null,
   };
-  const carriageMinor = validMoney(rules.carriageMinor)
-    ? rules.carriageMinor
-    : null;
   const net =
     netGoodsMinor !== null && carriageMinor !== null
       ? netGoodsMinor + carriageMinor
@@ -354,7 +388,7 @@ export function quoteCushionSet(
   const vatMinor =
     net !== null && vatReady
       ? items.reduce((sum, item) => sum + item.goodsVatMinor!, 0) +
-        Math.round((carriageMinor! * vat) / 10000)
+        deliveryVatMinor!
       : null;
   const ready = issues.length === 0,
     totalMinor = net !== null && vatMinor !== null ? net + vatMinor : null;
@@ -421,6 +455,8 @@ export function quoteCushionSet(
     totalCostMinor,
     netGoodsMinor,
     carriageMinor,
+    deliveryGrossMinor,
+    deliveryVatMinor,
     vatMinor,
     totalMinor,
     ready,

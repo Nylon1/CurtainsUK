@@ -1,5 +1,9 @@
 # Independent browser review — in progress
 
+## Delivery update verification
+
+Following the owner's clarification, the restarted local preview was checked with a four-piece set on 14 October 2026. Its review shows **“Cushion-only delivery: £4.95 including VAT, once per order”**, while explicitly retaining the goods-price review requirement. No carrier expense or staff margin appears in this customer review. `delivery-495-review.jpg` records the visible line. Browser console errors were empty. This verifies the local UI only; no live checkout, payment or deployment was performed.
+
 > Later pricing steering, 14 October 2026: the owner selected an editable 40% starting margin and then confirmed a 1 m minimum cut after the browser observations below. Historical screenshots/workroom notes are observations of that earlier candidate, not evidence that margin or minimum is still missing. The local server was subsequently restarted with the new rule version. Other missing supplier/workroom/delivery evidence still keeps affected quotes non-binding.
 
 Observed 14 October 2026 in Codex browser at the unpublished loopback preview, port 4357. This is a development review, not release acceptance. No Shopify or Vercel publication, paid checkout, physical iPhone or spoken VoiceOver test occurred.

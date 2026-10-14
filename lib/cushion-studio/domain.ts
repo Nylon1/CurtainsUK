@@ -170,6 +170,10 @@ export type CushionPricingRules = {
   compatibleInsertCostMinorBySize?: Partial<Record<string, number>>;
   /** Customer delivery net charge, distinct from supplier carriage in the cost basis. */
   carriageMinor: number | null;
+  /** Exact customer delivery INCLUDING VAT, once per cushion-only order. */
+  customerDeliveryGrossMinor?: number | null;
+  /** Actual carrier expense ex VAT; staff only, separate from product margin. */
+  carrierCostMinor?: number | null;
 };
 export const CUSHION_MAKING_RATE_CARD: NonNullable<
   CushionPricingRules["makingRateCard"]
@@ -195,12 +199,14 @@ export const CUSHION_MAKING_RATE_CARD: NonNullable<
   }),
 );
 export const PREVIEW_PRICING_RULES: CushionPricingRules = {
-  version: "cushion-cost-basis-v2-owner-margin40",
+  version: "cushion-cost-basis-v3-owner-delivery495",
   construction: PREVIEW_CONSTRUCTION_RULES,
   // Owner-selected starting target, 14 October 2026; server rules remain editable.
   marginBasisPoints: 4000,
   vatBasisPoints: null,
   carriageMinor: null,
+  customerDeliveryGrossMinor: 495,
+  carrierCostMinor: null,
 };
 const idPattern = /^[A-Za-z0-9][A-Za-z0-9_-]{0,149}$/;
 function object(input: unknown): Record<string, unknown> {

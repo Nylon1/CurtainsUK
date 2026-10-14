@@ -84,7 +84,8 @@ const rules: CushionPricingRules = {
   },
   marginBasisPoints: 5000,
   vatBasisPoints: 2000,
-  carriageMinor: 500,
+  carriageMinor: null,
+  customerDeliveryGrossMinor: 495,
   supplierCarriageMinor: 0,
 };
 async function fixture() {
@@ -240,7 +241,12 @@ test("mixed review revalidates signed curtains and one cushion plan, sums shared
   assert.deepEqual(f.effects, []);
   assert.equal(f.seen(), f.curtainMetres + 0.54);
   assert.equal(r.contract.input.lineItems.length, 2);
+  assert.equal(r.cushion.contract.expected.shippingGrossAmountMinor, 495);
   assert.equal(r.contract.expected.shippingGrossAmountMinor, 1295);
+  assert.equal(
+    r.contract.expected.orderGrossAmountMinor,
+    r.contract.expected.goodsGrossAmountMinor + 1295,
+  );
   assert.equal(
     r.contract.expected.goodsGrossAmountMinor,
     r.house.contract.expected.goodsGrossAmountMinor +

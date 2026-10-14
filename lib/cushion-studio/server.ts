@@ -84,6 +84,8 @@ export async function currentCushionRules(): Promise<CushionPricingRules> {
     "fixedCosts",
     "supplierCarriageMinor",
     "carriageMinor",
+    "customerDeliveryGrossMinor",
+    "carrierCostMinor",
     "makingRateCard",
     "compatibleInsertCostMinorBySize",
     "discountNetMinor",

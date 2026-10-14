@@ -156,11 +156,23 @@ test('exact fabric handoff opens Jane only when the opted-in room exists', () =>
   }
 });
 
+test('return from Shopify sign-in reopens Jane without starting a second consultation', () => {
+  const returning = harness({ fabricHandoff: '?jane_return=1' });
+  assert.equal(returning.dialog.open, true);
+  assert.equal(returning.dialog.dataset.adviserIdentity, 'jane');
+  assert.equal(returning.part('countdown').textContent, '30');
+  returning.dialog.close();
+  assert.equal(returning.dialog.open, false);
+  for (const search of ['?jane_return=0', '?jane_return=1&jane_return=1']) {
+    assert.equal(harness({ fabricHandoff: search }).dialog.open, false);
+  }
+});
+
 test('enabled fabric detail link carries only the exact identity and leaves sharing to customer consent', () => {
   const source = read('assets/curtainsuk-jane-fabric-entry.js');
   const appended = [];
   const host = { querySelector: () => null, append: (...nodes) => appended.push(...nodes) };
-  const detail = { querySelector: (selector) => selector === '.cuk-material-intro' ? host : null };
+  const detail = { querySelector: (selector) => selector === '.cuk-material-intro, .cuk-fabric-detail' ? host : null };
   const document = { createElement: () => ({ dataset: {}, setAttribute() {} }) };
   const window = {};
   vm.runInNewContext(source, { window, document });
@@ -171,7 +183,8 @@ test('enabled fabric detail link carries only the exact identity and leaves shar
   assert.match(appended[1].textContent, /choose to share/);
   window.CurtainsUKJaneFabricHandoff.mount(detail, '../wrong', ready);
   window.CurtainsUKJaneFabricHandoff.mount(detail, 'unavailable', { ...ready, orderReady: false });
-  assert.equal(appended.length, 2);
+  assert.equal(appended.length, 4);
+  assert.match(appended[3].textContent, /not currently available.*alternatives/);
   const section = read('sections/curtainsuk-fabric-browser.liquid');
   assert.match(section, /section\.settings\.jane_handoff_enabled/);
   assert.match(section, /"id": "jane_handoff_enabled"[^\n]+"default": false/);

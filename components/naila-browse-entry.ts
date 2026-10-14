@@ -455,10 +455,6 @@ function mount(root: HTMLElement) {
   function decorate(node:HTMLElement,fabric:Fabric) {
     cards.set(fabric.id,{fabric,node});
     if(!active)return;
-    if(!node.querySelector('[data-naila-ask]')) {
-    const ask=button('Ask Naila about this fabric',()=>{selected=fabric;setOpen(true);explain();},'cuk-naila-ask');ask.dataset.nailaAsk='';
-    (node.querySelector('.cuk-fabric__body')??node).append(ask);
-    }
     const direction=view?.directions.find(d=>d.cards.some(c=>c.fabricMasterId===fabric.id));
     const recommendation=direction?.cards.find(c=>c.fabricMasterId===fabric.id);
     if(showingDirections&&direction&&recommendation&&view) {
@@ -502,7 +498,7 @@ function mount(root: HTMLElement) {
   const enhance=experience.enhanceCard, discovery=experience.renderDiscovery, detail=experience.renderDetail;
   experience.enhanceCard=(node,fabric,slug,save)=>{enhance(node,fabric,slug,save);decorate(node,fabric);};
   experience.renderDiscovery=(browser,data,filters)=>{discovery(browser,data,filters);if(browser===root){catalog=data;cards.clear();if(active)status.textContent='';}};
-  experience.renderDetail=(browser,fabric,slug,save)=>{detail(browser,fabric,slug,save);if(browser===root){cards.set(fabric.id,{fabric,node:root.querySelector('[data-cuk-fabric-detail]')!});const ask=button('Ask Naila about this fabric',()=>{void start().then(()=>{selected=fabric;explain();});});root.querySelector('.cuk-material-intro')?.append(ask);}};
+  experience.renderDetail=(browser,fabric,slug,save)=>{detail(browser,fabric,slug,save);if(browser===root)cards.set(fabric.id,{fabric,node:root.querySelector('[data-cuk-fabric-detail]')!});};
   form.addEventListener('input',()=>{
     showingDirections=false;renderVersion++;
     root.querySelector<HTMLElement>('[data-cuk-pagination]')!.hidden=false;

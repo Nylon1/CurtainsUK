@@ -363,6 +363,7 @@
       });
       else if (root.hasAttribute('data-cuk-shopping') && window.CurtainsUKFabricExperience) window.CurtainsUKFabricExperience.enhanceCard(card,fabric,selectedWindow,addSample);
       else card.querySelector("[data-sample]")?.addEventListener("click", () => addSample(fabric, selectedWindow));
+      if (!visualiser && root.hasAttribute('data-cuk-shopping')) window.CurtainsUKJaneFabricHandoff?.mountCard(card, fabric.id, { browseReady: fabric.browseReady, launchReady: fabric.launchReady });
       card.querySelector("img")?.addEventListener("error", (event) => {
         const swatch = event.currentTarget.closest(".cuk-fabric__swatch");
         if (swatch) swatch.innerHTML = `<span class="cuk-fabric__placeholder" aria-hidden="true">${escapeHtml(fabric.design?.slice(0, 1) || "F")}</span>`;
@@ -468,6 +469,7 @@
         if (premiumDetail) { window.CurtainsUKFabricExperience.renderDetail(root,fabric,windowSlug,addSample); return; }
         const main = fabric.images?.[0];
         const configureUrl = `/pages/curtain-visualiser?fabric=${encodeURIComponent(fabric.id)}${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}`;
+        const unavailableCurtainButton = '<button type="button" class="cuk-button" disabled>Make Curtains in This Fabric</button>';
         const spec = (label, value) => value ? `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>` : "";
         detail.innerHTML = `<a href="/pages/fabric-library?view=browse-fabrics${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}" class="cuk-text-link">← All fabrics</a>
           <div class="cuk-fabric-detail"><div class="cuk-fabric-detail__gallery">${main ? `<img class="cuk-fabric-detail__main" src="${escapeHtml(main.url)}" width="${main.width}" height="${main.height}" alt="${escapeHtml(fabric.metadata.alt)}" fetchpriority="high">` : '<p class="cuk-empty">Fabric photography is being prepared.</p>'}
@@ -475,7 +477,7 @@
           <div><p class="cuk-eyebrow">${escapeHtml(fabric.brand)} · ${escapeHtml(fabric.collection)}</p><h2>${escapeHtml(fabric.design)}</h2><p class="cuk-fabric-detail__colour">${escapeHtml(fabric.colour)}</p>
           ${fabric.description ? `<p>${escapeHtml(fabric.description)}</p>` : ""}<p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric-detail__actions"><button class="cuk-button cuk-button--secondary" data-sample ${fabric.sampleAvailable === true ? "" : "disabled"}>${fabric.sampleAvailable === true ? "Order a Sample" : "Sample availability to be confirmed"}</button>
-          ${fabric.orderReady === true ? `<a class="cuk-button" href="${configureUrl}">Make Curtains in This Fabric</a>` : '<button type="button" class="cuk-button" disabled>Make Curtains in This Fabric</button>'}</div>
+          ${fabric.browseReady ? (fabric.orderReady === true ? `<a class="cuk-button" href="${configureUrl}">Make Curtains in This Fabric</a>` : '<button type="button" class="cuk-button" disabled>Make Curtains in This Fabric</button>') : unavailableCurtainButton}</div>
           <p class="cuk-hint">Price and availability are checked for your measurements before purchase.</p>
           <dl class="cuk-fabric-spec">${spec("Composition", (fabric.composition || []).map((part) => `${part.percentage}% ${part.material}`).join(", "))}${spec("Usable width", fabric.usableWidthMm ? `${fabric.usableWidthMm / 10} cm` : null)}${spec("Full width", fabric.fullWidthMm ? `${fabric.fullWidthMm / 10} cm` : null)}${spec("Vertical repeat", fabric.verticalRepeatMm === null ? null : `${fabric.verticalRepeatMm / 10} cm`)}${spec("Horizontal repeat", fabric.horizontalRepeatMm === null ? null : `${fabric.horizontalRepeatMm / 10} cm`)}${spec("Pattern match", fabric.patternMatchType ? humanise(fabric.patternMatchType) : null)}${spec("Care", (fabric.careInstructions || []).join(", "))}${spec("Headings", (fabric.headings || []).map(humanise).join(", "))}${spec("Applications", (fabric.windowTypes || []).map(humanise).join(", "))}</dl>
           <p class="cuk-hint">Screens vary. A sample helps you check the colour and texture in your own light.</p></div></div>`;

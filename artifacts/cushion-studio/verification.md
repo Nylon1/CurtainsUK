@@ -11,3 +11,12 @@
 - Browser evidence: see `../cushion-studio-evidence/browser-review.md` and the final front/back, workroom and mobile images. Real plain/stripe/directional original-source evidence is separate from synthetic price fixtures.
 
 Not proven by these checks: physical mobile Safari, hosted account/session integration after migration, a current private supplier-priced quote in this local public-catalogue fallback, production Draft Order/payment execution, or deployment. Hosted migration and feature/payment flags remain unapplied/off. The local feature is reviewable; it is not publicly released.
+
+
+## Continued candidate work: offline hosted journey
+
+- `npm run test:cushions`: **51 passed** (40 TypeScript + 11 runtime); `node node_modules/typescript/bin/tsc --noEmit`: passed; `git diff --check`: passed.
+- Five new handler-level scenarios use real app-proxy HMAC signing/verification, synthetic confirmed manufacturing/price facts, temporary account-isolated file repositories and a non-writing review checkout transport. A fetch tripwire confirms zero network calls from each scenario. No environment release flags, hosted database or Shopify resources were changed.
+- Verified closed-gate zero authentication side effects; signed customer identity and anonymous rejection; expired/tampered/wrong-shop/wrong-path and cross-origin rejection; two customers sharing a design name without crossing ownership; conflict handling; safe quote projection and 495p delivery; fresh price rejection before execution; immutable snapshot preservation after editable design changes; and retry identity reuse.
+- Fixed observed customer error paths: rejected signed requests return 403 instead of 503; stale prices/required save return recoverable 409 instead of generic 503 (allowing the existing price-refresh UI); endpoint throttling retains 429 and Retry-After. Oversized/malformed input now returns 413/400, with unknown internal errors kept private.
+- This is a local HTTP-handler rehearsal, not a live app-proxy, Supabase RLS/RPC, deployed rate limiter, production Shopify checkout/payment or physical Safari proof. The earlier full suite/build evidence remains historical. Cushion dispatch/lead-time authority remains a separate pre-activation input; no curtain lead time was copied.

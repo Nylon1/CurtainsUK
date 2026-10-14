@@ -96,3 +96,12 @@ Before activation: review/applied-schema tests, configured database/server comme
 Rollback after any future activation: close cushion and mixed purchase gates first; hide the native page entry/profile CTA and navigation; close the hosted preview gate if the customer surface itself is faulty. Retain immutable snapshots, paid records and the schema. Keep an authenticated paid receiver available for already-created unpaid drafts and webhook retries, or deliberately return retryable errors until a repaired receiver is deployed—never acknowledge an unrecorded payment. Revert only this candidate's source through a protected PR, rerun both required checks, and deploy the exact approved protected HEAD. Do not erase ordered specifications or restore a mutable design over an order.
 
 Three.js and asset provenance are recorded in `lib/cushion-studio/runtime/SOURCES.md`. No unidentified MIT configurator code or third-party sofa model was adopted.
+
+
+## Offline hosted customer rehearsal
+
+The exported hosted route binds unchanged production dependencies. A server-owned factory now permits the same handler to be exercised offline with signed synthetic Shopify app-proxy requests, temporary owner-separated storage, synthetic fabric/rate evidence and a non-writing review transport. Request data cannot select or replace these dependencies.
+
+The rehearsal checks anonymous save rejection, invalid/expired signatures, cross-origin requests, two customers using the same design ID without seeing each other's designs, revision conflicts, customer-safe ready/unready quotes, exact delivery, fresh checkout revalidation, immutable snapshots and retry identity reuse. It also verifies the default-off route invokes no authentication or persistence and forbids network calls. It exposed generic 503 responses for rejected authentication, stale checkout prices and rate limits. Those now return safe 403/409 responses or the existing 429 retry guidance; invalid/oversized input returns 400/413, while unexpected internal failures remain private 503 responses.
+
+This proves local HTTP-handler orchestration, not hosted database/RLS behavior, live Shopify transport, rate-limit RPC operation, deployed app-proxy wiring or physical mobile Safari. Those release checks remain required. Cushion dispatch/lead-time wording must be confirmed separately before purchase activation; the curtain delivery lead time is not cushion authority, and no dispatch promise is fabricated in this candidate.

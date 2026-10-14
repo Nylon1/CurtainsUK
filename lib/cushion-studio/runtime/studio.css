@@ -1459,3 +1459,43 @@ body[data-mode="configurator"] .scene-actions {
   padding: 10px;
   background: #f1e6d5;
 }
+
+#square-shape-comparison {
+  position: absolute;
+  top: 48px;
+  right: 18px;
+  z-index: 2;
+  width: 225px;
+  border: 1px solid var(--line);
+  padding: 10px;
+  background: #f8f5edee;
+}
+#square-shape-comparison legend {
+  font-size: 10px;
+  letter-spacing: 0.3px;
+}
+#square-shape-comparison button {
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+#square-shape-comparison button[aria-pressed="true"] {
+  background: var(--ink);
+  color: white;
+}
+#square-shape-comparison .help {
+  font-size: 10px;
+  line-height: 1.45;
+  margin: 4px 0 0;
+}
+@media (max-width: 760px) {
+  #square-shape-comparison {
+    position: static;
+    width: auto;
+    margin: 10px;
+  }
+  .scene-actions {
+    flex-wrap: wrap;
+  }
+}

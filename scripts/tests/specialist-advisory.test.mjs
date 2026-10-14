@@ -330,13 +330,15 @@ test('repeated section initialisation and unload do not duplicate timers or leak
   assert.equal(h.window.listeners.get('pageshow').size, 0);
 });
 
-test('six versioned AI profiles, theme blocks and customer names agree; Jane is featured', () => {
+test('five public advisers retain six versioned profiles for future activation; Jane is featured', () => {
   const template = themeJson(read('templates/page.meet-our-team.json'));
   const locale = themeJson(read('locales/en.default.json')).advisory_team;
   assert.ok(locale, 'The adviser translation namespace must exist');
   const section = template.sections.team;
-  assert.deepEqual(section.block_order, ids);
-  assert.deepEqual(Object.values(section.blocks).map((block) => block.settings.adviser), ids);
+  const publicIds = ids.filter((id) => id !== 'anne');
+  assert.deepEqual(section.block_order, publicIds);
+  assert.deepEqual(Object.values(section.blocks).map((block) => block.settings.adviser), publicIds);
+  assert.equal(section.blocks.anne, undefined);
   assert.equal(section.blocks.jane.settings.featured, true);
   assert.equal(Object.values(section.blocks).filter((block) => block.settings.featured).length, 1);
   assert.equal(new Set(profiles.map((profile) => JSON.stringify(profile.voice))).size, 6);
@@ -348,6 +350,17 @@ test('six versioned AI profiles, theme blocks and customer names agree; Jane is 
     assert.equal(locale[profile.id].name, profile.name);
     for (const field of ['title', 'intro', 'approach', 'expertise', 'question', 'preparation', 'opening']) assert.ok(locale[profile.id][field]?.trim(), `${profile.id}.${field}`);
   }
+});
+
+test('the live page labels each active adviser as available and does not advertise Anne', () => {
+  const section = read('sections/curtainsuk-advisory-team.liquid');
+  const card = read('snippets/curtainsuk-adviser-card.liquid');
+  const room = read('snippets/curtainsuk-advisory-room.liquid');
+  assert.match(card, /cukad__art-label[^\n]*if live_adviser/);
+  assert.match(section, /Five distinct AI specialists/);
+  assert.match(section, /Five AI advisers available/);
+  assert.doesNotMatch(section, /Anne is coming soon|Anne is still in preview|Anne offers a waiting-room preview/);
+  assert.doesNotMatch(room, /Anne is a preview|Anne's preview/);
 });
 
 test('the English locale is additive against the verified production baseline', () => {

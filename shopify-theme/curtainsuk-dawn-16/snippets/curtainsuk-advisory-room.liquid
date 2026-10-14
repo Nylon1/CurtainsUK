@@ -11,7 +11,7 @@
 {{ 'curtainsuk-advisory-room.css' | asset_url | stylesheet_tag }}
 <dialog class="cukad-room" data-advisory-dialog aria-labelledby="advisory-dialog-title-{{ section_id }}" aria-describedby="advisory-preview-notice-{{ section_id }}">
   <div class="cukad-room__header">
-    <p id="advisory-preview-notice-{{ section_id }}">{% if specialist_chat_live %}Five AI advisers available · Anne is a preview{% elsif jane_chat_live %}{{ 'advisory_team.live.room_notice' | t }}{% else %}{{ 'advisory_team.room.preview' | t }}{% endif %}</p>
+    <p id="advisory-preview-notice-{{ section_id }}">{% if specialist_chat_live %}Five AI advisers available{% elsif jane_chat_live %}{{ 'advisory_team.live.room_notice' | t }}{% else %}{{ 'advisory_team.room.preview' | t }}{% endif %}</p>
     <button type="button" class="cukad-room__close" data-advisory-close aria-label="{% if jane_chat_live %}{{ 'advisory_team.live.close' | t | escape }}{% else %}{{ 'advisory_team.room.close' | t | escape }}{% endif %}"><span aria-hidden="true">×</span></button>
   </div>
   <div class="cukad-room__identity">
@@ -22,7 +22,7 @@
     <p class="cukad-room__eyebrow">{{ 'advisory_team.room.waiting' | t }}</p>
     <div class="cukad-room__clock"><span data-advisory-countdown aria-hidden="true">30</span><span>{{ 'advisory_team.room.seconds' | t }}</span></div>
     <progress data-advisory-progress value="0" max="30" aria-label="{{ 'advisory_team.room.progress' | t | escape }}"></progress>
-    <p class="cukad-room__muted">{% if specialist_chat_live %}A 30-second welcome, not a queue. Your chosen adviser can chat after you enter. Anne is still a preview.{% elsif jane_chat_live %}{{ 'advisory_team.live.waiting_copy' | t }}{% else %}{{ 'advisory_team.room.waiting_copy' | t }}{% endif %}</p>
+    <p class="cukad-room__muted">{% if specialist_chat_live %}A 30-second welcome, not a queue. Your chosen adviser can chat after you enter.{% elsif jane_chat_live %}{{ 'advisory_team.live.waiting_copy' | t }}{% else %}{{ 'advisory_team.room.waiting_copy' | t }}{% endif %}</p>
     <div class="cukad-room__preparation"><h3>{{ 'advisory_team.room.preparation' | t }}</h3><p data-advisory-preparation></p></div>
     <button type="button" class="cukad-room__button cukad-room__button--outline" data-advisory-skip>{% if jane_chat_live %}{{ 'advisory_team.live.skip' | t }}{% else %}{{ 'advisory_team.room.skip' | t }}{% endif %} <span aria-hidden="true">→</span></button>
   </div>
@@ -61,7 +61,7 @@
     {% if specialist_chat_private_preview or specialist_chat_live %}
       {% render 'curtainsuk-specialist-chat', section_id: section_id, specialist_chat_live: specialist_chat_live %}
     {% endif %}
-    <p class="cukad-room__privacy">{% if specialist_chat_live %}An available adviser saves a consultation only with your consent. Anne's preview does not collect messages.{% elsif jane_chat_live %}{{ 'advisory_team.live.room_privacy' | t }}{% else %}{{ 'advisory_team.room.privacy' | t }}{% endif %}</p>
+    <p class="cukad-room__privacy">{% if specialist_chat_live %}Your adviser saves a consultation only with your consent. You can delete it here.{% elsif jane_chat_live %}{{ 'advisory_team.live.room_privacy' | t }}{% else %}{{ 'advisory_team.room.privacy' | t }}{% endif %}</p>
     <button type="button" class="cukad-room__button" data-advisory-close>{{ 'advisory_team.room.return' | t }} <span aria-hidden="true">↗</span></button>
   </div>
   <p class="cukad-room__status" role="status" aria-live="polite" data-advisory-status></p>

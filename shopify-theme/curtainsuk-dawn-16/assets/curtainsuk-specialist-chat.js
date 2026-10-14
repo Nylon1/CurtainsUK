@@ -91,7 +91,8 @@
       const next = event.detail?.identity;
       panel.hidden = !Object.hasOwn(roles, next);
       if (panel.hidden) { adviser = null; return; }
-      adviser = next; session = null; binding = null; csrf = ''; log.replaceChildren();
+      adviser = next; binding = null; csrf = '';
+      clear(); input.value = ''; say('');
       heading.textContent = `${roles[adviser].name} · AI ${adviser === 'ben' ? 'acoustic' : adviser === 'noah' ? 'measuring' : adviser === 'james' ? 'fitting' : 'specialist window'} adviser`;
       opening.textContent = roles[adviser].opening; examples.textContent = roles[adviser].examples;
       preview.forEach(node => { if (node) node.hidden = true; });

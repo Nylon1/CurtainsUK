@@ -48,8 +48,11 @@
 .cukad-room__jane input[type="checkbox"] { width:18px; height:18px; flex:none; accent-color:#173d35; }
 .cukad-room__jane-actions { display:flex; flex-wrap:wrap; gap:10px; }
 .cukad-room__jane button { min-height:44px; border:1px solid #173d35; background:#173d35; color:#fffaf0; padding:9px 16px; }
-.cukad-room__jane button:disabled { opacity:.55; cursor:not-allowed; }
+.cukad-room__jane button:disabled { background:#52685d; color:#fff; opacity:1; cursor:wait; }
 .cukad-room__jane [data-jane-delete] { background:transparent; color:#173d35; }
+.cukad-room__jane-manage { border-top:1px solid #d2dbcf; padding-top:12px; }
+.cukad-room__jane-fine-print { border-top:1px solid #d2dbcf; padding-top:10px; color:#526358; }
+.cukad-room__jane-fine-print p { margin:0 0 7px!important; font-size:12px!important; line-height:1.5!important; }
 .cukad-room__jane-log { display:grid; gap:14px; max-height:35vh; overflow:auto; padding:8px 2px; }
 .cukad-room__jane-log article { border:1px solid #d9dece; background:#fffdf7; padding:14px 16px; }
 .cukad-room__jane-log article:last-child { animation:cukad-message-in .35s ease-out both; }

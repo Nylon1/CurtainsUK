@@ -1,6 +1,6 @@
 # Cushion Studio implementation candidate
 
-This candidate starts from protected `release/production` commit `d70a3f4ee2bca8f098a3d9acce0c2a6a5d11ed92`. It adds a distinct cushion product domain. Existing curtain specifications, renderer eligibility, room packs, pricing and checkout remain authoritative for curtains. No Shopify page, navigation, hosted schema, public feature flag or paid action is activated by local development.
+This candidate originated from protected `release/production` commit `d70a3f4ee2bca8f098a3d9acce0c2a6a5d11ed92` and is reconciled with the later protected Room Visualiser restoration through `b926c116388a176f12f618acc9297d51b0269478`. It adds a distinct cushion product domain. Existing curtain specifications, renderer eligibility, room packs, pricing and checkout remain authoritative for curtains. No Shopify page, navigation, hosted schema, public feature flag or paid action is activated by local development.
 
 ## Two separate experiences
 

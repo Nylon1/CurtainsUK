@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-10-09T09:04:32.607Z",
+  "recordedAt": "2026-10-14T18:33:06.476Z",
   "status": "LIVE_RUNTIME_VERIFIED_DEVICE_QA_PENDING",
   "fullySynchronised": false,
-  "scope": "Room Visualiser 2 release and its supporting production surfaces; not a full platform/data reconciliation",
+  "scope": "Room Visualiser restoration and packaging protection; not full platform/data reconciliation",
   "source": {
     "repository": "https://github.com/Nylon1/CurtainsUK",
     "releaseBranch": "release/production",
-    "deployedCommit": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
-    "deployedGitTree": "1150dad1d55649597d03df2dbaad01348ea98d63",
+    "deployedCommit": "345c553c4553b159a587fdc6a7de7be48ca010e6",
+    "deployedGitTree": "30dc037bd09d6c11836d73686efca22aecfd36e0",
     "sourceOnlyPrototypePr": 163,
     "customerReleasePr": 164,
-    "documentationSyncBranch": "sync/room-visualiser-2-source-of-truth-20261009",
-    "documentationOnlyCommitsMayFollowDeployedCommit": true
+    "documentationSyncBranch": "docs/production-repair-source-of-truth-20261014",
+    "documentationOnlyCommitsMayFollowDeployedCommit": true,
+    "restorationAndPackagingPr": 203
   },
   "deployment": {
-    "id": "dpl_CvvQKa2zCsFbQ7eZR9Lzi31w7BCD",
+    "id": "dpl_2u63hPBwCSynV17cmV62nqRrneDw",
     "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
     "projectName": "curtainsuk-staging-api",
     "teamId": "team_U8WXxsKS9LT2DmEllVkOpihz",
-    "url": "https://curtainsuk-staging-1ur8idqz1-hamzas-projects-4ef62f35.vercel.app",
+    "url": "https://curtainsuk-staging-gh91go215-hamzas-projects-4ef62f35.vercel.app",
     "canonicalOrigin": "https://curtainsuk-production-api.vercel.app",
     "readyState": "READY",
     "target": "production",
-    "metadataReadAt": "2026-10-09T09:01:01.3173336Z",
-    "metadataReleaseSha": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
-    "metadataGitCommitSha": "800f42a27a0a6e9beb1abd92821145bf4a4b98c4",
-    "metadataGitCommitRef": "HEAD",
-    "metadataGitTree": null,
-    "treeEvidence": "Independently read from the deployed Git commit; not present in Vercel deployment metadata.",
-    "rollbackDeploymentId": "dpl_FqkeuFMtFwnJAELn9kXChF2eXRfE",
-    "rollbackDeploymentUrl": "https://curtainsuk-staging-j4a9sngq7-hamzas-projects-4ef62f35.vercel.app"
+    "metadataReadAt": "2026-10-14T18:32:01.804Z",
+    "metadataReleaseSha": "345c553c4553b159a587fdc6a7de7be48ca010e6",
+    "metadataGitCommitSha": "345c553c4553b159a587fdc6a7de7be48ca010e6",
+    "metadataGitTree": "30dc037bd09d6c11836d73686efca22aecfd36e0",
+    "treeEvidence": "Exact source tree recorded in Vercel deployment metadata and protected-source export receipt.",
+    "rollbackDeploymentId": "dpl_61iUGgFHxn74kyBASisBetx2HBqN",
+    "rollbackDeploymentUrl": "https://curtainsuk-staging-9gtne0i3u-hamzas-projects-4ef62f35.vercel.app"
   },
   "shopify": {
     "store": "carpetup.myshopify.com",
@@ -66,7 +66,7 @@
     "geometryUvScaleMotionRoutingAssignmentsUnchanged": true
   },
   "readback": {
-    "checkedAt": "2026-10-09T09:00:23.259Z",
+    "checkedAt": "2026-10-14T18:33:06.476Z",
     "matchingPackFiles": 96,
     "packReadbackManifestSha256": "57469873f7ccdb6e3e12a2b49cc47fd4ab5b7c9a842cc574f89a2e1d6e53b9d5",
     "domains": [
@@ -75,21 +75,24 @@
         "servesCurrentPack": true,
         "viewerSha256": "f4ade4c129715f9d9627bca66242620c4a3fdbf4360ea34986337a2c95af35e5",
         "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
-        "verifiedProjectDomain": true
+        "verifiedProjectDomain": true,
+        "deploymentId": "dpl_2u63hPBwCSynV17cmV62nqRrneDw"
       },
       {
         "name": "curtainsuk-staging-api.vercel.app",
         "servesCurrentPack": true,
         "viewerSha256": "f4ade4c129715f9d9627bca66242620c4a3fdbf4360ea34986337a2c95af35e5",
         "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
-        "verifiedProjectDomain": true
+        "verifiedProjectDomain": true,
+        "deploymentId": "dpl_2u63hPBwCSynV17cmV62nqRrneDw"
       },
       {
         "name": "curtainsuk-staging-gateway.vercel.app",
         "servesCurrentPack": true,
         "viewerSha256": "f4ade4c129715f9d9627bca66242620c4a3fdbf4360ea34986337a2c95af35e5",
         "projectId": "prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA",
-        "verifiedProjectDomain": true
+        "verifiedProjectDomain": true,
+        "deploymentId": "dpl_2u63hPBwCSynV17cmV62nqRrneDw"
       }
     ],
     "referenceTextures": [
@@ -129,58 +132,95 @@
         "cacheControl": "public, max-age=31536000, immutable",
         "cors": "https://www.curtainsuk.com"
       }
-    ]
+    ],
+    "referenceTexturesOriginallyMeasuredAt": "2026-10-09T09:00:23.259Z",
+    "allAssets": {
+      "total": 11016,
+      "matching": 11016,
+      "moduleAndRoomFiles": 102,
+      "uniqueStandardTextures": 3048,
+      "fixed140Images": 7866,
+      "httpStatus": 200,
+      "expectedSha256": true,
+      "usableCors": true
+    },
+    "packReadbackManifestSha256MeasuredAt": "2026-10-09T09:00:23.259Z"
   },
   "validation": {
-    "localAutomatedTests": 63,
-    "protectedCandidateTests": 133,
-    "protectedTrustedTests": 133,
-    "localCases": 16,
-    "stagedCases": 16,
-    "liveCases": 16,
-    "pixelIdenticalScreenshots": 68,
-    "graphicsFallback": true,
-    "failedRoomImageRetry": true,
-    "physicalIphoneSafari": false
-  },
-  "performance": {
-    "measurementDate": "2026-10-09",
-    "matchedColdDesktopStandard": {
-      "runsPerVariant": 3,
-      "customerNavigationMedianMs": 4889.7,
-      "approvedPrototypeNavigationMedianMs": 4795.9,
-      "originalRendererNavigationMedianMs": 5918.8,
-      "condition": "Fresh Chrome; same machine/GPU, 1440x1000 viewport and fabric; disabled shader disk cache; loopback assets and public catalogue"
-    },
-    "liveSingleRunNavigationMs": {
-      "desktopStandard": 5811.5,
-      "narrowStandard": 5532.4,
-      "desktopFixed140": 5909.9,
-      "narrowFixed140": 5425.6
-    },
-    "liveObservationsAreNotEquivalentToLocalBenchmark": true
-  },
-  "storage": {
-    "checkedDate": "2026-10-09",
-    "freeGiB": 30.09,
-    "targetFreeGiB": 35,
-    "cleanup": "OWNER_DEFERRED",
-    "worktreesEvidenceAndUncommittedWorkPreserved": true
+    "packagingRegressionTests": 8,
+    "stagedChecks": 110,
+    "standardBrowserCombinations": 24,
+    "fixed140BrowserCombinations": 12,
+    "browserMatrixDeployment": "dpl_61iUGgFHxn74kyBASisBetx2HBqN",
+    "finalDeploymentFreshReload": true,
+    "immutableRuntimeBytesUnchanged": true,
+    "physicalIphoneSafari": false,
+    "spokenVoiceOver": false,
+    "productionBuildVerifiedFiles": 3150,
+    "productionBuildVerifiedBytes": 204383626
   },
   "remaining": [
     "Physical iPhone Safari acceptance",
-    "Deferred disk-headroom recovery above 35 GiB",
-    "Full active Shopify app-configuration and scoped theme-file read-back not repeated in this sync",
-    "Vercel source-tree metadata absent; include tree attestation with a future authorised runtime release"
+    "Spoken VoiceOver",
+    "Deferred storage recovery not rechecked",
+    "Full active Shopify app-configuration and scoped theme-file read-back not repeated in this repair"
   ],
-  "knownUnrelatedIssue": "External Extendons price-calculator HTTP 403 on this non-product page reproduced with the previous renderer; no visualiser JavaScript/asset/catalogue HTTP errors.",
+  "knownUnrelatedIssue": "Historical 9 October: external Extendons price-calculator HTTP 403 on this non-product page; not independently re-audited by this repair.",
   "evidence": {
-    "directory": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009",
-    "releaseReceipt": "release-receipt.json",
-    "sourceReadback": "source-sync-readback.json",
-    "deploymentMetadata": "source-sync-deployment.json",
-    "liveChecks": "live-verification.json",
-    "gallery": "review.html",
-    "releaseReceiptSha256": "82e251638d5fcb43f8a7f2f15867c5c9987bb68b2b88b32b54e7a7fe4e502c43"
+    "directory": "C:/Users/hamza/curtainsuk-room-visualiser-repair-evidence-20261014",
+    "deploymentMetadata": "guarded/deployment-receipt.json",
+    "liveAssets": "guarded/live-assets.json",
+    "aliasSmoke": "guarded/alias-smoke.json",
+    "buildVerification": "guarded/build-verification.json",
+    "standardBrowserChecks": "live-ui-checks.json",
+    "fixed140BrowserChecks": "live-fixed140-ui-checks.json",
+    "finalScreenshot": "guarded/live-shopify-restored.png"
+  },
+  "historicalOctober9Verification": {
+    "validation": {
+      "localAutomatedTests": 63,
+      "protectedCandidateTests": 133,
+      "protectedTrustedTests": 133,
+      "localCases": 16,
+      "stagedCases": 16,
+      "liveCases": 16,
+      "pixelIdenticalScreenshots": 68,
+      "graphicsFallback": true,
+      "failedRoomImageRetry": true,
+      "physicalIphoneSafari": false
+    },
+    "performance": {
+      "measurementDate": "2026-10-09",
+      "matchedColdDesktopStandard": {
+        "runsPerVariant": 3,
+        "customerNavigationMedianMs": 4889.7,
+        "approvedPrototypeNavigationMedianMs": 4795.9,
+        "originalRendererNavigationMedianMs": 5918.8,
+        "condition": "Fresh Chrome; same machine/GPU, 1440x1000 viewport and fabric; disabled shader disk cache; loopback assets and public catalogue"
+      },
+      "liveSingleRunNavigationMs": {
+        "desktopStandard": 5811.5,
+        "narrowStandard": 5532.4,
+        "desktopFixed140": 5909.9,
+        "narrowFixed140": 5425.6
+      },
+      "liveObservationsAreNotEquivalentToLocalBenchmark": true
+    },
+    "storage": {
+      "checkedDate": "2026-10-09",
+      "freeGiB": 30.09,
+      "targetFreeGiB": 35,
+      "cleanup": "OWNER_DEFERRED",
+      "worktreesEvidenceAndUncommittedWorkPreserved": true
+    },
+    "evidence": {
+      "directory": "C:/Users/hamza/curtainsuk-visualiser-2-customer-evidence-20261009",
+      "releaseReceipt": "release-receipt.json",
+      "sourceReadback": "source-sync-readback.json",
+      "deploymentMetadata": "source-sync-deployment.json",
+      "liveChecks": "live-verification.json",
+      "gallery": "review.html",
+      "releaseReceiptSha256": "82e251638d5fcb43f8a7f2f15867c5c9987bb68b2b88b32b54e7a7fe4e502c43"
+    }
   }
 }

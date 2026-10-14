@@ -18,9 +18,9 @@
     const deleteConfirm = find('delete-confirm'), deleteYes = find('delete-yes'), deleteCancel = find('delete-cancel');
     const log = find('log'), form = find('form'), input = find('input'), send = find('send');
     const recovery = find('recovery'), recoveryInput = find('recovery-input'), recover = find('recover'), recoveryOutput = find('recovery-output');
-    const status = find('status'), error = find('error');
+    const status = find('status'), error = find('error'), thinking = find('thinking'), tools = find('tools'), entry = find('entry');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
-    let adviser = null, session = null, csrf = '', binding = null, busy = false;
+    let adviser = null, session = null, csrf = '', binding = null, busy = false, renderedSessionId = null, renderedMessages = [];
     const storageKey = () => binding && adviser ? `curtainsuk-specialist-preview:${adviser}:${binding}` : null;
     const remembered = () => { try { return localStorage.getItem(storageKey()); } catch { return null; } };
     const remember = id => { try { if (id) localStorage.setItem(storageKey(), id); else localStorage.removeItem(storageKey()); } catch {} };
@@ -29,19 +29,50 @@
     const safeSource = value => {
       try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password && url.href.length <= 1200 ? url.href : null; } catch { return null; }
     };
-    const clear = () => { session = null; consent.checked = false; recoveryInput.value = ''; recoveryOutput.textContent = ''; recoveryOutput.hidden = true; deleteConfirm.hidden = true; log.replaceChildren(); render(); };
+    const clear = () => { session = null; renderedSessionId = null; renderedMessages = []; consent.checked = false; recoveryInput.value = ''; recoveryOutput.textContent = ''; recoveryOutput.hidden = true; deleteConfirm.hidden = true; if (tools) tools.open = false; if (thinking) thinking.hidden = true; log.replaceChildren(); render(); };
+    const appendMessageText = (article, value) => {
+      String(value || '').split(/\n{2,}/).forEach(paragraph => {
+        const copy = document.createElement('p');
+        paragraph.split(/(\*\*[^*\n]+\*\*)/g).forEach(part => {
+          if (!part) return;
+          if (part.startsWith('**') && part.endsWith('**')) {
+            const emphasis = document.createElement('strong'); emphasis.textContent = part.slice(2, -2); copy.append(emphasis);
+          } else copy.append(part);
+        });
+        article.append(copy);
+      });
+    };
+    const scrollToReply = () => {
+      const replies = log.querySelectorAll('article[data-role="assistant"]');
+      const reply = replies[replies.length - 1];
+      if (!reply) return;
+      requestAnimationFrame(() => {
+        const scroller = window.matchMedia('(max-width: 600px)').matches ? dialog : log;
+        const top = scroller.scrollTop + reply.getBoundingClientRect().top - scroller.getBoundingClientRect().top - 16;
+        scroller.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+      });
+    };
     const render = () => {
-      log.replaceChildren();
+      if (!session || renderedSessionId !== session.id) {
+        log.replaceChildren(); renderedSessionId = session?.id ?? null; renderedMessages = [];
+      }
       if (adviser && session) {
-        if (!(session.messages || []).length) {
+        const messages = session.messages || [];
+        const fingerprints = messages.map(message => JSON.stringify([message.role, message.text, message.citations]));
+        if (renderedMessages.length > fingerprints.length || renderedMessages.some((value, index) => value !== fingerprints[index])) {
+          log.replaceChildren(); renderedMessages = [];
+        }
+        if (!messages.length && !log.childElementCount) {
           const first = document.createElement('article'), title = document.createElement('strong'), copy = document.createElement('p');
           title.textContent = `${roles[adviser].name} · AI adviser`; copy.textContent = roles[adviser].opening;
           first.append(title, copy); log.append(first);
         }
-        (session.messages || []).forEach(message => {
-          const article = document.createElement('article'), who = document.createElement('strong'), text = document.createElement('p');
-          who.textContent = message.role === 'assistant' ? `${roles[adviser].name} · AI adviser` : 'You'; text.textContent = message.text;
-          article.append(who, text);
+        if (messages.length && !renderedMessages.length) log.replaceChildren();
+        messages.slice(renderedMessages.length).forEach(message => {
+          const article = document.createElement('article'), who = document.createElement('strong');
+          article.dataset.role = message.role;
+          who.textContent = message.role === 'assistant' ? `${roles[adviser].name} · AI adviser` : 'You';
+          article.append(who); appendMessageText(article, message.text);
           if (message.role === 'assistant' && Array.isArray(message.citations) && message.citations.length) {
             const sources = document.createElement('div'); sources.className = 'cukad-specialist__sources';
             const label = document.createElement('span'); label.textContent = 'Sources: '; sources.append(label);
@@ -50,11 +81,13 @@
           }
           log.append(article);
         });
-        log.scrollTop = log.scrollHeight;
+        renderedMessages = fingerprints;
       }
       start.hidden = !!session || !binding; save.hidden = !session; remove.hidden = !session; form.hidden = !session;
       consent.closest('label').hidden = !!session || !binding;
       recovery.hidden = !binding; signin.hidden = !!binding;
+      if (entry) entry.hidden = !!session;
+      if (tools) tools.hidden = !binding;
     };
     const loginLink = () => {
       if (!adviser) return;
@@ -86,7 +119,7 @@
       }
       return data;
     };
-    const run = async (operation, pending) => { if (busy) return false; setBusy(true); say(pending); try { const result = await operation(); say(typeof result === 'string' ? result : ''); return true; } catch (cause) { say(cause.message || 'This consultation is unavailable.', true); return false; } finally { setBusy(false); } };
+    const run = async (operation, pending) => { if (busy) return false; setBusy(true); say(pending); if (thinking) thinking.hidden = !pending.includes('considering your question'); try { const result = await operation(); say(typeof result === 'string' ? result : ''); return true; } catch (cause) { say(cause.message || 'This consultation is unavailable.', true); return false; } finally { if (thinking) thinking.hidden = true; setBusy(false); } };
     dialog.addEventListener('curtainsuk:jane-room-open', event => {
       const next = event.detail?.identity;
       panel.hidden = !Object.hasOwn(roles, next);
@@ -104,8 +137,8 @@
       }, `Connecting to ${roles[adviser].name}…`);
     });
     start.addEventListener('click', async () => { if (!consent.checked) { say('Please agree before saving a consultation.', true); return; } if (await run(() => request('start', { consent: true }), 'Opening your consultation…')) input.focus(); });
-    form.addEventListener('submit', async event => { event.preventDefault(); const text = input.value.trim(); if (!text || !session) return; if (await run(() => request('message', { text }), `${roles[adviser].name} is considering your question…`)) input.value = ''; input.focus(); });
-    save.addEventListener('click', () => run(async () => { const data = await request('save', { consent: true }); recoveryOutput.textContent = data.recoveryToken ? `Keep this one-use code privately: ${data.recoveryToken}` : 'No recovery code was returned.'; recoveryOutput.hidden = false; }, 'Creating a recovery code…'));
+    form.addEventListener('submit', async event => { event.preventDefault(); const text = input.value.trim(); if (!text || !session) return; if (await run(() => request('message', { text }), `${roles[adviser].name} is considering your question…`)) { input.value = ''; input.blur(); scrollToReply(); } });
+    save.addEventListener('click', () => run(async () => { const data = await request('save', { consent: true }); recoveryOutput.textContent = data.recoveryToken ? `Keep this one-use code privately: ${data.recoveryToken}` : 'No recovery code was returned.'; recoveryOutput.hidden = false; if (tools) tools.open = true; }, 'Creating a recovery code…'));
     recover.addEventListener('click', () => { const code = recoveryInput.value.trim(); if (!/^[0-9a-f-]{36}\.[A-Za-z0-9_-]{43}$/.test(code)) { say('Enter a valid recovery code.', true); return; } run(async () => { await request('recover', { sessionId: null, revision: null, recoveryToken: code, consent: true }); recoveryInput.value = ''; }, 'Recovering your consultation…'); });
     remove.addEventListener('click', () => { if (!session) return; deleteConfirm.hidden = false; deleteCancel.focus(); });
     deleteCancel.addEventListener('click', () => { deleteConfirm.hidden = true; remove.focus(); });

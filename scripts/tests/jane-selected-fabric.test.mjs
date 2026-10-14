@@ -17,7 +17,7 @@ const ownerBinding = 'a'.repeat(32);
 class Node {
   constructor(tag = 'div') {
     this.tag = tag; this.children = []; this.listeners = new Map();
-    this.hidden = false; this.disabled = false; this.checked = false;
+    this.hidden = false; this.disabled = false; this.checked = false; this.dataset = {};
     this.textContent = ''; this.value = ''; this.scrollTop = 0; this.scrollHeight = 1000;
   }
   get childElementCount() { return this.children.length; }
@@ -26,8 +26,12 @@ class Node {
   addEventListener(type, callback) { this.listeners.set(type, callback); }
   emit(type, detail) { return this.listeners.get(type)?.({ detail, preventDefault() {} }); }
   querySelector() { return new Node('button'); }
+  querySelectorAll(selector) { return selector.includes('assistant') ? this.children.filter(n => n.dataset?.role === 'assistant') : []; }
+  getBoundingClientRect() { return { top: this.tag === 'dialog' ? 10 : 210 }; }
+  scrollTo(options) { this.lastScroll = options; }
   closest() { return this; }
   focus() {}
+  blur() { this.blurred = true; }
 }
 
 function room({ unavailable = false, failFirstMessage = false, unansweredContext = false } = {}) {
@@ -70,7 +74,7 @@ function room({ unavailable = false, failFirstMessage = false, unansweredContext
     throw Error(`Unexpected action: ${body.action}`);
   }
   const localStorage = { removeItem() {}, getItem: () => sessionId, setItem() {} };
-  vm.runInNewContext(chat, { document, window: { addEventListener() {} }, location, localStorage, URL, URLSearchParams, fetch, crypto: { randomUUID }, structuredClone }, { filename: 'curtainsuk-jane-chat.js' });
+  vm.runInNewContext(chat, { document, window: { addEventListener() {}, matchMedia: query => ({ matches: query.includes('max-width') }) }, location, localStorage, URL, URLSearchParams, fetch, crypto: { randomUUID }, structuredClone, requestAnimationFrame: callback => callback() }, { filename: 'curtainsuk-jane-chat.js' });
   const settle = async () => { for (let i = 0; i < 12; i++) await new Promise(resolve => setImmediate(resolve)); };
   return { node, dialog, requests, saved, settle };
 }
@@ -78,6 +82,7 @@ function room({ unavailable = false, failFirstMessage = false, unansweredContext
 test('new fabric starts a distinct, consented reply while preserving prior conversation', async () => {
   const h = room();
   h.dialog.emit('curtainsuk:jane-room-open', { identity: 'jane' }); await h.settle();
+  assert.equal(h.node('manage').hidden, false);
   assert.match(h.node('fabric-description').textContent, /Saxon Oak/);
   assert.match(h.node('log').children.at(-1).textContent, /Selected Saxon.*Earlier conversation/);
   assert.equal(h.node('fabric-share').hidden, false);
@@ -94,6 +99,7 @@ test('new fabric starts a distinct, consented reply while preserving prior conve
   assert.match(h.saved.messages.at(-1).text, /Saxon Oak/);
   assert.match(h.node('log').children.find(n => n.className === 'cukad-room__jane-topic').textContent, /Now discussing Saxon · Oak/);
   assert.equal(h.node('fabric-share').hidden, true);
+  assert.equal(h.dialog.lastScroll.top, 184);
 });
 
 test('an interrupted fabric reply resumes from the saved context without a second share', async () => {

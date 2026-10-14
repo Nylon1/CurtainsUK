@@ -11,6 +11,7 @@
   document.querySelectorAll('[data-advisory-dialog]').forEach(dialog => {
     const panel = dialog.querySelector('[data-specialist-chat]');
     if (!panel) return;
+    const publicMode = panel.dataset.specialistPublic === 'true';
     const find = name => panel.querySelector(`[data-specialist-${name}]`);
     const heading = find('heading'), opening = find('opening'), examples = find('examples');
     const consent = find('consent'), signin = find('signin'), start = find('start'), save = find('save'), remove = find('delete');
@@ -68,7 +69,7 @@
       const data = await response.json().catch(() => ({}));
       if (!response.ok || typeof data.csrf !== 'string' || !/^[a-f0-9]{32}$/.test(data.ownerBinding || '')) {
         csrf = ''; binding = null; clear(); loginLink();
-        throw Error(response.status === 401 ? 'Please sign in to your customer account.' : 'This private consultation is unavailable right now.');
+        throw Error(response.status === 401 ? 'Please sign in to your customer account.' : publicMode ? 'This consultation is unavailable right now.' : 'This private consultation is unavailable right now.');
       }
       if (binding && binding !== data.ownerBinding) clear();
       binding = data.ownerBinding; csrf = data.csrf; render();

@@ -3,10 +3,20 @@
   @param {object} block - Adviser theme section block
   @param {boolean} [featured] - Whether to use the prominent editorial layout
   @param {string} section_id - Parent section identity for unique headings
-  @param {boolean} [jane_chat_live] - Jane alone has an active consultation.
+  @param {boolean} [jane_chat_live] - Jane has an active consultation.
+  @param {boolean} [specialist_chat_live] - Four specialist consultations are live.
 {% enddoc %}
 {% liquid
   assign adviser = block.settings.adviser
+  assign four_specialists = 'james,noah,natalie,ben' | split: ','
+  assign live_adviser = false
+  if jane_chat_live and adviser == 'jane'
+    assign live_adviser = true
+  elsif specialist_chat_live
+    if four_specialists contains adviser
+      assign live_adviser = true
+    endif
+  endif
   assign portrait_advisers = 'jane,anne,noah,james,ben,natalie' | split: ','
   assign translation_root = adviser | prepend: 'advisory_team.'
   assign name_key = translation_root | append: '.name'
@@ -53,7 +63,7 @@
     {% if featured and adviser == 'jane' %}
       <div class="cukad__jane-tools"><p>{% if jane_chat_live %}{{ 'advisory_team.live.tools_copy' | t }}{% else %}{{ 'advisory_team.jane.tools_copy' | t }}{% endif %}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided">{{ 'advisory_team.common.fabric_intelligence' | t }} <span aria-hidden="true">↗</span></a><a href="/pages/room-visualiser">{{ 'advisory_team.common.room_visualiser' | t }} <span aria-hidden="true">↗</span></a></div>
     {% endif %}
-    <div class="cukad__profile-footer"><p><span class="cukad__availability">{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.available' | t }}{% else %}{{ 'advisory_team.common.coming_soon' | t }}{% endif %}</span><span>{{ 'advisory_team.common.free_consultation' | t }}</span></p><button class="cukad__preview-link" type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.enter_for' | t: name: name | escape_once }}{% else %}{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}{% endif %}" hidden>{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.enter' | t }}{% else %}{{ 'advisory_team.common.preview' | t }}{% endif %} <span aria-hidden="true">↗</span></button></div>
+    <div class="cukad__profile-footer"><p><span class="cukad__availability">{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.available' | t }}{% elsif live_adviser %}Available now{% else %}{{ 'advisory_team.common.coming_soon' | t }}{% endif %}</span><span>{{ 'advisory_team.common.free_consultation' | t }}</span></p><button class="cukad__preview-link" type="button" data-advisory-open data-adviser="{{ block.id }}" aria-label="{% if live_adviser %}{{ 'advisory_team.live.enter_for' | t: name: name | escape_once }}{% else %}{{ 'advisory_team.common.preview_for' | t: name: name | escape_once }}{% endif %}" hidden>{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.enter' | t }}{% elsif live_adviser %}Speak with {{ name | escape_once }}{% else %}{{ 'advisory_team.common.preview' | t }}{% endif %} <span aria-hidden="true">↗</span></button></div>
   </div>
   <template data-advisory-profile="{{ block.id }}" data-adviser="{{ block.id }}" data-identity="{{ adviser | escape }}" data-name="{{ name | escape_once }}" data-title="{{ title | escape_once }}" data-intro="{{ opening | escape_once }}" data-preparation="{{ preparation | escape_once }}">{% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}</template>
 </article>

@@ -38,12 +38,10 @@
           <div><p class="cukad-room__eyebrow">{% if jane_chat_live %}Jane · AI interior design adviser{% else %}Jane · AI interior design adviser · private test{% endif %}</p><p class="cukad-room__jane-intro-title">Let's find what feels right for your room.</p></div>
           <span class="cukad-room__jane-spark" aria-hidden="true">✳</span>
         </div>
-        <p>{% if jane_chat_live %}Sign in to your customer account to speak with Jane. With your consent, this conversation is saved in encrypted advisory storage for up to 90 days so you can return to it. You can delete it here at any time. Jane is an AI adviser and may make mistakes; please check product availability and prices on the live product page.{% else %}Sign in to your test customer account before entering. This private review saves your conversation in encrypted advisory storage. You can delete it here. Automatic expiry cleanup is still under review. Please use invented details only.{% endif %}</p>
         <a data-jane-signin href="{{ routes.storefront_login_url }}" hidden>Sign in to speak with Jane</a>
         <p data-jane-signin-help hidden>After signing in, you will return to Jane. You can also find all advisers from your customer account menu.</p>
         <label class="cukad-room__jane-consent"><input type="checkbox" data-jane-consent> I agree to send my messages to OpenAI for Jane's AI advice and to save this encrypted consultation for up to 90 days so I can return to it.</label>
-        <p class="cukad-room__jane-privacy">You can delete it at any time. Please avoid sharing sensitive details. <a href="/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Read our privacy policy <span class="visually-hidden">(opens in a new tab)</span></a>.</p>
-        <div class="cukad-room__jane-actions"><button type="button" data-jane-start>Start consultation</button><button type="button" data-jane-delete hidden>Delete consultation</button></div>
+        <div class="cukad-room__jane-actions"><button type="button" data-jane-start>Start consultation</button></div>
         <div class="cukad-room__jane-fabric" data-jane-fabric hidden><p data-jane-fabric-description></p><p data-jane-fabric-hint></p><label><input type="checkbox" data-jane-fabric-consent> Share this exact fabric with Jane</label><button type="button" data-jane-fabric-share disabled>Discuss selected fabric</button></div>
         <div class="cukad-room__jane-log" data-jane-log role="log" aria-label="Conversation with Jane" aria-live="polite" aria-relevant="additions"></div>
         <div class="cukad-room__jane-thinking" data-jane-thinking hidden aria-hidden="true"><span></span><span></span><span></span><p>Jane is considering your room</p></div>
@@ -54,8 +52,13 @@
         </div></div>
         <form data-jane-form hidden><label for="jane-message-{{ section_id }}">Your message to Jane</label><textarea id="jane-message-{{ section_id }}" data-jane-input rows="3" maxlength="2000" required></textarea><button type="submit" data-jane-send>Send to Jane</button></form>
         <nav class="cukad-room__jane-tools" data-jane-tools hidden aria-label="CurtainsUK design tools"><a href="/pages/fabric-library?view=browse-fabrics" target="_blank" rel="noopener noreferrer">Browse Fabrics <span class="visually-hidden">(opens in a new tab)</span></a><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided" target="_blank" rel="noopener noreferrer">Fabric Intelligence <span class="visually-hidden">(opens in a new tab)</span></a><a href="/pages/room-visualiser" target="_blank" rel="noopener noreferrer">Room Visualiser <span class="visually-hidden">(opens in a new tab)</span></a><a href="/pages/fabric-library?view=curtain-style" target="_blank" rel="noopener noreferrer">Curtain Style <span class="visually-hidden">(opens in a new tab)</span></a></nav>
+        <div class="cukad-room__jane-manage" data-jane-manage hidden><button type="button" data-jane-delete hidden>Delete consultation</button></div>
         <p data-jane-status role="status" aria-live="polite"></p>
         <p data-jane-error role="alert" hidden></p>
+        <footer class="cukad-room__jane-fine-print">
+          <p>{% if jane_chat_live %}Jane is an AI adviser and may make mistakes. Check product availability and prices on the live product page.{% else %}Private review: please use invented details only. Automatic expiry cleanup is still under review.{% endif %}</p>
+          <p>With your consent, messages are sent to OpenAI and saved encrypted for up to 90 days. You can delete your consultation here. Please avoid sharing sensitive details. <a href="/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy policy <span class="visually-hidden">(opens in a new tab)</span></a>.</p>
+        </footer>
       </section>
     {% endif %}
     {% if specialist_chat_private_preview or specialist_chat_live %}

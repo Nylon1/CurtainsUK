@@ -11,19 +11,19 @@
     if (!panel) return;
     const find = name => panel.querySelector(`[data-jane-${name}]`);
     const log = find('log'), form = find('form'), input = find('input'), error = find('error'), status = find('status'), tools = find('tools');
-    const starters = find('starters'), thinking = find('thinking'), signIn = find('signin');
+    const starters = find('starters'), thinking = find('thinking'), signIn = find('signin'), signInHelp = find('signin-help');
     const consent = find('consent'), startButton = find('start'), deleteButton = find('delete');
-    const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
+    const fabricPanel = find('fabric'), fabricDescription = find('fabric-description'), fabricHint = find('fabric-hint'), fabricConsent = find('fabric-consent'), fabricShare = find('fabric-share');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
     let session = null, csrf = '', ownerBinding = null, busy = false, pending = null, selectedFabric = null;
-    let renderedSessionId = null, renderedMessages = [];
+    let renderedSessionId = null, renderedMessages = [], renderedTopicKey = null, renderedTopicAdded = false;
     const say = (value, isError = false) => { error.hidden = !isError; error.textContent = isError ? value : ''; status.textContent = isError ? '' : value; };
     const setBusy = value => { busy = value; startButton.disabled = value; deleteButton.disabled = value; input.disabled = value; form.querySelector('[data-jane-send]').disabled = value; fabricShare.disabled = value || !fabricConsent.checked; };
     const storageKey = () => ownerBinding ? storagePrefix + ownerBinding : null;
     try { localStorage.removeItem('curtainsuk-jane-private-session-v1'); } catch {}
     const remember = id => { try { const key = storageKey(); if (!key) return; if (id) localStorage.setItem(key, id); else localStorage.removeItem(key); } catch {} };
     const remembered = () => { try { const key = storageKey(); return key ? localStorage.getItem(key) : null; } catch { return null; } };
-    const clearPrivateView = () => { session = null; pending = null; consent.checked = false; fabricConsent.checked = false; renderedSessionId = null; renderedMessages = []; log.replaceChildren(); render(); };
+    const clearPrivateView = () => { session = null; pending = null; consent.checked = false; fabricConsent.checked = false; renderedSessionId = null; renderedMessages = []; renderedTopicKey = null; renderedTopicAdded = false; log.replaceChildren(); render(); };
     const productUrl = value => { try { const url = new URL(value); return url.origin === 'https://www.curtainsuk.com' && /^\/pages\/fabric\/[a-z0-9-]+$/i.test(url.pathname) && !url.search && !url.hash ? url.href : null; } catch { return null; } };
     const imageUrl = value => { try { const url = new URL(value); return url.origin === 'https://cdn.shopify.com' && !url.search && !url.hash ? url.href : null; } catch { return null; } };
     const showFabricCard = (article, fabric) => {
@@ -43,25 +43,52 @@
     const appendOpening = () => {
       const opening = document.createElement('article');
       const name = document.createElement('strong'); name.textContent = 'Jane · AI adviser';
-      const copy = document.createElement('p'); copy.textContent = 'Tell me what is not quite working in your room. We can find a direction together.';
+      const copy = document.createElement('p');
+      copy.textContent = selectedFabric
+        ? `You selected ${[selectedFabric.design, selectedFabric.colour].filter(Boolean).join(' · ')}. Share it below when you are ready, and we can see how it fits your room.`
+        : 'Tell me what is not quite working in your room. We can find a direction together.';
       opening.append(name, copy); log.append(opening);
+    };
+    const latestFabricContext = () => session?.contexts?.filter(c => c.value?.references?.includes('fabric-detail:v1')).at(-1) ?? null;
+    const selectedContext = () => {
+      const context = latestFabricContext();
+      return context?.value?.fabricIds?.[0] === selectedFabric?.id ? context : null;
+    };
+    const hasFabricReply = context => !!context && !!session?.messages?.some(message => message.role === 'assistant' && message.at >= context.receivedAt);
+    const appendFabricTopic = active => {
+      const marker = document.createElement('p');
+      marker.className = 'cukad-room__jane-topic';
+      const name = `${[selectedFabric.design, selectedFabric.colour].filter(Boolean).join(' · ')} (${selectedFabric.id})`;
+      marker.textContent = active ? `Now discussing ${name}` : `Selected ${name}. Earlier conversation is above. Share this fabric to start a new discussion.`;
+      log.append(marker);
+      renderedTopicAdded = true;
     };
     const render = () => {
       if (!session || renderedSessionId !== session.id) {
         log.replaceChildren();
         renderedSessionId = session?.id ?? null;
         renderedMessages = [];
+        renderedTopicKey = null;
+        renderedTopicAdded = false;
       }
       if (session) {
+        const topic = selectedContext();
+        const topicKey = selectedFabric ? topic?.id ?? `pending:${selectedFabric.id}` : null;
+        if (renderedTopicKey !== topicKey) {
+          log.replaceChildren(); renderedMessages = []; renderedTopicAdded = false;
+          renderedTopicKey = topicKey;
+        }
         if (!log.childElementCount) appendOpening();
         const messages = session.messages || [];
         const fingerprints = messages.map(message => JSON.stringify([message.role, message.text, message.fabrics]));
         if (renderedMessages.length > fingerprints.length || renderedMessages.some((value, index) => value !== fingerprints[index])) {
           log.replaceChildren();
           renderedMessages = [];
+          renderedTopicAdded = false;
           appendOpening();
         }
         messages.slice(renderedMessages.length).forEach(message => {
+          if (topic && !renderedTopicAdded && message.at >= topic.receivedAt) appendFabricTopic(true);
           const article = document.createElement('article');
           const heading = document.createElement('strong'); heading.textContent = message.role === 'assistant' ? 'Jane · AI adviser' : 'You';
           const p = document.createElement('p'); p.textContent = message.text;
@@ -69,14 +96,20 @@
           if (message.role === 'assistant' && Array.isArray(message.fabrics)) message.fabrics.slice(0, 4).forEach(fabric => showFabricCard(article, fabric));
           log.append(article);
         });
-        if (renderedMessages.length !== fingerprints.length) log.scrollTop = log.scrollHeight;
+        if (selectedFabric && !renderedTopicAdded) appendFabricTopic(!!topic);
+        if (renderedMessages.length !== fingerprints.length || selectedFabric && renderedMessages.length === 0) log.scrollTop = log.scrollHeight;
         renderedMessages = fingerprints;
       }
-      startButton.hidden = !!session; deleteButton.hidden = !session; form.hidden = !session;
+      startButton.hidden = !!session || !ownerBinding; deleteButton.hidden = !session; form.hidden = !session;
       if (tools) tools.hidden = !session;
       if (starters) starters.hidden = !session || !!session.messages?.length;
-      consent.closest('label').hidden = !!session;
-      fabricShare.hidden = !session || !!session?.contexts?.some(c => c.value?.fabricIds?.includes(selectedFabric?.id));
+      consent.closest('label').hidden = !!session || !ownerBinding;
+      const answered = hasFabricReply(selectedContext());
+      fabricShare.hidden = !session || answered;
+      if (fabricHint && selectedFabric) fabricHint.textContent = answered
+        ? 'Jane has discussed this fabric. Your earlier conversation is still available above.'
+        : session?.messages?.length ? 'Your earlier conversation is kept. Sharing this fabric will start a new discussion of it.'
+          : 'Share this fabric to start a discussion with Jane.';
     };
     const bootstrap = async () => {
       // A fresh signed Shopify proxy request detects sign-out and account
@@ -86,12 +119,14 @@
       if (!response.ok || typeof body.csrf !== 'string' || !/^[a-f0-9]{32}$/.test(body.ownerBinding || '')) {
         csrf = ''; ownerBinding = null; clearPrivateView();
         if (signIn) signIn.hidden = response.status !== 401;
+        if (signInHelp) signInHelp.hidden = response.status !== 401;
         throw Error(response.status === 401 ? 'Please sign in to your customer account.' : 'Jane is temporarily unavailable. Your message has not been sent.');
       }
       if (ownerBinding && ownerBinding !== body.ownerBinding) clearPrivateView();
       ownerBinding = body.ownerBinding;
       csrf = body.csrf;
       if (signIn) signIn.hidden = true;
+      if (signInHelp) signInHelp.hidden = true;
     };
     const request = async (action, extra = {}, requestId = crypto.randomUUID()) => {
       await bootstrap();
@@ -117,7 +152,7 @@
     const run = async (operation, waitingText) => {
       if (busy) return;
       setBusy(true); say(waitingText);
-      if (thinking) thinking.hidden = waitingText !== 'Jane is considering your room…';
+      if (thinking) thinking.hidden = !waitingText.startsWith('Jane is considering');
       try { await operation(); say(''); }
       catch (cause) { say(cause.message || 'Jane is temporarily unavailable.', true); }
       finally { if (thinking) thinking.hidden = true; setBusy(false); }
@@ -129,12 +164,26 @@
       try {
         const response = await fetch('/apps/curtainsuk-decision/catalog?view=retail&browseGuide=1&fabric=' + encodeURIComponent(id), { cache: 'no-store' });
         const body = await response.json();
-        if (!response.ok || body.fabric?.id !== id || body.fabric.browseReady !== true || body.fabric.launchReady !== true || body.fabric.orderReady !== true) return;
-        selectedFabric = { id, design: body.fabric.design || 'Selected fabric', colour: body.fabric.colour || '' };
-        fabricDescription.textContent = `${selectedFabric.design} ${selectedFabric.colour} (${id})`;
+        if (!response.ok || body.fabric?.id !== id || body.fabric.browseReady !== true || body.fabric.launchReady !== true) return;
+        selectedFabric = { id, design: body.fabric.design || 'Selected fabric', colour: body.fabric.colour || '', orderReady: body.fabric.orderReady === true };
+        fabricDescription.textContent = `${selectedFabric.design} ${selectedFabric.colour} (${id})${selectedFabric.orderReady ? '' : '. Not currently available for made-to-measure curtains.'}`;
         fabricPanel.hidden = false; render();
       } catch { /* A fabric cannot be inferred from an unverified URL. */ }
     };
+    if (signIn && location.pathname === '/pages/meet-our-team') {
+      const query = new URLSearchParams(location.search);
+      const fabricIds = query.getAll('jane_fabric');
+      const returnTo = new URL('/pages/meet-our-team', location.origin);
+      returnTo.searchParams.set('jane_return', '1');
+      if (query.getAll('entry').length === 1 && query.get('entry') === 'fabric-detail'
+        && fabricIds.length === 1 && validFabric.test(fabricIds[0])) {
+        returnTo.searchParams.set('entry', 'fabric-detail');
+        returnTo.searchParams.set('jane_fabric', fabricIds[0]);
+      }
+      const login = new URL('/customer_authentication/login', location.origin);
+      login.searchParams.set('return_to', returnTo.pathname + returnTo.search);
+      signIn.href = login.pathname + login.search;
+    }
     dialog.addEventListener('curtainsuk:jane-room-open', event => {
       const jane = event.detail?.identity === 'jane';
       panel.hidden = !jane; preview.forEach(node => { if (node) node.hidden = jane; });
@@ -143,6 +192,7 @@
       say('');
       run(async () => {
         await bootstrap();
+        await readFabric();
         const saved = remembered();
         if (!session && saved && validSession.test(saved)) {
           try {
@@ -150,7 +200,7 @@
             if (!response.session) remember(null);
           } catch { remember(null); }
         }
-        render(); await readFabric();
+        render();
       }, 'Connecting to Jane…').finally(() => { log.hidden = false; });
     });
     const checkAccountOnReturn = () => {
@@ -174,9 +224,20 @@
     fabricConsent.addEventListener('change', () => { fabricShare.disabled = busy || !fabricConsent.checked; });
     fabricShare.addEventListener('click', () => {
       if (!session || !selectedFabric || !fabricConsent.checked) return;
-      const id = pending?.action === 'context' ? pending.id : crypto.randomUUID(); pending = { action: 'context', id };
-      const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [selectedFabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: 'I selected this exact fabric and would like to discuss it.' };
-      run(async () => { await request('context', { context, consent: true }, id); pending = null; say('Jane can now discuss this exact fabric with you.'); }, 'Sharing your selected fabric…');
+      const fabric = selectedFabric;
+      const previous = pending?.action === 'fabric' && pending.fabricId === fabric.id ? pending : null;
+      const attempt = previous || { action: 'fabric', fabricId: fabric.id, contextId: crypto.randomUUID(), messageId: crypto.randomUUID() };
+      pending = attempt;
+      const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [fabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: selectedFabric.orderReady ? 'I selected this exact fabric and would like to discuss it.' : 'I selected this fabric, but it is not currently available for curtains. Please help me explore suitable alternatives.' };
+      run(async () => {
+        if (!selectedContext()) await request('context', { context, consent: true }, attempt.contextId);
+        if (!hasFabricReply(selectedContext())) {
+          const text = `I've selected fabric ${fabric.id} now. How might this one work with my room? Please keep what I've told you about the room, but focus on this fabric.`;
+          await request('message', { text }, attempt.messageId);
+        }
+        pending = null;
+        input.focus();
+      }, 'Jane is considering your selected fabric…');
     });
     starters?.addEventListener('click', event => {
       const button = event.target.closest('[data-jane-prompt]');

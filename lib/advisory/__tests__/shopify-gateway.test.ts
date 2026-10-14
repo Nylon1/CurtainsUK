@@ -2,23 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { signShopifyAppProxyQuery } from '../../storefront/security/shopify-app-proxy-core';
-import { createShopifyJaneGateway, janeBrowserBinding, janeGatewayEnabled, janeOwner, janePreviewEnabled, janePublicEnabled, janePublicDailyRunId, janeRestrictedLiveEnabled } from '../shopify-gateway';
+import { createShopifyJaneGateway, janeBrowserBinding, janeGatewayEnabled, janeOwner, janePreviewEnabled, janePublicEnabled, janePublicBudgetApproved, janeRestrictedLiveEnabled } from '../shopify-gateway';
 import { createConsultationService } from '../service.mjs';
 import { MemoryStore } from '../store.mjs';
 import { createMockProvider } from '../mock-provider.mjs';
 
 const now = Date.UTC(2026, 9, 13, 12);
 const secret = 'shopify-app-secret-local-fixture-only-123456789';
-const todayRunId = randomUUID();
-const testDay = new Date().toISOString().slice(0, 10);
-const nextTestDay = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
 const env = {
   VERCEL_ENV: 'preview', CURTAINSUK_ADVISORY_PREVIEW: 'true', ADVISORY_SHOPIFY_CHAT_ENABLED: 'true',
   VERCEL_GIT_COMMIT_SHA: 'a'.repeat(40), ADVISORY_SHOPIFY_APPROVED_COMMIT: 'a'.repeat(40),
   CURTAINSUK_SHOPIFY_APP_SECRET: secret, ADVISORY_OWNER_DERIVATION_KEY: 'owner-key-local-fixture-only-123456789',
   ADVISORY_CSRF_KEY: 'csrf-key-local-fixture-only-123456789', ADVISORY_SHOPIFY_TEST_CUSTOMER_IDS: '123,456',
   ADVISORY_SHOPIFY_PUBLIC_BUDGET_APPROVAL_REFERENCE: 'OWNER_APPROVED_JANE_PUBLIC_BUDGET_20261013',
-  ADVISORY_SHOPIFY_PUBLIC_DAILY_RUNS_JSON: JSON.stringify({ [testDay]: todayRunId, [nextTestDay]: randomUUID() }),
 };
 function url(id = '123', timestamp = Math.floor(now / 1000)) {
   const query = new URLSearchParams({ shop: 'carpetup.myshopify.com', path_prefix: '/apps/curtainsuk-decision', timestamp: String(timestamp), logged_in_customer_id: id }).toString();
@@ -113,13 +109,10 @@ test('manual protected deployment needs a baked SHA and real deployment identity
   assert.equal(janePublicEnabled(publicMode, commit), true);
   assert.equal(janePublicEnabled({ ...publicMode, VERCEL_DEPLOYMENT_ID: undefined }, commit), false);
 });
-test('public daily budget is server-selected and fails closed on missing or malformed day', () => {
-  const current = new Date();
-  assert.equal(janePublicDailyRunId(env, current), JSON.parse(env.ADVISORY_SHOPIFY_PUBLIC_DAILY_RUNS_JSON)[current.toISOString().slice(0, 10)]);
-  assert.equal(janePublicDailyRunId(env, new Date(current.getTime() + 2 * 86400000)), null);
-  assert.equal(janePublicDailyRunId({ ...env, ADVISORY_SHOPIFY_PUBLIC_DAILY_RUNS_JSON: '{' }, current), null);
-  assert.equal(janePublicDailyRunId({ ...env, ADVISORY_SHOPIFY_PUBLIC_DAILY_RUNS_JSON: JSON.stringify({ [testDay]: 'not-a-run' }) }, current), null);
-  assert.equal(janePublicDailyRunId({ ...env, ADVISORY_SHOPIFY_PUBLIC_BUDGET_APPROVAL_REFERENCE: '' }, current), null);
+test('public daily budget requires its exact approval and is independent of a finite date map', () => {
+  assert.equal(janePublicBudgetApproved(env), true);
+  assert.equal(janePublicBudgetApproved({ ...env, ADVISORY_SHOPIFY_PUBLIC_BUDGET_APPROVAL_REFERENCE: '' }), false);
+  assert.equal(janePublicBudgetApproved({ ...env, ADVISORY_SHOPIFY_PUBLIC_BUDGET_APPROVAL_REFERENCE: 'not-approved' }), false);
 });
 test('public transport needs its separate exact-release switch and retains signed owner isolation', async () => {
   const live = { ...env, VERCEL_ENV: 'production', VERCEL_PROJECT_ID: 'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA',
@@ -143,7 +136,6 @@ test('public transport needs its separate exact-release switch and retains signe
     { VERCEL_GIT_COMMIT_SHA: 'b'.repeat(40) }, { ADVISORY_SHOPIFY_APPROVED_COMMIT: 'b'.repeat(40) },
     { ADVISORY_SHOPIFY_CHAT_ENABLED: 'false' },
     { ADVISORY_SHOPIFY_PROVIDER: 'mock' },
-    { ADVISORY_SHOPIFY_PUBLIC_DAILY_RUNS_JSON: '{}' },
     { ADVISORY_SHOPIFY_PUBLIC_BUDGET_APPROVAL_REFERENCE: '' },
   ]) {
     assert.equal(janePublicEnabled({ ...live, ...changes }), false);

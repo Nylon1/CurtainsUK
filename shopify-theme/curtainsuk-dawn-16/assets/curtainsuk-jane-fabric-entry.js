@@ -2,21 +2,36 @@
 (() => {
   'use strict';
   const validFabric = /^[A-Za-z0-9][A-Za-z0-9-]{0,149}$/;
+  const destination = id => '/pages/meet-our-team?entry=fabric-detail&jane_fabric=' + encodeURIComponent(id);
   window.CurtainsUKJaneFabricHandoff = {
+    mountCard(card, id, eligibility) {
+      if (!validFabric.test(id) || eligibility?.browseReady !== true || eligibility?.launchReady !== true) return;
+      const host = card.querySelector('.cuk-fabric__actions');
+      if (!host || host.querySelector('[data-jane-fabric-link]')) return;
+      const link = document.createElement('a');
+      link.className = 'cuk-text-link';
+      link.dataset.janeFabricLink = id;
+      link.href = destination(id);
+      link.textContent = 'Ask Jane about this fabric';
+      link.setAttribute('aria-label', 'Ask Jane, AI interior design adviser, about this fabric');
+      host.append(link);
+    },
     mount(detail, id, eligibility) {
-      if (!validFabric.test(id) || eligibility?.browseReady !== true || eligibility?.launchReady !== true || eligibility?.orderReady !== true) return;
-      const host = detail.querySelector('.cuk-material-intro');
+      if (!validFabric.test(id) || eligibility?.browseReady !== true || eligibility?.launchReady !== true) return;
+      const host = detail.querySelector('.cuk-material-intro, .cuk-fabric-detail');
       if (!host) return;
       host.querySelector('[data-jane-fabric-link]')?.remove();
       const link = document.createElement('a');
       link.className = 'cuk-text-link';
       link.dataset.janeFabricLink = id;
-      link.href = '/pages/meet-our-team?entry=fabric-detail&jane_fabric=' + encodeURIComponent(id);
+      link.href = destination(id);
       link.textContent = 'Ask Jane about this fabric';
       link.setAttribute('aria-label', 'Ask Jane, AI interior design adviser, about this fabric');
       const note = document.createElement('p');
       note.className = 'fine';
-      note.textContent = 'Jane can discuss this exact fabric after you choose to share it.';
+      note.textContent = eligibility.orderReady === true
+        ? 'Jane can discuss this exact fabric after you choose to share it.'
+        : 'This fabric is not currently available for curtains. Jane can help you explore alternatives after you choose to share it.';
       host.append(link, note);
     }
   };

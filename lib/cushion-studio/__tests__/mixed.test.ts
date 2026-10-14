@@ -76,6 +76,7 @@ const rules: CushionPricingRules = {
   construction: {
     version: "synthetic",
     confirmed: true,
+    squareDrapeConfirmed: true,
     seamAllowanceMm: 20,
     pipingStripWidthMm: null,
     pipingJoinAllowanceMm: null,
@@ -239,7 +240,7 @@ test("mixed review revalidates signed curtains and one cushion plan, sums shared
   const f = await fixture(),
     r = await reviewMixedCheckout(f.input, f.services);
   assert.deepEqual(f.effects, []);
-  assert.equal(f.seen(), f.curtainMetres + 0.54);
+  assert.equal(f.seen(), f.curtainMetres + 0.57);
   assert.equal(r.contract.input.lineItems.length, 2);
   assert.equal(r.cushion.contract.expected.shippingGrossAmountMinor, 495);
   assert.equal(r.contract.expected.shippingGrossAmountMinor, 1295);

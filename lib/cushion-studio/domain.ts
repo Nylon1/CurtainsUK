@@ -1,4 +1,5 @@
 import type { CushionDispatchEstimate } from "./dispatch";
+import { squareDrapeFitsSource } from "./runtime/geometry.mjs";
 /** Cushion manufacturing is independent of curtain configurations and scene placement. */
 export const CUSHION_SPEC_VERSION = 1 as const;
 export const CUSHION_SIZES = [
@@ -131,6 +132,8 @@ export type ConstructionRules = {
   version: string;
   seamAllowanceMm: number;
   confirmed: boolean;
+  /** Workroom approval that the sewn square panels cover the calibrated curved face. */
+  squareDrapeConfirmed?: boolean;
   approvedSizeIds?: string[];
   pipingStripWidthMm: number | null;
   pipingJoinAllowanceMm: number | null;
@@ -143,6 +146,7 @@ export const PREVIEW_CONSTRUCTION_RULES: ConstructionRules = {
   version: "cushion-construction-preview-v1",
   seamAllowanceMm: 20,
   confirmed: false,
+  squareDrapeConfirmed: false,
   pipingStripWidthMm: null,
   pipingJoinAllowanceMm: null,
   pipingCut: null,
@@ -356,9 +360,12 @@ export function previewIssues(
     fits = (p: PlacementMm, w: number, h: number) =>
       p.x + w <= c.physicalWidthMm + 1e-6 &&
       p.y + h <= c.physicalHeightMm + 1e-6;
-  if (!fits(spec.placementMm, size.widthMm, size.heightMm))
+  const sourceFits = spec.sizeId.startsWith("square-")
+    ? squareDrapeFitsSource(size, c, spec.placementMm)
+    : fits(spec.placementMm, size.widthMm, size.heightMm);
+  if (!sourceFits)
     errors.push(
-      "Artwork placement exceeds the original image; wrapping and extension are not permitted.",
+      "Artwork placement or the sewn square's curved surface exceeds the original image; wrapping and extension are not permitted.",
     );
   if (
     cushionSize(spec.sizeId).shape === "bolster" &&

@@ -66,6 +66,7 @@ const rules: CushionPricingRules = {
     version: "test",
     seamAllowanceMm: 20,
     confirmed: true,
+    squareDrapeConfirmed: true,
     pipingStripWidthMm: 40,
     pipingJoinAllowanceMm: 20,
     pipingCut: "straight",

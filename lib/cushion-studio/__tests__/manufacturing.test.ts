@@ -3,6 +3,7 @@ import test from "node:test";
 import { buildCutPlan, buildSetCutPlan } from "../cutting";
 import { quoteCushion, quoteCushionSet, cushionHash } from "../pricing";
 import { cushionOrderingTerms } from "../catalogue";
+import { squareDrapeFootprint } from "../runtime/geometry.mjs";
 import {
   CUSHION_MAKING_RATE_CARD,
   PREVIEW_PRICING_RULES,
@@ -50,6 +51,7 @@ const rules: CushionPricingRules = {
     version: "test",
     seamAllowanceMm: 20,
     confirmed: true,
+    squareDrapeConfirmed: true,
     pipingStripWidthMm: 40,
     pipingJoinAllowanceMm: 20,
     pipingCut: "straight",
@@ -61,11 +63,11 @@ const rules: CushionPricingRules = {
   carriageMinor: 500,
 };
 
-test("plain 50 cm uses two separate 54 cm cuts across actual supplier Full Width", () => {
+test("draped 50 cm square uses two matching curved-face cuts across actual Full Width", () => {
   const p = buildCutPlan(spec, fabric, rules.construction),
     f = p.fabrics[0];
-  assert.equal(f.requiredMetres, 0.54);
-  assert.equal(f.orderedMetres, 0.54);
+  assert.equal(f.requiredMetres, 0.561);
+  assert.equal(f.orderedMetres, 0.57);
   assert.equal(f.pieces.length, 2);
   assert.equal(f.cuttingWidthMm, 1400);
   assert.equal(p.ready, true);
@@ -74,6 +76,17 @@ test("plain 50 cm uses two separate 54 cm cuts across actual supplier Full Width
     f.pieces[0].sourcePlacementMm,
     f.pieces[1].sourcePlacementMm,
   );
+  assert.ok(f.pieces.every((piece) => piece.widthMm > 580));
+  assert.ok(f.pieces.every((piece) => piece.heightMm > 550));
+  const drape = squareDrapeFootprint(500, 500);
+  assert.equal(
+    f.pieces[0].widthMm,
+    Math.ceil((drape.visibleWidthMm + 40) * 1000) / 1000,
+  );
+  assert.deepEqual(f.pieces[0].sourcePlacementMm, {
+    x: spec.placementMm.x + drape.minX,
+    y: spec.placementMm.y + drape.minY,
+  });
 });
 test("patterned matching includes phase alignment and leading waste, with two matching upright cuts", () => {
   const pf = {
@@ -90,7 +103,7 @@ test("patterned matching includes phase alignment and leading waste, with two ma
     [a, b] = f.pieces;
   assert.equal(p.matchingVerified, true);
   assert.equal(f.leadingAlignmentAllowanceMm, 460);
-  assert.ok(f.requiredMetres > 0.54);
+  assert.ok(f.requiredMetres > 0.56);
   assert.equal((b.xMm - a.xMm) % 345, 0);
   assert.equal(Math.abs(b.yMm - a.yMm) % 460, 0);
   assert.equal(a.rotation, 0);
@@ -133,6 +146,10 @@ test("a selected motif that cannot fit the cutting width fails closed", () => {
 test("source bounds use independently confirmed X/Y extents; never stretch or tile", () => {
   assert.equal(previewIssues(spec, fabric).length, 0);
   assert.match(
+    previewIssues({ ...spec, placementMm: { x: 0, y: 0 } }, fabric).join(" "),
+    /curved surface exceeds/,
+  );
+  assert.match(
     previewIssues({ ...spec, placementMm: { x: 100, y: 600 } }, fabric).join(
       " ",
     ),
@@ -142,6 +159,29 @@ test("source bounds use independently confirmed X/Y extents; never stretch or ti
     previewIssues(spec, { ...fabric, calibration: null }).join(" "),
     /unavailable/,
   );
+});
+test("unconfirmed draped-square construction blocks only affected configurations", () => {
+  const unconfirmed = {
+    ...rules.construction,
+    squareDrapeConfirmed: false,
+  };
+  const square = buildCutPlan(spec, fabric, unconfirmed);
+  assert.equal(square.ready, false);
+  assert.equal(square.matchingVerified, false);
+  assert.match(square.issues.join(" "), /curved-face panel dimensions/);
+  assert.equal(square.fabrics[0].requiredMetres, 0.561);
+  const rectangular = buildCutPlan(
+    { ...spec, sizeId: "rectangle-38-50" },
+    fabric,
+    unconfirmed,
+  );
+  assert.equal(rectangular.ready, true);
+  const squareQuote = quoteCushion(spec, fabric, {
+    ...rules,
+    construction: unconfirmed,
+  });
+  assert.equal(squareQuote.purchaseReady, false);
+  assert.equal(squareQuote.status, "review-required");
 });
 test("bolster has one continuous wrap plus two identical end caps", () => {
   const p = buildCutPlan(
@@ -164,7 +204,7 @@ test("set packing combines compatible cloth before supplier minimum/increment", 
     ];
   const grouped = buildSetCutPlan(inputs, rules.construction).fabrics[0];
   assert.equal(grouped.pieces.length, 4);
-  assert.equal(grouped.requiredMetres, 0.84);
+  assert.equal(grouped.requiredMetres, 0.871);
   const orderFabric = {
     ...fabric,
     minimumOrderMetres: 1,
@@ -182,38 +222,41 @@ test("set packing combines compatible cloth before supplier minimum/increment", 
     1,
   );
 });
-test("fixed basis is £18.20 filled and £13.20 cover, markup is not substituted for margin", () => {
+test("fixed basis is £18.20 filled and £13.20 cover; draped cloth is costed separately", () => {
   const filled = quoteCushion(spec, fabric, rules),
     cover = quoteCushion({ ...spec, filling: "cover" }, fabric, rules);
   assert.equal(filled.fixedCostMinor, 1820);
   assert.equal(cover.fixedCostMinor, 1320);
-  assert.equal(filled.materialCostMinor, 1080);
-  assert.equal(filled.totalCostMinor, 2900);
-  assert.equal(filled.netGoodsMinor, 5800);
-  assert.equal(filled.totalMinor, 7560);
+  assert.equal(filled.materialCostMinor, 1140);
+  assert.equal(filled.totalCostMinor, 2960);
+  assert.equal(filled.netGoodsMinor, 5920);
+  assert.equal(filled.totalMinor, 7704);
   assert.equal(filled.ready, true);
 });
 
-test("owner's editable 40 percent starting margin prices £29 net cost at £58 including VAT", () => {
+test("owner's editable 40 percent target applies to actual draped material cost", () => {
   assert.equal(PREVIEW_PRICING_RULES.marginBasisPoints, 4000);
   const quote = quoteCushion(spec, fabric, {
     ...rules,
     marginBasisPoints: PREVIEW_PRICING_RULES.marginBasisPoints,
     carriageMinor: 0,
   });
-  assert.equal(quote.totalCostMinor, 2900);
-  assert.equal(quote.netGoodsMinor, 4833);
-  assert.equal(quote.vatMinor, 967);
-  assert.equal(quote.totalMinor, 5800);
+  assert.equal(quote.totalCostMinor, 2960);
+  assert.equal(quote.netGoodsMinor, 4933);
+  assert.equal(quote.vatMinor, 987);
+  assert.equal(quote.totalMinor, 5920);
   assert.equal(quote.staffPricing.targetMarginBasisPoints, 4000);
-  assert.equal(quote.staffPricing.resultingMarginBasisPoints, 3999.5862);
+  assert.notEqual(quote.staffPricing.resultingMarginBasisPoints, null);
+  assert.ok(
+    Math.abs(quote.staffPricing.resultingMarginBasisPoints! - 4000) < 1,
+  );
   assert.equal(
     quoteCushion(spec, fabric, {
       ...rules,
       marginBasisPoints: 5000,
       carriageMinor: 0,
     }).totalMinor,
-    6960,
+    7104,
   );
 });
 
@@ -224,7 +267,7 @@ test("owner 1 metre minimum prices the plain 50 cm filled example at £76.40 and
   const pricing = { ...rules, marginBasisPoints: 4000, carriageMinor: 0 };
   const filled = quoteCushion(spec, facts, pricing),
     cover = quoteCushion({ ...spec, filling: "cover" }, facts, pricing);
-  assert.equal(filled.cutPlan.fabrics[0].requiredMetres, 0.54);
+  assert.equal(filled.cutPlan.fabrics[0].requiredMetres, 0.561);
   assert.equal(filled.cutPlan.fabrics[0].orderedMetres, 1);
   assert.equal(filled.materialCostMinor, 2000);
   assert.equal(filled.totalCostMinor, 3820);
@@ -262,7 +305,7 @@ test("1 metre minimum applies once per distinct cloth group; larger cuts still n
     [spec, { ...spec, id: "second" }].map((spec) => ({ spec, facts: main })),
     rules.construction,
   );
-  assert.equal(larger.fabrics[0].requiredMetres, 1.08);
+  assert.equal(larger.fabrics[0].requiredMetres, 1.121);
   assert.equal(larger.fabrics[0].orderedMetres, null);
   assert.match(larger.issues.join(" "), /increments above/);
 });

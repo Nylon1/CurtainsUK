@@ -1,0 +1,115 @@
+{
+  "description": "Independent 3D surface arc vs two-dimensional physical source-coordinate path in 2mm parameter bands through outer20mm. Samples along both axes, both ends, five cross-sections and all five standard sizes.",
+  "results": [
+    {
+      "size": 380,
+      "footprint": {
+        "version": "square-drape-arc-v1",
+        "minX": -17.940276644796096,
+        "minY": -5.867324955157169,
+        "maxX": 397.94070779699524,
+        "maxY": 389.4273254463523,
+        "visibleWidthMm": 415.8809844417913,
+        "visibleHeightMm": 395.2946504015095
+      },
+      "worstTwoMillimetreBand": {
+        "error": 0.0076211006425699335,
+        "size": 380,
+        "axis": "u",
+        "fixed": 0.9,
+        "end": 1,
+        "mm": 18,
+        "worldMm": 1.8458982419865249,
+        "sourceMm": 1.8599660182646471
+      }
+    },
+    {
+      "size": 450,
+      "footprint": {
+        "version": "square-drape-arc-v1",
+        "minX": -21.24672256971446,
+        "minY": -6.917811936048945,
+        "maxX": 471.2472331446863,
+        "maxY": 461.15737123057585,
+        "visibleWidthMm": 492.4939557144007,
+        "visibleHeightMm": 468.0751831666248
+      },
+      "worstTwoMillimetreBand": {
+        "error": 0.00362584209795469,
+        "size": 450,
+        "axis": "u",
+        "fixed": 0.9,
+        "end": 1,
+        "mm": 18,
+        "worldMm": 1.8467802828671227,
+        "sourceMm": 1.853476416562415
+      }
+    },
+    {
+      "size": 500,
+      "footprint": {
+        "version": "square-drape-arc-v1",
+        "minX": -23.608812708115543,
+        "minY": -7.67140432254465,
+        "maxX": 523.6093800136404,
+        "maxY": 512.3941502449111,
+        "visibleWidthMm": 547.2181927217559,
+        "visibleHeightMm": 520.0655545674557
+      },
+      "worstTwoMillimetreBand": {
+        "error": 0.0011085663496033238,
+        "size": 500,
+        "axis": "u",
+        "fixed": 0.9,
+        "end": 1,
+        "mm": 18,
+        "worldMm": 1.8743148646491783,
+        "sourceMm": 1.8763926670366895
+      }
+    },
+    {
+      "size": 550,
+      "footprint": {
+        "version": "square-drape-arc-v1",
+        "minX": -25.97102510751645,
+        "minY": -8.426763607127018,
+        "maxX": 575.9716491435956,
+        "maxY": 563.6315057689436,
+        "visibleWidthMm": 601.9426742511121,
+        "visibleHeightMm": 572.0582693760706
+      },
+      "worstTwoMillimetreBand": {
+        "error": 0.0010137168135291308,
+        "size": 550,
+        "axis": "v",
+        "fixed": 0.1,
+        "end": 1,
+        "mm": 12,
+        "worldMm": 2.2607454047635365,
+        "sourceMm": 2.263037160391454
+      }
+    },
+    {
+      "size": 600,
+      "footprint": {
+        "version": "square-drape-arc-v1",
+        "minX": -28.33328527156953,
+        "minY": -9.183417738129496,
+        "maxX": 628.3339660382002,
+        "maxY": 614.8692576126064,
+        "visibleWidthMm": 656.6672513097697,
+        "visibleHeightMm": 624.0526753507359
+      },
+      "worstTwoMillimetreBand": {
+        "error": 0.0010323016993480927,
+        "size": 600,
+        "axis": "v",
+        "fixed": 0.1,
+        "end": 1,
+        "mm": 12,
+        "worldMm": 2.3014808068122146,
+        "sourceMm": 2.3038566293601037
+      }
+    }
+  ]
+}

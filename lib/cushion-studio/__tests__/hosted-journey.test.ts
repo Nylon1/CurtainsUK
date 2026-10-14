@@ -60,6 +60,7 @@ const rules: CushionPricingRules = {
   construction: {
     version: "synthetic-confirmed",
     confirmed: true,
+    squareDrapeConfirmed: true,
     seamAllowanceMm: 20,
     pipingStripWidthMm: null,
     pipingJoinAllowanceMm: null,

@@ -8,6 +8,7 @@ import {
   type ConstructionRules,
   type PlacementMm,
 } from "./domain";
+import { squareDrapeFootprint } from "./runtime/geometry.mjs";
 
 export type CutPiece = {
   id: string;
@@ -212,6 +213,17 @@ function bodyPieces(spec: CushionSpec, rules: ConstructionRules): Pending[] {
   const size = cushionSize(spec.sizeId),
     seam = rules.seamAllowanceMm,
     d = visiblePanelSize(spec),
+    squareDrape = spec.sizeId.startsWith("square-")
+      ? squareDrapeFootprint(d.widthMm, d.heightMm)
+      : null,
+    panelWidth = squareDrape?.visibleWidthMm ?? d.widthMm,
+    panelHeight = squareDrape?.visibleHeightMm ?? d.heightMm,
+    panelOrigin = squareDrape
+      ? {
+          x: spec.placementMm.x + squareDrape.minX,
+          y: spec.placementMm.y + squareDrape.minY,
+        }
+      : spec.placementMm,
     pieces: Pending[] = [];
   function add(
     unit: number,
@@ -258,18 +270,18 @@ function bodyPieces(spec: CushionSpec, rules: ConstructionRules): Pending[] {
       add(
         unit,
         "front",
-        d.widthMm,
-        d.heightMm,
+        panelWidth,
+        panelHeight,
         size.shape === "round" ? "circle" : "rectangle",
-        spec.placementMm,
+        panelOrigin,
       );
       add(
         unit,
         "back",
-        d.widthMm,
-        d.heightMm,
+        panelWidth,
+        panelHeight,
         size.shape === "round" ? "circle" : "rectangle",
-        spec.placementMm,
+        panelOrigin,
       );
     }
   }
@@ -361,6 +373,13 @@ export function buildSetCutPlan(
     issues.push(
       "The 20 mm seam planning allowance and closure construction require workroom approval.",
     );
+  if (
+    specs.some((spec) => spec.sizeId.startsWith("square-")) &&
+    !rules.squareDrapeConfirmed
+  )
+    issues.push(
+      "Square cushion curved-face panel dimensions and seam allowance require workroom approval before a binding quote.",
+    );
   function append(facts: FabricCuttingFacts, pieces: Pending[]) {
     const current = groups.get(facts.id);
     if (current && JSON.stringify(current.facts) !== JSON.stringify(facts))
@@ -406,6 +425,8 @@ export function buildSetCutPlan(
   });
   const matchingVerified =
     complete &&
+    (rules.squareDrapeConfirmed === true ||
+      !specs.some((spec) => spec.sizeId.startsWith("square-"))) &&
     inputs.every(
       ({ spec, facts }) =>
         previewIssues(spec, facts).length === 0 &&
@@ -427,6 +448,11 @@ export function buildSetCutPlan(
       "Front and back must show the identical motif position, upright when viewed from each outward face. Cut two separate matching pieces; do not mirror or turn one piece upside down.",
       "The supplier Full Width is the owner-approved calculation width. Image width and supplier calculation width retain separate provenance. Diagram coordinates are millimetres from the cloth left edge and start of the allocated roll. Patterned plans reserve one vertical repeat to locate the photographed motif before cutting.",
       "Transfer the visible placement to both panels and verify the motif against the saved reference before sewing. Dashed seam lines enclose the finished face; outside lines are cut lines.",
+      ...(specs.some((s) => s.sizeId.startsWith("square-"))
+        ? [
+            "Square panels include the measured curved-face fabric extent centred on the selected motif. Confirm this draped panel size and the additional seam allowance with the workroom before purchase.",
+          ]
+        : []),
       "Keep all pieces upright. Circle bounding boxes are conservative; no unverified circle nesting or 90-degree rotation savings are charged.",
       ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster")
         ? [

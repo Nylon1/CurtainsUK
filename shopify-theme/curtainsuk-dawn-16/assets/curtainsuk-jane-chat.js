@@ -228,7 +228,7 @@
       const previous = pending?.action === 'fabric' && pending.fabricId === fabric.id ? pending : null;
       const attempt = previous || { action: 'fabric', fabricId: fabric.id, contextId: crypto.randomUUID(), messageId: crypto.randomUUID() };
       pending = attempt;
-      const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [fabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: fabric.orderReady ? 'I selected this exact fabric and would like to discuss it.' : 'I selected this fabric, but it is not currently available for curtains. Please help me explore suitable alternatives.' };
+      const context = { version: '1', source: 'customer-notes', consent: true, room: null, fabricIds: [fabric.id], colours: [], heading: null, lighting: null, curtainPosition: null, preferences: [], references: ['fabric-detail:v1'], feedback: selectedFabric.orderReady ? 'I selected this exact fabric and would like to discuss it.' : 'I selected this fabric, but it is not currently available for curtains. Please help me explore suitable alternatives.' };
       run(async () => {
         if (!selectedContext()) await request('context', { context, consent: true }, attempt.contextId);
         if (!hasFabricReply(selectedContext())) {

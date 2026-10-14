@@ -58,6 +58,7 @@ test('a new mobile reply formats emphasis, shows thinking dots and scrolls to it
   dialog.emit('curtainsuk:jane-room-open', { identity: 'james' }); await settle();
   find('consent').checked = true;
   find('start').emit('click'); await settle();
+  assert.equal(find('entry').hidden, true);
   find('input').value = 'How do I fit it?';
   find('form').emit('submit'); await settle();
   assert.equal(find('thinking').hidden, false);

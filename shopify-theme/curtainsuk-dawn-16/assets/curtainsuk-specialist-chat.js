@@ -18,7 +18,7 @@
     const deleteConfirm = find('delete-confirm'), deleteYes = find('delete-yes'), deleteCancel = find('delete-cancel');
     const log = find('log'), form = find('form'), input = find('input'), send = find('send');
     const recovery = find('recovery'), recoveryInput = find('recovery-input'), recover = find('recover'), recoveryOutput = find('recovery-output');
-    const status = find('status'), error = find('error'), thinking = find('thinking'), tools = find('tools');
+    const status = find('status'), error = find('error'), thinking = find('thinking'), tools = find('tools'), entry = find('entry');
     const preview = ['example', 'format', 'composer', 'privacy'].map(name => dialog.querySelector(`.cukad-room__${name}`));
     let adviser = null, session = null, csrf = '', binding = null, busy = false, renderedSessionId = null, renderedMessages = [];
     const storageKey = () => binding && adviser ? `curtainsuk-specialist-preview:${adviser}:${binding}` : null;
@@ -86,6 +86,7 @@
       start.hidden = !!session || !binding; save.hidden = !session; remove.hidden = !session; form.hidden = !session;
       consent.closest('label').hidden = !!session || !binding;
       recovery.hidden = !binding; signin.hidden = !!binding;
+      if (entry) entry.hidden = !!session;
       if (tools) tools.hidden = !binding;
     };
     const loginLink = () => {

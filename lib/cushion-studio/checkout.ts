@@ -170,6 +170,7 @@ export async function prepareCushionCheckout(
             calibration,
             orderIncrementMetres,
             minimumOrderMetres,
+            orderingTermsEvidence,
           }) => ({
             id,
             supplierId,
@@ -181,6 +182,7 @@ export async function prepareCushionCheckout(
             calibration,
             orderIncrementMetres,
             minimumOrderMetres,
+            orderingTermsEvidence,
           }),
         ),
       },

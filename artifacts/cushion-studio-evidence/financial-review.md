@@ -17,10 +17,18 @@ Findings were sent to Astra for implementation and targeted regression checks. T
 
 The final source review found the following corrections implemented:
 
-- `pricing.ts` exposes target and resulting staff margin, net discount and pre-discount retail net. Margin remains unconfigured until an owner decision; the existing locked store VAT constant is reused.
+- `pricing.ts` exposes target and resulting staff margin, net discount and pre-discount retail net. At this review point margin was unconfigured pending an owner decision; the existing locked store VAT constant was reused. The later owner decision below supersedes only that margin status.
 - VAT now rounds on each Shopify quantity-one goods line before summation, with delivery treated separately. The identified 1,338-pence counterexample is covered by a regression test.
 - Checkout retains immutable supplier ID/SKU references for main and contrast fabrics, pricing-rule version, specifications and attributable per-item totals. Retry uses the persisted checkout group.
 - Hosted paid processing verifies the saved contract, completed draft-to-order link and full monetary reconciliation before recording manufacture. The migration includes unique paid snapshot claims and native curtain lifecycle invocation for mixed orders.
 - The candidate records cushion-only stock usage by supplier identity; native curtain usage is not counted a second time. Mixed quotation reuses native curtain pricing and checks combined fabric demand.
 
 Astra reported the complete project test run passing after these changes. Hosted SQL, production supplier access and a real Shopify draft/payment lifecycle were not exercised. These corrections therefore establish a reviewable implementation with automated evidence, not production financial acceptance.
+
+## Subsequent owner decision — 14 October 2026
+
+The owner selected an editable **40% starting retail margin**. The candidate now defaults to 4,000 basis points under a new rules version. Nearest-penny net retail and per-line VAT give the synthetic £29 net-cost example £48.33 net + £9.67 VAT = **£58.00 gross**, before delivery. Staff resulting margin is approximately 39.9959%; the small rounding effect is not hidden. The standard £8 making and agreed component costs remain settled.
+
+Existing PT investigation evidence explicitly leaves supplier minimum cuts/increments and carriage unverified. Existing curtain SINGLE_RATE delivery has confirmed rates, but cushion/mixed parcel applicability is not thereby approved. No unknown terms, special insert costs or proposed workroom rates were invented or silently approved.
+
+The owner then confirmed a **1 m minimum cut**. It now applies once per distinct shared main/contrast fabric group. It does not establish larger-cut increments. The earlier £58 example remains a no-minimum arithmetic fixture; with the new minimum, illustrative £20/m cloth gives £38.20 filled cost → **£76.40 retail including VAT**, or £33.20 cover-only cost → **£66.40 retail including VAT**, before delivery. Supplier-specific overrides require explicit verified terms evidence. The proposed parcel amount is not assigned to cost or customer delivery until its meaning/tax basis is confirmed.

@@ -9,6 +9,31 @@ export interface CushionFabricEvidence {
   directional?: boolean;
   orderIncrementMetres?: number;
   minimumOrderMetres?: number;
+  supplierTermsVerified?: boolean;
+  supplierTermsEvidence?: string;
+}
+
+export function cushionOrderingTerms(evidence?: CushionFabricEvidence) {
+  const verified =
+    evidence?.supplierTermsVerified === true &&
+    Boolean(evidence.supplierTermsEvidence?.trim());
+  const minimum = verified ? evidence.minimumOrderMetres : undefined;
+  const increment = verified ? evidence.orderIncrementMetres : undefined;
+  return {
+    minimumOrderMetres:
+      typeof minimum === "number" && Number.isFinite(minimum) && minimum >= 0
+        ? minimum
+        : 1,
+    orderIncrementMetres:
+      typeof increment === "number" &&
+      Number.isFinite(increment) &&
+      increment > 0
+        ? increment
+        : null,
+    orderingTermsEvidence: verified
+      ? evidence.supplierTermsEvidence!
+      : "Owner confirmed a 1 metre minimum cut on 14 October 2026. Larger-cut increments remain unconfirmed.",
+  };
 }
 
 export interface CushionFabricCard {
@@ -112,8 +137,7 @@ export function cuttingFactsFromMaster(
     directional: evidence?.directional ?? null,
     calibration: calibrationForFabric(record, evidence),
     supplierCostMinorPerMetre: null,
-    orderIncrementMetres: evidence?.orderIncrementMetres ?? null,
-    minimumOrderMetres: evidence?.minimumOrderMetres ?? null,
+    ...cushionOrderingTerms(evidence),
     availableMetres: null,
   };
 }

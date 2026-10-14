@@ -15,6 +15,7 @@ import { currentAvailableMetres } from "../storefront/daily-stock";
 import { prepareSampleOrder } from "../storefront/sample-order-server";
 import {
   calibrationForFabric,
+  cushionOrderingTerms,
   cuttingFactsFromMaster,
   type CushionFabricCard,
   type CushionFabricEvidence,
@@ -266,8 +267,7 @@ function publicFacts(
       evidence,
     ),
     supplierCostMinorPerMetre: null,
-    orderIncrementMetres: evidence?.orderIncrementMetres ?? null,
-    minimumOrderMetres: evidence?.minimumOrderMetres ?? null,
+    ...cushionOrderingTerms(evidence),
     availableMetres: null,
   };
 }

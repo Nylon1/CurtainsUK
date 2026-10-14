@@ -169,13 +169,18 @@ function pack(
   }
   plan.requiredMetres = Math.ceil(bottom) / 1000;
   if (
-    !positive(facts.orderIncrementMetres) ||
     facts.minimumOrderMetres === null ||
     !Number.isFinite(facts.minimumOrderMetres) ||
     facts.minimumOrderMetres < 0
   )
+    issues.push(`${facts.id}: supplier minimum order needs confirmation.`);
+  else if (plan.requiredMetres <= facts.minimumOrderMetres + 1e-9)
+    // A confirmed minimum is itself a purchasable cut. This does not invent
+    // the increment needed for orders larger than that minimum.
+    plan.orderedMetres = facts.minimumOrderMetres;
+  else if (!positive(facts.orderIncrementMetres))
     issues.push(
-      `${facts.id}: supplier minimum order and metre increment need confirmation.`,
+      `${facts.id}: metre increments above the confirmed minimum need confirmation.`,
     );
   else
     plan.orderedMetres = Number(

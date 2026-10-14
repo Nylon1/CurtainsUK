@@ -1,5 +1,7 @@
 # Independent browser review — in progress
 
+> Later pricing steering, 14 October 2026: the owner selected an editable 40% starting margin and then confirmed a 1 m minimum cut after the browser observations below. Historical screenshots/workroom notes are observations of that earlier candidate, not evidence that margin or minimum is still missing. The local server was subsequently restarted with the new rule version. Other missing supplier/workroom/delivery evidence still keeps affected quotes non-binding.
+
 Observed 14 October 2026 in Codex browser at the unpublished loopback preview, port 4357. This is a development review, not release acceptance. No Shopify or Vercel publication, paid checkout, physical iPhone or spoken VoiceOver test occurred.
 
 ## Checks observed

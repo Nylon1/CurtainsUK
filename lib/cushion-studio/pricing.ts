@@ -288,7 +288,7 @@ export function quoteCushionSet(
     issues.push("Customer delivery charge is not configured.");
   const retailBeforeDiscountNetMinor =
     totalCostMinor !== null && marginReady
-      ? Math.ceil((totalCostMinor * 10000) / (10000 - margin))
+      ? Math.round((totalCostMinor * 10000) / (10000 - margin))
       : null;
   const discountNetMinor = rules.discountNetMinor ?? 0;
   if (!validMoney(discountNetMinor))

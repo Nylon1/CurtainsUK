@@ -123,6 +123,7 @@ export type FabricCuttingFacts = {
   supplierCostMinorPerMetre: number | null;
   orderIncrementMetres: number | null;
   minimumOrderMetres: number | null;
+  orderingTermsEvidence?: string;
   availableMetres: number | null;
 };
 export type ConstructionRules = {
@@ -194,9 +195,10 @@ export const CUSHION_MAKING_RATE_CARD: NonNullable<
   }),
 );
 export const PREVIEW_PRICING_RULES: CushionPricingRules = {
-  version: "cushion-cost-basis-v1",
+  version: "cushion-cost-basis-v2-owner-margin40",
   construction: PREVIEW_CONSTRUCTION_RULES,
-  marginBasisPoints: null,
+  // Owner-selected starting target, 14 October 2026; server rules remain editable.
+  marginBasisPoints: 4000,
   vatBasisPoints: null,
   carriageMinor: null,
 };

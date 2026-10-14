@@ -2,8 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { buildCutPlan, buildSetCutPlan } from "../cutting";
 import { quoteCushion, quoteCushionSet, cushionHash } from "../pricing";
+import { cushionOrderingTerms } from "../catalogue";
 import {
   CUSHION_MAKING_RATE_CARD,
+  PREVIEW_PRICING_RULES,
   parseCushionSpec,
   parseCushionDesign,
   previewIssues,
@@ -190,6 +192,97 @@ test("fixed basis is £18.20 filled and £13.20 cover, markup is not substituted
   assert.equal(filled.netGoodsMinor, 5800);
   assert.equal(filled.totalMinor, 7560);
   assert.equal(filled.ready, true);
+});
+
+test("owner's editable 40 percent starting margin prices £29 net cost at £58 including VAT", () => {
+  assert.equal(PREVIEW_PRICING_RULES.marginBasisPoints, 4000);
+  const quote = quoteCushion(spec, fabric, {
+    ...rules,
+    marginBasisPoints: PREVIEW_PRICING_RULES.marginBasisPoints,
+    carriageMinor: 0,
+  });
+  assert.equal(quote.totalCostMinor, 2900);
+  assert.equal(quote.netGoodsMinor, 4833);
+  assert.equal(quote.vatMinor, 967);
+  assert.equal(quote.totalMinor, 5800);
+  assert.equal(quote.staffPricing.targetMarginBasisPoints, 4000);
+  assert.equal(quote.staffPricing.resultingMarginBasisPoints, 3999.5862);
+  assert.equal(
+    quoteCushion(spec, fabric, {
+      ...rules,
+      marginBasisPoints: 5000,
+      carriageMinor: 0,
+    }).totalMinor,
+    6960,
+  );
+});
+
+test("owner 1 metre minimum prices the plain 50 cm filled example at £76.40 and cover at £66.40", () => {
+  const facts = { ...fabric, ...cushionOrderingTerms() };
+  assert.equal(facts.minimumOrderMetres, 1);
+  assert.equal(facts.orderIncrementMetres, null);
+  const pricing = { ...rules, marginBasisPoints: 4000, carriageMinor: 0 };
+  const filled = quoteCushion(spec, facts, pricing),
+    cover = quoteCushion({ ...spec, filling: "cover" }, facts, pricing);
+  assert.equal(filled.cutPlan.fabrics[0].requiredMetres, 0.54);
+  assert.equal(filled.cutPlan.fabrics[0].orderedMetres, 1);
+  assert.equal(filled.materialCostMinor, 2000);
+  assert.equal(filled.totalCostMinor, 3820);
+  assert.equal(filled.netGoodsMinor, 6367);
+  assert.equal(filled.vatMinor, 1273);
+  assert.equal(filled.totalMinor, 7640);
+  assert.equal(cover.totalCostMinor, 3320);
+  assert.equal(cover.totalMinor, 6640);
+  assert.equal(filled.ready, true);
+});
+
+test("1 metre minimum applies once per distinct cloth group; larger cuts still need increment evidence", () => {
+  const main = { ...fabric, ...cushionOrderingTerms() },
+    contrast = { ...main, id: "contrast" };
+  const small = {
+    ...spec,
+    sizeId: "square-38",
+    edge: "contrast" as const,
+    pipingFabricId: "contrast",
+  };
+  const plan = buildSetCutPlan(
+    [small, { ...small, id: "second" }].map((spec) => ({
+      spec,
+      facts: main,
+      pipingFacts: contrast,
+    })),
+    rules.construction,
+  );
+  assert.equal(plan.fabrics.length, 2);
+  assert.deepEqual(
+    plan.fabrics.map((f) => f.orderedMetres),
+    [1, 1],
+  );
+  const larger = buildSetCutPlan(
+    [spec, { ...spec, id: "second" }].map((spec) => ({ spec, facts: main })),
+    rules.construction,
+  );
+  assert.equal(larger.fabrics[0].requiredMetres, 1.08);
+  assert.equal(larger.fabrics[0].orderedMetres, null);
+  assert.match(larger.issues.join(" "), /increments above/);
+});
+
+test("unverified supplier terms cannot override the owner minimum or invent an increment", () => {
+  const source = {
+    originalImageUrl: "https://example.invalid/test.jpg",
+    evidence: "Image source only",
+    minimumOrderMetres: 0.5,
+    orderIncrementMetres: 0.1,
+  };
+  assert.equal(cushionOrderingTerms(source).minimumOrderMetres, 1);
+  assert.equal(cushionOrderingTerms(source).orderIncrementMetres, null);
+  const verified = cushionOrderingTerms({
+    ...source,
+    supplierTermsVerified: true,
+    supplierTermsEvidence: "Synthetic verified terms fixture",
+  });
+  assert.equal(verified.minimumOrderMetres, 0.5);
+  assert.equal(verified.orderIncrementMetres, 0.1);
 });
 test("missing cost, construction, piping, minimum or margin remain explicit blockers", () => {
   const p = quoteCushion(

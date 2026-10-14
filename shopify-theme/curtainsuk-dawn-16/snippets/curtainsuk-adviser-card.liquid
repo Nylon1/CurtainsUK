@@ -46,9 +46,16 @@
 %}
 {% if jane_chat_live and adviser == 'jane' and block.settings.preparation == blank %}{% assign preparation = 'advisory_team.live.jane_preparation' | t %}{% endif %}
 {% if jane_chat_live and adviser == 'jane' and block.settings.intro == blank %}{% assign intro = 'advisory_team.live.jane_intro' | t %}{% endif %}
+{% if live_adviser and block.settings.preparation == blank %}
+  {% case adviser %}
+    {% when 'noah' %}{% assign preparation = 'Think about your window shape and whether a track or pole is already fitted. Keep any measurements as raw dimensions until the fitting method is confirmed.' %}
+    {% when 'james' %}{% assign preparation = 'Consider where your curtains will hang, what you know about the wall or ceiling and any access difficulties. An online consultation cannot assess fixing strength or structural suitability.' %}
+    {% when 'ben' %}{% assign preparation = 'Think about where the sound starts and what is bothering you: echo inside the room, or noise passing into or out of it. An online consultation cannot verify acoustic performance.' %}
+  {% endcase %}
+{% endif %}
 <article class="cukad__profile cukad__profile--{{ adviser }}{% if featured %} cukad__profile--featured{% endif %}" id="adviser-{{ section_id }}-{{ block.id }}" aria-labelledby="adviser-name-{{ section_id }}-{{ block.id }}" {{ block.shopify_attributes }}>
   <div class="cukad__profile-art{% if portrait_advisers contains adviser %} cukad__profile-art--portrait{% endif %}">
-    <div class="cukad__art-label"><span>{% if jane_chat_live and adviser == 'jane' %}{{ 'advisory_team.live.ai_adviser' | t }}{% else %}{{ 'advisory_team.common.ai_adviser' | t }}{% endif %}</span><span aria-hidden="true">✳</span></div>
+    <div class="cukad__art-label"><span>{% if live_adviser %}{{ 'advisory_team.live.ai_adviser' | t }}{% else %}{{ 'advisory_team.common.ai_adviser' | t }}{% endif %}</span><span aria-hidden="true">✳</span></div>
     {% render 'curtainsuk-adviser-art', adviser: adviser, name: name %}
     <div class="cukad__art-caption"><span>{{ name | escape_once }}</span><span>{% if portrait_advisers contains adviser %}{{ 'advisory_team.common.portrait_identity' | t }}{% else %}{{ 'advisory_team.common.illustrated_identity' | t }}{% endif %}</span></div>
   </div>

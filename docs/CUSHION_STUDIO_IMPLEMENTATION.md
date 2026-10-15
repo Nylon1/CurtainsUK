@@ -149,3 +149,7 @@ The 40 and 50 cm round previews now use broader filled shoulders, subtle seam cr
 The subsequent [soft-cover review](CUSHION_STUDIO_ROUND_SOFT_COVER_REVIEW_20261015.md) supersedes that round visual with a deeper convex fill, broader contact and corrected round lighting. It introduces separate visual furniture clearance while preserving manufacturing/cost authority. The cushion suite passes 110 tests. Neither round review changes the accepted square or production gates.
 
 Owner confirmed “Assets approved” on 15 October 2026 for the round soft-cover assets at `5a1e82cdff52ee5ef4e567381704cdcb623b9df7`. These are now the accepted round visual baseline; further visual refinement requires a new request. Manufacturing, purchase activation and publication remain separately gated.
+
+## Inspection movement and room controls — 15 October 2026
+
+The [interaction and room review](CUSHION_STUDIO_INTERACTION_ROOM_REVIEW_20261015.md) extends visible front/back turns to every selector shape, adds eight upholstery/wall/floor options and independent bed-cover colour, and furnishes the scenes with original supporting props. Optional `colours.bedCover` belongs only to the saved arrangement; legacy designs and manufacturing remain unchanged. The approved cushion geometry is untouched. Cushion tests pass 113/113 and the production-style build passes. Full Browse Fabrics integration remains a documented proposal; existing catalogue search/pagination continue to work.

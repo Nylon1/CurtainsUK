@@ -22,7 +22,7 @@ import {
 import { quoteCushionSet } from "../pricing";
 import { calibrationForFabric } from "../catalogue";
 import { buildMixedDraftContract, customerCushionQuote } from "../commerce";
-import { PREVIEW_PRICING_RULES } from "../domain";
+import { PREVIEW_PRICING_RULES, parseCushionDesign } from "../domain";
 import type {
   CushionDesign,
   CushionSpec,
@@ -89,6 +89,21 @@ const design: CushionDesign = {
     { spec, position: { slot: 0, offsetX: 0, offsetY: 0, rotation: 0 } },
   ],
 };
+
+test("bed-cover colour survives parsing and durable recovery without changing cushion manufacturing", async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), "cushion-colours-"));
+  try {
+    const legacy = parseCushionDesign(design);
+    assert.equal(legacy.colours.bedCover, undefined);
+    const updated = parseCushionDesign({...design, scene:"king-bed", colours:{...design.colours, bedCover:"#425771"}});
+    assert.deepEqual(updated.pieces, legacy.pieces);
+    const repo=createLocalCushionRepository(directory);
+    await repo.save(updated,0);
+    assert.deepEqual((await createLocalCushionRepository(directory).load(updated.id))?.design,updated);
+    for(const bedCover of [null,12,"red","#fff","url(bad)"])
+      assert.throws(()=>parseCushionDesign({...design,colours:{...design.colours,bedCover}}),/COLOUR_INVALID/);
+  } finally { await rm(directory,{recursive:true,force:true}); }
+});
 
 test("durable local save restores revisions and rejects lost updates and path traversal", async () => {
   const directory = await mkdtemp(path.join(os.tmpdir(), "cushion-repo-"));

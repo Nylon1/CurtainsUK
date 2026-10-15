@@ -36,7 +36,7 @@ export type CushionDesign = {
   id: string;
   name: string;
   scene: (typeof CUSHION_SCENES)[number];
-  colours: { furniture: string; wall: string; floor: string };
+  colours: { furniture: string; wall: string; floor: string; bedCover?: string };
   pieces: {
     spec: CushionSpec;
     position: {
@@ -255,6 +255,9 @@ export function parseCushionDesign(input: unknown): CushionDesign {
       !/^#[0-9a-f]{6}$/i.test(String(colours[c]))
     )
       throw new Error("CUSHION_COLOUR_INVALID");
+  if (colours.bedCover !== undefined &&
+      (typeof colours.bedCover !== "string" || !/^#[0-9a-f]{6}$/i.test(colours.bedCover)))
+    throw new Error("CUSHION_COLOUR_INVALID");
   const pieces = p.pieces.map((value) => {
     const item = object(value),
       pos = object(item.position);

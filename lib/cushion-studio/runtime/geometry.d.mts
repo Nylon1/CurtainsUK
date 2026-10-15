@@ -92,3 +92,7 @@ export function shapeDrapeFitsSource(
   placement: { x: number; y: number },
   endPlacement?: { x: number; y: number },
 ): boolean;
+
+export function roundPreviewPoint(input: {radiusFraction:number;angle:number;diameterMm:number;back?:boolean}):ShapedPoint;
+export function roundPreviewFootprint(diameterMm:number):ShapedSourceFootprint;
+export function roundPreviewFitsSource(size:{widthMm:number},calibration:{physicalWidthMm:number;physicalHeightMm:number}|null|undefined,placement:{x:number;y:number}):boolean;

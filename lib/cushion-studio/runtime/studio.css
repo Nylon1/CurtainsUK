@@ -1320,27 +1320,20 @@ body[data-mode="configurator"] .scene-actions {
   background: #fffcf5;
   border: 1px solid var(--line);
 }
-.guide-swatches {
-  display: flex;
-  gap: 15px;
+.guide-cushions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
-  height: 170px;
-  padding: 10px 5px;
+  gap: 0;
+  margin: -12px -12px 0;
+  background: #e9e5db;
+  border-radius: 6px;
+  overflow: hidden;
 }
-.guide-swatches img {
-  flex: 1;
-  min-width: 0;
-  width: 0;
-  height: 140px;
-  object-fit: cover;
-  box-shadow: 2px 4px 10px #0001;
-  border-radius: 14px;
-  transform: rotate(-5deg);
-}
-.guide-swatches img + img {
-  height: 100px;
-  transform: rotate(5deg);
-}
+.guide-cushion { position: relative; min-width: 0; aspect-ratio: 320 / 280; }
+.guide-cushion img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.guide-cushion img[hidden], .guide-cushion span[hidden] { display: none; }
+.guide-cushion span { display: grid; place-items: center; height: 100%; padding: 14px; font-size: 11px; color: #53605a; text-align: center; }
 #guide-cards h3 {
   font:
     25px Georgia,
@@ -1367,15 +1360,6 @@ body[data-mode="configurator"] .scene-actions {
   }
   .style-guides {
     margin: 40px 5% 0;
-  }
-  .guide-swatches {
-    height: 165px;
-  }
-  .guide-swatches img {
-    max-width: 140px;
-  }
-  .guide-swatches {
-    justify-content: center;
   }
 }
 .reset-design {

@@ -436,7 +436,7 @@ test("checkout retry reuses original immutable identities after a transport time
   }
 });
 
-test("32-piece design checks out with immutable main and contrast procurement references", async () => {
+test("paused contrast blocks checkout before writes; 32 supported pieces retain immutable procurement references", async () => {
   const directory = await mkdtemp(path.join(os.tmpdir(), "cushion-boundary-"));
   try {
     const repo = createLocalCushionRepository(directory);
@@ -485,7 +485,10 @@ test("32-piece design checks out with immutable main and contrast procurement re
       })),
       confirmedRules,
     );
-    assert.equal(quote.ready, true, quote.issues.join("; "));
+    assert.equal(quote.ready, false);
+    assert.match(quote.issues.join("; "), /contrast piping is currently unavailable/);
+    let writes = 0;
+    let executions = 0;
     const services: CushionCheckoutServices = {
       facts: async (id) => (id === piping.id ? piping : main),
       rules: async () => confirmedRules,
@@ -496,21 +499,31 @@ test("32-piece design checks out with immutable main and contrast procurement re
         colour: "test",
       }),
       now: () => new Date("2026-10-14T12:00:00Z"),
-      persist: repo.appendCheckout,
-      execute: async () => ({
+      persist: async (record) => { writes++; return repo.appendCheckout(record); },
+      execute: async () => { executions++; return ({
         status: "CALCULATED",
         shopifyWritePerformed: false,
         checkoutUrl: null,
         draftOrderId: null,
         draftOrderName: null,
         paymentEnabled: false,
-      }),
+      }); },
     };
+    await assert.rejects(prepareCushionCheckout(
+      { designId: design.id, specs, expectedQuoteId: quote.quoteId, idempotencyKey: "paused-contrast-32" },
+      services,
+    ), /CUSHION_CHECKOUT_REVALIDATION_REQUIRED/);
+    assert.equal(writes, 0);
+    assert.equal(executions, 0);
+    specs[0] = { ...specs[0], edge: "unpiped", pipingFabricId: undefined };
+    specs[1] = { ...specs[1], fabricId: piping.id };
+    const supportedQuote = quoteCushionSet(specs.map((spec) => ({ spec, facts: spec.fabricId === piping.id ? piping : main })), confirmedRules);
+    assert.equal(supportedQuote.ready, true, supportedQuote.issues.join("; "));
     const result = await prepareCushionCheckout(
       {
         designId: design.id,
         specs,
-        expectedQuoteId: quote.quoteId,
+        expectedQuoteId: supportedQuote.quoteId,
         idempotencyKey: "boundary-test-32",
       },
       services,
@@ -530,6 +543,8 @@ test("32-piece design checks out with immutable main and contrast procurement re
         { supplierId: "supplier-contrast", supplierSku: "CONTRAST-SKU" },
       ],
     );
+    const second = await repo.snapshot(result.snapshots[1].id);
+    assert.equal((second!.manufacturing.fabricSources as FabricCuttingFacts[]).find((source) => source.id === piping.id)?.supplierSku, "CONTRAST-SKU");
     assert.equal(
       (frozen!.commercial!.rules as CushionPricingRules).version,
       confirmedRules.version,

@@ -19,6 +19,7 @@ export async function cushionPreviewAsset(
     "index.html": "text/html; charset=utf-8",
     "studio.css": "text/css; charset=utf-8",
     "studio.mjs": "text/javascript; charset=utf-8",
+    "guide-thumbnails.mjs": "text/javascript; charset=utf-8",
     "scene.mjs": "text/javascript; charset=utf-8",
     "geometry.mjs": "text/javascript; charset=utf-8",
     "state.mjs": "text/javascript; charset=utf-8",

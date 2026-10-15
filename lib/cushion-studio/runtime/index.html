@@ -205,7 +205,7 @@
               <div class="fabric-filter-fields">
                 <label class="field">Colour<select id="filter-colour"><option value="">All colours</option></select></label>
                 <label class="field">Pattern<select id="filter-pattern"><option value="">All patterns</option></select></label>
-                <label class="field">Fabric price tier<select id="filter-guidePrice" aria-describedby="fabric-tier-note"><option value="">All price tiers</option></select></label>
+                <label class="field">Fabric tier<select id="filter-guidePrice" aria-describedby="fabric-tier-note"><option value="">All tiers</option></select></label>
               </div>
               <p id="fabric-tier-note" class="help">Uses the same fabric price guides as Browse Fabrics. These are not finished cushion prices. Your cushion quote depends on its size and options.</p>
               <button id="clear-fabric-filters" class="text-link" type="button">Clear filters &amp; search</button>
@@ -250,14 +250,9 @@
             <div class="edge-options" id="edges">
               <button data-edge="none"><i class="edge plain"></i>Unpiped</button
               ><button data-edge="self">
-                <i class="edge self"></i>Self-piped</button
-              ><button data-edge="contrast">
-                <i class="edge contrast"></i>Contrast
-              </button>
+                <i class="edge self"></i>Self-piped</button>
             </div>
-            <label id="contrast-field" class="field" hidden
-              >Piping fabric<select id="contrast-fabric"></select
-            ></label>
+            <p id="contrast-unavailable" class="help" hidden></p>
           </div>
           <div class="editor-section arrangement">
             <div class="section-title">

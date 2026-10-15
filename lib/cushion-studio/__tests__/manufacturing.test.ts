@@ -366,6 +366,24 @@ test("single making rate produces owner fixed cost totals with no duplicate base
       assert.equal(q.fixedCostMinor, expected[edge][index]);
     }
 });
+
+test("paused contrast piping blocks binding quotes even with approved rates, without changing saved specifications", () => {
+  const card = structuredClone(CUSHION_MAKING_RATE_CARD);
+  card[spec.sizeId].self.approval = "confirmed";
+  card[spec.sizeId].contrast.approval = "confirmed";
+  const approved = { ...rules, makingRateCard: card, dispatchEstimate: PREVIEW_PRICING_RULES.dispatchEstimate };
+  const saved = { ...spec, edge: "contrast" as const, pipingFabricId: fabric.id };
+  const before = structuredClone(saved);
+  const contrast = quoteCushion(saved, fabric, approved, fabric);
+  assert.equal(contrast.ready, false);
+  assert.equal(contrast.purchaseReady, false);
+  assert.match(contrast.issues.join(" "), /contrast piping is currently unavailable/);
+  assert.deepEqual(saved, before);
+  assert.equal(quoteCushion(spec, fabric, approved).ready, true);
+  const self = quoteCushion({ ...spec, edge: "self" }, fabric, approved);
+  assert.equal(self.ready, true);
+  assert.equal(self.issues.some((issue) => issue.includes("contrast piping")), false);
+});
 test("round bolster and large bed inserts never silently inherit the standard £5", () => {
   for (const sizeId of [
     "round-40",

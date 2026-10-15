@@ -199,6 +199,8 @@ export function quoteCushionSet(
   let fixedCostMinor = 0,
     complete = true;
   const items: CushionQuoteItem[] = specs.map((spec) => {
+    if (spec.edge === "contrast")
+      issues.push(`${spec.id}: contrast piping is currently unavailable. Choose unpiped or self-piped.`);
     const rate = card[spec.sizeId]?.[spec.edge],
       size = cushionSize(spec.sizeId);
     let pieceComplete = true;

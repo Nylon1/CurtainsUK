@@ -1,4 +1,4 @@
-import type { CushionDispatchEstimate } from "./dispatch";
+import { OWNER_CONFIRMED_CUSHION_DISPATCH, type CushionDispatchEstimate } from "./dispatch";
 import { squareDrapeFitsSource, CUSHION_VISUAL_SIZES, SHAPED_CONSTRUCTION_VERSION, shapeDrapeFitsSource, sizeOf } from "./runtime/geometry.mjs";
 /** Cushion manufacturing is independent of curtain configurations and scene placement. */
 export const CUSHION_SPEC_VERSION = 1 as const;
@@ -22,6 +22,8 @@ export type CushionSpec = {
   sizeId: string;
   /** Explicit opt-in: earlier saved specs retain their original construction. */
   constructionProfile?: typeof SHAPED_CONSTRUCTION_VERSION;
+  /** Manufacturing contract, independent of the accepted illustrative drape. */
+  manufacturingProfile?: "flat-sewn-v1";
   fabricId: string;
   filling: "cover" | "filled";
   edge: "unpiped" | "self" | "contrast";
@@ -82,6 +84,11 @@ export type ConstructionRules = {
   confirmed: boolean;
   /** Workroom approval that the sewn square panels cover the calibrated curved face. */
   squareDrapeConfirmed?: boolean;
+  flatConstructionBySize?: Record<string, {
+    seamAllowanceMm: number;
+    confirmed: boolean;
+    approvalReference?: string;
+  }>;
   /** Each new shaped construction needs its own seam and workroom confirmation. */
   shapedConstructionBySize?: Record<string, {
     profileVersion: typeof SHAPED_CONSTRUCTION_VERSION;
@@ -98,11 +105,15 @@ export type ConstructionRules = {
 };
 /** Planning allowance from the owner's 50+4 cm example; not a workroom approval. */
 export const PREVIEW_CONSTRUCTION_RULES: ConstructionRules = {
-  version: "cushion-construction-preview-v1",
+  version: "cushion-construction-v2-flat-proposals",
   seamAllowanceMm: 20,
   confirmed: false,
   squareDrapeConfirmed: false,
-  pipingStripWidthMm: null,
+  flatConstructionBySize: Object.fromEntries(CUSHION_SIZES.map(size => [size.id, {
+    seamAllowanceMm: 15, confirmed: false,
+  }])),
+  pipingStripWidthMm: 40,
+  pipingCordDiameterMm: 4,
   pipingJoinAllowanceMm: null,
   pipingCut: null,
   pipingConfirmed: false,
@@ -129,6 +140,14 @@ export type CushionPricingRules = {
     >
   >;
   compatibleInsertCostMinorBySize?: Partial<Record<string, number>>;
+  compatibleInsertsBySize?: Record<string, {
+    supplierSku: string;
+    coverSizeId: string;
+    dimensionsMm: number[];
+    costMinor: number;
+    confirmed: boolean;
+    approvalReference: string;
+  }>;
   /** Customer delivery net charge, distinct from supplier carriage in the cost basis. */
   carriageMinor: number | null;
   /** Exact customer delivery INCLUDING VAT, once per cushion-only order. */
@@ -160,7 +179,7 @@ export const CUSHION_MAKING_RATE_CARD: NonNullable<
   }),
 );
 export const PREVIEW_PRICING_RULES: CushionPricingRules = {
-  version: "cushion-cost-basis-v4-dispatch-required",
+  version: "cushion-cost-basis-v5-flat-proposals-calendar-weeks",
   construction: PREVIEW_CONSTRUCTION_RULES,
   // Owner-selected starting target, 14 October 2026; server rules remain editable.
   marginBasisPoints: 4000,
@@ -168,7 +187,7 @@ export const PREVIEW_PRICING_RULES: CushionPricingRules = {
   carriageMinor: null,
   customerDeliveryGrossMinor: 495,
   carrierCostMinor: null,
-  dispatchEstimate: null,
+  dispatchEstimate: OWNER_CONFIRMED_CUSHION_DISPATCH,
 };
 const idPattern = /^[A-Za-z0-9][A-Za-z0-9_-]{0,149}$/;
 function object(input: unknown): Record<string, unknown> {
@@ -228,6 +247,10 @@ export function parseCushionSpec(input: unknown): CushionSpec {
     if (p.constructionProfile !== SHAPED_CONSTRUCTION_VERSION || sizeId.startsWith("square-"))
       throw new Error("CUSHION_CONSTRUCTION_PROFILE_UNSUPPORTED");
     result.constructionProfile = SHAPED_CONSTRUCTION_VERSION;
+  }
+  if (p.manufacturingProfile !== undefined) {
+    if (p.manufacturingProfile !== "flat-sewn-v1") throw new Error("CUSHION_MANUFACTURING_PROFILE_INVALID");
+    result.manufacturingProfile = "flat-sewn-v1";
   }
   if (p.bolsterEndPlacementMm !== undefined)
     result.bolsterEndPlacementMm = placement(p.bolsterEndPlacementMm);

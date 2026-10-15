@@ -212,15 +212,26 @@ export function quoteCushionSet(
       );
     const specialInsert =
       size.shape !== "rectangle" || spec.sizeId.startsWith("bed-square-");
+    const insertRecord = rules.compatibleInsertsBySize?.[spec.sizeId];
+    const compatible = insertRecord?.confirmed === true && insertRecord.coverSizeId === spec.sizeId &&
+      typeof insertRecord.supplierSku === "string" && insertRecord.supplierSku.trim() &&
+      typeof insertRecord.approvalReference === "string" && insertRecord.approvalReference.trim() &&
+      Array.isArray(insertRecord.dimensionsMm) && insertRecord.dimensionsMm.length >= 1 &&
+      insertRecord.dimensionsMm.length <= 3 && insertRecord.dimensionsMm.every(n => Number.isFinite(n) && n > 0) &&
+      validMoney(insertRecord.costMinor);
     const insert =
       spec.filling === "cover"
         ? 0
+        : spec.manufacturingProfile === "flat-sewn-v1"
+          ? compatible ? insertRecord!.costMinor : undefined
         : specialInsert
           ? rules.compatibleInsertCostMinorBySize?.[spec.sizeId]
           : fixedRules.insertMinor;
     if (!validMoney(insert)) {
       issues.push(
-        `${spec.id}: a compatible insert supplier cost is required for this shape and size.`,
+        spec.manufacturingProfile === "flat-sewn-v1"
+          ? `${spec.id}: a confirmed compatible insert SKU, dimensions and supplier cost are required for this shape and size.`
+          : `${spec.id}: a compatible insert supplier cost is required for this shape and size.`,
       );
       pieceComplete = false;
     }

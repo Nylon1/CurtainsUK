@@ -94,7 +94,7 @@ export function cushionDraftLine(
   // One custom line represents this entire validated quantity. Shopify cannot
   // multiply a nested set's price by a mutable cart quantity.
   return {
-    title: `Cushion — ${snapshot.fabricIdentity.design} ${snapshot.fabricIdentity.colour} (${snapshot.spec.quantity})`,
+    title: `Cushion: ${snapshot.fabricIdentity.design} ${snapshot.fabricIdentity.colour} (${snapshot.spec.quantity})`,
     quantity: 1,
     originalUnitPriceWithCurrency: money(snapshot.price.goodsGrossMinor),
     requiresShipping: true,

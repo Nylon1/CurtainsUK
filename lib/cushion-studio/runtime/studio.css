@@ -6,6 +6,54 @@
   --gold: #b19469;
   --white: #fffefa;
 }
+.studio-help {
+  margin: 0 4.2% 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+.studio-help > summary {
+  min-height: 48px;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.studio-help > summary span {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+}
+.studio-help[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+.studio-help-stages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  padding: 20px;
+}
+.studio-help-stages h2 {
+  font: 600 16px/1.4 Arial, sans-serif;
+}
+.studio-help-stages ol {
+  margin: 12px 0 0;
+  padding-left: 22px;
+}
+.studio-help-stages li + li {
+  margin-top: 10px;
+}
+.studio-help-save {
+  margin: 0;
+  padding: 15px 20px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 760px) {
+  .studio-help-stages {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -340,6 +388,11 @@ h2 {
 .piece-tab.active {
   border: 1px solid var(--ink);
   box-shadow: inset 0 -3px var(--ink);
+}
+.editing-cushion {
+  margin: 6px 0 0;
+  color: var(--ink);
+  font-size: 12px;
 }
 .editor-section {
   padding: 22px 0;

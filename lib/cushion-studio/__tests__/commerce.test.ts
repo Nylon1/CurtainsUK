@@ -1,6 +1,7 @@
 import {
   confirmedCushionDispatch,
   customerCushionDispatch,
+  OWNER_CONFIRMED_CUSHION_DISPATCH,
   type CushionDispatchEstimate,
 } from "../dispatch";
 import assert from "node:assert/strict";
@@ -746,8 +747,8 @@ const syntheticDispatch: CushionDispatchEstimate = {
   approvalReference: "SYNTHETIC-TEST-NOT-A-WORKROOM-PROMISE",
 };
 
-test("dispatch has no default; only a complete confirmed server authority enables purchasing", () => {
-  assert.equal(PREVIEW_PRICING_RULES.dispatchEstimate, null);
+test("owner calendar-week default is confirmed; missing dispatch still blocks purchasing", () => {
+  assert.deepEqual(PREVIEW_PRICING_RULES.dispatchEstimate, OWNER_CONFIRMED_CUSHION_DISPATCH);
   for (const value of [
     undefined,
     null,
@@ -796,6 +797,17 @@ test("dispatch has no default; only a complete confirmed server authority enable
     },
   });
   assert.notEqual(confirmed.quoteId, changed.quoteId);
+  const ownerQuote = quoteCushionSet([{ spec, facts: fabric }], {
+    ...rules,
+    dispatchEstimate: PREVIEW_PRICING_RULES.dispatchEstimate,
+  });
+  assert.equal(ownerQuote.purchaseReady, true);
+  const ownerReview = customerCushionQuote(ownerQuote);
+  assert.match(ownerReview.dispatchEstimate!.message, /3-4 calendar weeks after order confirmation/);
+  assert.equal(ownerReview.dispatchEstimate!.version, OWNER_CONFIRMED_CUSHION_DISPATCH.version);
+  assert.notEqual(ownerQuote.quoteId, noDispatch.quoteId);
+  assert.notEqual(ownerQuote.quoteId, confirmed.quoteId);
+  assert.doesNotMatch(JSON.stringify(ownerReview.dispatchEstimate), /approvalReference|confirmedAt|WorkingDays/);
 });
 
 test("production cushion checkout requires dispatch before any write and freezes its exact confirmed evidence", async () => {

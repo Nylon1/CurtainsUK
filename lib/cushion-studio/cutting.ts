@@ -52,6 +52,12 @@ const positive = (n: number | null | undefined): n is number =>
 const mod = (n: number, d: number) => ((n % d) + d) % d;
 const roundMm = (n: number) => Math.ceil(n * 1000) / 1000;
 type Pending = Omit<CutPiece, "xMm" | "yMm">;
+function flatConstruction(spec: CushionSpec, rules: ConstructionRules) {
+  const rule = rules.flatConstructionBySize?.[spec.sizeId];
+  const known = positive(rule?.seamAllowanceMm) && rule!.seamAllowanceMm <= 100;
+  return { seam: known ? rule!.seamAllowanceMm : 0, known,
+    confirmed: Boolean(known && rule?.confirmed === true && rule.approvalReference?.trim()) };
+}
 function shapedConstruction(spec: CushionSpec, rules: ConstructionRules) {
   const rule = rules.shapedConstructionBySize?.[spec.sizeId];
   const known = rule?.profileVersion === spec.constructionProfile &&
@@ -79,13 +85,17 @@ function pack(
   pending: Pending[],
   facts: FabricCuttingFacts,
   issues: string[],
+  useUsableWidth = false,
 ): FabricCutPlan {
   // Existing owner-approved Full Width calculation policy; independent of image calibration.
-  const width = facts.fullWidthMm,
+  const width = useUsableWidth && positive(facts.usableWidthMm) && positive(facts.fullWidthMm)
+      ? Math.min(facts.fullWidthMm, facts.usableWidthMm) : facts.fullWidthMm,
     patterned = facts.pattern.kind !== "plain",
     v = facts.pattern.verticalRepeatMm,
     h = facts.pattern.horizontalRepeatMm;
   const repeatReady = facts.pattern.kind === "straight" && positive(v);
+  if (useUsableWidth && !positive(facts.usableWidthMm))
+    issues.push(`${facts.id}: usable cutting width requires supplier/workroom confirmation; full width is a planning fallback only.`);
   const leading = repeatReady ? v : 0;
   const plan: FabricCutPlan = {
     fabricId: facts.id,
@@ -224,12 +234,13 @@ function pack(
 
 function bodyPieces(spec: CushionSpec, rules: ConstructionRules): Pending[] {
   const size = cushionSize(spec.sizeId),
-    shaped = spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION,
-    construction = shaped ? shapedConstruction(spec, rules) : null,
+    flat = spec.manufacturingProfile === "flat-sewn-v1",
+    shaped = !flat && spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION,
+    construction = flat ? flatConstruction(spec, rules) : shaped ? shapedConstruction(spec, rules) : null,
     seam = construction ? construction.seam : rules.seamAllowanceMm,
     d = visiblePanelSize(spec),
     footprints = shaped ? shapeDrapeFootprints(sizeOf(spec.sizeId)) : null,
-    squareDrape = spec.sizeId.startsWith("square-")
+    squareDrape = !flat && spec.sizeId.startsWith("square-")
       ? squareDrapeFootprint(d.widthMm, d.heightMm)
       : footprints?.body ?? null,
     panelWidth = squareDrape?.visibleWidthMm ?? d.widthMm,
@@ -389,12 +400,12 @@ export function buildSetCutPlan(
     throw new Error("CUSHION_SET_QUANTITY_LIMIT");
   if (new Set(specs.map((s) => s.id)).size !== specs.length)
     throw new Error("CUSHION_DUPLICATE_ID");
-  if (specs.some((spec) => !spec.constructionProfile) && !rules.confirmed)
+  if (specs.some((spec) => !spec.manufacturingProfile && !spec.constructionProfile) && !rules.confirmed)
     issues.push(
       "The 20 mm seam planning allowance and closure construction require workroom approval.",
     );
   if (
-    specs.some((spec) => spec.sizeId.startsWith("square-")) &&
+    specs.some((spec) => !spec.manufacturingProfile && spec.sizeId.startsWith("square-")) &&
     !rules.squareDrapeConfirmed
   )
     issues.push(
@@ -410,7 +421,11 @@ export function buildSetCutPlan(
   inputs.forEach((input, index) => {
     const spec = specs[index];
     issues.push(...previewIssues(spec, input.facts));
-    if (spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION) {
+    if (spec.manufacturingProfile === "flat-sewn-v1") {
+      const construction = flatConstruction(spec, rules);
+      if (!construction.known) issues.push(`${spec.id}: flat panel seam allowance is unavailable; do not cut from the net diagram.`);
+      if (!construction.confirmed) issues.push(`${spec.id}: proposed flat panel dimensions, seam allowance and concealed zip construction require workroom acceptance.`);
+    } else if (spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION) {
       const construction = shapedConstruction(spec, rules);
       if (!construction.known)
         issues.push(`${spec.id}: ${spec.sizeId} seam allowance is unconfirmed; diagram shows net panel envelopes only, with no cutting allowance included.`);
@@ -439,7 +454,7 @@ export function buildSetCutPlan(
     }
   });
   const fabrics = [...groups.values()].map((g) =>
-    pack(g.pieces, g.facts, issues),
+    pack(g.pieces, g.facts, issues, g.pieces.some(p => specs.find(s => s.id === p.specId)?.manufacturingProfile === "flat-sewn-v1")),
   );
   const complete = inputs.every((input, index) => {
     const expected = bodyPieces(specs[index], rules).length;
@@ -452,9 +467,9 @@ export function buildSetCutPlan(
   });
   const matchingVerified =
     complete &&
-    specs.every((spec) => !spec.constructionProfile || shapedConstruction(spec, rules).confirmed) &&
+    specs.every((spec) => spec.manufacturingProfile === "flat-sewn-v1" ? flatConstruction(spec, rules).confirmed : !spec.constructionProfile || shapedConstruction(spec, rules).confirmed) &&
     (rules.squareDrapeConfirmed === true ||
-      !specs.some((spec) => spec.sizeId.startsWith("square-"))) &&
+      !specs.some((spec) => !spec.manufacturingProfile && spec.sizeId.startsWith("square-"))) &&
     inputs.every(
       ({ spec, facts }) =>
         previewIssues(spec, facts).length === 0 &&
@@ -474,17 +489,22 @@ export function buildSetCutPlan(
     instructions: [
       "Use the saved fabric ID, colourway, original image and placement coordinates. Check the fabric face and nap before cutting.",
       "Front and back must show the identical motif position, upright when viewed from each outward face. Cut two separate matching pieces; do not mirror or turn one piece upside down.",
-      "The supplier Full Width is the owner-approved calculation width. Image width and supplier calculation width retain separate provenance. Diagram coordinates are millimetres from the cloth left edge and start of the allocated roll. Patterned plans reserve one vertical repeat to locate the photographed motif before cutting.",
+      "Supplier cloth width and photographed width retain separate provenance. Flat-sewn plans use verified usable cutting width within supplier full width; missing usable width is a planning fallback requiring confirmation. Diagram coordinates are millimetres from the usable cloth left edge and start of the allocated roll. Patterned plans reserve one vertical repeat to locate the photographed motif before cutting.",
       "Transfer the visible placement to both panels and verify the motif against the saved reference before sewing. Diagram outlines include the stated seam allowance only where confirmed; net-only envelopes with unknown allowances must not be used for cutting.",
-      ...(specs.some((s) => s.sizeId.startsWith("square-"))
+      ...(specs.some((s) => !s.manufacturingProfile && s.sizeId.startsWith("square-"))
         ? [
             "Square panels include the measured curved-face fabric extent centred on the selected motif. Confirm this draped panel size and the additional seam allowance with the workroom before purchase.",
           ]
         : []),
-      ...specs.filter((s) => s.constructionProfile).map((spec) => {
+      ...specs.filter((s) => !s.manufacturingProfile && s.constructionProfile).map((spec) => {
         const construction = shapedConstruction(spec, rules),
           footprint = shapeDrapeFootprints(sizeOf(spec.sizeId));
         return `${spec.id}: construction profile ${spec.constructionProfile}; finished ${cushionSize(spec.sizeId).label}. Net ${footprint.body.cutShape} panel ${footprint.body.visibleWidthMm.toFixed(3)} × ${footprint.body.visibleHeightMm.toFixed(3)} mm${footprint.end ? `; two matching circular ends ${footprint.end.visibleWidthMm.toFixed(3)} mm net diameter` : '; two identical upright panels'}. ${construction.known ? `Add ${construction.seam} mm seam allowance per edge as shown.` : 'Seam allowance unknown: diagram is a net envelope, not a cutting instruction.'} Confirm panel dimensions and closure with the workroom; do not apply the standard-square profile.`;
+      }),
+      ...specs.filter(s => s.manufacturingProfile === "flat-sewn-v1").map(spec => {
+        const c = flatConstruction(spec, rules);
+        const panels = bodyPieces({...spec, quantity: 1}, rules);
+        return `${spec.id}: flat-sewn-v1; finished ${cushionSize(spec.sizeId).label} measured flat. ${panels.map(p => `${p.role}: ${p.shape === "circle" ? "diameter " + p.widthMm : p.widthMm + " × " + p.heightMm} mm`).join("; ")}. ${c.seam} mm allowance per edge; ${c.confirmed ? "workroom accepted" : "STARTING PROPOSAL: not verified manufacturing measurements"}. Concealed zip in lower seam where practical. Rendered fullness does not add cloth or justify an enlarged insert. Bolster circular joins and zip need acceptance; seamless pattern at every join is not promised.`;
       }),
       "Keep all pieces upright. Circle bounding boxes are conservative; no unverified circle nesting or 90-degree rotation savings are charged.",
       ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && !s.constructionProfile)
@@ -492,7 +512,7 @@ export function buildSetCutPlan(
             "Bolster: cut one continuous body rectangle plus two matching circular end caps. The body length is 560 mm; its wrap is π × 230 mm before seam allowance.",
           ]
         : []),
-      ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && s.constructionProfile)
+      ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && s.constructionProfile && !s.manufacturingProfile)
         ? ["Shaped bolster: the body is one continuous unmirrored wrap, with its joining seam underneath. The cylinder stops at the two cap seams; domed caps complete the finished overall length. Both end panels have identical upright outward placement. Opposite body views show different portions of that continuous wrap, not duplicate flat faces."]
         : []),
       "Confirm closure, seam allowance, piping construction and any unresolved review items before manufacturing.",

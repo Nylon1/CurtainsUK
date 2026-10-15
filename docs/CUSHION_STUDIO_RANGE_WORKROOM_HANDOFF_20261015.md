@@ -1,4 +1,6 @@
-# Cushion Studio — range confirmation brief
+# Cushion Studio: range confirmation brief
+
+> Updated 15 October: [flat starting specification](CUSHION_STUDIO_WORKROOM_STARTING_SPEC_20261015.md) supersedes earlier panel/allowance and pending-dispatch wording below. New 50 cm panels are proposed 53 × 53 cm with 15 mm per edge, not verified measurements. Dispatch is owner-confirmed 3–4 calendar weeks from order confirmation. Earlier review evidence remains historical.
 
 Prepared for the owner to forward. No workroom message, purchase or trial appointment has been made.
 

@@ -2,6 +2,10 @@
 
 Local candidate only. Supersedes the round visual appearance in the earlier round-preview review; no release, purchase activation or manufacturing approval.
 
+## Owner visual approval
+
+On 15 October 2026, the owner confirmed “Assets approved” after reviewing the updated round-cushion assets. The accepted visual baseline is commit `5a1e82cdff52ee5ef4e567381704cdcb623b9df7`, covering the 40/50 cm soft-cover previews and their standalone/sofa review assets. Retain this appearance without further refinement unless requested. This records visual acceptance only; existing manufacturing, commercial, purchase and publication gates remain unchanged.
+
 ## Change
 
 The previous round remained too thin and disc-like. The new visual fill has a continuously convex face, approximately 100 mm centre depth at 40 cm and 125 mm at 50 cm, irregular tension valleys approaching the seam and slight perimeter draw-in. Nominal cover diameters remain 400/500 mm. These depth values describe the visual example only, not an approved insert or manufacturing dimension.

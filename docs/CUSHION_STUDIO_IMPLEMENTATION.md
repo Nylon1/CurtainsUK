@@ -180,3 +180,11 @@ Verification: 124/124 Cushion Studio tests passed. Production-style webpack buil
 
 Astra reviewed the filtering contracts and identified debounce and failed-search pagination cases, both corrected before final verification. No manufacturing, geometry, pricing, approval or purchase gate changes. No production deployment or merge.
 The existing square journey was also replayed after filtering: selecting Bird Weave Brick updated the cushion fabric, animated back inspection reached Showing the back, and Add to my layout opened the sofa arrangement.
+
+## Empty filters in the existing preview, 15 October 2026
+
+Confirmed a local preview version mismatch on port 4362: the page loaded current runtime files from disk, but its long-running Node process still used the server module from before facet support. Its catalogue response returned 11,815 fabrics with no facets. Port 4364 returned the same catalogue with five tiers and 14 colour options. This was a stale local process, not absent governed catalogue data.
+
+Restarted only the identified Cushion Studio process on port 4362, retaining the address and existing browser design. The existing tab then loaded 14 colours, 21 patterns and five tiers. Selecting blue returned 3,187 matches; the selected Chrysanthemum Toile / Cochineal Pink bolster remained unchanged. Screenshot: `artifacts/cushion-fabric-filters-20261015/restored-4362.png`.
+
+The local preview command now uses Node watch mode with preserved output so server imports reload when changed. Verified a restart by updating only the modification timestamp of the imported browse module, without altering its content. No customer runtime or manufacturing changes required; no production deployment or merge. Owner confirmed the five tier labels after the previous review.

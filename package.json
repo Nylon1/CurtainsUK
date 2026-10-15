@@ -6,7 +6,7 @@
     "prebuild": "node scripts/build-premium-proxy.mjs",
     "dev": "next dev",
     "preview:rooms": "tsx scripts/rooms-preview.ts",
-    "preview:cushions": "node --import ./scripts/cushion-preview-register.mjs --import tsx scripts/cushion-studio-preview.ts",
+    "preview:cushions": "node --watch --watch-preserve-output --import ./scripts/cushion-preview-register.mjs --import tsx scripts/cushion-studio-preview.ts",
     "test:cushions": "node --import ./scripts/cushion-preview-register.mjs --import tsx --test lib/cushion-studio/__tests__/*.test.ts lib/cushion-studio/runtime/*.test.mjs",
     "test:rooms": "tsx --test lib/storefront/__tests__/rooms*.test.ts",
     "verify:rooms": "node scripts/verify-rooms.cjs",

@@ -200,6 +200,18 @@
                 placeholder="Search fabric or colour"
                 aria-label="Search fabrics"
             /></label>
+            <details id="fabric-filters" class="fabric-filters">
+              <summary>Find your fabric <span>Colour, pattern &amp; price</span></summary>
+              <div class="fabric-filter-fields">
+                <label class="field">Colour<select id="filter-colour"><option value="">All colours</option></select></label>
+                <label class="field">Pattern<select id="filter-pattern"><option value="">All patterns</option></select></label>
+                <label class="field">Fabric price tier<select id="filter-guidePrice" aria-describedby="fabric-tier-note"><option value="">All price tiers</option></select></label>
+              </div>
+              <p id="fabric-tier-note" class="help">Uses the same fabric price guides as Browse Fabrics. These are not finished cushion prices. Your cushion quote depends on its size and options.</p>
+              <button id="clear-fabric-filters" class="text-link" type="button">Clear filters &amp; search</button>
+            </details>
+            <p id="fabric-results-status" class="help" role="status" aria-live="polite"></p>
+            <button id="retry-fabrics" class="text-link" type="button" hidden>Try loading fabrics again</button>
             <div id="fabrics" class="fabric-grid"></div>
             <p id="fabric-description" class="help"></p>
             <details class="placement">

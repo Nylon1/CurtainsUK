@@ -629,6 +629,31 @@ h2 {
   overflow: auto;
   padding: 2px;
 }
+.fabric-filters {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #d6dfd5;
+  border-radius: 8px;
+  background: #f2f5ef;
+}
+.fabric-filters summary {
+  cursor: pointer;
+  min-height: 44px;
+  align-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #304d43;
+}
+.fabric-filters summary span {
+  display: block;
+  padding: 4px 0 0 16px;
+  font-size: 11px;
+  font-weight: 400;
+}
+.fabric-filter-fields { display: grid; gap: 10px; margin-top: 12px; }
+.fabric-filter-fields .field { margin: 0; font-size: 12px; }
+.fabric-filter-fields select { width: 100%; min-width: 0; min-height: 44px; background-color: #fff; font-size: 12px; }
+#fabric-results-status { min-height: 18px; }
 .fabric-card {
   padding: 0;
   text-align: left;

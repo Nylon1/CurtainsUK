@@ -1,4 +1,5 @@
 import "server-only";
+import { cushionBrowseParams, cushionBrowseFacets } from "./browse";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import {
@@ -319,13 +320,7 @@ export async function cushionCatalogue(params: URLSearchParams) {
     0,
     Number.parseInt(params.get("offset") ?? "0", 10) || 0,
   );
-  const query = (params.get("q") ?? "").slice(0, 100);
-  const sourceParams = new URLSearchParams({
-    view: "retail",
-    browseGuide: "1",
-    page: String(Math.floor(offset / 24) + 1),
-    query,
-  });
+  const sourceParams = cushionBrowseParams(params);
   const source = supplierDatabaseConfigured()
     ? await searchRetailFabrics(sourceParams, { includeIntelligence: false })
     : await publicRead(sourceParams);
@@ -335,6 +330,7 @@ export async function cushionCatalogue(params: URLSearchParams) {
   return {
     items: records.map((record) => publicCard(record, evidence[record.id])),
     total: Number(source.total),
+    facets: cushionBrowseFacets(source.facets),
     nextOffset: offset + 24 < Number(source.total) ? offset + 24 : null,
     source: supplierDatabaseConfigured()
       ? "fabric-master"

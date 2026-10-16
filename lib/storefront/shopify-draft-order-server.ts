@@ -380,6 +380,15 @@ async function calculate(input: {
     fetchImpl: input.fetchImpl,
   });
   const payload = data.draftOrderCalculate;
+  if (isRecord(payload) && userErrors(payload.userErrors).length > 0
+      && input.contract.input.customAttributes.some((attribute) => attribute.key === "curtainsuk_my_home_review_id")) {
+    const first = userErrors(payload.userErrors)[0];
+    const field = isRecord(first) && Array.isArray(first.field)
+      ? first.field.slice(0, 4).map((part) => typeof part === "string" && /^[A-Za-z]{1,32}$/.test(part)
+        ? part.toUpperCase() : "INDEX").join("_")
+      : "GENERAL";
+    throw new Error(`SHOPIFY_DRAFT_ORDER_REJECTED_${field || "GENERAL"}`);
+  }
   if (!isRecord(payload) || userErrors(payload.userErrors).length > 0) {
     throw new Error("SHOPIFY_DRAFT_ORDER_REJECTED");
   }

@@ -1,0 +1,51 @@
+[
+  {
+    "caption": "Explore your suggestions",
+    "cta": "/apps/curtainsuk-decision/consultation?experience=premium&entry=guided",
+    "id": "fabric-intelligence",
+    "pressed": 1,
+    "stage": "2"
+  },
+  {
+    "caption": "Bring it into your home",
+    "cta": "/pages/fabric-library?view=browse-fabrics",
+    "id": "browse-fabrics",
+    "pressed": 1,
+    "stage": "2"
+  },
+  {
+    "caption": "Explore the details",
+    "cta": "/pages/room-visualiser",
+    "id": "room-visualiser",
+    "pressed": 1,
+    "stage": "2"
+  },
+  {
+    "caption": "React and refine",
+    "cta": "/pages/fabric-library?view=browse-fabrics",
+    "id": "naila",
+    "pressed": 1,
+    "stage": "2"
+  },
+  {
+    "caption": "Check your brief",
+    "cta": "/pages/how-to-measure",
+    "id": "guided-measure",
+    "pressed": 1,
+    "stage": "2"
+  },
+  {
+    "caption": "Review your project",
+    "cta": "/pages/build-my-rooms",
+    "id": "house-of-curtains",
+    "pressed": 1,
+    "stage": "2"
+  },
+  {
+    "caption": "Explain what you need",
+    "cta": "/pages/meet-our-team",
+    "id": "specialists",
+    "pressed": 1,
+    "stage": "2"
+  }
+]

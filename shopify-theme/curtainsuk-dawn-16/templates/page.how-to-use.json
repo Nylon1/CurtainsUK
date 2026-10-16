@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "guide": {
+      "type": "curtainsuk-how-to",
+      "settings": {}
+    }
+  },
+  "order": [
+    "guide"
+  ]
+}

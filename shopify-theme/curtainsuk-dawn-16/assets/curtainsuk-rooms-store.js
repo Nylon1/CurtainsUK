@@ -89,7 +89,7 @@
     let roomId;
     const house = await change(options.expectedRevision ?? current.revision, next => {
       const editRoom = options.editItemId && next.rooms.find(r => r.curtains.some(c => (c.order_item_id || c.configuration_id) === options.editItemId));
-      if (options.editItemId && !editRoom) throw Error('This order item no longer exists. Return to My Home.');
+      if (options.editItemId && !editRoom) throw Error('This order item no longer exists. Return to Design My Home.');
       const prior = editRoom?.curtains.find(c => (c.order_item_id || c.configuration_id) === options.editItemId);
       const room = options.roomId ? roomById(next, options.roomId) : options.roomName ? addRoom(next, options.roomName) : (options.roomId === undefined ? editRoom : null) || next.rooms.find(r => r.unassigned === true) || Object.assign(addRoom(next, 'My order'), {unassigned:true});
       if (editRoom) editRoom.curtains = editRoom.curtains.filter(c => (c.order_item_id || c.configuration_id) !== options.editItemId);
@@ -122,7 +122,7 @@
       next.products ||= [];
       for(const piece of pieces){
         const old=options.editItemId ? next.products.find(p=>p.id===options.editItemId) : next.products.find(p=>p.sourceDesignId===design.id && p.sourceSpecId===piece.spec.id);
-        if(options.editItemId && (!old || pieces.length!==1))throw Error('This cushion order item has changed. Return to My Home.');
+        if(options.editItemId && (!old || pieces.length!==1))throw Error('This cushion order item has changed. Return to Design My Home.');
         if(!old && options.roomId)roomById(next,options.roomId);
         const product={id:old?.id || id(),type:'CUSHION',sourceDesignId:old?.sourceDesignId || design.id,sourceSpecId:old?.sourceSpecId || piece.spec.id,spec:clone(piece.spec),quantity:piece.spec.quantity,roomId:old ? old.roomId : options.roomId || null,fabric:clone(piece.fabric || {}),label:String(piece.label || 'Cushion').slice(0,100)};
         if(old){next.products[next.products.indexOf(old)]=product;updated++;}else{next.products.push(product);added++;}
@@ -132,7 +132,7 @@
   }
   async function updateOrderItem(itemId, changes, expectedRevision, storage=localStorage) {
     return change(expectedRevision,next=>{
-      const item=orderItem(next,itemId);if(!item)throw Error('This item no longer exists. Reopen My Home.');
+      const item=orderItem(next,itemId);if(!item)throw Error('This item no longer exists. Reopen Design My Home.');
       if(changes.quantity !== undefined && (!Number.isSafeInteger(changes.quantity)||changes.quantity<1||changes.quantity>50))throw Error('Choose a quantity from 1 to 50.');
       if(item.type==='CUSHION'){
         const p=next.products.find(p=>p.id===itemId);if(changes.remove)next.products=next.products.filter(p=>p.id!==itemId);else {if(changes.quantity!==undefined)p.quantity=changes.quantity;if(changes.roomId!==undefined){if(changes.roomId)roomById(next,changes.roomId);p.roomId=changes.roomId || null;}}

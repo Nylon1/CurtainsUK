@@ -42,10 +42,33 @@
     if (orderItem && /^[0-9a-f-]{36}$/i.test(orderItem)) source.searchParams.set('order_item', orderItem);
     if (params.get('new_order_product') === '1') source.searchParams.set('new_order_product', '1');
     frame.src = source.pathname + source.search;
+    var sendViewport = function () {
+      if (!frame.contentWindow) return;
+      var header = document.querySelector('.section-cuk-header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      var top = headerBottom + 12;
+      frame.contentWindow.postMessage({
+        type: 'cuk-cushion-viewport',
+        offset: top - frame.getBoundingClientRect().top,
+        availableHeight: Math.max(300, viewportHeight - top - 12)
+      }, window.location.origin);
+    };
+    var pending = false;
+    var scheduleViewport = function () {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(function () { pending = false; sendViewport(); });
+    };
+    frame.addEventListener('load', scheduleViewport);
+    window.addEventListener('scroll', scheduleViewport, { passive: true });
+    window.addEventListener('resize', scheduleViewport);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleViewport);
     window.addEventListener('message', function (event) {
       if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
       if (event.data && event.data.type === 'cuk-cushion-height' && Number.isFinite(event.data.height)) {
         frame.style.height = Math.min(20000, Math.max(700, Math.ceil(event.data.height))) + 'px';
+        scheduleViewport();
       }
     });
   });

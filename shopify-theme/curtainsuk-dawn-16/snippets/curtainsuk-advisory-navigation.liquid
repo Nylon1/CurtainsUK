@@ -1,6 +1,7 @@
 {% doc %}
   Links to the permanent adviser page only when Shopify exposes a published page.
   Development themes retain the alternate-template owner-review destination.
+  @param {boolean} [as_link] - Render an anchor for the secondary desktop header
 {% enddoc %}
 {% liquid
   assign advisory_page = pages['meet-our-team']
@@ -12,5 +13,9 @@
   endif
 %}
 {% if advisory_url != blank %}
-  <li class="cuknav__item"><a href="{{ advisory_url }}"{% if page.handle == 'meet-our-team' or template.suffix == 'meet-our-team' %} aria-current="page"{% endif %}>{{ 'advisory_team.hero.meet' | t }}</a></li>
+  {% if as_link %}
+    <a href="{{ advisory_url }}"{% if page.handle == 'meet-our-team' or template.suffix == 'meet-our-team' %} aria-current="page"{% endif %}>{{ 'advisory_team.hero.meet' | t }}</a>
+  {% else %}
+    <li class="cuknav__item"><a href="{{ advisory_url }}"{% if page.handle == 'meet-our-team' or template.suffix == 'meet-our-team' %} aria-current="page"{% endif %}>{{ 'advisory_team.hero.meet' | t }}</a></li>
+  {% endif %}
 {% endif %}

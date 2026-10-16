@@ -79,6 +79,9 @@ export async function reviewMixedCheckout(
     },
   );
   const requirements = new Map<string, number>();
+  const curtainFabricIds = new Set(
+    house.curtains.map((curtain) => curtain.handoff.snapshot.fabricMasterId),
+  );
   const add = (id: string, metres: number) =>
     requirements.set(id, (requirements.get(id) ?? 0) + metres);
   for (const curtain of house.curtains)
@@ -93,8 +96,11 @@ export async function reviewMixedCheckout(
     if (cloth.orderedMetres === null) throw Error("MIXED_CUT_PLAN_REQUIRED");
     add(cloth.fabricId, cloth.orderedMetres);
   }
+  // The cushion set was already checked against its current governed stock.
+  // Apply the curtain stock floor only where curtains use the fabric, with
+  // cushion consumption included when both products share that fabric.
   for (const [id, metres] of requirements)
-    if (!(await services.stock(id, metres)))
+    if (curtainFabricIds.has(id) && !(await services.stock(id, metres)))
       throw Error("MIXED_COMBINED_STOCK_CHANGED");
   const shipping = await services.shipping({
     house: input.house,

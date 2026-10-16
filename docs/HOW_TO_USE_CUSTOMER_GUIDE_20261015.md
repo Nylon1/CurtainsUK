@@ -1,5 +1,9 @@
 # How to use CurtainsUK
 
+## 16 October release update
+
+The guide was rebased onto the live My Home and Cushion Studio release. It now has eight visual walkthroughs. The House of Curtains guide is replaced by My Home at `#my-home`, and the new Cushion Studio guide is at `#cushion-studio`. Both link to their current public pages. The header Measure & Fit menu links to `/pages/how-to-use`. The original candidate evidence below is historical and predates these updates. Fresh release verification is required for the eight-guide page.
+
 Unpublished Shopify page candidate, based on protected source `b926c116388a176f12f618acc9297d51b0269478`. Separate from Cushion Studio PR #201. Proposed page handle: `/pages/how-to-use`, template suffix `how-to-use`. No page record, navigation item, theme upload or deployment was created.
 
 ## Customer experience

@@ -75,17 +75,8 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
       ready:cushion.ready || cushionReview!.individualReadiness.get(item.specId)!.ready,
       issues:cushion.ready ? [] : cushionReview!.individualReadiness.get(item.specId)!.issues})) ?? []),
   ];
-  const curtainIssues = house && !house.ready
-    ? house.lines.some(line => line.status === "BLOCKED")
-      ? house.lines.filter(line => line.status === "BLOCKED").map(line => `${line.window_name}: ${line.message}`)
-      : [!input.postcode.trim()
-        ? "Enter a UK mainland delivery postcode to confirm the one delivery charge."
-        : house.delivery === null
-          ? "We could not confirm delivery for this postcode. Check it or contact us."
-          : "The current curtain total needs confirmation before ordering."]
-    : [];
   const issues = [
-    ...curtainIssues,
+    ...(house && !house.ready ? ["Curtain price, stock or delivery needs review."] : []),
     ...(cushion && !cushion.ready ? cushion.issues : []),
     ...(!dispatch ? ["A confirmed, comparable dispatch estimate is required for every product type. Your items remain saved and will be held together."] : []),
   ];

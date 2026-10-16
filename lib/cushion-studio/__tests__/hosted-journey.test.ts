@@ -259,6 +259,40 @@ test("hosted route stays inert when disabled and authenticates every enabled req
   assert.equal(f.state.executions, 0);
 });
 
+test("the existing app proxy accepts only the configured development-store origin", async (t) => {
+  const f = await fixture(t);
+  const previousOrigin = process.env.CURTAINSUK_CUSHION_ALLOWED_ORIGIN;
+  t.after(() => {
+    if (previousOrigin === undefined) delete process.env.CURTAINSUK_CUSHION_ALLOWED_ORIGIN;
+    else process.env.CURTAINSUK_CUSHION_ALLOWED_ORIGIN = previousOrigin;
+  });
+  process.env.CURTAINSUK_CUSHION_ALLOWED_ORIGIN = "https://curtainsuk-dev.myshopify.com";
+  f.services.authenticate = async ({ request }) => verifyShopifyAppProxyQuery(
+    new URL(request.url).search,
+    {
+      secret,
+      allowedShops: ["curtainsuk-dev.myshopify.com"],
+      allowedPathPrefixes: ["/apps/curtainsuk-decision"],
+      nowSeconds,
+    },
+  );
+  f.services.asset = async (_asset, options) => Response.json(options);
+  const params = { shop: "curtainsuk-dev.myshopify.com" };
+  const asset = await f.handler(request("index.html", "1001", undefined, params), ["index.html"]);
+  assert.equal(asset.status, 200);
+  assert.deepEqual(await asset.json(), {
+    base: "/apps/curtainsuk-decision/cushion-studio/",
+    apiBase: "/apps/curtainsuk-decision/cushion-studio/api",
+    ownerPreview: false,
+  });
+  const save = request("designs", "1001", { design, expectedRevision: 0 }, params);
+  save.headers.set("origin", "https://curtainsuk-dev.myshopify.com");
+  assert.equal((await f.handler(save, ["api", "designs"])).status, 200);
+  const wrongOrigin = request("designs", "1001", { design, expectedRevision: 0 }, params);
+  assert.equal((await f.handler(wrongOrigin, ["api", "designs"])).status, 403);
+  assert.equal((await f.handler(request("designs"), ["api", "designs"])).status, 403);
+});
+
 test("signed account save and restore isolate owners and retain revision conflict behavior", async (t) => {
   const f = await fixture(t);
   const anonymous = await f.call("designs", "");

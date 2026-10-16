@@ -35,6 +35,16 @@ const responseHeaders = {
   "Cache-Control": "no-store, private",
   "X-Robots-Tag": "noindex, nofollow",
 };
+const productionOrigin = "https://www.curtainsuk.com";
+
+function cushionAllowedOrigin() {
+  const configured = process.env.CURTAINSUK_CUSHION_ALLOWED_ORIGIN;
+  if (!configured) return productionOrigin;
+  const url = new URL(configured);
+  if (url.protocol !== "https:" || url.origin !== configured || url.username || url.password)
+    throw new Error("CUSHION_ORIGIN_CONFIG_INVALID");
+  return configured;
+}
 export function purchasesEnabled() {
   return (
     process.env.CUSHION_STUDIO_HOSTED_ENABLED === "true" &&
@@ -167,7 +177,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         request.method === "POST" &&
         (!request.headers.get("content-type")?.startsWith("application/json") ||
           (request.headers.get("origin") &&
-            request.headers.get("origin") !== "https://www.curtainsuk.com"))
+            request.headers.get("origin") !== cushionAllowedOrigin()))
       )
         throw new Error("CUSHION_ORIGIN_INVALID");
       if (segments[0] !== "api") {

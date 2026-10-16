@@ -1,5 +1,9 @@
 # CurtainsUK production surfaces
 
+## Unpublished Cushion Studio database checkpoint, 16 October 2026
+
+At the owner's direction, the existing Supabase main project `hqysjumypgeapgmqkcrx` received only the additive Cushion Studio persistence migration. The source SQL SHA-256 is `9F142A659C027494D6711708078C5B432DF01DAB963CBA530A182AD0DC9A11A2`; hosted migration history names it `20261016161822_cushion_studio_distinct_persistence_20261014`. Seven new private tables and their functions are present; the design and snapshot tables had zero rows at 16:18:33 UTC. Browser roles cannot read saved designs. The dashboard listed a 16 October 01:07:02 UTC physical backup. No Shopify proxy, MAIN theme, production gateway, public route, purchase gate or customer record changed. The owner held any new preview access grant. The existing development theme and protected Vercel project remain the intended review surfaces; no duplicate app, theme, Vercel project or database remains. The candidate is unpublished and PR #201 remains draft. See [Cushion Studio release readiness](CUSHION_STUDIO_MY_HOME_RELEASE_READINESS_20261016.md) for the remaining hosted checks.
+
 The protected `release/production` branch is the release authority. Deploy only its exact HEAD after both protected checks pass. The Vercel deployment metadata must retain that SHA and tree; theme files have their own scoped upload and read-back. A Vercel `production` label alone is not storefront parity.
 
 ## Current production checkpoint — 14 October 2026

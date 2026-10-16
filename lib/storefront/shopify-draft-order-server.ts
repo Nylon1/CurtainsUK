@@ -269,6 +269,24 @@ function parseGrantedScopes(value: unknown): ReadonlySet<string> {
   return new Set(value.split(/[\s,]+/).map((scope) => scope.trim()).filter(Boolean));
 }
 
+/** Shopify limits draft-order tags to 40 characters. Keep the persisted
+ * contract unchanged so an existing immutable checkout can retry safely. */
+function shopifyTransportContract(contract: ShopifyDraftOrderExecutionContract): ShopifyDraftOrderExecutionContract {
+  const tag = contract.idempotencyTag;
+  if (!/^[A-Za-z0-9_-]{1,200}$/.test(tag) || !contract.input.tags.includes(tag))
+    throw new Error("SHOPIFY_DRAFT_ORDER_IDEMPOTENCY_TAG_INVALID");
+  if (tag.length <= 40) return contract;
+  const transportTag = `CUK-${createHash("sha256").update(tag).digest("hex").slice(0, 32)}`;
+  return {
+    ...contract,
+    idempotencyTag: transportTag,
+    input: {
+      ...contract.input,
+      tags: contract.input.tags.map((value) => value === tag ? transportTag : value),
+    },
+  };
+}
+
 function assertRequiredScopes(scopes: ReadonlySet<string>): void {
   if (SHOPIFY_DRAFT_ORDER_REQUIRED_SCOPES.some((scope) => !scopes.has(scope))) {
     throw new Error("SHOPIFY_DRAFT_ORDER_SCOPE_MISSING");
@@ -471,6 +489,7 @@ export async function executeShopifyDraftOrder(input: {
       paymentEnabled: false,
     };
   }
+  const contract = shopifyTransportContract(input.contract);
   const production = input.config.mode === "CREATE_PRODUCTION_DRAFT";
   if ((production && input.config.deploymentStage !== "PRODUCTION")
       || (!production && input.config.deploymentStage !== "STAGING")) {
@@ -481,7 +500,7 @@ export async function executeShopifyDraftOrder(input: {
     throw new Error("SHOPIFY_DRAFT_ORDER_CHECKOUT_STORE_DENIED");
   }
   const fetchImpl = input.fetchImpl ?? fetch;
-  if (production !== (input.contract.environment === "PRODUCTION" && input.contract.paymentEnabled)) {
+  if (production !== (contract.environment === "PRODUCTION" && contract.paymentEnabled)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_CONTRACT_MODE_MISMATCH");
   }
   if (input.config.mode === "CREATE_TEST_DRAFT"
@@ -490,7 +509,7 @@ export async function executeShopifyDraftOrder(input: {
   }
   const accessToken = await clientCredentialsToken({ config: input.config, fetchImpl });
   if (input.config.mode === "CALCULATE_ONLY") {
-    await calculate({ contract: input.contract, config: input.config, accessToken, fetchImpl });
+    await calculate({ contract, config: input.config, accessToken, fetchImpl });
     return {
       status: "CALCULATED",
       shopifyWritePerformed: false,
@@ -506,10 +525,10 @@ export async function executeShopifyDraftOrder(input: {
   if (input.existingDraftOrderId) {
     const data = await graphql({config:input.config,accessToken,fetchImpl,query:SHOPIFY_DRAFT_ORDER_BY_ID_QUERY,variables:{id:input.existingDraftOrderId}});
     if (!isRecord(data.draftOrder)) throw new Error("SHOPIFY_DRAFT_ORDER_RECEIPT_NOT_FOUND");
-    const recovered = validateShopifyDraftOrderNode(data.draftOrder as ShopifyDraftOrderNode,input.contract);
+    const recovered = validateShopifyDraftOrderNode(data.draftOrder as ShopifyDraftOrderNode,contract);
     return {status:production ? "EXISTING_PRODUCTION_DRAFT_REUSED" : "EXISTING_TEST_DRAFT_REUSED",shopifyWritePerformed:false,checkoutUrl:recovered.invoiceUrl,draftOrderId:recovered.id,draftOrderName:recovered.name,paymentEnabled:production};
   }
-  const existing = await findExisting({ contract: input.contract, config: input.config, accessToken, fetchImpl });
+  const existing = await findExisting({ contract, config: input.config, accessToken, fetchImpl });
   if (existing) {
     return {
       status: production ? "EXISTING_PRODUCTION_DRAFT_REUSED" : "EXISTING_TEST_DRAFT_REUSED",
@@ -520,7 +539,7 @@ export async function executeShopifyDraftOrder(input: {
       paymentEnabled: production,
     };
   }
-  await calculate({ contract: input.contract, config: input.config, accessToken, fetchImpl });
+  await calculate({ contract, config: input.config, accessToken, fetchImpl });
   // Never release this claim on a timeout, malformed response, process death or
   // failed receipt write: Shopify may already have accepted the create. A retry
   // may recover an existing order, but an empty tag index is not proof of absence.
@@ -537,7 +556,7 @@ export async function executeShopifyDraftOrder(input: {
   if (!await claim(checkoutIdentity)) {
     throw new Error("SHOPIFY_DRAFT_ORDER_PENDING");
   }
-  const created = await create({ contract: input.contract, config: input.config, accessToken, fetchImpl });
+  const created = await create({ contract, config: input.config, accessToken, fetchImpl });
   return {
     status: production ? "PRODUCTION_DRAFT_CREATED" : "TEST_DRAFT_CREATED",
     shopifyWritePerformed: true,
@@ -556,6 +575,7 @@ export async function verifyCushionPaidDraftLink(input: {
   config: ShopifyDraftOrderRuntimeConfig;
   fetchImpl?: FetchLike;
 }) {
+  input = { ...input, contract: shopifyTransportContract(input.contract) };
   if (
     input.contract.environment !== "PRODUCTION" ||
     !input.contract.paymentEnabled ||

@@ -305,6 +305,12 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
       return Response.json(result, { headers: responseHeaders });
     } catch (error) {
       const code = error instanceof Error ? error.message : "";
+      if (segments[0] === "api" && segments[1] === "my-home-checkout") {
+        const safeCode = /^(?:SHOPIFY|MY_HOME|CUSHION|CURTAINSUK)_[A-Z0-9_]{1,100}$/.test(code)
+          ? code
+          : "UNCLASSIFIED";
+        console.error(JSON.stringify({ event: "MY_HOME_CHECKOUT_FAILURE", code: safeCode }));
+      }
       const rateLimit = endpointRateLimitResponse(error);
       if (rateLimit)
         return Response.json(

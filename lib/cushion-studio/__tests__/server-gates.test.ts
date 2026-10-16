@@ -2,6 +2,44 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import "../../../scripts/cushion-preview-register.mjs";
 
+test("a discoverable noncurrent fabric returns an unpriced quote without supplier or stock authority", async () => {
+  const { unconfirmedCuttingFacts } = await import("../catalogue");
+  const { quoteCushion } = await import("../pricing");
+  const { PREVIEW_PRICING_RULES } = await import("../domain");
+  const record = {
+    fabric_id: "unconfirmed-fabric",
+    supplier_id: "sanderson-design-group",
+    supplier_sku: "EXAMPLE/1",
+    lifecycle_state: "UNKNOWN",
+    full_width_mm: 1380,
+    usable_width_mm: null,
+    vertical_repeat_mm: 0,
+    horizontal_repeat_mm: 0,
+    pattern_match_type: null,
+  } as Parameters<typeof unconfirmedCuttingFacts>[0];
+  const facts = unconfirmedCuttingFacts(record);
+  assert.equal(facts.supplierCostMinorPerMetre, null);
+  assert.equal(facts.availableMetres, null);
+  const quote = quoteCushion(
+    {
+      version: 1,
+      id: "unconfirmed-piece",
+      sizeId: "square-45",
+      fabricId: record.fabric_id,
+      filling: "cover",
+      edge: "unpiped",
+      placementMm: { x: 100, y: 100 },
+      quantity: 1,
+    },
+    facts,
+    PREVIEW_PRICING_RULES,
+  );
+  assert.equal(quote.ready, false);
+  assert.equal(quote.purchaseReady, false);
+  assert.equal(quote.totalMinor, null);
+  assert.ok(quote.issues.some((issue) => issue.includes("supplier net cost")));
+});
+
 test("local and hosted gates are off by default; cross-origin preview and checkout fail closed", async () => {
   const { handleCushionApi } = await import("../server");
   const { handleHostedCushionRequest } = await import("../hosted-server");

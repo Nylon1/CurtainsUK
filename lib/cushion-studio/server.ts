@@ -18,6 +18,7 @@ import {
   calibrationForFabric,
   cushionOrderingTerms,
   cuttingFactsFromMaster,
+  unconfirmedCuttingFacts,
   type CushionFabricCard,
   type CushionFabricEvidence,
 } from "./catalogue";
@@ -376,7 +377,13 @@ export async function currentCushionFacts(ids: string[]) {
     const records = await fabricMasterRecordsByIds(ids);
     await Promise.all(
       records.map(async (record) => {
-        if (record.lifecycle_state !== "CURRENT") return;
+        if (record.lifecycle_state !== "CURRENT") {
+          // Browse may show an unconfirmed fabric for design exploration.
+          // Keep its identity and cutting facts so the quote can explain why
+          // it is unavailable, but never attach a cost or verified stock.
+          facts.set(record.fabric_id, unconfirmedCuttingFacts(record, evidence[record.fabric_id]));
+          return;
+        }
         const [price, stock, retail] = await Promise.allSettled([
           verifiedSupplierCostMinor(record.supplier_id, record.supplier_sku),
           dailyStockPosition(record.supplier_id, record.supplier_sku),

@@ -30,3 +30,6 @@
 .how-cushion-two{right:20%;background:#c7a08b;transform:rotate(10deg)}
 .how-panel[data-stage="1"] .how-cushion-two{transform:rotate(5deg) translateX(-12px)}
 .how-panel[data-stage="2"] .how-cushion-one{transform:rotate(-6deg) translateX(9px)}
+
+.cuk-how .how-panel{scroll-margin-top:145px}
+@media(max-width:700px){.cuk-how .how-panel{scroll-margin-top:100px}}

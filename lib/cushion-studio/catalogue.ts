@@ -127,6 +127,19 @@ export function cuttingFactsFromMaster(
   };
 }
 
+/** Discoverable fabrics without a confirmed current lifecycle stay explorable,
+ * but must not inherit a supplier cost or verified stock from another state. */
+export function unconfirmedCuttingFacts(
+  record: FabricMasterRecord,
+  evidence?: CushionFabricEvidence,
+): FabricCuttingFacts {
+  return {
+    ...cuttingFactsFromMaster(record, evidence),
+    supplierCostMinorPerMetre: null,
+    availableMetres: null,
+  };
+}
+
 export function searchCushionCatalogue(
   cards: CushionFabricCard[],
   params: URLSearchParams,

@@ -6,8 +6,8 @@
     let count = 0;
     try { count = window.CurtainsUKRooms.orderItems(window.CurtainsUKRooms.read() || window.CurtainsUKRooms.ensure()).reduce((n,item)=>n+item.quantity,0); } catch { return; }
     links.forEach((link) => {
-      link.textContent = count ? `My Home · ${count}` : 'My Home';
-      link.setAttribute('aria-label', count ? `My Home, ${count} saved ${count === 1 ? 'item' : 'items'}` : 'My Home');
+      link.textContent = count ? `Design My Home · ${count}` : 'Design My Home';
+      link.setAttribute('aria-label', count ? `Design My Home, ${count} saved ${count === 1 ? 'item' : 'items'}` : 'Design My Home');
     });
   };
   window.addEventListener('storage', (event) => { if (event.key === window.CurtainsUKRooms?.KEY) update(); });

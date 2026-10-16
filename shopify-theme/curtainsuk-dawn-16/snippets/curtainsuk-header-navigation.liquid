@@ -1,51 +1,46 @@
 {% doc %}
-  Editorial navigation using the commercial routes inherited from the live base.
+  Eight direct customer destinations, with optional consultation and guide details.
   @param {string} location - Desktop, mobile or fallback scope
   @param {string} section_id - Parent section ID
 {% enddoc %}
 <ul class="cuknav__list">
-  <li class="cuknav__item">
+  <li class="cuknav__item"><a href="/pages/fabric-library?view=browse-fabrics">Browse Fabrics</a></li>
+  <li class="cuknav__item"><a href="/pages/room-visualiser">Room Visualiser</a></li>
+  <li class="cuknav__item"><a href="/pages/cushion-studio">Cushion Studio</a></li>
+  <li class="cuknav__item"><a href="/pages/solve-my-window">Shop by Window</a></li>
+  <li class="cuknav__item"><a href="/pages/fabric-library?view=curtain-style">{{ 'curtain_style.navigation' | t }}</a></li>
+  <li class="cuknav__item cuknav__item--split">
+    <a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">Fabric Intelligence™</a>
     <details class="cuknav__disclosure">
-      <summary aria-expanded="false" aria-controls="CukIntelligence-{{ location }}-{{ section_id }}">Fabric Intelligence™ <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
+      <summary aria-label="More Fabric Intelligence options" aria-expanded="false" aria-controls="CukIntelligence-{{ location }}-{{ section_id }}"><span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
       <div class="cuknav__dropdown" id="CukIntelligence-{{ location }}-{{ section_id }}">
         <p class="cuknav__overline">A considered fabric direction</p>
         <ul>
-          <li><a href="/apps/curtainsuk-decision/consultation?experience=premium&entry=match">Let us read your room <span aria-hidden="true">→</span></a></li>
-          <li><a href="/apps/curtainsuk-decision/consultation?experience=premium&entry=guided">Help me choose</a></li>
+          <li><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">Let us read your room <span aria-hidden="true">→</span></a></li>
+          <li><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided">Help me choose</a></li>
           <li><a href="{{ routes.root_url }}#what-we-consider">How Fabric Intelligence works</a></li>
           <li><a href="{{ routes.root_url }}#colour-intelligence">Colour Intelligence</a></li>
         </ul>
       </div>
     </details>
   </li>
-  <li class="cuknav__item"><details class="cuknav__disclosure">
-    <summary aria-expanded="false" aria-controls="CukFabrics-{{ location }}-{{ section_id }}">Fabrics <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
-    <div class="cuknav__dropdown" id="CukFabrics-{{ location }}-{{ section_id }}"><ul>
-      <li><a href="/pages/fabric-library">Fabric collection</a></li>
-      <li><a href="/pages/fabric-library?view=browse-fabrics">Browse fabrics</a></li>
-      <li><a href="/pages/room-visualiser">Room Visualiser</a></li>
-    </ul></div>
-  </details></li>
-  <li class="cuknav__item"><a href="/pages/fabric-library?view=browse-fabrics">Browse Fabrics</a></li>
-  <li class="cuknav__item"><a href="/pages/cushion-studio">Cushions &amp; Pillows</a></li>
-  {% if location == 'mobile' or location == 'fallback' %}
-    <li class="cuknav__item"><a href="/pages/room-visualiser">Room Visualiser</a></li>
-  {% endif %}
-  <li class="cuknav__item"><a href="/pages/solve-my-window">Shop by Window</a></li>
-  <li class="cuknav__item"><a href="/pages/fabric-library?view=curtain-style">{{ 'curtain_style.navigation' | t }}</a></li>
   <li class="cuknav__item">
     <details class="cuknav__disclosure">
-      <summary aria-expanded="false" aria-controls="CukGuides-{{ location }}-{{ section_id }}">Measure &amp; Fit <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
+      <summary aria-expanded="false" aria-controls="CukGuides-{{ location }}-{{ section_id }}">Guide <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
       <div class="cuknav__dropdown" id="CukGuides-{{ location }}-{{ section_id }}"><ul>
-        <li><a href="/pages/how-to-measure">{{ 'guided_measure.navigation' | t }}</a></li>
-        <li><a href="/pages/how-to-fit">How to Fit</a></li>
         <li><a href="/pages/how-to-use">How to use CurtainsUK</a></li>
+        <li><a href="/pages/how-to-measure">How to Measure</a></li>
+        <li><a href="/pages/how-to-fit">How to Fit</a></li>
       </ul></div>
     </details>
   </li>
   {% if settings.curtainsuk_rooms_enabled %}
-    <li class="cuknav__item"><a href="/pages/build-my-rooms" data-cuk-house-nav aria-label="My Home">My Home</a></li>
+    <li class="cuknav__item"><a href="/pages/build-my-rooms" data-cuk-house-nav aria-label="Design My Home">Design My Home</a></li>
   {% endif %}
-  {% render 'curtainsuk-advisory-navigation' %}
-  <li class="cuknav__item"><a href="{{ routes.root_url }}#curtainsuk-help">Contact</a></li>
 </ul>
+{% if location == 'mobile' or location == 'fallback' %}
+  <ul class="cuknav__secondary" aria-label="More from CurtainsUK">
+    {% render 'curtainsuk-advisory-navigation' %}
+    <li class="cuknav__item"><a href="{{ routes.root_url }}#curtainsuk-help">Contact</a></li>
+  </ul>
+{% endif %}

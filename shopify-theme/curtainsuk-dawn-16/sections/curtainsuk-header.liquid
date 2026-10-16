@@ -23,6 +23,10 @@
         {% endif %}
       </a>
       <a class="cuknav__room-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
+      <nav class="cuknav__secondary" aria-label="More from CurtainsUK">
+        {% render 'curtainsuk-advisory-navigation', as_link: true %}
+        <a href="{{ routes.root_url }}#curtainsuk-help">Contact</a>
+      </nav>
       <div class="cuknav__tools">
         <a href="{{ routes.search_url }}" class="cuknav__icon" aria-label="Search" aria-controls="CukSearch-{{ section.id }}" aria-expanded="false" data-open="search">
           {{ 'icon-search.svg' | inline_asset_content }}

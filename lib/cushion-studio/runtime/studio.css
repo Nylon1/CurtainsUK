@@ -1754,3 +1754,37 @@ body[data-mode="configurator"] .scene-actions {
     flex-wrap: wrap;
   }
 }
+/* The Shopify iframe follows the parent page without creating a nested scroll area. */
+@media (min-width: 761px) {
+  .visual { top: 12px; }
+  body.embedded-studio .visual {
+    position: relative;
+    top: auto;
+    transform: translate3d(0, var(--cuk-preview-shift, 0px), 0);
+  }
+  #scene { height: min(620px, calc(100dvh - 250px)); min-height: 260px; }
+  .scene-actions, body[data-mode="configurator"] .scene-actions {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    justify-content: center;
+    padding: 8px 16px;
+    background: #eeeae1;
+  }
+  .scene-actions button { min-height: 38px; }
+}
+@media (max-width: 760px) {
+  #scene { height: clamp(220px, 38dvh, 320px); min-height: 0; }
+  .scene-actions, body[data-mode="configurator"] .scene-actions {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    justify-content: center;
+    padding: 8px;
+    background: #eeeae1;
+  }
+}

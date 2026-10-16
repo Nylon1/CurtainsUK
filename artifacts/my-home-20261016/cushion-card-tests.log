@@ -1,0 +1,26 @@
+✔ My Home preserves legacy curtains and adds only explicitly selected cushions, without duplicate Add (11.2226ms)
+✔ Cushion edit preserves identity and source design, rejects stale revision, and keeps order quantity explicit (4.303ms)
+✔ Curtain editing replaces the signed configuration at stable order identity, preserves quantity and rejects stale edit (3.2219ms)
+✔ Optional room assignment is separate from cushion specification; reopening roundtrips the whole mixed order (4.1259ms)
+✔ My Home reviews both types, one curtain delivery and latest confirmed hold-together dispatch without writes (488.4628ms)
+✔ cushion-only aggregate keeps separate specs, shared minimum, quantity and exactly 495 delivery (296.3791ms)
+✔ curtain quantity multiplies stock and money and creates distinct immutable unit snapshots (20.1924ms)
+✔ missing dispatch and closed release preserve price exploration but block all checkout effects (34.8615ms)
+✔ changed quantity or dispatch invalidates exact review and retries reuse immutable mixed snapshots (61.9852ms)
+✔ mixed shared stock failure blocks the order even when each product authority passes alone (8.6342ms)
+✔ hold-together does not invent conversions or start dates for incomparable estimates (0.7375ms)
+✔ unavailable curtain delivery cannot fall back to the cushion-only parcel charge (4.4066ms)
+✔ cushion-only retry keeps held dispatch evidence and refuses key reuse after order membership changes (11.6322ms)
+✔ one unconfirmed filling blocks only its line while shared set prices remain withheld (7.3862ms)
+✔ cushion-only checkout requires explicit specification confirmation (5.1394ms)
+✔ internal range-review HTML and script cannot be served by customer asset configuration (57.0055ms)
+✔ explicit local owner preview can render the review while retaining no-store and noindex (39.9547ms)
+✔ asset allowlist rejects traversal and unknown review names while normal customer assets remain available (32.2015ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1946.204

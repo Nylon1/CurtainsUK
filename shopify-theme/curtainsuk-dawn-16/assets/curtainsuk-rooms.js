@@ -45,10 +45,12 @@
   function reviewPayload(house, postcode) { return { house_id:house.house_id, revision:house.revision, postcode, rooms:house.rooms.map(room=>({ room_id:room.room_id, room_name:room.room_name, curtains:room.curtains.map(c=>({configuration_id:c.configuration_id, receipt:c.receipt, window_name:c.window_name})) })) }; }
 
   // A narrow integration hook: only an already server-priced configurator can call this.
+  let editingRevision;
   window.CurtainsUKRoomsFlow = {
     async add(evaluation, base, options) {
       const retained = await command(base, 'retain', { configuration:evaluation.configuration, configurationId:evaluation.calculation.configurationId, priceConfirmationToken:evaluation.calculation.reviewSubmissionToken });
-      const saved = await Store.addCurtain(retained, options);
+      const editItemId=new URLSearchParams(location.search).get('order_item');
+      const saved = await Store.addCurtain(retained, {...options,editItemId,expectedRevision:editItemId ? editingRevision : undefined});
       localStorage.removeItem(Store.INTENT_KEY);
       location.assign(`${page}?added=${encodeURIComponent(saved.room.room_id)}`);
     },
@@ -56,18 +58,24 @@
       const form = root.querySelector('[data-cuk-checkout-form]');
       if (!form || root.dataset.roomsEnabled !== 'true') return;
       const saved = Store.ensure();
+      editingRevision=saved.revision;
       const intent = Store.readIntent();
-      const selected = saved.rooms.find(room=>room.room_id===intent?.room_id);
-      form.querySelectorAll('.cuk-field').forEach(el=>{ el.hidden=true; el.querySelectorAll('input,select').forEach(input=>input.required=false); });
-      form.querySelector('h2').textContent = 'Make room for your curtains.';
+      const selected = saved.rooms.find(room=>room.room_id===(new URLSearchParams(location.search).get('room_id') || intent?.room_id));
+      form.querySelectorAll('.cuk-field').forEach(el=>{ el.hidden=true; el.style.display='none'; el.querySelectorAll('input,select').forEach(input=>{input.required=false;input.disabled=true;}); });
+      const accept=form.querySelector('.cuk-checkout-handoff__accept');if(accept){accept.hidden=true;accept.style.display='none';accept.querySelector('input').required=false;}
+      form.querySelectorAll(':scope > p').forEach(p=>p.hidden=true);
+      const explanation=document.createElement('p');explanation.textContent='Add this curtain to My Home. You can edit it there and review the complete order before payment.';form.insertBefore(explanation,form.querySelector('button[type=submit]'));
+      form.querySelector('h2').textContent = 'Add to My Home';
       const box = document.createElement('div'); box.className='cukrooms-add';
-      box.innerHTML = `<label for="RoomsChoice">Which room is this curtain for?</label><select id="RoomsChoice" name="roomId"><option value="">A new room</option>${saved.rooms.map(room=>`<option value="${escape(room.room_id)}">${escape(room.room_name)}</option>`).join('')}</select><div data-room-name><label for="RoomsName">Room name <small>(optional)</small></label><input id="RoomsName" name="roomName" maxlength="80" list="RoomsSuggestions" placeholder="Room ${saved.rooms.length+1}"><datalist id="RoomsSuggestions">${['Living Room','Dining Room','Main Bedroom','Bedroom','Kitchen','Home Office','Nursery / Child’s Room','Other'].map(name=>`<option value="${name}">`).join('')}</datalist></div><label for="RoomsWindowName">Window name <small>(optional)</small></label><input id="RoomsWindowName" name="windowName" maxlength="80" placeholder="For example, French Doors"><p>Your rooms save automatically on this device. Price and availability are checked again before checkout.</p>`;
+      box.innerHTML = `<label for="RoomsChoice">Room assignment (optional)</label><select id="RoomsChoice" name="roomId"><option value="">No room assigned</option>${saved.rooms.map(room=>`<option value="${escape(room.room_id)}">${escape(room.room_name)}</option>`).join('')}</select><div data-room-name><label for="RoomsName">Room name <small>(optional)</small></label><input id="RoomsName" name="roomName" maxlength="80" list="RoomsSuggestions" placeholder="Leave blank for no room"><datalist id="RoomsSuggestions">${['Living Room','Dining Room','Main Bedroom','Bedroom','Kitchen','Home Office','Nursery / Child’s Room','Other'].map(name=>`<option value="${name}">`).join('')}</datalist></div><label for="RoomsWindowName">Window name <small>(optional)</small></label><input id="RoomsWindowName" name="windowName" maxlength="80" placeholder="For example, French Doors"><p>Your rooms save automatically on this device. Price and availability are checked again before checkout.</p>`;
       form.insertBefore(box, form.querySelector('button[type=submit]'));
       if(selected) form.elements.roomId.value=selected.room_id;
+      const edited=Store.orderItem(saved,new URLSearchParams(location.search).get('order_item'));
+      if(edited?.type==='CURTAIN'){form.elements.roomId.value=edited.roomId || '';form.elements.windowName.value=edited.curtain.window_name || '';}
       const toggle = ()=>{box.querySelector('[data-room-name]').hidden=Boolean(form.elements.roomId.value);};
       form.elements.roomId.addEventListener('change',toggle); toggle();
       Store.clearIntent();
-      form.querySelector('button[type=submit]').textContent='Add to my rooms';
+      form.querySelector('button[type=submit]').textContent=new URLSearchParams(location.search).has('order_item')?'Update my order':'Add to my order';
     }
   };
 
@@ -76,7 +84,7 @@
     let postcode='';
     const base=root.dataset.engineBase || '/apps/curtainsuk-decision';
     function error(message) { const box=root.querySelector('[data-rooms-error]'); if(box){box.textContent=message;box.hidden=false;box.focus();} }
-    function sync(){try{house=Store.ensure();review=null;render();}catch(e){root.innerHTML=`<div class="cukrooms__empty"><h1>Build My Rooms</h1><p role="alert">${escape(e.message)}</p><a href="mailto:support@curtainsuk.com">Contact CurtainsUK</a></div>`;}}
+    function sync(){try{house=Store.ensure();review=null;render();}catch(e){root.innerHTML=`<div class="cukrooms__empty"><h1>My Home</h1><p role="alert">${escape(e.message)}</p><a href="mailto:support@curtainsuk.com">Contact CurtainsUK</a></div>`;}}
     async function mutate(callback){try{house=await Store.change(house.revision,callback);review=null;render();return true;}catch(e){sync();error(e.message);return false;}}
     function curtainVisual(curtain) {
       const headingKeys = { WAVE:'headingWave', DOUBLE_PINCH:'headingDoublePinch', PENCIL_PLEAT:'headingPencilPleat', EYELET:'headingEyelet' };
@@ -170,7 +178,7 @@
     }
     function renderIntro(total) {
       const hero=imageUrl(root.dataset.editorialHero);
-      return `<header class="cukrooms__intro ${total.curtains?'cukrooms__intro--saved':''}">${hero&&!total.curtains?`<img class="cukrooms__hero-photo" width="1536" height="1024" src="${escape(hero)}" alt="Room inspiration with neutral curtains" fetchpriority="high"><span class="cukrooms__hero-caption">Room inspiration</span>`:''}<div class="cukrooms__intro-copy"><p class="cukrooms__eyebrow">${total.curtains?'Your curtains, room by room':'House of Curtains'}</p><h1>${total.curtains?'Your home is taking shape':'House of Curtains'}</h1><p class="cukrooms__counts">${total.curtains?`${total.rooms} ${total.rooms===1?'room':'rooms'} · ${total.curtains} ${total.curtains===1?'window':'windows'}`:'Real Homes. Room by Room.'}</p><p class="cukrooms__intro-description">${total.curtains?'Find what feels right for every room. Bring your curtains together here, one window at a time.':'Start with one window. Save your rooms and build the curtains for your home at your own pace.'}</p></div>${total.curtains?`<div class="cukrooms__saved-panel"><p class="cukrooms__saved-title"><span aria-hidden="true">●</span> Saved on this device</p><p class="cukrooms__saved" role="status">${savedCopy}</p><p class="cukrooms__saved-motto">One place, whole home</p></div>`:''}</header>`;
+      return `<header class="cukrooms__intro ${total.curtains?'cukrooms__intro--saved':''}">${hero&&!total.curtains?`<img class="cukrooms__hero-photo" width="1536" height="1024" src="${escape(hero)}" alt="Room inspiration with neutral curtains" fetchpriority="high"><span class="cukrooms__hero-caption">Room inspiration</span>`:''}<div class="cukrooms__intro-copy"><p class="cukrooms__eyebrow">${total.curtains?'Your curtains, room by room':'My Home'}</p><h1>${total.curtains?'Your home is taking shape':'My Home'}</h1><p class="cukrooms__counts">${total.curtains?`${total.rooms} ${total.rooms===1?'room':'rooms'} · ${total.curtains} ${total.curtains===1?'window':'windows'}`:'Real Homes. Room by Room.'}</p><p class="cukrooms__intro-description">${total.curtains?'Find what feels right for every room. Bring your curtains together here, one window at a time.':'Start with one window. Save your rooms and build the curtains for your home at your own pace.'}</p></div>${total.curtains?`<div class="cukrooms__saved-panel"><p class="cukrooms__saved-title"><span aria-hidden="true">●</span> Saved on this device</p><p class="cukrooms__saved" role="status">${savedCopy}</p><p class="cukrooms__saved-motto">One place, whole home</p></div>`:''}</header>`;
     }
     function renderSummary(total) {
       return `<aside class="cukrooms__summary" aria-label="Your house summary"><div class="cukrooms__summary-main"><div class="cukrooms__summary-title"><p class="cukrooms__eyebrow">One place, whole home</p><h2>Your home so far</h2><p>${total.rooms} ${total.rooms===1?'room':'rooms'} · ${total.curtains} ${total.curtains===1?'window':'windows'}</p><a href="${BROWSE}">Back to Browse Fabrics</a></div><div class="cukrooms__summary-financials"><dl><div><dt>Curtains subtotal</dt><dd>${money(review?.goods ?? total.subtotal)}</dd></div><div><dt>Delivery</dt><dd>${review?.delivery!=null?money(review.delivery):'Confirmed at review'}</dd></div><div class="cukrooms__total"><dt>House total</dt><dd>${review?.total!=null?money(review.total):'Awaiting delivery'}</dd></div></dl><p>${review?.vat!=null?`Includes ${money(review.vat)} VAT. `:'VAT included. '}Saved prices and availability are checked again before checkout.</p></div><form data-review-form><label class="cukrooms__postcode">UK Mainland postcode<input class="cukrooms__input" name="postcode" autocomplete="postal-code" maxlength="8" required value="${escape(postcode)}"></label><button class="cukrooms__primary" type="submit" ${reviewing||!total.curtains?'disabled':''}>${reviewing?'Checking your rooms…':'Review My Rooms →'}</button><p>To change a curtain, remove it and configure it again.</p></form></div><p class="cukrooms__summary-reassurance"><span aria-hidden="true">✓</span> ${savedCopy}</p></aside>`;

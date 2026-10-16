@@ -1,0 +1,148 @@
+TAP version 13
+# Subtest: calculation always uses supplier fabric width, ignoring legacy usable width
+ok 1 - calculation always uses supplier fabric width, ignoring legacy usable width
+  ---
+  duration_ms: 11.3001
+  type: 'test'
+  ...
+# Subtest: curtain floor and positive-stock sample eligibility are separate
+ok 2 - curtain floor and positive-stock sample eligibility are separate
+  ---
+  duration_ms: 2.9699
+  type: 'test'
+  ...
+# Subtest: curtain orders require both 30m commercial stock and calculated metres
+ok 3 - curtain orders require both 30m commercial stock and calculated metres
+  ---
+  duration_ms: 1.1537
+  type: 'test'
+  ...
+# Subtest: missing or invalid calculation width fails closed
+ok 4 - missing or invalid calculation width fails closed
+  ---
+  duration_ms: 1.6063
+  type: 'test'
+  ...
+# Subtest: all requested real identities retain their lifecycle and sample evidence
+ok 5 - all requested real identities retain their lifecycle and sample evidence
+  ---
+  duration_ms: 3.5574
+  type: 'test'
+  ...
+# Subtest: Prestigious catalogue normalization preserves permanent IDs and corrected public specifications
+ok 6 - Prestigious catalogue normalization preserves permanent IDs and corrected public specifications
+  ---
+  duration_ms: 3.5424
+  type: 'test'
+  ...
+# Subtest: Prestigious imagery is derived from the stable SKU/design/colour mapping
+ok 7 - Prestigious imagery is derived from the stable SKU/design/colour mapping
+  ---
+  duration_ms: 0.4683
+  type: 'test'
+  ...
+# Subtest: Sanderson uses the same normalized Fabric Master contract without supplier-specific storage
+ok 8 - Sanderson uses the same normalized Fabric Master contract without supplier-specific storage
+  ---
+  duration_ms: 0.6883
+  type: 'test'
+  ...
+# Subtest: Sanderson Fabric Master IDs are derived only from the authoritative supplier SKU
+ok 9 - Sanderson Fabric Master IDs are derived only from the authoritative supplier SKU
+  ---
+  duration_ms: 0.4455
+  type: 'test'
+  ...
+# Subtest: the authorised Sanderson pilot fixture maps into the shared contract
+ok 10 - the authorised Sanderson pilot fixture maps into the shared contract
+  ---
+  duration_ms: 2.5131
+  type: 'test'
+  ...
+# Subtest: catalogue preview counts inserts and updates deterministically
+ok 11 - catalogue preview counts inserts and updates deterministically
+  ---
+  duration_ms: 24.3515
+  type: 'test'
+  ...
+# Subtest: customer projection strips supplier-commercial intelligence
+ok 12 - customer projection strips supplier-commercial intelligence
+  ---
+  duration_ms: 1.321
+  type: 'test'
+  ...
+# Subtest: a visible fabric with supplier width can configure while price remains unconfirmed
+ok 13 - a visible fabric with supplier width can configure while price remains unconfirmed
+  ---
+  duration_ms: 0.4829
+  type: 'test'
+  ...
+# Subtest: decision engine adapter accepts either supplier through the same FabricSpec contract
+ok 14 - decision engine adapter accepts either supplier through the same FabricSpec contract
+  ---
+  duration_ms: 0.7146
+  type: 'test'
+  ...
+# Subtest: Sanderson all-brands catalogue maps identity/specification fields but ignores stale operations
+ok 15 - Sanderson all-brands catalogue maps identity/specification fields but ignores stale operations
+  ---
+  duration_ms: 43.1814
+  type: 'test'
+  ...
+# Subtest: Sanderson catalogue supports exactly the six approved brands through one Fabric Master
+ok 16 - Sanderson catalogue supports exactly the six approved brands through one Fabric Master
+  ---
+  duration_ms: 11.0717
+  type: 'test'
+  ...
+# Subtest: catalogue protection keeps newer verified pilot data instead of applying a stale bulk row
+ok 17 - catalogue protection keeps newer verified pilot data instead of applying a stale bulk row
+  ---
+  duration_ms: 9.55
+  type: 'test'
+  ...
+# Subtest: Sanderson canary selects exactly 50 new records across six brands and leaves DAPGPA203 untouched
+ok 18 - Sanderson canary selects exactly 50 new records across six brands and leaves DAPGPA203 untouched
+  ---
+  duration_ms: 34.63
+  type: 'test'
+  ...
+# Subtest: catalogue protection enriches newer specs without erasing independently verified fields
+ok 19 - catalogue protection enriches newer specs without erasing independently verified fields
+  ---
+  duration_ms: 0.736
+  type: 'test'
+  ...
+# Subtest: unsupported or absent Sanderson match data remains unknown
+ok 20 - unsupported or absent Sanderson match data remains unknown
+  ---
+  duration_ms: 6.2666
+  type: 'test'
+  ...
+# Subtest: No Pattern Match and shifted trailing cells stay blocked for review
+ok 21 - No Pattern Match and shifted trailing cells stay blocked for review
+  ---
+  duration_ms: 5.4543
+  type: 'test'
+  ...
+# Subtest: bulk supplier expansion fails closed until every dated gate has evidence
+ok 22 - bulk supplier expansion fails closed until every dated gate has evidence
+  ---
+  duration_ms: 1.0188
+  type: 'test'
+  ...
+# Subtest: approved cut pricing does not expire by age; latest approval and rejection govern it
+ok 23 - approved cut pricing does not expire by age; latest approval and rejection govern it
+  ---
+  duration_ms: 0.8343
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1301.7616

@@ -1,0 +1,16 @@
+[
+  {
+    "score": 0.78864187,
+    "content": "Java​Script and stylesheet tags You can bundle JavaScript and stylesheet assets with section, block and, snippet files using the following Liquid tags: {% javascript %} {% stylesheet %} Including assets with the relevant files can help you keep the theme modular, making the files portable across different themes and shops without losing their functionality or styling. If reusability isn't a concern, then you can place the JavaScript or CSS styles that your file needs in your theme's assets directory and include them using the asset_url filter with either the script_tag filter or stylesheet_tag filter. If an asset has already been included in a parent layout or template, then you don't need to include it again. Caution: Liquid isn't rendered in {% javascript %} or {% stylesheet %} tags. Including Liquid code in these tags can cause syntax errors, or prevent styles from being applied to the theme.",
+    "url": "https://shopify.dev/docs/storefronts/themes/best-practices/javascript-and-stylesheet-tags",
+    "title": "JavaScript and stylesheet tags",
+    "domain": "liquid"
+  },
+  {
+    "score": 0.78026783,
+    "content": "assets/style.css.liquid .hero { background: url({{ 'bg.jpg' | asset_url }}); } The source file must have a .css.liquid extension for Shopify to process the Liquid code inside it. Reference it as style.css, without the .liquid extension. Shopify serves the compiled asset under that name. Examples Static theme assets Replace hard-coded external domains with asset_url, using markup appropriate to each asset type: {%- comment -%} Before: three external domains, three connection setups {%- endcomment -%} <link rel=\"stylesheet\" href=\" <script src=\" <img src=\" alt=\"Store logo\" width=\"240\" height=\"80\"> {%- comment -%} After: same-origin, versioned, and no extra connections {%- endcomment -%} {{ 'theme.css' | asset_url | stylesheet_tag }} <script src=\"{{ 'theme.js' | asset_url }}\" type=\"module\"></script> <img src=\"{{ 'logo.svg' | asset_url }}\" alt=\"Store logo\" width=\"240\" height=\"80\" /> The stylesheet_tag filter generates the stylesheet link. The module script doesn't block HTML parsing. The static image includes dimensions to reserve layout space before it loads, and descriptive alt text for assistive technology. To host fonts in assets/, refer to Self-host web fonts on Shopify CDN. If you can't move a third-party asset into assets/, then add a preconnect hint so the browser starts the connection early instead of discovering the domain while it parses the HTML.",
+    "url": "https://shopify.dev/docs/storefronts/themes/best-practices/performance/use-shopify-cdn",
+    "title": "Serve assets from Shopify CDN",
+    "domain": "liquid"
+  }
+]

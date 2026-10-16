@@ -1,5 +1,5 @@
 /**
- * House of Curtains is a multi-line extension of the established Draft Order
+ * My Home is a multi-line extension of the established Draft Order
  * contract. It is deliberately a contract builder, not a price calculator:
  * every input is an already immutable, server-validated curtain handoff.
  */
@@ -70,7 +70,7 @@ export function asProductionHouseDraftOrderContract(
     releaseBlocker: null,
     input: {
       ...contract.input,
-      note: 'CurtainsUK Build My Rooms order. Payment enters CurtainsUK review before any workroom release. Change requests: enquiries@curtainsuk.com within 2 hours; requests are reviewed, not guaranteed.',
+      note: 'CurtainsUK My Home order. Payment enters CurtainsUK review before any workroom release. Change requests: enquiries@curtainsuk.com within 2 hours; requests are reviewed, not guaranteed.',
       tags: ['CURTAINSUK_PRODUCTION', contract.idempotencyTag],
     },
   });
@@ -236,7 +236,7 @@ export function buildHouseDraftContract(input: {
           ...privateLineAttributes(lineContract.input.customAttributes, input.houseId, curtains[index].roomId, curtains[index].roomName, curtains[index].windowName, index + 1, input.curtains[index]),
         ],
       })),
-      note: 'Build My Rooms: every curtain remains subject to CurtainsUK review before any workroom release.',
+      note: 'My Home: every curtain remains subject to CurtainsUK review before any workroom release.',
       shippingLine: { title: first.input.shippingLine.title, priceWithCurrency: { amount: (delivery.grossAmountMinor / 100).toFixed(2), currencyCode: 'GBP' } },
       tags: ['CURTAINSUK_ROOMS_STAGING', 'DO_NOT_FULFIL', 'NO_REAL_PAYMENT', idempotencyTag],
     },

@@ -37,12 +37,16 @@ export async function prepareHouseCheckout(input: HouseCheckoutInput, services: 
   for (const [index, line] of review.lines.entries()) {
     const configuration = line.configuration!, calculation = prices[index];
     const fabric = await services.productionFabric(configuration.fabricId);
+    // Expand quantities into immutable unit snapshots. Existing paid-order and
+    // stock accounting consume each snapshot once, with no new quantity schema.
+    const quantity = line.quantity ?? 1;
+    for (let unit = 1; unit <= quantity; unit++) {
     const customerPrice = { netAmountMinor: calculation.netAmountMinor!, vatAmountMinor: calculation.vatAmountMinor!, grossAmountMinor: calculation.totalAmountMinor!, vatRateBasisPoints: calculation.vatRateBasisPoints!, currency: 'GBP' as const };
     const gate = evaluateCheckoutGate({ outcome: calculation.outcome, price: customerPrice, fabricPricingEligible: true, technicallyValid: calculation.fabricMetres! > 0, availability: 'FABRIC_AVAILABLE', reviewState: null, customerAccepted: true, shipping: delivery });
     // Existing snapshot persistence is unique by configuration ID. Give each accepted
     // House commercial revision its own deterministic execution ID; keep the original
     // retained curtain ID as private line metadata, never mutate device identity.
-    const hex = roomsDigest({ scope: 'house-execution-v1', house: claims.requestDigest, financials: claims.financialDigest, retained: line.configuration_id });
+    const hex = roomsDigest({ scope: 'house-execution-v1', house: claims.requestDigest, financials: claims.financialDigest, retained: line.configuration_id, ...(quantity > 1 ? {unit} : {}) });
     const configurationId = `${hex.slice(0,8)}-${hex.slice(8,12)}-5${hex.slice(13,16)}-8${hex.slice(17,20)}-${hex.slice(20,32)}`;
     const identity = stagingCheckoutIdentity(configurationId);
     const snapshot = createImmutableConfigurationSnapshot({
@@ -62,8 +66,9 @@ export async function prepareHouseCheckout(input: HouseCheckoutInput, services: 
       customerPrice, availability: 'FABRIC_AVAILABLE', shipping: delivery,
       customerAcceptedAt: claims.reviewedAt, recordedAt: claims.reviewedAt, gate,
     });
-    curtains.push({ roomId: line.room_id, roomName: line.room_name, windowName: line.window_name, retainedConfigurationId: line.configuration_id,
+    curtains.push({ roomId: line.room_id, roomName: line.room_name, windowName: quantity > 1 ? `${line.window_name.slice(0,65)} (${unit}/${quantity})` : line.window_name, retainedConfigurationId: line.configuration_id,
       handoff: prepareStagingCheckoutHandoff({ handoffId: identity.handoffId, snapshot, preparedAt: claims.reviewedAt }) });
+    }
   }
   const contract = buildHouseDraftContract({ houseId: input.house.house_id, revision: input.house.revision, curtains, delivery });
   if (contract.expected.orderGrossAmountMinor !== review.total || contract.expected.orderVatAmountMinor !== review.vat) throw Error('ROOMS_FINANCIAL_MISMATCH');

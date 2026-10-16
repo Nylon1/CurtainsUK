@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cushion Studio · Internal range review</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f2eb;color:#25343e;font:14px/1.5 system-ui,sans-serif}header,main,footer{padding:22px 3%}header{background:#fffdf8;border-bottom:1px solid #d8d1c4}h1{font:32px Georgia,serif;margin:0 0 8px}p{margin:8px 0}select,button,a.action{padding:9px;border:1px solid #a7a79b;background:#fff;color:#25343e;font:inherit}button{cursor:pointer}a{color:#374e60}#status{font-weight:600}#grid{display:grid;grid-template-columns:repeat(var(--columns,5),minmax(0,1fr));gap:10px}figure{margin:0;background:#fffdf8;border:1px solid #d8d1c4}figure img{width:100%;display:block}figcaption{padding:8px;font-size:12px}figcaption strong{display:block}#render-stage{position:fixed;left:-5000px;top:0;width:480px;height:420px}footer{border-top:1px solid #d8d1c4}#manifest{white-space:pre-wrap;font:11px monospace;max-height:220px;overflow:auto}@media(max-width:760px){#grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style></head><body>
+<header><h1>Cushion Studio · internal range review</h1><p>Plain, striped and directional fabrics. Front, three-quarter, true side, back and furniture views use the customer renderer and the same saved specification.</p>
+<label>Shape and finished size <select id="review-size"></select></label> <button id="render-review">Render review set</button> <a id="download-manifest" hidden>Download capture manifest</a>
+<p id="status" role="status">Loading review fabrics…</p><p>Visual example. Fullness, folds and colour may vary with fabric, filling and lighting.</p></header>
+<main><h2 id="review-title"></h2><p id="review-spec"></p><div id="grid"></div><details><summary>Exact capture specifications</summary><pre id="manifest"></pre></details></main>
+<footer>Internal review only. Proposed manufacturing details remain gated. This page creates no saved customer design, quote, cart or order.</footer>
+<div id="render-stage" aria-hidden="true"></div><script type="module" src="range-review.mjs"></script></body></html>

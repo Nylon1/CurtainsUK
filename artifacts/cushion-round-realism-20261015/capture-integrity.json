@@ -1,0 +1,245 @@
+{
+  "count": 60,
+  "captures": [
+    {
+      "file": "baseline-round-40\\0.png",
+      "sha256": "3f69b054ec85e92f3e0ff5d0da0b71a933101cd744fa65d329c5412e6f78bcce"
+    },
+    {
+      "file": "baseline-round-40\\1.png",
+      "sha256": "5c47bddc5e9d6ddec04093591b6c6193f29de06b20b30caa24b35536e9c08a71"
+    },
+    {
+      "file": "baseline-round-40\\10.png",
+      "sha256": "174ec26f69e364b83e1cd35a696ef24393035317aacdee3989c209e981e8f1de"
+    },
+    {
+      "file": "baseline-round-40\\11.png",
+      "sha256": "8eef407d4e79eadcb0de555b3a848f3ab8cd678593c899b7713f1fc33e6cc610"
+    },
+    {
+      "file": "baseline-round-40\\12.png",
+      "sha256": "949b0c26deb33ec3783d39fa9b5d6d717abd7ec77c940517143e354d74bb3a20"
+    },
+    {
+      "file": "baseline-round-40\\13.png",
+      "sha256": "174ec26f69e364b83e1cd35a696ef24393035317aacdee3989c209e981e8f1de"
+    },
+    {
+      "file": "baseline-round-40\\14.png",
+      "sha256": "b747ee1798e517922653f99c1467158a87950ffe358e97cf97a4510f1210122d"
+    },
+    {
+      "file": "baseline-round-40\\2.png",
+      "sha256": "c0f2bf9297d66d634c783d2437ac6cbd2f2fd3b87caa01a105f7937540c20646"
+    },
+    {
+      "file": "baseline-round-40\\3.png",
+      "sha256": "3f69b054ec85e92f3e0ff5d0da0b71a933101cd744fa65d329c5412e6f78bcce"
+    },
+    {
+      "file": "baseline-round-40\\4.png",
+      "sha256": "6529f8036b490ad703eff2149794c6b8013d734fcf0d7b9d8e8f7d63e9f03cc3"
+    },
+    {
+      "file": "baseline-round-40\\5.png",
+      "sha256": "941980430819115e8d3aafff31f1209c0e65da3cc1b52e82a31d773548cb08f2"
+    },
+    {
+      "file": "baseline-round-40\\6.png",
+      "sha256": "c2d4e783fb59743d6ca071aa0704aa2d8ec21b74084d228300aaa99ed9f8f38a"
+    },
+    {
+      "file": "baseline-round-40\\7.png",
+      "sha256": "e15b90e4f7e23f3f6d06251d977432216571701100af768a687db9db2512ce50"
+    },
+    {
+      "file": "baseline-round-40\\8.png",
+      "sha256": "941980430819115e8d3aafff31f1209c0e65da3cc1b52e82a31d773548cb08f2"
+    },
+    {
+      "file": "baseline-round-40\\9.png",
+      "sha256": "bb58eafa9642680e24c7ac1de468194bbc7d41e1ef006fa41ddb7be903861a81"
+    },
+    {
+      "file": "baseline-round-50\\0.png",
+      "sha256": "6462098caa70a34ef8cb43db4d394d94a052477b6e40ea18760ed9bf30342f4d"
+    },
+    {
+      "file": "baseline-round-50\\1.png",
+      "sha256": "a83c4c7fc5f7ed4b89f113eaa43b4e1a4cbf31f6da4b2891346879fee70591ce"
+    },
+    {
+      "file": "baseline-round-50\\10.png",
+      "sha256": "440793cee0e4813cdbea2a89e11eafa6a084b6c199b7e6a6759725e7d88b068d"
+    },
+    {
+      "file": "baseline-round-50\\11.png",
+      "sha256": "7420032f927d581f4d9003aefc76fe1aaa8f03d859a010c819d64b0116f00fa8"
+    },
+    {
+      "file": "baseline-round-50\\12.png",
+      "sha256": "923498abb8b820dbf842777c11aa7cd9777f3a4cb698652dd7b36280095e48de"
+    },
+    {
+      "file": "baseline-round-50\\13.png",
+      "sha256": "440793cee0e4813cdbea2a89e11eafa6a084b6c199b7e6a6759725e7d88b068d"
+    },
+    {
+      "file": "baseline-round-50\\14.png",
+      "sha256": "09e456f0617a0cdc9b7f3bdbd99e25a0367eb9ef4d1178e964d44fa52a18ac7c"
+    },
+    {
+      "file": "baseline-round-50\\2.png",
+      "sha256": "a3d889be6fbf69cc67b03dcb57dd4bb5af22ba15b89607ee8612c587b21505b6"
+    },
+    {
+      "file": "baseline-round-50\\3.png",
+      "sha256": "6462098caa70a34ef8cb43db4d394d94a052477b6e40ea18760ed9bf30342f4d"
+    },
+    {
+      "file": "baseline-round-50\\4.png",
+      "sha256": "3bf53418147a36ab8e1e48d5c1db9bbb6c518e7fa9969a0710b106338aa1dab1"
+    },
+    {
+      "file": "baseline-round-50\\5.png",
+      "sha256": "c659ce90f7e280cdaadf4f264d98d08227b3021a668ca3dce872214d7300bf75"
+    },
+    {
+      "file": "baseline-round-50\\6.png",
+      "sha256": "07e9831a302d52c9bb1d878eab076f58a83c302151e10ec8c60525e5e0dd04aa"
+    },
+    {
+      "file": "baseline-round-50\\7.png",
+      "sha256": "bbd24cca52e38f8bfb5a71837b94af9a0dbed9ce17ebb192a06cd2fe90905170"
+    },
+    {
+      "file": "baseline-round-50\\8.png",
+      "sha256": "c659ce90f7e280cdaadf4f264d98d08227b3021a668ca3dce872214d7300bf75"
+    },
+    {
+      "file": "baseline-round-50\\9.png",
+      "sha256": "35908dc90cbcbfbfcafdc5edb0661d00f2908f5145b07847610e000925bc5ee3"
+    },
+    {
+      "file": "round-40\\0.png",
+      "sha256": "02d3a7746bf46c083eae8436382456b4a42a828666ceee6ba2b8f531dbac6768"
+    },
+    {
+      "file": "round-40\\1.png",
+      "sha256": "232f3491495159149902989d2a9056f22932e01e886f9cc51d4f2f4b5de5eaf1"
+    },
+    {
+      "file": "round-40\\10.png",
+      "sha256": "aab73770484df3602f51df89e0899caeac030d6097b6282e07dcfcc1eb82fb73"
+    },
+    {
+      "file": "round-40\\11.png",
+      "sha256": "50520998e3183be73b21895a795c5896323f4e5559d5e88e3bec6afe277d7b4b"
+    },
+    {
+      "file": "round-40\\12.png",
+      "sha256": "c4eace77a6403a49e22f3c950a0d6692d9abd2d19a527e2bf344b216de494eba"
+    },
+    {
+      "file": "round-40\\13.png",
+      "sha256": "aab73770484df3602f51df89e0899caeac030d6097b6282e07dcfcc1eb82fb73"
+    },
+    {
+      "file": "round-40\\14.png",
+      "sha256": "d2e8eabe40d984d0249666d96d8e8cf01f2596ca60943265415d64f7d59cf0e5"
+    },
+    {
+      "file": "round-40\\2.png",
+      "sha256": "7974299372930dc9f3ffce90fb645736b9c2403110d631d0b65c667f4331a360"
+    },
+    {
+      "file": "round-40\\3.png",
+      "sha256": "02d3a7746bf46c083eae8436382456b4a42a828666ceee6ba2b8f531dbac6768"
+    },
+    {
+      "file": "round-40\\4.png",
+      "sha256": "77885b31f654d59011bb0d4dfafabf9b1716899d9632262be330768b576ecf91"
+    },
+    {
+      "file": "round-40\\5.png",
+      "sha256": "e247e2da5f832686aa9b93de1265c291e87a59c4d3c9ca856907f9471fcfeed6"
+    },
+    {
+      "file": "round-40\\6.png",
+      "sha256": "0a39fc88f23cc7581480a3847c97d66b9215c33921aac6460954a5e5ec234e98"
+    },
+    {
+      "file": "round-40\\7.png",
+      "sha256": "f2dfced3c50319104232f0ccdfbd58bd85bf76764ddcb994c3c7ec2c9977f40c"
+    },
+    {
+      "file": "round-40\\8.png",
+      "sha256": "e247e2da5f832686aa9b93de1265c291e87a59c4d3c9ca856907f9471fcfeed6"
+    },
+    {
+      "file": "round-40\\9.png",
+      "sha256": "98866f1d44422d077279917cc8d0d9aace2ea6b4e4106c03f3f7073319b27fd4"
+    },
+    {
+      "file": "round-50\\0.png",
+      "sha256": "af9f01ba11230bae86e90540fa432879ffd9983e2cc07650098d36470833988c"
+    },
+    {
+      "file": "round-50\\1.png",
+      "sha256": "a1479d91e69f3bad2752716decb89abadecdef9d0a451143ecabec0ddd0922b2"
+    },
+    {
+      "file": "round-50\\10.png",
+      "sha256": "1a77b76a06cdbdfb6d5da11907bc6812f9d7251c356af276714094526b064520"
+    },
+    {
+      "file": "round-50\\11.png",
+      "sha256": "724ac2636ed4390e61881a8493f6d3756eee33bc2d3b568b7d86f0ac6ce91fb1"
+    },
+    {
+      "file": "round-50\\12.png",
+      "sha256": "041d00483ccd5c19b9e0c2e585da573ce3df3b0b38db18325abc26d3c48b9b05"
+    },
+    {
+      "file": "round-50\\13.png",
+      "sha256": "1a77b76a06cdbdfb6d5da11907bc6812f9d7251c356af276714094526b064520"
+    },
+    {
+      "file": "round-50\\14.png",
+      "sha256": "0da4bc5fd50ca52e561f2a886201f8c8beb2d7b0cdc57e5c91fd34e392b2fc77"
+    },
+    {
+      "file": "round-50\\2.png",
+      "sha256": "48eefa403099812e2de2cede3f89b461b3de7081c2eac0edd7d3d97a5854f8fd"
+    },
+    {
+      "file": "round-50\\3.png",
+      "sha256": "af9f01ba11230bae86e90540fa432879ffd9983e2cc07650098d36470833988c"
+    },
+    {
+      "file": "round-50\\4.png",
+      "sha256": "c705e11660dd335892398b4a2a0cf889c6599add6264a2440387409db69f41f9"
+    },
+    {
+      "file": "round-50\\5.png",
+      "sha256": "0db48da6d01a77e84c047fb12d29fe07be3756feef1a7e15accc850daf4528b7"
+    },
+    {
+      "file": "round-50\\6.png",
+      "sha256": "7f990e32121f6fa0de34ac3682d7f3c43dc925c98e931aabffa3ba428b1b14e1"
+    },
+    {
+      "file": "round-50\\7.png",
+      "sha256": "2d19ae9c01fa116c380614937a5513612cec0def6851193bbdb5e6cc8a09981c"
+    },
+    {
+      "file": "round-50\\8.png",
+      "sha256": "0db48da6d01a77e84c047fb12d29fe07be3756feef1a7e15accc850daf4528b7"
+    },
+    {
+      "file": "round-50\\9.png",
+      "sha256": "ec90e6ae31a309e1b4bbe28ef07ba9d5b1e3bfec5df99409ae3ec01b48ca561b"
+    }
+  ]
+}

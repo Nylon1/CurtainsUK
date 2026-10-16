@@ -25,6 +25,16 @@ export async function dailyStockPosition(
     snapshotDate: null,
     discontinued: false,
   };
+  // Dormant Cushion Studio/mixed orders retain their own paid ledger. Once
+  // activated, both product domains must subtract that committed cloth from
+  // the same supplier observation, without changing the existing curtain floor.
+  if (row?.checkedAt && process.env.CUSHION_STUDIO_HOSTED_ENABLED === 'true') {
+    const { data: usage, error: usageError } = await createSupplierServiceClient().rpc('cushion_usage_since', {
+      p_supplier: supplierId, p_sku: supplierSku, p_observed: row.checkedAt,
+    });
+    if (usageError || typeof usage !== 'number' || !Number.isFinite(usage) || usage < 0) throw new Error('DAILY_STOCK_READ_UNAVAILABLE');
+    position.confirmedUsageMetres += usage;
+  }
   return {
     decision: dailyStockDecision(position),
     position,

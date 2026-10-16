@@ -1,4 +1,14 @@
 .env*
 artifacts/
-shopify-theme/
+shopify-theme/curtainsuk-new-design-live-base/
+# The hosted Cushion Studio route serves this one shared My Home script.
+# Keep the other theme files out of the gateway source upload.
+shopify-theme/curtainsuk-dawn-16/config/
+shopify-theme/curtainsuk-dawn-16/layout/
+shopify-theme/curtainsuk-dawn-16/locales/
+shopify-theme/curtainsuk-dawn-16/sections/
+shopify-theme/curtainsuk-dawn-16/snippets/
+shopify-theme/curtainsuk-dawn-16/templates/
+shopify-theme/curtainsuk-dawn-16/assets/*
+!shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-rooms-store.js
 experiments/

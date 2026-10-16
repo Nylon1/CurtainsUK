@@ -1,0 +1,48 @@
+✔ My Home preserves legacy curtains and adds only explicitly selected cushions, without duplicate Add (7.1404ms)
+✔ Cushion edit preserves identity and source design, rejects stale revision, and keeps order quantity explicit (2.5973ms)
+✔ Curtain editing replaces the signed configuration at stable order identity, preserves quantity and rejects stale edit (2.324ms)
+✔ Optional room assignment is separate from cushion specification; reopening roundtrips the whole mixed order (2.9226ms)
+✔ My Home reviews both types, one curtain delivery and latest confirmed hold-together dispatch without writes (345.338ms)
+✔ cushion-only aggregate keeps separate specs, shared minimum, quantity and exactly 495 delivery (210.5675ms)
+✔ curtain quantity multiplies stock and money and creates distinct immutable unit snapshots (15.5919ms)
+✔ missing dispatch and closed release preserve price exploration but block all checkout effects (26.8817ms)
+✔ changed quantity or dispatch invalidates exact review and retries reuse immutable mixed snapshots (47.1879ms)
+✔ mixed shared stock failure blocks the order even when each product authority passes alone (7.725ms)
+✔ hold-together does not invent conversions or start dates for incomparable estimates (0.611ms)
+✔ unavailable curtain delivery cannot fall back to the cushion-only parcel charge (4.0561ms)
+✔ cushion-only retry keeps held dispatch evidence and refuses key reuse after order membership changes (10.4015ms)
+✔ one unconfirmed filling blocks only its line while shared set prices remain withheld (7.0179ms)
+✖ set review displays identity-matched allocations, quantity and exact total while release is off (44.6307ms)
+✔ individual review uses standalone price while set allocation can differ (1.4673ms)
+✔ unready set cannot hide an independently ready individual and missing dispatch still blocks buying (3.918ms)
+✔ incomplete prices never display stale item allocations or a false complete quote (1.0296ms)
+✔ review escapes fabric, placement and dispatch text (1.7047ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1429.9109
+
+✖ failing tests:
+
+test at lib\cushion-studio\runtime\review.test.mjs:16:1
+✖ set review displays identity-matched allocations, quantity and exact total while release is off (44.6307ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Total and delivery[\s\S]*£104\.96/. Input:
+  
+  '<article class="review-piece"><strong>Cushion 1 · 50 × 50 cm</strong><p>Plain · Green<br>Unpiped · Cover only<br>Matching upright faces</p><p class="review-piece-price">£33.34 within this set</p></article><article class="review-piece"><strong>Cushion 2 · 30 × 45 cm</strong><p>Stripe · Stone<br>Unpiped · Cover only<br>Matching upright faces</p><p class="review-piece-price">Quantity 2 · £66.67 within this set</p></article><p>Estimated cushion dispatch: 3-4 calendar weeks after order confirmation.</p><p>Cushion-only delivery: £4.95, once per order.</p><p class="review-total"><span>Total with delivery</span><strong>£104.96</strong></p><p>Price, fabric availability and your saved specification will be checked again before checkout.</p><p>Ordering is not yet enabled for this configuration. You can add it to My Home while the remaining details are confirmed.</p>'
+  
+      at TestContext.<anonymous> (file:///C:/Users/hamza/curtainsuk-cushion-studio-20261014/lib/cushion-studio/runtime/review.test.mjs:20:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<article class="review-piece"><strong>Cushion 1 · 50 × 50 cm</strong><p>Plain · Green<br>Unpiped · Cover only<br>Matching upright faces</p><p class="review-piece-price">£33.34 within this set</p></article><article class="review-piece"><strong>Cushion 2 · 30 × 45 cm</strong><p>Stripe · Stone<br>Unpiped · Cover only<br>Matching upright faces</p><p class="review-piece-price">Quantity 2 · £66.67 within this set</p></article><p>Estimated cushion dispatch: 3-4 calendar weeks after order confirmation.</p><p>Cushion-only delivery: £4.95, once per order.</p><p class="review-total"><span>Total with delivery</span><strong>£104.96</strong></p><p>Price, fabric availability and your saved specification will be checked again before checkout.</p><p>Ordering is not yet enabled for this configuration. You can add it to My Home while the remaining details are confirmed.</p>',
+    expected: /Total and delivery[\s\S]*£104\.96/,
+    operator: 'match',
+    diff: 'simple'
+  }

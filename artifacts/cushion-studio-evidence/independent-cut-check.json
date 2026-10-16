@@ -1,0 +1,67 @@
+{
+  "testScope": "Independent engineering checks. 20mm seam and purchasing terms are synthetic test-only values, not owner-approved rates or a supplier order.",
+  "checkedAt": "2026-10-14T16:48:31.434Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Plain 50 cm: two 54 cm cuts fit supplier full width; 0.54 m raw cloth",
+      "passed": true
+    },
+    {
+      "name": "sdg-f1239-30 square-38 quantity 1: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-f1239-30 square-50 quantity 2: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-f1239-30 rectangle-30-45 quantity 3: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-f1239-30 square-60 quantity 1: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dstr237715 square-38 quantity 1: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dstr237715 square-50 quantity 2: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dstr237715 rectangle-30-45 quantity 3: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dstr237715 square-60 quantity 1: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dmlf236846 square-38 quantity 1: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dmlf236846 square-50 quantity 2: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dmlf236846 rectangle-30-45 quantity 3: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "sdg-dmlf236846 square-60 quantity 1: complete, nonoverlap, equal phase",
+      "passed": true
+    },
+    {
+      "name": "No matching-cut success when supplier full width is missing",
+      "passed": true
+    },
+    {
+      "name": "Non-finite placement rejected",
+      "passed": true
+    }
+  ]
+}

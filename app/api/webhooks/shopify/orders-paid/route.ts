@@ -3,6 +3,7 @@ import { recordVerifiedMtmPaidOrder } from "@/lib/storefront/mtm-paid-order-life
 import { housePaymentFromShopify, shopifyOrderAttributes, type ShopifyPaidLine } from "@/lib/storefront/mtm-house-paid-webhook";
 import { assertVerifiedShopifyWebhook } from "@/lib/storefront/security/shopify-webhook";
 import { sendOpenAiOrderCreated } from "@/lib/storefront/openai-ads-conversions";
+import { hasCushionPaidLines, recordHostedCushionPaidOrder } from '@/lib/cushion-studio/hosted-paid-order';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,6 +52,14 @@ export async function POST(request: Request) {
     if (rawBody.byteLength === 0 || rawBody.byteLength > 256_000) throw new Error("SHOPIFY_WEBHOOK_BODY_INVALID");
     assertVerifiedShopifyWebhook(rawBody, request.headers.get("x-shopify-hmac-sha256"));
     const payload = JSON.parse(new TextDecoder().decode(rawBody)) as ShopifyOrderPayload;
+    // The cushion/mixed contract owns distinct immutable manufacturing schemas.
+    // Disabled deployments reject these events for retry, never misclassify them
+    // as an ordinary curtain or acknowledge a paid order that was not recorded.
+    if (hasCushionPaidLines(payload)) {
+      if (process.env.CUSHION_STUDIO_HOSTED_ENABLED !== 'true' || process.env.CUSHION_STUDIO_WEBHOOK_ENABLED !== 'true') return new NextResponse('Cushion receiver is not enabled', { status: 503, headers: { 'Cache-Control': 'no-store' } });
+      await recordHostedCushionPaidOrder(rawBody, request.headers.get('x-shopify-hmac-sha256'));
+      return new NextResponse(null, { status: 200 });
+    }
     const orderName = typeof payload.name === "string" && payload.name.trim() ? payload.name.trim() : null;
     const paidAt = typeof payload.processed_at === "string" ? payload.processed_at : payload.created_at;
     if (!orderName || !paidAt || !Number.isFinite(Date.parse(paidAt))) throw new Error("SHOPIFY_PAID_ORDER_PAYLOAD_INVALID");

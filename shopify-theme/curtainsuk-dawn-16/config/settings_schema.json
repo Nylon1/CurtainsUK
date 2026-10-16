@@ -1473,7 +1473,7 @@
       {
         "type": "checkbox",
         "id": "curtainsuk_rooms_enabled",
-        "label": "Build My Rooms (release approval required)",
+        "label": "My Home (release approval required)",
         "default": false
       },
       {

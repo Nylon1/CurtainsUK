@@ -1,0 +1,37 @@
+# Local candidate verification — 14 October 2026
+
+- `npm test`: **576 passing**, zero failures across all nine suites, including **41 Cushion Studio/domain/runtime tests**. The first run failed only because the inherited sparse checkout omitted existing theme sections; expanding this worktree's sparse paths resolved that missing-file failure without changing source.
+- `npx tsc --noEmit`: passed.
+- Subsequent owner-selected 40% margin and 1 m minimum: **45 Cushion Studio tests passed** (34 TypeScript + 11 runtime), including the original synthetic no-minimum £29 cost → £58.00 regression, owner-minimum £38.20 filled cost → £76.40 retail / £33.20 cover cost → £66.40 retail, shared main/contrast minimums, unverified supplier override rejection and editable margin. This narrow rerun follows the earlier 576-test complete suite; it does not relabel that earlier run as exercising a later pricing change.
+- Restarted loopback server read-back for real Amalfi Herb, square 50 cm: target margin `4000`, rules `cushion-cost-basis-v2-owner-margin40`, raw cloth `0.54 m`, ordered cloth `1 m`; `ready:false` and retail total `null` honestly retain the other unresolved commercial/manufacturing inputs. This is a non-purchasing API read-back.
+- Subsequent owner-confirmed customer delivery including VAT: **46 Cushion Studio tests passed** (35 TypeScript + 11 runtime), followed by a clean TypeScript check. Coverage verifies exact 495p gross / 83p VAT / 412p net, one charge for a multi-cushion set, nullable private carrier expense and delivery contribution, unchanged product margin/customer price after recording expense, safe customer projection while goods are unready, immutable delivery evidence, paid rejection of 496p, and independently approved mixed shipping replacing the cushion charge. No complete-build or 576-test rerun is claimed for this focused change.
+- Protected capability gate: **11 groups, 133 tests passed** against the working candidate. `production-gate/result.json` records the pre-commit base HEAD because the gate ran before the candidate commit; it is working-tree evidence, not a deployed-source attestation. The unchanged protected test copy was restored after the local gate run. GitHub must rerun both required checks on the final PR SHA.
+- Shopify CLI full Dawn theme check: **zero errors**, 13 warnings in existing theme files. No store write occurred.
+- Next.js production compilation/prerender: `npm run build -- --webpack` passed. This checkout uses an external `node_modules` junction; normal Turbopack rejects that junction. Webpack was used without changing project configuration. Existing admin client prerender requires public Supabase variables, so this offline build used `https://example.invalid` and a clearly labelled noncredential placeholder key. No private service credential or hosted state was used.
+- Browser evidence: see `../cushion-studio-evidence/browser-review.md` and the final front/back, workroom and mobile images. Real plain/stripe/directional original-source evidence is separate from synthetic price fixtures.
+
+Not proven by these checks: physical mobile Safari, hosted account/session integration after migration, a current private supplier-priced quote in this local public-catalogue fallback, production Draft Order/payment execution, or deployment. Hosted migration and feature/payment flags remain unapplied/off. The local feature is reviewable; it is not publicly released.
+
+
+## Continued candidate work: offline hosted journey
+
+- `npm run test:cushions`: **51 passed** (40 TypeScript + 11 runtime); `node node_modules/typescript/bin/tsc --noEmit`: passed; `git diff --check`: passed.
+- Five new handler-level scenarios use real app-proxy HMAC signing/verification, synthetic confirmed manufacturing/price facts, temporary account-isolated file repositories and a non-writing review checkout transport. A fetch tripwire confirms zero network calls from each scenario. No environment release flags, hosted database or Shopify resources were changed.
+- Verified closed-gate zero authentication side effects; signed customer identity and anonymous rejection; expired/tampered/wrong-shop/wrong-path and cross-origin rejection; two customers sharing a design name without crossing ownership; conflict handling; safe quote projection and 495p delivery; fresh price rejection before execution; immutable snapshot preservation after editable design changes; and retry identity reuse.
+- Fixed observed customer error paths: rejected signed requests return 403 instead of 503; stale prices/required save return recoverable 409 instead of generic 503 (allowing the existing price-refresh UI); endpoint throttling retains 429 and Retry-After. Oversized/malformed input now returns 413/400, with unknown internal errors kept private.
+- This is a local HTTP-handler rehearsal, not a live app-proxy, Supabase RLS/RPC, deployed rate limiter, production Shopify checkout/payment or physical Safari proof. The earlier full suite/build evidence remains historical. Cushion dispatch/lead-time authority remains a separate pre-activation input; no curtain lead time was copied.
+
+## Protected-tip reconciliation
+
+- Merged protected `release/production` through `b926c116388a176f12f618acc9297d51b0269478`, including the separate Room Visualiser restoration and production packaging guard. The two historical ledger conflicts retained the newer 14 October release pointer and the unpublished Cushion Studio note. `git merge-base --is-ancestor origin/release/production HEAD` passed.
+- On the integrated candidate, full `npm test` passed across the existing curtain, supplier, Fabric Master, storefront, theme and Cushion Studio suites. The Cushion Studio suite reported **51 passing checks**. `npx tsc --noEmit` and `git diff --cached --check` passed. The Room Visualiser packaging regression reported **8 passing checks**.
+- GitHub's `curtainsuk-production-gate` passed on the integrated PR head. `protected-production-policy` rejected that head solely because its required exact-head `Nylon1` approval comment has not been posted; the approval for the preceding head is stale. The PR remains a draft and no protected merge or deployment occurred.
+
+
+## Dispatch readiness update
+
+- `npm run test:cushions`: **55 passed** (44 TypeScript + 11 runtime); TypeScript no-emit check passed.
+- Four new scenarios cover absent/proposed/malformed confirmation, exploration without purchase readiness, safe customer projection, exact dispatch wording/version in immutable manufacturing and Shopify line evidence, changes to dispatch invalidating a reviewed quote, and both approved-production cushion and mixed checkout rejecting missing dispatch before any write/transport call.
+- Hosted route test confirms even an enabled test purchase gate cannot expose buying without confirmed dispatch. Mixed review still computes a nonbinding total; a synthetic confirmed dispatch enables only the mocked execution path. No dispatch range or promise was configured in the application defaults, and no network or production operation was performed by these tests.
+
+- Independent browser review also found and corrected bolster review terminology (continuous body plus both matching end caps) and a floor-grain material's unsupported eight-digit Three.js colour. Its RGB colour now uses six digits with the existing explicit material opacity retained. These narrow presentation corrections do not alter geometry, manufacturing or prices.

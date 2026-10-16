@@ -1,0 +1,731 @@
+[
+  {
+    "observedAt": "2026-10-14T16:35:32.6044814Z",
+    "sourceUrl": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&fabric=sdg-f1239-30",
+    "fabric": {
+      "id": "sdg-f1239-30",
+      "supplier": "Sanderson Design Group",
+      "brand": "Clarke & Clarke",
+      "collection": "Amalfi",
+      "design": "Amalfi",
+      "colour": "Herb",
+      "fabricProfileUrl": "https://www.curtainsuk.com/pages/fabric/sdg-f1239-30-amalfi-herb",
+      "composition": [
+        {
+          "material": "Cotton",
+          "percentage": 77
+        },
+        {
+          "material": "Polyester",
+          "percentage": 23
+        }
+      ],
+      "fullWidthMm": 1370,
+      "usableWidthMm": null,
+      "verticalRepeatMm": 0,
+      "horizontalRepeatMm": 0,
+      "patternMatchType": null,
+      "weightGsm": 370,
+      "careInstructions": [],
+      "sampleAvailable": true,
+      "availability": "Fabric available",
+      "configurable": true,
+      "configurationMessage": "Ready to configure",
+      "sampleEligible": true,
+      "calculationWidthMm": 1370,
+      "visualIntelligence": {
+        "palette": {
+          "primary": "green",
+          "temperature": "cool",
+          "lightness": "mid-tone",
+          "saturation": "muted",
+          "contrast": "very-low",
+          "complexity": "tonal"
+        },
+        "pattern": {
+          "category": "textured-plain",
+          "activity": "low"
+        },
+        "texture": [
+          "subtle-texture",
+          "visible-weave"
+        ],
+        "finish": "low",
+        "character": [
+          "calm",
+          "natural",
+          "understated"
+        ],
+        "visualWeight": "balanced"
+      },
+      "fabricIntelligenceGuidance": {
+        "light": "View the surface in both daylight and lamplight. Changing light can bring its visible texture forward or make it feel quieter.",
+        "colour": "Let green anchor the scheme and compare it with the room’s largest existing surfaces. A small shared colour can connect the curtains to the rest of the room.",
+        "works": "Pair its quieter character with a favourite artwork or a more expressive piece of furniture, allowing both to remain distinct."
+      },
+      "intelligence": {
+        "dimensions": [
+          {
+            "key": "colour",
+            "label": "Colour",
+            "values": [
+              "green"
+            ]
+          },
+          {
+            "key": "pattern",
+            "label": "Pattern",
+            "values": [
+              "textured-plain"
+            ]
+          },
+          {
+            "key": "activity",
+            "label": "Visual activity",
+            "values": [
+              "low"
+            ]
+          },
+          {
+            "key": "texture",
+            "label": "Texture",
+            "values": [
+              "subtle-texture",
+              "visible-weave"
+            ]
+          },
+          {
+            "key": "finish",
+            "label": "Finish",
+            "values": [
+              "low"
+            ]
+          },
+          {
+            "key": "character",
+            "label": "Character",
+            "values": [
+              "calm",
+              "natural",
+              "understated"
+            ]
+          },
+          {
+            "key": "presence",
+            "label": "Presence",
+            "values": [
+              "balanced"
+            ]
+          }
+        ],
+        "advice": [
+          {
+            "label": "LIGHT",
+            "text": "View the surface in both daylight and lamplight. Changing light can bring its visible texture forward or make it feel quieter."
+          },
+          {
+            "label": "COLOUR",
+            "text": "Let green anchor the scheme and compare it with the room’s largest existing surfaces. A small shared colour can connect the curtains to the rest of the room."
+          },
+          {
+            "label": "WHAT WORKS",
+            "text": "Pair its quieter character with a favourite artwork or a more expressive piece of furniture, allowing both to remain distinct."
+          }
+        ]
+      },
+      "commercialStockState": "AVAILABLE",
+      "priceReady": true,
+      "currentStockConfirmed": true,
+      "imageReferences": [
+        "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f6e1c90a4d55ab6598bdd5e7ad0a9feea6126872842a5057a84e6581cdfe3b04.jpg"
+      ],
+      "images": [
+        {
+          "imageType": "MAIN",
+          "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f6e1c90a4d55ab6598bdd5e7ad0a9feea6126872842a5057a84e6581cdfe3b04.jpg",
+          "width": 1366,
+          "height": 1366,
+          "approved": true
+        }
+      ],
+      "description": "Amalfi in Herb is part of the Amalfi collection by Clarke & Clarke. Its composition is 77% cotton and 23% polyester.",
+      "colourFamilies": [
+        "UNKNOWN"
+      ],
+      "patterns": [
+        "UNKNOWN"
+      ],
+      "characters": [
+        "UNKNOWN"
+      ],
+      "styles": [
+        "UNKNOWN"
+      ],
+      "headings": [],
+      "windowTypes": [],
+      "linings": [],
+      "rooms": [],
+      "browseReady": true,
+      "orderReady": true,
+      "launchReady": true,
+      "metadata": {
+        "title": "Amalfi Herb by Clarke & Clarke | CurtainsUK",
+        "h1": "Amalfi — Herb",
+        "metaDescription": "Explore Amalfi in Herb from Clarke & Clarke’s Amalfi collection. View fabric details and plan your made-to-measure curtains.",
+        "canonicalPath": "/fabrics/clarke-and-clarke/amalfi/herb",
+        "brandPath": "/fabrics/clarke-and-clarke",
+        "collectionPath": "/fabrics/clarke-and-clarke/amalfi",
+        "alt": "Amalfi fabric in Herb by Clarke & Clarke",
+        "robots": "noindex, nofollow"
+      },
+      "feedEligible": false,
+      "roomPreview": {
+        "available": true,
+        "url": "/pages/room-visualiser?fabric=sdg-f1239-30",
+        "message": null,
+        "rendererProfile": "STANDARD"
+      }
+    },
+    "imageSha256": "2b21891a46b58335e61ab58f2d9805d851defba3504d51f6ef10ec852d78c35e"
+  },
+  {
+    "observedAt": "2026-10-14T16:35:34.9176913Z",
+    "sourceUrl": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&fabric=sdg-dstr237715",
+    "fabric": {
+      "id": "sdg-dstr237715",
+      "supplier": "Sanderson Design Group",
+      "brand": "Sanderson",
+      "collection": "Sabu Stripes and Ikats",
+      "design": "Sabu Stripe",
+      "colour": "Stone/Oak",
+      "composition": [
+        {
+          "material": "Cotton",
+          "percentage": 55
+        },
+        {
+          "material": "Linen",
+          "percentage": 45
+        }
+      ],
+      "fullWidthMm": 1415,
+      "usableWidthMm": null,
+      "verticalRepeatMm": 85,
+      "horizontalRepeatMm": 50,
+      "patternMatchType": "STRAIGHT_MATCH",
+      "weightGsm": 220,
+      "careInstructions": [],
+      "sampleAvailable": true,
+      "availability": "Fabric available",
+      "configurable": true,
+      "configurationMessage": "Ready to configure",
+      "sampleEligible": true,
+      "calculationWidthMm": 1415,
+      "visualIntelligence": {
+        "palette": {},
+        "pattern": {
+          "category": "stripe",
+          "motif": [
+            "geometric",
+            "stripe"
+          ],
+          "activity": "balanced"
+        },
+        "character": [
+          "graphic"
+        ]
+      },
+      "fabricIntelligenceGuidance": {
+        "works": "Give the stripe room to establish its rhythm beside simpler surfaces. A shared colour in a cushion or upholstered piece can connect the graphic pattern to the wider scheme."
+      },
+      "intelligence": {
+        "dimensions": [
+          {
+            "key": "pattern",
+            "label": "Pattern",
+            "values": [
+              "stripe",
+              "geometric"
+            ]
+          },
+          {
+            "key": "activity",
+            "label": "Visual activity",
+            "values": [
+              "balanced"
+            ]
+          },
+          {
+            "key": "character",
+            "label": "Character",
+            "values": [
+              "graphic"
+            ]
+          }
+        ],
+        "advice": [
+          {
+            "label": "WHAT WORKS",
+            "text": "Give the stripe room to establish its rhythm beside simpler surfaces. A shared colour in a cushion or upholstered piece can connect the graphic pattern to the wider scheme."
+          }
+        ]
+      },
+      "commercialStockState": "AVAILABLE",
+      "priceReady": true,
+      "currentStockConfirmed": true,
+      "imageReferences": [
+        "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-26f82d68a27b71efa3c6bf91140b58878204a049fa4321a0bd5eeacd983640b5.jpg"
+      ],
+      "images": [
+        {
+          "imageType": "MAIN",
+          "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-26f82d68a27b71efa3c6bf91140b58878204a049fa4321a0bd5eeacd983640b5.jpg",
+          "width": 1366,
+          "height": 1366,
+          "approved": true
+        }
+      ],
+      "description": "Sabu Stripe in Stone/Oak is part of the Sabu Stripes and Ikats collection by Sanderson. Its composition is 55% cotton and 45% linen. The vertical pattern repeats every 8.5 cm; consider this scale when planning the finished curtains.",
+      "colourFamilies": [
+        "UNKNOWN"
+      ],
+      "patterns": [
+        "UNKNOWN"
+      ],
+      "characters": [
+        "UNKNOWN"
+      ],
+      "styles": [
+        "UNKNOWN"
+      ],
+      "headings": [],
+      "windowTypes": [],
+      "linings": [],
+      "rooms": [],
+      "browseReady": true,
+      "orderReady": true,
+      "launchReady": true,
+      "metadata": {
+        "title": "Sabu Stripe Stone/Oak by Sanderson | CurtainsUK",
+        "h1": "Sabu Stripe — Stone/Oak",
+        "metaDescription": "Explore Sabu Stripe in Stone/Oak from Sanderson’s Sabu Stripes and Ikats collection. View fabric details and plan your made-to-measure curtains.",
+        "canonicalPath": "/fabrics/sanderson/sabu-stripe/stone-oak",
+        "brandPath": "/fabrics/sanderson",
+        "collectionPath": "/fabrics/sanderson/sabu-stripes-and-ikats",
+        "alt": "Sabu Stripe fabric in Stone/Oak by Sanderson",
+        "robots": "noindex, nofollow"
+      },
+      "feedEligible": false,
+      "roomPreview": {
+        "available": true,
+        "url": "/pages/room-visualiser?fabric=sdg-dstr237715",
+        "message": null,
+        "rendererProfile": "STANDARD"
+      }
+    },
+    "imageSha256": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f"
+  },
+  {
+    "observedAt": "2026-10-14T16:35:37.2433636Z",
+    "sourceUrl": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&fabric=sdg-dmlf236846",
+    "fabric": {
+      "id": "sdg-dmlf236846",
+      "supplier": "Sanderson Design Group",
+      "brand": "Morris & Co.",
+      "collection": "Lethaby Weaves",
+      "design": "Bird Weave",
+      "colour": "Brick",
+      "fabricProfileUrl": "https://www.curtainsuk.com/pages/fabric/sdg-dmlf236846-bird-weave-brick",
+      "composition": [
+        {
+          "material": "Viscose",
+          "percentage": 56
+        },
+        {
+          "material": "Cotton",
+          "percentage": 18
+        },
+        {
+          "material": "Linen",
+          "percentage": 14
+        },
+        {
+          "material": "Polyester",
+          "percentage": 12
+        }
+      ],
+      "fullWidthMm": 1375,
+      "usableWidthMm": null,
+      "verticalRepeatMm": 460,
+      "horizontalRepeatMm": 345,
+      "patternMatchType": "STRAIGHT_MATCH",
+      "weightGsm": 810,
+      "careInstructions": [],
+      "sampleAvailable": true,
+      "availability": "Fabric available",
+      "configurable": true,
+      "configurationMessage": "Ready to configure",
+      "sampleEligible": true,
+      "calculationWidthMm": 1375,
+      "visualIntelligence": {
+        "palette": {
+          "primary": "beige",
+          "secondary": [
+            "gold",
+            "green",
+            "red"
+          ],
+          "temperature": "warm",
+          "lightness": "light",
+          "saturation": "muted",
+          "contrast": "medium",
+          "complexity": "multicolour"
+        },
+        "pattern": {
+          "category": "traditional-motif",
+          "motif": [
+            "bird",
+            "flower",
+            "leaf",
+            "ornamental"
+          ],
+          "activity": "busy",
+          "directionality": "structured-repeat"
+        },
+        "texture": [
+          "visible-weave"
+        ],
+        "finish": "matte",
+        "character": [
+          "decorative",
+          "natural",
+          "refined"
+        ],
+        "visualWeight": "rich"
+      },
+      "fabricIntelligenceGuidance": {
+        "light": "A light palette can soften the visual outline of the curtains. Check it against the wall in daylight and lamplight; this does not indicate how much light the fabric transmits.",
+        "colour": "Let beige anchor the scheme, with gold and green and red as supporting colours to pick up in nearby furnishings. A small shared colour can connect the curtains to the rest of the room.",
+        "works": "Let the pattern act as a focal point, with quieter neighbouring surfaces giving the eye somewhere to rest."
+      },
+      "intelligence": {
+        "dimensions": [
+          {
+            "key": "colour",
+            "label": "Colour",
+            "values": [
+              "beige",
+              "gold",
+              "green",
+              "red"
+            ]
+          },
+          {
+            "key": "pattern",
+            "label": "Pattern",
+            "values": [
+              "traditional-motif",
+              "bird",
+              "flower",
+              "leaf",
+              "ornamental"
+            ]
+          },
+          {
+            "key": "activity",
+            "label": "Visual activity",
+            "values": [
+              "busy"
+            ]
+          },
+          {
+            "key": "texture",
+            "label": "Texture",
+            "values": [
+              "visible-weave"
+            ]
+          },
+          {
+            "key": "finish",
+            "label": "Finish",
+            "values": [
+              "matte"
+            ]
+          },
+          {
+            "key": "character",
+            "label": "Character",
+            "values": [
+              "decorative",
+              "natural",
+              "refined"
+            ]
+          },
+          {
+            "key": "presence",
+            "label": "Presence",
+            "values": [
+              "rich"
+            ]
+          }
+        ],
+        "advice": [
+          {
+            "label": "LIGHT",
+            "text": "A light palette can soften the visual outline of the curtains. Check it against the wall in daylight and lamplight; this does not indicate how much light the fabric transmits."
+          },
+          {
+            "label": "COLOUR",
+            "text": "Let beige anchor the scheme, with gold and green and red as supporting colours to pick up in nearby furnishings. A small shared colour can connect the curtains to the rest of the room."
+          },
+          {
+            "label": "WHAT WORKS",
+            "text": "Let the pattern act as a focal point, with quieter neighbouring surfaces giving the eye somewhere to rest."
+          }
+        ]
+      },
+      "commercialStockState": "AVAILABLE",
+      "priceReady": true,
+      "currentStockConfirmed": true,
+      "imageReferences": [
+        "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a657715fe551f0e1b33b149789cfb89cbf27d65929ea0a704ba94bd67b57fd33.jpg"
+      ],
+      "images": [
+        {
+          "imageType": "MAIN",
+          "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a657715fe551f0e1b33b149789cfb89cbf27d65929ea0a704ba94bd67b57fd33.jpg",
+          "width": 1366,
+          "height": 1366,
+          "approved": true
+        }
+      ],
+      "description": "Bird Weave in Brick is part of the Lethaby Weaves collection by Morris & Co.. Its composition is 56% viscose and 18% cotton and 14% linen and 12% polyester. The vertical pattern repeats every 46 cm; consider this scale when planning the finished curtains.",
+      "colourFamilies": [
+        "UNKNOWN"
+      ],
+      "patterns": [
+        "UNKNOWN"
+      ],
+      "characters": [
+        "UNKNOWN"
+      ],
+      "styles": [
+        "UNKNOWN"
+      ],
+      "headings": [],
+      "windowTypes": [],
+      "linings": [],
+      "rooms": [],
+      "browseReady": true,
+      "orderReady": true,
+      "launchReady": true,
+      "metadata": {
+        "title": "Bird Weave Brick by Morris & Co. | CurtainsUK",
+        "h1": "Bird Weave — Brick",
+        "metaDescription": "Explore Bird Weave in Brick from Morris & Co.’s Lethaby Weaves collection. View fabric details and plan your made-to-measure curtains.",
+        "canonicalPath": "/fabrics/morris-and-co/bird-weave/brick",
+        "brandPath": "/fabrics/morris-and-co",
+        "collectionPath": "/fabrics/morris-and-co/lethaby-weaves",
+        "alt": "Bird Weave fabric in Brick by Morris & Co.",
+        "robots": "noindex, nofollow"
+      },
+      "feedEligible": false,
+      "roomPreview": {
+        "available": true,
+        "url": "/pages/room-visualiser?fabric=sdg-dmlf236846",
+        "message": null,
+        "rendererProfile": "FIXED140_SINGLE_WIDTH_V1",
+        "assignment": {
+          "rendererProfile": "FIXED140_SINGLE_WIDTH_V1",
+          "fabricId": "sdg-dmlf236846",
+          "usableWidthCm": 137.5,
+          "sourceWidthPx": 1366,
+          "sourceHeightPx": 1366,
+          "sourceImage": "/room-visualiser/fixed140/12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736.jpg",
+          "sha256": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736"
+        }
+      }
+    },
+    "imageSha256": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736"
+  },
+  {
+    "observedAt": "2026-10-14T16:35:39.1343548Z",
+    "sourceUrl": "https://www.curtainsuk.com/apps/curtainsuk-decision/catalog?view=retail&fabric=sdg-mind237581",
+    "fabric": {
+      "id": "sdg-mind237581",
+      "supplier": "Sanderson Design Group",
+      "brand": "Morris & Co.",
+      "collection": "Indoor Outdoor Weaves",
+      "design": "Bird & Anemone Weave",
+      "colour": "Apricot/Linen",
+      "fabricProfileUrl": "https://www.curtainsuk.com/pages/fabric/sdg-mind237581-bird-and-anemone-weave-apricot-linen",
+      "composition": [
+        {
+          "material": "Polypropylene",
+          "percentage": 100
+        }
+      ],
+      "fullWidthMm": 1380,
+      "usableWidthMm": null,
+      "verticalRepeatMm": 780,
+      "horizontalRepeatMm": 320,
+      "patternMatchType": "STRAIGHT_MATCH",
+      "weightGsm": 640,
+      "careInstructions": [],
+      "sampleAvailable": true,
+      "availability": "Fabric available",
+      "configurable": true,
+      "configurationMessage": "Ready to configure",
+      "sampleEligible": true,
+      "calculationWidthMm": 1380,
+      "visualIntelligence": {
+        "palette": {},
+        "pattern": {
+          "category": "botanical",
+          "motif": [
+            "bird",
+            "flower",
+            "leaf",
+            "ornamental"
+          ],
+          "activity": "busy",
+          "directionality": "structured-repeat"
+        },
+        "texture": [
+          "relief",
+          "visible-weave"
+        ],
+        "finish": "low",
+        "character": [
+          "decorative",
+          "dramatic",
+          "expressive",
+          "sophisticated"
+        ]
+      },
+      "fabricIntelligenceGuidance": {
+        "light": "View the surface in both daylight and lamplight. Changing light can bring its visible texture forward or make it feel quieter.",
+        "works": "Let the pattern act as a focal point, with quieter neighbouring surfaces giving the eye somewhere to rest."
+      },
+      "intelligence": {
+        "dimensions": [
+          {
+            "key": "pattern",
+            "label": "Pattern",
+            "values": [
+              "botanical",
+              "bird",
+              "flower",
+              "leaf",
+              "ornamental"
+            ]
+          },
+          {
+            "key": "activity",
+            "label": "Visual activity",
+            "values": [
+              "busy"
+            ]
+          },
+          {
+            "key": "texture",
+            "label": "Texture",
+            "values": [
+              "relief",
+              "visible-weave"
+            ]
+          },
+          {
+            "key": "finish",
+            "label": "Finish",
+            "values": [
+              "low"
+            ]
+          },
+          {
+            "key": "character",
+            "label": "Character",
+            "values": [
+              "decorative",
+              "dramatic",
+              "expressive",
+              "sophisticated"
+            ]
+          }
+        ],
+        "advice": [
+          {
+            "label": "LIGHT",
+            "text": "View the surface in both daylight and lamplight. Changing light can bring its visible texture forward or make it feel quieter."
+          },
+          {
+            "label": "WHAT WORKS",
+            "text": "Let the pattern act as a focal point, with quieter neighbouring surfaces giving the eye somewhere to rest."
+          }
+        ]
+      },
+      "commercialStockState": "AVAILABLE",
+      "priceReady": true,
+      "currentStockConfirmed": true,
+      "imageReferences": [
+        "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f03184dc54b4a5f0070fae7eedc7c95d2b7360fd9acba890f1ad513e922b05f0.jpg"
+      ],
+      "images": [
+        {
+          "imageType": "MAIN",
+          "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f03184dc54b4a5f0070fae7eedc7c95d2b7360fd9acba890f1ad513e922b05f0.jpg",
+          "width": 1366,
+          "height": 1366,
+          "approved": true
+        }
+      ],
+      "description": "Bird & Anemone Weave in Apricot/Linen is part of the Indoor Outdoor Weaves collection by Morris & Co.. Its composition is 100% polypropylene. The vertical pattern repeats every 78 cm; consider this scale when planning the finished curtains.",
+      "colourFamilies": [
+        "UNKNOWN"
+      ],
+      "patterns": [
+        "UNKNOWN"
+      ],
+      "characters": [
+        "UNKNOWN"
+      ],
+      "styles": [
+        "UNKNOWN"
+      ],
+      "headings": [],
+      "windowTypes": [],
+      "linings": [],
+      "rooms": [],
+      "browseReady": true,
+      "orderReady": true,
+      "launchReady": true,
+      "metadata": {
+        "title": "Bird & Anemone Weave Apricot/Linen by Morris & Co. | CurtainsUK",
+        "h1": "Bird & Anemone Weave — Apricot/Linen",
+        "metaDescription": "Explore Bird & Anemone Weave in Apricot/Linen from Morris & Co.’s Indoor Outdoor Weaves collection. View fabric details and plan your made-to-measure curtains.",
+        "canonicalPath": "/fabrics/morris-and-co/bird-and-anemone-weave/apricot-linen",
+        "brandPath": "/fabrics/morris-and-co",
+        "collectionPath": "/fabrics/morris-and-co/indoor-outdoor-weaves",
+        "alt": "Bird & Anemone Weave fabric in Apricot/Linen by Morris & Co.",
+        "robots": "noindex, nofollow"
+      },
+      "feedEligible": false,
+      "roomPreview": {
+        "available": true,
+        "url": "/pages/room-visualiser?fabric=sdg-mind237581",
+        "message": null,
+        "rendererProfile": "FIXED140_SINGLE_WIDTH_V1",
+        "assignment": {
+          "rendererProfile": "FIXED140_SINGLE_WIDTH_V1",
+          "fabricId": "sdg-mind237581",
+          "usableWidthCm": 138,
+          "sourceWidthPx": 1366,
+          "sourceHeightPx": 1366,
+          "sourceImage": "/room-visualiser/fixed140/43c9ad466e3b1c651da72962d8f7879204b7ebac50e4476f3f8361c8d60b5d48.jpg",
+          "sha256": "43c9ad466e3b1c651da72962d8f7879204b7ebac50e4476f3f8361c8d60b5d48"
+        }
+      }
+    },
+    "imageSha256": "43c9ad466e3b1c651da72962d8f7879204b7ebac50e4476f3f8361c8d60b5d48"
+  }
+]

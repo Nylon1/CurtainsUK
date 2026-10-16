@@ -1,0 +1,24 @@
+✔ My Home preserves legacy curtains and adds only explicitly selected cushions, without duplicate Add (6.6876ms)
+✔ Cushion edit preserves identity and source design, rejects stale revision, and keeps order quantity explicit (2.5193ms)
+✔ Curtain editing replaces the signed configuration at stable order identity, preserves quantity and rejects stale edit (2.2021ms)
+✔ Optional room assignment is separate from cushion specification; reopening roundtrips the whole mixed order (2.6842ms)
+✔ My Home reviews both types, one curtain delivery and latest confirmed hold-together dispatch without writes (342.9568ms)
+✔ cushion-only aggregate keeps separate specs, shared minimum, quantity and exactly 495 delivery (208.1419ms)
+✔ curtain quantity multiplies stock and money and creates distinct immutable unit snapshots (12.5282ms)
+✔ missing dispatch and closed release preserve price exploration but block all checkout effects (26.6513ms)
+✔ changed quantity or dispatch invalidates exact review and retries reuse immutable mixed snapshots (37.3541ms)
+✔ mixed shared stock failure blocks the order even when each product authority passes alone (7.1863ms)
+✔ hold-together does not invent conversions or start dates for incomparable estimates (0.4258ms)
+✔ unavailable curtain delivery cannot fall back to the cushion-only parcel charge (3.1634ms)
+✔ cushion-only retry keeps held dispatch evidence and refuses key reuse after order membership changes (7.1814ms)
+✔ one unconfirmed filling blocks only its line while shared set prices remain withheld (4.1611ms)
+✔ cushion-only checkout requires explicit specification confirmation (2.6336ms)
+✔ nested hidden corner and bay inputs cannot block supported curtain live-price validation (4.3741ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1321.9785

@@ -1,0 +1,284 @@
+[
+  {
+    "name": "square-comparison-baseline-front",
+    "before": {
+      "angle": [
+        "inspect-angle-straight"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "baseline"
+      ],
+      "x": "100",
+      "y": "100"
+    },
+    "after": {
+      "angle": [
+        "inspect-angle-straight"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "baseline"
+      ],
+      "x": "100",
+      "y": "100"
+    }
+  },
+  {
+    "name": "square-comparison-experimental-front",
+    "before": {
+      "angle": [
+        "inspect-angle-straight"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "soft-fullness"
+      ],
+      "x": "100",
+      "y": "100"
+    },
+    "after": {
+      "angle": [
+        "inspect-angle-straight"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "soft-fullness"
+      ],
+      "x": "100",
+      "y": "100"
+    }
+  },
+  {
+    "name": "square-comparison-experimental-three-quarter",
+    "before": {
+      "angle": [
+        "inspect-angle-three-quarter"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "soft-fullness"
+      ],
+      "x": "100",
+      "y": "100"
+    },
+    "after": {
+      "angle": [
+        "inspect-angle-three-quarter"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "soft-fullness"
+      ],
+      "x": "100",
+      "y": "100"
+    }
+  },
+  {
+    "name": "square-comparison-baseline-three-quarter",
+    "before": {
+      "angle": [
+        "inspect-angle-three-quarter"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "baseline"
+      ],
+      "x": "100",
+      "y": "100"
+    },
+    "after": {
+      "angle": [
+        "inspect-angle-three-quarter"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "baseline"
+      ],
+      "x": "100",
+      "y": "100"
+    }
+  },
+  {
+    "name": "square-comparison-baseline-side",
+    "before": {
+      "angle": [
+        "inspect-angle-side"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "baseline"
+      ],
+      "x": "100",
+      "y": "100"
+    },
+    "after": {
+      "angle": [
+        "inspect-angle-side"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "baseline"
+      ],
+      "x": "100",
+      "y": "100"
+    }
+  },
+  {
+    "name": "square-comparison-experimental-side",
+    "before": {
+      "angle": [
+        "inspect-angle-side"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "soft-fullness"
+      ],
+      "x": "100",
+      "y": "100"
+    },
+    "after": {
+      "angle": [
+        "inspect-angle-side"
+      ],
+      "edge": [
+        "Unpiped"
+      ],
+      "fabric": [
+        {
+          "id": "sdg-f1239-30",
+          "text": "AmalfiHerb"
+        }
+      ],
+      "face": "true",
+      "filling": "filled",
+      "size": "square-50",
+      "variant": [
+        "soft-fullness"
+      ],
+      "x": "100",
+      "y": "100"
+    }
+  }
+]

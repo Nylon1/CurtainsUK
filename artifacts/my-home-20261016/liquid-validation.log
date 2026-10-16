@@ -1,0 +1,2 @@
+Error: could not run the theme validator for --api liquid: Cannot find package '@shopify/theme-check-common' imported from C:\Users\hamza\.codex\plugins\cache\openai-curated-remote\shopify\4.1.2\skills\shopify\scripts\_validate_theme.mjs
+Expected it alongside validate.mjs.

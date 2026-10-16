@@ -1,0 +1,57 @@
+
+> apex-curtains-site@0.1.0 test:cushions
+> node --import ./scripts/cushion-preview-register.mjs --import tsx --test lib/cushion-studio/__tests__/*.test.ts lib/cushion-studio/runtime/*.test.mjs
+
+✔ durable local save restores revisions and rejects lost updates and path traversal (78.2344ms)
+✔ revalidation, immutable shared-price snapshots, transport and paid mixed packets work end to end (99.1099ms)
+✔ customer quote excludes raw material rates, costs and manufacturing diagnostics (1.2294ms)
+✔ checkout retry reuses original immutable identities after a transport timeout (18.8141ms)
+✔ 32-piece design checks out with immutable main and contrast procurement references (123.3301ms)
+✔ calibration requires original evidence and uses independent 1000 mm Y extent (0.7914ms)
+✔ offline SQL keeps snapshots immutable, domains distinct, browser roles denied (3440.8314ms)
+✔ plain 50 cm uses two separate 54 cm cuts across actual supplier Full Width (32.9849ms)
+✔ patterned matching includes phase alignment and leading waste, with two matching upright cuts (1.341ms)
+✔ unknown and half-drop lattices never promise identical reproducible cuts (1.1312ms)
+✔ a selected motif that cannot fit the cutting width fails closed (1.1581ms)
+✔ source bounds use independently confirmed X/Y extents; never stretch or tile (0.4098ms)
+✔ bolster has one continuous wrap plus two identical end caps (0.8018ms)
+✔ set packing combines compatible cloth before supplier minimum/increment (5.5238ms)
+✔ fixed basis is £18.20 filled and £13.20 cover, markup is not substituted for margin (2.3042ms)
+✔ owner's editable 40 percent starting margin prices £29 net cost at £58 including VAT (2.6779ms)
+✔ owner 1 metre minimum prices the plain 50 cm filled example at £76.40 and cover at £66.40 (2.1369ms)
+✔ 1 metre minimum applies once per distinct cloth group; larger cuts still need increment evidence (1.8041ms)
+✔ unverified supplier terms cannot override the owner minimum or invent an increment (0.5997ms)
+✔ missing cost, construction, piping, minimum or margin remain explicit blockers (2.5534ms)
+✔ single making rate produces owner fixed cost totals with no duplicate baseline or cord charge (4.0033ms)
+✔ round bolster and large bed inserts never silently inherit the standard £5 (2.1093ms)
+✔ editable making rates affect only their selected rate and retain proposed workroom gate (1.4963ms)
+✔ set prices follow attributable fabric and making costs and reconcile every penny (1.1927ms)
+✔ missing calculation width cannot claim matching verification without complete cuts (0.3678ms)
+✔ VAT rounds per quantity-one Shopify line, including the 1338p counterexample (1.4636ms)
+✔ immutable quote hash includes source identity, placement and rate rules (1.8446ms)
+✔ customer input cannot set rates or independent back-face placement (1.4547ms)
+✔ mixed review revalidates signed curtains and one cushion plan, sums shared stock and one shipping charge (75.3422ms)
+✔ individually sufficient stock cannot pass when combined curtain and cushion requirements exceed it (10.8448ms)
+✔ mixed checkout binds reviewed membership and persists native types; retry reuses original snapshot IDs (33.0006ms)
+✔ local and hosted gates are off by default; cross-origin preview and checkout fail closed (1034.7411ms)
+✔ hosted owners derive from the signed shop/customer and cannot be anonymous (12.1957ms)
+✔ paid webhook link reads the server-created completed draft and rejects a copied order (53.3435ms)
+✔ 32 cushions exceed furniture capacity into an explicit tray without duplicated positions (9.5003ms)
+✔ 70cm square fits armchair straight but rotated width cannot be silently clamped (0.7401ms)
+✔ resolved layer slots remain stable across save/restore (3.1603ms)
+✔ front and rear preserve identical upright artwork in outward coordinates (8.7631ms)
+✔ flat artwork coordinates use independent physical X and Y calibration (1.2546ms)
+✔ finite coverage bounds reserve the complete bolster circumference (0.977ms)
+✔ front and rear share a closed seam and piping can use those same boundary points (1.108ms)
+✔ confirmed piping preserves physical strip joins and uses only visible cord circumference (1.6121ms)
+✔ undo and comparison retain the latest saved revision of a previously saved design (3.0316ms)
+✔ undo across a new design restores server revision, selection and workflow (0.7712ms)
+✔ restoring another saved design can be undone without losing prior revision (0.7334ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4919.4853

@@ -1,0 +1,333 @@
+[
+  {
+    "sourceUrl": "https://www.dunelm.com/product/cotton-cushion-pad-1000114896",
+    "checkedAt": "2026-10-15T21:56:36.678129+00:00",
+    "productId": "1000114896",
+    "productName": "Square Cotton Cushion Pad",
+    "skus": [
+      {
+        "id": "30678578",
+        "name": "Cotton Cushion Pad 037x037",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "37cm x 37cm"
+        },
+        "price": {
+          "now": 4
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678578.jpg",
+            "30678578_alt01.jpg",
+            "30678578_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287929",
+        "name": "Cushion Pad 67x67",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "67cm x 67cm"
+        },
+        "price": {
+          "now": 12
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287929.jpg",
+            "30287929_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30926443",
+        "name": "Cotton Cushion Pad 47x47",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "47cm x 47cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30926443.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287927",
+        "name": "Cotton Cushion Pad 57x57",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "57cm x 57cm"
+        },
+        "price": {
+          "now": 9
+        },
+        "inStock": false,
+        "media": {
+          "image": [
+            "30287927.jpg",
+            "30287927_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287928",
+        "name": "Cotton Cushion Pad 62x62",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "62cm x 62cm"
+        },
+        "price": {
+          "now": 10
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287928.jpg",
+            "30287928_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287926",
+        "name": "Cotton Cushion Pad 52x52",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "52cm x 52cm"
+        },
+        "price": {
+          "now": 7
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287926.jpg",
+            "30287926_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678641",
+        "name": "Cotton Insert 70x70cm",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "70cm x 70cm"
+        },
+        "price": {
+          "now": 14
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678641.jpg",
+            "30678641_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287924",
+        "name": "Cotton Cushion Pad 42x42",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "42cm x 42cm"
+        },
+        "price": {
+          "now": 5
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287924.jpg",
+            "30287924_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287925",
+        "name": "Cotton Cushion Pad 45x45",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "45cm x 45cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287925.jpg",
+            "30287925_alt01.jpg",
+            "30287925_alt09.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678577",
+        "name": "Cotton Cushion Pad 032x032",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "30cm x 30cm"
+        },
+        "price": {
+          "now": 3.5
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678577.jpg",
+            "30678577_alt01.jpg",
+            "30678577_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      }
+    ]
+  },
+  {
+    "sourceUrl": "https://www.dunelm.com/product/cotton-cushion-pad-1000159252",
+    "checkedAt": "2026-10-15T21:56:37.198906+00:00",
+    "productId": "1000159252",
+    "productName": "Cotton Cushion Pad",
+    "skus": [
+      {
+        "id": "30926442",
+        "name": "Cotton Cushion Pad 41x15",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "41cm x 15cm"
+        },
+        "price": {
+          "now": 5
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30926442.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678580",
+        "name": "Cotton Insert 40x60cm",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "40cm x 60cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": false,
+        "media": {
+          "image": [
+            "30678580.jpg",
+            "30678580_alt01.jpg",
+            "30678580_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30663252",
+        "name": "Cotton Cushion Pad 30x50cm White",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "30cm x 50cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30663252.jpg",
+            "30663252_alt01.jpg",
+            "30663252_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30926140",
+        "name": "Cotton Cushion Pad 46x20",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "46cm x 20cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30926140.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678579",
+        "name": "Cotton Insert 30x40cm",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "30cm x 40cm"
+        },
+        "price": {
+          "now": 3
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678579.jpg",
+            "30678579_alt01.jpg",
+            "30678579_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      }
+    ]
+  },
+  {
+    "sourceUrl": "https://www.dunelm.com/product/simply-microfibre-rectangular-cushion-pad-1000109209",
+    "checkedAt": "2026-10-15T21:56:37.576470+00:00",
+    "productId": "1000109209",
+    "productName": "Microfibre Rectangular Cushion Pad",
+    "skus": [
+      {
+        "id": "30287923",
+        "name": "Essentials Microfibre Cushion Pad 32x52",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "32cm x 52cm"
+        },
+        "price": {
+          "now": 2.75
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287923.jpg",
+            "30287923_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      }
+    ]
+  }
+]

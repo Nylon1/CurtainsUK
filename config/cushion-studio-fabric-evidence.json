@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "authority": "Owner source-image calibration confirmation, 2026-10-14",
+  "fabrics": {
+    "sdg-f1239-30": {
+      "originalImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f6e1c90a4d55ab6598bdd5e7ad0a9feea6126872842a5057a84e6581cdfe3b04.jpg",
+      "fullWidthMm": 1370,
+      "sourceHash": "2b21891a46b58335e61ab58f2d9805d851defba3504d51f6ef10ec852d78c35e",
+      "evidence": "Owner confirmed all source fabric images represent one full width by 1 metre on 2026-10-14; original approved MAIN image and full fabric width read from existing customer-safe catalogue at 10/14/2026 16:35:32. No independent physical measurement or seamless tile assertion.",
+      "imageHeightMm": 1000,
+      "sourceRecord": "artifacts/cushion-studio-evidence/source-records.json"
+    },
+    "sdg-dstr237715": {
+      "originalImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-26f82d68a27b71efa3c6bf91140b58878204a049fa4321a0bd5eeacd983640b5.jpg",
+      "fullWidthMm": 1415,
+      "sourceHash": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f",
+      "evidence": "Owner confirmed all source fabric images represent one full width by 1 metre on 2026-10-14; original approved MAIN image and full fabric width read from existing customer-safe catalogue at 10/14/2026 16:35:34. No independent physical measurement or seamless tile assertion.",
+      "imageHeightMm": 1000,
+      "sourceRecord": "artifacts/cushion-studio-evidence/source-records.json"
+    },
+    "sdg-dmlf236846": {
+      "originalImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a657715fe551f0e1b33b149789cfb89cbf27d65929ea0a704ba94bd67b57fd33.jpg",
+      "fullWidthMm": 1375,
+      "sourceHash": "12e9ba20b35f75b725cd99ca999467de929501a392572744bde6c54ebefef736",
+      "evidence": "Owner confirmed all source fabric images represent one full width by 1 metre on 2026-10-14; original approved MAIN image and full fabric width read from existing customer-safe catalogue at 10/14/2026 16:35:37. No independent physical measurement or seamless tile assertion.",
+      "imageHeightMm": 1000,
+      "sourceRecord": "artifacts/cushion-studio-evidence/source-records.json",
+      "directional": true
+    },
+    "sdg-mind237581": {
+      "originalImageUrl": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f03184dc54b4a5f0070fae7eedc7c95d2b7360fd9acba890f1ad513e922b05f0.jpg",
+      "fullWidthMm": 1380,
+      "sourceHash": "43c9ad466e3b1c651da72962d8f7879204b7ebac50e4476f3f8361c8d60b5d48",
+      "evidence": "Owner confirmed all source fabric images represent one full width by 1 metre on 2026-10-14; original approved MAIN image and full fabric width read from existing customer-safe catalogue at 10/14/2026 16:35:39. No independent physical measurement or seamless tile assertion.",
+      "imageHeightMm": 1000,
+      "sourceRecord": "artifacts/cushion-studio-evidence/source-records.json"
+    }
+  }
+}

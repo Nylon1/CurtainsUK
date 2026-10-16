@@ -1,0 +1,68 @@
+{
+  "configurator": {
+    "angle": [
+      "inspect-angle-three-quarter"
+    ],
+    "edge": [
+      "Unpiped"
+    ],
+    "fabric": [
+      {
+        "id": "sdg-dmlf236846",
+        "text": "Bird WeaveBrick"
+      }
+    ],
+    "face": "true",
+    "filling": "filled",
+    "size": "square-50",
+    "variant": [
+      "soft-fullness"
+    ],
+    "x": "100",
+    "y": "100"
+  },
+  "sofaBefore": {
+    "angle": [
+      "inspect-angle-three-quarter"
+    ],
+    "edge": [
+      "Unpiped"
+    ],
+    "fabric": [
+      {
+        "id": "sdg-dmlf236846",
+        "text": "Bird WeaveBrick"
+      }
+    ],
+    "face": "true",
+    "filling": "filled",
+    "size": "square-50",
+    "variant": [
+      "soft-fullness"
+    ],
+    "x": "100",
+    "y": "100"
+  },
+  "sofaAfter": {
+    "angle": [
+      "inspect-angle-three-quarter"
+    ],
+    "edge": [
+      "Unpiped"
+    ],
+    "fabric": [
+      {
+        "id": "sdg-dmlf236846",
+        "text": "Bird WeaveBrick"
+      }
+    ],
+    "face": "true",
+    "filling": "filled",
+    "size": "square-50",
+    "variant": [
+      "soft-fullness"
+    ],
+    "x": "100",
+    "y": "100"
+  }
+}

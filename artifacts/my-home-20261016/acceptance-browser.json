@@ -1,0 +1,92 @@
+{
+  "recordedAt": "2026-10-16T09:40:57.343Z",
+  "environment": "Isolated 127.0.0.1 local fixture; no hosted writes or checkout",
+  "checks": [
+    {
+      "step": "curtain-only",
+      "url": "http://127.0.0.1:4375/pages/build-my-rooms?added=3551d0e4-ee54-4ff3-8cbe-8682f8d5ab5b",
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n1 piece · 1 configured item\n\nProducts\n£504.00\nOne delivery\n£12.95\nTotal\n£516.95\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 5-6 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved.",
+      "itemIds": [
+        "f036c870-4c74-41d3-8b8c-18d42f6a4d7f"
+      ]
+    },
+    {
+      "step": "curtain-edit",
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n1 piece · 1 configured item\n\nProducts\n£504.00\nOne delivery\n£12.95\nTotal\n£516.95\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 5-6 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved.",
+      "itemIds": [
+        "f036c870-4c74-41d3-8b8c-18d42f6a4d7f"
+      ]
+    },
+    {
+      "step": "individual-cushion-review",
+      "text": "×\n\nYOUR FINISHING TOUCHES\n\nReview your cushion\nCushion 1 · 45 × 45 cm\n\nPlain weave · Sage\nUnpiped · Cover only\nShared front/back placement: 2.2 cm across, 0.7 cm down.\n\n£66.40\n\nEstimated cushion dispatch: 3-4 calendar weeks after order confirmation. This is a dispatch estimate, not a guaranteed delivery date.\n\nCushion-only delivery: £4.95, once per order.\n\nTotal with delivery\n£71.35\n\nPrice, fabric availability and your saved specification will be checked again before checkout.\n\nOrdering is not yet enabled for this configuration. You can add it to My Home while the remaining details are confirmed.\n\nAdd to my order"
+    },
+    {
+      "step": "saved-design-not-ordered",
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n1 piece · 1 configured item\n\nProducts\n£504.00\nOne delivery\n£12.95\nTotal\n£516.95\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 5-6 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved."
+    },
+    {
+      "step": "saved-pair-reopened",
+      "pieces": "1\n2",
+      "filling": "cover"
+    },
+    {
+      "step": "mixed-order-two-cushions",
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n3 pieces · 3 configured items\n\nProducts\n£596.79\nOne delivery\n£12.95\nTotal\n£609.74\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 5-6 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved.",
+      "items": [
+        {
+          "id": "f036c870-4c74-41d3-8b8c-18d42f6a4d7f",
+          "text": "Wave heading study\nNot your chosen fabric or room.\nYour chosen fabric ↗\n\nSTANDARD WINDOW\n\nEscher\nMocha\n\nTest\n\nTrack / pole width\n190 cm\nCurtain drop\n220 cm\nHardware\nTrack\nHeading\nWave\nLining\nBlackout\nCurtains\nPair\nRoom optional\nNo room assigned\nAcceptance lounge\n£504.00\nItem total\nQuantity\n−\n+\nEdit\nRemove\nAdd another curtain\n\nSaved on this device. Price and availability are checked before checkout.\n\nView fabric details →"
+        },
+        {
+          "id": "8852519e-a3e1-462c-9285-25dd95fb17f5",
+          "text": "Preparing your cushion style preview…\nCushion style study\nNot your chosen fabric.\nYour chosen fabric ↗\n\nCUSHION\n\nPlain weave · Sage\n\nFinished cover\n45 × 45 cm\nFilling\nCover only\nFinish\nUnpiped\nPattern\nMatching placement\nRoom optional\nNo room assigned\nAcceptance lounge\n£46.39\nItem total\nQuantity\n−\n+\nEdit\nRemove\nAdd another cushion\n\nSaved on this device. Price and availability are checked before checkout."
+        },
+        {
+          "id": "5712e165-ea49-420d-882c-49ad464d5698",
+          "text": "Preparing your cushion style preview…\nCushion style study\nNot your chosen fabric.\nYour chosen fabric ↗\n\nCUSHION\n\nPlain weave · Sage\n\nFinished cover\n45 × 45 cm\nFilling\nCover only\nFinish\nUnpiped\nPattern\nMatching placement\nRoom optional\nNo room assigned\nAcceptance lounge\n£46.40\nItem total\nQuantity\n−\n+\nEdit\nRemove\nAdd another cushion\n\nSaved on this device. Price and availability are checked before checkout."
+        }
+      ]
+    },
+    {
+      "step": "cushion-edit-reload",
+      "items": [
+        {
+          "id": "f036c870-4c74-41d3-8b8c-18d42f6a4d7f",
+          "text": "Wave heading study\nNot your chosen fabric or room.\nYour chosen fabric ↗\n\nSTANDARD WINDOW\n\nEscher\nMocha\n\nTest\n\nTrack / pole width\n190 cm\nCurtain drop\n220 cm\nHardware\nTrack\nHeading\nWave\nLining\nBlackout\nCurtains\nPair\nRoom optional\nNo room assigned\nAcceptance lounge\n£504.00\nItem total\nQuantity\n−\n+\nEdit\nRemove\nAdd another curtain\n\nSaved on this device. Price and availability are checked before checkout.\n\nView fabric details →"
+        },
+        {
+          "id": "8852519e-a3e1-462c-9285-25dd95fb17f5",
+          "text": "Preparing your cushion style preview…\nCushion style study\nNot your chosen fabric.\nYour chosen fabric ↗\n\nCUSHION\n\nPlain weave · Sage\n\nFinished cover\n50 × 50 cm\nFilling\nCover only\nFinish\nUnpiped\nPattern\nMatching placement\nRoom optional\nNo room assigned\nAcceptance lounge\n£48.60\nItem total\nQuantity\n−\n+\nEdit\nRemove\nAdd another cushion\n\nSaved on this device. Price and availability are checked before checkout."
+        },
+        {
+          "id": "5712e165-ea49-420d-882c-49ad464d5698",
+          "text": "Preparing your cushion style preview…\nCushion style study\nNot your chosen fabric.\nYour chosen fabric ↗\n\nCUSHION\n\nPlain weave · Sage\n\nFinished cover\n45 × 45 cm\nFilling\nCover only\nFinish\nUnpiped\nPattern\nMatching placement\nRoom optional\nNo room assigned\nAcceptance lounge\n£44.60\nItem total\nQuantity\n−\n+\nEdit\nRemove\nAdd another cushion\n\nSaved on this device. Price and availability are checked before checkout."
+        }
+      ],
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n3 pieces · 3 configured items\n\nProducts\n£597.20\nOne delivery\n£12.95\nTotal\n£610.15\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 5-6 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved."
+    },
+    {
+      "step": "mobile",
+      "viewport": {
+        "height": 844,
+        "scrollWidth": 375,
+        "width": 390
+      },
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n3 pieces · 3 configured items\n\nProducts\n£597.20\nOne delivery\n£12.95\nTotal\n£610.15\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 5-6 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved."
+    },
+    {
+      "step": "cushion-only-set-after-curtain-removal",
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n2 pieces · 2 configured items\n\nProducts\n£93.20\nOne delivery\n£4.95\nTotal\n£98.15\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 3-4 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved."
+    },
+    {
+      "step": "single-cushion-after-set-removal",
+      "summary": "BROUGHT TOGETHER\n\nYour order\n\n1 piece · 1 configured item\n\nProducts\n£66.40\nOne delivery\n£4.95\nTotal\n£71.35\n\nPrices refreshed for your order.\n\nAll items are held and dispatched together. Estimated dispatch: 3-4 calendar weeks after order confirmation, based on the latest product readiness estimate. This is not a guaranteed delivery date.\n\nDelivery postcode\nUpdate order review\nI have checked the specifications and measurements of every item.\nContinue to Shopify checkout\n\nOne payment. All your chosen pieces together.\n\nOrdering is not yet enabled for this review. Your items remain saved."
+    },
+    {
+      "check": "empty-after-room-removal-and-reload",
+      "snapshot": "- generic: UNPUBLISHED LOCAL REVIEW · Synthetic fabric, prices, stock and curtain dispatch · No Shopify writes or payment\n- navigation:\n  - link \"CurtainsUK\":\n    - /url: /pages/build-my-rooms\n  - link \"My Home\":\n    - /url: /pages/build-my-rooms\n- main:\n  - img \"Room inspiration with neutral curtains\"\n  - generic: Room inspiration\n  - paragraph: One place, whole home\n  - heading \"My Home\" [level=1]\n  - paragraph: Real homes. Room by room.\n  - paragraph: Find what feels right for every room. Bring curtains and cushions together at your own pace, or start with just one piece.\n  - button \"Add a product\": Add a product +\n  - link \"Review my order ↓\":\n    - /url: \"#myhome-order\"\n  - list \"Your order journey\":\n    - generic: \"1\"\n    - text: Choose your pieces\n    - generic: \"2\"\n    - text: Review in My Home\n    - generic: \"3\"\n    - text: One secure checkout\n  - status: Saved on this device. Room assignment is optional.\n  - region \"Items in your order\":\n    - heading \"A little change starts here.\" [level=2]\n    - paragraph: Add curtains or a cushion. Saved designs and room arrangements stay separate until you add them to this order.\n    - button \"Choose your first product\"\n    - button \"Create an optional room\"\n  - complementary:\n    - paragraph: BROUGHT TOGETHER\n    - heading \"Your order\" [level=2]\n    - paragraph: 0 pieces · 0 configured items\n    - term: Products\n    - definition: £0.00\n    - term: One delivery\n    - definition: £0.00\n    - term: Total\n    - definition: £0.00\n    - paragraph: Add a product to begin your order.\n    - paragraph: Your dispatch estimate will appear when you add your chosen products.\n    - text: Delivery postcode\n    - textbox \"Delivery postcode\"\n    - button \"Update order review\" [disabled]\n    - checkbox \"I have checked the specifications and measurements of every item.\"\n    - text: I have checked the specifications and measurements of every item.\n    - button \"Continue to Shopify checkout\" [disabled]\n    - paragraph: One payment. All your chosen pieces together.\n  - paragraph: Make yourself at home\n  - heading \"Which room is next?\" [level=2]\n  - paragraph: Explore a room, find your fabrics and build your home at your own pace.\n  - link \"Find my fabric →\":\n    - /url: /apps/curtainsuk-decision/consultation?experience=premium&entry=match\n  - link \"Browse fabrics\":\n    - /url: /pages/fabric-library?view=browse-fabrics\n  - button \"Bedroom\":\n    - generic: Bedroom\n  - button \"Dining Room\":\n    - generic: Dining Room\n  - button \"Kitchen\":\n    - generic: Kitchen\n  - button \"Home Office\":\n    - generic: Home Office\n  - button \"Child’s Room\":\n    - generic: Child’s Room\n  - button \"Another room Give it your own name\":\n    - generic: +\n    - generic: Another room\n    - generic: Give it your own name\n  - paragraph: Room inspiration, not a preview of your selected fabrics. Rooms are optional."
+    }
+  ],
+  "console": []
+}

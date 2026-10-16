@@ -110,7 +110,7 @@
       "title": "Customer concierge & administration adviser",
       "approach": "Friendly · Organised · Reassuring",
       "intro": "For the practical questions that make a project feel manageable. Anne’s focus is clear guidance on ordering and next steps, with the right questions passed to our human team when needed.",
-      "expertise": "Ordering, House of Curtains, pricing processes, availability enquiries and human assistance.",
+      "expertise": "Ordering, My Home, pricing processes, availability enquiries and human assistance.",
       "question": "I’ve chosen my curtains. What should I expect next?",
       "preparation": "Think about the stage your project has reached and the question you most want answered. Please do not share order details or personal information in this demonstration.",
       "opening": "Hello, I’m Anne, your AI customer concierge. I’ll help you work out the practical next step. Are you exploring your options, putting an order together or looking for help with an existing order?"
@@ -222,7 +222,7 @@
       "title": "Let your ideas take shape.",
       "copy": "While the advisers are being developed, our existing design tools and guides are ready to explore.",
       "library": "Browse the Fabric Library",
-      "house": "House of Curtains",
+      "house": "My Home",
       "measure": "Measuring guidance",
       "fit": "Fitting guidance",
       "samples": "Fabric samples",
@@ -252,13 +252,13 @@
     }
   },
   "rooms": {
-    "navigation": "House of Curtains",
-    "title": "House of Curtains",
+    "navigation": "My Home",
+    "title": "My Home",
     "opening": "Opening your rooms…",
     "enable_javascript": "Please enable JavaScript to open your saved rooms.",
     "unavailable": "This experience is not available yet.",
     "browse": "Browse fabrics",
-    "retain_notice": "Add this validated curtain to your rooms. To change its specification, remove it and configure it again. Price and availability are checked again before checkout."
+    "retain_notice": "Add this curtain to My Home. You can edit it there and review the complete order before payment."
   },
   "guided_measure": {
     "navigation": "Guided Measure",

@@ -1,0 +1,220 @@
+TAP version 13
+# Subtest: review workflow uses only the six agreed states and deterministic transitions
+ok 1 - review workflow uses only the six agreed states and deterministic transitions
+  ---
+  duration_ms: 2.9215
+  type: 'test'
+  ...
+# Subtest: review state changes require actor, timestamp, reason, clean evidence and a final price
+ok 2 - review state changes require actor, timestamp, reason, clean evidence and a final price
+  ---
+  duration_ms: 2.1549
+  type: 'test'
+  ...
+# Subtest: staff amendments create immutable revisions without changing customer-submitted content
+ok 3 - staff amendments create immutable revisions without changing customer-submitted content
+  ---
+  duration_ms: 0.5606
+  type: 'test'
+  ...
+# Subtest: instant checkout is allowed only when every independent gate is satisfied
+ok 4 - instant checkout is allowed only when every independent gate is satisfied
+  ---
+  duration_ms: 0.5852
+  type: 'test'
+  ...
+# Subtest: review and manual-quote routes cannot bypass approval or customer acceptance
+ok 5 - review and manual-quote routes cannot bypass approval or customer acceptance
+  ---
+  duration_ms: 0.57
+  type: 'test'
+  ...
+# Subtest: approved checkout snapshot and handoff stay immutable when later supplier inputs change
+ok 6 - approved checkout snapshot and handoff stay immutable when later supplier inputs change
+  ---
+  duration_ms: 2.1898
+  type: 'test'
+  ...
+# Subtest: rounded VAT-inclusive totals are allocated to exact pennies and reject non-whole-pound checkout prices
+ok 7 - rounded VAT-inclusive totals are allocated to exact pennies and reject non-whole-pound checkout prices
+  ---
+  duration_ms: 0.4444
+  type: 'test'
+  ...
+# Subtest: private supplier-commercial keys are rejected from checkout snapshots
+ok 8 - private supplier-commercial keys are rejected from checkout snapshots
+  ---
+  duration_ms: 0.4226
+  type: 'test'
+  ...
+# Subtest: review checkout acceptance is a short-lived capability bound to the exact immutable revision
+ok 9 - review checkout acceptance is a short-lived capability bound to the exact immutable revision
+  ---
+  duration_ms: 1.2703
+  type: 'test'
+  ...
+# Subtest: UK shipping separates three launch regions and parcel classes without international or minimum-order leakage
+ok 10 - UK shipping separates three launch regions and parcel classes without international or minimum-order leakage
+  ---
+  duration_ms: 1.0039
+  type: 'test'
+  ...
+# Subtest: shipping class comes from server calculation or an approved review revision
+ok 11 - shipping class comes from server calculation or an approved review revision
+  ---
+  duration_ms: 2.3332
+  type: 'test'
+  ...
+# Subtest: Phase 5C migration keeps checkout/evidence private and closes the database-clock import gate
+ok 12 - Phase 5C migration keeps checkout/evidence private and closes the database-clock import gate
+  ---
+  duration_ms: 2.331
+  type: 'test'
+  ...
+# Subtest: production contract preserves exact price and keeps fulfilment identity out of buyer-facing line attributes
+ok 13 - production contract preserves exact price and keeps fulfilment identity out of buyer-facing line attributes
+  ---
+  duration_ms: 10.3007
+  type: 'test'
+  ...
+# Subtest: reserved invalid rehearsal email stays out of Shopify while real contact handling is unchanged
+ok 14 - reserved invalid rehearsal email stays out of Shopify while real contact handling is unchanged
+  ---
+  duration_ms: 1.7592
+  type: 'test'
+  ...
+# Subtest: Shopify test Draft Order contract carries exact immutable goods, VAT, delivery and configuration references
+ok 15 - Shopify test Draft Order contract carries exact immutable goods, VAT, delivery and configuration references
+  ---
+  duration_ms: 1.866
+  type: 'test'
+  ...
+# Subtest: buyer-facing dimensions retain only width and drop while internal anchors stay on the immutable order record
+ok 16 - buyer-facing dimensions retain only width and drop while internal anchors stay on the immutable order record
+  ---
+  duration_ms: 1.7992
+  type: 'test'
+  ...
+# Subtest: checkout retries derive stable snapshot and handoff identities from the displayed configuration
+ok 17 - checkout retries derive stable snapshot and handoff identities from the displayed configuration
+  ---
+  duration_ms: 0.998
+  type: 'test'
+  ...
+# Subtest: Shopify Draft Order contract refuses supplier-commercial leakage and unsafe handoffs
+ok 18 - Shopify Draft Order contract refuses supplier-commercial leakage and unsafe handoffs
+  ---
+  duration_ms: 0.8787
+  type: 'test'
+  ...
+# Subtest: Shopify financial preflight fails closed unless tax-inclusive GBP totals exactly match the snapshot
+ok 19 - Shopify financial preflight fails closed unless tax-inclusive GBP totals exactly match the snapshot
+  ---
+  duration_ms: 1.6566
+  type: 'test'
+  ...
+# Subtest: existing or newly created test Draft Orders must retain exact price and handoff identity
+ok 20 - existing or newly created test Draft Orders must retain exact price and handoff identity
+  ---
+  duration_ms: 1.2811
+  type: 'test'
+  ...
+# Subtest: server adapter is calculate-first, idempotent by handoff tag and contains no payment-completion mutation
+ok 21 - server adapter is calculate-first, idempotent by handoff tag and contains no payment-completion mutation
+  ---
+  duration_ms: 2.932
+  type: 'test'
+  ...
+# Subtest: checkout persistence recovers only an exact immutable retry and rejects identity conflicts
+ok 22 - checkout persistence recovers only an exact immutable retry and rejects identity conflicts
+  ---
+  duration_ms: 2.2224
+  type: 'test'
+  ...
+# Subtest: Phase 5D persists Shopify execution as append-only private audit without storing checkout capability URLs
+ok 23 - Phase 5D persists Shopify execution as append-only private audit without storing checkout capability URLs
+  ---
+  duration_ms: 4.4191
+  type: 'test'
+  ...
+# Subtest: Bay operational rehearsal preserves the original submission through staff amendment, approval and checkout readiness
+ok 24 - Bay operational rehearsal preserves the original submission through staff amendment, approval and checkout readiness
+  ---
+  duration_ms: 1.4256
+  type: 'test'
+  ...
+# Subtest: Apex and gable operational rehearsal supports information requests but blocks approval until evidence and price are clean
+ok 25 - Apex and gable operational rehearsal supports information requests but blocks approval until evidence and price are clean
+  ---
+  duration_ms: 1.0705
+  type: 'test'
+  ...
+# Subtest: Manual Quote rehearsal exposes no customer price before staff quote and never allows payment before acceptance
+ok 26 - Manual Quote rehearsal exposes no customer price before staff quote and never allows payment before acceptance
+  ---
+  duration_ms: 0.4384
+  type: 'test'
+  ...
+# Subtest: approved monetary snapshot and Shopify contract do not reprice after later supplier, margin or stock changes
+ok 27 - approved monetary snapshot and Shopify contract do not reprice after later supplier, margin or stock changes
+  ---
+  duration_ms: 1.4729
+  type: 'test'
+  ...
+# Subtest: a real pricing-engine cost change affects a new configuration but cannot mutate the existing snapshot contract
+ok 28 - a real pricing-engine cost change affects a new configuration but cannot mutate the existing snapshot contract
+  ---
+  duration_ms: 8.3457
+  type: 'test'
+  ...
+# Subtest: staff audit operations require actor and a meaningful reason
+ok 29 - staff audit operations require actor and a meaningful reason
+  ---
+  duration_ms: 0.5376
+  type: 'test'
+  ...
+# Subtest: staff-issued review resume links keep the revision-bound capability in an allowed staging URL fragment
+ok 30 - staff-issued review resume links keep the revision-bound capability in an allowed staging URL fragment
+  ---
+  duration_ms: 1.6831
+  type: 'test'
+  ...
+# Subtest: customer review acceptance projection is revision-bound and statically excludes private supplier and customer fields
+ok 31 - customer review acceptance projection is revision-bound and statically excludes private supplier and customer fields
+  ---
+  duration_ms: 2.3785
+  type: 'test'
+  ...
+# Subtest: shipping VAT rounds the tax amount itself, matching Shopify half-penny boundaries
+ok 32 - shipping VAT rounds the tax amount itself, matching Shopify half-penny boundaries
+  ---
+  duration_ms: 0.225
+  type: 'test'
+  ...
+# Subtest: saved Shopify receipt recovers directly by ID without a search-index dependent create
+ok 33 - saved Shopify receipt recovers directly by ID without a search-index dependent create
+  ---
+  duration_ms: 255.5833
+  type: 'test'
+  ...
+# Subtest: concurrent creation and a lost accepted response never issue a second create
+ok 34 - concurrent creation and a lost accepted response never issue a second create
+  ---
+  duration_ms: 10.6573
+  type: 'test'
+  ...
+# Subtest: production checkout preserves recovery, one-shot creation and explicit activation gates
+ok 35 - production checkout preserves recovery, one-shot creation and explicit activation gates
+  ---
+  duration_ms: 9.2153
+  type: 'test'
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 857.1243

@@ -2,6 +2,8 @@
 
 > **Current release pointer — 14 October 2026:** the dated snapshot below remains historical. PR #203 restored the existing Room Visualiser and added packaging protection; deployed protected commit `345c553c4553b159a587fdc6a7de7be48ca010e6` and current rollback/verification are recorded in [Production surfaces](PRODUCTION_SURFACES.md) and the [restoration record](room-visualiser-restoration-20261014.md). Shopify MAIN theme remains `182339731835`. Cushion Studio PR #201 remains a separate undeployed draft; stock-scheduler PR #202 is on `main`. Physical iPhone and spoken VoiceOver remain unverified. Use `release/production` for current storefront/API release authority.
 
+> **Unpublished feature candidate — 14 October 2026:** [Cushion Studio](CUSHION_STUDIO_IMPLEMENTATION.md) adds two separate signed-proxy views (individual configurator, then sofa/bed layout) within the existing Shopify direction. Its loopback review server is engineering tooling, not a fourth storefront. The native page/CTA and hosted purchase gates remain off; no published frontend is replaced.
+
 > This register exists to prevent future cleanup/reconciliation work from mistaking a deliberately preserved frontend for obsolete residue.
 
 CurtainsUK has **three distinct frontend bodies of work**. They share platform/data/intelligence infrastructure but have different operational roles.
@@ -70,3 +72,10 @@ Do not:
 - deploy any frontend solely as part of source reconciliation.
 
 First inventory and preserve. Then compare. Then reconcile only genuine source drift. Deployment is a separate owner-approved action.
+
+
+## My Home unpublished candidate, 16 October 2026
+
+The candidate renames customer-facing House of Curtains to My Home, retaining its route, storage and signed curtain foundations. Explicit product additions, shared server review, one delivery and combined dispatch are locally verified. Production is unchanged. The latest acceptance report is `docs/CUSHION_STUDIO_MY_HOME_RELEASE_READINESS_20261016.md`: 715 passing test executions, production-style build, required cushion asset tracing, save/reopen, individual/set pricing and room/item removal. It records scoped factual gaps and rollback. Customer copy excludes em dashes, VAT labels and workroom instructions. Live checkout/authentication is not claimed as verified. The candidate remains unpublished.
+
+Later on 16 October, the owner confirmed 4-5 calendar weeks for curtain dispatch from order, 1 m increments for all fabric orders, workroom acceptance of active cushion construction/fit details and zero supplier carriage. The candidate records these decisions. Straight self-piping uses a charged strip layout; bias-cut piping still needs a reliable layout. Live purchase validation remains open. See the later owner-facts and zero-carriage sections of the readiness report. This supersedes earlier pending-decision rows, without approving publication.

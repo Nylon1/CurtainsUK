@@ -1,0 +1,810 @@
+
+> apex-curtains-site@0.1.0 test
+> npm run test:decision-engine && npm run test:supplier-sync && npm run test:supplier-intelligence && npm run test:supplier-import && npm run test:fabric-master && npm run test:prestigious && npm run test:storefront && npm run test:shopify-theme && npm run test:cushions
+
+
+> apex-curtains-site@0.1.0 test:decision-engine
+> tsx --test lib/decision-engine/__tests__/*.test.ts
+
+✔ Window Type Master contains the 21 agreed unique types and customer width bases (4.0314ms)
+✔ FabricSpec fixtures are structurally valid, synthetic and feed-ineligible (0.6093ms)
+✔ number of widths and pair/single allocation remain deterministic (0.5437ms)
+✔ straight match rounds upward while random match does not (0.959ms)
+✔ pricing calculates VAT at full precision and rounds only the final gross total (5.4704ms)
+✔ random match fabric usage uses drop plus separate allowances (1.3204ms)
+✔ minimum charge is applied before shipping, with samples exempt (0.589ms)
+✔ draft width/drop thresholds preserve exact boundary semantics (0.8889ms)
+✔ unknown supplier fabric weight does not force a standard curtain into technical review (1.1684ms)
+✔ complete simple apex gets provisional review pricing but never direct manufacture (1.5265ms)
+✔ specialist geometry validation rejects non-positive, impossible and inconsistent dimensions (1.9912ms)
+✔ Bay geometry derives from section widths without requiring customer-entered angles (0.7094ms)
+✔ Corner geometry requires two sections, one angle and matching derived coverage (0.7845ms)
+✔ Awkward window master requires rough dimensions, a photo and a drawing (0.2181ms)
+✔ incomplete specialist geometry routes to manual quote (0.4555ms)
+✔ discontinued fabrics cannot start new configurations but remain representable historically (0.4773ms)
+✔ compatibility engine blocks invalid combinations (1.0499ms)
+✔ Phase 2 decision registry is valid and draft decisions block activation (1.6344ms)
+✔ only an authorised admin can activate a fully validated version (4.1092ms)
+✔ pricing registry snapshots versions and resolves effective ACTIVE rules (4.399ms)
+✔ invalid or incomplete measurements are rejected before pricing (0.3791ms)
+✔ Google feed governance rejects quote-only, mismatched or inactive pricing (0.6256ms)
+✔ Pricing Ruleset v1 locks the commercial calibration inputs but remains non-production (0.2997ms)
+✔ the five competitor benchmarks run through the pricing engine without job-specific tuning (2.9753ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 554.5028
+
+> apex-curtains-site@0.1.0 test:supplier-sync
+> tsx --test lib/supplier-sync/__tests__/*.test.ts
+
+✔ exact PT SKU and metre evidence; extra collection results cannot enter Fabric Master (5.5893ms)
+✔ overlap with same quantity is deduplicated; conflicting quantity quarantines SKU (0.9394ms)
+✔ explicit zero is retained; invalid units and discontinued supplier flag remain unknown (0.6806ms)
+✔ PT routine due interval remains 72 hours (0.6123ms)
+✔ first-party PT session uses short-lived cookies and parses exact stock rows (43.0919ms)
+✔ Webtex authentication expiry cannot be mistaken for zero stock (14.4999ms)
+✔ portal details become exact stock-only observations through the 96-hour validator (59.499ms)
+✔ missing, ambiguous and non-metre stock fail closed without converting absence to zero (1.2185ms)
+✔ supplier authentication, throttling and unexpected identities stop the read (3.037ms)
+✔ portal session uses first-party login cookies and refreshes the in-memory token (5.0999ms)
+✔ session stops on missing cookie or failed refresh without leaking credentials (2.8405ms)
+✔ 429 retries respect Retry-After and do not turn absence into stock (1.5763ms)
+✔ a portal-wide 404 stays bounded and leaves affected SKUs unknown while later batches continue (3.3138ms)
+✔ one bad SKU cannot suppress valid neighbours in a 404 batch (6.2448ms)
+✔ portal requests are bounded to 100 exact SKUs per batch (3.5266ms)
+✔ the next refresh is due after 72 hours, leaving a 24-hour freshness recovery window (5.3107ms)
+✔ exact five-brand stock and unresolved Zoffany pass; identity or coverage drift fails closed (48.9005ms)
+✔ normalization preserves missing supplier fields as unknown (2.0732ms)
+✔ Prestigious Webtex adapter runs the three verified Mocha SKUs in shadow mode (2.2435ms)
+✔ shadow orchestration appends snapshots but cannot write Shopify or schedule production (4.0006ms)
+✔ the 20-colourway Prestigious expansion is gated on verified cut prices (0.7224ms)
+✔ supplier history is append-only and retains price and availability changes (1.0239ms)
+✔ a failed sync never replaces a previously verified snapshot with out-of-stock (1.2117ms)
+✔ availability requires a verified sufficient single batch (0.7636ms)
+✔ pricing selects the configured normalized price field without supplier assumptions (0.6769ms)
+✔ a future Sanderson adapter uses the same FabricSpec link and availability engine (0.824ms)
+✔ visible SKU and image do not imply commercial readiness (4.1841ms)
+✔ every required field must be populated; zero metres is valid (0.9353ms)
+✔ mismatched populated identity stops, never becomes an incomplete-record exception (1.226ms)
+✔ waits on field readiness and reopens only after an incomplete attempt (2.4861ms)
+✔ persistent incomplete record is queued after three bounded attempts; next SKU proceeds (0.9705ms)
+✔ authentication, systemic and identity failures are not swallowed (1.0846ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1402.357
+
+> apex-curtains-site@0.1.0 test:supplier-intelligence
+> tsx --test lib/supplier-intelligence/__tests__/*.test.ts
+
+✔ genuine stock-only import can be approved without a cut price or sample flag (7.4747ms)
+✔ old approved price observation is retained without making old stock current (1.1664ms)
+✔ durable writes are append-only and retain historical reconstruction (3.2606ms)
+✔ validation failures are retained and cannot enter approval (1.2196ms)
+✔ manual approval and rejection append attributed decision events (0.9658ms)
+✔ a later approval links to the previous approved snapshot (1.1333ms)
+✔ a stock observation remains current throughout the 96-hour validity window (2.4329ms)
+✔ a failed sync preserves the previous approval until it expires (1.4604ms)
+✔ aggregate availability does not require batch or piece eligibility (0.95ms)
+✔ health reports price, stock, due-date and lifecycle transitions (1.2311ms)
+✔ Sanderson uses the same durable storage and approval service (0.5317ms)
+✔ customer-safe projection contains no supplier-commercial fields (0.7547ms)
+✔ service access is role-gated and database grants deny browser roles (5.8371ms)
+✔ supplier timeout and temporary database failure retain last approved availability without inventing out-of-stock (1.9278ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 464.0358
+
+> apex-curtains-site@0.1.0 test:supplier-import
+> tsx --test lib/supplier-import/__tests__/*.test.ts
+
+✔ CSV mapping merges multiple dye-lot rows into one normalized Prestigious snapshot (40.1748ms)
+✔ portal exports reuse the same normalized mapping pipeline (6.0249ms)
+✔ XLSX and legacy XLS files parse to the same tabular rows (57.0516ms)
+✔ text PDFs parse positionally and carry a mandatory review warning (1764.5262ms)
+✔ preview reports private diffs and lifecycle transitions without mutating history (4.2052ms)
+✔ bulk apply verifies the preview hash and atomically appends shadow history (13.19ms)
+✔ invalid mapped observations are retained as rejected audit records (3.428ms)
+✔ unmappable rows block bulk apply and declarative mappings reject executable kinds (3.6281ms)
+✔ Sanderson uses identical parser, preview, validation and bulk storage contracts (6.2541ms)
+✔ bulk import remains private and disconnected from Shopify (7.4263ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3538.0459
+
+> apex-curtains-site@0.1.0 test:fabric-master
+> tsx --test lib/fabric-master/__tests__/*.test.ts
+
+✔ exact approved imagery and reviewed provenance are required; raw or stale enrichment stays hidden (4.411ms)
+✔ governed appearance never fabricates roles, physical weight, strength, scale or claims of human approval (4.1098ms)
+✔ missing governed attributes are omitted, with no fallback AI or invented advice (1.5395ms)
+✔ supplier specifications remain separate, exact and unchanged; zero repeat is meaningful (3.2993ms)
+✔ governed Browse facets accept only bounded known-value-shaped browser input (5.6106ms)
+✔ missing governed facet input remains an empty constraint, never a fabricated value (0.7378ms)
+✔ ordinary and exact grouped governed colours reach the Browse filter (1.2344ms)
+✔ arbitrary slash values remain rejected for colour and every other facet (7.4199ms)
+✔ owner-confirmed PT Cut guide is the same prepared Browse guide on detail (18.8003ms)
+✔ ordinary PT Standard and SDG Cut guides retain their governed Browse amounts (1.0686ms)
+✔ stale prepared generation uses the same current governed guide source as Browse fallback (0.8557ms)
+✔ dirty prepared generation follows Browse fallback (0.7829ms)
+✔ an infinite next-change timestamp keeps the prepared generation current (0.9725ms)
+✔ missing or invalid governed evidence fails closed on detail (1.4902ms)
+✔ guide bands have exact, gap-free boundaries; unknown prices are not zero (3.3165ms)
+✔ guide uses approved PT Cut / SDG Cut pricing policy, not an order calculation (3.8824ms)
+✔ Browse projection is opt-in and never changes commerce RPCs (2.573ms)
+✔ catalogue completion keeps private QA, pricing eligibility and launch projection separate (7.2228ms)
+✔ catalogue completion rejects duplicate supplier SKUs case-insensitively (2.9031ms)
+✔ Prestigious preview ignores Shopify placeholder price and retired image URL (80.5023ms)
+✔ Prestigious preview preserves a newer approved record instead of downgrading it (18.1652ms)
+✔ full Sanderson preview remains private QA data until an explicit canary projection (17.796ms)
+✔ catalogue import carries protected-field evidence into the atomic batch (34.5308ms)
+✔ calculation always uses supplier fabric width, ignoring legacy usable width (20.3403ms)
+✔ curtain floor and positive-stock sample eligibility are separate (3.7006ms)
+✔ curtain orders require both 30m commercial stock and calculated metres (5.3002ms)
+✔ missing or invalid calculation width fails closed (1.805ms)
+✔ all requested real identities retain their lifecycle and sample evidence (4.4914ms)
+✔ observed Webtex public image route is allowed without admitting session URLs or other endpoints (9.0597ms)
+✔ expanded manifest admits exact colourway media from any discovery route, rejecting wrong products and unsafe sources (6.9517ms)
+✔ a completed main image does not skip other media, while repeated assets resume without download (2.0428ms)
+✔ shared room images deduplicate within an exactly established design, never as main or across unrelated designs (3.156ms)
+✔ both supplier maps cover ten ordered routes without confusing access with completed discovery (3.4888ms)
+✔ exact supplier product associations permit shared Chiltern standard/wide imagery (4.1233ms)
+✔ HCI handoff retains the existing Fabric Master recommendation gate for a full 18-card response without full record hydration (7.2105ms)
+✔ Prestigious catalogue normalization preserves permanent IDs and corrected public specifications (2.1468ms)
+✔ Prestigious imagery is derived from the stable SKU/design/colour mapping (1.021ms)
+✔ Sanderson uses the same normalized Fabric Master contract without supplier-specific storage (1.5681ms)
+✔ Sanderson Fabric Master IDs are derived only from the authoritative supplier SKU (1.0165ms)
+✔ the authorised Sanderson pilot fixture maps into the shared contract (3.5016ms)
+✔ catalogue preview counts inserts and updates deterministically (33.4246ms)
+✔ customer projection strips supplier-commercial intelligence (2.5551ms)
+✔ a visible fabric with supplier width can configure while price remains unconfirmed (1.4039ms)
+✔ decision engine adapter accepts either supplier through the same FabricSpec contract (1.6912ms)
+✔ Sanderson all-brands catalogue maps identity/specification fields but ignores stale operations (92.7348ms)
+✔ Sanderson catalogue supports exactly the six approved brands through one Fabric Master (22.3051ms)
+✔ catalogue protection keeps newer verified pilot data instead of applying a stale bulk row (11.6083ms)
+✔ Sanderson canary selects exactly 50 new records across six brands and leaves DAPGPA203 untouched (60.2961ms)
+✔ catalogue protection enriches newer specs without erasing independently verified fields (2.0308ms)
+✔ unsupported or absent Sanderson match data remains unknown (13.3467ms)
+✔ No Pattern Match and shifted trailing cells stay blocked for review (10.3873ms)
+✔ bulk supplier expansion fails closed until every dated gate has evidence (1.7167ms)
+✔ approved cut pricing does not expire by age; latest approval and rejection govern it (1.709ms)
+✔ deterministic governed copy preserves exact identity, canonical and sample price (18.3451ms)
+✔ unknown factual data is omitted; unvalidated room claims do not override FI (1.9982ms)
+✔ validated room and options are qualified as curtain choices, not face-fabric properties (1.8691ms)
+✔ editorial room and style guidance derives from governed FI when explicit rooms are absent (1.716ms)
+✔ appearance never creates a linen composition claim (3.0664ms)
+✔ canonical and Fabric Master mismatches fail closed (2.6017ms)
+✔ the shared Fabric Profile uses the same search fields for visible copy, metadata and Product JSON-LD (5.7906ms)
+✔ enriched relation present: uses enriched source only (5.5818ms)
+✔ only exact enriched-relation absence retries the identical cache query (1.4016ms)
+✔ permission, timeout, schema and other errors never fall back (2.6656ms)
+✔ zero-patch enriched and cache rows have identical FI outputs and state (3.2861ms)
+✔ empty overlay migration preserves the governed cache and Browse source (4695.0887ms)
+✔ manual empty-overlay rollback restores the previous Browse source (3316.1589ms)
+✔ locked Price Level bounds are exact, gap-free customer-guide bands (2.6962ms)
+✔ projects only governed known visual fields for the server-to-server HCI contract (7.6469ms)
+✔ bounded workers process every record exactly once (23.094ms)
+✔ same-hash work remains serialized and locks recover after failure (3.5775ms)
+✔ workers finish before the shared import lock can be released on failure (2.6147ms)
+✔ temporary Windows rename contention recovers without replaying an upload (1.993ms)
+✔ checkpoint retry remains bounded and does not hide other filesystem errors (1.4203ms)
+✔ unknown manufacturer match uses additive 50cm per cut with immutable policy provenance (15.26ms)
+✔ known no-repeat and verified match take precedence; missing width and half-drop remain protected (2.5867ms)
+✔ all ten routes must be exhausted before imagery is genuinely missing (5.3425ms)
+✔ pagination, applicability and evidence cannot be silently skipped (2.4765ms)
+✔ matching uses exact identity and never fuzzy product names (2.0233ms)
+✔ resumable discovery follows route order and collects other media after main is found (5.2014ms)
+✔ verified trade listing media stays found when optional lifestyle libraries are inaccessible (1.0117ms)
+✔ display reconciliation permits possessive/slash formatting but preserves colour identity (1.0801ms)
+✔ exact supplier SKU display tokens do not block ordinary media matching (4.2163ms)
+✔ observed title formatting preserves the exact colour and product words (11.0566ms)
+✔ PT uses approved Cut Price as its primary CurtainsUK supplier base price (3.8938ms)
+✔ PT retains approved Standard Price only as a legacy fallback (0.6773ms)
+✔ PT prefers approved Cut Price even when a newer approved Standard-only snapshot exists (27.5102ms)
+✔ SDG keeps its existing approved Cut Price basis (2.899ms)
+✔ explicit rejection prevents a PT price from being selected (1.1673ms)
+✔ media requires rights and stable mapping and rejects authentication-bearing provenance (4.9144ms)
+✔ media strips metadata and rejects tiny images (128.7407ms)
+✔ interrupted upload resumes cached content without fetching again; credentials never enter failures (43.5939ms)
+✔ browse readiness requires genuine imagery but not commercial or editorial completeness (6.0793ms)
+✔ no bytes at one portal location never establishes missing supplier imagery (3.4301ms)
+✔ portal media cannot cross-match adjacent colourway SKUs (1.9952ms)
+✔ complete stored reading retains colour, pattern and character without modifying evidence (3.9922ms)
+✔ partial readings expose known dimensions while unknown colour is omitted (0.9631ms)
+ℹ tests 96
+ℹ suites 0
+ℹ pass 96
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10337.2706
+
+> apex-curtains-site@0.1.0 test:prestigious
+> tsx --test lib/prestigious/__tests__/*.test.ts
+
+✔ pilot contains 20 stable real Prestigious Formation colourways (2.0111ms)
+✔ stock is available only when one current batch covers the requirement (1.285ms)
+✔ low, due, stale and discontinued states map safely (0.6492ms)
+✔ unverified colourway price cannot enter calculation (0.8951ms)
+✔ official discontinued export transitions without deletion (0.8621ms)
+✔ real Escher standard and Dali bay configurations use verified cut costs through approved headings (6.7175ms)
+✔ real Prestigious fabric never bypasses apex technical review (0.9517ms)
+✔ customer Shopify payload contains no supplier-commercial or batch fields (1.1832ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 560.1741
+
+> apex-curtains-site@0.1.0 test:storefront
+> tsx --test lib/storefront/__tests__/*.test.ts
+
+✔ Bay section counts are unitless while section widths retain centimetres (55.516ms)
+✔ bonded lining is one complete 5 GBP per metre layer without an extra lining charge (15.4215ms)
+✔ bonded combined layer rejects additional separate interlining even in direct pricing (3.5572ms)
+✔ card ordering reuses the existing sample event with exact identity, context and same-origin endpoint (20.0891ms)
+✔ card curtain handoff uses the exact identity and is absent when the current order gate fails (3.9295ms)
+✔ ordinary Browse GET recovers once from a transient 503 and preserves guide data (464.3777ms)
+✔ final transient failure stops after one retry (368.5442ms)
+✔ ordinary 4xx and long Retry-After do not retry (11.4054ms)
+✔ superseded request aborts its active fetch and cannot retry (11.8616ms)
+✔ network error gets one bounded recovery attempt (366.1119ms)
+✔ timed-out Browse GET stops loading after the bounded retry (389.349ms)
+✔ Fabric Detail and Naila retain their existing one-shot request policy (10.3455ms)
+✔ Browse URL restoration creates bounded governed hidden fields before a request (4.1031ms)
+✔ Browse URL restoration rejects unsupported facet punctuation and price bands (3.1673ms)
+✔ checkout diagnostics preserve the exact failure and identify its boundary without request data (6.3861ms)
+✔ diagnostics redact arbitrary upstream errors, do not retry, and survive unavailable logging (1.112ms)
+✔ review workflow uses only the six agreed states and deterministic transitions (6.6422ms)
+✔ review state changes require actor, timestamp, reason, clean evidence and a final price (4.9783ms)
+✔ staff amendments create immutable revisions without changing customer-submitted content (1.2146ms)
+✔ instant checkout is allowed only when every independent gate is satisfied (1.516ms)
+✔ review and manual-quote routes cannot bypass approval or customer acceptance (1.0221ms)
+✔ approved checkout snapshot and handoff stay immutable when later supplier inputs change (3.8293ms)
+✔ rounded VAT-inclusive totals are allocated to exact pennies and reject non-whole-pound checkout prices (0.8827ms)
+✔ private supplier-commercial keys are rejected from checkout snapshots (1.6046ms)
+✔ review checkout acceptance is a short-lived capability bound to the exact immutable revision (2.0873ms)
+✔ UK shipping separates three launch regions and parcel classes without international or minimum-order leakage (1.4549ms)
+✔ shipping class comes from server calculation or an approved review revision (9.5556ms)
+✔ Phase 5C migration keeps checkout/evidence private and closes the database-clock import gate (6.558ms)
+✔ unpriced real fabric retains its requirement and canonical identity without a customer price (11.8264ms)
+✔ missing specifications and ungoverned half-drop allowances remain unknown rather than invented (1.8858ms)
+✔ price confirmation cannot bypass measurements or use BONDED as a separate interlining layer (2.933ms)
+✔ Bay and specialist identity-only selections enter review without supplier prices or uploads (3.1117ms)
+✔ a direct Fabric Master reference uses the authoritative configuration projection, not retail editorial readiness (5.9247ms)
+✔ the configuration hydration response never contains supplier-commercial data (0.6065ms)
+✔ sample return preserves the exact consultation through staff sign-in (3.4427ms)
+✔ staff login preserves the room-first Bay route without forwarding arbitrary parameters (0.7489ms)
+✔ consultation resume cannot become an external or unrelated admin redirect (0.7878ms)
+✔ only the premium consultation omits the secondary storefront frame (3.0768ms)
+✔ consultation exits use the Shopify origin and preserve exact fabric context (3.6512ms)
+✔ customer session is server-signed, expiring and isolated without staff credentials (5.7394ms)
+✔ customer mutations require the exact configured HTTPS origin (2.6189ms)
+✔ ordinary Bay uses its full fitted track route and instant pricing without angles (16.145ms)
+✔ strict aggregate floor, usage, stale retention and no private quantities (1.6929ms)
+✔ UK morning handles BST, GMT and local dates (69.6806ms)
+✔ daily floor controls instant checkout; Bay requires no approval when stock passes (1.3785ms)
+✔ specialist approval requires email review for exactly the current revision (2.8863ms)
+✔ changing window type cannot remove original specialist evidence gate; staff-requested evidence also gates optional cases (0.7035ms)
+✔ email references retain the full unique request identity (0.6067ms)
+✔ launch repository and customer form have no storage or scanner dependency (35.0728ms)
+✔ room-first creates one server session, then offers an optional image before questions (28.8028ms)
+✔ guided optional image skip recommends using the same session and revision (7.8136ms)
+✔ invalid/oversized images are not uploaded and skip remains functional (8.8464ms)
+✔ real recommendation cards hydrate exact identity through the staff catalogue projection and retain handoff context (8.2192ms)
+✔ fabric profile keeps every curtain entry inaccessible when retail stock is unavailable (25.5126ms)
+✔ only an exact retail-ready fabric unlocks every curtain link, with no cross-fabric destination (8.5087ms)
+✔ the canonical fabric profile guards every curtain link and passes its exact ID to Jane (1.6667ms)
+✔ Ask Jane retains an exact, unavailable fabric for a consented alternatives discussion (4.0383ms)
+✔ dedicated Fabric sitemap is GET-only within the Shopify proxy (17.9218ms)
+✔ live-generated manifest produces one valid XML URL per canonical Fabric Profile (429.0482ms)
+✔ published Fabric Profile lookup uses the same authoritative manifest as the sitemap (1.2298ms)
+✔ sitemap response uses XML content type and the deterministic generated body (31.4137ms)
+✔ XML escapes reserved characters and handles more than 10,000 URLs (84.2819ms)
+✔ sitemap fails closed on duplicates, noncanonical URLs, count and protocol limits (14.0697ms)
+✔ FI session storage is isolated from the historical shared key and Naila presentation cache (3.2556ms)
+✔ FI-specific session takes precedence over legacy shared state (2.4107ms)
+✔ legacy FI sessions remain resumable during migration (2.9251ms)
+✔ legacy shared session is skipped when Naila presentation owns it (2.1844ms)
+✔ a different Naila session does not suppress a legacy FI session (1.2633ms)
+✔ corrupt Naila presentation cache cannot claim a legacy FI session (1.7294ms)
+✔ invalid FI-specific state falls back to a valid legacy FI session (0.6204ms)
+✔ invalid legacy session values are rejected (0.5091ms)
+✔ empty session state starts a fresh FI consultation (0.4841ms)
+✔ initial read-only FI resume 409 is classified as a recoverable resume conflict (0.8106ms)
+✔ an action 409 keeps the existing in-journey reconciliation path (0.527ms)
+✔ established-view conflicts and non-409 responses are not initial resume conflicts (0.4998ms)
+✔ guarded repair adds exactly the seven Guided Measure keys to the existing measurement allowlist (6.2133ms)
+✔ House measurement keys pass the repaired predicate; unknown and private keys remain rejected (1.8426ms)
+✔ server revisions distinguish mutation/retry acknowledgements from read-only resume (3.6009ms)
+✔ transport-adapted copy keeps UTF-8 punctuation intact (2.2027ms)
+✔ approved analysis, guided palette and styles retain exact HCI source with portable line endings (33.0647ms)
+✔ source mirror is evidence/projection compatible, preserving machine colours when ignored (30.7771ms)
+✔ new sessions opt in; legacy sessions remain replayable; only selection creation loads eligibility (2.9348ms)
+✔ existing recommendation eligibility governs calibration, without inventing purchasing/stock readiness (3.0048ms)
+✔ current exact identity and imagery are checked for calibration resume/retry (2.8684ms)
+✔ exact recommendation identity survives signed commerce handoff; tampering, substitution and expiry fail (23.1788ms)
+✔ browser outcomes cannot claim a purchase or an ordered sample (2.2351ms)
+✔ refinement feedback resolves HCI reaction IDs to exact Fabric Master IDs without changing the input (2.5574ms)
+✔ HCI boundary preserves ranked exact identity and unknowns without private engine payload (5.8617ms)
+✔ ambiguous identities and unbounded shortlists fail closed (2.3872ms)
+✔ Bay consultation context passes to configuration without adding HCI configuration decisions (1.723ms)
+✔ bounds a full Luxury-sized cohort without dropping or duplicating identities (17.8648ms)
+✔ projects every identity in a full cohort through the unchanged readiness predicate (49.5997ms)
+✔ uses the existing readiness predicate for available, stale, missing and discontinued evidence (1.8634ms)
+✔ fails closed on incomplete response shape or database failure (1.9169ms)
+✔ immutable observations and confirmed palettes may be retained without raw media (3.7158ms)
+✔ raw image leakage fails closed before any HCI state is persisted (2.0059ms)
+✔ explicit consultation window choice survives resume without borrowing an older project (3.1669ms)
+✔ staging accepts only commands, never browser histories, credentials, owner or rankings (2.1666ms)
+✔ refinement preserves separate nullable reactions and exact fabric identity (2.6875ms)
+✔ public projection omits raw state and privileged attributes, rejects a drifting baseline (1.9488ms)
+✔ the pinned HCI colour question supports its full eighteen answers (1.0502ms)
+✔ saved presentation/resume retains CAS revision and three corrected shade evidence records (46.4732ms)
+✔ gateway permits only exact registered within-family shade IDs on correction actions (5.8472ms)
+✔ gateway accepts every canonical HCI room feature without translation or evidence loss (29.9095ms)
+✔ gateway still rejects obsolete aliases, arbitrary room features and malformed values (2.0027ms)
+✔ premium customer contract accepts only bounded guided palette actions (1.2268ms)
+✔ price level is a bounded consultation action and never a customer-supplied amount (6.135ms)
+✔ price selection scopes calibration and knowledge reads to the selected tier (8.8448ms)
+✔ progressive direction delivery accepts only one bounded persisted-direction index (0.9061ms)
+✔ later directions have separate bounded prepare and hydrate commands (1.2626ms)
+✔ direction preparation persists the cumulative HCI state and keeps later cards in the bounded private store (3.3928ms)
+✔ price level is retained as a bounded preference in the customer view, without an amount (1.382ms)
+✔ premium route requires matching deployment stage and explicit gates (0.6243ms)
+✔ short taste and exact real-fabric calibration projection is bounded (1.6824ms)
+✔ interior brief commands and projection retain governed choices (1.9554ms)
+✔ premium fabric feedback records governed reaction evidence without mutating supplier truth (1.2578ms)
+✔ entry determines the requested journey, while committed state pins it (8.7921ms)
+✔ old FI discovery resumes from HCI evidence and rejects a stale colour answer (1.3422ms)
+✔ FI without an image or palette remains identified by entry, not inferred colour (0.6151ms)
+✔ FI answer question identity is optional for old clients and validated for new clients (2.4442ms)
+✔ later FI phases never reproject the discovery question (0.6139ms)
+✔ loads a full price projection only at a governed selection boundary (2.831ms)
+✔ accepts every governed price-tier ID in a single JSON projection (7.9926ms)
+✔ rejects duplicate, malformed, or non-array projections (1.9169ms)
+✔ same-origin presentation retains HCI decisions but removes staging destinations and copy (27.9944ms)
+✔ proxy visitor capabilities are distinct, expiring and reject modification (3.4769ms)
+✔ service credential rotation retains session ownership and browser owner overrides are ignored (92.3935ms)
+✔ current quality gate blocks all service calls even when an environment flag requests HCI (2.2302ms)
+✔ hosted boundary owns identity, preserves idempotency and strips privileged request/response fields (5.4467ms)
+✔ service failures never become fabricated recommendations and are never automatically retried (12.2897ms)
+✔ invalid commands and unsafe endpoint configuration fail before transport (2.0045ms)
+✔ keeps the exact V2 eligibility context for feedback and refinement (3.306ms)
+✔ accepts three style directions with up to seven exact governed cards (7.7077ms)
+✔ rejects malformed style-direction feedback metadata (1.8074ms)
+✔ trusted HCI feedback validates the full bounded menu and presents its first twelve in order (9.6043ms)
+✔ requires exact approved media and governed commercial readiness for a Style Directions card (1.3795ms)
+✔ excludes sample-only, stale-stock, and unpriced fabrics from actionable directions (0.9842ms)
+✔ genuine stock is valid through exactly 96 hours, regardless of UK date or failed retrieval (3.1731ms)
+✔ expired, future or missing evidence requires confirmation, not an out-of-stock claim (0.6963ms)
+✔ 30 is available; below 30 is unavailable; discontinued overrides all freshness and quantities (0.8658ms)
+✔ Make Curtains exposes only the approved automated opening and hardware-heading choices (5.0173ms)
+✔ Make Curtains directs raw hardware measurement to Guided Measure and shows the approved change-request wording (0.7111ms)
+✔ MTM cart lines are immutable and route continued shopping to Browse Fabrics (1.0194ms)
+✔ production policy enforces the approved hardware and heading matrix (5.661ms)
+✔ measurement anchors preserve the customer raw measurement contract (0.9166ms)
+✔ three curtain House is a multi-line non-payable contract with one delivery and exact reconciliation (34.439ms)
+✔ orders/paid reconstructs exactly the House lines and rejects property tampering (9.3112ms)
+✔ multi-line execution retains generic exact-total checks and a House-specific idempotency claim (783.3628ms)
+✔ multi-curtain migration and webhook leave historic single-snapshot lifecycle intact (8.9122ms)
+✔ nested hidden corner and bay inputs cannot block supported curtain live-price validation (13.5101ms)
+✔ fabric profile measurement respects consent with cached Shopify privacy callback (true) (12.2648ms)
+✔ fabric profile measurement respects consent with cached Shopify privacy callback (false) (3.1313ms)
+✔ fabric profile measurement respects consent with deferred Shopify privacy callback (true) (4.2571ms)
+✔ fabric profile measurement respects consent with deferred Shopify privacy callback (false) (2.6375ms)
+✔ opening a second consented tab does not revoke the first tab's Pixel consent (9.4121ms)
+✔ unknown consent sends nothing and a later denial cannot replay queued commerce events (4.9387ms)
+✔ a fresh SDK is installed only after Shopify consent and processes consent before init (3.6999ms)
+✔ House checkout records diagnostic handoff, then one standard event after verified navigation (16.086ms)
+✔ reopening the same handoff retains the same standard event ID (3.5202ms)
+✔ a concurrent click cannot create a second handoff or standard event (4.6911ms)
+✔ unverified checkout URL is rejected: https://example.invalid/checkout (3.4602ms)
+✔ unverified checkout URL is rejected: http://carpetup.myshopify.com/checkout (2.8375ms)
+✔ unverified checkout URL is rejected: https://[redacted]@carpetup.myshopify.com/checkout (2.8632ms)
+✔ unverified checkout URL is rejected: https://carpetup.myshopify.com:444/checkout (3.0539ms)
+✔ navigation failure leaves handoff diagnostic only (3.739ms)
+✔ changed house revision and failed lookup never produce checkout events (13.5783ms)
+✔ analytics failures cannot prevent verified checkout navigation (3.6005ms)
+✔ published room iframe selection reaches website diagnostics and custom Pixel measurement only (9.4977ms)
+✔ iframe load and retry bind each document once and allow a replacement room document (8.7365ms)
+✔ unrelated frame cannot supply room measurements: about:blank (5.4159ms)
+✔ unrelated frame cannot supply room measurements: https://example.invalid/apps/curtainsuk-decision/room-visualiser (6.8203ms)
+✔ unrelated frame cannot supply room measurements: https://www.curtainsuk.com/checkout (5.6842ms)
+✔ inaccessible frame does not break the bridge and preserves denied consent (3.9187ms)
+✔ production contract preserves exact price and keeps fulfilment identity out of buyer-facing line attributes (25.7299ms)
+✔ reserved invalid rehearsal email stays out of Shopify while real contact handling is unchanged (3.1418ms)
+✔ Shopify test Draft Order contract carries exact immutable goods, VAT, delivery and configuration references (7.4638ms)
+✔ buyer-facing dimensions retain only width and drop while internal anchors stay on the immutable order record (4.4065ms)
+✔ checkout retries derive stable snapshot and handoff identities from the displayed configuration (1.8568ms)
+✔ Shopify Draft Order contract refuses supplier-commercial leakage and unsafe handoffs (1.5602ms)
+✔ Shopify financial preflight fails closed unless tax-inclusive GBP totals exactly match the snapshot (3.5851ms)
+✔ existing or newly created test Draft Orders must retain exact price and handoff identity (2.2365ms)
+✔ server adapter is calculate-first, idempotent by handoff tag and contains no payment-completion mutation (6.9584ms)
+✔ checkout persistence recovers only an exact immutable retry and rejects identity conflicts (6.9735ms)
+✔ Phase 5D persists Shopify execution as append-only private audit without storing checkout capability URLs (20.0432ms)
+✔ Bay operational rehearsal preserves the original submission through staff amendment, approval and checkout readiness (2.7129ms)
+✔ Apex and gable operational rehearsal supports information requests but blocks approval until evidence and price are clean (2.3047ms)
+✔ Manual Quote rehearsal exposes no customer price before staff quote and never allows payment before acceptance (0.9485ms)
+✔ approved monetary snapshot and Shopify contract do not reprice after later supplier, margin or stock changes (2.8372ms)
+✔ a real pricing-engine cost change affects a new configuration but cannot mutate the existing snapshot contract (13.7689ms)
+✔ staff audit operations require actor and a meaningful reason (1.0609ms)
+✔ staff-issued review resume links keep the revision-bound capability in an allowed staging URL fragment (3.0436ms)
+✔ customer review acceptance projection is revision-bound and statically excludes private supplier and customer fields (14.4737ms)
+✔ shipping VAT rounds the tax amount itself, matching Shopify half-penny boundaries (0.497ms)
+✔ saved Shopify receipt recovers directly by ID without a search-index dependent create (500.9204ms)
+✔ concurrent creation and a lost accepted response never issue a second create (17.738ms)
+✔ production checkout preserves recovery, one-shot creation and explicit activation gates (17.0508ms)
+✔ Cloudmersive advanced adapter sends an allowlisted private file scan and fails closed (110.7685ms)
+✔ an unexpected malware-provider exception remains quarantined with an auditable failure code (1.343ms)
+✔ one-time evidence grants store only a non-reversible token digest (1.2845ms)
+✔ UK shipping defaults remain owner-blocked and database versions parse fail closed (2.3701ms)
+✔ staging shipping selection excludes future-effective rate versions (6.1171ms)
+✔ customer and staff endpoint policies separate browse, compute, upload and checkout pressure (0.7224ms)
+✔ signed mutation replay fingerprints are stable for identical requests and body-bound (2.0299ms)
+✔ Phase 5D security migration is private, append-only and never invents shipping rates (10.7346ms)
+✔ signed proxy mutations claim replay receipts before processing customer content (5.5978ms)
+✔ scan failures are durably recorded and never promoted by application code (4.4468ms)
+✔ the review-only identity is denied outside staging, for customers and for anonymous users (3.365ms)
+✔ the approved nine-cell policy is configured while generic fallback rates stay blocked (4.0105ms)
+✔ postcode and packed-parcel rules reject unmapped, ambiguous and oversized deliveries (5.9418ms)
+✔ owner postcode ranges and inclusive packed length/weight boundaries (4.3722ms)
+✔ delivery uses trusted packed measurements and blocks missing or ambiguous classification (2.8454ms)
+✔ launch delivery needs only the postcode, not packing evidence (1.0292ms)
+✔ specialist delivery requires an exact staff quote bound to destination; Bay alone is ordinary (2.4547ms)
+✔ required production versions and sample identity come from real implementations (12.7723ms)
+✔ every approved hardware matrix combination is enforced (3.4764ms)
+✔ the actual catalogue hydration reads governed knowledge rather than old sparse profiles (10.1667ms)
+✔ paid webhook cannot release manufacture and transition route requires staff authentication (7.2939ms)
+✔ the immutable production ruleset is activation-ready without changing calibration evidence (7.5237ms)
+✔ a compatible fresh production rehearsal configuration uses the production pricing path (18.801ms)
+✔ the production customer route executes the active ruleset rather than relabelling a draft result (2.9922ms)
+✔ production customer pricing is selected by the deployed runtime, independently of payment approval (0.5401ms)
+✔ browser accepts only an activated, same-mode, verified-store checkout capability (6.7781ms)
+✔ live checkout requires explicit production approval and the exact production store (0.6696ms)
+✔ production checkout stays non-payable unless its own payment safety is confirmed (0.6403ms)
+✔ production theme canonical and preview exclusion are explicit (3.7638ms)
+✔ production indexing can be enabled while every purchase control stays disabled (16.3203ms)
+✔ review list query accepts bounded filters and rejects unknown or duplicate inputs (8.8927ms)
+✔ staff transition input is exact, audited and optimistic (2.2354ms)
+✔ staff amendments require an immutable predecessor and exact GBP arithmetic (2.6221ms)
+✔ checkout readiness accepts only approved state and the reviewed revision (1.1358ms)
+✔ admin review routes use private auth, no-store responses and optimistic repository calls (20.674ms)
+✔ upstream 504 is a service outage at both authorization boundaries, never an invalid session (4.3035ms)
+✔ temporary auth failure is unavailable, never a role denial or authorization (0.5741ms)
+✔ one successful verified lookup authorizes the staging reviewer only (4.0533ms)
+✔ acceptance links can be recovered only for approved or already-ready reviews with no other blocker (5.0975ms)
+✔ review contact input is normalized without accepting an invalid email (6.0601ms)
+✔ review availability accepts only the customer-safe vocabulary (0.6328ms)
+✔ manual quote submissions cannot persist a numeric provisional price (0.6305ms)
+✔ only canonical UUIDs are accepted as customer-safe configuration IDs (1.1453ms)
+✔ review validation errors cross the public API as customer-safe guidance (1.0235ms)
+✔ review submission tokens bind canonical configuration, outcome and price (2.8436ms)
+✔ rate-limit fingerprints are IP- and scope-bound, not user-agent-bound (8.179ms)
+✔ JSON staging requests are bounded even when Content-Length is absent or misleading (9.086ms)
+✔ instant checkout confirmation binds identity, measurements and the displayed price (1.2346ms)
+✔ 1-line house contract preserves each immutable line, VAT and one governed delivery charge (19.826ms)
+✔ 2-line house contract preserves each immutable line, VAT and one governed delivery charge (5.2053ms)
+✔ 10-line house contract preserves each immutable line, VAT and one governed delivery charge (24.5138ms)
+✔ house membership or room-name changes invalidate its order fingerprint (12.9107ms)
+✔ House promotion changes execution authority only, retaining every checked line and financial value (6.8115ms)
+✔ authored comma separators preserve punctuation within exact fabric and room names (4.0527ms)
+✔ room-specific failures are useful without leaking internal exceptions (5.6301ms)
+✔ theme integration stays gated and new rooms discard only transient evaluations (7.8291ms)
+✔ final 1-curtain bridge prepares private multi-line contract with stable retry identity and safe public result (40.7381ms)
+✔ final 2-curtain bridge prepares private multi-line contract with stable retry identity and safe public result (20.7148ms)
+✔ final 10-curtain bridge prepares private multi-line contract with stable retry identity and safe public result (50.9223ms)
+✔ final handoff rejects stale review after membership, revision, postcode, room-name or receipt changes (7.0427ms)
+✔ price changes between review and Continue return fresh line review, then require exact per-line amount acceptance (14.3372ms)
+✔ combined stock changing after review returns blocked lines and creates no prepared contract (5.103ms)
+✔ real server binding defaults to no writes and rejects production transport before any network call (324.0151ms)
+✔ House snapshots use the existing customer-safe snapshot summary allowlist (8.2121ms)
+✔ House release requires both its own gate and the established production checkout approval (2.5861ms)
+✔ new accepted membership, destination or price has distinct execution identity while retained identity stays stable (14.4432ms)
+✔ retaining independently uses the production engine and exact fabric, without a fixed retail fixture (1.4656ms)
+✔ old price token and tampered measurements cannot enter a saved room (1.3149ms)
+✔ saved receipt survives the original two-hour token but always recalculates price (1.7936ms)
+✔ changes are identified per room and window, with explicit acknowledgement required (1.9935ms)
+✔ tampered durable receipt blocks only that curtain and never substitutes fabric (1.9975ms)
+✔ cumulative stock checks total cloth needed by every window sharing a fabric (2.2844ms)
+✔ deleted blocks review and preserves saved raw dimensions (2.0356ms)
+✔ non-commercial blocks review and preserves saved raw dimensions (1.7851ms)
+✔ stale-stock blocks review and preserves saved raw dimensions (1.2976ms)
+✔ draft-rules blocks review and preserves saved raw dimensions (1.3903ms)
+✔ incompatible blocks review and preserves saved raw dimensions (2.7155ms)
+✔ duplicate curtain identities and missing delivery fail closed (1.8554ms)
+✔ ten windows use exactly one delivery quote and summed authoritative goods/VAT (6.6949ms)
+✔ the preview cannot execute even a single Shopify payment handoff (0.3334ms)
+✔ 1 immutable curtains survive a reconstructed storage client (4.767ms)
+✔ 3 immutable curtains survive a reconstructed storage client (3.1799ms)
+✔ 10 immutable curtains survive a reconstructed storage client (15.3831ms)
+✔ room rename and removing a middle curtain preserve every other configuration byte-for-byte (3.6757ms)
+✔ cross-tab revision conflicts cannot overwrite a newer house (0.532ms)
+✔ quota and corrupt storage errors never report Saved or silently discard a house (0.913ms)
+✔ duplicate add is idempotent and never doubles a retained curtain (1.7482ms)
+✔ generic payable sample preserves exact deterministic colourway identity, not commercial data (55.6779ms)
+✔ sample eligibility fails closed; signed consultation context must match the selected fabric (1.6084ms)
+✔ legacy sample flags cannot override confirmed supplier availability policy (3.1247ms)
+✔ Shopify official app-proxy signature vectors canonicalize exactly (4.8706ms)
+✔ app-proxy auth verifies HMAC, shop, path and replay window independently of Origin (11.1168ms)
+✔ ambiguous duplicate signatures are rejected (1.2461ms)
+✔ proxy rate keys bind the signed shop, operation and client address (1.1436ms)
+✔ evidence verification uses magic bytes, MIME, extension and hard size limits (5.813ms)
+✔ malware scanning is fail-closed and never promotes unavailable scans (2.2696ms)
+✔ retention and orphan cleanup plans preserve held, current and referenced evidence (4.2961ms)
+✔ staff evidence tokens are short-lived and bound to evidence plus actor (2.1673ms)
+✔ gateway and staff responses are no-store and request envelopes are bounded (73.6449ms)
+✔ multipart bodies have a hard streaming cap without trusting Content-Length (10.6572ms)
+✔ Dawn contains the 14 unique Window Type route definitions (7.4429ms)
+✔ Dawn delegates decisions to the signed app proxy and retains isolated test-checkout support (7.7841ms)
+✔ the specialist workflow has no upload requirement and never renders a payment control (2.5608ms)
+✔ manual quote results suppress numeric prices and expose review submission without checkout (3.4078ms)
+✔ Bay uses one fitted-track route width and drop without angles or segment controls (3.2765ms)
+✔ Only supported automated windows are actionable and unsupported routes cannot price (4.1572ms)
+✔ Review evidence appears only after a server review outcome, without uploads or premature checkout (2.9593ms)
+✔ task navigation uses resolvable theme-owned inspiration, help and sample anchors (15.3546ms)
+✔ the Dawn header uses the task navigation instead of the production main menu (1.7835ms)
+✔ Dawn uses paginated retail imagery and retains canonical sample identity without commercial fields (5.2406ms)
+✔ a Fabric Master deep link is validated, hydrated through the catalogue, and fails closed when unresolved (4.3417ms)
+✔ Dawn purchase controls stay off independently of production indexing and Shopify Markets (3.5048ms)
+✔ all inherited Dawn commerce controls are disabled in the unpublished staging theme (7.5775ms)
+✖ results always show VAT, availability and delivery while standard results avoid specialist warnings (6.8771ms)
+✔ reviewed configurations resume through a fragment capability and revalidate the exact revision server-side (2.552ms)
+✔ Dawn emits the launch funnel without supplier-commercial analytics fields (2.6113ms)
+✔ mobile controls meet the 44px staging target and avoid iOS input zoom (3.5642ms)
+✔ persistent task, logo and footer navigation meet the 44px staging target (3.9576ms)
+✔ the storefront exposes the 14 approved window families with unique canonical routes (2.6704ms)
+✔ 20 real Prestigious pilot fabrics are feed blocked and commercially separated (0.6156ms)
+✔ the Shopify catalogue payload contains 14 routes and no commercial cost data (1.8027ms)
+✔ a normal standard curtain receives a server-authoritative instant price (7.0048ms)
+✔ a real Dali bay uses the approved fitted-track and heading policy (1.2544ms)
+✔ the Phase 4A Bay gate preserves the auditable component breakdown (4.6493ms)
+✔ specialist apex geometry blocks payment and manufacture (1.4805ms)
+✔ inconsistent apex geometry is rejected before review routing (1.6035ms)
+✔ manual-quote pricing suppresses every numeric selling amount (1.0866ms)
+✔ Bay uses one raw fitted-track route and angles are not part of the contract (2.1263ms)
+✔ Bay accepts one route width and retains normal dimension limits (1.176ms)
+✔ Curved and bow geometry is excluded from automated payment (0.5049ms)
+✔ Corner geometry is excluded from automated payment (0.4357ms)
+✔ Awkward windows accept rough dimensions without uploads and remain manual quote (1.1642ms)
+✔ a valid oversized specialist job remains blocked and uses manual-quote messaging (0.6559ms)
+✔ specialist review rejects non-positive and impossible geometry for every launch shape (1.6299ms)
+✔ the staging API permits only the Shopify store origins used by theme previews (7.9671ms)
+{"event":"CURTAINSUK_SUPABASE_TRANSPORT_FAILURE","boundary":"database","codes":["TypeError","ECONNRESET"],"ms":1}
+{"event":"CURTAINSUK_SUPABASE_HTTP_FAILURE","boundary":"server-auth","status":401,"ms":1,"contentType":"text/plain"}
+✔ transport diagnostic excludes secret messages and preserves the original failure without replay (7.9095ms)
+✔ HTTP rejection is returned intact, never authorized or retried (70.1103ms)
+✔ resumed price summary follows asynchronous catalogue hydration without changing steps (11.712ms)
+ℹ tests 334
+ℹ suites 0
+ℹ pass 333
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4743.9675
+
+✖ failing tests:
+
+test at lib\storefront\__tests__\shopify-theme.test.ts:206:1
+✖ results always show VAT, availability and delivery while standard results avoid specialist warnings (6.8771ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /"VAT included\."/. Input:
+  
+  '(() => {\r\n' +
+    '  const SAMPLE_KEY = "curtainsuk_staging_samples_v1";\r\n' +
+    '  const PROJECT_KEY = "curtainsuk_staging_project_v1";\r\n' +
+    '  const EVALUATION_KEY = "curtainsuk_staging_evaluation_v1";\r\n' +
+    '  const RECEIPT_KEY = "curtainsuk_staging_submission_v1";\r\n' +
+    '  const REVIEW_RESUME_KEY = "curtainsuk_staging_review_resume_v1";\r\n' +
+    '  const NEW_CURTAIN_DRAFT_KEY = "curtainsuk_new_curtain_draft_v1";\r\n' +
+    '  const OPENAI_ATTRIBUTION_KEY = "curtainsuk_openai_ads_attribution_v1";\r\n' +
+    '  const REVIEW_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;\r\n' +
+    '  const REVIEW_ACCEPTANCE_TOKEN = /^v1\\.\\d{10,12}\\.[A-Za-z0-9_-]{43}$/;\r\n' +
+    '  const FABRIC_MASTER_ID = /^[a-zA-Z0-9-]{1,150}$/;\r\n' +
+    '\r\n' +
+    '  const emit = (name, detail = {}) => {\r\n' +
+    '    const payload = { event: `curtainsuk_${name}`, ...detail };\r\n' +
+    '    window.dataLayer = window.dataLayer || [];\r\n' +
+    '    window.dataLayer.push(payload);\r\n' +
+    '    window.dispatchEvent(new CustomEvent("curtainsuk:analytics", { detail: payload }));\r\n' +
+    '  };\r\n' +
+    '\r\n' +
+    '  const money = (minor, currency = "GBP") => new Intl.NumberFormat("en-GB", {\r\n' +
+    '    style: "currency", currency, minimumFractionDigits: 2, maximumFractionDigits: 2,\r\n' +
+    '  }).format(minor / 100);\r\n' +
+    '\r\n' +
+    '  const readJson = (key, fallback) => {\r\n' +
+    '    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }\r\n' +
+    '  };\r\n' +
+    '\r\n' +
+    '  const openAiAttribution = () => {\r\n' +
+    '    const saved = readJson(OPENAI_ATTRIBUTION_KEY, null);\r\n' +
+    '    if (!saved || typeof saved !== "object" || Array.isArray(saved)) return undefined;\r\n' +
+    '    const safe = {};\r\n' +
+    '    for (const key of ["oppref", "obref"]) {\r\n' +
+    '      const value = saved[key];\r\n' +
+    '      if (typeof value === "string" && value.trim() && value.length <= 1024 && !/[\\u0000-\\u001f\\u007f]/.test(value)) safe[key] = value.trim();\r\n' +
+    '    }\r\n' +
+    '    return Object.keys(safe).length ? safe : undefined;\r\n' +
+    '  };\r\n' +
+    '\r\n' +
+    '  const endpoint = (root, path) => `${root.replace(/\\/$/, "")}/${path}`;\r\n' +
+    `  const escapeHtml = (value) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);\r\n` +
+    '\r\n' +
+    '  function humanise(value) {\r\n' +
+    '    return String(value ?? "").replaceAll("_", " ").toLowerCase().replace(/(^|\\s)\\S/g, (letter) => letter.toUpperCase());\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  function reviewedResumeCapability() {\r\n' +
+    '    const fragment = new URLSearchParams(location.hash.startsWith("#") ? location.hash.slice(1) : location.hash);\r\n' +
+    '    const fragmentContainsCapability = fragment.has("cuk_review") || fragment.has("cuk_token");\r\n' +
+    '    if (fragmentContainsCapability) {\r\n' +
+    '      const reviewRequestId = fragment.get("cuk_review") || "";\r\n' +
+    '      const reviewAcceptanceToken = fragment.get("cuk_token") || "";\r\n' +
+    '      const cleanUrl = new URL(location.href);\r\n' +
+    '      cleanUrl.hash = "";\r\n' +
+    '      history.replaceState(history.state, "", cleanUrl);\r\n' +
+    '      if (!REVIEW_REQUEST_ID.test(reviewRequestId) || !REVIEW_ACCEPTANCE_TOKEN.test(reviewAcceptanceToken)) {\r\n' +
+    '        sessionStorage.removeItem(REVIEW_RESUME_KEY);\r\n' +
+    '        return { error: "This review link is incomplete or invalid. Ask the curtain team for a new link." };\r\n' +
+    '      }\r\n' +
+    '      const capability = { reviewRequestId, reviewAcceptanceToken };\r\n' +
+    '      sessionStorage.setItem(REVIEW_RESUME_KEY, JSON.stringify(capability));\r\n' +
+    '      return { capability };\r\n' +
+    '    }\r\n' +
+    '    try {\r\n' +
+    '      const capability = JSON.parse(sessionStorage.getItem(REVIEW_RESUME_KEY) || "null");\r\n' +
+    '      if (capability\r\n' +
+    '          && REVIEW_REQUEST_ID.test(capability.reviewRequestId)\r\n' +
+    '          && REVIEW_ACCEPTANCE_TOKEN.test(capability.reviewAcceptanceToken)) {\r\n' +
+    '        return { capability };\r\n' +
+    '      }\r\n' +
+    '    } catch {\r\n' +
+    '      sessionStorage.removeItem(REVIEW_RESUME_KEY);\r\n' +
+    '    }\r\n' +
+    '    return {};\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  function checkoutUrlFor(root, handoff) {\r\n' +
+    '    if (root.dataset.purchaseControlsEnabled !== "true") return null;\r\n' +
+    '    const production = root.dataset.productionCheckout === "true";\r\n' +
+    '    const created = production ? "PRODUCTION_DRAFT_CREATED" : "TEST_DRAFT_CREATED";\r\n' +
+    '    const reused = production ? "EXISTING_PRODUCTION_DRAFT_REUSED" : "EXISTING_TEST_DRAFT_REUSED";\r\n' +
+    '    if (!handoff || handoff.paymentEnabled !== production\r\n' +
+    '        || ![created, reused].includes(handoff.testCheckoutStatus)\r\n' +
+    '        || handoff.shopifyWritePerformed !== (handoff.testCheckoutStatus === created)\r\n' +
+    '        || typeof handoff.checkoutUrl !== "string") return null;\r\n' +
+    '    let checkoutUrl;\r\n' +
+    '    try { checkoutUrl = new URL(handoff.checkoutUrl); } catch { return null; }\r\n' +
+    '    const allowedHosts = production ? ["www.curtainsuk.com", "carpetup.myshopify.com"] : [String(root.dataset.stagingCheckoutHost || "").trim().toLowerCase()];\r\n' +
+    '    if (checkoutUrl.protocol !== "https:" || !allowedHosts.includes(checkoutUrl.hostname.toLowerCase()) || checkoutUrl.username || checkoutUrl.password || checkoutUrl.port) return null;\r\n' +
+    '    return checkoutUrl.toString();\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  function renderHandoffConfirmation(root, confirmation, handoff) {\r\n' +
+    '    const checkoutUrl = checkoutUrlFor(root, handoff);\r\n' +
+    '    confirmation.replaceChildren();\r\n' +
+    '    const message = document.createElement("p");\r\n' +
+    '    message.textContent = handoff.message || "Checkout handoff prepared.";\r\n' +
+    '    const reference = document.createElement("p");\r\n' +
+    '    reference.className = "cuk-hint";\r\n' +
+    '    reference.textContent = handoff.paymentEnabled ? `Reference ${handoff.handoffId}` : `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;\r\n' +
+    '    const amounts = document.createElement("p");\r\n' +
+    '    amounts.textContent = `Curtains ${money(handoff.goodsPriceGrossAmountMinor)} · Delivery ${money(handoff.shippingGrossAmountMinor)} · Total ${money(handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor)}`;\r\n' +
+    '    confirmation.append(message, amounts, reference);\r\n' +
+    '    if (["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED", "PRODUCTION_DRAFT_CREATED", "EXISTING_PRODUCTION_DRAFT_REUSED"].includes(handoff.testCheckoutStatus) && !checkoutUrl) {\r\n' +
+    '      throw new Error("Your order reference was prepared, but its secure checkout address could not be verified. Please contact enquiries@curtainsuk.com quoting the reference. Do not create another configuration to retry.");\r\n' +
+    '    }\r\n' +
+    '    if (checkoutUrl) {\r\n' +
+    '      const link = document.createElement("a");\r\n' +
+    '      link.className = "cuk-button";\r\n' +
+    '      link.href = checkoutUrl;\r\n' +
+    '      link.target = "_blank";\r\n' +
+    '      link.rel = "noopener noreferrer";\r\n' +
+    '      link.textContent = handoff.paymentEnabled ? "Continue to secure checkout" : "Continue to Shopify test checkout";\r\n' +
+    '      link.addEventListener("click", () => emit(handoff.paymentEnabled ? "checkout_opened" : "test_checkout_opened", {\r\n' +
+    '        handoff_id: handoff.handoffId,\r\n' +
+    '        amount_minor: handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor,\r\n' +
+    '        currency: handoff.currency || "GBP",\r\n' +
+    '        order_kind: "curtain",\r\n' +
+    '        content_id: handoff.snapshotId,\r\n' +
+    '        content_type: "curtain_order",\r\n' +
+    '      }));\r\n' +
+    '      confirmation.append(link);\r\n' +
+    '    }\r\n' +
+    '    confirmation.classList.remove("cuk-hidden");\r\n' +
+    '    confirmation.focus();\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  function measurementSummary(measurements) {\r\n' +
+    '    if (!measurements || typeof measurements !== "object" || Array.isArray(measurements)) return "Measurements held in the approved revision";\r\n' +
+    '    return Object.entries(measurements)\r\n' +
+    '      .filter(([, value]) => ["string", "number", "boolean"].includes(typeof value))\r\n' +
+    '      .map(([key, value]) => `${humanise(key)}: ${value}${typeof value === "number" && key !== "number_of_sections" ? " cm" : ""}`)\r\n' +
+    '      .join(" · ") || "Measurements held in the approved revision";\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  async function fetchJson(url, options = {}) {\r\n' +
+    '    const isFormData = options.body instanceof FormData;\r\n' +
+    '    const response = await fetch(url, {\r\n' +
+    '      credentials: url.startsWith(location.origin) ? "same-origin" : "omit",\r\n' +
+    '      mode: "cors",\r\n' +
+    '      headers: { "Accept": "application/json", ...(isFormData ? {} : { "Content-Type": "application/json" }), ...(options.headers || {}) },\r\n' +
+    '      ...options,\r\n' +
+    '    });\r\n' +
+    '    const data = await response.json().catch(() => ({}));\r\n' +
+    '    if (!response.ok) throw new Error(data.error || "This request could not be completed.");\r\n' +
+    '    return data;\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    "  // Ordinary catalogue GETs only. Naila's capability request and all mutations\r\n" +
+    '  // retain their existing request policy.\r\n' +
+    '  async function fetchBrowseJson(url, signal) {\r\n' +
+    '    for (let attempt = 0; attempt < 2; attempt++) {\r\n' +
+    '      if (signal.aborted) throw new DOMException("Browse request replaced", "AbortError");\r\n' +
+    '      const controller = new AbortController();\r\n' +
+    '      const abort = () => controller.abort();\r\n' +
+    '      signal.addEventListener("abort", abort, { once: true });\r\n' +
+    '      const timeout = setTimeout(abort, 15000);\r\n' +
+    '      let retry = false, backoff = 350;\r\n' +
+    '      try {\r\n' +
+    '        const response = await fetch(url, {\r\n' +
+    '          method: "GET", credentials: url.startsWith(location.origin) ? "same-origin" : "omit",\r\n' +
+    '          mode: "cors", headers: { Accept: "application/json" }, signal: controller.signal,\r\n' +
+    '        });\r\n' +
+    '        let data;\r\n' +
+    '        try { data = await response.json(); }\r\n' +
+    '        catch (error) { if (controller.signal.aborted || response.ok) throw error; data = {}; }\r\n' +
+    '        if (response.ok) return data;\r\n' +
+    '        retry = [429, 500, 502, 503, 504].includes(response.status);\r\n' +
+    '        const error = new Error(data.error || "The fabrics could not be refreshed just now.");\r\n' +
+    '        error.status = response.status;\r\n' +
+    '        if (response.status === 429) {\r\n' +
+    '          const value = response.headers.get("Retry-After");\r\n' +
+    '          error.retryAfter = value === null ? 0 : /^\\d+(\\.\\d+)?$/.test(value) ? Number(value) : Infinity;\r\n' +
+    '          if (error.retryAfter <= 2) backoff = Math.max(backoff, error.retryAfter * 1000);\r\n' +
+    '        }\r\n' +
+    '        throw error;\r\n' +
+    '      } catch (error) {\r\n' +
+    '        if (signal.aborted) throw new DOMException("Browse request replaced", "AbortError");\r\n' +
+    '        // Fetch failures and timeouts are retryable; ordinary 4xx and other\r\n' +
+    '        // server responses are not. A long Retry-After must not hold the UI.\r\n' +
+    '        const retryAfter = error.status =='... 77377 more characters
+  
+      at TestContext.<anonymous> (C:\Users\hamza\curtainsuk-cushion-studio-20261014\lib\storefront\__tests__\shopify-theme.test.ts:209:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '(() => {\r\n  const SAMPLE_KEY = "curtainsuk_staging_samples_v1";\r\n  const PROJECT_KEY = "curtainsuk_staging_project_v1";\r\n  const EVALUATION_KEY = "curtainsuk_staging_evaluation_v1";\r\n  const RECEIPT_KEY = "curtainsuk_staging_submission_v1";\r\n  const REVIEW_RESUME_KEY = "curtainsuk_staging_review_resume_v1";\r\n  const NEW_CURTAIN_DRAFT_KEY = "curtainsuk_new_curtain_draft_v1";\r\n  const OPENAI_ATTRIBUTION_KEY = "curtainsuk_openai_ads_attribution_v1";\r\n  const REVIEW_REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;\r\n  const REVIEW_ACCEPTANCE_TOKEN = /^v1\\.\\d{10,12}\\.[A-Za-z0-9_-]{43}$/;\r\n  const FABRIC_MASTER_ID = /^[a-zA-Z0-9-]{1,150}$/;\r\n\r\n  const emit = (name, detail = {}) => {\r\n    const payload = { event: `curtainsuk_${name}`, ...detail };\r\n    window.dataLayer = window.dataLayer || [];\r\n    window.dataLayer.push(payload);\r\n    window.dispatchEvent(new CustomEvent("curtainsuk:analytics", { detail: payload }));\r\n  };\r\n\r\n  const money = (minor, currency = "GBP") => new Intl.NumberFormat("en-GB", {\r\n    style: "currency", currency, minimumFractionDigits: 2, maximumFractionDigits: 2,\r\n  }).format(minor / 100);\r\n\r\n  const readJson = (key, fallback) => {\r\n    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }\r\n  };\r\n\r\n  const openAiAttribution = () => {\r\n    const saved = readJson(OPENAI_ATTRIBUTION_KEY, null);\r\n    if (!saved || typeof saved !== "object" || Array.isArray(saved)) return undefined;\r\n    const safe = {};\r\n    for (const key of ["oppref", "obref"]) {\r\n      const value = saved[key];\r\n      if (typeof value === "string" && value.trim() && value.length <= 1024 && !/[\\u0000-\\u001f\\u007f]/.test(value)) safe[key] = value.trim();\r\n    }\r\n    return Object.keys(safe).length ? safe : undefined;\r\n  };\r\n\r\n  const endpoint = (root, path) => `${root.replace(/\\/$/, "")}/${path}`;\r\n  const escapeHtml = (value) => String(value ?? "").replace(/[&<>\'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\'": "&#39;", \'"\': "&quot;" })[character]);\r\n\r\n  function humanise(value) {\r\n    return String(value ?? "").replaceAll("_", " ").toLowerCase().replace(/(^|\\s)\\S/g, (letter) => letter.toUpperCase());\r\n  }\r\n\r\n  function reviewedResumeCapability() {\r\n    const fragment = new URLSearchParams(location.hash.startsWith("#") ? location.hash.slice(1) : location.hash);\r\n    const fragmentContainsCapability = fragment.has("cuk_review") || fragment.has("cuk_token");\r\n    if (fragmentContainsCapability) {\r\n      const reviewRequestId = fragment.get("cuk_review") || "";\r\n      const reviewAcceptanceToken = fragment.get("cuk_token") || "";\r\n      const cleanUrl = new URL(location.href);\r\n      cleanUrl.hash = "";\r\n      history.replaceState(history.state, "", cleanUrl);\r\n      if (!REVIEW_REQUEST_ID.test(reviewRequestId) || !REVIEW_ACCEPTANCE_TOKEN.test(reviewAcceptanceToken)) {\r\n        sessionStorage.removeItem(REVIEW_RESUME_KEY);\r\n        return { error: "This review link is incomplete or invalid. Ask the curtain team for a new link." };\r\n      }\r\n      const capability = { reviewRequestId, reviewAcceptanceToken };\r\n      sessionStorage.setItem(REVIEW_RESUME_KEY, JSON.stringify(capability));\r\n      return { capability };\r\n    }\r\n    try {\r\n      const capability = JSON.parse(sessionStorage.getItem(REVIEW_RESUME_KEY) || "null");\r\n      if (capability\r\n          && REVIEW_REQUEST_ID.test(capability.reviewRequestId)\r\n          && REVIEW_ACCEPTANCE_TOKEN.test(capability.reviewAcceptanceToken)) {\r\n        return { capability };\r\n      }\r\n    } catch {\r\n      sessionStorage.removeItem(REVIEW_RESUME_KEY);\r\n    }\r\n    return {};\r\n  }\r\n\r\n  function checkoutUrlFor(root, handoff) {\r\n    if (root.dataset.purchaseControlsEnabled !== "true") return null;\r\n    const production = root.dataset.productionCheckout === "true";\r\n    const created = production ? "PRODUCTION_DRAFT_CREATED" : "TEST_DRAFT_CREATED";\r\n    const reused = production ? "EXISTING_PRODUCTION_DRAFT_REUSED" : "EXISTING_TEST_DRAFT_REUSED";\r\n    if (!handoff || handoff.paymentEnabled !== production\r\n        || ![created, reused].includes(handoff.testCheckoutStatus)\r\n        || handoff.shopifyWritePerformed !== (handoff.testCheckoutStatus === created)\r\n        || typeof handoff.checkoutUrl !== "string") return null;\r\n    let checkoutUrl;\r\n    try { checkoutUrl = new URL(handoff.checkoutUrl); } catch { return null; }\r\n    const allowedHosts = production ? ["www.curtainsuk.com", "carpetup.myshopify.com"] : [String(root.dataset.stagingCheckoutHost || "").trim().toLowerCase()];\r\n    if (checkoutUrl.protocol !== "https:" || !allowedHosts.includes(checkoutUrl.hostname.toLowerCase()) || checkoutUrl.username || checkoutUrl.password || checkoutUrl.port) return null;\r\n    return checkoutUrl.toString();\r\n  }\r\n\r\n  function renderHandoffConfirmation(root, confirmation, handoff) {\r\n    const checkoutUrl = checkoutUrlFor(root, handoff);\r\n    confirmation.replaceChildren();\r\n    const message = document.createElement("p");\r\n    message.textContent = handoff.message || "Checkout handoff prepared.";\r\n    const reference = document.createElement("p");\r\n    reference.className = "cuk-hint";\r\n    reference.textContent = handoff.paymentEnabled ? `Reference ${handoff.handoffId}` : `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;\r\n    const amounts = document.createElement("p");\r\n    amounts.textContent = `Curtains ${money(handoff.goodsPriceGrossAmountMinor)} · Delivery ${money(handoff.shippingGrossAmountMinor)} · Total ${money(handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor)}`;\r\n    confirmation.append(message, amounts, reference);\r\n    if (["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED", "PRODUCTION_DRAFT_CREATED", "EXISTING_PRODUCTION_DRAFT_REUSED"].includes(handoff.testCheckoutStatus) && !checkoutUrl) {\r\n      throw new Error("Your order reference was prepared, but its secure checkout address could not be verified. Please contact enquiries@curtainsuk.com quoting the reference. Do not create another configuration to retry.");\r\n    }\r\n    if (checkoutUrl) {\r\n      const link = document.createElement("a");\r\n      link.className = "cuk-button";\r\n      link.href = checkoutUrl;\r\n      link.target = "_blank";\r\n      link.rel = "noopener noreferrer";\r\n      link.textContent = handoff.paymentEnabled ? "Continue to secure checkout" : "Continue to Shopify test checkout";\r\n      link.addEventListener("click", () => emit(handoff.paymentEnabled ? "checkout_opened" : "test_checkout_opened", {\r\n        handoff_id: handoff.handoffId,\r\n        amount_minor: handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor,\r\n        currency: handoff.currency || "GBP",\r\n        order_kind: "curtain",\r\n        content_id: handoff.snapshotId,\r\n        content_type: "curtain_order",\r\n      }));\r\n      confirmation.append(link);\r\n    }\r\n    confirmation.classList.remove("cuk-hidden");\r\n    confirmation.focus();\r\n  }\r\n\r\n  function measurementSummary(measurements) {\r\n    if (!measurements || typeof measurements !== "object" || Array.isArray(measurements)) return "Measurements held in the approved revision";\r\n    return Object.entries(measurements)\r\n      .filter(([, value]) => ["string", "number", "boolean"].includes(typeof value))\r\n      .map(([key, value]) => `${humanise(key)}: ${value}${typeof value === "number" && key !== "number_of_sections" ? " cm" : ""}`)\r\n      .join(" · ") || "Measurements held in the approved revision";\r\n  }\r\n\r\n  async function fetchJson(url, options = {}) {\r\n    const isFormData = options.body instanceof FormData;\r\n    const response = await fetch(url, {\r\n      credentials: url.startsWith(location.origin) ? "same-origin" : "omit",\r\n      mode: "cors",\r\n      headers: { "Accept": "application/json", ...(isFormData ? {} : { "Content-Type": "application/json" }), ...(options.headers || {}) },\r\n      ...options,\r\n    });\r\n    const data = await response.json().catch(() => ({}));\r\n    if (!response.ok) throw new Error(data.error || "This request could not be completed.");\r\n    return data;\r\n  }\r\n\r\n  // Ordinary catalogue GETs only. Naila\'s capability request and all mutations\r\n  // retain their existing request policy.\r\n  async function fetchBrowseJson(url, signal) {\r\n    for (let attempt = 0; attempt < 2; attempt++) {\r\n      if (signal.aborted) throw new DOMException("Browse request replaced", "AbortError");\r\n      const controller = new AbortController();\r\n      const abort = () => controller.abort();\r\n      signal.addEventListener("abort", abort, { once: true });\r\n      const timeout = setTimeout(abort, 15000);\r\n      let retry = false, backoff = 350;\r\n      try {\r\n        const response = await fetch(url, {\r\n          method: "GET", credentials: url.startsWith(location.origin) ? "same-origin" : "omit",\r\n          mode: "cors", headers: { Accept: "application/json" }, signal: controller.signal,\r\n        });\r\n        let data;\r\n        try { data = await response.json(); }\r\n        catch (error) { if (controller.signal.aborted || response.ok) throw error; data = {}; }\r\n        if (response.ok) return data;\r\n        retry = [429, 500, 502, 503, 504].includes(response.status);\r\n        const error = new Error(data.error || "The fabrics could not be refreshed just now.");\r\n        error.status = response.status;\r\n        if (response.status === 429) {\r\n          const value = response.headers.get("Retry-After");\r\n          error.retryAfter = value === null ? 0 : /^\\d+(\\.\\d+)?$/.test(value) ? Number(value) : Infinity;\r\n          if (error.retryAfter <= 2) backoff = Math.max(backoff, error.retryAfter * 1000);\r\n        }\r\n        throw error;\r\n      } catch (error) {\r\n        if (signal.aborted) throw new DOMException("Browse request replaced", "AbortError");\r\n        // Fetch failures and timeouts are retryable; ordinary 4xx and other\r\n        // server responses are not. A long Retry-After must not hold the UI.\r\n        const retryAfter = error.status =='... 77377 more characters,
+    expected: /"VAT included\."/,
+    operator: 'match',
+    diff: 'simple'
+  }

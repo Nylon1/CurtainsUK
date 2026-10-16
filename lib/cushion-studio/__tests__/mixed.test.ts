@@ -264,6 +264,28 @@ test("individually sufficient stock cannot pass when combined curtain and cushio
   );
   assert.deepEqual(f.effects, []);
 });
+test("cushion-only fabric in a mixed order uses its cushion stock check without the curtain floor", async () => {
+  const f = await fixture();
+  const cushionSpec = { ...spec, fabricId: "cushion-only-fabric" };
+  const cushionFabric = { ...fabric, id: cushionSpec.fabricId, availableMetres: 28 };
+  f.input.specs = [cushionSpec];
+  f.input.expectedQuoteId = quoteCushion(cushionSpec, cushionFabric, rules).quoteId;
+  f.services.cushion.facts = async () => cushionFabric;
+  f.services.cushion.identity = async () => ({
+    id: cushionSpec.fabricId, brand: "Test", design: "Cushion only", colour: "Plain",
+  });
+  const checked: string[] = [];
+  f.services.stock = async (id) => {
+    checked.push(id);
+    return id === source.id;
+  };
+  const review = await reviewMixedCheckout(f.input, f.services);
+  assert.deepEqual(checked, [source.id]);
+  assert.equal(review.contract.input.lineItems.length, 2);
+  assert.deepEqual(f.effects, []);
+  f.services.cushion.facts = async () => ({ ...cushionFabric, availableMetres: 0 });
+  await assert.rejects(reviewMixedCheckout(f.input, f.services), /CUSHION_/);
+});
 test("mixed checkout binds reviewed membership and persists native types; retry reuses original snapshot IDs", async () => {
   const f = await fixture(),
     r = await reviewMixedCheckout(f.input, f.services);

@@ -97,3 +97,6 @@ export function roundPreviewPoint(input: {radiusFraction:number;angle:number;dia
 export function roundPreviewDepthMm(diameterMm:number):number;
 export function roundPreviewFootprint(diameterMm:number):ShapedSourceFootprint;
 export function roundPreviewFitsSource(size:{widthMm:number},calibration:{physicalWidthMm:number;physicalHeightMm:number}|null|undefined,placement:{x:number;y:number}):boolean;
+
+export const CUSHION_ACTIVE_SIZE_IDS: readonly string[];
+export const CUSHION_LEGACY_SIZE_REPLACEMENTS: Readonly<Record<string, string>>;

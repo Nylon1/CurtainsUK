@@ -2,6 +2,7 @@
 import { createServer } from "node:http";
 import { handleCushionApi } from "../lib/cushion-studio/server";
 import { cushionPreviewAsset } from "../lib/cushion-studio/preview-assets";
+import { localCushionPreviewUrl } from "../lib/cushion-studio/local-preview-url";
 
 if (process.env.VERCEL || process.env.NODE_ENV === "production")
   throw new Error("CUSHION_LOCAL_PREVIEW_ONLY");
@@ -21,7 +22,7 @@ const server = createServer(async (incoming, outgoing) => {
       outgoing.end();
       return;
     }
-    const url = new URL(incoming.url ?? "/", origin);
+    const url = localCushionPreviewUrl(incoming.headers.host, port, incoming.url ?? "/");
     const requestHeaders = new Headers();
     for (const [name, value] of Object.entries(incoming.headers))
       if (value)
@@ -48,7 +49,7 @@ const server = createServer(async (incoming, outgoing) => {
         url.pathname.slice("/api/cushion-studio/".length),
       );
     else if (url.pathname === "/")
-      response = Response.redirect(`${origin}/cushion-studio-preview/`, 302);
+      response = Response.redirect(`${url.origin}/cushion-studio-preview/`, 302);
     else if (url.pathname.startsWith("/cushion-studio-preview/"))
       response = await cushionPreviewAsset(
         url.pathname.slice("/cushion-studio-preview/".length),

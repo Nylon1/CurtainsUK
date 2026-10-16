@@ -1,0 +1,126 @@
+[
+  {
+    "id": 39462554960107,
+    "title": "Round / 16\"(40cm)",
+    "option1": "Round",
+    "option2": "16\"(40cm)",
+    "option3": null,
+    "sku": "",
+    "requires_shipping": true,
+    "taxable": true,
+    "featured_image": null,
+    "available": true,
+    "name": "Single - Hollowfibre Cushion Pads Inners Inserts Fillers Scatters - Round / 16\"(40cm)",
+    "public_title": "Round / 16\"(40cm)",
+    "options": [
+      "Round",
+      "16\"(40cm)"
+    ],
+    "price": 529,
+    "weight": 5000,
+    "compare_at_price": null,
+    "inventory_management": "shopify",
+    "barcode": null,
+    "quantity_rule": {
+      "min": 1,
+      "max": null,
+      "increment": 1
+    },
+    "quantity_price_breaks": [],
+    "requires_selling_plan": false,
+    "selling_plan_allocations": []
+  },
+  {
+    "id": 39462557516011,
+    "title": "Round / 18\"(45cm)",
+    "option1": "Round",
+    "option2": "18\"(45cm)",
+    "option3": null,
+    "sku": "",
+    "requires_shipping": true,
+    "taxable": true,
+    "featured_image": null,
+    "available": true,
+    "name": "Single - Hollowfibre Cushion Pads Inners Inserts Fillers Scatters - Round / 18\"(45cm)",
+    "public_title": "Round / 18\"(45cm)",
+    "options": [
+      "Round",
+      "18\"(45cm)"
+    ],
+    "price": 599,
+    "weight": 5000,
+    "compare_at_price": null,
+    "inventory_management": "shopify",
+    "barcode": null,
+    "quantity_rule": {
+      "min": 1,
+      "max": null,
+      "increment": 1
+    },
+    "quantity_price_breaks": [],
+    "requires_selling_plan": false,
+    "selling_plan_allocations": []
+  },
+  {
+    "id": 39462563152107,
+    "title": "Round / 20\"(50cm)",
+    "option1": "Round",
+    "option2": "20\"(50cm)",
+    "option3": null,
+    "sku": "",
+    "requires_shipping": true,
+    "taxable": true,
+    "featured_image": null,
+    "available": true,
+    "name": "Single - Hollowfibre Cushion Pads Inners Inserts Fillers Scatters - Round / 20\"(50cm)",
+    "public_title": "Round / 20\"(50cm)",
+    "options": [
+      "Round",
+      "20\"(50cm)"
+    ],
+    "price": 699,
+    "weight": 5000,
+    "compare_at_price": null,
+    "inventory_management": "shopify",
+    "barcode": null,
+    "quantity_rule": {
+      "min": 1,
+      "max": null,
+      "increment": 1
+    },
+    "quantity_price_breaks": [],
+    "requires_selling_plan": false,
+    "selling_plan_allocations": []
+  },
+  {
+    "id": 39462564724971,
+    "title": "Round / 22\"(55cm)",
+    "option1": "Round",
+    "option2": "22\"(55cm)",
+    "option3": null,
+    "sku": "",
+    "requires_shipping": true,
+    "taxable": true,
+    "featured_image": null,
+    "available": true,
+    "name": "Single - Hollowfibre Cushion Pads Inners Inserts Fillers Scatters - Round / 22\"(55cm)",
+    "public_title": "Round / 22\"(55cm)",
+    "options": [
+      "Round",
+      "22\"(55cm)"
+    ],
+    "price": 699,
+    "weight": 5000,
+    "compare_at_price": null,
+    "inventory_management": "shopify",
+    "barcode": null,
+    "quantity_rule": {
+      "min": 1,
+      "max": null,
+      "increment": 1
+    },
+    "quantity_price_breaks": [],
+    "requires_selling_plan": false,
+    "selling_plan_allocations": []
+  }
+]

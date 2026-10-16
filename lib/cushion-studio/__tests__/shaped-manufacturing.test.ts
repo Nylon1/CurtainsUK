@@ -319,7 +319,10 @@ test("construction approval does not approve proposed dimensions, higher making 
     /proposed dimensions/,
   );
   const unapprovedMaking = rulesFor(spec.sizeId);
-  delete unapprovedMaking.makingRateCard;
+  // Owner defaults are now approved; exercise an explicitly proposed custom rate.
+  unapprovedMaking.makingRateCard![spec.sizeId].unpiped = {
+    amountMinor: 1100, approval: "proposed",
+  };
   assert.match(
     quoteCushion(spec, facts, unapprovedMaking).issues.join(" "),
     /proposed making rate/,

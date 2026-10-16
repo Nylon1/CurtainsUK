@@ -199,3 +199,185 @@ Contrast piping is removed from the finish selector, its fabric control and the 
 
 Verification: 125/125 Cushion Studio tests passed. Production-style webpack build passed with build-only public Supabase placeholders; generated local and hosted route traces include guide-thumbnails.mjs. Chrome rendered all 23 thumbnails across eight guides with no observed console errors. Desktop and 390 x 844 mobile emulation showed the filled three-quarter cushions and no horizontal overflow. The finish selector contains only Unpiped and Self-piped. Fabric tier dropdown contains only All tiers plus the five approved names. Physical iPhone and spoken VoiceOver remain unverified. Evidence: artifacts/cushion-pairings-20261015. No publication, merge or production change.
 A separate localhost browser session also opened Quiet texture from its rendered card, entered Sofa layout and created two cushions. The user's original 127.0.0.1 design was not replaced during that check.
+
+## Release-readiness fixes, 15 October 2026
+
+The review now shows each server-allocated cushion line price, quantity where greater than one, VAT-inclusive order total and one delivery charge even when release permission is off. Set line prices use the set quotation's allocations by specification ID, not independently quoted cushion prices added together. Unready quotes do not expose stale prices. Individual review uses its standalone quotation.
+
+Hosted `purchaseEnabled` now means global release permission only. Each chosen individual or set must separately have `purchaseReady`, including confirmed dispatch, before the customer sees a checkout action. A blocked unrelated piece no longer disables an eligible individual. An unready complete set still cannot proceed. The server independently requotes the requested specifications before persistence or execution. The main summary and mixed-review return action use the same selected-scope eligibility rule. No gate is enabled by this change.
+
+The local preview preserves its validated localhost or 127.0.0.1 request origin rather than reconstructing localhost requests as 127.0.0.1. Host allowlisting, same-origin POST validation and loopback binding remain enforced; absolute request targets cannot escape the accepted origin. A fresh localhost browser session saved `Readiness fixes1`, reloaded, reopened it from the server list and retained both fabrics, sizes and shared placements. Only a local test design was created.
+
+Validation: 668/668 full regression tests, including 133/133 Cushion Studio tests. Production-style webpack build with build-only public placeholders passed; both local and hosted deployment traces include `review.mjs`. The hosted regression covers release-off rejection, ready individual beside blocked set, set rejection, and missing dispatch rejection before writes. Chrome browser checks cover real local save/reopen and safe review, plus the actual review renderer with clearly labelled synthetic pricing fixtures on desktop and 390 x 844 mobile. The synthetic harness has no checkout transport. Prices in these screenshots are test data, not supplier-backed customer quotes. Mobile review has no horizontal overflow; no console warnings/errors observed on the local save/reopen page.
+
+Evidence: `artifacts/cushion-readiness-fixes-20261015`. Hosted production account recovery, live Shopify order reconciliation, physical iPhone and spoken VoiceOver remain unverified. Manufacturing and commercial approvals remain unset. The [forwardable workroom confirmation checklist](CUSHION_STUDIO_WORKROOM_STARTING_SPEC_20261015.md#confirmation-checklist-for-the-owner-to-forward) separates the remaining acceptance records from already settled owner decisions. No production writes, deployment, merge or purchasing activation.
+
+## Owner construction decisions, 15 October 2026
+
+This entry supersedes the preceding blanket statement that all manufacturing approvals remain unset. Owner acceptance now covers the flat panel dimensions, 15 mm per-edge allowance and lower-seam concealed zip where practical for five standard squares, two rectangles and both bed squares. `cushion-construction-v3-owner-flat-acceptance` records these nine per-size approvals with `approvalAuthority: owner` and the dated source reference. Workroom output identifies owner acceptance explicitly and does not claim a physical trial. Historical rules without an authority label use neutral acceptance wording. Unknown authority or malformed reference fails closed.
+
+Round 40/50 and bed 65/70 finished sizes are accepted separately. Round panel dimensions are specified but perimeter seam/zip construction remains gated. Bolster product dimensions and starting panels are retained while circular joins, closure and artwork orientation await workroom acceptance. Self-piping retains the owner-accepted 4 mm cord / approximately 40 mm strip starting specification, with cutting direction, joins and consumption still unconfirmed. Additional making amounts remain proposed pending clarification of the owner's recommendation wording; the agreed standard unpiped £8 is unchanged.
+
+Pricing rules advance to `cushion-cost-basis-v6-owner-flat-acceptance`, invalidating stale quote hashes. Existing immutable order snapshots and legacy geometry/construction interpretations are not rewritten. Shared-fabric layouts, matching waste and the 1 m minimum per fabric group remain unchanged. Supplier increments above 1 m, supplier carriage, insert SKU/dimensions/cost records, actual outbound expense and mixed shipping arrangement/charge remain factual gaps. Verified usable width, repeats, direction, stock and governed costs remain independently required. None of these decisions enables a release or purchase flag.
+
+Verification: 135 Cushion Studio tests pass, covering all twelve panel geometries, nine owner-accepted constructions, circular/piping/insert and supplier-data blockers, owner provenance, malformed approval rejection, shared minimum and unchanged legacy gates. TypeScript validation passed; the final construction-message refinement passed all seven focused flat-manufacturing tests and the diff check. Physical workroom trials and live checkout are not claimed.
+
+## Owner approval of additional making rates, 15 October 2026
+
+The owner's explicit "Approved" response resolves the preceding rate clarification. All twelve sizes now use approved complete unpiped/self-piped making charges: standard squares and rectangles £8/£11; rounds and 65 cm bed squares £10/£13; bolster and 70 cm bed square £12/£15. Piped rates include cord and labour, with piping fabric calculated separately. No second baseline or additional payment-fee allowance is added.
+
+Default pricing rules are `cushion-cost-basis-v7-owner-making-approval`. They include the complete rate card and dated owner approval references so quote hashes and immutable rule snapshots retain the actual approved rates. Explicit staff-owned custom rules are not overwritten. Contrast rates remain proposed and contrast selection/purchase remains unavailable. Round/bolster construction, self-piping method/yield, insert evidence, supplier commercial evidence, dispatch and release gates remain independent. Purchasing is not activated by this approval.
+
+Validation: 136/136 Cushion Studio tests and TypeScript checks passed. The new matrix verifies exact complete rates across all twelve sizes, no duplicate baseline, and unchanged circular-construction, self-piping and insert blockers. The historical proposed-rate test now supplies an explicitly unapproved custom rate rather than assuming the owner defaults remain proposed. Evidence: `artifacts/cushion-readiness-fixes-20261015/approved-making-tests.log`. No deployment, merge or live transaction.
+
+## Round, bolster, hollowfibre and piping instructions, 15 October 2026
+
+The latest owner instructions supersede the remaining round/bolster construction gaps above. Construction version `cushion-construction-v4-round-bolster-piping-proposal` records all twelve flat constructions as owner-accepted, without claiming a physical workroom trial. Rounds use two circular panels, 15 mm seams and a concealed perimeter zip, with no side band. The bolster uses its 590 × 752.567 mm body cut and two 260 mm circular ends, with a concealed body-seam zip. Both ends retain identical upright unmirrored placement; the body wrap is separate and continuous matching across the end joins is not promised. Accepted visual geometry, physical artwork mapping and the visual-example note are unchanged. Accepted round/bed size labels no longer say proposed.
+
+New filled specifications retain `fillingType: hollowfibre`. The customer chooses that one filling or cover-only. Quote eligibility requires compatible supplier records identifying hollowfibre, size, dimensions and cost; the agreed £5 standard allowance is retained only for compatible standard inserts. Cover-only does not depend on insert records. Legacy saved fillings remain explicitly unspecified until the customer selects the new filling; saved and purchased specifications are not silently rewritten. Pricing rules advance to `cushion-cost-basis-v8-round-bolster-hollowfibre`.
+
+The piping proposal records 4 mm cord, 40 mm strips and finished piped perimeter plus 300 mm per cushion. The 50 cm square therefore records 2300 mm of strip. Straight strips are proposed for squares/rectangles, including bed squares; rounds and bolster ends use a bias proposal. Straight planning reserves all shared main panels first, tries suitable rectangular remnants, then adds only the extra cloth needed. Proposed layouts remain outside charged cloth. Confirmed straight costing requires separately confirmed allowance, method, strip/cord dimensions, usable width and sufficient joining allowance. The global piping flag alone cannot bypass these checks. Bias has a gross length target only, with no invented yield or price. Exact piping artwork remains indicative because strip source registration is not established. Legacy piping without the new proposal keeps its existing contract.
+
+The internal workroom sheet now displays the server's construction instructions and separate provisional strip coordinates/lengths. It distinguishes owner acceptance from outstanding fabrication and commercial evidence. Self-piping remains blocked; contrast remains unavailable. Existing supplier, matching, insert, dispatch, mixed-delivery and release gates remain independent. No purchasing activation, merge, deployment or external workroom communication occurred.
+
+Validation: full regression suite 681/681, including 146 Cushion Studio tests and eight piping cases. Tests cover shared remnants without panel overlap, one minimum per fabric group, extra cloth only for shortfalls, join-budget rejection, missing usable width, bias blocking, hollowfibre compatibility, legacy preservation and unaffected cover-only configurations. Final production-style webpack build and TypeScript checks passed using build-only public Supabase placeholders. The final presentation additions passed JavaScript syntax and browser checks.
+
+Chrome on isolated localhost:4365 verified round size labels/closure, bolster body and two end cuts, cover-only versus hollowfibre selection, the 50 cm square's provisional 2.30 m piping target, gated review, and save/reopen of `Construction hollowfibre1` with its filling retained. No console warnings/errors were observed. Only the agent's local test design was updated. Evidence: `artifacts/cushion-readiness-fixes-20261015/construction-regression.log`, `construction-build.log` and `hollowfibre-reopened.png`. Physical workroom trial, physical iPhone, spoken VoiceOver and live checkout were not tested.
+
+## Owner-selected Dunelm insert source, 15 October 2026
+
+Following inspection of all nine currently listed Dunelm pad products, the owner selected the Square Cotton Cushion Pad range, product 1000114896. Its product description explicitly identifies hollowfibre. Default rules advance to `cushion-cost-basis-v9-dunelm-insert-source` and retain source, observation date, advertised dimensions, gross retail price, VAT normalization and fit/SKU status in the immutable rule evidence. Existing staff-authored custom rules are not overwritten.
+
+The 45 cm pad is an exact advertised size match with SKU 30287925: £6 gross / £5 net. This resolves that insert record only and preserves the agreed standard allowance. No physical trial is claimed. The exact advertised 70 cm pad costs £14 gross / £11.67 net, but its variant SKU was not verified, so its record remains unconfirmed and filled quotation stays blocked. The defaultSkuId in the starting URL remains 30287925 after choosing another size and must not be reused as that variant's SKU.
+
+Other price candidates, all awaiting fit and SKU confirmation: 37 cm for the 38 cm cover £4 gross / £3.33 net; 52 cm for 50 cm £7 / £5.83; 57 cm for 55 cm £9 / £7.50; 62 cm for 60 cm £10 / £8.33; 67 cm for 65 cm £12 / £10. No automatic size substitution or oversized preview-driven filling is approved. Rectangles, rounds and the 23 × 56 cm bolster have no verified matching hollowfibre product in the nine-product listing. Cover-only quotations remain independent of these insert gaps. Provisional prices are retained for staff evidence but are not silently used in a binding quote.
+
+Source: https://www.dunelm.com/product/cotton-cushion-pad-1000114896 (live selector and description inspected 15 October 2026). VAT-inclusive pricing and separate delivery are documented at https://www.dunelm.com/info/help/terms-and-conditions. Their terms reserve cancellation of orders intended for direct resale; ongoing business supply and order-level carriage remain to be confirmed. No order, supplier agreement, stock reservation or guaranteed availability is implied by this source choice. Customer delivery remains £4.95, margin remains 40%, dispatch remains 3-4 calendar weeks, and purchasing remains gated.
+
+Validation: 148/148 Cushion Studio tests and TypeScript passed. The final focused insert checks also passed for individual/set costs, VAT normalization, shared fabric minimum, fit/SKU blockers and unaffected cover-only pricing. Evidence: artifacts/cushion-readiness-fixes-20261015/dunelm-inserts-tests.log and dunelm-typecheck.log. No production change, merge, deployment or purchase activation.
+
+
+## Dunelm standard range revision, 15 October 2026
+
+Exact standard cotton-pad variants are recorded in `insert-sourcing.ts` and the latest section of `CUSHION_STUDIO_WORKROOM_STARTING_SPEC_20261015.md`. This is preparation, not a completed size replacement: supplier pad-to-cover fit guidance is not established. Do not infer cover sizes or relabel polyester-only rectangle/bolster descriptions as hollowfibre. No suitable hollowfibre round pad was found. Bespoke inserts are no longer a sourcing requirement.
+
+Speculative oversized pad pairings were removed. A Dunelm filled quote now needs versioned fit evidence for the exact finished cover dimensions. Cover-only remains independent. Original size IDs, saved dimensions and render geometry are preserved. Manufacturing and rate approvals explicitly name the original twelve IDs, preventing accidental approvals as the registry grows. Size edits explain old/new dimensions and placement adjustments and retain Undo.
+
+Selector size replacement, guide arrangements and revised cutting panels remain pending supplier fit guidance. Update them atomically once provided, keeping pad and cover dimensions separate. No merge, publication or deployment.
+
+## Implemented standard-insert range, 16 October 2026
+
+The owner's explicit fit pairings now supersede the previous pending selector replacement. Active range: squares35/40/45/50/55/60, bed squares65/68, rectangles28x48 and38x58, rounds40/50, and replacement bolster diameter19 x length44 cm. Exact pad identities, prices, proposed cover/cut dimensions and scoped outstanding checks are recorded in the latest section of `CUSHION_STUDIO_WORKROOM_STARTING_SPEC_20261015.md`.
+
+New additive `rangeVersion: standard-inserts-v1` selects current insert associations. Missing rangeVersion retains legacy source semantics, including 45 cm cover with historical 45 cm pad. Original size IDs and dimensions remain permanent. Explicit size/filling changes opt in, explain revalidation and support Undo. Saved and purchased specifications are not silently resized. The old23x56 bolster is retained only for saved compatibility. Preview geometry algorithms and the accepted50cm shape remain unchanged; the new cylinder's preview, layout bounds and UV scale derive from its190mm diameter/440mm length.
+
+Construction v5 records new dimensions as proposals with15mm seams. Pricing v11 records actual selected pad costs separately from fit approval and exposes safe pad/cover/filling facts for each selected piece and review. Known proposed costs feed internal nonbinding estimates. Customer totals and checkout remain blocked until required evidence is present. Checkout snapshots resolve inserts through the same versioned specification. Generic polyester is allowed to match supplier-confirmed hollowfibre; an old explicit hollowfibre choice cannot silently become generic polyester.
+
+Dunelm SKU30926140 is an actual cylindrical cotton-cased polyester pad, advertised46x20cm atGBP6. Proposed cover diameter19 x length44cm uses body470x626.903mm plus two220mm circular ends. Its compatible fit remains unverified. Willows exact Round variants supply45cm/55cm pads for40cm/50cm covers; their advertisedGBP5.99/6.99 costs are retained without inventing reclaimable VAT. General and shape-specific guidance, presets, selectors, workroom details and prices now agree.
+
+No production changes, purchasing activation, merge or deployment.
+
+Validation of this revision: 692/692 full regression tests passed, including157/157 Cushion Studio tests. Production-style `npm run build -- --webpack` passed, including TypeScript and170 static pages, with build-only public Supabase placeholders. The first attempt without local public Supabase build settings stopped on admin prerender; no production credential/configuration changes were made. Existing released visualiser packaging retained3150 files across2 packs. This is local build evidence, not live deployment acceptance.
+
+Chrome local review at `http://localhost:4372/cushion-studio-preview/` verified the new bolster selector, separate pad/cover identity, 470x626.903mm body/two220mm end cuts, GBP22.20 known fixed filled cost, blocked purchase, plain/stripe rendering and sofa placement. The isolated design `Range check 20261016 cylinder` saved and reopened with its new range, dimensions and filling intact. A name-entry timing issue found during this check was corrected by recording input before asynchronous redraw and reading the field on Save. Rectangle28x48/38x58 and round40/50 selectors were checked; round40 displayed Willows45cm pad separately. No browser console errors/warnings were observed in the bounded check. The round click reported a browser-control timeout, but the subsequent live DOM confirmed the selected round and correct pad metadata. Browser automation timeout is not a customer runtime failure.
+
+Tests additionally verify legacy45cm source association versus new47cm pad, legacy bolster dimensions, explicit migration/Undo, per-item/set price allocation, one shared1m minimum, real matching-cut repeat offsets, new cylinder bounds/end UVs, physical-scale geometry and proposed-fit gates. Astra review found a missing-evidence bypass in custom new-range insert rules; the gate now requires versioned fit evidence even when source metadata is omitted, covered by a regression assertion. Original cover-only approvals remain independent.
+
+Evidence: `artifacts/cushion-range-20261016/regression.log`, `tests.log`, `build.log`, `typecheck.log`, `bolster-striped.png`, `bolster-sofa.png` and public sourcing JSON. No physical fit trial, physical iPhone, spoken VoiceOver or live checkout was performed. No merge, deployment or purchasing activation. Pending decisions and per-configuration blockers are in the current workroom section.
+
+
+## My Home candidate review, 16 October 2026
+
+Status: implemented and locally verified, unpublished. This section supersedes earlier mixed-delivery uncertainty. The owner approved holding the complete order and dispatching together using the latest confirmed product estimate, with one existing curtain delivery charge for curtain-containing orders or GBP 4.95 for cushion-only orders. Customer VAT labels are omitted; tax calculation and gross totals remain accurate.
+
+### Infrastructure and journey
+
+The candidate retains `/pages/build-my-rooms`, `curtainsuk_house_v1`, House IDs, saved room/curtain records, signed curtain retention, existing pricing and checkout contracts. My Home is the customer-facing name. Additive typed cushion items retain source design/piece identities, quantity and separate specifications. Future product families can extend the model without relabelling curtains.
+
+Explicit Add actions add one cushion, a set or a curtain. Saved arrangements remain separate. Editing replaces the same item, preserves quantity and does not overwrite the original cushion design. Duplicate source additions are idempotent. Rooms are optional. My Home saves/reopens on this device; cross-device account order storage is not claimed.
+
+Server review recalculates all ordered cushions together with shared fabric minimums, combined stock, one delivery and held-together dispatch. Missing or incomparable dispatch estimates block checkout. Checkout revalidates price, stock, membership and specification approvals. Retry keys retain the exact reviewed contract and reject changed membership. Curtain quantities create separate immutable fulfilment snapshots. Product manufacturing specifications remain distinct.
+
+The existing House palette/serif headings now accompany product cards, fabric thumbnails when retained, interactive buttons, quantity steppers, focus states, a product picker and responsive summary. Customer content excludes em dashes, separate VAT breakdown and workroom instructions. Internal cutting/workroom exports remain owner-review-only. Customer blockers explain option, availability, price or dispatch confirmations without internal construction instructions.
+
+### Verification
+
+- Full `npm test`: 710/710 executions passed, including 174 Cushion Studio tests. This includes 18 theme tests repeated by the existing package command, so it is not a unique-test count.
+- Production-style `npm run build -- --webpack`: passed, including TypeScript/prerendering. Command-local public Supabase placeholders were used. Production settings were untouched. Visualiser packaging retained 3,150 assets across two packs.
+- Automated coverage: single cushions, sets, curtain-only/mixed orders, shared pricing, one delivery, missing/latest dispatch, changed stock/prices, quantity snapshots, retry identity, scoped blockers, explicit checkout confirmation, legacy saved records, revision conflicts, stable edits and optional rooms. Signed hosted-route tests verify guest nonbinding review and independent gates without hosted writes.
+- Chrome localhost:4375, desktop 1440 x 900 and mobile emulation 390 x 844: single cover add, quantity repricing, edit 45 to 50 cm retaining quantity three, reopen, standard curtain live price/retained add, mixed review, optional room creation, two-cushion save/reopen, explicit set add and removal.
+- Removing curtains returned delivery to GBP 4.95 and dispatch to 3-4 calendar weeks. Mixed review used synthetic curtain delivery and dispatch. Local amounts are test fixtures, not approved live offers.
+- Mobile order view had no horizontal overflow; product picker focused its first link. No console errors/warnings were captured in the bounded check. Physical iPhone and spoken VoiceOver were not tested.
+- Local checkout remained gated. Real Shopify checkout creation/payment, production authentication and live price reconciliation were not performed.
+- External Shopify Liquid validation could not run: the toolkit lacked `@shopify/theme-check-common`. Repository theme assertions and JavaScript syntax checks passed. External Theme Check is not claimed as passed.
+
+Evidence: `artifacts/my-home-20261016/regression-final.log`, `build-final.log`, `mixed-order-desktop.png`, `mixed-order-mobile.png`. `scripts/my-home-preview.ts` is an unpublished rehearsal with synthetic authorities, in-memory design persistence and disabled purchase execution; it refuses production execution.
+
+### Defects corrected
+
+The standard curtain form re-enabled hidden required corner inputs, blocking its ordinary journey. The fix has a regression test. Other fixes protect edit revisions, quantities and original cushion designs; refresh after room creation; prevent stale in-flight curtain prices; preserve retry error recovery; and defer owner-bound persistence until needed. No unresolved customer-facing defect was observed in the bounded tested flows. This is not full live acceptance.
+
+### Remaining factual confirmations
+
+| Confirmation | Proposed resolution | Affected configurations |
+|---|---|---|
+| Structured curtain dispatch authority | Record the existing approved range, units, start trigger and evidence in `CURTAINSUK_MY_HOME_CURTAIN_DISPATCH_JSON`. Never adopt the local 5-6-week fixture. | Curtain-only and mixed My Home checkout; cushion-only independent. |
+| Supplier increments above 1 m and carriage | Use exact existing arrangements once per relevant shared group/order. Do not invent zero carriage. | Products using a supplier with missing required evidence. |
+| Proposed new dimensions and pad fit | Confirm representative fit and revised construction. Matching every rendered crease is unnecessary. | Filled pairings; new 35/40 squares, 28 x 48 and 38 x 58 rectangles, 68 bed square and 19 x 44 bolster construction. Accepted cover-only sizes remain independent. |
+| Round insert cost/VAT basis | Obtain Willows invoice/basis; do not invent a VAT deduction. | Filled rounds only. |
+| Current insert stock | Revalidate exact SKUs. Earlier out-of-stock observations concerned Dunelm 57 cm square and 40 x 60 rectangle pads. | Their filled pairings, not cover-only. |
+| Self-piping consumption/construction | Confirm straight/bias method, joins and usable remnants. | Self-piped configurations only. Contrast piping remains unavailable. |
+| Actual carrier expense and retail insert supply | Record invoice cost and confirm ongoing supplier business supply terms. | Margin evidence and affected procurement. Customer delivery policy is already settled. |
+
+Approved making rates/allowances, 40% margin, customer delivery policy and cushion dispatch are settled. Do not reopen them as missing decisions.
+
+### Release and rollback
+
+Keep the new `CURTAINSUK_MY_HOME_ENABLED` and existing purchase/release gates closed pending approval. No environment was changed. Review theme and gateway together: the new section requires its API, store and bridge assets. Follow protected `release/production` and exact-commit approval. Before release, verify actual proxy/authentication, approved delivery/dispatch, retained orders, checkout reconciliation and deployment assets in an authorised preview.
+
+Rollback restores the previous approved House section/assets and gateway together. Merely disabling the API behind the new page is insufficient. Preserve additive local order state and immutable purchased snapshots; do not clear designs. No merge, deploy, Shopify upload, production database write, Draft Order or payment occurred.
+
+
+## My Home editorial presentation revision, 16 October 2026
+
+Owner direction: preserve My Home's shared order structure while bringing forward the original House page's generous imagery and premium presentation. This supersedes the compact list-only visual treatment in the earlier candidate review.
+
+The candidate now reuses the original editorial hero, five room inspiration photographs, heading-study imagery, larger product specification panels, optional room grouping and room renaming. The shared order summary, explicit Add actions, existing item IDs, server pricing, one delivery and checkout restrictions remain. Unassigned pieces retain a quick direct purchase route. Fabric images are labelled as fabric details and neutral heading studies as inspiration, not fabricated renders of selected products. No new image dependency was introduced.
+
+Verified in Chrome at 1440 x 900 and mobile emulation 390 x 844: room assignment and rename retained shared prices, curtain live price and Add retained the product in the correct room, removing another piece recalculated the combined total, and the Bedroom image opened a prefilled optional-room dialog with cancellation returning focus. Mobile had no horizontal overflow. All observed images loaded. Visible copy contained no em dashes or workroom instructions. No physical-device result is claimed.
+
+Focused My Home store, pricing/checkout and curtain validation regression tests: 16/16 passed. JavaScript syntax passed. The prior full build/tests belong to the preceding functional candidate; this presentation revision was verified with focused tests and browser inspection. Evidence: `artifacts/my-home-20261016/editorial-regression.log`, `editorial-hero.png`, `editorial-mobile.png`. Everything remains unpublished; no production changes or checkout execution.
+
+
+## Shape-specific My Home image cards, 16 October 2026
+
+Retained the curtain heading-study image and selected-fabric inset. Cushion order cards now use the same presentation: a neutral shape-specific image plus a separate linked chosen-fabric card, Edit, Remove and Add another cushion. Images derive from the existing Cushion Studio geometry and selected size/construction profile. Neutral study artwork and placement exist only in a copied display specification. No supplier calibration, purchased artwork placement, cutting or price is replaced.
+
+The owner requested white behind cushions. My Home studies now use a white studio backdrop with a soft transparent contact shadow. This optional renderer setting does not change the configurator's accepted geometry or default scene appearance. One lazy rendering context serves visible cards, caches results and is disposed on page exit. Unavailable rendering has a clear Edit fallback rather than endless loading. No images are stored in the order or added to fulfilment snapshots.
+
+Verified all five families in the local browser: square50, rectangle28x48, round40, bed-square65 and bolster19x44. All rendered and the review harness verified each original specification was unchanged. The My Home square card rendered with its inset and actions. Focused order/store/asset tests passed18/18; thumbnail/shape geometry tests passed9/9; TypeScript and JS syntax passed. No console errors were observed in the shape review. Evidence: `cushion-card-tests.log`, `cushion-card-geometry.log`, `cushion-card-typecheck.log`, `cushion-card-white.png` and `cushion-shape-studies.png` under `artifacts/my-home-20261016/`.
+
+The asset allowlist includes `my-home-thumbnails.mjs` and its existing scene/geometry/guide dependencies. Release must deploy that gateway bundle alongside the My Home theme changes. The local shape-review route is only part of the unpublished rehearsal server. No production deployment, purchase activation or order creation.
+
+### Room product choices and curtain fabric cards, 16 October 2026
+
+- Creating an optional room now opens a room-named choice of Add curtains or Add cushions. Existing room headers also offer Add a product. Both destinations carry room context; no product enters the order until its explicit Add action.
+- Cushion sets inherit the target room on first addition. Repeated additions and edits preserve existing item identities and room assignments, including an intentionally unassigned item. Missing room references fail without writing partial state.
+- Curtain cards now include Add another curtain alongside Edit and Remove, keeping the selected room and fabric. Cushion add-another controls also retain room context.
+- My Home receives current customer-safe curtain fabric metadata through the existing server review. This restores missing photographs on older saved entries without modifying signed manufacturing records. Image-only changes do not change the financial review identity. Failed images retain a named, linked fabric card.
+- Local review uses the registered pt-4269-147 artwork from the approved Fixed 140 asset URL because the historical supplier image URL returns 403. This preview override does not change production catalogue records.
+- Validation: 21 focused tests passed, including mixed totals/retries, room-targeted sets, duplicate/edit preservation and photo refresh without price/review changes. TypeScript check passed. Browser verification confirmed new-room choices and a cushion assigned to the new Bedroom review room. No publication, deployment, Shopify writes or payment.
+
+### Final room and Add controls decision, 16 October 2026
+
+- Add curtains, including Add another curtain, opens the existing Browse Fabrics destination first. The existing room-intent bridge retains the selected room through fabric discovery to Make Curtains. Edit continues to reopen the existing configured item.
+- Remove room removes that room and all its curtain/cushion order items from My Home and checkout. The confirmation states the item count and effect. Other rooms and separate saved designs remain intact. This supersedes the interim suggestion to leave removed-room items unassigned.
+- Remove item removes just that item. Both actions invalidate the review and recalculate the actual remaining order, including shared fabric requirements, dispatch and delivery. Empty orders cannot check out. Concurrent stale room deletion is rejected.
+- 22 focused checks passed. Added coverage verifies mixed-room removal, remaining item preservation, checkout payload exclusion, save/reopen and empty-order removal. Local Browse uses production browser JS with one synthetic fixture, not a claim of live full-catalogue validation.
+- Browser follow-through confirmed Add another curtain -> Browse Fabrics -> View Fabric -> Make Curtains -> live fixture price review retains Living room review as the selected room. No curtain was added during this check. Registered curtain fabric image loaded successfully. Empty-room removal and its confirmation were exercised only on a disposable local room.
+
+## Final My Home local acceptance, 16 October 2026
+
+The consolidated current verdict, evidence and configuration-specific blockers are in [Cushion Studio and My Home release readiness](CUSHION_STUDIO_MY_HOME_RELEASE_READINESS_20261016.md). It supersedes earlier local test counts: 713 successful executions, including 177 cushion tests, plus a successful production-style build. Final browser acceptance covered actual Add/edit/save/reopen/remove actions, individual/set totals, one delivery, combined dispatch and empty-order checkout protection in an isolated local fixture session.
+
+The generated deployment manifests initially omitted the raw cushion geometry module. Explicit tracing and a new postbuild guard now verify 14 required runtime/vendor files on each cushion route. Existing room visualiser packaging still retains 3,150 files. Empty-order wording and zero totals were also corrected. No production changes or release activation occurred.

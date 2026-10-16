@@ -1,7 +1,10 @@
 {% if settings.curtainsuk_rooms_enabled %}
   {{ 'curtainsuk-rooms.css' | asset_url | stylesheet_tag }}
+  {{ 'curtainsuk-my-home.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'curtainsuk-rooms-store.js' | asset_url }}" defer></script>
+  <script src="{{ 'curtainsuk-my-home.js' | asset_url }}" defer></script>
   <script src="{{ 'curtainsuk-rooms.js' | asset_url }}" defer></script>
-  <section class="cukrooms" data-cuk-rooms
+  <section class="cukrooms" data-cuk-my-home
     data-editorial-hero="{{ 'cuk-rooms-editorial-hero-v1.png' | asset_url }}"
     data-room-bedroom="{{ 'cuk-rooms-bedroom-v1.png' | asset_url }}"
     data-room-dining="{{ 'cuk-rooms-dining-v1.png' | asset_url }}"
@@ -20,5 +23,5 @@
   <section class="page-width"><h1>{{ 'rooms.title' | t }}</h1><p>{{ 'rooms.unavailable' | t }} <a href="/pages/fabric-library?view=browse-fabrics">{{ 'rooms.browse' | t }}</a></p></section>
 {% endif %}
 {% schema %}
-{"name":"House of Curtains","settings":[]}
+{"name":"My Home","settings":[]}
 {% endschema %}

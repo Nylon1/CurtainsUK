@@ -8,6 +8,7 @@ import { allocateVatFromGross } from "../storefront/shopify-draft-order-core";
 import {
   CUSHION_MAKING_RATE_CARD,
   cushionSize,
+  insertForSpec,
   parseCushionSpec,
   type CushionSpec,
   type FabricCuttingFacts,
@@ -21,7 +22,14 @@ export const CUSHION_FIXED_COSTS = Object.freeze({
   packagingMinor: 100,
   overheadMinor: 300,
 });
+export type CushionInsertSpecification = {
+  shape: "flat" | "round" | "bolster";
+  supplier: string; productName: string; supplierSku: string; variantId?: string;
+  padDimensionsMm: number[]; finishedCoverDimensionsMm: number[];
+  description: string; fitStatus: "confirmed" | "pending"; fitReference: string;
+};
 export type CushionQuoteItem = {
+  insertSpecification?: CushionInsertSpecification | null;
   specId: string;
   quantity: number;
   fixedCostMinor: number;
@@ -34,6 +42,7 @@ export type CushionQuoteItem = {
   makingApproval: "confirmed" | "proposed";
 };
 export type CushionQuote = {
+  insertSpecification?: CushionInsertSpecification | null;
   version: 1;
   quoteId: string;
   currency: "GBP";
@@ -214,29 +223,52 @@ export function quoteCushionSet(
       );
     const specialInsert =
       size.shape !== "rectangle" || spec.sizeId.startsWith("bed-square-");
-    const insertRecord = rules.compatibleInsertsBySize?.[spec.sizeId];
-    const compatible = insertRecord?.confirmed === true && insertRecord.coverSizeId === spec.sizeId &&
-      typeof insertRecord.supplierSku === "string" && insertRecord.supplierSku.trim() &&
-      typeof insertRecord.approvalReference === "string" && insertRecord.approvalReference.trim() &&
+    const insertRecord = insertForSpec(spec, rules);
+    const expectedCoverDimensions = size.shape === "bolster"
+      ? [size.heightMm, size.widthMm] : size.shape === "round" ? [size.widthMm] : [size.widthMm, size.heightMm];
+    const fitRequired = spec.rangeVersion === "standard-inserts-v1" || Boolean(insertRecord?.sourcing || insertRecord?.fitEvidence);
+    const dimensionsMatch = Array.isArray(insertRecord?.finishedCoverDimensionsMm) &&
+      insertRecord.finishedCoverDimensionsMm.length === expectedCoverDimensions.length &&
+      insertRecord.finishedCoverDimensionsMm.every((dimension, index) => dimension === expectedCoverDimensions[index]);
+    const fitReady = !fitRequired || (insertRecord?.fitEvidence?.status === "confirmed" &&
+      typeof insertRecord.fitEvidence.version === "string" && Boolean(insertRecord.fitEvidence.version.trim()) &&
+      typeof insertRecord.fitEvidence.reference === "string" && Boolean(insertRecord.fitEvidence.reference.trim()) && dimensionsMatch);
+    const fillingMatches = !spec.fillingType || insertRecord?.fillingType === spec.fillingType ||
+      (spec.fillingType === "polyester" && insertRecord?.fillingType === "hollowfibre");
+    const sourceKnown = insertRecord?.coverSizeId === spec.sizeId && fillingMatches &&
+      [insertRecord.supplierSku, insertRecord.supplierVariantId].some(id => typeof id === "string" && Boolean(id.trim())) &&
+      typeof insertRecord.approvalReference === "string" && Boolean(insertRecord.approvalReference.trim()) &&
       Array.isArray(insertRecord.dimensionsMm) && insertRecord.dimensionsMm.length >= 1 &&
       insertRecord.dimensionsMm.length <= 3 && insertRecord.dimensionsMm.every(n => Number.isFinite(n) && n > 0) &&
-      validMoney(insertRecord.costMinor);
-    const insert =
-      spec.filling === "cover"
-        ? 0
-        : spec.manufacturingProfile === "flat-sewn-v1"
-          ? compatible ? insertRecord!.costMinor : undefined
-        : specialInsert
-          ? rules.compatibleInsertCostMinorBySize?.[spec.sizeId]
-          : fixedRules.insertMinor;
+      (!fitRequired || dimensionsMatch) && validMoney(insertRecord.costMinor);
+    const compatible = sourceKnown && fitReady && insertRecord?.confirmed === true && insertRecord.costBasisConfirmed !== false;
+    const needsRecord = spec.manufacturingProfile === "flat-sewn-v1" || Boolean(spec.fillingType) || Boolean(spec.rangeVersion);
+    if (spec.filling === "filled") {
+      if (!fitReady) issues.push(`${spec.id}: proposed pad-to-cover pairing requires representative fit confirmation for these finished dimensions.`);
+      if (needsRecord && !compatible)
+        issues.push(`${spec.id}: a confirmed compatible insert SKU or variant, dimensions, filling and cost basis are required before ordering.`);
+      if (insertRecord?.costBasisConfirmed === false)
+        issues.push(`${spec.id}: insert supplier VAT/cost basis requires confirmation; planning uses the advertised outlay without an input VAT deduction.`);
+      if (insertRecord?.sourcing?.stockObservation?.status === "out-of-stock")
+        issues.push(`${spec.id}: the selected insert was unavailable at the latest supplier check; revalidate availability before ordering.`);
+    }
+    // Known proposed pad costs participate in nonbinding estimates, never clear fit/checkout gates.
+    const insert = spec.filling === "cover" ? 0 : needsRecord
+      ? sourceKnown ? insertRecord!.costMinor : undefined
+      : specialInsert ? rules.compatibleInsertCostMinorBySize?.[spec.sizeId] : fixedRules.insertMinor;
     if (!validMoney(insert)) {
-      issues.push(
-        spec.manufacturingProfile === "flat-sewn-v1"
-          ? `${spec.id}: a confirmed compatible insert SKU, dimensions and supplier cost are required for this shape and size.`
-          : `${spec.id}: a compatible insert supplier cost is required for this shape and size.`,
-      );
+      issues.push(`${spec.id}: a compatible insert supplier cost is required for this shape and size.`);
       pieceComplete = false;
     }
+    const insertSpecification: CushionInsertSpecification | null = spec.filling === "filled" && sourceKnown ? {
+      shape: size.shape === "bolster" ? "bolster" : size.shape === "round" ? "round" : "flat",
+      supplier: insertRecord!.sourcing?.supplier ?? "", productName: insertRecord!.sourcing?.productName ?? "",
+      supplierSku: insertRecord!.supplierSku, variantId: insertRecord!.supplierVariantId,
+      padDimensionsMm: [...insertRecord!.dimensionsMm], finishedCoverDimensionsMm: [...expectedCoverDimensions],
+      description: insertRecord!.sourcing?.supplierFillingDescription ?? insertRecord!.fillingType ?? "Filling unconfirmed",
+      fitStatus: fitReady && insertRecord!.confirmed ? "confirmed" : "pending",
+      fitReference: insertRecord!.fitEvidence?.reference ?? insertRecord!.approvalReference,
+    } : null;
     const fixed =
       ((rate?.amountMinor ?? 0) +
         fixedRules.sundriesMinor +
@@ -270,6 +302,7 @@ export function quoteCushionSet(
     return {
       specId: spec.id,
       quantity: spec.quantity,
+      insertSpecification,
       fixedCostMinor: fixed,
       materialCostMinor: materialComplete ? materialBySpec[spec.id] : null,
       directCostMinor:
@@ -439,6 +472,7 @@ export function quoteCushionSet(
       axis: "x" as const,
     }));
     const confirmed =
+      !(spec.manufacturingProfile === "flat-sewn-v1" && construction.pipingProposal) &&
       construction.pipingConfirmed &&
       construction.pipingCut === "straight" &&
       pieces.length > 0 &&
@@ -469,6 +503,7 @@ export function quoteCushionSet(
     currency: "GBP",
     specs,
     cutPlan,
+    insertSpecification: items.length === 1 ? items[0].insertSpecification : null,
     fixedCostMinor,
     materialCostMinor,
     additionCostMinor: complete ? 0 : null,

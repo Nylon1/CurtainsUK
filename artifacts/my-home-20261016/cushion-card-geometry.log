@@ -1,0 +1,17 @@
+✔ accepted standard square source remains byte-for-byte unchanged (8.1546ms)
+✔ shared size authority retains legacy entries and separates proposed added dimensions (0.8368ms)
+✔ independent rectangular and bed profiles keep finished spans, closed thin seams and identical upright faces (7902.9404ms)
+✔ shaped panel axis distances are measured on the curved face, not flat nominal artwork (214.1169ms)
+✔ round panels are circular with matched outward motifs, radial physical scale and bounded proposed seam easing (77.6717ms)
+✔ bolster is one exact-scale continuous wrap and two matching domed caps with exact finished dimensions (7.7021ms)
+✔ shape-specific finite bounds include both bolster caps, reject missing calibration and exclude square authority (2.1798ms)
+✔ curved rectangular source paths stay within one percent of surface distance in narrow edge bands (2352.3026ms)
+✔ cheap profile depth conservatively bounds its maximum filled extent (84.302ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11007.5104

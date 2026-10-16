@@ -1,0 +1,13 @@
+Readiness verification, 15 October 2026
+
+Full regression: 668 passed, 0 failed (tests.log).
+Production-style build: next build --webpack passed with build-only public placeholders (build.log).
+Generated local and hosted cushion route manifests include runtime/review.mjs.
+Released visualiser packaging guard: passed, 2 recorded packs, 3150 files, 204383626 bytes. This is the repository guard's recorded scope, not a new production asset audit.
+
+Browser: Chrome desktop and 390 x 844 mobile emulation.
+Real local preview: localhost:4365 saved Readiness fixes1, reloaded, reopened from server list, and retained the 50 cm Amalfi Herb square and 30 x 45 Sabu Stripe Stone/Oak rectangle with linked placements. Safe set review retains dispatch and single delivery charge. No console warnings/errors observed.
+Pricing screenshots use the actual review renderer with synthetic, clearly labelled fixtures. Tested set/release off, individual price, and missing dispatch. No live price or payment claim. Mobile page width 390, dialog width and scroll width both 335, no horizontal overflow.
+
+No production writes, hosted customer writes, Draft Orders, payment, merge, deployment or purchase activation.
+Physical iPhone, spoken VoiceOver and hosted production account recovery remain unverified.

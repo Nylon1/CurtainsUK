@@ -20,7 +20,7 @@
   </section>
 {% elsif request.design_mode %}
   <div class="page-width">
-    <h2>Cushion Studio — unpublished candidate</h2>
+    <h2>Cushion Studio · unpublished candidate</h2>
     <p>Enable only after the protected backend release, manufacturing rules, pricing, persistence and checkout checks have been approved.</p>
   </div>
 {% endif %}
@@ -35,6 +35,12 @@
     var source = new URL(frame.dataset.source, window.location.origin);
     var fabric = new URLSearchParams(window.location.search).get('fabric');
     if (fabric && /^[A-Za-z0-9][A-Za-z0-9_-]{0,149}$/.test(fabric)) source.searchParams.set('fabric', fabric);
+    var params = new URLSearchParams(window.location.search);
+    var roomId = params.get('room_id');
+    if (roomId && /^[0-9a-f-]{36}$/i.test(roomId)) source.searchParams.set('room_id', roomId);
+    var orderItem = params.get('order_item');
+    if (orderItem && /^[0-9a-f-]{36}$/i.test(orderItem)) source.searchParams.set('order_item', orderItem);
+    if (params.get('new_order_product') === '1') source.searchParams.set('new_order_product', '1');
     frame.src = source.pathname + source.search;
     window.addEventListener('message', function (event) {
       if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;

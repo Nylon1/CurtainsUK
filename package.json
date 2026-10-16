@@ -11,6 +11,7 @@
     "test:rooms": "tsx --test lib/storefront/__tests__/rooms*.test.ts",
     "verify:rooms": "node scripts/verify-rooms.cjs",
     "build": "next build",
+    "postbuild": "node scripts/verify-cushion-build-assets.mjs",
     "start": "next start",
     "lint": "eslint",
     "seo:check": "node scripts/seo-foundation-check.mjs",

@@ -1,0 +1,362 @@
+[
+  {
+    "productId": "1000114896",
+    "productName": "Square Cotton Cushion Pad",
+    "description": {
+      "html": "<ul><li>Quality cotton cover</li><li>Hollowfibre filling provides medium support</li><li>Designed to keep cushions looking full and inviting</li><li>Available in a range of sizes for the perfect fit</li></ul><p>Crafted with a quality cotton cover and a plump polyester hollowfibre filling for medium support, this white cushion pad is available in a range of sizes to find the perfect fit for your cushion covers.</p>",
+      "formatted": "\n\n* Quality cotton cover\n* Hollowfibre filling provides medium support\n* Designed to keep cushions looking full and inviting\n* Available in a range of sizes for the perfect fit\n\nCrafted with a quality cotton cover and a plump polyester hollowfibre filling for medium support, this white cushion pad is available in a range of sizes to find the perfect fit for your cushion covers."
+    },
+    "features": [
+      {
+        "property": "Product Dimensions",
+        "value": "<p>30cm x 40cm</p><p>41cm x 15cm</p><p>40cm x 60cm</p><p>30cm x 50cm</p><p>46cm x 20cm</p>"
+      },
+      {
+        "property": "Brand",
+        "value": "Dunelm"
+      },
+      {
+        "property": "Care Instructions",
+        "value": "Sponge Clean"
+      },
+      {
+        "property": "Pack Contents",
+        "value": "One cushion pad"
+      },
+      {
+        "property": "Filling",
+        "value": "Polyester Fibre"
+      }
+    ],
+    "sourceUrl": "https://www.dunelm.com/product/cotton-cushion-pad-1000114896",
+    "checkedAt": "2026-10-16T03:18:31.809999+00:00",
+    "skus": [
+      {
+        "id": "30678578",
+        "name": "Cotton Cushion Pad 037x037",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "37cm x 37cm"
+        },
+        "price": {
+          "now": 4
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678578.jpg",
+            "30678578_alt01.jpg",
+            "30678578_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287929",
+        "name": "Cushion Pad 67x67",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "67cm x 67cm"
+        },
+        "price": {
+          "now": 12
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287929.jpg",
+            "30287929_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30926443",
+        "name": "Cotton Cushion Pad 47x47",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "47cm x 47cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30926443.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287927",
+        "name": "Cotton Cushion Pad 57x57",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "57cm x 57cm"
+        },
+        "price": {
+          "now": 9
+        },
+        "inStock": false,
+        "media": {
+          "image": [
+            "30287927.jpg",
+            "30287927_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287928",
+        "name": "Cotton Cushion Pad 62x62",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "62cm x 62cm"
+        },
+        "price": {
+          "now": 10
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287928.jpg",
+            "30287928_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287926",
+        "name": "Cotton Cushion Pad 52x52",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "52cm x 52cm"
+        },
+        "price": {
+          "now": 7
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287926.jpg",
+            "30287926_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678641",
+        "name": "Cotton Insert 70x70cm",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "70cm x 70cm"
+        },
+        "price": {
+          "now": 14
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678641.jpg",
+            "30678641_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287924",
+        "name": "Cotton Cushion Pad 42x42",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "42cm x 42cm"
+        },
+        "price": {
+          "now": 5
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287924.jpg",
+            "30287924_alt01.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30287925",
+        "name": "Cotton Cushion Pad 45x45",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "45cm x 45cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30287925.jpg",
+            "30287925_alt01.jpg",
+            "30287925_alt09.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678577",
+        "name": "Cotton Cushion Pad 032x032",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "30cm x 30cm"
+        },
+        "price": {
+          "now": 3.5
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678577.jpg",
+            "30678577_alt01.jpg",
+            "30678577_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      }
+    ]
+  },
+  {
+    "productId": "1000159252",
+    "productName": "Cotton Cushion Pad",
+    "description": {
+      "html": "<ul><li>Soft cotton cover</li><li>Generously filled with polyester for lasting fullness</li><li>Helps cushions maintain their shape and support</li><li>Available in a variety of sizes</li></ul><p>Styled in a fresh white colourway, this cushion pad features a 100% cotton cover for a gorgeous texture and is generously filled with plump polyester for lasting fullness. This cushion pad is available in a range of other sizes so you can find the perfect fit for your cushion cover.</p>",
+      "formatted": "\n\n* Soft cotton cover\n* Generously filled with polyester for lasting fullness\n* Helps cushions maintain their shape and support\n* Available in a variety of sizes\n\nStyled in a fresh white colourway, this cushion pad features a 100% cotton cover for a gorgeous texture and is generously filled with plump polyester for lasting fullness. This cushion pad is available in a range of other sizes so you can find the perfect fit for your cushion cover."
+    },
+    "features": [
+      {
+        "property": "Product Dimensions",
+        "value": "<p>40cm x 60cm</p><p>30cm x 50cm</p>"
+      },
+      {
+        "property": "Brand",
+        "value": "Dunelm"
+      },
+      {
+        "property": "Care Instructions",
+        "value": "Line Dry, Not Suitable For Ironing, Sponge Clean"
+      },
+      {
+        "property": "Composition",
+        "value": "100% Cotton"
+      },
+      {
+        "property": "Pack Contents",
+        "value": "1 x Cushion pad"
+      },
+      {
+        "property": "Filling",
+        "value": "Polyester Fibre"
+      }
+    ],
+    "sourceUrl": "https://www.dunelm.com/product/cotton-cushion-pad-1000159252",
+    "checkedAt": "2026-10-16T03:18:32.269622+00:00",
+    "skus": [
+      {
+        "id": "30926442",
+        "name": "Cotton Cushion Pad 41x15",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "41cm x 15cm"
+        },
+        "price": {
+          "now": 5
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30926442.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678580",
+        "name": "Cotton Insert 40x60cm",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "40cm x 60cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": false,
+        "media": {
+          "image": [
+            "30678580.jpg",
+            "30678580_alt01.jpg",
+            "30678580_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30663252",
+        "name": "Cotton Cushion Pad 30x50cm White",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "30cm x 50cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30663252.jpg",
+            "30663252_alt01.jpg",
+            "30663252_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30926140",
+        "name": "Cotton Cushion Pad 46x20",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "46cm x 20cm"
+        },
+        "price": {
+          "now": 6
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30926140.jpg"
+          ],
+          "youtubeId": ""
+        }
+      },
+      {
+        "id": "30678579",
+        "name": "Cotton Insert 30x40cm",
+        "definingAttributes": {
+          "colour": "White",
+          "cushionSize": "30cm x 40cm"
+        },
+        "price": {
+          "now": 3
+        },
+        "inStock": true,
+        "media": {
+          "image": [
+            "30678579.jpg",
+            "30678579_alt01.jpg",
+            "30678579_alt08.jpg"
+          ],
+          "youtubeId": ""
+        }
+      }
+    ]
+  }
+]

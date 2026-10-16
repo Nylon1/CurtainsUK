@@ -13,7 +13,7 @@
         >Curtains<span>UK</span><small>MADE FOR YOUR HOME</small></a
       >
       <nav aria-label="Studio navigation">
-        <span class="nav-current">Cushion Studio</span
+        <a id="my-home-link" href="/pages/build-my-rooms" target="_top">My Home</a><span class="nav-current">Cushion Studio</span
         ><button id="restore">Return to a design</button
         ><button id="save" class="outline">
           Save design <span aria-hidden="true">↗</span>
@@ -277,12 +277,12 @@
             <p id="quote-note">
               Your fabric, size and finish, priced together.
             </p>
-            <button id="buy-set" class="primary">
+            <button id="add-piece-order" class="primary">Add to my order</button><button id="add-set-order" class="outline">Add set to my order</button><button id="buy-set" class="primary">
               Review the set <span>↗</span></button
             ><button id="buy-piece" class="text-link">
               Review this cushion
             </button>
-            <details id="cut-plan">
+            <details id="cut-plan" hidden>
               <summary>Fabric & making details</summary>
               <div id="cut-plan-content"></div>
             </details>

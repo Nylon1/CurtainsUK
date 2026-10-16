@@ -1235,6 +1235,21 @@ body[data-mode="layout"] .editor {
 .review-piece p {
   margin: 8px 0;
 }
+.review-piece-price {
+  font-weight: 600;
+}
+.review-total {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.review-total strong {
+  font-size: 1.4rem;
+}
 #more-fabrics {
   margin-top: 15px;
 }

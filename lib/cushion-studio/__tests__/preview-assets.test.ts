@@ -53,4 +53,11 @@ test("asset allowlist rejects traversal and unknown review names while normal cu
   assert.match(body, /"ownerReview":false/);
   assert.doesNotMatch(body, /range-review\.(?:mjs|html)/);
   assert.equal((await cushionPreviewAsset("scene.mjs", hosted)).status, 200);
+  const studies = await cushionPreviewAsset("my-home-thumbnails.mjs", hosted);
+  assert.equal(studies.status, 200);
+  assert.match(studies.headers.get("content-type")!, /javascript/);
+  const review = await cushionPreviewAsset("review.mjs", hosted);
+  assert.equal(review.status, 200);
+  assert.match(review.headers.get("content-type")!, /javascript/);
+  assert.match(await review.text(), /cushionReviewMarkup/);
 });

@@ -11,6 +11,7 @@ export async function cushionPreviewAsset(
   },
 ) {
   const root = path.join(process.cwd(), "lib/cushion-studio/runtime");
+  if (asset === "my-home-store.js") return new Response(await readFile(path.join(process.cwd(), "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-rooms-store.js"), "utf8"), {headers:{"Content-Type":"text/javascript; charset=utf-8","Cache-Control":"no-store"}});
   if (asset.startsWith("range-review.") && !options.ownerPreview)
     return new Response("Not found", { status: 404 });
   const mime: Record<string, string> = {
@@ -19,7 +20,9 @@ export async function cushionPreviewAsset(
     "index.html": "text/html; charset=utf-8",
     "studio.css": "text/css; charset=utf-8",
     "studio.mjs": "text/javascript; charset=utf-8",
+    "review.mjs": "text/javascript; charset=utf-8",
     "guide-thumbnails.mjs": "text/javascript; charset=utf-8",
+    "my-home-thumbnails.mjs": "text/javascript; charset=utf-8",
     "scene.mjs": "text/javascript; charset=utf-8",
     "geometry.mjs": "text/javascript; charset=utf-8",
     "state.mjs": "text/javascript; charset=utf-8",
@@ -62,7 +65,7 @@ export async function cushionPreviewAsset(
   if (filename === "index.html" || filename === "range-review.html")
     body = body.replace(
       "<head>",
-      `<head><base href="${options.base}"><meta name="robots" content="noindex,nofollow"><script>window.CUSHION_STUDIO_CONFIG=${JSON.stringify({ apiBase: options.apiBase, threeUrl: `${options.base}three.module.js`, ownerPreview: options.ownerPreview, ownerReview: options.ownerPreview }).replaceAll("<", "\\u003c")};</script>`,
+      `<head><base href="${options.base}"><meta name="robots" content="noindex,nofollow"><script src="${options.base}my-home-store.js"></script><script>window.CUSHION_STUDIO_CONFIG=${JSON.stringify({ apiBase: options.apiBase, threeUrl: `${options.base}three.module.js`, ownerPreview: options.ownerPreview, ownerReview: options.ownerPreview }).replaceAll("<", "\\u003c")};</script>`,
     );
   return new Response(body, {
     headers: {

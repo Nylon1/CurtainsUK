@@ -15,6 +15,7 @@ export function customerCushionQuote(quote: CushionQuote) {
     quoteId: quote.quoteId,
     currency: quote.currency,
     specs: quote.specs,
+    insertSpecification: quote.insertSpecification ?? null,
     totalMinor: quote.ready ? quote.totalMinor : null,
     deliveryGrossMinor: quote.deliveryGrossMinor,
     ready: quote.ready,
@@ -24,12 +25,13 @@ export function customerCushionQuote(quote: CushionQuote) {
     items: quote.items.map((item) => ({
       specId: item.specId,
       quantity: item.quantity,
+      insertSpecification: item.insertSpecification ?? null,
       goodsGrossMinor: quote.ready ? item.goodsGrossMinor : null,
     })),
     previewMaterials: quote.previewMaterials,
     message: quote.ready
       ? "Your cushion price is ready."
-      : "This cushion needs a manufacturing or price review before ordering.",
+      : "Some options or prices still need confirmation before ordering.",
   };
 }
 

@@ -37,7 +37,7 @@ export function mixedEnabled() {
 }
 /** No new shipping tariff is invented. Owner must explicitly approve the
  * existing one-charge policy for these mixed parcels before this gate opens. */
-function services(cushion: CushionCheckoutServices): MixedServices {
+export function createMixedServices(cushion: CushionCheckoutServices): MixedServices {
   const house = houseCheckoutServices();
   return {
     house,
@@ -106,7 +106,7 @@ export async function mixedCommand(
   if (operation === "mixed-review") {
     const review = await reviewMixedCheckout(
       body as MixedInput,
-      services(cushion),
+      createMixedServices(cushion),
     );
     const dispatchEstimate = customerCushionDispatch(
       review.cushion.snapshots[0].manufacturing.dispatchEstimate,
@@ -138,7 +138,7 @@ export async function mixedCommand(
   houseCheckoutConfigFromEnvironment(); // Native House launch authority is mandatory too.
   const result = await executeMixedCheckout(
     body as Parameters<typeof executeMixedCheckout>[0],
-    services(cushion),
+    createMixedServices(cushion),
   );
   return {
     checkoutUrl: result.execution.checkoutUrl,

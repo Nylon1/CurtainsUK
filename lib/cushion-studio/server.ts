@@ -91,6 +91,7 @@ export async function currentCushionRules(): Promise<CushionPricingRules> {
     "makingRateCard",
     "compatibleInsertCostMinorBySize",
     "compatibleInsertsBySize",
+    "legacyCompatibleInsertsBySize",
     "discountNetMinor",
   ]);
   if (

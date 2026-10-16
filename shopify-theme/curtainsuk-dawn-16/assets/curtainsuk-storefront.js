@@ -98,7 +98,7 @@
     reference.className = "cuk-hint";
     reference.textContent = handoff.paymentEnabled ? `Reference ${handoff.handoffId}` : `Reference ${handoff.handoffId} · Real payment and manufacture remain disabled.`;
     const amounts = document.createElement("p");
-    amounts.textContent = `Curtains ${money(handoff.goodsPriceGrossAmountMinor)} · Delivery ${money(handoff.shippingGrossAmountMinor)} · Total ${money(handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor)} (VAT included)`;
+    amounts.textContent = `Curtains ${money(handoff.goodsPriceGrossAmountMinor)} · Delivery ${money(handoff.shippingGrossAmountMinor)} · Total ${money(handoff.goodsPriceGrossAmountMinor + handoff.shippingGrossAmountMinor)}`;
     confirmation.append(message, amounts, reference);
     if (["TEST_DRAFT_CREATED", "EXISTING_TEST_DRAFT_REUSED", "PRODUCTION_DRAFT_CREATED", "EXISTING_PRODUCTION_DRAFT_REUSED"].includes(handoff.testCheckoutStatus) && !checkoutUrl) {
       throw new Error("Your order reference was prepared, but its secure checkout address could not be verified. Please contact enquiries@curtainsuk.com quoting the reference. Do not create another configuration to retry.");
@@ -248,7 +248,7 @@
       empty.hidden = samples.length > 0;
       samples.forEach((sample) => {
         const item = document.createElement("li");
-        item.textContent = `${sample.design} — ${sample.colour}`;
+        item.textContent = `${sample.design} · ${sample.colour}`;
         const button = document.createElement('button');
         button.type = 'button'; button.className = 'cuk-button cuk-button--secondary';
         button.textContent = root.dataset.purchaseControlsEnabled === 'true' ? 'Add sample to basket' : 'Check sample availability';
@@ -312,13 +312,13 @@
         <div class="cuk-fabric__swatch">${visual}</div>
         <div class="cuk-fabric__body">
           <p class="cuk-eyebrow">${escapeHtml(fabric.brand || fabric.supplier)}</p>
-          <h3>${escapeHtml(fabric.design)} — ${escapeHtml(fabric.colour)}</h3>
+          <h3>${escapeHtml(fabric.design)} · ${escapeHtml(fabric.colour)}</h3>
           <div class="cuk-fabric__actions">${sampleAction}${viewFabricAction}</div>
         </div>` : `
         <div class="cuk-fabric__swatch">${visual}</div>
         <div class="cuk-fabric__body">
           <p class="cuk-eyebrow">${escapeHtml(fabric.brand || fabric.supplier)} · ${escapeHtml(fabric.collection)}</p>
-          <h3>${escapeHtml(fabric.design)} — ${escapeHtml(fabric.colour)}</h3>
+          <h3>${escapeHtml(fabric.design)} · ${escapeHtml(fabric.colour)}</h3>
           <p>${usableWidth} · ${repeat}</p>
           <p>${escapeHtml(composition)}</p>
           <p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
@@ -473,7 +473,7 @@
         const spec = (label, value) => value ? `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>` : "";
         detail.innerHTML = `<a href="/pages/fabric-library?view=browse-fabrics${windowSlug ? `&window=${encodeURIComponent(windowSlug)}` : ""}" class="cuk-text-link">← All fabrics</a>
           <div class="cuk-fabric-detail"><div class="cuk-fabric-detail__gallery">${main ? `<img class="cuk-fabric-detail__main" src="${escapeHtml(main.url)}" width="${main.width}" height="${main.height}" alt="${escapeHtml(fabric.metadata.alt)}" fetchpriority="high">` : '<p class="cuk-empty">Fabric photography is being prepared.</p>'}
-          <div class="cuk-fabric-detail__additional">${(fabric.images || []).slice(1).map((image) => `<img src="${escapeHtml(image.url)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(fabric.metadata.alt)} — ${escapeHtml(image.imageType.toLowerCase())}" loading="lazy">`).join("")}</div></div>
+          <div class="cuk-fabric-detail__additional">${(fabric.images || []).slice(1).map((image) => `<img src="${escapeHtml(image.url)}" width="${image.width}" height="${image.height}" alt="${escapeHtml(fabric.metadata.alt)} · ${escapeHtml(image.imageType.toLowerCase())}" loading="lazy">`).join("")}</div></div>
           <div><p class="cuk-eyebrow">${escapeHtml(fabric.brand)} · ${escapeHtml(fabric.collection)}</p><h2>${escapeHtml(fabric.design)}</h2><p class="cuk-fabric-detail__colour">${escapeHtml(fabric.colour)}</p>
           ${fabric.description ? `<p>${escapeHtml(fabric.description)}</p>` : ""}<p class="cuk-hint">${escapeHtml(fabric.availability)}</p>
           <div class="cuk-fabric-detail__actions"><button class="cuk-button cuk-button--secondary" data-sample ${fabric.sampleAvailable === true ? "" : "disabled"}>${fabric.sampleAvailable === true ? "Order a Sample" : "Sample availability to be confirmed"}</button>
@@ -717,8 +717,6 @@
     root.querySelectorAll("[data-cuk-awkward]").forEach((item) => item.classList.toggle("cuk-hidden", !isAwkward));
     root.querySelectorAll("[data-cuk-review-evidence]").forEach((item) => item.classList.toggle("cuk-hidden", !needsEvidence));
     root.querySelectorAll("[data-cuk-specialist-evidence]").forEach((item) => item.classList.toggle("cuk-hidden", !isSpecialist));
-    root.querySelectorAll("[data-cuk-bay] input, [data-cuk-bay] select, [data-cuk-bay] textarea").forEach((field) => { field.disabled = true; });
-    root.querySelectorAll("[data-cuk-corner] input, [data-cuk-corner] select, [data-cuk-corner] textarea").forEach((field) => { field.disabled = !isCorner; });
     root.querySelectorAll("[data-cuk-standard] input, [data-cuk-standard] select, [data-cuk-standard] textarea").forEach((field) => { field.disabled = isSpecialist; });
     root.querySelectorAll("[data-cuk-measurement-basis] input, [data-cuk-measurement-basis] select, [data-cuk-measurement-basis] textarea").forEach((field) => { field.disabled = isBay; });
     root.querySelectorAll("[data-cuk-width] input, [data-cuk-width] select, [data-cuk-width] textarea").forEach((field) => { field.disabled = false; });
@@ -726,6 +724,8 @@
     root.querySelectorAll("[data-cuk-awkward] input, [data-cuk-awkward] select, [data-cuk-awkward] textarea").forEach((field) => { field.disabled = !isAwkward; });
     root.querySelectorAll("[data-cuk-review-evidence] input, [data-cuk-review-evidence] select, [data-cuk-review-evidence] textarea").forEach((field) => { field.disabled = !needsEvidence; });
     root.querySelectorAll("[data-cuk-specialist-evidence] input, [data-cuk-specialist-evidence] select, [data-cuk-specialist-evidence] textarea").forEach((field) => { field.disabled = !isSpecialist; });
+    root.querySelectorAll("[data-cuk-bay] input, [data-cuk-bay] select, [data-cuk-bay] textarea").forEach((field) => { field.disabled = true; });
+    root.querySelectorAll("[data-cuk-corner] input, [data-cuk-corner] select, [data-cuk-corner] textarea").forEach((field) => { field.disabled = !isCorner; });
     const widthLabel = root.querySelector("[data-cuk-width-label]");
     if (widthLabel) widthLabel.textContent = isCurved ? "Track arc length (cm)" : "Width (cm)";
     root.querySelector("[data-cuk-width-hint]")?.classList.toggle("cuk-hidden", !isCurved);
@@ -797,7 +797,7 @@
       loading.hidden = true;
       panel.querySelector("[data-cuk-reviewed-content]").classList.remove("cuk-hidden");
       panel.querySelector("[data-cuk-reviewed-status]").textContent = summary.pricingOutcome === "MANUAL_QUOTE" ? "Approved staff quote" : "Approved after review";
-      panel.querySelector("[data-cuk-reviewed-price]").textContent = `${money(summary.price.grossAmountMinor, summary.price.currency)} · VAT included`;
+      panel.querySelector("[data-cuk-reviewed-price]").textContent = `${money(summary.price.grossAmountMinor, summary.price.currency)}`;
       panel.querySelector("[data-cuk-reviewed-reference]").textContent = summary.reference;
       panel.querySelector("[data-cuk-reviewed-window]").textContent = summary.window?.label || "Reviewed curtain";
       panel.querySelector("[data-cuk-reviewed-measurements]").textContent = measurementSummary(summary.measurements);
@@ -806,7 +806,7 @@
       panel.querySelector("[data-cuk-reviewed-lining]").textContent = humanise(summary.lining);
       panel.querySelector("[data-cuk-reviewed-construction]").textContent = humanise(summary.construction);
       panel.querySelector("[data-cuk-reviewed-availability]").textContent = summary.availability?.label || "Availability to be confirmed";
-      panel.querySelector("[data-cuk-reviewed-price-summary]").textContent = `${money(summary.price.grossAmountMinor, summary.price.currency)} · VAT included`;
+      panel.querySelector("[data-cuk-reviewed-price-summary]").textContent = `${money(summary.price.grossAmountMinor, summary.price.currency)}`;
       panel.querySelector("[data-cuk-reviewed-delivery]").textContent = summary.delivery?.label || "Delivery shown separately";
 
       const form = panel.querySelector("[data-cuk-reviewed-checkout-form]");
@@ -885,8 +885,10 @@
       try { return roomsEnabled ? window.CurtainsUKRooms?.totals(window.CurtainsUKRooms.read() || window.CurtainsUKRooms.ensure()).curtains || 0 : 0; }
       catch { return 0; }
     })();
-    const roomsFresh = roomsEnabled && (params.get('rooms_new') === '1' || roomIntent !== null || savedHouseCurtains > 0);
-    const checkoutLabel = () => roomsEnabled ? 'Add to my rooms' : root.dataset.productionCheckout === 'true' ? 'Continue to secure checkout' : 'Prepare test checkout';
+    const orderEdit = roomsEnabled && params.get('order_item') ? window.CurtainsUKRooms?.orderItem(window.CurtainsUKRooms.ensure(), params.get('order_item')) : null;
+    if (params.get('order_item') && (!orderEdit || orderEdit.type !== 'CURTAIN')) { errorBox.textContent='This order item could not be found. Return to My Home.'; errorBox.hidden=false; return; }
+    const roomsFresh = !orderEdit && roomsEnabled && (params.get('rooms_new') === '1' || roomIntent !== null || savedHouseCurtains > 0);
+    const checkoutLabel = () => roomsEnabled ? (orderEdit ? 'Update my order' : 'Add to my order') : root.dataset.productionCheckout === 'true' ? 'Continue to secure checkout' : 'Prepare test checkout';
 
     try {
       const requested = params.get("fabric") || (!roomsFresh ? readJson(PROJECT_KEY, {}).fabricId : "");
@@ -894,7 +896,7 @@
       catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog") + (requested ? `?fabric=${encodeURIComponent(requested)}` : ""));
       catalog.windows.filter((item) => AUTOMATED_MTM_WINDOWS.has(item.slug)).forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
       fabricSelect.replaceChildren(option("Choose a fabric", ""));
-      catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} — ${item.colour}`, item.id)));
+      catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} · ${item.colour}`, item.id)));
     } catch (error) {
       errorBox.textContent = error.message;
       errorBox.hidden = false;
@@ -902,7 +904,7 @@
       return;
     }
 
-    const remembered = roomsFresh ? {} : readJson(PROJECT_KEY, {});
+    const remembered = orderEdit ? {...orderEdit.curtain.configuration} : roomsFresh ? {} : readJson(PROJECT_KEY, {});
     restoreProject(form, remembered);
     const requestedFabric = params.get("fabric") || remembered.fabricId || "";
     if (roomsFresh) {
@@ -913,7 +915,7 @@
       try { if (roomsFresh) localStorage.removeItem(EVALUATION_KEY); window.CurtainsUKRoomsFlow.prepare(root); }
       catch (error) { errorBox.textContent = error.message; errorBox.hidden = false; form.querySelector('button[type=submit]').disabled = true; return; }
     }
-    const requestedWindow = roomsFresh ? "" : (params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window");
+    const requestedWindow = roomsFresh ? "" : (orderEdit ? remembered.windowSlug : (params.get("window") || root.dataset.windowSlug || remembered.windowSlug || "standard-window"));
     windowSelect.value = AUTOMATED_MTM_WINDOWS.has(requestedWindow) ? requestedWindow : "";
     const configurableFabrics = catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true);
     fabricSelect.value = configurableFabrics.some((item) => item.id === requestedFabric)
@@ -959,6 +961,10 @@
       reviewConfirmation.classList.remove("cuk-hidden");
       reviewConfirmation.focus();
     }
+    let livePriceTimer;
+    let livePriceSequence=0;
+    form.addEventListener('input',()=>{lastEvaluation=null;checkoutForm.classList.add('cuk-hidden');clearTimeout(livePriceTimer);livePriceSequence++;const sequence=livePriceSequence;livePriceTimer=setTimeout(()=>{if(sequence===livePriceSequence&&fabricSelect.value&&windowSelect.value&&form.checkValidity()&&!form.querySelector('button[type=submit]').disabled)form.requestSubmit();},650);});
+    form.addEventListener('change',()=>{lastEvaluation=null;checkoutForm.classList.add('cuk-hidden');clearTimeout(livePriceTimer);livePriceSequence++;const sequence=livePriceSequence;livePriceTimer=setTimeout(()=>{if(sequence===livePriceSequence&&fabricSelect.value&&windowSelect.value&&form.checkValidity()&&!form.querySelector('button[type=submit]').disabled)form.requestSubmit();},650);});
     const savedReceipt = readJson(RECEIPT_KEY, null);
     if (savedReceipt && JSON.stringify(savedReceipt.project) === JSON.stringify(projectSnapshot(form, root))) {
       showSavedReview(savedReceipt.receipt);
@@ -1066,6 +1072,7 @@
         };
       }
 
+      const submittedSequence = livePriceSequence;
       const submit = form.querySelector("button[type=submit]");
       submit.disabled = true;
       submit.textContent = "Checking…";
@@ -1080,6 +1087,7 @@
         const response = matchingSaved && tokenExpiry > Date.now() / 1000 + 30
           ? savedEvaluation.calculation
           : await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body) });
+        if (submittedSequence !== livePriceSequence) return;
         // Refresh retired presentation copy without changing a resumed price or identity.
         const deliveryLabel = response.delivery === "UK delivery shown separately; postcode and packed parcel confirmation required"
           ? "UK delivery shown separately after postcode confirmation. Specialist delivery confirmed after review"
@@ -1124,19 +1132,19 @@
             : "Technical review required";
         result.querySelector("[data-cuk-result-message]").textContent = [
           response.message,
-          Number.isFinite(response.totalAmountMinor) ? "VAT included." : null,
+
           response.availability || "Availability to be confirmed",
           deliveryLabel,
         ].filter(Boolean).join(" · ");
         const priceLabel = isManualQuote
           ? "Confirmed after technical review"
           : Number.isFinite(response.totalAmountMinor)
-            ? `${money(response.totalAmountMinor, response.currency)} · VAT included`
+            ? `${money(response.totalAmountMinor, response.currency)}`
             : "Not available";
         result.querySelector("[data-cuk-summary-window]").textContent = selected.name;
         result.querySelector("[data-cuk-summary-dimensions]").textContent = widthSummary;
         result.querySelector("[data-cuk-summary-fabric]").textContent = selectedFabric
-          ? `${selectedFabric.design} — ${selectedFabric.colour}`
+          ? `${selectedFabric.design} · ${selectedFabric.colour}`
           : "Fabric selection unavailable";
         result.querySelector("[data-cuk-summary-heading]").textContent = form.elements.heading.selectedOptions[0]?.textContent || form.elements.heading.value;
         result.querySelector("[data-cuk-summary-lining]").textContent = form.elements.lining.selectedOptions[0]?.textContent || form.elements.lining.value;
@@ -1148,7 +1156,7 @@
         result.querySelector("[data-cuk-result-spec]").textContent = [
           selected.name,
           widthSummary,
-          selectedFabric ? `${selectedFabric.design} — ${selectedFabric.colour}` : null,
+          selectedFabric ? `${selectedFabric.design} · ${selectedFabric.colour}` : null,
           form.elements.heading.selectedOptions[0]?.textContent,
           form.elements.lining.selectedOptions[0]?.textContent,
           form.elements.construction.selectedOptions[0]?.textContent,
@@ -1168,7 +1176,7 @@
         const notice = result.querySelector("[data-cuk-result-notice]");
         if (notice) notice.textContent = needsReview
           ? "Checkout is unavailable. This project must be reviewed before payment or manufacture."
-          : root.dataset.productionCheckout === "true" ? "VAT is included. Delivery and current availability are confirmed before checkout." : "Staging price only. Shopify test checkout is available only when every launch gate passes; real payment remains disabled.";
+          : root.dataset.productionCheckout === "true" ? "Delivery and current availability are confirmed before checkout." : "Staging price only. Shopify test checkout is available only when every launch gate passes; real payment remains disabled.";
         reviewConfirmation.classList.add("cuk-hidden");
         result.hidden = false;
         const receipt = readJson(RECEIPT_KEY, null);
@@ -1184,6 +1192,7 @@
       } finally {
         submit.disabled = false;
         submit.textContent = selected.journey === "SPECIALIST" ? "Prepare my review" : "Check my price or review route";
+        if (submittedSequence !== livePriceSequence && form.checkValidity()) form.requestSubmit();
       }
     });
 
@@ -1226,7 +1235,7 @@
       if (!checkoutForm.reportValidity() || !lastEvaluation || lastEvaluation.calculation.outcome !== "INSTANT_PRICE") return;
       if (roomsEnabled) {
         const button = checkoutForm.querySelector('button[type=submit]');
-        button.disabled = true; button.textContent = 'Adding to your rooms…';
+        button.disabled = true; button.textContent = 'Updating My Home…';
         try {
           await window.CurtainsUKRoomsFlow.add(lastEvaluation, root.dataset.engineBase, {
             roomId: checkoutForm.elements.roomId.value || null,

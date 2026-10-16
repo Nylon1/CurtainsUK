@@ -42,10 +42,34 @@ export type CushionCutPlan = {
   constructionVersion: string;
   specs: CushionSpec[];
   fabrics: FabricCutPlan[];
+  /** Separate from costed cloth until the entire straight-strip method is confirmed. */
+  pipingProposals?: PipingProposalPlan[];
   matchingVerified: boolean;
   ready: boolean;
   issues: string[];
   instructions: string[];
+};
+export type PipingProposalPlan = {
+  specId: string;
+  fabricId: string;
+  version: string;
+  quantity: number;
+  direction: "straight" | "bias";
+  stripWidthMm: number;
+  cordDiameterMm: number;
+  finishedPerimeterMm: number;
+  finishingAllowanceMm: number;
+  /** Per cushion, not multiplied by quantity. */
+  grossTargetLengthMm: number;
+  allowanceConfirmed: boolean;
+  materialIncluded: boolean;
+  straightLayout?: {
+    pieces: CutPiece[];
+    requiredMetres: number;
+    orderedMetres: number | null;
+    additionalRequiredMetres: number;
+    issues: string[];
+  };
 };
 const positive = (n: number | null | undefined): n is number =>
   typeof n === "number" && Number.isFinite(n) && n > 0;
@@ -56,7 +80,10 @@ function flatConstruction(spec: CushionSpec, rules: ConstructionRules) {
   const rule = rules.flatConstructionBySize?.[spec.sizeId];
   const known = positive(rule?.seamAllowanceMm) && rule!.seamAllowanceMm <= 100;
   return { seam: known ? rule!.seamAllowanceMm : 0, known,
-    confirmed: Boolean(known && rule?.confirmed === true && rule.approvalReference?.trim()) };
+    approvalAuthority: rule?.approvalAuthority,
+    confirmed: Boolean(known && rule?.confirmed === true &&
+      typeof rule.approvalReference === "string" && rule.approvalReference.trim() &&
+      (rule.approvalAuthority === undefined || ["owner", "workroom"].includes(rule.approvalAuthority))) };
 }
 function shapedConstruction(spec: CushionSpec, rules: ConstructionRules) {
   const rule = rules.shapedConstructionBySize?.[spec.sizeId];
@@ -191,7 +218,16 @@ function pack(
     plan.pieces.push(best);
     bottom = bestBottom;
   }
-  plan.requiredMetres = Math.ceil(bottom) / 1000;
+  finishPack(plan, facts, issues);
+  return plan;
+}
+
+/** Recalculate the same shared fabric order after adding approved strips. */
+function finishPack(plan: FabricCutPlan, facts: FabricCuttingFacts, issues: string[]) {
+  const width = plan.cuttingWidthMm;
+  if (!positive(width)) return;
+  plan.requiredMetres = Math.ceil(Math.max(0, ...plan.pieces.map(p => p.yMm + p.heightMm))) / 1000;
+  plan.orderedMetres = null;
   if (
     facts.minimumOrderMetres === null ||
     !Number.isFinite(facts.minimumOrderMetres) ||
@@ -229,7 +265,73 @@ function pack(
     issues.push(
       `${facts.id}: current verified stock does not cover the ordered cloth requirement.`,
     );
-  return plan;
+}
+
+function finishedPipingPerimeter(spec: CushionSpec) {
+  const size = cushionSize(spec.sizeId);
+  return size.shape === "bolster" ? 2 * Math.PI * size.heightMm
+    : size.shape === "round" ? Math.PI * size.widthMm
+    : 2 * (size.widthMm + size.heightMm);
+}
+
+/** Straight, unrotated strips only. Bounding boxes deliberately exclude curved
+ * panel corners: no circle nesting, bias yield or invisible offcut is invented.
+ * Main panels from the entire shared-fabric set have already been placed.
+ */
+function allocateStraightPiping(
+  plan: FabricCutPlan, spec: CushionSpec, proposal: PipingProposalPlan,
+  joinAllowanceMm: number, issues: string[],
+) {
+  const width = plan.cuttingWidthMm, strips: CutPiece[] = [];
+  if (!positive(width) || width <= 2 * joinAllowanceMm) {
+    issues.push(`${spec.id}: usable width cannot supply a straight piping strip.`);
+    return strips;
+  }
+  for (let unit = 1; unit <= spec.quantity; unit++) {
+    let remaining = roundMm(proposal.grossTargetLengthMm), index = 0;
+    const maximumStrips = joinAllowanceMm > 0
+      ? Math.floor((proposal.finishingAllowanceMm + 1e-6) / (2 * joinAllowanceMm))
+      : Infinity;
+    const unitStrips: CutPiece[] = [];
+    while (remaining > 0.0005 && index < 4096) {
+      const bottom = Math.max(0, ...plan.pieces.map(p => p.yMm + p.heightMm));
+      const ys = [...new Set([0, ...plan.pieces.map(p => p.yMm + p.heightMm)])].sort((a,b) => a-b);
+      const options: { x: number; y: number; length: number; extendsCloth: boolean }[] = [];
+      for (const y of ys) {
+        const blocked = plan.pieces.filter(p => p.yMm < y + proposal.stripWidthMm - 1e-6 && p.yMm + p.heightMm > y + 1e-6)
+          .sort((a,b) => a.xMm - b.xMm);
+        let x = 0;
+        for (const obstacle of [...blocked, { xMm: width, widthMm: 0 }]) {
+          const length = Math.min(remaining, obstacle.xMm - x);
+          // A remnant is only suitable when its extra joins fit the confirmed
+          // gross allowance. Otherwise retain it and use a longer cloth strip.
+          if (length > 2 * joinAllowanceMm + 0.0005 &&
+              index + 1 + Math.ceil(Math.max(0, remaining - length - 1e-6) / width) <= maximumStrips)
+            options.push({x, y, length, extendsCloth: y + proposal.stripWidthMm > bottom + 1e-6});
+          x = Math.max(x, obstacle.xMm + obstacle.widthMm);
+        }
+      }
+      // Spend existing rectangular remnants before adding any cloth. Within
+      // those remnants prefer long strips, limiting join loss and tiny slivers.
+      options.sort((a,b) => Number(a.extendsCloth)-Number(b.extendsCloth) ||
+        (a.extendsCloth ? a.y-b.y || b.length-a.length : b.length-a.length || a.y-b.y) || a.x-b.x);
+      const best = options[0];
+      if (!best) break;
+      const piece: CutPiece = {
+        id: `${spec.id}-${unit}-piping-${index++}`, specId: spec.id,
+        fabricId: plan.fabricId, unit, role: "piping", shape: "rectangle",
+        widthMm: roundMm(best.length), heightMm: proposal.stripWidthMm,
+        xMm: roundMm(best.x), yMm: roundMm(best.y),
+        sourcePlacementMm: {x: roundMm(best.x), y: roundMm(best.y)},
+        seamAllowanceMm: 0, rotation: 0,
+      };
+      plan.pieces.push(piece); strips.push(piece); unitStrips.push(piece);
+      remaining = Math.max(0, roundMm(remaining - piece.widthMm));
+    }
+    if (remaining > 0.0005 || unitStrips.reduce((sum,p) => sum + p.widthMm - 2 * joinAllowanceMm, 0) + 0.001 < proposal.finishedPerimeterMm)
+      issues.push(`${spec.id}: the proposed gross strip allowance cannot cover the perimeter and these joins; confirm a revised piping layout.`);
+  }
+  return strips;
 }
 
 function bodyPieces(spec: CushionSpec, rules: ConstructionRules): Pending[] {
@@ -391,6 +493,7 @@ export function buildSetCutPlan(
   )
     throw new Error("CUSHION_SEAM_INVALID");
   const issues: string[] = [],
+    flatPiping: {spec: CushionSpec; facts: FabricCuttingFacts}[] = [],
     groups = new Map<
       string,
       { facts: FabricCuttingFacts; pieces: Pending[] }
@@ -424,7 +527,14 @@ export function buildSetCutPlan(
     if (spec.manufacturingProfile === "flat-sewn-v1") {
       const construction = flatConstruction(spec, rules);
       if (!construction.known) issues.push(`${spec.id}: flat panel seam allowance is unavailable; do not cut from the net diagram.`);
-      if (!construction.confirmed) issues.push(`${spec.id}: proposed flat panel dimensions, seam allowance and concealed zip construction require workroom acceptance.`);
+      if (!construction.confirmed) {
+        const shape = cushionSize(spec.sizeId).shape;
+        issues.push(shape === "round"
+          ? `${spec.id}: round panels are specified; perimeter seam and concealed zip construction require workroom acceptance.`
+          : shape === "bolster"
+            ? `${spec.id}: bolster panels are specified; circular joins, closure and artwork orientation require workroom acceptance before cutting.`
+            : `${spec.id}: flat panel dimensions, seam allowance and concealed zip construction require workroom acceptance.`);
+      }
     } else if (spec.constructionProfile === SHAPED_CONSTRUCTION_VERSION) {
       const construction = shapedConstruction(spec, rules);
       if (!construction.known)
@@ -450,12 +560,71 @@ export function buildSetCutPlan(
         issues.push(
           `${spec.id}: contrast piping fabric facts are unavailable.`,
         );
-      else append(piping, pipingPieces(spec, rules, piping, issues));
+      else if (spec.manufacturingProfile === "flat-sewn-v1" && rules.pipingProposal) {
+        append(piping, []);
+        flatPiping.push({spec, facts: piping});
+      } else append(piping, pipingPieces(spec, rules, piping, issues));
     }
   });
   const fabrics = [...groups.values()].map((g) =>
     pack(g.pieces, g.facts, issues, g.pieces.some(p => specs.find(s => s.id === p.specId)?.manufacturingProfile === "flat-sewn-v1")),
   );
+  const pipingProposals: PipingProposalPlan[] = [];
+  const trialPlans = new Map<string, FabricCutPlan>();
+  for (const {spec, facts} of flatPiping.sort((a,b) => a.spec.id.localeCompare(b.spec.id))) {
+    const p = rules.pipingProposal!;
+    const direction = p.cutBySize?.[spec.sizeId];
+    if (typeof p.version !== "string" || !p.version.trim() ||
+        !positive(p.stripWidthMm) || !positive(p.cordDiameterMm) ||
+        typeof p.finishingAllowanceMm !== "number" || !Number.isFinite(p.finishingAllowanceMm) || p.finishingAllowanceMm < 0 ||
+        !["straight", "bias"].includes(direction) || typeof p.allowanceConfirmed !== "boolean") {
+      issues.push(`${spec.id}: piping proposal is incomplete or invalid.`);
+      continue;
+    }
+    const proposal: PipingProposalPlan = {
+      specId: spec.id, fabricId: facts.id, version: p.version,
+      quantity: spec.quantity, direction,
+      stripWidthMm: p.stripWidthMm, cordDiameterMm: p.cordDiameterMm,
+      finishedPerimeterMm: finishedPipingPerimeter(spec),
+      finishingAllowanceMm: p.finishingAllowanceMm,
+      grossTargetLengthMm: finishedPipingPerimeter(spec) + p.finishingAllowanceMm,
+      allowanceConfirmed: p.allowanceConfirmed, materialIncluded: false,
+    };
+    pipingProposals.push(proposal);
+    if (direction === "bias") {
+      issues.push(`${spec.id}: bias piping has a proposed gross strip target only; verified bias cutting yield is unavailable and no piping cloth is charged.`);
+      continue;
+    }
+    const plan = fabrics.find(f => f.fabricId === facts.id)!;
+    const confirmed = positive(facts.usableWidthMm) && positive(facts.fullWidthMm) &&
+      p.allowanceConfirmed === true && rules.pipingConfirmed === true &&
+      rules.pipingCut === "straight" && rules.pipingStripWidthMm === p.stripWidthMm &&
+      rules.pipingCordDiameterMm === p.cordDiameterMm &&
+      typeof rules.pipingJoinAllowanceMm === "number" && Number.isFinite(rules.pipingJoinAllowanceMm) && rules.pipingJoinAllowanceMm >= 0;
+    const target = structuredClone(trialPlans.get(facts.id) ?? plan);
+    const chargedIds = new Set(plan.pieces.map(piece => piece.id));
+    const includesUnpricedStrips = target.pieces.some(piece => !chargedIds.has(piece.id));
+    const layoutIssues: string[] = [];
+    // Unknown join losses are never treated as a verified zero. Zero here is
+    // solely a gross-strip planning diagram, outside the costed fabric plan.
+    const join = confirmed ? rules.pipingJoinAllowanceMm! : 0;
+    const strips = allocateStraightPiping(target, spec, proposal, join, layoutIssues);
+    finishPack(target, facts, layoutIssues);
+    proposal.straightLayout = {
+      pieces: strips, requiredMetres: target.requiredMetres,
+      orderedMetres: target.orderedMetres,
+      additionalRequiredMetres: Math.max(0, target.requiredMetres - plan.requiredMetres),
+      issues: layoutIssues,
+    };
+    if (confirmed && !includesUnpricedStrips && layoutIssues.length === 0) {
+      Object.assign(plan, target);
+      proposal.materialIncluded = true;
+    } else {
+      trialPlans.set(facts.id, target);
+      issues.push(`${spec.id}: piping finishing allowance, straight-strip method and joins remain unconfirmed or incomplete; proposed strips are not included in charged cloth.`);
+      issues.push(...layoutIssues);
+    }
+  }
   const complete = inputs.every((input, index) => {
     const expected = bodyPieces(specs[index], rules).length;
     return (
@@ -483,6 +652,7 @@ export function buildSetCutPlan(
     constructionVersion: rules.version,
     specs,
     fabrics,
+    ...(pipingProposals.length ? {pipingProposals} : {}),
     matchingVerified,
     ready: issues.length === 0,
     issues: [...new Set(issues)],
@@ -504,12 +674,21 @@ export function buildSetCutPlan(
       ...specs.filter(s => s.manufacturingProfile === "flat-sewn-v1").map(spec => {
         const c = flatConstruction(spec, rules);
         const panels = bodyPieces({...spec, quantity: 1}, rules);
-        return `${spec.id}: flat-sewn-v1; finished ${cushionSize(spec.sizeId).label} measured flat. ${panels.map(p => `${p.role}: ${p.shape === "circle" ? "diameter " + p.widthMm : p.widthMm + " × " + p.heightMm} mm`).join("; ")}. ${c.seam} mm allowance per edge; ${c.confirmed ? "workroom accepted" : "STARTING PROPOSAL: not verified manufacturing measurements"}. Concealed zip in lower seam where practical. Rendered fullness does not add cloth or justify an enlarged insert. Bolster circular joins and zip need acceptance; seamless pattern at every join is not promised.`;
+        const shape = cushionSize(spec.sizeId).shape;
+        const acceptance = c.confirmed
+          ? c.approvalAuthority === "owner" ? "owner-accepted construction specification; physical workroom trial not claimed" : "construction accepted under the recorded approval reference"
+          : "STARTING PROPOSAL: construction still requires workroom confirmation";
+        const closure = shape === "round"
+          ? "Two circular faces with no side band; concealed zip in a suitable section of the perimeter seam."
+          : shape === "bolster" ? "One continuous body with its concealed zip in the body seam, plus two separate circular ends. Keep the body artwork upright and both end caps identically upright outward; matching the body motif across the end joins is not promised."
+          : "Concealed zip in lower seam where practical.";
+        return `${spec.id}: flat-sewn-v1; finished ${cushionSize(spec.sizeId).label} measured flat. ${panels.map(p => `${p.role}: ${p.shape === "circle" ? "diameter " + p.widthMm : p.widthMm + " × " + p.heightMm} mm`).join("; ")}. ${c.seam} mm allowance per edge; ${acceptance}. ${closure} Rendered fullness does not add cloth or justify an enlarged insert.`;
       }),
+      ...pipingProposals.map(p => `${p.specId}: ${p.direction} piping ${p.stripWidthMm} mm strips for ${p.cordDiameterMm} mm cord. Per cushion: finished perimeter ${p.finishedPerimeterMm.toFixed(3)} mm + ${p.finishingAllowanceMm} mm finishing allowance = ${p.grossTargetLengthMm.toFixed(3)} mm gross strip target. ${p.materialIncluded ? "Confirmed straight strips are included in shared cloth; usable rectangular remnants are allocated first." : "PLANNING ONLY: allowance/yield is not manufacturing-approved or charged. Straight diagrams reuse rectangular remnants; bias yield is not inferred."}`),
       "Keep all pieces upright. Circle bounding boxes are conservative; no unverified circle nesting or 90-degree rotation savings are charged.",
       ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && !s.constructionProfile)
         ? [
-            "Bolster: cut one continuous body rectangle plus two matching circular end caps. The body length is 560 mm; its wrap is π × 230 mm before seam allowance.",
+            ...specs.filter(s => cushionSize(s.sizeId).shape === "bolster" && !s.constructionProfile).map(s => `Bolster ${s.id}: cut one continuous body rectangle plus two matching circular end caps. The body length is ${cushionSize(s.sizeId).widthMm} mm; its wrap is π × ${cushionSize(s.sizeId).heightMm} mm before seam allowance.`),
           ]
         : []),
       ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && s.constructionProfile && !s.manufacturingProfile)

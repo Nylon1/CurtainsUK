@@ -28,6 +28,9 @@ import { mixedCommand } from "./mixed-server";
 import { ShopifyAppProxyError } from "../storefront/security/shopify-app-proxy-core";
 import { endpointRateLimitResponse } from "../storefront/security/endpoint-rate-limit";
 
+import { reviewMyHome, checkoutMyHome, type MyHomeInput, type MyHomeCheckoutInput } from "./my-home";
+import { createMyHomeServices } from "./my-home-server";
+
 const responseHeaders = {
   "Cache-Control": "no-store, private",
   "X-Robots-Tag": "noindex, nofollow",
@@ -48,7 +51,7 @@ export function createHostedCheckoutServices(
 ): CushionCheckoutServices {
   if (!options.reviewOnly && !purchasesEnabled())
     throw new Error("CUSHION_PURCHASE_DISABLED");
-  const repository = createHostedCushionRepository(cushionOwnerHash(context));
+  const repository = () => createHostedCushionRepository(cushionOwnerHash(context));
   const runtimeConfig = options.reviewOnly
     ? null
     : shopifyDraftOrderConfigFromEnvironment();
@@ -74,13 +77,13 @@ export function createHostedCheckoutServices(
         colour: record.colour,
       };
     },
-    persist: (input) => repository.appendCheckout(input),
-    existing: (key) => repository.checkout(key),
+    persist: (input) => repository().appendCheckout(input),
+    existing: (key) => repository().checkout(key),
     execute: (contract) =>
       executeShopifyDraftOrder({
         contract,
         config: runtimeConfig,
-        claimCreate: () => repository.claimCreate(key),
+        claimCreate: () => repository().claimCreate(key),
       }),
   };
 }
@@ -113,6 +116,8 @@ const clientInputErrors = new Set([
 export interface HostedCushionServices {
   enabled(): boolean;
   purchasesEnabled(): boolean;
+  myHomeEnabled?(): boolean;
+  myHomeServices?: typeof createMyHomeServices;
   authenticate: typeof authenticateShopifyAppProxy;
   repository(
     ownerHash: string,
@@ -131,6 +136,8 @@ export interface HostedCushionServices {
 const productionServices: HostedCushionServices = {
   enabled: () => process.env.CUSHION_STUDIO_HOSTED_ENABLED === "true",
   purchasesEnabled,
+  myHomeEnabled: () => process.env.CURTAINSUK_MY_HOME_ENABLED === "true",
+  myHomeServices: createMyHomeServices,
   authenticate: authenticateShopifyAppProxy,
   repository: createHostedCushionRepository,
   catalogue: cushionCatalogue,
@@ -147,7 +154,8 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
     segments: string[],
   ) {
     // Default OFF; no signature/rate-limit database writes occur when disabled.
-    if (!services.enabled())
+    const myHomeOperation = segments[0] === "api" && ["my-home-review","my-home-checkout"].includes(segments[1]);
+    if (myHomeOperation ? !(services.myHomeEnabled?.() ?? services.enabled()) : !services.enabled())
       return new Response(null, { status: 404, headers: responseHeaders });
     try {
       const context = await services.authenticate({
@@ -176,7 +184,14 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
       const operation = segments[1],
         params = new URL(request.url).searchParams;
       let result: unknown;
-      if (request.method === "GET" && operation === "catalogue")
+      if (request.method === "POST" && myHomeOperation) {
+        const body = await boundedCushionBody(request);
+        const reviewOnly = operation === "my-home-review" || !body.cushions;
+        const key = operation === "my-home-review" ? "my-home-review-only" : body.idempotencyKey;
+        if (typeof key !== "string") throw Error("MY_HOME_INPUT_INVALID");
+        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly}),{cushionPurchasesEnabled:services.purchasesEnabled()});
+        result = operation === "my-home-review" ? await reviewMyHome(body as MyHomeInput,authority) : await checkoutMyHome(body as MyHomeCheckoutInput,authority);
+      } else if (request.method === "GET" && operation === "catalogue")
         result = await services.catalogue(params);
       else if (request.method === "POST" && operation === "quote") {
         const resultRaw = await services.quote(
@@ -185,8 +200,10 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         result = {
           quotes: resultRaw.quotes.map(customerCushionQuote),
           setQuote: customerCushionQuote(resultRaw.setQuote),
-          purchaseEnabled:
-            services.purchasesEnabled() && resultRaw.setQuote.purchaseReady,
+          // Release permission is independent of the requested purchase scope.
+          // Each individual/set quote carries its own purchaseReady (including
+          // dispatch); an unrelated blocked piece must not disable a ready one.
+          purchaseEnabled: services.purchasesEnabled(),
           source: "server",
         };
       } else if (operation === "designs") {
@@ -306,6 +323,10 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
           { status: 403, headers: responseHeaders },
         );
       const recoverable: Record<string, string> = {
+        MY_HOME_REVIEW_CHANGED: "Your order or price has changed. Update the My Home review before continuing.",
+        MY_HOME_PURCHASE_DISABLED: "Ordering is not yet enabled for these items. Review the outstanding confirmations in My Home.",
+        MY_HOME_IDEMPOTENCY_CONFLICT: "This checkout attempt belongs to a different order review. Recheck My Home before continuing.",
+        CUSHION_PURCHASE_DISABLED: "Cushion ordering is not yet enabled. Your items remain saved in My Home.",
         CUSHION_DISPATCH_ESTIMATE_REQUIRED:
           "A cushion dispatch estimate must be confirmed before ordering. You can still save and review your design.",
         CUSHION_DESIGN_SAVE_REQUIRED:
@@ -331,7 +352,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
           },
           { status: 413, headers: responseHeaders },
         );
-      if (clientInputErrors.has(code))
+      if (clientInputErrors.has(code) || ["MY_HOME_INPUT_INVALID","MY_HOME_IDENTITY_MISMATCH","MY_HOME_CHECKOUT_INVALID"].includes(code))
         return Response.json(
           {
             code: "CUSHION_INPUT_INVALID",

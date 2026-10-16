@@ -16,7 +16,7 @@ export function roomsCustomerError(error: unknown): string {
   const code = error instanceof Error ? error.message : '';
   if (code === 'ROOMS_PRICE_RECONFIRM_REQUIRED') return 'Please check your curtain price again before adding it to your rooms.';
   if (code === 'ROOMS_CURTAIN_REQUIRES_REVIEW') return 'This curtain needs a CurtainsUK check before it can be added. Please contact support@curtainsuk.com.';
-  if (code === 'ROOMS_UNAVAILABLE' || code === 'ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE' || code === 'SHOPIFY_HOUSE_PUBLIC_PAYMENT_DISABLED') return 'Build My Rooms checkout is not available yet. Your saved rooms have not been changed.';
+  if (code === 'ROOMS_UNAVAILABLE' || code === 'ROOMS_CHECKOUT_AWAITING_MULTI_SNAPSHOT_RELEASE' || code === 'SHOPIFY_HOUSE_PUBLIC_PAYMENT_DISABLED') return 'My Home checkout is not available yet. Your saved rooms have not been changed.';
   if (code === 'ROOMS_EMPTY') return 'Add a curtain before reviewing your rooms.';
   if (code === 'ROOMS_REVIEW_EXPIRED' || code === 'ROOMS_REVIEW_CHANGED') return 'Your rooms or their price have changed. Please review your rooms again before continuing.';
   if (code === 'ROOMS_CONFIRMATION_REQUIRED') return 'Confirm your measurements and accept each updated price before continuing.';
@@ -34,7 +34,7 @@ export type RetainedCurtain = {
 export type RetainedClaims = Omit<RetainedCurtain, 'receipt' | 'window_name'>;
 export type HouseReviewRequest = {
   house_id: string; revision: number; postcode: string;
-  rooms: Array<{ room_id: string; room_name: string; curtains: Array<{ configuration_id: string; receipt: string; window_name: string }> }>;
+  rooms: Array<{ room_id: string; room_name: string; curtains: Array<{ configuration_id: string; receipt: string; window_name: string; quantity?: number }> }>;
 };
 export type RoomsServices = {
   secret: string;
@@ -105,12 +105,14 @@ export function humanize(text: string) { return text.replace(/[-_]/g, ' ').repla
 function safeName(value: string) { if (typeof value !== 'string' || !value.trim() || value.length > 80 || /[\u0000-\u001f]/.test(value)) throw Error('ROOMS_NAME_INVALID'); return value.trim(); }
 export type ReviewedLine = {
   configuration_id: string; room_id: string; room_name: string; window_name: string;
+  quantity?: number;
   status: 'READY' | 'PRICE_CHANGED' | 'BLOCKED'; previousPrice: number | null; currentPrice: number | null;
   message: string; configuration?: StagingPriceRequest; fabric?: RoomsFabric;
 };
 export async function reviewHouse(input: HouseReviewRequest, services: RoomsServices) {
   if (!input || !uuid.test(input.house_id) || !Number.isSafeInteger(input.revision) || input.revision < 0 || !Array.isArray(input.rooms) || !input.rooms.length) throw Error('ROOMS_HOUSE_INVALID');
   const roomIds = new Set<string>(), configIds = new Set<string>();
+  let totalUnits = 0;
   if (input.rooms.length > 100 || input.rooms.reduce((n, room) => n + (Array.isArray(room.curtains) ? room.curtains.length : 0), 0) > 100) throw Error('ROOMS_HOUSE_INVALID');
   const lines: ReviewedLine[] = [], prices: StagingPriceResponse[] = [];
   const stockGroups = new Map<string, { metres: number; lineIndexes: number[] }>();
@@ -119,25 +121,27 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
     roomIds.add(room.room_id);
     const roomName = safeName(room.room_name);
     for (const item of room.curtains) {
+      const quantity = item.quantity ?? 1;
+      if (!Number.isSafeInteger(quantity) || quantity < 1 || quantity > 50 || (totalUnits += quantity) > 100) throw Error('ROOMS_QUANTITY_INVALID');
       if (!uuid.test(item.configuration_id) || configIds.has(item.configuration_id)) throw Error('ROOMS_CONFIGURATION_DUPLICATE');
       configIds.add(item.configuration_id);
-      const line: ReviewedLine = { configuration_id: item.configuration_id, room_id: room.room_id, room_name: roomName, window_name: safeName(item.window_name), status: 'BLOCKED', previousPrice: null, currentPrice: null, message: 'We could not verify this saved curtain. Remove it and configure your curtains again, or contact us.' };
+      const line: ReviewedLine = { configuration_id: item.configuration_id, room_id: room.room_id, room_name: roomName, window_name: safeName(item.window_name), ...(item.quantity === undefined ? {} : {quantity}), status: 'BLOCKED', previousPrice: null, currentPrice: null, message: 'We could not verify this saved curtain. Remove it and configure your curtains again, or contact us.' };
       try {
         const saved = unseal<RetainedClaims>('retained', item.receipt, services.secret);
         if (saved.configuration_id !== item.configuration_id || saved.fabric_master_id !== saved.configuration.fabricId) throw Error('ROOMS_INTEGRITY_FAILED');
-        line.previousPrice = saved.last_validated_price;
+        line.previousPrice = saved.last_validated_price * quantity;
         // The durable signature proves saved configuration integrity, never today's price or stock.
         const price = await services.calculate(saved.configuration);
         const fabric = await services.fabric(saved.fabric_master_id);
         if (!priceReady(price) || fabric.id !== saved.fabric_master_id || price.selectedFabric.id !== fabric.id) throw Error('ROOMS_CURRENT_ELIGIBILITY_FAILED');
         line.configuration = saved.configuration;
         line.fabric = fabric;
-        line.currentPrice = price.totalAmountMinor;
+        line.currentPrice = price.totalAmountMinor! * quantity;
         line.status = price.totalAmountMinor === saved.last_validated_price ? 'READY' : 'PRICE_CHANGED';
         line.message = line.status === 'READY' ? 'Current price and availability checked.' : 'Please acknowledge the updated price before checkout.';
-        prices.push(price);
+        prices.push({...price, totalAmountMinor: price.totalAmountMinor! * quantity, netAmountMinor: price.netAmountMinor! * quantity, vatAmountMinor: price.vatAmountMinor! * quantity, fabricMetres: price.fabricMetres! * quantity});
         const group = stockGroups.get(fabric.id) || { metres: 0, lineIndexes: [] };
-        group.metres += price.fabricMetres!;
+        group.metres += price.fabricMetres! * quantity;
         group.lineIndexes.push(lines.length);
         stockGroups.set(fabric.id, group);
       } catch { /* One failed line never removes another room or exposes supplier internals. */ }

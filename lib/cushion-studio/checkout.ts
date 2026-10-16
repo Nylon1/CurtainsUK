@@ -1,3 +1,4 @@
+import { insertForSpec } from "./domain";
 import { randomUUID } from "node:crypto";
 import {
   parseCushionSpec,
@@ -157,6 +158,15 @@ export async function prepareCushionCheckout(
         setQuoteId: quote.quoteId,
         allocation: quote.allocationRule,
         construction: rules.construction,
+        insert: spec.filling === "filled" && insertForSpec(spec, rules)
+          ? (() => {
+            const record = insertForSpec(spec, rules)!;
+            return structuredClone({ supplierSku: record.supplierSku, supplierVariantId: record.supplierVariantId, coverSizeId: record.coverSizeId,
+              padDimensionsMm: record.dimensionsMm, finishedCoverDimensionsMm: record.finishedCoverDimensionsMm,
+              fillingType: record.fillingType, fitEvidence: record.fitEvidence,
+              supplier: record.sourcing?.supplier, productId: record.sourcing?.productId,
+              productName: record.sourcing?.productName, sourceUrl: record.sourcing?.sourceUrl });
+          })() : null,
         fabricSources: records.map(
           ({
             id,

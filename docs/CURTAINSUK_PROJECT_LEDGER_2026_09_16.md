@@ -247,3 +247,8 @@ Before implementing CurtainsUK work:
 **Learning may change what CurtainsUK recommends. It must not change what is commercially true.**
 
 **Newer persisted evidence always supersedes snapshot counts and historical handovers.**
+
+
+## My Home unpublished candidate, 16 October 2026
+
+The candidate renames customer-facing House of Curtains to My Home, retaining its route, storage and signed curtain foundations. Explicit product additions, shared server review, one delivery and combined dispatch are locally verified. Production is unchanged. The latest acceptance report is `docs/CUSHION_STUDIO_MY_HOME_RELEASE_READINESS_20261016.md`: 713 passing test executions, production-style build, required cushion asset tracing, save/reopen, individual/set pricing and room/item removal. It records scoped factual gaps and rollback. Customer copy excludes em dashes, VAT labels and workroom instructions. Live checkout/authentication is not claimed as verified. The candidate remains unpublished.

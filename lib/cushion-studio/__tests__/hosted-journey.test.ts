@@ -431,13 +431,15 @@ test("hosted errors retain rate-limit retry guidance and safe client error statu
   assert.doesNotMatch(await error.text(), /private|supplier|credential/);
 });
 
-test("hosted purchase flag requires a confirmed dispatch estimate while price exploration stays available", async (t) => {
+test("hosted quote keeps release permission separate from dispatch eligibility", async (t) => {
   const f = await fixture(t);
   f.state.purchase = true;
   const body = { specs: design.pieces.map((piece) => piece.spec) };
   const absent = await (await f.call("quote", "1001", body)).json();
   assert.equal(absent.setQuote.ready, true);
-  assert.equal(absent.purchaseEnabled, false);
+  assert.equal(absent.purchaseEnabled, true);
+  assert.equal(absent.setQuote.purchaseReady, false);
+  assert.equal(absent.quotes[0].purchaseReady, false);
   assert.equal(absent.setQuote.dispatchEstimate, null);
   f.state.rules.dispatchEstimate = {
     version: "synthetic-only",
@@ -450,10 +452,120 @@ test("hosted purchase flag requires a confirmed dispatch estimate while price ex
   };
   const confirmed = await (await f.call("quote", "1001", body)).json();
   assert.equal(confirmed.purchaseEnabled, true);
+  assert.equal(confirmed.setQuote.purchaseReady, true);
+  assert.equal(confirmed.quotes[0].purchaseReady, true);
   assert.notEqual(confirmed.setQuote.quoteId, absent.setQuote.quoteId);
   assert.match(confirmed.setQuote.dispatchEstimate.message, /dispatch/);
   assert.doesNotMatch(
     JSON.stringify(confirmed),
     /approvalReference|confirmedAt/,
   );
+
+  // An explicitly approved-production service still rejects missing dispatch
+  // before persistence/transport, even when the global flag is open.
+  f.state.rules.dispatchEstimate = null;
+  f.state.facts.supplierId = "synthetic-supplier";
+  f.state.facts.supplierSku = "synthetic-sku";
+  await f.call("designs", "1001", { design, expectedRevision: 0 });
+  let persistCalls = 0;
+  const guarded = createHostedCushionHandler({
+    ...f.services,
+    checkoutServices: (...args) => ({
+      ...f.services.checkoutServices(...args),
+      mode: "APPROVED_PRODUCTION",
+      persist: async () => { persistCalls++; },
+    }),
+  });
+  const requoted = await (await f.call("quote", "1001", body)).json();
+  const rejected = await guarded(request("checkout", "1001", {
+    designId: design.id,
+    specs: body.specs,
+    expectedQuoteId: requoted.setQuote.quoteId,
+    idempotencyKey: "offline-missing-dispatch",
+  }), ["api", "checkout"]);
+  assert.equal(rejected.status, 409);
+  assert.equal((await rejected.json()).code, "CUSHION_DISPATCH_ESTIMATE_REQUIRED");
+  assert.equal(persistCalls, 0);
+  assert.equal(f.state.executions, 0);
+});
+
+test("hosted quote allows a ready individual beside a blocked set while the release flag remains independent", async (t) => {
+  const f = await fixture(t);
+  f.state.rules.dispatchEstimate = {
+    version: "synthetic-scope-dispatch",
+    status: "confirmed",
+    unit: "calendar-weeks",
+    minimumCalendarWeeks: 3,
+    maximumCalendarWeeks: 4,
+    startsFrom: "order-confirmation",
+    confirmedAt: "2026-10-15",
+    approvalReference: "SYNTHETIC-TEST-ONLY",
+  };
+  const readySpec = structuredClone(design.pieces[0].spec);
+  const blockedSpec = { ...structuredClone(readySpec), id: "blocked-self-piped", edge: "self" as const };
+  const body = { specs: [readySpec, blockedSpec] };
+  const closed = await (await f.call("quote", "1001", body)).json();
+  assert.equal(closed.purchaseEnabled, false);
+  assert.equal(closed.quotes[0].ready, true);
+  assert.equal(closed.quotes[0].purchaseReady, true);
+  assert.equal(typeof closed.quotes[0].totalMinor, "number");
+  assert.equal(closed.quotes[1].purchaseReady, false);
+  assert.equal(closed.setQuote.purchaseReady, false);
+  assert.equal(closed.setQuote.totalMinor, null);
+
+  const input = {
+    designId: design.id,
+    specs: [readySpec],
+    expectedQuoteId: closed.quotes[0].quoteId,
+    idempotencyKey: "offline-selected-ready",
+  };
+  const disabled = await f.call("checkout", "1001", input);
+  assert.equal(disabled.status, 409);
+  assert.equal((await disabled.json()).code, "CUSHION_PURCHASE_DISABLED");
+  assert.equal(f.state.executions, 0);
+
+  f.state.purchase = true;
+  const open = await (await f.call("quote", "1001", body)).json();
+  assert.equal(open.purchaseEnabled, true);
+  assert.deepEqual(open.quotes, closed.quotes);
+  assert.deepEqual(open.setQuote, closed.setQuote);
+  const mixedDesign = structuredClone(design);
+  mixedDesign.pieces.push({ spec: blockedSpec, position: { slot: 2, offsetX: 0, offsetY: 0, rotation: 0 } });
+  await f.call("designs", "1001", { design: mixedDesign, expectedRevision: 0 });
+  const blocked = await f.call("checkout", "1001", {
+    ...input, specs: body.specs,
+    expectedQuoteId: open.setQuote.quoteId,
+    idempotencyKey: "offline-blocked-whole-set",
+  });
+  assert.equal(blocked.status, 409);
+  assert.equal((await blocked.json()).code, "CUSHION_CHECKOUT_REVALIDATION_REQUIRED");
+  assert.equal(f.state.executions, 0);
+  const selected = await f.call("checkout", "1001", input);
+  assert.equal(selected.status, 200);
+  assert.equal((await selected.json()).status, "CALCULATED");
+  assert.equal(f.state.executions, 1);
+});
+
+test("My Home signed guest review is independent of the unpublished cushion gate and never loads saved designs",async(t)=>{
+  const f=await fixture(t);
+  const {homeFixture}=await import('../../../scripts/my-home-preview-fixtures');
+  const home=await homeFixture();
+  f.state.enabled=false;
+  f.services.myHomeEnabled=()=>true;
+  f.services.checkoutServices=()=>home.services.mixed.cushion;
+  f.services.myHomeServices=()=>({...home.services,releases:{curtains:false,cushions:false,mixed:false}});
+  const response=await f.call('my-home-review','',home.input);
+  assert.equal(response.status,200);
+  const review=await response.json();assert.equal(review.ready,true);assert.equal(review.purchaseEnabled,false);
+  assert.equal(review.deliveryMinor,1295);assert.equal(home.effects.length,0);
+  assert.doesNotMatch(JSON.stringify(review),/supplierCost|approvalReference/);
+  const checkout=await f.call('my-home-checkout','',{...home.input,reviewId:review.reviewId,idempotencyKey:'test-disabled-checkout',measurementsConfirmed:true});
+  assert.equal(checkout.status,409);assert.equal((await checkout.json()).code,'MY_HOME_PURCHASE_DISABLED');
+  assert.equal(home.effects.length,0);
+});
+test("My Home invalid order input returns safe validation errors",async(t)=>{
+  const f=await fixture(t);const {homeFixture}=await import('../../../scripts/my-home-preview-fixtures');const home=await homeFixture();
+  f.services.checkoutServices=()=>home.services.mixed.cushion;f.services.myHomeServices=()=>home.services;
+  const response=await f.call('my-home-review','1001',{...home.input,id:'not-an-order'});
+  assert.equal(response.status,400);assert.equal((await response.json()).code,'CUSHION_INPUT_INVALID');assert.equal(home.effects.length,0);
 });

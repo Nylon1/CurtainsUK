@@ -50,7 +50,6 @@ No unresolved customer-facing defect was observed in the bounded final local jou
 
 | Outstanding fact | Proposed resolution | What remains blocked |
 |---|---|---|
-| Supplier carriage | Record the actual applicable purchasing charge once at the correct shared group or order level. Do not assume zero carriage. | Binding cushion quotations while the relevant supplier charge is unconfigured. |
 | Usable width, repeats, direction or placement calibration where missing | Read governed facts for the exact fabric and verify two reproducible matching cuts. Keep photographed dimensions separate from cutting width. | Only fabrics/configurations whose accurate placement or cutting calculation depends on the missing fact. |
 | Current insert availability | Revalidate the exact variant before activation/payment. The 16 October sourcing observation reported Dunelm 57 cm square and 40 x 60 cm rectangle pads unavailable; it is a dated observation. | Affected filled 55 cm square and 38 x 58 cm rectangle while unavailable. Cover-only remains independent. Other insert stock also requires checkout revalidation. |
 | Bias self-piping cutting implementation | The workroom confirms 4 mm cord, 40 mm strips and 30 cm total extra length for joins and finishing. Straight strips now use that confirmed gross total and are included in shared cloth costing. A verified bias cutting yield/layout is still absent. | Self-piped rounds and bolster ends. Contrast piping remains unavailable. |
@@ -64,7 +63,7 @@ The 40% margin, agreed making charges, sundries, packaging, overhead/payment all
 - Every fabric order uses a 1 m minimum and 1 m increments. The server rounds the shared required length up to a whole metre after packing compatible cushions together. Fabric-specific evidence cannot silently reduce the owner-wide rule. Supplier carriage remains separate.
 - The owner reports the workroom has confirmed all active range details. New 15 mm panel constructions, selected insert/cover pairings and the proposed self-piping allowance now carry that provenance. No measured sample report was supplied, so none is claimed. Historical saved sizes retain their original interpretation.
 - Current [Willows round variant evidence](../artifacts/my-home-20261016/willows-round-current.json) shows 45 cm and 55 cm pads at GBP 5.99 and GBP 6.99, both available at the check. The supplier publishes variant IDs but blank SKUs. The full advertised price is treated as purchase cost, without reclaiming input VAT; this may be updated if invoice evidence later changes the recoverable basis.
-- These confirmations advance the candidate rule versions. They do not open the release switches or remove stock, supplier carriage, exact fabric and checkout revalidation gates.
+- These confirmations advance the candidate rule versions. They do not open the release switches or remove stock, exact fabric and checkout revalidation gates.
 - The workroom clarified that 30 cm is the total allowance, with no separate millimetres-per-join figure. Straight-cut flat cushions use that approved gross reserve without inventing a per-join loss. Their actual strips appear in the charged plan; curved bias strips remain technically gated.
 
 ### Updated local verification after the later decisions
@@ -72,7 +71,13 @@ The 40% margin, agreed making charges, sundries, packaging, overhead/payment all
 - `npm test` passed 715 test executions with zero failures, including 179 Cushion Studio executions. The command repeats 18 theme tests; these are execution counts, not unique-test counts.
 - A production-style `npm run build -- --webpack` passed compilation, TypeScript, 170 static pages, the existing Room Visualiser packaging step (two packs, 3,150 files), and both 14/14 Cushion Studio raw-asset traces. Build-only public Supabase placeholders were used. This verifies generated local contents, not a deployed alias.
 - In the unpublished browser preview, a filled 45 x 45 cm cover displayed its separate 47 x 47 cm Dunelm pad and confirmed pairing. Its synthetic fabric price became GBP 76.40 after the shared whole-metre rule; My Home displayed GBP 4.95 once and GBP 81.35 total with 3-4 week dispatch. A mixed order with one synthetic curtain displayed GBP 580.40 products, one fixture curtain delivery of GBP 12.95, GBP 593.35 total, and a combined 4-5 week dispatch. Checkout remained disabled. See [updated browser evidence](../artifacts/my-home-20261016/owner-facts-browser.json).
-- The local preview deliberately supplies synthetic fabric, stock, VAT and zero supplier carriage. It demonstrates calculation and presentation; it does not clear real-fabric, carriage, stock or checkout gates.
+- The local preview deliberately supplies synthetic fabric, stock and VAT. Zero supplier carriage is now an owner-confirmed rule, not a synthetic cost assumption. The preview demonstrates calculation and presentation; it does not clear real-fabric, stock or checkout gates.
+
+### Later supplier carriage decision
+
+The owner confirmed GBP 0 supplier carriage on 16 October 2026. Pricing rule `cushion-cost-basis-v13-zero-supplier-carriage-20261016` records it once at the set/order cost level, with no surcharge per cushion. The customer-facing GBP 4.95 cushion-only delivery charge and the separate, still unknown actual outbound carrier expense are unchanged. Any explicitly supplied server pricing-rules JSON must carry this current value and version; a stale override remains subject to its own fail-closed checks. This decision removes supplier carriage as a default binding-quote blocker, but does not relax governed fabric, stock, construction, insert or checkout validation.
+
+The complete regression passed again with 715 successful test executions and zero failures. The production-style build passed TypeScript, 170 static pages, the existing two-pack Room Visualiser packaging and both 14/14 Cushion Studio asset traces. The [regression log](../artifacts/my-home-20261016/zero-supplier-carriage-regression.log) and [build log](../artifacts/my-home-20261016/zero-supplier-carriage-build.log) capture this local verification. No live price, checkout or customer delivery was changed.
 
 ## Verification limits before release
 

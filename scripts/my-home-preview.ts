@@ -21,7 +21,6 @@ fixture.services.mixed.cushion.rules=async()=>({
   ...originalRules,
   ...PREVIEW_PRICING_RULES,
   vatBasisPoints:2000,
-  supplierCarriageMinor:0, // Explicitly synthetic for the local review only.
 });
 fixture.services.mixed.cushion.facts=async id=>({...fabric,id,usableWidthMm:1400,minimumOrderMetres:1});
 const originalFabric=fixture.services.mixed.house.fabric;

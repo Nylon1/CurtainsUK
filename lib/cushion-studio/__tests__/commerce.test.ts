@@ -701,6 +701,7 @@ test("offline SQL keeps snapshots immutable, domains distinct, browser roles den
 
 test("gross delivery stays 495p once per set, separate from private carrier expense and product margin", () => {
   assert.equal(PREVIEW_PRICING_RULES.customerDeliveryGrossMinor, 495);
+  assert.equal(PREVIEW_PRICING_RULES.supplierCarriageMinor, 0);
   assert.equal(PREVIEW_PRICING_RULES.carriageMinor, null);
   assert.equal(PREVIEW_PRICING_RULES.carrierCostMinor, null);
   const specs = [spec, { ...spec, id: "another-square" }];

@@ -262,7 +262,7 @@ export const CUSHION_MAKING_RATE_CARD: NonNullable<
   }),
 );
 export const PREVIEW_PRICING_RULES: CushionPricingRules = {
-  version: "cushion-cost-basis-v12-workroom-20261016",
+  version: "cushion-cost-basis-v13-zero-supplier-carriage-20261016",
   construction: PREVIEW_CONSTRUCTION_RULES,
   makingRateCard: CUSHION_MAKING_RATE_CARD,
   compatibleInsertsBySize: STANDARD_INSERTS_BY_SIZE,
@@ -270,6 +270,9 @@ export const PREVIEW_PRICING_RULES: CushionPricingRules = {
   // Owner-selected starting target, 14 October 2026; server rules remain editable.
   marginBasisPoints: 4000,
   vatBasisPoints: null,
+  // Owner confirmed zero supplier carriage on 16 October 2026. Customer
+  // delivery and actual outbound carrier expense remain separate amounts.
+  supplierCarriageMinor: 0,
   carriageMinor: null,
   customerDeliveryGrossMinor: 495,
   carrierCostMinor: null,

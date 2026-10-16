@@ -17,7 +17,8 @@ function spec(sizeId = "square-50"): CushionSpec {
 const rules = () => { const r=structuredClone(PREVIEW_PRICING_RULES); delete r.legacyCompatibleInsertsBySize; r.compatibleInsertsBySize={}; return r; };
 
 test("owner making rates and confirmed straight strips do not clear bias or insert gates", () => {
-  const r=rules(); r.vatBasisPoints=2000; r.supplierCarriageMinor=0;
+  const r=rules(); r.vatBasisPoints=2000;
+  assert.equal(r.supplierCarriageMinor,0,"owner-confirmed zero supplier carriage is part of the current rule version");
   for (const size of CUSHION_SIZES.filter(size => (OWNER_APPROVED_ORIGINAL_CUSHION_SIZE_IDS as readonly string[]).includes(size.id))) {
     const base = size.id === "bolster-23-56" || size.id === "bed-square-70" ? 1200
       : size.shape === "round" || size.id === "bed-square-65" ? 1000 : 800;

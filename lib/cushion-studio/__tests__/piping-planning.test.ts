@@ -33,7 +33,13 @@ function rules(confirmed = false): ConstructionRules {
 }
 function assertLayout(pieces: CutPiece[], width: number) {
   for (const [index, p] of pieces.entries()) {
-    assert.equal(p.rotation, 0);
+    assert.ok(p.rotation === 0 || p.rotation === 45);
+    if (p.rotation === 45) {
+      assert.equal(p.role, "piping");
+      assert.ok(p.stripLengthMm && p.stripWidthMm);
+      assert.ok(p.widthMm + .001 >= (p.stripLengthMm + p.stripWidthMm) / Math.SQRT2);
+      assert.equal(p.widthMm, p.heightMm);
+    }
     assert.ok(p.xMm >= 0 && p.yMm >= 0 && p.xMm + p.widthMm <= width + .001);
     for (const q of pieces.slice(index + 1))
       assert.ok(!(p.xMm < q.xMm + q.widthMm - .001 && q.xMm < p.xMm + p.widthMm - .001 && p.yMm < q.yMm + q.heightMm - .001 && q.yMm < p.yMm + p.heightMm - .001), `${p.id} overlaps ${q.id}`);
@@ -118,8 +124,9 @@ test("workroom total 30 cm reserve prices straight strips without inventing a pe
   assertLayout(plan.fabrics[0].pieces,1400);
   const round = buildCutPlan(spec("round-40"),fabric,PREVIEW_CONSTRUCTION_RULES);
   assert.equal(round.pipingProposals![0].direction,"bias");
-  assert.equal(round.pipingProposals![0].materialIncluded,false);
-  assert.equal(round.ready,false);
+  assert.equal(round.pipingProposals![0].materialIncluded,true);
+  assert.equal(round.ready,true,round.issues.join(" "));
+  assertLayout(round.fabrics[0].pieces,1400);
 });
 
 test("main panels across the whole set are reserved before strip allocation; only shortfall extends cloth", () => {
@@ -146,7 +153,7 @@ test("remnants that exhaust the confirmed join budget yield to longer strips", (
   assertLayout(plan.fabrics[0].pieces,1400);
 });
 
-test("bias round and bolster targets never imply verified yield even when all flags are true", () => {
+test("unconfirmed bias construction keeps curved piping provisional", () => {
   for (const id of ["round-40","round-50","bolster-23-56"]) {
     const plan=buildCutPlan(spec(id),fabric,rules(true)), p=plan.pipingProposals![0];
     const perimeter=id.startsWith("bolster") ? 2*Math.PI*230 : Math.PI*(id==="round-40"?400:500);
@@ -155,10 +162,65 @@ test("bias round and bolster targets never imply verified yield even when all fl
     assert.equal(p.direction,"bias"); assert.equal(p.straightLayout,undefined);
     assert.equal(p.materialIncluded,false); assert.equal(plan.ready,false);
     assert.ok(plan.fabrics[0].pieces.every(p=>p.role!=="piping"));
-    assert.match(plan.issues.join(" "),/verified bias cutting yield/);
+    assert.match(plan.issues.join(" "),/bias piping layout or construction is unconfirmed/);
     const text=plan.instructions.join(" ");
     if(id.startsWith("round")) assert.match(text,/no side band; concealed zip.*perimeter seam/);
     else assert.match(text,/concealed zip in the body seam.*two separate circular ends.*end joins is not promised/);
+  }
+});
+
+test("confirmed curved strips occupy conservative non-overlapping cloth and share the one-metre minimum", () => {
+  for (const id of ["round-40", "round-50", "bolster-19-44"]) {
+    const s = spec(id), facts = {...fabric, orderIncrementMetres: 1};
+    const plan = buildCutPlan(s, facts, PREVIEW_CONSTRUCTION_RULES);
+    const proposal = plan.pipingProposals![0];
+    assert.equal(plan.ready,true,`${id}: ${plan.issues.join(" ")}`);
+    assert.equal(proposal.materialIncluded,true);
+    const strips = plan.fabrics[0].pieces.filter(p=>p.role === "piping");
+    assert.ok(strips.length > 0);
+    assert.ok(strips.every(p=>p.rotation === 45));
+    assert.ok(strips.reduce((sum,p)=>sum+(p.stripLengthMm ?? 0),0) + .001 >= proposal.grossTargetLengthMm);
+    assertLayout(plan.fabrics[0].pieces,1400);
+    const set = buildSetCutPlan([s,{...s,id:`${id}-second`}].map(spec=>({spec,facts})),PREVIEW_CONSTRUCTION_RULES);
+    assert.equal(set.ready,true,set.issues.join(" "));
+    assert.equal(set.fabrics.length,1);
+    assertLayout(set.fabrics[0].pieces,1400);
+    assert.equal(set.fabrics[0].orderedMetres,Math.ceil(set.fabrics[0].requiredMetres));
+  }
+});
+
+test("curved self-piping preserves matching faces for plain, striped and directional cloth", () => {
+  for (const variant of [
+    {pattern: {kind: "plain" as const, horizontalRepeatMm: 0, verticalRepeatMm: 0}, directional: false},
+    {pattern: {kind: "straight" as const, horizontalRepeatMm: 80, verticalRepeatMm: 400}, directional: false},
+    {pattern: {kind: "straight" as const, horizontalRepeatMm: 80, verticalRepeatMm: 400}, directional: true},
+  ]) {
+    const facts = {...fabric, ...variant, orderIncrementMetres: 1};
+    for (const sizeId of ["round-40", "round-50", "bolster-19-44"]) {
+      const plan = buildCutPlan(spec(sizeId), facts, PREVIEW_CONSTRUCTION_RULES);
+      assert.equal(plan.ready, true, `${sizeId}: ${plan.issues.join(" ")}`);
+      assert.equal(plan.matchingVerified, true);
+      const cloth = plan.fabrics[0];
+      const faces = cloth.pieces.filter(p => p.role === "front" || p.role === "back" || p.role.startsWith("end-"));
+      assert.equal(faces.length, 2);
+      assert.deepEqual(faces[0].sourcePlacementMm, faces[1].sourcePlacementMm);
+      assert.ok(faces.every(p=>p.rotation === 0));
+      assert.ok(cloth.pieces.some(p=>p.role === "piping" && p.rotation === 45));
+      assertLayout(cloth.pieces, 1400);
+    }
+  }
+});
+
+test("narrow usable width splits complete bias target without overlapping panels", () => {
+  const facts = {...fabric, fullWidthMm: 600, usableWidthMm: 600, orderIncrementMetres: 1,
+    calibration: {...fabric.calibration!, physicalWidthMm: 600}};
+  for (const sizeId of ["round-40", "round-50"]) {
+    const plan = buildCutPlan(spec(sizeId), facts, PREVIEW_CONSTRUCTION_RULES);
+    assert.equal(plan.ready, true, plan.issues.join(" "));
+    const strips = plan.fabrics[0].pieces.filter(p=>p.role === "piping");
+    assert.ok(strips.length >= 2);
+    assert.ok(strips.reduce((sum,p)=>sum+(p.stripLengthMm ?? 0),0) >= plan.pipingProposals![0].grossTargetLengthMm);
+    assertLayout(plan.fabrics[0].pieces, 600);
   }
 });
 

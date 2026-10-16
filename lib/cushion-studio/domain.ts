@@ -116,6 +116,8 @@ export type ConstructionRules = {
   pipingCordDiameterMm?: number | null;
   pipingCut: "straight" | "bias" | null;
   pipingConfirmed: boolean;
+  /** Applies to the conservative 45 degree bounding-box strip layout only. */
+  pipingBiasConfirmed?: boolean;
   pipingProposal?: {
     version: string;
     stripWidthMm: number;
@@ -129,7 +131,7 @@ export const CUSHION_OWNER_CONSTRUCTION_REFERENCE =
   "Owner accepted the 15 mm panel and closure specification on 2026-10-15 and reports workroom confirmation of all active-range construction details on 2026-10-16. No measured physical trial record was supplied.";
 /** Legacy 20 mm construction remains unapproved. Active flat profiles have workroom approval. */
 export const PREVIEW_CONSTRUCTION_RULES: ConstructionRules = {
-  version: "cushion-construction-v6-workroom-confirmed-standard-covers",
+  version: "cushion-construction-v7-conservative-bias-layout",
   seamAllowanceMm: 20,
   confirmed: false,
   squareDrapeConfirmed: false,
@@ -150,8 +152,9 @@ export const PREVIEW_CONSTRUCTION_RULES: ConstructionRules = {
   pipingJoinAllowanceMm: null,
   pipingCut: "straight",
   pipingConfirmed: true,
+  pipingBiasConfirmed: true,
   pipingProposal: {
-    version: "owner-piping-starting-estimate-20261015",
+    version: "workroom-confirmed-piping-v2-20261016",
     stripWidthMm: 40,
     cordDiameterMm: 4,
     finishingAllowanceMm: 300,
@@ -262,7 +265,7 @@ export const CUSHION_MAKING_RATE_CARD: NonNullable<
   }),
 );
 export const PREVIEW_PRICING_RULES: CushionPricingRules = {
-  version: "cushion-cost-basis-v13-zero-supplier-carriage-20261016",
+  version: "cushion-cost-basis-v14-conservative-bias-layout-20261016",
   construction: PREVIEW_CONSTRUCTION_RULES,
   makingRateCard: CUSHION_MAKING_RATE_CARD,
   compatibleInsertsBySize: STANDARD_INSERTS_BY_SIZE,

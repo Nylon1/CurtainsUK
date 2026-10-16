@@ -1,0 +1,31 @@
+{
+  "checkedAtUtc": "2026-10-16T14:57:15.1957873Z",
+  "liveShopifyBrowseUrl": "https://www.curtainsuk.com/pages/fabric-library?view=browse-fabrics",
+  "liveBrowseCount": 11815,
+  "localCandidateSource": "shared-public-catalogue",
+  "firstPageCount": 24,
+  "firstPagePreviewReady": 24,
+  "firstPagePurchaseReady": 0,
+  "colourFacetOptions": 14,
+  "patternFacetOptions": 21,
+  "exactIds": [
+    "sdg-f1239-30",
+    "sdg-dstr237715",
+    "sdg-dmlf236846"
+  ],
+  "localRoundQuote": {
+    "purchaseReady": false,
+    "totalMinor": null,
+    "ready": false,
+    "edge": "self",
+    "reasonClasses": [
+      "missing usable cutting width",
+      "unverified stock",
+      "unavailable supplier cost"
+    ],
+    "fabricId": "sdg-f1239-30",
+    "sizeId": "round-40"
+  },
+  "hostedCushionRoute": "disabled",
+  "checkoutExecuted": false
+}

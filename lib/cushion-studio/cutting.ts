@@ -26,7 +26,10 @@ export type CutPiece = {
   seamAllowanceMm: number;
   /** False means a net panel envelope only; never a production-ready cut. */
   seamAllowanceKnown?: boolean;
-  rotation: 0;
+  /** A bias piping strip is cut at 45 degrees inside its reserved square. */
+  rotation: 0 | 45;
+  stripLengthMm?: number;
+  stripWidthMm?: number;
 };
 export type FabricCutPlan = {
   fabricId: string;
@@ -64,6 +67,13 @@ export type PipingProposalPlan = {
   allowanceConfirmed: boolean;
   materialIncluded: boolean;
   straightLayout?: {
+    pieces: CutPiece[];
+    requiredMetres: number;
+    orderedMetres: number | null;
+    additionalRequiredMetres: number;
+    issues: string[];
+  };
+  biasLayout?: {
     pieces: CutPiece[];
     requiredMetres: number;
     orderedMetres: number | null;
@@ -255,7 +265,9 @@ function finishPack(plan: FabricCutPlan, facts: FabricCuttingFacts, issues: stri
   plan.wasteAreaMm2 = Math.max(
     0,
     width * length * 1000 -
-      plan.pieces.reduce((sum, p) => sum + p.widthMm * p.heightMm, 0),
+      plan.pieces.reduce((sum, p) => sum +
+        (p.rotation === 45 && p.stripLengthMm && p.stripWidthMm
+          ? p.stripLengthMm * p.stripWidthMm : p.widthMm * p.heightMm), 0),
   );
   if (
     plan.orderedMetres !== null &&
@@ -332,6 +344,68 @@ function allocateStraightPiping(
       issues.push(`${spec.id}: the proposed gross strip allowance cannot cover the perimeter and these joins; confirm a revised piping layout.`);
   }
   return strips;
+}
+
+/** Reserve complete square envelopes for 45 degree strips. This deliberately
+ * does not nest strips in curved-panel corners or count triangular offcuts.
+ * Every reserved square contains its entire diagonal strip and cannot overlap
+ * another panel or strip. Compare up to four candidate strip counts, then charge the
+ * cheapest complete shared-fabric layout rather than an assumed bias yield.
+ */
+function allocateBiasPiping(
+  plan: FabricCutPlan, spec: CushionSpec, proposal: PipingProposalPlan,
+  facts: FabricCuttingFacts,
+) {
+  const width = plan.cuttingWidthMm;
+  if (!positive(width) || !positive(facts.usableWidthMm))
+    return {plan, pieces: [] as CutPiece[], issues: [`${spec.id}: usable cutting width is required for bias piping.`]};
+  const maxLength = width * Math.SQRT2 - proposal.stripWidthMm;
+  if (maxLength <= 0)
+    return {plan, pieces: [] as CutPiece[], issues: [`${spec.id}: usable width cannot contain a bias piping strip.`]};
+  const minimumCount = Math.max(1, Math.ceil(proposal.grossTargetLengthMm / maxLength));
+  let best: {plan: FabricCutPlan; pieces: CutPiece[]; issues: string[]} | null = null;
+  for (let count = minimumCount; count <= Math.min(8, minimumCount + 3); count++) {
+    const trial = structuredClone(plan), pieces: CutPiece[] = [];
+    let possible = true;
+    const length = roundMm(proposal.grossTargetLengthMm / count);
+    const side = roundMm((length + proposal.stripWidthMm) / Math.SQRT2);
+    if (side > width + 1e-6) continue;
+    for (let unit = 1; unit <= spec.quantity && possible; unit++) {
+      for (let index = 0; index < count; index++) {
+        const xs = [...new Set([0, ...trial.pieces.map(p => roundMm(p.xMm + p.widthMm))])]
+          .filter(x => x + side <= width + 1e-6);
+        const ys = [...new Set([0, ...trial.pieces.map(p => roundMm(p.yMm + p.heightMm))])];
+        let chosen: CutPiece | null = null, bestBottom = Infinity;
+        for (const y of ys) for (const x of xs) {
+          const candidate: CutPiece = {
+            id: `${spec.id}-${unit}-bias-piping-${index}`, specId: spec.id,
+            fabricId: plan.fabricId, unit, role: "piping", shape: "rectangle",
+            widthMm: side, heightMm: side, xMm: x, yMm: y,
+            sourcePlacementMm: {x, y}, seamAllowanceMm: 0, rotation: 45,
+            stripLengthMm: length, stripWidthMm: proposal.stripWidthMm,
+          };
+          if (trial.pieces.some(p => overlaps(p, candidate))) continue;
+          const bottom = Math.max(y + side, ...trial.pieces.map(p => p.yMm + p.heightMm));
+          if (bottom < bestBottom - 1e-6 ||
+              (Math.abs(bottom - bestBottom) < 1e-6 &&
+                (!chosen || y < chosen.yMm || y === chosen.yMm && x < chosen.xMm))) {
+            chosen = candidate; bestBottom = bottom;
+          }
+        }
+        if (!chosen) { possible = false; break; }
+        trial.pieces.push(chosen); pieces.push(chosen);
+      }
+    }
+    if (!possible) continue;
+    const issues: string[] = [];
+    finishPack(trial, facts, issues);
+    if (!best ||
+        (trial.orderedMetres ?? Infinity) < (best.plan.orderedMetres ?? Infinity) ||
+        (trial.orderedMetres === best.plan.orderedMetres &&
+          trial.requiredMetres < best.plan.requiredMetres - 1e-6))
+      best = {plan: trial, pieces, issues};
+  }
+  return best ?? {plan, pieces: [] as CutPiece[], issues: [`${spec.id}: no non-overlapping bias strip layout fits the cutting width.`]};
 }
 
 function bodyPieces(spec: CushionSpec, rules: ConstructionRules): Pending[] {
@@ -591,11 +665,32 @@ export function buildSetCutPlan(
       allowanceConfirmed: p.allowanceConfirmed, materialIncluded: false,
     };
     pipingProposals.push(proposal);
+    const plan = fabrics.find(f => f.fabricId === facts.id)!;
     if (direction === "bias") {
-      issues.push(`${spec.id}: bias piping has a proposed gross strip target only; verified bias cutting yield is unavailable and no piping cloth is charged.`);
+      const target = structuredClone(trialPlans.get(facts.id) ?? plan);
+      const chargedIds = new Set(plan.pieces.map(piece => piece.id));
+      const includesUnpricedStrips = target.pieces.some(piece => !chargedIds.has(piece.id));
+      const layout = allocateBiasPiping(target, spec, proposal, facts);
+      proposal.biasLayout = {
+        pieces: layout.pieces, requiredMetres: layout.plan.requiredMetres,
+        orderedMetres: layout.plan.orderedMetres,
+        additionalRequiredMetres: Math.max(0, layout.plan.requiredMetres - plan.requiredMetres),
+        issues: layout.issues,
+      };
+      const confirmed = p.allowanceConfirmed === true && rules.pipingConfirmed === true &&
+        rules.pipingBiasConfirmed === true && rules.pipingStripWidthMm === p.stripWidthMm &&
+        rules.pipingCordDiameterMm === p.cordDiameterMm;
+      if (confirmed && !includesUnpricedStrips && layout.pieces.length > 0 &&
+          layout.issues.length === 0) {
+        Object.assign(plan, layout.plan);
+        proposal.materialIncluded = true;
+      } else {
+        trialPlans.set(facts.id, layout.plan);
+        issues.push(`${spec.id}: bias piping layout or construction is unconfirmed; piping cloth is not charged.`);
+        issues.push(...layout.issues);
+      }
       continue;
     }
-    const plan = fabrics.find(f => f.fabricId === facts.id)!;
     const confirmed = positive(facts.usableWidthMm) && positive(facts.fullWidthMm) &&
       p.allowanceConfirmed === true && rules.pipingConfirmed === true &&
       rules.pipingCut === "straight" && rules.pipingStripWidthMm === p.stripWidthMm &&
@@ -685,7 +780,7 @@ export function buildSetCutPlan(
           : "Concealed zip in lower seam where practical.";
         return `${spec.id}: flat-sewn-v1; finished ${cushionSize(spec.sizeId).label} measured flat. ${panels.map(p => `${p.role}: ${p.shape === "circle" ? "diameter " + p.widthMm : p.widthMm + " × " + p.heightMm} mm`).join("; ")}. ${c.seam} mm allowance per edge; ${acceptance}. ${closure} Rendered fullness does not add cloth or justify an enlarged insert.`;
       }),
-      ...pipingProposals.map(p => `${p.specId}: ${p.direction} piping ${p.stripWidthMm} mm strips for ${p.cordDiameterMm} mm cord. Per cushion: finished perimeter ${p.finishedPerimeterMm.toFixed(3)} mm + ${p.finishingAllowanceMm} mm finishing allowance = ${p.grossTargetLengthMm.toFixed(3)} mm gross strip target. ${p.materialIncluded ? "Confirmed straight strips are included in shared cloth; usable rectangular remnants are allocated first." : "PLANNING ONLY: allowance/yield is not manufacturing-approved or charged. Straight diagrams reuse rectangular remnants; bias yield is not inferred."}`),
+      ...pipingProposals.map(p => `${p.specId}: ${p.direction} piping ${p.stripWidthMm} mm strips for ${p.cordDiameterMm} mm cord. Per cushion: finished perimeter ${p.finishedPerimeterMm.toFixed(3)} mm + ${p.finishingAllowanceMm} mm finishing allowance = ${p.grossTargetLengthMm.toFixed(3)} mm gross strip target. ${p.materialIncluded ? p.direction === "bias" ? "Charged 45 degree bias strips occupy conservative square envelopes in the shared cloth plan; triangular offcuts are not reused." : "Confirmed straight strips are included in shared cloth; usable rectangular remnants are allocated first." : "PLANNING ONLY: strip allowance or layout is not confirmed or charged."}`),
       "Keep all pieces upright. Circle bounding boxes are conservative; no unverified circle nesting or 90-degree rotation savings are charged.",
       ...(specs.some((s) => cushionSize(s.sizeId).shape === "bolster" && !s.constructionProfile)
         ? [

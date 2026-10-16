@@ -16,7 +16,7 @@ function spec(sizeId = "square-50"): CushionSpec {
 }
 const rules = () => { const r=structuredClone(PREVIEW_PRICING_RULES); delete r.legacyCompatibleInsertsBySize; r.compatibleInsertsBySize={}; return r; };
 
-test("owner making rates and confirmed straight strips do not clear bias or insert gates", () => {
+test("owner making rates and confirmed strip layouts keep insert gates independent", () => {
   const r=rules(); r.vatBasisPoints=2000;
   assert.equal(r.supplierCarriageMinor,0,"owner-confirmed zero supplier carriage is part of the current rule version");
   for (const size of CUSHION_SIZES.filter(size => (OWNER_APPROVED_ORIGINAL_CUSHION_SIZE_IDS as readonly string[]).includes(size.id))) {
@@ -35,9 +35,7 @@ test("owner making rates and confirmed straight strips do not clear bias or inse
     assert.doesNotMatch(cover.issues.join(" "),/proposed making/);
     const piped=quoteCushion({...spec(size.id),edge:"self"},fabric,r);
     assert.equal(piped.fixedCostMinor,base+820);
-    const bias = size.shape === "round" || size.shape === "bolster";
-    assert.equal(piped.purchaseReady,!bias,size.id);
-    if (bias) assert.match(piped.issues.join(" "),/bias piping/i);
+    assert.equal(piped.purchaseReady,true,size.id);
     assert.doesNotMatch(piped.issues.join(" "),/proposed making/);
     const filled=quoteCushion({...spec(size.id),filling:"filled"},fabric,r);
     assert.equal(filled.purchaseReady,false);
@@ -65,7 +63,7 @@ test("all twelve owner-accepted flat panels retain 15 mm seams and their shape-s
   }
 });
 
-test("owner construction acceptance leaves bias, inserts and supplier requirements independent", () => {
+test("owner construction acceptance leaves inserts and supplier requirements independent", () => {
   const r=rules(); r.vatBasisPoints=2000; r.supplierCarriageMinor=0;
   const plainCover=quoteCushion(spec(),fabric,r);
   assert.equal(plainCover.purchaseReady,true);
@@ -78,8 +76,7 @@ test("owner construction acceptance leaves bias, inserts and supplier requiremen
   const self=quoteCushion({...spec(),edge:"self"},fabric,r);
   assert.equal(self.purchaseReady,true,self.issues.join(" "));
   const roundPiped=quoteCushion({...spec("round-40"),edge:"self"},fabric,r);
-  assert.equal(roundPiped.purchaseReady,false);
-  assert.match(roundPiped.issues.join(" "),/bias piping/i);
+  assert.equal(roundPiped.purchaseReady,true,roundPiped.issues.join(" "));
   const filled=quoteCushion({...spec(),filling:"filled"},fabric,r);
   assert.equal(filled.purchaseReady,false);
   assert.match(filled.issues.join(" "),/insert SKU/);

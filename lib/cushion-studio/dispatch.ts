@@ -42,6 +42,19 @@ export const OWNER_CONFIRMED_CUSHION_DISPATCH: Readonly<CushionCalendarWeekDispa
     approvalReference: "owner-conversation-2026-10-15-dispatch-3-4-calendar-weeks",
   });
 
+/** Point of order is represented by successful order confirmation at checkout. */
+export const OWNER_CONFIRMED_CURTAIN_DISPATCH: Readonly<CushionCalendarWeekDispatchEstimate> =
+  Object.freeze({
+    version: "owner-curtain-dispatch-calendar-weeks-2026-10-16-v1",
+    status: "confirmed",
+    unit: "calendar-weeks",
+    minimumCalendarWeeks: 4,
+    maximumCalendarWeeks: 5,
+    startsFrom: "order-confirmation",
+    confirmedAt: "2026-10-16",
+    approvalReference: "owner-conversation-2026-10-16-curtains-4-5-weeks-from-point-of-order",
+  });
+
 /** Missing or incomplete authority leaves exploration available but cannot enable buying. */
 export function confirmedCushionDispatch(
   value: unknown,

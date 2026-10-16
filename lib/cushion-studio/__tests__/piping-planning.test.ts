@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { buildCutPlan, buildSetCutPlan, type CutPiece } from "../cutting";
 import { quoteCushion } from "../pricing";
 import type { ConstructionRules, CushionSpec, FabricCuttingFacts } from "../domain";
+import { PREVIEW_CONSTRUCTION_RULES } from "../domain";
 
 // All commercial facts, join allowances and confirmations here are synthetic.
 const fabric: FabricCuttingFacts = {
@@ -104,6 +105,21 @@ test("confirmed straight method consumes gross target from remnants with one sha
   assert.equal(set.fabrics[0].orderedMetres,1.06);
   assert.equal(set.fabrics[0].pieces.filter(p=>p.role==="piping").reduce((n,p)=>n+p.widthMm,0),4600);
   assertLayout(set.fabrics[0].pieces,1400);
+});
+
+test("workroom total 30 cm reserve prices straight strips without inventing a per-join loss", () => {
+  const plan = buildCutPlan(spec(), fabric, PREVIEW_CONSTRUCTION_RULES);
+  const pipe = plan.pipingProposals![0];
+  assert.equal(PREVIEW_CONSTRUCTION_RULES.pipingJoinAllowanceMm, null);
+  assert.equal(pipe.grossTargetLengthMm, 2300);
+  assert.equal(pipe.materialIncluded, true);
+  assert.equal(pipe.straightLayout!.pieces.reduce((n,p)=>n+p.widthMm,0),2300);
+  assert.equal(plan.ready,true,plan.issues.join(" "));
+  assertLayout(plan.fabrics[0].pieces,1400);
+  const round = buildCutPlan(spec("round-40"),fabric,PREVIEW_CONSTRUCTION_RULES);
+  assert.equal(round.pipingProposals![0].direction,"bias");
+  assert.equal(round.pipingProposals![0].materialIncluded,false);
+  assert.equal(round.ready,false);
 });
 
 test("main panels across the whole set are reserved before strip allocation; only shortfall extends cloth", () => {

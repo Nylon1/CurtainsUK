@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   OWNER_CONFIRMED_CUSHION_DISPATCH,
+  OWNER_CONFIRMED_CURTAIN_DISPATCH,
   confirmedCushionDispatch,
   customerCushionDispatch,
   type CushionWorkingDayDispatchEstimate,
@@ -33,6 +34,14 @@ test("owner default is exactly 3–4 calendar weeks from order confirmation with
   assert.equal("minimumWorkingDays" in customer, false);
   assert.equal("approvalReference" in customer, false);
   assert.equal("confirmedAt" in customer, false);
+});
+
+test("owner curtain dispatch is four to five calendar weeks from the order point", () => {
+  const curtain = confirmedCushionDispatch(OWNER_CONFIRMED_CURTAIN_DISPATCH);
+  assert.deepEqual(curtain, OWNER_CONFIRMED_CURTAIN_DISPATCH);
+  assert.equal(curtain?.minimumCalendarWeeks, 4);
+  assert.equal(curtain?.maximumCalendarWeeks, 5);
+  assert.equal(curtain?.startsFrom, "order-confirmation");
 });
 
 test("legacy working-day contracts and customer projection remain backwards compatible", () => {

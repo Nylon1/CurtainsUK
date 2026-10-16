@@ -1,0 +1,193 @@
+
+> apex-curtains-site@0.1.0 prebuild
+> node scripts/build-premium-proxy.mjs
+
+Released Room Visualiser assets: { packs: 2, files: 3150, bytes: 204383626 }
+
+> apex-curtains-site@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.3.5 (webpack)
+✓ Running next.config.ts took 87ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 34.1s
+  Running TypeScript ...
+  Finished TypeScript in 17.0s ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/170) ...
+  Generating static pages using 15 workers (42/170)
+  Generating static pages using 15 workers (84/170)
+  Generating static pages using 15 workers (127/170)
+✓ Generating static pages using 15 workers (170/170) in 4.6s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin
+├ ○ /admin/catalogue-readiness
+├ ƒ /admin/curtain-consultation
+├ ○ /admin/daily-stock
+├ ○ /admin/login
+├ ○ /admin/posts
+├ ○ /admin/prestigious-stock
+├ ○ /admin/projects
+├ ○ /admin/reviews
+├ ○ /admin/shipping-rates
+├ ○ /admin/supplier-imports
+├ ○ /admin/supplier-intelligence
+├ ƒ /advice
+├ ƒ /advice/[slug]
+├ ○ /advice/curtain-consultation-questions
+├ ○ /advice/curtain-measurements-apex-windows
+├ ○ /advice/curtain-pricing-apex-windows
+├ ○ /advice/curtains-discussing-fabrics
+├ ƒ /api/admin/catalogue-readiness
+├ ƒ /api/admin/curtain-consultation
+├ ƒ /api/admin/curtain-consultation/assets/[asset]
+├ ƒ /api/admin/daily-stock
+├ ƒ /api/admin/mtm-orders/[orderId]/transition
+├ ƒ /api/admin/prestigious-prices
+├ ƒ /api/admin/prestigious-stock
+├ ƒ /api/admin/review-evidence/[evidenceId]/access-token
+├ ƒ /api/admin/review-evidence/[evidenceId]/deletion-complete
+├ ƒ /api/admin/review-evidence/[evidenceId]/deletion-request
+├ ƒ /api/admin/review-evidence/[evidenceId]/download
+├ ƒ /api/admin/review-evidence/maintenance
+├ ƒ /api/admin/reviews
+├ ƒ /api/admin/reviews/[requestId]
+├ ƒ /api/admin/reviews/[requestId]/amend
+├ ƒ /api/admin/reviews/[requestId]/checkout
+├ ƒ /api/admin/reviews/[requestId]/email-evidence
+├ ƒ /api/admin/reviews/[requestId]/transition
+├ ƒ /api/admin/shipping-rates
+├ ƒ /api/admin/supplier-imports/apply
+├ ƒ /api/admin/supplier-imports/preview
+├ ƒ /api/admin/supplier-intelligence/decision
+├ ƒ /api/admin/supplier-intelligence/health
+├ ƒ /api/admin/supplier-intelligence/projection
+├ ƒ /api/advisory/consultation
+├ ƒ /api/advisory/review-chat
+├ ƒ /api/advisory/review-fabric
+├ ƒ /api/browse-preview/catalog
+├ ƒ /api/curtain-consultation
+├ ƒ /api/curtain-consultation-premium
+├ ƒ /api/curtain-consultation-premium/assets/[asset]
+├ ƒ /api/curtain-consultation/assets/[asset]
+├ ƒ /api/cushion-studio/[operation]
+├ ƒ /api/send-lead
+├ ƒ /api/staging/curtains-price
+├ ƒ /api/staging/shopify-proxy/[operation]
+├ ƒ /api/staging/shopify-proxy/cushion-studio/[[...path]]
+├ ƒ /api/staging/shopify-proxy/jane
+├ ƒ /api/staging/shopify-proxy/specialists
+├ ƒ /api/staging/shopify/catalog
+├ ƒ /api/staging/shopify/price
+├ ƒ /api/staging/shopify/review-request
+├ ƒ /api/staging/shopify/specialist-review
+├ ƒ /api/staging/specialist-review
+├ ƒ /api/webhooks/shopify/orders-paid
+├ ○ /areas
+├ ƒ /areas/[city]
+├ ○ /arlo-curtain-advisor
+├ ○ /auth/callback
+├ ƒ /configure
+├ ○ /contact
+├ ○ /cookies
+├ ○ /curtain-accessories
+├ ƒ /curtain-consultation
+├ ƒ /curtain-consultation-premium
+├ ○ /curtain-design-guide
+├ ○ /curtain-fabrics
+├ ○ /curtain-headings
+├ ○ /curtain-linings
+├ ○ /curtain-solutions
+├ ○ /curtain-tracks
+├ ○ /curtainsuk-image-privacy
+├ ƒ /cushion-studio-preview/[[...asset]]
+├ ○ /data-request
+├ ƒ /fabrics
+├ ○ /faq
+├ ƒ /gallery
+├ ƒ /gallery/[slug]
+├ ○ /get-curtain-quote
+├ ƒ /jane-review
+├ ƒ /jane-review-portrait
+├   /journey/[slug]
+│ ├ ● /journey/show-us-your-window
+│ ├ ● /journey/we-decode-the-shape
+│ ├ ● /journey/we-shape-the-design
+│ └ ● [+2 more paths]
+├   /learn/[topic]
+│ ├ ● /learn/colour-palettes
+│ ├ ● /learn/undertones
+│ ├ ● /learn/tonal-complement-contrast
+│ └ ● [+3 more paths]
+├ ○ /made-in-uk-curtains
+├ ○ /measure
+├ ○ /press
+├ ○ /price-promise
+├ ○ /privacy-policy
+├ ○ /professionals/workspace
+├ ƒ /professionals/workspace/invitations/[token]
+├ ƒ /professionals/workspace/live
+├ ƒ /professionals/workspace/live/new-project
+├ ƒ /professionals/workspace/live/projects/[id]
+├ ƒ /professionals/workspace/live/projects/[id]/actions/new
+├ ƒ /professionals/workspace/live/projects/[id]/activity
+├ ƒ /professionals/workspace/live/projects/[id]/apertures/[apertureId]
+├ ƒ /professionals/workspace/live/projects/[id]/apertures/new
+├ ƒ /professionals/workspace/live/projects/[id]/approvals
+├ ƒ /professionals/workspace/live/projects/[id]/documents
+├ ƒ /professionals/workspace/live/projects/[id]/documents/[documentId]/open
+├ ƒ /professionals/workspace/live/projects/[id]/documents/new
+├ ƒ /professionals/workspace/live/projects/[id]/documents/upload
+├ ƒ /professionals/workspace/live/projects/[id]/drawing-review
+├ ƒ /professionals/workspace/live/projects/[id]/exports
+├ ƒ /professionals/workspace/live/projects/[id]/exports/[exportId]
+├ ƒ /professionals/workspace/live/projects/[id]/handover
+├ ƒ /professionals/workspace/live/projects/[id]/members
+├ ƒ /professionals/workspace/live/projects/[id]/programme
+├ ƒ /professionals/workspace/live/projects/[id]/schedule
+├ ƒ /professionals/workspace/live/projects/[id]/specification
+├ ƒ /professionals/workspace/live/projects/[id]/specification/items
+├ ƒ /professionals/workspace/live/templates
+├ ○ /professionals/workspace/login
+├ ○ /professionals/workspace/new-project
+├ ○ /professionals/workspace/projects/apx-demo-001
+├ ○ /professionals/workspace/projects/apx-demo-001/review
+├ ○ /professionals/workspace/projects/apx-demo-001/specification
+├ ○ /professionals/workspace/set-password
+├ ○ /reviews
+├ ○ /robots.txt
+├ ○ /samples
+├ ○ /seen-on-tv
+├ ○ /shop-by-window
+├   /shop-by-window/[slug]
+│ ├ ● /shop-by-window/standard-window
+│ ├ ● /shop-by-window/bay-window
+│ ├ ● /shop-by-window/apex-window
+│ └ ● [+11 more paths]
+├ ƒ /sitemap-advice.xml
+├ ƒ /sitemap-areas.xml
+├ ƒ /sitemap-gallery.xml
+├ ƒ /sitemap-pages.xml
+├ ○ /sitemap.xml
+├ ƒ /start-designing
+└ ○ /terms
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> apex-curtains-site@0.1.0 postbuild
+> node scripts/verify-cushion-build-assets.mjs
+
+Cushion build assets: api/staging/shopify-proxy/cushion-studio/[[...path]], 14/14 required raw files traced and present
+Cushion build assets: cushion-studio-preview/[[...asset]], 14/14 required raw files traced and present

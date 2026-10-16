@@ -263,7 +263,7 @@ test("owner's editable 40 percent target applies to actual draped material cost"
 test("owner 1 metre minimum prices the plain 50 cm filled example at £76.40 and cover at £66.40", () => {
   const facts = { ...fabric, ...cushionOrderingTerms() };
   assert.equal(facts.minimumOrderMetres, 1);
-  assert.equal(facts.orderIncrementMetres, null);
+  assert.equal(facts.orderIncrementMetres, 1);
   const pricing = { ...rules, marginBasisPoints: 4000, carriageMinor: 0 };
   const filled = quoteCushion(spec, facts, pricing),
     cover = quoteCushion({ ...spec, filling: "cover" }, facts, pricing);
@@ -279,7 +279,7 @@ test("owner 1 metre minimum prices the plain 50 cm filled example at £76.40 and
   assert.equal(filled.ready, true);
 });
 
-test("1 metre minimum applies once per distinct cloth group; larger cuts still need increment evidence", () => {
+test("1 metre minimum and increments apply once per distinct shared cloth group", () => {
   const main = { ...fabric, ...cushionOrderingTerms() },
     contrast = { ...main, id: "contrast" };
   const small = {
@@ -306,11 +306,11 @@ test("1 metre minimum applies once per distinct cloth group; larger cuts still n
     rules.construction,
   );
   assert.equal(larger.fabrics[0].requiredMetres, 1.121);
-  assert.equal(larger.fabrics[0].orderedMetres, null);
-  assert.match(larger.issues.join(" "), /increments above/);
+  assert.equal(larger.fabrics[0].orderedMetres, 2);
+  assert.doesNotMatch(larger.issues.join(" "), /increments above/);
 });
 
-test("unverified supplier terms cannot override the owner minimum or invent an increment", () => {
+test("fabric-level terms cannot override the owner-wide one metre increment", () => {
   const source = {
     originalImageUrl: "https://example.invalid/test.jpg",
     evidence: "Image source only",
@@ -318,14 +318,14 @@ test("unverified supplier terms cannot override the owner minimum or invent an i
     orderIncrementMetres: 0.1,
   };
   assert.equal(cushionOrderingTerms(source).minimumOrderMetres, 1);
-  assert.equal(cushionOrderingTerms(source).orderIncrementMetres, null);
+  assert.equal(cushionOrderingTerms(source).orderIncrementMetres, 1);
   const verified = cushionOrderingTerms({
     ...source,
     supplierTermsVerified: true,
     supplierTermsEvidence: "Synthetic verified terms fixture",
   });
-  assert.equal(verified.minimumOrderMetres, 0.5);
-  assert.equal(verified.orderIncrementMetres, 0.1);
+  assert.equal(verified.minimumOrderMetres, 1);
+  assert.equal(verified.orderIncrementMetres, 1);
 });
 test("missing cost, construction, piping, minimum or margin remain explicit blockers", () => {
   const p = quoteCushion(

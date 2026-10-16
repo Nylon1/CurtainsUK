@@ -1,7 +1,7 @@
 import "server-only";
 import { roomsFeatureEnabled } from "../storefront/rooms-server";
 import { houseCheckoutConfigFromEnvironment, executePreparedHouseCheckout } from "../storefront/rooms-checkout-server";
-import { confirmedCushionDispatch } from "./dispatch";
+import { confirmedCushionDispatch, OWNER_CONFIRMED_CURTAIN_DISPATCH } from "./dispatch";
 import { createMixedServices, mixedEnabled } from "./mixed-server";
 import type { CushionCheckoutServices } from "./checkout";
 import type { MyHomeServices } from "./my-home";
@@ -9,7 +9,7 @@ import type { MyHomeServices } from "./my-home";
 /** Existing feature and production gates remain authoritative. Configuration is
  * server-only; a browser's asserted dispatch or release flag is never consumed. */
 export function createMyHomeServices(cushion: CushionCheckoutServices, options: {cushionPurchasesEnabled?: boolean} = {}): MyHomeServices {
-  let curtainDispatch: unknown = null;
+  let curtainDispatch: unknown = OWNER_CONFIRMED_CURTAIN_DISPATCH;
   const source = process.env.CURTAINSUK_MY_HOME_CURTAIN_DISPATCH_JSON;
   if (source) {
     try { curtainDispatch = confirmedCushionDispatch(JSON.parse(source)); }

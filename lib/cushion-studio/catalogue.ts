@@ -13,26 +13,11 @@ export interface CushionFabricEvidence {
   supplierTermsEvidence?: string;
 }
 
-export function cushionOrderingTerms(evidence?: CushionFabricEvidence) {
-  const verified =
-    evidence?.supplierTermsVerified === true &&
-    Boolean(evidence.supplierTermsEvidence?.trim());
-  const minimum = verified ? evidence.minimumOrderMetres : undefined;
-  const increment = verified ? evidence.orderIncrementMetres : undefined;
+export function cushionOrderingTerms(_evidence?: CushionFabricEvidence) {
   return {
-    minimumOrderMetres:
-      typeof minimum === "number" && Number.isFinite(minimum) && minimum >= 0
-        ? minimum
-        : 1,
-    orderIncrementMetres:
-      typeof increment === "number" &&
-      Number.isFinite(increment) &&
-      increment > 0
-        ? increment
-        : null,
-    orderingTermsEvidence: verified
-      ? evidence.supplierTermsEvidence!
-      : "Owner confirmed a 1 metre minimum cut on 14 October 2026. Larger-cut increments remain unconfirmed.",
+    minimumOrderMetres: 1,
+    orderIncrementMetres: 1,
+    orderingTermsEvidence: "Owner confirmed a 1 metre minimum cut on 14 October 2026 and 1 metre ordering increments for all fabrics on 16 October 2026.",
   };
 }
 

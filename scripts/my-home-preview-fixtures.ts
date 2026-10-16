@@ -1,5 +1,5 @@
 import { reviewMyHome, checkoutMyHome, type MyHomeInput, type MyHomeServices } from "../lib/cushion-studio/my-home";
-import { OWNER_CONFIRMED_CUSHION_DISPATCH, combinedMyHomeDispatch } from "../lib/cushion-studio/dispatch";
+import { OWNER_CONFIRMED_CUSHION_DISPATCH, OWNER_CONFIRMED_CURTAIN_DISPATCH, combinedMyHomeDispatch } from "../lib/cushion-studio/dispatch";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import {
@@ -68,7 +68,7 @@ const fabric: FabricCuttingFacts = {
     tileable: false,
   },
   supplierCostMinorPerMetre: 2000,
-  orderIncrementMetres: 0.01,
+  orderIncrementMetres: 1,
   minimumOrderMetres: 0,
   availableMetres: 100,
 };
@@ -244,7 +244,7 @@ export async function homeFixture() {
   const input: MyHomeInput = {version:1,id:f.input.house.house_id,revision:1,postcode:f.input.house.postcode,
     curtains:f.input.house,cushions:{designId:f.input.house.house_id,specs:[spec]}};
   const services: MyHomeServices = {mixed:f.services,releases:{curtains:true,cushions:true,mixed:true},
-    curtainDispatch:{...OWNER_CONFIRMED_CUSHION_DISPATCH,version:"synthetic-curtain-six-weeks",minimumCalendarWeeks:5,maximumCalendarWeeks:6},
+    curtainDispatch:OWNER_CONFIRMED_CURTAIN_DISPATCH,
     executeHouse:async prepared=>{f.effects.push("house-execute");assert.equal(prepared.prepared,true);return {checkoutUrl:null,paymentEnabled:false,status:"REVIEW"};}};
   return {...f,input,services};
 }

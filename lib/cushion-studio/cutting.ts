@@ -600,14 +600,15 @@ export function buildSetCutPlan(
       p.allowanceConfirmed === true && rules.pipingConfirmed === true &&
       rules.pipingCut === "straight" && rules.pipingStripWidthMm === p.stripWidthMm &&
       rules.pipingCordDiameterMm === p.cordDiameterMm &&
-      typeof rules.pipingJoinAllowanceMm === "number" && Number.isFinite(rules.pipingJoinAllowanceMm) && rules.pipingJoinAllowanceMm >= 0;
+      (rules.pipingJoinAllowanceMm === null ||
+        (Number.isFinite(rules.pipingJoinAllowanceMm) && rules.pipingJoinAllowanceMm >= 0));
     const target = structuredClone(trialPlans.get(facts.id) ?? plan);
     const chargedIds = new Set(plan.pieces.map(piece => piece.id));
     const includesUnpricedStrips = target.pieces.some(piece => !chargedIds.has(piece.id));
     const layoutIssues: string[] = [];
-    // Unknown join losses are never treated as a verified zero. Zero here is
-    // solely a gross-strip planning diagram, outside the costed fabric plan.
-    const join = confirmed ? rules.pipingJoinAllowanceMm! : 0;
+    // Null means the workroom accepted one gross 300 mm reserve that includes
+    // every join and finishing loss. It is not a claim of zero physical loss.
+    const join = confirmed ? (rules.pipingJoinAllowanceMm ?? 0) : 0;
     const strips = allocateStraightPiping(target, spec, proposal, join, layoutIssues);
     finishPack(target, facts, layoutIssues);
     proposal.straightLayout = {

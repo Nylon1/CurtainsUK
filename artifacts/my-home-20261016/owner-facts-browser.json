@@ -1,0 +1,28 @@
+{
+  "recordedAtUtc": "2026-10-16T11:36:43Z",
+  "scope": "Unpublished local Chrome browser rehearsal at http://127.0.0.1:4375, not a Shopify or production test",
+  "fixtureCaveats": [
+    "Fabric identity, supplier cost, stock, VAT and zero supplier carriage are synthetic local authorities.",
+    "Curtain delivery of GBP 12.95 is a fixture, not an owner-approved charge.",
+    "Purchase execution and payment are disabled."
+  ],
+  "singleFilledCushion": {
+    "finishedCoverCm": [45, 45],
+    "shownInsert": "Dunelm Square Cotton Cushion Pad, 47 x 47 cm",
+    "shownFitStatus": "Recorded fit confirmed",
+    "displayedGoodsGbp": "76.40",
+    "displayedSingleDeliveryGbp": "4.95",
+    "displayedTotalGbp": "81.35",
+    "dispatch": "3-4 calendar weeks after order confirmation",
+    "checkoutEnabled": false
+  },
+  "mixedCurtainAndCushion": {
+    "curtain": "Standard Window, 180 x 220 cm, Wave, Blackout, Pair",
+    "displayedGoodsGbp": "580.40",
+    "displayedSingleDeliveryGbp": "12.95",
+    "displayedTotalGbp": "593.35",
+    "dispatch": "4-5 calendar weeks after order confirmation",
+    "checkoutEnabled": false
+  },
+  "navigation": "My Home Add a product to Browse Fabrics, View Fabric, Make Curtains, Add to my order retained the prior cushion and used one combined review."
+}

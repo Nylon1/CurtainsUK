@@ -126,34 +126,36 @@ export type ConstructionRules = {
   };
 };
 export const CUSHION_OWNER_CONSTRUCTION_REFERENCE =
-  "Owner acceptance, 2026-10-15: all listed flat panels with 15 mm seams; lower-seam zip for squares/rectangles, perimeter zip and no side band for rounds, body-seam zip for bolster; matching upright faces/ends, separate bolster wrap. Not a physical workroom trial.";
-/** Legacy 20 mm construction remains unapproved. New flat profiles have scoped owner decisions. */
+  "Owner accepted the 15 mm panel and closure specification on 2026-10-15 and reports workroom confirmation of all active-range construction details on 2026-10-16. No measured physical trial record was supplied.";
+/** Legacy 20 mm construction remains unapproved. Active flat profiles have workroom approval. */
 export const PREVIEW_CONSTRUCTION_RULES: ConstructionRules = {
-  version: "cushion-construction-v5-proposed-standard-covers",
+  version: "cushion-construction-v6-workroom-confirmed-standard-covers",
   seamAllowanceMm: 20,
   confirmed: false,
   squareDrapeConfirmed: false,
   flatConstructionBySize: { ...Object.fromEntries(OWNER_APPROVED_ORIGINAL_CUSHION_SIZE_IDS.map(sizeId => [sizeId, {
       seamAllowanceMm: 15,
       confirmed: true,
-      approvalAuthority: "owner",
+      approvalAuthority: "workroom",
       approvalReference: CUSHION_OWNER_CONSTRUCTION_REFERENCE,
   }])), ...Object.fromEntries(["square-35","square-40","rectangle-28-48","rectangle-38-58","bed-square-68","bolster-19-44"].map(sizeId => [sizeId, {
-    seamAllowanceMm:15,confirmed:false,approvalAuthority:"owner" as const,
-    approvalReference:"Owner-proposed standard-insert cover dimensions, 2026-10-16. 15 mm seams; representative construction/fit checks pending.",
+    seamAllowanceMm:15,confirmed:true,approvalAuthority:"workroom" as const,
+    approvalReference:"Owner reports workroom confirmation of all proposed active-range construction details, 2026-10-16. No measured trial record supplied.",
   }])) },
-  approvedSizeIds: ["round-40", "round-50", "bed-square-65", "bed-square-70"],
+  approvedSizeIds: ["round-40", "round-50", "bed-square-65", "bed-square-70", "square-35", "square-40", "rectangle-28-48", "rectangle-38-58", "bed-square-68", "bolster-19-44"],
   pipingStripWidthMm: 40,
   pipingCordDiameterMm: 4,
+  // The workroom confirmed 300 mm total for joins and finishing, not a
+  // separate loss per join. Flat-sewn straight strips use that gross reserve.
   pipingJoinAllowanceMm: null,
-  pipingCut: null,
-  pipingConfirmed: false,
+  pipingCut: "straight",
+  pipingConfirmed: true,
   pipingProposal: {
     version: "owner-piping-starting-estimate-20261015",
     stripWidthMm: 40,
     cordDiameterMm: 4,
     finishingAllowanceMm: 300,
-    allowanceConfirmed: false,
+    allowanceConfirmed: true,
     cutBySize: Object.fromEntries([...OWNER_APPROVED_ORIGINAL_CUSHION_SIZE_IDS,"square-35","square-40","rectangle-28-48","rectangle-38-58","bed-square-68","bolster-19-44"].map(sizeId => [sizeId,
       sizeId === "round-40" || sizeId === "round-50" || sizeId.startsWith("bolster-") ? "bias" : "straight",
     ])),
@@ -213,7 +215,7 @@ export type CushionPricingRules = {
       procurementNote: string;
       advertisedSize: string;
       grossPriceMinor: number;
-      fitStatus: "advertised-size-match" | "unconfirmed";
+      fitStatus: "confirmed" | "advertised-size-match" | "unconfirmed";
       skuVerified: boolean;
       /** Preserve the supplier's exact description; polyester does not imply hollowfibre. */
       supplierFillingDescription?: string;
@@ -260,7 +262,7 @@ export const CUSHION_MAKING_RATE_CARD: NonNullable<
   }),
 );
 export const PREVIEW_PRICING_RULES: CushionPricingRules = {
-  version: "cushion-cost-basis-v11-standard-inserts-20261016",
+  version: "cushion-cost-basis-v12-workroom-20261016",
   construction: PREVIEW_CONSTRUCTION_RULES,
   makingRateCard: CUSHION_MAKING_RATE_CARD,
   compatibleInsertsBySize: STANDARD_INSERTS_BY_SIZE,

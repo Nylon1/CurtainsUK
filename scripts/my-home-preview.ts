@@ -17,7 +17,12 @@ if(process.env.VERCEL || process.env.NODE_ENV==='production')throw Error('LOCAL_
 const port=4375,root=path.join(process.cwd(),'shopify-theme/curtainsuk-dawn-16'), fixture=await homeFixture();
 fixture.services.releases={curtains:false,cushions:false,mixed:false};
 const originalRules=await fixture.services.mixed.cushion.rules();
-fixture.services.mixed.cushion.rules=async()=>({...originalRules,marginBasisPoints:4000,construction:PREVIEW_PRICING_RULES.construction});
+fixture.services.mixed.cushion.rules=async()=>({
+  ...originalRules,
+  ...PREVIEW_PRICING_RULES,
+  vatBasisPoints:2000,
+  supplierCarriageMinor:0, // Explicitly synthetic for the local review only.
+});
 fixture.services.mixed.cushion.facts=async id=>({...fabric,id,usableWidthMm:1400,minimumOrderMetres:1});
 const originalFabric=fixture.services.mixed.house.fabric;
 fixture.services.mixed.house.fabric=async id=>({...await originalFabric(id),imageUrl:id===source.id?'https://curtainsuk-production-api.vercel.app'+fixed140.assignments['pt-4269-147'].sourceImage:null});
@@ -26,7 +31,7 @@ fixture.services.mixed.house.calculate=async c=>{const result=await originalCalc
 const saved=new Map<string,any>();
 const reviewFabric={...source,brand:'Synthetic review fabric',imageReferences:['https://curtainsuk-production-api.vercel.app'+fixed140.assignments['pt-4269-147'].sourceImage],images:[{url:'https://curtainsuk-production-api.vercel.app'+fixed140.assignments['pt-4269-147'].sourceImage,width:1400,height:1400,imageType:'FABRIC'}],browseReady:true,orderReady:true,sampleAvailable:false,metadata:{title:'Review fabric',h1:'Escher · Mocha',alt:'Escher Mocha fabric',metaDescription:'Local review fixture'}};
 
-const header='<div style="background:#f2dfb9;padding:12px;text-align:center">UNPUBLISHED LOCAL REVIEW · Synthetic fabric, prices, stock and curtain dispatch · No Shopify writes or payment</div><nav style="padding:18px 5%;display:flex;justify-content:space-between"><a href="/pages/build-my-rooms">CurtainsUK</a><a href="/pages/build-my-rooms">My Home</a></nav>';
+const header='<div style="background:#f2dfb9;padding:12px;text-align:center">UNPUBLISHED LOCAL REVIEW · Synthetic fabric, prices and stock · No Shopify writes or payment</div><nav style="padding:18px 5%;display:flex;justify-content:space-between"><a href="/pages/build-my-rooms">CurtainsUK</a><a href="/pages/build-my-rooms">My Home</a></nav>';
 function html(body:string,scripts:string[]=[]){return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>My Home local review</title><link rel="stylesheet" href="/assets/curtainsuk-rooms.css"><link rel="stylesheet" href="/assets/curtainsuk-my-home.css"><link rel="stylesheet" href="/assets/curtainsuk-storefront.css"><style>body{margin:0;background:#f8f5ef;color:#203a32;font-family:Arial,sans-serif}a{color:inherit}main[data-cuk-my-home]{padding:24px 5%;max-width:1440px;margin:auto}</style></head><body>${header}${body}<script src="/assets/curtainsuk-rooms-store.js"></script><script src="/assets/curtainsuk-rooms.js"></script>${scripts.map(s=>`<script src="/assets/${s}"></script>`).join('')}</body></html>`;}
 const server=createServer(async(req,res)=>{try{
  if(![`localhost:${port}`,`127.0.0.1:${port}`].includes(req.headers.host||''))throw Error('HOST');

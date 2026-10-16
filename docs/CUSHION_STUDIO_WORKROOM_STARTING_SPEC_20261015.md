@@ -219,3 +219,15 @@ Raw public source evidence and validation are in `artifacts/cushion-range-202610
 ## My Home delivery clarification, 16 October 2026
 
 Mixed delivery is settled by the later owner decision: hold all items until ready, show the latest confirmed dispatch estimate and apply the existing curtain delivery rule once, or GBP 4.95 once for cushion-only orders. Actual carrier expense remains factual commercial evidence. A structured approved curtain dispatch source is needed by My Home checkout. Manufacturing instructions remain internal and in fulfilment snapshots, not customer-facing pages.
+
+## Later owner-reported workroom acceptance, 16 October 2026
+
+This section supersedes the preceding active-range proposal and pending workroom decisions. The owner states that the workroom has confirmed all details. The accepted active sizes, 15 mm panel allowances, seams and closures, identical upright faces, separate bolster wrap and end layout, pad/cover pairings, 4 mm self-piping cord, approximately 40 mm strips, straight strips for flat shapes, bias strips for round/bolster ends, and 30 cm additional strip length are recorded as workroom accepted. No measured sample or per-join figure was supplied, so the record is approval evidence, not a claim of a completed physical trial. Earlier saved sizes keep their historical meaning.
+
+The workroom clarified that 30 cm is the total allowance for joins and finishing, without a separate figure per join. Straight strips for squares, rectangles and bed squares now use that gross reserve, reserve main panels first, reuse suitable leftovers and include any extra cloth in the shared cutting plan. This is not an assertion of zero physical join loss or an extra 30 cm per strip. Bias strip allocation still needs a verified cloth-yield calculation, so self-piped rounds and bolster ends remain unpriced for purchase. Standard unpiped covers and otherwise eligible filled cushions are independent.
+
+Fabric orders have a 1 m minimum and 1 m increments for all fabrics. Packing occurs once per shared fabric identity before rounding to the order increment. Supplier carriage is still an independent commercial input and cannot be assumed free.
+
+Cushion dispatch stays 3-4 calendar weeks from order confirmation. Curtain dispatch is now 4-5 calendar weeks from the point of order; the server interprets this as the successful confirmed order at checkout. Mixed orders remain held together and show the later 4-5 week estimate. Customer delivery rules are unchanged.
+
+The owner accepts the Willows site prices. The public product record checked 16 October 2026 lists round 45 cm variant `39462557516011` at GBP 5.99 and round 55 cm variant `39462564724971` at GBP 6.99, both available then, with blank supplier SKU fields. Variant ID is the fulfilment identifier. Full advertised outlay is the provisional economic purchase cost, with no input VAT deduction. Current supplier availability is rechecked before checkout. See `artifacts/my-home-20261016/willows-round-current.json`.

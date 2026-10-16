@@ -2,13 +2,13 @@
 
 16 October 2026. Candidate remains unpublished on `feat/cushion-studio-20261014` for draft PR #201. This report supersedes earlier local acceptance counts in the implementation record. The handover supplies the full commit SHA containing this report and the reviewed candidate.
 
-**Verdict: local customer journey and production-style build passed. Not yet approved for production purchase activation.** Remaining manufacturing and supplier restrictions are configuration-specific; deployment and real Shopify integration still need authorised acceptance. No production changes, merge, deployment, Draft Order, payment or paid AI call occurred.
+**Verdict: local customer journey and production-style build passed. Not yet approved for production purchase activation.** The owner supplied further dispatch, fabric ordering and workroom decisions later on 16 October. Those decisions and remaining implementation limits are recorded below; deployment and real Shopify integration still need authorised acceptance. No production changes, merge, deployment, Draft Order, payment or paid AI call occurred.
 
 ## What passed
 
 | Area | Result and evidence scope |
 |---|---|
-| Regression suite | `npm test`: 713 successful test executions, zero failures, including 177 Cushion Studio tests. The command repeats 18 theme tests, so this is not a unique-test count. |
+| Regression suite | `npm test`: 715 successful test executions, zero failures, including 179 Cushion Studio tests. The command repeats 18 theme tests, so this is not a unique-test count. |
 | Production-style build | `npm run build -- --webpack` passed compilation, TypeScript and 170 static pages. Command-local public Supabase placeholders were used for prerendering; no production configuration changed. |
 | Build assets | Both Cushion Studio routes trace all 14 required raw runtime/vendor files. A new postbuild guard fails if one is missing. Existing visualiser packaging retained 3,150 files across two packs. This proves local generated contents, not deployed completeness. |
 | Product entry | Create room opens Add curtains / Add cushions. Add curtains goes through Browse Fabrics, View Fabric and Make Curtains, retaining the intended room. Room assignment remains optional. |
@@ -23,7 +23,7 @@
 
 ### Pricing examples from the browser rehearsal
 
-All amounts below use synthetic fabric/curtain authorities on `http://127.0.0.1:4375`. They are verification fixtures, not live customer offers. The curtain dispatch of 5-6 weeks and curtain delivery of GBP 12.95 are also fixtures, not newly approved policy.
+All amounts below use synthetic fabric/curtain authorities on `http://127.0.0.1:4375`. They are verification fixtures, not live customer offers. The earlier 5-6 week curtain dispatch and GBP 12.95 curtain delivery were fixture values at that time. The updated local preview uses the owner-confirmed 4-5 week curtain dispatch; GBP 12.95 remains a synthetic curtain-delivery fixture, not a newly approved policy.
 
 | Ordered products | Products | One delivery | Total |
 |---|---:|---:|---:|
@@ -50,17 +50,29 @@ No unresolved customer-facing defect was observed in the bounded final local jou
 
 | Outstanding fact | Proposed resolution | What remains blocked |
 |---|---|---|
-| Curtain dispatch authority | Record the existing approved estimate, units, start trigger and evidence in `CURTAINSUK_MY_HOME_CURTAIN_DISPATCH_JSON`. Do not adopt the local 5-6-week fixture. | Curtain-only and mixed My Home checkout. Cushion-only orders are independent. |
-| Supplier increments above 1 m and carriage | Use verified existing supplier arrangements. Apply the 1 m minimum once per compatible shared fabric group and carriage at its proper shared level. Do not assume zero carriage. | Binding quotes using a supplier whose required commercial facts are missing. |
+| Supplier carriage | Record the actual applicable purchasing charge once at the correct shared group or order level. Do not assume zero carriage. | Binding cushion quotations while the relevant supplier charge is unconfigured. |
 | Usable width, repeats, direction or placement calibration where missing | Read governed facts for the exact fabric and verify two reproducible matching cuts. Keep photographed dimensions separate from cutting width. | Only fabrics/configurations whose accurate placement or cutting calculation depends on the missing fact. |
-| Revised cover construction | Confirm representative construction for 35/40 cm squares, 28 x 48/38 x 58 cm rectangles, 68 cm bed square and diameter 19 x 44 cm bolster. Keep 15 mm seams; record any actual correction. | These new cover dimensions, with or without inserts. Previously accepted cover-only dimensions remain independent. |
-| Pad-to-cover fit | Check representative selected insert pairings, retaining exact supplier identity, dimensions and filling description. Do not change geometry or demand a crease-for-crease match. | Filled configurations whose fit remains unconfirmed. Cover-only is not blocked by insert fit. |
-| Willows round insert identity and cost basis | Confirm fulfilment identifier for variants 39462557516011 and 39462564724971 and invoice/VAT basis. Current SKU fields remain unverified; do not invent a SKU or tax deduction. | Filled rounds only, together with their fit check. |
 | Current insert availability | Revalidate the exact variant before activation/payment. The 16 October sourcing observation reported Dunelm 57 cm square and 40 x 60 cm rectangle pads unavailable; it is a dated observation. | Affected filled 55 cm square and 38 x 58 cm rectangle while unavailable. Cover-only remains independent. Other insert stock also requires checkout revalidation. |
-| Self-piping consumption | Maker confirms straight/bias strips, joins, useful remnants and the proposed 30 cm finishing allowance. Use leftovers first and calculate extra full-width cloth only as required. | Self-piped configurations only. Contrast piping remains unavailable. |
+| Bias self-piping cutting implementation | The workroom confirms 4 mm cord, 40 mm strips and 30 cm total extra length for joins and finishing. Straight strips now use that confirmed gross total and are included in shared cloth costing. A verified bias cutting yield/layout is still absent. | Self-piped rounds and bolster ends. Contrast piping remains unavailable. |
 | Actual parcel expense and insert procurement terms | Record carrier invoice cost separately from the customer charge and confirm ongoing business supply arrangements for retail-sourced inserts. | Commercial margin/procurement evidence for affected fulfilment. The agreed customer delivery price is not reopened. |
 
 The 40% margin, agreed making charges, sundries, packaging, overhead/payment allowance, 1 m group minimum, GBP 4.95 cushion-only delivery, hold-together policy and cushion dispatch of 3-4 calendar weeks from order confirmation remain settled. Orders containing curtains use the approved curtain delivery rule once. There is no outstanding mixed-delivery policy decision.
+
+### Later owner and workroom confirmations
+
+- Curtain dispatch is now confirmed as 4-5 calendar weeks from the point of order. The server treats the successful checkout/order confirmation as that point and combines it with the confirmed 3-4 week cushion estimate. The updated local preview uses 4-5 weeks; the earlier 5-6 week fixture evidence above remains historical.
+- Every fabric order uses a 1 m minimum and 1 m increments. The server rounds the shared required length up to a whole metre after packing compatible cushions together. Fabric-specific evidence cannot silently reduce the owner-wide rule. Supplier carriage remains separate.
+- The owner reports the workroom has confirmed all active range details. New 15 mm panel constructions, selected insert/cover pairings and the proposed self-piping allowance now carry that provenance. No measured sample report was supplied, so none is claimed. Historical saved sizes retain their original interpretation.
+- Current [Willows round variant evidence](../artifacts/my-home-20261016/willows-round-current.json) shows 45 cm and 55 cm pads at GBP 5.99 and GBP 6.99, both available at the check. The supplier publishes variant IDs but blank SKUs. The full advertised price is treated as purchase cost, without reclaiming input VAT; this may be updated if invoice evidence later changes the recoverable basis.
+- These confirmations advance the candidate rule versions. They do not open the release switches or remove stock, supplier carriage, exact fabric and checkout revalidation gates.
+- The workroom clarified that 30 cm is the total allowance, with no separate millimetres-per-join figure. Straight-cut flat cushions use that approved gross reserve without inventing a per-join loss. Their actual strips appear in the charged plan; curved bias strips remain technically gated.
+
+### Updated local verification after the later decisions
+
+- `npm test` passed 715 test executions with zero failures, including 179 Cushion Studio executions. The command repeats 18 theme tests; these are execution counts, not unique-test counts.
+- A production-style `npm run build -- --webpack` passed compilation, TypeScript, 170 static pages, the existing Room Visualiser packaging step (two packs, 3,150 files), and both 14/14 Cushion Studio raw-asset traces. Build-only public Supabase placeholders were used. This verifies generated local contents, not a deployed alias.
+- In the unpublished browser preview, a filled 45 x 45 cm cover displayed its separate 47 x 47 cm Dunelm pad and confirmed pairing. Its synthetic fabric price became GBP 76.40 after the shared whole-metre rule; My Home displayed GBP 4.95 once and GBP 81.35 total with 3-4 week dispatch. A mixed order with one synthetic curtain displayed GBP 580.40 products, one fixture curtain delivery of GBP 12.95, GBP 593.35 total, and a combined 4-5 week dispatch. Checkout remained disabled. See [updated browser evidence](../artifacts/my-home-20261016/owner-facts-browser.json).
+- The local preview deliberately supplies synthetic fabric, stock, VAT and zero supplier carriage. It demonstrates calculation and presentation; it does not clear real-fabric, carriage, stock or checkout gates.
 
 ## Verification limits before release
 
@@ -81,6 +93,9 @@ The 40% margin, agreed making charges, sundries, packaging, overhead/payment all
 - [All five shape studies](../artifacts/my-home-20261016/cushion-shape-studies.png)
 - [Theme validation limitation](../artifacts/my-home-20261016/liquid-validation.log)
 - [Manufacturing and insert source record](CUSHION_STUDIO_WORKROOM_STARTING_SPEC_20261015.md)
+- [Later-decision regression log](../artifacts/my-home-20261016/owner-facts-regression-final.log)
+- [Later-decision production-style build](../artifacts/my-home-20261016/owner-facts-build.log)
+- [Later-decision browser evidence](../artifacts/my-home-20261016/owner-facts-browser.json)
 
 ## Release and rollback
 

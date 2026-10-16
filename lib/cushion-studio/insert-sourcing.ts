@@ -356,10 +356,10 @@ export const DUNELM_STANDARD_INSERT_CANDIDATES = [
   }
 ] as const;
 export const DUNELM_RANGE_GAPS = {
-  fit: "Owner-proposed pairings require representative physical fit checks; not Dunelm-confirmed guidance.",
+  fit: "Historical saved insert pairings retain pending fit evidence. Active standard-insert pairings have owner-reported workroom acceptance dated 16 October 2026.",
   round: "Willows Direct standard hollowfibre round variants selected as the authorised retail exception.",
   rectangle: "Polyester-filled insert with cotton casing accepted; no unverified hollowfibre claim.",
-  bolster: "Dunelm cylindrical SKU 30926140 selected: proposed diameter 19 x length 44 cm cover for diameter 20 x length 46 cm pad. Physical fit remains pending. Original 23 x 56 cm saved designs retain their meaning.",
+  bolster: "Dunelm cylindrical SKU 30926140 and diameter 19 x length 44 cm finished cover have owner-reported workroom acceptance. No measured trial record was supplied. Original 23 x 56 cm saved designs retain their meaning.",
   bespoke: "Bespoke inserts are not part of this range or a sourcing requirement.",
 } as const;
 
@@ -371,12 +371,12 @@ export const DUNELM_INSERTS_BY_SIZE: NonNullable<CushionPricingRules["compatible
       supplierSku: sku, coverSizeId,
       dimensionsMm: pad.shape === "rectangle" || pad.shape === "bolster" ? [pad.insertDimensionsMm[1], pad.insertDimensionsMm[0]] : [...pad.insertDimensionsMm],
       finishedCoverDimensionsMm: [...coverDimensions],
-      fitEvidence: { version: DUNELM_RANGE_VERSION, status: "pending", reference: pad.shape === "bolster" ? "Owner-authorised standard cylinder replacement, 2026-10-16: proposed diameter 190 mm x length 440 mm cover for diameter 200 mm x length 460 mm cylindrical pad. Modest 10 mm diameter / 20 mm length reduction proposed for fullness, not supplier-confirmed fit guidance; physical fit pending." : "Owner-proposed 20 mm smaller flat cover, 2026-10-16. Representative samples pending; not Dunelm-confirmed fit guidance." },
+      fitEvidence: { version: DUNELM_RANGE_VERSION, status: "confirmed", reference: "Owner reports workroom confirmation of the selected pad and finished-cover pairing, 2026-10-16. No measured trial record supplied; this is workroom acceptance, not supplier fit guidance." },
       costMinor: Math.round(pad.grossPriceMinor / 1.2), costBasisConfirmed: true,
-      confirmed: false, approvalReference: "Product identity, filling and advertised price verified; physical fit remains pending.",
+      confirmed: true, approvalReference: "Owner reports workroom confirmation of the selected pad and finished-cover pairing, 2026-10-16.",
       sourcing: { ...DUNELM_INSERT_SOURCE, productId: pad.productId, productName: pad.productName,
         sourceUrl: pad.sourceUrl, advertisedSize: pad.advertisedSize, grossPriceMinor: pad.grossPriceMinor,
-        fitStatus: "unconfirmed", skuVerified: true, supplierFillingDescription: pad.supplierFillingDescription,
+        fitStatus: "confirmed", skuVerified: true, supplierFillingDescription: pad.supplierFillingDescription,
         stockObservation: { status: pad.observedInStock ? "in-stock" : "out-of-stock", observedAt: pad.observedAt, reference: pad.sourceUrl },
       },
     } satisfies NonNullable<CushionPricingRules["compatibleInsertsBySize"]>[string]];
@@ -388,14 +388,14 @@ export const WILLOWS_INSERTS_BY_SIZE: NonNullable<CushionPricingRules["compatibl
     return [coverSizeId, {
       fillingType: "hollowfibre", supplierSku: "", supplierVariantId: variant, coverSizeId,
       dimensionsMm: [pad], finishedCoverDimensionsMm: [cover],
-      fitEvidence: { version: DUNELM_RANGE_VERSION, status: "pending", reference: "Owner-selected next-size-up pairing, 2026-10-16, following Willows general sizing guidance. Physical fit pending. https://willowsdirect.co.uk/products/set-of-1-10-hollow-fibre-cushion-scatter-inner-square-pads-35-40-45-50cm" },
-      // Use the full advertised outlay for planning. Do not invent reclaimable input VAT.
-      costMinor: price, costBasisConfirmed: false, confirmed: false,
-      approvalReference: "Exact standard Round variant and advertised price verified. Physical fit and supplier VAT basis/invoice require confirmation.",
+      fitEvidence: { version: DUNELM_RANGE_VERSION, status: "confirmed", reference: "Owner reports workroom confirmation of the selected round pad and finished-cover pairing, 2026-10-16. No measured trial record supplied." },
+      // The owner accepts the site price as the full purchase cost. No input VAT is deducted.
+      costMinor: price, costBasisConfirmed: true, confirmed: true,
+      approvalReference: "Owner accepted the verified Willows site price and reports workroom confirmation of the pairing, 2026-10-16.",
       sourcing: { supplier: "Willows Direct",productId:"6636313903339",productName:"Single - Hollowfibre Cushion Pads Inners Inserts Fillers Scatters",
-        sourceUrl,checkedOn:"2026-10-16",currency:"GBP",priceBasis:"Advertised retail outlay; input VAT deduction unverified",vatBasisPoints:null,
+        sourceUrl,checkedOn:"2026-10-16",currency:"GBP",priceBasis:"Full advertised retail outlay, with no input VAT deduction",vatBasisPoints:null,
         termsUrl:"https://willowsdirect.co.uk/policies/terms-of-service",procurementNote:"Confirm VAT invoice and applicable order-level delivery. No stock reservation implied.",
-        advertisedSize:`Round ${pad/10} cm`,grossPriceMinor:price,fitStatus:"unconfirmed",skuVerified:false,
+        advertisedSize:`Round ${pad/10} cm`,grossPriceMinor:price,fitStatus:"confirmed",skuVerified:false,
         supplierFillingDescription:"Hollowfibre polyester insert",stockObservation:{status:"in-stock",observedAt:"2026-10-16",reference:sourceUrl},
       },
     } satisfies NonNullable<CushionPricingRules["compatibleInsertsBySize"]>[string]];

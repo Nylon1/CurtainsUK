@@ -134,19 +134,19 @@ export function customerCushionDispatch(value: unknown) {
 }
 
 export type MyHomeDispatchComponent = {
-  productType: "CURTAIN" | "CUSHION";
+  productType: "CURTAIN" | "CUSHION" | "SMART_TRACK";
   estimate: CushionDispatchEstimate;
 };
 
 /** Hold the entire order until its latest product window. Unlike units or start
  * triggers are not silently converted: no holiday or supplier-date assumptions. */
 export function combinedMyHomeDispatch(
-  components: Array<{ productType: "CURTAIN" | "CUSHION"; estimate: unknown }>,
+  components: Array<{ productType: "CURTAIN" | "CUSHION" | "SMART_TRACK"; estimate: unknown }>,
 ) {
   if (!components.length) return null;
   const confirmed: MyHomeDispatchComponent[] = [];
   for (const component of components) {
-    if (!["CURTAIN", "CUSHION"].includes(component.productType)) return null;
+    if (!["CURTAIN", "CUSHION", "SMART_TRACK"].includes(component.productType)) return null;
     const estimate = confirmedCushionDispatch(component.estimate);
     if (!estimate) return null;
     confirmed.push({ productType: component.productType, estimate });
@@ -175,6 +175,6 @@ export function customerMyHomeDispatch(value: ReturnType<typeof combinedMyHomeDi
   const { components, ...safe } = value;
   return { ...safe, components: components.map(({productType,estimate}) => {
     const projected = customerCushionDispatch(estimate)!;
-    return {productType,...projected,message:productType === "CURTAIN" ? projected.message.replace("cushion dispatch", "curtain dispatch") : projected.message};
+    return {productType,...projected,message:projected.message.replace('cushion dispatch',productType==='SMART_TRACK'?'smart track dispatch':productType==='CURTAIN'?'curtain dispatch':'cushion dispatch')};
   }) };
 }

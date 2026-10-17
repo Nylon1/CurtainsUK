@@ -1,4 +1,7 @@
 import "server-only";
+import {randomUUID} from "node:crypto";
+import {trackDiagnostic} from "../smart-track/server";
+import {createTrackServices} from "../smart-track/repository";
 import { authenticateShopifyAppProxy } from "../storefront/security/shopify-app-proxy";
 import { prepareSampleOrder } from "../storefront/sample-order-server";
 import {
@@ -167,6 +170,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
     const myHomeOperation = segments[0] === "api" && ["my-home-review","my-home-checkout"].includes(segments[1]);
     if (myHomeOperation ? !(services.myHomeEnabled?.() ?? services.enabled()) : !services.enabled())
       return new Response(null, { status: 404, headers: responseHeaders });
+    let trackRequestId:string|undefined;
     try {
       const context = await services.authenticate({
         request,
@@ -196,10 +200,11 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
       let result: unknown;
       if (request.method === "POST" && myHomeOperation) {
         const body = await boundedCushionBody(request);
+        if(body.tracks)trackRequestId=randomUUID();
         const reviewOnly = operation === "my-home-review" || !body.cushions;
         const key = operation === "my-home-review" ? "my-home-review-only" : body.idempotencyKey;
         if (typeof key !== "string") throw Error("MY_HOME_INPUT_INVALID");
-        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly}),{cushionPurchasesEnabled:services.purchasesEnabled()});
+        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks?createTrackServices(context):undefined});
         result = operation === "my-home-review" ? await reviewMyHome(body as MyHomeInput,authority) : await checkoutMyHome(body as MyHomeCheckoutInput,authority);
       } else if (request.method === "GET" && operation === "catalogue")
         result = await services.catalogue(params);
@@ -302,8 +307,9 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         };
       } else
         return new Response(null, { status: 404, headers: responseHeaders });
-      return Response.json(result, { headers: responseHeaders });
+      return Response.json(trackRequestId?{...(result as Record<string,unknown>),requestId:trackRequestId}:result, { headers: responseHeaders });
     } catch (error) {
+      if(trackRequestId)trackDiagnostic(segments[1]==='my-home-checkout'?'CHECKOUT':'REVIEW',trackRequestId);
       const code = error instanceof Error ? error.message : "";
       if (segments[0] === "api" && segments[1] === "my-home-checkout") {
         const safeCode = /^(?:SHOPIFY|MY_HOME|CUSHION|CURTAINSUK)_[A-Z0-9_]{1,100}$/.test(code)
@@ -340,6 +346,9 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         );
       const recoverable: Record<string, string> = {
         MY_HOME_REVIEW_CHANGED: "Your order or price has changed. Update the My Home review before continuing.",
+        TRACK_UNAVAILABLE: "Smart-track ordering is not currently available. Your saved design is unchanged.",
+        TRACK_ORDER_TOO_LARGE: "This combined order needs an assisted checkout. Please contact CurtainsUK.",
+        TRACK_IDEMPOTENCY_CONFLICT: "This attempt belongs to a different order review. Recheck My Home before continuing.",
         MY_HOME_PURCHASE_DISABLED: "Ordering is not yet enabled for these items. Review the outstanding confirmations in My Home.",
         MY_HOME_IDEMPOTENCY_CONFLICT: "This checkout attempt belongs to a different order review. Recheck My Home before continuing.",
         CUSHION_PURCHASE_DISABLED: "Cushion ordering is not yet enabled. Your items remain saved in My Home.",

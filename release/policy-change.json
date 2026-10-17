@@ -1,13 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Cushion quoting rejects every fabric whose lifecycle is not CURRENT before looking up its verified supplier cost or recent stock. The curtain pricing path can calculate a price for an UNKNOWN lifecycle fabric when commercial evidence is verified. My Home renders a neutral cushion even when the selected calibrated artwork is available.",
-  "newRule": "Use the existing shared Fabric Master price-eligibility rule for cushion catalogue and quote lookup. Known discontinued or noncommercial fabrics remain blocked. An UNKNOWN lifecycle fabric may receive a binding cushion quote only when exact-identity supplier cost, fresh available stock, cutting, construction, insert and dispatch evidence all pass. Render selected calibrated fabric artwork in My Home without changing the saved specification; label a neutral fallback clearly.",
-  "reason": "Amalfi Herb and Acies Amethyst have VERIFIED price status and positive 14 October stock observations, while their lifecycle is UNKNOWN. Curtains can calculate a price, but Cushion Studio discards cost and stock before quoting. The owner showed another blocked cushion and requested that the live site, protected source and production configuration follow one reproducible rule.",
-  "ownerApprovedDecision": "The owner requested reconciliation of these cushion flags with the existing shared commerce rule. This scoped rule alignment and selected-fabric preview are presented for the required Nylon1 exact-head approval before protected merge and live release.",
+  "previousRule": "The protected production test command covers the released curtain, cushion and shared commerce journeys. There is no distinct smart-track product, server pricing, manufacturer-guided demonstration or smart-track fulfilment contract.",
+  "newRule": "Append a focused smart-track test suite to the existing test command without removing or weakening any existing assertion. Add coverage for the owner-approved Go and iOn pricing, exact measurement boundaries, motor-specific load evidence, shared controls, immutable product identity, mixed checkout reconciliation and once-per-shipment carriage. Existing protected release and exact-head approval requirements remain unchanged.",
+  "reason": "The owner requested a separate Smart Track Studio candidate and PR from protected production, with equal-priced mains Go and battery iOn packages and a visual fitting guide grounded in Forest documentation. New tests and the package test script are protected surfaces even though existing test and release policy is preserved.",
+  "ownerApprovedDecision": "The owner authorized implementation of this candidate and confirmed the business inputs recorded in docs/smart-track-studio/REVIEW.md. Exact-head approval has not been supplied. The candidate is presented for Nylon1's explicit current-head approval before protected merge; production publication remains a separate scoped release decision.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/cushion-studio/__tests__/",
-    "lib/cushion-studio/runtime/my-home-thumbnails.test.mjs",
+    "lib/smart-track/__tests__/smart-track.test.ts",
+    "package.json",
     "release/policy-change.json"
   ]
 }

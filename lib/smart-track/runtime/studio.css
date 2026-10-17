@@ -656,19 +656,6 @@ details li {
   border-top: 1px solid #bcc6b4;
   padding-top: 17px;
 }
-#quote-issues details {
-  padding: 10px;
-  font-size: 11px;
-  background: #f5f2e6;
-}
-#quote-issues ul {
-  padding-left: 16px;
-}
-#weight-result {
-  font-size: 12px;
-  background: #e8ede0;
-  padding: 12px;
-}
 #save-status {
   font-size: 12px;
 }
@@ -1202,7 +1189,7 @@ footer {
 }
 .configuration-steps {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
   margin: 20px 0 18px;
 }
@@ -1316,15 +1303,9 @@ footer {
 #track-form .route-choice label:last-of-type {
   margin-bottom: 0;
 }
-#power-help,
-#weight-result {
+#power-help {
   font-size: 12px;
   line-height: 1.65;
-}
-#weight-result {
-  background: #e9eee2;
-  padding: 13px;
-  border-radius: 4px;
 }
 .quick-quote button {
   border: 0;
@@ -1337,7 +1318,7 @@ footer {
   grid-template-columns: 1fr;
 }
 #estimate-weight .two-col,
-[data-step="3"] .two-col {
+[data-step="2"] .two-col {
   grid-template-columns: 1fr 1fr;
 }
 @media (min-width: 1100px) {
@@ -1506,6 +1487,43 @@ footer {
 #linked-info:empty { display: none; }
 .step-progress { margin: 18px 0 -10px; color: #687260; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
 .technology-highlights { margin-top: 64px; padding: 36px 0 16px; border-top: 1px solid #d6dace; }
+.optional-weight { margin-top: 42px; }
+#weight-details { border: 1px solid #d6dace; border-radius: 7px; background: #ecefe5; scroll-margin-top: 80px; }
+#weight-details > summary { display: grid; grid-template-columns: 52px 1fr 24px; gap: 18px; align-items: center; padding: 22px; cursor: pointer; list-style: none; }
+#weight-details > summary::-webkit-details-marker { display: none; }
+#weight-details summary svg { width: 52px; height: 48px; fill: none; stroke: #52674e; stroke-width: 1.8; stroke-linecap: round; }
+#weight-details summary strong { display: block; font: 25px/1.2 Georgia,serif; }
+#weight-details summary small { display: block; font-size: 12px; color: #687260; margin-top: 6px; }
+.weight-expand { font-size: 26px; text-align: center; }
+#weight-details[open] .weight-expand { transform: rotate(45deg); }
+.weight-helper-body { padding: 4px 28px 28px; }
+#weight-helper { margin: 0 0 18px; padding: 0; border: 0; }
+#weight-helper legend { font: 14px Arial,sans-serif; font-weight: 600; padding: 0; margin-bottom: 20px; }
+.weight-calculator-grid { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(260px,1fr); gap: 32px; align-items: start; }
+.weight-fields label { margin-top: 0; }
+.weight-fields .two-col { gap: 16px 20px; }
+#weight-helper .lining-check { margin: 5px 0 18px; }
+#weight-helper #lining-weight-wrap { background: #f8f8f2; padding: 16px; border-radius: 5px; margin-bottom: 18px; }
+#weight-helper .lining-preset { margin-bottom: 14px; }
+.weight-measure-help { color: #52674e; font-size: 12px; line-height: 1.6; }
+.weight-measure-help summary { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.weight-measure-help p { margin-bottom: 0; }
+#weight-result { padding: 28px; background: #f8f9f3; border: 1px solid #d0d9c6; border-radius: 6px; }
+#weight-result-label { display: block; font-size: 12px; color: #52674e; }
+.weight-total { display: block; font: 58px/1.1 Georgia,serif; color: #344d3b; margin: 16px 0; letter-spacing: -1px; }
+.weight-total.is-empty { font-size: 28px; letter-spacing: 0; }
+#weight-result-detail { font-size: 12px; line-height: 1.6; margin: 0 0 22px; }
+.weight-guide-note { font-size: 13px; line-height: 1.5; font-weight: 600; color: #52674e; padding-top: 18px; border-top: 1px solid #d5ddcd; margin: 0 0 8px; }
+.weight-result-footnote { font-size: 11px; line-height: 1.6; color: #687260; margin: 0; }
+@media(max-width:700px) {
+  #weight-details > summary { padding: 18px; gap: 10px; grid-template-columns: 40px 1fr 20px; }
+  #weight-details summary svg { width: 40px; }
+  #weight-details summary strong { font-size: 22px; }
+  .weight-helper-body { padding: 0 18px 18px; }
+  .weight-calculator-grid { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  #weight-result { padding: 22px; }
+  .weight-total { font-size: 48px; }
+}
 .technology-highlights h2 { font: 34px/1.15 Georgia,serif; margin: 12px 0 28px; }
 .technology-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
 .technology-card { padding: 26px; background: #ecefe5; border: 1px solid #dce1d2; border-radius: 7px; }

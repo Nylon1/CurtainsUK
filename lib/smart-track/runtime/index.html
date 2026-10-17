@@ -271,8 +271,7 @@
             <button type="button" data-go-step="1">
               <span>2</span>Curtain details
             </button>
-            <button type="button" data-go-step="2"><span>3</span>Weight</button>
-            <button type="button" data-go-step="3"><span>4</span>Review</button>
+            <button type="button" data-go-step="2"><span>3</span>Review</button>
           </nav>
           <p id="step-progress" class="step-progress" role="status" hidden></p>
           <p class="step-intro" id="step-intro" tabindex="-1" hidden></p>
@@ -423,7 +422,96 @@
                 </div>
               </fieldset>
               <fieldset data-step="2">
-                <legend>Estimate curtain weight</legend>
+                <legend>Ready to save</legend>
+                <div class="two-col">
+                  <label
+                    >Track quantity<input
+                      id="quantity"
+                      type="number"
+                      min="1"
+                      max="50"
+                      step="1"
+                      value="1" /></label
+                  ><label
+                    >Room <span>optional</span
+                    ><select id="order-room">
+                      <option value="">No room assigned</option>
+                    </select></label
+                  >
+                </div>
+                <label class="check"
+                  ><input id="power-confirm" type="checkbox" />
+                  <span id="power-check-label"
+                    >I have checked the mains connection location for the
+                    motor.</span
+                  ></label
+                ><label class="check"
+                  ><input id="measurement-confirm" type="checkbox" /> I have
+                  reviewed the exact finished track length and mounting
+                  position.</label
+                ><label class="check" id="coverage-wrap" hidden
+                  ><input id="coverage-confirm" type="checkbox" /> I have
+                  checked the required track length separately from the curtain
+                  coverage.</label
+                >
+              </fieldset>
+            </form>
+            <aside
+              class="summary"
+              id="track-summary"
+              aria-labelledby="summary-title"
+              data-step="2"
+            >
+              <p class="eyebrow">YOUR SMART TRACK</p>
+              <h3 id="summary-title">Forest Shuttle Go</h3>
+              <p id="included-summary">
+                UK three-pin plug · EasyTouch six-channel remote
+              </p>
+              <dl id="summary-spec"></dl>
+              <p id="review-weight" class="fine"></p>
+              <div class="price" id="product-price" aria-live="polite">
+                Checking price…
+              </div>
+              <p class="fine">Includes VAT, motor, remote and track hardware.</p>
+              <p class="delivery">Delivery £12.95 per order, within our delivery area.</p>
+              <p id="dispatch" class="fine">Dispatch date to be confirmed.</p>
+              <p id="order-availability" class="fine" hidden>Save your track now. Checkout is not yet available.</p>
+              <button id="add-track" class="primary" disabled>
+                Add track to my order ↗
+              </button>
+              <p id="save-status" role="status"></p>
+              <a id="make-curtains" class="make-curtains" href="/pages/fabric-library?view=browse-fabrics" target="_top">Make curtains <span aria-hidden="true">↗</span></a>
+              <p class="fine">Choose a fabric and create your curtains.</p>
+              <a href="/pages/build-my-rooms" target="_top"
+                >Open Design My Home →</a
+              >
+            </aside>
+          </div>
+          <p id="step-error" class="step-error" role="alert" hidden></p>
+          <div class="step-actions" hidden>
+            <button id="step-back" type="button">← Back</button
+            ><button id="step-next" type="button" class="primary">
+              Next: curtain details →
+            </button>
+          </div>
+          <p class="configuration-assurance">
+            Cut to your length. All track hardware included.<br />Supply only ·
+            no fitting service.
+          </p>
+        </section>
+      </div>
+      <section class="optional-weight" aria-label="Optional curtain weight calculator">
+        <details id="weight-details">
+          <summary>
+            <svg viewBox="0 0 70 54" aria-hidden="true"><rect x="18" y="5" width="34" height="44" rx="4"/><path d="M25 12h20v9H25Zm0 17h4m7 0h4m-15 9h4m7 0h4"/></svg>
+            <span><strong>Check curtain weight</strong><small>Optional estimate for your curtains</small></span>
+            <span class="weight-expand" aria-hidden="true">+</span>
+          </summary>
+          <div class="weight-helper-body">
+              <fieldset id="weight-helper">
+                <legend>Your curtain details</legend>
+                <div class="weight-calculator-grid">
+                <div class="weight-fields">
                 <div class="weight-inputs two-col">
                   <label
                     >Total curtain width <span>cm, before gather</span
@@ -493,113 +581,28 @@
                     differs.
                   </p>
                 </div>
-                <p class="fine">
-                  Use the combined width of all curtains on this track. Gather 2
-                  means twice that width in fabric. For flat fabric width, enter
-                  gather 1.
-                </p>
+                <details class="weight-measure-help">
+                  <summary>How to enter your measurements</summary>
+                  <p>Use the combined width of all curtains on this track, including cloth in headings and hems. Gather 2 means twice that width in fabric. For flat fabric width, enter gather 1. Lining uses the same area and gather.</p>
+                </details>
                 <p id="saved-weight-note" class="fine" hidden>
                   A previously saved weight check is retained. Changing these
                   measurements replaces it with a fabric estimate.
                 </p>
-                <p id="weight-result" role="status">
-                  Enter the four details to see your estimate.
-                </p>
-                <p class="fine">
-                  Includes lining when its GSM is entered. Interlining, hooks
-                  and fittings add weight. Check the complete curtain weight
-                  against your motor's limit.
-                </p>
-              </fieldset>
-              <fieldset data-step="3">
-                <legend>Ready to save</legend>
-                <div class="two-col">
-                  <label
-                    >Track quantity<input
-                      id="quantity"
-                      type="number"
-                      min="1"
-                      max="50"
-                      step="1"
-                      value="1" /></label
-                  ><label
-                    >Room <span>optional</span
-                    ><select id="order-room">
-                      <option value="">No room assigned</option>
-                    </select></label
-                  >
                 </div>
-                <label class="check"
-                  ><input id="power-confirm" type="checkbox" />
-                  <span id="power-check-label"
-                    >I have checked the mains connection location for the
-                    motor.</span
-                  ></label
-                ><label class="check"
-                  ><input id="measurement-confirm" type="checkbox" /> I have
-                  reviewed the exact finished track length and mounting
-                  position.</label
-                ><label class="check" id="coverage-wrap" hidden
-                  ><input id="coverage-confirm" type="checkbox" /> I have
-                  checked the required track length separately from the curtain
-                  coverage.</label
-                >
+                <div id="weight-result" role="status" aria-atomic="true">
+                  <span id="weight-result-label">Estimated weight per track</span>
+                  <strong id="weight-total" class="weight-total is-empty">Not calculated</strong>
+                  <p id="weight-result-detail">Enter width, height, gather and fabric GSM to see your estimate.</p>
+                  <p class="weight-guide-note">Guide only, not an exact curtain weight.</p>
+                  <p class="weight-result-footnote">Interlining, hooks and fittings add weight. Weigh the complete curtains to confirm the load.</p>
+                </div>
+                </div>
               </fieldset>
-            </form>
-            <aside
-              class="summary"
-              id="track-summary"
-              aria-labelledby="summary-title"
-              data-step="3"
-            >
-              <p class="eyebrow">YOUR SMART TRACK</p>
-              <h3 id="summary-title">Forest Shuttle Go</h3>
-              <p id="included-summary">
-                UK three-pin plug · EasyTouch six-channel remote
-              </p>
-              <dl id="summary-spec"></dl>
-              <p id="review-weight" class="fine"></p>
-              <div class="price" id="product-price" aria-live="polite">
-                Checking price…
-              </div>
-              <p class="fine">
-                Product price includes VAT.<br />All required track hardware
-                included.
-              </p>
-              <p class="delivery">
-                £12.95 delivery once per order containing a smart track, within
-                our approved delivery area.
-              </p>
-              <p id="dispatch">
-                Track dispatch time awaiting confirmation. All ordered products
-                dispatch together.
-              </p>
-              <p class="fine">Supply only. No fitting or electrical work.</p>
-              <div id="quote-issues" role="status"></div>
-              <button id="add-track" class="primary" disabled>
-                Add track to my order ↗
-              </button>
-              <p id="save-status" role="status"></p>
-              <a id="make-curtains" class="make-curtains" href="/pages/fabric-library?view=browse-fabrics" target="_top">Make curtains <span aria-hidden="true">↗</span></a>
-              <p class="fine">Choose a fabric and create your curtains.</p>
-              <a href="/pages/build-my-rooms" target="_top"
-                >Open Design My Home →</a
-              >
-            </aside>
+            <button id="weight-back-to-track" type="button">Back to my track ↑</button>
           </div>
-          <p id="step-error" class="step-error" role="alert" hidden></p>
-          <div class="step-actions" hidden>
-            <button id="step-back" type="button">← Back</button
-            ><button id="step-next" type="button" class="primary">
-              Next: curtain details →
-            </button>
-          </div>
-          <p class="configuration-assurance">
-            Cut to your length. All track hardware included.<br />Supply only ·
-            no fitting service.
-          </p>
-        </section>
-      </div>
+        </details>
+      </section>
       <section class="technology-highlights" aria-labelledby="technology-title">
         <p class="eyebrow">SMART BY DESIGN</p>
         <h2 id="technology-title">Simple controls. Smarter living.</h2>

@@ -2,7 +2,7 @@
 
 ## Current Cushion Studio and My Home checkpoint, 17 October 2026
 
-The [Cushion Studio and My Home production sync record](CUSHION_MY_HOME_PRODUCTION_SYNC_20261017.md) is the current authority for their protected runtime commit, customer-serving deployment, MAIN theme asset, production flag contract, and bounded live mixed-order verification. It supersedes the unpublished checkpoint below for these two features. Later documentation-only commits may advance the protected branch without changing the deployed runtime; retain and compare the exact deployed SHA and tree separately.
+The [Cushion Studio and Design My Home production sync record](CUSHION_MY_HOME_PRODUCTION_SYNC_20261017.md) is the current authority for the serving API commit, protected theme commit, MAIN theme readback, production flag contract and bounded live mixed-order verification. The 17 October reconciliation records a 537-file MAIN theme manifest reproducible from the protected Dawn base plus the production overlay, without changing the live store. It supersedes the unpublished checkpoint below for these two features. Later theme-only or documentation-only commits may advance the protected branch without changing the deployed API runtime; retain and compare each exact SHA and tree separately.
 
 ## Unpublished Cushion Studio database checkpoint, 16 October 2026
 

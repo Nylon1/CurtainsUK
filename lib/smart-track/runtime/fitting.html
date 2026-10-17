@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Fit your Forest smart track · CurtainsUK</title>
+    <link rel="stylesheet" href="studio.css" />
+    <link rel="stylesheet" href="guide.css" />
+  </head>
+  <body>
+    <main class="guide">
+      <noscript
+        ><p>
+          This page shows Shuttle Go instructions. For battery-powered iOn, use
+          the linked Forest iOn manual below; its setup sequence is different.
+        </p></noscript
+      >
+      <header class="intro">
+        <div>
+          <p class="eyebrow">CURTAINSUK / THE PRACTICAL GUIDE</p>
+          <h1>From the box<br />to the first opening.</h1>
+          <p>
+            A visual fitting and control guide for Forest Shuttle Go<br />and
+            battery-powered Shuttle iOn.
+          </p>
+        </div>
+        <div>
+          <a href="/pages/smart-track-studio" target="_top"
+            >← Smart Track Studio</a
+          >
+          <p>
+            Supply only. CurtainsUK does not provide fitting<br />or electrical
+            installation.
+          </p>
+          <button id="print-guide">Print this guide</button>
+        </div>
+      </header>
+      <nav class="guide-nav" aria-label="Guide chapters">
+        <a href="#before">Before you begin</a
+        ><a href="#mount">Mount the track</a><a href="#motor">Fit your motor</a
+        ><a href="#remote">Set up the remote</a
+        ><a href="#care">Care & troubleshooting</a>
+      </nav>
+      <section id="before">
+        <p class="eyebrow">START HERE</p>
+        <h2>Choose the motor on your order.</h2>
+        <div
+          class="guide-choices"
+          role="group"
+          aria-label="Installation instructions for your motor"
+        >
+          <button data-guide-motor="GO" aria-pressed="true">
+            <strong>Shuttle Go</strong
+            ><span>UK three-pin plug · up to 35 kg</span></button
+          ><button data-guide-motor="ION" aria-pressed="false">
+            <strong>Shuttle iOn</strong
+            ><span>Rechargeable battery · up to 25 kg</span>
+          </button>
+        </div>
+        <p>
+          The motor label and your order specification must agree. Follow the
+          manual supplied with that exact model. Both CurtainsUK packages are
+          straight tracks, cut to your ordered length, up to 500 cm, with the
+          required track hardware and EasyTouch remote included.
+        </p>
+        <div class="guide-checks">
+          <div>
+            <span class="guide-symbol">✓</span>
+            <h3>Check your delivery</h3>
+            <p>
+              Check the track length, wall or ceiling mounting hardware, motor
+              side, carriers and 60 mm or 80 mm wave spacing against your order.
+              Check the motor, remote and power equipment for damage. Stop and
+              contact CurtainsUK if anything is missing or different.
+            </p>
+          </div>
+          <div>
+            <span class="guide-symbol">⌂</span>
+            <h3>Check the surface</h3>
+            <p>
+              The fixing surface must carry the complete system and curtain
+              load. Use fixings suitable for that particular wall or ceiling.
+              Check for hidden pipes and cables before drilling. Arrange
+              competent fitting help if you cannot confirm the surface or work
+              safely at height.
+            </p>
+          </div>
+          <div>
+            <span class="guide-symbol">↔</span>
+            <h3>Check the space</h3>
+            <p>
+              Use the viewpoint inside the room, facing the window. Allow the
+              supplied motor, curtain folds and window handles to clear each
+              other. A room preview is not a clearance drawing. Keep the motor
+              accessible.
+            </p>
+          </div>
+        </div>
+        <p class="guide-note">
+          Have a tape measure, pencil, level, suitable access equipment and the
+          appropriate fixing tools ready. Keep power disconnected while fitting.
+          Do not shorten or reassemble the supplied cut-to-length track using
+          this guide.
+        </p>
+      </section>
+      <section id="mount">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / THE FOUNDATION</p>
+            <h2>Position, secure, check.</h2>
+          </div>
+          <label
+            >Show mounting<select id="guide-mount">
+              <option value="CEILING">Ceiling</option>
+              <option value="WALL">Wall</option>
+            </select></label
+          >
+        </div>
+        <div class="guide-step">
+          <figure>
+            <svg
+              viewBox="0 0 520 280"
+              role="img"
+              aria-label="Track extending beyond a window with left and right viewed from inside the room"
+            >
+              <rect x="150" y="85" width="220" height="145" fill="#d2dfd6" />
+              <path
+                d="M150 85h220v145H150ZM260 85v145M75 62h370M75 35h370M75 28v14M445 28v14"
+              />
+              <rect x="435" y="60" width="20" height="85" rx="4" fill="#fff" />
+              <text x="260" y="25" text-anchor="middle">
+                Exact ordered track length
+              </text>
+              <text x="70" y="260">LEFT</text>
+              <text x="450" y="260" text-anchor="end">RIGHT</text>
+              <text x="260" y="260" text-anchor="middle">
+                Inside → facing the window
+              </text>
+            </svg>
+            <figcaption>Orientation diagram. Not a scale drawing.</figcaption>
+          </figure>
+          <div>
+            <span class="step-number">01</span>
+            <h3>Mark the track position</h3>
+            <p>
+              Measure the entire intended track, including the coverage beyond
+              the glass. Mark its ends and motor side. Use a level to establish
+              the mounting line.
+            </p>
+            <p>
+              Check your curtain heading and finished drop against the actual
+              rail position. For wave curtains, the heading must run below the
+              rail without rubbing it.
+            </p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <figure>
+            <svg
+              id="ceiling-diagram"
+              viewBox="0 0 520 280"
+              role="img"
+              aria-label="Ceiling brackets support the rail, with the first bracket near the motor end"
+            >
+              <path d="M30 45h460" stroke-width="8" />
+              <g fill="#d3ccbb">
+                <rect x="80" y="48" width="34" height="12" />
+                <rect x="237" y="48" width="34" height="12" />
+                <rect x="400" y="48" width="34" height="12" />
+              </g>
+              <path
+                d="M98 60v35M254 60v35M417 60v35M50 98h400"
+                stroke-width="5"
+              />
+              <rect x="428" y="98" width="25" height="110" rx="5" fill="#fff" />
+              <path d="M113 145h290M113 139v12M403 139v12" />
+              <text x="254" y="173" text-anchor="middle">
+                Spacing follows your bracket instructions
+              </text>
+              <text x="260" y="241" text-anchor="middle">
+                First bracket close to the motor pulley
+              </text></svg
+            ><svg
+              id="wall-diagram"
+              hidden
+              viewBox="0 0 520 280"
+              role="img"
+              aria-label="Wall bracket extends forward to support the rail away from the wall"
+            >
+              <path d="M100 30v210" stroke-width="10" />
+              <path d="M115 75v90M115 92h220v20" stroke-width="12" />
+              <rect x="310" y="118" width="48" height="18" rx="3" fill="#fff" />
+              <path d="M115 200h220M115 193v14M335 193v14" />
+              <text x="270" y="242" text-anchor="middle">
+                Projection must clear folds and handles
+              </text>
+              <text x="230" y="58" text-anchor="middle">
+                Illustrative wall bracket
+              </text>
+            </svg>
+            <figcaption>
+              Bracket shape and projection must match the hardware supplied.
+            </figcaption>
+          </figure>
+          <div>
+            <span class="step-number">02</span>
+            <h3>Fix the brackets, then the track</h3>
+            <p>
+              Secure the supplied mounting hardware to a suitable surface,
+              following its own fixing instructions. Attach the rail and check
+              every bracket is fully engaged before adding the motor or curtain
+              load.
+            </p>
+            <details>
+              <summary>Standard FMS mounting reference</summary>
+              <p>
+                Forest’s FMS assembly guide, page 12, shows 50 cm between
+                brackets and the first bracket close to the motor pulley. Page
+                13 shows the track being attached to the clips. This reference
+                applies only where your supplied track and brackets match that
+                FMS system. Confirm different bracket or track arrangements
+                before fitting.
+              </p>
+              <a
+                href="https://www.forestgroup.co.uk/user_files/download_files/download_634_FMS_Manual_V1_1.pdf"
+                target="_blank"
+                rel="noopener"
+                >Open the FMS mounting diagrams ↗</a
+              >
+            </details>
+            <p>
+              Do not use a guessed bracket spacing, screw size or wall
+              projection.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="motor">
+        <p class="eyebrow">02 / YOUR MOTOR</p>
+        <h2>Fit and initialise.</h2>
+        <div class="guide-step">
+          <figure>
+            <svg
+              viewBox="0 0 520 300"
+              role="img"
+              aria-label="Motor is raised into the pulley, turned anticlockwise, then secured by sliding its locking clip upwards"
+            >
+              <path d="M60 55h370" stroke-width="11" />
+              <rect
+                x="345"
+                y="55"
+                width="75"
+                height="25"
+                rx="5"
+                fill="#ddd5c5"
+              />
+              <rect
+                x="351"
+                y="115"
+                width="63"
+                height="135"
+                rx="10"
+                fill="#fff"
+              />
+              <path
+                d="M383 108V85m-8 9 8-9 8 9M320 160c-55 0-55-60 5-60m-10-9 10 9-10 9M427 207v-66m-8 9 8-9 8 9"
+                class="arrow"
+              />
+              <text x="100" y="130">Lift into the pulley</text>
+              <text x="100" y="177">Turn anticlockwise</text>
+              <text x="100" y="220">Slide the lock upwards</text>
+            </svg>
+            <figcaption>
+              Illustrative sequence. Match the actual motor and pulley drawing.
+            </figcaption>
+          </figure>
+          <div>
+            <span class="step-number">03</span>
+            <h3>Attach and lock the motor</h3>
+            <div data-motor="GO">
+              <p>
+                Leave the mains plug disconnected. Attach the Shuttle Go motor
+                to the installed track and twist it anticlockwise. Slide its
+                locking clip upwards to secure it.
+              </p>
+              <p>Check that the motor is locked before continuing.</p>
+            </div>
+            <div data-motor="ION" hidden>
+              <p>
+                Remove the iOn battery first, releasing its retaining strap if
+                fitted. Leave the curtains off the track and place the master
+                carriers halfway open.
+              </p>
+              <p>
+                Fit the motor into the pulley, turn it into position and move
+                the locking pin upwards. Remove the battery’s security cap, then
+                insert the battery until it clicks.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <figure>
+            <svg
+              viewBox="0 0 520 280"
+              role="img"
+              aria-label="The carriers travel towards closed, then back to open to learn the end limits"
+            >
+              <path d="M60 50h400" stroke-width="8" />
+              <g fill="#b5bba7">
+                <path d="M65 60h90v155H65ZM365 60h90v155h-90Z" />
+              </g>
+              <path
+                d="M170 100h65m-10-10 10 10-10 10M350 100h-65m10-10-10 10 10 10M235 170h-65m10-10-10 10 10 10M285 170h65m-10-10 10 10-10 10"
+                class="arrow"
+              />
+              <text x="260" y="89" text-anchor="middle">Close</text>
+              <text x="260" y="202" text-anchor="middle">Then open</text>
+              <text x="260" y="258" text-anchor="middle">
+                Keep the travel path clear
+              </text>
+            </svg>
+            <figcaption>
+              The setup sequence differs between Go and iOn.
+            </figcaption>
+          </figure>
+          <div>
+            <span class="step-number">04</span>
+            <h3>Set the end positions</h3>
+            <div data-motor="GO">
+              <ol>
+                <li>Hang the curtains on the installed track.</li>
+                <li>Move them manually to the open position.</li>
+                <li>
+                  Connect the supplied UK three-pin plug to a suitable socket.
+                </li>
+                <li>Give the curtains a short pull towards closed.</li>
+                <li>
+                  Allow the motor to close and reopen the curtains
+                  automatically. The end positions are now set.
+                </li>
+              </ol>
+              <p>
+                Keep the cable clear of walkways. The motor needs a continuous
+                supply; do not use a hotel-style key-card power cutoff.
+              </p>
+            </div>
+            <div data-motor="ION" hidden>
+              <p>
+                <strong>Keep the curtains off during limit setup.</strong> From
+                halfway open, pull the master carriers towards closed. They
+                travel closed, then return open automatically.
+              </p>
+              <p>
+                At the open end, the yellow LED4 stays on while stack-back can
+                be adjusted. After 10 seconds without movement, the position is
+                stored. Forest specifies a minimum automatic 3 cm adjustment.
+                Hang the curtains only after the limits are set.
+              </p>
+              <a
+                href="https://www.forestgroup.co.uk/user_files/download_files/download_2459_FOREST_handleidingA5_shuttle_ION_EN_300726_WEB.pdf"
+                target="_blank"
+                rel="noopener"
+                >See iOn setup diagrams, pages 4–5 ↗</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="remote">
+        <p class="eyebrow">03 / IN YOUR HAND</p>
+        <h2>Meet your EasyTouch remote.</h2>
+        <div class="guide-step">
+          <figure>
+            <svg
+              viewBox="0 0 520 360"
+              role="img"
+              aria-label="EasyTouch remote: six channel lights, Open at the top, Stop in the centre, Close below, channel arrows either side and Favourite below left"
+            >
+              <rect
+                x="170"
+                y="15"
+                width="170"
+                height="325"
+                rx="28"
+                fill="#fff"
+              />
+              <path d="M205 68h100" stroke="#839d9c" stroke-width="7" />
+              <g fill="#799293" stroke="none">
+                <circle cx="210" cy="53" r="3" />
+                <circle cx="227" cy="53" r="3" />
+                <circle cx="244" cy="53" r="3" />
+                <circle cx="261" cy="53" r="3" />
+                <circle cx="278" cy="53" r="3" />
+                <circle cx="295" cy="53" r="3" />
+              </g>
+              <path d="m255 115 61 65-61 64-61-64Z" />
+              <text x="255" y="143" text-anchor="middle">‹ | ›</text>
+              <text x="255" y="187" text-anchor="middle">□</text>
+              <text x="255" y="225" text-anchor="middle">› | ‹</text>
+              <text x="210" y="187" text-anchor="middle">‹</text>
+              <text x="300" y="187" text-anchor="middle">›</text>
+              <circle cx="210" cy="275" r="21" />
+              <text x="210" y="282" text-anchor="middle">☆</text>
+              <text x="20" y="60">Six channel lights</text>
+              <text x="370" y="140">Open</text>
+              <text x="370" y="187">Stop</text>
+              <text x="370" y="229">Close</text>
+              <text x="17" y="183">Channel −</text>
+              <text x="350" y="270">Channel +</text>
+              <text x="45" y="283">Favourite</text>
+              <path
+                d="M139 55h40M338 133h24M338 180h24M338 223h24M120 180h57M320 188l30 66M128 276h55"
+              />
+            </svg>
+            <figcaption>
+              The programming button is on the back. Two AAA batteries power the
+              remote.
+            </figcaption>
+          </figure>
+          <div>
+            <span class="step-number">05</span>
+            <h3>Pair a channel</h3>
+            <p>
+              Slide the rear cover upwards. Insert two AAA batteries with the
+              polarity shown inside, then replace the cover. Select an
+              individual channel using the left or right arrow.
+            </p>
+            <div class="button-sequence">
+              <span>Motor P × 3</span><span>→</span
+              ><span data-motor="GO">Hold P: 3 seconds</span
+              ><span data-motor="ION" hidden>Hold P: 4 seconds</span
+              ><span>→</span><span>Remote Open</span>
+            </div>
+            <p>
+              After three short presses on the motor’s programming button, hold
+              the fourth press for <strong data-motor="GO">3 seconds</strong
+              ><strong data-motor="ION" hidden>4 seconds</strong>. Press Open on
+              the selected remote channel within 10 seconds of the pairing
+              indicator flashing.
+            </p>
+            <p data-motor="GO">The Go motor jogs twice to confirm pairing.</p>
+            <p>
+              Use one channel for each room you want to operate independently.
+              You can pair more than one motor to a channel. With all channel
+              lights lit, the remote operates all its active channels together.
+            </p>
+          </div>
+        </div>
+        <div class="guide-checks">
+          <div>
+            <h3>Everyday movement</h3>
+            <p>
+              Select the channel, then press Open or Close. Press the square
+              Stop button to pause. Once stopped, choose either direction. Keep
+              the travel path clear and supervise children.
+            </p>
+          </div>
+          <div>
+            <h3>Programming lock</h3>
+            <p>
+              Hold the rear Program button for 10 seconds until the LED flickers
+              once. Repeat to unlock programming. This is a programming lock;
+              ordinary movement controls remain available.
+            </p>
+          </div>
+          <div>
+            <h3>Choose active channels</h3>
+            <p>
+              Hold Channel + and Favourite together for 3 seconds. Use the
+              channel arrows to set the number of active channels, then press
+              Stop. The LED flashes three times to confirm.
+            </p>
+          </div>
+        </div>
+        <details>
+          <summary>Remote response and radio protocols</summary>
+          <p>
+            EasyTouch transmits both original Forest RF and Forest Link by
+            default. This supports the two motor families without adding a Wi-Fi
+            accessory.
+          </p>
+          <p>
+            If you only use original-protocol motors such as iOn and notice slow
+            response, Forest describes an optional original-RF mode: remove the
+            batteries, hold Stop while reinserting them, and check for one LED
+            flash. Re-pair the motors afterwards. Do not use this as a general
+            step for a mixed Go and iOn installation; consult the remote manual,
+            page 15.
+          </p>
+        </details>
+        <details data-motor="GO">
+          <summary>Save or remove a favourite position</summary>
+          <p>
+            With the end positions already set, move to the desired position and
+            stop. Hold Favourite and Stop together for 2 seconds. One favourite
+            is stored per motor. Press Favourite to recall it. To remove it,
+            recall that position, then hold Favourite and Stop for 2 seconds
+            again.
+          </p>
+        </details>
+        <p data-motor="ION" hidden class="guide-note">
+          The EasyTouch favourite button requires Forest Link. The documented
+          iOn uses original Forest RF, so this package does not promise that
+          favourite-button function or built-in app control.
+        </p>
+        <details data-motor="GO">
+          <summary>Connect Shuttle Go to the real Forest Connect app</summary>
+          <p>
+            Use the official Forest Connect app on your phone and follow its
+            setup flow. The Go has built-in Wi-Fi; no separate Wi-Fi dongle is
+            required. Use a 2.4 GHz network. Press the motor P button twice,
+            then hold the third press for 3 seconds to enter Wi-Fi pairing; its
+            indicator flashes blue.
+          </p>
+          <p>
+            The website’s interactive demonstration does not pair devices,
+            create a Forest account or change your real motor. See the Go
+            manual, pages 17–18, for the app pairing screens.
+          </p>
+        </details>
+        <details>
+          <summary>Adjustments, unpairing and resets</summary>
+          <p>
+            Use the instructions for your motor only. Resetting limits or
+            factory settings changes a working installation. Keep the path clear
+            and be ready to set the limits again.
+          </p>
+          <div data-motor="GO">
+            <table>
+              <caption>
+                Shuttle Go · motor manual references
+              </caption>
+              <thead>
+                <tr>
+                  <th>Task</th>
+                  <th>Verified sequence / page</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Copy a paired remote</td>
+                  <td>
+                    On paired remote: Program twice. On new remote: Stop. Page
+                    9.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Adjust stack-back</td>
+                  <td>
+                    Stop at the desired position; hold Open + Favourite for 3
+                    seconds. Page 9.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Reverse direction</td>
+                  <td>Remote Program → Open → Close. Page 10.</td>
+                </tr>
+                <tr>
+                  <td>Toggle Touch Control</td>
+                  <td>Remote Program → Stop → Stop. Page 11.</td>
+                </tr>
+                <tr>
+                  <td>Change speed</td>
+                  <td>
+                    Program → Stop → Open to increase, or Close to decrease.
+                    Three speed levels. Page 12.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Unpair a remote</td>
+                  <td>
+                    Select its individual channel. Motor P three times, then
+                    hold the fourth press for 3 seconds; press Close and wait 10
+                    seconds. Page 13.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Reset limits</td>
+                  <td>
+                    Remote Program → Stop → Program, then repeat the Go limit
+                    setup. Page 13.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Obstacle detection</td>
+                  <td>
+                    Read page 14 before changing sensitivity. Check physical
+                    obstructions first.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Dry-contact controls</td>
+                  <td>
+                    Specialist connection guidance, pages 15–16. Do not apply
+                    voltage to the dry-contact port.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Factory reset</td>
+                  <td>
+                    Motor P eight times, then hold the ninth press for 3
+                    seconds. Erases settings. Page 17.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div data-motor="ION" hidden>
+            <p>
+              iOn has a different configuration menu and uses a 4-second
+              confirming hold. See page 8 of the linked iOn manual for speed,
+              remote removal, end-limit reset, touch impulse, stack-back,
+              direction and factory reset. Do not use Go’s programming sequences
+              on iOn.
+            </p>
+            <a
+              href="https://www.forestgroup.co.uk/user_files/download_files/download_2459_FOREST_handleidingA5_shuttle_ION_EN_300726_WEB.pdf"
+              target="_blank"
+              rel="noopener"
+              >Open the iOn configuration table ↗</a
+            >
+          </div>
+        </details>
+      </section>
+      <section id="care">
+        <p class="eyebrow">04 / KEEP IT RUNNING SMOOTHLY</p>
+        <h2>A few checks, then enjoy.</h2>
+        <div class="guide-checks">
+          <div>
+            <h3>Final test</h3>
+            <p>
+              Check the track is secure and the motor locked. Check the curtain
+              weight against the selected motor and track limit. Test Open, Stop
+              and Close on the intended channel. The cloth should move freely
+              without rubbing the rail, furniture or window hardware.
+            </p>
+          </div>
+          <div>
+            <h3>Remote not responding?</h3>
+            <p>
+              Check the selected channel, battery polarity and pairing. An
+              orange remote LED warns of low batteries. Replace both AAA
+              batteries. If several rooms move unexpectedly, check whether all
+              channel lights are lit.
+            </p>
+          </div>
+          <div>
+            <h3>Motor stops unexpectedly?</h3>
+            <p>
+              Stop using the track if anything is loose, damaged or obstructed.
+              Check the curtain path and power source. Do not force a jammed
+              curtain or repeatedly run the motor against an obstruction. Use
+              the correct motor troubleshooting manual or contact CurtainsUK.
+            </p>
+          </div>
+        </div>
+        <div data-motor="ION" hidden class="guide-step">
+          <figure>
+            <svg
+              viewBox="0 0 520 240"
+              role="img"
+              aria-label="Remove the iOn battery and connect it to its Forest charger; orange means charging and green means full"
+            >
+              <rect x="55" y="30" width="60" height="150" rx="9" fill="#fff" />
+              <path d="M143 105h70m-10-10 10 10-10 10" class="arrow" />
+              <rect
+                x="240"
+                y="60"
+                width="90"
+                height="110"
+                rx="8"
+                fill="#d2cebf"
+              />
+              <path d="M330 115h90v-50" />
+              <circle cx="270" cy="90" r="8" fill="#b76c34" />
+              <circle cx="300" cy="90" r="8" fill="#50785c" />
+              <text x="260" y="216" text-anchor="middle">
+                Orange: charging · Green: charged
+              </text>
+            </svg>
+          </figure>
+          <div>
+            <h3>Recharge the iOn battery</h3>
+            <p>
+              Slow operation can indicate a low battery. Remove the battery and
+              use its Forest charger. Orange means charging; green means fully
+              charged. Allow about 5 hours. Charge indoors in dry conditions at
+              10°C or warmer, away from direct sunlight. Replace damaged
+              batteries or chargers; do not repair them or substitute an
+              unrelated charger.
+            </p>
+          </div>
+        </div>
+        <p class="guide-note">
+          Before cleaning or maintenance, disconnect the Go from the mains or
+          remove the iOn battery. Use the manufacturer’s care instructions and
+          approved lubrication method. Do not open the motor, drill it, immerse
+          it or use aggressive cleaning chemicals. Damaged mains cables must be
+          dealt with by a qualified electrician. These products are for dry
+          indoor spaces.
+        </p>
+        <details>
+          <summary>Manufacturer manuals and further help</summary>
+          <ul class="manual-links">
+            <li>
+              <a
+                href="https://www.forestgroup.co.uk/user_files/download_files/download_2465_260425%2006014_Forest%20Shuttle%20Go_UM_V1.1_EN.pdf"
+                target="_blank"
+                rel="noopener"
+                >Shuttle Go manual · installation, controls, app,
+                troubleshooting and maintenance ↗</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.forestgroup.co.uk/user_files/download_files/download_2459_FOREST_handleidingA5_shuttle_ION_EN_300726_WEB.pdf"
+                target="_blank"
+                rel="noopener"
+                >Shuttle iOn manual · battery installation, limits and charging
+                ↗</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.forestgroup.co.uk/user_files/download_files/download_1618_handleiding84x178_EasyTouch_EN_041024_WEB.pdf"
+                target="_blank"
+                rel="noopener"
+                >EasyTouch remote · buttons, channels, programming lock and
+                favourites ↗</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.forestgroup.co.uk/user_files/download_files/download_634_FMS_Manual_V1_1.pdf"
+                target="_blank"
+                rel="noopener"
+                >FMS track mounting diagrams ↗</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.forestgroup.co.uk/uk/downloads/technical-documents"
+                target="_blank"
+                rel="noopener"
+                >Forest UK technical document library ↗</a
+              >
+            </li>
+          </ul>
+          <p>
+            Compiled against Forest UK’s technical library on 17 October 2026,
+            the supplied Go manual V1.1 and EasyTouch manual 041024.
+            Illustrations explain the sequence; they are not dimensioned fitting
+            drawings. Keep the manufacturer’s manual with your product.
+          </p>
+        </details>
+        <p>
+          <a href="mailto:support@curtainsuk.com"
+            >Contact CurtainsUK for product help</a
+          >
+        </p>
+      </section>
+      <footer>
+        <p>Ready for a little everyday ease.</p>
+        <a href="/pages/smart-track-studio" target="_top"
+          >Return to Smart Track Studio →</a
+        >
+      </footer>
+    </main>
+    <script type="module" src="guide.mjs"></script>
+  </body>
+</html>

@@ -28,7 +28,7 @@
     if (house.products !== undefined) {
       if (!Array.isArray(house.products) || house.products.length > 32) throw Error('Your saved order needs help to reopen. No data has been removed.');
       for (const product of house.products) {
-        if (!UUID.test(product.id) || items.has(product.id) || product.type !== 'CUSHION' || !product.spec || product.spec.version !== 1 || !UUID.test(product.sourceDesignId) || typeof product.sourceSpecId !== 'string' || !Number.isSafeInteger(product.quantity) || product.quantity < 1 || product.quantity > 50) throw Error('A saved product could not be read. No data has been removed.');
+        if (!UUID.test(product.id) || items.has(product.id) || !['CUSHION','SMART_TRACK'].includes(product.type) || !product.spec || product.spec.version !== 1 || !UUID.test(product.sourceDesignId) || typeof product.sourceSpecId !== 'string' || !Number.isSafeInteger(product.quantity) || product.quantity < 1 || product.quantity > 50) throw Error('A saved product could not be read. No data has been removed.');
         items.add(product.id);
       }
     }
@@ -134,7 +134,7 @@
     return change(expectedRevision,next=>{
       const item=orderItem(next,itemId);if(!item)throw Error('This item no longer exists. Reopen Design My Home.');
       if(changes.quantity !== undefined && (!Number.isSafeInteger(changes.quantity)||changes.quantity<1||changes.quantity>50))throw Error('Choose a quantity from 1 to 50.');
-      if(item.type==='CUSHION'){
+      if(item.type==='CUSHION'||item.type==='SMART_TRACK'){
         const p=next.products.find(p=>p.id===itemId);if(changes.remove)next.products=next.products.filter(p=>p.id!==itemId);else {if(changes.quantity!==undefined)p.quantity=changes.quantity;if(changes.roomId!==undefined){if(changes.roomId)roomById(next,changes.roomId);p.roomId=changes.roomId || null;}}
       }else{
         const r=next.rooms.find(r=>r.curtains.some(c=>(c.order_item_id||c.configuration_id)===itemId));const c=r.curtains.find(c=>(c.order_item_id||c.configuration_id)===itemId);
@@ -145,6 +145,18 @@
   function curtainReview(house,postcode) {
     return {house_id:house.house_id,revision:house.revision,postcode,rooms:house.rooms.filter(r=>r.curtains.length).map(r=>({room_id:r.room_id,room_name:r.unassigned?'My order':r.room_name,curtains:r.curtains.map(c=>({configuration_id:c.configuration_id,receipt:c.receipt,window_name:c.window_name,quantity:c.quantity||1}))}))};
   }
-  function orderedCushionSpecs(house) { return (house.products||[]).map(p=>({...clone(p.spec),id:p.id,quantity:p.quantity})); }
-  return { orderItems,orderItem,addCushions,updateOrderItem,curtainReview,orderedCushionSpecs, KEY, INTENT_KEY, read, ensure, change, addRoom, removeRoom, roomById, addCurtain, totals, intent, readIntent, clearIntent, name, assertHouse };
+  async function addSmartTrack(spec,options={},storage=localStorage){
+    if(spec?.version!==1||spec.productType!=='SMART_TRACK'||!UUID.test(spec.id))throw Error('This track specification could not be saved.');
+    const current=ensure(storage);let itemId;
+    const house=await change(options.expectedRevision??current.revision,next=>{
+      next.products||=[];const old=next.products.find(p=>p.id===(options.editItemId||spec.id));
+      if((old&&old.type!=='SMART_TRACK')||(options.editItemId&&!old))throw Error('This track item changed. Return to Design My Home.');
+      if(options.roomId)roomById(next,options.roomId);itemId=old?.id||spec.id;
+      const product={id:itemId,type:'SMART_TRACK',sourceDesignId:next.house_id,sourceSpecId:itemId,spec:clone({...spec,id:itemId}),quantity:spec.quantity,roomId:options.roomId||null,label:spec.system==='FOREST_SHUTTLE_ION'?'Forest Shuttle iOn':'Forest Shuttle Go'};
+      if(old)next.products[next.products.indexOf(old)]=product;else next.products.push(product);
+    },storage);return {house,itemId};
+  }
+  function orderedCushionSpecs(house) { return (house.products||[]).filter(p=>p.type==='CUSHION').map(p=>({...clone(p.spec),id:p.id,quantity:p.quantity})); }
+  function orderedTrackSpecs(house) { return (house.products||[]).filter(p=>p.type==='SMART_TRACK').map(p=>({...clone(p.spec),id:p.id,quantity:p.quantity})); }
+  return { orderItems,orderItem,addCushions,addSmartTrack,orderedTrackSpecs,updateOrderItem,curtainReview,orderedCushionSpecs, KEY, INTENT_KEY, read, ensure, change, addRoom, removeRoom, roomById, addCurtain, totals, intent, readIntent, clearIntent, name, assertHouse };
 });

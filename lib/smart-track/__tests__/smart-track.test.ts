@@ -1,0 +1,711 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { randomUUID, createHmac } from "node:crypto";
+import { createRequire } from "node:module";
+import { readFile } from "node:fs/promises";
+import { PGlite } from "@electric-sql/pglite";
+import { quoteSmartTrack } from "../pricing";
+import { parseSmartTrackSpec, type SmartTrackSpec } from "../domain";
+import { trackPackage, type TrackPackage } from "../package";
+import { checkTrackWeight, materialWeightKg } from "../weight";
+import { smartTrackDelivery } from "../delivery";
+import { createSmartTrackSnapshot, buildSmartTrackOrder } from "../commerce";
+import { processSmartTrackPaidOrder } from "../paid-order";
+import { reviewMyHome, checkoutMyHome } from "../../cushion-studio/my-home";
+import type { TrackCheckoutGroup } from "../checkout";
+import { homeFixture } from "../../../scripts/my-home-preview-fixtures";
+import { smartTrackAsset } from "../assets";
+import { smartTrackGuidance } from "../../advisory/smart-track-guidance.mjs";
+const spec = (overrides: Partial<SmartTrackSpec> = {}): SmartTrackSpec => ({
+  version: 1,
+  id: randomUUID(),
+  productType: "SMART_TRACK",
+  system: "FOREST_SHUTTLE_GO",
+  lengthCm: "200",
+  shape: "STRAIGHT",
+  heading: "PENCIL",
+  opening: "CENTRE",
+  mounting: "CEILING",
+  motorSide: "RIGHT",
+  viewpoint: "INSIDE_FACING_WINDOW",
+  quantity: 1,
+  weight: { mode: "MEASURED", kg: 10 },
+  measurementsConfirmed: true,
+  powerLocationChecked: true,
+  ...overrides,
+});
+// Synthetic package authority solely for exercising closed commercial paths.
+function readyPackage(system: SmartTrackSpec["system"]): TrackPackage {
+  return {
+    ...trackPackage(system),
+    motorArticle: "TEST-ONLY",
+    trackSystem: "TEST-FMS",
+    minimumLengthCm: 20,
+    precisionCm: "0.1",
+    finish: "TEST-WHITE",
+    bracketSpecification: "TEST-BRACKET",
+    carrierSpecification: "TEST-CARRIER",
+    configurationLimitsConfirmed: true,
+    approvalReference: "TEST-ONLY",
+    dispatch: {
+      version: "TEST",
+      status: "confirmed",
+      unit: "calendar-weeks",
+      minimumCalendarWeeks: 1,
+      maximumCalendarWeeks: 2,
+      startsFrom: "order-confirmation",
+      confirmedAt: "2026-10-17",
+      approvalReference: "TEST-ONLY",
+    },
+  };
+}
+test("all exact bands, both motors and compatible headings preserve gross VAT-inclusive owner retail", () => {
+  const base = [44286, 51429, 54286, 57143, 61429],
+    wave = [48714, 56571, 59714, 62857, 67571];
+  for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const)
+    for (let i = 0; i < 5; i++)
+      for (const heading of ["PENCIL", "PINCH", "WAVE"] as const) {
+        for (const lengthCm of [
+          String(i * 100 + 1),
+          String((i + 1) * 100),
+          String(i * 100 + 0.5),
+        ]) {
+          const s = spec({
+            system,
+            heading,
+            lengthCm,
+            ...(heading === "WAVE" ? { waveSpacingMm: 80 } : {}),
+          });
+          const q = quoteSmartTrack(s);
+          assert.equal(q.unitMinor, (heading === "WAVE" ? wave : base)[i]);
+          assert.equal(q.goodsMinor, q.unitMinor);
+          assert.equal(q.spec.lengthCm, lengthCm);
+          assert.equal(q.vatMinor, Math.round(q.goodsMinor / 6));
+          assert.equal(
+            q.package.maximumLoadKg,
+            system === "FOREST_SHUTTLE_ION" ? 25 : 35,
+          );
+          assert.ok(!JSON.stringify(q).includes("supplierGross"));
+          assert.ok(!JSON.stringify(q).includes("margin"));
+        }
+      }
+  assert.equal(
+    quoteSmartTrack(spec({ lengthCm: "100.000001" })).unitMinor,
+    51429,
+  );
+  assert.equal(
+    quoteSmartTrack(spec({ lengthCm: "100.5", quantity: 3 })).goodsMinor,
+    154287,
+  );
+});
+test("invalid measurements, unsupported headings and manufacturing precision fail without rounding", () => {
+  for (const lengthCm of [
+    "0",
+    "-1",
+    "500.1",
+    "1e2",
+    "NaN",
+    "100,5",
+    "100.0000001",
+  ])
+    assert.throws(() => quoteSmartTrack(spec({ lengthCm })));
+  assert.throws(() => quoteSmartTrack({ ...spec(), heading: "EYELET" }));
+  assert.throws(() => quoteSmartTrack({ ...spec(), shape: "BAY" }));
+  assert.throws(() => parseSmartTrackSpec(spec({ heading: "WAVE" })));
+  for (const waveSpacingMm of [60, 80] as const)
+    assert.equal(
+      quoteSmartTrack(spec({ heading: "WAVE", waveSpacingMm })).unitMinor,
+      56571,
+    );
+  const q = quoteSmartTrack(spec({ lengthCm: "100.55" }), {
+    package: readyPackage("FOREST_SHUTTLE_GO"),
+  });
+  assert.equal(q.spec.lengthCm, "100.55");
+  assert.equal(q.purchaseReady, false);
+  assert.equal(
+    quoteSmartTrack(spec({ lengthCm: "100.5" }), {
+      package: readyPackage("FOREST_SHUTTLE_GO"),
+    }).purchaseReady,
+    true,
+  );
+  assert.equal(quoteSmartTrack(spec()).purchaseReady, false);
+});
+test("weights use the selected motor limit, correct density units and fullness once", () => {
+  assert.equal(
+    checkTrackWeight({ mode: "MEASURED", kg: 35 }, 35).compatibility,
+    "WITHIN_LIMIT",
+  );
+  assert.equal(
+    checkTrackWeight({ mode: "MEASURED", kg: 35.0001 }, 35).compatibility,
+    "OVER_LIMIT",
+  );
+  assert.equal(
+    quoteSmartTrack(
+      spec({
+        system: "FOREST_SHUTTLE_ION",
+        weight: { mode: "MEASURED", kg: 25.1 },
+      }),
+    ).weight.compatibility,
+    "OVER_LIMIT",
+  );
+  assert.equal(
+    materialWeightKg({
+      name: "face",
+      metres: 10,
+      widthCm: 140,
+      density: 300,
+      unit: "GSM",
+    }),
+    4.2,
+  );
+  assert.equal(
+    materialWeightKg({
+      name: "face",
+      metres: 10,
+      widthCm: 140,
+      density: 300,
+      unit: "G_PER_LINEAR_METRE",
+    }),
+    3,
+  );
+  const w = {
+    mode: "EXISTING_ESTIMATE" as const,
+    panels: 2,
+    widthCm: 200,
+    dropCm: 250,
+    widthBasis: "FLAT" as const,
+    fullness: 2,
+    gsm: 300,
+    lining: false,
+    interlining: false,
+  };
+  assert.equal(checkTrackWeight(w).minimumKg, 3);
+  assert.equal(
+    checkTrackWeight({ ...w, widthCm: 100, widthBasis: "COVERAGE" }).minimumKg,
+    3,
+  );
+  assert.equal(checkTrackWeight(w).maximumKg, null);
+  assert.equal(checkTrackWeight(w).compatibility, "REVIEW_REQUIRED");
+  assert.equal(checkTrackWeight({ ...w, gsm: undefined }).status, "UNKNOWN");
+  assert.equal(
+    checkTrackWeight(
+      { mode: "CURTAINSUK", configurationId: randomUUID() },
+      35,
+      {
+        materials: [
+          { name: "face", grams: 3000 },
+          { name: "lining", grams: 1500 },
+          { name: "components", grams: 100 },
+        ],
+        complete: true,
+        assumptions: ["Synthetic measured materials"],
+      },
+    ).maximumKg,
+    4.6,
+  );
+});
+test("linked curtain changes, eyelets and operation differences need review; coverage can be explicitly confirmed", () => {
+  const id = randomUUID(),
+    digest = "a".repeat(64),
+    s = spec({
+      linkedCurtain: {
+        configurationId: id,
+        specificationDigest: digest,
+        coverageConfirmed: true,
+      },
+    });
+  const linked = {
+    configurationId: id,
+    specificationDigest: digest,
+    heading: "PENCIL",
+    opening: "CENTRE",
+    coverageCm: 180,
+    measurementBasis: "POLE_USABLE_WIDTH",
+  };
+  assert.equal(
+    quoteSmartTrack(s, { package: readyPackage(s.system), linked })
+      .purchaseReady,
+    true,
+  );
+  for (const patch of [
+    { specificationDigest: "b".repeat(64) },
+    { heading: "INCOMPATIBLE" },
+    { opening: "LEFT" },
+  ])
+    assert.equal(
+      quoteSmartTrack(s, {
+        package: readyPackage(s.system),
+        linked: { ...linked, ...patch },
+      }).purchaseReady,
+      false,
+    );
+  assert.equal(
+    quoteSmartTrack(s, { package: readyPackage(s.system) }).purchaseReady,
+    false,
+  );
+});
+test("existing postcode restrictions still apply to the one smart-track charge", () => {
+  assert.equal(smartTrackDelivery("BB2 3FA")?.grossMinor, 1295);
+  assert.equal(smartTrackDelivery(""), null);
+  assert.equal(smartTrackDelivery("BT1 1AA"), null);
+  assert.equal(smartTrackDelivery("SW1A"), null);
+});
+test("track-only and every mixed combination reconcile once and persist distinct identities", async () => {
+  for (const curtain of [false, true])
+    for (const cushion of [false, true]) {
+      const f = await homeFixture(),
+        s = spec(),
+        stored = new Map<string, TrackCheckoutGroup>();
+      let executed: TrackCheckoutGroup["contract"] | undefined;
+      f.services.tracks = {
+        package: readyPackage,
+        purchasesEnabled: true,
+        existing: async (key) => stored.get(key) ?? null,
+        persist: async (key, g) => {
+          stored.set(key, g);
+        },
+        execute: async (key, c) => {
+          executed = c;
+          return {
+            status: "DISABLED",
+            paymentEnabled: false,
+            checkoutUrl: null,
+            draftOrderId: null,
+            draftOrderName: null,
+            shopifyWritePerformed: false,
+          };
+        },
+      };
+      const input = {
+        ...f.input,
+        curtains: curtain ? f.input.curtains : undefined,
+        cushions: cushion ? f.input.cushions : undefined,
+        tracks: {
+          specs: [s, spec({ system: "FOREST_SHUTTLE_ION", quantity: 2 })],
+        },
+      };
+      const review = await reviewMyHome(input, f.services);
+      assert.equal(review.purchaseEnabled, true);
+      assert.equal(review.deliveryMinor, 1295);
+      assert.equal(review.totalMinor, review.goodsMinor! + 1295);
+      const checkout = {
+        ...input,
+        reviewId: review.reviewId,
+        measurementsConfirmed: true,
+        idempotencyKey: randomUUID(),
+        houseReviewToken: review.houseReviewToken ?? undefined,
+        acceptedPriceChanges: review.acceptedPriceChanges,
+        cushions: cushion
+          ? { ...input.cushions!, expectedQuoteId: review.quoteId! }
+          : undefined,
+      };
+      await checkoutMyHome(checkout, f.services);
+      assert.ok(executed);
+      assert.equal(executed.expected.orderGrossAmountMinor, review.totalMinor);
+      assert.equal(executed.expected.orderVatAmountMinor, review.vatMinor);
+      assert.equal(
+        executed.input.lineItems.length,
+        2 + Number(curtain) + Number(cushion),
+      );
+      assert.equal(stored.size, 1);
+      await checkoutMyHome(checkout, f.services);
+      assert.equal(stored.size, 1);
+      const group = stored.get(checkout.idempotencyKey)!;
+      const secret = "test-track-mixed-webhook-secret-".repeat(2);
+      const payload = {
+        id: 123,
+        name: "#TEST",
+        financial_status: "paid",
+        currency: "GBP",
+        taxes_included: true,
+        processed_at: new Date().toISOString(),
+        note_attributes: executed.input.customAttributes.map((a) => ({
+          name: a.key,
+          value: a.value,
+        })),
+        line_items: executed.input.lineItems.map((l, i) => ({
+          id: i + 1,
+          quantity: l.quantity,
+          price: l.originalUnitPriceWithCurrency.amount,
+          total_discount: "0.00",
+          properties: l.customAttributes.map((a) => ({
+            name: a.key,
+            value: a.value,
+          })),
+        })),
+        total_price: (executed.expected.orderGrossAmountMinor / 100).toFixed(2),
+        total_tax: (executed.expected.orderVatAmountMinor / 100).toFixed(2),
+        total_discounts: "0.00",
+        total_shipping_price_set: {
+          presentment_money: { amount: "12.95", currency_code: "GBP" },
+        },
+      };
+      const raw = Buffer.from(JSON.stringify(payload));
+      const paid = await processSmartTrackPaidOrder(
+        raw,
+        createHmac("sha256", secret).update(raw).digest("base64"),
+        {
+          secret,
+          group: async () => group,
+          verifyDraft: async () => "gid://shopify/DraftOrder/1",
+          record: async () => ({ duplicate: false }),
+        },
+      );
+      assert.equal(paid.manifest.groups.tracks.length, 2);
+      assert.equal(paid.manifest.groups.cushions.length, Number(cushion));
+      assert.equal(paid.manifest.groups.curtains.length, Number(curtain));
+      assert.equal(Boolean(paid.manifest.nativeCurtainPayment), curtain);
+      await assert.rejects(
+        checkoutMyHome(
+          {
+            ...checkout,
+            revision: checkout.revision + 1,
+            curtains: checkout.curtains
+              ? { ...checkout.curtains, revision: checkout.revision + 1 }
+              : undefined,
+          },
+          f.services,
+        ),
+        /REVIEW_CHANGED/,
+      );
+    }
+});
+
+test("browser assets exclude private prices and adviser knowledge follows release state", async () => {
+  for (const name of [
+    "pricing.ts",
+    "package.ts",
+    "../pricing.ts",
+    "repository.ts",
+  ])
+    assert.equal((await smartTrackAsset(name)).status, 404);
+  const body = await (await smartTrackAsset("index.html")).text();
+  assert.ok(body.includes("SMART_TRACK_CONFIG"));
+  assert.ok(!body.includes("COSTS_GROSS_MINOR"));
+  assert.equal(smartTrackGuidance("jane", {}), "");
+  assert.equal(
+    smartTrackGuidance("ben", { CURTAINSUK_SMART_TRACK_ENABLED: "true" }),
+    "",
+  );
+  const guidance = smartTrackGuidance("noah", {
+    CURTAINSUK_SMART_TRACK_ENABLED: "true",
+  });
+  assert.match(guidance, /fullness only to coverage/);
+  for (const lengthCm of ["100", "200", "300", "400", "500"])
+    for (const heading of ["PENCIL", "WAVE"] as const) {
+      const q = quoteSmartTrack(
+        spec({
+          lengthCm,
+          heading,
+          ...(heading === "WAVE" ? { waveSpacingMm: 60 } : {}),
+        }),
+      );
+      assert.ok(guidance.includes((q.unitMinor / 100).toFixed(2)));
+    }
+  const partial = checkTrackWeight(
+    { mode: "CURTAINSUK", configurationId: randomUUID() },
+    25,
+    {
+      materials: [{ name: "face", grams: 26000 }],
+      complete: false,
+      assumptions: ["Purchased cloth may include offcuts"],
+    },
+  );
+  assert.equal(partial.compatibility, "REVIEW_REQUIRED");
+});
+test("paid webhook authenticates, binds the exact lines and totals, and preserves motor identity", async () => {
+  const s = spec({ system: "FOREST_SHUTTLE_ION" }),
+    p = readyPackage(s.system),
+    q = quoteSmartTrack(s, { package: p }),
+    snapshot = createSmartTrackSnapshot(q, randomUUID(), p, { test: true });
+  const reviewId = "a".repeat(64),
+    key = randomUUID(),
+    contract = buildSmartTrackOrder({
+      snapshots: [snapshot],
+      key,
+      reviewId,
+      shipping: smartTrackDelivery("BB2 3FA")!,
+      production: true,
+    });
+  assert.throws(
+    () =>
+      buildSmartTrackOrder({
+        snapshots: [snapshot],
+        key,
+        reviewId,
+        base: {
+          ...contract,
+          input: {
+            ...contract.input,
+            lineItems: Array.from(
+              { length: 100 },
+              () => contract.input.lineItems[0],
+            ),
+          },
+        },
+        shipping: smartTrackDelivery("BB2 3FA")!,
+        production: true,
+      }),
+    /TRACK_ORDER_TOO_LARGE/,
+  );
+  const group: TrackCheckoutGroup = {
+    reviewId,
+    contract,
+    snapshots: [snapshot],
+    cushions: [],
+    packets: [
+      {
+        productType: "SMART_TRACK",
+        snapshotId: snapshot.id,
+        spec: snapshot.spec,
+      },
+    ],
+  };
+  const secret = "test-webhook-secret-".repeat(3),
+    payload = {
+      id: 123,
+      name: "#TEST",
+      financial_status: "paid",
+      currency: "GBP",
+      taxes_included: true,
+      processed_at: new Date().toISOString(),
+      note_attributes: contract.input.customAttributes.map((a) => ({
+        name: a.key,
+        value: a.value,
+      })),
+      line_items: contract.input.lineItems.map((l, i) => ({
+        id: i + 1,
+        quantity: l.quantity,
+        price: l.originalUnitPriceWithCurrency.amount,
+        total_discount: "0.00",
+        properties: l.customAttributes.map((a) => ({
+          name: a.key,
+          value: a.value,
+        })),
+      })),
+      total_price: (contract.expected.orderGrossAmountMinor / 100).toFixed(2),
+      total_tax: (contract.expected.orderVatAmountMinor / 100).toFixed(2),
+      total_discounts: "0.00",
+      total_shipping_price_set: {
+        presentment_money: { amount: "12.95", currency_code: "GBP" },
+      },
+    };
+  let calls = 0;
+  const services = {
+    secret,
+    group: async () => group,
+    verifyDraft: async () => "gid://shopify/DraftOrder/1",
+    record: async () => ({ duplicate: calls++ > 0 }),
+  };
+  const run = (v: unknown) => {
+    const raw = Buffer.from(JSON.stringify(v));
+    return processSmartTrackPaidOrder(
+      raw,
+      createHmac("sha256", secret).update(raw).digest("base64"),
+      services,
+    );
+  };
+  const result = await run(payload);
+  assert.equal(result.manifest.groups.tracks.length, 1);
+  assert.equal(result.manifest.packets[0].productType, "SMART_TRACK");
+  assert.equal((await run(payload)).duplicate, true);
+  await assert.rejects(run({ ...payload, total_price: "1.00" }), /FINANCIAL/);
+  await assert.rejects(
+    run({
+      ...payload,
+      line_items: [{ ...payload.line_items[0], quantity: 2 }],
+    }),
+    /LINES/,
+  );
+  await assert.rejects(
+    processSmartTrackPaidOrder(Buffer.from("{}"), "bad", services),
+    /SIGNATURE/,
+  );
+  assert.equal(calls, 2);
+});
+test("save, reopen, edit and quantity changes preserve track identity without manufacturing extra demo rooms", async () => {
+  const Store = createRequire(import.meta.url)(
+    "../../../shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-rooms-store.js",
+  );
+  const values = new Map<string, string>(),
+    disk = {
+      getItem: (k: string) => values.get(k) ?? null,
+      setItem: (k: string, v: string) => values.set(k, v),
+      removeItem: (k: string) => values.delete(k),
+    };
+  const s = spec();
+  let saved = await Store.addSmartTrack(s, {}, disk);
+  const revision = saved.house.revision;
+  assert.equal(Store.orderItems(Store.read(disk)).length, 1);
+  assert.equal(Store.orderedCushionSpecs(saved.house).length, 0);
+  saved = await Store.addSmartTrack(
+    { ...s, lengthCm: "300.5", system: "FOREST_SHUTTLE_ION" },
+    { editItemId: s.id, expectedRevision: revision },
+    disk,
+  );
+  assert.equal(saved.house.products.length, 1);
+  assert.equal(saved.house.products[0].id, s.id);
+  assert.equal(Store.orderedTrackSpecs(Store.read(disk))[0].lengthCm, "300.5");
+  await assert.rejects(
+    Store.addSmartTrack(
+      s,
+      { editItemId: s.id, expectedRevision: revision },
+      disk,
+    ),
+    /another tab/,
+  );
+  const updated = await Store.updateOrderItem(
+    s.id,
+    { quantity: 3 },
+    saved.house.revision,
+    disk,
+  );
+  assert.equal(Store.orderedTrackSpecs(updated)[0].quantity, 3);
+});
+test("migration denies browser access and enforces immutable track snapshots and one draft claim", async () => {
+  const db = new PGlite();
+  try {
+    await db.exec(
+      "create schema curtainsuk_private; create role anon; create role authenticated; create role service_role; create table curtainsuk_private.staging_configuration_snapshots(snapshot_id uuid primary key); create table curtainsuk_private.fabric_colourways(fabric_id text primary key,supplier_id text,supplier_sku text);",
+    );
+    await db.exec(
+      await readFile(
+        "supabase/migrations/20261014163749_cushion_studio_distinct_persistence.sql",
+        "utf8",
+      ),
+    );
+    await db.exec(
+      await readFile(
+        "supabase/migrations/20261017162157_smart_track_distinct_checkout.sql",
+        "utf8",
+      ),
+    );
+    const s = spec(),
+      p = readyPackage(s.system),
+      snapshot = createSmartTrackSnapshot(
+        quoteSmartTrack(s, { package: p }),
+        randomUUID(),
+        p,
+        { test: true },
+      ),
+      key = randomUUID(),
+      group = {
+        reviewId: "a".repeat(64),
+        snapshots: [snapshot],
+        cushions: [],
+        contract: {},
+        packets: [],
+      };
+    await db.query(
+      "select curtainsuk_private.commit_smart_track_checkout($1,$2,$3)",
+      ["a".repeat(64), key, JSON.stringify(group)],
+    );
+    assert.equal(
+      (
+        await db.query<{ v: boolean }>(
+          "select curtainsuk_private.claim_smart_track_draft_creation($1,$2) v",
+          ["a".repeat(64), key],
+        )
+      ).rows[0].v,
+      true,
+    );
+    assert.equal(
+      (
+        await db.query<{ v: boolean }>(
+          "select curtainsuk_private.claim_smart_track_draft_creation($1,$2) v",
+          ["a".repeat(64), key],
+        )
+      ).rows[0].v,
+      false,
+    );
+    await assert.rejects(
+      db.query(
+        "select curtainsuk_private.claim_smart_track_draft_creation($1,$2)",
+        ["b".repeat(64), key],
+      ),
+      /OWNER/,
+    );
+    await assert.rejects(
+      db.exec("delete from curtainsuk_private.smart_track_order_snapshots"),
+      /IMMUTABLE/,
+    );
+    assert.equal(
+      (
+        await db.query<{ v: boolean }>(
+          "select has_table_privilege('anon','curtainsuk_private.smart_track_order_snapshots','SELECT') v",
+        )
+      ).rows[0].v,
+      false,
+    );
+    assert.equal(
+      (
+        await db.query<{ v: boolean }>(
+          "select has_function_privilege('authenticated','curtainsuk_private.release_smart_track_order(text,text,text)','EXECUTE') v",
+        )
+      ).rows[0].v,
+      false,
+    );
+    const order = "gid://shopify/Order/123",
+      manifest = {
+        checkoutKey: key,
+        orderGid: order,
+        packets: [],
+        groups: {
+          tracks: [{ snapshotId: snapshot.id, productType: "SMART_TRACK" }],
+          curtains: [],
+          cushions: [],
+        },
+        holdTogether: true,
+      };
+    for (const duplicate of [false, true])
+      assert.equal(
+        (
+          await db.query<{ v: { duplicate: boolean } }>(
+            "select curtainsuk_private.record_smart_track_paid_manifest($1,$2) v",
+            [order, JSON.stringify(manifest)],
+          )
+        ).rows[0].v.duplicate,
+        duplicate,
+      );
+    await assert.rejects(
+      db.query(
+        "select curtainsuk_private.record_smart_track_paid_manifest($1,$2)",
+        [order, JSON.stringify({ ...manifest, holdTogether: false })],
+      ),
+      /IDENTITY/,
+    );
+    assert.equal(
+      (
+        await db.query<{ n: number }>(
+          "select count(*)::integer n from curtainsuk_private.smart_track_supplier_releases",
+        )
+      ).rows[0].n,
+      0,
+    );
+    await db.query(
+      "select curtainsuk_private.release_smart_track_order($1,$2,$3)",
+      [order, "test-staff", "test-reviewed-spec"],
+    );
+    await db.query(
+      "insert into curtainsuk_private.smart_track_supplier_shipments(shipment_reference,shopify_order_gid) values($1,$2)",
+      ["supplier-shipment-test", order],
+    );
+    assert.equal(
+      (
+        await db.query<{ n: number }>(
+          "select sum(supplier_carriage_gross_minor)::integer n from curtainsuk_private.smart_track_supplier_shipments",
+        )
+      ).rows[0].n,
+      1095,
+    );
+    await assert.rejects(
+      db.query(
+        "insert into curtainsuk_private.smart_track_supplier_shipments(shipment_reference,shopify_order_gid) values($1,$2)",
+        ["supplier-shipment-test", order],
+      ),
+      /duplicate/,
+    );
+  } finally {
+    await db.close();
+  }
+});

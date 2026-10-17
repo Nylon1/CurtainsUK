@@ -1507,5 +1507,17 @@
         "default": "United Kingdom | GBP"
       }
     ]
+  },
+  {
+    "name": "Smart Track Studio",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "curtainsuk_smart_track_enabled",
+        "label": "Show approved Smart Track Studio and guide",
+        "default": false,
+        "info": "Requires the matching protected backend release and supplier specifications."
+      }
+    ]
   }
 ]

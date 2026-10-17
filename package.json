@@ -15,7 +15,7 @@
     "start": "next start",
     "lint": "eslint",
     "seo:check": "node scripts/seo-foundation-check.mjs",
-    "test": "npm run test:decision-engine && npm run test:supplier-sync && npm run test:supplier-intelligence && npm run test:supplier-import && npm run test:fabric-master && npm run test:prestigious && npm run test:storefront && npm run test:shopify-theme && npm run test:cushions",
+    "test": "npm run test:decision-engine && npm run test:supplier-sync && npm run test:supplier-intelligence && npm run test:supplier-import && npm run test:fabric-master && npm run test:prestigious && npm run test:storefront && npm run test:shopify-theme && npm run test:cushions && npm run test:smart-tracks",
     "test:decision-engine": "tsx --test lib/decision-engine/__tests__/*.test.ts",
     "test:supplier-sync": "tsx --test lib/supplier-sync/__tests__/*.test.ts",
     "test:supplier-intelligence": "tsx --test lib/supplier-intelligence/__tests__/*.test.ts",
@@ -39,7 +39,8 @@
     "fabric:discover:plan": "tsx scripts/curtainsuk-plan-portal-discovery.ts",
     "fabric:apply:media": "tsx scripts/curtainsuk-apply-media-mappings.ts",
     "fabric:preview:retail": "tsx scripts/curtainsuk-retail-local-preview.ts",
-    "preview:curtainsuk-6a": "tsx scripts/curtainsuk-phase6a-preview.mts"
+    "preview:curtainsuk-6a": "tsx scripts/curtainsuk-phase6a-preview.mts",
+    "test:smart-tracks": "node --import ./scripts/cushion-preview-register.mjs --import tsx --test lib/smart-track/__tests__/*.test.ts lib/smart-track/runtime/*.test.mjs"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",

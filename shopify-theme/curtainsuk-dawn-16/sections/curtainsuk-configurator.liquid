@@ -94,6 +94,7 @@
                 <option value="POLE_USABLE_WIDTH">Fitted pole</option>
               </select>
               <p class="cuk-hint">Measure the fitted hardware, not the finished curtain. <a class="cuk-text-link" href="/pages/how-to-measure">How to measure</a></p>
+              {% if settings.curtainsuk_smart_track_enabled %}<p class="cuk-hint">Considering a motorised track? <a class="cuk-text-link" href="/pages/smart-track-studio" target="_blank" rel="noopener">Explore Smart Track Studio in a new tab</a>. Save your curtains to Design My Home to link a track and review the measurements together.</p>{% endif %}
             </div>
             <div class="cuk-field" data-cuk-width><label for="CukWidth-{{ section.id }}" data-cuk-width-label>Width (cm)</label><input id="CukWidth-{{ section.id }}" name="widthCm" type="number" min="30" max="1200" step="0.1" required><p class="cuk-hint cuk-hidden" data-cuk-width-hint>Measure along the complete curved track, not straight across the opening.</p></div>
             <div class="cuk-field"><label for="CukDrop-{{ section.id }}">Drop (cm)</label><input id="CukDrop-{{ section.id }}" name="dropCm" type="number" min="30" max="600" step="0.1" required></div>

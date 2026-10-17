@@ -1,5 +1,7 @@
 # Cushion Studio and My Home production sync, 17 October 2026
 
+The shared customer-serving Vercel service was redeployed on 17 October for the [specialist adviser gateway repair](CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md). Its current deployment is `dpl_SDfPE1hhDmZ5LkojV8raju32gj5S`, built from clean protected source `d82d2c088d2c7211094adb8d56f6e860adc8a30d`. The Cushion Studio and My Home source and Shopify MAIN theme files were not changed in that repair. The earlier deployment references below are dated release evidence. The new service build passed its Cushion Studio asset packaging guard; no new cushion or mixed-checkout journey was replayed as part of the adviser repair.
+
 This checkpoint supersedes the unpublished Cushion Studio checkpoint in `PRODUCTION_SURFACES.md`. It records the source, customer-serving assets, and non-secret configuration needed to reproduce the current release. The protected `release/production` branch remains the release authority. Theme-only and documentation-only commits after the API deployment do not change its runtime.
 
 ## Mobile sticky preview release, 17 October 2026

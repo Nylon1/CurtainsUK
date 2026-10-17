@@ -1,4 +1,5 @@
 import type { FabricMasterRecord } from "../fabric-master/types";
+import { fabricIsPriceEligible } from "../fabric-master/projection";
 import type { FabricCuttingFacts } from "./domain";
 
 export interface CushionFabricEvidence {
@@ -95,7 +96,7 @@ export function projectCushionFabric(
   record: FabricMasterRecord,
   evidence?: CushionFabricEvidence,
 ): CushionFabricCard | null {
-  if (record.lifecycle_state !== "CURRENT") return null;
+  if (!fabricIsPriceEligible(record)) return null;
   const calibration = calibrationForFabric(record, evidence);
   const widths = cushionPhysicalWidths(record.full_width_mm ?? evidence?.fullWidthMm ?? null, record.usable_width_mm);
   return {
@@ -151,7 +152,7 @@ export function cuttingFactsFromMaster(
   };
 }
 
-/** Discoverable fabrics without a confirmed current lifecycle stay explorable,
+/** Fabrics outside the shared commercial eligibility rule stay explorable,
  * but must not inherit a supplier cost or verified stock from another state. */
 export function unconfirmedCuttingFacts(
   record: FabricMasterRecord,

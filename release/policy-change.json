@@ -1,12 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "A cushion fabric without a separate usable-width field cannot receive a binding cutting plan. Missing full width also prevents physical image calibration. My Home groups missing cutting, stock and cost evidence into broad confirmation messages.",
-  "newRule": "Use the separately recorded usable width when present. If only one physical width is recorded, use it for both full and usable width. If neither is recorded, use the owner-approved 1370 mm fallback for cutting and physical preview scale, with explicit provenance. A fabric whose current-range lifecycle is not CURRENT remains unpriced and unavailable for cushion purchase. My Home names that restriction and directs the customer to Edit.",
-  "reason": "The live saved My Home review showed Amalfi Herb and Acies Amethyst as awaiting confirmation with a misleading fabric-shortage explanation. Their governed current-range status is UNKNOWN, although the recent stock observations cover the shown quantities. The owner clarified the width hierarchy, including the 1370 mm fallback when neither width exists.",
-  "ownerApprovedDecision": "The owner explicitly confirmed that one recorded width serves as both full and usable cutting width, and that 1370 mm is the fallback for cutting and preview scale when neither width is recorded. Existing lifecycle, stock, price and checkout safeguards remain in force. The exact PR head still needs a Nylon1 approval comment before protected merge.",
+  "previousRule": "Cushion quoting rejects every fabric whose lifecycle is not CURRENT before looking up its verified supplier cost or recent stock. The curtain pricing path can calculate a price for an UNKNOWN lifecycle fabric when commercial evidence is verified. My Home renders a neutral cushion even when the selected calibrated artwork is available.",
+  "newRule": "Use the existing shared Fabric Master price-eligibility rule for cushion catalogue and quote lookup. Known discontinued or noncommercial fabrics remain blocked. An UNKNOWN lifecycle fabric may receive a binding cushion quote only when exact-identity supplier cost, fresh available stock, cutting, construction, insert and dispatch evidence all pass. Render selected calibrated fabric artwork in My Home without changing the saved specification; label a neutral fallback clearly.",
+  "reason": "Amalfi Herb and Acies Amethyst have VERIFIED price status and positive 14 October stock observations, while their lifecycle is UNKNOWN. Curtains can calculate a price, but Cushion Studio discards cost and stock before quoting. The owner showed another blocked cushion and requested that the live site, protected source and production configuration follow one reproducible rule.",
+  "ownerApprovedDecision": "The owner requested reconciliation of these cushion flags with the existing shared commerce rule. This scoped rule alignment and selected-fabric preview are presented for the required Nylon1 exact-head approval before protected merge and live release.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
     "lib/cushion-studio/__tests__/",
+    "lib/cushion-studio/runtime/my-home-thumbnails.test.mjs",
     "release/policy-change.json"
   ]
 }

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import "../../../scripts/cushion-preview-register.mjs";
 
-test("a discoverable noncurrent fabric returns an unpriced quote without supplier or stock authority", async () => {
+test("an unknown-lifecycle fabric without verified cost or stock remains unpriced", async () => {
   const { unconfirmedCuttingFacts } = await import("../catalogue");
   const { quoteCushion } = await import("../pricing");
   const { PREVIEW_PRICING_RULES } = await import("../domain");
@@ -40,8 +40,56 @@ test("a discoverable noncurrent fabric returns an unpriced quote without supplie
   assert.equal(quote.ready, false);
   assert.equal(quote.purchaseReady, false);
   assert.equal(quote.totalMinor, null);
-  assert.ok(quote.issues.some((issue) => issue.includes("current-range status is not confirmed")));
+  assert.ok(quote.issues.some((issue) => issue.includes("current verified stock")));
   assert.ok(quote.issues.some((issue) => issue.includes("supplier net cost")));
+});
+
+test("fresh verified commerce can price an unknown-lifecycle cushion, while discontinued remains blocked", async () => {
+  const { quoteCushion } = await import("../pricing");
+  const { PREVIEW_PRICING_RULES } = await import("../domain");
+  const { fabricIsPriceEligible } = await import("../../fabric-master/projection");
+  const record = {
+    lifecycle_state: "UNKNOWN", staging_catalog_visible: true,
+    storefront_selectable: true,
+  } as Parameters<typeof fabricIsPriceEligible>[0];
+  assert.equal(fabricIsPriceEligible(record), true);
+  assert.equal(fabricIsPriceEligible({ ...record, lifecycle_state: "DISCONTINUED" }), false);
+  const spec = {
+    version: 1 as const, id: "current-stock-cushion", sizeId: "square-50",
+    fabricId: "current-stock-fabric", filling: "cover" as const,
+    edge: "unpiped" as const, placementMm: { x: 100, y: 100 }, quantity: 1,
+  };
+  const facts = {
+    id: spec.fabricId, lifecycleState: "UNKNOWN" as const,
+    fullWidthMm: 1380, usableWidthMm: 1380,
+    pattern: { kind: "plain" as const, horizontalRepeatMm: 0, verticalRepeatMm: 0 },
+    directional: false,
+    calibration: {
+      imageUrl: "https://example.invalid/original.jpg", physicalWidthMm: 1380,
+      physicalHeightMm: 1000, evidence: "Synthetic test only",
+      orientation: "upright" as const, tileable: false as const,
+    },
+    supplierCostMinorPerMetre: 2000, availableMetres: 100,
+    minimumOrderMetres: 1, orderIncrementMetres: 1,
+  };
+  const rules = {
+    version: "test", construction: {
+      version: "test", seamAllowanceMm: 20, confirmed: true,
+      squareDrapeConfirmed: true, pipingStripWidthMm: 40,
+      pipingJoinAllowanceMm: 20, pipingCut: "straight" as const,
+      pipingConfirmed: true,
+    },
+    marginBasisPoints: 4000, vatBasisPoints: 2000,
+    supplierCarriageMinor: 0, carriageMinor: null, customerDeliveryGrossMinor: 495,
+    dispatchEstimate: PREVIEW_PRICING_RULES.dispatchEstimate,
+  };
+  const ready = quoteCushion(spec, facts, rules);
+  assert.equal(ready.ready, true);
+  assert.ok(ready.totalMinor !== null);
+  assert.deepEqual(ready.issues, []);
+  const discontinued = quoteCushion(spec, { ...facts, lifecycleState: "DISCONTINUED" }, rules);
+  assert.equal(discontinued.ready, false);
+  assert.ok(discontinued.issues.some(issue => issue.includes("discontinued")));
 });
 
 test("local and hosted gates are off by default; cross-origin preview and checkout fail closed", async () => {

@@ -85,6 +85,8 @@ if (!customElements.get('curtainsuk-header')) {
           }
         }, options);
         details.addEventListener('focusout', event => {
+          // Touch focus can move before Safari dispatches the link click.
+          if (this.mobileQuery?.matches) return;
           // relatedTarget is the arriving control. activeElement can briefly be
           // body during focusout, which would close the menu before Tab arrives.
           if (event.relatedTarget && !details.contains(event.relatedTarget)) details.open = false;

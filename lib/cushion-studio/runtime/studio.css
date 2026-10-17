@@ -418,17 +418,15 @@ h2 {
   margin-left: 4px;
 }
 .room-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 21px;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 22px 25px;
+  display: grid;
+  gap: 14px;
+  padding: 17px;
   background: #faf8f2;
-  border-top: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: 10px;
 }
 .room-controls label,
-.room-controls > div > span {
+.room-styling-grid > div > span {
   font-size: 8px;
   letter-spacing: 1.5px;
   display: block;
@@ -443,7 +441,32 @@ h2 {
   margin-top: 4px;
   font-size: 11px;
   letter-spacing: 0;
-  max-width: 145px;
+  width: 100%;
+  max-width: 100%;
+}
+.room-styling {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.room-styling summary {
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  min-height: 40px;
+}
+.room-styling summary span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 3px;
+}
+.room-styling-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 10px;
+  padding-top: 14px;
 }
 .swatches {
   display: flex;
@@ -532,6 +555,42 @@ h2 {
   margin: 6px 0 0;
   color: var(--ink);
   font-size: 12px;
+}
+.editor-jumps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 17px;
+}
+.editor-jumps a {
+  display: grid;
+  place-items: center;
+  min-height: 42px;
+  padding: 6px;
+  border: 1px solid #d5ded2;
+  border-radius: 7px;
+  background: #f3f6f0;
+  color: #304d43;
+  font-size: 10px;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+}
+.editor-jumps a:hover,
+.editor-jumps a:focus-visible {
+  border-color: #667e69;
+  background: #e6eee3;
+}
+.editor-jumps.config-jumps {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+#layout-presets,
+#room-settings,
+#arrangement-summary,
+#shape-section,
+#fabric-section,
+#finish-section {
+  scroll-margin-top: 145px;
 }
 .editor-section {
   padding: 22px 0;
@@ -782,6 +841,9 @@ h2 {
   line-height: 1.6;
   color: var(--muted);
 }
+#add-set-order {
+  margin-top: 14px;
+}
 .primary {
   width: 100%;
   background: var(--ink);
@@ -969,9 +1031,8 @@ dialog::backdrop {
     display: none;
   }
   .room-controls {
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    gap: 12px;
+    padding: 15px;
   }
   .scene-caption {
     display: none;
@@ -1074,9 +1135,8 @@ dialog::backdrop {
   }
   .room-controls {
     padding: 17px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .room-controls label,
   .room-controls > div > span {
@@ -1086,14 +1146,6 @@ dialog::backdrop {
     width: 100%;
     max-width: 100%;
     font-size: 11px;
-  }
-  .room-controls > div:nth-child(2) {
-    grid-row: 2;
-    grid-column: 1;
-  }
-  .room-controls > div:nth-child(3) {
-    grid-row: 2;
-    grid-column: 2;
   }
   .scene-foot {
     padding: 10px 17px;

@@ -4,9 +4,9 @@
 
 The existing customer-serving Vercel aliases now serve `dpl_SDfPE1hhDmZ5LkojV8raju32gj5S` from clean protected runtime source `d82d2c088d2c7211094adb8d56f6e860adc8a30d`. The specialist production release settings and Jane's separate exact-commit approval were reconciled. Unsigned Jane and specialist gateway probes returned HTTP 401, and all five live Shopify consultation shells reached their adviser-specific sign-in boundary. A signed-in paid reply and recovery were not replayed. No theme, database or route was changed. See the [specialist advisory source of truth](CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md). The incident and shared-service deployment references below are earlier snapshots; the Cushion Studio MAIN theme readback remains unchanged.
 
-## Current adviser availability incident, 17 October 2026
+## Resolved adviser availability incident, 17 October 2026
 
-Jane's unsigned consultation route reaches its sign-in boundary. The four other publicly advertised specialists, Noah, James, Ben and Natalie, currently receive an HTTP 404 at their shared consultation gateway before authentication or a paid reply. Their browser shells display "This consultation is unavailable right now." The [specialist advisory source of truth](CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md) records the deployment comparison, current configuration evidence and verification limits. Do not treat the 14 October successful specialist launch as proof of current availability.
+At the pre-repair checkpoint, Jane's unsigned consultation route reached its sign-in boundary. The four other publicly advertised specialists, Noah, James, Ben and Natalie, received an HTTP 404 at 10:34 UTC at their shared consultation gateway before authentication or a paid reply. Their browser shells displayed "This consultation is unavailable right now." The [specialist advisory source of truth](CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md) records the deployment comparison, current configuration evidence and verification limits. Do not treat the 14 October successful specialist launch as proof of current availability.
 
 ## Current Cushion Studio and My Home checkpoint, 17 October 2026
 

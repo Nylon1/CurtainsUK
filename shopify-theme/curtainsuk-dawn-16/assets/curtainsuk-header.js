@@ -50,7 +50,14 @@ if (!customElements.get('curtainsuk-header')) {
           this.returnFocus?.focus({ preventScroll: true });
         }, options);
         dialog.addEventListener('click', event => {
-          if (event.target.closest('a[href]')) dialog.close();
+          const link = event.target.closest('a[href]');
+          if (link) {
+            const url = new URL(link.href);
+            if (url.origin === location.origin && url.pathname === location.pathname && url.search === location.search && url.hash) {
+              setTimeout(() => dialog.close(), 0);
+            }
+            return;
+          }
           if (event.target === dialog) {
             const box = dialog.getBoundingClientRect();
             if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
@@ -60,10 +67,12 @@ if (!customElements.get('curtainsuk-header')) {
       this.disclosures.forEach(details => {
         const summary = details.querySelector('summary');
         details.addEventListener('click', event => {
-          if (!event.target.closest('a[href]')) return;
-          details.open = false;
-          summary.setAttribute('aria-expanded', 'false');
-          summary.focus({ preventScroll: true });
+          const link = event.target.closest('a[href]');
+          if (!link) return;
+          const url = new URL(link.href);
+          if (url.origin === location.origin && url.pathname === location.pathname && url.search === location.search && url.hash) {
+            setTimeout(() => { details.open = false; summary.setAttribute('aria-expanded', 'false'); }, 0);
+          }
         }, options);
         details.addEventListener('toggle', () => {
           summary.setAttribute('aria-expanded', String(details.open));

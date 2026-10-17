@@ -1,5 +1,9 @@
 # CurtainsUK production surfaces
 
+## Current adviser availability incident, 17 October 2026
+
+Jane's unsigned consultation route reaches its sign-in boundary. The four other publicly advertised specialists, Noah, James, Ben and Natalie, currently receive an HTTP 404 at their shared consultation gateway before authentication or a paid reply. Their browser shells display "This consultation is unavailable right now." The [specialist advisory source of truth](CURTAINSUK_SPECIALIST_AI_ADVISORY_PLATFORM.md) records the deployment comparison, current configuration evidence and verification limits. Do not treat the 14 October successful specialist launch as proof of current availability.
+
 ## Current Cushion Studio and My Home checkpoint, 17 October 2026
 
 The [Cushion Studio and Design My Home production sync record](CUSHION_MY_HOME_PRODUCTION_SYNC_20261017.md) is the current authority for the serving API commit, protected theme commit, MAIN theme readback, production flag contract and bounded live mixed-order verification. Cushion Studio and Design My Home are live. The customer-serving API deployment is `dpl_EfjeysuAAuePYYYw2PiX9Du3pTYA`, built from protected runtime commit `39528f72beb79dbb880fb8d3bf130e61a0a2c785`. The latest Cushion Studio theme release is protected commit `42274a31d076b404bb3442493facf642715563a2`; its changed section was read back exactly from existing Shopify MAIN theme `182339731835`. The 17 October reconciliation records a 537-file MAIN theme manifest reproducible from the protected Dawn base plus the production overlay, without changing the live store. It supersedes the unpublished checkpoint below for these two features. Later theme-only or documentation-only commits may advance the protected branch without changing the deployed API runtime; retain and compare each exact SHA and tree separately.

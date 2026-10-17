@@ -72,7 +72,7 @@ export function customerTrackPackage(
     version: p.version,
     motor: p.motorModel,
     controller:
-      p.controller?.model ?? "Included control — model awaiting confirmation",
+      p.controller?.model ?? "Included control, model awaiting confirmation",
     allHardwareIncluded: p.allHardwareIncluded,
     mounting: p.mounting,
     minimumLengthCm: p.minimumLengthCm,

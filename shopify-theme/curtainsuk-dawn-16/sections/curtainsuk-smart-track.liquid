@@ -12,9 +12,24 @@
     var url=new URL(frame.dataset.source,location.origin),params=new URLSearchParams(location.search);
     ['order_item','room_id','linked_curtain'].forEach(function(key){var value=params.get(key);if(value&&/^[a-f0-9-]{36}$/i.test(value))url.searchParams.set(key,value);});
     frame.src=url.pathname+url.search;
+    var viewportTick=0;
+    function sendViewport(){
+      viewportTick=0;
+      if(!frame.isConnected||!frame.contentWindow)return;
+      var header=document.querySelector('.section-cuk-header');
+      var top=Math.max(0,header?header.getBoundingClientRect().bottom:0)+12;
+      var height=window.visualViewport?window.visualViewport.height:window.innerHeight;
+      frame.contentWindow.postMessage({type:'curtainsuk-smart-track-viewport',offset:top-frame.getBoundingClientRect().top,availableHeight:Math.max(300,height-top-12)},location.origin);
+    }
+    function scheduleViewport(){if(!viewportTick)viewportTick=requestAnimationFrame(sendViewport);}
+    frame.addEventListener('load',scheduleViewport);
+    window.addEventListener('scroll',scheduleViewport,{passive:true});
+    window.addEventListener('resize',scheduleViewport);
+    if(window.visualViewport)window.visualViewport.addEventListener('resize',scheduleViewport);
     window.addEventListener('message',function(event){
       if(event.source!==frame.contentWindow||event.origin!==location.origin||event.data?.type!=='curtainsuk-smart-track-height')return;
       if(Number.isFinite(event.data.height))frame.style.height=Math.max(600,Math.min(40000,Math.ceil(event.data.height)))+'px';
+      scheduleViewport();
     });
   });
 {% endjavascript %}

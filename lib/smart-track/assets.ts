@@ -1,13 +1,31 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import build from "../room-visualiser/build.json";
+import { STANDARD_LINING_GSM } from "./domain";
 /** No arbitrary files: server pricing and supplier decisions are never assets. */
 export async function smartTrackAsset(
   asset: string,
   base = "/apps/curtainsuk-decision/smart-track/",
-  origin = "https://curtainsuk-production-api.vercel.app",
 ) {
   const name = asset || "index.html";
+  const images = [
+    "room-living.webp",
+    "room-bedroom.webp",
+    "room-dining.webp",
+    "room-office.webp",
+    "room-patio.webp",
+    "curtain-wave.webp",
+  ];
+  if (images.includes(name))
+    return new Response(
+      await readFile(path.join(process.cwd(), "lib/smart-track/runtime", name)),
+      {
+        headers: {
+          "Content-Type": "image/webp",
+          "Cache-Control": "no-store",
+          "X-Content-Type-Options": "nosniff",
+        },
+      },
+    );
   const allowed = [
     "index.html",
     "fitting.html",
@@ -17,6 +35,7 @@ export async function smartTrackAsset(
     "studio.mjs",
     "state.mjs",
     "scene.mjs",
+    "room-design.mjs",
     "cloth.mjs",
   ];
   const store = name === "my-home-store.js";
@@ -34,11 +53,10 @@ export async function smartTrackAsset(
         path.join(process.cwd(), "lib/smart-track/runtime", name),
         "utf8",
       );
-  const visualiserBase = origin + build.assetBase;
   if (name.endsWith(".html"))
     body = body.replace(
       "<head>",
-      `<head><base href="${base}"><script src="${base}my-home-store.js"></script><script type="importmap">${JSON.stringify({ imports: { three: visualiserBase + "vendor/three.module.js" } })}</script><script>window.SMART_TRACK_CONFIG=${JSON.stringify({ apiBase: base + "api", catalogueUrl: "/apps/curtainsuk-decision/catalog", visualiserBase, release: "smart-track-v1" }).replaceAll("<", "\\u003c")};</script>`,
+      `<head><base href="${base}"><script src="${base}my-home-store.js"></script><script>window.SMART_TRACK_CONFIG=${JSON.stringify({ apiBase: base + "api", release: "smart-track-v1", standardLiningGsm: STANDARD_LINING_GSM }).replaceAll("<", "\\u003c")};</script>`,
     );
   return new Response(body, {
     headers: {

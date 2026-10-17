@@ -187,6 +187,51 @@ test("weights use the selected motor limit, correct density units and fullness o
   assert.equal(checkTrackWeight(w).maximumKg, null);
   assert.equal(checkTrackWeight(w).compatibility, "REVIEW_REQUIRED");
   assert.equal(checkTrackWeight({ ...w, gsm: undefined }).status, "UNKNOWN");
+  const simple = {
+    ...w,
+    panels: 1,
+    widthCm: 200,
+    dropCm: 250,
+    widthBasis: "COVERAGE" as const,
+    fullness: 2,
+    lining: true,
+    liningGsm: 150,
+  };
+  assert.equal(checkTrackWeight(simple).minimumKg, 4.5);
+  assert.equal(checkTrackWeight({ ...simple, lining: false }).minimumKg, 3);
+  const incompleteLining = checkTrackWeight({
+    ...simple,
+    liningGsm: undefined,
+  });
+  assert.equal(incompleteLining.minimumKg, 3);
+  assert.equal(incompleteLining.maximumKg, null);
+  assert.equal(incompleteLining.compatibility, "REVIEW_REQUIRED");
+  const preset = {
+    ...simple,
+    liningGsm: 200,
+    liningGsmSource: "STANDARD_PRESET" as const,
+  };
+  const presetQuote = quoteSmartTrack(spec({ weight: preset }));
+  assert.equal(presetQuote.weight.minimumKg, 5);
+  assert.equal(presetQuote.weight.maximumKg, null);
+  assert.equal(
+    presetQuote.spec.weight.mode === "EXISTING_ESTIMATE" &&
+      presetQuote.spec.weight.liningGsmSource,
+    "STANDARD_PRESET",
+  );
+  assert.match(
+    presetQuote.weight.assumptions.join(" "),
+    /actual lining may differ/,
+  );
+  assert.equal(
+    checkTrackWeight({ ...preset, liningGsm: 250, liningGsmSource: "CUSTOM" })
+      .minimumKg,
+    5.5,
+  );
+  assert.throws(
+    () => parseSmartTrackSpec(spec({ weight: { ...preset, liningGsm: 250 } })),
+    /TRACK_WEIGHT_INVALID/,
+  );
   assert.equal(
     checkTrackWeight(
       { mode: "CURTAINSUK", configurationId: randomUUID() },

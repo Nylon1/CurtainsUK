@@ -82,7 +82,7 @@ export function smartTrackLine(
     throw Error("TRACK_SNAPSHOT_INVALID");
   const s = snapshot.spec;
   return {
-    title: `${snapshot.package.motorModel} — ${s.lengthCm} cm (${s.quantity})`,
+    title: `${snapshot.package.motorModel}, ${s.lengthCm} cm (${s.quantity})`,
     quantity: 1,
     originalUnitPriceWithCurrency: {
       amount: (snapshot.price.goodsGrossMinor / 100).toFixed(2),
@@ -109,7 +109,7 @@ export function smartTrackLine(
             : "One-way, stack " + s.opening.toLowerCase(),
       },
       { key: "Mounting", value: s.mounting === "WALL" ? "Wall" : "Ceiling" },
-      { key: "Motor side", value: `${s.motorSide} — inside facing window` },
+      { key: "Motor side", value: `${s.motorSide}, inside facing window` },
       { key: "Track quantity", value: String(s.quantity) },
       {
         key: "Included",

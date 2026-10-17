@@ -47,16 +47,19 @@ const server=createServer(async(req,res)=>{try{
  const operation=url.pathname.split('/').pop();if(operation==='quote')response=json({quote:quoteSmartTrack(body.spec,{linked:body.spec.linkedCurtain?await linkedCurtainEvidence(body.spec.linkedCurtain.configurationId,body.curtains,fixture.services.mixed.house):undefined})});
  else if(operation==='linked')response=json({link:await linkedCurtainEvidence(body.configurationId,body.curtains,fixture.services.mixed.house)});else response=json({ok:true});
  }
+ else if(url.pathname==='/smart-track-embedded-preview'){
+ const section=await readFile(path.join(root,'sections/curtainsuk-smart-track.liquid'),'utf8');
+ const script=section.match(/{% javascript %}([\s\S]*?){% endjavascript %}/)?.[1]||'';
+ response=new Response(html('<div class="section-cuk-header" style="position:sticky;top:0;z-index:20;background:#f5f2e9;padding:16px">CurtainsUK · embedded preview</div><iframe title="Smart Track Studio" data-cuk-track-frame data-source="/smart-track-preview/" style="display:block;width:100%;height:1600px;border:0"></iframe><script>'+script+'</script>'),{headers:{'Content-Type':'text/html'}});
+ }
  else if(url.pathname.startsWith('/smart-track-preview/')||['/pages/smart-track-studio','/pages/smart-track-fitting-guide'].includes(url.pathname)){
  const asset=url.pathname==='/pages/smart-track-studio'?'index.html':url.pathname==='/pages/smart-track-fitting-guide'?'fitting.html':url.pathname.slice('/smart-track-preview/'.length);
- response=await smartTrackAsset(asset,'/smart-track-preview/',url.origin);
- if(asset.endsWith('.html'))response=new Response((await response.text()).replace('/apps/curtainsuk-decision/catalog','/api/smart-track-demo-catalog'),{headers:response.headers});
+ response=await smartTrackAsset(asset,'/smart-track-preview/');
  }
  else if(url.pathname.startsWith('/room-visualiser/')){if(!/^\/room-visualiser\/[A-Za-z0-9_./-]+$/.test(url.pathname)||url.pathname.includes('..'))throw Error('ASSET');response=new Response(await readFile(path.join(process.cwd(),'public',url.pathname)),{headers:{'Content-Type':url.pathname.endsWith('.mjs')||url.pathname.endsWith('.js')?'text/javascript':url.pathname.endsWith('.webp')?'image/webp':'application/octet-stream'}});}
  else if(url.pathname.startsWith('/assets/')){const file=url.pathname.slice(8);if(!/^[\w.-]+$/.test(file))throw Error('ASSET');response=new Response(await readFile(path.join(root,'assets',file)),{headers:{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'image/png'}});}
  else if(url.pathname==='/api/my-home-review')response=json(await reviewMyHome(body,fixture.services));
  else if(url.pathname==='/api/my-home-checkout')response=json(await checkoutMyHome(body,fixture.services));
- else if(url.pathname==='/api/smart-track-demo-catalog'){const fabrics=[{id:'sdg-f1541-01',design:'Bergamot',colour:'Calibrated review artwork',horizontalRepeatMm:450,verticalRepeatMm:465,patternMatchType:'STRAIGHT'},{id:'sdg-f1239-30',design:'Amalfi',colour:'Plain review artwork'}];response=json(url.searchParams.has('fabric')?{fabric:fabrics.find(f=>f.id===url.searchParams.get('fabric'))}:{fabrics});}
  else if(url.pathname==='/api/catalog' && url.searchParams.get('view')==='retail')response=json(url.searchParams.has('fabric')?{fabric:reviewFabric}:{fabrics:[reviewFabric],total:1,page:1,pages:1,facets:{brands:[],collections:[],colour:[],pattern:[],style:[],character:[]}});
  else if(url.pathname==='/api/catalog')response=json({windows:STOREFRONT_WINDOW_TYPES,fabrics:[{...source,brand:'Synthetic review fabric',configurable:true,selectableForReview:true}],requestedFabric:{id:source.id,status:'FOUND'}});
  else if(url.pathname==='/api/price')response=json(await fixture.services.mixed.house.calculate(body));

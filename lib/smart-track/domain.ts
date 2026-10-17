@@ -1,5 +1,7 @@
 /** Customer specification only. No supplier prices or inferred package choices. */
 export const SMART_TRACK_VERSION = 1 as const;
+/** Estimation reference: Evans DB1 polycotton lining, published 200 g/m². Not a measured customer lining. */
+export const STANDARD_LINING_GSM = 200;
 export type SmartTrackSystem = "FOREST_SHUTTLE_GO" | "FOREST_SHUTTLE_ION";
 export type TrackHeading = "PENCIL" | "PINCH" | "WAVE";
 export type TrackOpening = "CENTRE" | "LEFT" | "RIGHT";
@@ -25,6 +27,7 @@ export type TrackWeightInput =
       fullness?: number;
       gsm?: number;
       liningGsm?: number;
+      liningGsmSource?: "STANDARD_PRESET" | "CUSTOM";
       interliningGsm?: number;
       lining: boolean;
       interlining: boolean;
@@ -90,6 +93,11 @@ export function parseWeight(value: unknown): TrackWeightInput {
     (v.widthBasis === "FLAT" || positive(v.fullness, 10)) &&
     typeof v.lining === "boolean" &&
     typeof v.interlining === "boolean" &&
+    (v.liningGsmSource === undefined ||
+      v.liningGsmSource === "CUSTOM" ||
+      (v.liningGsmSource === "STANDARD_PRESET" &&
+        v.lining === true &&
+        v.liningGsm === STANDARD_LINING_GSM)) &&
     [v.gsm, v.liningGsm, v.interliningGsm].every(
       (x) => x === undefined || positive(x, 5000),
     )
@@ -107,6 +115,11 @@ export function parseWeight(value: unknown): TrackWeightInput {
       ...(v.liningGsm === undefined
         ? {}
         : { liningGsm: v.liningGsm as number }),
+      ...(v.liningGsmSource === undefined
+        ? {}
+        : {
+            liningGsmSource: v.liningGsmSource as "STANDARD_PRESET" | "CUSTOM",
+          }),
       ...(v.interliningGsm === undefined
         ? {}
         : { interliningGsm: v.interliningGsm as number }),

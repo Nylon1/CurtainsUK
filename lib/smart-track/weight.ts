@@ -71,18 +71,26 @@ export function checkTrackWeight(
     assumptions.push(
       "Dimensions must include the cloth in headings and hems. Unmeasured tape, hooks and other components are not included.",
     );
+    if (input.lining)
+      assumptions.push(
+        "Lining uses the same area and gather as the face fabric.",
+      );
+    if (input.liningGsmSource === "STANDARD_PRESET")
+      assumptions.push(
+        "Standard lining estimate uses 200 g/m² (Evans DB1 reference). The customer's actual lining may differ; this is not measured weight.",
+      );
     const densities = [
       input.gsm,
       ...(input.lining ? [input.liningGsm] : []),
       ...(input.interlining ? [input.interliningGsm] : []),
     ];
-    if (densities.every((n) => n !== undefined)) {
-      min = (area * densities.reduce<number>((s, n) => s + n!, 0)) / 1000;
+    if (input.gsm !== undefined) {
+      min = (area * densities.reduce<number>((s, n) => s + (n ?? 0), 0)) / 1000;
       status = "ESTIMATED";
     }
     assumptions.push(
       densities.some((n) => n === undefined)
-        ? "Fabric, lining or interlining weight is missing. No GSM or exact total has been invented."
+        ? "Fabric, lining or interlining weight is missing. Only known material weights are included; no complete total is claimed."
         : "This is a cloth-only estimate. Measure the complete panels to confirm the total.",
     );
   }

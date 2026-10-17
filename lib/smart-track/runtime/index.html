@@ -24,527 +24,581 @@
           ><a href="#configure">Configure my track <span>02 ↗</span></a>
         </nav>
       </header>
-      <section id="experience" aria-labelledby="experience-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">01 / EXPERIENCE THE MOVEMENT</p>
-            <h2 id="experience-title">Your room. Your rhythm.</h2>
-          </div>
-          <p>
-            Interactive demonstration<br />No account or measurements needed.
-          </p>
-        </div>
-        <div class="rooms" role="group" aria-label="Demonstration room">
-          <button data-room="living" aria-pressed="true">01 Living room</button
-          ><button data-room="bedroom" aria-pressed="false">02 Bedroom</button
-          ><button data-room="dining" aria-pressed="false">
-            03 Dining room</button
-          ><button data-room="office" aria-pressed="false">
-            04 Home office</button
-          ><button data-room="patio" aria-pressed="false">
-            05 Patio doors
-          </button>
-        </div>
-        <div class="experience-grid">
-          <div class="preview-wrap">
-            <div id="scene">
-              <div class="fallback" aria-hidden="true">
-                <div class="fallback-window"></div>
-                <div class="fallback-cloth left"></div>
-                <div class="fallback-cloth right"></div>
-              </div>
+      <div class="studio-workspace">
+        <section id="experience" aria-labelledby="experience-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">01 / EXPERIENCE THE MOVEMENT</p>
+              <h2 id="experience-title">Your room. Your rhythm.</h2>
             </div>
-            <div class="scene-top">
-              <span id="room-label">Living room</span>
-              <div>
-                <button id="lighting" aria-pressed="false">Evening</button
-                ><button id="detail" aria-pressed="false">Track detail</button>
-              </div>
-            </div>
-            <p class="scene-caption">
-              Illustrative room · <span id="demo-length">230</span> cm
-              demonstration rail<br />Preview dimensions are separate from your
-              order.
-            </p>
-            <div class="scene-loading" id="scene-status" role="status">
-              Preparing the room. The controls are ready to try.
-            </div>
-            <button id="scene-retry" hidden>Retry room preview</button>
-          </div>
-          <aside class="control-panel">
-            <div class="control-tabs" role="group" aria-label="Control view">
-              <button data-view="remote" aria-pressed="true">Remote</button
-              ><button data-view="app" aria-pressed="false">App demo</button>
-            </div>
-            <div class="remote" id="remote-view">
-              <div class="remote-leds" aria-hidden="true">
-                <i></i><i></i><i></i><i></i><i></i><i></i>
-              </div>
-              <div class="remote-diamond">
-                <button
-                  data-action="OPEN"
-                  class="remote-open"
-                  aria-label="Open curtains"
-                >
-                  ‹ | ›</button
-                ><button
-                  id="previous-channel"
-                  class="channel-prev"
-                  aria-label="Previous remote channel"
-                >
-                  ‹</button
-                ><button
-                  data-action="STOP"
-                  class="remote-stop"
-                  aria-label="Stop curtains"
-                >
-                  □</button
-                ><button
-                  id="next-channel"
-                  class="channel-next"
-                  aria-label="Next remote channel"
-                >
-                  ›</button
-                ><button
-                  data-action="CLOSE"
-                  class="remote-close"
-                  aria-label="Close curtains"
-                >
-                  › | ‹
-                </button>
-              </div>
-              <button
-                class="favourite"
-                data-action="FAVOURITE"
-                aria-label="Move to the demonstration favourite position"
-              >
-                ☆</button
-              ><span class="remote-brand">FOREST<small>EasyTouch</small></span>
-            </div>
-            <div class="phone" id="app-view" hidden>
-              <div class="phone-speaker"></div>
-              <p class="eyebrow">FOREST CONNECT</p>
-              <h3 id="phone-room">Living room</h3>
-              <div class="phone-curtain" aria-hidden="true">❙ ❙</div>
-              <p id="phone-state">Curtains closed</p>
-              <div class="phone-actions">
-                <button data-action="OPEN">Open</button
-                ><button data-action="STOP">Stop</button
-                ><button data-action="CLOSE">Close</button>
-              </div>
-              <p class="fine">
-                Interactive demonstration<br />No Forest account or device
-                connection.
-              </p>
-            </div>
-            <p id="channel-status" role="status">Channel 1 · Living room</p>
-            <button id="group-control" class="text-button" aria-pressed="false">
-              Select all demonstration rooms
-            </button>
-            <p id="motion-status" role="status">Curtains closed</p>
-            <div
-              class="plain-controls"
-              role="group"
-              aria-label="Accessible curtain controls"
-            >
-              <button data-action="OPEN">Open</button
-              ><button data-action="STOP">Stop</button
-              ><button data-action="CLOSE">Close</button>
-            </div>
-            <label class="reduced"
-              ><input type="checkbox" id="reduce-motion" /> Reduce motion</label
-            >
-            <p class="fine">
-              Six-channel Forest EasyTouch remote included. Go’s favourite
-              position is pre-set here. The iOn package uses remote control
-              without built-in Wi-Fi or the Link favourite function.
-            </p>
-          </aside>
-        </div>
-        <div class="demo-options">
-          <label
-            >Demonstration opening<select id="demo-opening">
-              <option value="CENTRE">Centre-opening pair</option>
-              <option value="LEFT">One-way, stack left</option>
-              <option value="RIGHT">One-way, stack right</option>
-            </select></label
-          >
-          <div class="fabric-picker">
-            <label for="fabric-search">Explore a demonstration fabric</label>
-            <div class="search-row">
-              <input
-                id="fabric-search"
-                type="search"
-                placeholder="Search our shared fabric catalogue"
-              /><button id="fabric-find">Find</button>
-            </div>
-            <div id="fabric-results"></div>
-            <p id="fabric-status" class="fine">
-              Neutral cloth. Choosing a preview fabric does not add curtains to
-              your order.
+            <p>
+              Interactive demonstration<br />No account or measurements needed.
             </p>
           </div>
-        </div>
-        <p class="fine">
-          This room preview does not establish installation clearances, exact
-          stack-back or curtain load suitability. App styling is illustrative;
-          this website is not the Forest Connect app.
-        </p>
-      </section>
-      <section id="configure" aria-labelledby="configure-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">02 / MADE FOR YOUR WINDOW</p>
-            <h2 id="configure-title">Make it yours.</h2>
-          </div>
-          <p>
-            Cut to your exact length.<br />Motor, remote and all track hardware
-            included.
-          </p>
-        </div>
-        <div class="configuration-grid">
-          <form id="track-form">
-            <div class="route-choice">
-              <label
-                >Where are your curtains from?<select id="curtain-source">
-                  <option value="EXISTING">
-                    Track for my existing curtains
-                  </option>
-                  <option value="CURTAINSUK">
-                    Track for my CurtainsUK curtains
-                  </option>
-                </select></label
-              ><label id="linked-wrap" hidden
-                >Link a saved curtain<select id="linked-curtain">
-                  <option value="">Choose a curtain from Design My Home</option>
-                </select></label
-              >
-              <p id="linked-info" class="fine"></p>
+          <div class="experience-sticky">
+            <div class="rooms" role="group" aria-label="Demonstration room">
+              <button data-room="living" aria-pressed="true">
+                01 Living room</button
+              ><button data-room="bedroom" aria-pressed="false">
+                02 Bedroom</button
+              ><button data-room="dining" aria-pressed="false">
+                03 Dining room</button
+              ><button data-room="office" aria-pressed="false">
+                04 Home office</button
+              ><button data-room="patio" aria-pressed="false">
+                05 Patio doors
+              </button>
             </div>
-            <fieldset>
-              <legend>Start with your track</legend>
-              <div class="two-col">
-                <label
-                  >Exact finished track length <span>cm</span
-                  ><input
-                    name="lengthCm"
-                    id="length"
-                    type="text"
-                    inputmode="decimal"
-                    value="200"
-                    maxlength="10"
-                    required
-                    aria-describedby="length-help" /></label
-                ><label
-                  >Where will it be mounted?<select
-                    name="mounting"
-                    id="mounting"
-                  >
-                    <option value="CEILING">Ceiling</option>
-                    <option value="WALL">Wall</option>
-                  </select></label
-                >
-              </div>
-              <p id="length-help" class="fine">
-                Straight tracks only, up to 500 cm. Enter the finished track
-                length you require. We keep your exact entry.
-              </p>
-              <details>
-                <summary>How to measure your track</summary>
-                <svg
-                  class="measure-diagram"
-                  viewBox="0 0 520 210"
-                  role="img"
-                  aria-label="Measure the complete track beyond the window edges, with space beside the motor and a nearby power socket"
-                >
-                  <rect
-                    x="140"
-                    y="65"
-                    width="220"
-                    height="120"
-                    fill="#d8e1db"
-                  />
-                  <path
-                    d="M140 65h220v120H140ZM250 65v120M80 45h360M80 25h360M80 19v12M440 19v12"
-                    fill="none"
-                    stroke="#56675b"
-                    stroke-width="3"
-                  />
-                  <rect
-                    x="440"
-                    y="40"
-                    width="15"
-                    height="60"
-                    rx="3"
-                    fill="#b5ac98"
-                  />
-                  <path
-                    d="M448 100v56h20"
-                    fill="none"
-                    stroke="#95856d"
-                    stroke-width="2"
-                  />
-                  <text x="260" y="17" text-anchor="middle">
-                    Your full finished track length
-                  </text>
-                  <text x="250" y="204" text-anchor="middle">
-                    Inside the room, facing the window
-                  </text>
-                </svg>
-                <ol>
-                  <li>
-                    Measure the track you need, not just the glass. Allow for
-                    intended curtain coverage and available wall space.
-                  </li>
-                  <li>
-                    Check the mounting position and space for the motor. Confirm
-                    clearances from the supplied installation drawing.
-                  </li>
-                  <li>
-                    For Shuttle Go, check the mains connection. For Shuttle iOn,
-                    allow access to remove the battery for charging.
-                  </li>
-                  <li>
-                    Use the inside-facing-window viewpoint for every left and
-                    right choice.
-                  </li>
-                  <li>Review the final dimensions before adding your track.</li>
-                </ol>
-                <p>
-                  Supply only. Fitting and electrical work are not included.
+            <div class="experience-grid">
+              <div class="room-stage">
+                <div class="scene-top">
+                  <span id="room-label">Living room</span>
+                  <div>
+                    <button id="lighting" aria-pressed="false">Evening</button>
+                    <button
+                      id="room-lights"
+                      aria-pressed="false"
+                      aria-label="Room lights"
+                    >
+                      Lights off
+                    </button>
+                    <button id="detail" aria-pressed="false">
+                      Track detail
+                    </button>
+                  </div>
+                </div>
+                <div class="preview-wrap">
+                  <div id="scene">
+                    <div class="fallback" aria-hidden="true">
+                      <div class="fallback-window"></div>
+                      <div class="fallback-cloth left"></div>
+                      <div class="fallback-cloth right"></div>
+                    </div>
+                  </div>
+                  <div class="scene-loading" id="scene-status" role="status">
+                    Preparing the room. The controls are ready to try.
+                  </div>
+                  <button id="scene-retry" hidden>Retry room preview</button>
+                </div>
+                <p class="scene-caption">
+                  <span id="demo-mount">Wall-mounted track</span
+                  ><span id="motor-note">Motor concealed behind curtains.</span>
                 </p>
-              </details>
-            </fieldset>
-            <fieldset>
-              <legend>Choose your power</legend>
-              <label
-                >Motor and power<select id="system">
-                  <option value="FOREST_SHUTTLE_GO">
-                    Shuttle Go · UK three-pin plug · up to 35 kg
-                  </option>
-                  <option value="FOREST_SHUTTLE_ION">
-                    Shuttle iOn · rechargeable battery · up to 25 kg
-                  </option>
-                </select></label
-              >
-              <p id="power-help">
-                Both options have the same product price. Choose a suitable
-                power source for your room.
+              </div>
+              <aside class="control-panel">
+                <div
+                  class="control-tabs"
+                  role="group"
+                  aria-label="Control view"
+                >
+                  <button data-view="remote" aria-pressed="true">Remote</button
+                  ><button data-view="app" aria-pressed="false">
+                    App demo
+                  </button>
+                </div>
+                <div class="remote" id="remote-view">
+                  <div class="remote-leds" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                  <div class="remote-diamond">
+                    <button
+                      data-action="OPEN"
+                      class="remote-open"
+                      aria-label="Open curtains"
+                    >
+                      ‹ | ›</button
+                    ><button
+                      id="previous-channel"
+                      class="channel-prev"
+                      aria-label="Previous remote channel"
+                    >
+                      ‹</button
+                    ><button
+                      data-action="STOP"
+                      class="remote-stop"
+                      aria-label="Stop curtains"
+                    >
+                      □</button
+                    ><button
+                      id="next-channel"
+                      class="channel-next"
+                      aria-label="Next remote channel"
+                    >
+                      ›</button
+                    ><button
+                      data-action="CLOSE"
+                      class="remote-close"
+                      aria-label="Close curtains"
+                    >
+                      › | ‹
+                    </button>
+                  </div>
+                  <button
+                    class="favourite"
+                    data-action="FAVOURITE"
+                    aria-label="Move to the demonstration favourite position"
+                  >
+                    ☆</button
+                  ><span class="remote-brand"
+                    >FOREST<small>EasyTouch</small></span
+                  >
+                </div>
+                <div class="phone" id="app-view" hidden>
+                  <div class="phone-speaker"></div>
+                  <p class="eyebrow">FOREST CONNECT</p>
+                  <h3 id="phone-room">Living room</h3>
+                  <div class="phone-curtain" aria-hidden="true">❙ ❙</div>
+                  <p id="phone-state">Curtains closed</p>
+                  <div class="phone-actions">
+                    <button data-action="OPEN">Open</button
+                    ><button data-action="STOP">Stop</button
+                    ><button data-action="CLOSE">Close</button>
+                  </div>
+                  <p class="fine">
+                    Interactive demonstration<br />No Forest account or device
+                    connection.
+                  </p>
+                </div>
+                <p id="channel-status" role="status">Channel 1 · Living room</p>
+                <button
+                  id="group-control"
+                  class="text-button"
+                  aria-pressed="false"
+                >
+                  Select all demonstration rooms
+                </button>
+                <p id="motion-status" role="status">Curtains closed</p>
+                <div
+                  class="plain-controls"
+                  role="group"
+                  aria-label="Accessible curtain controls"
+                >
+                  <button data-action="OPEN">Open</button
+                  ><button data-action="STOP">Stop</button
+                  ><button data-action="CLOSE">Close</button>
+                </div>
+                <label class="reduced"
+                  ><input type="checkbox" id="reduce-motion" /> Reduce
+                  motion</label
+                >
+              </aside>
+            </div>
+            <div class="colour-bar">
+              <div>
+                <p class="eyebrow">PLAIN CURTAIN COLOURS</p>
+                <p id="colour-selection" role="status">Ivory</p>
+              </div>
+              <div
+                id="plain-colours"
+                role="group"
+                aria-label="Plain curtain preview colours"
+              ></div>
+              <p class="fine">
+                Illustrative colours only. No curtains are added to your order.
               </p>
-            </fieldset>
-            <fieldset>
-              <legend>Curtain compatibility</legend>
-              <div class="two-col">
+            </div>
+            <div class="demo-footer">
+              <div class="demo-options">
                 <label
-                  >Heading<select id="heading" name="heading">
-                    <option value="PENCIL">Pencil pleat</option>
-                    <option value="PINCH">Pinch pleat</option>
-                    <option value="WAVE">Wave</option>
-                  </select></label
-                ><label
-                  >Opening arrangement<select id="opening" name="opening">
+                  >Demonstration opening<select id="demo-opening">
                     <option value="CENTRE">Centre-opening pair</option>
                     <option value="LEFT">One-way, stack left</option>
                     <option value="RIGHT">One-way, stack right</option>
                   </select></label
-                ><label id="wave-wrap" hidden
-                  >Wave carrier spacing<select id="wave-spacing">
-                    <option value="80">80 mm (8 cm)</option>
-                    <option value="60">60 mm (6 cm)</option>
-                  </select></label
-                ><label
-                  >Motor side<select id="motor-side" name="motorSide">
-                    <option value="RIGHT">Right — facing the window</option>
-                    <option value="LEFT">Left — facing the window</option>
-                  </select></label
                 >
               </div>
-              <p class="fine">
-                Eyelet curtains are incompatible. Match wave spacing to your
-                curtain heading. Wave headings must clear the track without
-                rubbing.
-              </p>
-              <div class="viewpoint" aria-hidden="true">
-                <span>LEFT</span><span>YOU → WINDOW</span><span>RIGHT</span>
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>Check my curtain weight</legend>
-              <label
-                >How would you like to check?<select id="weight-mode">
-                  <option value="UNKNOWN">I need help checking</option>
-                  <option value="MEASURED">I know the total weight</option>
-                  <option value="EXISTING_ESTIMATE">
-                    Estimate my existing curtains
-                  </option>
-                  <option value="CURTAINSUK">
-                    Use my linked CurtainsUK configuration
-                  </option>
-                </select></label
-              ><label id="known-weight" hidden
-                >Total weight of all panels on one track <span>kg</span
-                ><input
-                  id="weight-kg"
-                  type="number"
-                  min="0.001"
-                  step="any"
-                  placeholder="For example, 8.5"
-              /></label>
-              <div id="estimate-weight" hidden>
+              <details class="demo-about">
+                <summary>About this demonstration</summary>
+                <p class="fine">
+                  The illustrative rail is <span id="demo-length">230</span> cm;
+                  your ordered dimensions are separate. Bedroom and patio scenes
+                  show ceiling mounting; the other rooms show wall mounting.
+                  Choose your ordered mounting separately below. Room lights are
+                  a visual demonstration, not a Forest remote function. This
+                  room preview does not establish installation clearances, exact
+                  stack-back or curtain load suitability. App styling is
+                  illustrative; this website is not the Forest Connect app.
+                </p>
+                <p class="fine">
+                  Six-channel Forest EasyTouch remote included. Go’s favourite
+                  position is pre-set here. The iOn package uses remote control
+                  without built-in Wi-Fi or the Link favourite function.
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+        <section id="configure" aria-labelledby="configure-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">02 / MADE FOR YOUR WINDOW</p>
+              <h2 id="configure-title">Make it yours.</h2>
+            </div>
+            <p>
+              Cut to your exact length.<br />Motor, remote and all track
+              hardware included.
+            </p>
+          </div>
+          <div class="quick-quote">
+            <div>
+              <span>YOUR TRACK · INCLUDES VAT</span
+              ><strong id="quick-price" role="status">Checking price…</strong>
+            </div>
+            <button id="review-step" type="button">Review ↗</button>
+          </div>
+          <p id="quote-error" role="alert" hidden></p>
+          <button id="retry-quote" type="button" hidden>Retry price</button>
+          <div class="studio-resources" aria-label="Helpful tools and guides">
+            <button id="open-weight-calculator" type="button" class="resource-card">
+              <svg viewBox="0 0 120 64" aria-hidden="true"><path d="M17 11h45M21 15v32m9-32v32m9-32v32m9-32v32m9-32v32"/><rect x="70" y="12" width="33" height="42" rx="4"/><path d="M76 19h21v9H76Zm0 16h4m6 0h4m6 0h1M76 43h4m6 0h4m6 0h1"/></svg>
+              <strong>Curtain weight calculator <span aria-hidden="true">↗</span></strong>
+              <small>Estimate fabric + lining</small>
+            </button>
+            <a class="resource-card" href="/pages/smart-track-fitting-guide" target="_top">
+              <svg viewBox="0 0 120 64" aria-hidden="true"><path d="M16 12h88M30 12v12m60-12v12M22 25h76M27 31v22m13-22v22m13-22v22m13-22v22m13-22v22m13-22v22"/><circle cx="30" cy="19" r="2"/><circle cx="90" cy="19" r="2"/></svg>
+              <strong>Visual fitting guide <span aria-hidden="true">↗</span></strong>
+              <small>Follow the illustrated steps</small>
+            </a>
+          </div>
+          <nav
+            class="configuration-steps"
+            aria-label="Track configuration steps"
+            hidden
+          >
+            <button type="button" data-go-step="0" aria-current="step">
+              <span>1</span>Track
+            </button>
+            <button type="button" data-go-step="1">
+              <span>2</span>Curtains
+            </button>
+            <button type="button" data-go-step="2"><span>3</span>Weight</button>
+            <button type="button" data-go-step="3"><span>4</span>Review</button>
+          </nav>
+          <p class="step-intro" id="step-intro" tabindex="-1" hidden></p>
+          <div class="configuration-grid">
+            <form id="track-form">
+              <fieldset data-step="0">
+                <legend>Choose your track</legend>
+                <label>Track power<select id="system">
+                  <option value="FOREST_SHUTTLE_GO">Plug-in track · Shuttle Go · up to 35 kg</option>
+                  <option value="FOREST_SHUTTLE_ION">Battery track · Shuttle iOn · up to 25 kg</option>
+                </select></label>
+                <p class="fine">Same price for plug-in and battery tracks.</p>
+                <p id="power-help" class="fine">Choose a suitable power source for your room.</p>
+              </fieldset>
+              <input id="curtain-source" type="hidden" value="EXISTING" />
+              <select id="linked-curtain" aria-label="Linked curtain identity" hidden><option value=""></option></select>
+              <p id="linked-info" class="fine"></p>
+              <fieldset data-step="0">
+                <legend>Start with your track</legend>
                 <div class="two-col">
                   <label
-                    >Number of panels<input
-                      id="panel-count"
-                      type="number"
-                      min="1"
-                      max="50"
-                      value="2" /></label
+                    >Exact finished track length <span>cm</span
+                    ><input
+                      name="lengthCm"
+                      id="length"
+                      type="text"
+                      inputmode="decimal"
+                      value="200"
+                      maxlength="10"
+                      required
+                      aria-describedby="length-help" /></label
                   ><label
-                    >Fabric height per panel, including hems (cm)<input
-                      id="panel-drop"
-                      type="number"
-                      min="1"
-                      value="250" /></label
+                    >Where will it be mounted?<select
+                      name="mounting"
+                      id="mounting"
+                    >
+                      <option value="CEILING">Ceiling</option>
+                      <option value="WALL">Wall</option>
+                    </select></label
+                  >
+                </div>
+                <p id="length-help" class="fine">
+                  Straight tracks only, up to 500 cm. Enter the finished track
+                  length you require. We keep your exact entry.
+                </p>
+                <details>
+                  <summary>How to measure your track</summary>
+                  <svg
+                    class="measure-diagram"
+                    viewBox="0 0 520 210"
+                    role="img"
+                    aria-label="Measure the complete track beyond the window edges, with space beside the motor and a nearby power socket"
+                  >
+                    <rect
+                      x="140"
+                      y="65"
+                      width="220"
+                      height="120"
+                      fill="#d8e1db"
+                    />
+                    <path
+                      d="M140 65h220v120H140ZM250 65v120M80 45h360M80 25h360M80 19v12M440 19v12"
+                      fill="none"
+                      stroke="#56675b"
+                      stroke-width="3"
+                    />
+                    <rect
+                      x="440"
+                      y="40"
+                      width="15"
+                      height="60"
+                      rx="3"
+                      fill="#b5ac98"
+                    />
+                    <path
+                      d="M448 100v56h20"
+                      fill="none"
+                      stroke="#95856d"
+                      stroke-width="2"
+                    />
+                    <text x="260" y="17" text-anchor="middle">
+                      Your full finished track length
+                    </text>
+                    <text x="250" y="204" text-anchor="middle">
+                      Inside the room, facing the window
+                    </text>
+                  </svg>
+                  <ol>
+                    <li>
+                      Measure the track you need, not just the glass. Allow for
+                      intended curtain coverage and available wall space.
+                    </li>
+                    <li>
+                      Check the mounting position and space for the motor.
+                      Confirm clearances from the supplied installation drawing.
+                    </li>
+                    <li>
+                      For Shuttle Go, check the mains connection. For Shuttle
+                      iOn, allow access to remove the battery for charging.
+                    </li>
+                    <li>
+                      Use the inside-facing-window viewpoint for every left and
+                      right choice.
+                    </li>
+                    <li>
+                      Review the final dimensions before adding your track.
+                    </li>
+                  </ol>
+                  <p>
+                    Supply only. Fitting and electrical work are not included.
+                  </p>
+                </details>
+              </fieldset>
+              <fieldset data-step="1">
+                <legend>Curtain compatibility</legend>
+                <div class="two-col">
+                  <label
+                    >Heading<select id="heading" name="heading">
+                      <option value="PENCIL">Pencil pleat</option>
+                      <option value="PINCH">Pinch pleat</option>
+                      <option value="WAVE">Wave</option>
+                    </select></label
                   ><label
-                    >Width per panel (cm)<input
+                    >Opening arrangement<select id="opening" name="opening">
+                      <option value="CENTRE">Centre-opening pair</option>
+                      <option value="LEFT">One-way, stack left</option>
+                      <option value="RIGHT">One-way, stack right</option>
+                    </select></label
+                  ><label id="wave-wrap" hidden
+                    >Wave carrier spacing<select id="wave-spacing">
+                      <option value="80">80 mm (8 cm)</option>
+                      <option value="60">60 mm (6 cm)</option>
+                    </select></label
+                  ><label
+                    >Motor side<select id="motor-side" name="motorSide">
+                      <option value="RIGHT">Right, facing the window</option>
+                      <option value="LEFT">Left, facing the window</option>
+                    </select></label
+                  >
+                </div>
+                <p class="fine">
+                  Eyelet curtains are incompatible. Match wave spacing to your
+                  curtain heading. Wave headings must clear the track without
+                  rubbing.
+                </p>
+                <div class="viewpoint" aria-hidden="true">
+                  <span>LEFT</span><span>YOU → WINDOW</span><span>RIGHT</span>
+                </div>
+              </fieldset>
+              <fieldset data-step="2">
+                <legend>Estimate curtain weight</legend>
+                <div class="weight-inputs two-col">
+                  <label
+                    >Total curtain width <span>cm, before gather</span
+                    ><input
                       id="panel-width"
                       type="number"
-                      min="1"
-                      value="140" /></label
-                  ><label
-                    >That width is<select id="width-basis">
-                      <option value="FLAT">Flat fabric width</option>
-                      <option value="COVERAGE">Coverage width</option>
-                    </select></label
-                  ><label id="fullness-wrap" hidden
-                    >Fullness multiplier<input
+                      min="0.1"
+                      max="5000"
+                      step="any"
+                      placeholder="For example, 200"
+                  /></label>
+                  <label
+                    >Curtain height <span>cm, including hems</span
+                    ><input
+                      id="panel-drop"
+                      type="number"
+                      min="0.1"
+                      max="2000"
+                      step="any"
+                      placeholder="For example, 250"
+                  /></label>
+                  <label
+                    >Gather <span>multiplier</span
+                    ><input
                       id="fullness"
                       type="number"
                       min="1"
-                      step="0.1"
-                      value="2" /></label
-                  ><label
-                    >Face fabric weight (g/m²)<input
+                      max="10"
+                      step="any"
+                      value="2"
+                  /></label>
+                  <label
+                    >Fabric weight <span>g/m² (GSM)</span
+                    ><input
                       id="face-gsm"
                       type="number"
-                      min="1"
-                      placeholder="Leave blank if unknown" /></label
-                  ><label><input id="has-lining" type="checkbox" /> Lined</label
-                  ><label
-                    ><input id="has-interlining" type="checkbox" />
-                    Interlined</label
-                  ><label
-                    >Lining weight (g/m²)<input
-                      id="lining-gsm"
-                      type="number"
-                      min="1"
-                      placeholder="If known" /></label
-                  ><label
-                    >Interlining weight (g/m²)<input
-                      id="interlining-gsm"
-                      type="number"
-                      min="1"
-                      placeholder="If known"
+                      min="0.1"
+                      max="5000"
+                      step="any"
+                      placeholder="For example, 300"
                   /></label>
                 </div>
-              </div>
-              <p id="weight-result" role="status">
-                Check the complete weight carried by one track.
-              </p>
-              <details>
-                <summary>How to weigh your curtains</summary>
-                <p>
-                  Weigh all the panels for this track, including their lining,
-                  interlining, headings and hooks. Use suitable scales if you
-                  can safely handle the curtains. Alternatively, note your own
-                  weight, weigh yourself holding the curtains, then subtract
-                  your own reading. Add the results for every panel. Ask for
-                  help if the curtains are too heavy or awkward to handle
-                  safely.
-                </p>
-                <p>
-                  The headline maximum is 35 kg for Shuttle Go or 25 kg for
-                  battery-powered Shuttle iOn on a straight track, subject to
-                  the supplied configuration. Movement in this demonstration is
-                  not load approval.
-                </p>
-              </details>
-            </fieldset>
-            <fieldset>
-              <legend>Ready to save</legend>
-              <div class="two-col">
-                <label
-                  >Track quantity<input
-                    id="quantity"
-                    type="number"
-                    min="1"
-                    max="50"
-                    step="1"
-                    value="1" /></label
-                ><label
-                  >Room <span>optional</span
-                  ><select id="order-room">
-                    <option value="">No room assigned</option>
-                  </select></label
+                <label class="lining-check"
+                  ><input id="has-lining" type="checkbox" /> Are the curtains
+                  lined?</label
                 >
-              </div>
-              <label class="check"
-                ><input id="power-confirm" type="checkbox" />
-                <span id="power-check-label"
-                  >I have checked the mains connection location for the
-                  motor.</span
-                ></label
-              ><label class="check"
-                ><input id="measurement-confirm" type="checkbox" /> I have
-                reviewed the exact finished track length and mounting
-                position.</label
-              ><label class="check" id="coverage-wrap" hidden
-                ><input id="coverage-confirm" type="checkbox" /> I have checked
-                the required track length separately from the curtain
-                coverage.</label
-              >
-            </fieldset>
-          </form>
-          <aside class="summary" aria-labelledby="summary-title">
-            <p class="eyebrow">YOUR SMART TRACK</p>
-            <h3 id="summary-title">Forest Shuttle Go</h3>
-            <p id="included-summary">
-              UK three-pin plug · EasyTouch six-channel remote
-            </p>
-            <dl id="summary-spec"></dl>
-            <div class="price" id="product-price" aria-live="polite">
-              Checking price…
-            </div>
-            <p class="fine">
-              Product price includes VAT.<br />All required track hardware
-              included.
-            </p>
-            <p class="delivery">
-              £12.95 delivery once per order containing a smart track, within
-              our approved delivery area.
-            </p>
-            <p id="dispatch">
-              Track dispatch time awaiting confirmation. All ordered products
-              dispatch together.
-            </p>
-            <p class="fine">Supply only. No fitting or electrical work.</p>
-            <div id="quote-issues" role="status"></div>
-            <button id="retry-quote" hidden>Retry price</button
-            ><button id="add-track" class="primary" disabled>
-              Add to Design My Home ↗
-            </button>
-            <p id="save-status" role="status"></p>
-            <a href="/pages/build-my-rooms" target="_top"
-              >Open Design My Home →</a
+                <div id="lining-weight-wrap" hidden>
+                  <button
+                    id="standard-lining"
+                    type="button"
+                    class="lining-preset"
+                    aria-pressed="true"
+                  >
+                    Use standard lining: 200 GSM</button
+                  ><label
+                    >Weight of lining <span>g/m² (GSM)</span
+                    ><input
+                      id="lining-gsm"
+                      type="number"
+                      min="0.1"
+                      max="5000"
+                      step="any"
+                      placeholder="Enter your own GSM"
+                  /></label>
+                  <p id="lining-preset-note" class="fine">
+                    Standard estimate, 200 g/m². Change this if your lining
+                    differs.
+                  </p>
+                </div>
+                <p class="fine">
+                  Use the combined width of all curtains on this track. Gather 2
+                  means twice that width in fabric. For flat fabric width, enter
+                  gather 1.
+                </p>
+                <p id="saved-weight-note" class="fine" hidden>
+                  A previously saved weight check is retained. Changing these
+                  measurements replaces it with a fabric estimate.
+                </p>
+                <p id="weight-result" role="status">
+                  Enter the four details to see your estimate.
+                </p>
+                <p class="fine">
+                  Includes lining when its GSM is entered. Interlining, hooks
+                  and fittings add weight. Check the complete curtain weight
+                  against your motor's limit.
+                </p>
+              </fieldset>
+              <fieldset data-step="3">
+                <legend>Ready to save</legend>
+                <div class="two-col">
+                  <label
+                    >Track quantity<input
+                      id="quantity"
+                      type="number"
+                      min="1"
+                      max="50"
+                      step="1"
+                      value="1" /></label
+                  ><label
+                    >Room <span>optional</span
+                    ><select id="order-room">
+                      <option value="">No room assigned</option>
+                    </select></label
+                  >
+                </div>
+                <label class="check"
+                  ><input id="power-confirm" type="checkbox" />
+                  <span id="power-check-label"
+                    >I have checked the mains connection location for the
+                    motor.</span
+                  ></label
+                ><label class="check"
+                  ><input id="measurement-confirm" type="checkbox" /> I have
+                  reviewed the exact finished track length and mounting
+                  position.</label
+                ><label class="check" id="coverage-wrap" hidden
+                  ><input id="coverage-confirm" type="checkbox" /> I have
+                  checked the required track length separately from the curtain
+                  coverage.</label
+                >
+              </fieldset>
+            </form>
+            <aside
+              class="summary"
+              id="track-summary"
+              aria-labelledby="summary-title"
+              data-step="3"
             >
-          </aside>
-        </div>
-      </section>
-      <p>
-        <a href="/pages/smart-track-fitting-guide" target="_top"
-          >Visual fitting and remote-control guide →</a
-        >
-      </p>
+              <p class="eyebrow">YOUR SMART TRACK</p>
+              <h3 id="summary-title">Forest Shuttle Go</h3>
+              <p id="included-summary">
+                UK three-pin plug · EasyTouch six-channel remote
+              </p>
+              <dl id="summary-spec"></dl>
+              <p id="review-weight" class="fine"></p>
+              <div class="price" id="product-price" aria-live="polite">
+                Checking price…
+              </div>
+              <p class="fine">
+                Product price includes VAT.<br />All required track hardware
+                included.
+              </p>
+              <p class="delivery">
+                £12.95 delivery once per order containing a smart track, within
+                our approved delivery area.
+              </p>
+              <p id="dispatch">
+                Track dispatch time awaiting confirmation. All ordered products
+                dispatch together.
+              </p>
+              <p class="fine">Supply only. No fitting or electrical work.</p>
+              <div id="quote-issues" role="status"></div>
+              <button id="add-track" class="primary" disabled>
+                Add track to my order ↗
+              </button>
+              <p id="save-status" role="status"></p>
+              <a id="make-curtains" class="make-curtains" href="/pages/fabric-library?view=browse-fabrics" target="_top">Make curtains <span aria-hidden="true">↗</span></a>
+              <p class="fine">Choose a fabric and create your curtains.</p>
+              <a href="/pages/build-my-rooms" target="_top"
+                >Open Design My Home →</a
+              >
+            </aside>
+          </div>
+          <p id="step-error" class="step-error" role="alert" hidden></p>
+          <div class="step-actions" hidden>
+            <button id="step-back" type="button">← Back</button
+            ><button id="step-next" type="button" class="primary">
+              Continue to curtains →
+            </button>
+          </div>
+          <p class="configuration-assurance">
+            Cut to your length. All track hardware included.<br />Supply only ·
+            no fitting service.
+          </p>
+        </section>
+      </div>
       <footer>
         <p>Thoughtfully made for your home.</p>
         <a href="/pages/how-to-use-curtainsuk" target="_top"

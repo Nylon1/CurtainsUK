@@ -36,3 +36,6 @@
 .myhome-fabric-pending{padding:12px;box-sizing:border-box;text-decoration:none}.myhome-fabric-pending strong,.myhome-fabric-pending small{display:block;font-size:12px;margin-bottom:5px}
 
 .myhome-room-actions [data-remove-room]{border-color:transparent;background:transparent;color:#6d6e61}.myhome-dialog form{display:flex;flex-wrap:wrap;gap:10px}.myhome-dialog form>label{flex-basis:100%}
+
+.myhome-checkout-status:not([hidden]){margin:8px 0 14px;padding:12px 14px;border-radius:10px;background:#f5f1e5;color:#203c37;font-size:13px;line-height:1.55}.myhome-checkout-status[role="alert"]{background:#fff0e8}.myhome-checkout-status a{display:inline-block;margin-top:7px;color:#203c37;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.myhome-summary [data-checkout]:disabled{background:#c8d0c5!important;color:#384c42!important;border-color:#b3bfb2;opacity:1}.myhome-summary .myhome-checkout-edit{width:auto;margin:10px 0 0;padding:8px 15px;min-height:38px;font-size:12px}

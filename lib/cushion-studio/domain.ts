@@ -78,6 +78,8 @@ export type FabricCuttingFacts = {
   id: string;
   fullWidthMm: number | null;
   usableWidthMm: number | null;
+  usableWidthSource?: "supplier" | "owner-single-width" | "owner-no-width-fallback";
+  lifecycleState?: "CURRENT" | "UNKNOWN" | "DISCONTINUED";
   pattern: {
     kind: "plain" | "straight" | "half-drop" | "unknown";
     horizontalRepeatMm: number | null;

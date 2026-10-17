@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { buildCutPlan, buildSetCutPlan } from "../cutting";
 import { quoteCushion, quoteCushionSet, cushionHash } from "../pricing";
-import { cushionOrderingTerms } from "../catalogue";
+import { calibrationForFabric, cushionOrderingTerms, cushionPhysicalWidths } from "../catalogue";
 import { squareDrapeFootprint } from "../runtime/geometry.mjs";
 import {
   CUSHION_MAKING_RATE_CARD,
@@ -326,6 +326,17 @@ test("fabric-level terms cannot override the owner-wide one metre increment", ()
   });
   assert.equal(verified.minimumOrderMetres, 1);
   assert.equal(verified.orderIncrementMetres, 1);
+});
+test("physical width uses two records, one recorded width, then the approved 137 cm fallback", () => {
+  assert.deepEqual(cushionPhysicalWidths(1400, 1360), {fullWidthMm:1400, usableWidthMm:1360, source:"supplier"});
+  assert.deepEqual(cushionPhysicalWidths(1370, null), {fullWidthMm:1370, usableWidthMm:1370, source:"owner-single-width"});
+  assert.deepEqual(cushionPhysicalWidths(null, 1320), {fullWidthMm:1320, usableWidthMm:1320, source:"owner-single-width"});
+  assert.deepEqual(cushionPhysicalWidths(null, null), {fullWidthMm:1370, usableWidthMm:1370, source:"owner-no-width-fallback"});
+  const calibrated = calibrationForFabric({full_width_mm:null, usable_width_mm:null}, {
+    originalImageUrl:"https://example.invalid/cloth.jpg", evidence:"Owner-approved source photograph",
+  });
+  assert.equal(calibrated?.physicalWidthMm, 1370);
+  assert.match(calibrated?.evidence ?? "", /1370 mm image-width fallback/);
 });
 test("missing cost, construction, piping, minimum or margin remain explicit blockers", () => {
   const p = quoteCushion(

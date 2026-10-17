@@ -379,6 +379,9 @@ h2 {
   background: var(--ink);
   color: white;
 }
+.scene-stage {
+  position: relative;
+}
 #scene {
   height: min(610px, 60vw);
   min-height: 430px;
@@ -393,11 +396,81 @@ h2 {
 .scene-loading {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  font:
-    22px Georgia,
-    serif;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  background: linear-gradient(145deg, #f9f7f1, #eee9df);
+  color: #263d34;
+  transition: opacity .25s ease;
+}
+.scene-loading[hidden] { display: none; }
+.scene-loading.is-ready { opacity: 0; pointer-events: none; }
+.scene-loading-art {
+  width: min(210px, 56%);
+  height: auto;
+  filter: drop-shadow(0 14px 17px #5c554127);
+}
+.scene-loading-fabric {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 220px;
+  font-size: 12px;
+}
+.scene-loading-fabric[hidden] { display: none; }
+.scene-loading-fabric img {
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 1px solid #c8bda9;
+}
+.scene-loading-cushion {
+  transform-origin: center;
+  animation: scene-cushion-breathe 2.8s ease-in-out infinite;
+}
+.scene-loading-title {
+  font: 24px Georgia, serif;
+}
+.scene-loading-message {
+  font-size: 13px;
+  letter-spacing: .02em;
+}
+.scene-loading-dots { display: flex; gap: 6px; margin-top: 3px; }
+.scene-loading-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #88745e;
+  animation: scene-loading-dot 1.5s ease-in-out infinite;
+}
+.scene-loading-dots i:nth-child(2) { animation-delay: .2s; }
+.scene-loading-dots i:nth-child(3) { animation-delay: .4s; }
+.scene-loading-dots[hidden], #scene-loading-continue[hidden] { display: none; }
+#scene-loading-continue {
+  margin-top: 8px;
+  border: 1px solid #8c7b66;
+  border-radius: 999px;
+  background: #fffdf8;
+  color: #263d34;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+#scene-loading-continue:focus-visible { outline: 3px solid #49705b; outline-offset: 3px; }
+@keyframes scene-cushion-breathe {
+  50% { transform: scale(1.025); }
+}
+@keyframes scene-loading-dot {
+  50% { opacity: .3; transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-loading { transition: none; }
+  .scene-loading-cushion, .scene-loading-dots i { animation: none; }
 }
 .scene-actions {
   position: absolute;

@@ -105,13 +105,25 @@
               ><button data-camera="close" aria-pressed="false">The details</button>
             </div>
           </div>
-          <div
-            id="scene"
-            tabindex="0"
-            role="img"
-            aria-label="Interactive cushion arrangement. Select a cushion, then use arrow keys to change its position."
-          >
-            <div class="scene-loading">Preparing your room…</div>
+          <div class="scene-stage">
+            <div
+              id="scene"
+              tabindex="0"
+              role="img"
+              aria-label="Interactive cushion arrangement. Select a cushion, then use arrow keys to change its position."
+            ></div>
+            <div class="scene-loading" id="scene-loading" role="status" aria-live="polite">
+              <svg class="scene-loading-art" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+                <ellipse cx="120" cy="208" rx="77" ry="11" fill="#ded8cb" opacity=".48" />
+                <path class="scene-loading-cushion" d="M53 53 Q72 58 120 53 Q169 58 187 53 Q183 84 188 120 Q183 159 187 187 Q155 182 120 188 Q83 182 53 187 Q58 153 52 120 Q58 84 53 53Z" fill="#eee9de" stroke="#94846f" stroke-width="2" />
+                <path d="M60 60 Q77 65 120 60 Q165 65 180 60 M60 180 Q90 174 120 180 Q151 174 180 180" fill="none" stroke="#b4a592" stroke-width="1" opacity=".8" />
+              </svg>
+              <span class="scene-loading-fabric" id="scene-loading-fabric" hidden><img alt="" aria-hidden="true"><span id="scene-loading-fabric-name"></span></span>
+              <span class="scene-loading-title">A little comfort is coming together</span>
+              <span class="scene-loading-message" id="scene-loading-message">Preparing your cushion view</span>
+              <span class="scene-loading-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <button id="scene-loading-continue" type="button" hidden>Continue designing</button>
+            </div>
           </div>
           <div class="scene-actions">
             <button id="undo" disabled aria-label="Undo last design change">

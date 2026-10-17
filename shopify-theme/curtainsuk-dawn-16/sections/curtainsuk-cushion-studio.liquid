@@ -42,6 +42,54 @@
     if (orderItem && /^[0-9a-f-]{36}$/i.test(orderItem)) source.searchParams.set('order_item', orderItem);
     if (params.get('new_order_product') === '1') source.searchParams.set('new_order_product', '1');
     frame.src = source.pathname + source.search;
+    // The app proxy frame is served on this storefront origin. Keep only its
+    // visual preview in view on mobile while the editor scrolls underneath.
+    // The service's product geometry and camera controls remain unchanged.
+    var mobilePreviewShift = 0;
+    var fitMobilePreview = function (top, availableHeight) {
+      var doc;
+      try { doc = frame.contentDocument; } catch (error) { return; }
+      if (!doc || !doc.body) return;
+      var stage = doc.querySelector('.scene-stage');
+      var actions = doc.querySelector('.scene-actions');
+      var workspace = doc.querySelector('.workspace');
+      if (!stage || !actions || !workspace) return;
+      var detailButton = doc.querySelector('[data-camera="close"]');
+      if (detailButton && detailButton.textContent.trim() === 'The details') detailButton.textContent = 'Closer details';
+      var mobile = window.matchMedia('(max-width: 749px)').matches && availableHeight >= 430;
+      if (!mobile) {
+        doc.body.classList.remove('cuk-mobile-sticky-preview');
+        doc.body.style.removeProperty('--cuk-mobile-preview-shift');
+        doc.body.style.removeProperty('--cuk-mobile-scene-height');
+        mobilePreviewShift = 0;
+        return;
+      }
+      if (!doc.getElementById('cuk-mobile-sticky-style')) {
+        var style = doc.createElement('style');
+        style.id = 'cuk-mobile-sticky-style';
+        style.textContent = '@media(max-width:760px){' +
+          'body.cuk-mobile-sticky-preview #scene{height:var(--cuk-mobile-scene-height)!important;min-height:0!important}' +
+          'body.cuk-mobile-sticky-preview .visual{z-index:4}' +
+          'body.cuk-mobile-sticky-preview .scene-top,' +
+          'body.cuk-mobile-sticky-preview .scene-stage,' +
+          'body.cuk-mobile-sticky-preview .scene-actions{transform:translate3d(0,var(--cuk-mobile-preview-shift),0)}' +
+          'body.cuk-mobile-sticky-preview .scene-top{z-index:6}' +
+          'body.cuk-mobile-sticky-preview .scene-stage,' +
+          'body.cuk-mobile-sticky-preview .scene-actions{z-index:5}' +
+          'body.cuk-mobile-sticky-preview .scene-stage{box-shadow:0 8px 24px rgba(31,36,31,.12)}' +
+          '}';
+        doc.head.appendChild(style);
+      }
+      doc.body.classList.add('cuk-mobile-sticky-preview');
+      doc.body.style.setProperty('--cuk-mobile-scene-height', Math.max(195, Math.min(265, Math.floor(availableHeight * .42))) + 'px');
+      var stageTop = stage.getBoundingClientRect().top - mobilePreviewShift;
+      var workspaceBottom = workspace.getBoundingClientRect().bottom;
+      var previewHeight = stage.offsetHeight + actions.offsetHeight;
+      var desired = top - frame.getBoundingClientRect().top - stageTop;
+      var limit = Math.max(0, workspaceBottom - stageTop - previewHeight - 8);
+      mobilePreviewShift = Math.min(limit, Math.max(0, desired));
+      doc.body.style.setProperty('--cuk-mobile-preview-shift', mobilePreviewShift + 'px');
+    };
     var sendViewport = function () {
       if (!frame.contentWindow) return;
       var header = document.querySelector('.section-cuk-header');
@@ -53,6 +101,7 @@
         offset: top - frame.getBoundingClientRect().top,
         availableHeight: Math.max(300, viewportHeight - top - 12)
       }, window.location.origin);
+      fitMobilePreview(top, Math.max(0, viewportHeight - top - 12));
     };
     var pending = false;
     var scheduleViewport = function () {

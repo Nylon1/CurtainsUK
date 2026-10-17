@@ -12,6 +12,7 @@ import {
 } from "../fabric-master/retail-repository";
 import { supplierDatabaseConfigured } from "../supabase/supplier-service";
 import { dailyStockPosition } from "../storefront/daily-stock-server";
+import { fabricIsPriceEligible } from "../fabric-master/projection";
 import { currentAvailableMetres } from "../storefront/daily-stock";
 import { prepareSampleOrder } from "../storefront/sample-order-server";
 import {
@@ -382,10 +383,9 @@ export async function currentCushionFacts(ids: string[]) {
     const records = await fabricMasterRecordsByIds(ids);
     await Promise.all(
       records.map(async (record) => {
-        if (record.lifecycle_state !== "CURRENT") {
-          // Browse may show an unconfirmed fabric for design exploration.
-          // Keep its identity and cutting facts so the quote can explain why
-          // it is unavailable, but never attach a cost or verified stock.
+        if (!fabricIsPriceEligible(record)) {
+          // Noncommercial or discontinued fabrics remain explorable, without
+          // attaching a supplier cost or stock observation to an order quote.
           facts.set(record.fabric_id, unconfirmedCuttingFacts(record, evidence[record.fabric_id]));
           return;
         }

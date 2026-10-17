@@ -599,8 +599,8 @@ export function buildSetCutPlan(
   }
   inputs.forEach((input, index) => {
     const spec = specs[index];
-    if (input.facts.lifecycleState && input.facts.lifecycleState !== "CURRENT")
-      issues.push(`${input.facts.id}: fabric current-range status is not confirmed for ordering.`);
+    if (input.facts.lifecycleState === "DISCONTINUED")
+      issues.push(`${input.facts.id}: fabric is discontinued and cannot be ordered.`);
     issues.push(...previewIssues(spec, input.facts));
     if (spec.manufacturingProfile === "flat-sewn-v1") {
       const construction = flatConstruction(spec, rules);

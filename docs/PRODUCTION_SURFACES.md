@@ -1,5 +1,9 @@
 # CurtainsUK production surfaces
 
+## Current Cushion Studio and My Home checkpoint, 17 October 2026
+
+The [Cushion Studio and My Home production sync record](CUSHION_MY_HOME_PRODUCTION_SYNC_20261017.md) is the current authority for their protected runtime commit, customer-serving deployment, MAIN theme asset, production flag contract, and bounded live mixed-order verification. It supersedes the unpublished checkpoint below for these two features. Later documentation-only commits may advance the protected branch without changing the deployed runtime; retain and compare the exact deployed SHA and tree separately.
+
 ## Unpublished Cushion Studio database checkpoint, 16 October 2026
 
 At the owner's direction, the existing Supabase main project `hqysjumypgeapgmqkcrx` received only the additive Cushion Studio persistence migration. The source SQL SHA-256 is `9F142A659C027494D6711708078C5B432DF01DAB963CBA530A182AD0DC9A11A2`; hosted migration history names it `20261016161822_cushion_studio_distinct_persistence_20261014`. Seven new private tables and their functions are present; the design and snapshot tables had zero rows at 16:18:33 UTC. Browser roles cannot read saved designs. The dashboard listed a 16 October 01:07:02 UTC physical backup. No Shopify proxy, MAIN theme, production gateway, public route, purchase gate or customer record changed. The owner held any new preview access grant. The existing development theme and protected Vercel project remain the intended review surfaces; no duplicate app, theme, Vercel project or database remains. The candidate is unpublished and PR #201 remains draft. See [Cushion Studio release readiness](CUSHION_STUDIO_MY_HOME_RELEASE_READINESS_20261016.md) for the remaining hosted checks.

@@ -18,6 +18,9 @@ test("a discoverable noncurrent fabric returns an unpriced quote without supplie
     pattern_match_type: null,
   } as Parameters<typeof unconfirmedCuttingFacts>[0];
   const facts = unconfirmedCuttingFacts(record);
+  assert.equal(facts.fullWidthMm, 1380);
+  assert.equal(facts.usableWidthMm, 1380);
+  assert.equal(facts.usableWidthSource, "owner-single-width");
   assert.equal(facts.supplierCostMinorPerMetre, null);
   assert.equal(facts.availableMetres, null);
   const quote = quoteCushion(
@@ -37,6 +40,7 @@ test("a discoverable noncurrent fabric returns an unpriced quote without supplie
   assert.equal(quote.ready, false);
   assert.equal(quote.purchaseReady, false);
   assert.equal(quote.totalMinor, null);
+  assert.ok(quote.issues.some((issue) => issue.includes("current-range status is not confirmed")));
   assert.ok(quote.issues.some((issue) => issue.includes("supplier net cost")));
 });
 

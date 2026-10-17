@@ -34,6 +34,7 @@ export type CutPiece = {
 export type FabricCutPlan = {
   fabricId: string;
   cuttingWidthMm: number | null;
+  cuttingWidthSource?: "supplier" | "owner-single-width" | "owner-no-width-fallback";
   pieces: CutPiece[];
   requiredMetres: number;
   leadingAlignmentAllowanceMm: number;
@@ -137,6 +138,7 @@ function pack(
   const plan: FabricCutPlan = {
     fabricId: facts.id,
     cuttingWidthMm: width,
+    cuttingWidthSource: facts.usableWidthSource,
     pieces: [],
     requiredMetres: 0,
     leadingAlignmentAllowanceMm: leading,
@@ -597,6 +599,8 @@ export function buildSetCutPlan(
   }
   inputs.forEach((input, index) => {
     const spec = specs[index];
+    if (input.facts.lifecycleState && input.facts.lifecycleState !== "CURRENT")
+      issues.push(`${input.facts.id}: fabric current-range status is not confirmed for ordering.`);
     issues.push(...previewIssues(spec, input.facts));
     if (spec.manufacturingProfile === "flat-sewn-v1") {
       const construction = flatConstruction(spec, rules);
@@ -755,7 +759,9 @@ export function buildSetCutPlan(
     instructions: [
       "Use the saved fabric ID, colourway, original image and placement coordinates. Check the fabric face and nap before cutting.",
       "Front and back must show the identical motif position, upright when viewed from each outward face. Cut two separate matching pieces; do not mirror or turn one piece upside down.",
-      "Supplier cloth width and photographed width retain separate provenance. Flat-sewn plans use verified usable cutting width within supplier full width; missing usable width is a planning fallback requiring confirmation. Diagram coordinates are millimetres from the usable cloth left edge and start of the allocated roll. Patterned plans reserve one vertical repeat to locate the photographed motif before cutting.",
+      "Supplier cloth width and photographed width retain separate provenance. Flat-sewn plans use the recorded usable cutting width; when only one width is recorded, the owner has approved using it for both full and usable width. When neither width is recorded, the owner-approved 1370 mm fallback applies to cutting and physical preview scale. Diagram coordinates are millimetres from the cutting-width left edge and start of the allocated roll. Patterned plans reserve one vertical repeat to locate the photographed motif before cutting.",
+      ...fabrics.filter(fabric => fabric.cuttingWidthSource === "owner-single-width").map(fabric => `${fabric.fabricId}: the one recorded supplier width is used as both full and usable cutting width under the owner-approved rule. Confirm the received cloth matches the recorded width before cutting.`),
+      ...fabrics.filter(fabric => fabric.cuttingWidthSource === "owner-no-width-fallback").map(fabric => `${fabric.fabricId}: neither physical width is recorded; cutting and preview use the owner-approved 1370 mm fallback. Confirm the received cloth width before cutting.`),
       "Transfer the visible placement to both panels and verify the motif against the saved reference before sewing. Diagram outlines include the stated seam allowance only where confirmed; net-only envelopes with unknown allowances must not be used for cutting.",
       ...(specs.some((s) => !s.manufacturingProfile && s.sizeId.startsWith("square-"))
         ? [

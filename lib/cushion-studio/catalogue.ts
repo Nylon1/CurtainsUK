@@ -13,6 +13,21 @@ export interface CushionFabricEvidence {
   supplierTermsEvidence?: string;
 }
 
+export const CUSHION_MISSING_WIDTH_FALLBACK_MM = 1370;
+
+export function cushionPhysicalWidths(fullWidthMm: number | null, usableWidthMm: number | null) {
+  const full = Number.isFinite(fullWidthMm) && fullWidthMm !== null && fullWidthMm > 0 ? fullWidthMm : null;
+  const usable = Number.isFinite(usableWidthMm) && usableWidthMm !== null && usableWidthMm > 0 ? usableWidthMm : null;
+  if (full !== null && usable !== null)
+    return {fullWidthMm: full, usableWidthMm: Math.min(full, usable), source: "supplier" as const};
+  if (full !== null || usable !== null) {
+    const width = full ?? usable!;
+    return {fullWidthMm: width, usableWidthMm: width, source: "owner-single-width" as const};
+  }
+  return {fullWidthMm: CUSHION_MISSING_WIDTH_FALLBACK_MM,
+    usableWidthMm: CUSHION_MISSING_WIDTH_FALLBACK_MM, source: "owner-no-width-fallback" as const};
+}
+
 export function cushionOrderingTerms(_evidence?: CushionFabricEvidence) {
   return {
     minimumOrderMetres: 1,
@@ -31,6 +46,7 @@ export interface CushionFabricCard {
   fabricProfileUrl?: string;
   fullWidthMm: number | null;
   usableWidthMm: number | null;
+  widthSource?: "supplier" | "owner-single-width" | "owner-no-width-fallback";
   calibration: FabricCuttingFacts["calibration"];
   previewReady: boolean;
   purchaseReady: false;
@@ -47,10 +63,11 @@ function safeImage(url: unknown): string | null {
 }
 
 export function calibrationForFabric(
-  record: Pick<FabricMasterRecord, "full_width_mm">,
+  record: Pick<FabricMasterRecord, "full_width_mm"> & {usable_width_mm?: number | null},
   evidence?: CushionFabricEvidence,
 ): FabricCuttingFacts["calibration"] {
-  const width = record.full_width_mm ?? evidence?.fullWidthMm;
+  const widths = cushionPhysicalWidths(record.full_width_mm ?? evidence?.fullWidthMm ?? null, record.usable_width_mm ?? null);
+  const width = widths.fullWidthMm;
   const imageUrl = safeImage(evidence?.originalImageUrl);
   if (
     !imageUrl ||
@@ -65,7 +82,9 @@ export function calibrationForFabric(
     physicalWidthMm: width,
     physicalHeightMm: 1000,
     ...(evidence?.sourceHash ? { sourceHash: evidence.sourceHash } : {}),
-    evidence: evidence.evidence,
+    evidence: widths.source === "owner-no-width-fallback"
+      ? `${evidence.evidence} Owner-approved 1370 mm image-width fallback because neither physical width is recorded.`
+      : evidence.evidence,
     orientation: "upright",
     tileable: false,
   };
@@ -78,6 +97,7 @@ export function projectCushionFabric(
 ): CushionFabricCard | null {
   if (record.lifecycle_state !== "CURRENT") return null;
   const calibration = calibrationForFabric(record, evidence);
+  const widths = cushionPhysicalWidths(record.full_width_mm ?? evidence?.fullWidthMm ?? null, record.usable_width_mm);
   return {
     id: record.fabric_id,
     brand: record.brand_name,
@@ -88,8 +108,9 @@ export function projectCushionFabric(
       calibration?.imageUrl ??
       record.imagery.map(safeImage).find(Boolean) ??
       null,
-    fullWidthMm: record.full_width_mm ?? evidence?.fullWidthMm ?? null,
-    usableWidthMm: record.usable_width_mm,
+    fullWidthMm: widths.fullWidthMm,
+    usableWidthMm: widths.usableWidthMm,
+    widthSource: widths.source,
     calibration,
     previewReady: calibration !== null,
     purchaseReady: false,
@@ -101,12 +122,15 @@ export function cuttingFactsFromMaster(
   record: FabricMasterRecord,
   evidence?: CushionFabricEvidence,
 ): FabricCuttingFacts {
+  const widths = cushionPhysicalWidths(record.full_width_mm ?? evidence?.fullWidthMm ?? null, record.usable_width_mm);
   return {
     supplierId: record.supplier_id,
     supplierSku: record.supplier_sku,
     id: record.fabric_id,
-    fullWidthMm: record.full_width_mm ?? evidence?.fullWidthMm ?? null,
-    usableWidthMm: record.usable_width_mm,
+    fullWidthMm: widths.fullWidthMm,
+    usableWidthMm: widths.usableWidthMm,
+    usableWidthSource: widths.source,
+    lifecycleState: record.lifecycle_state,
     pattern: {
       kind:
         record.vertical_repeat_mm === 0 && record.horizontal_repeat_mm === 0

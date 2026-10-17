@@ -17,6 +17,7 @@ import { prepareSampleOrder } from "../storefront/sample-order-server";
 import {
   calibrationForFabric,
   cushionOrderingTerms,
+  cushionPhysicalWidths,
   cuttingFactsFromMaster,
   unconfirmedCuttingFacts,
   type CushionFabricCard,
@@ -206,10 +207,10 @@ function approvedOriginal(
       image.imageType === "MAIN" &&
       /^https:\/\/cdn\.shopify\.com\//.test(image.url),
   );
-  if (!main || !record.fullWidthMm) return undefined;
+  if (!main) return undefined;
   return {
     originalImageUrl: main.url,
-    fullWidthMm: record.fullWidthMm,
+    ...(record.fullWidthMm ? {fullWidthMm: record.fullWidthMm} : {}),
     evidence:
       "Owner confirmed source fabric images cover one supplier Full Width by 1000 mm on 2026-10-14. Approved MAIN mapping from current shared catalogue; no seamless tiling assertion.",
   };
@@ -219,8 +220,9 @@ function publicCard(
   record: PublicFabric,
   evidence?: CushionFabricEvidence,
 ): CushionFabricCard {
+  const widths = cushionPhysicalWidths(record.fullWidthMm, record.usableWidthMm);
   const calibration = calibrationForFabric(
-    { full_width_mm: record.fullWidthMm },
+    { full_width_mm: record.fullWidthMm, usable_width_mm: record.usableWidthMm },
     approvedOriginal(record, evidence),
   );
   return {
@@ -238,8 +240,9 @@ function publicCard(
     )
       ? record.fabricProfileUrl
       : `https://www.curtainsuk.com/pages/fabric-library?fabric=${encodeURIComponent(record.id)}`,
-    fullWidthMm: record.fullWidthMm,
-    usableWidthMm: record.usableWidthMm,
+    fullWidthMm: widths.fullWidthMm,
+    usableWidthMm: widths.usableWidthMm,
+    widthSource: widths.source,
     calibration,
     previewReady: calibration !== null,
     purchaseReady: false,
@@ -252,10 +255,12 @@ function publicFacts(
   evidence?: CushionFabricEvidence,
 ): FabricCuttingFacts {
   evidence = approvedOriginal(record, evidence);
+  const widths = cushionPhysicalWidths(record.fullWidthMm, record.usableWidthMm);
   return {
     id: record.id,
-    fullWidthMm: record.fullWidthMm,
-    usableWidthMm: record.usableWidthMm,
+    fullWidthMm: widths.fullWidthMm,
+    usableWidthMm: widths.usableWidthMm,
+    usableWidthSource: widths.source,
     pattern: {
       kind:
         record.horizontalRepeatMm === 0 && record.verticalRepeatMm === 0
@@ -270,7 +275,7 @@ function publicFacts(
     },
     directional: evidence?.directional ?? null,
     calibration: calibrationForFabric(
-      { full_width_mm: record.fullWidthMm },
+      { full_width_mm: record.fullWidthMm, usable_width_mm: record.usableWidthMm },
       evidence,
     ),
     supplierCostMinorPerMetre: null,

@@ -6,7 +6,8 @@ import { readFile } from "node:fs/promises";
 import { PGlite } from "@electric-sql/pglite";
 import { quoteSmartTrack } from "../pricing";
 import { parseSmartTrackSpec, type SmartTrackSpec } from "../domain";
-import { trackPackage, type TrackPackage } from "../package";
+import { trackPackage, OWNER_CONFIRMED_TRACK_DISPATCH, type TrackPackage } from "../package";
+import { combinedMyHomeDispatch, customerMyHomeDispatch, OWNER_CONFIRMED_CUSHION_DISPATCH, OWNER_CONFIRMED_CURTAIN_DISPATCH } from "../../cushion-studio/dispatch";
 import { checkTrackWeight, materialWeightKg } from "../weight";
 import { smartTrackDelivery } from "../delivery";
 import { createSmartTrackSnapshot, buildSmartTrackOrder } from "../commerce";
@@ -138,6 +139,56 @@ test("invalid measurements, unsupported headings and manufacturing precision fai
     assert.ok(trackPackage(system).includedComponents.includes("Brackets"));
   }
 });
+test("confirmed whole-centimetre cutting, full-range loads and 4-5 week dispatch govern both packages", () => {
+  for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const) {
+    const p = trackPackage(system);
+    assert.equal(p.precisionCm, "1");
+    assert.equal(p.configurationLimitsConfirmed, true);
+    assert.deepEqual(p.dispatch, OWNER_CONFIRMED_TRACK_DISPATCH);
+    for (const lengthCm of ["100", "101", "200", "201", "300", "301", "400", "401", "500"])
+      for (const mounting of ["WALL", "CEILING"] as const)
+        for (const heading of ["PENCIL", "PINCH", "WAVE"] as const) {
+          const q = quoteSmartTrack(spec({ system, lengthCm, mounting, heading,
+            ...(heading === "WAVE" ? { waveSpacingMm: 80 } : {}),
+            weight: { mode: "MEASURED", kg: p.maximumLoadKg },
+          }));
+          assert.equal(q.weightAcceptance.accepted, true);
+          assert.equal(q.issues.length, 1);
+          assert.match(q.issues[0], /Final track, control and mounting specifications/);
+          assert.equal(q.dispatchEstimate?.unit, "calendar-weeks");
+          assert.equal(q.dispatchEstimate?.minimumCalendarWeeks, 4);
+          assert.equal(q.dispatchEstimate?.maximumCalendarWeeks, 5);
+          assert.equal(q.dispatchEstimate?.startsFrom, "order-confirmation");
+          assert.match(q.dispatchEstimate!.message, /smart track dispatch: 4-5 calendar weeks after order confirmation/);
+          assert.equal("approvalReference" in q.dispatchEstimate!, false);
+        }
+    for (const lengthCm of ["100.5", "199.999999", "200.1", "499.9"]) {
+      const q = quoteSmartTrack(spec({ system, lengthCm }));
+      assert.equal(q.spec.lengthCm, lengthCm);
+      assert.equal(q.purchaseReady, false);
+      assert.ok(q.issues.some((issue) => issue.includes("whole centimetres")));
+    }
+    const q = quoteSmartTrack(spec({ system, lengthCm: "100.0" }));
+    assert.equal(q.spec.lengthCm, "100.0");
+    assert.equal(q.issues.some((issue) => issue.includes("whole centimetres")), false);
+  }
+  for (const curtain of [false, true])
+    for (const cushion of [false, true]) {
+      const combined = customerMyHomeDispatch(combinedMyHomeDispatch([
+        { productType: "SMART_TRACK", estimate: trackPackage("FOREST_SHUTTLE_GO").dispatch },
+        { productType: "SMART_TRACK", estimate: trackPackage("FOREST_SHUTTLE_ION").dispatch },
+        ...(curtain ? [{ productType: "CURTAIN" as const, estimate: OWNER_CONFIRMED_CURTAIN_DISPATCH }] : []),
+        ...(cushion ? [{ productType: "CUSHION" as const, estimate: OWNER_CONFIRMED_CUSHION_DISPATCH }] : []),
+      ]))!;
+      assert.equal(combined.policy, "hold-together");
+      assert.equal(combined.unit, "calendar-weeks");
+      assert.equal(combined.minimum, 4);
+      assert.equal(combined.maximum, 5);
+      assert.equal(combined.startsFrom, "order-confirmation");
+      assert.ok(!JSON.stringify(combined).includes("approvalReference"));
+    }
+});
+
 test("customer weight confirmation accepts an optional estimate without claiming measured weight", () => {
   for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const) {
     const p = readyPackage(system), maximumKg = p.maximumLoadKg;

@@ -1,6 +1,17 @@
 import type { SmartTrackSystem } from "./domain";
 import { MINIMUM_TRACK_LENGTH_CM } from "./domain";
-import type { CushionDispatchEstimate } from "../cushion-studio/dispatch";
+import type { CushionCalendarWeekDispatchEstimate, CushionDispatchEstimate } from "../cushion-studio/dispatch";
+
+export const OWNER_CONFIRMED_TRACK_DISPATCH: Readonly<CushionCalendarWeekDispatchEstimate> = Object.freeze({
+  version: "owner-smart-track-dispatch-2026-10-18-v1",
+  status: "confirmed",
+  unit: "calendar-weeks",
+  minimumCalendarWeeks: 4,
+  maximumCalendarWeeks: 5,
+  startsFrom: "order-confirmation",
+  confirmedAt: "2026-10-18",
+  approvalReference: "owner-conversation-2026-10-18-smart-tracks-4-5-weeks",
+});
 /** Source-controlled supplier decisions. Null means unconfirmed, never a default offer. */
 export type TrackPackage = {
   version: string;
@@ -31,7 +42,7 @@ export type TrackPackage = {
   approvalReference: string | null;
 };
 export const TRACK_PACKAGE: Readonly<TrackPackage> = Object.freeze({
-  version: "forest-shuttle-go-package-2026-10-18-v2",
+  version: "forest-shuttle-go-package-2026-10-18-v3",
   motorModel: "Forest Shuttle Go",
   motorArticle: null,
   trackSystem: null,
@@ -47,21 +58,21 @@ export const TRACK_PACKAGE: Readonly<TrackPackage> = Object.freeze({
   includedComponents: ["Cut-to-length track", "Carriers", "Brackets", "Motor", "Control", "All fixtures and fittings"],
   mounting: ["WALL", "CEILING"] as const,
   minimumLengthCm: MINIMUM_TRACK_LENGTH_CM,
-  precisionCm: null,
+  precisionCm: "1",
   waveSpacingMm: [60, 80],
   finish: null,
   bracketSpecification: null,
   carrierSpecification: null,
   maximumLoadKg: 35,
-  configurationLimitsConfirmed: false,
-  dispatch: null,
+  configurationLimitsConfirmed: true,
+  dispatch: OWNER_CONFIRMED_TRACK_DISPATCH,
   multiTrackCarriageConfirmed: true,
   service: "SUPPLY_ONLY",
   approvalReference: null,
 });
 export const ION_PACKAGE: Readonly<TrackPackage> = Object.freeze({
   ...TRACK_PACKAGE,
-  version: "forest-shuttle-ion-package-2026-10-18-v2",
+  version: "forest-shuttle-ion-package-2026-10-18-v3",
   motorModel: "Forest Shuttle iOn",
   maximumLoadKg: 25,
 });

@@ -82,7 +82,9 @@ export function quoteSmartTrack(
     issues.push("Cutting precision is awaiting confirmation. Your entered length is preserved.");
   else if (!precisionSupported(spec.lengthCm, p.precisionCm))
     issues.push(
-      "This exact length is outside the confirmed cutting specification. Please edit it; it has not been rounded.",
+      p.precisionCm === "1"
+        ? "Enter your track length in whole centimetres. Your measurement has not been rounded."
+        : "This exact length is outside the confirmed cutting specification. Please edit it; it has not been rounded.",
     );
   if (
     !p.controller ||
@@ -168,6 +170,7 @@ export function quoteSmartTrack(
     issues,
     linked: options.linked ?? null,
   });
+  const dispatchEstimate = customerCushionDispatch(p.dispatch);
   return {
     spec,
     quoteId,
@@ -183,7 +186,10 @@ export function quoteSmartTrack(
     weightAcceptance,
     purchaseReady: issues.length === 0,
     package: customerTrackPackage(p),
-    dispatchEstimate: customerCushionDispatch(p.dispatch),
+    dispatchEstimate: dispatchEstimate ? {
+      ...dispatchEstimate,
+      message: dispatchEstimate.message.replace("cushion dispatch", "smart track dispatch"),
+    } : null,
     priceVersion: TRACK_PRICE_VERSION,
     currency: "GBP" as const,
     vatIncluded: true as const,

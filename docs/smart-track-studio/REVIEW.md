@@ -24,12 +24,15 @@ Candidate based on protected `release/production` at `5b6f4aeb98c5a5e57427ae4311
 | Decision | Authority / implementation |
 | --- | --- |
 | Straight, cut to ordered length, 100 to 500 cm for both motors | Owner; exact text retained in immutable fulfilment specification |
+| Whole-centimetre cutting | Owner, 18 October 2026; exact entry retained, fractional centimetres require a customer edit and are never silently rounded |
 | Go with UK three-pin plug; iOn with rechargeable battery, equal prices | Owner; distinct manufacturer systems, Go 35 kg and iOn 25 kg headline straight-track limits |
 | Carriers, brackets, motor, control and all fixtures and fittings included | Owner; no separate bracket, motor or remote charge |
 | Pencil/pinch base; wave 60 or 80 mm, 10% higher supplier product cost | Owner; explicit carrier choice for wave |
 | Product gross margin 30% | Owner; VAT-inclusive supplier cost divided by 0.70, unit rounded to pennies before quantity multiplication |
 | £12.95 VAT-inclusive customer delivery once per order containing a track | Owner; existing postcode/geographic policy still applies |
 | £10.95 supplier carriage covers one or multiple tracks in a shipment | Owner; one ledger entry per actual supplier shipment reference, not per track; no £15.64 uplift |
+| Configuration load limits | Owner, 18 October 2026; supplied combinations support 35 kg Go / 25 kg iOn throughout the offered 100–500 cm range |
+| Track dispatch lead time | Owner, 18 October 2026; 4–5 calendar weeks after order confirmation, recorded independently of curtain timing |
 | Customer weight declaration | Owner; checkbox confirms the total curtain load per track is within the selected motor limit, retained separately from measured/estimated evidence |
 | Supply only | Owner; no fitting or electrical installation included |
 | Dispatch all ordered products together | Owner; latest confirmed comparable ready interval, never a curtain fallback for unknown track timing |
@@ -44,7 +47,7 @@ Retail prices, inclusive of VAT and excluding order delivery:
 | Over 300–400 cm | £571.43 | £628.57 |
 | Over 400–500 cm | £614.29 | £675.71 |
 
-100.5 cm uses the second band while remaining 100.5 cm in the specification. Supplier costs and margin live only in the server pricing module. VAT allocation uses the existing commerce helper; VAT is not added again. No delivery-margin claim is made.
+For a retained decimal entry, 100.5 cm still selects the second price band and remains 100.5 cm in the specification, but whole-centimetre cutting now requires the customer to edit that length before proceeding. Price-band selection never rounds a manufacturing measurement. Supplier costs and margin live only in the server pricing module. VAT allocation uses the existing commerce helper; VAT is not added again. No delivery-margin claim is made.
 
 ## Manufacturer evidence
 
@@ -64,12 +67,15 @@ The purchased motor/rail/finish article must be recorded in `lib/smart-track/pac
 
 ## Remaining supplier decisions before purchasing
 
-1. Accepted cutting increment/precision for each package. The 100 cm minimum is confirmed for both motors. Until confirmed, decimal entries are preserved but cannot be released for manufacture.
-2. Supplied rail/system and finish, motor article/colour, actual wall/ceiling bracket schedule and carrier/master-carrier identity. Hardware inclusion is already confirmed; this is identification and safe installation evidence, not another charge.
-3. Confirmation that the supplied straight rail/carrier/mounting combinations support the applicable 35 kg Go / 25 kg iOn limit across the offered lengths, or documented lower configuration limits if any.
-4. Track dispatch interval, starting event and supplier commitment. Record a comparable confirmed dispatch object with approval reference; do not borrow curtain timing.
+1. Supplied rail/system and finish, motor article/colour, actual wall/ceiling bracket schedule and carrier/master-carrier identity. Hardware inclusion and full-range load support are already confirmed; this remaining item records the specific supplied parts for fulfilment and fitting.
 
-The package authority intentionally has no environment override for these facts. Fill the source-controlled package fields, version them, attach the evidence and review the resulting exact head before enabling purchases. No finish selector, guessed cutting increment, bracket spacing, remote discount or lead time is offered.
+On 18 October the owner reported CS for the 35 kg package and KS for the 25 kg package. These names remain unverified supplier labels: Forest's current [brochure index](https://www.forestgroup.com/uk/downloads/brochures) identifies both CS and KS as hand-drawn rails, while its [Shuttle FAQ](https://www.forestgroup.co.uk/uk/support/questions-and-help/faq-shuttle) lists motorised systems including FMS and FMS Plus. The supplied Shuttle brochure also says FMS accepts KS brackets. Ask the supplier to distinguish the motorised rail model from its bracket family and confirm the supplied finish. Do not write CS or KS into the purchased motorised rail identity until this mismatch is resolved. The owner-confirmed load limits remain recorded separately; they do not establish the rail identity.
+
+The owner subsequently directed the customer description to say that the track, fixtures and fittings are supplied, and referred back to the supplied PDF. The studio now uses “Track, fixtures and fittings included.” Pages 8–10 were checked again: they show the FMS motorised system, compatibility with all Shuttle motors, KS bracket compatibility and the mechanism diagram already used in the motor guide. These manufacturer examples support the guide but do not identify the supplier's chosen rail variant or finish. Customer copy does not claim CS/KS models; the internal package fields remain unset until evidence resolves them. The generic wording change does not enable purchases or approve production publication.
+
+Whole-centimetre cutting, 100–500 cm length, 35/25 kg loads across the offered combinations and 4–5 calendar weeks from order confirmation are now confirmed. Do not reopen these decisions.
+
+The package authority intentionally has no environment override for these facts. Fill the source-controlled package fields, version them, attach the evidence and review the resulting exact head before enabling purchases. No unconfirmed finish selector, guessed bracket spacing or remote discount is offered. The dispatch commitment is versioned in source, included in snapshots and combined with other products using the existing latest-ready window.
 
 ## Weight and fabric evidence
 
@@ -100,7 +106,7 @@ The Smart Track demonstration no longer loads Fabric Master or patterned artwork
 
 ## Verification
 
-The initial candidate passed 50 focused and adjacent regression tests covering all five exact/decimal price bands, both motors, headings/wave spacing, VAT, quantity, manufacturing precision, weight evidence, linked changes, every mixed product combination, paid identity/reconciliation, revisions, retries, persistence, staff-release hold, carriage once and shared control state. After the visual/helper changes, the 14 smart-track tests pass again, including added standard/custom/missing lining calculations and rejection of a forged preset value. Legacy cloth/UV tests cover the retained Three.js foundation, not the new photographic composition.
+The initial candidate passed 50 focused and adjacent regression tests covering all five exact/decimal price bands, both motors, headings/wave spacing, VAT, quantity, manufacturing precision, weight evidence, linked changes, every mixed product combination, paid identity/reconciliation, revisions, retries, persistence, staff-release hold, carriage once and shared control state. After the visual/helper changes, the 15 smart-track tests pass again, including added standard/custom/missing lining calculations and rejection of a forged preset value. Legacy cloth/UV tests cover the retained Three.js foundation, not the new photographic composition.
 
 The initial candidate's protected cumulative gate passed all 11 capability groups on both candidate and protected baseline (133 assertions each). The changed smart-track iframe section passes Shopify validation. The Next production build also passes after the new visual assets and lining preset, with local placeholder public Supabase environment values; no production credentials are required for this build check. A build without those existing required values fails on unrelated prerendered admin pages.
 
@@ -112,7 +118,9 @@ The latest browser check advances through Track → Curtain details → Review w
 
 The 18 October check additionally covers the confirmed 100 cm minimum, the 35/25 kg declaration reset when changing motors, declaration save/reopen, and the interactive motor guide on desktop and 390 × 844 mobile. Model switching, keyboard-operated diagram controls, technical disclosure and charging advice work without horizontal overflow. All three new/updated motor-guide theme files pass Shopify validation. The production build succeeds and the new guide assets are traced.
 
-Review screenshots: [motor diagram](screenshots/motors-diagram.png), [mobile motor guide](screenshots/motors-mobile.png), [desktop studio](screenshots/studio-desktop.jpg), [mobile studio](screenshots/studio-mobile.jpg), [lining calculator](screenshots/studio-lining.jpg), [mobile weight result](screenshots/studio-weight-mobile.jpg), [desktop fitting guide](screenshots/fitting-desktop.jpg), [mobile fitting guide](screenshots/fitting-mobile.jpg).
+The subsequent supplier confirmation check verifies whole-centimetre validation on both motors without changing decimal price bands, full-range load support for each heading/mounting combination, and the independent 4–5 week track dispatch window. Track-only and every curtain/cushion combination retain the latest-ready dispatch rule. Browser review rejects 100.5 cm without rounding, accepts 101 cm and displays the confirmed dispatch window.
+
+Review screenshots: [dispatch and included package](screenshots/studio-dispatch-review.png), [motor diagram](screenshots/motors-diagram.png), [mobile motor guide](screenshots/motors-mobile.png), [desktop studio](screenshots/studio-desktop.jpg), [mobile studio](screenshots/studio-mobile.jpg), [lining calculator](screenshots/studio-lining.jpg), [mobile weight result](screenshots/studio-weight-mobile.jpg), [desktop fitting guide](screenshots/fitting-desktop.jpg), [mobile fitting guide](screenshots/fitting-mobile.jpg).
 
 Local commands:
 

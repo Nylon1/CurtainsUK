@@ -35,4 +35,4 @@ The combined artwork is approximately 53 KB. Fixed image dimensions reserve spac
 - Go and iOn voltage descriptions differ between the brochure table and parts list. Raw electrical voltage claims are omitted rather than reproducing the inconsistency. Use the exact motor label and relevant installation manual.
 - Manufacturer colour choices, curved configurations, track lengths over 5 m, warranty terms and accessory lists do not establish the CurtainsUK supplier package. The owner-approved range remains straight, 100–500 cm, supply only, equal motor prices and all fixtures/fittings included.
 
-Published motor dimensions are not installation clearances. The exact supplied kit, cutting precision, configuration load limits and dispatch commitment remain separate purchase-release decisions in `REVIEW.md`.
+Published motor dimensions are not installation clearances. Whole-centimetre cutting, full-range configuration load limits and 4–5 calendar weeks to dispatch are now owner-confirmed. The exact supplied kit remains a separate purchase-release decision in `REVIEW.md`.

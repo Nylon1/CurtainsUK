@@ -76,6 +76,7 @@
 .cuknav__search-field input { min-width: 0; width: 100%; min-height: 52px; border: 0; border-radius: 0; background: transparent; padding: 12px 0; font-size: 17px; }
 .cuknav__no-js { padding: 0 24px 24px; }
 @media (min-width: 1051px) { .cuknav__no-js { display: none; } }
+.cuknav__desktop a[href="/pages/smart-track-studio"] { max-width: 120px; white-space: normal; text-align: center; }
 @media (min-width: 1051px) and (max-width: 1250px) {
   .cuknav .cuknav__desktop > .cuknav__list:has(a[href="/pages/smart-track-studio"]) { gap: 4px; padding-inline: 12px; }
   .cuknav__desktop .cuknav__list:has(a[href="/pages/smart-track-studio"]) .cuknav__item > a,

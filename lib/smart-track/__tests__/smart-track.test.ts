@@ -130,7 +130,12 @@ test("invalid measurements, unsupported headings and manufacturing precision fai
     }).purchaseReady,
     true,
   );
-  assert.equal(quoteSmartTrack(spec()).purchaseReady, false);
+  assert.equal(quoteSmartTrack(spec()).purchaseReady, true);
+  for (const field of ["motorArticle", "trackSystem", "finish", "bracketSpecification", "carrierSpecification", "controller", "approvalReference"] as const) {
+    const incomplete = quoteSmartTrack(spec(), { package: { ...trackPackage("FOREST_SHUTTLE_GO"), [field]: null } });
+    assert.equal(incomplete.purchaseReady, false);
+    assert.ok(incomplete.issues.some((issue) => issue.includes("Final track, control and mounting specifications")));
+  }
   for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const) {
     assert.equal(trackPackage(system).minimumLengthCm, 100);
     assert.throws(() => quoteSmartTrack(spec({ system, lengthCm: "99.9" })), /TRACK_LENGTH_INVALID/);
@@ -144,6 +149,11 @@ test("confirmed whole-centimetre cutting, full-range loads and 4-5 week dispatch
     const p = trackPackage(system);
     assert.equal(p.precisionCm, "1");
     assert.equal(p.configurationLimitsConfirmed, true);
+    assert.equal(p.trackSystem, "Forest Motorised Track System (FMS), standard single rail");
+    assert.equal(p.finish, "White");
+    assert.equal(p.motorArticle, system === "FOREST_SHUTTLE_ION" ? "5234000000" : "5236001000-UK");
+    assert.equal(p.includedComponents.includes("UK three-pin power cable"), system === "FOREST_SHUTTLE_GO");
+    assert.equal(p.includedComponents.includes("Forest iOn UK charger (5234000003)"), system === "FOREST_SHUTTLE_ION");
     assert.deepEqual(p.dispatch, OWNER_CONFIRMED_TRACK_DISPATCH);
     for (const lengthCm of ["100", "101", "200", "201", "300", "301", "400", "401", "500"])
       for (const mounting of ["WALL", "CEILING"] as const)
@@ -153,8 +163,8 @@ test("confirmed whole-centimetre cutting, full-range loads and 4-5 week dispatch
             weight: { mode: "MEASURED", kg: p.maximumLoadKg },
           }));
           assert.equal(q.weightAcceptance.accepted, true);
-          assert.equal(q.issues.length, 1);
-          assert.match(q.issues[0], /Final track, control and mounting specifications/);
+          assert.deepEqual(q.issues, []);
+          assert.equal(q.purchaseReady, true);
           assert.equal(q.dispatchEstimate?.unit, "calendar-weeks");
           assert.equal(q.dispatchEstimate?.minimumCalendarWeeks, 4);
           assert.equal(q.dispatchEstimate?.maximumCalendarWeeks, 5);
@@ -191,7 +201,7 @@ test("confirmed whole-centimetre cutting, full-range loads and 4-5 week dispatch
 
 test("customer weight confirmation accepts an optional estimate without claiming measured weight", () => {
   for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const) {
-    const p = readyPackage(system), maximumKg = p.maximumLoadKg;
+    const p = trackPackage(system), maximumKg = p.maximumLoadKg;
     const confirmation = { version: 1 as const, system, maximumKg };
     const s = spec({ system, weight: { mode: "UNKNOWN" }, weightConfirmation: confirmation });
     const q = quoteSmartTrack(s, { package: p });
@@ -398,7 +408,7 @@ test("track-only and every mixed combination reconcile once and persist distinct
         stored = new Map<string, TrackCheckoutGroup>();
       let executed: TrackCheckoutGroup["contract"] | undefined;
       f.services.tracks = {
-        package: readyPackage,
+        package: trackPackage,
         purchasesEnabled: true,
         existing: async (key) => stored.get(key) ?? null,
         persist: async (key, g) => {
@@ -440,6 +450,11 @@ test("track-only and every mixed combination reconcile once and persist distinct
           ? { ...input.cushions!, expectedQuoteId: review.quoteId! }
           : undefined,
       };
+      const closedServices = { ...f.services, tracks: { ...f.services.tracks!, purchasesEnabled: false } };
+      const closedReview = await reviewMyHome(input, closedServices);
+      assert.equal(closedReview.purchaseReady, true);
+      assert.equal(closedReview.purchaseEnabled, false);
+      await assert.rejects(checkoutMyHome({ ...checkout, reviewId: closedReview.reviewId }, closedServices), /MY_HOME_PURCHASE_DISABLED/);
       await checkoutMyHome(checkout, f.services);
       assert.ok(executed);
       assert.equal(executed.expected.orderGrossAmountMinor, review.totalMinor);
@@ -452,6 +467,17 @@ test("track-only and every mixed combination reconcile once and persist distinct
       await checkoutMyHome(checkout, f.services);
       assert.equal(stored.size, 1);
       const group = stored.get(checkout.idempotencyKey)!;
+      for (const snapshot of group.snapshots) {
+        assert.deepEqual(snapshot.package, trackPackage(snapshot.spec.system));
+        assert.equal(snapshot.package.finish, "White");
+        assert.ok(Object.isFrozen(snapshot.package));
+        const commitment = snapshot.dispatchCommitment as NonNullable<ReturnType<typeof combinedMyHomeDispatch>>;
+        assert.equal(commitment.policy, "hold-together");
+        assert.equal(commitment.minimum, 4);
+        assert.equal(commitment.maximum, 5);
+        assert.deepEqual(commitment.components.filter((component) => component.productType === "SMART_TRACK").map((component) => component.estimate), [OWNER_CONFIRMED_TRACK_DISPATCH, OWNER_CONFIRMED_TRACK_DISPATCH]);
+        assert.deepEqual(customerMyHomeDispatch(commitment), review.dispatchEstimate);
+      }
       assert.equal(group.snapshots[0].weight.status, "UNKNOWN");
       assert.equal(group.snapshots[0].weightAcceptance.basis, "CUSTOMER_CONFIRMATION");
       assert.equal(group.snapshots[0].spec.weightConfirmation?.maximumKg, 35);

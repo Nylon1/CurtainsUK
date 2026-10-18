@@ -44,7 +44,7 @@ const server=createServer(async(req,res)=>{try{
  let response:Response;
  const json=(v:unknown)=>Response.json(v,{headers:{'Cache-Control':'no-store'}});
  if(url.pathname.startsWith('/smart-track-preview/api/')){
- const operation=url.pathname.split('/').pop();if(operation==='quote')response=json({quote:quoteSmartTrack(body.spec,{linked:body.spec.linkedCurtain?await linkedCurtainEvidence(body.spec.linkedCurtain.configurationId,body.curtains,fixture.services.mixed.house):undefined})});
+ const operation=url.pathname.split('/').pop();if(operation==='quote')response=json({quote:quoteSmartTrack(body.spec,{linked:body.spec.linkedCurtain?await linkedCurtainEvidence(body.spec.linkedCurtain.configurationId,body.curtains,fixture.services.mixed.house):undefined}),purchaseEnabled:false});
  else if(operation==='linked')response=json({link:await linkedCurtainEvidence(body.configurationId,body.curtains,fixture.services.mixed.house)});else response=json({ok:true});
  }
  else if(url.pathname==='/smart-track-embedded-preview'){

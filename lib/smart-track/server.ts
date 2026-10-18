@@ -99,7 +99,7 @@ export async function handleSmartTrack(request: Request, segments: string[]) {
           )
         : undefined;
       return Response.json(
-        { quote: quoteSmartTrack(spec, { linked }), requestId },
+        { quote: quoteSmartTrack(spec, { linked }), purchaseEnabled: smartTrackPurchasesEnabled(), requestId },
         { headers },
       );
     }

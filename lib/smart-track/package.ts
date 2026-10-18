@@ -42,10 +42,10 @@ export type TrackPackage = {
   approvalReference: string | null;
 };
 export const TRACK_PACKAGE: Readonly<TrackPackage> = Object.freeze({
-  version: "forest-shuttle-go-package-2026-10-18-v3",
+  version: "forest-shuttle-go-package-2026-10-18-v4",
   motorModel: "Forest Shuttle Go",
-  motorArticle: null,
-  trackSystem: null,
+  motorArticle: "5236001000-UK",
+  trackSystem: "Forest Motorised Track System (FMS), standard single rail",
   controller: {
     model: "Forest EasyTouch 6-channel, matt white",
     article: "5201081006",
@@ -55,25 +55,29 @@ export const TRACK_PACKAGE: Readonly<TrackPackage> = Object.freeze({
       "Owner photo and Forest EasyTouch manual 041024, confirmed 2026-10-17",
   },
   allHardwareIncluded: true,
-  includedComponents: ["Cut-to-length track", "Carriers", "Brackets", "Motor", "Control", "All fixtures and fittings"],
+  includedComponents: ["Cut-to-length track", "Carriers", "Brackets", "Motor", "Control", "UK three-pin power cable", "All fixtures and fittings"],
   mounting: ["WALL", "CEILING"] as const,
   minimumLengthCm: MINIMUM_TRACK_LENGTH_CM,
   precisionCm: "1",
   waveSpacingMm: [60, 80],
-  finish: null,
-  bracketSpecification: null,
-  carrierSpecification: null,
+  finish: "White",
+  // Owner selected the brochure's standard FMS package and white finish.
+  // The mounting/heading/opening in the ordered spec determine the supplied fittings.
+  bracketSpecification: "Forest FMS-compatible KS ceiling brackets or wall brackets for the selected mounting; fit to the supplied FMS mounting instructions and suitable substrate",
+  carrierSpecification: "FMS offset carriers for pencil/pinch; FMS-compatible FES wave carriers at the ordered 60 or 80 mm spacing; matching master carriers for the ordered centre or one-way opening",
   maximumLoadKg: 35,
   configurationLimitsConfirmed: true,
   dispatch: OWNER_CONFIRMED_TRACK_DISPATCH,
   multiTrackCarriageConfirmed: true,
   service: "SUPPLY_ONLY",
-  approvalReference: null,
+  approvalReference: "owner-conversation-2026-10-18-brochure-standard-fms-white; Forest Shuttle Series 180626 pages 8-13",
 });
 export const ION_PACKAGE: Readonly<TrackPackage> = Object.freeze({
   ...TRACK_PACKAGE,
-  version: "forest-shuttle-ion-package-2026-10-18-v3",
+  version: "forest-shuttle-ion-package-2026-10-18-v4",
   motorModel: "Forest Shuttle iOn",
+  motorArticle: "5234000000",
+  includedComponents: ["Cut-to-length track", "Carriers", "Brackets", "Motor", "Control", "Rechargeable battery pack", "Forest iOn UK charger (5234000003)", "All fixtures and fittings"],
   maximumLoadKg: 25,
 });
 export function trackPackage(system: SmartTrackSystem): Readonly<TrackPackage> {

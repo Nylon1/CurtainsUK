@@ -1,4 +1,8 @@
 /** Unpublished offline rehearsal. Production UI and pricing engines, synthetic authorities. */
+import {smartTrackAsset} from '../lib/smart-track/assets';
+import {quoteSmartTrack} from '../lib/smart-track/pricing';
+import {trackPackage} from '../lib/smart-track/package';
+import {linkedCurtainEvidence} from '../lib/smart-track/linked';
 import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
@@ -14,7 +18,8 @@ import {quoteCushionSet} from '../lib/cushion-studio/pricing';
 import {customerCushionQuote} from '../lib/cushion-studio/commerce';
 async function main(){
 if(process.env.VERCEL || process.env.NODE_ENV==='production')throw Error('LOCAL_ONLY');
-const port=4375,root=path.join(process.cwd(),'shopify-theme/curtainsuk-dawn-16'), fixture=await homeFixture();
+const port=Number(process.env.LOCAL_PREVIEW_PORT||4375),root=path.join(process.cwd(),'shopify-theme/curtainsuk-dawn-16'), fixture=await homeFixture();
+fixture.services.tracks={package:trackPackage,purchasesEnabled:false,existing:async()=>null,persist:async()=>{throw Error('LOCAL_ONLY');},execute:async()=>{throw Error('LOCAL_ONLY');}};
 fixture.services.releases={curtains:false,cushions:false,mixed:false};
 const originalRules=await fixture.services.mixed.cushion.rules();
 fixture.services.mixed.cushion.rules=async()=>({
@@ -38,7 +43,21 @@ const server=createServer(async(req,res)=>{try{
  if(req.method==='POST'){let bytes=0;const chunks=[];for await(const c of req){bytes+=c.length;if(bytes>131072)throw Error('BODY_TOO_LARGE');chunks.push(c);}body=JSON.parse(Buffer.concat(chunks).toString());}
  let response:Response;
  const json=(v:unknown)=>Response.json(v,{headers:{'Cache-Control':'no-store'}});
- if(url.pathname.startsWith('/assets/')){const file=url.pathname.slice(8);if(!/^[\w.-]+$/.test(file))throw Error('ASSET');response=new Response(await readFile(path.join(root,'assets',file)),{headers:{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'image/png'}});}
+ if(url.pathname.startsWith('/smart-track-preview/api/')){
+ const operation=url.pathname.split('/').pop();if(operation==='quote')response=json({quote:quoteSmartTrack(body.spec,{linked:body.spec.linkedCurtain?await linkedCurtainEvidence(body.spec.linkedCurtain.configurationId,body.curtains,fixture.services.mixed.house):undefined}),purchaseEnabled:false});
+ else if(operation==='linked')response=json({link:await linkedCurtainEvidence(body.configurationId,body.curtains,fixture.services.mixed.house)});else response=json({ok:true});
+ }
+ else if(url.pathname==='/smart-track-embedded-preview'){
+ const section=await readFile(path.join(root,'sections/curtainsuk-smart-track.liquid'),'utf8');
+ const script=section.match(/{% javascript %}([\s\S]*?){% endjavascript %}/)?.[1]||'';
+ response=new Response(html('<div class="section-cuk-header" style="position:sticky;top:0;z-index:20;background:#f5f2e9;padding:16px">CurtainsUK · embedded preview</div><iframe title="Smart Track Studio" data-cuk-track-frame data-source="/smart-track-preview/" style="display:block;width:100%;height:1600px;border:0"></iframe><script>'+script+'</script>'),{headers:{'Content-Type':'text/html'}});
+ }
+ else if(url.pathname.startsWith('/smart-track-preview/')||['/pages/smart-track-studio','/pages/smart-track-fitting-guide','/pages/smart-track-motors'].includes(url.pathname)){
+ const asset=url.pathname==='/pages/smart-track-studio'?'index.html':url.pathname==='/pages/smart-track-fitting-guide'?'fitting.html':url.pathname==='/pages/smart-track-motors'?'motors.html':url.pathname.slice('/smart-track-preview/'.length);
+ response=await smartTrackAsset(asset,'/smart-track-preview/');
+ }
+ else if(url.pathname.startsWith('/room-visualiser/')){if(!/^\/room-visualiser\/[A-Za-z0-9_./-]+$/.test(url.pathname)||url.pathname.includes('..'))throw Error('ASSET');response=new Response(await readFile(path.join(process.cwd(),'public',url.pathname)),{headers:{'Content-Type':url.pathname.endsWith('.mjs')||url.pathname.endsWith('.js')?'text/javascript':url.pathname.endsWith('.webp')?'image/webp':'application/octet-stream'}});}
+ else if(url.pathname.startsWith('/assets/')){const file=url.pathname.slice(8);if(!/^[\w.-]+$/.test(file))throw Error('ASSET');response=new Response(await readFile(path.join(root,'assets',file)),{headers:{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'image/png'}});}
  else if(url.pathname==='/api/my-home-review')response=json(await reviewMyHome(body,fixture.services));
  else if(url.pathname==='/api/my-home-checkout')response=json(await checkoutMyHome(body,fixture.services));
  else if(url.pathname==='/api/catalog' && url.searchParams.get('view')==='retail')response=json(url.searchParams.has('fabric')?{fabric:reviewFabric}:{fabrics:[reviewFabric],total:1,page:1,pages:1,facets:{brands:[],collections:[],colour:[],pattern:[],style:[],character:[]}});
@@ -59,7 +78,7 @@ const server=createServer(async(req,res)=>{try{
  section=section.replace(/\{% unless settings\.curtainsuk_purchase_controls_enabled %\}[\s\S]*?\{% endunless %\}/g,'').replace(/\{\{\s*section.id\s*\}\}/g,'local').replace(/\{\{[\s\S]*?\}\}/g,'').replace(/\{%[\s\S]*?%\}/g,'').replace('data-rooms-enabled=""','data-rooms-enabled="true"').replace('data-engine-base=""','data-engine-base="/api"').replace('data-purchase-controls-enabled=""','data-purchase-controls-enabled="true"').replace('data-production-checkout=""','data-production-checkout="false"');response=new Response(html(section,['curtainsuk-storefront.js']),{headers:{'Content-Type':'text/html'}});
  }
  else if(url.pathname==='/my-home-style-review')response=new Response(html(`<main style="max-width:1300px;margin:auto;padding:25px"><h1>My Home cushion style studies</h1><p>Neutral images only. The selected fabric stays in a separate card. Existing geometry and size specifications are unchanged.</p><div id="studies" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px"></div><p id="study-status" role="status">Rendering five shapes</p></main><script type="module">import {createMyHomeStudies} from '/cushion-studio-preview/my-home-thumbnails.mjs';import {SHAPED_CONSTRUCTION_VERSION} from '/cushion-studio-preview/geometry.mjs';const renderer=createMyHomeStudies({threeUrl:'/cushion-studio-preview/three.module.js'});let count=0;for(const sizeId of ['square-50','rectangle-28-48','round-40','bed-square-65','bolster-19-44']){const spec={version:1,id:sizeId,sizeId,fabricId:'selected-fabric',filling:'cover',edge:'unpiped',placementMm:{x:100,y:100},quantity:1,...(!sizeId.startsWith('square')?{constructionProfile:SHAPED_CONSTRUCTION_VERSION}:{})};const before=JSON.stringify(spec),result=await renderer.render(spec);const figure=document.createElement('figure');figure.style.margin='0';const img=new Image();img.style.width='100%';img.alt=result.label;img.src=result.url||'';const caption=document.createElement('figcaption');caption.textContent=sizeId+' · '+(result.url&&before===JSON.stringify(spec)?'Rendered, specification unchanged':'FAILED');figure.append(img,caption);document.querySelector('#studies').append(figure);if(result.url&&before===JSON.stringify(spec))count++;}document.querySelector('#study-status').textContent=count+'/5 shapes rendered; original specifications unchanged';renderer.dispose();</script>`),{headers:{'Content-Type':'text/html'}});
- else if(url.pathname==='/'||url.pathname==='/pages/build-my-rooms')response=new Response(html('<main class="cukrooms" data-editorial-hero="/assets/cuk-rooms-editorial-hero-v1.png" data-room-bedroom="/assets/cuk-rooms-bedroom-v1.png" data-room-dining="/assets/cuk-rooms-dining-v1.png" data-room-kitchen="/assets/cuk-rooms-kitchen-v1.png" data-room-office="/assets/cuk-rooms-office-v1.png" data-room-child="/assets/cuk-rooms-child-v1.png" data-heading-wave="/assets/cuk-anatomy-wave.png" data-heading-double-pinch="/assets/cuk-anatomy-double-pinch.png" data-heading-pencil-pleat="/assets/cuk-anatomy-pencil-pleat.png" data-heading-eyelet="/assets/cuk-anatomy-eyelet.png" data-cuk-my-home data-cushion-runtime="/cushion-studio-preview/" data-my-home-api="/api" data-cushion-url="/pages/cushion-studio"></main>',['curtainsuk-my-home.js']),{headers:{'Content-Type':'text/html'}});
+ else if(url.pathname==='/'||url.pathname==='/pages/build-my-rooms')response=new Response(html('<main class="cukrooms" data-editorial-hero="/assets/cuk-rooms-editorial-hero-v1.png" data-room-bedroom="/assets/cuk-rooms-bedroom-v1.png" data-room-dining="/assets/cuk-rooms-dining-v1.png" data-room-kitchen="/assets/cuk-rooms-kitchen-v1.png" data-room-office="/assets/cuk-rooms-office-v1.png" data-room-child="/assets/cuk-rooms-child-v1.png" data-heading-wave="/assets/cuk-anatomy-wave.png" data-heading-double-pinch="/assets/cuk-anatomy-double-pinch.png" data-heading-pencil-pleat="/assets/cuk-anatomy-pencil-pleat.png" data-heading-eyelet="/assets/cuk-anatomy-eyelet.png" data-cuk-my-home data-smart-track-enabled="true" data-cushion-runtime="/cushion-studio-preview/" data-my-home-api="/api" data-cushion-url="/pages/cushion-studio"></main>',['curtainsuk-my-home.js']),{headers:{'Content-Type':'text/html'}});
  else response=new Response('Not found',{status:404});
  res.writeHead(response.status,Object.fromEntries(response.headers));res.end(Buffer.from(await response.arrayBuffer()));
  }catch(e){res.writeHead(409,{'Content-Type':'application/json'});res.end(JSON.stringify({message:e instanceof Error?e.message:'PREVIEW_ERROR'}));}});

@@ -1,0 +1,38 @@
+{% if settings.curtainsuk_smart_track_enabled %}
+  <iframe data-cuk-track-frame data-source="/apps/curtainsuk-decision/smart-track/{% if section.settings.motor_guide %}motors.html{% elsif section.settings.fitting_guide %}fitting.html{% endif %}" title="{% if section.settings.motor_guide %}{{ 'curtainsuk.smart_track_motor_guide' | t | escape }}{% elsif section.settings.fitting_guide %}Visual smart track fitting guide{% else %}Smart Track Studio{% endif %}" class="cuk-track-frame" loading="eager"></iframe>
+  <noscript><div class="page-width"><h1>Forest smart tracks</h1><p>Enable JavaScript for the configurator. For fitting instructions, <a href="https://www.forestgroup.co.uk/uk/downloads/technical-documents">open Forest’s technical manuals</a>.</p></div></noscript>
+{% elsif request.design_mode %}
+  <div class="page-width"><h2>Smart Track Studio · unpublished candidate</h2><p>Enable the global Smart Track Studio setting only as part of the approved protected release.</p></div>
+{% endif %}
+{% stylesheet %}
+  .cuk-track-frame{display:block;width:100%;height:1600px;border:0;background:#f5f2e9}
+{% endstylesheet %}
+{% javascript %}
+  document.querySelectorAll('[data-cuk-track-frame]').forEach(function(frame){
+    var url=new URL(frame.dataset.source,location.origin),params=new URLSearchParams(location.search);
+    ['order_item','room_id','linked_curtain'].forEach(function(key){var value=params.get(key);if(value&&/^[a-f0-9-]{36}$/i.test(value))url.searchParams.set(key,value);});
+    frame.src=url.pathname+url.search;
+    var viewportTick=0;
+    function sendViewport(){
+      viewportTick=0;
+      if(!frame.isConnected||!frame.contentWindow)return;
+      var header=document.querySelector('.section-cuk-header');
+      var top=Math.max(0,header?header.getBoundingClientRect().bottom:0)+12;
+      var height=window.visualViewport?window.visualViewport.height:window.innerHeight;
+      frame.contentWindow.postMessage({type:'curtainsuk-smart-track-viewport',offset:top-frame.getBoundingClientRect().top,availableHeight:Math.max(300,height-top-12)},location.origin);
+    }
+    function scheduleViewport(){if(!viewportTick)viewportTick=requestAnimationFrame(sendViewport);}
+    frame.addEventListener('load',scheduleViewport);
+    window.addEventListener('scroll',scheduleViewport,{passive:true});
+    window.addEventListener('resize',scheduleViewport);
+    if(window.visualViewport)window.visualViewport.addEventListener('resize',scheduleViewport);
+    window.addEventListener('message',function(event){
+      if(event.source!==frame.contentWindow||event.origin!==location.origin||event.data?.type!=='curtainsuk-smart-track-height')return;
+      if(Number.isFinite(event.data.height))frame.style.height=Math.max(600,Math.min(40000,Math.ceil(event.data.height)))+'px';
+      scheduleViewport();
+    });
+  });
+{% endjavascript %}
+{% schema %}
+{"name":"Smart Track Studio","settings":[{"type":"checkbox","id":"fitting_guide","label":"Show visual fitting guide","default":false},{"type":"checkbox","id":"motor_guide","label":"Show interactive motor guide","default":false}],"presets":[{"name":"Smart Track Studio"}]}
+{% endschema %}

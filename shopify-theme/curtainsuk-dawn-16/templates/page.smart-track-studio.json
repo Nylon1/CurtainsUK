@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "curtainsuk-smart-track",
+      "settings": {
+        "fitting_guide": false
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

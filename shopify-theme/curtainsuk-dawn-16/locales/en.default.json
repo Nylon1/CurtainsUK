@@ -8,6 +8,9 @@
  * ------------------------------------------------------------
  */
 {
+  "curtainsuk": {
+    "smart_track_motor_guide": "Interactive Forest Shuttle motor guide"
+  },
   "advisory_team": {
     "spotlight": {
       "perspective": "Choose a different perspective",

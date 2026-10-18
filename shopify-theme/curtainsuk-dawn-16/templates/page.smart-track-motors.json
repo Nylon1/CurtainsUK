@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "curtainsuk-smart-track",
+      "settings": { "motor_guide": true }
+    }
+  },
+  "order": ["main"]
+}

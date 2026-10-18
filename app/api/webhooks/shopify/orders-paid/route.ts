@@ -4,6 +4,8 @@ import { housePaymentFromShopify, shopifyOrderAttributes, type ShopifyPaidLine }
 import { assertVerifiedShopifyWebhook } from "@/lib/storefront/security/shopify-webhook";
 import { sendOpenAiOrderCreated } from "@/lib/storefront/openai-ads-conversions";
 import { hasCushionPaidLines, recordHostedCushionPaidOrder } from '@/lib/cushion-studio/hosted-paid-order';
+import {hasSmartTrackPaidLines} from '@/lib/smart-track/paid-order';
+import {recordHostedSmartTrackPaidOrder} from '@/lib/smart-track/hosted-paid-order';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -52,6 +54,11 @@ export async function POST(request: Request) {
     if (rawBody.byteLength === 0 || rawBody.byteLength > 256_000) throw new Error("SHOPIFY_WEBHOOK_BODY_INVALID");
     assertVerifiedShopifyWebhook(rawBody, request.headers.get("x-shopify-hmac-sha256"));
     const payload = JSON.parse(new TextDecoder().decode(rawBody)) as ShopifyOrderPayload;
+    if(hasSmartTrackPaidLines(payload)){
+      if(process.env.CURTAINSUK_SMART_TRACK_WEBHOOK_ENABLED!=='true')return new NextResponse('Smart track receiver is not enabled',{status:503,headers:{'Cache-Control':'no-store'}});
+      await recordHostedSmartTrackPaidOrder(rawBody,request.headers.get('x-shopify-hmac-sha256'));
+      return new NextResponse(null,{status:200});
+    }
     // The cushion/mixed contract owns distinct immutable manufacturing schemas.
     // Disabled deployments reject these events for retry, never misclassify them
     // as an ordinary curtain or acknowledge a paid order that was not recorded.

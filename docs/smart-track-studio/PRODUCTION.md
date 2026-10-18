@@ -19,8 +19,19 @@ The owner approved PR #237 at `b44893926256f9ab81187542d31caf99ac1be5a0` in [the
 | `ADVISORY_SHOPIFY_APPROVED_COMMIT` | Exact deployed protected source SHA |
 | `ADVISORY_SPECIALISTS_APPROVED_COMMIT` | Exact deployed protected source SHA |
 | Build `CURTAINSUK_BUILD_SOURCE_COMMIT` | Same exact deployed protected source SHA |
+| Runtime `VERCEL_GIT_COMMIT_SHA` | Same exact deployed protected source SHA |
 
 Persist the three smart-track flags as project Production settings, not per-deployment overrides. Preserve every existing curtain, cushion, My Home and adviser setting and secret. The shared production purchase authority and existing per-product gates remain required. Supplier pricing and product facts remain server governed; no additional package override is needed.
+
+Manual deployments must persist both source-identity settings before building, alongside the two adviser approvals. The specialist public gateway requires the runtime Git identity to equal the compiled source. A build-only SHA is insufficient. Probe Jane and all four specialist routes after every shared-service deployment; signed-out requests must reach `CUSTOMER_SIGN_IN_REQUIRED`, not a disabled 404.
+
+## Verified first publication, 18 October 2026 UTC
+
+PR #238 passed both checks and merged at `0c421e6024bd152407eb6883d3e064ce7ef4e702`, tree `37295e2c9b2b25dda7029ed1486678c97e310265`. READY deployment `dpl_HktUhDS9xcmgaWP9dsEWXsrb3VUF` served all three existing aliases with that exact source metadata and all three smart-track gates enabled. The first staged deployment was rejected before promotion because the runtime Git identity was absent and specialists returned 404. The persisted identity corrected this before the verified publication.
+
+The scoped MAIN upload and fresh complete readback matched all 541 source files. All three new pages are published. Remote migration history records `20261018223757_smart_track_distinct_checkout`; all six added tables have forced RLS, no browser-role read grants and service-role access. The existing 90 project settings were preserved except the two adviser source attestations; five source-identity and smart-track settings were added. No existing product, Naila, HCI, catalogue or adviser flag was disabled.
+
+Live verification checked 20 served assets, Go and iOn quotes, track-only and two-track totals, one £12.95 delivery charge and an excluded postcode. The browser saved a test Go track into Design My Home alongside the existing £805 curtain: products £1,319.29, delivery £12.95, total £1,332.24, with checkout enabled after acknowledgement and a combined 4-5-week dispatch estimate. Verification stopped before checkout creation or payment. Browse Fabrics loaded 11,815 fabrics, Naila returned a consultation question, Room Visualiser rendered Abeja Linen, and Fabric Intelligence and Cushion Studio loaded. All five adviser gateways reached their normal signed-out boundary; no signed-in AI reply or new image analysis was performed.
 
 The theme schema remains opt-in for other installations. The existing MAIN theme's enabled value is recorded in `shopify-theme/production-main-overlay/config/settings_data.json`. The full source manifest includes the reviewed Smart Track Studio files; it must match a fresh MAIN readback after the scoped upload.
 

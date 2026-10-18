@@ -205,7 +205,8 @@
           "shadow": "#121212"
         }
       }
-    }
+    },
+    "curtainsuk_smart_track_enabled": true
   },
   "presets": {
     "Dawn": {

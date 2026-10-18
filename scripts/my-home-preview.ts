@@ -52,8 +52,8 @@ const server=createServer(async(req,res)=>{try{
  const script=section.match(/{% javascript %}([\s\S]*?){% endjavascript %}/)?.[1]||'';
  response=new Response(html('<div class="section-cuk-header" style="position:sticky;top:0;z-index:20;background:#f5f2e9;padding:16px">CurtainsUK · embedded preview</div><iframe title="Smart Track Studio" data-cuk-track-frame data-source="/smart-track-preview/" style="display:block;width:100%;height:1600px;border:0"></iframe><script>'+script+'</script>'),{headers:{'Content-Type':'text/html'}});
  }
- else if(url.pathname.startsWith('/smart-track-preview/')||['/pages/smart-track-studio','/pages/smart-track-fitting-guide'].includes(url.pathname)){
- const asset=url.pathname==='/pages/smart-track-studio'?'index.html':url.pathname==='/pages/smart-track-fitting-guide'?'fitting.html':url.pathname.slice('/smart-track-preview/'.length);
+ else if(url.pathname.startsWith('/smart-track-preview/')||['/pages/smart-track-studio','/pages/smart-track-fitting-guide','/pages/smart-track-motors'].includes(url.pathname)){
+ const asset=url.pathname==='/pages/smart-track-studio'?'index.html':url.pathname==='/pages/smart-track-fitting-guide'?'fitting.html':url.pathname==='/pages/smart-track-motors'?'motors.html':url.pathname.slice('/smart-track-preview/'.length);
  response=await smartTrackAsset(asset,'/smart-track-preview/');
  }
  else if(url.pathname.startsWith('/room-visualiser/')){if(!/^\/room-visualiser\/[A-Za-z0-9_./-]+$/.test(url.pathname)||url.pathname.includes('..'))throw Error('ASSET');response=new Response(await readFile(path.join(process.cwd(),'public',url.pathname)),{headers:{'Content-Type':url.pathname.endsWith('.mjs')||url.pathname.endsWith('.js')?'text/javascript':url.pathname.endsWith('.webp')?'image/webp':'application/octet-stream'}});}

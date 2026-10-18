@@ -150,6 +150,7 @@ export async function checkoutSmartTrackOrder(
       spec: s.spec,
       package: s.package,
       weight: s.weight,
+      weightAcceptance: s.weightAcceptance,
       customerApproved: s.customerApproved,
       priceVersion: s.priceVersion,
       dispatchCommitment: s.dispatchCommitment,

@@ -16,19 +16,21 @@ Candidate based on protected `release/production` at `5b6f4aeb98c5a5e57427ae4311
 - Live server price, exact decimal price bands, stale-response protection, weight helper and measurement illustrations. Customer configuration remains savable while unresolved package facts block ordering.
 - Track-only, multi-track and every curtain/cushion combination use Design My Home's existing device persistence, edit identity, revisions, order review and Shopify transport. Trying rooms never creates products. A linked curtain is re-read from its signed receipt and revalidated when changed. If its retained identity is replaced, relink it explicitly.
 - `/pages/smart-track-fitting-guide`: original explanatory diagrams for measuring, wall/ceiling arrangements, motor attachment, limits, remote and battery care; accessible chapters, Go/iOn selection, print styling and manufacturer links. Bracket illustrations remain conditional until the actual supplied rail/bracket schedule is confirmed.
+- `/pages/smart-track-motors`: separate interactive guide with Go/iOn selection, the original manufacturer cutaway and eight accessible hotspots, a battery illustration, expandable charging advice and technical comparison. Links from power selection and the technology section open a new tab to preserve the current configuration.
 - Discovery is gated in Design My Home, the curtain configurator and How to use CurtainsUK. The eight-link header is unchanged. Jane, Noah and James receive track knowledge only when the server feature is released.
 
 ## Confirmed decisions (do not reopen)
 
 | Decision | Authority / implementation |
 | --- | --- |
-| Straight, cut to ordered length, maximum 500 cm | Owner; exact text retained in immutable fulfilment specification |
+| Straight, cut to ordered length, 100 to 500 cm for both motors | Owner; exact text retained in immutable fulfilment specification |
 | Go with UK three-pin plug; iOn with rechargeable battery, equal prices | Owner; distinct manufacturer systems, Go 35 kg and iOn 25 kg headline straight-track limits |
-| Motor, control and all required track hardware included | Owner; no separate bracket, motor or remote charge |
+| Carriers, brackets, motor, control and all fixtures and fittings included | Owner; no separate bracket, motor or remote charge |
 | Pencil/pinch base; wave 60 or 80 mm, 10% higher supplier product cost | Owner; explicit carrier choice for wave |
 | Product gross margin 30% | Owner; VAT-inclusive supplier cost divided by 0.70, unit rounded to pennies before quantity multiplication |
 | £12.95 VAT-inclusive customer delivery once per order containing a track | Owner; existing postcode/geographic policy still applies |
 | £10.95 supplier carriage covers one or multiple tracks in a shipment | Owner; one ledger entry per actual supplier shipment reference, not per track; no £15.64 uplift |
+| Customer weight declaration | Owner; checkbox confirms the total curtain load per track is within the selected motor limit, retained separately from measured/estimated evidence |
 | Supply only | Owner; no fitting or electrical installation included |
 | Dispatch all ordered products together | Owner; latest confirmed comparable ready interval, never a curtain fallback for unknown track timing |
 
@@ -56,16 +58,18 @@ Sources checked on 17 October 2026 through the [Forest UK technical library](htt
 | [FMS assembly guide V1.1](https://www.forestgroup.co.uk/user_files/download_files/download_634_FMS_Manual_V1_1.pdf) | Pages 12–13: 50 cm bracket reference and first bracket near motor pulley, conditional on the supplied FMS hardware matching. Old motor/control/dongle instructions in this assembly guide are not applied to Go. |
 | [FMS adjustable wave master carrier guide](https://www.forestgroup.co.uk/user_files/download_files/download_1089_ASSEMBLAGE%20Handleiding%20ANDRE%20FMS%20verstelbare%20Wave%20voorloper%20_GB_220621_WEB.pdf) | Reference for matching supplied master carrier arrangement. Its adjustment positions are not the owner's 60/80 mm carrier spacing choices. No unconfirmed carrier article is asserted. |
 
+The supplied Shuttle Series brochure (180626, reviewed 18 October 2026) additionally supports the separate motor guide: pages 4 (removable iOn battery), 6–7 (model-specific technical table), 9 (FMS cutaway) and 10 (motor drawings). Original artwork is extracted, attributed and served locally. The illustrated FMS configuration is not asserted as the exact supplier kit. Brochure curves, longer tracks, alternative remotes and optional accessories are not offered. Conflicting voltage descriptions on pages 7 and 10 are omitted; no battery interval or warranty promise is inferred. See [motor guide asset provenance](MOTOR_GUIDE.md).
+
 The purchased motor/rail/finish article must be recorded in `lib/smart-track/package.ts` after supplier confirmation; an article listed by Forest is not proof of which colour/kit this supplier provides. Manufacturer documents do not establish supplier cutting precision or dispatch time.
 
 ## Remaining supplier decisions before purchasing
 
-1. Minimum finished track length and accepted cutting increment/precision for each package. Until confirmed, decimal entries are preserved but cannot be released for manufacture.
+1. Accepted cutting increment/precision for each package. The 100 cm minimum is confirmed for both motors. Until confirmed, decimal entries are preserved but cannot be released for manufacture.
 2. Supplied rail/system and finish, motor article/colour, actual wall/ceiling bracket schedule and carrier/master-carrier identity. Hardware inclusion is already confirmed; this is identification and safe installation evidence, not another charge.
 3. Confirmation that the supplied straight rail/carrier/mounting combinations support the applicable 35 kg Go / 25 kg iOn limit across the offered lengths, or documented lower configuration limits if any.
 4. Track dispatch interval, starting event and supplier commitment. Record a comparable confirmed dispatch object with approval reference; do not borrow curtain timing.
 
-The package authority intentionally has no environment override for these facts. Fill the source-controlled package fields, version them, attach the evidence and review the resulting exact head before enabling purchases. No finish selector, arbitrary minimum, guessed bracket spacing, remote discount or lead time is offered.
+The package authority intentionally has no environment override for these facts. Fill the source-controlled package fields, version them, attach the evidence and review the resulting exact head before enabling purchases. No finish selector, guessed cutting increment, bracket spacing, remote discount or lead time is offered.
 
 ## Weight and fabric evidence
 
@@ -73,9 +77,9 @@ The owner simplified the customer helper to one estimate: combined width of all 
 
 The 200 GSM reference is grounded in [Evans Textiles' DB1 lining specification](https://evans-textiles.com/why-db1-is-still-the-market-leading-curtain-lining-and-always-will-be), published 28 January 2026. This is a clearly labelled estimate, not a claim that every lining weighs 200 GSM or that CurtainsUK supplies DB1. For 200 cm width, 250 cm height, gather 2 and face fabric 300 GSM, the result is 3 kg unlined, 5 kg with the preset, and 5.5 kg with custom 250 GSM lining. Missing face GSM gives no invented total; missing lining GSM leaves only the known fabric estimate. Unquantified interlining, tape, hooks and fittings prevent load approval from this cloth-only estimate.
 
-Earlier saved measured or governed weight evidence remains readable and is preserved until the customer changes weight inputs. The simplified UI does not add a measured-weight route. Partial estimates never approve capacity.
+Earlier saved measured or governed weight evidence remains readable and is preserved until the customer changes weight inputs. The simplified UI does not add a measured-weight route. Partial estimates alone never approve capacity. The owner-approved review checkbox records a separate versioned customer declaration against the selected motor and its current load limit. It fulfils the weight requirement without turning an unknown or estimated value into a measured weight. Switching motors or changing calculator inputs clears the tick. The server rejects mismatched model/limit declarations and any known minimum weight above capacity. The declaration and acceptance basis are retained in immutable fulfilment snapshots. Design My Home shows the server-accepted declaration as “Customer confirmed” with the applicable limit, rather than calling it a measured weight.
 
-For linked CurtainsUK curtains, only a server-verified receipt supplies configuration and calculated consumption. Face-cloth evidence uses Fabric Master `weight_gsm` and `full_width_mm`. The existing engine has no complete governed lining/interlining/tape/hooks weight set. The helper therefore exposes the partial cloth estimate and its making/offcut assumptions, and requests a measured total or completed evidence. Purchased offcuts are not treated as a proven minimum hanging weight. A moving preview is never load approval.
+For linked CurtainsUK curtains, only a server-verified receipt supplies configuration and calculated consumption. Face-cloth evidence uses Fabric Master `weight_gsm` and `full_width_mm`. The existing engine has no complete governed lining/interlining/tape/hooks weight set. The helper therefore exposes the partial cloth estimate and its making/offcut assumptions, and accepts a matching customer weight declaration or completed weight evidence. Purchased offcuts are not treated as a proven minimum hanging weight. A moving preview is never load approval.
 
 The Smart Track demonstration no longer loads Fabric Master or patterned artwork. Its upright plain wave panel is recoloured inside its alpha and composited over the selected room. Opening gathers the illustrated panels; this is not a physical cloth simulation or an installation/stack-back measurement. The 230 cm and 400 cm demonstration dimensions remain separate from ordered length. The existing released curtain visualiser, catalogue identities and its material-scale authority are unchanged. See [room visual provenance and implementation](ROOM_VISUALS.md).
 
@@ -91,12 +95,12 @@ The Smart Track demonstration no longer loads Fabric Master or patterned artwork
 - New server settings: `CURTAINSUK_SMART_TRACK_ENABLED`, `CURTAINSUK_SMART_TRACK_PURCHASES_ENABLED`, `CURTAINSUK_SMART_TRACK_WEBHOOK_ENABLED`; all default off. The existing `CURTAINSUK_PRODUCTION_PURCHASES_APPROVED` and existing per-product/My Home gates still apply. The theme setting `curtainsuk_smart_track_enabled` defaults false.
 - A future scoped release must first satisfy package decisions, run this suite and the two protected PR checks, obtain exact-head owner release approval, and merge through the protected branch. Deploy only that protected head using existing infrastructure.
 - The existing `release/policy-change.mjs` also protects new tests and `package.json`. Its check requires a PR comment authored by `Nylon1` with exactly `OWNER_APPROVED_POLICY_CHANGE <current full PR head SHA>`. The updated decision record explicitly leaves this approval pending; it cannot approve itself. No existing assertion or release gate is weakened.
-- Apply the reviewed migration to the existing Supabase project. Add the two Shopify Pages using their matching templates. Publish only the reviewed theme files, retaining all existing `settings_data.json` values and released flags. Record the new settings in the normal production settings record, including webhook enablement before purchases. Reconcile protected source, live theme, migration state, stored settings and Vercel assets together; never use temporary deployment-only switches.
+- Apply the reviewed migration to the existing Supabase project. Add the three Shopify Pages (studio, fitting guide and motor guide) using their matching templates. Publish only the reviewed theme files, retaining all existing `settings_data.json` values and released flags. Record the new settings in the normal production settings record, including webhook enablement before purchases. Reconcile protected source, live theme, migration state, stored settings and Vercel assets together; never use temporary deployment-only switches.
 - Smoke signed asset/quote requests, both motor specifications, one saved edit, supported/unsupported postcodes, every mixed order review, checkout reconciliation and paid/staff-release recognition before opening purchase controls. This candidate does not exercise real payment. If verification fails, keep purchases closed and follow the existing rollback process.
 
 ## Verification
 
-The initial candidate passed 50 focused and adjacent regression tests covering all five exact/decimal price bands, both motors, headings/wave spacing, VAT, quantity, manufacturing precision, weight evidence, linked changes, every mixed product combination, paid identity/reconciliation, revisions, retries, persistence, staff-release hold, carriage once and shared control state. After the visual/helper changes, the 13 smart-track tests pass again, including added standard/custom/missing lining calculations and rejection of a forged preset value. Legacy cloth/UV tests cover the retained Three.js foundation, not the new photographic composition.
+The initial candidate passed 50 focused and adjacent regression tests covering all five exact/decimal price bands, both motors, headings/wave spacing, VAT, quantity, manufacturing precision, weight evidence, linked changes, every mixed product combination, paid identity/reconciliation, revisions, retries, persistence, staff-release hold, carriage once and shared control state. After the visual/helper changes, the 14 smart-track tests pass again, including added standard/custom/missing lining calculations and rejection of a forged preset value. Legacy cloth/UV tests cover the retained Three.js foundation, not the new photographic composition.
 
 The initial candidate's protected cumulative gate passed all 11 capability groups on both candidate and protected baseline (133 assertions each). The changed smart-track iframe section passes Shopify validation. The Next production build also passes after the new visual assets and lining preset, with local placeholder public Supabase environment values; no production credentials are required for this build check. A build without those existing required values fails on unrelated prerendered admin pages.
 
@@ -106,7 +110,9 @@ Browser rehearsal uses `scripts/my-home-preview.ts` on localhost with synthetic 
 
 The latest browser check advances through Track → Curtain details → Review without weight entry, opens the optional calculator from the illustrated shortcut, and returns to the same review step. Its result card shows 3.0 kg unlined, 5.0 kg with standard lining, 5.5 kg with custom lining, and explicitly labels a missing-lining subtotal. The calculator fits a 390×844 viewport without horizontal overflow. The compact review and heading labels were also checked in the rendered page.
 
-Review screenshots: [desktop studio](screenshots/studio-desktop.jpg), [mobile studio](screenshots/studio-mobile.jpg), [lining calculator](screenshots/studio-lining.jpg), [mobile weight result](screenshots/studio-weight-mobile.jpg), [desktop fitting guide](screenshots/fitting-desktop.jpg), [mobile fitting guide](screenshots/fitting-mobile.jpg).
+The 18 October check additionally covers the confirmed 100 cm minimum, the 35/25 kg declaration reset when changing motors, declaration save/reopen, and the interactive motor guide on desktop and 390 × 844 mobile. Model switching, keyboard-operated diagram controls, technical disclosure and charging advice work without horizontal overflow. All three new/updated motor-guide theme files pass Shopify validation. The production build succeeds and the new guide assets are traced.
+
+Review screenshots: [motor diagram](screenshots/motors-diagram.png), [mobile motor guide](screenshots/motors-mobile.png), [desktop studio](screenshots/studio-desktop.jpg), [mobile studio](screenshots/studio-mobile.jpg), [lining calculator](screenshots/studio-lining.jpg), [mobile weight result](screenshots/studio-weight-mobile.jpg), [desktop fitting guide](screenshots/fitting-desktop.jpg), [mobile fitting guide](screenshots/fitting-mobile.jpg).
 
 Local commands:
 

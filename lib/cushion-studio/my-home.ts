@@ -32,7 +32,7 @@ export type MyHomeServices = {
 };
 export type MyHomeLine = {
   id: string; kind: "CURTAIN" | "CUSHION" | "SMART_TRACK"; name: string; quantity: number;
-  totalMinor: number | null; unitMinor: number | null; ready: boolean; issues: string[]; fabric?: RoomsFabric; weight?: ReturnType<typeof quoteSmartTrack>['weight'];
+  totalMinor: number | null; unitMinor: number | null; ready: boolean; issues: string[]; fabric?: RoomsFabric; weight?: ReturnType<typeof quoteSmartTrack>['weight']; weightAcceptance?: ReturnType<typeof quoteSmartTrack>['weightAcceptance'];
 };
 function validate(input: MyHomeInput) {
   if (!input || input.version !== 1 || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.id) ||
@@ -85,7 +85,7 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
   ]);
   const lines: MyHomeLine[] = [
     ...tracks.map(t=>({id:t.spec.id,kind:'SMART_TRACK' as const,name:`${t.package.motor} · ${t.spec.lengthCm} cm`,quantity:t.spec.quantity,
-      totalMinor:t.goodsMinor,unitMinor:t.unitMinor,ready:t.purchaseReady,issues:t.issues,weight:t.weight})),
+      totalMinor:t.goodsMinor,unitMinor:t.unitMinor,ready:t.purchaseReady,issues:t.issues,weight:t.weight,weightAcceptance:t.weightAcceptance})),
     ...(house?.lines.map(line=>({id:line.configuration_id,kind:"CURTAIN" as const,name:line.window_name,
       quantity:line.quantity ?? 1,totalMinor:line.currentPrice,unitMinor:unit(line.currentPrice,line.quantity ?? 1),
       ready:line.status !== "BLOCKED",issues:line.status === "READY" ? [] : [line.message]})) ?? []),

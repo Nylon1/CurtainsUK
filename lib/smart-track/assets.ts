@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { STANDARD_LINING_GSM } from "./domain";
+import { STANDARD_LINING_GSM, MINIMUM_TRACK_LENGTH_CM } from "./domain";
+import { trackPackage } from "./package";
 /** No arbitrary files: server pricing and supplier decisions are never assets. */
 export async function smartTrackAsset(
   asset: string,
@@ -14,6 +15,10 @@ export async function smartTrackAsset(
     "room-office.webp",
     "room-patio.webp",
     "curtain-wave.webp",
+    "forest-track-cutaway.webp",
+    "forest-ion-battery.webp",
+    "forest-motor-go.webp",
+    "forest-motor-ion.webp",
   ];
   if (images.includes(name))
     return new Response(
@@ -29,6 +34,9 @@ export async function smartTrackAsset(
   const allowed = [
     "index.html",
     "fitting.html",
+    "motors.html",
+    "motors.css",
+    "motors.mjs",
     "studio.css",
     "guide.css",
     "guide.mjs",
@@ -56,7 +64,7 @@ export async function smartTrackAsset(
   if (name.endsWith(".html"))
     body = body.replace(
       "<head>",
-      `<head><base href="${base}"><script src="${base}my-home-store.js"></script><script>window.SMART_TRACK_CONFIG=${JSON.stringify({ apiBase: base + "api", release: "smart-track-v1", standardLiningGsm: STANDARD_LINING_GSM }).replaceAll("<", "\\u003c")};</script>`,
+      `<head><base href="${base}"><script src="${base}my-home-store.js"></script><script>window.SMART_TRACK_CONFIG=${JSON.stringify({ apiBase: base + "api", release: "smart-track-v2", standardLiningGsm: STANDARD_LINING_GSM, minimumLengthCm: MINIMUM_TRACK_LENGTH_CM, maximumLoadKgBySystem: { FOREST_SHUTTLE_GO: trackPackage("FOREST_SHUTTLE_GO").maximumLoadKg, FOREST_SHUTTLE_ION: trackPackage("FOREST_SHUTTLE_ION").maximumLoadKg } }).replaceAll("<", "\\u003c")};</script>`,
     );
   return new Response(body, {
     headers: {

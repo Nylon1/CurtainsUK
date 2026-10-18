@@ -51,7 +51,7 @@ export function trackDiagnostic(stage: string, requestId: string = randomUUID())
       event: "CURTAINSUK_SMART_TRACK_FAILURE",
       stage,
       requestId,
-      release: "smart-track-v1",
+      release: "smart-track-v2",
       sourceCommit: process.env.CURTAINSUK_BUILD_SOURCE_COMMIT ?? null,
     }),
   );
@@ -128,7 +128,9 @@ export async function handleSmartTrack(request: Request, segments: string[]) {
     const code = error instanceof Error ? error.message : "";
     const messages: Record<string, string> = {
       TRACK_LENGTH_INVALID:
-        "Enter an exact track length greater than 0 and no more than 500 cm.",
+        "Enter an exact track length from 100 to 500 cm.",
+      TRACK_WEIGHT_CONFIRMATION_INVALID:
+        "Confirm the curtain weight recommendation for your selected motor.",
       TRACK_WEIGHT_INVALID:
         "Check the weight-helper values. Use a measured total or leave unknown details blank.",
       TRACK_LINK_INVALID:

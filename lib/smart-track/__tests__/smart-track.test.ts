@@ -40,7 +40,7 @@ function readyPackage(system: SmartTrackSpec["system"]): TrackPackage {
     ...trackPackage(system),
     motorArticle: "TEST-ONLY",
     trackSystem: "TEST-FMS",
-    minimumLengthCm: 20,
+    minimumLengthCm: 100,
     precisionCm: "0.1",
     finish: "TEST-WHITE",
     bracketSpecification: "TEST-BRACKET",
@@ -65,7 +65,7 @@ test("all exact bands, both motors and compatible headings preserve gross VAT-in
   for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const)
     for (let i = 0; i < 5; i++)
       for (const heading of ["PENCIL", "PINCH", "WAVE"] as const) {
-        for (const lengthCm of [
+        for (const lengthCm of i === 0 ? ["100", "100.000000"] : [
           String(i * 100 + 1),
           String((i + 1) * 100),
           String(i * 100 + 0.5),
@@ -102,6 +102,7 @@ test("invalid measurements, unsupported headings and manufacturing precision fai
   for (const lengthCm of [
     "0",
     "-1",
+    "99.999999",
     "500.1",
     "1e2",
     "NaN",
@@ -129,6 +130,49 @@ test("invalid measurements, unsupported headings and manufacturing precision fai
     true,
   );
   assert.equal(quoteSmartTrack(spec()).purchaseReady, false);
+  for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const) {
+    assert.equal(trackPackage(system).minimumLengthCm, 100);
+    assert.throws(() => quoteSmartTrack(spec({ system, lengthCm: "99.9" })), /TRACK_LENGTH_INVALID/);
+    assert.equal(quoteSmartTrack(spec({ system, lengthCm: "100" }), { package: readyPackage(system) }).purchaseReady, true);
+    assert.ok(trackPackage(system).includedComponents.includes("Carriers"));
+    assert.ok(trackPackage(system).includedComponents.includes("Brackets"));
+  }
+});
+test("customer weight confirmation accepts an optional estimate without claiming measured weight", () => {
+  for (const system of ["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"] as const) {
+    const p = readyPackage(system), maximumKg = p.maximumLoadKg;
+    const confirmation = { version: 1 as const, system, maximumKg };
+    const s = spec({ system, weight: { mode: "UNKNOWN" }, weightConfirmation: confirmation });
+    const q = quoteSmartTrack(s, { package: p });
+    assert.equal(q.purchaseReady, true);
+    assert.equal(q.weight.status, "UNKNOWN");
+    assert.equal(q.weight.minimumKg, null);
+    assert.equal(q.weight.maximumKg, null);
+    assert.deepEqual(q.weightAcceptance, { accepted: true, basis: "CUSTOMER_CONFIRMATION", maximumKg, conflictingWeight: false });
+    assert.equal(quoteSmartTrack({ ...s, weightConfirmation: undefined }, { package: p }).purchaseReady, false);
+    assert.equal(quoteSmartTrack({ ...s, weightConfirmation: { ...confirmation, maximumKg: maximumKg - 1 } }, { package: p }).purchaseReady, false);
+    assert.equal(quoteSmartTrack({ ...s, weightConfirmation: { ...confirmation, system: system === "FOREST_SHUTTLE_GO" ? "FOREST_SHUTTLE_ION" : "FOREST_SHUTTLE_GO" } }, { package: p }).purchaseReady, false);
+    assert.equal(quoteSmartTrack(s, { package: { ...p, maximumLoadKg: maximumKg - 5 } }).purchaseReady, false);
+    const estimate = { mode: "EXISTING_ESTIMATE" as const, panels: 1, widthCm: 200, dropCm: 250, widthBasis: "COVERAGE" as const, fullness: 2, gsm: 300, lining: true, liningGsm: 200, interlining: false };
+    const estimated = quoteSmartTrack({ ...s, weight: estimate }, { package: p });
+    assert.equal(estimated.purchaseReady, true);
+    assert.equal(estimated.weight.status, "ESTIMATED");
+    assert.equal(estimated.weight.minimumKg, 5);
+    assert.equal(estimated.weight.maximumKg, null);
+    for (const weight of [{ mode: "MEASURED", kg: maximumKg + 0.001 }, { ...estimate, gsm: 5000 }]) {
+      const conflicting = quoteSmartTrack({ ...s, weight }, { package: p });
+      assert.equal(conflicting.purchaseReady, false);
+      assert.equal(conflicting.weightAcceptance.conflictingWeight, true);
+    }
+    assert.throws(() => parseSmartTrackSpec({ ...s, weightConfirmation: true }), /TRACK_WEIGHT_CONFIRMATION_INVALID/);
+    assert.throws(() => parseSmartTrackSpec({ ...s, weightConfirmation: { ...confirmation, maximumKg: "35" } }), /TRACK_WEIGHT_CONFIRMATION_INVALID/);
+    const snapshot = createSmartTrackSnapshot(q, randomUUID(), p, p.dispatch);
+    assert.deepEqual(snapshot.spec.weightConfirmation, confirmation);
+    assert.deepEqual(snapshot.weightAcceptance, q.weightAcceptance);
+    assert.ok(Object.isFrozen(snapshot.spec.weightConfirmation));
+    assert.notEqual(q.quoteId, quoteSmartTrack({ ...s, weightConfirmation: undefined }, { package: p }).quoteId);
+    assert.deepEqual(parseSmartTrackSpec(JSON.parse(JSON.stringify(s))).weightConfirmation, confirmation);
+  }
 });
 test("weights use the selected motor limit, correct density units and fullness once", () => {
   assert.equal(
@@ -299,7 +343,7 @@ test("track-only and every mixed combination reconcile once and persist distinct
   for (const curtain of [false, true])
     for (const cushion of [false, true]) {
       const f = await homeFixture(),
-        s = spec(),
+        s = spec({ weight: { mode: "UNKNOWN" }, weightConfirmation: { version: 1, system: "FOREST_SHUTTLE_GO", maximumKg: 35 } }),
         stored = new Map<string, TrackCheckoutGroup>();
       let executed: TrackCheckoutGroup["contract"] | undefined;
       f.services.tracks = {
@@ -331,6 +375,7 @@ test("track-only and every mixed combination reconcile once and persist distinct
       };
       const review = await reviewMyHome(input, f.services);
       assert.equal(review.purchaseEnabled, true);
+      assert.equal(review.lines.find((line) => line.id === s.id)?.weightAcceptance?.basis, "CUSTOMER_CONFIRMATION");
       assert.equal(review.deliveryMinor, 1295);
       assert.equal(review.totalMinor, review.goodsMinor! + 1295);
       const checkout = {
@@ -356,6 +401,9 @@ test("track-only and every mixed combination reconcile once and persist distinct
       await checkoutMyHome(checkout, f.services);
       assert.equal(stored.size, 1);
       const group = stored.get(checkout.idempotencyKey)!;
+      assert.equal(group.snapshots[0].weight.status, "UNKNOWN");
+      assert.equal(group.snapshots[0].weightAcceptance.basis, "CUSTOMER_CONFIRMATION");
+      assert.equal(group.snapshots[0].spec.weightConfirmation?.maximumKg, 35);
       const secret = "test-track-mixed-webhook-secret-".repeat(2);
       const payload = {
         id: 123,
@@ -427,6 +475,13 @@ test("browser assets exclude private prices and adviser knowledge follows releas
   const body = await (await smartTrackAsset("index.html")).text();
   assert.ok(body.includes("SMART_TRACK_CONFIG"));
   assert.ok(!body.includes("COSTS_GROSS_MINOR"));
+  const motorGuide = await (await smartTrackAsset("motors.html")).text();
+  assert.match(motorGuide, /forest-track-cutaway.webp/);
+  for (const name of ["motors.css", "motors.mjs", "forest-track-cutaway.webp", "forest-ion-battery.webp", "forest-motor-go.webp", "forest-motor-ion.webp"]) {
+    const asset = await smartTrackAsset(name);
+    assert.equal(asset.status, 200);
+    assert.ok((await asset.arrayBuffer()).byteLength > 0);
+  }
   assert.equal(smartTrackGuidance("jane", {}), "");
   assert.equal(
     smartTrackGuidance("ben", { CURTAINSUK_SMART_TRACK_ENABLED: "true" }),
@@ -578,11 +633,12 @@ test("save, reopen, edit and quantity changes preserve track identity without ma
       setItem: (k: string, v: string) => values.set(k, v),
       removeItem: (k: string) => values.delete(k),
     };
-  const s = spec();
+  const s = spec({ weight: { mode: "UNKNOWN" }, weightConfirmation: { version: 1, system: "FOREST_SHUTTLE_GO", maximumKg: 35 } });
   let saved = await Store.addSmartTrack(s, {}, disk);
   const revision = saved.house.revision;
   assert.equal(Store.orderItems(Store.read(disk)).length, 1);
   assert.equal(Store.orderedCushionSpecs(saved.house).length, 0);
+  assert.deepEqual(Store.orderedTrackSpecs(Store.read(disk))[0].weightConfirmation, s.weightConfirmation);
   saved = await Store.addSmartTrack(
     { ...s, lengthCm: "300.5", system: "FOREST_SHUTTLE_ION" },
     { editItemId: s.id, expectedRevision: revision },

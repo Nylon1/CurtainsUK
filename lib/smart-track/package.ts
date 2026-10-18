@@ -1,4 +1,5 @@
 import type { SmartTrackSystem } from "./domain";
+import { MINIMUM_TRACK_LENGTH_CM } from "./domain";
 import type { CushionDispatchEstimate } from "../cushion-studio/dispatch";
 /** Source-controlled supplier decisions. Null means unconfirmed, never a default offer. */
 export type TrackPackage = {
@@ -14,6 +15,7 @@ export type TrackPackage = {
     reference: string;
   } | null;
   allHardwareIncluded: true;
+  includedComponents: readonly string[];
   mounting: readonly ("WALL" | "CEILING")[];
   minimumLengthCm: number | null;
   precisionCm: string | null;
@@ -29,7 +31,7 @@ export type TrackPackage = {
   approvalReference: string | null;
 };
 export const TRACK_PACKAGE: Readonly<TrackPackage> = Object.freeze({
-  version: "forest-shuttle-go-package-2026-10-17-v1",
+  version: "forest-shuttle-go-package-2026-10-18-v2",
   motorModel: "Forest Shuttle Go",
   motorArticle: null,
   trackSystem: null,
@@ -42,8 +44,9 @@ export const TRACK_PACKAGE: Readonly<TrackPackage> = Object.freeze({
       "Owner photo and Forest EasyTouch manual 041024, confirmed 2026-10-17",
   },
   allHardwareIncluded: true,
+  includedComponents: ["Cut-to-length track", "Carriers", "Brackets", "Motor", "Control", "All fixtures and fittings"],
   mounting: ["WALL", "CEILING"] as const,
-  minimumLengthCm: null,
+  minimumLengthCm: MINIMUM_TRACK_LENGTH_CM,
   precisionCm: null,
   waveSpacingMm: [60, 80],
   finish: null,
@@ -58,7 +61,7 @@ export const TRACK_PACKAGE: Readonly<TrackPackage> = Object.freeze({
 });
 export const ION_PACKAGE: Readonly<TrackPackage> = Object.freeze({
   ...TRACK_PACKAGE,
-  version: "forest-shuttle-ion-package-2026-10-17-v1",
+  version: "forest-shuttle-ion-package-2026-10-18-v2",
   motorModel: "Forest Shuttle iOn",
   maximumLoadKg: 25,
 });
@@ -74,6 +77,7 @@ export function customerTrackPackage(
     controller:
       p.controller?.model ?? "Included control, model awaiting confirmation",
     allHardwareIncluded: p.allHardwareIncluded,
+    includedComponents: p.includedComponents,
     mounting: p.mounting,
     minimumLengthCm: p.minimumLengthCm,
     precisionCm: p.precisionCm,

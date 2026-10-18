@@ -1,5 +1,6 @@
 /** Customer specification only. No supplier prices or inferred package choices. */
 export const SMART_TRACK_VERSION = 1 as const;
+export const MINIMUM_TRACK_LENGTH_CM = 100;
 /** Estimation reference: Evans DB1 polycotton lining, published 200 g/m². Not a measured customer lining. */
 export const STANDARD_LINING_GSM = 200;
 export type SmartTrackSystem = "FOREST_SHUTTLE_GO" | "FOREST_SHUTTLE_ION";
@@ -49,6 +50,12 @@ export type SmartTrackSpec = {
   viewpoint: "INSIDE_FACING_WINDOW";
   quantity: number;
   weight: TrackWeightInput;
+  /** Customer declaration, kept separate from measured or estimated weight evidence. */
+  weightConfirmation?: {
+    version: 1;
+    system: SmartTrackSystem;
+    maximumKg: number;
+  };
   linkedCurtain?: {
     configurationId: string;
     specificationDigest: string;
@@ -63,7 +70,7 @@ export function exactLength(value: unknown): string {
   if (
     typeof value !== "string" ||
     !/^\d{1,3}(?:\.\d{1,6})?$/.test(value) ||
-    !(Number(value) > 0) ||
+    Number(value) < MINIMUM_TRACK_LENGTH_CM ||
     Number(value) > 500
   )
     throw Error("TRACK_LENGTH_INVALID");
@@ -151,6 +158,16 @@ export function parseSmartTrackSpec(value: unknown): SmartTrackSpec {
   )
     throw Error("TRACK_SPEC_INVALID");
   let linkedCurtain: SmartTrackSpec["linkedCurtain"];
+  let weightConfirmation: SmartTrackSpec["weightConfirmation"];
+  if (v.weightConfirmation !== undefined) {
+    const confirmation = v.weightConfirmation as NonNullable<SmartTrackSpec["weightConfirmation"]>;
+    if (
+      !confirmation || confirmation.version !== 1 ||
+      !["FOREST_SHUTTLE_GO", "FOREST_SHUTTLE_ION"].includes(confirmation.system) ||
+      !positive(confirmation.maximumKg, 35)
+    ) throw Error("TRACK_WEIGHT_CONFIRMATION_INVALID");
+    weightConfirmation = { version: 1, system: confirmation.system, maximumKg: confirmation.maximumKg };
+  }
   if (v.heading === "WAVE" && v.waveSpacingMm !== 60 && v.waveSpacingMm !== 80)
     throw Error("TRACK_WAVE_SPACING_REQUIRED");
   if (v.linkedCurtain !== undefined) {
@@ -187,6 +204,7 @@ export function parseSmartTrackSpec(value: unknown): SmartTrackSpec {
     viewpoint: "INSIDE_FACING_WINDOW",
     quantity: v.quantity as number,
     weight: parseWeight(v.weight),
+    ...(weightConfirmation ? { weightConfirmation } : {}),
     ...(linkedCurtain ? { linkedCurtain } : {}),
     powerLocationChecked: v.powerLocationChecked,
     measurementsConfirmed: v.measurementsConfirmed,

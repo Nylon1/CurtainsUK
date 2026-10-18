@@ -72,14 +72,15 @@ export function quoteSmartTrack(
       : undefined,
   );
   const issues: string[] = [];
-  if (p.minimumLengthCm === null || p.precisionCm === null)
+  if (p.minimumLengthCm === null)
     issues.push(
-      "The minimum length and cutting precision are awaiting confirmation. Your entered length is preserved.",
+      "The minimum track length is awaiting confirmation.",
     );
-  else if (
-    Number(spec.lengthCm) < p.minimumLengthCm ||
-    !precisionSupported(spec.lengthCm, p.precisionCm)
-  )
+  else if (Number(spec.lengthCm) < p.minimumLengthCm)
+    issues.push(`The minimum finished track length is ${p.minimumLengthCm} cm.`);
+  if (p.precisionCm === null)
+    issues.push("Cutting precision is awaiting confirmation. Your entered length is preserved.");
+  else if (!precisionSupported(spec.lengthCm, p.precisionCm))
     issues.push(
       "This exact length is outside the confirmed cutting specification. Please edit it; it has not been rounded.",
     );
@@ -108,7 +109,20 @@ export function quoteSmartTrack(
     issues.push(
       "The supplier must confirm the load limit for this track configuration.",
     );
-  if (weight.compatibility !== "WITHIN_LIMIT") issues.push(weight.message);
+  const declarationMatches = spec.weightConfirmation?.system === spec.system &&
+    spec.weightConfirmation.maximumKg === p.maximumLoadKg;
+  const conflictingWeight = weight.minimumKg !== null && weight.minimumKg > p.maximumLoadKg;
+  const weightAcceptance = {
+    accepted: !conflictingWeight && (declarationMatches || weight.compatibility === "WITHIN_LIMIT"),
+    basis: declarationMatches ? "CUSTOMER_CONFIRMATION" as const
+      : weight.compatibility === "WITHIN_LIMIT" ? "WEIGHT_EVIDENCE" as const : "UNCONFIRMED" as const,
+    maximumKg: p.maximumLoadKg,
+    conflictingWeight,
+  };
+  if (!weightAcceptance.accepted)
+    issues.push(conflictingWeight
+      ? `The entered or estimated weight exceeds ${p.maximumLoadKg} kg. Review the weight before ordering.`
+      : `Confirm that the total curtain weight on each track does not exceed ${p.maximumLoadKg} kg.`);
   if (!p.dispatch) issues.push("Track dispatch time is awaiting confirmation.");
   if (!p.service)
     issues.push(
@@ -166,6 +180,7 @@ export function quoteSmartTrack(
     weight,
     issues,
     ready: true,
+    weightAcceptance,
     purchaseReady: issues.length === 0,
     package: customerTrackPackage(p),
     dispatchEstimate: customerCushionDispatch(p.dispatch),

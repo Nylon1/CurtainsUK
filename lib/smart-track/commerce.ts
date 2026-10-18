@@ -17,6 +17,7 @@ export type SmartTrackSnapshot = {
   specSha256: string;
   package: Readonly<TrackPackage>;
   weight: SmartTrackQuote["weight"];
+  weightAcceptance: SmartTrackQuote["weightAcceptance"];
   customerApproved: true;
   quoteId: string;
   priceVersion: string;
@@ -45,6 +46,7 @@ export function createSmartTrackSnapshot(
     specSha256: trackSpecificationDigest(quote.spec),
     package: p,
     weight: quote.weight,
+    weightAcceptance: quote.weightAcceptance,
     customerApproved: true,
     quoteId: quote.quoteId,
     priceVersion: quote.priceVersion,

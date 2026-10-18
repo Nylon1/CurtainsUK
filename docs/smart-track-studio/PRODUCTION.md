@@ -24,7 +24,7 @@ Persist the three smart-track flags as project Production settings, not per-depl
 
 The theme schema remains opt-in for other installations. The existing MAIN theme's enabled value is recorded in `shopify-theme/production-main-overlay/config/settings_data.json`. The full source manifest includes the reviewed Smart Track Studio files; it must match a fresh MAIN readback after the scoped upload.
 
-Create or retain published Shopify pages with matching template suffixes: `smart-track-studio`, `smart-track-fitting-guide`, and `smart-track-motors`. Discovery uses the existing product chooser and guides, preserving the eight-link header.
+Create or retain published Shopify pages with matching template suffixes: `smart-track-studio`, `smart-track-fitting-guide`, and `smart-track-motors`. At the owner's explicit release request, add **Smart Tracks** after Cushion Studio in the shared desktop, mobile and no-JavaScript navigation. Keep every existing destination and use the same launch setting to control visibility. The product chooser and guides retain their additional entry points.
 
 ## Release and rollback
 

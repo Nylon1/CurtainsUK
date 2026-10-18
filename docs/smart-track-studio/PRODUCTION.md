@@ -39,6 +39,14 @@ Create or retain published Shopify pages with matching template suffixes: `smart
 
 ## Release and rollback
 
+### Current responsive follow-up, PR #239
+
+Both required checks passed before PR #239 merged into protected `881fd80c9c911186bd4476c5f18cbecf7058445b`, tree `ab7ac4a92a3719899c07e09ebe7919a84b745f74`. Its exact clean export passed the existing 3,150-file released-visualiser packaging guard. READY deployment `dpl_BWj7SCCARGac4pkYZJjYeCoiojoz` was staged, checked for open adviser gateways, then promoted to the existing production service. A first immediate asset probe during alias transition still saw the prior source; after canonical alias readback confirmed the new deployment, all 20 asset checks, two quotes and two order reviews passed. All five public signed adviser probes returned the normal customer sign-in requirement.
+
+The live phone layout now retains the EasyTouch remote, app view, channel and group controls, reduced-motion option and accessible Open/Stop/Close buttons. The embedded preview stops pinning when it cannot fit alongside usable form space on a short screen. These are browser emulation checks, not physical iPhone Safari verification. No further theme or database change accompanied this follow-up. Its immediate runtime rollback is `dpl_HktUhDS9xcmgaWP9dsEWXsrb3VUF`; preserve enabled product settings and align stored source-identity values with the restored runtime if rolling back.
+
+Live editing also changed the temporary track to 201 cm and quantity two without creating a duplicate: two configured items, three pieces, products £1,890.72, one £12.95 delivery charge and total £1,903.67. The test track was then removed and the original £805 Abeja Linen curtain and its existing rooms were preserved. Local evidence includes `mobile-final-receipt.json`, `live-smoke-enabled.json`, `adviser-probes-final.json`, `browser-verification.json`, `env-parity.json` and the mobile screenshot. These contain no private pricing or credentials.
+
 Deploy only the exact current protected `release/production` HEAD after both required checks pass. Stage the production deployment before promotion. Verify assets, server quotes for Go/iOn, private-table permissions, dispatch and delivery, My Home edit/review and checkout reconciliation. Paid orders remain subject to staff release; do not create a real payment merely to test publication.
 
 The pre-release production deployment is `dpl_SDfPE1hhDmZ5LkojV8raju32gj5S`. A fresh complete MAIN backup is held at `C:/Users/hamza/curtainsuk-smart-track-release-20261018/theme-before`; all 537 baseline files matched the recorded source before release. Rollback restores the prior deployment and only the changed theme files/settings, hides the three new pages, and closes the three new flags. Retain private order evidence and migration history. Never drop paid-order records as a rollback.

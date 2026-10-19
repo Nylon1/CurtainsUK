@@ -1,3 +1,6 @@
+{% if request.page_type == 'index' and section.settings.homepage_sale_enabled %}
+  {% render 'curtainsuk-home-sale' %}
+{% else %}
 {% capture cuk_environment %}{% render 'curtainsuk-environment' %}{% endcapture %}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -163,15 +166,26 @@
   </div>
 </div>
 
+{% endif %}
+
 {% schema %}
 {
   "name": "t:sections.announcement-bar.name",
   "max_blocks": 12,
   "class": "announcement-bar-section",
   "enabled_on": {
-    "groups": ["header"]
+    "groups": [
+      "header"
+    ]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "homepage_sale_enabled",
+      "default": true,
+      "label": "Show homepage curtain sale",
+      "info": "Advertises up to 25% off already included in curtain prices. Does not apply another discount."
+    },
     {
       "type": "checkbox",
       "id": "auto_rotate",
@@ -187,13 +201,13 @@
       "unit": "s",
       "label": "t:sections.announcement-bar.settings.change_slides_speed.label",
       "default": 5
-    },    
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
-    },  
+    },
     {
       "type": "checkbox",
       "id": "show_line_separator",
@@ -206,8 +220,8 @@
     },
     {
       "type": "paragraph",
-         "content": "t:sections.announcement-bar.settings.paragraph.content"
-    },             
+      "content": "t:sections.announcement-bar.settings.paragraph.content"
+    },
     {
       "type": "checkbox",
       "id": "show_social",

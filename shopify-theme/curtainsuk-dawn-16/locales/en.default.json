@@ -1470,5 +1470,88 @@
       "caption": "Motor concealed behind curtains.",
       "included": "Track, motor, remote and fittings included."
     }
+  },
+  "homepage_features": {
+    "fabric": {
+      "eyebrow": "Browse fabrics",
+      "title": "A fabric to fall for.",
+      "copy": "Beautiful colour. Tactile texture. Find the fabric that makes your room feel like you.",
+      "cta": "Browse fabrics",
+      "room_alt": "Interior inspiration with softly coloured curtains and a dining table",
+      "detail_alt": "Close-up of sage and cream patterned woven curtain fabric",
+      "caption": "From the first touch to the finished room.",
+      "samples": "Order fabric samples"
+    },
+    "cushions": {
+      "eyebrow": "Cushion Studio",
+      "title": "The finishing touch, made yours.",
+      "copy": "Bring your colours together. Choose your fabric, find your shape and create a cushion arrangement you love.",
+      "fabric": "Your fabric",
+      "shape": "Your shape & size",
+      "arrange": "Your arrangement",
+      "cta": "Create my cushions",
+      "image_alt": "Olive, oatmeal, cream and clay cushions with a striped lumbar cushion on an ivory sofa",
+      "caption": "Illustrative cushion styling. Create your own fabric combination in the Studio."
+    },
+    "intelligence": {
+      "eyebrow": "Fabric Intelligence™",
+      "title": "A room photo. A fresh direction.",
+      "copy": "Let your room inspire your fabric choices. Explore ideas that consider your colours, light, furnishings and style.",
+      "palette": "Colour · light · pattern · texture",
+      "cta": "Find fabrics for my room",
+      "style_cta": "Explore my style",
+      "room_alt": "Blue curtains and coordinated furnishings in an interior inspiration setting",
+      "moodboard_alt": "Fabric textures and complementary colours arranged as a design moodboard",
+      "caption": "Interior and palette inspiration. Feel your final choices with real samples."
+    },
+    "advisers": {
+      "eyebrow": "Ask an adviser",
+      "title": "A little guidance. A lot more confidence.",
+      "copy": "From finding your fabric to measuring and fitting, meet the AI advisers who can help you take the next step.",
+      "cta": "Meet the AI advisers",
+      "image_alt": "Portrait of Jane, the CurtainsUK AI fabric and interior design adviser",
+      "caption": "Jane · AI fabric & interior design adviser",
+      "team_label": "More CurtainsUK AI advisers",
+      "noah": "Measuring",
+      "james": "Fitting",
+      "natalie": "Apex curtains",
+      "ben": "Acoustics",
+      "note": "Choose your adviser, then sign in to start a consultation."
+    },
+    "guides": {
+      "eyebrow": "The CurtainsUK guide",
+      "title": "From first idea to beautifully fitted.",
+      "copy": "Three simple starting points. Explore the tools, get your measurements and prepare for fitting.",
+      "use_title": "How to use CurtainsUK",
+      "use_copy": "Discover the studios, fabrics and tools that bring your ideas together.",
+      "use_alt": "A living room preview from the CurtainsUK Room Visualiser",
+      "measure_title": "How to measure",
+      "measure_copy": "Know what to measure and how to get your curtain dimensions right.",
+      "measure_alt": "A full-height patio door and surrounding wall space in a living room",
+      "fit_title": "How to fit",
+      "fit_copy": "Prepare your space and follow the guidance for your curtain setup.",
+      "fit_alt": "Close-up of even wave curtain folds beneath a track",
+      "cta": "Explore the guide"
+    },
+    "sale": {
+      "label": "CurtainsUK curtain sale",
+      "title": "Sale now on",
+      "saving": "Up to 25% off",
+      "product": "Made-to-measure curtains",
+      "match": "Found a better quote? Get in touch and we promise to match it.",
+      "try": "Try us"
+    },
+    "home": {
+      "eyebrow": "Design My Home",
+      "title": "One home. Beautifully together.",
+      "copy": "Bring your curtains, cushions and motorised tracks together. Save your ideas room by room, then review your whole order in one place.",
+      "curtains": "Curtains",
+      "cushions": "Cushions",
+      "tracks": "Motorised tracks",
+      "cta": "Open Design My Home",
+      "note": "Start a new room or return to your saved home.",
+      "living_alt": "Living room inspiration with curtains, an ivory sofa and coordinated cushions",
+      "bedroom_alt": "Bedroom inspiration with curtains and soft upholstered furnishings"
+    }
   }
 }

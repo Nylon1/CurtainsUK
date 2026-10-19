@@ -1,0 +1,14 @@
+.cuksale { padding:14px 24px 12px; background:#842d29; color:#fff7e6; text-align:center; font-family:var(--font-body-family,Arial,sans-serif); }
+.cuksale * { box-sizing:border-box; }
+.cuksale a { color:inherit; text-decoration:none; }
+.cuksale a:focus-visible { outline:2px solid #fff7e6; outline-offset:5px; }
+.cuksale__offer { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px 24px; width:fit-content; margin:auto; min-height:44px; }
+.cuksale__badge { padding:7px 11px; background:#eee1b6; color:#63231f; font-size:11px; line-height:1.4; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.cuksale__offer strong { font:400 clamp(27px,2.6vw,38px)/1.1 Georgia,'Times New Roman',serif; letter-spacing:-.035em; }
+.cuksale__product { font-size:13px; line-height:1.4; }
+.cuksale__product > span { margin-left:12px; }
+.cuksale__match { margin:5px 0 0; font-size:11px; line-height:1.6; }
+.cuksale__match a { display:inline-block; padding:8px 0; }
+.cuksale__try { white-space:nowrap; text-decoration:underline; text-underline-offset:3px; margin-left:6px; }
+.cuksale__offer:hover .cuksale__product { text-decoration:underline; text-underline-offset:4px; }
+@media(max-width:599px) { .cuksale { padding:12px 20px 6px; }.cuksale__offer { gap:9px 14px; }.cuksale__badge { font-size:9px; }.cuksale__product { flex-basis:100%; font-size:12px; }.cuksale__match { font-size:10px; max-width:36em; margin:4px auto 0; } }

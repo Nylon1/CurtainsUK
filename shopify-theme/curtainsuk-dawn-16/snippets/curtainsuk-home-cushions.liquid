@@ -1,0 +1,27 @@
+{% doc %}
+  Editorial image and entry to the released Cushion Studio.
+  @param {object} section - Homepage section and optional cushion image.
+{% enddoc %}
+{% assign cushion_alt = 'homepage_features.cushions.image_alt' | t %}
+<section class="cukfeature cukfeature--cushions" id="homepage-cushion-studio" aria-labelledby="cukcushions-title-{{ section.id }}">
+  <div class="cukfeature__wrap cukfeature__split">
+    <div class="cukfeature__visual">
+      <a class="cukfeature__image-link cukfeature__cushion-image" href="/pages/cushion-studio" aria-label="{{ 'homepage_features.cushions.cta' | t | escape }}">
+        {% if section.settings.cushion_image != blank %}
+          {{ section.settings.cushion_image | image_url: width: 1500 | image_tag: widths: '480, 750, 1100, 1500', sizes: '(min-width: 1000px) 56vw, 100vw', loading: 'lazy', alt: cushion_alt }}
+        {% else %}
+          <img src="{{ 'cuk-home-cushion-editorial.webp' | asset_url }}" width="1536" height="1024" loading="lazy" decoding="async" alt="{{ cushion_alt | escape }}">
+        {% endif %}
+        <span class="cukfeature__image-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="cukfeature__image-note">{{ 'homepage_features.cushions.caption' | t }}</p>
+    </div>
+    <div class="cukfeature__copy">
+      <p class="cukfeature__eyebrow">{{ 'homepage_features.cushions.eyebrow' | t }}</p>
+      <h2 id="cukcushions-title-{{ section.id }}">{{ 'homepage_features.cushions.title' | t }}</h2>
+      <p class="cukfeature__intro">{{ 'homepage_features.cushions.copy' | t }}</p>
+      <ul class="cukfeature__details"><li>{{ 'homepage_features.cushions.fabric' | t }}</li><li>{{ 'homepage_features.cushions.shape' | t }}</li><li>{{ 'homepage_features.cushions.arrange' | t }}</li></ul>
+      <a class="cukfeature__button" href="/pages/cushion-studio">{{ 'homepage_features.cushions.cta' | t }} <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>

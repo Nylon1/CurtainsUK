@@ -1,0 +1,30 @@
+{% doc %}
+  Room and moodboard entry to the released Fabric Intelligence journeys.
+  @param {object} section - Homepage section and optional room image.
+{% enddoc %}
+{% liquid
+  assign room = section.settings.intelligence_room_image | default: images['prestigious-room-blue-coordinated.webp']
+  assign room_alt = 'homepage_features.intelligence.room_alt' | t
+  assign moodboard_alt = 'homepage_features.intelligence.moodboard_alt' | t
+%}
+<section class="cukfeature cukfeature--intelligence" id="fabric-intelligence" aria-labelledby="cukintelligence-title-{{ section.id }}">
+  <div class="cukfeature__wrap cukfeature__split">
+    <div class="cukfeature__copy" id="what-we-consider">
+      <p class="cukfeature__eyebrow">{{ 'homepage_features.intelligence.eyebrow' | t }}</p>
+      <h2 id="cukintelligence-title-{{ section.id }}">{{ 'homepage_features.intelligence.title' | t }}</h2>
+      <p class="cukfeature__intro">{{ 'homepage_features.intelligence.copy' | t }}</p>
+      <div class="cukfeature__palette" id="colour-intelligence" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="cukfeature__palette-caption">{{ 'homepage_features.intelligence.palette' | t }}</p>
+      <a class="cukfeature__button" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'homepage_features.intelligence.cta' | t }} <span aria-hidden="true">↗</span></a>
+      <a class="cukfeature__text-link" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided">{{ 'homepage_features.intelligence.style_cta' | t }} <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="cukfeature__visual">
+      <a class="cukfeature__intelligence-gallery cukfeature__image-link" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match" aria-label="{{ 'homepage_features.intelligence.cta' | t | escape }}">
+        <div class="cukfeature__intelligence-room">{{ room | image_url: width: 1100 | image_tag: widths: '480, 750, 1100', sizes: '(min-width: 1000px) 48vw, 100vw', loading: 'lazy', alt: room_alt }}</div>
+        <div class="cukfeature__moodboard">{{ images['curtainsuk-fabric-moodboard.jpg'] | image_url: width: 750 | image_tag: widths: '240, 480, 750', sizes: '(min-width: 1000px) 25vw, 50vw', loading: 'lazy', alt: moodboard_alt }}</div>
+        <span class="cukfeature__image-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="cukfeature__image-note">{{ 'homepage_features.intelligence.caption' | t }}</p>
+    </div>
+  </div>
+</section>

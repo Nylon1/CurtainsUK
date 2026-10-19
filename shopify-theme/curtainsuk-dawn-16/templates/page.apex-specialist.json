@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "curtainsuk-apex-specialist",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

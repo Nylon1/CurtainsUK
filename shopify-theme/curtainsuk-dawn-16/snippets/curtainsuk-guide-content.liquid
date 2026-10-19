@@ -77,6 +77,7 @@
         </aside>
         <details class="cuk-guide-note"><summary>Common fitting mistakes</summary><p>Using unsuitable fixings; missing required supports; checking the level only at one point; ignoring door or handle clearance; hanging heavy curtains without help; treating a specialist sloping track like a straight track.</p></details>
       {% endif %}
+      {% if guide == 'apex' %}<p class="cuk-guide-note"><a href="/pages/apex-window-curtains-the-challenge">{{ 'apex_specialist.guide_link' | t }} <span aria-hidden="true">↗</span></a></p>{% endif %}
       <div class="cuk-guide-end"><h2>Measurements ready?</h2><a class="cuk-guide-button" data-cuk-guide-continue href="/pages/curtain-visualiser?window={{ window }}">Make my curtains</a><a href="/pages/how-to-{% if mode == 'measure' %}fit{% else %}measure{% endif %}-{{ guide }}">{% if mode == 'measure' %}Read the fitting guide{% else %}Check your measurements{% endif %}</a></div>
     {% endif %}
   </div>

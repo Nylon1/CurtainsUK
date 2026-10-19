@@ -16,12 +16,13 @@
     </div>
     <div class="cuk-grid">
       {% for handle in handles %}
-        <a class="cuk-card" href="/pages/curtain-visualiser?window={{ handle | url_encode }}">
+        {% assign apex_route = false %}{% if handle == 'apex-window' or handle == 'triangular-window' or handle == 'gable-end-window' %}{% assign apex_route = true %}{% endif %}
+        <a class="cuk-card" href="{% if apex_route %}/pages/apex-window-curtains-the-challenge{% else %}/pages/curtain-visualiser?window={{ handle | url_encode }}{% endif %}">
           <span class="cuk-card__shape" aria-hidden="true">⌑</span>
           <span>
             <h3>{{ names[forloop.index0] }}</h3>
             <p>{{ descriptions[forloop.index0] }}</p>
-            <small>Start my curtains →</small>
+            <small>{% if apex_route %}{{ 'apex_specialist.discovery_link' | t }}{% else %}Start my curtains{% endif %} →</small>
           </span>
         </a>
       {% endfor %}

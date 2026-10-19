@@ -1,6 +1,31 @@
-# Apex and angled curtains: review candidate
+# Apex and angled curtains: publication and review record
 
-## Status and source
+## Published, 19 October 2026
+
+The owner authorised publication with "Publish and ensure no feature of the existing site is turned off". [PR #248](https://github.com/Nylon1/CurtainsUK/pull/248), approved head `14f743150439ed4fbcefbbc125d719dcb0e6c399`, passed `curtainsuk-production-gate` and `protected-production-policy` in run `39221536852`. It merged to protected `release/production` at `13b7a4eab6089c3a07639964473efc4091fef95a`, tree `4c6aac530b1e9d5ed410147a3b0bb02b65eaa758`.
+
+The page is live at <https://www.curtainsuk.com/pages/apex-window-curtains-the-challenge>. A fresh pre-release theme pull matched all 554 files of previous protected source `6e34091a8f084c069b64b19a63584dbf7e6b007d`. Only the 26 changed theme files, assembled from the exact protected merge, were uploaded to existing Shopify MAIN theme `182339731835`, with deletion disabled. Complete post-publication readback matches all 575 files in the protected theme manifest. No configuration files were uploaded. Stored settings are byte-identical before and after, SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`.
+
+Existing Page `gid://shopify/Page/85261385837` received only `templateSuffix: apex-specialist`. Fresh readback confirmed the suffix and unchanged page identity, handle, title, body and published state. Browser inspection confirmed the original SEO title, description and self-canonical, one H1, and no robots noindex directive. No replacement page or redirect was created.
+
+Live browser checks confirmed the shape controls, gallery enlargement, Escape closing with focus return, all three action destinations, Natalie consultation entry, loaded hero/gallery images, and Shop by Window discovery through to the historic page. The desktop viewport was 1229 CSS pixels without horizontal overflow. A live mobile viewport override did not take effect in this browser session and was reset; mobile evidence remains the earlier 390-pixel candidate check below, not a newly claimed production-device test.
+
+| Existing feature | Bounded live result |
+| --- | --- |
+| Browse Fabrics | Catalogue loaded 11,815 fabrics with normal product actions. |
+| Naila | Start my consultation returned the opening question and four response options. |
+| Room Visualiser | Living-room scene rendered with the selected fabric and room controls. |
+| Cushion Studio | Configurator, preview controls and catalogue loaded. |
+| Motorised Curtain Tracks | Remote and app demonstration controls, five rooms, configuration and live product price loaded. |
+| Fabric Intelligence | Room-reading experience and reference/photo entry controls loaded. |
+| Advisers | All five profiles and consultation entry points remain available. Jane and Ben reached the settled customer sign-in boundary; Noah, James and Natalie opened their correct specialist shells with sign-in links. |
+| Design My Home | Existing saved curtain item and order review loaded. The review required a postcode before checkout; the existing item was not changed. |
+
+No feature switch, purchase setting, runtime environment, pricing, checkout code, catalogue or Supabase object changed. These checks do not claim a new payment, signed-in AI reply, room-image analysis or complete order acceptance test. Existing runtime remains recorded as `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4` on `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`; this theme-only publication did not redeploy or freshly attest Vercel metadata.
+
+Live proof: [hero](../artifacts/apex-specialist-20261019/hero-desktop-live.png) and [photography with enquiry/adviser/Learn more actions](../artifacts/apex-specialist-20261019/actions-desktop-live.png). Private source archives, full before/after theme backups, scoped upload list and CLI logs are in `C:/Users/hamza/curtainsuk-apex-release-20261019`. Later documentation-only protected commits do not change the serving theme or runtime identity. The following sections retain the original candidate review and release plan as historical evidence.
+
+## Original candidate status and source
 
 Unpublished candidate on `feat/apex-specialist-page-20261019`, based on protected `release/production` at `6e34091a8f084c069b64b19a63584dbf7e6b007d`. The owner approved the proposal, specified Learn more to the Apex homepage, then supplied the historic URL and requested retention and enhancement of useful existing content. This is preview approval scope; no theme upload, page mutation, merge, deployment, database change or feature-flag change has occurred.
 

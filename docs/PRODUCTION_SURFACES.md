@@ -1,6 +1,14 @@
 # CurtainsUK production surfaces
 
-## Current homepage visual journeys publication, 19 October 2026
+## Current Apex specialist page publication, 19 October 2026
+
+The owner-approved Apex page in [PR #248](https://github.com/Nylon1/CurtainsUK/pull/248) is live at the historic `/pages/apex-window-curtains-the-challenge` address. Approved head `14f743150439ed4fbcefbbc125d719dcb0e6c399` passed both required checks before merging to protected `13b7a4eab6089c3a07639964473efc4091fef95a`, tree `4c6aac530b1e9d5ed410147a3b0bb02b65eaa758`. Only 26 scoped files were uploaded to existing Shopify MAIN `182339731835`. Complete live readback matches all 575 protected theme files. Stored settings remain byte-identical, SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`.
+
+Existing Page `85261385837` changed only its template suffix to `apex-specialist`; handle, title, body, publication state and live SEO metadata were retained. The enhanced page, interactive shapes/gallery, Natalie entry, enquiry and Learn more links, and Shop by Window discovery were checked live. Browse Fabrics, Naila, Room Visualiser, Cushion Studio, Motorised Curtain Tracks, Fabric Intelligence, advisers and Design My Home entry points were also checked. No feature was switched off. See the [publication record, verification limits and screenshots](APEX_SPECIALIST_PAGE_REVIEW_20261019.md).
+
+No runtime, environment, database, pricing or checkout change accompanied this release. The existing recorded runtime is `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4` on `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`; Vercel metadata was not freshly attested in this theme-only release. Later documentation-only commits do not change these serving identities.
+
+## Earlier homepage visual journeys publication, 19 October 2026
 
 The owner-approved homepage tidy-up in [PR #246](https://github.com/Nylon1/CurtainsUK/pull/246) is live. Approved head `f9658595173e74fc0ef44c08ab070512d60347f9` passed both required checks before merging to protected `6e4adddc793cf16d942d30c4d71c92e0ebcc8f0f`, tree `3b505655c10e40cf1b9547fa57303760793bb7b6`. Only the 16 recorded homepage files were uploaded to existing Shopify MAIN `182339731835`. Complete post-publication readback matches all 554 files in protected source. Stored settings are byte-identical before and after publication, SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`.
 

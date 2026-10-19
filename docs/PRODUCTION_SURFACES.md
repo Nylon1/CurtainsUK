@@ -1,12 +1,16 @@
 # CurtainsUK production surfaces
 
-## Current live audit, 19 October 2026 Europe/London
+## Current guide-link publication, 19 October 2026
+
+The owner-approved guide correction in PR #241 is live. [The release record](GUIDE_LINK_RELEASE_20261019.md) is the current shared-service authority: protected runtime `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4`, tree `3e2a3d926811a2d1a2a8a64d82ce1e8b02dfeeba`, READY deployment `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`. All three serving aliases agree. Only the four source attestations changed; all 95 settings remain present and no feature was switched off. Five adviser gateways, 20 smart-track assets, quotes, delivery and order reviews passed. The live footer link now opens the correct guide. Shopify MAIN and Supabase were unchanged. Later documentation commits do not change this runtime identity.
+
+## Earlier live audit, 19 October 2026 Europe/London
 
 The [fresh live-site audit](LIVE_SITE_AUDIT_20261019.md) records the current source and bounded functional checks. All 67 Production environment entries match the final launch record; the complete 541-file Shopify MAIN theme matches protected source. Existing customer features and stock/maintenance schedules were not switched off. The serving runtime remains `881fd80c9c911186bd4476c5f18cbecf7058445b` on READY deployment `dpl_BWj7SCCARGac4pkYZJjYeCoiojoz`; subsequent documentation-only commits do not change it.
 
-The audit found a broken Smart Track Studio footer guide destination, with a checked correction prepared in [PR #241](https://github.com/Nylon1/CurtainsUK/pull/241), not yet published. Room Visualiser displayed one load failure and subsequently rendered after a fresh reload; the cause was not established. Signed-in AI generation, payment and supplier release were not replayed. This record does not claim every flow passed without qualification. Earlier checkpoints below retain their dates and historical deployment identities.
+At the audit checkpoint, the Smart Track Studio footer guide correction in [PR #241](https://github.com/Nylon1/CurtainsUK/pull/241) was not yet published. It is now released as recorded above. Room Visualiser displayed one load failure and subsequently rendered after a fresh reload; the cause was not established. Signed-in AI generation, payment and supplier release were not replayed. This record does not claim every flow passed without qualification. Earlier checkpoints below retain their dates and historical deployment identities.
 
-## Current Motorised Curtain Tracks publication, 18 October 2026 UTC
+## Motorised Curtain Tracks publication, 18 October 2026 UTC
 
 Motorised Curtain Tracks, Smart Track Studio, the visual fitting guide and the illustrated motor guide are live. PRs #237, #238 and #239 passed both required checks before merge. The current shared-service runtime is protected `881fd80c9c911186bd4476c5f18cbecf7058445b`, tree `ab7ac4a92a3719899c07e09ebe7919a84b745f74`, serving from READY deployment `dpl_BWj7SCCARGac4pkYZJjYeCoiojoz`. PR #239 restores the remote/app controls on phones and tablets. The prior Smart Track deployment `dpl_HktUhDS9xcmgaWP9dsEWXsrb3VUF` is its immediate runtime rollback.
 

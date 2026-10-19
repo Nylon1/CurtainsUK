@@ -1,5 +1,7 @@
 # CurtainsUK live-site audit, 19 October 2026
 
+**Subsequent publication:** the owner approved the guide fix after this audit. PR #241 is now merged and live from protected runtime `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4` on `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`. See [the current release record](GUIDE_LINK_RELEASE_20261019.md). The audit results and source identities below remain the original midnight checkpoint, not the current deployment pointers.
+
 This is a fresh live audit performed shortly after midnight Europe/London on 19 October (18 October 23:23-23:42 UTC). It records availability, bounded functional checks and production synchronisation. It does not certify every customer combination, a new payment, signed-in AI generation or supplier fulfilment.
 
 ## Result

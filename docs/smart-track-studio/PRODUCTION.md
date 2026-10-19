@@ -1,5 +1,7 @@
 # Smart Track Studio production configuration
 
+**Current shared-service release, 19 October 2026:** [PR #241's guide-link publication](../GUIDE_LINK_RELEASE_20261019.md) serves protected `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4`, tree `3e2a3d926811a2d1a2a8a64d82ce1e8b02dfeeba`, from READY deployment `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`. All three aliases and four source attestations agree. Existing flags, MAIN theme and Supabase were preserved. Immediate rollback is `dpl_BWj7SCCARGac4pkYZJjYeCoiojoz` with source `881fd80c9c911186bd4476c5f18cbecf7058445b`. The dated releases below retain their historical identities.
+
 The owner approved PR #237 at `b44893926256f9ab81187542d31caf99ac1be5a0` in [the exact-head approval](https://github.com/Nylon1/CurtainsUK/pull/237#issuecomment-6255977325). Both required checks passed and the feature merged into protected `release/production` at `697d71bc22850b8c53c0e3027328d819e5f9a96e` on 18 October 2026. This record and the theme activation preserve the approved release configuration in source. Publication is complete only after deployment and live readback.
 
 ## Existing production targets
@@ -39,7 +41,7 @@ Create or retain published Shopify pages with matching template suffixes: `smart
 
 ## Release and rollback
 
-### Current responsive follow-up, PR #239
+### Responsive follow-up, PR #239, 18 October 2026
 
 Both required checks passed before PR #239 merged into protected `881fd80c9c911186bd4476c5f18cbecf7058445b`, tree `ab7ac4a92a3719899c07e09ebe7919a84b745f74`. Its exact clean export passed the existing 3,150-file released-visualiser packaging guard. READY deployment `dpl_BWj7SCCARGac4pkYZJjYeCoiojoz` was staged, checked for open adviser gateways, then promoted to the existing production service. A first immediate asset probe during alias transition still saw the prior source; after canonical alias readback confirmed the new deployment, all 20 asset checks, two quotes and two order reviews passed. All five public signed adviser probes returned the normal customer sign-in requirement.
 

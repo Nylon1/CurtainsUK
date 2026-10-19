@@ -80,4 +80,3 @@ templates/index.json
 ```
 
 Re-read all 554 theme files against the protected manifest and repeat scoped browser checks. Preserve the complete stored settings and all released feature flags. No runtime deployment or database change is required. Update the production source-of-truth record only after successful publication/readback. Rollback restores the six changed files and removes the ten additions using the pre-release backup, preserving existing settings and customer data.
-

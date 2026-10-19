@@ -1,6 +1,28 @@
-# Homepage visual journeys: review candidate
+# Homepage visual journeys: publication and review record
 
-This unpublished, theme-only candidate starts from protected `release/production` at `f0ca5ca71259f55922ccf2629646500206626a29`. It makes the existing customer journeys easier to discover with large photographic features. No pricing, checkout, adviser service, catalogue, feature flag, stored theme setting, Vercel deployment or Supabase object is changed.
+## Published, 19 October 2026
+
+The owner authorised publication with "Publish" after reviewing exact PR #246 head `f9658595173e74fc0ef44c08ab070512d60347f9`. Both `curtainsuk-production-gate` and `protected-production-policy` passed in run `39209636030`. The PR merged to protected `release/production` at `6e4adddc793cf16d942d30c4d71c92e0ebcc8f0f`, tree `3b505655c10e40cf1b9547fa57303760793bb7b6`.
+
+The fresh pre-release pull matched all 544 previous theme files. The complete candidate was assembled from an archive of that exact protected merge, then only the 16 files listed below were uploaded to existing MAIN theme `182339731835` with deletion disabled. Full post-upload readback matches all 554 protected manifest entries. Stored settings are byte-identical before and after: SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`. No theme settings were uploaded. No existing feature was switched off, and no runtime, environment, database or pricing changes were made.
+
+Live browser checks on <https://www.curtainsuk.com/> covered CSS viewport widths 1536, 1229 and 390 pixels without horizontal overflow. The sale and updated section order render correctly, all 26 main-content image elements loaded, and no duplicate main-content IDs were found. Bedroom selection, Evening lighting and keyboard activation of Double pinch pleat worked. The Guide card opened the How to use page; the final order CTA opened Design My Home. Existing saved items were not edited. No payment, signed-in adviser reply or new room-image analysis was submitted. The Shopify consent anchor is a platform action and is not a missing content section.
+
+| Live proof | Desktop | Phone |
+| --- | --- | --- |
+| Homepage opening and sale | [Screenshot](../artifacts/homepage-visual-journeys-20261019/hero-desktop-live.png) | [Screenshot](../artifacts/homepage-visual-journeys-20261019/hero-mobile-live.png) |
+| Browse Fabrics | | [Screenshot](../artifacts/homepage-visual-journeys-20261019/fabrics-mobile-live.png) |
+| Cushion Studio | [Screenshot](../artifacts/homepage-visual-journeys-20261019/cushions-desktop-live.png) | [Screenshot](../artifacts/homepage-visual-journeys-20261019/cushions-mobile-live.png) |
+| Fabric Intelligence | | [Screenshot](../artifacts/homepage-visual-journeys-20261019/intelligence-mobile-live.png) |
+| AI advisers | | [Screenshot](../artifacts/homepage-visual-journeys-20261019/advisers-mobile-live.png) |
+| Guide | [Screenshot](../artifacts/homepage-visual-journeys-20261019/guides-desktop-live.png) | [Screenshot](../artifacts/homepage-visual-journeys-20261019/guides-mobile-live.png) |
+| Final Design My Home feature | [Screenshot](../artifacts/homepage-visual-journeys-20261019/design-home-desktop-live.png) | [Screenshot](../artifacts/homepage-visual-journeys-20261019/design-home-mobile-live.png) |
+
+The private local release backup, source archives, CLI logs and full readbacks are in `C:/Users/hamza/curtainsuk-homepage-journeys-release-20261019`. The runtime remains `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4` on `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`. Documentation-only protected commits may advance HEAD without changing the serving theme or runtime. The review and preview details below are historical candidate evidence.
+
+## Original candidate
+
+This theme-only candidate started from protected `release/production` at `f0ca5ca71259f55922ccf2629646500206626a29`. It makes the existing customer journeys easier to discover with large photographic features. No pricing, checkout, adviser service, catalogue, feature flag, stored theme setting, Vercel deployment or Supabase object is changed.
 
 ## Homepage tidy-up in the same PR
 
@@ -58,7 +80,7 @@ Prompt: “Use case: photorealistic-natural. Asset type: luxury British interior
 
 ## Scoped release
 
-Follow the owner's exact-head approval and protected PR process. This candidate has not been published. Once the exact PR head is approved and both required checks pass, merge to `release/production`, read back the complete existing MAIN theme and settings, and publish only the following 16 files from that protected source to existing theme `182339731835`:
+The owner's exact-head approval and protected PR process was completed as recorded above. The scoped upload contained only the following 16 files from protected source to existing theme `182339731835`:
 
 ```text
 assets/cuk-home-cushion-editorial.webp
@@ -79,4 +101,4 @@ snippets/curtainsuk-home-trust-strip.liquid
 templates/index.json
 ```
 
-Re-read all 554 theme files against the protected manifest and repeat scoped browser checks. Preserve the complete stored settings and all released feature flags. No runtime deployment or database change is required. Update the production source-of-truth record only after successful publication/readback. Rollback restores the six changed files and removes the ten additions using the pre-release backup, preserving existing settings and customer data.
+All 554 theme files were read back against the protected manifest and scoped browser checks were repeated. The complete stored settings and all released feature flags were preserved. No runtime deployment or database change was required. This source-of-truth record was updated after successful publication/readback. Rollback restores the six changed files and removes the ten additions using the pre-release backup, preserving existing settings and customer data.

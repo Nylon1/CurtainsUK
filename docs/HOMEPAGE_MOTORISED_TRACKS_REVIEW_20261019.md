@@ -1,8 +1,22 @@
 # Motorised Curtain Tracks homepage feature
 
+## Published, 19 October 2026
+
+The owner approved PR #244 at exact head `24e79691b9e765c5fc9ed818b56c2138cd750846`. Both required checks passed in run `39204664426`. The PR merged into protected `release/production` at `51756d4294e7d08fe91a7fee9c3de35e3a758439`, tree `6b561132eb0d68e427176271e66e5f6925d1465f`, at 05:35:51 UTC.
+
+The six files listed below were uploaded from that exact protected HEAD to existing Shopify MAIN `182339731835`. A full pre-upload pull matched the previous 541-file source. A full post-upload pull matched all 544 files in the new protected manifest. `config/settings_data.json` was unchanged, with SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502` before and after. No feature flags, navigation settings, Vercel environment entries or Supabase objects were changed.
+
+Live entry: [Motorised Curtain Tracks on the homepage](https://www.curtainsuk.com/#homepage-motorised-tracks). Desktop and phone Chrome checks confirmed all three image elements loaded, with no horizontal overflow. Browser viewport overrides were 1440 × 900 and 390 × 844; the browser's existing scale reported CSS widths of 1152 and 312 respectively. Both homepage links opened their published pages. Smart Track Studio loaded its room, EasyTouch remote and £514.29 starting quotation. These are scoped browser checks, not physical-device acceptance, a new full-site audit or a payment test.
+
+Live screenshots: [desktop](../artifacts/homepage-motorised-tracks-20261019/desktop-live.png), [phone](../artifacts/homepage-motorised-tracks-20261019/mobile-live.png). Local complete pre/post theme backups and the source receipt are in `C:\Users\hamza\curtainsuk-homepage-track-release-20261019`.
+
+The existing motor-guide frame was blank on its first navigation, then rendered its full motor comparison and brochure diagram after a normal page reload. A separate command-line request encountered Shopify's connection-verification response. The cause of the browser's initial blank frame was not established; this release does not claim to fix it. No security setting was changed.
+
+The shared-service runtime remains `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4` on `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`. This release changed only the Shopify homepage presentation. The dated candidate record below is retained as review evidence; its unpublished status has been superseded by this checkpoint. Later documentation-only protected commits do not change either serving identity.
+
 ## Review candidate
 
-The owner requested a highly visual homepage entry for the released Motorised Curtain Tracks range. This theme-only candidate starts from protected `release/production` at `0f26ce6657ad6ff8e362ff6a059d45b815dd023f`. It is separate from the published guide correction and has not been uploaded to Shopify MAIN.
+The owner requested a highly visual homepage entry for the released Motorised Curtain Tracks range. This theme-only candidate started from protected `release/production` at `0f26ce6657ad6ff8e362ff6a059d45b815dd023f`. At review it was separate from the published guide correction and had not been uploaded to Shopify MAIN.
 
 The new feature sits immediately after the main hero and its shortcuts, before the existing Room Visualiser. It pairs a large luxury room and ivory curtains with an EasyTouch remote illustration, a concise heading, plug-in and rechargeable-battery labels, and a **Try Smart Track Studio** action. The whole room visual also links to the released Studio. A secondary link opens the existing motor guide. The motor-concealment and included-hardware captions sit outside the photograph.
 

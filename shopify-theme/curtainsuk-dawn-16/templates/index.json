@@ -23,16 +23,20 @@
       "settings": {},
       "disabled": true
     },
-    "curtainsuk-house": {
-      "type": "curtainsuk-home-house",
-      "settings": {}
-    },
-    "curtainsuk-shopping": {
-      "type": "curtainsuk-home-shopping",
-      "settings": {}
-    },
     "curtainsuk-studio": {
       "type": "curtainsuk-home-studio",
+      "settings": {}
+    },
+    "curtainsuk-advisers": {
+      "type": "curtainsuk-home-advisers",
+      "settings": {}
+    },
+    "curtainsuk-guides": {
+      "type": "curtainsuk-home-guides",
+      "settings": {}
+    },
+    "curtainsuk-design-home": {
+      "type": "curtainsuk-home-design",
       "settings": {}
     }
   },
@@ -40,8 +44,9 @@
     "curtainsuk-hero",
     "curtainsuk-editorial",
     "curtainsuk-studio",
-    "curtainsuk-house",
-    "curtainsuk-shopping",
-    "curtainsuk-inspiration-help"
+    "curtainsuk-inspiration-help",
+    "curtainsuk-advisers",
+    "curtainsuk-guides",
+    "curtainsuk-design-home"
   ]
 }

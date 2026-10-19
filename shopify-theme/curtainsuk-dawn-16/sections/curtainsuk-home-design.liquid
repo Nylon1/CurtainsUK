@@ -1,0 +1,23 @@
+{{ 'curtainsuk-home-features.css' | asset_url | stylesheet_tag }}
+<section class="cukfeature cukfeature--home" id="homepage-design-my-home" aria-labelledby="cukhome-title-{{ section.id }}">
+  <div class="cukfeature__wrap cukfeature__split">
+    <div class="cukfeature__visual">
+      <a class="cukfeature__home-gallery cukfeature__image-link" href="/pages/build-my-rooms" aria-label="{{ 'homepage_features.home.cta' | t | escape }}">
+        <div class="cukfeature__home-main"><img src="{{ 'cuk-home-living-daylight.webp' | asset_url }}" width="1026" height="642" loading="lazy" decoding="async" alt="{{ 'homepage_features.home.living_alt' | t | escape }}"></div>
+        <div class="cukfeature__home-inset"><img src="{{ 'cuk-home-bedroom-daylight.webp' | asset_url }}" width="1026" height="642" loading="lazy" decoding="async" alt="{{ 'homepage_features.home.bedroom_alt' | t | escape }}"></div>
+        <span class="cukfeature__image-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="cukfeature__copy">
+      <p class="cukfeature__eyebrow">{{ 'homepage_features.home.eyebrow' | t }}</p>
+      <h2 id="cukhome-title-{{ section.id }}">{{ 'homepage_features.home.title' | t }}</h2>
+      <p class="cukfeature__intro">{{ 'homepage_features.home.copy' | t }}</p>
+      <ul class="cukfeature__details"><li>{{ 'homepage_features.home.curtains' | t }}</li><li>{{ 'homepage_features.home.cushions' | t }}</li><li>{{ 'homepage_features.home.tracks' | t }}</li></ul>
+      <a class="cukfeature__button" href="/pages/build-my-rooms">{{ 'homepage_features.home.cta' | t }} <span aria-hidden="true">↗</span></a>
+      <p class="cukfeature__consultation-note">{{ 'homepage_features.home.note' | t }}</p>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Homepage Design My Home","tag":"section","class":"section","enabled_on":{"templates":["index"]},"settings":[],"presets":[{"name":"Homepage Design My Home"}]}
+{% endschema %}

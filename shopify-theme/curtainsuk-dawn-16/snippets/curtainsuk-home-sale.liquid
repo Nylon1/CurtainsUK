@@ -1,0 +1,8 @@
+{% doc %}
+  Homepage promotion with prices already reflected in the existing quotation system.
+{% enddoc %}
+{{ 'curtainsuk-home-sale.css' | asset_url | stylesheet_tag }}
+<aside class="cuksale" aria-label="{{ 'homepage_features.sale.label' | t | escape }}">
+  <a class="cuksale__offer" href="/pages/fabric-library?view=browse-fabrics"><span class="cuksale__badge">{{ 'homepage_features.sale.title' | t }}</span><strong>{{ 'homepage_features.sale.saving' | t }}</strong><span class="cuksale__product">{{ 'homepage_features.sale.product' | t }} <span aria-hidden="true">↗</span></span></a>
+  <p class="cuksale__match"><a href="/pages/contact-us">{{ 'homepage_features.sale.match' | t }} <span class="cuksale__try">{{ 'homepage_features.sale.try' | t }} <span aria-hidden="true">→</span></span></a></p>
+</aside>

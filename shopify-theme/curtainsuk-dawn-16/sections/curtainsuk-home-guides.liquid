@@ -1,0 +1,41 @@
+{{ 'curtainsuk-home-features.css' | asset_url | stylesheet_tag }}
+<section class="cukfeature cukfeature--guides" id="homepage-guides" aria-labelledby="cukguides-title-{{ section.id }}">
+  <div class="cukfeature__wrap">
+    <div class="cukfeature__heading"><div><p class="cukfeature__eyebrow">{{ 'homepage_features.guides.eyebrow' | t }}</p><h2 id="cukguides-title-{{ section.id }}">{{ 'homepage_features.guides.title' | t }}</h2></div><p class="cukfeature__guide-intro">{{ 'homepage_features.guides.copy' | t }}</p></div>
+    <div class="cukfeature__guide-grid">
+      {% assign guides = 'use,measure,fit' | split: ',' %}
+      {% for guide in guides %}
+        {% liquid
+          assign title_key = guide | prepend: 'homepage_features.guides.' | append: '_title'
+          assign text_key = guide | prepend: 'homepage_features.guides.' | append: '_copy'
+          assign alt_key = guide | prepend: 'homepage_features.guides.' | append: '_alt'
+          assign cta_key = guide | prepend: 'homepage_features.guides.' | append: '_cta'
+          case guide
+            when 'use'
+              assign destination = '/pages/how-to-use'
+              assign artwork = 'cuk-home-living-daylight.webp'
+              assign image_width = 1026
+              assign image_height = 642
+            when 'measure'
+              assign destination = '/pages/how-to-measure'
+              assign artwork = 'cuk-home-track-room.webp'
+              assign image_width = 1536
+              assign image_height = 1024
+            when 'fit'
+              assign destination = '/pages/how-to-fit'
+              assign artwork = 'cuk-home-heading-wave.webp'
+              assign image_width = 750
+              assign image_height = 562
+          endcase
+        %}
+        <a class="cukfeature__guide-card" href="{{ destination }}">
+          <div class="cukfeature__guide-image"><img src="{{ artwork | asset_url }}" width="{{ image_width }}" height="{{ image_height }}" loading="lazy" decoding="async" alt="{{ alt_key | t | escape }}"><span class="cukfeature__guide-number" aria-hidden="true">0{{ forloop.index }}</span><span class="cukfeature__image-arrow" aria-hidden="true">↗</span></div>
+          <div class="cukfeature__guide-copy"><h3>{{ title_key | t }}</h3><p>{{ text_key | t }}</p><span class="cukfeature__guide-link">{{ cta_key | t }} <span aria-hidden="true">→</span></span></div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Homepage visual guides","tag":"section","class":"section","enabled_on":{"templates":["index"]},"settings":[],"presets":[{"name":"Homepage visual guides"}]}
+{% endschema %}

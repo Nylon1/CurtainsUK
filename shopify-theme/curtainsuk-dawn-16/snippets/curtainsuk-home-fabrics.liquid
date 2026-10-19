@@ -1,0 +1,24 @@
+{% doc %}
+  Image-led entry to the existing fabric collection.
+  @param {object} section - Homepage section and optional editorial images.
+{% enddoc %}
+{% liquid
+  assign room = section.settings.fabric_room_image | default: images['prestigious-room-watercolour-dining.webp']
+  assign detail = section.settings.fabric_detail_image | default: images['cuk-fabric-d42971de12b2fd2ef8ba565e21329fbd6e2c6623336d76f2eed26e2f302e5ceb.jpg']
+  assign room_alt = 'homepage_features.fabric.room_alt' | t
+  assign detail_alt = 'homepage_features.fabric.detail_alt' | t
+%}
+<section class="cukfeature cukfeature--fabric" id="cuk-fabric-discovery" aria-labelledby="cukfabric-title-{{ section.id }}">
+  <div class="cukfeature__wrap">
+    <div class="cukfeature__heading">
+      <div><p class="cukfeature__eyebrow">{{ 'homepage_features.fabric.eyebrow' | t }}</p><h2 id="cukfabric-title-{{ section.id }}">{{ 'homepage_features.fabric.title' | t }}</h2></div>
+      <div class="cukfeature__heading-action"><p>{{ 'homepage_features.fabric.copy' | t }}</p><a class="cukfeature__button" href="/pages/fabric-library?view=browse-fabrics">{{ 'homepage_features.fabric.cta' | t }} <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <a class="cukfeature__fabric-gallery cukfeature__image-link" href="/pages/fabric-library?view=browse-fabrics" aria-label="{{ 'homepage_features.fabric.cta' | t | escape }}">
+      <div class="cukfeature__fabric-room">{{ room | image_url: width: 1400 | image_tag: widths: '480, 750, 1100, 1400', sizes: '(min-width: 1000px) 60vw, 65vw', loading: 'lazy', alt: room_alt }}</div>
+      <div class="cukfeature__fabric-detail">{{ detail | image_url: width: 750 | image_tag: widths: '240, 360, 540, 750', sizes: '(min-width: 1000px) 30vw, 35vw', loading: 'lazy', alt: detail_alt }}</div>
+      <span class="cukfeature__image-arrow" aria-hidden="true">↗</span>
+    </a>
+    <div class="cukfeature__caption"><span>{{ 'homepage_features.fabric.caption' | t }}</span><a href="/pages/samples">{{ 'homepage_features.fabric.samples' | t }} <span aria-hidden="true">→</span></a></div>
+  </div>
+</section>

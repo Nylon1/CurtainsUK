@@ -1,0 +1,33 @@
+{{ 'curtainsuk-home-features.css' | asset_url | stylesheet_tag }}
+<section class="cukfeature cukfeature--advisers" id="homepage-advisers" aria-labelledby="cukadvisers-title-{{ section.id }}">
+  <div class="cukfeature__wrap cukfeature__split">
+    <div class="cukfeature__visual">
+      <a class="cukfeature__adviser-image cukfeature__image-link" href="/pages/meet-our-team" aria-label="{{ 'homepage_features.advisers.cta' | t | escape }}">
+        <img src="{{ 'curtainsuk-adviser-jane.webp' | asset_url }}" width="1024" height="1024" loading="lazy" decoding="async" alt="{{ 'homepage_features.advisers.image_alt' | t | escape }}">
+        <span class="cukfeature__image-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="cukfeature__image-note">{{ 'homepage_features.advisers.caption' | t }}</p>
+    </div>
+    <div class="cukfeature__copy">
+      <p class="cukfeature__eyebrow">{{ 'homepage_features.advisers.eyebrow' | t }}</p>
+      <h2 id="cukadvisers-title-{{ section.id }}">{{ 'homepage_features.advisers.title' | t }}</h2>
+      <p class="cukfeature__intro">{{ 'homepage_features.advisers.copy' | t }}</p>
+      <div class="cukfeature__team" aria-label="{{ 'homepage_features.advisers.team_label' | t | escape }}">
+        {% assign advisers = 'noah,james,natalie,ben' | split: ',' %}
+        {% for adviser in advisers %}
+          {% liquid
+            assign portrait = adviser | prepend: 'curtainsuk-adviser-' | append: '.webp'
+            assign name_key = adviser | prepend: 'advisory_team.' | append: '.name'
+            assign role_key = adviser | prepend: 'homepage_features.advisers.'
+          %}
+          <div><img src="{{ portrait | asset_url }}" width="1024" height="1024" loading="lazy" decoding="async" alt=""><span>{{ name_key | t }}</span><small>{{ role_key | t }}</small></div>
+        {% endfor %}
+      </div>
+      <a class="cukfeature__button" href="/pages/meet-our-team">{{ 'homepage_features.advisers.cta' | t }} <span aria-hidden="true">↗</span></a>
+      <p class="cukfeature__consultation-note">{{ 'homepage_features.advisers.note' | t }}</p>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Homepage AI advisers","tag":"section","class":"section","enabled_on":{"templates":["index"]},"settings":[],"presets":[{"name":"Homepage AI advisers"}]}
+{% endschema %}

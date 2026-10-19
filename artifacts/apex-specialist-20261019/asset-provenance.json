@@ -1,0 +1,114 @@
+[
+  {
+    "name": "hero",
+    "file": "cuk-apex-hero-480.webp",
+    "url": "https://www.apexcurtains.com/window-types/apex-hero.jpg",
+    "width": 480,
+    "height": 255,
+    "bytes": 14382
+  },
+  {
+    "name": "hero",
+    "file": "cuk-apex-hero-1600.webp",
+    "url": "https://www.apexcurtains.com/window-types/apex-hero.jpg",
+    "width": 1290,
+    "height": 685,
+    "bytes": 57700
+  },
+  {
+    "name": "triangular",
+    "file": "cuk-apex-triangular-480.webp",
+    "url": "https://www.apexcurtains.com/window-types/triangular.jpeg",
+    "width": 480,
+    "height": 360,
+    "bytes": 17006
+  },
+  {
+    "name": "triangular",
+    "file": "cuk-apex-triangular-1200.webp",
+    "url": "https://www.apexcurtains.com/window-types/triangular.jpeg",
+    "width": 1200,
+    "height": 900,
+    "bytes": 79190
+  },
+  {
+    "name": "gable",
+    "file": "cuk-apex-gable-480.webp",
+    "url": "https://www.apexcurtains.com/window-types/gable-end.jpeg",
+    "width": 480,
+    "height": 640,
+    "bytes": 25970
+  },
+  {
+    "name": "gable",
+    "file": "cuk-apex-gable-1200.webp",
+    "url": "https://www.apexcurtains.com/window-types/gable-end.jpeg",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 92548
+  },
+  {
+    "name": "cambridge",
+    "file": "cuk-apex-cambridge-480.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1780856218481-2kuptw862mu.jpeg",
+    "width": 480,
+    "height": 360,
+    "bytes": 22952
+  },
+  {
+    "name": "cambridge",
+    "file": "cuk-apex-cambridge-1200.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1780856218481-2kuptw862mu.jpeg",
+    "width": 1200,
+    "height": 900,
+    "bytes": 110774
+  },
+  {
+    "name": "cheshire",
+    "file": "cuk-apex-cheshire-480.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1777303221612-rkgl1nb1ps9.jpeg",
+    "width": 480,
+    "height": 640,
+    "bytes": 43324
+  },
+  {
+    "name": "cheshire",
+    "file": "cuk-apex-cheshire-1200.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1777303221612-rkgl1nb1ps9.jpeg",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 235724
+  },
+  {
+    "name": "wales",
+    "file": "cuk-apex-wales-480.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1780855812926-apy75ga3viw.jpeg",
+    "width": 480,
+    "height": 640,
+    "bytes": 45494
+  },
+  {
+    "name": "wales",
+    "file": "cuk-apex-wales-1200.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1780855812926-apy75ga3viw.jpeg",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 228424
+  },
+  {
+    "name": "milton",
+    "file": "cuk-apex-milton-480.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1773595223625-9ldctq5eqk7.jpeg",
+    "width": 480,
+    "height": 854,
+    "bytes": 32030
+  },
+  {
+    "name": "milton",
+    "file": "cuk-apex-milton-1200.webp",
+    "url": "https://uibuztamqgrvntpwalrt.supabase.co/storage/v1/object/public/Gallery/projects/1773595223625-9ldctq5eqk7.jpeg",
+    "width": 899,
+    "height": 1599,
+    "bytes": 69370
+  }
+]

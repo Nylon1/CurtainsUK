@@ -66,6 +66,7 @@
     <p class="cukad__approach">{{ approach | escape_once }}</p>
     <p class="cukad__profile-intro">{{ intro | escape_once }}</p>
     <p class="cukad__expertise"><span>{{ 'advisory_team.common.explore' | t }}</span>{{ expertise | escape_once }}</p>
+    {% if adviser == 'natalie' %}<p><a href="/pages/apex-window-curtains-the-challenge">{{ 'apex_specialist.discovery_link' | t }} <span aria-hidden="true">↗</span></a></p>{% endif %}
     <blockquote class="cukad__question"><span>{{ 'advisory_team.common.try_asking' | t }}</span><p>“{{ question | escape_once }}”</p></blockquote>
     {% if featured and adviser == 'jane' %}
       <div class="cukad__jane-tools"><p>{% if jane_chat_live %}{{ 'advisory_team.live.tools_copy' | t }}{% else %}{{ 'advisory_team.jane.tools_copy' | t }}{% endif %}</p><a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=guided">{{ 'advisory_team.common.fabric_intelligence' | t }} <span aria-hidden="true">↗</span></a><a href="/pages/room-visualiser">{{ 'advisory_team.common.room_visualiser' | t }} <span aria-hidden="true">↗</span></a></div>

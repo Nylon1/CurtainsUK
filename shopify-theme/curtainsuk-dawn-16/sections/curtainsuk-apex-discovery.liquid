@@ -1,0 +1,5 @@
+{{ 'curtainsuk-apex-specialist.css' | asset_url | stylesheet_tag }}
+<section class="cukapex" aria-labelledby="apex-discovery-{{ section.id }}"><div class="cukapex__wrap"><div class="cukapex__discovery"><a href="/pages/apex-window-curtains-the-challenge" aria-label="{{ 'apex_specialist.discovery_link' | t | escape }}">{% render 'curtainsuk-apex-image', name: 'triangular', alt_key: 'apex_specialist.shape_triangular_alt', sizes: '(min-width: 900px) 45vw, 100vw' %}</a><div><p class="cukapex__eyebrow">{{ 'apex_specialist.eyebrow' | t }}</p><h2 id="apex-discovery-{{ section.id }}">{{ 'apex_specialist.discovery_title' | t }}</h2><p>{{ 'apex_specialist.discovery_copy' | t }}</p><a class="cukapex__button" href="/pages/apex-window-curtains-the-challenge">{{ 'apex_specialist.discovery_link' | t }} <span aria-hidden="true">↗</span></a></div></div></div></section>
+{% schema %}
+{"name":"Apex curtain discovery","tag":"section","settings":[],"presets":[{"name":"Apex curtain discovery"}]}
+{% endschema %}

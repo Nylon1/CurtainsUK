@@ -9,6 +9,7 @@
  */
 {
   "sections": {
+    "apex_discovery": { "type": "curtainsuk-apex-discovery", "settings": {} },
     "spaces": {
       "type": "curtainsuk-spaces",
       "settings": {},
@@ -150,6 +151,7 @@
     }
   },
   "order": [
-    "spaces"
+    "spaces",
+    "apex_discovery"
   ]
 }

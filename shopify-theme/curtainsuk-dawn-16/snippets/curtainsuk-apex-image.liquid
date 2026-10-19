@@ -1,0 +1,25 @@
+{% doc %}
+Renders a locally hosted Apex photograph with responsive source sizes.
+@param {string} name - Approved asset identity.
+@param {string} alt_key - Translation key for alternative text.
+@param {boolean} [eager] - Prioritise the opening photograph.
+@param {string} [sizes] - Responsive display size.
+{% enddoc %}
+{% liquid
+ assign large_size = '1200'
+ assign image_width = 1200
+ assign image_height = 1600
+ if name == 'hero'
+  assign large_size = '1600'
+  assign image_width = 1290
+  assign image_height = 685
+ elsif name == 'triangular' or name == 'cambridge'
+  assign image_height = 900
+ elsif name == 'milton'
+  assign image_width = 899
+  assign image_height = 1599
+ endif
+ assign small_file = 'cuk-apex-' | append: name | append: '-480.webp'
+ assign large_file = 'cuk-apex-' | append: name | append: '-' | append: large_size | append: '.webp'
+%}
+<img src="{{ large_file | asset_url }}" srcset="{{ small_file | asset_url }} 480w, {{ large_file | asset_url }} {{ image_width }}w" sizes="{{ sizes | default: '100vw' | escape }}" width="{{ image_width }}" height="{{ image_height }}" alt="{{ alt_key | t | escape }}" {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">

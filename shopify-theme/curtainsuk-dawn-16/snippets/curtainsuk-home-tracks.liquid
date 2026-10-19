@@ -1,0 +1,40 @@
+{% doc %}
+  Presents the released Motorised Curtain Tracks collection on the homepage.
+  @param {string} section_id - Unique parent section identifier.
+{% enddoc %}
+{% if settings.curtainsuk_smart_track_enabled %}
+  <section class="cuktracks" id="homepage-motorised-tracks" aria-labelledby="cuktracks-title-{{ section_id }}">
+    <div class="cuktracks__copy">
+      <p class="cukstudio__eyebrow">{{ 'homepage_tracks.copy.category' | t }}</p>
+      <h2 id="cuktracks-title-{{ section_id }}">{{ 'homepage_tracks.copy.title' | t }}</h2>
+      <p class="cuktracks__intro">{{ 'homepage_tracks.copy.intro' | t }}</p>
+      <div class="cuktracks__power" aria-label="{{ 'homepage_tracks.copy.power_label' | t | escape }}">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 3v5m8-5v5M6 8h12v4a6 6 0 0 1-6 6v4m-6-10V8"/></svg>{{ 'homepage_tracks.copy.plug' | t }}</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="6" width="16" height="12" rx="2"/><path d="M21 10v4m-8-5-4 4h5l-3 3"/></svg>{{ 'homepage_tracks.copy.battery' | t }}</span>
+      </div>
+      <a class="cukstudio__button cuktracks__cta" href="/pages/smart-track-studio">{{ 'homepage_tracks.copy.cta' | t }} <span aria-hidden="true">↗</span></a>
+      <p class="cuktracks__invitation">{{ 'homepage_tracks.copy.invitation' | t }}</p>
+      <a class="cuktracks__guide" href="/pages/smart-track-motors">{{ 'homepage_tracks.copy.guide' | t }} <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="cuktracks__visual">
+      <a class="cuktracks__scene" href="/pages/smart-track-studio" aria-label="{{ 'homepage_tracks.copy.cta' | t | escape }}">
+        <img class="cuktracks__room" src="{{ 'cuk-home-track-room.webp' | asset_url }}" width="1536" height="1024" loading="lazy" alt="{{ 'homepage_tracks.copy.image_alt' | t | escape }}">
+        <img class="cuktracks__curtain cuktracks__curtain--left" src="{{ 'cuk-home-track-curtain.webp' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
+        <img class="cuktracks__curtain cuktracks__curtain--right" src="{{ 'cuk-home-track-curtain.webp' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
+        <span class="cuktracks__remote" aria-hidden="true">
+          <svg viewBox="0 0 108 258" focusable="false">
+            <defs><linearGradient id="cuktracks-remote-{{ section_id }}" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e5ebe5"/></linearGradient></defs>
+            <rect x="2" y="2" width="104" height="254" rx="18" fill="url(#cuktracks-remote-{{ section_id }})" stroke="#c7cec7" stroke-width="2"/>
+            <g fill="#adb7b0"><circle cx="26" cy="30" r="2"/><circle cx="37" cy="30" r="2"/><circle cx="48" cy="30" r="2"/><circle cx="59" cy="30" r="2"/><circle cx="70" cy="30" r="2"/><circle cx="81" cy="30" r="2"/></g>
+            <circle cx="26" cy="30" r="2.5" fill="#59b7c7"/>
+            <rect x="25" y="41" width="57" height="3" rx="1.5" fill="#d1d9d3"/>
+            <path d="M49 65Q54 60 59 65L93 99Q98 104 93 109L59 143Q54 148 49 143L15 109Q10 104 15 99Z" fill="none" stroke="#c3ccc5"/>
+            <g fill="none" stroke="#66776b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m47 78-3 4 3 4m14-8 3 4-3 4m-7-6v8M53 100h7v7h-7m-23-7-3 4 3 4m41-8 3 4-3 4m-27 17 3 4-3 4m17-8-3 4 3 4m-7-6v8"/><circle cx="31" cy="178" r="14"/><path d="m31 170 2.4 5 5.6.8-4 4 1 5.5-5-2.6-5 2.6 1-5.5-4-4 5.6-.8Z"/></g>
+            <text x="54" y="222" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#6c7d6f">FOREST</text><text x="54" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" letter-spacing="1.7" fill="#7d8c80">EasyTouch</text>
+          </svg>
+        </span>
+      </a>
+      <div class="cuktracks__caption"><span>{{ 'homepage_tracks.copy.caption' | t }}</span><span>{{ 'homepage_tracks.copy.included' | t }}</span></div>
+    </div>
+  </section>
+{% endif %}

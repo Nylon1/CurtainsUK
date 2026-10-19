@@ -23,14 +23,6 @@
       "settings": {},
       "disabled": true
     },
-    "curtainsuk-house": {
-      "type": "curtainsuk-home-house",
-      "settings": {}
-    },
-    "curtainsuk-shopping": {
-      "type": "curtainsuk-home-shopping",
-      "settings": {}
-    },
     "curtainsuk-studio": {
       "type": "curtainsuk-home-studio",
       "settings": {}
@@ -52,8 +44,6 @@
     "curtainsuk-hero",
     "curtainsuk-editorial",
     "curtainsuk-studio",
-    "curtainsuk-house",
-    "curtainsuk-shopping",
     "curtainsuk-inspiration-help",
     "curtainsuk-advisers",
     "curtainsuk-guides",

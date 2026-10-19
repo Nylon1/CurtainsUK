@@ -1342,14 +1342,14 @@
   "homepage_studio": {
     "hero": {
       "eyebrow": "Made-to-measure curtains · Made in the UK",
-      "title": "Beautiful curtains. A home that feels like you.",
-      "intro": "Fall for a fabric. See it in a room. Then make it yours, with curtains tailored to your windows and your way of living.",
-      "visualiser": "Explore the rooms",
+      "title": "Beautiful curtains. Made for you.",
+      "intro": "Choose your fabric, heading and lining. Get a price for your measurements, then order curtains made just for your home.",
+      "visualiser": "See curtains in a room",
       "discovery": "Help me find my fabric",
       "browse": "Browse the fabric collection",
       "image_alt": "Botanical curtains beside a sunlit window in a furnished living room",
       "shortcuts": "Explore CurtainsUK tools",
-      "shop": "Find my curtains",
+      "shop": "Shop made-to-measure curtains",
       "detail": "Your fabric. Your measurements. Your finishing touch.",
       "caption_kicker": "Interior inspiration",
       "caption": "Imagine what your room could become."
@@ -1365,7 +1365,7 @@
       "palette": "Adjust walls, flooring, furniture and accents",
       "light": "Compare daylight and evening lighting",
       "motion": "See the curtains open and close",
-      "cta": "Make this room yours",
+      "cta": "Try fabric in this room",
       "image_alt": "Preview captured from the CurtainsUK Room Visualiser",
       "preview_label": "Inside the Room Visualiser",
       "inspiration_alt": "Interior inspiration with neutral curtains, seating and a coffee table",
@@ -1425,7 +1425,7 @@
       "eyebrow": "The details make the difference",
       "title": "Find your curtain’s character.",
       "intro": "Choose a heading to see its shape and character. The small details make a remarkable difference.",
-      "cta": "Explore headings and details",
+      "cta": "Choose my curtain style",
       "selector_label": "Explore curtain headings",
       "study_label": "Illustrative heading study"
     },
@@ -1459,12 +1459,12 @@
     "copy": {
       "category": "Motorised Curtain Tracks",
       "title": "Let the light come to you.",
-      "intro": "Beautifully simple movement, made for your home. Explore Forest motorised tracks in our interactive Smart Track Studio.",
+      "intro": "Order a Forest track cut to your length, with plug-in or rechargeable battery power. Try the controls in Smart Track Studio, then configure your track.",
       "power_label": "Available power options",
       "plug": "Plug-in power",
       "battery": "Rechargeable battery",
-      "cta": "Try Smart Track Studio",
-      "invitation": "Try the controls. No measurements needed.",
+      "cta": "Choose my motorised track",
+      "invitation": "Try the demonstration before you configure. Supply only; fitting is not included.",
       "guide": "Explore the motors",
       "image_alt": "Luxury living room with ivory wave curtains on a white motorised track",
       "caption": "Motor concealed behind curtains.",
@@ -1475,31 +1475,31 @@
     "fabric": {
       "eyebrow": "Browse fabrics",
       "title": "A fabric to fall for.",
-      "copy": "Beautiful colour. Tactile texture. Find the fabric that makes your room feel like you.",
-      "cta": "Browse fabrics",
+      "copy": "Explore our fabric brands, compare colours and textures, then choose your favourite to price your curtains.",
+      "cta": "Choose fabric & get a price",
       "room_alt": "Interior inspiration with softly coloured curtains and a dining table",
       "detail_alt": "Close-up of sage and cream patterned woven curtain fabric",
-      "caption": "From the first touch to the finished room.",
+      "caption": "Feel the fabric in your own home before you order.",
       "samples": "Order fabric samples"
     },
     "cushions": {
       "eyebrow": "Cushion Studio",
       "title": "The finishing touch, made yours.",
-      "copy": "Bring your colours together. Choose your fabric, find your shape and create a cushion arrangement you love.",
+      "copy": "Make cushions in your chosen fabric, shape and size. Coordinate them with your curtains and add them to the same order.",
       "fabric": "Your fabric",
       "shape": "Your shape & size",
       "arrange": "Your arrangement",
-      "cta": "Create my cushions",
+      "cta": "Design & price my cushions",
       "image_alt": "Olive, oatmeal, cream and clay cushions with a striped lumbar cushion on an ivory sofa",
       "caption": "Illustrative cushion styling. Create your own fabric combination in the Studio."
     },
     "intelligence": {
       "eyebrow": "Fabric Intelligence™",
       "title": "A room photo. A fresh direction.",
-      "copy": "Let your room inspire your fabric choices. Explore ideas that consider your colours, light, furnishings and style.",
+      "copy": "Not sure which fabric to choose? Use your room colours, light and furnishings to find a direction, then explore fabrics for your curtains.",
       "palette": "Colour · light · pattern · texture",
-      "cta": "Find fabrics for my room",
-      "style_cta": "Explore my style",
+      "cta": "Find my curtain fabric",
+      "style_cta": "Help me choose a style",
       "room_alt": "Blue curtains and coordinated furnishings in an interior inspiration setting",
       "moodboard_alt": "Fabric textures and complementary colours arranged as a design moodboard",
       "caption": "Interior and palette inspiration. Feel your final choices with real samples."
@@ -1507,8 +1507,8 @@
     "advisers": {
       "eyebrow": "Ask an adviser",
       "title": "A little guidance. A lot more confidence.",
-      "copy": "From finding your fabric to measuring and fitting, meet the AI advisers who can help you take the next step.",
-      "cta": "Meet the AI advisers",
+      "copy": "Get help with fabrics, measurements and fitting details before you order. Choose the AI adviser for your question.",
+      "cta": "Choose my AI adviser",
       "image_alt": "Portrait of Jane, the CurtainsUK AI fabric and interior design adviser",
       "caption": "Jane · AI fabric & interior design adviser",
       "team_label": "More CurtainsUK AI advisers",
@@ -1521,7 +1521,7 @@
     "guides": {
       "eyebrow": "The CurtainsUK guide",
       "title": "From first idea to beautifully fitted.",
-      "copy": "Three simple starting points. Explore the tools, get your measurements and prepare for fitting.",
+      "copy": "A little preparation makes ordering easier. Learn the tools, measure your windows and plan your fitting.",
       "use_title": "How to use CurtainsUK",
       "use_copy": "Discover the studios, fabrics and tools that bring your ideas together.",
       "use_alt": "A living room preview from the CurtainsUK Room Visualiser",
@@ -1531,7 +1531,10 @@
       "fit_title": "How to fit",
       "fit_copy": "Prepare your space and follow the guidance for your curtain setup.",
       "fit_alt": "Close-up of even wave curtain folds beneath a track",
-      "cta": "Explore the guide"
+      "cta": "Explore the guide",
+      "use_cta": "Learn how to order",
+      "measure_cta": "Measure my curtains",
+      "fit_cta": "View fitting guidance"
     },
     "sale": {
       "label": "CurtainsUK curtain sale",
@@ -1543,15 +1546,23 @@
     },
     "home": {
       "eyebrow": "Design My Home",
-      "title": "One home. Beautifully together.",
-      "copy": "Bring your curtains, cushions and motorised tracks together. Save your ideas room by room, then review your whole order in one place.",
+      "title": "Your choices. One beautiful order.",
+      "copy": "Bring your chosen pieces together, review every detail and pay in one checkout. Start with one item or plan the whole home.",
       "curtains": "Curtains",
       "cushions": "Cushions",
       "tracks": "Motorised tracks",
-      "cta": "Open Design My Home",
-      "note": "Start a new room or return to your saved home.",
+      "cta": "Build & review my order",
+      "note": "Open Design My Home to add products or continue your saved order.",
       "living_alt": "Living room inspiration with curtains, an ivory sofa and coordinated cushions",
       "bedroom_alt": "Bedroom inspiration with curtains and soft upholstered furnishings"
+    },
+    "windows": {
+      "eyebrow": "Shop by window",
+      "title": "Made for your window.",
+      "copy": "From a standard pair to a bay, apex or unusually shaped window, start with the right measuring and ordering route.",
+      "cta": "Shop by window shape",
+      "note": "Specialist shapes are reviewed before a price is confirmed.",
+      "image_alt": "Tall curtained windows in a contemporary interior with upholstered seating"
     }
   }
 }

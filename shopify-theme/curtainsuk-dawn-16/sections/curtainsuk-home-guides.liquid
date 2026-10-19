@@ -9,6 +9,7 @@
           assign title_key = guide | prepend: 'homepage_features.guides.' | append: '_title'
           assign text_key = guide | prepend: 'homepage_features.guides.' | append: '_copy'
           assign alt_key = guide | prepend: 'homepage_features.guides.' | append: '_alt'
+          assign cta_key = guide | prepend: 'homepage_features.guides.' | append: '_cta'
           case guide
             when 'use'
               assign destination = '/pages/how-to-use'
@@ -29,7 +30,7 @@
         %}
         <a class="cukfeature__guide-card" href="{{ destination }}">
           <div class="cukfeature__guide-image"><img src="{{ artwork | asset_url }}" width="{{ image_width }}" height="{{ image_height }}" loading="lazy" decoding="async" alt="{{ alt_key | t | escape }}"><span class="cukfeature__guide-number" aria-hidden="true">0{{ forloop.index }}</span><span class="cukfeature__image-arrow" aria-hidden="true">↗</span></div>
-          <div class="cukfeature__guide-copy"><h3>{{ title_key | t }}</h3><p>{{ text_key | t }}</p><span class="cukfeature__guide-link">{{ 'homepage_features.guides.cta' | t }} <span aria-hidden="true">→</span></span></div>
+          <div class="cukfeature__guide-copy"><h3>{{ title_key | t }}</h3><p>{{ text_key | t }}</p><span class="cukfeature__guide-link">{{ cta_key | t }} <span aria-hidden="true">→</span></span></div>
         </a>
       {% endfor %}
     </div>

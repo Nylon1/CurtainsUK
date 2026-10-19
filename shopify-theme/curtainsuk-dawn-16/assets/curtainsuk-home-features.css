@@ -98,3 +98,13 @@
   .cukfeature__image-arrow { width:42px; height:42px; right:12px; bottom:12px; }
 }
 @media(prefers-reduced-motion:reduce) { .cukfeature * { transition:none !important; }.cukfeature__image-link:hover .cukfeature__image-arrow { transform:none; } }
+
+.cukfeature--windows { background:#eee9df; border-bottom:1px solid #d6d9ce; }
+.cukfeature__window-image { aspect-ratio:1.4; }
+
+/* Keep the primary shopping action close to the opening message. */
+@media(min-width:990px) {
+  .cukstudio__hero h1 { font-size:clamp(50px,4.3vw,66px); margin-top:20px; }
+  .cukstudio__hero-copy { padding-block:42px; }
+  .cukstudio__hero-image { min-height:540px; }
+}

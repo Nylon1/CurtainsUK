@@ -1,41 +1,22 @@
-{{ 'curtainsuk-storefront.css' | asset_url | stylesheet_tag }}
-{{ 'curtainsuk-home-editorial.css' | asset_url | stylesheet_tag }}
-
-<section class="cukhome-commercial cukhome__support">
-  <div class="cukhome__wrap cukhome__support-grid">
-    <article id="curtainsuk-inspiration" class="cukhome__support-column">
-      <div class="cukhome__support-image">
-        {{ images['curtainsuk-modern-luxury-interior.jpg'] | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 900, 1100', sizes: '(min-width: 1500px) 650px, (min-width: 1000px) 44vw, calc(100vw - 48px)', loading: 'lazy', alt: 'Tall curtained windows framing a contemporary interior with marble and upholstered seating' }}
-      </div>
-      <p class="cukhome__eyebrow">Ideas for every shape</p>
-      <h2>Find the right starting point.</h2>
-      <p>Explore standard, bay, tall, apex, gable and unusual windows, then see which measurements, headings and linings suit the job.</p>
-      <div class="cukhome__actions">
-        <a class="cukhome__text-link" href="/pages/solve-my-window">Browse window inspiration <span aria-hidden="true">→</span></a>
-      </div>
-    </article>
-    <article class="cukhome__support-column">
-      <div class="cukhome__support-image cukhome__support-image--fitting">
-        {{ images['curtainsuk-layered-sheer-grey-curtains.jpg'] | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 900, 1100', sizes: '(min-width: 1500px) 650px, (min-width: 1000px) 44vw, calc(100vw - 48px)', loading: 'lazy', alt: 'Neatly fitted grey curtains and sheer layers showing the track and even curtain folds' }}
-      </div>
-      <p class="cukhome__eyebrow">Need a hand?</p>
-      <h2>Measure with confidence.</h2>
-      <p>Our guide explains full coverage width, finished drop and what to prepare for reviewed or specialist-shaped curtains.</p>
-      <div class="cukhome__actions">
-        <a class="cukhome__button" href="/pages/how-to-measure">How to measure <span aria-hidden="true">→</span></a>
-        <a class="cukhome__text-link" href="/pages/how-to-fit">How to fit <span aria-hidden="true">→</span></a>
-        <a class="cukhome__text-link cukhome__specialist" href="/pages/curtain-visualiser">Start and ask for review <span aria-hidden="true">→</span></a>
-      </div>
-    </article>
+{{ 'curtainsuk-home-features.css' | asset_url | stylesheet_tag }}
+<section class="cukfeature cukfeature--windows" id="curtainsuk-inspiration" aria-labelledby="cukwindows-title-{{ section.id }}">
+  <div class="cukfeature__wrap cukfeature__split">
+    <div class="cukfeature__visual">
+      <a class="cukfeature__image-link cukfeature__window-image" href="/pages/solve-my-window" aria-label="{{ 'homepage_features.windows.cta' | t | escape }}">
+        {% assign window_alt = 'homepage_features.windows.image_alt' | t %}
+        {{ images['curtainsuk-modern-luxury-interior.jpg'] | image_url: width: 1100 | image_tag: widths: '360, 540, 750, 1100', sizes: '(min-width: 1000px) 52vw, 100vw', loading: 'lazy', alt: window_alt }}
+        <span class="cukfeature__image-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="cukfeature__copy">
+      <p class="cukfeature__eyebrow">{{ 'homepage_features.windows.eyebrow' | t }}</p>
+      <h2 id="cukwindows-title-{{ section.id }}">{{ 'homepage_features.windows.title' | t }}</h2>
+      <p class="cukfeature__intro">{{ 'homepage_features.windows.copy' | t }}</p>
+      <a class="cukfeature__button" href="/pages/solve-my-window">{{ 'homepage_features.windows.cta' | t }} <span aria-hidden="true">↗</span></a>
+      <p class="cukfeature__consultation-note">{{ 'homepage_features.windows.note' | t }}</p>
+    </div>
   </div>
 </section>
-
 {% schema %}
-{
-  "name": "Inspiration and help",
-  "tag": "section",
-  "class": "section",
-  "settings": [],
-  "presets": [{ "name": "Inspiration and help" }]
-}
+{"name":"Shop by window feature","tag":"section","class":"section","settings":[],"presets":[{"name":"Shop by window feature"}]}
 {% endschema %}

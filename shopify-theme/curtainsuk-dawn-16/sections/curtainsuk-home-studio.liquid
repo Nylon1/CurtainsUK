@@ -17,8 +17,6 @@
         <a class="cukstudio__button" href="/pages/fabric-library?view=browse-fabrics">{{ 'homepage_studio.hero.shop' | t }} <span aria-hidden="true">↗</span></a>
         <a class="cukstudio__button cukstudio__button--outline" href="#homepage-room-visualiser">{{ 'homepage_studio.hero.visualiser' | t }} <span aria-hidden="true">↓</span></a>
       </div>
-      <a class="cukstudio__hero-link" href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'homepage_studio.hero.discovery' | t }} <span aria-hidden="true">→</span></a>
-      <div class="cukstudio__hero-foot"><span>{{ 'homepage_studio.hero.detail' | t }}</span><span aria-hidden="true">✳</span></div>
     </div>
     <div class="cukstudio__hero-image">
       {% if hero_image != blank %}
@@ -29,12 +27,6 @@
       <a class="cukstudio__hero-caption" href="#homepage-room-visualiser"><span><small>{{ 'homepage_studio.hero.caption_kicker' | t }}</small><strong>{{ 'homepage_studio.hero.caption' | t }}</strong></span><span class="cukstudio__circle" aria-hidden="true">↗</span></a>
     </div>
   </section>
-  <nav class="cukstudio__shortcuts" aria-label="{{ 'homepage_studio.hero.shortcuts' | t | escape }}">
-    <a href="#homepage-room-visualiser"><span aria-hidden="true">01</span>{{ 'homepage_studio.visualiser.name' | t }} <span aria-hidden="true">↓</span></a>
-    <a href="#cuk-fabric-discovery"><span aria-hidden="true">02</span>{{ 'homepage_studio.discovery.name' | t }} <span aria-hidden="true">↓</span></a>
-    <a href="#homepage-curtain-style"><span aria-hidden="true">03</span>{{ 'homepage_studio.style.name' | t }} <span aria-hidden="true">↓</span></a>
-    <a href="/pages/samples"><span aria-hidden="true">04</span>{{ 'homepage_studio.visualiser.samples' | t }} <span aria-hidden="true">↗</span></a>
-  </nav>
   {% render 'curtainsuk-home-fabrics', section: section %}
   {% render 'curtainsuk-home-tracks', section_id: section.id %}
   <section class="cukstudio__visualiser" id="homepage-room-visualiser" aria-labelledby="cukstudio-room-{{ section.id }}">
@@ -85,11 +77,6 @@
       <div class="cukstudio__heading-panel" data-heading-panel id="cukstudio-heading-panel-{{ section.id }}"><div class="cukstudio__heading-image"><img data-heading-image src="{{ 'cuk-home-heading-wave.webp' | asset_url }}" width="750" height="562" loading="lazy" alt="{{ 'homepage_studio.headings.wave_title' | t | escape }}"><span class="cukstudio__study-label">{{ 'homepage_studio.style.study_label' | t }}</span></div><div class="cukstudio__heading-detail"><h3 data-heading-title>{{ 'homepage_studio.headings.wave_title' | t }}</h3><p data-heading-description>{{ 'homepage_studio.headings.wave_detail' | t }}</p><a class="cukstudio__text-link" href="/pages/fabric-library?view=curtain-style">{{ 'homepage_studio.style.cta' | t }} <span aria-hidden="true">→</span></a></div></div>
     </div>
   </section>
-  <section class="cukstudio__journey" aria-labelledby="cukstudio-journey-{{ section.id }}"><div class="cukstudio__wrap"><p class="cukstudio__eyebrow">{{ 'homepage_studio.journey.eyebrow' | t }}</p><h2 id="cukstudio-journey-{{ section.id }}">{{ 'homepage_studio.journey.title' | t }}</h2><div class="cukstudio__journey-steps">
-    <a href="/pages/fabric-library?view=browse-fabrics"><span>01</span><h3>{{ 'homepage_studio.journey.fabric_title' | t }}</h3><p>{{ 'homepage_studio.journey.fabric_copy' | t }}</p><span aria-hidden="true">↗</span></a>
-    <a href="/pages/samples"><span>02</span><h3>{{ 'homepage_studio.journey.sample_title' | t }}</h3><p>{{ 'homepage_studio.journey.sample_copy' | t }}</p><span aria-hidden="true">↗</span></a>
-    <a href="/pages/solve-my-window"><span>03</span><h3>{{ 'homepage_studio.journey.make_title' | t }}</h3><p>{{ 'homepage_studio.journey.make_copy' | t }}</p><span aria-hidden="true">↗</span></a>
-  </div><a class="cukstudio__button cukstudio__button--light" href="/pages/fabric-library?view=browse-fabrics">{{ 'homepage_studio.journey.cta' | t }} <span aria-hidden="true">↗</span></a></div></section>
 </div>
 {% schema %}
 {

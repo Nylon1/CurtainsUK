@@ -1454,5 +1454,21 @@
       "make_copy": "Choose your window, measurements and details in our guided curtain journey.",
       "cta": "Start with a fabric you love"
     }
+  },
+  "homepage_tracks": {
+    "copy": {
+      "category": "Motorised Curtain Tracks",
+      "title": "Let the light come to you.",
+      "intro": "Beautifully simple movement, made for your home. Explore Forest motorised tracks in our interactive Smart Track Studio.",
+      "power_label": "Available power options",
+      "plug": "Plug-in power",
+      "battery": "Rechargeable battery",
+      "cta": "Try Smart Track Studio",
+      "invitation": "Try the controls. No measurements needed.",
+      "guide": "Explore the motors",
+      "image_alt": "Luxury living room with ivory wave curtains on a white motorised track",
+      "caption": "Motor concealed behind curtains.",
+      "included": "Track, motor, remote and fittings included."
+    }
   }
 }

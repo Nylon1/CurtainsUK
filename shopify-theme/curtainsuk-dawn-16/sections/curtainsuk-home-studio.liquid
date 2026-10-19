@@ -34,6 +34,7 @@
     <a href="#homepage-curtain-style"><span aria-hidden="true">03</span>{{ 'homepage_studio.style.name' | t }} <span aria-hidden="true">↓</span></a>
     <a href="/pages/samples"><span aria-hidden="true">04</span>{{ 'homepage_studio.visualiser.samples' | t }} <span aria-hidden="true">↗</span></a>
   </nav>
+  {% render 'curtainsuk-home-tracks', section_id: section.id %}
   <section class="cukstudio__visualiser" id="homepage-room-visualiser" aria-labelledby="cukstudio-room-{{ section.id }}">
     <div class="cukstudio__wrap">
       <div class="cukstudio__section-head"><div><p class="cukstudio__eyebrow">{{ 'homepage_studio.visualiser.eyebrow' | t }}</p><h2 id="cukstudio-room-{{ section.id }}">{{ 'homepage_studio.visualiser.title' | t }}</h2></div><p>{{ 'homepage_studio.visualiser.intro' | t }}</p></div>

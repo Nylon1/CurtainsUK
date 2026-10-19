@@ -1,5 +1,11 @@
 # CurtainsUK production surfaces
 
+## Current homepage publication, 19 October 2026
+
+The approved Motorised Curtain Tracks homepage feature is live after PR #244 passed both required checks and merged at protected `51756d4294e7d08fe91a7fee9c3de35e3a758439`, tree `6b561132eb0d68e427176271e66e5f6925d1465f`. Only six scoped files were uploaded to existing Shopify MAIN `182339731835`. Complete readback matches all 544 files in protected source; all stored theme settings are byte-identical to the pre-release backup. Desktop/phone browser layouts, loaded images and both destination links were checked. See the [homepage release record and live screenshots](HOMEPAGE_MOTORISED_TRACKS_REVIEW_20261019.md).
+
+No shared-service deployment, environment change, Supabase migration or feature switch accompanied this theme-only release. Runtime remains `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4` on `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`, as recorded below. Later documentation-only commits may advance protected HEAD without changing the theme or runtime serving identities. Earlier 541-file theme checkpoints are historical.
+
 ## Current guide-link publication, 19 October 2026
 
 The owner-approved guide correction in PR #241 is live. [The release record](GUIDE_LINK_RELEASE_20261019.md) is the current shared-service authority: protected runtime `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4`, tree `3e2a3d926811a2d1a2a8a64d82ce1e8b02dfeeba`, READY deployment `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`. All three serving aliases agree. Only the four source attestations changed; all 95 settings remain present and no feature was switched off. Five adviser gateways, 20 smart-track assets, quotes, delivery and order reviews passed. The live footer link now opens the correct guide. Shopify MAIN and Supabase were unchanged. Later documentation commits do not change this runtime identity.

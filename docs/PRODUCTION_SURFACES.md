@@ -1,6 +1,14 @@
 # CurtainsUK production surfaces
 
-## Current homepage publication, 19 October 2026
+## Current homepage visual journeys publication, 19 October 2026
+
+The owner-approved homepage tidy-up in [PR #246](https://github.com/Nylon1/CurtainsUK/pull/246) is live. Approved head `f9658595173e74fc0ef44c08ab070512d60347f9` passed both required checks before merging to protected `6e4adddc793cf16d942d30c4d71c92e0ebcc8f0f`, tree `3b505655c10e40cf1b9547fa57303760793bb7b6`. Only the 16 recorded homepage files were uploaded to existing Shopify MAIN `182339731835`. Complete post-publication readback matches all 554 files in protected source. Stored settings are byte-identical before and after publication, SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`.
+
+The sale banner, image-led fabric, cushion, intelligence, adviser and Guide features, and final Design My Home CTA are published. Repeated homepage promotions were consolidated. The owner confirmed the advertised discount is already included in prices; no discount or pricing rule changed. Live desktop and phone checks confirmed layouts, loaded images, retained room/lighting and heading controls, Guide navigation and the final Design My Home destination. See the [publication record and live screenshots](HOMEPAGE_VISUAL_JOURNEYS_REVIEW_20261019.md).
+
+No feature switches, Vercel deployment, environment settings or Supabase objects changed. Runtime remains `b8faa4e96a3b4cea2c4393041b6e9c5152b4b8f4` on `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8`. Later documentation-only protected commits do not change these serving identities. This was bounded homepage verification, not a repeat paid AI, payment or full-site audit.
+
+## Earlier homepage track publication, 19 October 2026
 
 The approved Motorised Curtain Tracks homepage feature is live after PR #244 passed both required checks and merged at protected `51756d4294e7d08fe91a7fee9c3de35e3a758439`, tree `6b561132eb0d68e427176271e66e5f6925d1465f`. Only six scoped files were uploaded to existing Shopify MAIN `182339731835`. Complete readback matches all 544 files in protected source; all stored theme settings are byte-identical to the pre-release backup. Desktop/phone browser layouts, loaded images and both destination links were checked. See the [homepage release record and live screenshots](HOMEPAGE_MOTORISED_TRACKS_REVIEW_20261019.md).
 

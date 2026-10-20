@@ -1,5 +1,6 @@
 import assets from './assets.json';
 import fixed140 from './fixed140-assignments.json';
+import fixed100 from './fixed100-assignments.json';
 import type {searchRetailFabrics} from '../fabric-master/retail-repository';
 import {withRoomPreview} from './server';
 
@@ -9,6 +10,7 @@ const ALLOWED_FILTERS = ['query', 'colour', 'pattern'] as const;
 const candidateIds = new Set([
   ...assets.fabrics.map(fabric => fabric.fabricId),
   ...Object.keys(fixed140.assignments),
+  ...Object.keys(fixed100.assignments),
 ]);
 
 // Browse still supplies the live catalogue facts, ordering, and governed

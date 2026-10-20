@@ -1,0 +1,11 @@
+# Single-width 100 cm patterned preview
+
+`FIXED140_SINGLE_WIDTH_100CM_V1` is a separate visualiser profile for approved supplier photographs that cover one physical fabric width and at least 100 cm of usable image height. It does not change the existing STANDARD or 120 cm `FIXED140_SINGLE_WIDTH_V1` routes. An existing approved route always takes precedence.
+
+The illustrative curtain pair is 140 cm finished width by 100 cm drop, with one image width on each 70 cm panel. The assignment uses the fabric's recorded usable width where present, otherwise its recorded full width. The 209 assigned widths span 127–152 cm; 137 cm is not assumed for every fabric. X and Y share the same source pixels-per-centimetre scale. No repeat, seam, vertical extension or upscaling is used to manufacture image coverage. The room's glazed opening is reduced to 136 × 88 cm for this profile, leaving a 6 cm overlap above and below. These are preview dimensions, not the customer's ordered curtain dimensions.
+
+For 185 supplier photographs, `sourceTopPx: 275` excludes the printed label at the top via texture coordinates. The source JPEG remains unchanged. The other 24 assigned photographs have no top label and use `sourceTopPx: 0`. Assignment records include the approved Shopify CDN URL, source dimensions and SHA-256 provenance. Runtime validates the URL and dimensions before displaying it. The new profile loads only when an explicitly assigned fabric is selected.
+
+The source audit assessed 240 patterned fabrics without a render. It assigns 209 to this profile. The remaining 31 photographs have less than 100 cm of source height at their recorded physical width, so they remain unavailable in the Room Visualiser until a taller approved photograph exists. The earlier 101 zero-repeat plain assignments retain their existing release path.
+
+Verification: the assignment test checks every source crop and physical coverage, the browser smoke check inspects Room, Curtain and Full Curtain views and opening motion, and the versioned visualiser asset manifest is verified. Supplier source photographs are referenced from their existing CDN location; no duplicate catalogue or 132 MB of source photographs are added to the site bundle.

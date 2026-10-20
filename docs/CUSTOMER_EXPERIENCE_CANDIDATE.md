@@ -8,7 +8,8 @@ are recorded in [PRODUCTION_SURFACES.md](PRODUCTION_SURFACES.md).
 
 ## What staff can see
 
-`/admin/error-centre` requires the existing staff review role. It shows
+`/admin/error-centre` requires production supplier-admin access or the
+dedicated read-only `CURTAINSUK_ERROR_CENTRE_VIEWER` role. It shows
 consented anonymous visit starts, page paths, cart additions, cart visits,
 checkout starts, browser errors, slow-page and slow-API bands, popular pages,
 broad arrival channels and a per-session timeline. Confirmed paid-order counts

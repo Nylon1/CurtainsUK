@@ -1,5 +1,6 @@
 /** Preserve only known consultation context through the existing staff sign-in. */
 export function consultationResumePath(params: URLSearchParams): string | null {
+  if (params.get("next") === "/admin/error-centre") return "/admin/error-centre";
   if (params.get("next") !== "/admin/curtain-consultation") return null;
   const query = new URLSearchParams();
   query.set("entry", params.get("entry") === "match" ? "match" : "guided");

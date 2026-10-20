@@ -1,6 +1,20 @@
 # CurtainsUK production surfaces
 
-## Current Browse card treatment publication, 20 October 2026
+## Current Fabric Detail and Browse controls publication, 20 October 2026
+
+The owner-authorised Fabric Detail release in [PR #254](https://github.com/Nylon1/CurtainsUK/pull/254) passed both required checks after Nylon1 posted the exact-head approval for `faf0f5071e0d5432df321bca4684fa072a689077`. It merged into protected `release/production` at `e86d15ec2e1850b3f93a332d5ed43b2eaca911c2`, tree `57860283ac44c78dfb0a91e74cd99945fa4da2ce`. This is the serving API source.
+
+The subsequent owner-requested compact desktop layout, floating Try Fiona, Jane portrait and sticky filter controls in [PR #255](https://github.com/Nylon1/CurtainsUK/pull/255) passed both required checks at head `6d7376c74a70529cba844a0be53d740f1caf12b7` and merged at `cf898ba337e8ed0df168c694e948060398509f98`, tree `b223103277343efb8c742c3c74f8b24ed45cd47e`. This is the serving theme source. Later publication-record commits change documentation and evidence only.
+
+The complete protected runtime export passed the 3,150-file visualiser packaging guard. READY deployment `dpl_HE4bdkAFf3WzWecYmXTTTm7GTQP9` records the exact runtime SHA and tree above. All three existing aliases, `curtainsuk-production-api.vercel.app`, `curtainsuk-staging-api.vercel.app` and `curtainsuk-staging-gateway.vercel.app`, resolve to it. The previous runtime deployment is `dpl_Fyrz7bMucRMXN49Kzo6qx4ZB7xcg`. Existing project settings were retained: 95 environment entries, including 67 Production entries, with release source attestations aligned for the deployment. No feature flag was switched off and no Supabase change accompanied this release.
+
+Seven scoped theme files were published for PR #254, followed by six scoped files for PR #255, on existing Shopify MAIN `182339731835`. Final complete readback verifies all **579 files** against protected theme source. Stored `config/settings_data.json` remains byte-identical to the pre-release copy, SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`.
+
+Live checks confirmed the compact filter bar remains below the header, removes selections, clears back to all 11,815 fabrics, and returns focus to the full search. Beige/Taupe plus the £30–under £60 guide returned 401 fabrics. Try Fiona reached a consultation question and retained it through minimise/reopen. The full visualiser retained the selected Abeja Ivory identity; sample cart addition/removal, Make Curtains measurement entry, Jane's fabric-specific sign-in boundary, Cushion Studio's configurator/catalogue and Design My Home's three-product chooser were checked. Twenty-six runtime checks also verified the original full-visualiser document, the new embedded document, two exact-fabric catalogue responses, 17 renderer assets and all five enabled adviser authentication boundaries.
+
+The new curtain preview rendered on first load in the in-app browser and supported Open, Stop, reverse and Evening. Chrome showed intermittent first-load timeouts; retry rendered successfully. The cause was not established, so this record does not claim uniformly successful first loads or a complete cross-browser acceptance pass. No payment, signed-in adviser reply, new room-image analysis or physical iPhone Safari check was performed. See the [detailed publication record and evidence](FABRIC_DETAIL_CURTAIN_REVIEW.md#publication).
+
+## Earlier Browse card treatment publication, 20 October 2026
 
 The owner-authorised [PR #252](https://github.com/Nylon1/CurtainsUK/pull/252) passed both required checks at head `ebab9bb5ee106db8ca24b2abdc0b25e637339f20` and merged into protected `release/production` at `4951de05b3f25c17c4f461dd14332679338d8add`, tree `524e6b0344952a4675a713ef746b72786b043e54`. That exact protected source supplied the two published assets, `curtainsuk-browse-filters.css` and `curtainsuk-browse-filters.js`, on existing Shopify MAIN `182339731835`.
 
@@ -12,7 +26,7 @@ This theme-only release did not change pricing, checkout, catalogue data, Vercel
 
 ## Browse Fabrics service and catalogue publication, 20 October 2026
 
-[PR #250](https://github.com/Nylon1/CurtainsUK/pull/250) passed `curtainsuk-production-gate` and `protected-production-policy` after Nylon1 posted the required exact-head comment for `be27b455fad0612cba210dd652e931cdb7afaccf`. It merged into protected `release/production` at `b138f17e96b17c41e33f9052b12d6c5b20a0c155`, tree `2624932373d21cf63a7851041f7e845f113c7a43`. This remains the deployed runtime source; the theme source is superseded by the scoped card treatment publication above. Later documentation-only protected commits do not change either serving identity.
+[PR #250](https://github.com/Nylon1/CurtainsUK/pull/250) passed `curtainsuk-production-gate` and `protected-production-policy` after Nylon1 posted the required exact-head comment for `be27b455fad0612cba210dd652e931cdb7afaccf`. It merged into protected `release/production` at `b138f17e96b17c41e33f9052b12d6c5b20a0c155`, tree `2624932373d21cf63a7851041f7e845f113c7a43`. The current Fabric Detail publication above supersedes this runtime and theme checkpoint.
 
 The complete protected export passed the released Room Visualiser packaging guard (two packs, 3,150 files). Production deployment `dpl_Fyrz7bMucRMXN49Kzo6qx4ZB7xcg` was staged with the protected SHA embedded at build time, reached READY, returned the normal unsigned 401 on Jane and all four specialist gateways, and was promoted. `curtainsuk-production-api.vercel.app`, `curtainsuk-staging-api.vercel.app` and `curtainsuk-staging-gateway.vercel.app` all resolve to that deployment. Twenty served visualiser modules and textures returned 200 with the recorded SHA-256 hashes. The previous deployment `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8` is the immediate shared-service rollback. Only the four source-identity settings were updated to the new protected SHA; the existing feature and purchase settings remained enabled.
 

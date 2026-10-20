@@ -1,0 +1,171 @@
+{
+  "at": "2026-10-20T17:29:26.373Z",
+  "origin": "https://curtainsuk-production-api.vercel.app",
+  "checks": [
+    {
+      "kind": "profile curtain document",
+      "status": 200,
+      "exactSourceMatch": true
+    },
+    {
+      "kind": "unchanged full visualiser document",
+      "status": 200,
+      "exactSourceMatch": true
+    },
+    {
+      "kind": "enabled anonymous adviser boundary",
+      "path": "/api/staging/shopify-proxy/jane",
+      "status": 401
+    },
+    {
+      "kind": "enabled anonymous adviser boundary",
+      "path": "/api/staging/shopify-proxy/specialists?adviser=james",
+      "status": 401
+    },
+    {
+      "kind": "enabled anonymous adviser boundary",
+      "path": "/api/staging/shopify-proxy/specialists?adviser=noah",
+      "status": 401
+    },
+    {
+      "kind": "enabled anonymous adviser boundary",
+      "path": "/api/staging/shopify-proxy/specialists?adviser=natalie",
+      "status": 401
+    },
+    {
+      "kind": "enabled anonymous adviser boundary",
+      "path": "/api/staging/shopify-proxy/specialists?adviser=ben",
+      "status": 401
+    },
+    {
+      "kind": "exact-fabric catalogue",
+      "id": "sdg-f1325-02",
+      "status": 200
+    },
+    {
+      "kind": "exact-fabric catalogue",
+      "id": "pt-4049-629",
+      "status": 200
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/core.mjs",
+      "status": 200,
+      "sha256": "8d1ceffc44fbb33b9e9a27a29dfdab76096cda2e27609bbfaffefd4f9ed5c202",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fixed140-v1/curtain.mjs",
+      "status": 200,
+      "sha256": "f5ef1a01774f3e0ed526e16f0b8ba40371c0036b2a432c7752e5ffa2694560af",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fixed140-v1/fixed140_single_width_v1.mjs",
+      "status": 200,
+      "sha256": "fd6654a3ddb42653cd3621442f1a87f942e0cf563e9083a0a3df45e9311591e4",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/fixed140-v1/3ef99c8970b0b92d4b5986f7/views.mjs",
+      "status": 200,
+      "sha256": "b9785eb7ec605f2531c9e0ddebab2c0b3636750031395e3f37f0d51aea7499db",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fixed140-v1/motion.mjs",
+      "status": 200,
+      "sha256": "049ed71bb953d4cf4d6a02e03a2e182985fc0ea36504dc9e90ed2fa3919c6375",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/fixed140-v1/3ef99c8970b0b92d4b5986f7/fixed140_single_width_v1.mjs",
+      "status": 200,
+      "sha256": "81ed9bbbfab39503b45b5a80b93c9429acd90989bf7e8bca3a62ef3a7c57dc6b",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/fixed140-v1/3ef99c8970b0b92d4b5986f7/motion.mjs",
+      "status": 200,
+      "sha256": "ad70514fabfdccb2d544f721411022e8ed2d919c185b41e29df205a64296f730",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fixed140-v1/fixed140_wave_core.mjs",
+      "status": 200,
+      "sha256": "0e59665c88214dbf330c27d7368d330d4a803f7054c2bda59fd721ad1fc51fd2",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fixed140-v1/customer.html",
+      "status": 200,
+      "sha256": "8cee68f65d7641e256de49f03fa4c8bdf55632b2af4caba0e74ccf45969ba4d1",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fixed140-v1/entry.mjs",
+      "status": 200,
+      "sha256": "9fccd7f5af535bacf478b58b44e0e3ed4d755ca59dc533694e4c6b9ae0339915",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/fixed140-v1/3ef99c8970b0b92d4b5986f7/fixed140_wave_core.mjs",
+      "status": 200,
+      "sha256": "9a7dfb1c474d0a672a72bbf2f51b160ba976b28b868c5c1c695a91ad2e78b0fa",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/fixed140-v1/3ef99c8970b0b92d4b5986f7/entry.mjs",
+      "status": 200,
+      "sha256": "de12ac15c5335cc21e7e488a5546724883a04084cc02bd03552a3de650b2e8c1",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fixed140-v1/views.mjs",
+      "status": 200,
+      "sha256": "434b908c1449beeb9e7d02bbd35d66b4742aba4d39ac07d97ab68a6f2924ded5",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/fixed140-v1/3ef99c8970b0b92d4b5986f7/curtain.mjs",
+      "status": 200,
+      "sha256": "ef022eb758cdb9a2fbcaf1694279177cee6801ab4930260e9a96d5cbe7630554",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/d5908d6eaf486ce33e2f72a5/fabrics.mjs",
+      "status": 200,
+      "sha256": "ead79a59d229562412b998119008d5128c8a6394659fcc373f631622f1dc7295",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/fixed140/5a93629fb0612135483966ac30476053d031c4bea3820d32a6456ccf095d2f60.webp",
+      "status": 200,
+      "sha256": "5a93629fb0612135483966ac30476053d031c4bea3820d32a6456ccf095d2f60",
+      "cors": true
+    },
+    {
+      "kind": "visualiser asset",
+      "path": "/room-visualiser/textures/eefbd29f09f0417edc6b32af01dc039390f5e08a9aa85af8d9e5a6fe573bd856.webp",
+      "status": 200,
+      "sha256": "eefbd29f09f0417edc6b32af01dc039390f5e08a9aa85af8d9e5a6fe573bd856",
+      "cors": true
+    }
+  ],
+  "passed": 26
+}

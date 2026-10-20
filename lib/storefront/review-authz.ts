@@ -37,3 +37,17 @@ export function reviewAuthorization(input: {
   })) return {status:403,error:'STAFF_ROLE_REQUIRED'};
   return {status:200,identity:{id:input.user.id}};
 }
+
+/** Read-only telemetry access, without granting supplier administration. */
+export function errorCentreAuthorization(input: Parameters<typeof reviewAuthorization>[0]): ReturnType<typeof reviewAuthorization> {
+  const standard = reviewAuthorization(input);
+  if (standard.status !== 403 || !input.user || input.user.is_anonymous) return standard;
+  const roles = input.user.app_metadata?.roles;
+  if (input.environment === 'production'
+    && input.authUrl === 'https://hqysjumypgeapgmqkcrx.supabase.co'
+    && Array.isArray(roles)
+    && roles.includes('CURTAINSUK_ERROR_CENTRE_VIEWER')) {
+    return {status:200,identity:{id:input.user.id}};
+  }
+  return standard;
+}

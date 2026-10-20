@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { reviewStaffAccess } from '@/lib/storefront/review-auth';
+import { errorCentreStaffAccess } from '@/lib/storefront/review-auth';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 import { PRIVATE_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
 
@@ -10,7 +10,7 @@ const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-
 const columns = 'event_id,journey_id,request_id,occurred_at,kind,page_path,name,code,status,release,browser,channel';
 
 export async function GET(request: Request) {
-  const access = await reviewStaffAccess();
+  const access = await errorCentreStaffAccess();
   if (access.status !== 200) return NextResponse.json({ error: access.error }, { status: access.status, headers: PRIVATE_NO_STORE_HEADERS });
   const params = new URL(request.url).searchParams;
   const journey = params.get('journey');

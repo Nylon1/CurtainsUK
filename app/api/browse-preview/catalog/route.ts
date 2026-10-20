@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { retailFabricDetail, searchRetailFabrics } from '@/lib/fabric-master/retail-repository';
 import { consumeEndpointRateLimit, endpointRateLimitResponse } from '@/lib/storefront/security/endpoint-rate-limit';
 import { PUBLIC_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 30;
@@ -38,6 +39,7 @@ export async function GET(request: Request) {
     return NextResponse.json(await searchRetailFabrics(params), { headers: allowed });
   } catch (error) {
     const rate = endpointRateLimitResponse(error);
+    if (!rate) await recordOperationalError({ routePath: '/api/browse-preview/catalog', code: 'FABRIC_CATALOGUE_UNAVAILABLE', status: 503, source: 'HANDLED' });
     return NextResponse.json({error:rate?.message ?? 'Unable to load fabrics. Please try again.'},
       { status:rate?.status ?? 503, headers:{...allowed,...rate?.headers} });
   }

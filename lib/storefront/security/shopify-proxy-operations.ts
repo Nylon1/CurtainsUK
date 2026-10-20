@@ -1,4 +1,4 @@
-export const SHOPIFY_PROXY_OPERATIONS = ["room-visualiser", "catalog", "fabric-sitemap", "naila-catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff", "rooms", "sample-order", "consultation", "consultation-asset", "premium-asset", "premium-catalog", "premium-session", "premium-command", "hci-session", "hci-command", "image-privacy"] as const;
+export const SHOPIFY_PROXY_OPERATIONS = ["room-visualiser", "catalog", "fabric-sitemap", "naila-catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff", "rooms", "sample-order", "consultation", "consultation-asset", "premium-asset", "premium-catalog", "premium-session", "premium-command", "hci-session", "hci-command", "image-privacy", "journey"] as const;
 export type ShopifyProxyOperation = typeof SHOPIFY_PROXY_OPERATIONS[number];
 
 export function isShopifyProxyOperation(value: string): value is ShopifyProxyOperation {
@@ -27,6 +27,9 @@ export const SHOPIFY_PROXY_OPERATION_POLICY: Record<ShopifyProxyOperation, {
   'hci-session': {methods:['POST'],maximumBytes:2048,rateLimit:{limit:20,windowSeconds:900}},
   'hci-command': {methods:['POST'],maximumBytes:3_000_000,rateLimit:{limit:120,windowSeconds:60}},
   "sample-order": { methods: ["POST"], maximumBytes: 4096, rateLimit: { limit: 20, windowSeconds: 900 } },
+  // Shopify may front the app proxy, so this is a shared abuse ceiling rather
+  // than a per-visitor allowance. The browser also caps each journey locally.
+  journey: { methods: ["POST"], maximumBytes: 4096, rateLimit: { limit: 120, windowSeconds: 60 } },
   price: { methods: ["POST"], maximumBytes: 64 * 1024, rateLimit: { limit: 60, windowSeconds: 60 } },
   "specialist-review": { methods: ["POST"], maximumBytes: 64 * 1024, rateLimit: { limit: 30, windowSeconds: 60 } },
   "review-request": { methods: ["POST"], maximumBytes: 128_000, rateLimit: { limit: 6, windowSeconds: 3_600 } },

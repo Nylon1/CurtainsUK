@@ -7,6 +7,7 @@ import { createConsultationService } from '@/lib/advisory/service.mjs';
 import { createCatalogue } from '@/lib/advisory/catalogue.mjs';
 import { createMockProvider } from '@/lib/advisory/mock-provider.mjs';
 import { createOpenAIProvider } from '@/lib/advisory/openai-provider.mjs';
+import { observeServiceResponse, recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -50,7 +51,7 @@ async function handle(request) {
   try {
     resources ??= buildResources();
     const { rpc, cipher, catalogue, model, env, dailyRun } = resources;
-    return createShopifyJaneGateway({
+    return observeServiceResponse(await createShopifyJaneGateway({
       env,
       compiledCommit,
       take: owner => new CloudSessionStore({ rpc, cipher, ownerId: owner }).take(),
@@ -66,8 +67,9 @@ async function handle(request) {
           : createMockProvider();
         return createConsultationService({ store, provider, catalogue, publicMode: janePublicEnabled(env, compiledCommit) }).execute(owner, command);
       },
-    })(request);
+    })(request), '/api/staging/shopify-proxy/jane', 'JANE_SERVICE_UNAVAILABLE');
   } catch {
+    await recordOperationalError({ routePath: '/api/staging/shopify-proxy/jane', code: 'JANE_TEMPORARILY_UNAVAILABLE', status: 503, source: 'HANDLED' });
     return Response.json({ error: 'JANE_TEMPORARILY_UNAVAILABLE' }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
   }
 }

@@ -12,6 +12,7 @@ import { retailFabricDetail } from '@/lib/fabric-master/retail-repository';
 import { consumeEndpointRateLimit, endpointRateLimitResponse } from '@/lib/storefront/security/endpoint-rate-limit';
 import { PRIVATE_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
 import { readBoundedJson } from '@/lib/storefront/staging-api';
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const maxDuration = 30;
 
@@ -45,13 +46,14 @@ async function access(request: Request, allowNew: boolean): Promise<Access> {
   await consumeEndpointRateLimit(createHash('sha256').update(`cuk-premium-hci-owner:${value.owner}`).digest('hex'), { limit: 60, windowSeconds: 60 });
   return { owner: value.owner, token: value.token };
 }
-function failure(error: unknown, access?: Access) {
+async function failure(error: unknown, access?: Access) {
   const rate = endpointRateLimitResponse(error);
   if (rate) return response({ error: rate.message }, rate.status, access);
   const code = error instanceof Error ? error.message : '';
   // Keep diagnostics to the controlled error class: never emit request payloads, image bytes or credentials.
   console.error('CurtainsUK premium consultation request failed', { code: code || 'UNKNOWN' });
   const status = code === 'HCI_DISABLED' ? 404 : code === 'HCI_SESSION_REQUIRED' ? 401 : code === 'HCI_ORIGIN_DENIED' ? 403 : code === 'HCI_SESSION_CONFLICT' ? 409 : 503;
+  if (status >= 500) await recordOperationalError({ routePath: '/api/curtain-consultation-premium', code: 'FABRIC_INTELLIGENCE_UNAVAILABLE', status, source: 'HANDLED' });
   return response({ error: status === 409 ? 'This consultation changed. Resume the saved version or start again.' : 'Your consultation is temporarily unavailable. You can browse fabrics independently.' }, status, access);
 }
 

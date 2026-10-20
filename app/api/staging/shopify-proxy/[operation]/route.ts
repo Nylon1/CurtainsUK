@@ -31,6 +31,10 @@ import { nailaEnabled } from '@/lib/storefront/naila/server';
 import { assertNailaRehearsalRequest } from '@/lib/storefront/naila/rehearsal-access';
 import { serveNailaCatalog } from '@/lib/storefront/naila/catalog-route';
 import { NAILA_PREPARED_UNAVAILABLE, NAILA_PREPARED_MESSAGE } from '@/lib/fabric-master/naila-prepared-browse';
+import { parseJourneyBatch } from '@/lib/storefront/customer-journey';
+import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
+import { sendVisitAlert } from '@/lib/storefront/visit-alert';
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -135,13 +139,44 @@ export async function GET(request: Request, context: { params: Promise<{ operati
     }
     return NextResponse.json(await buildDatabaseShopifyCatalogPayload(params.get("fabric") ?? undefined), { headers: PUBLIC_NO_STORE_HEADERS });
   } catch (error) {
-    return errorResponse(error, "Unable to load the fabric catalogue");
+    const response = errorResponse(error, "Unable to load the fabric catalogue");
+    if (response.status >= 500) {
+      const raw = (await context.params).operation;
+      await recordOperationalError({ routePath: isShopifyProxyOperation(raw) ? `/api/staging/shopify-proxy/${raw}` : '/api/staging/shopify-proxy',
+        code: 'APP_PROXY_UNAVAILABLE', status: response.status, source: 'HANDLED' });
+    }
+    return response;
   }
 }
 
 export async function POST(request: Request, context: { params: Promise<{ operation: string }> }) {
   try {
     const selected = await operation(request, (await context.params).operation);
+    if (selected === "journey") {
+      if (request.headers.get("origin") !== "https://www.curtainsuk.com") throw Error("JOURNEY_ORIGIN_INVALID");
+      const body = await readHardLimitedRequestBytes(request, 4096);
+      let payload: unknown;
+      try { payload = JSON.parse(new TextDecoder().decode(body)); }
+      catch { throw Error("JOURNEY_INPUT_INVALID"); }
+      const events = parseJourneyBatch(payload, request.headers.get("user-agent") ?? "");
+      const requestId = crypto.randomUUID();
+      const { error } = await createSupplierServiceClient().from("customer_journey_events").upsert(events.map((event) => ({ ...event, request_id: requestId })), { onConflict: "event_id", ignoreDuplicates: true });
+      if (error) {
+        console.error("CURTAINSUK_JOURNEY_PERSIST_FAILED", requestId);
+        await recordOperationalError({ routePath: '/api/staging/shopify-proxy/journey', code: 'JOURNEY_PERSIST_FAILED', status: 503, source: 'HANDLED' });
+        return new NextResponse(null, { status: 503, headers: PUBLIC_NO_STORE_HEADERS });
+      }
+      for (const event of events) {
+        if (event.name === 'VISIT_START') {
+          try { await sendVisitAlert(event); }
+          catch {
+            console.error('CURTAINSUK_VISIT_ALERT_FAILED', requestId);
+            await recordOperationalError({ routePath: '/api/staging/shopify-proxy/journey', code: 'VISIT_ALERT_CLAIM_FAILED', status: 503, source: 'HANDLED' });
+          }
+        }
+      }
+      return new NextResponse(null, { status: 204, headers: PUBLIC_NO_STORE_HEADERS });
+    }
     if(selected==='premium-session' || selected==='premium-command') {
       if(request.headers.get('origin')!=='https://www.curtainsuk.com')throw Error('HCI_ORIGIN_DENIED');
       return NextResponse.json(selected==='premium-session'?premiumProxySession():await premiumProxyCommand(await readBoundedJson(request,3_000_000)),{headers:PUBLIC_NO_STORE_HEADERS});
@@ -186,6 +221,12 @@ export async function POST(request: Request, context: { params: Promise<{ operat
     }
     throw new Error("SHOPIFY_PROXY_METHOD_DENIED");
   } catch (error) {
-    return errorResponse(error, "Unable to process this request");
+    const response = errorResponse(error, "Unable to process this request");
+    if (response.status >= 500) {
+      const raw = (await context.params).operation;
+      await recordOperationalError({ routePath: isShopifyProxyOperation(raw) ? `/api/staging/shopify-proxy/${raw}` : '/api/staging/shopify-proxy',
+        code: 'APP_PROXY_UNAVAILABLE', status: response.status, source: 'HANDLED' });
+    }
+    return response;
   }
 }

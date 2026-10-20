@@ -9,6 +9,7 @@ import type { DurableSupplierSyncRun } from "@/lib/supplier-intelligence/types";
 import { normalizeSupplierSnapshot } from "@/lib/supplier-sync/normalize";
 import { supplierDatabaseConfigured } from "@/lib/supabase/supplier-service";
 import { stockObservationCurrent } from "@/lib/storefront/daily-stock";
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,7 @@ function moneyMinor(value: string | null) {
 
 export async function GET(request: NextRequest) {
   if (!(await supplierAdminIdentity())) return response({ error: "SUPPLIER_ADMIN_REQUIRED" }, 403);
-  if (!supplierDatabaseConfigured()) return response({ error: "SUPPLIER_DATABASE_NOT_CONFIGURED" }, 503);
+  if (!supplierDatabaseConfigured()) {await recordOperationalError({routePath:'/api/admin/prestigious-stock',code:'SUPPLIER_DATABASE_NOT_CONFIGURED',status:503,source:'HANDLED'});return response({ error: "SUPPLIER_DATABASE_NOT_CONFIGURED" }, 503);}
   const requiredMetres = Number(request.nextUrl.searchParams.get("requiredMetres"));
   try {
     const repository = new SupabaseSupplierIntelligenceRepository();
@@ -55,6 +56,7 @@ export async function GET(request: NextRequest) {
       }),
     });
   } catch {
+    await recordOperationalError({routePath:'/api/admin/prestigious-stock',code:'SUPPLIER_DATABASE_OPERATION_FAILED',status:503,source:'HANDLED'});
     return response({ error: "SUPPLIER_DATABASE_OPERATION_FAILED" }, 503);
   }
 }

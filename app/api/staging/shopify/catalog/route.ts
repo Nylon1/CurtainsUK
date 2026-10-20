@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { buildDatabaseShopifyCatalogPayload } from "@/lib/storefront/shopify-database-contract";
 import { stagingApiHeaders, stagingOptions } from "@/lib/storefront/staging-api";
 import { legacyStagingApiDisabledResponse } from "@/lib/storefront/security/legacy-staging-api";
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,7 @@ export async function GET(request: Request) {
       headers: stagingApiHeaders(request),
     });
   } catch {
+    await recordOperationalError({ routePath: '/api/staging/shopify/catalog', code: 'FABRIC_CATALOGUE_UNAVAILABLE', status: 503, source: 'HANDLED' });
     return NextResponse.json({ error: "CURTAINSUK_FABRIC_MASTER_UNAVAILABLE" }, {
       status: 503,
       headers: stagingApiHeaders(request),

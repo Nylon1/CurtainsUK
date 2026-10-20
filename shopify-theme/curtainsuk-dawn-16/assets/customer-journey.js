@@ -6,7 +6,7 @@
   const idleMs = 30 * 60 * 1000;
   const excluded = /(?:^|\/)(?:account|checkout|orders|apps)(?:\/|$)/i;
   const safePath = /^\/[a-z0-9/_-]{0,159}$/i;
-  const release = 'journey-20261020-v1';
+  const release = 'journey-20261020-v2';
   const nativeFetch = window.fetch.bind(window);
   let journeyId = null;
   let enabled = false;
@@ -66,9 +66,101 @@
     } catch { /* Tracking never blocks a customer action. */ }
   }
 
-  function record(kind, name, code = null, status = null, pagePath = path(location.href)) {
+  const errorTypes = new Set(['Error', 'TypeError', 'ReferenceError', 'SyntaxError', 'RangeError', 'URIError',
+    'EvalError', 'SecurityError', 'NetworkError', 'AbortError', 'TimeoutError', 'NotFoundError',
+    'DataError', 'InvalidStateError', 'DOMException', 'ResourceError', 'NonErrorRejection']);
+
+  function feature() {
+    const page = path(location.href) || '';
+    if (page === '/pages/fabric-library' || page.startsWith('/pages/fabric/')) return 'FABRICS';
+    if (page === '/pages/cushion-studio') return 'CUSHION_STUDIO';
+    if (page === '/pages/room-visualiser' || page === '/pages/curtain-visualiser') return 'ROOM_VISUALISER';
+    if (page.startsWith('/pages/smart-track-')) return 'SMART_TRACK_STUDIO';
+    if (page === '/pages/build-my-rooms') return 'DESIGN_MY_HOME';
+    if (page === '/pages/how-to-fit') return 'FITTING_GUIDE';
+    if (page.startsWith('/products/')) return 'PRODUCT_PAGE';
+    if (page.startsWith('/policies/')) return 'POLICY_PAGE';
+    return 'GENERAL';
+  }
+
+  function apiFeature(route) {
+    if (/jane/i.test(route)) return 'JANE_ADVISOR';
+    if (/specialists|advisor/i.test(route)) return 'SPECIALISTS';
+    if (/consultation|fabric-intelligence|review-fabric/i.test(route)) return 'FABRIC_INTELLIGENCE';
+    if (/catalog|stock/i.test(route)) return 'FABRIC_STOCK';
+    if (/cushion/i.test(route)) return 'CUSHION_STUDIO';
+    if (/room-visualiser|curtain-visualiser/i.test(route)) return 'ROOM_VISUALISER';
+    if (/smart-track/i.test(route)) return 'SMART_TRACK_STUDIO';
+    if (/my-home|checkout-handoff/i.test(route)) return 'DESIGN_MY_HOME';
+    return feature();
+  }
+
+  function apiDetail(message, route) {
+    return { type: message === 'NETWORK_REQUEST_FAILED' ? 'NetworkError' : 'HttpError', message,
+      script: null, line: null, column: null, origin: 'APP', feature: apiFeature(route) };
+  }
+
+  function safeMessage(value) {
+    if (typeof value !== 'string') return 'MESSAGE_UNAVAILABLE';
+    if (/failed to fetch|network request failed|load failed/i.test(value)) return 'NETWORK_REQUEST_FAILED';
+    if (/cannot read (?:properties|property) of undefined/i.test(value)) return 'PROPERTY_READ_UNDEFINED';
+    if (/cannot read (?:properties|property) of null/i.test(value)) return 'PROPERTY_READ_NULL';
+    if (/cannot set (?:properties|property) of undefined/i.test(value)) return 'PROPERTY_SET_UNDEFINED';
+    if (/cannot set (?:properties|property) of null/i.test(value)) return 'PROPERTY_SET_NULL';
+    if (/is not a function/i.test(value)) return 'NOT_A_FUNCTION';
+    if (/is not defined/i.test(value)) return 'UNDEFINED_IDENTIFIER';
+    if (/unexpected token/i.test(value)) return 'UNEXPECTED_TOKEN';
+    if (/abort(?:ed|error)/i.test(value)) return 'REQUEST_ABORTED';
+    if (/script error/i.test(value)) return 'SCRIPT_ERROR';
+    return 'MESSAGE_WITHHELD';
+  }
+
+  function safeSource(value) {
+    if (typeof value !== 'string' || !value || value.length > 2048) return null;
+    try {
+      const url = new URL(value, location.origin);
+      const name = url.pathname.split('/').pop() || '';
+      if (url.protocol === 'chrome-extension:' || url.protocol === 'moz-extension:')
+        return { origin: 'EXTENSION', script: null };
+      if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+      const own = url.hostname === location.hostname || /^(?:curtainsuk-production-api|curtainsuk-staging-api|curtainsuk-staging-gateway)\.vercel\.app$/.test(url.hostname);
+      const theme = /^curtainsuk-[a-z0-9._-]{1,65}\.js$/.test(name) || name === 'customer-journey.js';
+      const script = theme ? name : (own && /^(?:global|theme|vendor)\.js$/.test(name) ? name : null);
+      if (theme && (own || url.hostname === 'cdn.shopify.com')) return { origin: 'THEME', script };
+      if (own) return { origin: url.hostname === location.hostname ? 'THEME' : 'APP', script };
+      if (url.hostname === 'cdn.shopify.com' || url.hostname.endsWith('.shopify.com')) return { origin: 'SHOPIFY', script: null };
+      return { origin: 'EXTERNAL', script: null };
+    } catch { return null; }
+  }
+
+  function stackLocation(reason) {
+    if (!reason || typeof reason !== 'object') return null;
+    let stack;
+    try { stack = reason.stack; } catch { return null; }
+    if (typeof stack !== 'string') return null;
+    const frame = stack.slice(0, 8192).match(/((?:https?:\/\/|chrome-extension:\/\/|moz-extension:\/\/)[^\s)]+?):(\d+):(\d+)(?=[\s)]|$)/);
+    return frame ? { url: frame[1], line: Number(frame[2]), column: Number(frame[3]) } : null;
+  }
+
+  function errorDetail(reason, locationHint = null, messageHint = null, asset = false) {
+    let name = asset ? 'ResourceError' : (reason && typeof reason === 'object' ? 'Error' : 'NonErrorRejection');
+    let message = messageHint;
+    if (reason && typeof reason === 'object') {
+      try {
+        if (errorTypes.has(reason.name)) name = reason.name;
+        message = reason.message || messageHint;
+      } catch { /* Error objects from another context may be inaccessible. */ }
+    }
+    const frame = locationHint || stackLocation(reason);
+    const source = safeSource(frame?.url);
+    const integer = (value) => Number.isInteger(value) && value > 0 && value <= 10000000 ? value : null;
+    return { type: name, message: asset ? 'ASSET_LOAD_FAILED' : safeMessage(message), script: source?.script || null,
+      line: integer(frame?.line), column: integer(frame?.column), origin: source?.origin || 'UNKNOWN', feature: feature() };
+  }
+
+  function record(kind, name, code = null, status = null, pagePath = path(location.href), detail = null) {
     if (!enabled || !pagePath || sent >= 120 || !journeyId) return;
-    queue.push({ eventId: crypto.randomUUID(), kind, name, code, status, pagePath, release,
+    queue.push({ eventId: crypto.randomUUID(), kind, name, code, status, pagePath, release, detail,
       channel: name === 'VISIT_START' ? channel() : null });
     sent += 1;
     if (queue.length >= 12 || kind === 'ERROR') flush();
@@ -119,9 +211,13 @@
 
   window.addEventListener('error', (event) => {
     const asset = event.target && event.target !== window;
-    record('ERROR', asset ? 'ASSET_FAILURE' : 'BROWSER_ERROR', asset ? 'ASSET_LOAD_FAILED' : 'BROWSER_EXCEPTION');
+    const source = asset ? (event.target?.currentSrc || event.target?.src || event.target?.href) : event.filename;
+    const locationHint = source ? { url: source, line: event.lineno, column: event.colno } : null;
+    record('ERROR', asset ? 'ASSET_FAILURE' : 'BROWSER_ERROR', asset ? 'ASSET_LOAD_FAILED' : 'BROWSER_EXCEPTION',
+      null, path(location.href), errorDetail(asset ? null : event.error, locationHint, event.message, asset));
   }, true);
-  window.addEventListener('unhandledrejection', () => record('ERROR', 'BROWSER_ERROR', 'PROMISE_REJECTION'));
+  window.addEventListener('unhandledrejection', (event) => record('ERROR', 'BROWSER_ERROR', 'PROMISE_REJECTION',
+    null, path(location.href), errorDetail(event.reason)));
 
   window.fetch = function (...args) {
     const result = nativeFetch(...args);
@@ -142,11 +238,14 @@
         const started = performance.now();
         void result.then((response) => {
           if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
-          if (response.status >= 500) record('ERROR', 'API_FAILURE', 'API_SERVER_ERROR', response.status);
-          else if ([400, 404, 409].includes(response.status)) record('ERROR', 'API_FAILURE', 'API_REQUEST_REJECTED', response.status);
+          if (response.status >= 500) record('ERROR', 'API_FAILURE', 'API_SERVER_ERROR', response.status,
+            path(location.href), apiDetail('HTTP_SERVER_ERROR', nativePath));
+          else if ([400, 404, 409].includes(response.status)) record('ERROR', 'API_FAILURE', 'API_REQUEST_REJECTED',
+            response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath));
         }, () => {
           if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
-          record('ERROR', 'API_FAILURE', 'API_NETWORK_ERROR');
+          record('ERROR', 'API_FAILURE', 'API_NETWORK_ERROR', null, path(location.href),
+            apiDetail('NETWORK_REQUEST_FAILED', nativePath));
         });
       }
     }

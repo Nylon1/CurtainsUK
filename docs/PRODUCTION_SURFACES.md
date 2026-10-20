@@ -1,8 +1,18 @@
 # CurtainsUK production surfaces
 
-## Current Browse Fabrics publication, 20 October 2026
+## Current Browse card treatment publication, 20 October 2026
 
-[PR #250](https://github.com/Nylon1/CurtainsUK/pull/250) passed `curtainsuk-production-gate` and `protected-production-policy` after Nylon1 posted the required exact-head comment for `be27b455fad0612cba210dd652e931cdb7afaccf`. It merged into protected `release/production` at `b138f17e96b17c41e33f9052b12d6c5b20a0c155`, tree `2624932373d21cf63a7851041f7e845f113c7a43`. This is the deployed runtime and theme source; later documentation-only protected commits do not change that serving identity.
+The owner-authorised [PR #252](https://github.com/Nylon1/CurtainsUK/pull/252) passed both required checks at head `ebab9bb5ee106db8ca24b2abdc0b25e637339f20` and merged into protected `release/production` at `4951de05b3f25c17c4f461dd14332679338d8add`, tree `524e6b0344952a4675a713ef746b72786b043e54`. That exact protected source supplied the two published assets, `curtainsuk-browse-filters.css` and `curtainsuk-browse-filters.js`, on existing Shopify MAIN `182339731835`.
+
+Fresh complete readbacks verified all 576 files against the prior protected source before publication and against the new source afterwards. Only the two approved asset digests changed. Stored `config/settings_data.json` is byte-identical before and after, SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`. No feature setting was switched off.
+
+The live page rendered 24 cards with slight shadows, unchanged lazy-loaded photographs and the new Look closer treatment. Colour filtering returned 774 Beige/Taupe fabrics, combining the £30–under £60 guide returned 401, and Clear all restored 11,815. Close-up opening, Escape, focus restoration, Fiona's first question, retained card destinations and narrow/desktop layouts passed. See the [publication evidence and screenshots](browse-fabrics/FLOATING-SWATCH-REVIEW-20261020.md#publication).
+
+This theme-only release did not change pricing, checkout, catalogue data, Vercel, Supabase or environment settings. The recorded serving API source remains `b138f17e96b17c41e33f9052b12d6c5b20a0c155` on deployment `dpl_Fyrz7bMucRMXN49Kzo6qx4ZB7xcg`. Runtime metadata was not freshly attested for this visual change; the earlier service publication below records that verification. Later documentation-only protected commits do not change these serving identities.
+
+## Browse Fabrics service and catalogue publication, 20 October 2026
+
+[PR #250](https://github.com/Nylon1/CurtainsUK/pull/250) passed `curtainsuk-production-gate` and `protected-production-policy` after Nylon1 posted the required exact-head comment for `be27b455fad0612cba210dd652e931cdb7afaccf`. It merged into protected `release/production` at `b138f17e96b17c41e33f9052b12d6c5b20a0c155`, tree `2624932373d21cf63a7851041f7e845f113c7a43`. This remains the deployed runtime source; the theme source is superseded by the scoped card treatment publication above. Later documentation-only protected commits do not change either serving identity.
 
 The complete protected export passed the released Room Visualiser packaging guard (two packs, 3,150 files). Production deployment `dpl_Fyrz7bMucRMXN49Kzo6qx4ZB7xcg` was staged with the protected SHA embedded at build time, reached READY, returned the normal unsigned 401 on Jane and all four specialist gateways, and was promoted. `curtainsuk-production-api.vercel.app`, `curtainsuk-staging-api.vercel.app` and `curtainsuk-staging-gateway.vercel.app` all resolve to that deployment. Twenty served visualiser modules and textures returned 200 with the recorded SHA-256 hashes. The previous deployment `dpl_6wMYuRjo38cURYrwQUuzbuqM4mE8` is the immediate shared-service rollback. Only the four source-identity settings were updated to the new protected SHA; the existing feature and purchase settings remained enabled.
 

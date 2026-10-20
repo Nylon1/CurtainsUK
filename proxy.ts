@@ -47,12 +47,13 @@ export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const isAdminRoute = pathname === "/admin" || pathname.startsWith("/admin/");
   const isLoginRoute = pathname === "/admin/login";
+  const isRecoveryRoute = pathname === "/admin/reset-password";
   const reviewer = user && hasStagingReviewRole({ appMetadata: user.app_metadata,
     authUrl: process.env.NEXT_PUBLIC_SUPABASE_URL, environment: process.env.VERCEL_ENV,
     anonymous: user.is_anonymous });
   const isCurtainsStaging = process.env.NEXT_PUBLIC_SUPABASE_URL === "https://hqysjumypgeapgmqkcrx.supabase.co"
     && process.env.VERCEL_ENV === "preview";
-  if (isCurtainsStaging && !isLoginRoute && (user || pathname.startsWith("/api/admin/"))) {
+  if (isCurtainsStaging && !isLoginRoute && !isRecoveryRoute && (user || pathname.startsWith("/api/admin/"))) {
     const reviewPath = pathname === "/admin/curtain-consultation" || /^\/api\/admin\/curtain-consultation(?:\/|$)/.test(pathname)
       || pathname === "/admin/daily-stock" || pathname === "/api/admin/daily-stock"
       || /^\/admin\/reviews(?:\/|$)/.test(pathname)
@@ -66,7 +67,7 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  if (isAdminRoute && !isLoginRoute && !user) {
+  if (isAdminRoute && !isLoginRoute && !isRecoveryRoute && !user) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/admin/login";
     loginUrl.searchParams.set("next", pathname);

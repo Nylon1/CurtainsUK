@@ -64,10 +64,12 @@ it to browsing journeys.
    required exact-head approval.
 2. Apply `20261020205026_customer_journey_error_centre.sql` to the existing
    Supabase project. Verify the private table, function and retention job.
-3. Configure `RESEND_API_KEY`, `CURTAINSUK_VISIT_ALERT_EMAIL` and
-   `CURTAINSUK_VISIT_ALERT_FROM` as private Vercel Production settings. Use a
-   sender verified in Resend. The destination address is never committed to
-   source. Preserve all current environment entries.
+3. Verify the three private Vercel Production settings configured on 20
+   October 2026: `RESEND_API_KEY`, `CURTAINSUK_VISIT_ALERT_EMAIL` and
+   `CURTAINSUK_VISIT_ALERT_FROM`. The new key has sending-only access to the
+   existing verified Apex domain. The destination address and token are never
+   committed to source. All prior environment entries were preserved. A new
+   deployment is required before the current service can read these settings.
 4. Publish the existing Vercel service from the exact protected commit.
 5. Upload only the changed theme layout and new asset to the existing Shopify
    main theme. Preserve all existing settings and feature flags.
@@ -76,7 +78,9 @@ it to browsing journeys.
    and email notifications. Check Browse Fabrics, Room Visualiser, Cushion Studio, Smart
    Track Studio, advisers, Design My Home, sample ordering and checkout entry.
 
-No production settings, deployment aliases, Shopify theme settings or current
-feature flags are changed by this candidate branch. The email settings are
-required for the production release and are called out explicitly to prevent
-silent missing alerts.
+This candidate branch does not change deployment aliases, Shopify theme
+settings or feature flags. The three new production email settings were added
+separately, with existing settings preserved. The current Resend allowance is
+100 emails per day and 3,000 per month; alerts beyond the allowance can fail
+and will be visible in the private dashboard. There is no guarantee of
+delivery during provider outages or once the allowance is exhausted.

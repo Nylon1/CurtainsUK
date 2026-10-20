@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
 import { randomUUID } from 'node:crypto';
-import { parseJourneyBatch } from './customer-journey';
+import { parseJourneyBatch, safeOperationalDiagnostic } from './customer-journey';
 
 test('storefront sends useful browser and API details without leaking messages or URL queries', async () => {
   const source = readFileSync(join(process.cwd(), 'shopify-theme/curtainsuk-dawn-16/assets/customer-journey.js'), 'utf8');
@@ -17,6 +17,7 @@ test('storefront sends useful browser and API details without leaking messages o
     Shopify: { customerPrivacy: { analyticsProcessingAllowed: () => true } },
     fetch: (url: string, options: { body: string }) => {
       if (url.endsWith('/journey')) { requests.push(options.body); return Promise.resolve({ ok: true, status: 200 }); }
+      if (url.endsWith('/jane')) return Promise.reject(new TypeError('Failed to fetch'));
       return Promise.resolve({ ok: false, status: 503 });
     },
     addEventListener: (name: string, callback: (event: unknown) => void) => { listeners[name] = callback; },
@@ -28,7 +29,7 @@ test('storefront sends useful browser and API details without leaking messages o
     crypto: { randomUUID }, navigator: {}, performance: { getEntriesByType: () => [], now: () => 0 },
     setInterval: () => 1, clearInterval: () => {}, setTimeout: () => 1, clearTimeout: () => {} });
   const reason = new TypeError("Cannot read properties of undefined (reading 'private@example.com')");
-  reason.stack = `TypeError: ${reason.message}\n at https://cdn.shopify.com/s/files/1/123/assets/curtainsuk-browse-filters.js?token=private:42:7`;
+  reason.stack = `TypeError: ${reason.message}\n at https://cdn.shopify.com/s/files/1/123/assets/curtainsuk-browse-filters.js?token=private:42:7\n at https://www.curtainsuk.com/cdn/shop/t/123/assets/other.js?v=secret:11:2`;
   listeners.unhandledrejection({ reason });
   assert.equal(requests.length, 1);
   assert.doesNotMatch(requests[0], /private@example\.com|token=private/);
@@ -37,13 +38,24 @@ test('storefront sends useful browser and API details without leaking messages o
   const error = events.find((event) => event.kind === 'ERROR');
   assert.equal(error?.code, 'PROMISE_REJECTION');
   assert.deepEqual(error?.error_detail, { type: 'TypeError', message: 'PROPERTY_READ_UNDEFINED',
-    script: 'curtainsuk-browse-filters.js', line: 42, column: 7, origin: 'THEME', feature: 'FABRICS' });
-  await window.fetch('https://curtainsuk-production-api.vercel.app/api/curtain-consultation-premium', { body: '' });
+    script: 'curtainsuk-browse-filters.js', line: 42, column: 7, origin: 'THEME', feature: 'FABRICS',
+    messageText: "Cannot read properties of undefined (reading '[value]')",
+    frames: [{ script: 'curtainsuk-browse-filters.js', line: 42, column: 7, origin: 'THEME' },
+      { script: 'other.js', line: 11, column: 2, origin: 'THEME' }], request: null });
+  await window.fetch('https://curtainsuk-production-api.vercel.app/api/curtain-consultation-premium?email=private@example.com', { body: '' });
   await Promise.resolve();
   assert.equal(requests.length, 2);
+  assert.doesNotMatch(requests[1], /private@example\.com/);
   const apiEvents = parseJourneyBatch(JSON.parse(requests[1]), 'Chrome/120');
   assert.deepEqual(apiEvents[0].error_detail, { type: 'HttpError', message: 'HTTP_SERVER_ERROR',
-    script: null, line: null, column: null, origin: 'APP', feature: 'FABRIC_INTELLIGENCE' });
+    script: null, line: null, column: null, origin: 'APP', feature: 'FABRIC_INTELLIGENCE',
+    messageText: null, frames: [], request: { method: 'GET', route: '/api/curtain-consultation-premium' } });
+  await assert.rejects(window.fetch('https://curtainsuk-production-api.vercel.app/api/staging/shopify-proxy/jane', { body: '' }), /Failed to fetch/);
+  await Promise.resolve();
+  const rejected = parseJourneyBatch(JSON.parse(requests[2]), 'Chrome/120');
+  assert.deepEqual(rejected[0].error_detail, { type: 'NetworkError', message: 'NETWORK_REQUEST_FAILED',
+    script: null, line: null, column: null, origin: 'APP', feature: 'JANE_ADVISOR',
+    messageText: 'Failed to fetch', frames: [], request: { method: 'GET', route: '/api/staging/shopify-proxy/jane' } });
 });
 
 test('server rejects free-form error detail that could contain customer data', () => {
@@ -52,4 +64,18 @@ test('server rejects free-form error detail that could contain customer data', (
     release: 'journey-20261020-v2', channel: null, detail: { type: 'TypeError',
       message: 'private@example.com', script: null, line: 42, column: 7,
       origin: 'THEME', feature: 'GENERAL' } }] }, 'Chrome/120'), /JOURNEY_INPUT_INVALID/);
+  assert.throws(() => parseJourneyBatch({ journeyId: randomUUID(), events: [{ eventId: randomUUID(),
+    kind: 'ERROR', name: 'BROWSER_ERROR', pagePath: '/', code: 'PROMISE_REJECTION', status: null,
+    release: 'journey-20261021-v3', channel: null, detail: { type: 'TypeError', message: 'NETWORK_REQUEST_FAILED',
+      script: null, line: null, column: null, origin: 'UNKNOWN', feature: 'GENERAL',
+      messageText: 'Request for private@example.com failed', frames: [], request: null } }] }, 'Chrome/120'), /JOURNEY_INPUT_INVALID/);
+});
+
+test('server-side caught exceptions retain source location while redacting customer text', () => {
+  const cause = new TypeError('Request for private@example.com failed at https://example.com/order?token=secret');
+  cause.stack = `TypeError: ${cause.message}\n at handler (file:///var/task/.next/server/chunks/proxy.js:73:11)`;
+  assert.deepEqual(safeOperationalDiagnostic(cause), {
+    type: 'TypeError', messageText: 'Request for [EMAIL] failed at [URL]',
+    script: 'proxy.js', line: 73, column: 11,
+  });
 });

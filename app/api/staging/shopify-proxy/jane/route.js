@@ -68,8 +68,8 @@ async function handle(request) {
         return createConsultationService({ store, provider, catalogue, publicMode: janePublicEnabled(env, compiledCommit) }).execute(owner, command);
       },
     })(request), '/api/staging/shopify-proxy/jane', 'JANE_SERVICE_UNAVAILABLE');
-  } catch {
-    await recordOperationalError({ routePath: '/api/staging/shopify-proxy/jane', code: 'JANE_TEMPORARILY_UNAVAILABLE', status: 503, source: 'HANDLED' });
+  } catch (error) {
+    await recordOperationalError({ routePath: '/api/staging/shopify-proxy/jane', code: 'JANE_TEMPORARILY_UNAVAILABLE', status: 503, source: 'HANDLED', cause: error });
     return Response.json({ error: 'JANE_TEMPORARILY_UNAVAILABLE' }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
   }
 }

@@ -49,7 +49,7 @@ async function handle(request:Request){
         }).execute(owner,command);
       }
     })(request),'/api/staging/shopify-proxy/specialists','SPECIALIST_SERVICE_UNAVAILABLE');
-  }catch{await recordOperationalError({routePath:'/api/staging/shopify-proxy/specialists',code:'SPECIALIST_TEMPORARILY_UNAVAILABLE',status:503,source:'HANDLED'});return Response.json({error:'SPECIALIST_TEMPORARILY_UNAVAILABLE'},{status:503,headers:{'Cache-Control':'no-store'}});}
+  }catch(error){await recordOperationalError({routePath:'/api/staging/shopify-proxy/specialists',code:'SPECIALIST_TEMPORARILY_UNAVAILABLE',status:503,source:'HANDLED',cause:error});return Response.json({error:'SPECIALIST_TEMPORARILY_UNAVAILABLE'},{status:503,headers:{'Cache-Control':'no-store'}});}
 }
 
 export {handle as GET,handle as POST};

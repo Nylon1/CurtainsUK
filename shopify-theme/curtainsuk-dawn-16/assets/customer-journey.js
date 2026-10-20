@@ -1,4 +1,4 @@
-/* Anonymous, consented diagnostics. No form values, query strings or error text. */
+/* Anonymous, consented diagnostics. Short redacted errors only; no form values, URL queries or raw stacks. */
 (() => {
   'use strict';
   const endpoint = '/apps/curtainsuk-decision/journey';
@@ -6,7 +6,7 @@
   const idleMs = 30 * 60 * 1000;
   const excluded = /(?:^|\/)(?:account|checkout|orders|apps)(?:\/|$)/i;
   const safePath = /^\/[a-z0-9/_-]{0,159}$/i;
-  const release = 'journey-20261020-v2';
+  const release = 'journey-20261021-v3';
   const nativeFetch = window.fetch.bind(window);
   let journeyId = null;
   let enabled = false;
@@ -95,9 +95,43 @@
     return feature();
   }
 
-  function apiDetail(message, route) {
+  const apiOperations = new Set(['jane', 'specialists', 'catalog', 'naila-catalog', 'premium-catalog',
+    'consultation', 'premium-session', 'premium-command', 'hci-session', 'hci-command',
+    'price', 'rooms', 'sample-order', 'checkout-handoff', 'review-request', 'review-acceptance',
+    'room-visualiser', 'cushion-studio', 'smart-track', 'my-home-checkout']);
+
+  function safeApiRoute(route) {
+    const proxy = route.match(/^\/apps\/curtainsuk-decision\/([a-z-]+)/);
+    if (proxy && apiOperations.has(proxy[1])) return `/apps/curtainsuk-decision/${proxy[1]}`;
+    const direct = route.match(/^\/api\/staging\/shopify-proxy\/([a-z-]+)/);
+    if (direct && apiOperations.has(direct[1])) return `/api/staging/shopify-proxy/${direct[1]}`;
+    if (route === '/api/curtain-consultation-premium') return route;
+    return null;
+  }
+
+  function apiDetail(message, route, method, cause = null) {
+    const frames = stackFrames(cause);
+    const first = frames[0];
+    let causeMessage = null;
+    try { causeMessage = typeof cause === 'string' ? cause : cause?.message; } catch { /* Cross-origin errors may be inaccessible. */ }
     return { type: message === 'NETWORK_REQUEST_FAILED' ? 'NetworkError' : 'HttpError', message,
-      script: null, line: null, column: null, origin: 'APP', feature: apiFeature(route) };
+      script: first?.script || null, line: first?.line || null, column: first?.column || null,
+      origin: first?.origin || 'APP', feature: apiFeature(route),
+      messageText: redactedMessage(causeMessage), frames, request: safeApiRoute(route)
+        ? { method: /^(GET|POST|PUT|PATCH|DELETE)$/.test(method) ? method : 'GET', route: safeApiRoute(route) } : null };
+  }
+
+  function redactedMessage(value) {
+    if (typeof value !== 'string' || !value || value.length > 2048) return null;
+    const clean = value.replace(/[\r\n\t]+/g, ' ').replace(/https?:\/\/[^\s<>"']+/gi, '[URL]')
+      .replace(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi, '[EMAIL]')
+      .replace(/\b(?:\+?\d[\d ()-]{7,}\d)\b/g, '[NUMBER]')
+      .replace(/\b(?:eyJ[a-z0-9_-]{20,}|[a-f0-9]{32,})\b/gi, '[TOKEN]')
+      .replace(/\b(?:sk-[a-z0-9_-]{8,}|shpat_[a-z0-9_-]{8,}|Bearer\s+[a-z0-9._-]{8,})\b/gi, '[TOKEN]')
+      .replace(/\b(?:token|key|secret|password|authorization|session|capability)=[^\s&]+/gi, '[REDACTED]')
+      .replace(/(['"`])[^'"`]{1,100}\1/g, "'[value]'")
+      .replace(/[^\x20-\x7e]/g, '?').replace(/\s{2,}/g, ' ').trim();
+    return clean ? clean.slice(0, 180) : null;
   }
 
   function safeMessage(value) {
@@ -125,7 +159,7 @@
       if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
       const own = url.hostname === location.hostname || /^(?:curtainsuk-production-api|curtainsuk-staging-api|curtainsuk-staging-gateway)\.vercel\.app$/.test(url.hostname);
       const theme = /^curtainsuk-[a-z0-9._-]{1,65}\.js$/.test(name) || name === 'customer-journey.js';
-      const script = theme ? name : (own && /^(?:global|theme|vendor)\.js$/.test(name) ? name : null);
+      const script = (own || url.hostname === 'cdn.shopify.com') && /^[a-z0-9][a-z0-9._-]{0,79}\.js$/.test(name) ? name : null;
       if (theme && (own || url.hostname === 'cdn.shopify.com')) return { origin: 'THEME', script };
       if (own) return { origin: url.hostname === location.hostname ? 'THEME' : 'APP', script };
       if (url.hostname === 'cdn.shopify.com' || url.hostname.endsWith('.shopify.com')) return { origin: 'SHOPIFY', script: null };
@@ -133,29 +167,47 @@
     } catch { return null; }
   }
 
-  function stackLocation(reason) {
-    if (!reason || typeof reason !== 'object') return null;
+  function stackFrames(reason) {
+    if (!reason || typeof reason !== 'object') return [];
     let stack;
-    try { stack = reason.stack; } catch { return null; }
-    if (typeof stack !== 'string') return null;
-    const frame = stack.slice(0, 8192).match(/((?:https?:\/\/|chrome-extension:\/\/|moz-extension:\/\/)[^\s)]+?):(\d+):(\d+)(?=[\s)]|$)/);
-    return frame ? { url: frame[1], line: Number(frame[2]), column: Number(frame[3]) } : null;
+    try { stack = reason.stack; } catch { return []; }
+    if (typeof stack !== 'string') return [];
+    const frames = [];
+    for (const row of stack.slice(0, 8192).split('\n').slice(1, 9)) {
+      const found = row.match(/((?:https?:\/\/|chrome-extension:\/\/|moz-extension:\/\/)[^\s)]+?):(\d+):(\d+)(?=[\s)]|$)/);
+      if (!found) continue;
+      const source = safeSource(found[1]);
+      const line = Number(found[2]);
+      const column = Number(found[3]);
+      if (!source || !Number.isInteger(line) || !Number.isInteger(column)
+        || line < 1 || column < 1 || line > 10000000 || column > 10000000) continue;
+      frames.push({ script: source.script, line, column, origin: source.origin });
+      if (frames.length === 3) break;
+    }
+    return frames;
   }
 
   function errorDetail(reason, locationHint = null, messageHint = null, asset = false) {
     let name = asset ? 'ResourceError' : (reason && typeof reason === 'object' ? 'Error' : 'NonErrorRejection');
-    let message = messageHint;
+    let message = typeof reason === 'string' ? reason : messageHint;
     if (reason && typeof reason === 'object') {
       try {
         if (errorTypes.has(reason.name)) name = reason.name;
         message = reason.message || messageHint;
       } catch { /* Error objects from another context may be inaccessible. */ }
     }
-    const frame = locationHint || stackLocation(reason);
-    const source = safeSource(frame?.url);
+    const frames = stackFrames(reason);
+    const source = safeSource(locationHint?.url);
     const integer = (value) => Number.isInteger(value) && value > 0 && value <= 10000000 ? value : null;
-    return { type: name, message: asset ? 'ASSET_LOAD_FAILED' : safeMessage(message), script: source?.script || null,
-      line: integer(frame?.line), column: integer(frame?.column), origin: source?.origin || 'UNKNOWN', feature: feature() };
+    const locationFrame = source && integer(locationHint?.line) && integer(locationHint?.column)
+      ? { script: source.script, line: locationHint.line, column: locationHint.column, origin: source.origin } : null;
+    if (locationFrame && !frames.some((frame) => frame.script === locationFrame.script && frame.line === locationFrame.line))
+      frames.unshift(locationFrame);
+    const first = frames[0];
+    return { type: name, message: asset ? 'ASSET_LOAD_FAILED' : safeMessage(message),
+      script: first?.script || source?.script || null, line: first?.line || integer(locationHint?.line),
+      column: first?.column || integer(locationHint?.column), origin: first?.origin || source?.origin || 'UNKNOWN',
+      feature: feature(), messageText: asset ? null : redactedMessage(message), frames: frames.slice(0, 3), request: null };
   }
 
   function record(kind, name, code = null, status = null, pagePath = path(location.href), detail = null) {
@@ -225,6 +277,7 @@
       const requestUrl = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
       const apiUrl = (() => { try { return new URL(requestUrl, location.origin); } catch { return null; } })();
       const nativePath = apiUrl?.pathname || '';
+      const method = String(args[1]?.method || args[0]?.method || 'GET').toUpperCase();
       if (nativePath === '/cart/add.js') {
         void result.then((response) => { if (response.ok) record('ACTION', 'CART_ADD'); }, () => {});
       }
@@ -239,13 +292,13 @@
         void result.then((response) => {
           if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
           if (response.status >= 500) record('ERROR', 'API_FAILURE', 'API_SERVER_ERROR', response.status,
-            path(location.href), apiDetail('HTTP_SERVER_ERROR', nativePath));
+            path(location.href), apiDetail('HTTP_SERVER_ERROR', nativePath, method));
           else if ([400, 404, 409].includes(response.status)) record('ERROR', 'API_FAILURE', 'API_REQUEST_REJECTED',
-            response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath));
-        }, () => {
+            response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath, method));
+        }, (error) => {
           if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
           record('ERROR', 'API_FAILURE', 'API_NETWORK_ERROR', null, path(location.href),
-            apiDetail('NETWORK_REQUEST_FAILED', nativePath));
+            apiDetail('NETWORK_REQUEST_FAILED', nativePath, method, error));
         });
       }
     }

@@ -1,12 +1,13 @@
 import 'server-only';
 import { randomUUID } from 'node:crypto';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
+import { safeOperationalDiagnostic } from '@/lib/storefront/customer-journey';
 
 const SAFE_ROUTE = /^\/[a-z0-9/_\[\].-]{0,159}$/i;
 const SAFE_CODE = /^[A-Z][A-Z0-9_]{1,63}$/;
 
 export async function recordOperationalError(input: {
-  routePath: string; code: string; status?: number; source: 'UNHANDLED' | 'HANDLED';
+  routePath: string; code: string; status?: number; source: 'UNHANDLED' | 'HANDLED'; cause?: unknown;
 }) {
   const routePath = SAFE_ROUTE.test(input.routePath) ? input.routePath : '/unknown';
   const code = SAFE_CODE.test(input.code) ? input.code : 'SERVER_FAILURE';
@@ -18,7 +19,7 @@ export async function recordOperationalError(input: {
     const { error } = await createSupplierServiceClient().from('customer_operational_errors').insert({
       error_id: randomUUID(), request_id: requestId, route_path: routePath,
       code, status: input.status && input.status >= 500 && input.status <= 599 ? input.status : 500,
-      release, source: input.source,
+      release, source: input.source, diagnostic: safeOperationalDiagnostic(input.cause),
     });
     if (error) throw Error('OPERATIONAL_ERROR_PERSIST_FAILED');
   } catch { console.error('CURTAINSUK_OPERATIONAL_ERROR_PERSIST_FAILED', requestId); }

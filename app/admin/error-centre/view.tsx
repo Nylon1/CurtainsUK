@@ -6,7 +6,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 type Event = { event_id: string; journey_id: string; request_id: string; occurred_at: string; kind: string;
   page_path: string; name: string; code: string | null; status: number | null; release: string; browser: string; channel: string | null;
   error_detail: { type: string; message: string; script: string | null; line: number | null; column: number | null;
-    origin: string; feature: string } | null };
+    origin: string; feature: string; messageText?: string | null;
+    frames?: { script: string | null; line: number; column: number; origin: string }[];
+    request?: { method: string; route: string } | null } | null };
 type Summary = { visits: number; journeys: number; pageViews: number; cartAdds: number;
   cartViews: number; checkoutStarts: number; errors: number; slowEvents: number; paidOrders: number;
   topPages: { path: string; views: number }[]; channels: { name: string; visits: number }[] };
@@ -14,7 +16,9 @@ type Payload = { summary: Summary; errors: Event[]; visits: Event[]; timeline: E
   selectedJourney: string | null; nextBefore: string | null; retentionDays: number;
   pendingEmailAlerts: number; emailAlertsConfigured: boolean; serviceErrorCount: number;
   serviceErrors: { error_id: string; occurred_at: string; request_id: string; route_path: string;
-    code: string; status: number; release: string; source: string }[] };
+    code: string; status: number; release: string; source: string;
+    diagnostic: { type: string; messageText: string | null; script: string | null;
+      line: number | null; column: number | null } | null }[] };
 
 const date = (value: string) => new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
 const card = 'rounded-2xl border border-[#d7d6c9] bg-white p-5 shadow-sm';
@@ -45,8 +49,10 @@ function errorDetail(event: Event) {
   if (!detail) return <span className="text-[#708276]">Technical detail unavailable for this earlier event.</span>;
   const position = detail.script ? `${detail.script}${detail.line ? `:${detail.line}${detail.column ? `:${detail.column}` : ''}` : ''}` : '';
   return <span className="block text-[#566c60]">
-    <span className="block font-medium">{detail.type}: {messages[detail.message] ?? 'Technical message unavailable'}</span>
+    <span className="block font-medium">{detail.type}: {detail.messageText || messages[detail.message] || 'Technical message unavailable'}</span>
     <span className="block text-xs">{position || origins[detail.origin] || 'Source unavailable'} · {features[detail.feature] || 'General page'}</span>
+    {detail.request && <span className="block break-all font-mono text-xs">{detail.request.method} {detail.request.route}{event.status ? ` → ${event.status}` : ''}</span>}
+    {detail.frames && detail.frames.length > 1 && <span className="mt-1 block text-xs">Stack: {detail.frames.map((frame) => `${frame.script || origins[frame.origin] || 'Unknown'}:${frame.line}:${frame.column}`).join(' → ')}</span>}
     {position && <span className="block text-xs">{origins[detail.origin] || 'Source unavailable'}</span>}
   </span>;
 }
@@ -127,8 +133,8 @@ export default function ErrorCentre() {
         <section className={card}><h2 className="font-serif text-2xl">New visits</h2><p className="mt-1 text-sm text-[#61756a]">A visit starts when a new anonymous browsing session begins. Live alerts work while this page is open.</p>
           <ol className="mt-4 max-h-[430px] space-y-2 overflow-auto">{data?.visits?.map((visit) => <li key={visit.event_id}><button className="flex w-full justify-between gap-3 rounded-lg border border-[#ece9df] p-3 text-left text-sm hover:bg-[#f6f6f0]" onClick={() => setJourney(visit.journey_id)}><span className="truncate">{visit.page_path} <small className="block text-[#6a7b71]">{visit.browser} · {visit.channel ?? 'Unknown source'}</small></span><span className="shrink-0 text-[#6a7b71]">{date(visit.occurred_at)}</span></button></li>)}</ol></section>
       </div>
-      <section className={`${card} mt-6`}><h2 className="font-serif text-2xl">Service errors</h2><p className="mt-1 text-sm text-[#61756a]">Handled 5xx responses and unhandled faults across the site. Routes and codes only; request content is never saved here.</p>
-        <ol className="mt-4 grid max-h-[500px] gap-2 overflow-auto md:grid-cols-2">{data?.serviceErrors?.map((event) => <li key={event.error_id} className="rounded-lg border border-[#ece9df] p-3 text-sm"><strong>{event.code}</strong><span className="ml-2 text-[#708276]">{date(event.occurred_at)}</span><p className="mt-1 truncate">{event.route_path} · HTTP {event.status}</p><p className="mt-1 truncate text-xs text-[#708276]">Reference {event.request_id} · {event.release.slice(0, 12)}</p></li>)}</ol>
+      <section className={`${card} mt-6`}><h2 className="font-serif text-2xl">Service errors</h2><p className="mt-1 text-sm text-[#61756a]">Handled 5xx responses and unhandled faults. New caught exceptions include a short redacted cause and source location when available; request content is never saved here.</p>
+        <ol className="mt-4 grid max-h-[500px] gap-2 overflow-auto md:grid-cols-2">{data?.serviceErrors?.map((event) => <li key={event.error_id} className="rounded-lg border border-[#ece9df] p-3 text-sm"><strong>{event.code}</strong><span className="ml-2 text-[#708276]">{date(event.occurred_at)}</span><p className="mt-1 truncate">{event.route_path} · HTTP {event.status}</p>{event.diagnostic && <p className="mt-1 break-words">{event.diagnostic.type}: {event.diagnostic.messageText || 'Message unavailable'}{event.diagnostic.script && <span className="block font-mono text-xs">{event.diagnostic.script}:{event.diagnostic.line}:{event.diagnostic.column}</span>}</p>}<p className="mt-1 truncate text-xs text-[#708276]">Reference {event.request_id} · {event.release.slice(0, 12)}</p></li>)}</ol>
         {data && !data.serviceErrors.length && <p className="mt-4 text-sm">No recent service errors recorded.</p>}</section>
       <section className={`${card} mt-6`}><h2 className="font-serif text-2xl">How people arrive</h2><p className="mt-1 text-sm text-[#61756a]">Broad, consented source categories only. Campaign details and search terms are not stored.</p>
         <div className="mt-4 flex flex-wrap gap-3">{data?.summary?.channels?.map((source) => <div key={source.name} className="min-w-28 rounded-xl bg-[#f4f3eb] p-3"><strong className="block text-xl">{source.visits}</strong><span className="text-sm">{source.name}</span></div>)}</div>
@@ -137,7 +143,7 @@ export default function ErrorCentre() {
         <ol className="mt-4 grid gap-2 md:grid-cols-2">{data?.slow?.map((event) => <li key={event.event_id} className="rounded-lg border border-[#ece9df] p-3 text-sm"><strong>{event.code}</strong><span className="ml-2 text-[#708276]">{date(event.occurred_at)}</span><p className="mt-1 truncate">{event.page_path} · {event.browser}</p></li>)}</ol>
         {data && !data.slow.length && <p className="mt-4 text-sm">No slow-load reports yet.</p>}</section>
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
-        <section className={card}><h2 className="font-serif text-2xl">Customer errors</h2><p className="mt-1 text-sm text-[#61756a]">New errors show a safe technical pattern, script location when available and page context. Raw messages, URLs and customer entries are never stored. Select one to inspect its anonymous journey.</p>
+        <section className={card}><h2 className="font-serif text-2xl">Customer errors</h2><p className="mt-1 text-sm text-[#61756a]">New errors show the browser message with sensitive values redacted, source frames and the failing request when available. Select one to inspect its anonymous journey.</p>
           <ol className="mt-4 max-h-[500px] space-y-2 overflow-auto">{data?.errors?.map((event) => <li key={event.event_id}><button className="w-full rounded-lg border border-[#ece9df] p-3 text-left text-sm hover:bg-[#f6f6f0]" onClick={() => setJourney(event.journey_id)}><span className="flex justify-between gap-3"><strong>{event.code}</strong><time className="text-[#6a7b71]">{date(event.occurred_at)}</time></span><span className="mt-1 block">{errorDetail(event)}</span><span className="mt-1 block truncate text-xs text-[#708276]">{event.page_path} · {event.browser} {event.status ?? ''}</span></button></li>)}</ol>
           {data && !data.errors.length && <p className="mt-4 text-sm">No browser errors recorded in this page of results.</p>}
           {data?.nextBefore && <button className="mt-4 underline" onClick={() => setBefore(data.nextBefore)}>Older errors</button>}</section>

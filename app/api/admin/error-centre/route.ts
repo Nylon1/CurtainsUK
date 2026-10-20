@@ -38,7 +38,7 @@ export async function GET(request: Request) {
       db.from('customer_journey_events').select(columns).eq('kind', 'PERFORMANCE')
         .order('occurred_at', { ascending: false }).limit(30),
       db.from('customer_visit_alerts').select('journey_id', { count: 'exact', head: true }).neq('state', 'SENT'),
-      db.from('customer_operational_errors').select('error_id,occurred_at,request_id,route_path,code,status,release,source')
+      db.from('customer_operational_errors').select('error_id,occurred_at,request_id,route_path,code,status,release,source,diagnostic')
         .gte('occurred_at', periodStart).order('occurred_at', { ascending: false }).limit(50),
       db.from('customer_operational_errors').select('error_id', { count: 'exact', head: true }).gte('occurred_at', periodStart),
     ]);

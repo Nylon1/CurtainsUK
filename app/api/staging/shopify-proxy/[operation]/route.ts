@@ -143,7 +143,7 @@ export async function GET(request: Request, context: { params: Promise<{ operati
     if (response.status >= 500) {
       const raw = (await context.params).operation;
       await recordOperationalError({ routePath: isShopifyProxyOperation(raw) ? `/api/staging/shopify-proxy/${raw}` : '/api/staging/shopify-proxy',
-        code: 'APP_PROXY_UNAVAILABLE', status: response.status, source: 'HANDLED' });
+        code: 'APP_PROXY_UNAVAILABLE', status: response.status, source: 'HANDLED', cause: error });
     }
     return response;
   }
@@ -225,7 +225,7 @@ export async function POST(request: Request, context: { params: Promise<{ operat
     if (response.status >= 500) {
       const raw = (await context.params).operation;
       await recordOperationalError({ routePath: isShopifyProxyOperation(raw) ? `/api/staging/shopify-proxy/${raw}` : '/api/staging/shopify-proxy',
-        code: 'APP_PROXY_UNAVAILABLE', status: response.status, source: 'HANDLED' });
+        code: 'APP_PROXY_UNAVAILABLE', status: response.status, source: 'HANDLED', cause: error });
     }
     return response;
   }

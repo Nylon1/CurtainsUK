@@ -13,10 +13,53 @@ const ORIGINS = new Set(["THEME", "APP", "SHOPIFY", "EXTERNAL", "EXTENSION", "UN
 const FEATURES = new Set(["FABRICS", "CUSHION_STUDIO", "ROOM_VISUALISER", "SMART_TRACK_STUDIO",
   "DESIGN_MY_HOME", "FITTING_GUIDE", "PRODUCT_PAGE", "POLICY_PAGE", "GENERAL",
   "JANE_ADVISOR", "SPECIALISTS", "FABRIC_INTELLIGENCE", "FABRIC_STOCK"]);
+const API_OPERATIONS = new Set(["jane", "specialists", "catalog", "naila-catalog", "premium-catalog",
+  "consultation", "premium-session", "premium-command", "hci-session", "hci-command",
+  "price", "rooms", "sample-order", "checkout-handoff", "review-request", "review-acceptance",
+  "room-visualiser", "cushion-studio", "smart-track", "my-home-checkout"]);
+const SCRIPT = /^[a-z0-9][a-z0-9._-]{0,79}\.js$/;
+
+export function sanitizeErrorMessage(value: unknown): string | null {
+  if (typeof value !== 'string' || !value || value.length > 2048) return null;
+  const clean = value.replace(/[\r\n\t]+/g, ' ').replace(/https?:\/\/[^\s<>"']+/gi, '[URL]')
+    .replace(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi, '[EMAIL]')
+    .replace(/\b(?:\+?\d[\d ()-]{7,}\d)\b/g, '[NUMBER]')
+    .replace(/\b(?:eyJ[a-z0-9_-]{20,}|[a-f0-9]{32,})\b/gi, '[TOKEN]')
+    .replace(/\b(?:sk-[a-z0-9_-]{8,}|shpat_[a-z0-9_-]{8,}|Bearer\s+[a-z0-9._-]{8,})\b/gi, '[TOKEN]')
+    .replace(/\b(?:token|key|secret|password|authorization|session|capability)=[^\s&]+/gi, '[REDACTED]')
+    .replace(/(['"`])[^'"`]{1,100}\1/g, "'[value]'")
+    .replace(/[^\x20-\x7e]/g, '?').replace(/\s{2,}/g, ' ').trim();
+  return clean ? clean.slice(0, 180) : null;
+}
+
+export function safeOperationalDiagnostic(cause: unknown) {
+  const error = object(cause);
+  if (!error) return null;
+  const type = ERROR_TYPES.has(String(error.name)) ? String(error.name) : 'Error';
+  const messageText = sanitizeErrorMessage(error.message);
+  const stack = typeof error.stack === 'string' ? error.stack.slice(0, 4096) : '';
+  const found = stack.match(/(?:^|[\\/])([a-z0-9][a-z0-9._-]{0,79}\.(?:js|mjs|ts)):(\d+):(\d+)/im);
+  const line = found ? Number(found[2]) : null;
+  const column = found ? Number(found[3]) : null;
+  return { type, messageText, script: found?.[1] ?? null,
+    line: line && line <= 10_000_000 ? line : null,
+    column: column && column <= 10_000_000 ? column : null };
+}
+
+function safeApiRoute(route: string): boolean {
+  const proxy = route.match(/^\/apps\/curtainsuk-decision\/([a-z-]+)$/);
+  const direct = route.match(/^\/api\/staging\/shopify-proxy\/([a-z-]+)$/);
+  return Boolean((proxy && API_OPERATIONS.has(proxy[1])) || (direct && API_OPERATIONS.has(direct[1]))
+    || route === '/api/curtain-consultation-premium');
+}
+
+export type JourneyErrorFrame = { script: string | null; line: number; column: number; origin: string };
 
 export type JourneyErrorDetail = {
   type: string; message: string; script: string | null; line: number | null; column: number | null;
   origin: string; feature: string;
+  messageText?: string | null; frames?: JourneyErrorFrame[];
+  request?: { method: string; route: string } | null;
 };
 
 export type JourneyEvent = {
@@ -42,14 +85,31 @@ function object(value: unknown): Record<string, unknown> | null {
 function parseErrorDetail(value: unknown, kind: unknown): JourneyErrorDetail | null {
   if (value == null) return null;
   const detail = object(value);
-  if (!detail || kind !== "ERROR" || Object.keys(detail).sort().join(',') !== 'column,feature,line,message,origin,script,type'
+  const keys = detail && Object.keys(detail).sort().join(',');
+  if (!detail || kind !== "ERROR" || !['column,feature,line,message,origin,script,type',
+    'column,feature,frames,line,message,messageText,origin,request,script,type'].includes(keys ?? '')
     || !ERROR_TYPES.has(String(detail.type)) || !MESSAGE_CODES.has(String(detail.message))
     || !ORIGINS.has(String(detail.origin)) || !FEATURES.has(String(detail.feature))
-    || (detail.script !== null && (typeof detail.script !== 'string'
-      || !/^(?:curtainsuk-[a-z0-9._-]{1,65}|customer-journey|global|theme|vendor)\.js$/.test(detail.script)))
+    || (detail.script !== null && (typeof detail.script !== 'string' || !SCRIPT.test(detail.script)))
     || [detail.line, detail.column].some((position) => position !== null
       && (!Number.isInteger(position) || Number(position) < 1 || Number(position) > 10_000_000))) {
     throw Error("JOURNEY_INPUT_INVALID");
+  }
+  if ('messageText' in detail) {
+    if (detail.messageText !== null && (typeof detail.messageText !== 'string'
+      || sanitizeErrorMessage(detail.messageText) !== detail.messageText)) throw Error("JOURNEY_INPUT_INVALID");
+    if (!Array.isArray(detail.frames) || detail.frames.length > 3 || !detail.frames.every((value) => {
+      const frame = object(value);
+      return frame && Object.keys(frame).sort().join(',') === 'column,line,origin,script'
+        && ORIGINS.has(String(frame.origin))
+        && (frame.script === null || (typeof frame.script === 'string' && SCRIPT.test(frame.script)))
+        && [frame.line, frame.column].every((position) => Number.isInteger(position)
+          && Number(position) >= 1 && Number(position) <= 10_000_000);
+    })) throw Error("JOURNEY_INPUT_INVALID");
+    const request = detail.request === null ? null : object(detail.request);
+    if (detail.request !== null && (!request || Object.keys(request).sort().join(',') !== 'method,route'
+      || !['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(String(request.method))
+      || typeof request.route !== 'string' || !safeApiRoute(request.route))) throw Error("JOURNEY_INPUT_INVALID");
   }
   return detail as JourneyErrorDetail;
 }

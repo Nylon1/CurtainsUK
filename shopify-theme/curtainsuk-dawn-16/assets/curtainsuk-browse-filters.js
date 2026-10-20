@@ -10,6 +10,58 @@
   const writeValues = (field, next, form) => { field.value = next.join(','); form.dispatchEvent(new Event('input', {bubbles:true})); };
   const hidden = (form, key) => form.elements[key] || (() => { const input = document.createElement('input'); input.type = 'hidden'; input.name = key; form.append(input); return input; })();
 
+  const swatchMotion = new WeakMap();
+  function bindSwatchMotion(grid) {
+    if (!grid) return;
+    if (swatchMotion.has(grid)) { swatchMotion.get(grid)(); return; }
+    const enabled = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+    let active = null, bounds = null, frame = 0, x = 0, y = 0;
+    const reset = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+      if (active) {
+        active.removeAttribute('data-cuk-floating');
+        active.style.removeProperty('--cuk-swatch-x');
+        active.style.removeProperty('--cuk-swatch-y');
+      }
+      active = null; bounds = null;
+    };
+    const paint = () => {
+      frame = 0;
+      if (!active?.isConnected) { reset(); return; }
+      const clamp = value => Math.max(-1, Math.min(1, value));
+      active.style.setProperty('--cuk-swatch-x', `${(-clamp((y - bounds.top) / bounds.height * 2 - 1) * 1.6).toFixed(2)}deg`);
+      active.style.setProperty('--cuk-swatch-y', `${(clamp((x - bounds.left) / bounds.width * 2 - 1) * 1.6).toFixed(2)}deg`);
+    };
+    const move = event => {
+      if (event.pointerType !== 'mouse' || event.buttons) { reset(); return; }
+      const swatch = event.target.closest('.cuk-fabric__swatch--raised');
+      if (!swatch || !grid.contains(swatch) || !swatch.querySelector('.cuk-fabric__swatch-face')) { reset(); return; }
+      if (active !== swatch) {
+        reset(); active = swatch;
+        // Measure the stationary hit area once, never the tilting photograph.
+        bounds = swatch.getBoundingClientRect();
+        active.setAttribute('data-cuk-floating', '');
+      }
+      x = event.clientX; y = event.clientY;
+      if (!frame) frame = requestAnimationFrame(paint);
+    };
+    const sync = () => {
+      reset();
+      grid.removeEventListener('pointermove', move);
+      if (enabled.matches) grid.addEventListener('pointermove', move, { passive: true });
+    };
+    // One delegated handler for the grid. No per-card loops, timers or observers.
+    grid.addEventListener('pointerleave', reset);
+    grid.addEventListener('pointerdown', reset, { passive: true });
+    window.addEventListener('scroll', reset, { passive: true, capture: true });
+    window.addEventListener('resize', reset, { passive: true });
+    window.addEventListener('blur', reset);
+    enabled.addEventListener('change', sync);
+    swatchMotion.set(grid, reset);
+    sync();
+  }
+
   function optionButton({key, choice, field, form, swatch, multiple}) {
     const selected = values(field, key).includes(choice.value);
     const button = document.createElement('button');
@@ -40,6 +92,7 @@
 
   function renderDiscovery(root, catalog, form) {
     const host = root.querySelector('[data-cuk-discovery]'); if (!host) return;
+    bindSwatchMotion(root.querySelector('[data-cuk-fabric-grid]'));
     const discovery = (catalog.facets?.discovery || []).filter(dimension => dimension.active && dimension.options?.length);
     const byKey = Object.fromEntries(discovery.map(dimension => [dimension.key, dimension]));
     const focused = host.contains(document.activeElement) ? document.activeElement : null;
@@ -157,10 +210,14 @@
     const swatch = card.querySelector('.cuk-fabric__swatch');
     if (!swatch || !fabric.imageReferences?.[0]) return;
     const trigger = document.createElement('button');
-    trigger.type = 'button'; trigger.className = 'cuk-fabric-peek-trigger'; trigger.textContent = 'Look closer ↗';
+    trigger.type = 'button'; trigger.className = 'cuk-fabric-peek-trigger';
+    trigger.innerHTML = '<span>Look closer</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>';
     trigger.setAttribute('aria-label', `Look closer at ${fabric.design} in ${fabric.colour}`);
     trigger.setAttribute('aria-haspopup', 'dialog');
     swatch.append(trigger);
+    const face = document.createElement('div'); face.className = 'cuk-fabric__swatch-face';
+    face.append(...swatch.childNodes); swatch.append(face);
+    swatch.classList.add('cuk-fabric__swatch--raised');
     trigger.addEventListener('click', () => {
       const dialog = document.createElement('dialog'); dialog.className = 'cuk-fabric-peek';
       dialog.setAttribute('aria-label', `${fabric.design} in ${fabric.colour}, fabric preview`);
@@ -243,10 +300,12 @@
       image.addEventListener('error', () => { photo.replaceChildren(make('p', 'This photograph could not load. You can still view the full fabric details.')); for (const control of [range, decrease, increase, reset]) control.disabled = true; });
       close.addEventListener('click', () => dialog.close());
       dialog.addEventListener('close', () => {
+        swatch.removeAttribute('data-cuk-preview-open');
         document.documentElement.classList.remove('cuk-fabric-peek-open'); dialog.remove();
         if (trigger.isConnected) trigger.focus({preventScroll:true});
       }, {once:true});
       document.body.append(dialog); document.documentElement.classList.add('cuk-fabric-peek-open'); dialog.showModal();
+      swatch.setAttribute('data-cuk-preview-open', '');
     });
   }
 

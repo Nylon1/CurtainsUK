@@ -6,7 +6,7 @@ import { calculateProductionMtmCustomerPrice } from '../storefront/production-pr
 /** Illustrative pair only. Never an order, quote token or stock approval. */
 export const BROWSE_CURTAIN_EXAMPLE = {
   windowSlug: 'standard-window', measurementBasis: 'TRACK_WIDTH', hardware: 'TRACK',
-  widthCm: 200, dropCm: 200, heading: 'PENCIL_PLEAT', lining: 'STANDARD',
+  widthCm: 100, dropCm: 100, heading: 'PENCIL_PLEAT', lining: 'STANDARD',
   interlining: 'NONE', construction: 'PAIR', stackDirection: 'SPLIT',
 } as const;
 
@@ -18,7 +18,7 @@ export function browseCurtainEstimate(record: FabricMasterRecord, costMinor: num
     if (result.outcome === 'MANUAL_QUOTE' || !result.totalAmountMinor) return null;
     return {
       amountMinor: result.totalAmountMinor, currency: 'GBP' as const, includesVat: true,
-      widthCm: 200, dropCm: 200, measurementBasis: 'TRACK_WIDTH' as const,
+      widthCm: BROWSE_CURTAIN_EXAMPLE.widthCm, dropCm: BROWSE_CURTAIN_EXAMPLE.dropCm, measurementBasis: 'TRACK_WIDTH' as const,
       heading: 'PENCIL_PLEAT' as const, lining: 'STANDARD' as const, construction: 'PAIR' as const,
       deliveryIncluded: false, calculationVersion: result.calculationVersion,
     };

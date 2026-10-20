@@ -1,4 +1,16 @@
-{% if request.page_type == 'index' and section.settings.homepage_sale_enabled %}
+{% liquid
+  assign cuk_show_sale = false
+  if section.settings.homepage_sale_enabled
+    if request.page_type == 'index'
+      assign cuk_show_sale = true
+    elsif template.suffix == 'browse-fabrics'
+      if page.handle == 'fabric-library' or page.handle == 'shop-by-fabric'
+        assign cuk_show_sale = true
+      endif
+    endif
+  endif
+%}
+{% if cuk_show_sale %}
   {% render 'curtainsuk-home-sale' %}
 {% else %}
 {% capture cuk_environment %}{% render 'curtainsuk-environment' %}{% endcapture %}
@@ -183,7 +195,7 @@
       "type": "checkbox",
       "id": "homepage_sale_enabled",
       "default": true,
-      "label": "Show homepage curtain sale",
+      "label": "Show sale on home and Browse",
       "info": "Advertises up to 25% off already included in curtain prices. Does not apply another discount."
     },
     {

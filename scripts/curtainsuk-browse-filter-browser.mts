@@ -15,6 +15,11 @@ const sectionSource = readFileSync('shopify-theme/curtainsuk-dawn-16/sections/cu
 const hero = (sectionSource.match(/<div class="cuk-section__head cuk-browse-hero">[\s\S]*?(?=\s*\{% else %\})/)?.[0] || '')
   .replace("{{ 'cuk-home-room-inspiration.webp' | asset_url }}", '/cuk-home-room-inspiration.webp');
 const help = sectionSource.match(/<div class="cuk-browse-filter-help">[\s\S]*?<\/div>/)?.[0] || '';
+const saleCopy = JSON.parse(readFileSync('shopify-theme/curtainsuk-dawn-16/locales/en.default.json', 'utf8').replace(/^\s*\/\*[\s\S]*?\*\/\s*/, '')).homepage_features.sale;
+const sale = readFileSync('shopify-theme/curtainsuk-dawn-16/snippets/curtainsuk-home-sale.liquid', 'utf8')
+  .replace(/\{% doc %\}[\s\S]*?\{% enddoc %\}/, '')
+  .replace(/\{\{ 'curtainsuk-home-sale.css' \| asset_url \| stylesheet_tag \}\}/, '<link rel="stylesheet" href="/curtainsuk-home-sale.css">')
+  .replace(/\{\{ 'homepage_features\.sale\.(\w+)' \| t(?: \| escape)? \}\}/g, (_, key) => String(saleCopy[key]).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;'));
 
 const theme = resolve('shopify-theme/curtainsuk-dawn-16/assets');
 const colours: Record<string, number> = {
@@ -37,7 +42,7 @@ const discovery = [
   { key: 'character', label: 'Character / style', active: true, options: [{ value: 'calm', label: 'calm', count: 2443 }] },
 ];
 const html = `<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/curtainsuk-storefront.css"><link rel="stylesheet" href="/curtainsuk-naila.css"><link rel="stylesheet" href="/curtainsuk-browse.css"><link rel="stylesheet" href="/curtainsuk-browse-filters.css"><style>html{font-size:62.5%;--font-body-family:Arial,sans-serif;--font-heading-family:Georgia,serif}body{font:1.6rem/1.5 Arial;background:#faf9f5;color:#23382e;margin:0}button,input{font:inherit}[hidden]{display:none!important}</style></head><body>
-<section class="cuk-shell cuk-section" data-cuk-fabric-browser data-cuk-shopping data-naila-enabled="true" data-engine-base="/api"><div class="cuk-wrap">${hero}<div class="cuk-naila-entry" data-cuk-naila></div>
+${sale}<section class="cuk-shell cuk-section" data-cuk-fabric-browser data-cuk-shopping data-naila-enabled="true" data-engine-base="/api"><div class="cuk-wrap">${hero}<div class="cuk-naila-entry" data-cuk-naila></div>
 <form id="cuk-fabric-library-search" class="cuk-fabric-filters" data-cuk-fabric-filters>${help}<div class="cuk-field"><label for="search">Search fabrics</label><input id="search" name="query" type="search" aria-label="Search fabrics"></div><input type="hidden" name="guidePrice"><div data-cuk-discovery></div><div class="cuk-browse-filter-state"><div class="cuk-filter-chips" data-cuk-active-filters aria-live="polite"></div><button type="reset" data-cuk-clear-all hidden>Clear all</button></div></form>
 <p data-cuk-fabric-count aria-live="polite"></p><p data-cuk-browse-status role="status" aria-live="polite"></p>
 <div data-cuk-error role="alert" hidden><p data-cuk-error-message></p><button data-cuk-retry type="button">Try again</button></div>
@@ -73,7 +78,7 @@ const server = createServer(async (request, response) => {
   const asset = url.pathname.slice(1);
   if (['curtainsuk-storefront.js', 'curtainsuk-storefront.css', 'curtainsuk-browse-filters.js',
     'curtainsuk-browse.css', 'curtainsuk-naila.css', 'curtainsuk-naila.js', 'curtainsuk-fiona-portrait.webp', 'cuk-home-room-inspiration.webp', 'curtainsuk-jane-fabric-entry.js',
-    'curtainsuk-browse-filters.css', 'curtainsuk-fabric-experience.js'].includes(asset)) {
+    'curtainsuk-home-sale.css', 'curtainsuk-browse-filters.css', 'curtainsuk-fabric-experience.js'].includes(asset)) {
     response.setHeader('Content-Type', asset.endsWith('.js') ? 'text/javascript' : asset.endsWith('.webp') ? 'image/webp' : 'text/css');
     response.end(readFileSync(asset === 'curtainsuk-fabric-experience.js'
       ? resolve('shopify-theme/production-main-overlay/assets/curtainsuk-fabric-experience-v2.js') : resolve(theme, asset))); return;

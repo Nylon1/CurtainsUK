@@ -127,6 +127,7 @@
     const host = card.querySelector('.cuk-fabric__actions');
     if (!host) return;
     const details = host.querySelector('[data-cuk-view-fabric]');
+    if (details) details.textContent = 'View fabric ↗';
     const room = host.querySelector('a[href*="/pages/room-visualiser?fabric="]');
     const sample = host.querySelector('[data-sample],a[href*="intent=sample"]');
     const make = host.querySelector('a[href*="curtain-visualiser"]')
@@ -146,6 +147,8 @@
     }
     // Move the original nodes: sample handlers, session links and stock gates survive.
     host.prepend(journey);
+    const estimate = card.querySelector('.cuk-curtain-estimate');
+    if (estimate && make) make.after(estimate);
     const old = host.querySelector('.cuk-experience-actions');
     if (old && !old.children.length) old.remove();
   }
@@ -165,23 +168,38 @@
         const node = document.createElement(tag); node.textContent = text; node.className = className; return node;
       };
       const close = make('button', 'Close preview ×', 'cuk-fabric-peek__close'); close.type = 'button';
+      const header = make('div', '', 'cuk-fabric-peek__header');
+      header.append(make('span', 'THE FABRIC CLOSE-UP', 'cuk-eyebrow'), close);
       const photo = make('div', '', 'cuk-fabric-peek__photo');
+      photo.tabIndex = 0; photo.setAttribute('aria-label', 'Fabric photograph. Zoom, then scroll to explore.');
       const image = document.createElement('img');
       const url = new URL(fabric.imageReferences[0]); url.searchParams.set('width', '1400');
       image.src = url.href; image.alt = `${fabric.design} in ${fabric.colour} by ${fabric.brand || fabric.supplier}`;
       image.decoding = 'async';
       photo.append(image);
       const zoom = make('div', '', 'cuk-fabric-peek__zoom');
-      const label = make('label', 'Zoom into the fabric'); const range = document.createElement('input');
+      const label = make('label', 'Explore the texture'); const range = document.createElement('input');
       range.type = 'range'; range.min = '100'; range.max = '250'; range.step = '25'; range.value = '100';
       range.setAttribute('aria-label', 'Fabric photograph zoom'); range.setAttribute('aria-valuetext', '100 percent');
       const output = make('output', '100%');
-      range.addEventListener('input', () => {
-        image.style.width = `${range.value}%`; output.textContent = `${range.value}%`;
+      const decrease = make('button', '−'); decrease.type = 'button'; decrease.setAttribute('aria-label', 'Zoom out');
+      const increase = make('button', '+'); increase.type = 'button'; increase.setAttribute('aria-label', 'Zoom in');
+      const reset = make('button', 'Reset', 'cuk-fabric-peek__reset'); reset.type = 'button';
+      const updateZoom = value => {
+        range.value = String(Math.min(250, Math.max(100, Number(value))));
+        image.style.width = `${range.value}%`; image.style.height = `${range.value}%`; output.textContent = `${range.value}%`;
         range.setAttribute('aria-valuetext', `${range.value} percent`);
-      });
-      label.append(range); zoom.append(label, output);
-      const visuals = make('div', '', 'cuk-fabric-peek__visuals'); visuals.append(photo, zoom);
+        decrease.disabled = range.value === '100'; increase.disabled = range.value === '250';
+        if (range.value === '100') { photo.scrollTop = 0; photo.scrollLeft = 0; }
+      };
+      range.addEventListener('input', () => updateZoom(range.value));
+      decrease.addEventListener('click', () => updateZoom(Number(range.value) - 25));
+      increase.addEventListener('click', () => updateZoom(Number(range.value) + 25));
+      reset.addEventListener('click', () => updateZoom(100));
+      updateZoom(100);
+      label.append(range); zoom.append(decrease, label, increase, output, reset);
+      const visuals = make('div', '', 'cuk-fabric-peek__visuals');
+      visuals.append(photo, zoom, make('p', 'Zoom, then scroll to explore. Screen colours can vary.', 'cuk-fabric-peek__image-note'));
       const copy = make('div', '', 'cuk-fabric-peek__copy');
       copy.append(make('p', fabric.brand || fabric.supplier, 'cuk-eyebrow'), make('h2', fabric.design),
         make('p', fabric.colour, 'cuk-fabric-peek__colour'));
@@ -190,8 +208,8 @@
       const estimate = card.querySelector('.cuk-curtain-estimate');
       if (estimate) copy.append(estimate.cloneNode(true));
       const tags = (fabric.intelligence?.dimensions || []).filter(d => ['pattern', 'texture'].includes(d.key)).flatMap(d => d.values).slice(0, 4);
-      if (tags.length) copy.append(make('p', tags.map(readable).join(' · '), 'cuk-fabric-peek__tags'));
-      copy.append(make('p', 'Imagine it in your room. A sample lets you see the colour and feel the texture in your own light.'));
+      if (tags.length) { const chips = make('div', '', 'cuk-fabric-peek__tags'); for (const tag of tags) chips.append(make('span', readable(tag))); copy.append(chips); }
+      copy.append(make('p', 'See the colour and feel the texture in your own home.', 'cuk-fabric-peek__intro'));
       copy.append(make('p', fabric.availability || 'Check availability', 'cuk-fabric-peek__availability'));
       const actions = make('div', '', 'cuk-fabric-peek__actions cuk-fabric__actions');
       // Reuse existing commerce actions and eligibility. No new checkout path.
@@ -204,21 +222,25 @@
       for (const [selector, text] of [
         ['a[href*="curtain-visualiser"]', 'Make curtains →'],
         ['[data-cuk-view-fabric]', 'View full fabric details ↗'],
-        ['a[href^="/pages/room-visualiser?fabric="]', 'See in my room ↗'],
+        ['a[href^="/pages/room-visualiser?fabric="]', 'Room Visualiser ↗'],
         ['[data-jane-fabric-link]', 'Ask Jane, fabric specialist ↗'],
       ]) {
         const original = card.querySelector(selector);
         if (original) {
           const link = make('a', text, selector.includes('curtain-visualiser') ? 'cuk-button' : 'cuk-button cuk-button--secondary');
           link.href = original.href;
+          if (selector === '[data-jane-fabric-link]') link.classList.add('cuk-fabric-jane-action');
           if (selector === '[data-cuk-view-fabric]') link.setAttribute('data-cuk-view-fabric', '');
           actions.append(link);
         }
       }
+      if (!actions.querySelector('a[href*="curtain-visualiser"]') && card.querySelector('.cuk-fabric-journey button[disabled]')) {
+        const unavailable = make('button', 'Make curtains', 'cuk-button'); unavailable.type = 'button'; unavailable.disabled = true; actions.append(unavailable);
+      }
       copy.append(actions, make('p', 'Screen colours can vary. Zoom is illustrative, not a physical scale. Final price depends on measurements and options.', 'cuk-fabric-peek__note'));
-      const layout = make('div', '', 'cuk-fabric-peek__layout'); layout.append(visuals, copy); dialog.append(close, layout);
+      const layout = make('div', '', 'cuk-fabric-peek__layout'); layout.append(visuals, copy); dialog.append(header, layout);
       arrangeCardJourney(dialog);
-      image.addEventListener('error', () => { photo.replaceChildren(make('p', 'This photograph could not load. You can still view the full fabric details.')); range.disabled = true; });
+      image.addEventListener('error', () => { photo.replaceChildren(make('p', 'This photograph could not load. You can still view the full fabric details.')); for (const control of [range, decrease, increase, reset]) control.disabled = true; });
       close.addEventListener('click', () => dialog.close());
       dialog.addEventListener('close', () => {
         document.documentElement.classList.remove('cuk-fabric-peek-open'); dialog.remove();
@@ -237,24 +259,28 @@
       const price = card.querySelector('.cuk-browse-price');
       if (price && fabric.browseGuide?.amountMinor) price.textContent = `Fabric guide ${new Intl.NumberFormat('en-GB', {style:'currency',currency:'GBP'}).format(fabric.browseGuide.amountMinor / 100)} /m`;
       if ('curtainEstimate' in fabric) {
-        const panel = document.createElement('div'); panel.className = 'cuk-curtain-estimate';
-        const label = document.createElement('span'); label.textContent = 'Your curtain pair, estimated';
+        const panel = document.createElement('details'); panel.className = 'cuk-curtain-estimate';
+        const summary = document.createElement('summary');
+        const label = document.createElement('span');
         const total = document.createElement('strong');
         const estimate = fabric.curtainEstimate;
         total.textContent = estimate?.amountMinor ? new Intl.NumberFormat('en-GB', {style:'currency',currency:'GBP'}).format(estimate.amountMinor / 100) : 'Price on configuration';
         const basis = document.createElement('small');
-        basis.textContent = '200 cm track width × 200 cm finished drop · Pencil pleat · Standard lining';
+        const widthCm = Number.isFinite(estimate?.widthCm) && estimate.widthCm > 0 ? estimate.widthCm : 100;
+        const dropCm = Number.isFinite(estimate?.dropCm) && estimate.dropCm > 0 ? estimate.dropCm : 100;
+        label.textContent = `${widthCm / 100} m × ${dropCm / 100} m pair estimate`;
+        basis.textContent = `${widthCm / 100} m track width × ${dropCm / 100} m finished drop · Pencil pleat · Standard lining`;
         const note = document.createElement('small');
-        note.textContent = 'Includes VAT. Guide only; delivery extra.';
-        panel.append(label, total, basis, note);
+        note.textContent = 'Guide only; delivery extra.';
+        summary.append(label, total); panel.append(summary, basis, note);
         if (price) price.after(panel);
         else card.querySelector('.cuk-fabric__body')?.append(panel);
         card.querySelector('.cuk-browse-price-note')?.remove();
       }
       const roomAction = card.querySelector('a[href^="/pages/room-visualiser?fabric="]');
-      if (roomAction) { roomAction.classList.add('cuk-button--secondary'); roomAction.textContent = 'See in my room ↗'; }
+      if (roomAction) { roomAction.classList.add('cuk-button--secondary'); roomAction.textContent = 'Room Visualiser ↗'; }
       const janeAction = card.querySelector('[data-jane-fabric-link]');
-      if (janeAction) { janeAction.textContent = 'Ask Jane, fabric specialist ↗'; janeAction.setAttribute('aria-label', `Ask Jane, AI fabric specialist, about ${fabric.design} in ${fabric.colour}`); }
+      if (janeAction) { janeAction.classList.add('cuk-fabric-jane-action'); janeAction.textContent = 'Ask Jane, fabric specialist ↗'; janeAction.setAttribute('aria-label', `Ask Jane, AI fabric specialist, about ${fabric.design} in ${fabric.colour}`); }
       arrangeCardJourney(card);
       addQuickView(card, fabric);
     }};

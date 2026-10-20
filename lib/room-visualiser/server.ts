@@ -4,7 +4,8 @@ import build from './build.json';
 import fixed140Build from './fixed140-build.json';
 import assets from './assets.json';
 import fixed140 from './fixed140-assignments.json';
-import {resolveRendererProfile,v1AssignmentForId,type Fixed140Registry} from './renderer-profile';
+import fixed100 from './fixed100-assignments.json';
+import {resolveRendererProfile,v1AssignmentForId,fixed100AssignmentForId,type Fixed140Registry,type Fixed100Registry} from './renderer-profile';
 
 // This deployment's static content is durable, versioned and CDN cached. A
 // customer request can only read an already-approved derivative, never build it.
@@ -21,8 +22,12 @@ export async function visualiserPage(request:Request,registry:Fixed140Registry=f
 
 type Fabric = {id:string;horizontalRepeatMm?:number|null;verticalRepeatMm?:number|null;patternMatchType?:string|null};
 export function withRoomPreview<T extends Fabric>(fabric:T) {
-  const profile=resolveRendererProfile(fabric,assets.fabrics,fixed140 as Fixed140Registry);
+  const profile=resolveRendererProfile(fabric,assets.fabrics,fixed140 as Fixed140Registry,fixed100 as Fixed100Registry);
   const available=profile!=='NOT_ELIGIBLE';
-  const assignment=profile==='FIXED140_SINGLE_WIDTH_V1'?v1AssignmentForId(fabric.id,assets.fabrics,fixed140 as Fixed140Registry):null;
+  const assignment=profile==='FIXED140_SINGLE_WIDTH_V1'
+    ?v1AssignmentForId(fabric.id,assets.fabrics,fixed140 as Fixed140Registry)
+    :profile==='FIXED140_SINGLE_WIDTH_100CM_V1'
+      ?fixed100AssignmentForId(fabric.id,assets.fabrics,fixed140 as Fixed140Registry,fixed100 as Fixed100Registry)
+      :null;
   return {...fabric,roomPreview:{available,url:available?`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`:null,message:available?null:'Room preview not available for this fabric yet.',rendererProfile:profile,...(assignment?{assignment}:{})}};
 }

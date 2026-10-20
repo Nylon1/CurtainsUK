@@ -1,0 +1,2095 @@
+{
+  "version": 1,
+  "assignments": {
+    "pt-3697-575": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-3697-575",
+      "usableWidthCm": 145.0,
+      "sourceWidthPx": 1400,
+      "sourceHeightPx": 1400,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b38e115b9a74c9ea6a554c191f1e51b1e29f48473482e466193f4af1e189656e.jpg",
+      "sha256": "fd52e733c905bd82401bcb7b08a96331a5e91bc3661277a730908ef098e5e212"
+    },
+    "pt-4091-925": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4091-925",
+      "usableWidthCm": 143.0,
+      "sourceWidthPx": 1400,
+      "sourceHeightPx": 1400,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8762ad5a318a68daea444bac82e382eac30ad99d23a0d5b5ddd7c7a0519fe6ad.jpg",
+      "sha256": "b34943f772cc39920cf342bb51d07edd2ed99254dafefba9da062d4fae1e577e"
+    },
+    "pt-4093-517": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4093-517",
+      "usableWidthCm": 143.0,
+      "sourceWidthPx": 1400,
+      "sourceHeightPx": 1400,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f261eaddc8e7cab2b0396216ba8c4d44dab0429ee661acc13c37b817152397bc.jpg",
+      "sha256": "df0eec127856d6f53896fe402fdb606eb8dd55d81b84df90132a180466482bfe"
+    },
+    "pt-4129-703": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4129-703",
+      "usableWidthCm": 143.0,
+      "sourceWidthPx": 2048,
+      "sourceHeightPx": 2048,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ab90c07b6e3f998456417165a3bebf11c76131b5f1ff2dc05558913eb66ddfa7.jpg",
+      "sha256": "a06e49f308cb0b092d46a306e7dbec63c82213f9b8cc0b7441cdba55025ac02a"
+    },
+    "pt-4163-915": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4163-915",
+      "usableWidthCm": 148.0,
+      "sourceWidthPx": 2048,
+      "sourceHeightPx": 2048,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-832219f809904d7b41d6e8175dc81afb9fcad805487595c0a09e61cec862e88d.jpg",
+      "sha256": "cf26419e7d39cd4521011a913775f3656396f6084f0b177cb5b8d9a04a67a4cc"
+    },
+    "pt-4168-504": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4168-504",
+      "usableWidthCm": 147.0,
+      "sourceWidthPx": 2048,
+      "sourceHeightPx": 2048,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-18dab0cb426e9b1efb832f2fded9f0ba218522de9bdb71f4e169047269988383.jpg",
+      "sha256": "f4b5f19ddb1aa13c0271ecea6e5812b40259303403ec30cc4ace6862ebeed018"
+    },
+    "pt-4176-204": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4176-204",
+      "usableWidthCm": 144.0,
+      "sourceWidthPx": 2048,
+      "sourceHeightPx": 2048,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c771e8e75bfec44ea672f9e45e92b4bcd0ab1f37cf66b9e86cbdf53f217fd99e.jpg",
+      "sha256": "a6c55bd02c91517b8e05cb27aefd2c8602981f20704c5d3dc85fba5105e3a664"
+    },
+    "pt-4176-629": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4176-629",
+      "usableWidthCm": 144.0,
+      "sourceWidthPx": 2048,
+      "sourceHeightPx": 2048,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1b74383faf6150267702d0f4c53a0af29cd9c065f985602a42ea260b68e01168.jpg",
+      "sha256": "3b242a67d0b45ec8ee3e1547b31dce3cce85bdeb99b7502f9efdcd562101d119"
+    },
+    "pt-4178-282": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4178-282",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 2048,
+      "sourceHeightPx": 2048,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-95d6a5761193b473ad7e7f86cfe06b8aa77e0e457114f64743c177626f44db3a.jpg",
+      "sha256": "1e39fdf496912032a604ade269e3a7cfa3ea86656b5ad274e7c04384ca3ac27e"
+    },
+    "pt-4273-658": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4273-658",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1400,
+      "sourceHeightPx": 1400,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6a29d2b398dd4c72562389944360d082c50e908cc8bfe0971dbe217abe11f34a.jpg",
+      "sha256": "e14fccd99393b55487d2881cc4635a22501f83ccbf0c2baebf56311b88842a92"
+    },
+    "pt-4274-147": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4274-147",
+      "usableWidthCm": 132.0,
+      "sourceWidthPx": 1400,
+      "sourceHeightPx": 1400,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-45fdfe4319921011fa6473eb5655362e305523e850bd877a3bc6c489b6de5ae9.jpg",
+      "sha256": "a7a7dd01ffb2ac34b18c612d46c905a9b2370825ed61f1ff35a3572fd945265c"
+    },
+    "pt-4325-770": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "pt-4325-770",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 2048,
+      "sourceHeightPx": 2048,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c4808fe4b1535bf0762e810c73f67ae1e9fb2e9ea490c6f27dd38da06268e1da.jpg",
+      "sha256": "5c5400ae278b22b3a5254681a082568a755d8f08f753160cc21e08871331328b"
+    },
+    "sdg-ccf0864-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0864-01",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8d6af3fb63261f094a9e39258fa14f16758b15081abaf55e66c82096e678fde3.jpg",
+      "sha256": "d058fafc2b454b4b2145dffc4eb56c5ab36f00dc2a736b71078cd7145ab2333d"
+    },
+    "sdg-ccf0864-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0864-02",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-25a6a9324c4eb2f8ce43e1224c7eb1958d1214f6f8d1bf4761bd6b2f9f494e2d.jpg",
+      "sha256": "42635f5f1c55d96b038a6d7826198dc5e634f984a1dba58d2b00faad1e618b2c"
+    },
+    "sdg-ccf0864-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0864-03",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-673191c8f0922db3f0cceb66cd73b6aed81af8f7a1485b9a8f7c1696b639a265.jpg",
+      "sha256": "55f007575a1d91bb2252867ecafca85887a048f54877d0a64cb9c1bdc627a56a"
+    },
+    "sdg-ccf0865-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0865-01",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1aacd0eef9de6afb9831e474603a2d3b20b2f76d32ffa63d549210558ff4abbb.jpg",
+      "sha256": "923aaa50e903be8756bb5bbc0d184627e3bd6fa3cb920694daecb5c9e9afef8b"
+    },
+    "sdg-ccf0865-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0865-02",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9b4b54a9aa94f81aebee6347cf183dcf46b586681f1592ac546530b31ee6728e.jpg",
+      "sha256": "6669790cb9c889331e5d0fa76ba8fc6a3d8beda4a117b3627c74967308d53d88"
+    },
+    "sdg-ccf0865-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0865-03",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-09dd6a28bf9cbbac0806bdf79acca0a6abdb37df8457d66e65ca3f810fddeb77.jpg",
+      "sha256": "2c5fd2a9cc497b62f0363b04bc65985edc8edbc6934dafc7805c2e8e0e8f4c08"
+    },
+    "sdg-ccf0865-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0865-04",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-21eb8cabf768c197cbb8b7fbf6722aa33ffeab63be382ef83448b538d080f802.jpg",
+      "sha256": "4db6710a48aff2772bc4125f652d72ee9e81197b445ce6dd621ce20b72be135d"
+    },
+    "sdg-ccf0866-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0866-01",
+      "usableWidthCm": 149.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f082bab807245f0a1ac0885fd67e851d38777d767f78638a6317d6a6bd22ef06.jpg",
+      "sha256": "35600febdc0fdf3d0de8f13960886a3a18356d1d783bdb81dcb9e50e42698042"
+    },
+    "sdg-ccf0866-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0866-02",
+      "usableWidthCm": 149.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-06d2188f13dcbc0dc4d9a5bc1bc6dd4edb78a33050a2d2be12c2e66956796a7d.jpg",
+      "sha256": "2e0050c95a86a8a59931a9ff074c9a80a18848f8b22bfdb885944edc3dcf110c"
+    },
+    "sdg-ccf0866-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0866-03",
+      "usableWidthCm": 149.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3ec316acae4f27d4700cbeca336ad978eda94b355ecb70d4d7cd03dddc349505.jpg",
+      "sha256": "44a93be3a94587eb152e459383a0ea404a6e43259272c1a6cbd08ace7ab3c7c8"
+    },
+    "sdg-ccf0867-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0867-01",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-29e13aa8523d2815bb08f0f31684b461e1f357c51e531ba95290332fb0b8602b.jpg",
+      "sha256": "bb3cfd598bf777d154542ccb537b2361044a050f30000229f3abf27d8f16ece4"
+    },
+    "sdg-ccf0867-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0867-02",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-65be503801259394789ce1b3c18566b00ed13b5acfb48bfdd34625a5ddc162e0.jpg",
+      "sha256": "fd4f2cdf1c49a12009e9aff2a2cae933c86fdcc764cf14299bc6f15ef0be3dad"
+    },
+    "sdg-ccf0868-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0868-01",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e1c9e915f5fd715110b4d3de6ae7ae137211875b7d99df36231717ce9b4afe5e.jpg",
+      "sha256": "3fe5a739e137eea559138e658c595fd0aa78963874bbb5d96a92da8394080375"
+    },
+    "sdg-ccf0868-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0868-02",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-13c9fac7213a4ab44dbbc75869ef1da2ec084f68e9bf723602e89676ac28114c.jpg",
+      "sha256": "83dba9c2be719522dd6e73562cbe7a1e85e43eefd90a044949b28483dae453a8"
+    },
+    "sdg-ccf0868-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0868-03",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-828a3189deb0d27172dfdeb5251a3331988f8798b6be0db30eefe8429743efa2.jpg",
+      "sha256": "275ea139df065a6f7795fc4869913be1c3a480d355eb84fd65896548c9eeeeb1"
+    },
+    "sdg-ccf0869-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0869-01",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-5e3e8fef35c8f57584556a208498616692e6b9719fda5aa06494cb6bc0f8a748.jpg",
+      "sha256": "8ae3f14c6fc94cf4911fd2c7c4ee6a9b2a834ed5bf1b80cbc258049b2289e230"
+    },
+    "sdg-ccf0869-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0869-02",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6454ac677bfeaa1223c6a1fc2928237c07190c2d318571f2a78bc54bf7121394.jpg",
+      "sha256": "32eac5c03c5550839c24ce08ac3f6f61bf765c46a266520f25e66828d54aac4c"
+    },
+    "sdg-ccf0870-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0870-01",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ed7fbf8cf123b0e9fbb049f30fb46fc5457816ead1f5a975c02892b13ba044aa.jpg",
+      "sha256": "de6ce3dafaeb20f9aa15fb394ab139a87dac2d749074dc6fad73bed1eedb073d"
+    },
+    "sdg-ccf0870-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0870-02",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f1e6c561fd98b86b3e4f86c19318e5031cc3a2614a2b6006bff1009f70d46d37.jpg",
+      "sha256": "547ac988610ffa2de314535d51806b648831d504e23bab0436b1818ae575692a"
+    },
+    "sdg-ccf0870-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0870-03",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b4c8c2a722673dd73beaf7dd80b4ec98223ce45985193f3ec5a5454f1f4bde97.jpg",
+      "sha256": "55c5301dccedae7af8e21812ffc1f04bc56abb6711d6fcacb7858d259abf22a8"
+    },
+    "sdg-ccf0870-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0870-04",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-47cdf218dc1c0d76a7c4abde5e100af4b536359c862becac76417d2e5aac5eb3.jpg",
+      "sha256": "cc0d32c9cbddc0bfd94e3fe59a60209527600c0ae8eced8337565dbbf45bc52b"
+    },
+    "sdg-ccf0871-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0871-01",
+      "usableWidthCm": 136.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-567242573d960efab79361c016ae8af20677c1c050f5e5371f7d64af6ee4ac13.jpg",
+      "sha256": "9e214702b4e02e5191df57e7f009672524623095c002db19b5ca15425a39bd8a"
+    },
+    "sdg-ccf0871-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0871-02",
+      "usableWidthCm": 136.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d6e9a26127cfca712b228dc14cd2baae50f4720af9b14639cb8d108a6e4a8aa8.jpg",
+      "sha256": "da7ee19cf3085d0bf2143a04c6705044afc682e54a544debab90411ef7b35a01"
+    },
+    "sdg-ccf0871-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-ccf0871-03",
+      "usableWidthCm": 136.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e64df29017c2c8e773d95cc4f1e06827a7b398f2a10b32faa344658977b5abf2.jpg",
+      "sha256": "288d2d74c7200903acfca8de6ce82c1db8349990530744732d799eb611585538"
+    },
+    "sdg-f0960-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f0960-04",
+      "usableWidthCm": 134.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-049dff22934f96f14888ee5d406b5a9df2cad083243bfb45724e66cea7b29533.jpg",
+      "sha256": "0cad839ad477a95edb1a3dd0fb0b4be25ab96a98324c73f768214834e48c8b1a"
+    },
+    "sdg-f1084-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1084-05",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-870a9ed65fac7d5774d7354db13a288f61a70991130da6a190e566d746633dd7.jpg",
+      "sha256": "60752dff2aefb0917f899dcc175f5de2c5f25b04f7b4f7be001a45a53fdff279"
+    },
+    "sdg-f1369-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1369-01",
+      "usableWidthCm": 127.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-62a8adab3ccd846706640686301d58fcc947d8ee99868c5dfe06f7bd13a12049.jpg",
+      "sha256": "57407a9d6301af0d00d6d5515d55de5bc2ba79300a0a2c4af660698eeeee9011"
+    },
+    "sdg-f1370-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1370-02",
+      "usableWidthCm": 127.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f072c6f7e598d9e88ad84c9d9a467c579b1f07def82c03b28695acaac3b7e535.jpg",
+      "sha256": "8d4e8751461ba2cea5a3e0456d710bc5cfc925fef3420e72322856706f39695d"
+    },
+    "sdg-f1787-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1787-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1520ee1e8a54c1a71387efd78f0889108be50a0a728704eafe00677165b8f29b.jpg",
+      "sha256": "f282d7c235ae1da5d1de41ec3b26ffb6df015c865f186e4b587539ff682ba589"
+    },
+    "sdg-f1787-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1787-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2f965c25dae61d5602086c7c34c436af231ef904ef7cf3e886b034cb0f3f3c23.jpg",
+      "sha256": "472338b2a1239e4da8f280ab38adc731f33fd9e7fbcab9c0bbf343c2900430b6"
+    },
+    "sdg-f1787-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1787-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-66b9e837c4f2100181865815803288059468e1ca547e4e75be0eb61d5d286a48.jpg",
+      "sha256": "88bae677a4dac200fc5d84daf94cb19679deebda51a559d1eb7abbfdbe2b63ef"
+    },
+    "sdg-f1787-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1787-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-18adb9b9e343bf45bbd8f44ddbfa8344dda69dc79520497084730bc08643c996.jpg",
+      "sha256": "bf7a8eb952431ae346a096a9c14d6c1ad3ff97af6bb00c10ea217908bf7ea672"
+    },
+    "sdg-f1787-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1787-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-626b4940e8db0ebcb8ad00471b2d8c5158faef404d8ee7845b3760a890f838cc.jpg",
+      "sha256": "d732232c501ed4d973b6fb273c6de0f3859d3c989cfdec30ee3826e120d78771"
+    },
+    "sdg-f1787-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1787-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d702e5e0e784e91f24b16b35d3a936c4db314ecc2a681ef465951fd6131b16f3.jpg",
+      "sha256": "e79b9b451ba9f4e2db7587d18e1836f71535d871e34a198ca5e84001051daee0"
+    },
+    "sdg-f1788-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ffb975b48685455046582d1cc82f22bbeaaab5e4f25aef7de0dd258c6dfd2ebf.jpg",
+      "sha256": "bbd2b675e2fb1520d7fd9238d82cfbff0ee6e737d9e49937264693b489f1fc23"
+    },
+    "sdg-f1788-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-043e35b0dfb80dd6d6c52c377170db3d51cdb2ee687e9c4e82b204453e43e841.jpg",
+      "sha256": "15bd5f43d44a118dd0804134c9e96276603cb5e41e48f714c74f5cb1bb1db75a"
+    },
+    "sdg-f1788-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d197cf112a44e761d18a9ff4655eafa279a3e0f2c8c080669686666e7168e258.jpg",
+      "sha256": "f405e04cbbee9b62121b354ad3e4632e4a5b7cafe2cdc11a7da3bcf15e3c0298"
+    },
+    "sdg-f1788-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7cc985c72325ba4da6c58c043b3728e044bfd9d29f831542e72e45e5aab3adb3.jpg",
+      "sha256": "323f73f77145b1aa7bfc6b6c5987b49532a69678690044a3675c0d47b4536d80"
+    },
+    "sdg-f1788-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9fd09a9a46b9d40ad7756dc54276266659a562e06e149acf0a91d646eafdb628.jpg",
+      "sha256": "4d9c441e61dfb120c165c23eb2d3a86cbe1aa8585625a35d0d3d49327284681a"
+    },
+    "sdg-f1788-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-582a8013452e180155711040026183852b3936803e116464d7c2239db03705e7.jpg",
+      "sha256": "bd10f97f1d6932e2d93b5ed4b641e545fd561afaced4eeee8f8119f4130037d8"
+    },
+    "sdg-f1788-07": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-07",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-202af59cedb3b41c6403a2e7f21fb87bb21cd2c88854eac064a110af745120e5.jpg",
+      "sha256": "9483357672255da25023e33d4bb91670c3eee81210b2e0ba851e33dbbe936163"
+    },
+    "sdg-f1788-08": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-08",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3f3a967539eec49d0259c873cc7bb15c1c7e5aa7eabae5864c01d758b17f3f6e.jpg",
+      "sha256": "e21ac301c599633bd917144d06042084e8bcd37b27e110910ad1acb9d506f4b4"
+    },
+    "sdg-f1788-09": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-09",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-0a4d31476fda216bb436aa3ccdade4619bab1149605174d946d52b5499ea2d32.jpg",
+      "sha256": "e4292450d50aff83e5498c3a765a10cd69350d221719235d5d6b057bda666fb6"
+    },
+    "sdg-f1788-10": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-10",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-bc1496bc5472932158fa9e31a9d73420b83b787494f9f49d91925bf7ef8fd6ae.jpg",
+      "sha256": "ced1bc5e708305323d64a55b5291f37edff0da2e66e6f38c4362c435f184ad23"
+    },
+    "sdg-f1788-11": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1788-11",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c0cb7eba0eefeb8d471df04f73561e973e9e00a7fd2eaac736a19c766c6a0c1e.jpg",
+      "sha256": "5cedf12e2571ea5b55eb3ef53df4a15c607b4b32ad0fbad24730ab2ba41eb6f8"
+    },
+    "sdg-f1789-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1789-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c57e4173dcc65b0dc5d5a639668300d875104a46a56c63b70d25e3e883f51dce.jpg",
+      "sha256": "ee4efb3f93e835626052018f1bed4ad38b59bf028b50319aa7a4931286111572"
+    },
+    "sdg-f1789-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1789-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9024420af64db8649c78f4a6117f19be5b801e02abcdd31f2406a8a0b581bcd8.jpg",
+      "sha256": "020b360f19712c7ee9dd3e3a7fd36aa339cf7d098b5b086386dc1cb0a081b507"
+    },
+    "sdg-f1789-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1789-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-39d1505d26271faee3ed9139ecd9679f9b377476df6ab071a0af5b59f4707f02.jpg",
+      "sha256": "5c2c624742696bc70f0d72a1b399eec46e163411e504267c0eef73778559ecda"
+    },
+    "sdg-f1789-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1789-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-70032c82ae1e65dfe953726b7a65f20824decf924934734f3303d170fbd5d661.jpg",
+      "sha256": "3d49e02f8fbffc98c52a0f33cb7f3cad8e714578d776a75e058c785adafe6d07"
+    },
+    "sdg-f1789-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1789-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6a13b3a03e6e9b0fa4b9602c7154fd0a0f360469b820ea737978f9125f3a24bc.jpg",
+      "sha256": "98f63e146542f146b151acb55104795c8d577bba3dbf1c47ba24010d2216d01e"
+    },
+    "sdg-f1789-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1789-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-745ffeae16b10dc7fa755efa67f88d9915f0700d6062c2aff6fe5eb097a0d1fc.jpg",
+      "sha256": "cc9df75173ce488bef2f2eaba598301b6304d8c05ea3f274d6da33b080e031ac"
+    },
+    "sdg-f1790-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1790-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-937eb3501dfbbf70030da47402f0e296b92503d58923941a05788299e472fa28.jpg",
+      "sha256": "0d228ba25f17eecd394a00adf7d7f2b214471f232d779a7a7bc099e892707ec0"
+    },
+    "sdg-f1790-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1790-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ec6e67243cc6e8cc9bde659d877555e5f92faeebe067ff26b21739990f376a7f.jpg",
+      "sha256": "e2f27bc8d1f4fcadaac1fd03ba863bd78920930600fded235f7248509cd81a47"
+    },
+    "sdg-f1790-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1790-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-505980329740d0abce51c24d05a83aeb2ccb67d40c27f6d42cf1fa482bdca5a5.jpg",
+      "sha256": "55b7ca8303f5280f8b2203f6e55ef646c26c66f2e3380f946e9e2bb79ddcd2f1"
+    },
+    "sdg-f1790-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1790-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-bae8824752036e0cbed5a601abb208bdd53f311f59163c51d19156283b24b7c2.jpg",
+      "sha256": "e2dbf2b309fef5315b0827a20d42710c52aa5c0569aa659ca310ad21d1ee4d20"
+    },
+    "sdg-f1790-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1790-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f1a807b033566a7e8dcd5b8725a8fd83e99de17485d0bdf1563cea53efcdb845.jpg",
+      "sha256": "e7379ccd0de6abc2eb9b0217ee459743a654090163afb4ddf3715a45e1491716"
+    },
+    "sdg-f1791-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-fa27d57de2d7df849ffa0b2a8c3b1d16b2143355f94412b9931bb46002676724.jpg",
+      "sha256": "addd13d67309e3a4566ef6eb60095d5f9393029af18465580ffa1cf720a779bc"
+    },
+    "sdg-f1791-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-453baedac71d26fbde63b9022a47d82748d0e75d5115ee12cd6834446863a845.jpg",
+      "sha256": "09c78cb0f7e9afa37e1bfc5bea6f59d83c542e1d5dfdf7f60ce50b745748927d"
+    },
+    "sdg-f1791-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-67a6a8da5b7121add407909c7b76a7078bb50ef97befd35ee191c5865903b604.jpg",
+      "sha256": "9f681256a29992d0400d3d317ab84f21a9fc715f0bddcd11d90504750ace0739"
+    },
+    "sdg-f1791-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9813e7cb280aa2c03100db509d2390388dde1a005cfd79a0d34ad0a335e35252.jpg",
+      "sha256": "bf88257ef4128ba9ddce1335269341484d6f17b2356db3fc390f455ddc8d41f7"
+    },
+    "sdg-f1791-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-dbd522b981ba261f4ad283b99ad2d66fc67a5c1a2c39d75bab7d177921ae2e99.jpg",
+      "sha256": "7e073ba4d8d812ff29e8641fc82215450c682a3485383f1bbba62ec67f6d0864"
+    },
+    "sdg-f1791-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4b8f0c0fd7d44204f01c97e7afd9d841c83435af504f9c18f45cbfc687c6086f.jpg",
+      "sha256": "105b7e9878c98cc007d19225869d92755ce77599fb9cbad4d6a7def7c90e89dc"
+    },
+    "sdg-f1791-07": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-07",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-5876308773c793428e6af546de6d6d7510100d2359b2a60025711d0052c0308c.jpg",
+      "sha256": "b8180e45b5bd2666fd1c9985b01cb568f7dc7c11a11ff3e8e6cbd436c3109d88"
+    },
+    "sdg-f1791-08": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1791-08",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4475a493172feeb611630838839c6569fac63f8c43bf8c9bf7d29b46de00a896.jpg",
+      "sha256": "8fad3dc8951cf5ced7c217f541369905ee1d2b82f87d98aa0e01e289321c8bf7"
+    },
+    "sdg-f1793-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1793-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-26b3d7bd2aa07f51f00b635aa60ae62d9f308b47d35efe075c7ce628c1b34a6a.jpg",
+      "sha256": "ffc3c5d63b233071f7517dd505f39070507724875d057fc893f61e5cdde13615"
+    },
+    "sdg-f1793-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1793-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4e438ba2b6705652eee14130c6feafa329cd2c2c7a26ad81f60bf869ec4b6be1.jpg",
+      "sha256": "7f5a61dfe0cdcaa26647e4dd7d89c1ef37108cf274dac64e2b61010002408984"
+    },
+    "sdg-f1793-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1793-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-802fbf826d4d73dd824a243a34806c9029fdc84c38bac85148c3d035f566b65e.jpg",
+      "sha256": "7e4187c4098ea30fb799775a8e388f808c01f4a6020314c79e273cb392812231"
+    },
+    "sdg-f1793-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1793-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-fac5e2d66d33d23cfb963c433b724f7fa562c0be8f2b45692b5f797a4bf416ea.jpg",
+      "sha256": "b86827e1ca806599c0361ba196c82459175e9aa73c5d989c54cbdee0eaf6494e"
+    },
+    "sdg-f1793-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1793-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3b32a82f2321ddf7c2ba7bb46e7ca669d1d535643ba69c0b7911eeb082e495f2.jpg",
+      "sha256": "627d8bf9a486e00d45c9ca500bf2a60b3dcaa7489fbd328f5d2ad2953bd74e15"
+    },
+    "sdg-f1793-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1793-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3d102653e3e3ece8c82aa090fb5b8651ba6e171d2d9cd273705d03b6741a92fa.jpg",
+      "sha256": "651e2b60e3ea33734fa902d348b7b211ff0a8411266dc1dbda658bc331bbbdcb"
+    },
+    "sdg-f1794-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1794-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-987a6dded6316e1c8085aace7d21fd6c61abee1f56a457bbaa4b205ddb9587f2.jpg",
+      "sha256": "68314a48ff6748c73472641efbf978686470ad8b334824d302e02b089a489750"
+    },
+    "sdg-f1794-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1794-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-37443b92f6935ca13b7a69a246dd0f4fb9baa6ae6a7d47be5ae27773154ea084.jpg",
+      "sha256": "15714844618c2f4c3d670789a690f12268df2dd929e6ea40f21feef2a15029c4"
+    },
+    "sdg-f1794-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1794-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6031624064dc5880b3d8718de3ebc78b33ef138503748d4d3c0fed47b1c2f293.jpg",
+      "sha256": "de72f306f005a640c1894220b1df4b57277a114c9576249496fbdecf66ff9533"
+    },
+    "sdg-f1794-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1794-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3a4ed5a55c34d044ca87321205bb2b151c874fa065905ed37fedfc49af0412ee.jpg",
+      "sha256": "7c960d88dd5d5118a42194ec293885c798e38c0785de48591467205bc1348fcc"
+    },
+    "sdg-f1794-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1794-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4f650af71757fcde253c1fbab902c7f35212687222fe03075852d7bcffcc7606.jpg",
+      "sha256": "514756aa4c0a60105cf746d94dbbd390b675f86a02cd78e425ab5806361e3e56"
+    },
+    "sdg-f1795-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1795-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-098bcc799ced1646cb3c8e820ff8ab92906f5d91a9cf63d801d8215edd9069d5.jpg",
+      "sha256": "c78d4417200342b59a5667318bc318c947611c27f89e2360be29d0b29f8d405c"
+    },
+    "sdg-f1795-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1795-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9722e848d717a2e7203b60ec718372e9a7d1b8330f9d1a684e37efbf57634c4f.jpg",
+      "sha256": "a450fc963b9dabad7086fe25d7a2af3b702960996536a72102f45927d0b77af2"
+    },
+    "sdg-f1795-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1795-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1b3b871fa7e2b2535a62f90fca663e37cef8e1da68eff479ddf29c7bc5c13ee2.jpg",
+      "sha256": "945a912cfb5209f0cbb9774f0814e90569f4ced5fec27ef2bb384876b153ee7b"
+    },
+    "sdg-f1795-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1795-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-85812c50e8c9b8136a88d00728a1ac803b44c1f0b3f0fbff1185eac784fd71ae.jpg",
+      "sha256": "45bf75c6b6c2c5d7d100e963005a3228b38945f2df922c3494f6a254514a271f"
+    },
+    "sdg-f1795-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1795-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d1350e59c3d6f089545bea66ed70c2a1e4c568013fcf5b63f6bcc7da51e53b5d.jpg",
+      "sha256": "fa42dc33ef1908a27375ded2056a3a0bc8fb3028e80f6b8576f81ef0202c2a62"
+    },
+    "sdg-f1796-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1796-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-02cdb77c6a77a0dc9534c381c3d7b060470c4c6a58b2c60560db70fa0753851e.jpg",
+      "sha256": "a815c03df172cb8d57a5fe0cb95f6b428de2b0ccdfd264d2c989ebb3566aa963"
+    },
+    "sdg-f1796-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1796-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-5ac740bea392dd4091ab6e29c5082d84e6c7a374af111de00c6d6ff77b05f86f.jpg",
+      "sha256": "351bb10042424b80b8ff175941819c1e8d547db4b05368c1995841557bb259ee"
+    },
+    "sdg-f1796-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1796-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-0ad976ea2da8f9fcaec871c3fac6b827e74ccf361607730d835605ff3233c9a6.jpg",
+      "sha256": "bd776a567e659271517b38590f5e3e84f2924460e5ceb4df9a600b28fe4bea24"
+    },
+    "sdg-f1796-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1796-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8700842d55398c08551493e9efbc7119bdc37bbe4f39d3233d3833b4689afaf6.jpg",
+      "sha256": "638df955fb67e486579a9cd5cf7fb2d1dcded6977d0e86fe61b543baa816ee97"
+    },
+    "sdg-f1796-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1796-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-71e0df7cfcf7cd2ffda8382981f1384949d7b1af02bbf129395687a1925127eb.jpg",
+      "sha256": "94f3b0c1f318282fc3668a1814f393f9c372f8f0cd1d8faa472946fe1e1ee5ce"
+    },
+    "sdg-f1796-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1796-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f8b9226b13b1826ec26aac934d2f4fa712f1793ed105b20c9bdfe80442d50f9d.jpg",
+      "sha256": "14b3282e3368dbe498f4d9d3fb0fb8ccc876cab0db438de62449ec383fe0ce71"
+    },
+    "sdg-f1797-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1797-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-fcec1fdd7d84fa0f6d243ab2566da9df9d5cdab2ac9d21025fa6add9143a4789.jpg",
+      "sha256": "e03a7f0db824ea1baa6d5a267fa5ddb93e80cf6561e36c2f2b9c6e9f5cbb241c"
+    },
+    "sdg-f1797-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1797-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-69f9d34bfd15555150487654647f3483063c5b6b2e5881c9106975628df75e76.jpg",
+      "sha256": "efa02a0b1d6c668079cd8d764b9b650342a0df260c02bf38920b1fcd87fab5a2"
+    },
+    "sdg-f1797-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1797-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8458a03040bb2e7026518755177daf8af14c44615d0528076d72eca532cc50dc.jpg",
+      "sha256": "7d77d55d83ffd9b2e987a6b7e8d56a1c5c3a714aed4bb90caccbbbd004b41baf"
+    },
+    "sdg-f1797-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1797-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b990158e7f456daba6bf4eeb0967f4f02021f50b6e6ea244ff0e5c55570ee430.jpg",
+      "sha256": "c22b100311cc976e466e8367ecb8fd1a7b6ed8f6e0bef2633cad0666acbd2e8c"
+    },
+    "sdg-f1797-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1797-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-5fcd208223c130b6bafcdb6ce40994046b14b84454cda00cf4f2e869d567aa43.jpg",
+      "sha256": "6499ad75844b2ade4d0074efe8c62838e6ebc9e3a975cf42e0910133ede8bba2"
+    },
+    "sdg-f1797-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1797-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e5874f26cc49dc8d5503e12f2384c8a76c5cb9ec2065995baefc27a1e6a73886.jpg",
+      "sha256": "77165a647e15d21c33bc62bf7f7b46671180cf89907035e4dbf884b1f600a0a6"
+    },
+    "sdg-f1797-07": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1797-07",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-20fb646a14758e2e9e19c006a16b0bc72431cc333d8e8ec964a7cac6518afd97.jpg",
+      "sha256": "8842d668e13870e5ea53c2147d12d3c689bd90b637b104503104dd2ca8aff232"
+    },
+    "sdg-f1798-01": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1798-01",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3f594a55be300cd1e4c27252c464eb6516d8dca3982bc41995d6ae17bcb5a7a2.jpg",
+      "sha256": "ccd93f4555b304886724dcb6879560253355d35fd3a9603ee0e895c6ef9d7cb7"
+    },
+    "sdg-f1798-02": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1798-02",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a1483286c2f5d684799afef4264dc5df8e2a0e723b99d5b028c2059d3c831f1f.jpg",
+      "sha256": "7780dcbcb58ff35c91afe85376cee936b12f5bdcad7fdcb9bcb81e48a0a53a15"
+    },
+    "sdg-f1798-03": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1798-03",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d5282de461a3b4e469b1c042d7e37fbdd4540b09639b07844146762e12516ab0.jpg",
+      "sha256": "d00578c437603190525e0de991e64040274e360f3c9f26b748c3241f58bea7af"
+    },
+    "sdg-f1798-04": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1798-04",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-61bcc628a4fcb0692007b159abee840f4f35b2c512d3f5de7a8165ea4b396d66.jpg",
+      "sha256": "6a55a18d5cd8855a1b900c8095d6e2a3f298d5c15d2a9d23a03d24ba0544dada"
+    },
+    "sdg-f1798-05": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1798-05",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2d89c6569205be8721d0c3a69d34c1d0d57470136bb2f250485e951934c18aef.jpg",
+      "sha256": "890fe85c293603c6525bfe77f1ba68c06f82cfdd48af97010248cf9a4b117b56"
+    },
+    "sdg-f1798-06": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1798-06",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d43142581818d20d6c8a503717b2f27675f0e1111fdfca5ca11c33bb21f8e90f.jpg",
+      "sha256": "e94f4ef3aa8438ad6ee39ad002e3d4ac21ff49bf818394493c65866306e366be"
+    },
+    "sdg-f1798-07": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-f1798-07",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-15ed5e70ea71338f1b3755d777d442df93857fdaf569f06edc790f5dc159c953.jpg",
+      "sha256": "9663e523edc6eaf6c668cd2bd193070a84b12c872771aced1c6dfecf990bb497"
+    },
+    "sdg-hbou134076": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hbou134076",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-22962663646b9e1c11e7884f50d5474477ea865212fd7d63ce3e00d880f29d2f.jpg",
+      "sha256": "07d2c1846b05487aa60c5f061c06eb01bb906be04a57fbb4cebcf290e89be7b8"
+    },
+    "sdg-hbou134077": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hbou134077",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f883a2ecd870e5b6c863b3ef299ddbd0827d6d8630c1818478b0b6a5dff19151.jpg",
+      "sha256": "9c332039f8e4997e4a4da3237b77e812b283a2f2d396ee305e68c99e2b4b8b12"
+    },
+    "sdg-hbou134078": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hbou134078",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7a55d98b3f1a8229ec66a5e1cffa0f02bc1865dfbc0ead9e70380ffc7d62795c.jpg",
+      "sha256": "ab47f67d393b7468945d74546fde205db4ee998f935707c6de65d23b5c9ed292"
+    },
+    "sdg-hbou134079": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hbou134079",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f0ea15ea764bd4f9032ecdb4de017daf7a6ae061163ffc97eea12739705785d8.jpg",
+      "sha256": "6cae769ecd0f44ffd2e5a21ab33af801aaeb2ab753039fc0df041ea713d8f210"
+    },
+    "sdg-hbou134080": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hbou134080",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a96c55cf35e920d77e54f170948eb4192d81942acad0140117371e42ba08d881.jpg",
+      "sha256": "cc7bde45d45899c3637a8849aef52a0b2bc6e3ad9e6eec1fa5c239d9452878e4"
+    },
+    "sdg-hbou134081": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hbou134081",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b1e5fe06e1ce93e41f32fcf99c05c7e0f1c874d036e46ecdc1498da1247cd2ae.jpg",
+      "sha256": "8c3770440cae3c43af3f39e0fa2fb2acde4689dfbe48bb41ade4a2118f99ec2a"
+    },
+    "sdg-hiop121214": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121214",
+      "usableWidthCm": 138.2,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8b574d7d882dd47272f80747402dffa2315d9abfee2b61292391a759b8450b00.jpg",
+      "sha256": "41654f2d92065f642a51db42e8fbc415bf9d87bf93d51ea78c296ad726428335"
+    },
+    "sdg-hiop121215": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121215",
+      "usableWidthCm": 137.8,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1c37a8ceb393256c72d9f8c84e16b6f2dfcf937b3300c38f06d34fcb93b66506.jpg",
+      "sha256": "99dcea27d79ba05d6ea2ed2999fbe82543ca1e0aa415fa3002bdf0129e241862"
+    },
+    "sdg-hiop121216": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121216",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d8a2340abe952f0e67e7bfb8a195185fc74fc408824b131e8dc048422b8c1ac4.jpg",
+      "sha256": "d86bc9ca2f42d995955bae4fc954c9bbbc552cca8105712a36f90597a0fcfcc5"
+    },
+    "sdg-hiop121217": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121217",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-cc9a4de60d5c3c787cd66aa291785ba363494d3b0871fb7b4a4b9b6b76e8255e.jpg",
+      "sha256": "75ebe33c8f16867f58da4f4b0e87c29b055f46bc094d3a7585ecd8c155d118c7"
+    },
+    "sdg-hiop121218": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121218",
+      "usableWidthCm": 135.6,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-233ef2e2ec9bc4eab4da2ca0e3cc848b0edb4778f84cb342d482c6ba152430c0.jpg",
+      "sha256": "b510b420f1e56d636ba55f9c911d7f2471744b42fcfc437bcbfd1891889bb950"
+    },
+    "sdg-hiop121219": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121219",
+      "usableWidthCm": 136.7,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3437eff80e3de416617be7cf65bba7997904395a1bd7fd74962b95730e8a5830.jpg",
+      "sha256": "32d6044b56bd68816e0f604d079d37d86dbcffd75c627ae1e777ab493ec2c6db"
+    },
+    "sdg-hiop121220": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121220",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2130aeafc36e698b0506c72cb3ac77e4174479a7bd349cb8ec07269c9fb1399e.jpg",
+      "sha256": "a907f3eb99cadfa7f9581e4b273149266769c5544fb7c14d8b650d460f2b5dc2"
+    },
+    "sdg-hiop121221": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121221",
+      "usableWidthCm": 135.6,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-0f1603960e83774256180b9b243825fb5a0ed2c384c7250788d22bb513177675.jpg",
+      "sha256": "3be142cb60543ad795ab019c0928daede5ca8d08d071519817fc0a0662e7de22"
+    },
+    "sdg-hiop121222": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121222",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e43a890b1268b1dbf50583889d5f36c63e2f57e7e75f2ef9ced54ad9a1360f11.jpg",
+      "sha256": "f73a6978e39b1cb349039746ec344714c43e84bfa4fea9386540d274ce324be8"
+    },
+    "sdg-hiop121223": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121223",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3e95ab4ba184f593caa5fae2edf181bee6bbe82a6a6a44edae791cfe64df48ac.jpg",
+      "sha256": "88ecbe663edd914f4e00244b8803489e2eef6b0996493e8e68f72851fb855c01"
+    },
+    "sdg-hiop121224": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121224",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-efbeaff367bbfac0348de405eaae65957ac599d4d7d65c914410bd5509848b29.jpg",
+      "sha256": "4704e3816f37946767c1b5044d4907d7394d027b398c183bb938fb49fc083dde"
+    },
+    "sdg-hiop121225": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121225",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a4d67ba003d4c71bff3e60865673fdda76d093dec6796b8933fa628fc96f9234.jpg",
+      "sha256": "02db1bff80316ea6af5c60145e66c9aa022015d265150e7bbaa1e990111b98cb"
+    },
+    "sdg-hiop121226": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121226",
+      "usableWidthCm": 139.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-0110ae52a31dbcc382f8cba9858e5f5e4a4ae72901808dc2a627d80af7f2fe2a.jpg",
+      "sha256": "957ff0e308c21d364934980aac655356b37e8167c6524b816ca623daa64b8dd6"
+    },
+    "sdg-hiop121227": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121227",
+      "usableWidthCm": 139.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c99cc533be2f93e05d44d8e2e0fa831ecdd51cf6898cc522e142d305e18aef71.jpg",
+      "sha256": "6cab9b007ccf932de9ac93d44d2a4b396ec79a00a45726c044b8ac380edeb9c5"
+    },
+    "sdg-hiop121228": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121228",
+      "usableWidthCm": 139.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ee900ac5eab0959ae8d7212661506237518d7c4d4fc80f423df776fd33ab49d7.jpg",
+      "sha256": "9ed3c5094fb1271055e513effb86e842c8b2f746916ebb2a35b5cf6522c53580"
+    },
+    "sdg-hiop121229": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121229",
+      "usableWidthCm": 137.1,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-fca0a3132091e53c371ec1c06b1277df956df0d678ca3c65756370e78984960f.jpg",
+      "sha256": "8501e507844827d0f4d565fe2c2497d532a3309e1da42ae91697bcf0aff45f7d"
+    },
+    "sdg-hiop121230": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121230",
+      "usableWidthCm": 137.1,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1f73bedbf6af1bdbd2f89a640228a144038ad27a95a657ee6523692f03eb6a19.jpg",
+      "sha256": "f37e39868c04eb40dbde3dcc80dab33c7e9f08892219e25ad631b804d5b98b50"
+    },
+    "sdg-hiop121233": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121233",
+      "usableWidthCm": 145.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2a12024c7cd37fd7cfb91023f1476e2bf302dd828e48158e8f696686b5b1da60.jpg",
+      "sha256": "bfe96f47ac5e8eb7836f45a89b891a20a8012267b7cb8dbf9fa0ce09b3c434af"
+    },
+    "sdg-hiop121234": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121234",
+      "usableWidthCm": 136.7,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-85a707882c277acb4ed9a9d316644223552ab58a8b2a9480e2721b49137f12d9.jpg",
+      "sha256": "9eece2bcc0104fb32645526d448cb75159cc72baaa4bf20a314f106b4817d01f"
+    },
+    "sdg-hiop121235": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiop121235",
+      "usableWidthCm": 138.2,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c7d863ae5dfa247ead1932eb7acb55fcd3cc3e09d38e9dcf474f324a9e68716d.jpg",
+      "sha256": "2682f06c18348e17868514e8a1213dbefebf22fc83085ca392080786db2caae5"
+    },
+    "sdg-hiot134510": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134510",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-38f85112426dd97c5bfc43f7a1ca77df03ea2c4ace4eee4a39ba2122312dfc2c.jpg",
+      "sha256": "20dabc4a61c3df649dde169fbbf7622dc99b244a924c7b4d5306e503951abc7b"
+    },
+    "sdg-hiot134511": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134511",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4dd1d82b5d95714a5416dd36d6bd21bb115df6d8a638b592043bd13b4d550d1d.jpg",
+      "sha256": "8c41d301b2cdaded7680d41a3e497042586b698aa1cceba01add6f080b6df80f"
+    },
+    "sdg-hiot134512": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134512",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-a36bd28d23a82d5ebe8c19ef175113d8a79094228a881dd2ee097255c6fa74e0.jpg",
+      "sha256": "1b0f2131f2b89a0eca2d8a28884a727b74d5fca41987d454185e5faa1459d2fe"
+    },
+    "sdg-hiot134513": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134513",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e1f029cfd1a5fc9f34d5386b07020ea45a01d3360757261ccc8e552a8320ac5c.jpg",
+      "sha256": "aeba3ba0b2c5c05a56bff018475f55bfc7a766859e500b72d7bc987b9061cae5"
+    },
+    "sdg-hiot134514": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134514",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-dd00b7ca490c31b91e7f4e2dfe45f3960c96df8811fd0c76abd0b4a3d46dff29.jpg",
+      "sha256": "657966bfe81b009c579cdb9cb8259a02de08c436e4e9020ec3e924508f3f92df"
+    },
+    "sdg-hiot134515": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134515",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c50316ff764085816281a04ee9309c973b67eee93fef26980e296ca72d6e38a4.jpg",
+      "sha256": "4806dc2b5af5e266bcfe6b2b6b9bde176b9dac91833aa73842fc091cb0ba2491"
+    },
+    "sdg-hiot134516": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134516",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1ccefca5e01ef69d1801873ebbf57c6418b886e7ef9f98b63e9037d14499725b.jpg",
+      "sha256": "2d8c5b9cb01729a49123ea99f0691d7ff27369c28296a2231c3d744f6da50cd9"
+    },
+    "sdg-hiot134517": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134517",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-54ce2b86d2658c922a4cce2c47a608714541889fdfe4e70744e332c788122665.jpg",
+      "sha256": "822c4185c9b04afd02682a420b83c5bd779212b80f5c49051bb02e90e8baada9"
+    },
+    "sdg-hiot134518": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134518",
+      "usableWidthCm": 140.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8c28ff292decdaac546f615eb4817727441d3a97abb6ccf2628db9b7187de987.jpg",
+      "sha256": "5ac0eae65702bae1646a4644e7cc1c9feed60975a0982800a7de52da0d11ae7b"
+    },
+    "sdg-hiot134519": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134519",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b34fab1d97a1a3b360d0a1240e135d6a7106c690cc02683d8f6fb9972ad01c58.jpg",
+      "sha256": "ccc9530aa85feba6a46b5446090761ef7253631ed4f23a1a7bc3440a71db4333"
+    },
+    "sdg-hiot134520": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134520",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d23a41731457603389556fabcfb3765c3447bbbd06191f5a66eca57d03fbb9bb.jpg",
+      "sha256": "c99031b61719d7f12cf149e922a0a64e0a775d0585132df6626dae32a324ac16"
+    },
+    "sdg-hiot134521": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134521",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b8fd602ddfb9eac16cd0a11927c3210f8d906d279b7cff24bb63c87d2329574e.jpg",
+      "sha256": "777de28d415a7ad3329ed3f1d2eb7b0cf223b18b130f2ace3f5e705087bd7d68"
+    },
+    "sdg-hiot134522": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134522",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1a0c93ab751bfad69c64270e6657c4d5d422a75aacd2e1eb9591c50ce26b304a.jpg",
+      "sha256": "04573700ded8d77293003ac4d977add9deccb079de462190a19ccbae6df54310"
+    },
+    "sdg-hiot134523": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134523",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-079302b346cea5b88c1b7d1fd79c35e5bac1b67bf36baff433d89843c558d731.jpg",
+      "sha256": "010a15c03eafaefd9bafae2c38da158d27419142b64ae51d8294b5beeb414929"
+    },
+    "sdg-hiot134524": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134524",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3d89a5482311be5c4dab5729dd3263e07fa9fa69018b9b4eacfbf1ca859155c9.jpg",
+      "sha256": "2dce9294979abfb09c66eb109e30e6aecb4951a74b3b6cc92c1d2ca3fc46aa0a"
+    },
+    "sdg-hiot134525": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134525",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-fec018f94dd82ad4f2d80c3594e2092cf884afc2267492ddc74726d8355220bc.jpg",
+      "sha256": "8d6173033819eea1e1ddd4dda98981e747529567f1363a7bf4a6a7af36ee5e9f"
+    },
+    "sdg-hiot134526": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134526",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-969f45f869da17acebdc2e9b39cb77bf942a7cb3cb78797e59f679d89c809704.jpg",
+      "sha256": "90bac60aa2c0361c8a2143b557145bc4f691b9be16584f8c7086bf6785a9eaaa"
+    },
+    "sdg-hiot134527": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134527",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-58da3eddc6a0d42a24d3400d100d9f3c90ba0c96b9654c3af4e80f2d1379c131.jpg",
+      "sha256": "e5f93d7f2acc12800d3af886eb9b650caf902d6338dc46b4ac3081ab174564ba"
+    },
+    "sdg-hiot134528": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134528",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d18a8c0b4178e156a50ca3fe3613d8b1fd3f1184cefbd8f09e8740cfe807322b.jpg",
+      "sha256": "f05a05b4c575dc02ec36edba1c08f801d484bf497be9bf31f689d3b6d2cc7237"
+    },
+    "sdg-hiot134529": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134529",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-2b28b9b471d81d88e1f6144ad01dd6b8c845af2a183dd68f65c8deb57415d65f.jpg",
+      "sha256": "2d69092edf5e42f81702a4d6caf345daae9a6fd0d387a2a0955a262c7d7df3f1"
+    },
+    "sdg-hiot134530": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134530",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-95697c50511e7d89f648b3c97efe2ca6faa81c55619cdd80cee367c64fd95165.jpg",
+      "sha256": "3ce051e7d0a7610f24b5fbfb982ae2625118ad43cc4647589a49ed9144fb7e1e"
+    },
+    "sdg-hiot134531": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134531",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7c49ab96c0bd20318e19df4e49ec3077aa2aa6f776c0148d0991e8af4d8acf61.jpg",
+      "sha256": "bf62b77059ed9471ad6065cb6c785c603205fa3194db17b3a5c22043ec5f9257"
+    },
+    "sdg-hiot134532": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134532",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4e99a130cbf31f7fb890eb43ed150c14ddefb473fe22c0ad1ea280eebff19b3d.jpg",
+      "sha256": "b0708e10094ee359d566c1b53a68796f7bcef7dcdb47aec681ae03f8ef9e39a9"
+    },
+    "sdg-hiot134533": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134533",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-8a3b6df7fde4fbfd772066270afeea4f32edbc432375ffcfc8b21d04d84747bd.jpg",
+      "sha256": "04242b258381149bc88ae072524556004697b1b841d783c4fc18c6800df77c8a"
+    },
+    "sdg-hiot134534": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134534",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ecc7c43bb585bdec604cd2e540c2698b052ead05552acc55caa231ee93a25a7e.jpg",
+      "sha256": "6e868e52d5922f22825ee02bc34ddd31da1e09c357f9c47e5dcf43b7cd4c4fa3"
+    },
+    "sdg-hiot134535": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134535",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-31efbbb7014def6372f1ba55da65877f2ef66b5eb33566b9607c6426eb13b41e.jpg",
+      "sha256": "3b1209a40c570a6fcafaba4bb15ac8780f702b94719a17a70a21f4f2a87ac90c"
+    },
+    "sdg-hiot134536": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134536",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-bc3176bc7a728ab7780bcfe44495ac6fe13e794c903ccbd178c1464c0a707a0e.jpg",
+      "sha256": "4b53d26339f6875c8bec33bafbf8352b12b34d6e9d42f65355b64b217122dab0"
+    },
+    "sdg-hiot134537": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134537",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-55d405c085acf4b09f3d510e929b45591cdd69c89b46d19666c21cac6093c7e2.jpg",
+      "sha256": "4aef3966e4c91933fafcef43012beae79ea32fc9b67ba8b7c302dba8a4685fff"
+    },
+    "sdg-hiot134538": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134538",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9b7e8ffe0480c0dbb840c4f6e4aa1849816fe4b7673cb89a3b74792f1f62a5be.jpg",
+      "sha256": "8693decebb0e65c7a809101bc3baf62560fe33ad2475891fbf6ea4440fcd8bc8"
+    },
+    "sdg-hiot134539": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134539",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-3596c76db282fee34777b9f9a276d88a81ccc24a7c2dfe809f7540c3e553208e.jpg",
+      "sha256": "c499110859ab9d6babe2ebe3691b2f86731322815ba0d06836ea93c63f01b4cc"
+    },
+    "sdg-hiot134540": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134540",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d36fc1ca0f225bc0a4f46d04610841a03c63e17049e072c8231c23fd18ceee24.jpg",
+      "sha256": "4c1632e4550f20d5c1481b72db457a9edddd63a78639eded3845ef7807deb48e"
+    },
+    "sdg-hiot134541": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134541",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-aa32ebced14fed23fa7e0d2905c137186053c9e530297fa7b42ccff065402375.jpg",
+      "sha256": "df27914801a2c80fafe89aa6768b55708f9e19f8a3ad9cc0dc6afb083dcfd477"
+    },
+    "sdg-hiot134542": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134542",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b20f46b9117ebcd77715e71c3e7ff5432a1b1d258b0592a078e52be79af50768.jpg",
+      "sha256": "ceed7078be5169e1648d44e961a0c8882ad42c64a164c6bd0d13316cb96d9d74"
+    },
+    "sdg-hiot134543": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134543",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-578986a6310e123a790f755fc5d82a6e9285ce226d457da1bbdcd41d9c441442.jpg",
+      "sha256": "2730786f599b11dd5955bdea55f7a31711bb7e262415df025ec20bacb85efaba"
+    },
+    "sdg-hiot134544": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134544",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6ec63861a3b68bd745c7fb5985b043310421035371e88348c57ef9fc54f826df.jpg",
+      "sha256": "39ca154bcdcca8db9a954ea326a89d41b2d5dd280987b2d7c21fa1aa697fae90"
+    },
+    "sdg-hiot134545": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134545",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4fedcbb53a151c068f965b5b120fa6dfa392a74419e1f9f0eabe6217bbadeb34.jpg",
+      "sha256": "1d69013a18b1c104f3ff798296183d4987ff3714554480f9faf8b2fddf944363"
+    },
+    "sdg-hiot134546": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134546",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-75b459e4955f7081b2cf22c16db888ae39a2a6a26d0310acf130e80720530225.jpg",
+      "sha256": "f6d27b39c31f1b3699d6ba4efb6a9b488e12d33598f72889efa5d71fe50a9a7b"
+    },
+    "sdg-hiot134547": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134547",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f34290da17491873b3be4d006f9152bde6ecf18eb915082838231b6cebed8679.jpg",
+      "sha256": "b0cd1df0ac2a3eec1d949e7c78cfc635fa77bd09128a64529c01bc925c147f67"
+    },
+    "sdg-hiot134548": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134548",
+      "usableWidthCm": 142.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-ab7c7a9ed178f4735cce218761988b913abbb8e9ba1548b97b06eee1c73396d3.jpg",
+      "sha256": "eea526b8238243c4f909b96bb5d578fc4a9b81d4ea0d268c2f083009241cd550"
+    },
+    "sdg-hiot134549": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134549",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-890e7436a381462e5afda301be38c0e78bc4d7fc77c7429b62dc197ca7781e1b.jpg",
+      "sha256": "e6ba89ce2b9b96ec33fd49da423d447f051d9c6e37a3841d2c8d7fd17648dbd0"
+    },
+    "sdg-hiot134550": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134550",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-46eac90de4d3441d7217d1eb98da4cc1346be98afae1c37384c4329bc51bde3a.jpg",
+      "sha256": "1971bad516f48339259ba88333dffa2828e76980f2b71b2108307a09abc899c2"
+    },
+    "sdg-hiot134551": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134551",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-c5f70905e389a773437e2ee3b5d216e3a5af63d95f04046957a9d51d1dc3d8a7.jpg",
+      "sha256": "dfbe5f9db2867e3e9a5167a1aa467a19d85a731583d4570497c4b468e475c3aa"
+    },
+    "sdg-hiot134552": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiot134552",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-09bc7a5a2a34f8385b320ac98e776315d9e1710e59c4e454e295eb77179240f3.jpg",
+      "sha256": "59ed0430b21717b28a571f9fe80445f87459d6b3775e7f1ada65ed49511f99dd"
+    },
+    "sdg-hiow134113": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134113",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-103b79de19ac362c58165eac8fb238a1e85562d968d5f01f6fc2d6b449e8d82a.jpg",
+      "sha256": "ad75dc91ce52dfc1e26e9762348e6d4eb99b3dce229a9f1d9bfb75382b0cbef1"
+    },
+    "sdg-hiow134114": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134114",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-27b1a2d9bc43366869a5455ad8c730eb81f006b75ff81fc5ad5702d037e701a6.jpg",
+      "sha256": "87df599aa4744f888f8bbee7a5400fba485dae6ec659a216efaee66268c87a25"
+    },
+    "sdg-hiow134115": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134115",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7fee1ac274057fe16d6561b933354659d387028d5d499df06424e8a3a9fb5630.jpg",
+      "sha256": "17325dd19a9cb190a8b66513263a901ffc9a740cebbef11c7acd0060778cd3ca"
+    },
+    "sdg-hiow134116": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134116",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-304e6652024ed621f6aee5e4e406605f5db1528d63890381e1acd615d79b0163.jpg",
+      "sha256": "61f824e43e561dcb9e4c6aca58f5570abdb31d27c5c1879fc0c814936c779a19"
+    },
+    "sdg-hiow134117": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134117",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6416bbacfd682655701858ba777cccab05efe07f54e2c209a44ffadd5fe8fecc.jpg",
+      "sha256": "cdb887fc163e816d3a771964c227a3a9bd3613ca1822cd943e062d064e0d80bf"
+    },
+    "sdg-hiow134118": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134118",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6fef41a829615dd30839ec08c389f3de649505802c217eda0902130203bbe8dd.jpg",
+      "sha256": "352e4a1bd0592ee1821d10b44f178ea5e495ff1c5b1e2dab0cf0525a57a74330"
+    },
+    "sdg-hiow134119": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134119",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-576743afe92b4f3368d1f9a0dccea79b8267047ca9f441c1eb52332680fc01b5.jpg",
+      "sha256": "fbd1670fb351420ae48a84502b65bfe2bd4049728d36b37a8d5999c366c6b6da"
+    },
+    "sdg-hiow134120": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134120",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-dd67b07e4131a13411af0f13491d71edd7b1d0f8ff7ec33d6190b8614d1cf27f.jpg",
+      "sha256": "fc3bb3192a68fd871e654f9f55ebddb2303f7ba941a22ec387edcbeeaae7219e"
+    },
+    "sdg-hiow134121": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134121",
+      "usableWidthCm": 138.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-07593a97c386c114e16482f0590d8ce9dbbd11fe25a5fc3bb85b506904a83fa9.jpg",
+      "sha256": "a54e95b94da79a1a1fdab09788e64054b12a4c49c82a7a501df9388683ed3fb0"
+    },
+    "sdg-hiow134122": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134122",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-0eccce62fc0ea0797095a26929c75a57173bf3f5df1c5af3321f166db893b4aa.jpg",
+      "sha256": "bcc071dbabb08da965a17f7af5c122e9e214ae34734baa860af6da66c1da0088"
+    },
+    "sdg-hiow134123": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134123",
+      "usableWidthCm": 135.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-5b5e0ffa005e8b877e650590197a02c709e7c87c4ed79fa7de820cc9e1ef732b.jpg",
+      "sha256": "4d7cf4068166158174066eec32ab4f5b665eff57e5da03f8feb6b5a03bcab267"
+    },
+    "sdg-hiow134124": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134124",
+      "usableWidthCm": 133.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7321035c6611870103f4053ebe9c1c1bd995af5d3bbf07da05cdc21699cb950c.jpg",
+      "sha256": "779e98c14f7cf617eb097ac668649e7ee13dfeab53392253f79c471c1d38822a"
+    },
+    "sdg-hiow134125": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134125",
+      "usableWidthCm": 133.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-e1e7fea603f0253018dfd710ff79fabed18987fda61e0f203f5930a1745c5695.jpg",
+      "sha256": "83f7c1ce9f3e38edc3e294b3e91f4407f249beec11c2684d7b321ea61543979b"
+    },
+    "sdg-hiow134126": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hiow134126",
+      "usableWidthCm": 133.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-bedacc4a370a052cdec0b0db4b17fd4dca4780747342acb68949f5a3368bbc22.jpg",
+      "sha256": "389d00c6817edeaea9c2c4ccd8fb5393815f4578c1c2f6fcbfa62dc2207f0b9b"
+    },
+    "sdg-hkaf134617": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hkaf134617",
+      "usableWidthCm": 141.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-20c26cf5419cd1e274b7b75be4fd371c26ec28a53a61995fb4dd8e625d893e6a.jpg",
+      "sha256": "f49775d8037d077851196601993dfe03a7fdc4b3ad69885844dae6da3ea519e0"
+    },
+    "sdg-hlum121047": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hlum121047",
+      "usableWidthCm": 138.8,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4b6c8392712d490652a9d1b384f31a7a8c8f5bd019c1af7cf3a71aa31ef32b56.jpg",
+      "sha256": "47b446d3083b370817a75bf1f249f07f0a3ea36f16f0ec5ef9dea7cc9a71e679"
+    },
+    "sdg-hlum121050": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hlum121050",
+      "usableWidthCm": 136.7,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-bdbed88b66aee974a9ac1cb9050def31f2ba3b495eb1ffad0649504b422ab6ed.jpg",
+      "sha256": "73e2179873cd4e7cfc64353b1e58061b1440ea073942547cfeab19207a9df5ca"
+    },
+    "sdg-hlum121051": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hlum121051",
+      "usableWidthCm": 136.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-891a9311dd3d5972fb2db57879b773c69acd7c8579bf844d333950922740aaae.jpg",
+      "sha256": "27dccf64dd309b4b97f878520a5c1758a1740841ae0a95eb4a01ccac13a85a72"
+    },
+    "sdg-hlum121052": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hlum121052",
+      "usableWidthCm": 138.3,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f3bcffec15ab5451dce962b4c104dbd5762ea2541f0ecfa5319f1b7c71cdd906.jpg",
+      "sha256": "42826569dcf01ddbcfca49b1429ddbbbe6fc4cf87aac65553d9903de5e593420"
+    },
+    "sdg-hlum121054": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hlum121054",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d9fdcf2f3f09bc49f10c5bf3ad97044f3d852190240357d39aea581bade7f9ba.jpg",
+      "sha256": "36da9d7509222ff7556482e94caccf3cd032b931f583a55b69bb9db7358054ac"
+    },
+    "sdg-hlum121055": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hlum121055",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f382d0567f27ae1a9c0688b5fc8d61f8c4d81da3195d1f0dc66d985c158bf5da.jpg",
+      "sha256": "e414544816684dfbd2c19832aa025ae1706ce44087b83381015f7e802d23257e"
+    },
+    "sdg-hlum121057": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hlum121057",
+      "usableWidthCm": 138.2,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 275,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9682449a3ec10a78a08da20290a9b53fb24e23f91c563b1fd6896c4ceed43b90.jpg",
+      "sha256": "05c330c3c70a6244d8715dfdc4221e2d1b825e85039bc46eb368a8c0a429cf3e"
+    },
+    "sdg-hmmf120851": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hmmf120851",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-72bcd67de227bbd91e34639c93fd1a52c4c5f5fc9f9a74465bf084b0db0878f5.jpg",
+      "sha256": "98d2ce1a2517cb4e2867d3aba7ec12376258fb4cf48a8d4f9d4607ff82489383"
+    },
+    "sdg-hmmf120852": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hmmf120852",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-7093d8694df1bce8f88894f3e77a1cfd0c83f7f4d9e2bff3dc72ff928c9b4a41.jpg",
+      "sha256": "0baa446887824c06d9c65b7ef8a10ec0b6266cda52697f80fe6813841a0fea52"
+    },
+    "sdg-hmtf133484": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hmtf133484",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-be7e358899c3a2346afbb8e322b03e5a4dd8b79c2860d0ed644368526cf2c2b2.jpg",
+      "sha256": "ecad9589b50b9417545ab82923bbac523bfbf0a5ea8b1bd03a54de686232293c"
+    },
+    "sdg-hvvc132966": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-hvvc132966",
+      "usableWidthCm": 137.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b210f0b17c19608e2082d6cccab4e9bfedfe3123a50b39e280e2783cec3cf38b.jpg",
+      "sha256": "e654e7e76ece499d1afed84d315e4bd1acad3b68f2ad0b0a8d9a1d73baf0c049"
+    },
+    "sdg-zinf322785": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-zinf322785",
+      "usableWidthCm": 138.5,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-6b9e89d4323fb2046be662aba6c4423e5a798d9d3536b09d81cbca5556eabcae.jpg",
+      "sha256": "4a213477feb3c0caad47594fd5c19cd5bddf0ee06bf22fdcddf86558c69c50e8"
+    },
+    "sdg-zinf322800": {
+      "rendererProfile": "FIXED140_SINGLE_WIDTH_100CM_V1",
+      "fabricId": "sdg-zinf322800",
+      "usableWidthCm": 139.0,
+      "sourceWidthPx": 1366,
+      "sourceHeightPx": 1366,
+      "sourceTopPx": 0,
+      "sourceImage": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b21fabb886a5a85e1a7ad51590b846ca6a9ad360c7c39c3b5e4c2876689bc2a1.jpg",
+      "sha256": "e1a9962216c8c33328d4ab4251bf94393c923f7a6ad011c09b86c8c93ef24024"
+    }
+  }
+}

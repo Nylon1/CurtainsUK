@@ -418,6 +418,804 @@
           "sha256": "b9785eb7ec605f2531c9e0ddebab2c0b3636750031395e3f37f0d51aea7499db"
         }
       ]
+    },
+    {
+      "assetBase": "/room-visualiser/95e422156cb0e9ebfc266c6f/",
+      "files": [
+        {
+          "path": "core.mjs",
+          "sha256": "8d1ceffc44fbb33b9e9a27a29dfdab76096cda2e27609bbfaffefd4f9ed5c202"
+        },
+        {
+          "path": "fabrics.mjs",
+          "sha256": "47d1423b237b6e8ab138f70883a7caf3d00838077fb997b337a53c063ddf4f36"
+        },
+        {
+          "path": "fixed140-v1/curtain.mjs",
+          "sha256": "ef022eb758cdb9a2fbcaf1694279177cee6801ab4930260e9a96d5cbe7630554"
+        },
+        {
+          "path": "fixed140-v1/customer.html",
+          "sha256": "014caf1c7658961c44e51078e419e7db8a359e694c661dab144f44800b8d2c4a"
+        },
+        {
+          "path": "fixed140-v1/entry.mjs",
+          "sha256": "de12ac15c5335cc21e7e488a5546724883a04084cc02bd03552a3de650b2e8c1"
+        },
+        {
+          "path": "fixed140-v1/fixed140_single_width_v1.mjs",
+          "sha256": "81ed9bbbfab39503b45b5a80b93c9429acd90989bf7e8bca3a62ef3a7c57dc6b"
+        },
+        {
+          "path": "fixed140-v1/fixed140_wave_core.mjs",
+          "sha256": "9a7dfb1c474d0a672a72bbf2f51b160ba976b28b868c5c1c695a91ad2e78b0fa"
+        },
+        {
+          "path": "fixed140-v1/motion.mjs",
+          "sha256": "ad70514fabfdccb2d544f721411022e8ed2d919c185b41e29df205a64296f730"
+        },
+        {
+          "path": "fixed140-v1/views.mjs",
+          "sha256": "b9785eb7ec605f2531c9e0ddebab2c0b3636750031395e3f37f0d51aea7499db"
+        },
+        {
+          "path": "mesh.bin",
+          "sha256": "851ff54103f396d076cdf1179bf480e5533e1e140d965b637cc598880eca4f24"
+        },
+        {
+          "path": "metrics.json",
+          "sha256": "e5b84759da7854def069dab2f725f6aada6d59d7255897f6338a2a82a47b3210"
+        },
+        {
+          "path": "motion.mjs",
+          "sha256": "a7a8bf8409f97e9c445b72d23f467826de1cbc98868301c1f9462634bcdeb93d"
+        },
+        {
+          "path": "open.bin",
+          "sha256": "829d22a9fe3fedb3806e291315aa0649cb1b76d4a2d1e2d18c608c50c30e6f91"
+        },
+        {
+          "path": "open.mjs",
+          "sha256": "101f82eb7785833731a7849b8530b7516d53134617d1c4167a39263c0db21db0"
+        },
+        {
+          "path": "rooms/catalog.mjs",
+          "sha256": "22673326378f23c1831d6c9bcb1ac828d2ad53a661de821ebe278e77e92f0861"
+        },
+        {
+          "path": "rooms/catalogue-client.mjs",
+          "sha256": "56f78dccacc11ead7ef0d7a9a1cda64133282eb7b7a99ddc9a05c61c5247f718"
+        },
+        {
+          "path": "rooms/catalogue-contract.mjs",
+          "sha256": "193271862f23819e7d003def7297a4eb730f8cfb2fef82813b178f8063051a47"
+        },
+        {
+          "path": "rooms/catalogue-material.mjs",
+          "sha256": "655b9da2f58cdea24b54c1565c32313c2151cf251c7d208d5869f39215aec2fa"
+        },
+        {
+          "path": "rooms/colour-guide.css",
+          "sha256": "3d5367b3939228ba17a95e0c4875576c437ab8bce26b67b366f3139172a72fe8"
+        },
+        {
+          "path": "rooms/colour-guide.mjs",
+          "sha256": "3f8ad96da3a82bdbe7f72acafb912e850105412726ef7bf5aa044da138da54b9"
+        },
+        {
+          "path": "rooms/curtain-component.mjs",
+          "sha256": "ee735ba8911ff5e1d174bc592beb69a332853d317e5477440d675f0d5bc99df9"
+        },
+        {
+          "path": "rooms/customer-entry.mjs",
+          "sha256": "a390194d1c8c33389bbbb90d4c43ca76cd92ec52ce9893cdded454b307e69a64"
+        },
+        {
+          "path": "rooms/customer.css",
+          "sha256": "87fef8dc24956aefb6096725084246edc911828e0bb9f5ec2c20b7d7d68d1bd3"
+        },
+        {
+          "path": "rooms/customer.html",
+          "sha256": "4fb684cd59e994aa4ee4e5323964c5afdcbbb70df8aa392658cfb8b60e06d3b0"
+        },
+        {
+          "path": "rooms/environment/ambience.css",
+          "sha256": "00503b6d4faa26b69bc847325b4a71cf1dd406671da144320ee8a7f25df21251"
+        },
+        {
+          "path": "rooms/environment/ambience.mjs",
+          "sha256": "6c6a663e7d248c7498467db55437596aad634d3d30068cfbf4b34b11d6fd52f7"
+        },
+        {
+          "path": "rooms/environment/assets/composition/textile/nor_gl.jpg",
+          "sha256": "665e0bc009f29c2fdeb5e72791e66f6955e2e7b90c317112a6c873f9492cb3c4"
+        },
+        {
+          "path": "rooms/environment/assets/floor/arm.jpg",
+          "sha256": "b4c5a76661c6d453a4f6daab153f8315f5fef2e6c51da5e4cc8b8649e1e46bb0"
+        },
+        {
+          "path": "rooms/environment/assets/floor/nor_gl.jpg",
+          "sha256": "4ed9a5ddf84c7362642f1d866d838c746621448c421a9a85f58b4debc14e8ba1"
+        },
+        {
+          "path": "rooms/environment/assets/floor/tonal.webp",
+          "sha256": "183363d38b826b0ac007a04bc2fb2cd6749d7527fb03a346058e9560c532ab6f"
+        },
+        {
+          "path": "rooms/environment/assets/prefiltered/garden-cubeuv.json",
+          "sha256": "a3d1a8d4ccd7b176cdc80d252b15c7bf0e37f361ed69ee496d7401e51fb661fd"
+        },
+        {
+          "path": "rooms/environment/assets/window/bedroom-view.jpg",
+          "sha256": "d2081f34901f32a664a000d0bf3de8ed0d904a8a73042e5a5e3656cdf331f167"
+        },
+        {
+          "path": "rooms/environment/assets/window/lounge-garden.jpg",
+          "sha256": "c6e08ae651a3355b146aa3459fa6226554151bdafd38f69ecd2a53c02da3cf53"
+        },
+        {
+          "path": "rooms/environment/assets/window/office-garden.jpg",
+          "sha256": "ef70131ed5d5428953201fa85bd177bc4c5b4b2513a5df094fe2d2316f15f042"
+        },
+        {
+          "path": "rooms/environment/assets/window/user-garden.jpg",
+          "sha256": "ee655eb7b5c7603e3c8b432d4708284c636fbef529ca01a69fe90f8258387f55"
+        },
+        {
+          "path": "rooms/environment/bedroom-inspiration.mjs",
+          "sha256": "bd9c2881ab606a129f528fa2a0d864c872500e30598f7fee3b59d0b1efffb5fc"
+        },
+        {
+          "path": "rooms/environment/fabric-detail.mjs",
+          "sha256": "37ab85846fde42443dd1363c18eb012e53cf68221e2984594b08e171f773c9e7"
+        },
+        {
+          "path": "rooms/environment/fire.mjs",
+          "sha256": "7b10793a426a61e3d33518e8bb849920e0c2d212b083d402bda058e16d11de0e"
+        },
+        {
+          "path": "rooms/environment/index.mjs",
+          "sha256": "e116cc0ce9443e951d04423882aa71944a40a4f8d7eb3656d77496cdd18573ac"
+        },
+        {
+          "path": "rooms/environment/lighting.mjs",
+          "sha256": "4827faadd962ecc0295fd97f58b10a649f28cc6780f71bfcffc0449de8897b15"
+        },
+        {
+          "path": "rooms/environment/living-inspiration.mjs",
+          "sha256": "a8b35ad3b2f2ad7679ea05d8f881718aee07a7dbdeb0d83406c6e8847194422f"
+        },
+        {
+          "path": "rooms/environment/lounge-inspiration.mjs",
+          "sha256": "cccd3b97a63f3946bc1781871acfe2c73e31b069ab539ae71ed4259f5c658dc5"
+        },
+        {
+          "path": "rooms/environment/office-inspiration.mjs",
+          "sha256": "bbcf8ac91ac2300593459da01544789d35ce6bfe96e152ffc7816038255596ce"
+        },
+        {
+          "path": "rooms/environment/prepare-programs.mjs",
+          "sha256": "661b1cd697c7a0f294425841492ff4f7a3644c77cc95912e4e39766af58b9f5c"
+        },
+        {
+          "path": "rooms/environment/window-garden.mjs",
+          "sha256": "0f149f2bb891cdb9656478bc73fc4a1e9e317d591557f27c901f6be29b0afc95"
+        },
+        {
+          "path": "rooms/fixed140-adapter.mjs",
+          "sha256": "737f510661a8355a6f1625e3781610917683f3da6dde8fc05f2e323d5b73742a"
+        },
+        {
+          "path": "rooms/fixed140-window-spec.mjs",
+          "sha256": "0d22a5977903b6f6fe629bb30819199fae5a1b38540c2f5eb2d87133ac75f8c4"
+        },
+        {
+          "path": "rooms/fixed140-window.mjs",
+          "sha256": "72ddea9434ed2f2461df6bb8bd3fbcb7db7bfab6e7bfbfb7cda86c90a18ad8fa"
+        },
+        {
+          "path": "rooms/integration/links.mjs",
+          "sha256": "71dd65bc0cc5babebd4908ef14f92649eb2975a20872bbd635042f7ae89d3e8a"
+        },
+        {
+          "path": "rooms/lighting.mjs",
+          "sha256": "64492b67251f8214a96539ca53bab2d2651b8349edfeae06f6f614ea684327b1"
+        },
+        {
+          "path": "rooms/loading.mjs",
+          "sha256": "45a562ff22c69390de55d7f19558080ecf7049ec157e10df614041302c843a44"
+        },
+        {
+          "path": "rooms/packs/bedroom.glb",
+          "sha256": "c51aceb0d471d7835de770157ae40d19e88c5af468f9e1d142acfd9ba6ffa239"
+        },
+        {
+          "path": "rooms/packs/bedroom.json",
+          "sha256": "a7e4f0953f984c272ccd79ece83dd97e7560d522531b53da45e1588b7822be29"
+        },
+        {
+          "path": "rooms/packs/contact.png",
+          "sha256": "517fcfc4e8962081c04938c2a921b141ed936530101d20a0392422126fbfd898"
+        },
+        {
+          "path": "rooms/packs/grain.png",
+          "sha256": "67597e74c58cdd9150cd738e313ce9716485bb2fb718ad34fe15ff72a3ac4bc4"
+        },
+        {
+          "path": "rooms/packs/living.glb",
+          "sha256": "24396fe1f47fbb3db3af25d176c64d4bd5bbdd986d7cf4ccf0e77ef6c2e7364b"
+        },
+        {
+          "path": "rooms/packs/living.json",
+          "sha256": "ce8dd138a585d8db815a002c5f25b3d2d36fd5122f9df492f850bb3743c0888a"
+        },
+        {
+          "path": "rooms/packs/lounge.glb",
+          "sha256": "f47c22cbb4431cced1117eed74cea03814264b0dc099b5210b832d79b713df98"
+        },
+        {
+          "path": "rooms/packs/lounge.json",
+          "sha256": "a836690b25292456d8208e4054400e5937f67c2d1affab015dc9cf358e46b410"
+        },
+        {
+          "path": "rooms/packs/manifest.json",
+          "sha256": "5e8c911029a63892dd2116b496e23227878679b4ac540f194d9385eea4577495"
+        },
+        {
+          "path": "rooms/packs/oak.png",
+          "sha256": "048ac5524932318e1bfd243bf06eecb85013c9c79305985f0a710df19444ea1a"
+        },
+        {
+          "path": "rooms/packs/office.glb",
+          "sha256": "98876fd5600c2403caecaa9decd0123240b9c019a5cb9612c12b46210263e7f1"
+        },
+        {
+          "path": "rooms/packs/office.json",
+          "sha256": "63762f8994ddf633db806ed0795666f14fa1802412e50a61421651eac0d4d233"
+        },
+        {
+          "path": "rooms/packs/plaster.png",
+          "sha256": "c7c785003e8a0d02ff2a33e1a4013e705797f8ae90892891c6bcc26e8ab59b33"
+        },
+        {
+          "path": "rooms/packs/rug.png",
+          "sha256": "5ac2f1847abfd079532549f8425372ad324a437638e388c49b5a525f54c90c76"
+        },
+        {
+          "path": "rooms/packs/weave-roughness.png",
+          "sha256": "0825719669e9978ff6865b104b9303e9a39e954babdf0e61d28463e18a8fec0a"
+        },
+        {
+          "path": "rooms/packs/weave.png",
+          "sha256": "db8995e2c6722588732cceebc50c1c995ffbfd0494ffbf6d90cf5f1192454a30"
+        },
+        {
+          "path": "rooms/palette-state.mjs",
+          "sha256": "7f2a3c5d5faf5f96d9b33fc8c7e48bd116a3f617e02242689556723928ea2b5a"
+        },
+        {
+          "path": "rooms/shared/curtainsuk-storefront.js",
+          "sha256": "9b441a5f7a402c7c158a4e1263a4bb67a9bf062a45d05e256a711bd1cbff7bc6"
+        },
+        {
+          "path": "rooms/SOURCES.md",
+          "sha256": "01ad54dccb7f9623bab3386bad0049d3ee9110ff5c645ebd83010c486d39b224"
+        },
+        {
+          "path": "rooms/sticky-viewport.mjs",
+          "sha256": "d142204972dce4e3fbb5a825d506bda2fedeb278e5616d9b609968fe66a93e78"
+        },
+        {
+          "path": "rooms/style.css",
+          "sha256": "e58a514c74432a41da516f9a806d91ee6dc039174eb7a724c02b61059cfb1f85"
+        },
+        {
+          "path": "rooms/THREE-LICENSE.txt",
+          "sha256": "df2a91696186fe58c92518a25d48bc59c8ee2edc7cac9ca6d19a5a0d599a2a05"
+        },
+        {
+          "path": "rooms/travel-controller.mjs",
+          "sha256": "6e9f5523b80ebf183a0cac357c2ad1df5c05d79934e9fc9cdc02ee310bcf9295"
+        },
+        {
+          "path": "rooms/travel-poses.mjs",
+          "sha256": "41f85c8f9449d20bd48a3730fb024908d1a3789035255900d79b9d374c05675d"
+        },
+        {
+          "path": "rooms/viewer.mjs",
+          "sha256": "8fd056f6a45097ac84551b18728d57b546273c73bb7eddcf9d797813cb654bee"
+        },
+        {
+          "path": "rooms/views.mjs",
+          "sha256": "12083e2d5ea9908ee9c84e4b90af35cc557d9f0bf6b5cf742fd77b07bbe5a4cf"
+        },
+        {
+          "path": "vendor/addons/lights/RectAreaLightTexturesLib.js",
+          "sha256": "bccf7c95db5e0cd97437ae21ade3ec74392b8ee64d6ab86042eb910c1c26e708"
+        },
+        {
+          "path": "vendor/addons/lights/RectAreaLightUniformsLib.js",
+          "sha256": "248bdb5ce771e1f2b1f786fc59910c24dc02089352aceca55083a58ab886ee14"
+        },
+        {
+          "path": "vendor/addons/loaders/GLTFLoader.js",
+          "sha256": "f7b8cfd76ade8b42b33cf924c3e8ba63dd5d70ebaa208207aa6390218d63b61e"
+        },
+        {
+          "path": "vendor/addons/math/SimplexNoise.js",
+          "sha256": "2fa5cf3d82e4d5789fd9ae4aea3ecd1571c21f3cf7cd764bff59c24b3bd506cf"
+        },
+        {
+          "path": "vendor/addons/postprocessing/EffectComposer.js",
+          "sha256": "f7b8492de995d0b424d92ed8d02df05b4a135acecef209aef498893e569c8ee8"
+        },
+        {
+          "path": "vendor/addons/postprocessing/MaskPass.js",
+          "sha256": "69320db4496d38bf39678641faed2380c3b7a5385f890e7ebf7f5931d7c962bb"
+        },
+        {
+          "path": "vendor/addons/postprocessing/OutputPass.js",
+          "sha256": "950a64ce9cac3145b0b7cb1d27565b74acc528a1805829da3e6ca253fc713ffa"
+        },
+        {
+          "path": "vendor/addons/postprocessing/Pass.js",
+          "sha256": "eff21980a81726073dc6bc8fe7682919ca9e07b7ef3494923c3fb7d4ae41ab4b"
+        },
+        {
+          "path": "vendor/addons/postprocessing/RenderPass.js",
+          "sha256": "281db26081bdf2c766cb278ad1aeb2764e65218ff5d8a441cb93da346f50b423"
+        },
+        {
+          "path": "vendor/addons/postprocessing/ShaderPass.js",
+          "sha256": "f20b9c20d93fdd4bd708b38732e8acfe3acd4441b3f510f5d47d11e6bfe3c689"
+        },
+        {
+          "path": "vendor/addons/postprocessing/SSAOPass.js",
+          "sha256": "4135f87fbca619e1d879118560429c1bcde69f10e14f98a6c6ebb70c2facb4c1"
+        },
+        {
+          "path": "vendor/addons/shaders/CopyShader.js",
+          "sha256": "4f5f4144609b0e4f8e3b5775723e743dbc3b89a7f945321f77801658b5b94baa"
+        },
+        {
+          "path": "vendor/addons/shaders/FXAAShader.js",
+          "sha256": "a499dbfa95868ac68d480c264a44ba01b0e6c1cf41c67b8d8b14f092a9337b4c"
+        },
+        {
+          "path": "vendor/addons/shaders/OutputShader.js",
+          "sha256": "7dca689f87a98cfafc24221cc854fd68821ff04fbcfacd0e4e4a8867b8515350"
+        },
+        {
+          "path": "vendor/addons/shaders/SSAOShader.js",
+          "sha256": "53e4e543d79e3e322d30e22163acd919ecfc3f459b147263d675f1237cdced7e"
+        },
+        {
+          "path": "vendor/addons/utils/BufferGeometryUtils.js",
+          "sha256": "3c791672cadb6796d633adc62445a10357da3ad2f816abda928dafd29817b514"
+        },
+        {
+          "path": "vendor/LICENSE.txt",
+          "sha256": "df2a91696186fe58c92518a25d48bc59c8ee2edc7cac9ca6d19a5a0d599a2a05"
+        },
+        {
+          "path": "vendor/three.core.js",
+          "sha256": "7c075bd6b2414b6c4ed4b3416b180df2984051118c2b89965de066ce99307f1c"
+        },
+        {
+          "path": "vendor/three.module.js",
+          "sha256": "9e06b55afc5c845ad8663d0dba7dc8f4e815c218bedae8a9917fac5972e5314f"
+        }
+      ]
+    },
+    {
+      "assetBase": "/room-visualiser/38cfb614b31045034bf1d972/",
+      "files": [
+        {
+          "path": "core.mjs",
+          "sha256": "8d1ceffc44fbb33b9e9a27a29dfdab76096cda2e27609bbfaffefd4f9ed5c202"
+        },
+        {
+          "path": "fabrics.mjs",
+          "sha256": "47d1423b237b6e8ab138f70883a7caf3d00838077fb997b337a53c063ddf4f36"
+        },
+        {
+          "path": "fixed140-v1/curtain.mjs",
+          "sha256": "ef022eb758cdb9a2fbcaf1694279177cee6801ab4930260e9a96d5cbe7630554"
+        },
+        {
+          "path": "fixed140-v1/customer.html",
+          "sha256": "014caf1c7658961c44e51078e419e7db8a359e694c661dab144f44800b8d2c4a"
+        },
+        {
+          "path": "fixed140-v1/entry.mjs",
+          "sha256": "de12ac15c5335cc21e7e488a5546724883a04084cc02bd03552a3de650b2e8c1"
+        },
+        {
+          "path": "fixed140-v1/fixed140_single_width_v1.mjs",
+          "sha256": "81ed9bbbfab39503b45b5a80b93c9429acd90989bf7e8bca3a62ef3a7c57dc6b"
+        },
+        {
+          "path": "fixed140-v1/fixed140_wave_core.mjs",
+          "sha256": "9a7dfb1c474d0a672a72bbf2f51b160ba976b28b868c5c1c695a91ad2e78b0fa"
+        },
+        {
+          "path": "fixed140-v1/motion.mjs",
+          "sha256": "ad70514fabfdccb2d544f721411022e8ed2d919c185b41e29df205a64296f730"
+        },
+        {
+          "path": "fixed140-v1/views.mjs",
+          "sha256": "b9785eb7ec605f2531c9e0ddebab2c0b3636750031395e3f37f0d51aea7499db"
+        },
+        {
+          "path": "mesh.bin",
+          "sha256": "851ff54103f396d076cdf1179bf480e5533e1e140d965b637cc598880eca4f24"
+        },
+        {
+          "path": "metrics.json",
+          "sha256": "e5b84759da7854def069dab2f725f6aada6d59d7255897f6338a2a82a47b3210"
+        },
+        {
+          "path": "motion.mjs",
+          "sha256": "a7a8bf8409f97e9c445b72d23f467826de1cbc98868301c1f9462634bcdeb93d"
+        },
+        {
+          "path": "open.bin",
+          "sha256": "829d22a9fe3fedb3806e291315aa0649cb1b76d4a2d1e2d18c608c50c30e6f91"
+        },
+        {
+          "path": "open.mjs",
+          "sha256": "101f82eb7785833731a7849b8530b7516d53134617d1c4167a39263c0db21db0"
+        },
+        {
+          "path": "rooms/catalog.mjs",
+          "sha256": "22673326378f23c1831d6c9bcb1ac828d2ad53a661de821ebe278e77e92f0861"
+        },
+        {
+          "path": "rooms/catalogue-client.mjs",
+          "sha256": "9fdcd4db6ebacf336b95794fa15e64834ca98f201e9a554677971cdc7794d09c"
+        },
+        {
+          "path": "rooms/catalogue-contract.mjs",
+          "sha256": "193271862f23819e7d003def7297a4eb730f8cfb2fef82813b178f8063051a47"
+        },
+        {
+          "path": "rooms/catalogue-material.mjs",
+          "sha256": "655b9da2f58cdea24b54c1565c32313c2151cf251c7d208d5869f39215aec2fa"
+        },
+        {
+          "path": "rooms/colour-guide.css",
+          "sha256": "3d5367b3939228ba17a95e0c4875576c437ab8bce26b67b366f3139172a72fe8"
+        },
+        {
+          "path": "rooms/colour-guide.mjs",
+          "sha256": "3f8ad96da3a82bdbe7f72acafb912e850105412726ef7bf5aa044da138da54b9"
+        },
+        {
+          "path": "rooms/curtain-component.mjs",
+          "sha256": "ee735ba8911ff5e1d174bc592beb69a332853d317e5477440d675f0d5bc99df9"
+        },
+        {
+          "path": "rooms/customer-entry.mjs",
+          "sha256": "a390194d1c8c33389bbbb90d4c43ca76cd92ec52ce9893cdded454b307e69a64"
+        },
+        {
+          "path": "rooms/customer.css",
+          "sha256": "87fef8dc24956aefb6096725084246edc911828e0bb9f5ec2c20b7d7d68d1bd3"
+        },
+        {
+          "path": "rooms/customer.html",
+          "sha256": "4fb684cd59e994aa4ee4e5323964c5afdcbbb70df8aa392658cfb8b60e06d3b0"
+        },
+        {
+          "path": "rooms/environment/ambience.css",
+          "sha256": "00503b6d4faa26b69bc847325b4a71cf1dd406671da144320ee8a7f25df21251"
+        },
+        {
+          "path": "rooms/environment/ambience.mjs",
+          "sha256": "6c6a663e7d248c7498467db55437596aad634d3d30068cfbf4b34b11d6fd52f7"
+        },
+        {
+          "path": "rooms/environment/assets/composition/textile/nor_gl.jpg",
+          "sha256": "665e0bc009f29c2fdeb5e72791e66f6955e2e7b90c317112a6c873f9492cb3c4"
+        },
+        {
+          "path": "rooms/environment/assets/floor/arm.jpg",
+          "sha256": "b4c5a76661c6d453a4f6daab153f8315f5fef2e6c51da5e4cc8b8649e1e46bb0"
+        },
+        {
+          "path": "rooms/environment/assets/floor/nor_gl.jpg",
+          "sha256": "4ed9a5ddf84c7362642f1d866d838c746621448c421a9a85f58b4debc14e8ba1"
+        },
+        {
+          "path": "rooms/environment/assets/floor/tonal.webp",
+          "sha256": "183363d38b826b0ac007a04bc2fb2cd6749d7527fb03a346058e9560c532ab6f"
+        },
+        {
+          "path": "rooms/environment/assets/prefiltered/garden-cubeuv.json",
+          "sha256": "a3d1a8d4ccd7b176cdc80d252b15c7bf0e37f361ed69ee496d7401e51fb661fd"
+        },
+        {
+          "path": "rooms/environment/assets/window/bedroom-view.jpg",
+          "sha256": "d2081f34901f32a664a000d0bf3de8ed0d904a8a73042e5a5e3656cdf331f167"
+        },
+        {
+          "path": "rooms/environment/assets/window/lounge-garden.jpg",
+          "sha256": "c6e08ae651a3355b146aa3459fa6226554151bdafd38f69ecd2a53c02da3cf53"
+        },
+        {
+          "path": "rooms/environment/assets/window/office-garden.jpg",
+          "sha256": "ef70131ed5d5428953201fa85bd177bc4c5b4b2513a5df094fe2d2316f15f042"
+        },
+        {
+          "path": "rooms/environment/assets/window/user-garden.jpg",
+          "sha256": "ee655eb7b5c7603e3c8b432d4708284c636fbef529ca01a69fe90f8258387f55"
+        },
+        {
+          "path": "rooms/environment/bedroom-inspiration.mjs",
+          "sha256": "bd9c2881ab606a129f528fa2a0d864c872500e30598f7fee3b59d0b1efffb5fc"
+        },
+        {
+          "path": "rooms/environment/fabric-detail.mjs",
+          "sha256": "757c3976ec7318ed5f14775f567dc9ff499155fd238a7f15e151552741dd1e5c"
+        },
+        {
+          "path": "rooms/environment/fire.mjs",
+          "sha256": "7b10793a426a61e3d33518e8bb849920e0c2d212b083d402bda058e16d11de0e"
+        },
+        {
+          "path": "rooms/environment/index.mjs",
+          "sha256": "e116cc0ce9443e951d04423882aa71944a40a4f8d7eb3656d77496cdd18573ac"
+        },
+        {
+          "path": "rooms/environment/lighting.mjs",
+          "sha256": "4827faadd962ecc0295fd97f58b10a649f28cc6780f71bfcffc0449de8897b15"
+        },
+        {
+          "path": "rooms/environment/living-inspiration.mjs",
+          "sha256": "a8b35ad3b2f2ad7679ea05d8f881718aee07a7dbdeb0d83406c6e8847194422f"
+        },
+        {
+          "path": "rooms/environment/lounge-inspiration.mjs",
+          "sha256": "cccd3b97a63f3946bc1781871acfe2c73e31b069ab539ae71ed4259f5c658dc5"
+        },
+        {
+          "path": "rooms/environment/office-inspiration.mjs",
+          "sha256": "bbcf8ac91ac2300593459da01544789d35ce6bfe96e152ffc7816038255596ce"
+        },
+        {
+          "path": "rooms/environment/prepare-programs.mjs",
+          "sha256": "661b1cd697c7a0f294425841492ff4f7a3644c77cc95912e4e39766af58b9f5c"
+        },
+        {
+          "path": "rooms/environment/window-garden.mjs",
+          "sha256": "0f149f2bb891cdb9656478bc73fc4a1e9e317d591557f27c901f6be29b0afc95"
+        },
+        {
+          "path": "rooms/fixed100-adapter.mjs",
+          "sha256": "84aaa476ec47639c3518f6ac214cc3c81fde2551f028a3cfec2cdedcfacfe35d"
+        },
+        {
+          "path": "rooms/fixed100-core.mjs",
+          "sha256": "e69e587d1ff1d78a07af235b8ac1e63f921b4031921d6362fd9dfdec46d10ccd"
+        },
+        {
+          "path": "rooms/fixed100-curtain.mjs",
+          "sha256": "ca90c72e2fa77896d6d166fb0ff51c1d38857e9a9321ad8592572e4f288ed34d"
+        },
+        {
+          "path": "rooms/fixed100-motion.mjs",
+          "sha256": "5bca99819300f0df75053f8648659578bfd298ecbc000542cfe94a0eb1a923e6"
+        },
+        {
+          "path": "rooms/fixed100-views.mjs",
+          "sha256": "b0cadb45e4f2701f38fd7a817b476b2993d3116747a4cfa83614473fd9b9b752"
+        },
+        {
+          "path": "rooms/fixed140-adapter.mjs",
+          "sha256": "737f510661a8355a6f1625e3781610917683f3da6dde8fc05f2e323d5b73742a"
+        },
+        {
+          "path": "rooms/fixed140-window-spec.mjs",
+          "sha256": "0d22a5977903b6f6fe629bb30819199fae5a1b38540c2f5eb2d87133ac75f8c4"
+        },
+        {
+          "path": "rooms/fixed140-window.mjs",
+          "sha256": "7827432bea76d6703bf01f6b1fcf693d1eac7bdeedd30ce08570472caca3a6c7"
+        },
+        {
+          "path": "rooms/integration/links.mjs",
+          "sha256": "71dd65bc0cc5babebd4908ef14f92649eb2975a20872bbd635042f7ae89d3e8a"
+        },
+        {
+          "path": "rooms/lighting.mjs",
+          "sha256": "64492b67251f8214a96539ca53bab2d2651b8349edfeae06f6f614ea684327b1"
+        },
+        {
+          "path": "rooms/loading.mjs",
+          "sha256": "45a562ff22c69390de55d7f19558080ecf7049ec157e10df614041302c843a44"
+        },
+        {
+          "path": "rooms/packs/bedroom.glb",
+          "sha256": "c51aceb0d471d7835de770157ae40d19e88c5af468f9e1d142acfd9ba6ffa239"
+        },
+        {
+          "path": "rooms/packs/bedroom.json",
+          "sha256": "a7e4f0953f984c272ccd79ece83dd97e7560d522531b53da45e1588b7822be29"
+        },
+        {
+          "path": "rooms/packs/contact.png",
+          "sha256": "517fcfc4e8962081c04938c2a921b141ed936530101d20a0392422126fbfd898"
+        },
+        {
+          "path": "rooms/packs/grain.png",
+          "sha256": "67597e74c58cdd9150cd738e313ce9716485bb2fb718ad34fe15ff72a3ac4bc4"
+        },
+        {
+          "path": "rooms/packs/living.glb",
+          "sha256": "24396fe1f47fbb3db3af25d176c64d4bd5bbdd986d7cf4ccf0e77ef6c2e7364b"
+        },
+        {
+          "path": "rooms/packs/living.json",
+          "sha256": "ce8dd138a585d8db815a002c5f25b3d2d36fd5122f9df492f850bb3743c0888a"
+        },
+        {
+          "path": "rooms/packs/lounge.glb",
+          "sha256": "f47c22cbb4431cced1117eed74cea03814264b0dc099b5210b832d79b713df98"
+        },
+        {
+          "path": "rooms/packs/lounge.json",
+          "sha256": "a836690b25292456d8208e4054400e5937f67c2d1affab015dc9cf358e46b410"
+        },
+        {
+          "path": "rooms/packs/manifest.json",
+          "sha256": "5e8c911029a63892dd2116b496e23227878679b4ac540f194d9385eea4577495"
+        },
+        {
+          "path": "rooms/packs/oak.png",
+          "sha256": "048ac5524932318e1bfd243bf06eecb85013c9c79305985f0a710df19444ea1a"
+        },
+        {
+          "path": "rooms/packs/office.glb",
+          "sha256": "98876fd5600c2403caecaa9decd0123240b9c019a5cb9612c12b46210263e7f1"
+        },
+        {
+          "path": "rooms/packs/office.json",
+          "sha256": "63762f8994ddf633db806ed0795666f14fa1802412e50a61421651eac0d4d233"
+        },
+        {
+          "path": "rooms/packs/plaster.png",
+          "sha256": "c7c785003e8a0d02ff2a33e1a4013e705797f8ae90892891c6bcc26e8ab59b33"
+        },
+        {
+          "path": "rooms/packs/rug.png",
+          "sha256": "5ac2f1847abfd079532549f8425372ad324a437638e388c49b5a525f54c90c76"
+        },
+        {
+          "path": "rooms/packs/weave-roughness.png",
+          "sha256": "0825719669e9978ff6865b104b9303e9a39e954babdf0e61d28463e18a8fec0a"
+        },
+        {
+          "path": "rooms/packs/weave.png",
+          "sha256": "db8995e2c6722588732cceebc50c1c995ffbfd0494ffbf6d90cf5f1192454a30"
+        },
+        {
+          "path": "rooms/palette-state.mjs",
+          "sha256": "7f2a3c5d5faf5f96d9b33fc8c7e48bd116a3f617e02242689556723928ea2b5a"
+        },
+        {
+          "path": "rooms/shared/curtainsuk-storefront.js",
+          "sha256": "9b441a5f7a402c7c158a4e1263a4bb67a9bf062a45d05e256a711bd1cbff7bc6"
+        },
+        {
+          "path": "rooms/SOURCES.md",
+          "sha256": "01ad54dccb7f9623bab3386bad0049d3ee9110ff5c645ebd83010c486d39b224"
+        },
+        {
+          "path": "rooms/sticky-viewport.mjs",
+          "sha256": "d142204972dce4e3fbb5a825d506bda2fedeb278e5616d9b609968fe66a93e78"
+        },
+        {
+          "path": "rooms/style.css",
+          "sha256": "e58a514c74432a41da516f9a806d91ee6dc039174eb7a724c02b61059cfb1f85"
+        },
+        {
+          "path": "rooms/THREE-LICENSE.txt",
+          "sha256": "df2a91696186fe58c92518a25d48bc59c8ee2edc7cac9ca6d19a5a0d599a2a05"
+        },
+        {
+          "path": "rooms/travel-controller.mjs",
+          "sha256": "6e9f5523b80ebf183a0cac357c2ad1df5c05d79934e9fc9cdc02ee310bcf9295"
+        },
+        {
+          "path": "rooms/travel-poses.mjs",
+          "sha256": "41f85c8f9449d20bd48a3730fb024908d1a3789035255900d79b9d374c05675d"
+        },
+        {
+          "path": "rooms/viewer.mjs",
+          "sha256": "fc54f4455034cf414cb7ba9db6ed3dae4fd4f7de5641ebd398b4f01d7f7298eb"
+        },
+        {
+          "path": "rooms/views.mjs",
+          "sha256": "12083e2d5ea9908ee9c84e4b90af35cc557d9f0bf6b5cf742fd77b07bbe5a4cf"
+        },
+        {
+          "path": "vendor/addons/lights/RectAreaLightTexturesLib.js",
+          "sha256": "bccf7c95db5e0cd97437ae21ade3ec74392b8ee64d6ab86042eb910c1c26e708"
+        },
+        {
+          "path": "vendor/addons/lights/RectAreaLightUniformsLib.js",
+          "sha256": "248bdb5ce771e1f2b1f786fc59910c24dc02089352aceca55083a58ab886ee14"
+        },
+        {
+          "path": "vendor/addons/loaders/GLTFLoader.js",
+          "sha256": "f7b8cfd76ade8b42b33cf924c3e8ba63dd5d70ebaa208207aa6390218d63b61e"
+        },
+        {
+          "path": "vendor/addons/math/SimplexNoise.js",
+          "sha256": "2fa5cf3d82e4d5789fd9ae4aea3ecd1571c21f3cf7cd764bff59c24b3bd506cf"
+        },
+        {
+          "path": "vendor/addons/postprocessing/EffectComposer.js",
+          "sha256": "f7b8492de995d0b424d92ed8d02df05b4a135acecef209aef498893e569c8ee8"
+        },
+        {
+          "path": "vendor/addons/postprocessing/MaskPass.js",
+          "sha256": "69320db4496d38bf39678641faed2380c3b7a5385f890e7ebf7f5931d7c962bb"
+        },
+        {
+          "path": "vendor/addons/postprocessing/OutputPass.js",
+          "sha256": "950a64ce9cac3145b0b7cb1d27565b74acc528a1805829da3e6ca253fc713ffa"
+        },
+        {
+          "path": "vendor/addons/postprocessing/Pass.js",
+          "sha256": "eff21980a81726073dc6bc8fe7682919ca9e07b7ef3494923c3fb7d4ae41ab4b"
+        },
+        {
+          "path": "vendor/addons/postprocessing/RenderPass.js",
+          "sha256": "281db26081bdf2c766cb278ad1aeb2764e65218ff5d8a441cb93da346f50b423"
+        },
+        {
+          "path": "vendor/addons/postprocessing/ShaderPass.js",
+          "sha256": "f20b9c20d93fdd4bd708b38732e8acfe3acd4441b3f510f5d47d11e6bfe3c689"
+        },
+        {
+          "path": "vendor/addons/postprocessing/SSAOPass.js",
+          "sha256": "4135f87fbca619e1d879118560429c1bcde69f10e14f98a6c6ebb70c2facb4c1"
+        },
+        {
+          "path": "vendor/addons/shaders/CopyShader.js",
+          "sha256": "4f5f4144609b0e4f8e3b5775723e743dbc3b89a7f945321f77801658b5b94baa"
+        },
+        {
+          "path": "vendor/addons/shaders/FXAAShader.js",
+          "sha256": "a499dbfa95868ac68d480c264a44ba01b0e6c1cf41c67b8d8b14f092a9337b4c"
+        },
+        {
+          "path": "vendor/addons/shaders/OutputShader.js",
+          "sha256": "7dca689f87a98cfafc24221cc854fd68821ff04fbcfacd0e4e4a8867b8515350"
+        },
+        {
+          "path": "vendor/addons/shaders/SSAOShader.js",
+          "sha256": "53e4e543d79e3e322d30e22163acd919ecfc3f459b147263d675f1237cdced7e"
+        },
+        {
+          "path": "vendor/addons/utils/BufferGeometryUtils.js",
+          "sha256": "3c791672cadb6796d633adc62445a10357da3ad2f816abda928dafd29817b514"
+        },
+        {
+          "path": "vendor/LICENSE.txt",
+          "sha256": "df2a91696186fe58c92518a25d48bc59c8ee2edc7cac9ca6d19a5a0d599a2a05"
+        },
+        {
+          "path": "vendor/three.core.js",
+          "sha256": "7c075bd6b2414b6c4ed4b3416b180df2984051118c2b89965de066ce99307f1c"
+        },
+        {
+          "path": "vendor/three.module.js",
+          "sha256": "9e06b55afc5c845ad8663d0dba7dc8f4e815c218bedae8a9917fac5972e5314f"
+        }
+      ]
     }
   ]
 }

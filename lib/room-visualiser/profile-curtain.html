@@ -97,14 +97,19 @@
       camera=new T.PerspectiveCamera(38,1,1,2000);
       ({motionPoseAt}=await import(new URL('motion.mjs',standardBase).href));
       let width,height,mountY,profile;
-      if(preview.rendererProfile==='FIXED140_SINGLE_WIDTH_V1'){
+      if(preview.rendererProfile==='FIXED140_SINGLE_WIDTH_V1'||preview.rendererProfile==='FIXED140_SINGLE_WIDTH_100CM_V1'){
         const assignment=preview.assignment;
-        if(assignment?.fabricId!==id||!/^\/room-visualiser\/fixed140\/[a-f0-9]{64}\.(?:jpe?g|webp)$/.test(assignment.sourceImage||''))
+        const short=preview.rendererProfile==='FIXED140_SINGLE_WIDTH_100CM_V1';
+        const approvedSource=short
+          ?/^https:\/\/cdn\.shopify\.com\/s\/files\/1\/0256\/4551\/4861\/files\/cuk-fabric-[a-f0-9]{64}\.jpg$/.test(assignment?.sourceImage||'')
+          :/^\/room-visualiser\/fixed140\/[a-f0-9]{64}\.(?:jpe?g|webp)$/.test(assignment?.sourceImage||'');
+        if(assignment?.fabricId!==id||assignment.rendererProfile!==preview.rendererProfile||!approvedSource)
           throw Error('Invalid source');
         const [{createFixed140Curtain},{buildFixed140OpenPosition,createFixed140TravelSolver}]=await Promise.all([
-          import(new URL('curtain.mjs',fixedBase).href),import(new URL('motion.mjs',fixedBase).href),
+          import(new URL(short?'rooms/fixed100-curtain.mjs':'curtain.mjs',short?standardBase:fixedBase).href),
+          import(new URL(short?'rooms/fixed100-motion.mjs':'motion.mjs',short?standardBase:fixedBase).href),
         ]);
-        built=await createFixed140Curtain(renderer,{...assignment,sourceImage:new URL(assignment.sourceImage,fixedBase).href});
+        built=await createFixed140Curtain(renderer,{...assignment,sourceImage:short?assignment.sourceImage:new URL(assignment.sourceImage,fixedBase).href});
         const closed=built.geometry.attributes.position.array.slice();
         const opened=buildFixed140OpenPosition(closed,built.metrics.flatPanelWidthCm);
         const solve=createFixed140TravelSolver(closed,opened,built.metrics.flatPanelWidthCm);
@@ -114,7 +119,7 @@
           built.geometry.attributes.position.needsUpdate=true;
           built.geometry.computeVertexNormals();built.geometry.computeBoundingSphere();
         };
-        width=140;height=120;mountY=96;profile='single';
+        width=140;height=short?100:120;mountY=96;profile='single';
         built.curtain.position.y=mountY;scene.add(built.curtain);
       }else if(preview.rendererProfile==='STANDARD'){
         const [{createCurtain},{FABRICS}]=await Promise.all([

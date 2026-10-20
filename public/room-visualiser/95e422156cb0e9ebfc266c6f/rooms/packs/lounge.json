@@ -1,0 +1,204 @@
+{
+  "detailCamera": {
+    "position": [
+      -60,
+      229,
+      118
+    ],
+    "target": [
+      -77,
+      218,
+      0
+    ],
+    "fov": 36,
+    "aspect": 1.6
+  },
+  "cushions": {
+    "count": 2,
+    "spec": {
+      "widthCm": 45,
+      "heightCm": 45,
+      "maximumDepthCm": 14,
+      "zone": "CUSHION_UPHOLSTERY",
+      "colourMode": "solid",
+      "segments": 20
+    },
+    "placements": [
+      {
+        "position": [
+          -37.5,
+          72,
+          -8
+        ],
+        "rotation": [
+          0.1,
+          0,
+          -0.14
+        ],
+        "parent": "Rolled-arm loveseat",
+        "sizeCm": [
+          45,
+          45
+        ],
+        "zone": "CUSHION_UPHOLSTERY"
+      },
+      {
+        "position": [
+          38.5,
+          72,
+          -8
+        ],
+        "rotation": [
+          0.1,
+          0,
+          0.17
+        ],
+        "parent": "Rolled-arm loveseat",
+        "sizeCm": [
+          45,
+          45
+        ],
+        "zone": "CUSHION_UPHOLSTERY"
+      }
+    ]
+  },
+  "id": "lounge",
+  "name": "Lounge",
+  "file": "lounge.glb",
+  "sha256": "f47c22cbb4431cced1117eed74cea03814264b0dc099b5210b832d79b713df98",
+  "bytes": 916452,
+  "vertices": 21005,
+  "triangles": 37556,
+  "drawMeshes": 16,
+  "materials": [
+    "FLOOR_MATERIAL",
+    "WALL_MATERIAL",
+    "CEILING_MATERIAL",
+    "TRIM",
+    "GLASS_VIEW",
+    "RUG_FIXED",
+    "DARK_TIMBER",
+    "SEATING_UPHOLSTERY",
+    "CUSHION_UPHOLSTERY",
+    "PAPER",
+    "LINEN_FIXED",
+    "CERAMIC",
+    "TIMBER",
+    "BRASS",
+    "SHADE",
+    "FOLIAGE"
+  ],
+  "editableZones": [
+    "CEILING_MATERIAL",
+    "WALL_MATERIAL",
+    "FLOOR_MATERIAL",
+    "SEATING_UPHOLSTERY",
+    "CUSHION_UPHOLSTERY"
+  ],
+  "assets": [
+    {
+      "name": "Custom architectural shell",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Bound wool rug",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Rolled-arm loveseat",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Upholstered accent chair",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Coffee table",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    },
+    {
+      "name": "Lamps, ceramics, books, foliage and window joinery",
+      "source": "Original in-project geometry",
+      "author": "CurtainsUK POC",
+      "externalAsset": false
+    }
+  ],
+  "camera": {
+    "position": [
+      235,
+      200,
+      690
+    ],
+    "target": [
+      -2,
+      115,
+      65
+    ],
+    "fov": 43,
+    "aspect": 1.6
+  },
+  "mount": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "opening": {
+      "width": 212,
+      "bottom": 10,
+      "top": 238,
+      "backZ": -25
+    },
+    "track": {
+      "width": 234,
+      "y": 251.4
+    },
+    "clearClothEnvelope": {
+      "x": [
+        -115,
+        115
+      ],
+      "y": [
+        0,
+        250
+      ],
+      "z": [
+        -18,
+        18
+      ]
+    }
+  },
+  "units": "metres in GLB; room root x100 in centimetre preview",
+  "supports": {
+    "closed": true,
+    "open": true,
+    "motionReady": true
+  },
+  "lighting": {
+    "hemisphere": 1.05,
+    "key": 0.55,
+    "areaKey": 5,
+    "areaFill": 1.2,
+    "exposure": 1.08
+  }
+}

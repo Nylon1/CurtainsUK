@@ -1,5 +1,13 @@
 # CurtainsUK production surfaces
 
+## Error Centre password recovery, 20 October 2026
+
+[PR #264](https://github.com/Nylon1/CurtainsUK/pull/264) added self-service password recovery for the owner's existing Supabase Auth account. [PR #265](https://github.com/Nylon1/CurtainsUK/pull/265) allowed only `/admin/reset-password` through the existing unsigned admin gate; the other admin and API routes remain protected. Both passed the required production checks and merged into protected `release/production`. The serving runtime is protected commit `ee9541a0e7017a368ce4da8045944fa577f8e2c6`, tree `977e369a8f05f800ff43c2b4622417eefcb3cd33`.
+
+The exact protected export passed the four-pack Room Visualiser guard: 3,448 files and 240,574,325 bytes. READY Vercel deployment `dpl_C8N5qMxBDUMzPKyn9mgnCnZB48v4` records that commit, tree and branch. The staged reset and login routes returned 200, the unsigned dashboard redirected with 307, and the unsigned Error Centre API returned 401. It was then promoted; all three existing API aliases resolve to this deployment. The previous serving deployment was `dpl_CMRe8MEmUjqoCJK5AUmrwPJQEnP2`.
+
+The owner's dedicated `CURTAINSUK_ERROR_CENTRE_VIEWER` role is unchanged. The first recovery email linked to localhost because Supabase Auth had no allowed redirect URLs and its default Site URL was `http://localhost:3000`. The exact live reset URL, `https://curtainsuk-production-api.vercel.app/admin/reset-password`, was added to the production Supabase Auth redirect allowlist and verified in the dashboard. The existing Site URL was not changed. A fresh recovery request for `hmaliks924@gmail.com` then returned HTTP 200. This confirms API acceptance, not mailbox delivery, the final email destination or completion of the owner's password change. The existing password cannot be retrieved. The reset page lets the owner choose a new password and then continue to the Error Centre. No Shopify theme file, Supabase schema, purchase setting or feature flag changed in this release. The Vercel project retains 98 environment entries; only four source-identity attestations advanced to the new runtime commit.
+
 ## Error Centre owner access, 20 October 2026
 
 [PR #262](https://github.com/Nylon1/CurtainsUK/pull/262) passed both required production checks and merged into protected `release/production` at `946fe71a233c9555f211b4201325fc3c96c45498`, tree `10db2050dc1d10401de3ac920328619b0273f19e`. The exact protected export passed the four-pack Room Visualiser guard. READY Vercel deployment `dpl_CMRe8MEmUjqoCJK5AUmrwPJQEnP2` records that commit, tree and branch; it passed staged checks and was promoted. All three existing API aliases now resolve to this deployment. The previous deployment is `dpl_EgegD2SPR4a1Nfr6Aondw3KfnVAR`.

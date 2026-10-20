@@ -24,6 +24,7 @@ declare global { interface Window { CurtainsUKFabricExperience?: Experience } }
 declare global { interface HTMLElement { cukNailaBrowseProof?: (url: string) => Promise<Record<string, string>> } }
 
 const portraitUrl = new URL('curtainsuk-fiona-portrait.webp', (document.currentScript as HTMLScriptElement).src).href;
+let panelNumber = 0;
 const cacheKey = 'cuk-naila-presentation-v1', pendingKey = 'cuk-naila-pending-v1';
 const read = (key: string) => { try { return sessionStorage.getItem(key); } catch { return null; } };
 const write = (key: string, value: unknown) => { try { if(value === null) sessionStorage.removeItem(key); else sessionStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); } catch { /* Session remains usable without storage. */ } };
@@ -57,6 +58,28 @@ function mount(root: HTMLElement) {
   const experience = window.CurtainsUKFabricExperience;
   if (!host || !form || !experience) return;
   const panel = element('aside', '', 'cuk-naila-panel');panel.setAttribute('aria-label', 'Fiona consultation');
+  panel.id = `cuk-fiona-panel-${++panelNumber}`;
+  const desktop = window.matchMedia('(min-width: 1051px)');
+  let desktopExpanded = false;
+  const launcher = button('', () => {
+    if (desktopExpanded) minimise();
+    else {
+      desktopExpanded = true;
+      setOpen(true);
+      (body.querySelector<HTMLElement>('button:not(:disabled)') ?? body).focus({preventScroll:true});
+    }
+  }, 'cuk-fiona-launcher');
+  launcher.setAttribute('aria-controls', panel.id);
+  launcher.setAttribute('aria-expanded', 'false');
+  const launcherPortrait = element('img');
+  launcherPortrait.src = portraitUrl; launcherPortrait.alt = ''; launcherPortrait.width = 42; launcherPortrait.height = 42;
+  launcherPortrait.decoding = 'async';
+  const launcherCopy = element('span');
+  launcherCopy.append(element('strong', 'Try Fiona'), element('small', 'AI Fabric Interior Designer'));
+  const launcherSymbol = element('span', '+', 'cuk-fiona-launcher-symbol'); launcherSymbol.setAttribute('aria-hidden','true');
+  launcher.append(launcherPortrait, launcherCopy, launcherSymbol);
+  const minimiseButton = button('×', minimise, 'cuk-fiona-minimise');
+  minimiseButton.setAttribute('aria-label','Minimise Fiona');
   const portrait=element('div','','cuk-naila-portrait'),portraitImage=element('img');
   portraitImage.src=portraitUrl;portraitImage.alt='Fiona, your AI Fabric Interior Designer';portraitImage.width=512;portraitImage.height=512;
   portraitImage.loading='lazy';portraitImage.decoding='async';
@@ -76,10 +99,11 @@ function mount(root: HTMLElement) {
   const header=element('div','','cuk-naila-header');header.append(portrait,title,tools);
   const scroll=element('div','','cuk-naila-scroll');scroll.tabIndex=0;scroll.setAttribute('aria-label','Consultation questions');scroll.append(status,body);
   const entry=button('Continue with Fiona',()=>{void start();},'cuk-naila-continue');
-  panel.append(header,scroll,footer,entry);
+  panel.append(header,scroll,footer,entry,minimiseButton);
   host.hidden=true;
   root.querySelector('.cuk-wrap')!.insertBefore(panel,form);
   root.classList.add('cuk-naila-ready');
+  root.append(launcher);
   const filtersRoute=element('div','','cuk-naila-browse-route');
   const filtersToggle=button('View all filters',()=>setFilters(!root.classList.contains('cuk-naila-filters-open')));
   filtersToggle.setAttribute('aria-controls',form.id);filtersToggle.setAttribute('aria-expanded','false');
@@ -89,11 +113,28 @@ function mount(root: HTMLElement) {
   // state and the existing open conversation sheet survive breakpoint changes.
   function placePanel() {
     const wrap=root.querySelector<HTMLElement>('.cuk-wrap')!;
-    if(window.matchMedia('(max-width: 749px)').matches) {
+    if(desktop.matches || window.matchMedia('(max-width: 749px)').matches) {
       if(wrap.lastElementChild!==panel)wrap.append(panel);
     } else if(panel.nextElementSibling!==form) wrap.insertBefore(panel,form);
+    root.classList.toggle('cuk-naila-floating',desktop.matches);
+    launcher.hidden=!desktop.matches;
+    minimiseButton.hidden=!desktop.matches;
+    panel.hidden=desktop.matches&&!desktopExpanded;
+    launcher.setAttribute('aria-expanded',String(desktopExpanded));
+    launcherSymbol.textContent=desktopExpanded?'−':'+';
+    if(desktop.matches)panel.setAttribute('role','dialog');
+    else panel.removeAttribute('role');
   }
   placePanel();
+  function minimise() {
+    desktopExpanded=false;placePanel();speech.stop();
+    launcher.focus({preventScroll:true});
+  }
+  panel.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&desktop.matches&&desktopExpanded) {
+      event.preventDefault();event.stopPropagation();minimise();
+    }
+  });
   function setFilters(open:boolean) {
     root.classList.toggle('cuk-naila-filters-open',open);filtersToggle.setAttribute('aria-expanded',String(open));
     filtersToggle.textContent=open?'Hide filters':'View all filters';
@@ -138,15 +179,16 @@ function mount(root: HTMLElement) {
   };
 
   function setOpen(open: boolean) {
+    if(desktop.matches) { desktopExpanded=open;placePanel(); }
     panel.classList.toggle('cuk-naila-collapsed',!open);root.classList.toggle('cuk-naila-open',open);
     panel.dataset.started=String(active);entry.hidden=open;footer.hidden=!active&&!resume&&!pending&&!view;
     exitButton.hidden=!active;
     syncPageScroll();
-    if(!open) speech.stop();
+    if(!open) { speech.stop(); if(desktop.matches)launcher.focus({preventScroll:true}); }
     else { body.focus({preventScroll:true}); }
   }
   function syncPageScroll() {
-    document.documentElement.classList.toggle('cuk-naila-sheet-open',active && root.classList.contains('cuk-naila-open') && window.innerWidth<1200);
+    document.documentElement.classList.toggle('cuk-naila-sheet-open',!desktop.matches && active && root.classList.contains('cuk-naila-open') && window.innerWidth<1200);
   }
   window.addEventListener('resize',()=>{placePanel();syncPageScroll();});
   function persist() {
@@ -179,7 +221,7 @@ function mount(root: HTMLElement) {
       active = true; root.dataset.nailaActive = 'true';setFilters(false);
       entry.textContent = 'Continue with Fiona';
       cards.forEach(({fabric,node})=>decorate(node,fabric));
-      (window.innerWidth<600?root.querySelector<HTMLElement>('[data-cuk-fabric-grid]')??root:root).scrollIntoView({block:'start'});
+      if(!desktop.matches)(window.innerWidth<600?root.querySelector<HTMLElement>('[data-cuk-fabric-grid]')??root:root).scrollIntoView({block:'start'});
     }
     setOpen(true);tools.hidden=false;
     if(view) { if(selected)explain();else render(); if(failure){renderRetry();lock();} return; }

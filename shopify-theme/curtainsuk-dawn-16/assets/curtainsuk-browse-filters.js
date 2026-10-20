@@ -93,6 +93,7 @@
   function renderDiscovery(root, catalog, form) {
     const host = root.querySelector('[data-cuk-discovery]'); if (!host) return;
     bindSwatchMotion(root.querySelector('[data-cuk-fabric-grid]'));
+    mountStickyFilters(root, form);
     const discovery = (catalog.facets?.discovery || []).filter(dimension => dimension.active && dimension.options?.length);
     const byKey = Object.fromEntries(discovery.map(dimension => [dimension.key, dimension]));
     const focused = host.contains(document.activeElement) ? document.activeElement : null;
@@ -167,6 +168,55 @@
         || chips[Math.min(focusedIndex, chips.length - 1)] || form.elements.query;
       replacement?.focus({ preventScroll: true });
     }
+    renderStickyFilters(root, form, chips);
+  }
+
+  const stickyFilters = new WeakMap();
+  function mountStickyFilters(root, form) {
+    if (!stickyFilters.has(root)) {
+      const bar = document.createElement('nav'); bar.className = 'cuk-browse-sticky-filters';
+      bar.setAttribute('aria-label', 'Current fabric filters');
+      const refine = document.createElement('button'); refine.type = 'button'; refine.className = 'cuk-browse-sticky-refine';
+      refine.textContent = 'Refine filters'; refine.setAttribute('aria-controls', form.id);
+      refine.addEventListener('click', () => {
+        if (root.dataset.nailaActive === 'true' && !root.classList.contains('cuk-naila-filters-open'))
+          root.querySelector('.cuk-naila-browse-route button')?.click();
+        form.scrollIntoView({block:'start'});
+        form.elements.query?.focus({preventScroll:true});
+      });
+      const choices = document.createElement('div'); choices.className = 'cuk-browse-sticky-choices';
+      const clear = document.createElement('button'); clear.type = 'button'; clear.className = 'cuk-browse-sticky-clear';
+      clear.textContent = 'Clear all'; clear.addEventListener('click', () => form.reset());
+      bar.append(refine, choices, clear); form.after(bar);
+      const header = document.querySelector('.section-cuk-header');
+      const measureHeader = () => root.style.setProperty('--cuk-filter-sticky-top', `${header?.getBoundingClientRect().height || 0}px`);
+      measureHeader();
+      if (header && 'ResizeObserver' in window) new ResizeObserver(measureHeader).observe(header);
+      stickyFilters.set(root, {bar, refine, choices, clear});
+    }
+  }
+  function renderStickyFilters(root, form, chips) {
+    const state = stickyFilters.get(root);
+    if (!state) return;
+    const active = state.choices.contains(document.activeElement) ? document.activeElement : null;
+    const index = [...state.choices.children].indexOf(active);
+    const copies = chips.map(chip => {
+      const copy = chip.cloneNode(true);
+      // Delegate to the existing choice. The form and catalogue controller
+      // retain one source of truth, reset handling and stale-response protection.
+      copy.addEventListener('click', () => chip.click());
+      return copy;
+    });
+    state.choices.replaceChildren(...copies);
+    if (!copies.length) {
+      const all = document.createElement('span'); all.textContent = 'All fabrics'; state.choices.append(all);
+    }
+    state.clear.hidden = !copies.length;
+    if (active) {
+      const replacement = copies.find(copy => copy.dataset.filterKey === active.dataset.filterKey && copy.dataset.filterValue === active.dataset.filterValue)
+        || copies[Math.min(index, copies.length - 1)] || state.refine;
+      replacement.focus({preventScroll:true});
+    } else if (!copies.length && document.activeElement === state.clear) state.refine.focus({preventScroll:true});
   }
 
   function syncSelection(root, catalog, form) {

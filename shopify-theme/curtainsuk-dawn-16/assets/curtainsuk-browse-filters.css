@@ -59,6 +59,20 @@
 [data-cuk-shopping] .cuk-browse-filter-state{border-top:1px solid #dce2d5;padding-top:16px}
 [data-cuk-shopping] [data-cuk-clear-all]{min-height:44px;padding:6px 12px;white-space:nowrap;border:0;background:transparent;color:#173c35;font:12px Arial,sans-serif;text-decoration:underline;cursor:pointer}
 [data-cuk-shopping] .cuk-fabric-filters :focus-visible{outline:3px solid #647f58;outline-offset:3px}
+[data-cuk-shopping] .cuk-fabric-filters{scroll-margin-top:calc(var(--cuk-filter-sticky-top,148px) + 12px)}
+[data-cuk-shopping] .cuk-browse-sticky-filters{position:sticky;top:var(--cuk-filter-sticky-top,0);z-index:25;display:flex;align-items:center;gap:12px;min-height:58px;padding:6px 10px;margin:0 0 18px;border:1px solid #d6ddce;border-radius:12px;background:#f8faf2;box-shadow:0 5px 18px #173c3512;font:13px/1.4 Arial,sans-serif}
+[data-cuk-shopping] .cuk-browse-sticky-refine{flex:none;min-height:44px;padding:9px 18px;border:1px solid #284d3b;border-radius:8px;background:#284d3b;color:#fff;font:600 13px/1.4 Arial,sans-serif;cursor:pointer}
+[data-cuk-shopping] .cuk-browse-sticky-refine:hover{background:#3b614c}
+[data-cuk-shopping] .cuk-browse-sticky-choices{display:flex;align-items:center;flex:1;gap:7px;overflow-x:auto;min-width:0;scrollbar-width:thin}
+[data-cuk-shopping] .cuk-browse-sticky-choices>span{padding-inline:8px;color:#647260;white-space:nowrap}
+[data-cuk-shopping] .cuk-browse-sticky-choices .cuk-filter-chip{flex:none;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;padding:8px 12px}
+[data-cuk-shopping] .cuk-browse-sticky-clear{flex:none;min-height:44px;padding:8px 10px;border:0;background:transparent;color:#284d3b;font:12px/1.4 Arial,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+[data-cuk-shopping] .cuk-browse-sticky-filters :focus-visible{outline:3px solid #a78d4e;outline-offset:-3px}
+@media(max-width:749px){
+ [data-cuk-shopping] .cuk-browse-sticky-filters{gap:6px;padding:4px 6px;min-height:54px;border-radius:9px}
+ [data-cuk-shopping] .cuk-browse-sticky-refine{font-size:12px;padding:8px 12px}
+ [data-cuk-shopping] .cuk-browse-sticky-clear{padding-inline:6px;font-size:11px}
+}
 [data-cuk-shopping] [data-cuk-fabric-count]{font-size:14px;color:#304a3c;margin:16px 0}
 [data-cuk-shopping] .cuk-fabric__swatch{position:relative;border-radius:14px;background:#e7e6dc;box-shadow:0 4px 18px #173c350a}
 [data-cuk-shopping] .cuk-fabric{border-radius:16px;background:#faf9f5;box-shadow:0 3px 5px #23382e04,0 10px 24px -16px #23382e38}
@@ -147,7 +161,7 @@
 [data-cuk-shopping] .cuk-fabric-journey__step>a:hover,[data-cuk-shopping] .cuk-fabric-journey__step>button:not(:disabled):hover{background:#d8e3d0;color:#173c35 !important;border-color:#718668;box-shadow:0 3px 10px #173c3514}
 [data-cuk-shopping] .cuk-fabric-journey__step>button:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
 [data-cuk-shopping] [data-jane-fabric-link],.cuk-fabric-peek__actions .cuk-fabric-jane-action{box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:54px;padding:12px;border:1px solid #c4a563;border-radius:12px;background:#e8d4a8;color:#263d2f !important;font:600 14px/1.4 Arial,sans-serif;text-align:center;text-decoration:none;box-shadow:0 3px 10px #80602b10;transition:background .18s,box-shadow .18s,transform .18s}
-[data-cuk-shopping] [data-jane-fabric-link]::before,.cuk-fabric-jane-action::before{content:"";flex:none;width:23px;height:23px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23263d2f' stroke-width='1.5'%3E%3Cpath d='M20 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 18 0Z'/%3E%3Cpath d='M7 9h8M7 13h5'/%3E%3C/svg%3E") center/contain no-repeat}
+[data-cuk-shopping] [data-jane-fabric-link]::before,.cuk-fabric-jane-action::before{content:"";flex:none;width:32px;height:32px;border:1px solid #bda269;border-radius:50%;background:url("curtainsuk-adviser-jane.webp") center 27%/cover no-repeat}
 @media(hover:hover){[data-cuk-shopping] [data-jane-fabric-link]:hover,.cuk-fabric-peek__actions .cuk-fabric-jane-action:hover{background:#dcc18b;border-color:#9c7f46;box-shadow:0 5px 16px #80602b28;transform:translateY(-2px)}}
 @media(prefers-reduced-motion:reduce){[data-cuk-shopping] [data-jane-fabric-link],.cuk-fabric-peek__actions .cuk-fabric-jane-action{transition:none;transform:none}}
 [data-cuk-shopping] .cuk-fabric__actions{gap:10px}

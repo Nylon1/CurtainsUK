@@ -13,6 +13,8 @@ import { browseSearchRpcName } from './browse-rpc';
 import { readNailaPreparedSelection } from './naila-prepared-browse';
 import { browseGuideMinorForFabric } from './browse-guide-reader';
 import { publishedFabricProfileUrl } from './fabric-profile-links';
+import { browseCurtainEstimates } from './browse-curtain-estimate-server';
+import type { browseCurtainEstimate } from './browse-curtain-estimate';
 
 export type RetailReadOptions = { includeIntelligence?: boolean; candidateIds?: ReadonlySet<string> };
 
@@ -34,10 +36,14 @@ async function hydrateRetailFabrics(ids: string[], withGuide = false, options: R
   ]);
   if (profileResult.error || imageResult.error) throw new Error("RETAIL_CATALOGUE_UNAVAILABLE");
   // A stock service outage must not take browsing offline or imply available stock.
-  const readiness = await commercialReadiness(records).catch(()=>null);
-  // Isolated visualiser review needs existing catalogue facts, without an FI read.
-  // Existing callers retain their current projection unless they explicitly opt out.
+  // Independent reads run together; retain the existing fail-closed stock fallback
+  // and the visualiser's explicit opt-out from Fabric Intelligence.
+  const readinessPromise = commercialReadiness(records).catch(()=>null);
+  const emptyEstimates = () => new Map<string, ReturnType<typeof browseCurtainEstimate>>();
+  const estimatesPromise = withGuide ? browseCurtainEstimates(records).catch(() => emptyEstimates()) : Promise.resolve(emptyEstimates());
   const visual: Awaited<ReturnType<typeof visualKnowledgeByFabricIds>> = options.includeIntelligence === false ? new Map() : await visualKnowledgeByFabricIds(records.map((record) => record.fabric_id));
+  const readiness = await readinessPromise;
+  const estimates = await estimatesPromise;
   return ids.flatMap((id) => {
   const record = records.find((r) => r.fabric_id === id);
   if (!record?.staging_catalog_visible || record.lifecycle_state === "DISCONTINUED") return [];
@@ -53,6 +59,7 @@ async function hydrateRetailFabrics(ids: string[], withGuide = false, options: R
   if(commercial?.commercialStockState==='DISCONTINUED') return [];
   // Explicit public shape: supplier SKU remains in canonical server records.
   const result = {
+    ...(withGuide ? {curtainEstimate: estimates.get(id) ?? null} : {}),
     ...(withGuide ? { supplierFacts: { facts: supplierFacts(record).facts } } : {}),
     id: safe.id, supplier: safe.supplier, brand: safe.brand, collection: safe.collection, design: safe.design, colour: safe.colour,
     ...(fabricProfileUrl ? { fabricProfileUrl } : {}),

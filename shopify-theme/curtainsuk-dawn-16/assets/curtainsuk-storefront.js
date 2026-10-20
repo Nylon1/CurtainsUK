@@ -145,7 +145,7 @@
     return data;
   }
 
-  // Ordinary catalogue GETs only. Naila's capability request and all mutations
+  // Ordinary catalogue GETs only. Fiona's capability request and all mutations
   // retain their existing request policy.
   async function fetchBrowseJson(url, signal) {
     for (let attempt = 0; attempt < 2; attempt++) {
@@ -201,14 +201,14 @@
       url.searchParams.get('naila') !== '1' || url.searchParams.getAll('view').length !== 1 ||
       url.searchParams.get('view') !== 'retail' || url.searchParams.has('fabric') ||
       typeof root.cukNailaBrowseProof !== 'function')
-      throw new Error('Your consultation connection is not ready. Please continue with Naila and retry.');
+      throw new Error('Your consultation connection is not ready. Please continue with Fiona and retry.');
     const proof = await root.cukNailaBrowseProof(url.href);
     if (signal?.aborted) throw new DOMException("Browse request replaced", "AbortError");
     if (root.dataset.nailaEnabled !== 'true' || root.dataset.nailaActive !== 'true' ||
       typeof proof?.['x-curtainsuk-naila-capability'] !== 'string' || !proof['x-curtainsuk-naila-capability'] ||
       proof['x-curtainsuk-naila-capability'].length > 180 ||
       !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(proof?.['x-curtainsuk-naila-session'] ?? ''))
-      throw new Error('Your consultation connection is not ready. Please continue with Naila and retry.');
+      throw new Error('Your consultation connection is not ready. Please continue with Fiona and retry.');
     return fetchJson(url.href, {
       method: 'GET', credentials: 'same-origin', redirect: 'error', signal,
       headers: { Accept: 'application/json', 'Content-Type': 'application/json',
@@ -406,6 +406,10 @@
     let visualiserCursor = 0, nextVisualiserCursor = null;
     const visualiserHistory = [];
     let activeRequest, hasResults = false;
+    let selectionCatalog = { facets: {} };
+    const syncSelection = () => {
+      if (!visualiser && root.hasAttribute('data-cuk-shopping')) window.CurtainsUKFabricExperience?.syncSelection?.(root, selectionCatalog, filters);
+    };
     const status = root.querySelector("[data-cuk-browse-status]");
     const errorBox = root.querySelector("[data-cuk-error]");
     const previous = navigation.querySelector("[data-cuk-previous]");
@@ -438,7 +442,7 @@
       grid.dataset.cukStale = hasResults ? "true" : "false";
       previous.disabled = true; next.disabled = true;
     };
-    // Additive presentation bridge. Completely absent when Naila is disabled.
+    // Additive presentation bridge. Completely absent when Fiona is disabled.
     let nailaPaused = false;
     if (!visualiser && root.dataset.nailaEnabled === 'true') {
       on(root, 'cuk:naila:pause', () => { nailaPaused = true; cancelPending(); grid.removeAttribute('aria-busy'); });
@@ -511,12 +515,12 @@
         setLoading();
         try {
           const isNaila = !visualiser && root.dataset.nailaEnabled === 'true' && root.dataset.nailaActive === 'true';
+          if (!visualiser && root.hasAttribute('data-cuk-shopping') && !isNaila) url.searchParams.set('browseCards', '1');
           const catalog = isNaila
             ? await fetchNailaBrowse(root, url.href, controller.signal) : await fetchBrowseJson(url.href, controller.signal);
           if (current !== generation || controller.signal.aborted) return;
-          // Publish the current form state before the Browse presentation renders.
-          // Active filter chips deliberately read the URL because hidden fields are
-          // replaced by the controller during refresh/reset.
+          // Persist the successful selection for reloads. Live controls use the
+          // current form, so pending responses never restore a removed choice.
           if (!visualiser) {
             const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (key !== "window" && key !== "preview_theme_id" && key !== "view") address.searchParams.delete(key);
             for (const [key, value] of new FormData(filters)) if (String(value).trim()) address.searchParams.set(key, String(value).trim());
@@ -546,6 +550,7 @@
             }
           }
           if (!visualiser && root.hasAttribute('data-cuk-shopping')) {
+            selectionCatalog = catalog;
             window.CurtainsUKFabricExperience?.renderDiscovery(root,catalog,filters);
             if (window.CurtainsUKFabricExperience?.renderActiveFilters) window.CurtainsUKFabricExperience.renderActiveFilters(root,catalog,filters);
             else root.querySelector('[data-cuk-active-filters]').textContent = [...new FormData(filters)].filter(([,value])=>String(value).trim()).map(([key,value])=>key === 'guidePrice' ? `Curtains from: ${catalog.facets.guidePrices.find(band=>band.value===value)?.label || ''}` : humanise(String(value))).join(' · ') || 'All fabrics';
@@ -574,12 +579,13 @@
       on(filters, 'reset', () => { cancelPending(); setLoading(); timer = setTimeout(() => {
         // Hidden visual-choice inputs reflect value into defaultValue; native reset alone retains them.
         if (visualiser || root.hasAttribute('data-cuk-shopping')) for (const field of filters.elements) if (field.type === 'hidden') field.value = '';
+        syncSelection();
         page = 1; if (visualiser) { visualiserCursor = 0; visualiserHistory.length = 0; } load();
       }, 0); });
       on(filters, "submit", (event) => event.preventDefault());
-      on(filters, "input", () => { cancelPending(); setLoading(); timer = setTimeout(() => {
+      on(filters, "input", (event) => { cancelPending(); setLoading(); syncSelection(); timer = setTimeout(() => {
         page = 1; if (visualiser) { visualiserCursor = 0; visualiserHistory.length = 0; } load();
-      }, 300); });
+      }, !visualiser && root.hasAttribute('data-cuk-shopping') && event.target?.type !== 'search' ? 100 : 300); });
       const retry = errorBox.querySelector("[data-cuk-retry]");
       if (retry) on(retry, "click", () => { clearTimeout(timer); load(); });
       on(previous, "click", async () => {

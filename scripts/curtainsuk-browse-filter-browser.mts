@@ -5,9 +5,14 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { governedBrowseFilters } from '../lib/fabric-master/browse-filters';
+import { browseCard } from '../lib/fabric-master/browse-card';
 
-const { chromium } = await import(process.env.CUK_PLAYWRIGHT
-  ? pathToFileURL(resolve(process.env.CUK_PLAYWRIGHT, 'index.mjs')).href : 'playwright');
+const serveOnly = process.argv.includes('--serve');
+const fixtureIndex = process.argv.indexOf('--catalog-fixture');
+const captured = fixtureIndex >= 0 ? JSON.parse(readFileSync(process.argv[fixtureIndex + 1], 'utf8')) : null;
+const sectionSource = readFileSync('shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-fabric-browser.liquid', 'utf8');
+const hero = sectionSource.match(/<div class="cuk-section__head cuk-browse-hero">[\s\S]*?(?=\s*\{% else %\})/)?.[0] || '';
+const help = sectionSource.match(/<div class="cuk-browse-filter-help">[\s\S]*?<\/div>/)?.[0] || '';
 
 const theme = resolve('shopify-theme/curtainsuk-dawn-16/assets');
 const colours: Record<string, number> = {
@@ -30,20 +35,27 @@ const discovery = [
   { key: 'character', label: 'Character / style', active: true, options: [{ value: 'calm', label: 'calm', count: 2443 }] },
 ];
 const guidePrices = [{ value: '50-100', label: '£50 – under £100' }];
-const html = `<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/curtainsuk-storefront.css"><link rel="stylesheet" href="/curtainsuk-browse-filters.css"></head><body>
-<section data-cuk-fabric-browser data-cuk-shopping data-engine-base="/api"><div class="cuk-wrap"><div class="cuk-section__head"><h1>Browse all fabrics</h1></div>
-<form data-cuk-fabric-filters><input name="query" aria-label="Search fabrics"><input type="hidden" name="guidePrice"><div data-cuk-discovery></div><div data-cuk-active-filters aria-live="polite"></div><button type="reset" data-cuk-clear-all hidden>Clear all</button></form>
+const html = `<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/curtainsuk-storefront.css"><link rel="stylesheet" href="/curtainsuk-naila.css"><link rel="stylesheet" href="/curtainsuk-browse.css"><link rel="stylesheet" href="/curtainsuk-browse-filters.css"><style>html{font-size:62.5%;--font-body-family:Arial,sans-serif;--font-heading-family:Georgia,serif}body{font:1.6rem/1.5 Arial;background:#faf9f5;color:#23382e;margin:0}button,input{font:inherit}[hidden]{display:none!important}</style></head><body>
+<section class="cuk-shell cuk-section" data-cuk-fabric-browser data-cuk-shopping data-naila-enabled="true" data-engine-base="/api"><div class="cuk-wrap">${hero}<div class="cuk-naila-entry" data-cuk-naila></div>
+<form id="cuk-fabric-library-search" class="cuk-fabric-filters" data-cuk-fabric-filters>${help}<div class="cuk-field"><label for="search">Search fabrics</label><input id="search" name="query" type="search" aria-label="Search fabrics"></div><input type="hidden" name="guidePrice"><div data-cuk-discovery></div><div class="cuk-browse-filter-state"><div class="cuk-filter-chips" data-cuk-active-filters aria-live="polite"></div><button type="reset" data-cuk-clear-all hidden>Clear all</button></div></form>
 <p data-cuk-fabric-count aria-live="polite"></p><p data-cuk-browse-status role="status" aria-live="polite"></p>
 <div data-cuk-error role="alert" hidden><p data-cuk-error-message></p><button data-cuk-retry type="button">Try again</button></div>
-<div data-cuk-fabric-grid><p>Loading fabrics…</p></div><nav data-cuk-pagination><button data-cuk-previous type="button" disabled>Previous</button><button data-cuk-next type="button" disabled>Next</button></nav>
+<div class="cuk-fabrics" data-cuk-fabric-grid><p>Loading fabrics…</p></div><nav data-cuk-pagination><button data-cuk-previous type="button" disabled>Previous</button><button data-cuk-next type="button" disabled>Next</button></nav>
 <div data-cuk-fabric-detail hidden></div></div></section>
-<script src="/curtainsuk-fabric-experience.js" defer></script><script src="/curtainsuk-browse-filters.js" defer></script><script src="/curtainsuk-storefront.js" defer></script></body></html>`;
+<script src="/curtainsuk-jane-fabric-entry.js" defer></script><script src="/curtainsuk-fabric-experience.js" defer></script><script src="/curtainsuk-browse-filters.js" defer></script><script src="/curtainsuk-naila.js" defer></script><script src="/curtainsuk-storefront.js" defer></script></body></html>`;
 
 const requests: URL[] = [];
-const server = createServer((request, response) => {
+const server = createServer(async (request, response) => {
+  response.setHeader('Cache-Control', 'no-store');
   const url = new URL(request.url || '/', 'http://127.0.0.1');
+  if (serveOnly && url.pathname === '/review-mobile') {
+    response.setHeader('Content-Type', 'text/html; charset=utf-8');
+    response.end('<!doctype html><html><head><title>390px responsive filter review</title></head><body style="margin:0;background:#ddd"><iframe title="Mobile Browse Fabrics preview" style="display:block;width:390px;height:844px;border:0" src="/pages/fabric-library?view=browse-fabrics"></iframe></body></html>');
+    return;
+  }
   if (url.pathname === '/api/catalog') {
     requests.push(url);
+    if (serveOnly) await new Promise(resolve => setTimeout(resolve, url.searchParams.get('query') === 'slow' ? 1800 : 600));
     response.setHeader('Content-Type', 'application/json');
     if (url.searchParams.has('fabric')) { response.end(JSON.stringify({ fabric: fabric() })); return; }
     const selected = governedBrowseFilters(url.searchParams).colour as string[];
@@ -51,7 +63,7 @@ const server = createServer((request, response) => {
       : selected.includes('blue') && selected.includes('green') ? 4392 : 11815;
     const page = Number(url.searchParams.get('page')) || 1;
     response.end(JSON.stringify({
-      schemaVersion: '3.0.0', fabrics: [fabric()], page, pageSize: 24, total, pages: Math.ceil(total / 24),
+      schemaVersion: '3.0.0', fabrics: captured ? captured.fabrics.map(browseCard) : [{...fabric(), ...(serveOnly && url.searchParams.get('query') ? {design: url.searchParams.get('query')} : {})}], page, pageSize: 24, total, pages: Math.ceil(total / 24),
       facets: { brands: [], collections: [], colour: [], pattern: [], style: [], character: [],
         guidePrices, discovery },
     }));
@@ -59,9 +71,11 @@ const server = createServer((request, response) => {
   }
   const asset = url.pathname.slice(1);
   if (['curtainsuk-storefront.js', 'curtainsuk-storefront.css', 'curtainsuk-browse-filters.js',
+    'curtainsuk-browse.css', 'curtainsuk-naila.css', 'curtainsuk-naila.js', 'curtainsuk-fiona-portrait.webp', 'curtainsuk-jane-fabric-entry.js',
     'curtainsuk-browse-filters.css', 'curtainsuk-fabric-experience.js'].includes(asset)) {
-    response.setHeader('Content-Type', asset.endsWith('.js') ? 'text/javascript' : 'text/css');
-    response.end(readFileSync(resolve(theme, asset))); return;
+    response.setHeader('Content-Type', asset.endsWith('.js') ? 'text/javascript' : asset.endsWith('.webp') ? 'image/webp' : 'text/css');
+    response.end(readFileSync(asset === 'curtainsuk-fabric-experience.js'
+      ? resolve('shopify-theme/production-main-overlay/assets/curtainsuk-fabric-experience-v2.js') : resolve(theme, asset))); return;
   }
   response.setHeader('Content-Type', 'text/html; charset=utf-8'); response.end(html);
 });
@@ -69,6 +83,12 @@ await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
 const address = server.address();
 if (!address || typeof address === 'string') throw new Error('local browser server failed');
 const origin = `http://127.0.0.1:${address.port}`;
+if (serveOnly) {
+  console.log(`Local filter regression preview (fixture results, no live writes): ${origin}/pages/fabric-library?view=browse-fabrics`);
+  await new Promise(() => {});
+}
+const { chromium } = await import(process.env.CUK_PLAYWRIGHT
+  ? pathToFileURL(resolve(process.env.CUK_PLAYWRIGHT, 'index.mjs')).href : 'playwright');
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 
 try {

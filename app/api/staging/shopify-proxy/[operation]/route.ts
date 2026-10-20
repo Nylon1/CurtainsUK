@@ -26,6 +26,7 @@ import { parseProxyReviewRequest } from "@/lib/storefront/security/shopify-proxy
 import { endpointRateLimitResponse } from "@/lib/storefront/security/endpoint-rate-limit";
 import { getCustomerReviewAcceptance } from "@/lib/storefront/review-acceptance-server";
 import { retailFabricDetail, searchRetailFabrics, searchNailaRetailFabrics } from "@/lib/fabric-master/retail-repository";
+import { browseCard } from "@/lib/fabric-master/browse-card";
 import { nailaEnabled } from '@/lib/storefront/naila/server';
 import { assertNailaRehearsalRequest } from '@/lib/storefront/naila/rehearsal-access';
 import { serveNailaCatalog } from '@/lib/storefront/naila/catalog-route';
@@ -126,6 +127,10 @@ export async function GET(request: Request, context: { params: Promise<{ operati
       const naila = params.get('naila') === '1';
       if (naila) return NextResponse.json(await serveNailaCatalog(params, nailaEnabled(), searchNailaRetailFabrics), { headers: PUBLIC_NO_STORE_HEADERS });
       const result=await searchRetailFabrics(params,visualiser?{includeIntelligence:false}:{});
+      if (params.get('browseCards') === '1' && params.get('browseGuide') === '1') {
+        return NextResponse.json({...result, fabrics: result.fabrics.map(withRoomPreview).map(browseCard),
+          facets: { guidePrices: result.facets.guidePrices, discovery: result.facets.discovery }}, { headers: PUBLIC_NO_STORE_HEADERS });
+      }
       return NextResponse.json({...result,fabrics:result.fabrics.map(withRoomPreview)}, { headers: PUBLIC_NO_STORE_HEADERS });
     }
     return NextResponse.json(await buildDatabaseShopifyCatalogPayload(params.get("fabric") ?? undefined), { headers: PUBLIC_NO_STORE_HEADERS });

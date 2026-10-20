@@ -16,9 +16,30 @@
 {% render 'curtainsuk-fabric-discovery' %}
 <section class="cuk-shell cuk-section cuk-section--tint" data-cuk-fabric-browser {% if template.suffix == 'browse-fabrics' %}data-cuk-shopping{% if section.settings.naila_enabled %} data-naila-enabled="true"{% endif %}{% endif %} data-engine-base="{{ engine_base | escape }}">
   <div class="cuk-wrap">
-    {% if template.suffix == 'browse-fabrics' %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">THE CURTAINSUK COLLECTION</p><h1>Browse all fabrics</h1><p>Discover your next fabric or find a design, colourway or collection you already know.</p></div></div>{% else %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>{% endif %}
+    {% if template.suffix == 'browse-fabrics' %}
+    <div class="cuk-section__head cuk-browse-hero">
+      <div class="cuk-browse-hero__copy">
+        <p class="cuk-eyebrow">THE CURTAINSUK FABRIC COLLECTION</p>
+        <h1>Browse fabrics.<br><em>Find your favourite.</em></h1>
+        <p>Beautiful colour. Tactile texture. A pattern that feels like you. Discover the fabric your room has been waiting for.</p>
+        <a class="cuk-button" href="#cuk-fabric-library-search">Explore the collection <span aria-hidden="true">↓</span></a>
+        <p class="cuk-browse-hero__note">Look closer. Try a sample. Make it yours.</p>
+      </div>
+      <div class="cuk-browse-hero__fabrics" aria-label="A glimpse of the fabric collection">
+        <figure><img src="https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-4da277b295418b33e5bb02a88a5c0eaf642999fb8804bc748dd47e2f38f3d5e2.jpg?width=480" width="480" height="600" alt="Acanthus fabric in Apple/Sage" decoding="async"><figcaption>Pattern with personality</figcaption></figure>
+        <figure><img src="https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-b23b645e3ad944f65c582c6a761e85618fb1e475c9aed01220c634575b82b7ad.jpg?width=360" width="360" height="460" alt="Acanthus Jacquard fabric in Linen" decoding="async"><figcaption>Texture to fall for</figcaption></figure>
+        <figure><img src="https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-14da30cf9a04fd3b9b12bf643ee2862b452e1d8a44b901996c2efc7bfe05341b.jpg?width=360" width="360" height="460" alt="Abeja fabric in Blush" decoding="async"><figcaption>A little colour, a big feeling</figcaption></figure>
+      </div>
+    </div>
+    {% else %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>{% endif %}
     {%- if template.suffix == 'browse-fabrics' and section.settings.naila_enabled -%}<div class="cuk-naila-entry" data-cuk-naila></div>{%- endif -%}
     <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search" id="cuk-fabric-library-search">
+      {% if template.suffix == 'browse-fabrics' %}
+      <div class="cuk-browse-filter-help">
+        <p>Choose colours and a price range, then open More filters for pattern, texture and style. Select a choice again to remove it, or use Clear all.</p>
+        <p>Filters rely on available fabric information. Screen colours can vary, and prices are guides until you enter your curtain measurements and options.</p>
+      </div>
+      {% endif %}
       <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Search design, colourway, brand, collection or SKU"></div>
       {% if template.suffix == 'browse-fabrics' %}
       <input type="hidden" name="guidePrice"><div data-cuk-discovery></div>
@@ -51,7 +72,7 @@
   "name": "CurtainsUK fabric browser",
   "tag": "section",
   "class": "section",
-  "settings": [{ "type": "checkbox", "id": "naila_enabled", "label": "Enable Naila owner review", "default": false, "info": "Requires the Naila gateway flag. Leave disabled until owner review is complete." }, { "type": "checkbox", "id": "jane_handoff_enabled", "label": "Enable Ask Jane fabric handoff", "default": false, "info": "Requires the separately released Jane consultation. Leave disabled until the signed customer journey is verified." }, { "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }, { "type": "url", "id": "browse_preview_endpoint", "label": "Unpublished browse preview API", "info": "Candidate-only read-only catalogue endpoint. Ignored on the live theme." }],
+  "settings": [{ "type": "checkbox", "id": "naila_enabled", "label": "Enable Fiona owner review", "default": false, "info": "Requires the existing consultation gateway flag. Leave disabled until owner review is complete." }, { "type": "checkbox", "id": "jane_handoff_enabled", "label": "Enable Ask Jane fabric handoff", "default": false, "info": "Requires the separately released Jane consultation. Leave disabled until the signed customer journey is verified." }, { "type": "text", "id": "engine_base", "label": "Decision engine app-proxy base", "default": "/apps/curtainsuk-decision" }, { "type": "url", "id": "browse_preview_endpoint", "label": "Unpublished browse preview API", "info": "Candidate-only read-only catalogue endpoint. Ignored on the live theme." }],
   "presets": [{ "name": "CurtainsUK fabric browser" }]
 }
 {% endschema %}

@@ -155,3 +155,6 @@ html.cuk-naila-sheet-open,html.cuk-naila-sheet-open body{overflow:hidden;overscr
  [data-naila-enabled] .cuk-naila-body[data-naila-phase=react] .cuk-naila-comparison{gap:8px}
  [data-naila-enabled] .cuk-naila-body[data-naila-phase=react] .cuk-naila-comparison p{font-size:12px;line-height:1.25;margin:2px 0}
 }
+@media(max-width:749px){
+ [data-naila-enabled] .cuk-naila-panel{margin:28px 0 0}
+}

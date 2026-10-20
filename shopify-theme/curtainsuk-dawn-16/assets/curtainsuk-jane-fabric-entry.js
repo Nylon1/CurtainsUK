@@ -12,8 +12,8 @@
       link.className = 'cuk-text-link';
       link.dataset.janeFabricLink = id;
       link.href = destination(id);
-      link.textContent = 'Ask Jane about this fabric';
-      link.setAttribute('aria-label', 'Ask Jane, AI interior design adviser, about this fabric');
+      link.textContent = 'Ask Jane, fabric specialist ↗';
+      link.setAttribute('aria-label', 'Ask Jane, AI fabric specialist, about this fabric');
       host.append(link);
     },
     mount(detail, id, eligibility) {

@@ -132,6 +132,10 @@ test('Browse URL restoration creates bounded governed hidden fields before a req
   assert.equal(form.elements.character.value, 'calm');
   assert.equal(form.elements.guidePrice.value, '50-100');
   assert.equal(form.elements.query.value, 'Prestigious');
+  for (const guidePrice of ['under-30', '30-60', '60-100', '100-150', '150-plus']) {
+    restoreBrowseUrlFilters(form, new URLSearchParams({guidePrice}));
+    assert.equal(form.elements.guidePrice.value, guidePrice);
+  }
   assert.equal(calls.length, 0);
 });
 

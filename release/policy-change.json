@@ -1,13 +1,18 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The protected production test command covers the released curtain, cushion and shared commerce journeys. There is no distinct smart-track product, server pricing, manufacturer-guided demonstration or smart-track fulfilment contract.",
-  "newRule": "Append a focused smart-track test suite to the existing test command without removing or weakening any existing assertion. Add coverage for the owner-approved Go and iOn pricing, exact measurement boundaries including the confirmed 100 cm minimum, motor-specific load evidence and customer weight declaration, shared controls, immutable product identity, mixed checkout reconciliation and once-per-shipment carriage. A declaration is separate from measured or estimated weight and cannot bypass contradictory over-limit evidence. The owner-selected white FMS package now passes the package check; explicit incomplete-package and disabled-release cases remain blocked. Tests exercise the real package authority and immutable package/dispatch snapshots. Existing protected release and exact-head approval requirements remain unchanged.",
-  "reason": "The owner requested a separate Smart Track Studio candidate and PR from protected production, with equal-priced mains Go and battery iOn packages and a visual fitting guide grounded in Forest documentation. New tests and the package test script are protected surfaces even though existing test and release policy is preserved.",
-  "ownerApprovedDecision": "The owner authorized implementation of this candidate and confirmed the business inputs recorded in docs/smart-track-studio/REVIEW.md. Exact-head approval has not been supplied. The candidate is presented for Nylon1's explicit current-head approval before protected merge; production publication remains a separate scoped release decision.",
+  "previousRule": "Existing protected Browse and commerce tests cover governed filters and production pricing but not rapid selection races or illustrative curtain-pair totals.",
+  "newRule": "Add focused tests for rapid filter selection and chip removal, compact card identity and action evidence, and a 100 cm by 100 cm pencil-pleat standard-lined curtain pair calculated with the active production rules. Preserve all existing assertions, release checks and feature settings. Change the owner-approved Browse-only multiplier from trade times three to trade times two, preserving supplier selectors, rounding and MTM pricing, with reconciled SQL coverage. Rebalance visible guide bands for x2 while preserving exact legacy link bounds.",
+  "reason": "The owner requested fast and accurate Browse filters, a visual card journey retaining every destination, Fiona presentation, and an illustrative VAT-inclusive curtain-pair price. Added regression tests are protected repository surfaces. The owner also explicitly requested a times-two browsing guide. The owner revised the illustrative pair to 1 m track width by 1 m finished drop.",
+  "ownerApprovedDecision": "Implementation is authorised by the owner in this thread. Exact-head owner approval remains pending on the review PR, and this record does not itself approve protected merge or production publication.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/smart-track/__tests__/smart-track.test.ts",
-    "package.json",
-    "release/policy-change.json"
+    "lib/fabric-master/__tests__/browse-card.test.ts",
+    "lib/fabric-master/__tests__/browse-curtain-estimate.test.ts",
+    "lib/storefront/__tests__/browse-selection.test.ts",
+    "release/policy-change.json",
+    "lib/fabric-master/__tests__/browse-price-guide.test.ts",
+    "lib/fabric-master/__tests__/browse-guide-multiplier.test.ts",
+    "supabase/migrations/20261020124923_browse_guide_two_times_trade.sql",
+    "lib/storefront/__tests__/browse-loading.test.ts"
   ]
 }

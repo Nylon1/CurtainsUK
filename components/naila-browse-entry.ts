@@ -23,7 +23,7 @@ type Experience = { enhanceCard: (card: HTMLElement, fabric: Fabric, windowSlug:
 declare global { interface Window { CurtainsUKFabricExperience?: Experience } }
 declare global { interface HTMLElement { cukNailaBrowseProof?: (url: string) => Promise<Record<string, string>> } }
 
-const portraitUrl = new URL('curtainsuk-naila-portrait.webp', (document.currentScript as HTMLScriptElement).src).href;
+const portraitUrl = new URL('curtainsuk-fiona-portrait.webp', (document.currentScript as HTMLScriptElement).src).href;
 const cacheKey = 'cuk-naila-presentation-v1', pendingKey = 'cuk-naila-pending-v1';
 const read = (key: string) => { try { return sessionStorage.getItem(key); } catch { return null; } };
 const write = (key: string, value: unknown) => { try { if(value === null) sessionStorage.removeItem(key); else sessionStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); } catch { /* Session remains usable without storage. */ } };
@@ -56,13 +56,14 @@ function mount(root: HTMLElement) {
   const form = root.querySelector<HTMLFormElement>('[data-cuk-fabric-filters]');
   const experience = window.CurtainsUKFabricExperience;
   if (!host || !form || !experience) return;
-  const panel = element('aside', '', 'cuk-naila-panel');panel.setAttribute('aria-label', 'Naila consultation');
+  const panel = element('aside', '', 'cuk-naila-panel');panel.setAttribute('aria-label', 'Fiona consultation');
   const portrait=element('div','','cuk-naila-portrait'),portraitImage=element('img');
-  portraitImage.src=portraitUrl;portraitImage.alt='Naila, your AI Fabric Interior Designer';portraitImage.width=720;portraitImage.height=900;
+  portraitImage.src=portraitUrl;portraitImage.alt='Fiona, your AI Fabric Interior Designer';portraitImage.width=512;portraitImage.height=512;
+  portraitImage.loading='lazy';portraitImage.decoding='async';
   portraitImage.addEventListener('error',()=>{portraitImage.hidden=true;portrait.classList.add('cuk-naila-portrait-unavailable');});
   portrait.append(portraitImage,element('span','A little guidance, at your pace','cuk-naila-portrait-note'));
   const title = element('div', '', 'cuk-naila-title');
-  title.append(element('h2', 'Naila'), element('p', nailaPersona.title));
+  title.append(element('h2', 'Fiona'), element('p', nailaPersona.title));
   const exitButton = button('Browse on my own',leave,'cuk-naila-close');
   const restartButton=button('Restart consultation',confirmRestart,'cuk-naila-restart');
   const footer=element('div','','cuk-naila-footer');footer.append(exitButton,restartButton);footer.hidden=true;
@@ -74,7 +75,7 @@ function mount(root: HTMLElement) {
   const tools=element('div','','cuk-naila-tools');tools.append(speechButton,stopSpeech);
   const header=element('div','','cuk-naila-header');header.append(portrait,title,tools);
   const scroll=element('div','','cuk-naila-scroll');scroll.tabIndex=0;scroll.setAttribute('aria-label','Consultation questions');scroll.append(status,body);
-  const entry=button('Continue with Naila',()=>{void start();},'cuk-naila-continue');
+  const entry=button('Continue with Fiona',()=>{void start();},'cuk-naila-continue');
   panel.append(header,scroll,footer,entry);
   host.hidden=true;
   root.querySelector('.cuk-wrap')!.insertBefore(panel,form);
@@ -84,6 +85,15 @@ function mount(root: HTMLElement) {
   filtersToggle.setAttribute('aria-controls',form.id);filtersToggle.setAttribute('aria-expanded','false');
   filtersRoute.append(element('span','Your fabric collection'),filtersToggle);
   form.before(filtersRoute);
+  // Move the same panel so visual and keyboard order agree. Saved consultation
+  // state and the existing open conversation sheet survive breakpoint changes.
+  function placePanel() {
+    const wrap=root.querySelector<HTMLElement>('.cuk-wrap')!;
+    if(window.matchMedia('(max-width: 749px)').matches) {
+      if(wrap.lastElementChild!==panel)wrap.append(panel);
+    } else if(panel.nextElementSibling!==form) wrap.insertBefore(panel,form);
+  }
+  placePanel();
   function setFilters(open:boolean) {
     root.classList.toggle('cuk-naila-filters-open',open);filtersToggle.setAttribute('aria-expanded',String(open));
     filtersToggle.textContent=open?'Hide filters':'View all filters';
@@ -118,12 +128,12 @@ function mount(root: HTMLElement) {
       url.pathname !== '/apps/curtainsuk-decision/catalog' || url.searchParams.getAll('naila').length !== 1 ||
       url.searchParams.get('naila') !== '1' || url.searchParams.getAll('view').length !== 1 ||
       url.searchParams.get('view') !== 'retail' || url.searchParams.has('fabric'))
-      throw Error('Your consultation connection is not ready. Please continue with Naila and retry.');
+      throw Error('Your consultation connection is not ready. Please continue with Fiona and retry.');
     const proof = await capability();
     // Leaving/restarting while capability acquisition is pending must not leak stale proof.
     if (!active || root.dataset.nailaEnabled !== 'true' || root.dataset.nailaActive !== 'true' ||
       view?.sessionId !== sessionId || typeof proof !== 'string' || !proof || proof.length > 180)
-      throw Error('Your consultation connection is not ready. Please continue with Naila and retry.');
+      throw Error('Your consultation connection is not ready. Please continue with Fiona and retry.');
     return { 'x-curtainsuk-naila-capability': proof, 'x-curtainsuk-naila-session': sessionId };
   };
 
@@ -138,7 +148,7 @@ function mount(root: HTMLElement) {
   function syncPageScroll() {
     document.documentElement.classList.toggle('cuk-naila-sheet-open',active && root.classList.contains('cuk-naila-open') && window.innerWidth<1200);
   }
-  window.addEventListener('resize',syncPageScroll);
+  window.addEventListener('resize',()=>{placePanel();syncPageScroll();});
   function persist() {
     if(!view) return;
     write(premiumSessionStorageKey,view.sessionId);
@@ -167,7 +177,7 @@ function mount(root: HTMLElement) {
     if(!active) {
       for(const [key,value] of new FormData(form!)) originalFields.set(key,String(value));
       active = true; root.dataset.nailaActive = 'true';setFilters(false);
-      entry.textContent = 'Continue with Naila';
+      entry.textContent = 'Continue with Fiona';
       cards.forEach(({fabric,node})=>decorate(node,fabric));
       (window.innerWidth<600?root.querySelector<HTMLElement>('[data-cuk-fabric-grid]')??root:root).scrollIntoView({block:'start'});
     }
@@ -239,14 +249,14 @@ function mount(root: HTMLElement) {
     body.dataset.nailaPhase='welcome';body.tabIndex=-1;
     caption=nailaPersona.introduction;
     body.replaceChildren(element('p',nailaPersona.introduction,'cuk-naila-welcome'),element('p',nailaPersona.reassurance,'cuk-naila-timing'),
-      button(resume?'Continue with Naila':'Start my consultation',()=>{void start();},'cuk-naila-primary'));
+      button(resume?'Continue with Fiona':'Start my consultation',()=>{void start();},'cuk-naila-primary'));
     lock();
   }
   function confirmRestart() {
     if(busy||speaking||restarting)return;
     restarting=true;setOpen(true);scroll.scrollTop=0;status.textContent='';
     const confirmation=element('div');confirmation.dataset.nailaRestart='';
-    confirmation.append(element('h3','Start again with Naila?'),
+    confirmation.append(element('h3','Start again with Fiona?'),
       element('p','This clears the saved answers, fabric reactions, recommendations and consultation shortlist from this browser. Your new consultation will begin with no previous choices.'),
       element('p','Your basket and any orders stay as they are.'),
       button('Keep my consultation',()=>{

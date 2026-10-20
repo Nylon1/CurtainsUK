@@ -7,7 +7,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const columns = 'event_id,journey_id,request_id,occurred_at,kind,page_path,name,code,status,release,browser,channel';
+const columns = 'event_id,journey_id,request_id,occurred_at,kind,page_path,name,code,status,release,browser,channel,error_detail';
 
 export async function GET(request: Request) {
   const access = await errorCentreStaffAccess();

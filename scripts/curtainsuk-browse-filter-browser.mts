@@ -11,7 +11,8 @@ const serveOnly = process.argv.includes('--serve');
 const fixtureIndex = process.argv.indexOf('--catalog-fixture');
 const captured = fixtureIndex >= 0 ? JSON.parse(readFileSync(process.argv[fixtureIndex + 1], 'utf8')) : null;
 const sectionSource = readFileSync('shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-fabric-browser.liquid', 'utf8');
-const hero = sectionSource.match(/<div class="cuk-section__head cuk-browse-hero">[\s\S]*?(?=\s*\{% else %\})/)?.[0] || '';
+const hero = (sectionSource.match(/<div class="cuk-section__head cuk-browse-hero">[\s\S]*?(?=\s*\{% else %\})/)?.[0] || '')
+  .replace("{{ 'cuk-home-room-inspiration.webp' | asset_url }}", '/cuk-home-room-inspiration.webp');
 const help = sectionSource.match(/<div class="cuk-browse-filter-help">[\s\S]*?<\/div>/)?.[0] || '';
 
 const theme = resolve('shopify-theme/curtainsuk-dawn-16/assets');
@@ -71,7 +72,7 @@ const server = createServer(async (request, response) => {
   }
   const asset = url.pathname.slice(1);
   if (['curtainsuk-storefront.js', 'curtainsuk-storefront.css', 'curtainsuk-browse-filters.js',
-    'curtainsuk-browse.css', 'curtainsuk-naila.css', 'curtainsuk-naila.js', 'curtainsuk-fiona-portrait.webp', 'curtainsuk-jane-fabric-entry.js',
+    'curtainsuk-browse.css', 'curtainsuk-naila.css', 'curtainsuk-naila.js', 'curtainsuk-fiona-portrait.webp', 'cuk-home-room-inspiration.webp', 'curtainsuk-jane-fabric-entry.js',
     'curtainsuk-browse-filters.css', 'curtainsuk-fabric-experience.js'].includes(asset)) {
     response.setHeader('Content-Type', asset.endsWith('.js') ? 'text/javascript' : asset.endsWith('.webp') ? 'image/webp' : 'text/css');
     response.end(readFileSync(asset === 'curtainsuk-fabric-experience.js'
@@ -79,7 +80,7 @@ const server = createServer(async (request, response) => {
   }
   response.setHeader('Content-Type', 'text/html; charset=utf-8'); response.end(html);
 });
-await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
+await new Promise<void>(resolve => server.listen(Number(process.env.CUK_BROWSE_PREVIEW_PORT || 0), '127.0.0.1', resolve));
 const address = server.address();
 if (!address || typeof address === 'string') throw new Error('local browser server failed');
 const origin = `http://127.0.0.1:${address.port}`;

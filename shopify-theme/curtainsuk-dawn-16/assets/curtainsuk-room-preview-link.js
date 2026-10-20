@@ -3,8 +3,8 @@
   window.CurtainsUKRoomPreviewLinkLoaded = true;
   const unavailable = 'Room preview not available for this fabric yet.';
 
-  async function check(root) {
-    if (root.dataset.cukPreviewChecked) return;
+  async function check(root, retry = false) {
+    if (root.dataset.cukPreviewChecked && !retry) return;
     root.dataset.cukPreviewChecked = 'true';
     const id = root.dataset.fabricId;
     const link = root.querySelector('[data-cuk-room-preview-link]');
@@ -19,6 +19,7 @@
       const response = await fetch(`/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&fabric=${encodeURIComponent(id)}`, {
         credentials: 'same-origin',
         headers: { Accept: 'application/json' },
+        signal: AbortSignal.timeout(15000),
       });
       if (!response.ok) throw new Error('Catalogue unavailable');
       const result = await response.json();
@@ -32,13 +33,20 @@
       } else {
         status.textContent = unavailable;
       }
+      root.dispatchEvent(new CustomEvent('cuk:room-preview', {
+        bubbles: true,
+        detail: { fabricId: id, preview: result.fabric?.id === id ? preview : null },
+      }));
     } catch {
       status.textContent = 'Room preview temporarily unavailable.';
+      root.dispatchEvent(new CustomEvent('cuk:room-preview', {
+        bubbles: true, detail: { fabricId: id, preview: null },
+      }));
     }
   }
 
   function checkAll(scope = document) {
-    scope.querySelectorAll('[data-cuk-room-preview]').forEach(check);
+    scope.querySelectorAll('[data-cuk-room-preview]').forEach(root => check(root));
   }
 
   if (document.readyState === 'loading') {
@@ -47,4 +55,7 @@
     checkAll();
   }
   document.addEventListener('shopify:section:load', event => checkAll(event.target));
+  document.addEventListener('cuk:room-preview-retry', event => {
+    event.target.querySelectorAll('[data-cuk-room-preview]').forEach(root => check(root, true));
+  });
 })();

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Your fabric in motion · CurtainsUK</title>
+  <script type="importmap">{"imports":{"three":"__VISUALISER_ASSET_BASE__vendor/three.module.js"}}</script>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+    body{background:#eae6dd;color:#244537;font:14px/1.5 Arial,sans-serif}
+    canvas{width:100%;height:100%;display:block}
+    #status{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;background:#eae6dd}
+    #status[hidden]{display:none}
+  </style>
+</head>
+<body>
+  <canvas id="curtain" role="img" aria-label="Your selected fabric as Wave curtains at a window, with a radiator, lamp and plant"></canvas>
+  <div id="status" role="status">Preparing your full curtain preview…</div>
+  <script type="module">
+    import * as T from 'three';
+    const standardBase='__VISUALISER_ASSET_BASE__';
+    const fixedBase='__FIXED140_ASSET_BASE__';
+    const id=new URL(location.href).searchParams.get('fabric');
+    const status=document.querySelector('#status'),canvas=document.querySelector('#curtain');
+    let renderer,built,observer,disposed=false,raf=0,ready=false,progress=0,moving=false;
+    let target=0,from=0,started=0,lastFrame=0,ambience='day',savedFall={hemProgress:0,settleDepthCm:0};
+    let startFall=savedFall,scene,camera,setProgress,draw,resize,motionPoseAt,setLight;
+    const ownedGeometry=new Set(),ownedMaterials=new Set(),ownedTextures=new Set();
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+    const tell=(state,extra={})=>parent.postMessage({type:'cuk:fabric-curtain',fabricId:id,state,progress,...extra},location.origin);
+    function fail(){
+      ready=false;moving=false;cancelAnimationFrame(raf);
+      status.hidden=false;status.textContent='The curtain preview could not load. Please try again.';
+      tell('error');
+    }
+    function dispose(){
+      disposed=true;moving=false;cancelAnimationFrame(raf);observer?.disconnect();built?.dispose();renderer?.dispose();
+      ownedGeometry.forEach(g=>g.dispose());ownedMaterials.forEach(m=>m.dispose());ownedTextures.forEach(t=>t.dispose());
+    }
+    addEventListener('pagehide',dispose,{once:true});
+    canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();fail();});
+    function stop(){
+      if(!ready)return;
+      moving=false;cancelAnimationFrame(raf);
+      tell(progress===0?'closed':progress===1?'open':'stopped');
+    }
+    function animate(now){
+      if(!moving||disposed)return;
+      raf=requestAnimationFrame(animate);
+      if(now-lastFrame<32)return;
+      lastFrame=now;
+      const elapsed=Math.max(0,now-started),pose=motionPoseAt(elapsed,from,target);
+      // Resume from the stopped cloth pose, including its very small delayed hem.
+      const blend=Math.max(0,1-elapsed/120);
+      const fall={hemProgress:Math.max(0,Math.min(1,pose.hemProgress+(startFall.hemProgress-from)*blend)),
+        settleDepthCm:Math.max(-.2,Math.min(.2,pose.settleDepthCm+startFall.settleDepthCm*blend))};
+      progress=pose.progress;savedFall=fall;setProgress(progress,fall);draw();
+      if(pose.done){savedFall={hemProgress:target,settleDepthCm:0};stop();}
+    }
+    function move(to){
+      if(!ready)return;
+      cancelAnimationFrame(raf);
+      if(progress===to||reduced.matches){
+        progress=to;savedFall={hemProgress:to,settleDepthCm:0};setProgress(to,savedFall);draw();stop();return;
+      }
+      from=progress;target=to;startFall=savedFall;started=performance.now();lastFrame=0;moving=true;
+      tell(to===1?'opening':'closing');raf=requestAnimationFrame(animate);
+    }
+    addEventListener('message',event=>{
+      if(event.origin!==location.origin||event.source!==parent||event.data?.type!=='cuk:fabric-curtain-command'||
+        event.data.fabricId!==id||!ready)return;
+      const command=event.data.command;
+      if(command==='open')move(1);
+      else if(command==='close')move(0);
+      else if(command==='stop')stop();
+      else if(command==='day'||command==='evening'){ambience=command;setLight();draw();}
+    });
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+    reduced.addEventListener('change',()=>{if(reduced.matches)stop();});
+    try{
+      if(!/^[a-z0-9-]{1,120}$/i.test(id||''))throw Error('Unknown fabric');
+      const response=await fetch(`/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&fabric=${encodeURIComponent(id)}`,{
+        credentials:'same-origin',headers:{Accept:'application/json'},signal:AbortSignal.timeout(15000),
+      });
+      if(!response.ok)throw Error('Catalogue unavailable');
+      const {fabric}=await response.json(),preview=fabric?.roomPreview;
+      if(fabric?.id!==id||preview?.available!==true||preview.url!==`/pages/room-visualiser?fabric=${encodeURIComponent(id)}`)
+        throw Error('Fabric is not preview-ready');
+      renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'low-power'});
+      renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+      renderer.outputColorSpace=T.SRGBColorSpace;
+      renderer.toneMapping=T.ACESFilmicToneMapping;
+      renderer.toneMappingExposure=1.22;
+      renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
+      scene=new T.Scene();scene.background=new T.Color('#eae6dd');
+      camera=new T.PerspectiveCamera(38,1,1,2000);
+      ({motionPoseAt}=await import(new URL('motion.mjs',standardBase).href));
+      let width,height,mountY,profile;
+      if(preview.rendererProfile==='FIXED140_SINGLE_WIDTH_V1'){
+        const assignment=preview.assignment;
+        if(assignment?.fabricId!==id||!/^\/room-visualiser\/fixed140\/[a-f0-9]{64}\.(?:jpe?g|webp)$/.test(assignment.sourceImage||''))
+          throw Error('Invalid source');
+        const [{createFixed140Curtain},{buildFixed140OpenPosition,createFixed140TravelSolver}]=await Promise.all([
+          import(new URL('curtain.mjs',fixedBase).href),import(new URL('motion.mjs',fixedBase).href),
+        ]);
+        built=await createFixed140Curtain(renderer,{...assignment,sourceImage:new URL(assignment.sourceImage,fixedBase).href});
+        const closed=built.geometry.attributes.position.array.slice();
+        const opened=buildFixed140OpenPosition(closed,built.metrics.flatPanelWidthCm);
+        const solve=createFixed140TravelSolver(closed,opened,built.metrics.flatPanelWidthCm);
+        const positions=new Float32Array(closed.length);
+        setProgress=(value,fall)=>{
+          solve(value,positions,fall);built.geometry.attributes.position.array.set(positions);
+          built.geometry.attributes.position.needsUpdate=true;
+          built.geometry.computeVertexNormals();built.geometry.computeBoundingSphere();
+        };
+        width=140;height=120;mountY=96;profile='single';
+        built.curtain.position.y=mountY;scene.add(built.curtain);
+      }else if(preview.rendererProfile==='STANDARD'){
+        const [{createCurtain},{FABRICS}]=await Promise.all([
+          import(new URL('rooms/curtain-component.mjs',standardBase).href),
+          import(new URL('fabrics.mjs',standardBase).href),
+        ]);
+        const entry=FABRICS.find(f=>f.fabricId===id);
+        const source=entry?new URL(entry.image,standardBase):null;
+        if(!source||source.origin!==new URL(standardBase).origin||
+          !/^\/room-visualiser\/textures\/[a-f0-9]{64}\.webp$/.test(source.pathname))throw Error('Invalid prepared fabric');
+        // The frozen renderer's early fabrics use a legacy render ID. Keep the
+        // exact Fabric Master identity, resolving only its approved asset alias.
+        built=await createCurtain(renderer);
+        await built.setFabric(entry.id);
+        scene.add(built.group);width=230;height=250;mountY=0;profile='floor';
+        setProgress=(value,fall)=>built.setProgress(value,fall);
+      }else throw Error('Unsupported profile');
+      if(disposed){built.dispose();renderer.dispose();throw Error('Preview closed');}
+      // A small window vignette, not a second room-planning experience.
+      // Curtains retain their approved geometry, source image and centimetre UVs.
+      const material=(color,extras={})=>{
+        const m=new T.MeshStandardMaterial({color,roughness:.85,...extras});ownedMaterials.add(m);return m;
+      };
+      const add=(geometry,mat,x,y,z)=>{
+        ownedGeometry.add(geometry);const mesh=new T.Mesh(geometry,mat);
+        mesh.position.set(x,y,z);mesh.castShadow=mesh.receiveShadow=true;scene.add(mesh);return mesh;
+      };
+      const box=(w,h,d,mat,x,y,z)=>add(new T.BoxGeometry(w,h,d),mat,x,y,z);
+      const plaster=material('#ded8ca'),ivory=material('#f4f0e6'),brass=material('#ad9161',{metalness:.65,roughness:.37});
+      const oak=material('#887056'),leaf=material('#3d5941',{side:T.DoubleSide}),stem=material('#64654a');
+      const top=height+mountY,windowBottom=profile==='single'?102:88,windowTop=top-6;
+      const half=width/2-6,mid=(windowTop+windowBottom)/2,wh=windowTop-windowBottom;
+      box(900,500,5,plaster,0,180,-43);
+      const garden=await new T.TextureLoader().loadAsync(new URL('rooms/environment/assets/window/user-garden.jpg',standardBase).href);
+      if(disposed){garden.dispose();throw Error('Preview closed');}
+      garden.colorSpace=T.SRGBColorSpace;ownedTextures.add(garden);
+      const gardenMaterial=new T.MeshBasicMaterial({map:garden,color:'#ffffff'});ownedMaterials.add(gardenMaterial);
+      // Cover-crop the view, preserving its aspect ratio. Fabric artwork is never cropped here.
+      const viewAspect=(half*2)/wh,imageAspect=garden.image.width/garden.image.height;
+      if(imageAspect>viewAspect){garden.repeat.x=viewAspect/imageAspect;garden.offset.x=(1-garden.repeat.x)/2;}
+      else{garden.repeat.y=imageAspect/viewAspect;garden.offset.y=(1-garden.repeat.y)/2;}
+      const view=add(new T.PlaneGeometry(half*2,wh),gardenMaterial,0,mid,-35);view.castShadow=false;
+      for(const x of [-half,half]){
+        box(5,wh+8,12,ivory,x,mid,-28);
+        box(1.2,wh+6,1,plaster,x-3,mid,-21);
+      }
+      for(const y of [windowBottom,windowTop])box(half*2+8,5,12,ivory,0,y,-28);
+      box(3,wh,9,ivory,0,mid,-27);
+      box(half*2,2,9,ivory,0,windowBottom+wh*.62,-27);
+      box(half*2+16,3,24,ivory,0,windowBottom-4,-23);
+      for(const x of [-5,5])box(.8,6,2,brass,x,mid,-20);
+      if(profile==='single')box(width+5,1.2,2,ivory,0,top+1.5,0);
+      // Radiator remains below the sill. A floor-length curtain naturally covers it when closed.
+      box(112,48,5,ivory,0,49,-22);
+      const fins=new T.InstancedMesh(new T.CylinderGeometry(1.7,1.7,46,8),ivory,28);
+      ownedGeometry.add(fins.geometry);const matrix=new T.Matrix4();
+      for(let i=0;i<28;i++)fins.setMatrixAt(i,matrix.makeTranslation(-51+i*102/27,49,-17));
+      fins.castShadow=fins.receiveShadow=true;scene.add(fins);
+      for(const x of [-57,57]){
+        add(new T.CylinderGeometry(.7,.7,25,8),ivory,x,12,-22);
+        const valve=add(new T.CylinderGeometry(2.3,2.3,4,12),ivory,x,28,-19);valve.rotation.z=Math.PI/2;
+      }
+      box(900,6,3,ivory,0,3,-38);
+      const floor=add(new T.PlaneGeometry(1200,1200),material('#b9a88b'),0,-.5,0);floor.rotation.x=-Math.PI/2;
+      // Brass table lamp and a quiet leafy accent frame the fabric without obscuring it.
+      const side=width/2+34;
+      add(new T.CylinderGeometry(22,22,3,40),oak,side,57,5);
+      add(new T.CylinderGeometry(2,3,55,16),brass,side,28,5);
+      add(new T.CylinderGeometry(17,17,2,32),brass,side,1,5);
+      add(new T.CylinderGeometry(9,11,20,32),material('#d4c9b1'),side,68,5);
+      add(new T.CylinderGeometry(.7,.7,21,12),brass,side,87,5);
+      const shadeMaterial=material('#f0e1c4',{side:T.DoubleSide,emissive:'#ffc678',emissiveIntensity:.03});
+      add(new T.CylinderGeometry(16,23,30,48,1,true),shadeMaterial,side,108,5);
+      add(new T.TorusGeometry(23,.45,8,48),brass,side,93,5).rotation.x=Math.PI/2;
+      const pot=material('#b2a18c');
+      add(new T.CylinderGeometry(15,11,27,36),pot,-side,13.5,2);
+      add(new T.CylinderGeometry(13.5,13.5,.5,32),material('#50483a'),-side,27,2);
+      const stemGeometry=new T.CylinderGeometry(.45,.65,1,7);
+      const leafGeometry=new T.SphereGeometry(1,12,8);
+      for(let i=0;i<8;i++){
+        const angle=i*2.4,reach=18+(i%3)*7,h=48+(i%4)*13;
+        const end=new T.Vector3(-side+Math.cos(angle)*reach,h,2+Math.sin(angle)*reach*.5);
+        const start=new T.Vector3(-side,24,2),delta=end.clone().sub(start);
+        const branch=add(stemGeometry,stem,...start.clone().add(end).multiplyScalar(.5).toArray());
+        branch.scale.y=delta.length();branch.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),delta.normalize());
+        for(let j=0;j<3;j++){
+          const point=start.clone().lerp(end,.55+j*.2);
+          const foliage=add(leafGeometry,leaf,point.x,point.y,point.z);
+          foliage.scale.set(4.3,10,.65);foliage.rotation.set(.3,angle,Math.cos(angle)*.7);
+        }
+      }
+      const ambient=new T.HemisphereLight('#fffdfa','#9f9d92',1.75);scene.add(ambient);
+      const sun=new T.DirectionalLight('#fff8ed',2.2);sun.position.set(-160,top+90,160);
+      sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);
+      Object.assign(sun.shadow.camera,{left:-300,right:300,top:380,bottom:-180,near:1,far:800});
+      sun.shadow.normalBias=.3;sun.shadow.bias=-.0003;scene.add(sun);
+      const fill=new T.DirectionalLight('#dbe4ee',.7);fill.position.set(110,100,90);scene.add(fill);
+      const lamp=new T.PointLight('#ffce91',0,280,1.3);lamp.position.set(side,105,16);scene.add(lamp);
+      setLight=()=>{
+        const evening=ambience==='evening';
+        ambient.intensity=evening?.7:1.75;sun.intensity=evening?.12:2.2;fill.intensity=evening?.35:.7;
+        lamp.intensity=evening?85:0;shadeMaterial.emissiveIntensity=evening?.65:.03;
+        gardenMaterial.color.set(evening?'#354453':'#ffffff');
+        scene.background.set(evening?'#44463f':'#eae6dd');
+      };
+      draw=()=>{if(!disposed)renderer.render(scene,camera);};
+      resize=()=>{
+        if(disposed)return;
+        const w=document.documentElement.clientWidth,h=document.documentElement.clientHeight;
+        if(!w||!h)return;
+        renderer.setSize(w,h,false);
+        const aspect=w/h,tangent=Math.tan(camera.fov*Math.PI/360),targetY=top*.49;
+        const sideSpace=aspect<1?36:98;
+        const distance=Math.max((top+22)/(2*tangent),(width+sideSpace)/(2*tangent*aspect))*1.04;
+        camera.position.set(0,targetY+8,distance);camera.aspect=aspect;camera.lookAt(0,targetY,-7);camera.updateProjectionMatrix();draw();
+      };
+      observer=new ResizeObserver(resize);observer.observe(document.documentElement);
+      setLight();resize();status.hidden=true;ready=true;
+      tell('ready',{profile});tell('closed');
+    }catch{if(!disposed)fail();}
+  </script>
+</body>
+</html>

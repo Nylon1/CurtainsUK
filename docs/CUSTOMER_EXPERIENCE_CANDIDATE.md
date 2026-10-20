@@ -1,8 +1,10 @@
 # Customer Experience candidate
 
-This change is a review candidate based on protected `release/production` at
-`922bc2849a4fe650581c058d502879e6a0e35518`. It is not a record of a live
-publication.
+This document describes the reviewed candidate based on protected
+`release/production` at `922bc2849a4fe650581c058d502879e6a0e35518`.
+It was published through [PR #260](https://github.com/Nylon1/CurtainsUK/pull/260).
+The actual live identities, synchronization evidence and verification limits
+are recorded in [PRODUCTION_SURFACES.md](PRODUCTION_SURFACES.md).
 
 ## What staff can see
 

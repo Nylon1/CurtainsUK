@@ -374,7 +374,7 @@
 
   const BROWSE_URL_FACETS = ["colour", "pattern", "texture", "finish", "character"];
   const GROUPED_BROWSE_COLOURS = new Set(["beige/taupe", "white/cream", "yellow/gold"]);
-  const BROWSE_GUIDE_BANDS = new Set(["under-50", "50-100", "100-150", "150-250", "250-plus"]);
+  const BROWSE_GUIDE_BANDS = new Set(["under-30", "30-60", "60-100", "100-150", "150-plus", "under-50", "50-100", "150-250", "250-plus"]);
 
   function restoreBrowseUrlFilters(filters, params) {
     for (const key of BROWSE_URL_FACETS) {

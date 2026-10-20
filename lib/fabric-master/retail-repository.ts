@@ -8,7 +8,7 @@ import { customerGuidance, customerIntelligence, visualKnowledgeByFabricIds } fr
 
 import { BROWSE_DISCOVERY, supplierFacts } from './browse-experience';
 import { governedBrowseFilters, type BrowseFacetKey } from './browse-filters';
-import { BROWSE_PRICE_BANDS, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
+import { browsePriceOptions, browsePriceBand, customerBrowseGuide } from './browse-price-guide';
 import { browseSearchRpcName } from './browse-rpc';
 import { readNailaPreparedSelection } from './naila-prepared-browse';
 import { browseGuideMinorForFabric } from './browse-guide-reader';
@@ -98,7 +98,7 @@ export async function searchRetailFabrics(params: URLSearchParams, options: Reta
   const result = { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(fabric => ({ ...fabric, browseGuide: customerBrowseGuide(value.guidePrices?.[fabric.id]) })) : fabrics,
     page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize),
     facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY,
-      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.facetOptions?.[dimension.key] ?? [] })) } : {}) },
+      ...(withGuide ? { guidePrices: browsePriceOptions(params.get('guidePrice')), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.facetOptions?.[dimension.key] ?? [] })) } : {}) },
     ...(candidateIds ? { sourceIds: value.ids } : {}) };
   assertCustomerSafeProjection(result);
   return result;
@@ -115,7 +115,7 @@ export async function searchNailaRetailFabrics(params: URLSearchParams) {
   const result = { schemaVersion: "3.0.0", fabrics: withGuide ? fabrics.map(fabric => ({ ...fabric, browseGuide: customerBrowseGuide(value.guidePrices?.[fabric.id]) })) : fabrics,
     page, pageSize, total: value.total, pages: Math.ceil(value.total / pageSize),
     facets: { brands: value.brands, collections: value.collections, ...RETAIL_TAXONOMY,
-      ...(withGuide ? { guidePrices: BROWSE_PRICE_BANDS.map(({value,label}) => ({value,label})), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.facetOptions?.[dimension.key] ?? [] })) } : {}) } };
+      ...(withGuide ? { guidePrices: browsePriceOptions(params.get('guidePrice')), discovery: BROWSE_DISCOVERY.map((dimension) => ({ ...dimension, options: value.facetOptions?.[dimension.key] ?? [] })) } : {}) } };
   assertCustomerSafeProjection(result);
   return result;
 }

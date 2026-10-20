@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { governedBrowseFilters } from '../lib/fabric-master/browse-filters';
 import { browseCard } from '../lib/fabric-master/browse-card';
+import { browsePriceOptions } from '../lib/fabric-master/browse-price-guide';
 
 const serveOnly = process.argv.includes('--serve');
 const fixtureIndex = process.argv.indexOf('--catalog-fixture');
@@ -35,7 +36,6 @@ const discovery = [
   { key: 'finish', label: 'Finish / sheen', active: true, options: [{ value: 'matte', label: 'matte', count: 5209 }] },
   { key: 'character', label: 'Character / style', active: true, options: [{ value: 'calm', label: 'calm', count: 2443 }] },
 ];
-const guidePrices = [{ value: '50-100', label: '£50 – under £100' }];
 const html = `<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/curtainsuk-storefront.css"><link rel="stylesheet" href="/curtainsuk-naila.css"><link rel="stylesheet" href="/curtainsuk-browse.css"><link rel="stylesheet" href="/curtainsuk-browse-filters.css"><style>html{font-size:62.5%;--font-body-family:Arial,sans-serif;--font-heading-family:Georgia,serif}body{font:1.6rem/1.5 Arial;background:#faf9f5;color:#23382e;margin:0}button,input{font:inherit}[hidden]{display:none!important}</style></head><body>
 <section class="cuk-shell cuk-section" data-cuk-fabric-browser data-cuk-shopping data-naila-enabled="true" data-engine-base="/api"><div class="cuk-wrap">${hero}<div class="cuk-naila-entry" data-cuk-naila></div>
 <form id="cuk-fabric-library-search" class="cuk-fabric-filters" data-cuk-fabric-filters>${help}<div class="cuk-field"><label for="search">Search fabrics</label><input id="search" name="query" type="search" aria-label="Search fabrics"></div><input type="hidden" name="guidePrice"><div data-cuk-discovery></div><div class="cuk-browse-filter-state"><div class="cuk-filter-chips" data-cuk-active-filters aria-live="polite"></div><button type="reset" data-cuk-clear-all hidden>Clear all</button></div></form>
@@ -66,7 +66,7 @@ const server = createServer(async (request, response) => {
     response.end(JSON.stringify({
       schemaVersion: '3.0.0', fabrics: captured ? captured.fabrics.map(browseCard) : [{...fabric(), ...(serveOnly && url.searchParams.get('query') ? {design: url.searchParams.get('query')} : {})}], page, pageSize: 24, total, pages: Math.ceil(total / 24),
       facets: { brands: [], collections: [], colour: [], pattern: [], style: [], character: [],
-        guidePrices, discovery },
+        guidePrices: browsePriceOptions(url.searchParams.get('guidePrice')), discovery },
     }));
     return;
   }

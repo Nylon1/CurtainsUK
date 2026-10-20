@@ -52,10 +52,11 @@
     const colour = byKey.colour;
     if (colour) host.append(group({key:'colour', label:'Colour', options:colour.options, field:hidden(form,'colour'), form, swatch:true}));
     const price = group({key:'guidePrice', label:'Fabric price guide per metre', options:catalog.facets?.guidePrices || [], field:hidden(form,'guidePrice'), form});
-    if (price) { host.append(price); const note = document.createElement('p'); note.className = 'cuk-browse-price-note'; note.textContent = 'Filters use the fabric guide, not the finished curtain total. Cards also show an example pair where pricing is available.'; host.append(note); }
+    if (price) { host.append(price); const note = document.createElement('p'); note.className = 'cuk-browse-price-note'; note.textContent = 'Price per metre of fabric. The estimated made-to-measure curtain total is shown separately on each card where available.'; host.append(note); }
     const moreKeys = ['pattern','activity','texture','finish','character','presence'];
     const more = document.createElement('details'); more.className = 'cuk-intelligence-more';
     const summary = document.createElement('summary'); summary.textContent = 'More filters'; more.append(summary);
+    const subtitle = document.createElement('small'); subtitle.textContent = 'Pattern, texture & style'; summary.append(subtitle);
     const groups = document.createElement('div'); groups.className = 'cuk-intelligence-more-groups';
     for (const key of moreKeys) { const dimension = byKey[key]; if (dimension) { const item = group({key, label:dimension.label || labels[key] || readable(key), options:dimension.options, field:hidden(form,key), form, more:true}); if (item) groups.append(item); } }
     if (groups.childElementCount) {

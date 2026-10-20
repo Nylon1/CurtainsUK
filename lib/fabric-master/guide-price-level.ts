@@ -1,4 +1,4 @@
-/** Customer guide only. Bounds use the existing approved x3 guide minor units. */
+/** Customer guide only. Adviser tiers retain their stated pound bounds when the guide multiplier changes. */
 export const GUIDE_PRICE_LEVELS = [
   { id: 'MID_RANGE', label: 'Mid Range', detail: 'Under £50 per metre', minimumMinor: 0, maximumMinor: 5_000 },
   { id: 'LUXURY', label: 'Luxury', detail: '£50 – £149.99 per metre', minimumMinor: 5_000, maximumMinor: 15_000 },

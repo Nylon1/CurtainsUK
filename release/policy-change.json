@@ -1,14 +1,18 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
   "previousRule": "Existing protected Browse and commerce tests cover governed filters and production pricing but not rapid selection races or illustrative curtain-pair totals.",
-  "newRule": "Add focused tests for rapid filter selection and chip removal, compact card identity and action evidence, and a 200 cm by 200 cm pencil-pleat standard-lined curtain pair calculated with the active production rules. Preserve all existing assertions, release checks and feature settings.",
-  "reason": "The owner requested fast and accurate Browse filters, a visual card journey retaining every destination, Fiona presentation, and an illustrative VAT-inclusive curtain-pair price. Added regression tests are protected repository surfaces.",
+  "newRule": "Add focused tests for rapid filter selection and chip removal, compact card identity and action evidence, and a 200 cm by 200 cm pencil-pleat standard-lined curtain pair calculated with the active production rules. Preserve all existing assertions, release checks and feature settings. Change the owner-approved Browse-only multiplier from trade times three to trade times two, preserving supplier selectors, rounding and MTM pricing, with reconciled SQL coverage. Rebalance visible guide bands for x2 while preserving exact legacy link bounds.",
+  "reason": "The owner requested fast and accurate Browse filters, a visual card journey retaining every destination, Fiona presentation, and an illustrative VAT-inclusive curtain-pair price. Added regression tests are protected repository surfaces. The owner also explicitly requested a times-two browsing guide.",
   "ownerApprovedDecision": "Implementation is authorised by the owner in this thread. Exact-head owner approval remains pending on the review PR, and this record does not itself approve protected merge or production publication.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
     "lib/fabric-master/__tests__/browse-card.test.ts",
     "lib/fabric-master/__tests__/browse-curtain-estimate.test.ts",
     "lib/storefront/__tests__/browse-selection.test.ts",
-    "release/policy-change.json"
+    "release/policy-change.json",
+    "lib/fabric-master/__tests__/browse-price-guide.test.ts",
+    "lib/fabric-master/__tests__/browse-guide-multiplier.test.ts",
+    "supabase/migrations/20261020124923_browse_guide_two_times_trade.sql",
+    "lib/storefront/__tests__/browse-loading.test.ts"
   ]
 }

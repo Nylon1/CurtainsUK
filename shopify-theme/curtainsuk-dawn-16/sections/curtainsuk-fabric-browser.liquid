@@ -39,8 +39,10 @@
     <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search" id="cuk-fabric-library-search">
       {% if template.suffix == 'browse-fabrics' %}
       <div class="cuk-browse-filter-help">
-        <p>Choose colours and a price range, then open More filters for pattern, texture and style. Select a choice again to remove it, or use Clear all.</p>
-        <p>Filters rely on available fabric information. Screen colours can vary, and prices are guides until you enter your curtain measurements and options.</p>
+        <p class="cuk-eyebrow">YOUR ROOM. YOUR PALETTE.</p>
+        <h2>Find your fabric.</h2>
+        <p>Start with a colour you love. Refine by price, pattern and texture.</p>
+        <details class="cuk-browse-filter-tips"><summary>How to use the filters</summary><p>Choose one or more colours, then a fabric price range. Open More filters for pattern, texture and style. Tap a selected choice to remove it, or use Clear all.</p><p>Matches depend on available fabric information. Screen colours can vary. Prices are guides until you choose your curtain measurements and options.</p></details>
       </div>
       {% endif %}
       <div class="cuk-field"><label for="CukFabricSearch-{{ section.id }}">Search fabrics</label><input id="CukFabricSearch-{{ section.id }}" type="search" name="query" placeholder="Search design, colourway, brand, collection or SKU"></div>

@@ -47,8 +47,8 @@ if(stage){
   }
   run(node,['scripts/room-visualiser-publication/preflight-staged.mjs',resolve(queue),resolve(ledger),report]);
   run(node,['scripts/build-room-visualiser.mjs']);
+  run(node,['scripts/room-visualiser-publication/record-pack.mjs']);
   run(node,['scripts/room-visualiser-publication/verify-assets.mjs']);
-  run(node,['--test','tests/room-visualiser/publication-policy.test.mjs']);
   packageTool('npm',['test']);packageTool('npx',['tsc','--noEmit']);packageTool('npm',['run','build']);
   const staged=JSON.parse(await readFile(resolve(ledger),'utf8')).staged;
   const stageReport=JSON.parse(await readFile(report,'utf8'));

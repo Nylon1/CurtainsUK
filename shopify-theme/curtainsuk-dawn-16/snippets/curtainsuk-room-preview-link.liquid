@@ -4,7 +4,7 @@
 {% enddoc %}
 {%- if fabric_id != blank -%}
   <span data-cuk-room-preview data-fabric-id="{{ fabric_id | escape }}">
-    <a class="cuk-profile__button cuk-profile__button--secondary" data-cuk-room-preview-link href="/pages/room-visualiser?fabric={{ fabric_id | url_encode }}" hidden style="display:none">See in room</a>
+    <a class="cuk-profile__button cuk-profile__button--secondary" data-cuk-room-preview-link href="/pages/room-visualiser?fabric={{ fabric_id | url_encode }}" hidden style="display:none">{{ 'curtainsuk_fabric_studio.room_link' | t }} <span aria-hidden="true">↗</span></a>
     <span class="cuk-hint" data-cuk-room-preview-status role="status">Checking room preview…</span>
   </span>
 {%- endif -%}

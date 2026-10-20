@@ -1,0 +1,60 @@
+{% doc %}
+  A lazy, exact-fabric Wave curtain and remote demonstration.
+  @param {string} fabric_id - The canonical Fabric Master identity.
+  @param {string} image - The original supplier image URL for the loading fallback.
+  @param {string} image_alt - Accessible description of the fabric image.
+  @param {string} make_curtains_url - Availability-guarded curtain configurator destination.
+{% enddoc %}
+<section class="cuk-profile__curtain-demo" id="cuk-curtain-demo" aria-labelledby="cuk-demo-title" data-profile-curtain
+  data-loading="{{ 'curtainsuk_fabric_studio.loading_caption' | t | escape }}"
+  data-unavailable="{{ 'curtainsuk_fabric_studio.unavailable_caption' | t | escape }}"
+  data-single="{{ 'curtainsuk_fabric_studio.single_caption' | t | escape }}"
+  data-floor="{{ 'curtainsuk_fabric_studio.floor_caption' | t | escape }}"
+  data-open="{{ 'curtainsuk_fabric_studio.opened' | t | escape }}"
+  data-closed="{{ 'curtainsuk_fabric_studio.closed' | t | escape }}"
+  data-stopped="{{ 'curtainsuk_fabric_studio.stopped' | t | escape }}"
+  data-opening="{{ 'curtainsuk_fabric_studio.opening' | t | escape }}"
+  data-closing="{{ 'curtainsuk_fabric_studio.closing' | t | escape }}">
+  <div class="cuk-profile__demo-head">
+    <div class="cuk-profile__section-head">
+      <p class="cuk-profile__eyebrow">{{ 'curtainsuk_fabric_studio.demo_kicker' | t }}</p>
+      <h2 id="cuk-demo-title">{{ 'curtainsuk_fabric_studio.demo_title' | t }}</h2>
+      <p>{{ 'curtainsuk_fabric_studio.demo_intro' | t }}</p>
+    </div>
+    <div class="cuk-profile__demo-light" role="group" aria-label="{{ 'curtainsuk_fabric_studio.light_label' | t }}">
+      <button type="button" data-preview-light="day" aria-pressed="true" disabled>{{ 'curtainsuk_fabric_studio.day' | t }}</button>
+      <button type="button" data-preview-light="evening" aria-pressed="false" disabled>{{ 'curtainsuk_fabric_studio.evening' | t }}</button>
+    </div>
+  </div>
+  <div class="cuk-profile__demo-layout">
+    <div class="cuk-profile__demo-stage">
+      <iframe title="{{ 'curtainsuk_fabric_studio.frame_title' | t }}" loading="lazy" referrerpolicy="same-origin" tabindex="-1" hidden></iframe>
+      <div class="cuk-profile__demo-poster" data-preview-poster>
+        <img src="{{ image | escape }}" alt="{{ image_alt | escape }}" width="1200" height="1200" loading="lazy">
+        <span>{{ 'curtainsuk_fabric_studio.poster_caption' | t }}</span>
+      </div>
+    </div>
+    <div class="cuk-profile__demo-controller">
+      <p class="cuk-profile__eyebrow">{{ 'curtainsuk_fabric_studio.remote_title' | t }}</p>
+      <p class="cuk-profile__remote-hint">{{ 'curtainsuk_fabric_studio.remote_hint' | t }}</p>
+      <div class="cuk-profile__remote" role="group" aria-label="{{ 'curtainsuk_fabric_studio.remote_label' | t }}">
+        <div class="cuk-profile__remote-indicator" aria-hidden="true"><i></i></div>
+        <button type="button" data-preview-command="open" disabled><svg viewBox="0 0 40 24" fill="none" aria-hidden="true"><path d="M20 3v18M11 5l-6 7 6 7M29 5l6 7-6 7" stroke="currentColor" stroke-width="1.5"/></svg><span>{{ 'curtainsuk_fabric_studio.open' | t }}</span></button>
+        <button type="button" data-preview-command="stop" disabled><svg viewBox="0 0 40 24" fill="none" aria-hidden="true"><rect x="13" y="5" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>{{ 'curtainsuk_fabric_studio.stop' | t }}</span></button>
+        <button type="button" data-preview-command="close" disabled><svg viewBox="0 0 40 24" fill="none" aria-hidden="true"><path d="M20 3v18M5 5l6 7-6 7M35 5l-6 7 6 7" stroke="currentColor" stroke-width="1.5"/></svg><span>{{ 'curtainsuk_fabric_studio.close' | t }}</span></button>
+        <span class="cuk-profile__remote-brand" aria-hidden="true">CurtainsUK</span>
+      </div>
+      <p class="cuk-profile__remote-state" data-preview-motion role="status">{{ 'curtainsuk_fabric_studio.closed' | t }}</p>
+      <p class="cuk-profile__remote-note">{{ 'curtainsuk_fabric_studio.remote_note' | t }}</p>
+    </div>
+  </div>
+  <div class="cuk-profile__demo-caption"><span data-preview-scale>{{ 'curtainsuk_fabric_studio.ready_caption' | t }}</span><span>{{ 'curtainsuk_fabric_studio.motor_caption' | t }}</span></div>
+  <p class="cuk-profile__demo-status" data-preview-status role="status">{{ 'curtainsuk_fabric_studio.loading_caption' | t }}</p>
+  <button class="cuk-profile__demo-retry" type="button" data-preview-retry hidden>{{ 'curtainsuk_fabric_studio.retry' | t }}</button>
+  <div class="cuk-profile__demo-actions">
+    <a class="cuk-profile__button cuk-profile__button--primary" data-cuk-make-curtains data-href="{{ make_curtains_url | escape }}" aria-disabled="true" tabindex="-1">{{ 'curtainsuk_fabric_studio.make' | t }} <span aria-hidden="true">↗</span></a>
+    <a class="cuk-profile__button cuk-profile__button--secondary" href="/pages/smart-track-studio">{{ 'curtainsuk_fabric_studio.track_link' | t }} <span aria-hidden="true">↗</span></a>
+    <a class="cuk-profile__demo-room-link" href="/pages/room-visualiser?fabric={{ fabric_id | url_encode }}" data-preview-room-link hidden>{{ 'curtainsuk_fabric_studio.room_link' | t }} <span aria-hidden="true">↗</span></a>
+  </div>
+  <details class="cuk-profile__scale" id="cuk-profile-scale"><summary>{{ 'curtainsuk_fabric_studio.scale_link' | t }} <span aria-hidden="true">+</span></summary><p>{{ 'curtainsuk_fabric_studio.scale_intro' | t }}</p><p>{{ 'curtainsuk_fabric_studio.scale_detail' | t }}</p></details>
+</section>

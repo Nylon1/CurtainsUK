@@ -11,8 +11,10 @@ import {resolveRendererProfile,v1AssignmentForId,type Fixed140Registry} from './
 export async function visualiserPage(request:Request,registry:Fixed140Registry=fixed140 as Fixed140Registry) {
   const url=new URL(request.url);
   const origin=['localhost','127.0.0.1'].includes(url.hostname)?url.origin:'https://curtainsuk-production-api.vercel.app';
-  const html=await readFile(join(process.cwd(),'lib/room-visualiser/runtime/rooms/customer.html'),'utf8');
-  return new Response(html.replace('__VISUALISER_ASSET_BASE__',`${origin}${build.assetBase}`).replace('__FIXED140_ASSET_BASE__',`${origin}${fixed140Build.assetBase}`),{
+  const profilePreview=url.searchParams.get('embed')==='fabric-profile';
+  const html=await readFile(join(process.cwd(),profilePreview
+    ? 'lib/room-visualiser/profile-curtain.html' : 'lib/room-visualiser/runtime/rooms/customer.html'),'utf8');
+  return new Response(html.replaceAll('__VISUALISER_ASSET_BASE__',`${origin}${build.assetBase}`).replaceAll('__FIXED140_ASSET_BASE__',`${origin}${fixed140Build.assetBase}`),{
     headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'},
   });
 }

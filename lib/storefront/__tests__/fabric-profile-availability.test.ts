@@ -6,12 +6,13 @@ import { runInNewContext } from 'node:vm';
 const theme = new URL('../../../shopify-theme/curtainsuk-dawn-16/', import.meta.url);
 const script = readFileSync(new URL('assets/curtainsuk-profile-availability.js', theme), 'utf8');
 const liquid = readFileSync(new URL('sections/curtainsuk-metaobject-fabric-discovery.liquid', theme), 'utf8');
+const preview = readFileSync(new URL('snippets/curtainsuk-profile-curtain.liquid', theme), 'utf8');
 const browseFallback = readFileSync(new URL('assets/curtainsuk-storefront.js', theme), 'utf8');
 const janeEntry = readFileSync(new URL('assets/curtainsuk-jane-fabric-entry.js', theme), 'utf8');
 const janeChat = readFileSync(new URL('assets/curtainsuk-jane-chat.js', theme), 'utf8');
 
 async function profile(body: unknown, statusCode = 200, purchaseControlsEnabled = 'true', linkId = 'pt-4271-147') {
-  const links = Array.from({ length: 8 }, () => ({
+  const links = Array.from({ length: 5 }, () => ({
     dataset: { href: `/pages/curtain-visualiser?fabric=${linkId}` },
     href: undefined as string | undefined,
     attributes: new Set(['aria-disabled', 'tabindex']),
@@ -58,8 +59,9 @@ test('only an exact retail-ready fabric unlocks every curtain link, with no cros
 });
 
 test('the canonical fabric profile guards every curtain link and passes its exact ID to Jane', () => {
-  assert.equal((liquid.match(/data-cuk-make-curtains/g) || []).length, 9); // Eight links plus the disabled-state style.
-  assert.doesNotMatch(liquid, /<a[^>]+\shref="{{ make_curtains_url/);
+  const combined = liquid + preview;
+  assert.equal((combined.match(/data-cuk-make-curtains/g) || []).length, 6); // Five links plus the disabled-state style.
+  assert.doesNotMatch(combined, /<a[^>]+\shref="{{ make_curtains_url/);
   assert.match(liquid, /jane_fabric={{ metaobject\.fabric_master_id\.value \| url_encode }}/);
   assert.match(liquid, /curtainsuk-profile-availability\.js/);
   assert.match(browseFallback, /fabric\.orderReady === true \? `<a class="cuk-button" href="\$\{configureUrl\}">Make Curtains in This Fabric<\/a>` : '<button type="button" class="cuk-button" disabled>/);

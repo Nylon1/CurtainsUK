@@ -5,6 +5,7 @@ import {createSessionCipher} from '@/lib/advisory/session-cipher.mjs';
 import {CloudSessionStore} from '@/lib/advisory/cloud-store.mjs';
 import {createSpecialistService} from '@/lib/advisory/specialist-service.mjs';
 import {createSpecialistOpenAI,createSpecialistMock} from '@/lib/advisory/specialist-provider.mjs';
+import {observeServiceResponse,recordOperationalError} from '@/lib/storefront/operational-error';
 
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
@@ -39,7 +40,7 @@ async function handle(request:Request){
   try{
     resources??=buildResources();
     const {rpc,cipher,mode,env,publicMode,dailyRun}=resources;
-    return createShopifySpecialistGateway({env,compiledCommit,
+    return observeServiceResponse(await createShopifySpecialistGateway({env,compiledCommit,
       take:owner=>new CloudSessionStore({rpc,cipher,ownerId:owner}).take(),
       execute:(owner,command)=>{
         const store=new CloudSessionStore({rpc,cipher,ownerId:owner});
@@ -47,8 +48,8 @@ async function handle(request:Request){
           mode==='mock'?createSpecialistMock():createSpecialistOpenAI({apiKey:env.ADVISORY_OPENAI_API_KEY,enabled:true,budget:store.budget(publicMode?await dailyRun!():env.ADVISORY_SPECIALISTS_EVALUATION_RUN_ID!,sessionId)})
         }).execute(owner,command);
       }
-    })(request);
-  }catch{return Response.json({error:'SPECIALIST_TEMPORARILY_UNAVAILABLE'},{status:503,headers:{'Cache-Control':'no-store'}});}
+    })(request),'/api/staging/shopify-proxy/specialists','SPECIALIST_SERVICE_UNAVAILABLE');
+  }catch{await recordOperationalError({routePath:'/api/staging/shopify-proxy/specialists',code:'SPECIALIST_TEMPORARILY_UNAVAILABLE',status:503,source:'HANDLED'});return Response.json({error:'SPECIALIST_TEMPORARILY_UNAVAILABLE'},{status:503,headers:{'Cache-Control':'no-store'}});}
 }
 
 export {handle as GET,handle as POST};

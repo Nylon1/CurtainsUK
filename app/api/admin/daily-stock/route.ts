@@ -8,6 +8,7 @@ import {
   PRIVATE_NO_STORE_HEADERS as headers,
 } from "@/lib/storefront/security/http";
 import { enforceStaffEndpointRateLimit } from "@/lib/storefront/security/staff-rate-limit";
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 export const dynamic = "force-dynamic";
 export async function GET() {
   if (!(await reviewStaffIdentity()))
@@ -31,12 +32,14 @@ export async function GET() {
     .select('supplier_id,started_at,completed_at,status,snapshots_received,snapshots_appended,error_code')
     .eq('adapter_id','sdg-trade-portal-full-refresh')
     .order('completed_at',{ascending:false}).limit(10);
-  return error || auditError || coverageError || refreshError
-    ? NextResponse.json(
+  if (error || auditError || coverageError || refreshError) {
+    await recordOperationalError({routePath:'/api/admin/daily-stock',code:'SNAPSHOT_STATUS_UNAVAILABLE',status:503,source:'HANDLED'});
+    return NextResponse.json(
         { error: "SNAPSHOT_STATUS_UNAVAILABLE" },
         { status: 503, headers },
-      )
-    : NextResponse.json(
+      );
+  }
+  return NextResponse.json(
         {
           runs: data,
           refreshEvents,
@@ -70,7 +73,7 @@ export async function POST(request: Request) {
         return NextResponse.json({error:"SUPPLIER_ADMIN_REQUIRED"},{status:403,headers});
       if (input.confirmedCurrentSource !== true) throw Error("CURRENT_SOURCE_REQUIRED");
       const {data,error} = await createSupplierServiceClient().rpc("materialize_daily_stock_for_operator", {p_operator: actor.id});
-      if (error) return NextResponse.json({error:"Refresh pending. Last successful snapshots remain unchanged. Retry after recovery."},{status:503,headers});
+      if (error) {await recordOperationalError({routePath:'/api/admin/daily-stock',code:'STOCK_REFRESH_UNAVAILABLE',status:503,source:'HANDLED'});return NextResponse.json({error:"Refresh pending. Last successful snapshots remain unchanged. Retry after recovery."},{status:503,headers});}
       return NextResponse.json({runs:data,message:"Approved observations were materialised. Newer same-day observations supersede the operational position; original evidence and order snapshots remain unchanged. Check coverage: execution does not mean a complete supplier refresh."},{headers});
     }
     if (

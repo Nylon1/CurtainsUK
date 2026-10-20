@@ -1,4 +1,5 @@
 import {createHostedRuntime} from '../../../../lib/advisory/hosted-runtime.mjs';
+import {observeServiceResponse} from '@/lib/storefront/operational-error';
 
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
@@ -14,5 +15,5 @@ export const POST=async request=>{
   headers.set('x-advisory-preview-key',process.env.ADVISORY_PREVIEW_KEY??'');
   headers.delete('cookie');
   const forwarded=new Request(request.url,{method:'POST',headers,body:request.body,duplex:'half'});
-  return trial.handle(forwarded);
+  return observeServiceResponse(await trial.handle(forwarded),'/api/advisory/review-chat','ADVISOR_REVIEW_UNAVAILABLE');
 };

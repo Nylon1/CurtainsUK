@@ -7,6 +7,7 @@ import {PRIVATE_NO_STORE_HEADERS} from '@/lib/storefront/security/http';
 import {readBoundedJson} from '@/lib/storefront/staging-api';
 import {stagingHciIntegration} from '@/lib/storefront/hci-integration-server';
 import {retailFabricDetail} from '@/lib/fabric-master/retail-repository';
+import {recordOperationalError} from '@/lib/storefront/operational-error';
 export const maxDuration=30;
 const response=(body:unknown,status=200,headers={})=>NextResponse.json(body,{status,headers:{...PRIVATE_NO_STORE_HEADERS,...headers}});
 async function access(request:Request){
@@ -18,10 +19,11 @@ async function access(request:Request){
  await consumeEndpointRateLimit(createHash('sha256').update('cuk-hci-owner:'+owner).digest('hex'),{limit:60,windowSeconds:60});
  return owner;
 }
-function failure(error:unknown){
+async function failure(error:unknown){
  const rate=endpointRateLimitResponse(error);if(rate)return response({error:rate.message},rate.status,rate.headers);
  const code=error instanceof Error?error.message:'';
  const status=code==='HCI_DISABLED'?404:code==='HCI_SESSION_REQUIRED'?401:code==='HCI_ORIGIN_DENIED'?403:code==='HCI_SESSION_CONFLICT'?409:503;
+ if(status>=500)await recordOperationalError({routePath:'/api/curtain-consultation',code:'FABRIC_INTELLIGENCE_UNAVAILABLE',status,source:'HANDLED'});
  return response({error:status===409?'This consultation is unavailable or changed. Start a new consultation.':'Your consultation is temporarily unavailable. You can browse fabrics independently.'},status);
 }
 export async function GET(request:Request){try{await access(request);const fabric=await retailFabricDetail(new URL(request.url).searchParams.get('fabric')??'');return response({fabric},fabric?200:404);}catch(error){return failure(error);}}

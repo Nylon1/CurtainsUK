@@ -22,6 +22,7 @@
 {%- assign character_display = character | remove: 'Character:' | strip -%}
 {%- assign make_curtains_url = '/pages/curtain-visualiser?fabric=' | append: metaobject.fabric_master_id.value -%}
 {{ 'curtainsuk-fabric-profile-studio.css' | asset_url | stylesheet_tag }}
+{{ 'curtainsuk-making-studio.css' | asset_url | stylesheet_tag }}
 
 <section class="cuk-profile" data-cuk-canonical-fabric-detail data-fabric-master-id="{{ metaobject.fabric_master_id.value | escape }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-engine-base="/apps/curtainsuk-decision">
   <div class="cuk-profile__wrap">
@@ -59,11 +60,14 @@
           <span><small>{{ 'curtainsuk_fabric_studio.jane_kicker' | t }}</small><strong>{{ 'curtainsuk_fabric_studio.jane_title' | t }}</strong><span>{{ 'curtainsuk_fabric_studio.jane_intro' | t }}</span></span>
           <span class="cuk-profile__jane-arrow" aria-hidden="true">↗</span>
         </a>
+        <a class="cuk-profile__hero-fi" href="#cuk-making-studio">Watch this fabric being made into curtains <span aria-hidden="true">↘</span></a>
         <a class="cuk-profile__hero-fi" href="#cuk-intelligence">Explore this fabric with Fabric Intelligence <span aria-hidden="true">↗</span></a>
       </div>
     </header>
     <div class="cuk-profile__trust" aria-label="Why CurtainsUK"><span>Made to measure</span><span>Sample before you decide</span><span>Typical 4–5 week lead time</span><span>UK service</span></div>
     <section class="cuk-profile__proposition" aria-labelledby="cuk-proposition-title"><div><p class="cuk-profile__eyebrow">{{ 'curtainsuk_fabric_studio.sale_kicker' | t }}</p><h2 id="cuk-proposition-title">{{ 'curtainsuk_fabric_studio.sale_title' | t }}</h2></div><div><p>{{ 'curtainsuk_fabric_studio.sale_intro' | t }}</p><a data-cuk-make-curtains data-href="{{ make_curtains_url | escape }}" aria-disabled="true" tabindex="-1">Make curtains with this fabric <span aria-hidden="true">↗</span></a><small>{{ 'curtainsuk_fabric_studio.sale_terms' | t }}</small></div></section>
+    {% assign making_fabric_name = metaobject.design.value | append: ' · ' | append: metaobject.colourway.value %}
+    {% render 'curtainsuk-making-studio', fabric_id: metaobject.fabric_master_id.value, fabric_name: making_fabric_name, make_curtains_url: make_curtains_url %}
     {% render 'curtainsuk-profile-curtain', fabric_id: metaobject.fabric_master_id.value, image: image, image_alt: metaobject.image_alt.value, make_curtains_url: make_curtains_url %}
   </div>
 
@@ -118,6 +122,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":{{ structured_title | json }},"sku":{{ 'cuk-sample:' | append: metaobject.fabric_master_id.value | json }},"brand":{"@type":"Brand","name":{{ metaobject.brand.value | json }}},"category":"Curtain Fabric Sample","color":{{ structured_colourway | json }}{% if structured_pattern != blank %},"pattern":{{ structured_pattern | json }}{% endif %}{% if structured_material != blank %},"material":{{ structured_material | json }}{% endif %},"image":[{{ image | json }}],"description":{{ structured_copy | json }},"url":{{ canonical | json }},"offers":{"@type":"Offer","url":{{ canonical | json }},"priceCurrency":"GBP","price":{{ sample_price | json }},"availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition"}}</script>
 <script src="{{ 'curtainsuk-sample-checkout.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-profile-curtain.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'curtainsuk-making-studio.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-room-preview-link.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-profile-availability.js' | asset_url }}" defer="defer"></script>
 <script>

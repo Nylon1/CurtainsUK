@@ -24,10 +24,17 @@ type Fabric = {id:string;horizontalRepeatMm?:number|null;verticalRepeatMm?:numbe
 export function withRoomPreview<T extends Fabric>(fabric:T) {
   const profile=resolveRendererProfile(fabric,assets.fabrics,fixed140 as Fixed140Registry,fixed100 as Fixed100Registry);
   const available=profile!=='NOT_ELIGIBLE';
+  const standardAsset=profile==='STANDARD'?assets.fabrics.find(asset=>asset.fabricId===fabric.id):null;
   const assignment=profile==='FIXED140_SINGLE_WIDTH_V1'
     ?v1AssignmentForId(fabric.id,assets.fabrics,fixed140 as Fixed140Registry)
     :profile==='FIXED140_SINGLE_WIDTH_100CM_V1'
       ?fixed100AssignmentForId(fabric.id,assets.fabrics,fixed140 as Fixed140Registry,fixed100 as Fixed100Registry)
       :null;
-  return {...fabric,roomPreview:{available,url:available?`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`:null,message:available?null:'Room preview not available for this fabric yet.',rendererProfile:profile,...(assignment?{assignment}:{})}};
+  // The making demonstration may display only the same approved cloth source
+  // already used by the visualiser. This is presentation media, not a cutting plan.
+  const source=standardAsset?.image ?? assignment?.sourceImage ?? null;
+  const worktableImageUrl=source && (/^\/room-visualiser\/(?:textures|fixed140)\/[a-f0-9]{64}\.(?:jpe?g|webp)$/.test(source)
+    ?`https://curtainsuk-production-api.vercel.app${source}`
+    :/^https:\/\/cdn\.shopify\.com\/s\/files\/1\/0256\/4551\/4861\/files\/cuk-fabric-[a-f0-9]{64}\.jpg$/.test(source)?source:null);
+  return {...fabric,roomPreview:{available,url:available?`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`:null,message:available?null:'Room preview not available for this fabric yet.',rendererProfile:profile,worktableImageUrl,...(assignment?{assignment}:{})}};
 }

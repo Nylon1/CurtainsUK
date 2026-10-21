@@ -1,0 +1,111 @@
+.cuk-profile .cuk-making{max-width:1160px;margin:38px auto 66px;padding:clamp(20px,3vw,36px);border:1px solid #d5d8cb;border-radius:22px;background:#f3f2e9;color:#183e35;box-shadow:0 22px 55px -42px #173d34a0;scroll-margin-top:76px}
+.cuk-profile .cuk-making__intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px}
+.cuk-profile .cuk-making__intro h2{font:clamp(34px,3.9vw,53px)/1.04 Georgia,serif;letter-spacing:-.035em;margin:6px 0 11px}
+.cuk-profile .cuk-making__intro p{font-size:14px;line-height:1.55;margin:0;max-width:55ch}
+.cuk-profile .cuk-making__intro .cuk-making__example{max-width:28ch;padding:13px 16px;border-left:2px solid #ad9665;color:#526557;font-size:12px}
+.cuk-profile .cuk-making__layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(285px,.65fr);gap:24px;align-items:stretch}
+.cuk-profile .cuk-making__table{position:relative;isolation:isolate;overflow:hidden;min-height:475px;border:1px solid #d2d4c7;border-radius:16px;background:repeating-linear-gradient(90deg,#e7e3d5 0 2px,transparent 2px 85px),linear-gradient(135deg,#efecdf,#d8d4c7);box-shadow:inset 0 0 70px #47594812,0 14px 28px -25px #102c2f82}
+.cuk-profile .cuk-making__table:before{content:"";position:absolute;inset:17px;border:1px solid #ffffff72;border-radius:9px;pointer-events:none}
+.cuk-profile .cuk-making__table-label{position:absolute;bottom:18px;left:20px;right:20px;z-index:7;color:#415548;font:11px Arial,sans-serif;text-align:center;background:#f8f6eddf;padding:8px;border-radius:5px}
+.cuk-profile .cuk-making__roll{position:absolute;z-index:4;top:20%;left:13%;width:74%;height:24px;border-radius:30px;background:linear-gradient(#fefdf3,#a4aa98 70%,#687363);box-shadow:0 9px 14px #3d514244;transition:top .65s,opacity .4s}
+.cuk-profile .cuk-making__roll span{display:block;width:16px;height:16px;margin:4px auto;border-radius:50%;background:#a4ab98;box-shadow:inset 0 1px 4px #4d5c51}
+.cuk-profile .cuk-making__cloth{position:absolute;inset:24% 15% 13%;overflow:hidden;border:4px solid #f7f5e8;background:#dbdacb;box-shadow:0 12px 17px #34463545;transform:scaleY(.02);transform-origin:top;opacity:0;transition:transform .85s cubic-bezier(.18,.7,.2,1),opacity .2s,scale .35s}
+.cuk-profile .cuk-making__cloth img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.cuk-profile .cuk-making__pieces{position:absolute;inset:24% 15% 13%;display:flex;justify-content:center;gap:3%;perspective:900px;transition:scale .35s;transform-origin:center}
+.cuk-profile .cuk-making__table.is-zoomed .cuk-making__cloth,.cuk-profile .cuk-making__table.is-zoomed .cuk-making__pieces,.cuk-profile .cuk-making__table.is-zoomed .cuk-making__lining{scale:1.12}
+.cuk-profile .cuk-making__piece{position:relative;width:47%;overflow:hidden;border:4px solid #f7f5e8;background:#dbdacb;box-shadow:0 12px 17px #34463545;transform:scaleY(.04);transform-origin:top;opacity:0;transition:transform .9s cubic-bezier(.18,.7,.2,1),opacity .3s,margin .7s,border-radius .5s}
+.cuk-profile .cuk-making__piece:before,.cuk-profile .cuk-making__piece:after{content:"";position:absolute;left:0;right:0;bottom:0;z-index:2;height:17px;background:#f6f0ddc4;border-top:1px solid #d7cbb0;transform:scaleY(0);transform-origin:bottom}
+.cuk-profile .cuk-making__piece:before{bottom:13px;height:0;border-top:2px dashed #766e5e;background:none;z-index:3;transform:scaleX(0);transform-origin:left}
+.cuk-profile .cuk-making__piece img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.cuk-profile .cuk-making__piece span{position:absolute;right:7px;bottom:7px;padding:4px 7px;background:#fcfaf1df;color:#254938;font:10px Arial,sans-serif;border-radius:3px}
+.cuk-profile .cuk-making__ruler{position:absolute;z-index:5;left:13%;right:13%;top:31%;display:flex;align-items:center;gap:8px;color:#173d33;font:11px Arial,sans-serif;opacity:0;transform:scaleX(.35);transform-origin:left;transition:opacity .3s,transform .7s}
+.cuk-profile .cuk-making__ruler i{flex:1;height:12px;border-left:2px solid;border-right:2px solid;border-top:2px solid}
+.cuk-profile .cuk-making__pattern{position:absolute;inset:37% 14% 20%;z-index:5;display:flex;justify-content:space-around;align-items:center;opacity:0;transition:opacity .35s}
+.cuk-profile .cuk-making__pattern i{width:42px;height:42px;border:2px dashed #fffceb;border-radius:50%;box-shadow:0 0 0 2px #375c4c99}
+.cuk-profile .cuk-making__cut{position:absolute;z-index:8;left:14%;right:14%;top:55%;height:2px;background:repeating-linear-gradient(90deg,#fff 0 10px,#4a604c 10px 17px);opacity:0;transform:scaleX(0);transform-origin:left}
+.cuk-profile .cuk-making__cut span{position:absolute;right:-3px;top:-27px;color:#173d33;font:32px Arial,sans-serif;text-shadow:0 1px 3px #fff}
+.cuk-profile .cuk-making__lining{position:absolute;z-index:5;left:22%;right:22%;bottom:18%;height:34%;transform:translateY(115%);opacity:0;transition:transform .6s,opacity .3s,scale .35s;color:#667066;font:12px Georgia,serif}
+.cuk-profile .cuk-making__lining-roll{position:absolute;z-index:2;top:0;left:-3%;right:-3%;height:19px;border-radius:15px;background:linear-gradient(#fffdf5,#b7b6aa 72%,#92978a);box-shadow:0 4px 9px #4b544b55}
+.cuk-profile .cuk-making__lining-cloth{position:absolute;inset:17px 0 0;display:grid;place-items:center;border:2px solid #faf8ed;background:linear-gradient(125deg,#f9f7ec,#e4e2d7);box-shadow:0 7px 17px #53604d5c;transform:scaleY(.03);transform-origin:top;transition:transform .7s}
+.cuk-profile .cuk-making__lining-panels{position:absolute;inset:17px 0 0;display:flex;gap:7px;opacity:0}
+.cuk-profile .cuk-making__lining-panels i{width:50%;border:2px solid #faf8ed;background:linear-gradient(125deg,#f9f7ec,#e4e2d7);box-shadow:0 7px 14px #53604d4d}
+.cuk-profile .cuk-making__lining-cut{position:absolute;z-index:3;left:0;right:0;top:57%;height:2px;background:repeating-linear-gradient(90deg,#4a604c 0 10px,#fff 10px 17px);opacity:0;transform:scaleX(0);transform-origin:left}
+.cuk-profile .cuk-making__lining-cut span{position:absolute;right:-5px;top:-27px;font:29px Arial,sans-serif;color:#173d33}
+.cuk-profile .cuk-making__hems{position:absolute;z-index:7;left:16%;right:16%;bottom:18%;height:22px;opacity:0;pointer-events:none}
+.cuk-profile .cuk-making__hems:after{content:"";position:absolute;top:-11px;left:0;width:2px;height:23px;background:#4f6155;box-shadow:1px 0 0 #f9f4e2;transform:rotate(-21deg)}
+.cuk-profile .cuk-making__heading{position:absolute;z-index:6;top:25%;left:16%;right:16%;height:30px;display:flex;justify-content:space-around;align-items:center;background:#f1ecdfdc;border:2px solid #fffaf1;opacity:0;transform:translateY(-30px);transition:opacity .4s,transform .55s}
+.cuk-profile .cuk-making__heading span{width:7%;height:22px;border-left:2px solid #53674b;border-right:2px solid #53674b;border-radius:50%}
+.cuk-profile .cuk-making__heading:before{content:"";position:absolute;z-index:2;top:-5px;left:0;width:3px;height:27px;background:#526452;transform:rotate(-20deg);opacity:0}
+.cuk-profile .cuk-making__heading:after{content:"";position:absolute;left:0;right:0;bottom:3px;border-bottom:2px dashed #5a6855;transform:scaleX(0);transform-origin:left}
+.cuk-profile .cuk-making__heading-cords{position:absolute;z-index:3;right:-14px;top:9px;width:60px;transform:scaleX(.1);transform-origin:left;opacity:0}
+.cuk-profile .cuk-making__heading-cords i{display:block;height:2px;margin-bottom:4px;background:#cabd95;box-shadow:0 1px 1px #5f6556}
+.cuk-profile .cuk-making__threads{position:absolute;z-index:8;top:31%;left:22%;right:21%;height:35px;opacity:0;pointer-events:none}
+.cuk-profile .cuk-making__threads i{position:absolute;top:0;width:20px;height:27px;border:2px solid #e8dfc2;border-left:0;border-bottom:0;border-radius:0 70% 0 0}
+.cuk-profile .cuk-making__threads i:first-child{left:0}.cuk-profile .cuk-making__threads i:nth-child(2){right:0;transform:scaleX(-1)}
+.cuk-profile .cuk-making__threads span{position:absolute;left:0;top:-20px;color:#234738;font:30px Arial,sans-serif}
+.cuk-profile .cuk-making__finish{position:absolute;z-index:8;top:37%;left:calc(50% - 33px);width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:#234d3d;color:white;font-size:32px;box-shadow:0 10px 22px #17413066;opacity:0;transform:scale(.6);transition:opacity .4s,transform .45s}
+.cuk-profile [data-making-stage="1"] .cuk-making__cloth,.cuk-profile [data-making-stage="2"] .cuk-making__cloth,.cuk-profile [data-making-stage="3"] .cuk-making__cloth{opacity:1;transform:scaleY(1)}
+.cuk-profile [data-making-stage="4"] .cuk-making__cloth{animation:cuk-making-cutaway 1.35s both}
+.cuk-profile [data-making-stage="4"] .cuk-making__piece{animation:cuk-making-panel .65s .82s both}
+.cuk-profile [data-making-stage="5"] .cuk-making__piece,.cuk-profile [data-making-stage="6"] .cuk-making__piece,.cuk-profile [data-making-stage="7"] .cuk-making__piece,.cuk-profile [data-making-stage="8"] .cuk-making__piece,.cuk-profile [data-making-stage="9"] .cuk-making__piece,.cuk-profile [data-making-stage="10"] .cuk-making__piece,.cuk-profile [data-making-stage="11"] .cuk-making__piece{opacity:1;transform:scaleY(1)}
+.cuk-profile [data-making-stage="0"] .cuk-making__roll{top:45%}
+.cuk-profile [data-making-stage="2"] .cuk-making__ruler,.cuk-profile [data-making-stage="3"] .cuk-making__pattern{opacity:1;transform:scaleX(1)}
+.cuk-profile [data-making-stage="4"] .cuk-making__cut{animation:cuk-making-shear 1s .12s both}
+.cuk-profile [data-making-stage="4"] .cuk-making__pieces{gap:7%}
+.cuk-profile [data-making-stage="5"] .cuk-making__lining,.cuk-profile [data-making-stage="6"] .cuk-making__lining,.cuk-profile [data-making-stage="7"] .cuk-making__lining,.cuk-profile [data-making-stage="8"] .cuk-making__lining{opacity:1;transform:translateY(0)}
+.cuk-profile [data-making-stage="5"] .cuk-making__lining-cloth{transform:scaleY(1)}
+.cuk-profile [data-making-stage="6"] .cuk-making__lining-cloth{animation:cuk-making-cutaway 1.25s both}
+.cuk-profile [data-making-stage="6"] .cuk-making__lining-cut{animation:cuk-making-shear .95s .1s both}
+.cuk-profile [data-making-stage="6"] .cuk-making__lining-panels{animation:cuk-making-panel .55s .75s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__lining-panels{opacity:1}
+.cuk-profile [data-making-stage="8"] .cuk-making__lining{animation:cuk-making-attach 1s both}
+.cuk-profile [data-making-stage="8"] .cuk-making__lining-panels{opacity:1}
+.cuk-profile [data-making-stage="7"] .cuk-making__piece:after{animation:cuk-making-fold .55s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__piece:before{animation:cuk-making-stitch .9s .45s both}
+.cuk-profile [data-making-stage="8"] .cuk-making__piece:after,.cuk-profile [data-making-stage="9"] .cuk-making__piece:after,.cuk-profile [data-making-stage="10"] .cuk-making__piece:after,.cuk-profile [data-making-stage="11"] .cuk-making__piece:after{transform:scaleY(1)}
+.cuk-profile [data-making-stage="8"] .cuk-making__piece:before,.cuk-profile [data-making-stage="9"] .cuk-making__piece:before,.cuk-profile [data-making-stage="10"] .cuk-making__piece:before,.cuk-profile [data-making-stage="11"] .cuk-making__piece:before{transform:scaleX(1)}
+.cuk-profile [data-making-stage="7"] .cuk-making__hems{opacity:1;animation:cuk-making-needle .9s .45s both}
+.cuk-profile [data-making-stage="9"] .cuk-making__heading,.cuk-profile [data-making-stage="10"] .cuk-making__heading,.cuk-profile [data-making-stage="11"] .cuk-making__heading{opacity:1;transform:translateY(0)}
+.cuk-profile [data-making-stage="9"] .cuk-making__heading:after{animation:cuk-making-stitch .65s .45s both}
+.cuk-profile [data-making-stage="9"] .cuk-making__heading:before{animation:cuk-making-tape-needle .65s .45s both}
+.cuk-profile [data-making-stage="9"] .cuk-making__heading-cords{animation:cuk-making-cord .7s 1.15s both}
+.cuk-profile [data-making-stage="9"] .cuk-making__piece{border-radius:12px 12px 5px 5px;animation:cuk-making-gather .7s 1.15s both}
+.cuk-profile [data-making-stage="10"] .cuk-making__piece,.cuk-profile [data-making-stage="11"] .cuk-making__piece{border-radius:12px 12px 5px 5px;transform:scaleX(.84)}
+.cuk-profile [data-making-stage="10"] .cuk-making__heading:after,.cuk-profile [data-making-stage="11"] .cuk-making__heading:after{transform:scaleX(1)}
+.cuk-profile [data-making-stage="10"] .cuk-making__heading-cords,.cuk-profile [data-making-stage="11"] .cuk-making__heading-cords{opacity:1;transform:scaleX(1)}
+.cuk-profile [data-making-stage="10"] .cuk-making__threads{animation:cuk-making-trim 1.15s both}
+.cuk-profile [data-making-stage="10"] .cuk-making__threads span{animation:cuk-making-scissors .95s both}
+.cuk-profile [data-making-stage="10"] .cuk-making__finish{animation:cuk-making-complete .4s 1s both}
+.cuk-profile [data-making-stage="11"] .cuk-making__finish{opacity:1;transform:scale(1)}
+.cuk-profile .cuk-making__panel{padding:16px 4px;display:flex;flex-direction:column;align-items:start}
+.cuk-profile .cuk-making__counter{font:600 10px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#947647;margin:0 0 14px}
+.cuk-profile .cuk-making__panel h3{font:clamp(28px,2.7vw,38px)/1.15 Georgia,serif;margin:0 0 12px}
+.cuk-profile .cuk-making__panel>p:not(.cuk-making__counter){font:13px/1.6 Arial,sans-serif;color:#4c5f54;margin:0 0 16px}
+.cuk-profile .cuk-making__retry{border:1px solid #9dab98;border-radius:7px;background:#fbfaf4;color:#234a3b;padding:10px 14px;margin-bottom:16px;cursor:pointer}
+.cuk-profile .cuk-making__retry[hidden]{display:none}
+.cuk-profile .cuk-making__progress{list-style:none;display:flex;flex-wrap:wrap;gap:5px;margin:auto 0 18px;padding:0}
+.cuk-profile .cuk-making__progress li{width:19px;height:6px;border-radius:7px;background:#c9d0c3}
+.cuk-profile .cuk-making__progress li.is-done{background:#719780}.cuk-profile .cuk-making__progress li.is-current{background:#234d3d;width:29px}
+.cuk-profile .cuk-making__controls{width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.cuk-profile .cuk-making__controls button{min-height:42px;border:1px solid #b9c5b9;border-radius:8px;background:#fbfaf4;color:#234a3b;padding:8px;font:600 11px Arial,sans-serif;cursor:pointer}
+.cuk-profile .cuk-making__controls .cuk-making__next{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;background:#214939;color:#fff;border-color:#214939;padding:12px 18px;font-size:14px;min-height:49px}
+.cuk-profile .cuk-making__controls button:disabled{opacity:.48;cursor:default}
+.cuk-profile .cuk-making__order{display:flex;justify-content:space-between;width:100%;margin-top:15px;padding:13px 0;border-bottom:1px solid #9bab9b;color:#234a3b;font:600 13px Arial,sans-serif;text-decoration:none}
+.cuk-profile .cuk-making__order[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.cuk-profile .cuk-making__note{font-size:11px!important;margin-top:12px!important}
+.cuk-profile .cuk-making :is(a,button):focus-visible{outline:3px solid #a48440;outline-offset:3px}
+@keyframes cuk-making-cutaway{0%,62%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1)}}
+@keyframes cuk-making-panel{0%{opacity:0;transform:scaleY(.7)}100%{opacity:1;transform:scaleY(1)}}
+@keyframes cuk-making-shear{0%{opacity:0;transform:scaleX(.02)}10%{opacity:1}100%{opacity:1;transform:scaleX(1)}}
+@keyframes cuk-making-fold{0%{transform:scaleY(0)}100%{transform:scaleY(1)}}
+@keyframes cuk-making-stitch{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes cuk-making-needle{0%{transform:translateX(0);opacity:1}95%{opacity:1}100%{transform:translateX(100%);opacity:0}}
+@keyframes cuk-making-attach{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-22%) scale(.86)}}
+@keyframes cuk-making-tape-needle{0%{opacity:1;left:0;transform:rotate(-20deg)}95%{opacity:1}100%{opacity:0;left:100%;transform:rotate(-20deg)}}
+@keyframes cuk-making-cord{0%{opacity:0;transform:scaleX(.1)}100%{opacity:1;transform:scaleX(1)}}
+@keyframes cuk-making-gather{0%{transform:scaleX(1)}100%{transform:scaleX(.84)}}
+@keyframes cuk-making-trim{0%,70%{opacity:1}100%{opacity:0}}
+@keyframes cuk-making-scissors{0%{left:0}100%{left:100%}}
+@keyframes cuk-making-complete{0%{opacity:0;transform:scale(.6)}100%{opacity:1;transform:scale(1)}}
+@media(max-width:800px){.cuk-profile .cuk-making__intro{display:block}.cuk-profile .cuk-making__intro .cuk-making__example{max-width:none;margin-top:16px}.cuk-profile .cuk-making__layout{display:block}.cuk-profile .cuk-making__table{min-height:360px}.cuk-profile .cuk-making__panel{padding:22px 0 0}.cuk-profile .cuk-making__progress{margin-top:10px}.cuk-profile .cuk-making__controls button{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.cuk-profile .cuk-making *{transition:none!important;animation:none!important;scroll-behavior:auto!important}.cuk-profile [data-making-stage="4"] .cuk-making__piece{opacity:1;transform:scaleY(1)}.cuk-profile [data-making-stage="4"] .cuk-making__cut,.cuk-profile [data-making-stage="6"] .cuk-making__lining-cut{opacity:1;transform:scaleX(1)}.cuk-profile [data-making-stage="6"] .cuk-making__lining-panels{opacity:1}.cuk-profile [data-making-stage="8"] .cuk-making__lining{opacity:0}.cuk-profile [data-making-stage="7"] .cuk-making__piece:after{transform:scaleY(1)}.cuk-profile [data-making-stage="7"] .cuk-making__piece:before,.cuk-profile [data-making-stage="9"] .cuk-making__heading:after{transform:scaleX(1)}.cuk-profile [data-making-stage="9"] .cuk-making__piece{transform:scaleX(.84)}.cuk-profile [data-making-stage="9"] .cuk-making__heading-cords{opacity:1;transform:scaleX(1)}.cuk-profile [data-making-stage="10"] .cuk-making__finish{opacity:1;transform:scale(1)}}

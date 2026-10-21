@@ -37,7 +37,7 @@ export async function GET(request: Request) {
         .order('occurred_at', { ascending: true }).limit(250) : Promise.resolve({ data: [], error: null }),
       db.from('customer_journey_events').select(columns).eq('kind', 'PERFORMANCE')
         .order('occurred_at', { ascending: false }).limit(30),
-      db.from('customer_visit_alerts').select('journey_id', { count: 'exact', head: true }).neq('state', 'SENT'),
+      db.from('customer_hourly_digests').select('hour_start', { count: 'exact', head: true }).neq('state', 'SENT'),
       db.from('customer_operational_errors').select('error_id,occurred_at,request_id,route_path,code,status,release,source,diagnostic')
         .gte('occurred_at', periodStart).order('occurred_at', { ascending: false }).limit(50),
       db.from('customer_operational_errors').select('error_id', { count: 'exact', head: true }).gte('occurred_at', periodStart),
@@ -48,7 +48,8 @@ export async function GET(request: Request) {
       visits: visits.data ?? [], timeline: timeline.data ?? [], slow: slow.data ?? [], selectedJourney: journey,
       retentionDays: 30, pendingEmailAlerts: alerts.count ?? 0,
       serviceErrors: serviceErrors.data ?? [], serviceErrorCount: serviceErrorCount.count ?? 0,
-      emailAlertsConfigured: Boolean(process.env.RESEND_API_KEY && process.env.CURTAINSUK_VISIT_ALERT_EMAIL && process.env.CURTAINSUK_VISIT_ALERT_FROM) }, { headers: PRIVATE_NO_STORE_HEADERS });
+      emailAlertsConfigured: Boolean(process.env.CRON_SECRET && process.env.RESEND_API_KEY
+        && process.env.CURTAINSUK_VISIT_ALERT_EMAIL && process.env.CURTAINSUK_VISIT_ALERT_FROM) }, { headers: PRIVATE_NO_STORE_HEADERS });
   } catch {
     console.error('CURTAINSUK_ERROR_CENTRE_QUERY_FAILED');
     return NextResponse.json({ error: 'ERROR_CENTRE_UNAVAILABLE' }, { status: 503, headers: PRIVATE_NO_STORE_HEADERS });

@@ -14,7 +14,9 @@
       const report = (reason) => document.dispatchEvent(new CustomEvent('curtainsuk:room-frame-error', { detail: { reason } }));
       const reason = () => {
         try {
-          return frame.contentDocument?.URL === 'about:blank' ? 'ROOM_FRAME_ABOUT_BLANK' : 'ROOM_FRAME_NOT_READY';
+          const child = frame.contentDocument;
+          if (!child) return 'ROOM_FRAME_INACCESSIBLE';
+          return child.URL === 'about:blank' ? 'ROOM_FRAME_ABOUT_BLANK' : 'ROOM_FRAME_NOT_READY';
         } catch { return 'ROOM_FRAME_INACCESSIBLE'; }
       };
       const fail = (code) => {

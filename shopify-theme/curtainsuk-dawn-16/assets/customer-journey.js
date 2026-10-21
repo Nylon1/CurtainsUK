@@ -279,7 +279,7 @@
     const reason = event.detail?.reason;
     if (!roomFrameReasons.has(reason)) return;
     record('ERROR', 'BROWSER_ERROR', reason, null, '/pages/room-visualiser', {
-      type: reason === 'ROOM_FRAME_LOAD_ERROR' ? 'ResourceError' : 'TimeoutError',
+      type: ['ROOM_FRAME_LOAD_ERROR', 'ROOM_FRAME_CHILD_ERROR'].includes(reason) ? 'ResourceError' : 'TimeoutError',
       message: 'MESSAGE_UNAVAILABLE', script: null, line: null, column: null,
       origin: 'APP', feature: 'ROOM_VISUALISER', messageText: null, frames: [],
       reasonCode: reason, request: { method: 'GET', route: '/apps/curtainsuk-decision/room-visualiser' },

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 type Event = { event_id: string; journey_id: string; request_id: string; occurred_at: string; kind: string;
   page_path: string; name: string; code: string | null; status: number | null; release: string; browser: string; channel: string | null;
   error_detail: { type: string; message: string; script: string | null; line: number | null; column: number | null;
-    origin: string; feature: string; messageText?: string | null;
+    origin: string; feature: string; messageText?: string | null; reasonCode?: string | null;
     frames?: { script: string | null; line: number; column: number; origin: string }[];
     request?: { method: string; route: string } | null } | null };
 type Summary = { visits: number; journeys: number; pageViews: number; cartAdds: number;
@@ -47,13 +47,16 @@ const origins: Record<string, string> = {
 function errorDetail(event: Event) {
   const detail = event.error_detail;
   if (!detail) return <span className="text-[#708276]">Technical detail unavailable for this earlier event.</span>;
+  const origin = detail.origin === 'THEME' && /^shop_events_listener-[a-f0-9]+\.js$/.test(detail.script || '')
+    ? 'SHOPIFY' : detail.origin;
   const position = detail.script ? `${detail.script}${detail.line ? `:${detail.line}${detail.column ? `:${detail.column}` : ''}` : ''}` : '';
   return <span className="block text-[#566c60]">
     <span className="block font-medium">{detail.type}: {detail.messageText || messages[detail.message] || 'Technical message unavailable'}</span>
-    <span className="block text-xs">{position || origins[detail.origin] || 'Source unavailable'} · {features[detail.feature] || 'General page'}</span>
+    <span className="block text-xs">{position || origins[origin] || 'Source unavailable'} · {features[detail.feature] || 'General page'}</span>
     {detail.request && <span className="block break-all font-mono text-xs">{detail.request.method} {detail.request.route}{event.status ? ` → ${event.status}` : ''}</span>}
+    {detail.reasonCode && <span className="block font-mono text-xs">Reason: {detail.reasonCode}</span>}
     {detail.frames && detail.frames.length > 1 && <span className="mt-1 block text-xs">Stack: {detail.frames.map((frame) => `${frame.script || origins[frame.origin] || 'Unknown'}:${frame.line}:${frame.column}`).join(' → ')}</span>}
-    {position && <span className="block text-xs">{origins[detail.origin] || 'Source unavailable'}</span>}
+    {position && <span className="block text-xs">{origins[origin] || 'Source unavailable'}</span>}
   </span>;
 }
 

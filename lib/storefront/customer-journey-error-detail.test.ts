@@ -15,9 +15,11 @@ test('storefront sends useful browser and API details without leaking messages o
     href: 'https://www.curtainsuk.com/pages/fabric-library?email=private@example.com' };
   const window = {
     Shopify: { customerPrivacy: { analyticsProcessingAllowed: () => true } },
-    fetch: (url: string, options: { body: string }) => {
+    fetch: (url: string, options: { body: string; method?: string }) => {
       if (url.endsWith('/journey')) { requests.push(options.body); return Promise.resolve({ ok: true, status: 200 }); }
       if (url.endsWith('/jane')) return Promise.reject(new TypeError('Failed to fetch'));
+      if (url.endsWith('/price')) return Promise.resolve({ ok: false, status: 400,
+        headers: { get: () => 'CONFIGURATION_INVALID' } });
       return Promise.resolve({ ok: false, status: 503 });
     },
     addEventListener: (name: string, callback: (event: unknown) => void) => { listeners[name] = callback; },
@@ -41,7 +43,7 @@ test('storefront sends useful browser and API details without leaking messages o
     script: 'curtainsuk-browse-filters.js', line: 42, column: 7, origin: 'THEME', feature: 'FABRICS',
     messageText: "Cannot read properties of undefined (reading '[value]')",
     frames: [{ script: 'curtainsuk-browse-filters.js', line: 42, column: 7, origin: 'THEME' },
-      { script: 'other.js', line: 11, column: 2, origin: 'THEME' }], request: null });
+      { script: 'other.js', line: 11, column: 2, origin: 'THEME' }], reasonCode: null, request: null });
   await window.fetch('https://curtainsuk-production-api.vercel.app/api/curtain-consultation-premium?email=private@example.com', { body: '' });
   await Promise.resolve();
   assert.equal(requests.length, 2);
@@ -49,13 +51,24 @@ test('storefront sends useful browser and API details without leaking messages o
   const apiEvents = parseJourneyBatch(JSON.parse(requests[1]), 'Chrome/120');
   assert.deepEqual(apiEvents[0].error_detail, { type: 'HttpError', message: 'HTTP_SERVER_ERROR',
     script: null, line: null, column: null, origin: 'APP', feature: 'FABRIC_INTELLIGENCE',
-    messageText: null, frames: [], request: { method: 'GET', route: '/api/curtain-consultation-premium' } });
+    messageText: null, frames: [], reasonCode: null, request: { method: 'GET', route: '/api/curtain-consultation-premium' } });
   await assert.rejects(window.fetch('https://curtainsuk-production-api.vercel.app/api/staging/shopify-proxy/jane', { body: '' }), /Failed to fetch/);
   await Promise.resolve();
   const rejected = parseJourneyBatch(JSON.parse(requests[2]), 'Chrome/120');
   assert.deepEqual(rejected[0].error_detail, { type: 'NetworkError', message: 'NETWORK_REQUEST_FAILED',
     script: null, line: null, column: null, origin: 'APP', feature: 'JANE_ADVISOR',
-    messageText: 'Failed to fetch', frames: [], request: { method: 'GET', route: '/api/staging/shopify-proxy/jane' } });
+    messageText: 'Failed to fetch', frames: [], reasonCode: null, request: { method: 'GET', route: '/api/staging/shopify-proxy/jane' } });
+  await window.fetch('https://www.curtainsuk.com/apps/curtainsuk-decision/price', { method: 'POST', body: '' });
+  await Promise.resolve();
+  const price = parseJourneyBatch(JSON.parse(requests[3]), 'Chrome/120');
+  assert.equal(price[0].error_detail?.reasonCode, 'CONFIGURATION_INVALID');
+  assert.deepEqual(price[0].error_detail?.request,
+    { method: 'POST', route: '/apps/curtainsuk-decision/price' });
+  const shopifyError = new TypeError('Failed to fetch');
+  shopifyError.stack = 'TypeError: Failed to fetch\n at https://www.curtainsuk.com/cdn/shop/t/123/assets/shop_events_listener-4e26a9ce.js:1:7379';
+  listeners.unhandledrejection({ reason: shopifyError });
+  const shopify = parseJourneyBatch(JSON.parse(requests[4]), 'Chrome/120');
+  assert.equal(shopify[0].error_detail?.origin, 'SHOPIFY');
 });
 
 test('server rejects free-form error detail that could contain customer data', () => {

@@ -110,18 +110,6 @@
     let loading = false;
     let plan = null;
     let sourceImage = null;
-    root.querySelectorAll('[data-making-change]').forEach(link => link.addEventListener('click', event => {
-      event.preventDefault();
-      const destination = new URL('/pages/fabric-library', location.origin);
-      destination.searchParams.set('view', 'browse-fabrics');
-      destination.searchParams.set('makingStudio', '1');
-      destination.searchParams.set('makingStep', String(step + 1));
-      if (/^\/pages\/fabric\/[a-z0-9-]+$/i.test(location.pathname)) destination.searchParams.set('makingReturn', location.pathname);
-      const preview = new URLSearchParams(location.search).get('preview_theme_id');
-      if (/^\d+$/.test(preview || '')) destination.searchParams.set('preview_theme_id', preview);
-      destination.hash = 'cuk-making-fabric-chooser';
-      location.assign(destination.href);
-    }));
     const markers = copy.steps.map((item, index) => {
       const li = document.createElement('li');
       const button = document.createElement('button');

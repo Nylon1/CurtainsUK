@@ -109,7 +109,7 @@
     return null;
   }
 
-  function apiDetail(message, route, method, cause = null) {
+  function apiDetail(message, route, method, cause = null, reasonCode = null) {
     const frames = stackFrames(cause);
     const first = frames[0];
     let causeMessage = null;
@@ -117,7 +117,7 @@
     return { type: message === 'NETWORK_REQUEST_FAILED' ? 'NetworkError' : 'HttpError', message,
       script: first?.script || null, line: first?.line || null, column: first?.column || null,
       origin: first?.origin || 'APP', feature: apiFeature(route),
-      messageText: redactedMessage(causeMessage), frames, request: safeApiRoute(route)
+      messageText: redactedMessage(causeMessage), frames, reasonCode, request: safeApiRoute(route)
         ? { method: /^(GET|POST|PUT|PATCH|DELETE)$/.test(method) ? method : 'GET', route: safeApiRoute(route) } : null };
   }
 
@@ -160,6 +160,8 @@
       const own = url.hostname === location.hostname || /^(?:curtainsuk-production-api|curtainsuk-staging-api|curtainsuk-staging-gateway)\.vercel\.app$/.test(url.hostname);
       const theme = /^curtainsuk-[a-z0-9._-]{1,65}\.js$/.test(name) || name === 'customer-journey.js';
       const script = (own || url.hostname === 'cdn.shopify.com') && /^[a-z0-9][a-z0-9._-]{0,79}\.js$/.test(name) ? name : null;
+      // Shopify serves its platform listener from the shop hostname, alongside theme assets.
+      if (own && /^shop_events_listener-[a-f0-9]+\.js$/.test(name)) return { origin: 'SHOPIFY', script };
       if (theme && (own || url.hostname === 'cdn.shopify.com')) return { origin: 'THEME', script };
       if (own) return { origin: url.hostname === location.hostname ? 'THEME' : 'APP', script };
       if (url.hostname === 'cdn.shopify.com' || url.hostname.endsWith('.shopify.com')) return { origin: 'SHOPIFY', script: null };
@@ -207,7 +209,7 @@
     return { type: name, message: asset ? 'ASSET_LOAD_FAILED' : safeMessage(message),
       script: first?.script || source?.script || null, line: first?.line || integer(locationHint?.line),
       column: first?.column || integer(locationHint?.column), origin: first?.origin || source?.origin || 'UNKNOWN',
-      feature: feature(), messageText: asset ? null : redactedMessage(message), frames: frames.slice(0, 3), request: null };
+      feature: feature(), messageText: asset ? null : redactedMessage(message), frames: frames.slice(0, 3), reasonCode: null, request: null };
   }
 
   function record(kind, name, code = null, status = null, pagePath = path(location.href), detail = null) {
@@ -291,10 +293,12 @@
         const started = performance.now();
         void result.then((response) => {
           if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
+          const diagnostic = response.headers?.get?.('X-CurtainsUK-Diagnostic-Code');
+          const reasonCode = safeApiRoute(nativePath) && /^[A-Z][A-Z0-9_]{1,63}$/.test(diagnostic || '') ? diagnostic : null;
           if (response.status >= 500) record('ERROR', 'API_FAILURE', 'API_SERVER_ERROR', response.status,
-            path(location.href), apiDetail('HTTP_SERVER_ERROR', nativePath, method));
+            path(location.href), apiDetail('HTTP_SERVER_ERROR', nativePath, method, null, reasonCode));
           else if ([400, 404, 409].includes(response.status)) record('ERROR', 'API_FAILURE', 'API_REQUEST_REJECTED',
-            response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath, method));
+            response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath, method, null, reasonCode));
         }, (error) => {
           if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
           record('ERROR', 'API_FAILURE', 'API_NETWORK_ERROR', null, path(location.href),

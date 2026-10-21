@@ -58,7 +58,7 @@ export type JourneyErrorFrame = { script: string | null; line: number; column: n
 export type JourneyErrorDetail = {
   type: string; message: string; script: string | null; line: number | null; column: number | null;
   origin: string; feature: string;
-  messageText?: string | null; frames?: JourneyErrorFrame[];
+  messageText?: string | null; frames?: JourneyErrorFrame[]; reasonCode?: string | null;
   request?: { method: string; route: string } | null;
 };
 
@@ -87,7 +87,8 @@ function parseErrorDetail(value: unknown, kind: unknown): JourneyErrorDetail | n
   const detail = object(value);
   const keys = detail && Object.keys(detail).sort().join(',');
   if (!detail || kind !== "ERROR" || !['column,feature,line,message,origin,script,type',
-    'column,feature,frames,line,message,messageText,origin,request,script,type'].includes(keys ?? '')
+    'column,feature,frames,line,message,messageText,origin,request,script,type',
+    'column,feature,frames,line,message,messageText,origin,reasonCode,request,script,type'].includes(keys ?? '')
     || !ERROR_TYPES.has(String(detail.type)) || !MESSAGE_CODES.has(String(detail.message))
     || !ORIGINS.has(String(detail.origin)) || !FEATURES.has(String(detail.feature))
     || (detail.script !== null && (typeof detail.script !== 'string' || !SCRIPT.test(detail.script)))
@@ -96,6 +97,8 @@ function parseErrorDetail(value: unknown, kind: unknown): JourneyErrorDetail | n
     throw Error("JOURNEY_INPUT_INVALID");
   }
   if ('messageText' in detail) {
+    if ('reasonCode' in detail && detail.reasonCode !== null
+      && (typeof detail.reasonCode !== 'string' || !CODE.test(detail.reasonCode))) throw Error("JOURNEY_INPUT_INVALID");
     if (detail.messageText !== null && (typeof detail.messageText !== 'string'
       || sanitizeErrorMessage(detail.messageText) !== detail.messageText)) throw Error("JOURNEY_INPUT_INVALID");
     if (!Array.isArray(detail.frames) || detail.frames.length > 3 || !detail.frames.every((value) => {

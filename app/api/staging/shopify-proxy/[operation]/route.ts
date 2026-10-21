@@ -41,7 +41,19 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 
-function errorResponse(error: unknown, fallback: string) {
+function priceDiagnosticCode(error: unknown): string {
+  const message = error instanceof Error ? error.message : '';
+  if (message === 'Window type or fabric is unavailable') return 'FABRIC_OR_WINDOW_UNAVAILABLE';
+  if (message === 'MTM_HARDWARE_MEASUREMENT_BASIS_INCOMPATIBLE') return 'MEASUREMENT_BASIS_INCOMPATIBLE';
+  if (message === 'Curtain configuration is incomplete or invalid') return 'CONFIGURATION_INVALID';
+  if (message === 'Width and drop must be valid numbers') return 'MEASUREMENT_INVALID';
+  if (message === 'STAGING_REQUEST_INVALID_JSON') return 'REQUEST_INVALID_JSON';
+  if (message === 'STAGING_REQUEST_TOO_LARGE') return 'REQUEST_TOO_LARGE';
+  if (message === 'MTM_AUTOMATED_OPENING_UNAVAILABLE') return 'OPENING_UNAVAILABLE';
+  return 'PRICE_REJECTION_UNCLASSIFIED';
+}
+
+function errorResponse(error: unknown, fallback: string, operation?: string) {
   const rateLimit = endpointRateLimitResponse(error);
   const code = error instanceof Error ? error.message : "";
   // Keep operational diagnostics private and bounded; never log request bodies or supplier values.
@@ -73,9 +85,13 @@ function errorResponse(error: unknown, fallback: string) {
   } else if (replayUnavailable) {
     replayHeader["X-CurtainsUK-Rejection-Reason"] = "REPLAY_PROTECTION_UNAVAILABLE";
   }
+  const diagnosticHeader: Record<string, string> = {};
+  if (operation === 'price' && status === 400) {
+    diagnosticHeader['X-CurtainsUK-Diagnostic-Code'] = priceDiagnosticCode(error);
+  }
   return NextResponse.json({ error: message }, {
     status,
-    headers: { ...PUBLIC_NO_STORE_HEADERS, ...(rateLimit?.headers ?? {}), ...replayHeader },
+    headers: { ...PUBLIC_NO_STORE_HEADERS, ...(rateLimit?.headers ?? {}), ...replayHeader, ...diagnosticHeader },
   });
 }
 
@@ -221,7 +237,7 @@ export async function POST(request: Request, context: { params: Promise<{ operat
     }
     throw new Error("SHOPIFY_PROXY_METHOD_DENIED");
   } catch (error) {
-    const response = errorResponse(error, "Unable to process this request");
+    const response = errorResponse(error, "Unable to process this request", (await context.params).operation);
     if (response.status >= 500) {
       const raw = (await context.params).operation;
       await recordOperationalError({ routePath: isShopifyProxyOperation(raw) ? `/api/staging/shopify-proxy/${raw}` : '/api/staging/shopify-proxy',

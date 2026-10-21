@@ -33,7 +33,6 @@ import { serveNailaCatalog } from '@/lib/storefront/naila/catalog-route';
 import { NAILA_PREPARED_UNAVAILABLE, NAILA_PREPARED_MESSAGE } from '@/lib/fabric-master/naila-prepared-browse';
 import { parseJourneyBatch } from '@/lib/storefront/customer-journey';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
-import { sendVisitAlert } from '@/lib/storefront/visit-alert';
 import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const runtime = "nodejs";
@@ -181,15 +180,6 @@ export async function POST(request: Request, context: { params: Promise<{ operat
         console.error("CURTAINSUK_JOURNEY_PERSIST_FAILED", requestId);
         await recordOperationalError({ routePath: '/api/staging/shopify-proxy/journey', code: 'JOURNEY_PERSIST_FAILED', status: 503, source: 'HANDLED' });
         return new NextResponse(null, { status: 503, headers: PUBLIC_NO_STORE_HEADERS });
-      }
-      for (const event of events) {
-        if (event.name === 'VISIT_START') {
-          try { await sendVisitAlert(event); }
-          catch {
-            console.error('CURTAINSUK_VISIT_ALERT_FAILED', requestId);
-            await recordOperationalError({ routePath: '/api/staging/shopify-proxy/journey', code: 'VISIT_ALERT_CLAIM_FAILED', status: 503, source: 'HANDLED' });
-          }
-        }
       }
       return new NextResponse(null, { status: 204, headers: PUBLIC_NO_STORE_HEADERS });
     }

@@ -1,0 +1,5 @@
+{
+  "crons": [
+    { "path": "/api/cron/error-centre-digest", "schedule": "5,15,25,35,45,55 * * * *" }
+  ]
+}

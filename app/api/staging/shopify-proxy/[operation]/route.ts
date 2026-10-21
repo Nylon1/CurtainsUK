@@ -34,6 +34,7 @@ import { NAILA_PREPARED_UNAVAILABLE, NAILA_PREPARED_MESSAGE } from '@/lib/fabric
 import { parseJourneyBatch } from '@/lib/storefront/customer-journey';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 import { recordOperationalError } from '@/lib/storefront/operational-error';
+import { priceRejectionDetails } from '@/lib/storefront/price-rejection';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -71,13 +72,14 @@ function errorResponse(error: unknown, fallback: string, operation?: string) {
     : code.startsWith("SHOPIFY_PROXY_")
         ? 401
         : 400);
+  const priceRejection = operation === 'price' && status === 400 ? priceRejectionDetails(error) : null;
   const message = rateLimit?.message ?? (replayStatus
     ? "This signed request has already been processed."
     : replayUnavailable
       ? "This service is temporarily unavailable."
       : code.startsWith("SHOPIFY_PROXY_")
         ? "Request authentication failed."
-        : customerSafeApiError(error, fallback));
+        : priceRejection?.customerMessage ?? customerSafeApiError(error, fallback));
   const replayHeader: Record<string, string> = {};
   if (replayStatus) {
     replayHeader["X-CurtainsUK-Rejection-Reason"] = "REPLAY_DETECTED";
@@ -86,7 +88,7 @@ function errorResponse(error: unknown, fallback: string, operation?: string) {
   }
   const diagnosticHeader: Record<string, string> = {};
   if (operation === 'price' && status === 400) {
-    diagnosticHeader['X-CurtainsUK-Diagnostic-Code'] = priceDiagnosticCode(error);
+    diagnosticHeader['X-CurtainsUK-Diagnostic-Code'] = priceRejection?.diagnosticCode ?? priceDiagnosticCode(error);
   }
   return NextResponse.json({ error: message }, {
     status,

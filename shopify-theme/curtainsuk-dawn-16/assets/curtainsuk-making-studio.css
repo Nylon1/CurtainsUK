@@ -4,11 +4,11 @@
 .cuk-profile .cuk-making__intro p{font-size:14px;line-height:1.6;margin:0;max-width:62ch}
 .cuk-profile .cuk-making__example{flex:none;padding:10px 14px;border:1px solid #d8c9a7;border-radius:24px;color:#655b3e;font-size:11px;letter-spacing:.04em}
 .cuk-profile .cuk-making__layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:clamp(22px,3vw,38px);align-items:start}
-.cuk-profile .cuk-making__visual{margin:0;min-width:0;position:sticky;top:90px}
+.cuk-profile .cuk-making__visual{margin:0;min-width:0;position:sticky;top:60px;align-self:start;z-index:2}
 .cuk-profile .cuk-making__table{position:relative;isolation:isolate;overflow:hidden;border:1px solid #d3d3c3;border-radius:16px;background:radial-gradient(ellipse at 30% 10%,#f4eee0,#e3dccb);box-shadow:inset 0 0 48px #b09e7926,0 8px 28px -20px #233f32}
 .cuk-profile .cuk-making__table-top{position:absolute;z-index:1;top:22px;left:26px;right:26px;display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#63705e;pointer-events:none}
 .cuk-profile .cuk-making__table-top span:first-child{font-weight:700;color:#2f4d3f}
-.cuk-profile .cuk-making__scene{display:block;width:100%;height:auto;aspect-ratio:760/620;overflow:hidden}
+.cuk-profile .cuk-making__scene{display:block;width:100%;height:auto;max-height:clamp(180px,calc(100dvh - 230px),620px);aspect-ratio:760/620;overflow:hidden}
 .cuk-profile .cuk-making__scene text{font:14px Arial,sans-serif;fill:#365343;letter-spacing:.01em}
 .cuk-profile .cuk-making__dimension{fill:none;stroke:#6c806e;stroke-width:1.5}
 .cuk-profile .cuk-making__guide{fill:none;stroke:#fffaf0;stroke-width:2;stroke-dasharray:5 4}
@@ -125,7 +125,8 @@
 .cuk-profile .cuk-making :is(a,button,input):focus-visible{outline:3px solid #a48440;outline-offset:3px}
 .cuk-profile .cuk-making__table.is-still *{animation:none!important;transition:none!important}
 @media(max-width:950px){.cuk-profile .cuk-making__intro{display:block}.cuk-profile .cuk-making__example{display:inline-block;margin-top:16px}.cuk-profile .cuk-making__layout{grid-template-columns:minmax(0,1.2fr) minmax(270px,1fr)}.cuk-profile .cuk-making__table-top{left:18px;right:18px;top:15px;font-size:9px}.cuk-profile .cuk-making__table-top span:last-child{display:none}.cuk-profile .cuk-making__footer{align-items:start}.cuk-profile .cuk-making__order{flex:1;font-size:11px}}
-@media(max-width:720px){.cuk-profile .cuk-making{padding:18px;margin-top:26px;border-radius:16px}.cuk-profile .cuk-making__layout{display:block}.cuk-profile .cuk-making__visual{position:static}.cuk-profile .cuk-making__intro{margin-bottom:19px}.cuk-profile .cuk-making__intro h2{font-size:34px}.cuk-profile .cuk-making__panel{padding-top:20px}.cuk-profile .cuk-making__panel>[data-making-description]{min-height:0}.cuk-profile .cuk-making__visual figcaption{min-height:0;font-size:11px}.cuk-profile .cuk-making__progress button{min-height:44px}.cuk-profile .cuk-making__footer{display:block}.cuk-profile .cuk-making__order{margin-top:15px;font-size:12px}.cuk-profile .cuk-making__table-top{font-size:8px;top:13px}.cuk-profile .cuk-making__example{font-size:10px}.cuk-profile .cuk-making__motion{font-size:10px}.cuk-profile .cuk-making__secondary button{font-size:12px}}
+@media(max-width:720px){.cuk-profile .cuk-making{padding:18px;margin-top:26px;border-radius:16px}.cuk-profile .cuk-making__layout{display:block}.cuk-profile .cuk-making__visual{top:72px;padding-bottom:6px;border-radius:16px;background:#f6f5ee;box-shadow:0 12px 18px -20px #173d35}.cuk-profile .cuk-making__scene{max-height:min(28dvh,230px)}.cuk-profile .cuk-making__intro{margin-bottom:19px}.cuk-profile .cuk-making__intro h2{font-size:34px}.cuk-profile .cuk-making__panel{padding-top:20px}.cuk-profile .cuk-making__panel>[data-making-description]{min-height:0}.cuk-profile .cuk-making__visual figcaption{min-height:0;font-size:11px}.cuk-profile .cuk-making__progress button{min-height:44px}.cuk-profile .cuk-making__footer{display:block}.cuk-profile .cuk-making__order{margin-top:15px;font-size:12px}.cuk-profile .cuk-making__table-top{font-size:8px;top:13px}.cuk-profile .cuk-making__example{font-size:10px}.cuk-profile .cuk-making__motion{font-size:10px}.cuk-profile .cuk-making__secondary button{font-size:12px}}
+@media(max-height:480px){.cuk-profile .cuk-making__visual{position:static}.cuk-profile .cuk-making__scene{max-height:none}}
 .cuk-profile .cuk-making__intro-actions{display:flex;flex-direction:column;align-items:center;gap:14px;flex:none}
 .cuk-profile .cuk-making__footer{display:block;text-align:center;padding-top:32px}
 .cuk-profile .cuk-making__footer p{margin:0 auto}

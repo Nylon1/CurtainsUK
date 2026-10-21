@@ -1,0 +1,129 @@
+.cuk-profile .cuk-making{max-width:1280px;margin:46px auto 64px;padding:clamp(18px,3vw,36px);border:1px solid #d6d9cd;border-radius:24px;background:#f6f5ee;color:#183e35;box-shadow:0 18px 50px -40px #173d3490;scroll-margin-top:82px}
+.cuk-profile .cuk-making__intro{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:28px}
+.cuk-profile .cuk-making__intro h2{font:clamp(32px,3.6vw,52px)/1.06 Georgia,serif;letter-spacing:-.035em;margin:9px 0 12px}
+.cuk-profile .cuk-making__intro p{font-size:14px;line-height:1.6;margin:0;max-width:62ch}
+.cuk-profile .cuk-making__example{flex:none;padding:10px 14px;border:1px solid #d8c9a7;border-radius:24px;color:#655b3e;font-size:11px;letter-spacing:.04em}
+.cuk-profile .cuk-making__layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:clamp(22px,3vw,38px);align-items:start}
+.cuk-profile .cuk-making__visual{margin:0;min-width:0;position:sticky;top:90px}
+.cuk-profile .cuk-making__table{position:relative;isolation:isolate;overflow:hidden;border:1px solid #d3d3c3;border-radius:16px;background:radial-gradient(ellipse at 30% 10%,#f4eee0,#e3dccb);box-shadow:inset 0 0 48px #b09e7926,0 8px 28px -20px #233f32}
+.cuk-profile .cuk-making__table-top{position:absolute;z-index:1;top:22px;left:26px;right:26px;display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#63705e;pointer-events:none}
+.cuk-profile .cuk-making__table-top span:first-child{font-weight:700;color:#2f4d3f}
+.cuk-profile .cuk-making__scene{display:block;width:100%;height:auto;aspect-ratio:760/620;overflow:hidden}
+.cuk-profile .cuk-making__scene text{font:14px Arial,sans-serif;fill:#365343;letter-spacing:.01em}
+.cuk-profile .cuk-making__dimension{fill:none;stroke:#6c806e;stroke-width:1.5}
+.cuk-profile .cuk-making__guide{fill:none;stroke:#fffaf0;stroke-width:2;stroke-dasharray:5 4}
+.cuk-profile .cuk-making__stitch{fill:none;stroke:#94753e;stroke-width:2;stroke-dasharray:3 4}
+.cuk-profile .cuk-making__visual figcaption{min-height:42px;margin:15px 8px 0;font-size:12px;line-height:1.65;color:#526450;text-align:center}
+.cuk-profile .cuk-making__motion{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;font-size:11px;color:#5f6e5b;cursor:pointer}
+.cuk-profile .cuk-making__motion input{width:17px;height:17px;accent-color:#244d3d}
+.cuk-profile .cuk-making,.cuk-profile .cuk-making *{box-sizing:border-box}
+.cuk-profile .cuk-making__table{scroll-margin-top:82px}
+.cuk-profile [data-making-drawing] .cuk-making__measure-line{fill:none;stroke:#6e806c;stroke-width:.45}
+.cuk-profile [data-making-drawing] .cuk-making__cut-guide{fill:none;stroke:#f9f2d8;stroke-width:1.2;stroke-dasharray:2 2}
+.cuk-profile .cuk-making__seam{fill:none;stroke:#96743c;stroke-width:.5;stroke-dasharray:.7 1}
+.cuk-profile .cuk-making__cut-stroke{fill:none;stroke:#405a48;stroke-width:.5;stroke-dasharray:1;stroke-dashoffset:0;animation:cuk-making-cut-mark 3s .2s linear both}
+.cuk-profile :is([data-making-stage="2"],[data-making-stage="4"]) .cuk-making__unroll{clip-path:inset(0);animation:cuk-making-unroll-cloth 1.6s cubic-bezier(.2,.65,.2,1) both}
+.cuk-profile :is([data-making-stage="2"],[data-making-stage="4"]) .cuk-making__roll-feed{animation:cuk-making-feed 1.6s both}
+.cuk-profile .cuk-making__vertical-tape{clip-path:inset(0);animation:cuk-making-extend-tape 1.3s 1.2s both}
+.cuk-profile :is([data-making-stage="3"],[data-making-stage="5"]) .cuk-making__vertical-tape{animation:none}
+.cuk-profile .cuk-making__shears-travel{opacity:0;transform:translateX(var(--cut-travel));animation:cuk-making-shear-across 3s .2s linear both}
+.cuk-profile .cuk-making__scissor-blade-a{transform-origin:0 0;animation:cuk-making-snip-a .3s .2s 10}
+.cuk-profile .cuk-making__scissor-blade-b{transform-origin:0 0;animation:cuk-making-snip-b .3s .2s 10}
+.cuk-profile :is([data-making-stage="3"],[data-making-stage="5"]) .cuk-making__cut-piece{transform:translateY(7px);animation:cuk-making-release .6s 3.2s both}
+.cuk-profile [data-making-stage="6"] .cuk-making__lining-arrive{animation:cuk-making-attach-lining 1.5s both}
+.cuk-profile [data-making-stage="6"] .cuk-making__side-seam-left{clip-path:inset(0);animation:cuk-making-sew-vertical 1.5s 1.5s both}
+.cuk-profile [data-making-stage="6"] .cuk-making__side-seam-right{clip-path:inset(0);animation:cuk-making-sew-vertical 1.5s 3s both}
+.cuk-profile .cuk-making__sew-side-one,.cuk-profile .cuk-making__sew-side-two{opacity:0;transform:translateY(var(--sew-length))}
+.cuk-profile .cuk-making__sew-side-one{animation:cuk-making-sew-side 1.5s 1.5s linear both}
+.cuk-profile .cuk-making__sew-side-two{animation:cuk-making-sew-side 1.5s 3s linear both}
+.cuk-profile .cuk-making__needle-bob{animation:cuk-making-pierce .14s 50}
+.cuk-profile [data-making-stage="7"] .cuk-making__lining-peel{animation:cuk-making-lift-lining 3.7s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__lining-hem-reveal{animation:cuk-making-show-lining-hem .01s 3.7s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__face-edge{transform:scaleY(var(--face-final-turn));animation:cuk-making-turn-face 1.2s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__lining-edge{transform:scaleY(var(--lining-final-turn));animation:cuk-making-turn-lining 1.2s 3.7s both}
+.cuk-profile .cuk-making__face-fold{transform-box:fill-box;transform-origin:bottom}
+.cuk-profile .cuk-making__lining-fold-new{transform-box:fill-box;transform-origin:bottom}
+.cuk-profile [data-making-stage="7"] .cuk-making__face-fold{animation:cuk-making-double-fold 1.2s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__lining-fold-new{animation:cuk-making-double-fold 1.2s 3.7s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__face-hem-stitch{clip-path:inset(0);animation:cuk-making-stitch-line 1.2s 1.8s both}
+.cuk-profile [data-making-stage="7"] .cuk-making__lining-hem-stitch{clip-path:inset(0);animation:cuk-making-stitch-line 1.2s 5s both}
+.cuk-profile .cuk-making__sew-hem,.cuk-profile .cuk-making__sew-lining-hem,.cuk-profile .cuk-making__sew-tape-one,.cuk-profile .cuk-making__sew-tape-two{opacity:0;transform:translateX(calc(var(--cut-travel) - 2px))}
+.cuk-profile .cuk-making__sew-hem{animation:cuk-making-sew-across 1.2s 1.8s linear both}
+.cuk-profile .cuk-making__sew-lining-hem{animation:cuk-making-sew-short 1.2s 5s linear both}
+.cuk-profile .cuk-making__new-tape{animation:cuk-making-lay-tape .8s both}
+.cuk-profile .cuk-making__tape-stitch-one{clip-path:inset(0);animation:cuk-making-stitch-line 1.5s .8s both}
+.cuk-profile .cuk-making__tape-stitch-two{clip-path:inset(0);animation:cuk-making-stitch-line 1.5s 2.3s both}
+.cuk-profile .cuk-making__sew-tape-one{animation:cuk-making-sew-short 1.5s .8s linear both}
+.cuk-profile .cuk-making__sew-tape-two{animation:cuk-making-sew-short 1.5s 2.3s linear both}
+.cuk-profile .cuk-making__new-gather{transform-origin:var(--half-width) 0;transform:scaleX(.5);animation:cuk-making-gather-new 3s .3s both}
+.cuk-profile .cuk-making__new-folds{opacity:1;animation:cuk-making-reveal-folds 3s .3s both}
+.cuk-profile .cuk-making__pull-cords{transform-origin:calc(var(--cord-start) - 5px) 0;transform:translateX(calc(var(--half-width) * -.5 + 2.5px)) scaleX(2.5);animation:cuk-making-cord-draw 3s .3s both}
+.cuk-profile .cuk-making__dress-panel{animation:cuk-making-settle 1.1s 2.6s both}
+.cuk-profile .cuk-making__hook-lift{animation:cuk-making-hook .8s 2.1s both}
+.cuk-profile .cuk-making__thread-ends{opacity:0;animation:cuk-making-trim-ends 2.2s both}
+.cuk-profile .cuk-making__finishing-scissors{opacity:0;animation:cuk-making-finish-snips 2.2s both}
+@keyframes cuk-making-unroll-cloth{from{clip-path:inset(0 0 98% 0)}to{clip-path:inset(0)}}
+@keyframes cuk-making-feed{0%,100%{translate:0 0}40%{translate:0 1px}}
+@keyframes cuk-making-extend-tape{from{clip-path:inset(98% 0 0 0)}to{clip-path:inset(0)}}
+@keyframes cuk-making-cut-mark{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes cuk-making-shear-across{0%{opacity:1;transform:translateX(0)}96%{opacity:1}100%{opacity:0;transform:translateX(var(--cut-travel))}}
+@keyframes cuk-making-snip-a{0%,100%{rotate:0deg}50%{rotate:-14deg}}
+@keyframes cuk-making-snip-b{0%,100%{rotate:0deg}50%{rotate:14deg}}
+@keyframes cuk-making-release{from{transform:translateY(0)}to{transform:translateY(7px)}}
+@keyframes cuk-making-attach-lining{from{transform:translate(23px,-20px);opacity:.55}to{transform:translate(0);opacity:1}}
+@keyframes cuk-making-sew-vertical{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+@keyframes cuk-making-sew-side{0%{opacity:0;transform:translateY(0)}1%,96%{opacity:1}100%{opacity:0;transform:translateY(var(--sew-length))}}
+@keyframes cuk-making-pierce{0%,100%{translate:0 -1px}50%{translate:0 1px}}
+@keyframes cuk-making-turn-face{0%{transform:scaleY(1)}48%{transform:scaleY(var(--face-first-turn))}100%{transform:scaleY(var(--face-final-turn))}}
+@keyframes cuk-making-lift-lining{0%,100%{transform:scaleY(1)}12%,80%{transform:scaleY(.68)}}
+@keyframes cuk-making-turn-lining{0%{transform:scaleY(1)}48%{transform:scaleY(var(--lining-first-turn))}100%{transform:scaleY(var(--lining-final-turn))}}
+@keyframes cuk-making-show-lining-hem{from{opacity:0}to{opacity:1}}
+@keyframes cuk-making-double-fold{0%{transform:translateY(var(--fold-turn)) scaleY(-1)}48%{transform:translateY(var(--fold-turn)) scaleY(1)}65%{transform:translateY(calc(var(--fold-turn) / 2)) scaleY(-.5)}100%{transform:translateY(0) scaleY(1)}}
+@keyframes cuk-making-stitch-line{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@keyframes cuk-making-sew-across{0%{opacity:0;transform:translateX(0)}1%,96%{opacity:1}100%{opacity:0;transform:translateX(calc(var(--cut-travel) - 2px))}}
+@keyframes cuk-making-sew-short{0%{opacity:0;transform:translateX(0)}1%,96%{opacity:1}100%{opacity:0;transform:translateX(var(--sew-short-width))}}
+@keyframes cuk-making-lay-tape{from{clip-path:inset(0 100% 0 0);translate:0 -9px}to{clip-path:inset(0);translate:0 0}}
+@keyframes cuk-making-gather-new{from{transform:scaleX(1)}to{transform:scaleX(.5)}}
+@keyframes cuk-making-reveal-folds{from{opacity:0}to{opacity:1}}
+@keyframes cuk-making-cord-draw{from{transform:translateX(0) scaleX(1)}to{transform:translateX(calc(var(--half-width) * -.5 + 2.5px)) scaleX(2.5)}}
+@keyframes cuk-making-trim-ends{0%,78%{opacity:1}100%{opacity:0}}
+@keyframes cuk-making-finish-snips{0%,25%{opacity:1;transform:translateX(0)}70%{opacity:1;transform:translateX(12px)}100%{opacity:0;transform:translateX(12px)}}
+@keyframes cuk-making-hook{from{translate:0 3px;opacity:0}to{translate:0 0;opacity:1}}
+@keyframes cuk-making-settle{0%{translate:0 0}40%{translate:0 1px}100%{translate:0 0}}
+.cuk-profile .cuk-making__panel{min-width:0;padding:4px 0}
+.cuk-profile .cuk-making__counter{font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;color:#68715d}
+.cuk-profile .cuk-making__panel h3{font:clamp(27px,2.5vw,35px)/1.12 Georgia,serif;letter-spacing:-.02em;margin:0 0 14px;color:#203f32}
+.cuk-profile .cuk-making__panel>[data-making-description]{font-size:13px;line-height:1.65;color:#546552;margin:0 0 17px;min-height:64px}
+.cuk-profile .cuk-making__facts{margin:0 0 22px;border-block:1px solid #d9ddce;font-size:11px}
+.cuk-profile .cuk-making__facts div{display:flex;justify-content:space-between;gap:12px;padding:10px 0}
+.cuk-profile .cuk-making__facts div+div{border-top:1px solid #e3e5db}
+.cuk-profile .cuk-making__facts dt{color:#61715d}.cuk-profile .cuk-making__facts dd{margin:0;text-align:right;font-weight:600}
+.cuk-profile .cuk-making__controls button,.cuk-profile .cuk-making__order{font-family:inherit;cursor:pointer}
+.cuk-profile .cuk-making__next{display:flex;align-items:center;justify-content:space-between;gap:15px;width:100%;min-height:52px;border:1px solid #224c3c;border-radius:9px;padding:14px 18px;background:#244d3d;color:#fffdf4;font-size:13px;font-weight:600;box-shadow:0 6px 14px -10px #203f32;transition:background .2s,transform .2s}
+.cuk-profile .cuk-making__next:hover:not(:disabled){background:#173b2e;transform:translateY(-1px)}
+.cuk-profile .cuk-making__secondary{display:grid;grid-template-columns:.65fr 1fr 1fr;gap:8px;margin:8px 0 20px}
+.cuk-profile .cuk-making__secondary button{min-height:44px;border:1px solid #d1d8c8;border-radius:8px;background:#fffdf480;color:#355440;padding:8px;font-size:11px}
+.cuk-profile .cuk-making__secondary button:hover:not(:disabled),.cuk-profile .cuk-making__secondary button[aria-pressed="true"]{background:#e5e9db;border-color:#9ba98e}
+.cuk-profile .cuk-making__progress{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;list-style:none;margin:0;padding:12px 0;border-block:1px solid #d9ddce}
+.cuk-profile .cuk-making__progress li{margin:0;padding:0;min-width:0}
+.cuk-profile .cuk-making__progress button{width:100%;min-height:38px;text-align:left;border:0;border-radius:6px;background:transparent;color:#74806a;font:11px/1.35 Arial,sans-serif;padding:8px 7px;cursor:pointer}
+.cuk-profile .cuk-making__progress .is-done button{color:#365640}
+.cuk-profile .cuk-making__progress .is-current button{background:#e0e6d6;color:#214d36;font-weight:700;box-shadow:inset 3px 0 #54724e}
+.cuk-profile .cuk-making__progress button:hover:not(:disabled){background:#e8ebdf;color:#204b36}
+.cuk-profile .cuk-making__skip{min-height:44px;margin-top:8px;padding:8px 0;border:0;background:none;color:#476043;font:11px Arial,sans-serif;text-underline-offset:4px;text-decoration:underline;cursor:pointer}
+.cuk-profile .cuk-making__status{margin:3px 0 0;font-size:10px;line-height:1.5;color:#68715f}
+.cuk-profile .cuk-making__retry{min-height:44px;margin-top:8px;padding:10px;border:1px solid #b5c0a7;border-radius:6px;background:#fff9e8;color:#244d3d;cursor:pointer}
+.cuk-profile .cuk-making__footer{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:28px;padding:23px 0 0;border-top:1px solid #d5dbc9}
+.cuk-profile .cuk-making__footer h3{font:24px Georgia,serif;margin:0 0 7px;color:#203f32}
+.cuk-profile .cuk-making__footer p{font-size:12px;line-height:1.6;color:#62715c;max-width:58ch;margin:0}
+.cuk-profile .cuk-making__order{display:flex;align-items:center;justify-content:space-between;gap:22px;min-height:48px;flex:none;padding:12px 17px;border:1px solid #b6a476;border-radius:8px;background:#e5d5b3;color:#273e2c;text-decoration:none;font-size:12px;font-weight:600;transition:background .2s}
+.cuk-profile .cuk-making__order:hover{background:#dcc599}
+.cuk-profile .cuk-making button:disabled,.cuk-profile .cuk-making [aria-disabled="true"]{opacity:.45;cursor:default}
+.cuk-profile .cuk-making__order[aria-disabled="true"]{pointer-events:none}
+.cuk-profile .cuk-making__note{font-size:10px;line-height:1.7;color:#687460;margin:16px 0 0}
+.cuk-profile .cuk-making [hidden]{display:none!important}
+.cuk-profile .cuk-making :is(a,button,input):focus-visible{outline:3px solid #a48440;outline-offset:3px}
+.cuk-profile .cuk-making__table.is-still *{animation:none!important;transition:none!important}
+@media(max-width:950px){.cuk-profile .cuk-making__intro{display:block}.cuk-profile .cuk-making__example{display:inline-block;margin-top:16px}.cuk-profile .cuk-making__layout{grid-template-columns:minmax(0,1.2fr) minmax(270px,1fr)}.cuk-profile .cuk-making__table-top{left:18px;right:18px;top:15px;font-size:9px}.cuk-profile .cuk-making__table-top span:last-child{display:none}.cuk-profile .cuk-making__footer{align-items:start}.cuk-profile .cuk-making__order{flex:1;font-size:11px}}
+@media(max-width:720px){.cuk-profile .cuk-making{padding:18px;margin-top:26px;border-radius:16px}.cuk-profile .cuk-making__layout{display:block}.cuk-profile .cuk-making__visual{position:static}.cuk-profile .cuk-making__intro{margin-bottom:19px}.cuk-profile .cuk-making__intro h2{font-size:34px}.cuk-profile .cuk-making__panel{padding-top:20px}.cuk-profile .cuk-making__panel>[data-making-description]{min-height:0}.cuk-profile .cuk-making__visual figcaption{min-height:0;font-size:11px}.cuk-profile .cuk-making__progress button{min-height:44px}.cuk-profile .cuk-making__footer{display:block}.cuk-profile .cuk-making__order{margin-top:15px;font-size:12px}.cuk-profile .cuk-making__table-top{font-size:8px;top:13px}.cuk-profile .cuk-making__example{font-size:10px}.cuk-profile .cuk-making__motion{font-size:10px}.cuk-profile .cuk-making__secondary button{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.cuk-profile .cuk-making *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

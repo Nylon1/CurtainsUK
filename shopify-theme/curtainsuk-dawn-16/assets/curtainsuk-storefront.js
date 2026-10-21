@@ -522,7 +522,7 @@
           // Persist the successful selection for reloads. Live controls use the
           // current form, so pending responses never restore a removed choice.
           if (!visualiser) {
-            const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (key !== "window" && key !== "preview_theme_id" && key !== "view") address.searchParams.delete(key);
+            const address = new URL(location.href); for (const key of [...address.searchParams.keys()]) if (!["window", "preview_theme_id", "view", "makingStudio", "makingStep", "makingReturn"].includes(key)) address.searchParams.delete(key);
             for (const [key, value] of new FormData(filters)) if (String(value).trim()) address.searchParams.set(key, String(value).trim());
             address.searchParams.set("page", String(page)); history.replaceState(null, "", address);
           }

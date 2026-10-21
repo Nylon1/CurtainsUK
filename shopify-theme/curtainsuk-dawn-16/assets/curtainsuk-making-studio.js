@@ -110,69 +110,18 @@
     let loading = false;
     let plan = null;
     let sourceImage = null;
-    let picker = null;
-    let pickerFrame = null;
-    let pickerStatus = null;
-    let pickerToken = null;
-    let pickerTimeout = null;
-    let pickerReady = false;
-    let selection = null;
-    let opener = null;
-    const closePicker = () => picker?.close();
     root.querySelectorAll('[data-making-change]').forEach(link => link.addEventListener('click', event => {
-      if (!window.HTMLDialogElement || !crypto.randomUUID) return;
-      event.preventDefault(); opener = link;
-      if (!picker) {
-        picker = document.createElement('dialog'); picker.className = 'cuk-making__picker';
-        picker.setAttribute('aria-label', copy.picker_title);
-        const head = document.createElement('div'); head.className = 'cuk-making__picker-head';
-        const title = document.createElement('h2'); title.textContent = copy.picker_title;
-        const close = document.createElement('button'); close.type = 'button'; close.textContent = copy.picker_close;
-        close.addEventListener('click', closePicker); head.append(title, close);
-        pickerStatus = document.createElement('p'); pickerStatus.className = 'cuk-making__picker-status'; pickerStatus.setAttribute('role', 'status');
-        const fallback = document.createElement('a'); fallback.href = link.href; fallback.target = '_blank'; fallback.rel = 'noopener'; fallback.textContent = copy.picker_fallback;
-        const bar = document.createElement('div'); bar.className = 'cuk-making__picker-bar'; bar.append(pickerStatus, fallback);
-        pickerFrame = document.createElement('iframe'); pickerFrame.title = copy.picker_title;
-        pickerToken = crypto.randomUUID();
-        const destination = new URL('/pages/fabric-library', location.origin);
-        destination.searchParams.set('view', 'browse-fabrics'); destination.searchParams.set('makingPicker', pickerToken);
-        const themePreview = new URLSearchParams(location.search).get('preview_theme_id');
-        if (/^\d+$/.test(themePreview || '')) destination.searchParams.set('preview_theme_id', themePreview);
-        pickerFrame.src = destination.href;
-        picker.append(head, bar, pickerFrame); root.append(picker);
-        pickerStatus.textContent = copy.picker_loading;
-        pickerTimeout = setTimeout(() => { pickerStatus.textContent = copy.picker_slow; }, 20000);
-        picker.addEventListener('close', () => { selection?.abort(); selection = null; document.documentElement.classList.remove('cuk-making-picker-open'); opener?.focus({ preventScroll: true }); });
-      }
-      if (pickerReady) pickerStatus.textContent = copy.picker_hint;
-      document.documentElement.classList.add('cuk-making-picker-open'); picker.showModal();
+      event.preventDefault();
+      const destination = new URL('/pages/fabric-library', location.origin);
+      destination.searchParams.set('view', 'browse-fabrics');
+      destination.searchParams.set('makingStudio', '1');
+      destination.searchParams.set('makingStep', String(step + 1));
+      if (/^\/pages\/fabric\/[a-z0-9-]+$/i.test(location.pathname)) destination.searchParams.set('makingReturn', location.pathname);
+      const preview = new URLSearchParams(location.search).get('preview_theme_id');
+      if (/^\d+$/.test(preview || '')) destination.searchParams.set('preview_theme_id', preview);
+      destination.hash = 'cuk-making-fabric-chooser';
+      location.assign(destination.href);
     }));
-    window.addEventListener('message', async event => {
-      if (!picker || event.source !== pickerFrame?.contentWindow || event.origin !== location.origin || event.data?.token !== pickerToken) return;
-      if (event.data.type === 'cuk:making-picker-ready') { pickerReady = true; clearTimeout(pickerTimeout); pickerStatus.textContent = copy.picker_hint; return; }
-      if (!picker.open) return;
-      if (event.data.type === 'cuk:making-picker-close') { closePicker(); return; }
-      if (event.data.type !== 'cuk:making-fabric' || !idPattern.test(event.data.fabricId || '')) return;
-      selection?.abort(); const attempt = new AbortController(); selection = attempt;
-      const timeout = setTimeout(() => attempt.abort(), 15000);
-      pickerStatus.textContent = copy.picker_checking;
-      try {
-        const response = await fetch(`/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&fabric=${encodeURIComponent(event.data.fabricId)}`, { credentials: 'same-origin', headers: { Accept: 'application/json' }, signal: attempt.signal });
-        if (!response.ok) throw Error('Catalogue unavailable');
-        const { fabric } = await response.json();
-        if (fabric?.id !== event.data.fabricId || fabric.roomPreview?.available !== true || !approvedImage.test(fabric.roomPreview?.worktableImageUrl || '')) throw Error('Render unavailable');
-        makePlan(fabric.roomPreview.worktableSource);
-        const destination = new URL(fabric.fabricProfileUrl);
-        if (destination.origin !== 'https://www.curtainsuk.com' || !/^\/pages\/fabric\/[a-z0-9-]+$/i.test(destination.pathname) || !destination.pathname.startsWith(`/pages/fabric/${fabric.id}-`)) throw Error('Invalid fabric destination');
-        if (selection !== attempt || attempt.signal.aborted || !picker.open) return;
-        const handover = new URL(destination.pathname, location.origin); handover.searchParams.set('makingStep', String(step + 1)); handover.hash = 'cuk-making-studio';
-        const preview = new URLSearchParams(location.search).get('preview_theme_id');
-        if (/^\d+$/.test(preview || '')) handover.searchParams.set('preview_theme_id', preview);
-        location.assign(handover.href);
-      } catch {
-        if (selection === attempt && picker.open) pickerStatus.textContent = copy.picker_unavailable;
-      } finally { clearTimeout(timeout); }
-    });
     const markers = copy.steps.map((item, index) => {
       const li = document.createElement('li');
       const button = document.createElement('button');

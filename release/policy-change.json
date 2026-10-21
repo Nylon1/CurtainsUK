@@ -1,13 +1,12 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The canonical fabric detail availability regression covers eight guarded curtain links, including the four heading comparison cards.",
-  "newRule": "Retain every availability and identity assertion for the five remaining curtain destinations, including the new Wave demo. Add focused coverage for lazy exact-fabric loading, trusted iframe messages, remote controls, retry and preservation of both published renderer profiles and the normal Room Visualiser document. Release checks and production flags are unchanged.",
-  "reason": "The owner requested one accurate full Wave curtain demonstration with a motorised remote, a window with radiator, lamp and plant, and preservation of the existing shorter and floor-length renders. The four heading comparisons were explicitly removed from this page for now.",
-  "ownerApprovedDecision": "Implementation is authorised by the owner in this thread. This record does not authorise protected merge or production publication; exact-head owner approval is still required by the existing policy.",
+  "previousRule": "The published Room Visualiser had no focused regression contract for a blank embedded frame, direct-open recovery or a verified parent-child ready signal.",
+  "newRule": "Add focused tests for direct-open fabric and room preservation, trusted iframe ready and failure messages, stale retry rejection and specific blank-frame diagnostics. Preserve the existing scene engine and released visualiser asset guard.",
+  "reason": "The owner approved the proposed fix after a live Chrome reproduction showed a blank iframe while the direct Room Visualiser route worked. The protected test addition verifies customer recovery and prevents a misleading ready state.",
+  "ownerApprovedDecision": "The owner authorised implementation by saying Proceed with fix. This record does not approve merge or production publication; exact-head Nylon1 approval is still required by the protected-production policy.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/fabric-profile-availability.test.ts",
-    "lib/storefront/__tests__/fabric-profile-curtain.test.ts",
+    "lib/storefront/__tests__/room-visualiser-iframe-recovery.test.ts",
     "release/policy-change.json"
   ]
 }

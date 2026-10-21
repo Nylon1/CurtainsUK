@@ -4,6 +4,8 @@
 .cuk-room-tool iframe{display:block;width:100%;height:max(640px,calc(100dvh - 100px));border:0}
 .cuk-room-tool__status{padding-top:16px;padding-bottom:16px;background:#f5f3ec}
 .cuk-room-tool__steps{font-size:13px;color:#505b52}
+.cuk-room-tool [data-room-open]{display:inline-flex;align-items:center;min-height:44px;padding:9px 16px;margin:4px 0 14px;border:1px solid #21483d;border-radius:4px;color:#173d34;background:#fff;text-decoration:none;font-weight:600}
+.cuk-room-tool [data-room-open]:hover,.cuk-room-tool [data-room-open]:focus-visible{background:#e9f0ec;text-decoration:underline}
 .cuk-room-tool [data-room-recovery]{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .cuk-room-tool [hidden]{display:none!important}
 .cuk-room-tool__advisory{font-size:13px;line-height:1.6;padding-top:14px;padding-bottom:14px}

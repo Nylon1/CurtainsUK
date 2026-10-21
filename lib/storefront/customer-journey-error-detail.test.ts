@@ -9,6 +9,7 @@ import { parseJourneyBatch, safeOperationalDiagnostic } from './customer-journey
 test('storefront sends useful browser and API details without leaking messages or URL queries', async () => {
   const source = readFileSync(join(process.cwd(), 'shopify-theme/curtainsuk-dawn-16/assets/customer-journey.js'), 'utf8');
   const listeners: Record<string, (event: unknown) => void> = {};
+  const documentListeners: Record<string, (event: any) => void> = {};
   const requests: string[] = [];
   const storage = new Map<string, string>();
   const location = { origin: 'https://www.curtainsuk.com', hostname: 'www.curtainsuk.com',
@@ -25,7 +26,7 @@ test('storefront sends useful browser and API details without leaking messages o
     addEventListener: (name: string, callback: (event: unknown) => void) => { listeners[name] = callback; },
   };
   runInNewContext(source, { window, location, URL, Promise,
-    document: { readyState: 'complete', referrer: '', addEventListener: () => {} },
+    document: { readyState: 'complete', referrer: '', addEventListener: (name: string, callback: (event: any) => void) => { documentListeners[name] = callback; } },
     sessionStorage: { getItem: (key: string) => storage.get(key) || null,
       setItem: (key: string, value: string) => storage.set(key, value), removeItem: (key: string) => storage.delete(key) },
     crypto: { randomUUID }, navigator: {}, performance: { getEntriesByType: () => [], now: () => 0 },
@@ -69,6 +70,13 @@ test('storefront sends useful browser and API details without leaking messages o
   listeners.unhandledrejection({ reason: shopifyError });
   const shopify = parseJourneyBatch(JSON.parse(requests[4]), 'Chrome/120');
   assert.equal(shopify[0].error_detail?.origin, 'SHOPIFY');
+  location.href = 'https://www.curtainsuk.com/pages/room-visualiser?fabric=private-value';
+  documentListeners['curtainsuk:room-frame-error']({ detail: { reason: 'ROOM_FRAME_ABOUT_BLANK' } });
+  const frame = parseJourneyBatch(JSON.parse(requests[5]), 'Chrome/120');
+  assert.equal(frame[0].code, 'ROOM_FRAME_ABOUT_BLANK');
+  assert.deepEqual(frame[0].error_detail?.request,
+    { method: 'GET', route: '/apps/curtainsuk-decision/room-visualiser' });
+  assert.doesNotMatch(requests[5], /private-value/);
 });
 
 test('server rejects free-form error detail that could contain customer data', () => {

@@ -4,9 +4,10 @@
     <h1>{{ section.settings.heading | default: 'Room Visualiser' | escape }}</h1>
     <p>{{ section.settings.introduction | default: 'Explore colours together. Start with a fabric you like, then adjust the room colours around it.' | escape }}</p>
   </div>
-  <div class="cuk-room-tool__status page-width" data-room-status role="status" aria-live="polite">
-    <p data-room-status-text>Preparing your fabric</p>
+  <div class="cuk-room-tool__status page-width" data-room-status>
+    <p data-room-status-text role="status" aria-live="polite">Preparing your fabric</p>
     <p class="cuk-room-tool__steps">Preparing your fabric → Dressing the window → Bringing your room together</p>
+    <a data-room-open href="/apps/curtainsuk-decision/room-visualiser" target="_blank" rel="noopener">Open Room Visualiser in a new tab</a>
     <div data-room-recovery hidden>
       <button type="button" class="button" data-room-retry>Try again</button>
       <a href="/pages/fabric-library">Browse fabrics and order samples</a>

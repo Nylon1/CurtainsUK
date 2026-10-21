@@ -16,13 +16,15 @@
     }
 
     try {
-      const response = await fetch(`/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&fabric=${encodeURIComponent(id)}`, {
+      root.cukPreviewRequest = fetch(`/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&fabric=${encodeURIComponent(id)}`, {
         credentials: 'same-origin',
         headers: { Accept: 'application/json' },
         signal: AbortSignal.timeout(15000),
+      }).then(response => {
+        if (!response.ok) throw new Error('Catalogue unavailable');
+        return response.json();
       });
-      if (!response.ok) throw new Error('Catalogue unavailable');
-      const result = await response.json();
+      const result = await root.cukPreviewRequest;
       const preview = result.fabric?.roomPreview;
       const expectedUrl = `/pages/room-visualiser?fabric=${encodeURIComponent(id)}`;
       if (result.fabric?.id === id && preview?.available === true && preview.url === expectedUrl) {
@@ -38,6 +40,7 @@
         detail: { fabricId: id, preview: result.fabric?.id === id ? preview : null },
       }));
     } catch {
+      root.cukPreviewRequest = null;
       status.textContent = 'Room preview temporarily unavailable.';
       root.dispatchEvent(new CustomEvent('cuk:room-preview', {
         bubbles: true, detail: { fabricId: id, preview: null },

@@ -7,7 +7,7 @@
 <section class="cuk-making" id="cuk-making-studio" data-cuk-making-studio data-fabric-id="{{ fabric_id | escape }}" aria-labelledby="cuk-making-title">
   <div class="cuk-making__intro">
     <div><p class="cuk-profile__eyebrow">{{ 'making_studio.eyebrow' | t }} · {{ fabric_name | escape }}</p><h2 id="cuk-making-title">{{ 'making_studio.title' | t }}</h2><p>{{ 'making_studio.intro' | t }}</p></div>
-    <span class="cuk-making__example">{{ 'making_studio.example' | t }}</span>
+    <div class="cuk-making__intro-actions"><span class="cuk-making__example">{{ 'making_studio.example' | t }}</span><a class="cuk-making__change" href="/pages/fabric-library?view=browse-fabrics" data-making-change>{{ 'making_studio.change_fabric' | t }} <span aria-hidden="true">↗</span></a></div>
   </div>
   <div class="cuk-making__layout">
     <figure class="cuk-making__visual">
@@ -62,9 +62,34 @@
   </div>
   <div class="cuk-making__footer"><div><h3>{{ 'making_studio.order_title' | t }}</h3><p>{{ 'making_studio.order_description' | t }}</p></div><a class="cuk-making__order" data-cuk-make-curtains data-href="{{ make_curtains_url | escape }}" aria-disabled="true" tabindex="-1">{{ 'making_studio.order' | t }} <span aria-hidden="true">↗</span></a></div>
   <p class="cuk-making__note">{{ 'making_studio.disclaimer' | t }}</p>
+  <nav class="cuk-making__journey" aria-labelledby="cuk-making-journey-title">
+    <h3 id="cuk-making-journey-title">{{ 'making_studio.journey_title' | t }}</h3>
+    <p>{{ 'making_studio.journey_intro' | t }}</p>
+    <div class="cuk-making__destinations">
+      <a class="cuk-making__destination" href="/pages/room-visualiser?fabric={{ fabric_id | url_encode }}"><img src="{{ 'cuk-home-room-inspiration.webp' | asset_url }}" alt="" width="640" height="400" loading="lazy" decoding="async"><span><strong>{{ 'making_studio.journey_room' | t }} ↗</strong><small>{{ 'making_studio.journey_room_text' | t }}</small></span></a>
+      <a class="cuk-making__destination" href="/pages/cushion-studio?fabric={{ fabric_id | url_encode }}"><img src="{{ 'cuk-home-cushion-editorial.webp' | asset_url }}" alt="" width="640" height="400" loading="lazy" decoding="async"><span><strong>{{ 'making_studio.journey_cushion' | t }} ↗</strong><small>{{ 'making_studio.journey_cushion_text' | t }}</small></span></a>
+      {% if settings.curtainsuk_smart_track_enabled %}<a class="cuk-making__destination" href="/pages/smart-track-studio"><img src="{{ 'cuk-home-track-room.webp' | asset_url }}" alt="" width="640" height="400" loading="lazy" decoding="async"><span><strong>{{ 'making_studio.journey_track' | t }} ↗</strong><small>{{ 'making_studio.journey_track_text' | t }}</small></span></a>{% endif %}
+    </div>
+    <div class="cuk-making__journey-links">
+      <a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">{{ 'making_studio.journey_intelligence' | t }} <span aria-hidden="true">↗</span></a>
+      <a href="/pages/fabric-library?view=curtain-style">{{ 'making_studio.journey_styles' | t }} <span aria-hidden="true">↗</span></a>
+      <a href="/pages/solve-my-window">{{ 'making_studio.journey_window' | t }} <span aria-hidden="true">↗</span></a>
+      <a href="/pages/how-to-use">{{ 'making_studio.journey_guides' | t }} <span aria-hidden="true">↗</span></a>
+      {% if settings.curtainsuk_rooms_enabled %}<a href="/pages/build-my-rooms" data-cuk-house-nav>{{ 'making_studio.journey_home' | t }} <span aria-hidden="true">↗</span></a>{% endif %}
+      <a href="/pages/meet-our-team">{{ 'making_studio.journey_advisers' | t }} <span aria-hidden="true">↗</span></a>
+    </div>
+  </nav>
   <script type="application/json" data-making-copy>
   {
     "step_label": {{ 'making_studio.step_label' | t | json }},
+    "picker_title": {{ 'making_studio.picker_title' | t | json }},
+    "picker_close": {{ 'making_studio.picker_close' | t | json }},
+    "picker_loading": {{ 'making_studio.picker_loading' | t | json }},
+    "picker_slow": {{ 'making_studio.picker_slow' | t | json }},
+    "picker_hint": {{ 'making_studio.picker_hint' | t | json }},
+    "picker_checking": {{ 'making_studio.picker_checking' | t | json }},
+    "picker_unavailable": {{ 'making_studio.picker_unavailable' | t | json }},
+    "picker_fallback": {{ 'making_studio.picker_fallback' | t | json }},
     "restart": {{ 'making_studio.restart' | t | json }},
     "close_detail": {{ 'making_studio.close_detail' | t | json }},
     "detail": {{ 'making_studio.detail' | t | json }},

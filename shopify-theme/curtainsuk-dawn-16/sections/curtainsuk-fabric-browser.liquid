@@ -6,6 +6,7 @@
 {% if template.suffix == 'browse-fabrics' and section.settings.jane_handoff_enabled %}<script src="{{ 'curtainsuk-jane-fabric-entry.js' | asset_url }}" defer="defer"></script>{% endif %}
 {% if template.suffix == 'browse-fabrics' %}<script src="{{ 'curtainsuk-fabric-experience.js' | asset_url }}" defer="defer"></script>{% endif %}
 {% if template.suffix == 'browse-fabrics' %}<script src="{{ 'curtainsuk-browse-filters.js' | asset_url }}" defer="defer"></script>{% endif %}
+{% if template.suffix == 'browse-fabrics' %}<script src="{{ 'curtainsuk-making-picker.js' | asset_url }}" defer="defer"></script>{% endif %}
 {%- if template.suffix == 'browse-fabrics' and section.settings.naila_enabled -%}
 {{ 'curtainsuk-naila.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curtainsuk-naila.js' | asset_url }}" defer="defer"></script>

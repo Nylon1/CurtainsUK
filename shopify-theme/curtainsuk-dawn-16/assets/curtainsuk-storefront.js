@@ -1064,9 +1064,17 @@
         };
       } else {
         const isBay = selected.slug === "bay-window";
+        const measurementBasis = isBay ? "TRACK_WIDTH" : form.elements.measurementBasis.value;
+        if (!["TRACK_WIDTH", "POLE_USABLE_WIDTH"].includes(measurementBasis)) {
+          errorBox.textContent = "Choose your fitted track or pole before checking the price.";
+          errorBox.hidden = false;
+          form.elements.measurementBasis.focus();
+          return;
+        }
         body = {
           windowSlug: windowSelect.value,
-          measurementBasis: isBay ? "TRACK_WIDTH" : form.elements.measurementBasis.value,
+          measurementBasis,
+          hardware: measurementBasis === "TRACK_WIDTH" ? "TRACK" : "POLE",
           widthCm: Number(form.elements.widthCm.value),
           dropCm: Number(form.elements.dropCm.value),
           fabricId: fabricSelect.value,

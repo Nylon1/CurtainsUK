@@ -1,5 +1,11 @@
 # CurtainsUK production surfaces
 
+## Making Studio sticky worktable, 21 October 2026
+
+The owner-authorised [PR #286](https://github.com/Nylon1/CurtainsUK/pull/286) passed `curtainsuk-production-gate` and `protected-production-policy`, then merged to protected serving theme source `4d16965698309235abe93eb2131323ff61d005f5`. The Making Studio worktable now stays alongside its ten-step controls while scrolling on desktop and mobile. Its drawing height is bounded by the viewport; very short screens use normal scrolling to keep the controls reachable. The published change is confined to `assets/curtainsuk-making-studio.css` and its manifest digest.
+
+That exact protected stylesheet was uploaded with deletion disabled to existing live Shopify MAIN theme `182339731835`. A fresh complete pull matches all **584** files of protected composed theme source. Stored `config/settings_data.json` remains byte-identical at SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`; no feature setting was switched off. Vercel, Supabase, pricing, checkout and adviser sources were unchanged. The homepage, Browse Fabrics, Room Visualiser, Cushion Studio, Motorised Curtain Tracks, Design My Home, Meet Our Team and an Abeja fabric detail page returned HTTP 200 after upload. Live Chrome showed the worktable remaining in view as the step list scrolled, and advancing to step two changed its drawing while the sample and curtain-order actions stayed available. The mobile breakpoint was reviewed in source; a physical phone session and checkout were not replayed for this stylesheet-only release.
+
 ## Making Studio navigation and Browse handoff, 21 October 2026
 
 The owner-authorised [PR #284](https://github.com/Nylon1/CurtainsUK/pull/284) passed `curtainsuk-production-gate` and `protected-production-policy`, then merged to protected serving theme source `687b2235e3580930e9cdff17b26e4b06e01fe1e5`. **Making Studio** is now a direct top-level link in the shared desktop and mobile menu. Curtain Style remains a direct destination. The existing Browse Fabrics page now places **Try Making Studio** with each eligible fabric card's actions; there is no second fabric catalogue. Selection makes one on-demand exact-fabric validation request before opening that fabric at step 1. The redundant Change fabric action inside the demonstration was removed.

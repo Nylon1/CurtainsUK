@@ -272,6 +272,19 @@
   }, true);
   window.addEventListener('unhandledrejection', (event) => record('ERROR', 'BROWSER_ERROR', 'PROMISE_REJECTION',
     null, path(location.href), errorDetail(event.reason)));
+  const roomFrameReasons = new Set(['ROOM_FRAME_ABOUT_BLANK', 'ROOM_FRAME_NOT_READY',
+    'ROOM_FRAME_INACCESSIBLE', 'ROOM_FRAME_LOAD_ERROR', 'ROOM_FRAME_CHILD_ERROR']);
+  document.addEventListener('curtainsuk:room-frame-error', (event) => {
+    if (path(location.href) !== '/pages/room-visualiser') return;
+    const reason = event.detail?.reason;
+    if (!roomFrameReasons.has(reason)) return;
+    record('ERROR', 'BROWSER_ERROR', reason, null, '/pages/room-visualiser', {
+      type: reason === 'ROOM_FRAME_LOAD_ERROR' ? 'ResourceError' : 'TimeoutError',
+      message: 'MESSAGE_UNAVAILABLE', script: null, line: null, column: null,
+      origin: 'APP', feature: 'ROOM_VISUALISER', messageText: null, frames: [],
+      reasonCode: reason, request: { method: 'GET', route: '/apps/curtainsuk-decision/room-visualiser' },
+    });
+  });
 
   window.fetch = function (...args) {
     const result = nativeFetch(...args);

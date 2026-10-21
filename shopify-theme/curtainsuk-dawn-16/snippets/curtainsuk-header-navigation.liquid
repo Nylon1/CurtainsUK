@@ -5,22 +5,14 @@
 {% enddoc %}
 <ul class="cuknav__list">
   <li class="cuknav__item"><a href="/pages/fabric-library?view=browse-fabrics">Browse Fabrics</a></li>
+  <li class="cuknav__item"><a href="/pages/fabric/sdg-f1325-02-abeja-ivory#cuk-making-studio">{{ 'making_studio.navigation' | t }}</a></li>
   <li class="cuknav__item"><a href="/pages/room-visualiser">Room Visualiser</a></li>
   <li class="cuknav__item"><a href="/pages/cushion-studio">Cushion Studio</a></li>
   {% if settings.curtainsuk_smart_track_enabled %}
     <li class="cuknav__item"><a href="/pages/smart-track-studio"{% if request.path == '/pages/smart-track-studio' %} aria-current="page"{% endif %}>Motorised Curtain Tracks</a></li>
   {% endif %}
   <li class="cuknav__item"><a href="/pages/solve-my-window">Shop by Window</a></li>
-  <li class="cuknav__item cuknav__item--split">
-    <a href="/pages/fabric-library?view=curtain-style">{{ 'curtain_style.navigation' | t }}</a>
-    <details class="cuknav__disclosure">
-      <summary aria-label="{{ 'making_studio.navigation_more' | t | escape }}" aria-expanded="false" aria-controls="CukMaking-{{ location }}-{{ section_id }}"><span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
-      <div class="cuknav__dropdown" id="CukMaking-{{ location }}-{{ section_id }}"><ul>
-        <li><a href="/pages/fabric/sdg-f1325-02-abeja-ivory#cuk-making-studio">{{ 'making_studio.navigation' | t }} <span aria-hidden="true">→</span></a></li>
-        <li><a href="/pages/fabric-library?view=curtain-style">{{ 'making_studio.journey_styles' | t }}</a></li>
-      </ul></div>
-    </details>
-  </li>
+  <li class="cuknav__item"><a href="/pages/fabric-library?view=curtain-style">{{ 'curtain_style.navigation' | t }}</a></li>
   <li class="cuknav__item cuknav__item--split">
     <a href="/apps/curtainsuk-decision/consultation?experience=premium&amp;entry=match">Fabric Intelligence™</a>
     <details class="cuknav__disclosure">

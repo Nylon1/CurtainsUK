@@ -1689,6 +1689,8 @@
     "service_measure_link": "Explore the apex measuring guide"
   },
   "curtainsuk_fabric_studio": {
+    "change_fabric": "Change fabric",
+    "sticky_sample": "Order sample",
     "purchase_kicker": "YOUR FABRIC. YOUR WAY.",
     "purchase_title": "Make it yours.",
     "purchase_intro": "Made to your measurements, finished for your home.",
@@ -1848,5 +1850,18 @@
     "step10_caption": "Your chosen fabric, illustrated as a finished pencil-pleat pair.",
     "step10_short": "Ready to hang",
     "step10_action": "Finish and hang"
+  },
+  "homepage_making": {
+    "eyebrow": "STEP INSIDE MAKING STUDIO",
+    "title": "Make your curtains.",
+    "intro": "See your chosen fabric take shape. Roll it out, cut, stitch and pull the cords to create the pleats, one satisfying step at a time.",
+    "choose": "Choose your fabric",
+    "watch": "Watch it being made",
+    "order": "Order to your size",
+    "cta": "Try Making Studio",
+    "browse": "Choose a fabric first",
+    "note": "An interactive demonstration. Enter your actual measurements when you order.",
+    "image_alt": "Soft ivory pencil-pleat curtains, neatly gathered and dressed at a sunlit window",
+    "visual_caption": "From fabric to finished folds"
   }
 }

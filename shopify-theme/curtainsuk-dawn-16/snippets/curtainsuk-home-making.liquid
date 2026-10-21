@@ -1,0 +1,43 @@
+{% doc %}
+  Visual introduction to the released Making Studio on fabric detail pages.
+  @param {string} section_id - Parent section identity for the heading.
+{% enddoc %}
+{% assign making_url = '/pages/fabric/sdg-f1325-02-abeja-ivory?makingStep=1#cuk-making-studio' %}
+<section class="cukfeature cukfeature--making" id="homepage-making-studio" aria-labelledby="cukmaking-title-{{ section_id }}">
+  <div class="cukfeature__wrap cukfeature__split">
+    <div class="cukfeature__visual">
+      <a class="cukmaking__visual" href="{{ making_url }}" aria-label="{{ 'homepage_making.cta' | t | escape }}">
+        <img class="cukmaking__curtains" src="{{ 'cuk-home-heading-pencil-pleat.webp' | asset_url }}" width="750" height="562" loading="lazy" decoding="async" alt="{{ 'homepage_making.image_alt' | t | escape }}">
+        <span class="cukmaking__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 10 7-10 7Z"/></svg></span>
+        <span class="cukmaking__worktable" aria-hidden="true">
+          <svg viewBox="0 0 280 210" fill="none">
+            <defs><linearGradient id="cukmaking-cloth-{{ section_id }}" x1="0" x2="1"><stop stop-color="#d2bf9b"/><stop offset=".5" stop-color="#f0e6ce"/><stop offset="1" stop-color="#d7c5a4"/></linearGradient></defs>
+            <rect width="280" height="210" rx="12" fill="#e8e1cf"/>
+            <path d="M20 40h240M20 80h240M20 120h240M20 160h240M40 20v170M80 20v170M120 20v170M160 20v170M200 20v170M240 20v170" stroke="#d6ccb7" stroke-width=".6"/>
+            <path d="M72 40h144v135H72z" fill="url(#cukmaking-cloth-{{ section_id }})" stroke="#b5a481"/>
+            <path d="M79 48h130v119H79z" stroke="#9c8863" stroke-dasharray="3 4"/>
+            <rect x="62" y="29" width="163" height="26" rx="13" fill="url(#cukmaking-cloth-{{ section_id }})" stroke="#b5a481"/>
+            <ellipse cx="218" cy="42" rx="7" ry="12" fill="#c3b28e"/><ellipse cx="218" cy="42" rx="2" ry="7" fill="#7c6b4c"/>
+            <path d="M73 143h142" stroke="#fffaf0" stroke-width="2" stroke-dasharray="5 4"/>
+            <rect x="43" y="60" width="17" height="122" rx="2" fill="#c6a15b"/><path d="M43 70h8m-8 10h5m-5 10h8m-8 10h5m-5 10h8m-8 10h5m-5 10h8m-8 10h5m-5 10h8m-8 10h5m-5 10h8" stroke="#6e552d"/>
+            <g transform="translate(191 135) rotate(-20)" stroke-linecap="round" stroke-linejoin="round"><path d="m-6 6 43-13-24 17-28 15" stroke="#f8faf7" stroke-width="5"/><path d="m-6 6 43-13-24 17-28 15" stroke="#69776d" stroke-width="1.4"/><ellipse cx="-13" cy="6" rx="10" ry="7" stroke="#284a3d" stroke-width="4"/><ellipse cx="-16" cy="27" rx="10" ry="7" stroke="#284a3d" stroke-width="4"/><circle cx="4" cy="9" r="2.5" fill="#b8995e" stroke="#69776d"/></g>
+          </svg>
+          <span>{{ 'homepage_making.visual_caption' | t }}</span>
+        </span>
+      </a>
+    </div>
+    <div class="cukfeature__copy">
+      <p class="cukfeature__eyebrow">{{ 'homepage_making.eyebrow' | t }}</p>
+      <h2 id="cukmaking-title-{{ section_id }}">{{ 'homepage_making.title' | t }}</h2>
+      <p class="cukfeature__intro">{{ 'homepage_making.intro' | t }}</p>
+      <ol class="cukmaking__steps">
+        <li><span aria-hidden="true">01</span><strong>{{ 'homepage_making.choose' | t }}</strong></li>
+        <li><span aria-hidden="true">02</span><strong>{{ 'homepage_making.watch' | t }}</strong></li>
+        <li><span aria-hidden="true">03</span><strong>{{ 'homepage_making.order' | t }}</strong></li>
+      </ol>
+      <a class="cukfeature__button cukmaking__cta" href="{{ making_url }}">{{ 'homepage_making.cta' | t }} <span aria-hidden="true">↗</span></a>
+      <a class="cukfeature__text-link cukmaking__browse" href="/pages/fabric-library?view=browse-fabrics&amp;makingStudio=1&amp;makingStep=1#cuk-making-fabric-chooser">{{ 'homepage_making.browse' | t }} <span aria-hidden="true">→</span></a>
+      <p class="cukmaking__note">{{ 'homepage_making.note' | t }}</p>
+    </div>
+  </div>
+</section>

@@ -20,7 +20,7 @@ export async function visualiserPage(request:Request,registry:Fixed140Registry=f
   });
 }
 
-type Fabric = {id:string;horizontalRepeatMm?:number|null;verticalRepeatMm?:number|null;patternMatchType?:string|null};
+type Fabric = {id:string;fullWidthMm?:number|null;usableWidthMm?:number|null;horizontalRepeatMm?:number|null;verticalRepeatMm?:number|null;patternMatchType?:string|null};
 export function withRoomPreview<T extends Fabric>(fabric:T) {
   const profile=resolveRendererProfile(fabric,assets.fabrics,fixed140 as Fixed140Registry,fixed100 as Fixed100Registry);
   const available=profile!=='NOT_ELIGIBLE';
@@ -36,5 +36,22 @@ export function withRoomPreview<T extends Fabric>(fabric:T) {
   const worktableImageUrl=source && (/^\/room-visualiser\/(?:textures|fixed140)\/[a-f0-9]{64}\.(?:jpe?g|webp)$/.test(source)
     ?`https://curtainsuk-production-api.vercel.app${source}`
     :/^https:\/\/cdn\.shopify\.com\/s\/files\/1\/0256\/4551\/4861\/files\/cuk-fabric-[a-f0-9]{64}\.jpg$/.test(source)?source:null);
-  return {...fabric,roomPreview:{available,url:available?`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`:null,message:available?null:'Room preview not available for this fabric yet.',rendererProfile:profile,worktableImageUrl,...(assignment?{assignment}:{})}};
+  const knownWidth=(fabric.usableWidthMm??fabric.fullWidthMm??0)/10;
+  const physical=standardAsset && 'physicalClothCm' in standardAsset ? standardAsset.physicalClothCm : null;
+  const worktableSource=assignment ? {
+    fabricWidthCm:assignment.usableWidthCm,
+    imageWidthCm:assignment.usableWidthCm,
+    imageHeightCm:assignment.sourceHeightPx*assignment.usableWidthCm/assignment.sourceWidthPx,
+    imageTopCm:'sourceTopPx' in assignment?assignment.sourceTopPx*assignment.usableWidthCm/assignment.sourceWidthPx:0,
+    exampleCutCm:profile==='FIXED140_SINGLE_WIDTH_100CM_V1'?100:120,
+    scaleKind:'calibrated',
+  } : standardAsset && knownWidth>0 && (standardAsset.mode==='plain'||(physical&&physical.length===2&&physical.every(value=>Number.isFinite(value)&&value>0))) ? {
+    fabricWidthCm:knownWidth,
+    imageWidthCm:physical?.[0]??knownWidth,
+    imageHeightCm:physical?.[1]??120,
+    imageTopCm:0,
+    exampleCutCm:120,
+    scaleKind:standardAsset.mode==='plain'?'colour-only':'calibrated',
+  } : null;
+  return {...fabric,roomPreview:{available,url:available?`/pages/room-visualiser?fabric=${encodeURIComponent(fabric.id)}`:null,message:available?null:'Room preview not available for this fabric yet.',rendererProfile:profile,worktableImageUrl,worktableSource,...(assignment?{assignment}:{})}};
 }

@@ -1,47 +1,98 @@
 {% doc %}
-  An illustrative, single-width making sequence for the exact catalogue fabric.
-  Ordering and measurements remain with the existing curtain configurator.
+  Illustrative, single-width pencil-pleat making sequence for the exact catalogue fabric.
   @param {string} fabric_id - Canonical Fabric Master identity.
   @param {string} fabric_name - Customer-facing fabric and colourway.
   @param {string} make_curtains_url - Availability-guarded configurator destination.
 {% enddoc %}
 <section class="cuk-making" id="cuk-making-studio" data-cuk-making-studio data-fabric-id="{{ fabric_id | escape }}" aria-labelledby="cuk-making-title">
   <div class="cuk-making__intro">
-    <div><p class="cuk-profile__eyebrow">Making Studio · {{ fabric_name | escape }}</p><h2 id="cuk-making-title">Watch your curtains take shape.</h2><p>Press each step to see how a lined pencil-pleat pair is made from your chosen fabric.</p></div>
-    <p class="cuk-making__example">Illustrative one-width make-up. Enter your actual measurements when you order.</p>
+    <div><p class="cuk-profile__eyebrow">{{ 'making_studio.eyebrow' | t }} · {{ fabric_name | escape }}</p><h2 id="cuk-making-title">{{ 'making_studio.title' | t }}</h2><p>{{ 'making_studio.intro' | t }}</p></div>
+    <span class="cuk-making__example">{{ 'making_studio.example' | t }}</span>
   </div>
   <div class="cuk-making__layout">
-    <div class="cuk-making__table" data-making-stage="0" role="img" aria-label="Illustrated curtain-making worktable">
-      <div class="cuk-making__roll" aria-hidden="true"><span></span></div>
-      <div class="cuk-making__cloth" aria-hidden="true"><img alt="" width="640" height="390" loading="lazy"></div>
-      <div class="cuk-making__pieces" aria-hidden="true"><div class="cuk-making__piece"><img alt="" width="320" height="390" loading="lazy"><span>Left</span></div><div class="cuk-making__piece"><img alt="" width="320" height="390" loading="lazy"><span>Right</span></div></div>
-      <div class="cuk-making__ruler" aria-hidden="true"><span>Fabric width</span><i></i></div>
-      <div class="cuk-making__pattern" aria-hidden="true"><i></i><i></i></div>
-      <div class="cuk-making__cut" aria-hidden="true"><span>✂</span></div>
-      <div class="cuk-making__lining" aria-hidden="true"><div class="cuk-making__lining-roll"></div><div class="cuk-making__lining-cloth">Standard lining</div><div class="cuk-making__lining-panels"><i></i><i></i></div><div class="cuk-making__lining-cut"><span>✂</span></div></div>
-      <div class="cuk-making__hems" aria-hidden="true"></div>
-      <div class="cuk-making__heading" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><div class="cuk-making__heading-cords"><i></i><i></i></div></div>
-      <div class="cuk-making__threads" aria-hidden="true"><i></i><i></i><span>✂</span></div>
-      <div class="cuk-making__finish" aria-hidden="true">✓</div>
-      <div class="cuk-making__table-label">Your chosen fabric · illustrative making sequence</div>
-    </div>
-    <div class="cuk-making__panel">
-      <p class="cuk-making__counter" data-making-counter>Ready to begin</p>
-      <h3 data-making-title>From fabric to finished curtain.</h3>
-      <p data-making-description aria-live="polite">Follow a fabric width through the workroom, then see the curtain hanging in the preview below.</p>
-      <ol class="cuk-making__progress" data-making-progress aria-label="Making progress"></ol>
-      <p class="cuk-making__status" data-making-status role="status">Checking the approved fabric render…</p>
-      <button type="button" class="cuk-making__retry" data-making-retry hidden>Try loading the preview again</button>
-      <div class="cuk-making__controls">
-        <button type="button" class="cuk-making__next" data-making-next disabled>Start making <span aria-hidden="true">→</span></button>
-        <button type="button" data-making-back disabled>Back</button>
-        <button type="button" data-making-replay disabled>Replay step</button>
-        <button type="button" data-making-detail aria-pressed="false" disabled>View detail</button>
-        <button type="button" data-making-skip disabled>Skip to finished curtains</button>
+    <figure class="cuk-making__visual">
+      <div class="cuk-making__table" data-making-stage="1">
+        <div class="cuk-making__table-top"><span>{{ 'making_studio.worktable' | t }}</span><span>{{ 'making_studio.one_panel' | t }}</span></div>
+        <svg class="cuk-making__scene" data-making-scene viewBox="0 0 760 620" role="img" aria-label="{{ 'making_studio.scene_label' | t | escape }}">
+          <defs>
+            <pattern id="cuk-m-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#476650" stroke-opacity=".09" stroke-width="1"/></pattern>
+            <linearGradient id="cuk-m-lining" x2="1" y2="1"><stop stop-color="#fffef4"/><stop offset=".48" stop-color="#f1eddd"/><stop offset="1" stop-color="#d9d4c2"/></linearGradient>
+            <linearGradient id="cuk-m-cylinder" x2="0" y2="1"><stop stop-color="#fffcf2" stop-opacity=".4"/><stop offset=".3" stop-color="#fff" stop-opacity=".05"/><stop offset=".8" stop-color="#413e30" stop-opacity=".3"/><stop offset="1" stop-color="#413e30" stop-opacity=".6"/></linearGradient>
+            <linearGradient id="cuk-m-fold" x2="0" y2="1"><stop stop-color="#847a61" stop-opacity=".4"/><stop offset=".2" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#eee7d4"/></linearGradient>
+            <linearGradient id="cuk-m-pleat"><stop stop-color="#1f2d29" stop-opacity=".36"/><stop offset=".38" stop-color="#fff" stop-opacity=".2"/><stop offset=".62" stop-color="#fff" stop-opacity=".02"/><stop offset="1" stop-color="#1f2d29" stop-opacity=".25"/></linearGradient>
+            <pattern id="cuk-m-folds" width="10" height="350" patternUnits="userSpaceOnUse"><rect width="10" height="350" fill="url(#cuk-m-pleat)"/></pattern>
+            <pattern id="cuk-m-pencil" width="2.8" height="350" patternUnits="userSpaceOnUse"><rect width="2.8" height="350" fill="url(#cuk-m-pleat)"/></pattern>
+            <pattern id="cuk-m-ticks" width="20" height="22" patternUnits="userSpaceOnUse"><path d="M0 0V16M10 0V8" stroke="#685832" fill="none"/></pattern>
+            <pattern id="cuk-m-pockets" width="20" height="30" patternUnits="userSpaceOnUse"><path d="M7 8V22H13V8" stroke="#c3b99d" stroke-width="1.4" fill="none"/></pattern>
+            <clipPath id="cuk-m-roll-clip"><rect width="316" height="38" rx="18"/></clipPath>
+<g id="cuk-m-scissors" fill="none" stroke-linecap="round" stroke-linejoin="round"><g class="cuk-making__scissor-blade-a"><path d="M0 0L-47-14" stroke="#e7ebe7" stroke-width="5"/><path d="M0 0L-47-14" stroke="#66796e" stroke-width="1.4"/><path d="M0 0L17 9" stroke="#9c783f" stroke-width="5"/><ellipse cx="25" cy="12" rx="12" ry="9" stroke="#9c783f" stroke-width="5"/></g><g class="cuk-making__scissor-blade-b"><path d="M0 0L-47 14" stroke="#e7ebe7" stroke-width="5"/><path d="M0 0L-47 14" stroke="#66796e" stroke-width="1.4"/><path d="M0 0L17-9" stroke="#9c783f" stroke-width="5"/><ellipse cx="25" cy="-12" rx="12" ry="9" stroke="#9c783f" stroke-width="5"/></g><circle r="3.5" fill="#eee9da" stroke="#7c7460" stroke-width="1.5"/></g>
+            <g id="cuk-m-needle" fill="none"><path d="M0-34L0 10" stroke="#596d63" stroke-width="3"/><path d="M0-28C29-50 38-4 12-5" stroke="#b18d50" stroke-width="1.6"/><path d="M-1 7L0 15 1 7" stroke="#f3f5ed"/></g>
+            <g id="cuk-m-tape"><rect width="300" height="36" rx="1" fill="#fffdf2" stroke="#c8bea9"/><rect y="3" width="300" height="30" fill="url(#cuk-m-pockets)"/><path d="M0 11H300M0 24H300" stroke="#b09a72" stroke-width="1.4"/></g>
+          </defs>
+          <rect x="34" y="72" width="692" height="492" rx="18" fill="#dadbcf"/>
+          <rect x="34" y="72" width="692" height="492" rx="18" fill="url(#cuk-m-grid)"/>
+          <rect x="43" y="81" width="674" height="474" rx="12" fill="none" stroke="#fff" stroke-opacity=".6"/>
+          <path d="M65 95H145M65 95V170M615 540H695V465" fill="none" stroke="#65816c" opacity=".3"/>
+          <g data-making-drawing></g>
+        </svg>
       </div>
-      <a class="cuk-making__order" data-cuk-make-curtains data-href="{{ make_curtains_url | escape }}" aria-disabled="true" tabindex="-1">Make curtains to my measurements <span aria-hidden="true">↗</span></a>
-      <p class="cuk-making__note">Your real size, construction, availability and price are checked in the curtain configurator. This demonstration is not a cutting sheet or quotation.</p>
-      <p class="cuk-making__note">For wider windows, fabric widths are joined with a sewn seam. This one-width demonstration does not show that step.</p>
+      <figcaption data-making-caption>{{ 'making_studio.step1_caption' | t }}</figcaption>
+      <label class="cuk-making__motion"><input type="checkbox" data-making-reduce> {{ 'making_studio.reduce_motion' | t }}</label>
+    </figure>
+    <div class="cuk-making__panel">
+      <p class="cuk-making__counter" data-making-counter>{{ 'making_studio.initial_counter' | t }}</p>
+      <h3 data-making-title>{{ 'making_studio.step1_title' | t }}</h3>
+      <p data-making-description aria-live="polite">{{ 'making_studio.loading' | t }}</p>
+      <dl class="cuk-making__facts" data-making-measurements hidden>
+        <div><dt>{{ 'making_studio.fabric_width' | t }}</dt><dd data-making-width>{{ 'making_studio.width_unknown' | t }}</dd></div>
+        <div><dt>{{ 'making_studio.lengths_label' | t }}</dt><dd data-making-lengths></dd></div>
+        <div><dt>{{ 'making_studio.finished_drop_label' | t }}</dt><dd data-making-finished></dd></div>
+        <div><dt>{{ 'making_studio.layout_label' | t }}</dt><dd>{{ 'making_studio.layout_value' | t }}</dd></div>
+        <div><dt>{{ 'making_studio.makeup_label' | t }}</dt><dd>{{ 'making_studio.makeup_value' | t }}</dd></div>
+      </dl>
+      <div class="cuk-making__controls">
+        <button type="button" class="cuk-making__next" data-making-next disabled><span data-making-next-label>{{ 'making_studio.step2_action' | t }}</span><span aria-hidden="true">→</span></button>
+        <div class="cuk-making__secondary"><button type="button" data-making-back disabled>{{ 'making_studio.back' | t }}</button><button type="button" data-making-replay disabled>{{ 'making_studio.replay' | t }}</button><button type="button" data-making-detail aria-pressed="false" disabled>{{ 'making_studio.detail' | t }}</button></div>
+      </div>
+      <ol class="cuk-making__progress" data-making-progress aria-label="{{ 'making_studio.progress_label' | t | escape }}"></ol>
+      <button type="button" class="cuk-making__skip" data-making-skip disabled>{{ 'making_studio.skip' | t }} <span aria-hidden="true">↗</span></button>
+      <p class="cuk-making__status" data-making-status role="status">{{ 'making_studio.loading' | t }}</p>
+      <button type="button" class="cuk-making__retry" data-making-retry hidden>{{ 'making_studio.retry' | t }}</button>
     </div>
   </div>
+  <div class="cuk-making__footer"><div><h3>{{ 'making_studio.order_title' | t }}</h3><p>{{ 'making_studio.order_description' | t }}</p></div><a class="cuk-making__order" data-cuk-make-curtains data-href="{{ make_curtains_url | escape }}" aria-disabled="true" tabindex="-1">{{ 'making_studio.order' | t }} <span aria-hidden="true">↗</span></a></div>
+  <p class="cuk-making__note">{{ 'making_studio.disclaimer' | t }}</p>
+  <script type="application/json" data-making-copy>
+  {
+    "step_label": {{ 'making_studio.step_label' | t | json }},
+    "restart": {{ 'making_studio.restart' | t | json }},
+    "close_detail": {{ 'making_studio.close_detail' | t | json }},
+    "detail": {{ 'making_studio.detail' | t | json }},
+    "loading": {{ 'making_studio.loading' | t | json }},
+    "ready": {{ 'making_studio.ready' | t | json }},
+    "unavailable": {{ 'making_studio.unavailable' | t | json }},
+    "width_unknown": {{ 'making_studio.width_unknown' | t | json }},
+    "cut_at": {{ 'making_studio.cut_at' | t | json }},
+    "left_panel": {{ 'making_studio.left_panel' | t | json }},
+    "right_panel": {{ 'making_studio.right_panel' | t | json }},
+    "layers_label": {{ 'making_studio.layers_label' | t | json }},
+    "hem_label": {{ 'making_studio.hem_label' | t | json }},
+    "tape_label": {{ 'making_studio.tape_label' | t | json }},
+    "gather_label": {{ 'making_studio.gather_label' | t | json }},
+    "finished_label": {{ 'making_studio.finished_label' | t | json }},
+    "lengths_value": {{ 'making_studio.lengths_value' | t | json }},
+    "steps": [
+      {"title": {{ 'making_studio.step1_title' | t | json }}, "description": {{ 'making_studio.step1_description' | t | json }}, "caption": {{ 'making_studio.step1_caption' | t | json }}, "short": {{ 'making_studio.step1_short' | t | json }}, "action": {{ 'making_studio.step1_action' | t | json }}},
+      {"title": {{ 'making_studio.step2_title' | t | json }}, "description": {{ 'making_studio.step2_description' | t | json }}, "caption": {{ 'making_studio.step2_caption' | t | json }}, "short": {{ 'making_studio.step2_short' | t | json }}, "action": {{ 'making_studio.step2_action' | t | json }}},
+      {"title": {{ 'making_studio.step3_title' | t | json }}, "description": {{ 'making_studio.step3_description' | t | json }}, "caption": {{ 'making_studio.step3_caption' | t | json }}, "short": {{ 'making_studio.step3_short' | t | json }}, "action": {{ 'making_studio.step3_action' | t | json }}},
+      {"title": {{ 'making_studio.step4_title' | t | json }}, "description": {{ 'making_studio.step4_description' | t | json }}, "caption": {{ 'making_studio.step4_caption' | t | json }}, "short": {{ 'making_studio.step4_short' | t | json }}, "action": {{ 'making_studio.step4_action' | t | json }}},
+      {"title": {{ 'making_studio.step5_title' | t | json }}, "description": {{ 'making_studio.step5_description' | t | json }}, "caption": {{ 'making_studio.step5_caption' | t | json }}, "short": {{ 'making_studio.step5_short' | t | json }}, "action": {{ 'making_studio.step5_action' | t | json }}},
+      {"title": {{ 'making_studio.step6_title' | t | json }}, "description": {{ 'making_studio.step6_description' | t | json }}, "caption": {{ 'making_studio.step6_caption' | t | json }}, "short": {{ 'making_studio.step6_short' | t | json }}, "action": {{ 'making_studio.step6_action' | t | json }}},
+      {"title": {{ 'making_studio.step7_title' | t | json }}, "description": {{ 'making_studio.step7_description' | t | json }}, "caption": {{ 'making_studio.step7_caption' | t | json }}, "short": {{ 'making_studio.step7_short' | t | json }}, "action": {{ 'making_studio.step7_action' | t | json }}},
+      {"title": {{ 'making_studio.step8_title' | t | json }}, "description": {{ 'making_studio.step8_description' | t | json }}, "caption": {{ 'making_studio.step8_caption' | t | json }}, "short": {{ 'making_studio.step8_short' | t | json }}, "action": {{ 'making_studio.step8_action' | t | json }}},
+      {"title": {{ 'making_studio.step9_title' | t | json }}, "description": {{ 'making_studio.step9_description' | t | json }}, "caption": {{ 'making_studio.step9_caption' | t | json }}, "short": {{ 'making_studio.step9_short' | t | json }}, "action": {{ 'making_studio.step9_action' | t | json }}},
+      {"title": {{ 'making_studio.step10_title' | t | json }}, "description": {{ 'making_studio.step10_description' | t | json }}, "caption": {{ 'making_studio.step10_caption' | t | json }}, "short": {{ 'making_studio.step10_short' | t | json }}, "action": {{ 'making_studio.step10_action' | t | json }}}
+    ]
+  }
+  </script>
 </section>

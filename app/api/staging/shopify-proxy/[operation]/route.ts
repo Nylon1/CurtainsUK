@@ -35,6 +35,7 @@ import { parseJourneyBatch } from '@/lib/storefront/customer-journey';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 import { recordOperationalError } from '@/lib/storefront/operational-error';
 import { priceRejectionDetails } from '@/lib/storefront/price-rejection';
+import { priceDiagnosticContext } from '@/lib/storefront/price-diagnostics';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -194,9 +195,17 @@ export async function POST(request: Request, context: { params: Promise<{ operat
       return NextResponse.json(selected==='hci-session'?proxyCustomerSession():await proxyCustomerCommand(await readBoundedJson(request,3_000_000)),{headers:PUBLIC_NO_STORE_HEADERS});
     }
     if (selected === "price") {
-      return NextResponse.json(await calculateStagingPrice(await readBoundedJson<StagingPriceRequest>(request)), {
-        headers: PUBLIC_NO_STORE_HEADERS,
-      });
+      const input = await readBoundedJson<StagingPriceRequest>(request);
+      try {
+        return NextResponse.json(await calculateStagingPrice(input), { headers: PUBLIC_NO_STORE_HEADERS });
+      } catch (error) {
+        const response = errorResponse(error, 'Unable to check this curtain price', 'price');
+        if (response.status >= 500) throw error;
+        if (response.status === 400) response.headers.set('X-CurtainsUK-Pricing-Context', JSON.stringify(
+          priceDiagnosticContext(input, request.headers.get('X-CurtainsUK-Storefront-Release'), process.env.VERCEL_DEPLOYMENT_ID),
+        ));
+        return response;
+      }
     }
     if (selected === "rooms") {
       const payload = await readBoundedJson(request, 512 * 1024);

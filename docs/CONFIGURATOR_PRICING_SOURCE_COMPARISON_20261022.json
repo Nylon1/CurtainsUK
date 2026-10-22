@@ -1,0 +1,112 @@
+{
+  "checkedOn": "2026-10-22",
+  "scope": "Inspected pricing path only, not whole-deployment attestation",
+  "api": {
+    "deployment": "dpl_J8b1CV2x5c1bwfPtYqiFD6qZLGeG",
+    "base": "eb9310bda31a547302888bb65d7f50a1f6a842a0",
+    "results": [
+      {
+        "file": "app/api/staging/shopify-proxy/[operation]/route.ts",
+        "deployedSha1": "26a325733ff0e226364c179ac200e188943ca531",
+        "protectedLfSha1": "4369823be6a4977b8bda5784d28da5aa983b8e9a",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/decision-engine/curtain-configuration.ts",
+        "deployedSha1": "c7b7b17ab191a9faf3d99464102a54666a6761dd",
+        "protectedLfSha1": "0fc7c42bf676b78d963a1d128844883a7dff747b",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/decision-engine/seed/window-types.ts",
+        "deployedSha1": "1c1d82243de435cc9e442f7f9ac825f579da714e",
+        "protectedLfSha1": "6159c7728e6b32e6cf0943750830621f721c819d",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/decision-engine/validation.ts",
+        "deployedSha1": "58284e7de7825af71f02de6598afd7b940e4ffa9",
+        "protectedLfSha1": "7e6ede44d6236fe7ecdc66be3a0a6b4e2f3a79e0",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/storefront/mtm-production-policy.ts",
+        "deployedSha1": "b77b77fbcfdd9938231922b7b5996bfab08f85ac",
+        "protectedLfSha1": "631c2045b4ffdbbce0329dc1526d3a3fe6aedc59",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/storefront/price-rejection.ts",
+        "deployedSha1": "56d7432fce30c66819cb103d4e2b94549b2c3472",
+        "protectedLfSha1": "e187535079861f809cbec2b86e63a0e5c0e4724c",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/storefront/server-staging-pricing.ts",
+        "deployedSha1": "18bf43f5e17cfaebfaa61a029264e5a336758ff2",
+        "protectedLfSha1": "c94505f482718bc7d3c62adc339429e9aaa2158f",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/storefront/staging-pricing.ts",
+        "deployedSha1": "4f90f24bfb2cc68c01c750459a6356f867be0232",
+        "protectedLfSha1": "37f374293b2bb54f85575952706a941f063160ac",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/storefront/window-catalog.ts",
+        "deployedSha1": "bfb3d1f4890a0b3a067ab8676f55c977c05b3f73",
+        "protectedLfSha1": "d5269dcb1692344ba76a5de5a5bc0fc72e907a6f",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/decision-engine/seed/production-pricing-rules.ts",
+        "deployedSha1": "166ee4497f72844c6859056140183ac4700160a9",
+        "protectedLfSha1": "f8171b957738cb199d088f7c20303d527486d302",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/storefront/production-pricing.ts",
+        "deployedSha1": "72ff1c9f74c6c1b00e629ae9b4d1f9e719c182ee",
+        "protectedLfSha1": "6c46f0509c874c931a3ca9555eda61e546332d29",
+        "matchedRepresentation": "CRLF"
+      },
+      {
+        "file": "lib/storefront/customer-pricing-runtime.ts",
+        "deployedSha1": "36aa6cc41a467c376fcd3e46b6b2186acaeae9b5",
+        "protectedLfSha1": "bb59345136f5aa6ef6b9fbea9785347aef6414cb",
+        "matchedRepresentation": "CRLF"
+      }
+    ]
+  },
+  "theme": {
+    "theme": "182339731835",
+    "base": "eb9310bda31a547302888bb65d7f50a1f6a842a0",
+    "results": [
+      {
+        "file": "assets/curtainsuk-storefront.js",
+        "liveSha256": "90adb0d7fe8950261651f592612a19a80f5960148853a53eb4e7953c890176e6",
+        "protectedSha256": "90adb0d7fe8950261651f592612a19a80f5960148853a53eb4e7953c890176e6",
+        "match": true
+      },
+      {
+        "file": "assets/curtainsuk-premium.js",
+        "liveSha256": "9f809c0416f36ea38c074dee093fb94598b375109d62b3927967a73e54504751",
+        "protectedSha256": "9f809c0416f36ea38c074dee093fb94598b375109d62b3927967a73e54504751",
+        "match": true
+      },
+      {
+        "file": "assets/customer-journey.js",
+        "liveSha256": "0df146daf4ad3fbe5866fb9c295fc62ac08aaa61f0c9de5b7b409872342719ea",
+        "protectedSha256": "0df146daf4ad3fbe5866fb9c295fc62ac08aaa61f0c9de5b7b409872342719ea",
+        "match": true
+      },
+      {
+        "file": "sections/curtainsuk-configurator.liquid",
+        "liveSha256": "47d3c61cd2a2553f35fcdde270f05c26b6e5283fa2a9477c9ede1069c0b9b6a3",
+        "protectedSha256": "47d3c61cd2a2553f35fcdde270f05c26b6e5283fa2a9477c9ede1069c0b9b6a3",
+        "match": true
+      }
+    ]
+  }
+}

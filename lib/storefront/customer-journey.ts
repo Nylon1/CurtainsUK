@@ -1,3 +1,5 @@
+import { parsePriceDiagnosticContext, type PriceDiagnosticContext } from './price-diagnostics';
+
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const NAME = /^(VISIT_START|PAGE_VIEW|NAVIGATE|CART_ADD|CART_VIEW|CHECKOUT_START|API_FAILURE|BROWSER_ERROR|ASSET_FAILURE|PAGE_SLOW|API_SLOW)$/;
 const CODE = /^[A-Z][A-Z0-9_]{1,63}$/;
@@ -59,6 +61,7 @@ export type JourneyErrorDetail = {
   type: string; message: string; script: string | null; line: number | null; column: number | null;
   origin: string; feature: string;
   messageText?: string | null; frames?: JourneyErrorFrame[]; reasonCode?: string | null;
+  pricingContext?: PriceDiagnosticContext;
   request?: { method: string; route: string } | null;
 };
 
@@ -88,7 +91,8 @@ function parseErrorDetail(value: unknown, kind: unknown): JourneyErrorDetail | n
   const keys = detail && Object.keys(detail).sort().join(',');
   if (!detail || kind !== "ERROR" || !['column,feature,line,message,origin,script,type',
     'column,feature,frames,line,message,messageText,origin,request,script,type',
-    'column,feature,frames,line,message,messageText,origin,reasonCode,request,script,type'].includes(keys ?? '')
+    'column,feature,frames,line,message,messageText,origin,reasonCode,request,script,type',
+    'column,feature,frames,line,message,messageText,origin,pricingContext,reasonCode,request,script,type'].includes(keys ?? '')
     || !ERROR_TYPES.has(String(detail.type)) || !MESSAGE_CODES.has(String(detail.message))
     || !ORIGINS.has(String(detail.origin)) || !FEATURES.has(String(detail.feature))
     || (detail.script !== null && (typeof detail.script !== 'string' || !SCRIPT.test(detail.script)))
@@ -97,6 +101,9 @@ function parseErrorDetail(value: unknown, kind: unknown): JourneyErrorDetail | n
     throw Error("JOURNEY_INPUT_INVALID");
   }
   if ('messageText' in detail) {
+    if ('pricingContext' in detail && (!parsePriceDiagnosticContext(detail.pricingContext)
+      || object(detail.request)?.route !== '/apps/curtainsuk-decision/price'
+      || object(detail.request)?.method !== 'POST')) throw Error('JOURNEY_INPUT_INVALID');
     if ('reasonCode' in detail && detail.reasonCode !== null
       && (typeof detail.reasonCode !== 'string' || !CODE.test(detail.reasonCode))) throw Error("JOURNEY_INPUT_INVALID");
     if (detail.messageText !== null && (typeof detail.messageText !== 'string'

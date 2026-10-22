@@ -13,6 +13,7 @@
 
 {% if page.handle == 'configure-curtains' or page.handle == 'curtain-visualiser' %}
 <script src="{{ 'curtainsuk-premium.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'curtainsuk-mtm-configurator.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'curtainsuk-storefront.js' | asset_url }}" defer="defer"></script>
 {% assign engine_base = settings.curtainsuk_staging_api_base | default: section.settings.engine_base %}
 <section class="cuk-shell cuk-section" data-cuk-configurator data-rooms-enabled="{{ settings.curtainsuk_rooms_enabled }}" data-production-checkout="{{ production_checkout }}" data-purchase-controls-enabled="{{ settings.curtainsuk_purchase_controls_enabled }}" data-review-email="{{ settings.curtainsuk_review_email | default: 'enquiries@curtainsuk.com' | escape }}" data-engine-base="{{ engine_base | escape }}" data-review-path="{{ section.settings.review_request_path | escape }}" data-window-slug="{{ section.settings.initial_window | escape }}" data-staging-checkout-host="{{ section.settings.staging_checkout_host | escape }}">
@@ -136,8 +137,8 @@
             <div class="cuk-field"><label for="CukHeading-{{ section.id }}">Heading</label><select id="CukHeading-{{ section.id }}" name="heading" required><option value="">Choose a heading</option><option value="PENCIL_PLEAT">Pencil pleat</option><option value="WAVE">Wave</option><option value="EYELET">Eyelet</option><option value="DOUBLE_PINCH">Double pinch pleat</option></select></div>
             <div class="cuk-field"><label for="CukFabric-{{ section.id }}">Fabric and colour</label><select id="CukFabric-{{ section.id }}" name="fabricId" required><option value="">Loading fabrics…</option></select><a class="cuk-text-link" data-cuk-browse-fabrics href="/pages/fabric-library">Browse all fabrics for this window</a></div>
             <div class="cuk-field"><label for="CukLining-{{ section.id }}">Lining</label><select id="CukLining-{{ section.id }}" name="lining" required><option value="">Choose lining</option><option value="STANDARD">Standard lining</option><option value="BLACKOUT">Blackout lining</option><option value="THERMAL">Thermal lining</option><option value="BONDED">Bonded lining / interlining</option><option value="UNLINED">Unlined</option></select></div>
-            <div class="cuk-field"><label for="CukConstruction-{{ section.id }}">Pair or single</label><select id="CukConstruction-{{ section.id }}" name="construction" required><option value="">Choose pair or single</option><option value="PAIR">Pair</option><option value="SINGLE">Single curtain</option></select></div>
-            <div class="cuk-field cuk-field--wide"><label for="CukStack-{{ section.id }}">Opening / stack direction</label><select id="CukStack-{{ section.id }}" name="stackDirection" required><option value="">Choose opening direction</option><option value="SPLIT">Pair opening from centre</option><option value="LEFT">Stack left</option><option value="RIGHT">Stack right</option></select></div>
+            <div class="cuk-field"><label for="CukConstruction-{{ section.id }}">Pair or single</label><select id="CukConstruction-{{ section.id }}" name="construction" required><option value="">Choose pair or single</option></select></div>
+            <div class="cuk-field cuk-field--wide"><label for="CukStack-{{ section.id }}">Opening / stack direction</label><select id="CukStack-{{ section.id }}" name="stackDirection" required><option value="">Choose opening direction</option></select></div>
           </div>
         </fieldset>
 

@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { PriceDiagnosticContext } from '@/lib/storefront/price-diagnostics';
 
 type Event = { event_id: string; journey_id: string; request_id: string; occurred_at: string; kind: string;
   page_path: string; name: string; code: string | null; status: number | null; release: string; browser: string; channel: string | null;
   error_detail: { type: string; message: string; script: string | null; line: number | null; column: number | null;
     origin: string; feature: string; messageText?: string | null; reasonCode?: string | null;
+    pricingContext?: PriceDiagnosticContext;
     frames?: { script: string | null; line: number; column: number; origin: string }[];
     request?: { method: string; route: string } | null } | null };
 type Summary = { visits: number; journeys: number; pageViews: number; cartAdds: number;
@@ -55,6 +57,11 @@ function errorDetail(event: Event) {
     <span className="block text-xs">{position || origins[origin] || 'Source unavailable'} · {features[detail.feature] || 'General page'}</span>
     {detail.request && <span className="block break-all font-mono text-xs">{detail.request.method} {detail.request.route}{event.status ? ` → ${event.status}` : ''}</span>}
     {detail.reasonCode && <span className="block font-mono text-xs">Reason: {detail.reasonCode}</span>}
+    {detail.pricingContext && <span className="block text-xs">
+      Window: {detail.pricingContext.windowSlug} · Master: {detail.pricingContext.masterWindowSlug}<br />
+      {detail.pricingContext.hardware} · {detail.pricingContext.heading} · {detail.pricingContext.construction}<br />
+      Storefront: {detail.pricingContext.storefrontRelease} · API: {detail.pricingContext.apiRelease}
+    </span>}
     {detail.frames && detail.frames.length > 1 && <span className="mt-1 block text-xs">Stack: {detail.frames.map((frame) => `${frame.script || origins[frame.origin] || 'Unknown'}:${frame.line}:${frame.column}`).join(' → ')}</span>}
     {position && <span className="block text-xs">{origins[origin] || 'Source unavailable'}</span>}
   </span>;

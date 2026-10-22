@@ -8,10 +8,10 @@ import type { ConstructionType, CoverageMeasurementBasis, CurtainConfiguration, 
 import { STOREFRONT_FABRICS_BY_ID } from "@/lib/storefront/fabrics";
 import { STOREFRONT_WINDOWS_BY_SLUG } from "@/lib/storefront/window-catalog";
 import { allocateVatInclusiveRetailTotal } from "./checkout-gates";
-import { MissingCommercialRuleError } from "@/lib/decision-engine/errors";
+import { DecisionEngineValidationError, MissingCommercialRuleError } from "@/lib/decision-engine/errors";
+import { automatedMtmWindow, mtmStackDirections } from './mtm-configuration-contract';
 import {
   assertAutomatedMtmCompatibility,
-  isAutomatedMtmWindowSlug,
   measurementAnchors,
   type MtmDesiredFinish,
   type MtmHardware,
@@ -146,16 +146,12 @@ export function prepareStagingConfiguration(
   pricedFabric: ConfigurationFabricIdentity,
   rules: PricingRuleSet = buildStagingRuleSet(),
 ) {
-  const storefrontWindow = STOREFRONT_WINDOWS_BY_SLUG.get(input.windowSlug);
-  if (!storefrontWindow) throw new Error("Unknown window type");
-  if (!isAutomatedMtmWindowSlug(input.windowSlug)) throw new Error("MTM_AUTOMATED_OPENING_UNAVAILABLE");
+  const { windowType, windowSlug } = automatedMtmWindow(input.windowSlug);
   const hardware = input.hardware ?? (input.measurementBasis === "POLE_USABLE_WIDTH" ? "POLE" : "TRACK");
   const requiredBasis: CoverageMeasurementBasis = hardware === "POLE" ? "POLE_USABLE_WIDTH" : "TRACK_WIDTH";
   if (input.measurementBasis !== requiredBasis) throw new Error("MTM_HARDWARE_MEASUREMENT_BASIS_INCOMPATIBLE");
   assertAutomatedMtmCompatibility({ windowSlug: input.windowSlug, hardware, heading: input.heading });
-  const masterSlug = storefrontWindow.masterSlugs[0];
-  const windowType = WINDOW_TYPES_BY_SLUG.get(masterSlug);
-  if (!windowType) throw new Error("Window type is unavailable");
+  const masterSlug = windowType.slug;
   const isBay = masterSlug === "bay-window";
   const isCorner = masterSlug === "corner-window";
   const isCurved = masterSlug === "curved-window" || masterSlug === "bow-window";
@@ -198,7 +194,12 @@ export function prepareStagingConfiguration(
   configuration.attachments.photoReferences = (input.photoNames ?? []).map((name) => `staging-local://${name}`);
 
   assertValidConfiguration(configuration, windowType, pricedFabric, rules.measurementValidation);
-  return {configuration, windowType, widthCm, bay, hardware, anchors: measurementAnchors({ windowSlug: input.windowSlug, hardware, heading: input.heading })};
+  if (!mtmStackDirections(input.construction).includes(input.stackDirection)) {
+    throw new DecisionEngineValidationError('Curtain configuration is incomplete or invalid', [
+      { code: 'STACK_DIRECTION_NOT_ALLOWED', field: 'stackDirection', message: 'Opening direction does not match the construction' },
+    ]);
+  }
+  return {configuration, windowType, widthCm, bay, hardware, anchors: measurementAnchors({ windowSlug, hardware, heading: input.heading })};
 }
 
 export interface CustomerPricingExecution {

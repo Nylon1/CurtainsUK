@@ -109,7 +109,28 @@
     return null;
   }
 
-  function apiDetail(message, route, method, cause = null, reasonCode = null) {
+  function priceContext(response, route) {
+    if (route !== '/apps/curtainsuk-decision/price') return null;
+    try {
+      const raw = response.headers?.get?.('X-CurtainsUK-Pricing-Context');
+      if (!raw || raw.length > 700) return null;
+      const value = JSON.parse(raw);
+      const allowed = {
+        windowSlug: ['standard-window', 'patio-sliding-doors', 'french-doors', 'bifold-doors', 'bay-window', 'UNKNOWN'],
+        masterWindowSlug: ['standard-window', 'sliding-doors', 'patio-doors', 'french-doors', 'bifold-doors', 'bay-window', 'UNKNOWN'],
+        hardware: ['TRACK', 'POLE', 'UNSELECTED', 'UNRECOGNISED'],
+        heading: ['PENCIL_PLEAT', 'DOUBLE_PINCH', 'WAVE', 'EYELET', 'UNSELECTED', 'UNRECOGNISED'],
+        construction: ['PAIR', 'SINGLE', 'UNSELECTED', 'UNRECOGNISED'],
+        storefrontRelease: ['mtm-configurator-20261022-v1', 'UNKNOWN'],
+      };
+      if (Object.keys(value).sort().join(',') !== 'apiRelease,construction,hardware,heading,masterWindowSlug,storefrontRelease,windowSlug'
+        || !Object.entries(allowed).every(([key, values]) => values.includes(value[key]))
+        || !/^(?:UNKNOWN|dpl_[A-Za-z0-9]{1,64})$/.test(value.apiRelease)) return null;
+      return value;
+    } catch { return null; }
+  }
+
+  function apiDetail(message, route, method, cause = null, reasonCode = null, pricingContext = null) {
     const frames = stackFrames(cause);
     const first = frames[0];
     let causeMessage = null;
@@ -117,7 +138,7 @@
     return { type: message === 'NETWORK_REQUEST_FAILED' ? 'NetworkError' : 'HttpError', message,
       script: first?.script || null, line: first?.line || null, column: first?.column || null,
       origin: first?.origin || 'APP', feature: apiFeature(route),
-      messageText: redactedMessage(causeMessage), frames, reasonCode, request: safeApiRoute(route)
+      messageText: redactedMessage(causeMessage), frames, reasonCode, ...(pricingContext ? { pricingContext } : {}), request: safeApiRoute(route)
         ? { method: /^(GET|POST|PUT|PATCH|DELETE)$/.test(method) ? method : 'GET', route: safeApiRoute(route) } : null };
   }
 
@@ -311,7 +332,7 @@
           if (response.status >= 500) record('ERROR', 'API_FAILURE', 'API_SERVER_ERROR', response.status,
             path(location.href), apiDetail('HTTP_SERVER_ERROR', nativePath, method, null, reasonCode));
           else if ([400, 404, 409].includes(response.status)) record('ERROR', 'API_FAILURE', 'API_REQUEST_REJECTED',
-            response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath, method, null, reasonCode));
+            response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath, method, null, reasonCode, priceContext(response, nativePath)));
         }, (error) => {
           if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
           record('ERROR', 'API_FAILURE', 'API_NETWORK_ERROR', null, path(location.href),

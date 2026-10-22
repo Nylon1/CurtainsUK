@@ -1,0 +1,322 @@
+{
+  "publishedAt": "2026-10-22T11:11:12.768Z",
+  "pullRequest": 290,
+  "approvedHead": "b99c2bb63e4094c0f8085c72b05fac83b80d9af0",
+  "servingCommit": "f15869952538e388c890b4560e3e238e7a6f4448",
+  "servingTree": "eb6649b0c7c8aafbab0ea1f6ec7d81557dfa19c8",
+  "deployment": "dpl_9p9DCVNyS2FVpkScnEksVsF6qQK7",
+  "previousDeployment": "dpl_J8b1CV2x5c1bwfPtYqiFD6qZLGeG",
+  "aliases": [
+    "curtainsuk-production-api.vercel.app",
+    "curtainsuk-staging-api.vercel.app",
+    "curtainsuk-staging-gateway.vercel.app"
+  ],
+  "sourceUpload": {
+    "sourceFilesVerified": 6910,
+    "mismatch": []
+  },
+  "renderPacks": 4,
+  "immutableRenderFiles": 3448,
+  "immutableRenderBytes": 240574325,
+  "shopify": {
+    "themeId": 182339731835,
+    "filesVerified": 586,
+    "changedFiles": [
+      "assets/curtainsuk-mtm-configurator.js",
+      "assets/curtainsuk-premium.js",
+      "assets/curtainsuk-storefront.js",
+      "assets/customer-journey.js",
+      "sections/curtainsuk-configurator.liquid"
+    ],
+    "settingsSha256": "3bb8bc0c780e34939031ee83bca41584cf973018a8eaaac112b1027d7f45e502"
+  },
+  "environment": {
+    "entries": 99,
+    "productionEntries": 71,
+    "changedKeys": [
+      "VERCEL_GIT_COMMIT_SHA",
+      "CURTAINSUK_BUILD_SOURCE_COMMIT",
+      "ADVISORY_SPECIALISTS_APPROVED_COMMIT",
+      "ADVISORY_SHOPIFY_APPROVED_COMMIT"
+    ],
+    "featureSettingsChanged": false
+  },
+  "livePricing": {
+    "catalogStatus": 200,
+    "windowCount": 5,
+    "hardwareHeadingRoutes": 26,
+    "rows": [
+      {
+        "window": "standard-window",
+        "master": "standard-window",
+        "hardware": "TRACK",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "standard-window",
+        "master": "standard-window",
+        "hardware": "TRACK",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "standard-window",
+        "master": "standard-window",
+        "hardware": "POLE",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "standard-window",
+        "master": "standard-window",
+        "hardware": "POLE",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "patio-sliding-doors",
+        "master": "patio-doors",
+        "hardware": "TRACK",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "patio-sliding-doors",
+        "master": "patio-doors",
+        "hardware": "TRACK",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "patio-sliding-doors",
+        "master": "patio-doors",
+        "hardware": "POLE",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "patio-sliding-doors",
+        "master": "patio-doors",
+        "hardware": "POLE",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "french-doors",
+        "master": "french-doors",
+        "hardware": "TRACK",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "french-doors",
+        "master": "french-doors",
+        "hardware": "TRACK",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "french-doors",
+        "master": "french-doors",
+        "hardware": "POLE",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "french-doors",
+        "master": "french-doors",
+        "hardware": "POLE",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "bifold-doors",
+        "master": "bifold-doors",
+        "hardware": "TRACK",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "bifold-doors",
+        "master": "bifold-doors",
+        "hardware": "TRACK",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "bifold-doors",
+        "master": "bifold-doors",
+        "hardware": "POLE",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "bifold-doors",
+        "master": "bifold-doors",
+        "hardware": "POLE",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "bay-window",
+        "master": "bay-window",
+        "hardware": "TRACK",
+        "construction": "PAIR",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "window": "bay-window",
+        "master": "bay-window",
+        "hardware": "TRACK",
+        "construction": "SINGLE",
+        "status": 200,
+        "outcome": "INSTANT_PRICE"
+      },
+      {
+        "case": "unselected",
+        "status": 400,
+        "code": "CONFIGURATION_CONSTRUCTION_NOT_ALLOWED",
+        "message": "This curtain arrangement isn't available for the selected window. Please choose one of the available Pair / Single options.",
+        "context": {
+          "windowSlug": "standard-window",
+          "masterWindowSlug": "standard-window",
+          "hardware": "TRACK",
+          "heading": "PENCIL_PLEAT",
+          "construction": "UNSELECTED",
+          "storefrontRelease": "mtm-configurator-20261022-v1",
+          "apiRelease": "dpl_9p9DCVNyS2FVpkScnEksVsF6qQK7"
+        }
+      },
+      {
+        "case": "zero-measurement",
+        "status": 400,
+        "code": "CONFIGURATION_MEASUREMENT_INVALID",
+        "message": "Please enter positive width and drop measurements in centimetres.",
+        "context": {
+          "windowSlug": "standard-window",
+          "masterWindowSlug": "standard-window",
+          "hardware": "TRACK",
+          "heading": "PENCIL_PLEAT",
+          "construction": "PAIR",
+          "storefrontRelease": "mtm-configurator-20261022-v1",
+          "apiRelease": "dpl_9p9DCVNyS2FVpkScnEksVsF6qQK7"
+        }
+      },
+      {
+        "case": "incoherent-opening",
+        "status": 400,
+        "code": "CONFIGURATION_STACK_DIRECTION_NOT_ALLOWED",
+        "message": "Please choose an opening direction that matches your pair or single curtain.",
+        "context": {
+          "windowSlug": "standard-window",
+          "masterWindowSlug": "standard-window",
+          "hardware": "TRACK",
+          "heading": "PENCIL_PLEAT",
+          "construction": "SINGLE",
+          "storefrontRelease": "mtm-configurator-20261022-v1",
+          "apiRelease": "dpl_9p9DCVNyS2FVpkScnEksVsF6qQK7"
+        }
+      }
+    ]
+  },
+  "browserChecks": [
+    "Pair prices successfully",
+    "Single clears incompatible centre opening",
+    "Single prices after left opening selected",
+    "Single and left opening restored on reload",
+    "Browse renders 11815 fabrics and existing destinations",
+    "Fiona panel expands; Jane links remain present"
+  ],
+  "limitations": [
+    "No paid order or sample-cart mutation submitted",
+    "No signed-in adviser reply or complete Fiona consultation replayed",
+    "No physical mobile-device session",
+    "Old open pages require refresh to use the new client"
+  ],
+  "otherSurfaces": [
+    {
+      "path": "/pages/fabric-library?view=browse-fabrics",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/pages/fabric/sdg-f1325-02-abeja-ivory",
+      "status": 200
+    },
+    {
+      "path": "/pages/smart-track-studio",
+      "status": 200
+    },
+    {
+      "path": "/pages/cushion-studio",
+      "status": 200
+    },
+    {
+      "path": "/pages/room-visualiser",
+      "status": 200
+    },
+    {
+      "path": "/pages/fabric-library?view=curtain-style",
+      "status": 200
+    },
+    {
+      "path": "/pages/build-my-rooms",
+      "status": 200
+    },
+    {
+      "path": "/pages/meet-our-team",
+      "status": 200
+    },
+    {
+      "path": "/pages/samples",
+      "status": 200
+    },
+    {
+      "path": "/apps/curtainsuk-decision/consultation?experience=premium&entry=match",
+      "status": 200
+    },
+    {
+      "path": "/apps/curtainsuk-decision/consultation",
+      "status": 404,
+      "interpretation": "Legacy non-premium route returned 404; customer navigation uses the premium route which returned 200. Legacy settings were not changed."
+    },
+    {
+      "path": "/apps/curtainsuk-decision/catalog?view=retail&naila=1&page=1",
+      "status": 404,
+      "error": "Unable to load the fabric catalogue",
+      "interpretation": "Unsigned prepared catalogue probe lacks required capability/session headers; expected access rejection, not an authenticated availability check"
+    },
+    {
+      "path": "/apps/curtainsuk-decision/catalog?view=retail&browseCards=1&browseGuide=1&page=1",
+      "status": 200,
+      "fabrics": 24,
+      "total": 11815
+    },
+    {
+      "path": "/apps/curtainsuk-decision/catalog?view=retail&visualiser=1&page=1",
+      "status": 200,
+      "fabrics": 24
+    }
+  ]
+}

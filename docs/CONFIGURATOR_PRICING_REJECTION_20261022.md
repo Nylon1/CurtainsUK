@@ -1,6 +1,6 @@
 # Make Curtains pricing rejection investigation
 
-Status: candidate fix only, not published. Owner approval is required before merging or publishing.
+Status: published after owner approval through PR #290 on 22 October 2026. Serving source: `f15869952538e388c890b4560e3e238e7a6f4448`. See [production publication evidence](CONFIGURATOR_PRICING_PUBLICATION_20261022.json). The investigation below describes the pre-release findings.
 
 Protected source inspected: `eb9310bda31a547302888bb65d7f50a1f6a842a0`.
 Live Shopify MAIN theme: `182339731835` (`carpetup.myshopify.com`).
@@ -103,10 +103,10 @@ Local regression: **500 tests passed, zero failed or skipped**, covering storefr
 
 ## Release and residual risks
 
-**Do not publish this branch.** After owner approval and required checks, merge through protected `release/production`. An API release and five Shopify MAIN-theme file uploads are required together. No settings, environment flags, database records, advisers, Browse, Samples, Room Visualiser, Cushion Studio or Smart Track Studio were switched off or changed during this investigation.
+The candidate was held until owner approval and both required checks passed, then merged through protected `release/production`. An API release and five Shopify MAIN-theme file uploads are required together. No settings, environment flags, database records, advisers, Browse, Samples, Room Visualiser, Cushion Studio or Smart Track Studio were switched off or changed during this investigation.
 
 Deploy the API contract first and verify it through the real Shopify proxy, then upload the new helper and four modified theme files as one scoped theme release. New theme code deliberately cannot price against an old catalogue without capabilities. A cached old page can still submit incomplete state until refreshed; the backend continues rejecting it safely. Roll back theme files before reverting the API if necessary, so new theme code is not left without its required contract.
 
 The stricter stack check may reject old incoherent saved states until the refreshed UI reconciles them. Existing valid Pair/Single configurations and pricing are covered. Post-approval live checks must confirm the custom diagnostic header survives the Shopify proxy and that `VERCEL_DEPLOYMENT_ID` is available; otherwise diagnostics remain bounded but may report `UNKNOWN`. Historic events cannot be backfilled with missing construction details.
 
-The repository requires an exact-head `OWNER_APPROVED_POLICY_CHANGE` comment for protected test changes. The candidate record is pending and does not authorise merge or production deployment.
+The repository requires an exact-head `OWNER_APPROVED_POLICY_CHANGE` comment for protected test changes. That owner comment was verified on approved head `b99c2bb63e4094c0f8085c72b05fac83b80d9af0` before PR #290 merged. The owner also approved publication.

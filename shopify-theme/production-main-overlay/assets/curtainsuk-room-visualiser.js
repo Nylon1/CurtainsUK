@@ -9,6 +9,8 @@
       const label = section.querySelector('[data-room-status-text]');
       const recovery = section.querySelector('[data-room-recovery]');
       const direct = section.querySelector('[data-room-open]');
+      const childReasons = new Set(['ROOM_FRAME_GRAPHICS_UNAVAILABLE', 'ROOM_FRAME_MODULE_UNAVAILABLE',
+        'ROOM_FRAME_ASSET_UNAVAILABLE', 'ROOM_FRAME_NETWORK_UNAVAILABLE', 'ROOM_FRAME_RENDER_FAILED']);
       let timeout, slowHint, attempt = 0;
       const stop = () => { clearTimeout(timeout); clearTimeout(slowHint); };
       const report = (reason) => document.dispatchEvent(new CustomEvent('curtainsuk:room-frame-error', { detail: { reason } }));
@@ -31,7 +33,8 @@
             section.dataset.state !== 'loading') return;
         if (event.data.status === 'ready') {
           stop(); section.dataset.state = 'ready'; status.hidden = true;
-        } else if (event.data.status === 'error') fail('ROOM_FRAME_CHILD_ERROR');
+        } else if (event.data.status === 'error') fail(childReasons.has(event.data.reason)
+          ? event.data.reason : 'ROOM_FRAME_CHILD_ERROR');
       };
       const load = () => {
         stop(); attempt += 1; section.dataset.state = 'loading'; status.hidden = false; recovery.hidden = true;

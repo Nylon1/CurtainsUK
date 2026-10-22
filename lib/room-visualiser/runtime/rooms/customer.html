@@ -26,12 +26,23 @@
   const loading = document.querySelector('#loading');
   const retry = document.querySelector('#loading-retry');
   let last = '';
+  // Send only a fixed category. Renderer errors may contain URLs or fabric details.
+  const failureReason = () => {
+    const error = String(window.roomProof?.loading?.state?.error ||
+      window.roomProof?.errors?.at(-1) || window.visualiserCustomer?.proof?.errors?.at(-1) || '');
+    if (/webgl|graphics context|gpu|shader/i.test(error)) return 'ROOM_FRAME_GRAPHICS_UNAVAILABLE';
+    if (/failed to fetch dynamically imported module|module script|importing a module/i.test(error)) return 'ROOM_FRAME_MODULE_UNAVAILABLE';
+    if (/room_manifest_unavailable|room_load_failed|texture|image.*load|asset.*load/i.test(error)) return 'ROOM_FRAME_ASSET_UNAVAILABLE';
+    if (/failed to fetch|networkerror|aborterror|load failed/i.test(error)) return 'ROOM_FRAME_NETWORK_UNAVAILABLE';
+    return 'ROOM_FRAME_RENDER_FAILED';
+  };
   const report = () => {
     const status = retry && !retry.hidden ? 'error' :
       loading?.hidden && window.visualiserCustomer?.proof.ready && window.roomProof?.ready ? 'ready' : '';
     if (!status || status === last) return;
     last = status;
-    window.parent.postMessage({ type: 'curtainsuk:room-frame', status, attempt }, location.origin);
+    window.parent.postMessage({ type: 'curtainsuk:room-frame', status, attempt,
+      ...(status === 'error' ? { reason: failureReason() } : {}) }, location.origin);
   };
   new MutationObserver(report).observe(loading, { attributes: true, subtree: true, attributeFilter: ['hidden', 'data-state'] });
   report();

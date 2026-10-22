@@ -62,7 +62,7 @@ test("Bay uses one fitted-track route width and drop without angles or segment c
   assert.match(section, /name="dropCm"[^>]*required/);
   assert.match(section, /For a bay, select fitted track and measure its full route/);
   assert.match(script, /if \(isBay && form\?\.elements\.measurementBasis\) form\.elements\.measurementBasis\.value = "TRACK_WIDTH"/);
-  assert.match(script, /measurementBasis: isBay \? "TRACK_WIDTH" : form\.elements\.measurementBasis\.value/);
+  assert.match(script, /const measurementBasis = isBay \? "TRACK_WIDTH" : form\.elements\.measurementBasis\.value/);
   assert.match(script, /widthCm: Number\(form\.elements\.widthCm\.value\)/);
   assert.match(script, /dropCm: Number\(form\.elements\.dropCm\.value\)/);
   assert.match(script, /\[data-cuk-bay\] input[^\n]*field\.disabled = true/);
@@ -77,7 +77,7 @@ test("Only supported automated windows are actionable and unsupported routes can
   assert.deepEqual([...allowlist.matchAll(/"([^"]+)"/g)].map((match) => match[1]).sort(), [
     "standard-window", "bay-window", "french-doors", "patio-sliding-doors", "bifold-doors",
   ].sort());
-  assert.match(script, /catalog\.windows\.filter\(\(item\) => AUTOMATED_MTM_WINDOWS\.has\(item\.slug\)\)/);
+  assert.match(script, /catalog\.windows\.filter\(\(item\) => AUTOMATED_MTM_WINDOWS\.has\(item\.slug\) && item\.configuration\?\.routes\?\.length\)/);
   assert.match(script, /windowSelect\.value = AUTOMATED_MTM_WINDOWS\.has\(requestedWindow\) \? requestedWindow : ""/);
   const guard = script.indexOf("if (!AUTOMATED_MTM_WINDOWS.has(selected.slug))");
   const reviewDispatch = script.indexOf('path = "specialist-review"', guard);
@@ -97,7 +97,7 @@ test("Review evidence appears only after a server review outcome, without upload
   assert.match(section, /class="cuk-checkout-handoff cuk-hidden" data-cuk-checkout-form/);
   assert.match(section, /class="cuk-review-submit cuk-hidden" data-cuk-review-form/);
   assert.doesNotMatch(section, /type="file"/);
-  assert.match(script, /catalog\.windows\.filter\(\(item\) => AUTOMATED_MTM_WINDOWS\.has\(item\.slug\)\)/);
+  assert.match(script, /catalog\.windows\.filter\(\(item\) => AUTOMATED_MTM_WINDOWS\.has\(item\.slug\) && item\.configuration\?\.routes\?\.length\)/);
 });
 
 test("task navigation uses resolvable theme-owned inspiration, help and sample anchors", () => {

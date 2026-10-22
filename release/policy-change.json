@@ -1,12 +1,14 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The published Room Visualiser had no focused regression contract for a blank embedded frame, direct-open recovery or a verified parent-child ready signal.",
-  "newRule": "Add focused tests for direct-open fabric and room preservation, trusted iframe ready and failure messages, stale retry rejection and specific blank-frame diagnostics. Preserve the existing scene engine and released visualiser asset guard.",
-  "reason": "The owner approved the proposed fix after a live Chrome reproduction showed a blank iframe while the direct Room Visualiser route worked. The protected test addition verifies customer recovery and prevents a misleading ready state.",
-  "ownerApprovedDecision": "The owner authorised implementation by saying Proceed with fix. This record does not approve merge or production publication; exact-head Nylon1 approval is still required by the protected-production policy.",
+  "previousRule": "Make Curtains had no direct regression contract proving that displayed construction capabilities match canonical pricing validation or that a partially completed wizard cannot auto-submit.",
+  "newRule": "Add canonical catalogue/UI/backend construction contract tests and actual storefront lifecycle tests, with specific rejection messages and privacy-safe diagnostics. Update theme assertions for the governed capability filter. Preserve all production gate assertions and business rules.",
+  "reason": "Live synthetic probes reproduce empty construction and zero measurement HTTP 400 responses while valid Pair and Single price successfully. Hidden wizard fields lose required validation, allowing premature repeated pricing requests.",
+  "ownerApprovedDecision": "The owner explicitly requested investigation, a branch/PR, focused regression tests and production-gate results, and prohibited publication before approval. This record does not approve merge or deployment; exact-head Nylon1 approval remains required.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/room-visualiser-iframe-recovery.test.ts",
+    "lib/storefront/__tests__/configurator-pricing-lifecycle.test.ts",
+    "lib/storefront/__tests__/mtm-configuration-contract.test.ts",
+    "lib/storefront/__tests__/shopify-theme.test.ts",
     "release/policy-change.json"
   ]
 }

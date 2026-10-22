@@ -1,5 +1,6 @@
 import { STOREFRONT_FABRICS } from "./fabrics";
 import { STOREFRONT_WINDOW_TYPES } from "./window-catalog";
+import { mtmConfigurationContract } from './mtm-configuration-contract';
 
 /**
  * Customer-safe payload consumed by the unpublished Dawn theme. Commercial
@@ -20,6 +21,7 @@ export function buildShopifyCatalogPayload() {
       headings: windowType.headings,
       linings: windowType.linings,
       journey: windowType.journey,
+      configuration: mtmConfigurationContract(windowType.slug),
       route: `/pages/curtains-for-${windowType.slug}`,
       faqs: windowType.faqs,
     })),

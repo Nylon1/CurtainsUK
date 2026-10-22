@@ -141,7 +141,13 @@
       ...options,
     });
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.error || "This request could not be completed.");
+    if (!response.ok) {
+      const error = new Error(data.error || "This request could not be completed.");
+      error.status = response.status;
+      const code = response.headers?.get?.('X-CurtainsUK-Diagnostic-Code');
+      error.diagnosticCode = /^[A-Z][A-Z0-9_]{1,63}$/.test(code || '') ? code : null;
+      throw error;
+    }
     return data;
   }
 
@@ -698,13 +704,6 @@
     "standard-window", "patio-sliding-doors", "french-doors", "bifold-doors", "bay-window",
   ]);
 
-  function automatedHeadings(windowType, measurementBasis) {
-    if (windowType?.slug === "bay-window") return ["PENCIL_PLEAT", "DOUBLE_PINCH"];
-    return measurementBasis === "POLE_USABLE_WIDTH"
-      ? ["PENCIL_PLEAT", "DOUBLE_PINCH", "EYELET"]
-      : ["PENCIL_PLEAT", "DOUBLE_PINCH", "WAVE"];
-  }
-
   function setJourneyFields(root, windowType) {
     const isBay = windowType?.slug === "bay-window";
     const isCorner = false;
@@ -737,6 +736,7 @@
     root.querySelector("[data-cuk-width-hint]")?.classList.toggle("cuk-hidden", !isCurved);
     const form = root.querySelector(".cuk-form");
     if (!windowType) {
+      globalThis.window?.CurtainsUKMtmConfigurator?.sync(form, null);
       if (form?.elements.heading) form.elements.heading.value = "";
       if (form?.elements.lining) form.elements.lining.value = "";
       const status = root.querySelector("[data-cuk-route-status]");
@@ -745,9 +745,7 @@
       return;
     }
     if (isBay && form?.elements.measurementBasis) form.elements.measurementBasis.value = "TRACK_WIDTH";
-    replaceOptions(form?.elements.heading, automatedHeadings(windowType, form?.elements.measurementBasis?.value), {
-      PENCIL_PLEAT: "Pencil pleat", WAVE: "Wave", EYELET: "Eyelet", DOUBLE_PINCH: "Double pinch pleat", TRIPLE_PINCH: "Triple pinch pleat", TAB_TOP: "Tab top",
-    });
+    globalThis.window?.CurtainsUKMtmConfigurator?.sync(form, windowType);
     replaceOptions(form?.elements.lining, windowType?.linings, {
       UNLINED: "Unlined", STANDARD: "Standard lining", BLACKOUT: "Blackout lining", THERMAL: "Thermal lining", BONDED: "Bonded lining / interlining",
     });
@@ -883,6 +881,14 @@
     const windowSelect = form.elements.windowSlug;
     const fabricSelect = form.elements.fabricId;
     const params = new URLSearchParams(location.search);
+    const mtm = window.CurtainsUKMtmConfigurator;
+    if (!mtm) {
+      errorBox.textContent = 'The curtain options could not load. Please refresh this page before checking a price.';
+      errorBox.hidden = false;
+      form.querySelector('button[type=submit]').disabled = true;
+      return;
+    }
+    const priceGate = mtm.createRequestGate();
     let catalog;
     let lastEvaluation = null;
     const roomsEnabled = root.dataset.roomsEnabled === 'true';
@@ -900,7 +906,8 @@
       const requested = params.get("fabric") || (!roomsFresh ? readJson(PROJECT_KEY, {}).fabricId : "");
       if (requested && !FABRIC_MASTER_ID.test(requested)) throw new Error("We couldn't verify the fabric in this link. Please choose a fabric from Browse Fabrics.");
       catalog = await fetchJson(endpoint(root.dataset.engineBase, "catalog") + (requested ? `?fabric=${encodeURIComponent(requested)}` : ""));
-      catalog.windows.filter((item) => AUTOMATED_MTM_WINDOWS.has(item.slug)).forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
+      catalog.windows.filter((item) => AUTOMATED_MTM_WINDOWS.has(item.slug) && item.configuration?.routes?.length).forEach((item) => windowSelect.appendChild(option(item.name, item.slug)));
+      if (windowSelect.options.length < 2) throw new Error('The curtain options could not load. Please refresh this page before checking a price.');
       fabricSelect.replaceChildren(option("Choose a fabric", ""));
       catalog.fabrics.filter((item) => item.configurable === true || item.selectableForReview === true).forEach((item) => fabricSelect.appendChild(option(`${item.brand || item.supplier} · ${item.design} · ${item.colour}`, item.id)));
     } catch (error) {
@@ -940,6 +947,11 @@
     }
     renderBaySections(root, remembered.baySectionCount || 3, remembered.baySectionWidthsCm || []);
     setJourneyFields(root, catalog.windows.find((item) => item.slug === windowSelect.value));
+    // These options do not exist until the authoritative catalogue has loaded.
+    // Restore their saved values through reconciliation, never directly into an empty select.
+    mtm.sync(form, catalog.windows.find((item) => item.slug === windowSelect.value), {
+      construction: remembered.construction || '', stackDirection: remembered.stackDirection || '',
+    });
     rememberProject(projectSnapshot(form, root));
     syncConfiguratorUrl(form);
     if (roomsFresh) {
@@ -969,8 +981,59 @@
     }
     let livePriceTimer;
     let livePriceSequence=0;
-    form.addEventListener('input',()=>{lastEvaluation=null;checkoutForm.classList.add('cuk-hidden');clearTimeout(livePriceTimer);livePriceSequence++;const sequence=livePriceSequence;livePriceTimer=setTimeout(()=>{if(sequence===livePriceSequence&&fabricSelect.value&&windowSelect.value&&form.checkValidity()&&!form.querySelector('button[type=submit]').disabled)form.requestSubmit();},650);});
-    form.addEventListener('change',()=>{lastEvaluation=null;checkoutForm.classList.add('cuk-hidden');clearTimeout(livePriceTimer);livePriceSequence++;const sequence=livePriceSequence;livePriceTimer=setTimeout(()=>{if(sequence===livePriceSequence&&fabricSelect.value&&windowSelect.value&&form.checkValidity()&&!form.querySelector('button[type=submit]').disabled)form.requestSubmit();},650);});
+    let automaticSubmit = false;
+    let observedState = JSON.stringify(mtm.read(form));
+    const selectedWindow = () => catalog.windows.find(item => item.slug === windowSelect.value);
+    const readyForPrice = () => !mtm.validate(selectedWindow(), mtm.read(form))
+      && configurableFabrics.some(fabric => fabric.id === fabricSelect.value);
+    function schedulePrice() {
+      clearTimeout(livePriceTimer);
+      const sequence = livePriceSequence;
+      livePriceTimer = setTimeout(() => {
+        if (sequence !== livePriceSequence || !readyForPrice() || !priceGate.canSubmit(mtm.read(form), true)) return;
+        automaticSubmit = true;
+        form.requestSubmit();
+        automaticSubmit = false;
+      }, 650);
+    }
+    const invalidatePrice = () => {
+      const state = mtm.read(form);
+      const fingerprint = JSON.stringify(state);
+      if (fingerprint === observedState) return;
+      observedState = fingerprint;
+      priceGate.changed(state);
+      rememberProject(projectSnapshot(form, root));
+      lastEvaluation = null;
+      result.hidden = true;
+      checkoutForm.classList.add('cuk-hidden');
+      reviewForm.classList.add('cuk-hidden');
+      reviewConfirmation.classList.add('cuk-hidden');
+      const checkoutButton = checkoutForm.querySelector('button[type=submit]');
+      if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutLabel(); }
+      checkoutForm.querySelector('[data-cuk-checkout-confirmation]')?.classList.add('cuk-hidden');
+      livePriceSequence++;
+      schedulePrice();
+    };
+    form.addEventListener('input', invalidatePrice);
+    form.addEventListener('change', invalidatePrice);
+    for (const name of ['heading', 'construction']) form.elements[name].addEventListener('change', () => {
+      mtm.sync(form, selectedWindow());
+      rememberProject(projectSnapshot(form, root));
+    });
+    form.addEventListener('reset', () => {
+      livePriceSequence++;
+      clearTimeout(livePriceTimer);
+      lastEvaluation = null;
+      result.hidden = true;
+      checkoutForm.classList.add('cuk-hidden');
+      // The browser resets field values after this event. Do not price that reset.
+      setTimeout(() => {
+        mtm.sync(form, selectedWindow());
+        const state = mtm.read(form);
+        observedState = JSON.stringify(state);
+        priceGate.changed(state);
+      }, 0);
+    });
     const savedReceipt = readJson(RECEIPT_KEY, null);
     if (savedReceipt && JSON.stringify(savedReceipt.project) === JSON.stringify(projectSnapshot(form, root))) {
       showSavedReview(savedReceipt.receipt);
@@ -1005,24 +1068,26 @@
       renderBaySections(root, form.elements.baySectionCount.value, existing);
       rememberProject(projectSnapshot(form, root));
     });
-    form.addEventListener("input", (event) => {
-      if (event.target.type !== "file") {
-        rememberProject(projectSnapshot(form, root));
-        lastEvaluation = null;
-        result.hidden = true;
-        reviewForm.classList.add("cuk-hidden");
-        checkoutForm.classList.add("cuk-hidden");
-        const checkoutButton = checkoutForm.querySelector("button[type=submit]");
-        if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutLabel(); }
-        checkoutForm.querySelector("[data-cuk-checkout-confirmation]")?.classList.add("cuk-hidden");
-        reviewConfirmation.classList.add("cuk-hidden");
-      }
-    });
-
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      clearTimeout(livePriceTimer);
       errorBox.hidden = true;
       result.hidden = true;
+      const submittedState = mtm.read(form);
+      const problem = mtm.validate(selectedWindow(), submittedState);
+      if (problem) {
+        if (!automaticSubmit) {
+          errorBox.textContent = problem.message;
+          errorBox.hidden = false;
+          root.dispatchEvent(new CustomEvent('cuk:configuration-field-needed', { detail: { field: problem.field } }));
+        }
+        return;
+      }
+      if (!readyForPrice() || !priceGate.canSubmit(submittedState, automaticSubmit)) {
+        const rejection = priceGate.rejection(submittedState);
+        if (rejection) { errorBox.textContent = rejection; errorBox.hidden = false; }
+        return;
+      }
       if (!form.reportValidity()) {
         emit("validation_failure", { window_type: windowSelect.value, source: "browser" });
         return;
@@ -1087,6 +1152,7 @@
       }
 
       const submittedSequence = livePriceSequence;
+      priceGate.start(submittedState);
       const submit = form.querySelector("button[type=submit]");
       submit.disabled = true;
       submit.textContent = "Checking…";
@@ -1100,7 +1166,7 @@
         }
         const response = matchingSaved && tokenExpiry > Date.now() / 1000 + 30
           ? savedEvaluation.calculation
-          : await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body) });
+          : await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body), headers: { 'Content-Type': 'application/json', 'X-CurtainsUK-Storefront-Release': mtm.release } });
         if (submittedSequence !== livePriceSequence) return;
         // Refresh retired presentation copy without changing a resumed price or identity.
         const deliveryLabel = response.delivery === "UK delivery shown separately; postcode and packed parcel confirmation required"
@@ -1200,13 +1266,16 @@
           emit("price_displayed", { window_type: windowSelect.value, outcome: response.outcome, amount_minor: response.totalAmountMinor, currency: response.currency, calculation_version: response.calculationVersion || null });
         }
       } catch (error) {
+        if (error.status === 400) priceGate.reject(submittedState, error.diagnosticCode, error.message);
+        if (submittedSequence !== livePriceSequence) return;
         errorBox.textContent = error.message;
         errorBox.hidden = false;
         emit("validation_failure", { window_type: windowSelect.value, source: "server" });
       } finally {
+        priceGate.finish();
         submit.disabled = false;
         submit.textContent = selected.journey === "SPECIALIST" ? "Prepare my review" : "Check my price or review route";
-        if (submittedSequence !== livePriceSequence && form.checkValidity()) form.requestSubmit();
+        if (submittedSequence !== livePriceSequence && readyForPrice()) schedulePrice();
       }
     });
 

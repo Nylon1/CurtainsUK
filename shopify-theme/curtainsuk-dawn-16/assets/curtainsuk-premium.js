@@ -336,6 +336,11 @@
       sessionStorage.removeItem(stepKey);
       show(0, false);
     });
+    root.addEventListener('cuk:configuration-field-needed', (event) => {
+      const field = form.elements[event.detail?.field];
+      const index = panes.findIndex(pane => field && pane.contains(field));
+      if (index >= 0) { show(index); field.focus(); }
+    });
     form.addEventListener(
       'invalid',
       (event) => {

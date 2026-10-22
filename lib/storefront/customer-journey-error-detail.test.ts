@@ -5,6 +5,34 @@ import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
 import { randomUUID } from 'node:crypto';
 import { parseJourneyBatch, safeOperationalDiagnostic } from './customer-journey';
+import { priceDiagnosticContext } from './price-diagnostics';
+
+test('pricing telemetry preserves bounded compatibility context and rejects extra sensitive fields', async () => {
+  const diagnostic = priceDiagnosticContext({ windowSlug: 'patio-sliding-doors', hardware: 'TRACK', heading: 'WAVE', construction: '' }, 'mtm-configurator-20261022-v1', 'dpl_RegressionFixture');
+  const sent: string[] = [];
+  const location = { origin: 'https://www.curtainsuk.com', hostname: 'www.curtainsuk.com', href: 'https://www.curtainsuk.com/pages/curtain-visualiser?private=secret' };
+  const win: any = { Shopify: { customerPrivacy: { analyticsProcessingAllowed: () => true } },
+    addEventListener() {}, fetch: async (url: string, options: any) => {
+      if (url.endsWith('/journey')) { sent.push(options.body); return { ok: true }; }
+      return { status: 400, headers: { get: (name: string) => name === 'X-CurtainsUK-Diagnostic-Code' ? 'CONFIGURATION_CONSTRUCTION_NOT_ALLOWED' : name === 'X-CurtainsUK-Pricing-Context' ? JSON.stringify(diagnostic) : null } };
+    } };
+  runInNewContext(readFileSync('shopify-theme/curtainsuk-dawn-16/assets/customer-journey.js', 'utf8'), {
+    window: win, location, URL, Promise, document: { readyState: 'complete', referrer: '', addEventListener() {} },
+    sessionStorage: { getItem: () => null, setItem() {}, removeItem() {} }, crypto: { randomUUID }, navigator: {},
+    performance: { getEntriesByType: () => [], now: () => 0 }, setInterval: () => 1, clearInterval() {}, setTimeout: () => 1, clearTimeout() {},
+  });
+  await win.fetch('/apps/curtainsuk-decision/price', { method: 'POST', body: JSON.stringify({ widthCm: 987.65, dropCm: 432.1, name: 'Private Customer', token: 'SECRET' }) });
+  await Promise.resolve();
+  const body = JSON.parse(sent.at(-1)!);
+  const events = parseJourneyBatch(body, 'Chrome/120');
+  const error = events.find(event => event.kind === 'ERROR')!;
+  assert.deepEqual(error.error_detail?.pricingContext, diagnostic);
+  assert.equal(error.error_detail?.reasonCode, 'CONFIGURATION_CONSTRUCTION_NOT_ALLOWED');
+  assert.doesNotMatch(sent.join(''), /987|432|Private Customer|SECRET|private=|widthCm|dropCm/);
+  const raw = body.events.find((event: any) => event.kind === 'ERROR');
+  raw.detail.pricingContext.widthCm = 123;
+  assert.throws(() => parseJourneyBatch(body, 'Chrome/120'), /JOURNEY_INPUT_INVALID/);
+});
 
 test('storefront sends useful browser and API details without leaking messages or URL queries', async () => {
   const source = readFileSync(join(process.cwd(), 'shopify-theme/curtainsuk-dawn-16/assets/customer-journey.js'), 'utf8');

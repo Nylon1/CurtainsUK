@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { referenceTypes } from '../intelligence/reference-images/evidence';
 import { type PaletteEdit, type PaletteState } from '../intelligence/reference-images/palette';
 import { RoomPaletteBoard } from './RoomPaletteBoard';
@@ -35,6 +35,8 @@ export function ReferencePalette({
   transport,
   initialView = null,
   maxImageMb = 8,
+  opening,
+  startAtTop = false,
 }: {
   onChange: (view: PaletteView | null) => void;
   onBusyChange?: (busy: boolean) => void;
@@ -42,6 +44,10 @@ export function ReferencePalette({
   transport?: (request: RequestInit) => Promise<PaletteView>;
   initialView?: PaletteView | null;
   maxImageMb?: number;
+  /** Host presentation only. Upload, analysis and palette commands stay shared. */
+  opening?: ReactNode;
+  /** Optional host screen positioning; colour-by-colour navigation stays shared. */
+  startAtTop?: boolean;
 }) {
   const [savedView, setView] = useState<PaletteView | null>(initialView),
     [busy, setBusy] = useState(false),
@@ -55,6 +61,17 @@ export function ReferencePalette({
   const [analysis, setAnalysis] = useState(false);
   const lock = useRef(false),
     retry = useRef<RequestInit | null>(null);
+  const hasView = Boolean(view);
+  useEffect(() => {
+    if (!startAtTop) return;
+    const frame = requestAnimationFrame(() => {
+      const heading = document.getElementById(analysis ? 'analysis-title' : hasView ? 'room-palette-title' : 'palette-title');
+      heading?.setAttribute('tabindex', '-1');
+      heading?.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [analysis, hasView, startAtTop]);
   useEffect(
     () => () => {
       if (preview) URL.revokeObjectURL(preview);
@@ -180,7 +197,7 @@ export function ReferencePalette({
     >
       {!view && (
         <>
-          <ReferenceOpening primaryHeading={previewOnly || Boolean(transport)} />
+          {opening ?? <ReferenceOpening primaryHeading={previewOnly || Boolean(transport)} />}
           <section
             id="your-reference"
             className={styles.uploadSection}

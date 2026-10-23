@@ -1,12 +1,14 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Consultation navigation tests cover the original signed sample and curtain-order handoffs but do not cover additional fabric-specific studio links or safe published-profile fallbacks.",
-  "newRule": "Retain every existing assertion and add coverage for published fabric details, Room Visualiser, Cushion Studio, Making Studio and Jane destinations. Reject mismatched or foreign profile URLs and keep non-commerce exits free of consultation contents and commerce tokens. No protection rule or business rule changes.",
-  "reason": "The owner requested a visual Fabric Intelligence redesign, clearer Adjust my brief navigation and more destinations on each suggested fabric while preserving existing functionality. The added links need exact-fabric identity coverage.",
-  "ownerApprovedDecision": "The owner authorized the implementation and review. This record documents the additive regression-test scope only; it does not approve merging or publishing this candidate. Exact-head Nylon1 approval remains required by the existing protected policy.",
+  "previousRule": "Fabric Intelligence tests cover progressive direction delivery but do not distinguish an intentionally empty final-shortlist direction from a direction awaiting private card hydration. The photo input remains capped at 2 MB.",
+  "newRule": "Retain the existing progressive-delivery checks and add focused coverage for an empty final-shortlist result and browser-side phone-photo reduction. Continue enforcing the existing 2 MB analysis payload limit. No commerce, privacy or protected production rule changes.",
+  "reason": "A customer reached a final shortlist with an empty direction and received a delivery error when opening it or adjusting the brief. The owner also requested larger phone-photo input and removal of duplicate shortlist controls.",
+  "ownerApprovedDecision": "The owner authorized implementation and review of this Fabric Intelligence correction. This record describes the test scope only; merging and publishing still require the current protected-branch workflow and exact-head Nylon1 approval.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/consultation-navigation.test.ts",
+    "lib/storefront/__tests__/hci-prepared-directions.test.ts",
+    "lib/storefront/__tests__/fi-phone-photo.test.ts",
+    "lib/advisory/__tests__/completion.test.mjs",
     "release/policy-change.json"
   ]
 }

@@ -1,6 +1,7 @@
 import { hciVisualKnowledge } from '@/lib/fabric-master/hci-visual-knowledge';
 import 'server-only';
 import { customerView } from './hci-premium-view';
+import { needsPreparedDirectionCards } from './hci-prepared-directions';
 
 import { createHash, randomUUID } from 'node:crypto';
 import { gzipSync, gunzipSync } from 'node:zlib';
@@ -112,7 +113,9 @@ function expandPreparedDirections(view: ReturnType<typeof customerView>, state: 
   const encoded = (state && typeof state === 'object' && !Array.isArray(state)
     ? (state as StoredCustomerState).deliveryPreparedDirections
     : undefined);
-  if (!view.directions.some((direction) => direction.cards.length === 0)) return view;
+  // A final shortlist may intentionally leave a direction without a selected
+  // fabric. That is a finished result, never a missing progressive payload.
+  if (!needsPreparedDirectionCards(view)) return view;
   if (typeof encoded !== 'string' || Buffer.byteLength(encoded) > 256_000) throw Error('DIRECTION_DELIVERY_REQUIRED');
   let prepared: ReturnType<typeof customerView>['directions'];
   try {

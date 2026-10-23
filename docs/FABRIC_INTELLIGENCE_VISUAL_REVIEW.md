@@ -1,7 +1,7 @@
 # Fabric Intelligence visual review
 
-Review candidate, 23 October 2026. Based on protected `release/production` at
-`154c10ce4180ff85d7285fb69ebe25786dd94756`. This document does not record a production release.
+Review candidate prepared on 23 October 2026 from protected `release/production` at
+`154c10ce4180ff85d7285fb69ebe25786dd94756`. The owner-approved result was published through [PR #295](https://github.com/Nylon1/CurtainsUK/pull/295); the serving identities and post-publication checks are in [CurtainsUK production surfaces](PRODUCTION_SURFACES.md#fabric-intelligence-visual-release-23-october-2026).
 
 ## Customer experience
 
@@ -38,4 +38,4 @@ node scripts/fi-visual-browser-check.mjs
 
 Open `http://127.0.0.1:4185`. The green preview navigation switches between example screens. Browser results and screenshots are generated under `.next/fi-visual-checks/`; they are not production telemetry. The preview server binds only to loopback and needs no service credentials.
 
-Production publication has not occurred. Serving this candidate would require the normal approved API release from the protected branch; a Shopify MAIN-theme file upload is not required for these proxy UI changes. Update `docs/PRODUCTION_SURFACES.md` only after that publication and live verification.
+Production publication occurred from the protected branch after both required checks passed. No Shopify MAIN-theme file upload was required for these proxy UI changes. The live release and its bounded verification are recorded in `docs/PRODUCTION_SURFACES.md`.

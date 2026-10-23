@@ -8,6 +8,7 @@ import { consultationFabricLinks, shopifyConsultationHandoff } from '@/lib/store
 import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
 import { fiSessionStorageKey, isFiReadOnlyResumeConflict, nailaPresentationStorageKey, selectFiResumeSession } from './curtainsuk-fi-session';
 import { premiumProxyCommand, premiumProxyEnabled, premiumProxyPath } from './curtainsuk-fi-premium-proxy-transport';
+import { prepareFiPhonePhoto } from '@/lib/storefront/fi-phone-photo';
 import styles from './curtainsuk-premium-consultation.module.css';
 import referenceStyles from '@/vendor/hci-approved/components/ReferenceExperience.module.css';
 
@@ -223,8 +224,9 @@ export default function CurtainsUkPremiumConsultation() {
     if (retry) result = await send(undefined, true, true);
     else if (request.body instanceof Blob) {
       const headers = new Headers(request.headers);
-      result = await send({ type: 'image', mime: request.body.type,
-        bytes: base64(await request.body.arrayBuffer()),
+      const photo = await prepareFiPhonePhoto(request.body);
+      result = await send({ type: 'image', mime: photo.type,
+        bytes: base64(await photo.arrayBuffer()),
         referenceType: headers.get('x-hci-reference-type') ?? 'room' }, false, true);
     } else {
       const command = JSON.parse(String(request.body));
@@ -253,7 +255,7 @@ export default function CurtainsUkPremiumConsultation() {
     void send();
   };
   const openDirection = async (index: number) => {
-    if (view?.directions[index]?.cards.length || openingDirection !== null) return;
+    if (view?.phase === 'final' || view?.directions[index]?.cards.length || openingDirection !== null) return;
     setOpeningDirection(index);
     await send({ type: 'direction-hydrate', index });
     setOpeningDirection(null);
@@ -280,13 +282,13 @@ export default function CurtainsUkPremiumConsultation() {
   return <main className={`${showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell} ${styles.visualShell}`}>
     <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span className={styles.headerLabel}>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Browse fabrics ↗</a><button className={styles.headerRestart} type="button" disabled={busy} onClick={() => setRestartPrompt(true)}>Start again</button></header>
     <JourneySteps current={journeyStep} />
-    {(showUpload || showPalette) && <p className={styles.stageNote}>{showUpload ? 'Start with a photograph. Then confirm the colours that matter before we explore your style.' : 'Check each colour and tell us where it belongs. Your confirmed palette helps guide the fabrics we suggest.'}</p>}
+    {(showUpload || showPalette) && <p className={styles.stageNote}>{showUpload ? 'Start with a photograph. Phone photos up to 20 MB are resized on your device before analysis. Then confirm the colours that matter before we explore your style.' : 'Check each colour and tell us where it belongs. Your confirmed palette helps guide the fabrics we suggest.'}</p>}
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}
     {!showPalette && roomPalette?.confirmedPalette && <button className={styles.textButton} onClick={() => setReviewPalette(true)}>Review my Room Palette</button>}
     {(showUpload || showPalette) && <ReferencePalette
       initialView={view.palette}
       transport={paletteTransport}
-      maxImageMb={2}
+      maxImageMb={20}
       startAtTop
       opening={<FabricIntelligenceWelcome onGuided={() => setEntry('guided')} />}
       onChange={() => { /* The session response is the source of truth. */ }}
@@ -353,11 +355,6 @@ export default function CurtainsUkPremiumConsultation() {
   </main>;
 }
 
-const styleRefinementLabels: Record<string, string> = {
-  'change:warmer': 'Warmer', 'change:cooler': 'Cooler', 'change:plainer': 'Quieter', 'change:patterned': 'More pattern',
-  'change:texture': 'More texture', 'change:smooth': 'Less texture',
-};
-
 function JourneySteps({ current }: { current: number }) {
   const steps = [['Your room', 'Colours & context'], ['Your taste', 'Style & price'], ['Your eye', 'React to fabrics'], ['Your brief', 'Check your choices'], ['Your edit', 'Explore & sample']];
   return <ol className={styles.journeySteps} aria-label="Your Fabric Intelligence journey">{steps.map(([label, detail], index) => <li key={label} aria-current={index === current ? 'step' : undefined} data-complete={index < current}><span aria-hidden="true">{index < current ? '✓' : String(index + 1).padStart(2, '0')}</span><div><strong>{label}</strong><small>{detail}</small></div></li>)}</ol>;
@@ -408,11 +405,13 @@ function DirectionCard({ direction, fabrics, final, opening, onExplore, onReacti
   const card = direction.cards[0];
   const fabric = card ? fabrics[card.fabricMasterId] : undefined;
   if (direction.cards.length === 0) {
+    if (final || direction.status !== 'available') {
+      return <article className={`${styles.directionCard} ${styles.styleDirectionCard} ${styles.styleDirectionSummary}`}><div className={styles.styleDirectionIntro}><p className={styles.eyebrow}>{final ? 'Your final fabric edit' : 'Your fabric direction'}</p><h2>{direction.label}</h2><p className={styles.directionPurpose}>{direction.purpose}</p><p>{final ? 'No fabric from this direction made your final shortlist.' : 'There is no available fabric in this direction right now.'} Adjust your brief to refresh your suggestions, or explore the full collection.</p><a className={styles.primaryLink} href="/pages/fabric-library?view=browse-fabrics">Browse fabrics ↗</a></div></article>;
+    }
     return <article className={`${styles.directionCard} ${styles.styleDirectionCard} ${styles.styleDirectionSummary}`}><div className={styles.styleDirectionIntro}><p className={styles.eyebrow}>Another way to express your style</p><h2>{direction.label}</h2><p className={styles.directionPurpose}>{direction.purpose}</p><p>Open this direction to explore the fabrics selected from your brief.</p><button type="button" className={styles.primary} disabled={opening} onClick={onExplore}>{opening ? 'Opening this direction…' : 'Explore this direction →'}</button>{opening && <p className={styles.directionOpening} aria-live="polite">Opening your selected fabrics…</p>}</div></article>;
   }
   if (direction.cards.length > 1) {
-    const refinements = card?.feedback?.change.filter((option) => option.id in styleRefinementLabels) ?? [];
-    return <article className={`${styles.directionCard} ${styles.styleDirectionCard}`}><div className={styles.styleDirectionIntro}><p className={styles.eyebrow}>Your fabric direction · {direction.cards.length} fabrics</p><h2>{direction.label}</h2><p className={styles.directionPurpose}>{direction.purpose}</p></div><div className={styles.styleFabricGrid}>{direction.cards.map((entry) => <StyleFabricCard key={entry.fabricMasterId} card={entry} direction={direction} fabric={fabrics[entry.fabricMasterId]} final={final} onReaction={onReaction} onOutcome={onOutcome} commerceUrl={commerceUrl} />)}</div>{card && refinements.length > 0 && <div className={styles.styleRefinements} aria-label={`Refine ${direction.label}`}><span>Fine-tune the feel</span><p>Choose what you would like more or less of, then confirm your feedback.</p><div>{refinements.map((option) => <button key={option.id} type="button" onClick={() => onReaction(card, 'NOT_QUITE', [option.id], true)}>{styleRefinementLabels[option.id]}</button>)}</div></div>}</article>;
+    return <article className={`${styles.directionCard} ${styles.styleDirectionCard}`}><div className={styles.styleDirectionIntro}><p className={styles.eyebrow}>Your fabric direction · {direction.cards.length} fabrics</p><h2>{direction.label}</h2><p className={styles.directionPurpose}>{direction.purpose}</p></div><div className={styles.styleFabricGrid}>{direction.cards.map((entry) => <StyleFabricCard key={entry.fabricMasterId} card={entry} direction={direction} fabric={fabrics[entry.fabricMasterId]} final={final} onReaction={onReaction} onOutcome={onOutcome} commerceUrl={commerceUrl} />)}</div></article>;
   }
   if (!card || fabric === null) return <article className={styles.directionCard}><div className={styles.cardBody}><p className={styles.eyebrow}>{direction.label}</p><h2>This fabric is currently unavailable.</h2><p>The fabric selected for this direction no longer meets our current catalogue checks. You can continue with another direction or explore the Fabric Library.</p><div className={styles.actions}><a href="/pages/fabric-library">Explore current fabrics →</a></div></div></article>;
   if (fabric === 'error' || fabric === undefined) return <article className={styles.directionCard}><div className={styles.cardBody}><p className={styles.eyebrow}>{direction.label}</p><h2>{fabric === 'error' ? 'We could not verify this fabric.' : 'Checking this fabric…'}</h2><p>{fabric === 'error' ? 'Please refresh the consultation before choosing a fabric.' : 'We are checking its current catalogue details before showing shopping options.'}</p></div></article>;
@@ -424,7 +423,7 @@ function StyleFabricCard({ card, direction, fabric, onOutcome, commerceUrl }: { 
   if (fabric === undefined) return <article className={styles.styleFabric}><div className={styles.styleFabricPending}>Checking this fabric…</div></article>;
   if (fabric === null || fabric === 'error') return <article className={styles.styleFabric}><div className={styles.styleFabricPending}>This fabric is no longer available.</div></article>;
   const handoff = async (event: MouseEvent<HTMLAnchorElement>, type: string, sample: boolean) => { event.preventDefault(); if (await onOutcome(card, direction, type)) window.location.assign(commerceUrl(card, direction, sample)); };
-  return <article className={styles.styleFabric}><div className={styles.styleFabricImage}>{fabric.images[0] ? <img src={fabric.images[0].url} alt={`${fabric.design} ${fabric.colour} fabric`} loading="lazy" decoding="async" /> : <div>Fabric image unavailable</div>}</div><div className={styles.styleFabricBody}><p className={styles.eyebrow}>{fabric.brand}</p><h3>{fabric.design} <em>{fabric.colour}</em></h3><p className={styles.styleReason}>{card.explanation.join(' ')}</p><FabricDiscoveryLinks fabric={fabric} /><div className={styles.styleActions}><a href={`/pages/fabric-library?fabric=${encodeURIComponent(card.fabricMasterId)}`}>View fabric</a>{fabric.sampleAvailable && <a className={styles.sampleAction} onClick={(event) => void handoff(event, 'SAMPLE_INTENT', true)} href={commerceUrl(card, direction, true)}>Order sample</a>}<a className={styles.makeCurtains} onClick={(event) => void handoff(event, 'FABRIC_SELECTED', false)} href={commerceUrl(card, direction, false)}>Make curtains →</a></div><MoreFabricOptions fabric={fabric} /></div></article>;
+  return <article className={styles.styleFabric}><div className={styles.styleFabricImage}>{fabric.images[0] ? <img src={fabric.images[0].url} alt={`${fabric.design} ${fabric.colour} fabric`} loading="lazy" decoding="async" /> : <div>Fabric image unavailable</div>}</div><div className={styles.styleFabricBody}><p className={styles.eyebrow}>{fabric.brand}</p><h3>{fabric.design} <em>{fabric.colour}</em></h3><p className={styles.styleReason}>{card.explanation.join(' ')}</p><FabricDiscoveryLinks fabric={fabric} /><div className={styles.styleActions}>{fabric.sampleAvailable && <a className={styles.sampleAction} onClick={(event) => void handoff(event, 'SAMPLE_INTENT', true)} href={commerceUrl(card, direction, true)}>Order sample</a>}<a className={styles.makeCurtains} onClick={(event) => void handoff(event, 'FABRIC_SELECTED', false)} href={commerceUrl(card, direction, false)}>Make curtains →</a></div><MoreFabricOptions fabric={fabric} /></div></article>;
 }
 
 function CalibrationReactions({ busy, onChoose }: { busy: boolean; onChoose: (reaction: string) => void }) {

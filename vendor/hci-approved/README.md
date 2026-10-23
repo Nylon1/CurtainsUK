@@ -13,7 +13,7 @@ extractor or recommendation engine here.
 Only two source files have integration adjustments:
 
 - `ReferencePalette.tsx`: an optional request transport and initial session
-  palette, configurable existing upload limit (CurtainsUK: 2 MB), and disabling
+  palette, configurable existing upload limit (CurtainsUK: 20 MB on-device, reduced to under 2 MB for analysis), and disabling
   the local-tool localStorage/resume route when using the hosted session.
 - `ReferenceExperience.tsx`: truthful protected-hosted privacy wording, retaining
   the approved markup and styles.

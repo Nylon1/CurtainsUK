@@ -1,0 +1,92 @@
+[
+  {
+    "id": "sdg-f1541-01",
+    "brand": "Clarke & Clarke",
+    "design": "Bergamot",
+    "colour": "Blush/Linen",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-d886bec0e53e637fd5b36f280dadefe5c340cdbe29c90986fd5f90a1188b9630.jpg"
+      }
+    ],
+    "sampleAvailable": true,
+    "availability": "Preview example",
+    "configurable": true,
+    "configurationMessage": "Preview only"
+  },
+  {
+    "id": "pt-3697-770",
+    "brand": "Prestigious Textiles",
+    "design": "SHAMBALA",
+    "colour": "LAGOON",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-9136d93cd8b3d1a51a4c4a6783ef6763208663ade671d68c9b9b530c750e8388.jpg"
+      }
+    ],
+    "sampleAvailable": true,
+    "availability": "Preview example",
+    "configurable": true,
+    "configurationMessage": "Preview only"
+  },
+  {
+    "id": "sdg-dstr237715",
+    "brand": "Sanderson",
+    "design": "Sabu Stripe",
+    "colour": "Stone/Oak",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-26f82d68a27b71efa3c6bf91140b58878204a049fa4321a0bd5eeacd983640b5.jpg"
+      }
+    ],
+    "sampleAvailable": true,
+    "availability": "Preview example",
+    "configurable": true,
+    "configurationMessage": "Preview only"
+  },
+  {
+    "id": "sdg-f1239-30",
+    "brand": "Clarke & Clarke",
+    "design": "Amalfi",
+    "colour": "Herb",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-f6e1c90a4d55ab6598bdd5e7ad0a9feea6126872842a5057a84e6581cdfe3b04.jpg"
+      }
+    ],
+    "sampleAvailable": true,
+    "availability": "Preview example",
+    "configurable": true,
+    "configurationMessage": "Preview only"
+  },
+  {
+    "id": "sdg-f1325-02",
+    "brand": "Clarke & Clarke",
+    "design": "Abeja",
+    "colour": "Ivory",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-1230634db05df70d93fdc5b5ee897ff00b8b9418c5672328fb98f0aa22fa34ff.jpg"
+      }
+    ],
+    "sampleAvailable": true,
+    "availability": "Preview example",
+    "configurable": true,
+    "configurationMessage": "Preview only"
+  },
+  {
+    "id": "sdg-f1325-01",
+    "brand": "Clarke & Clarke",
+    "design": "Abeja",
+    "colour": "Blush",
+    "images": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0256/4551/4861/files/cuk-fabric-14da30cf9a04fd3b9b12bf643ee2862b452e1d8a44b901996c2efc7bfe05341b.jpg"
+      }
+    ],
+    "sampleAvailable": true,
+    "availability": "Preview example",
+    "configurable": true,
+    "configurationMessage": "Preview only"
+  }
+]

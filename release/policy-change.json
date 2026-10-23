@@ -1,14 +1,12 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Make Curtains had no direct regression contract proving that displayed construction capabilities match canonical pricing validation or that a partially completed wizard cannot auto-submit.",
-  "newRule": "Add canonical catalogue/UI/backend construction contract tests and actual storefront lifecycle tests, with specific rejection messages and privacy-safe diagnostics. Update theme assertions for the governed capability filter. Preserve all production gate assertions and business rules.",
-  "reason": "Live synthetic probes reproduce empty construction and zero measurement HTTP 400 responses while valid Pair and Single price successfully. Hidden wizard fields lose required validation, allowing premature repeated pricing requests.",
-  "ownerApprovedDecision": "The owner explicitly requested investigation, a branch/PR, focused regression tests and production-gate results, and prohibited publication before approval. This record does not approve merge or deployment; exact-head Nylon1 approval remains required.",
+  "previousRule": "Consultation navigation tests cover the original signed sample and curtain-order handoffs but do not cover additional fabric-specific studio links or safe published-profile fallbacks.",
+  "newRule": "Retain every existing assertion and add coverage for published fabric details, Room Visualiser, Cushion Studio, Making Studio and Jane destinations. Reject mismatched or foreign profile URLs and keep non-commerce exits free of consultation contents and commerce tokens. No protection rule or business rule changes.",
+  "reason": "The owner requested a visual Fabric Intelligence redesign, clearer Adjust my brief navigation and more destinations on each suggested fabric while preserving existing functionality. The added links need exact-fabric identity coverage.",
+  "ownerApprovedDecision": "The owner authorized the implementation and review. This record documents the additive regression-test scope only; it does not approve merging or publishing this candidate. Exact-head Nylon1 approval remains required by the existing protected policy.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/configurator-pricing-lifecycle.test.ts",
-    "lib/storefront/__tests__/mtm-configuration-contract.test.ts",
-    "lib/storefront/__tests__/shopify-theme.test.ts",
+    "lib/storefront/__tests__/consultation-navigation.test.ts",
     "release/policy-change.json"
   ]
 }

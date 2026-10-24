@@ -123,7 +123,10 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
   const vat = tracks.length ? baseReady&&trackDelivery?baseVat+tracks.reduce((n,t)=>n+t.vatMinor,0)+trackDelivery.vatMinor:null : productReady ? mixed?.contract.expected.orderVatAmountMinor ?? house?.vat ?? cushion?.vatMinor ?? null : null;
   const baseRelease = house && cushion ? services.releases.curtains && services.releases.cushions && services.releases.mixed : house ? services.releases.curtains : cushion ? services.releases.cushions : true;
   const release = baseRelease && (!tracks.length||services.tracks?.purchasesEnabled===true);
-  const reviewId = roomsDigest({version:"my-home-review-v1",id:input.id,revision:input.revision,postcode:input.postcode,
+  // Cushion delivery is a fixed quoted charge. A postcode entered for a previous
+  // curtain/track selection must not change a cushion-only checkout review.
+  const deliveryPostcode = input.curtains || tracks.length ? input.postcode : "";
+  const reviewId = roomsDigest({version:"my-home-review-v1",id:input.id,revision:input.revision,postcode:deliveryPostcode,
     curtains:input.curtains ?? null,cushionSpecs:cushion?.specs ?? null,quoteId:cushion?.quoteId ?? null,
     mixedReviewId:mixed?.reviewId ?? null,...(tracks.length?{trackQuotes:tracks.map(t=>t.quoteId)}:{}),lines,goods:gross,delivery,total,vat,dispatch});
   const acceptedPriceChanges = house?.lines.filter(line=>line.status === "PRICE_CHANGED").map(line=>({configuration_id:line.configuration_id,currentPrice:line.currentPrice!})) ?? [];

@@ -15,6 +15,7 @@ import { customerCushionQuote } from "./commerce";
 import {
   cushionOwnerHash,
   createHostedCushionRepository,
+  myHomeCheckoutOwnerHash,
 } from "./hosted-repository";
 import { parseCushionDesign } from "./domain";
 import { cushionPreviewAsset } from "./preview-assets";
@@ -60,11 +61,18 @@ export function purchasesEnabled() {
 export function createHostedCheckoutServices(
   context: ShopifyAppProxyContext,
   key: string,
-  options: { reviewOnly?: boolean } = {},
+  options: { reviewOnly?: boolean; myHomeCheckout?: boolean } = {},
 ): CushionCheckoutServices {
   if (!options.reviewOnly && !purchasesEnabled())
     throw new Error("CUSHION_PURCHASE_DISABLED");
-  const repository = () => createHostedCushionRepository(cushionOwnerHash(context));
+  const primaryOwner = () => options.myHomeCheckout
+    ? myHomeCheckoutOwnerHash(context, key)
+    : cushionOwnerHash(context);
+  const legacyOwner = () => options.myHomeCheckout && context.loggedInCustomerId
+    ? cushionOwnerHash(context)
+    : null;
+  let executionOwner: string | null = null;
+  const repository = (owner = primaryOwner()) => createHostedCushionRepository(owner);
   const runtimeConfig = options.reviewOnly
     ? null
     : shopifyDraftOrderConfigFromEnvironment();
@@ -90,13 +98,30 @@ export function createHostedCheckoutServices(
         colour: record.colour,
       };
     },
-    persist: (input) => repository().appendCheckout(input),
-    existing: (key) => repository().checkout(key),
+    persist: async (input) => {
+      executionOwner = primaryOwner();
+      await repository(executionOwner).appendCheckout(input);
+    },
+    existing: async (requestedKey) => {
+      const owner = primaryOwner();
+      const current = await repository(owner).checkout(requestedKey);
+      if (current) {
+        executionOwner = owner;
+        return current;
+      }
+      // Orders started before guest checkout used the signed-in owner. Keep
+      // those in-flight attempts idempotent after this release.
+      const previousOwner = legacyOwner();
+      if (!previousOwner) return null;
+      const previous = await repository(previousOwner).checkout(requestedKey);
+      if (previous) executionOwner = previousOwner;
+      return previous;
+    },
     execute: (contract) =>
       executeShopifyDraftOrder({
         contract,
         config: runtimeConfig,
-        claimCreate: () => repository().claimCreate(key),
+        claimCreate: () => repository(executionOwner ?? primaryOwner()).claimCreate(key),
       }),
   };
 }
@@ -204,7 +229,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         const reviewOnly = operation === "my-home-review" || !body.cushions;
         const key = operation === "my-home-review" ? "my-home-review-only" : body.idempotencyKey;
         if (typeof key !== "string") throw Error("MY_HOME_INPUT_INVALID");
-        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks?createTrackServices(context):undefined});
+        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly,myHomeCheckout:true}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks?createTrackServices(context):undefined});
         result = operation === "my-home-review" ? await reviewMyHome(body as MyHomeInput,authority) : await checkoutMyHome(body as MyHomeCheckoutInput,authority);
       } else if (request.method === "GET" && operation === "catalogue")
         result = await services.catalogue(params);

@@ -13,6 +13,18 @@ export function cushionOwnerHash(context: ShopifyAppProxyContext) {
     .update(`cushion-owner-v1:${context.shop}:${context.loggedInCustomerId}`)
     .digest("hex");
 }
+/** My Home purchases are bound to the browser's random checkout attempt, while
+ * saved Cushion Studio designs remain bound to a signed-in customer. */
+export function myHomeCheckoutOwnerHash(
+  context: ShopifyAppProxyContext,
+  idempotencyKey: string,
+) {
+  if (!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(idempotencyKey))
+    throw new Error("MY_HOME_CHECKOUT_INVALID");
+  return createHash("sha256")
+    .update(`my-home-checkout-v1:${context.shop}:${idempotencyKey.toLowerCase()}`)
+    .digest("hex");
+}
 function databaseError(error: unknown) {
   if (error) throw new Error("CUSHION_PERSISTENCE_UNAVAILABLE");
 }

@@ -1,14 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Fabric Intelligence tests cover progressive direction delivery but do not distinguish an intentionally empty final-shortlist direction from a direction awaiting private card hydration. The photo input remains capped at 2 MB.",
-  "newRule": "Retain the existing progressive-delivery checks and add focused coverage for an empty final-shortlist result and browser-side phone-photo reduction. Continue enforcing the existing 2 MB analysis payload limit. No commerce, privacy or protected production rule changes.",
-  "reason": "A customer reached a final shortlist with an empty direction and received a delivery error when opening it or adjusting the brief. The owner also requested larger phone-photo input and removal of duplicate shortlist controls.",
-  "ownerApprovedDecision": "The owner authorized implementation and review of this Fabric Intelligence correction. This record describes the test scope only; merging and publishing still require the current protected-branch workflow and exact-head Nylon1 approval.",
+  "previousRule": "My Home checkout regression coverage did not verify that anonymous cushion and motorised-track orders can persist under a guest-owned checkout attempt, or that cushion-only delivery can be quoted without a postcode. Production order persistence required a signed-in customer, while the shared order screen asked for a postcode even for fixed-rate cushion delivery.",
+  "newRule": "Keep saved Cushion Studio designs account-only, while My Home cushion and motorised-track purchases use a shop-scoped random checkout attempt. Cushion-only reviews and checkout use the fixed quoted delivery charge without a postcode; curtain and track delivery remain governed by postcode. Test guest persistence, account-only saved-design ownership, legacy signed-in attempt compatibility and cushion-only delivery identity.",
+  "reason": "Shopify permits guest checkout, and cushion delivery has a fixed £4.95 charge. The new tests protect the narrower My Home guest path and remove a redundant cushion-only checkout step without weakening pricing, purchase, delivery, or payment validation.",
+  "ownerApprovedDecision": "The owner approved the guest-checkout alternative and asked to simplify the cushion checkout journey. This record describes protected regression tests; the exact-head Nylon1 approval comment required by the protected production policy is still pending.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/hci-prepared-directions.test.ts",
-    "lib/storefront/__tests__/fi-phone-photo.test.ts",
-    "lib/advisory/__tests__/completion.test.mjs",
+    "lib/cushion-studio/__tests__/guest-checkout.test.ts",
+    "lib/cushion-studio/__tests__/my-home.test.ts",
     "release/policy-change.json"
   ]
 }

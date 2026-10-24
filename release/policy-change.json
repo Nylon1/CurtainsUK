@@ -1,14 +1,12 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Fabric Intelligence tests cover progressive direction delivery but do not distinguish an intentionally empty final-shortlist direction from a direction awaiting private card hydration. The photo input remains capped at 2 MB.",
-  "newRule": "Retain the existing progressive-delivery checks and add focused coverage for an empty final-shortlist result and browser-side phone-photo reduction. Continue enforcing the existing 2 MB analysis payload limit. No commerce, privacy or protected production rule changes.",
-  "reason": "A customer reached a final shortlist with an empty direction and received a delivery error when opening it or adjusting the brief. The owner also requested larger phone-photo input and removal of duplicate shortlist controls.",
-  "ownerApprovedDecision": "The owner authorized implementation and review of this Fabric Intelligence correction. This record describes the test scope only; merging and publishing still require the current protected-branch workflow and exact-head Nylon1 approval.",
+  "previousRule": "My Home checkout regression coverage did not verify that anonymous cushion and motorised-track orders can persist under a guest-owned checkout attempt. Production checkout code required a signed-in customer before those order records could be created.",
+  "newRule": "Keep saved Cushion Studio designs account-only, while My Home cushion and motorised-track purchases use a shop-scoped random checkout attempt. Test guest persistence, account-only saved-design ownership, and compatibility with signed-in attempts created before this release.",
+  "reason": "Shopify already permits guest checkout, but the app's order persistence rejected anonymous customers before they reached Shopify. The new test protects the narrower My Home guest path without weakening pricing, purchase, or payment validation.",
+  "ownerApprovedDecision": "The owner approved implementing the guest-checkout alternative. This record describes the protected regression test; the exact-head Nylon1 approval comment required by the protected production policy is still pending.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/hci-prepared-directions.test.ts",
-    "lib/storefront/__tests__/fi-phone-photo.test.ts",
-    "lib/advisory/__tests__/completion.test.mjs",
+    "lib/cushion-studio/__tests__/guest-checkout.test.ts",
     "release/policy-change.json"
   ]
 }

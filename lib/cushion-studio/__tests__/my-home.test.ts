@@ -277,6 +277,21 @@ test("cushion-only aggregate keeps separate specs, shared minimum, quantity and 
   assert.deepEqual(f.effects,[]);
 });
 
+test("cushion-only delivery and checkout do not require a postcode or change with a stale postcode",async()=>{
+  const f=await homeFixture();delete f.input.curtains;
+  f.input.postcode="";
+  const withoutPostcode=await reviewMyHome(f.input,f.services);
+  assert.equal(withoutPostcode.ready,true);
+  assert.equal(withoutPostcode.purchaseEnabled,true);
+  assert.equal(withoutPostcode.deliveryMinor,495);
+  f.input.postcode="BB2 3FA";
+  const withStalePostcode=await reviewMyHome(f.input,f.services);
+  assert.equal(withStalePostcode.reviewId,withoutPostcode.reviewId);
+  assert.equal(withStalePostcode.totalMinor,withoutPostcode.totalMinor);
+  await checkoutMyHome(checkoutInput({...f.input,postcode:""},withoutPostcode),f.services);
+  assert.equal(f.effects.filter(effect=>effect==="cushions").length,1);
+});
+
 test("curtain quantity multiplies stock and money and creates distinct immutable unit snapshots",async()=>{
   const f=await homeFixture();delete f.input.cushions;
   const single=await reviewMyHome(f.input,f.services);

@@ -73,4 +73,3 @@ const server = http.createServer((req,res) => {
     console.log(JSON.stringify(reports,null,2));
   } finally {await browser.close();server.close();}
 })().catch(e=>{console.error(e);server.close();process.exitCode=1;});
-

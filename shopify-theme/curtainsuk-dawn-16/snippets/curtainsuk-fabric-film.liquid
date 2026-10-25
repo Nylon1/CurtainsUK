@@ -1,0 +1,52 @@
+{% doc %}
+  Interactive, click-to-load Browse Fabrics walkthrough.
+  @param {string} section_id - Unique homepage section identifier.
+{% enddoc %}
+{{ 'curtainsuk-fabric-film.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-fabric-film.js' | asset_url }}" defer></script>
+{% liquid
+  assign film_url = 'https://cdn.shopify.com/videos/c/vp/6ec2601d2db24555b1980ff1f0cf5710/6ec2601d2db24555b1980ff1f0cf5710.HD-720p-1.6Mbps-98832653.mp4'
+  assign chapter_keys = 'filters,closer,details,samples,jane,pricing' | split: ','
+  assign chapter_seconds = '4.5,28.5,41.2,55.7,60.2,64.2' | split: ','
+  assign chapter_times = '0:04,0:28,0:41,0:55,1:00,1:04' | split: ','
+%}
+<div class="cukfilm" id="browse-fabrics-film" data-fabric-film data-intro="{{ 'fabric_film.intro_label' | t | escape }}" data-error="{{ 'fabric_film.error' | t | escape }}" data-play-hint="{{ 'fabric_film.play_hint' | t | escape }}" aria-labelledby="cukfilm-title-{{ section_id }}">
+  <div class="cukfilm__heading">
+    <div><p class="cukfilm__kicker">{{ 'fabric_film.kicker' | t }}</p><h3 id="cukfilm-title-{{ section_id }}">{{ 'fabric_film.title' | t }}</h3></div>
+    <p class="cukfilm__intro">{{ 'fabric_film.intro' | t }}</p>
+  </div>
+  <div class="cukfilm__layout">
+    <div class="cukfilm__main">
+      <div class="cukfilm__screen">
+        <video id="cukfilm-video-{{ section_id }}" width="1280" height="720" controls playsinline preload="none" data-src="{{ film_url }}" tabindex="0" aria-label="{{ 'fabric_film.video_label' | t | escape }}"></video>
+        <a class="cukfilm__cover" data-film-cover href="{{ film_url }}" aria-label="{{ 'fabric_film.play' | t | escape }}">
+          <img src="{{ 'cuk-film-poster.webp' | asset_url }}" width="960" height="540" loading="lazy" alt="{{ 'fabric_film.poster_alt' | t | escape }}">
+          <span class="cukfilm__play"><span class="cukfilm__play-icon" aria-hidden="true">▶</span><span><strong>{{ 'fabric_film.play' | t }}</strong><small>{{ 'fabric_film.duration' | t }}</small></span></span>
+        </a>
+      </div>
+      <div class="cukfilm__toolbar" data-film-toolbar hidden>
+        <span data-film-current>{{ 'fabric_film.intro_label' | t }}</span>
+        <button type="button" data-film-replay>{{ 'fabric_film.replay' | t }}</button>
+        <label>{{ 'fabric_film.speed' | t }} <select data-film-speed aria-label="{{ 'fabric_film.speed' | t | escape }}"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      </div>
+      <p class="cukfilm__status" data-film-status role="status" hidden></p>
+      <p class="cukfilm__note">{{ 'fabric_film.note' | t }}</p>
+    </div>
+    <nav class="cukfilm__chapters" aria-label="{{ 'fabric_film.chapters_label' | t | escape }}">
+      <p class="cukfilm__chapter-label">{{ 'fabric_film.jump' | t }}</p>
+      <ol>
+        {% for chapter in chapter_keys %}
+          {% liquid
+            assign title_key = chapter | prepend: 'fabric_film.chapters.'
+            assign image_name = chapter | prepend: 'cuk-film-' | append: '.webp'
+          %}
+          <li><a class="cukfilm__chapter" href="{{ film_url }}#t={{ chapter_seconds[forloop.index0] }}" data-film-chapter="{{ chapter_seconds[forloop.index0] }}" aria-controls="cukfilm-video-{{ section_id }}"><img src="{{ image_name | asset_url }}" width="192" height="108" loading="lazy" alt=""><span><strong>{{ title_key | t }}</strong><small>{{ chapter_times[forloop.index0] }}</small></span></a></li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+  <div class="cukfilm__footer">
+    <p>{{ 'fabric_film.next' | t }}</p>
+    <div class="cukfilm__actions"><a class="cukfeature__button" href="/pages/fabric-library?view=browse-fabrics">{{ 'fabric_film.browse' | t }} <span aria-hidden="true">↗</span></a><a class="cukfilm__sample" href="/pages/samples">{{ 'fabric_film.samples' | t }} <span aria-hidden="true">→</span></a></div>
+  </div>
+</div>

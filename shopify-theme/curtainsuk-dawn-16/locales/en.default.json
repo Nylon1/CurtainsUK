@@ -1863,5 +1863,33 @@
     "note": "An interactive demonstration. Enter your actual measurements when you order.",
     "image_alt": "Soft ivory pencil-pleat curtains, neatly gathered and dressed at a sunlit window",
     "visual_caption": "From fabric to finished folds"
+  },
+  "fabric_film": {
+    "kicker": "THE FABRIC FINDER / WATCH & TRY",
+    "title": "Find your fabric. See how.",
+    "intro": "From your first colour choice to curtains made for you. Watch the guide, or jump to the part you need.",
+    "intro_label": "Your fabric journey",
+    "error": "The video could not load. Please replay it or explore Browse fabrics below.",
+    "play_hint": "Press play in the video controls to continue.",
+    "video_label": "How to find your fabric and order made-to-measure curtains",
+    "play": "Watch: find your perfect fabric",
+    "duration": "1 min 48 sec · With voice-over & music",
+    "poster_alt": "CurtainsUK fabric guide, with curtain and fabric details",
+    "replay": "Replay",
+    "speed": "Speed",
+    "note": "Illustrative walkthrough. Prices and availability may change. Use your measurements for a current curtain quote.",
+    "chapters_label": "Video chapters",
+    "jump": "Choose a chapter to watch",
+    "next": "Found your inspiration? Put it into practice.",
+    "browse": "Browse fabrics",
+    "samples": "Order samples",
+    "chapters": {
+      "filters": "Colour, price & filters",
+      "closer": "Look closer",
+      "details": "Fabric details & curtain preview",
+      "samples": "Order a sample",
+      "jane": "Ask Jane",
+      "pricing": "Make curtains & live pricing"
+    }
   }
 }

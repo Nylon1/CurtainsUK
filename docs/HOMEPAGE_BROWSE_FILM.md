@@ -23,7 +23,7 @@ The player presents a bounded, non-blocking message if media fails. Replay retri
 
 Local checks passed at 1440, 390 and 320 pixel widths: no video request before interaction, no horizontal overflow, all chapter seeks, active chapter, pause, Replay, speed, decoded audio, unmuted playback, CTA destinations and no page errors. Separate checks cover keyboard activation, no-JavaScript links and handled media network failure. These checks do not establish physical iOS behaviour or subjective audio quality.
 
-The Shopify validator passed both Liquid snippets, CSS, JavaScript and locale additions. Before implementation a full MAIN pull matched all 586 protected theme files. The candidate contains 596 files. Its manifest is a candidate digest record until publication and a fresh readback succeed.
+The Shopify validator passed both Liquid snippets, CSS, JavaScript and locale additions. Before implementation a full MAIN pull matched all 586 protected theme files. After PR #301 publication a fresh readback matched all 596 protected theme files, with settings unchanged. Playback checks at all three widths also passed on the live homepage; the live harness dismissed the standard cookie banner using its Decline button before interacting with the film.
 
 ## Release scope
 

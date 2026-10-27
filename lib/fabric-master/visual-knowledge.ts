@@ -112,11 +112,16 @@ export async function visualKnowledgeByFabricIds(ids: string[]) {
   const { data, error } = await queryVisualKnowledgeWithFallback((source) => db
     .from(source)
     .select("fabric_id,knowledge_state,visual_fields")
+    .in("knowledge_state", ["COMPLETE", "PARTIAL_GOVERNED"])
     .in("fabric_id", ids), enrichedSource, cacheSource);
 
   if (error) throw new Error("FABRIC_VISUAL_KNOWLEDGE_UNAVAILABLE");
 
-  return new Map(((data ?? []) as VisualRow[]).map((row) => [row.fabric_id, mapVisualKnowledgeRow(row)]));
+  // Pending evidence remains in the private source for review, but must not
+  // become customer guidance. Apply the same boundary on rollback reads too.
+  return new Map(((data ?? []) as VisualRow[])
+    .filter((row) => row.knowledge_state === "COMPLETE" || row.knowledge_state === "PARTIAL_GOVERNED")
+    .map((row) => [row.fabric_id, mapVisualKnowledgeRow(row)]));
 
 }
 

@@ -81,6 +81,12 @@ export default function AdminHomePage() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <Link href="/admin/sample-credit" className="group rounded-[28px] border border-[#f5d38a]/30 bg-[#f5d38a]/10 p-6 transition hover:bg-[#f5d38a]/15">
+              <div className="text-sm uppercase tracking-[0.18em] text-[#f5d38a]">Sample orders</div>
+              <h2 className="mt-3 text-2xl font-semibold text-white">Sample credit</h2>
+              <p className="mt-3 text-sm leading-6 text-white/70">Check issued credits and email status. Retrieve a private packing insert for customers without email.</p>
+              <div className="mt-6 text-sm font-medium text-[#f5d38a]">Open sample credit →</div>
+            </Link>
             <Link href="/admin/error-centre" className="group rounded-[28px] border border-[#f5d38a]/30 bg-[#f5d38a]/10 p-6 transition hover:bg-[#f5d38a]/15">
               <div className="text-sm uppercase tracking-[0.18em] text-[#f5d38a]">Customer experience</div>
               <h2 className="mt-3 text-2xl font-semibold text-white">Journeys and Errors</h2>

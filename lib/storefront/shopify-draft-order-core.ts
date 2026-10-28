@@ -40,6 +40,7 @@ export interface ShopifyDraftOrderInput {
     taxable: true;
     sku: string;
     customAttributes: ShopifyAttributeInput[];
+    appliedDiscount?: { title: string; description: string; value: number; valueType: 'FIXED_AMOUNT' };
   }>;
   note: string;
   presentmentCurrencyCode: "GBP";
@@ -56,6 +57,7 @@ export interface ShopifyDraftOrderInput {
 }
 
 export interface ShopifyDraftOrderExpectedFinancials {
+  discountAmountMinor?: number;
   currency: "GBP";
   goodsGrossAmountMinor: number;
   goodsVatAmountMinor: number;
@@ -87,6 +89,7 @@ export interface ShopifyDraftOrderContract {
  * idempotency checks before a Draft Order can be created.
  */
 export interface ShopifyDraftOrderExecutionContract {
+  sampleCreditQuote?: import('./sample-credit').SampleCreditQuote;
   apiVersion: typeof SHOPIFY_DRAFT_ORDER_API_VERSION;
   environment: "STAGING" | "PRODUCTION";
   idempotencyTag: string;
@@ -497,7 +500,7 @@ export function assertShopifyDraftOrderFinancials(
   const vat = presentmentAmount(node.totalTaxSet, expected.currency);
   const discounts = presentmentAmount(node.totalDiscountsSet, expected.currency);
   const total = presentmentAmount(node.totalPriceSet, expected.currency);
-  if (discounts !== 0
+  if (discounts !== (expected.discountAmountMinor ?? 0)
       || goods !== expected.goodsGrossAmountMinor
       || shipping !== expected.shippingGrossAmountMinor
       || vat !== expected.orderVatAmountMinor

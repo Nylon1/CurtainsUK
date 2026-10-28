@@ -2,6 +2,8 @@ import { timingSafeEqual } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { previousCompletedHour, sendHourlyErrorCentreDigest } from '@/lib/storefront/hourly-error-centre-digest';
 import { PRIVATE_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
+import { retrySampleCreditEmails } from '@/lib/storefront/sample-credit-server';
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -15,6 +17,8 @@ export async function GET(request: Request) {
     && timingSafeEqual(Buffer.from(supplied), Buffer.from(expected));
   if (!valid) return NextResponse.json({ error: 'UNAUTHORISED' }, { status: 401, headers: PRIVATE_NO_STORE_HEADERS });
   try {
+    try { await retrySampleCreditEmails(); }
+    catch { await recordOperationalError({routePath:'/api/cron/error-centre-digest',code:'SAMPLE_CREDIT_EMAIL_QUEUE_FAILED',source:'HANDLED'}); }
     await sendHourlyErrorCentreDigest(previousCompletedHour());
     return new NextResponse(null, { status: 204, headers: PRIVATE_NO_STORE_HEADERS });
   } catch {

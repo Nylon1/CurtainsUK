@@ -32,7 +32,9 @@ import { mixedCommand } from "./mixed-server";
 import { ShopifyAppProxyError } from "../storefront/security/shopify-app-proxy-core";
 import { endpointRateLimitResponse } from "../storefront/security/endpoint-rate-limit";
 
-import { reviewMyHome, checkoutMyHome, type MyHomeInput, type MyHomeCheckoutInput } from "./my-home";
+import { type MyHomeInput, type MyHomeCheckoutInput } from "./my-home";
+import { reviewMyHomeWithSampleCredit, checkoutMyHomeWithSampleCredit } from '../storefront/sample-credit-my-home';
+import { previewSampleCredit } from '../storefront/sample-credit-server';
 import { createMyHomeServices } from "./my-home-server";
 
 const responseHeaders = {
@@ -230,7 +232,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         const key = operation === "my-home-review" ? "my-home-review-only" : body.idempotencyKey;
         if (typeof key !== "string") throw Error("MY_HOME_INPUT_INVALID");
         const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly,myHomeCheckout:true}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks?createTrackServices(context):undefined});
-        result = operation === "my-home-review" ? await reviewMyHome(body as MyHomeInput,authority) : await checkoutMyHome(body as MyHomeCheckoutInput,authority);
+        result = operation === "my-home-review" ? await reviewMyHomeWithSampleCredit(body as MyHomeInput,authority,{preview:previewSampleCredit}) : await checkoutMyHomeWithSampleCredit(body as MyHomeCheckoutInput,authority,{preview:previewSampleCredit});
       } else if (request.method === "GET" && operation === "catalogue")
         result = await services.catalogue(params);
       else if (request.method === "POST" && operation === "quote") {
@@ -370,6 +372,16 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
           { status: 403, headers: responseHeaders },
         );
       const recoverable: Record<string, string> = {
+        SAMPLE_CREDIT_CODE_INVALID: 'Check your sample-credit code and try again. You can find it in your sample order email.',
+        SAMPLE_CREDIT_UNAVAILABLE: 'This sample credit is unavailable or has already been used. Check the code, remove it to continue, or contact us for help.',
+        SAMPLE_CREDIT_ORDER_INELIGIBLE: 'We could not confirm this sample credit. Please contact us with your sample order number.',
+        SAMPLE_CREDIT_ORDER_UNAVAILABLE: 'We could not check your sample purchase. Try again or contact us with your sample order number.',
+        SAMPLE_CREDIT_CURTAINS_REQUIRED: 'Sample credit applies to made-to-measure curtains. Add and review your curtains before applying the code.',
+        SAMPLE_CREDIT_CHECKOUT_RESERVED: 'This code is attached to an existing checkout. Return to that checkout, or contact us to move the credit to a changed order.',
+        SAMPLE_CREDIT_TOO_MANY_CODES: 'A maximum of 10 samples can be credited. Remove an extra code and try again.',
+        SAMPLE_CREDIT_SERVICE_UNAVAILABLE: 'We cannot check sample credit right now. Your order is saved. Try again, or remove the code to continue without the deduction.',
+        SAMPLE_CREDIT_SOURCE_REVIEW_REQUIRED: 'Your sample purchase needs a quick check. Please contact us with your sample order reference.',
+        SAMPLE_CREDIT_CHECKOUT_CONFLICT: 'This code belongs to a different saved checkout. Contact us so we can help you use it safely.',
         MY_HOME_REVIEW_CHANGED: "Your order or price has changed. Update the My Home review before continuing.",
         TRACK_UNAVAILABLE: "Smart-track ordering is not currently available. Your saved design is unchanged.",
         TRACK_ORDER_TOO_LARGE: "This combined order needs an assisted checkout. Please contact CurtainsUK.",

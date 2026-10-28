@@ -6,6 +6,9 @@ import { sendOpenAiOrderCreated } from "@/lib/storefront/openai-ads-conversions"
 import { hasCushionPaidLines, recordHostedCushionPaidOrder } from '@/lib/cushion-studio/hosted-paid-order';
 import {hasSmartTrackPaidLines} from '@/lib/smart-track/paid-order';
 import {recordHostedSmartTrackPaidOrder} from '@/lib/smart-track/hosted-paid-order';
+import { SAMPLE_VARIANT_ID } from '@/lib/storefront/sample-order';
+import { issueSampleCredit, settlePaidSampleCredit } from '@/lib/storefront/sample-credit-server';
+import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,6 +57,10 @@ export async function POST(request: Request) {
     if (rawBody.byteLength === 0 || rawBody.byteLength > 256_000) throw new Error("SHOPIFY_WEBHOOK_BODY_INVALID");
     assertVerifiedShopifyWebhook(rawBody, request.headers.get("x-shopify-hmac-sha256"));
     const payload = JSON.parse(new TextDecoder().decode(rawBody)) as ShopifyOrderPayload;
+    if ((payload.line_items as Array<{variant_id?:number}>|undefined)?.some(line=>line.variant_id===SAMPLE_VARIANT_ID)) {
+      await issueSampleCredit(asOrderGid(payload));
+    }
+    await settlePaidSampleCredit(payload as Record<string,unknown>);
     if(hasSmartTrackPaidLines(payload)){
       if(process.env.CURTAINSUK_SMART_TRACK_WEBHOOK_ENABLED!=='true')return new NextResponse('Smart track receiver is not enabled',{status:503,headers:{'Cache-Control':'no-store'}});
       await recordHostedSmartTrackPaidOrder(rawBody,request.headers.get('x-shopify-hmac-sha256'));
@@ -121,6 +128,10 @@ export async function POST(request: Request) {
     return new NextResponse(null, { status: 200 });
   } catch (error) {
     const code = error instanceof Error ? error.message : "SHOPIFY_WEBHOOK_FAILED";
+    if(code.startsWith('SAMPLE_CREDIT_') || code.startsWith('SHOPIFY_ADMIN_')) {
+      await recordOperationalError({routePath:'/api/webhooks/shopify/orders-paid',code:/^[A-Z][A-Z0-9_]{1,63}$/.test(code)?code:'SAMPLE_CREDIT_WEBHOOK_FAILED',source:'HANDLED'});
+      return new NextResponse('Webhook retry required',{status:503,headers:{'Cache-Control':'no-store'}});
+    }
     return new NextResponse(code === "SHOPIFY_PAID_ORDER_NOT_MTM" ? null : "Webhook rejected", {
       status: code === "SHOPIFY_PAID_ORDER_NOT_MTM" ? 200 : 400,
       headers: { "Cache-Control": "no-store" },

@@ -9,6 +9,16 @@
  */
 {
   "curtainsuk_sample_credit": {
+    "home": {
+      "eyebrow": "Up to 10 samples credited",
+      "title": "Sample first. Save on your curtains.",
+      "cta": "Choose fabrics & order samples",
+      "step_sample": "Order samples. Feel them at home.",
+      "step_code": "Receive your private code by email.",
+      "step_save": "Use your credit in Design My Home.",
+      "note": "Samples are paid for when ordered. Credit is deducted from your curtain purchase; delivery is excluded.",
+      "details": "How sample credit works"
+    },
     "title": "Your samples, credited towards your curtains",
     "offer": "We’ll deduct the amount paid for up to 10 fabric samples from your made-to-measure curtain order, including fabrics you don’t choose.",
     "how": "After payment, we’ll email your private code if you provide an email address. Enter it in Design My Home before checkout to see your saving. No email? Contact us with your sample order reference for help.",

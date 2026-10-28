@@ -26,6 +26,10 @@ This is a deduction shown before payment, not a later cash refund. No code is pl
 
 Small expandable offer on Browse Fabrics, fabric detail, saved samples and carts containing a sample. Design My Home has an expandable code-entry field and a separate sample-credit deduction. Codes are rechecked with every review and checkout; stale replies cannot replace a changed input. No new global feature flag or dependency download is used on these pages.
 
+The homepage has a prominent green-and-gold sample-credit panel directly below its opening hero, before Browse Fabrics. The ten-sample limit and actual-paid-cost deduction are visible without expanding anything. Its CTA leads to Browse Fabrics to choose and order samples, with three short steps and expandable shared terms. This is native HTML/CSS with no added JavaScript, font, image or catalogue request. Publish it with the credit backend, never in advance of it.
+
+The panel was visually checked in Chrome at desktop size and a 390 px mobile viewport, using its actual translated markup and theme CSS in an isolated local preview. There was no horizontal overflow; the CTA remained over 48 px high. The terms opened by click and closed with the keyboard. All three changed theme files pass Shopify Liquid/theme validation. This component preview is not a live full-homepage publication.
+
 ## Required release checks
 
 1. Obtain the required exact-head owner approval and both protected checks. Publish as a coordinated API/database/theme release, not a theme-only promise.

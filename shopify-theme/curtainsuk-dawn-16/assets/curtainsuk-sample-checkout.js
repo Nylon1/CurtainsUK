@@ -31,7 +31,17 @@
             const cart = await cartResponse.json();
             const existing = cart.items.find(line => line.variant_id === prepared.variantId && line.properties?.['Fabric Master ID'] === sample.fabricId);
             if (existing) {
-              if (existing.quantity !== 1 || existing.properties?.['_CurtainsUK identity signature'] !== prepared.properties['_CurtainsUK identity signature']) throw Error('Your basket already contains this sample with different details. Review it before continuing.');
+              const conflict = 'Your basket already contains this sample with different details. Review it before continuing.';
+              if (existing.quantity !== 1) throw Error(conflict);
+              if (existing.properties?.['_CurtainsUK identity signature'] !== prepared.properties['_CurtainsUK identity signature']) {
+                // Older signed baskets predate the display note. Keep their original
+                // properties and confirm the signature server-side before reusing them.
+                const legacyFields = Object.entries(prepared.properties).filter(([key]) => !['Sample credit', '_CurtainsUK identity signature'].includes(key));
+                const existingFields = Object.keys(existing.properties || {}).filter(key => key !== '_CurtainsUK identity signature');
+                if (existingFields.length !== legacyFields.length || legacyFields.some(([key, value]) => existing.properties[key] !== value)) throw Error(conflict);
+                const confirmed = await sampleJson((root.dataset.engineBase || '/apps/curtainsuk-decision').replace(/\/$/, '') + '/sample-order', {method:'POST',body:JSON.stringify({fabricId:sample.fabricId,properties:existing.properties})});
+                if (confirmed.purchaseEnabled !== true) throw Error('Sample purchasing is not yet enabled.');
+              }
             } else {
               const added = await fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{id:prepared.variantId,quantity:1,properties:prepared.properties}]})});
               if (!added.ok) throw Error('Sample addition could not be confirmed. Review your basket before retrying.');

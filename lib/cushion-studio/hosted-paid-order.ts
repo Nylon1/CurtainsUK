@@ -155,8 +155,7 @@ export async function recordHostedCushionPaidOrder(
       if (
         props.get("_curtainsuk_configuration_id") !== data.configuration_id ||
         line.quantity !== 1 ||
-        Number(line.price) !== Number(data.customer_price_minor) / 100 ||
-        Number(line.total_discount ?? 0) !== 0
+        Number(line.price) !== Number(data.customer_price_minor) / 100
       )
         throw new Error("CUSHION_CURTAIN_PAID_MISMATCH");
       return {

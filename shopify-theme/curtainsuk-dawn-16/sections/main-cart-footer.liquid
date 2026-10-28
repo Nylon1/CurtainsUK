@@ -1,5 +1,8 @@
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curtainsuk-sample-checkout.js' | asset_url }}" defer="defer"></script>
+{% for item in cart.items %}{% if item.variant_id == 56120226873723 %}
+  <div class="page-width">{% render 'curtainsuk-sample-credit' %}</div>{% break %}
+{% endif %}{% endfor %}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}

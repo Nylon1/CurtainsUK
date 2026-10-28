@@ -428,3 +428,34 @@ test('Current curtain fabric card resolves the exact identity without changing p
  assert.equal(curtain.fabric?.id,source.id);assert.equal(curtain.fabric?.imageUrl,'https://example.test/exact-fabric.jpg');
  assert.equal(after.reviewId,before.reviewId);assert.equal(after.totalMinor,before.totalMinor);assert.deepEqual(f.effects,[]);
 });
+
+// Sample credit uses the existing order/stock/price fixtures and checkout transport.
+test("sample credit preserves ordinary reviews and discounts only curtains in a mixed checkout",async()=>{
+  const {reviewMyHomeWithSampleCredit,checkoutMyHomeWithSampleCredit}=await import('../../storefront/sample-credit-my-home');
+  const {quoteSampleCredit,sampleCreditCode}=await import('../../storefront/sample-credit');
+  const f=await homeFixture();
+  const authority={preview:async (_codes:unknown,id:string)=>quoteSampleCredit(id,[{id:'00000000-0000-4000-8000-000000000001',units:[{lineId:'test',ordinal:0,amountMinor:250}]}])};
+  const base=await reviewMyHome(f.input,f.services);
+  assert.deepEqual(await reviewMyHomeWithSampleCredit(f.input,f.services,authority),base);
+  const input={...f.input,sampleCreditCodes:[sampleCreditCode('gid://shopify/Order/100','synthetic-test-secret'.repeat(3))]};
+  const reviewed=await reviewMyHomeWithSampleCredit(input,f.services,authority);
+  assert.equal(reviewed.totalMinor,base.totalMinor!-250);
+  assert.equal(reviewed.deliveryMinor,base.deliveryMinor);
+  assert.notEqual(reviewed.reviewId,base.reviewId);
+  let executed:import("../../storefront/shopify-draft-order-core").ShopifyDraftOrderExecutionContract | undefined;
+  const original=f.services.mixed.cushion.execute;
+  f.services.mixed.cushion.execute=async c=>{executed=c;return original(c);};
+  await checkoutMyHomeWithSampleCredit(checkoutInput(input,reviewed),f.services,authority);
+  assert.ok(executed);
+  assert.equal(executed.expected.orderGrossAmountMinor,reviewed.totalMinor);
+  assert.equal(executed.expected.orderVatAmountMinor,reviewed.vatMinor);
+  assert.equal(executed.expected.discountAmountMinor,250);
+  assert.equal(executed.input.lineItems.filter(l=>l.appliedDiscount).length,1);
+  assert.ok(executed.input.lineItems.find(l=>l.appliedDiscount)!.customAttributes.some(a=>a.key==='_curtainsuk_snapshot_id'));
+  const first=JSON.stringify(executed);
+  await checkoutMyHomeWithSampleCredit(checkoutInput(input,reviewed),f.services,authority);
+  assert.equal(JSON.stringify(executed),first);
+  await assert.rejects(()=>checkoutMyHomeWithSampleCredit(checkoutInput(input,base),f.services,authority),/MY_HOME_REVIEW_CHANGED/);
+  const cushionOnly={...input,curtains:undefined};
+  await assert.rejects(()=>reviewMyHomeWithSampleCredit(cushionOnly,f.services,authority),/SAMPLE_CREDIT_CURTAINS_REQUIRED/);
+});

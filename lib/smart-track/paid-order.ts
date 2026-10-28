@@ -1,4 +1,5 @@
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
+import { expectedLineDiscount } from '../storefront/sample-credit';
 import type { TrackCheckoutGroup } from "./checkout";
 import { trackSpecificationDigest } from "./pricing";
 import { specDigest } from "../cushion-studio/repository";
@@ -102,8 +103,7 @@ export async function processSmartTrackPaidOrder(
       line.id <= 0 ||
       lineIds.has(line.id) ||
       line.quantity !== 1 ||
-      !Array.isArray(line.properties) ||
-      minor(line.total_discount ?? "0") !== 0
+      !Array.isArray(line.properties)
     )
       throw Error("TRACK_PAID_LINES_MISMATCH");
     lineIds.add(line.id);
@@ -126,6 +126,7 @@ export async function processSmartTrackPaidOrder(
     );
     if (
       !source ||
+      minor(line.total_discount ?? '0') !== expectedLineDiscount(source) ||
       source.quantity !== 1 ||
       minor(line.price) !==
         minor(source.originalUnitPriceWithCurrency.amount) ||
@@ -181,7 +182,7 @@ export async function processSmartTrackPaidOrder(
     minor(shipping?.amount) !== contract.expected.shippingGrossAmountMinor ||
     minor(p.total_price) !== contract.expected.orderGrossAmountMinor ||
     minor(p.total_tax) !== contract.expected.orderVatAmountMinor ||
-    minor(p.total_discounts) !== 0
+    minor(p.total_discounts) !== (contract.expected.discountAmountMinor ?? 0)
   )
     throw Error("TRACK_PAID_FINANCIAL_MISMATCH");
   const paidAt = p.processed_at ?? p.created_at;

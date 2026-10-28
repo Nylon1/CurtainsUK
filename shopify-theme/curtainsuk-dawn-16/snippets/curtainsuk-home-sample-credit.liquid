@@ -1,0 +1,50 @@
+{% doc %}
+  Prominent homepage invitation to paid samples and their curtain-order credit.
+  @param {string} section_id - Parent homepage section ID for the heading.
+{% enddoc %}
+<section class="cukhome-credit" aria-labelledby="cukhome-credit-title-{{ section_id }}">
+  <div class="cukhome-credit__wrap">
+    <div class="cukhome-credit__intro">
+      <p class="cukhome-credit__eyebrow">{{ 'curtainsuk_sample_credit.home.eyebrow' | t }}</p>
+      <h2 id="cukhome-credit-title-{{ section_id }}">{{ 'curtainsuk_sample_credit.home.title' | t }}</h2>
+      <p class="cukhome-credit__offer">{{ 'curtainsuk_sample_credit.offer' | t }}</p>
+      <a class="cukhome-credit__cta" href="/pages/fabric-library?view=browse-fabrics">{{ 'curtainsuk_sample_credit.home.cta' | t }} <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="cukhome-credit__journey">
+      <ol class="cukhome-credit__steps">
+        <li><span aria-hidden="true">01</span><strong>{{ 'curtainsuk_sample_credit.home.step_sample' | t }}</strong></li>
+        <li><span aria-hidden="true">02</span><strong>{{ 'curtainsuk_sample_credit.home.step_code' | t }}</strong></li>
+        <li><span aria-hidden="true">03</span><strong>{{ 'curtainsuk_sample_credit.home.step_save' | t }}</strong></li>
+      </ol>
+      <p class="cukhome-credit__note">{{ 'curtainsuk_sample_credit.home.note' | t }}</p>
+      <details class="cukhome-credit__details">
+        <summary>{{ 'curtainsuk_sample_credit.home.details' | t }}</summary>
+        <p>{{ 'curtainsuk_sample_credit.how' | t }}</p>
+        <p>{{ 'curtainsuk_sample_credit.terms' | t }}</p>
+      </details>
+    </div>
+  </div>
+</section>
+{% stylesheet %}
+  .cukhome-credit { background:#173d35; color:#fbf7ec; }
+  .cukhome-credit__wrap { max-width:1500px; margin-inline:auto; padding:clamp(32px,4vw,56px) clamp(20px,5vw,74px); display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); align-items:center; gap:clamp(30px,5vw,76px); }
+  .cukhome-credit__intro,.cukhome-credit__journey { min-width:0; }
+  .cukstudio .cukhome-credit__eyebrow { color:#e1ca96; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; margin-bottom:14px; }
+  .cukstudio .cukhome-credit h2 { font-size:clamp(32px,3.2vw,46px); line-height:1.1; letter-spacing:-.03em; max-width:20ch; }
+  .cukstudio .cukhome-credit__offer { font-size:15px; line-height:1.7; margin-top:18px; max-width:49ch; color:#f0f0e5; }
+  .cukstudio .cukhome-credit__cta { display:inline-flex; align-items:center; justify-content:space-between; gap:30px; min-height:48px; padding:13px 20px; margin-top:22px; border:1px solid #e1ca96; border-radius:6px; background:#e1ca96; color:#173d35; font-size:14px; line-height:1.5; font-weight:600; }
+  .cukstudio .cukhome-credit__cta:hover { background:#f1deb3; border-color:#f1deb3; }
+  .cukstudio .cukhome-credit__cta:focus-visible,.cukhome-credit__details summary:focus-visible { outline:3px solid #fbf7ec; outline-offset:5px; }
+  .cukhome-credit__steps { list-style:none; margin:0; padding:0; }
+  .cukhome-credit__steps li { display:flex; align-items:center; gap:16px; padding:12px 0; border-bottom:1px solid #4b6c5e; }
+  .cukhome-credit__steps li > span { display:grid; place-items:center; width:34px; height:34px; flex:none; border:1px solid #a4b8a3; border-radius:50%; color:#e1ca96; font-size:11px; }
+  .cukhome-credit__steps strong { font-size:15px; line-height:1.5; font-weight:500; }
+  .cukstudio .cukhome-credit__note { font-size:12px; line-height:1.6; color:#e1e7db; margin-top:14px; }
+  .cukhome-credit__details summary { display:list-item; width:fit-content; min-height:44px; padding-block:12px; cursor:pointer; font-size:13px; line-height:1.5; text-decoration:underline; text-underline-offset:4px; }
+  .cukstudio .cukhome-credit__details p { color:#e1e7db; font-size:13px; line-height:1.65; margin:6px 0 14px; }
+  @media(max-width:749px) {
+    .cukhome-credit__wrap { grid-template-columns:1fr; gap:24px; }
+    .cukstudio .cukhome-credit h2 { max-width:21ch; }
+    .cukstudio .cukhome-credit__cta { display:flex; width:100%; }
+  }
+{% endstylesheet %}

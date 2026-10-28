@@ -68,6 +68,14 @@ type ClientCredentialsToken = {
 const TOKEN_REFRESH_MARGIN_MS = 5 * 60 * 1_000;
 let cachedClientCredentialsToken: (ClientCredentialsToken & { cacheKey: string }) | null = null;
 
+/** Server-owned sample-credit operations use the existing app credentials. */
+export async function sampleCreditAdminRequest(query: string, variables: Record<string, unknown>) {
+  const config=shopifyDraftOrderConfigFromEnvironment();
+  if(!config)throw Error('SAMPLE_CREDIT_CONFIGURATION_REQUIRED');
+  const accessToken=await clientCredentialsToken({config,fetchImpl:fetch});
+  return graphql({config,accessToken,fetchImpl:fetch,query,variables});
+}
+
 const FINANCIAL_FIELDS = `
   taxesIncluded
   presentmentCurrencyCode
@@ -471,7 +479,7 @@ async function create(input: {
   );
 }
 
-export async function executeShopifyDraftOrder(input: {
+async function executeShopifyDraftOrderBase(input: {
   contract: ShopifyDraftOrderExecutionContract;
   config: ShopifyDraftOrderRuntimeConfig | null;
   existingDraftOrderId?: string | null;
@@ -565,6 +573,21 @@ export async function executeShopifyDraftOrder(input: {
     draftOrderName: created.name,
     paymentEnabled: production,
   };
+}
+
+export async function executeShopifyDraftOrder(input: Parameters<typeof executeShopifyDraftOrderBase>[0]) {
+  if(input.contract.sampleCreditQuote) {
+    if(input.config?.mode!=='CREATE_PRODUCTION_DRAFT')throw Error('SAMPLE_CREDIT_PRODUCTION_REQUIRED');
+    const {reserveSampleCredit}=await import('./sample-credit-server');
+    await reserveSampleCredit(input.contract.sampleCreditQuote,input.contract);
+  }
+  const result=await executeShopifyDraftOrderBase(input);
+  if(input.contract.sampleCreditQuote && result.draftOrderId) {
+    const {createSupplierServiceClient}=await import('../supabase/supplier-service');
+    const {error}=await createSupplierServiceClient().from('sample_credit_redemptions').update({draft_gid:result.draftOrderId}).eq('id',input.contract.sampleCreditQuote.reservationId).eq('state','RESERVED');
+    if(error)throw Error('SAMPLE_CREDIT_DRAFT_BINDING_FAILED');
+  }
+  return result;
 }
 
 /** Read-only paid-order linkage for the separate Cushion Studio receiver.

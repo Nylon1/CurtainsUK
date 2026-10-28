@@ -38,6 +38,7 @@
     {% else %}<div class="cuk-section__head"><div><p class="cuk-eyebrow">Find your fabric</p><h1>Choose fabric and colour</h1></div><p>Explore colour, pattern and texture. Find a fabric to make your room feel like home.</p></div>{% endif %}
     {%- if template.suffix == 'browse-fabrics' and section.settings.naila_enabled -%}<div class="cuk-naila-entry" data-cuk-naila></div>{%- endif -%}
     <form class="cuk-fabric-filters" data-cuk-fabric-filters role="search" id="cuk-fabric-library-search">
+      {% render 'curtainsuk-sample-credit' %}
       {% if template.suffix == 'browse-fabrics' %}
       <div class="cuk-browse-filter-help">
         <p class="cuk-eyebrow">YOUR ROOM. YOUR PALETTE.</p>

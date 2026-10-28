@@ -48,6 +48,7 @@
             {% render 'curtainsuk-room-preview-link', fabric_id: metaobject.fabric_master_id.value %}
           </div>
           <p class="cuk-profile__delivery">{{ 'curtainsuk_fabric_studio.sample_delivery' | t }}</p>
+          {% render 'curtainsuk-sample-credit' %}
           <p class="cuk-profile__status" data-cuk-curtain-status role="status" aria-live="polite">Checking current curtain availability…</p>
           {% if section.settings.enable_cushion_studio and metaobject.fabric_master_id.value != blank %}
             <a class="cuk-profile__button cuk-profile__button--secondary" href="/pages/cushion-studio?fabric={{ metaobject.fabric_master_id.value | url_encode }}">Make cushions with this fabric</a>

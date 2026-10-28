@@ -3,6 +3,7 @@ import { specDigest, type CushionOrderSnapshot } from "./repository";
 import { cushionWorkroomPacket } from "./checkout";
 import { groupFulfilmentItems, type FulfilmentReference } from "./commerce";
 import type { ShopifyDraftOrderExecutionContract } from "../storefront/shopify-draft-order-core";
+import { expectedLineDiscount } from '../storefront/sample-credit';
 
 type PaidLine = {
   id?: number;
@@ -97,7 +98,7 @@ export function verifyPersistedCushionPayment(
     minor(shipping?.amount) !== contract.expected.shippingGrossAmountMinor ||
     minor(payload.total_price) !== contract.expected.orderGrossAmountMinor ||
     minor(payload.total_tax) !== contract.expected.orderVatAmountMinor ||
-    minor(payload.total_discounts) !== 0
+    minor(payload.total_discounts) !== (contract.expected.discountAmountMinor ?? 0)
   )
     throw new Error("CUSHION_PAID_ORDER_FINANCIAL_MISMATCH");
   const goods = (payload.line_items as PaidLine[]).reduce(
@@ -106,6 +107,11 @@ export function verifyPersistedCushionPayment(
   );
   if (goods !== contract.expected.goodsGrossAmountMinor)
     throw new Error("CUSHION_PAID_ORDER_FINANCIAL_MISMATCH");
+  for (const line of payload.line_items as PaidLine[]) {
+    const props=new Map((line.properties??[]).map(a=>[a.name,a.value]));
+    const source=contract.input.lineItems.find(l=>l.customAttributes.some(a=>['_curtainsuk_snapshot_id','_curtainsuk_cushion_snapshot_id'].includes(a.key)&&props.get(a.key)===a.value));
+    if(!source || minor(line.total_discount??'0')!==expectedLineDiscount(source))throw Error('CUSHION_PAID_ORDER_FINANCIAL_MISMATCH');
+  }
 }
 
 /** Raw-body authentication precedes parsing. Standalone, closed-gate rehearsal

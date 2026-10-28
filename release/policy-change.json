@@ -1,13 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "My Home checkout regression coverage did not verify that anonymous cushion and motorised-track orders can persist under a guest-owned checkout attempt, or that cushion-only delivery can be quoted without a postcode. Production order persistence required a signed-in customer, while the shared order screen asked for a postcode even for fixed-rate cushion delivery.",
-  "newRule": "Keep saved Cushion Studio designs account-only, while My Home cushion and motorised-track purchases use a shop-scoped random checkout attempt. Cushion-only reviews and checkout use the fixed quoted delivery charge without a postcode; curtain and track delivery remain governed by postcode. Test guest persistence, account-only saved-design ownership, legacy signed-in attempt compatibility and cushion-only delivery identity.",
-  "reason": "Shopify permits guest checkout, and cushion delivery has a fixed £4.95 charge. The new tests protect the narrower My Home guest path and remove a redundant cushion-only checkout step without weakening pricing, purchase, delivery, or payment validation.",
-  "ownerApprovedDecision": "The owner approved the guest-checkout alternative and asked to simplify the cushion checkout journey. This record describes protected regression tests; the exact-head Nylon1 approval comment required by the protected production policy is still pending.",
+  "previousRule": "Checkout expected zero discounts. Paid samples did not issue reusable purchase credit. All existing pricing, delivery, stock and product identity checks remain in force.",
+  "newRule": "Permit only the exact server-verified sample credit on curtain lines, capped at the actual paid cost of ten sample products. Keep VAT, shipping and payment reconciliation exact; reserve each private code atomically and redeem only once after verified payment. Add protected My Home regression coverage for credits and unchanged no-code orders.",
+  "reason": "The owner requested paid sample costs to be deducted from later made-to-measure curtain orders, a private code by email and a customer-facing offer without disabling existing features.",
+  "ownerApprovedDecision": "Build requested in the conversation. Combination/single-use terms and the reviewed candidate are documented in docs/SAMPLE_CREDIT_CANDIDATE.md. Production publication and exact-head owner approval remain pending.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/cushion-studio/__tests__/guest-checkout.test.ts",
     "lib/cushion-studio/__tests__/my-home.test.ts",
+    "lib/storefront/__tests__/sample-credit.test.ts",
     "release/policy-change.json"
   ]
 }

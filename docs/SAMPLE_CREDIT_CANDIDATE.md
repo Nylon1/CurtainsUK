@@ -1,6 +1,6 @@
 # Paid sample credit: review candidate
 
-Status: unpublished. Based on protected `release/production` at `5db7af1f31c5869c44ba6dc3911a1c3f83b687fd`. No production settings, deployments, Shopify products or database records were changed while preparing this candidate. `PRODUCTION_SURFACES.md` continues to describe the deployed source of truth.
+Status: published on 28 October 2026 through PR #304, with the production cart-overlay correction in PR #305. See [the current production record](PRODUCTION_SURFACES.md#paid-sample-credit-28-october-2026) for deployment, permission, migration and full-theme readback evidence. This document preserves the original candidate design and pre-release observations below; statements describing pending release actions are historical, not the current deployment state. The candidate began from protected `release/production` at `5db7af1f31c5869c44ba6dc3911a1c3f83b687fd`.
 
 ## Customer policy
 

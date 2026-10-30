@@ -1,0 +1,77 @@
+# Hotel Design Studio — first release candidate
+
+30 October 2026. Feature branch `feature/hotel-design-studio-20261030`, based on protected `release/production` at `f6bee2f8`. This is a review candidate, not a production release. No theme, catalogue database, order service or production environment was changed.
+
+## What is implemented
+
+- A dedicated CurtainsUK workspace with Room Visualiser, Furnishing Coordination, Room Layout Planner, Project Planner and Saved Projects.
+- Original Standard Double and Superior 3D concept rooms. Twin/Suite are future scene slots; twin furniture is already available in the 2D plan.
+- Wave curtains and a separate rear voile track, independent 0–100% travel, curtains/voile/both modes and illustrative sheer density. The background contains a real window opening, not baked-in curtains.
+- Eight independently saved material choices: curtains, voile, runner, cushions, headboard, bed base, armchair and bench. Same fabric and matching colour copy the reference choice; later changes remain independent. Complementary choices are manual.
+- Panaz plain FR fabrics only. Fourteen supplier-published colourways from Spectrum, Alba and Plain Voile, with source links, actual supplier codes, observed date, published FR ratings and end uses. Other brands and unrecognized imported fabric IDs are rejected. Supplier claims in an imported project are replaced with the checked snapshot.
+- Centimetre-based 2D plans with room dimensions, windows/doors, editable positions/sizes, rotation, pointer dragging, keyboard movement and numeric alternatives. Beds, twin beds, bedside tables, desks, chairs, armchairs and benches; rotated overlap, boundary and basic door-clearance warnings. Example dimensions require explicit confirmation; edits invalidate confirmation.
+- Multiple room types, quantities, schemes, sample and approval records, phases, budget categories, typed window schedules and individual-room exceptions. Grouping does not verify measurements. Reducing the window count retains entered rows and flags discrepancies.
+- Local autosave, reopen, project/scheme duplication, side-by-side alternative comparison, JSON import/export, room images, SVG plans, room/window CSVs, PDF briefs with an embedded exact JSON backup, sample and quotation drafts. No automatic sending or ordering.
+- Explicit storage-full, corrupt-store, concurrent-tab, missing catalogue/image, WebGL and PDF-loading recovery states.
+
+## Repository inspection and reuse
+
+The production ledger, frontend register, production surfaces, release policy and visualiser packaging contract were read first. `main` is not the storefront release authority. Work was isolated from the owner's existing checkout.
+
+The hotel scene imports the released domestic `rooms/curtain-component.mjs` travel solver, mesh and lighting pipeline from `lib/room-visualiser/build.json`'s immutable asset base. The domestic renderer and all released packs remain unchanged. Its material selectors and domestic catalogue were inspected, but the hotel library is intentionally isolated after the owner's Panaz-only direction.
+
+Existing retail catalogue/Fabric Master projection did not provide a connected Panaz range or product-level FR evidence. This candidate therefore uses a small, explicit supplier snapshot, not invented Fabric Master records. The existing My Home store concerns purchasing and is not reused as a hotel project database. Existing lead routes include unrelated Apex workflows; no unverified submission service was attached. The enquiry destination matches the existing CurtainsUK configurator's `enquiries@curtainsuk.com` default, and is used only in a user-opened email draft.
+
+The Shopify wrapper is additive: `page.hotel-design-studio.json`, `curtainsuk-hotel-studio.liquid` and its CSS. No Page or navigation item has been published. The signed proxy uses the existing authentication/rate-limit helpers and requires `CURTAINSUK_HOTEL_STUDIO_ENABLED=true`. The unsigned review route is only available on Vercel Preview or a non-production loopback server. It returns 404 in production.
+
+## Panaz evidence and visual limits
+
+`lib/hotel-studio/panaz-source-2026-10-30.json` records the exact product pages, supplier image URLs, codes and relevant attributes read on 30 October 2026. `runtime/panaz-catalogue.mjs` is the explicit hotel selection; JPGs are local copies of those supplier images. This is **14 selected colourways, not the complete or live Panaz range**. There is no price, stock or delivery feed.
+
+Spectrum pages list curtains, bed throws and cushions; Alba pages list upholstery; Plain Voile pages list curtains and classify the product as sheer. The UI orders choices by listed end use and flags mismatches. Published FR ratings do not approve a finished upholstered assembly, lining, installation or project specification. Final intended use, construction, certificates and samples require review. No abrasion or commercial suitability claim is inferred.
+
+The Spectrum and voile imagery includes photographed folds. Tiling it onto the wave mesh was rejected during visual review. All Panaz choices currently use a mean-colour approximation from the supplier image and the existing geometric folds; picker swatches retain the actual supplier image. There is no calibrated flat textile map or claim of exact colour, weave, pattern scale, transparency or blackout performance. The stored 30 cm extent is an unused illustration placeholder with `scaleKind: colour-only`, never a physical calibration.
+
+The referenced hotel photographs were not present in the available conversation or located project assets. Rooms are original procedural concepts, not reconstructions of those photos or CurtainsUK installations. The garden is an original generated presentation asset. Its prompt: “Original quiet British boutique hotel garden exterior, seen from a first-floor bedroom; mature trees, stone terrace, low hedges, distant countryside; soft daylight; no interior, windows, curtains, people, signs or text; photorealistic 3:2 composition.” Source PNG is retained locally under `artifacts/hotel-studio/source`; optimized runtime WebP is shipped.
+
+## Save, export and enquiry contract
+
+Storage key: `curtainsuk.hotel-studio.v1`. This browser/device/origin only. Different preview URLs have separate stores; transfer via JSON. Local storage is not a cloud backup and can be cleared by the browser. Strict parsing, revision checks and recovery downloads prevent silent overwriting of corrupt or concurrent data.
+
+Budgets are user-entered GBP allowances per room, extended by room quantity; furnishings, tracks, survey, installation and other are separate. Blank fields are omitted, not quoted at zero. VAT is explicitly unspecified/inclusive/exclusive; no tax is calculated. No quote or delivery promise is generated. Sample/approval states and installation phases are manual planning records only.
+
+PDFs include all room types and alternatives, captured previews, source references, layouts, window and exception measurements, notes, budgets and unresolved decisions. Noto Sans covers Latin/Greek/Cyrillic text; unsupported glyphs are visibly flagged and the complete original Unicode data remains in the attached JSON. SVG is the standalone plan export. CSV formula-leading cells are escaped. Email links prepare a short draft; users attach the brief and schedules themselves. Successful submission is never claimed.
+
+The 2D plan and 3D view share a project/scheme but **are not geometrically connected**. Moving a desk, entering dimensions or adding twin beds does not alter the concept scene. This is explained in both the workspace and exports.
+
+## Review and validation
+
+Run `npm run preview:hotel`, then open `http://127.0.0.1:4368/hotel-design-studio-preview/`. No credentials or database writes are needed. `npm run test:hotel` runs the new contract and asset tests.
+
+Validated locally:
+
+- 12 hotel tests: persistence/reopen/duplication, independent choices, matching-colour clearing, retained measurements/exceptions, CSV/plan/draft contents, rotated overlaps, corrupt/concurrent storage, Panaz-only imports, source evidence, assets, catalogue and unsigned-production denial.
+- 45 existing domestic room/visualiser regression tests passed.
+- All 11 protected capability groups passed (133 checks); `node release/gate.mjs .` is offline contract validation, not production approval.
+- TypeScript passed. Full `next build --webpack` passed with non-secret placeholder public Supabase URL/key for unrelated admin prerendering. Normal Turbopack local build cannot follow this worktree's external node_modules junction; no production build configuration was changed. Vercel performs its own normal install/build.
+- Next output tracing includes the hotel runtime, PDF fonts and all 14 Panaz images.
+- Browser checks: both scenes, all eight material targets, independent layer endpoints/modes, same-fabric copying, room quantities 30/12/8, alternative comparison, numeric layout edits/rotation/confirmation, saved reopen, exception 214, budget GBP 7,500, CSVs, draft enquiry and PDF export. Exported PDF JSON matched the saved backup except the later export timestamp.
+- Chrome responsive checks at 390 × 844 and 768 × 1024: no page-wide horizontal overflow, complete room framing, usable controls and mobile numeric layout edits surviving reload. Project duplication and reopening were checked through Saved Projects. Layer controls have a 44 px minimum height.
+- Fault injection: temporarily missing Panaz image retained the fabric reference and displayed a fallback; an unavailable local catalogue displayed Retry without clearing selections; retry succeeded after restoring the server. An empty search showed useful guidance.
+- The refreshed 18-page PDF was inspected as rendered pages, including the room preview, material blocks and plan. Its attached JSON matched the separately downloaded backup except the export timestamp; 50 rooms, Panaz Navy/Alba references and room 214 were present.
+
+Local evidence is in `artifacts/hotel-studio/`: test/build logs, review project, PDF inspection and screenshots. `output/pdf/hotel-project-brief-example.pdf` is a generated example, not a customer quotation. Physical iPhone, Android, Safari and spoken screen-reader verification have not been claimed.
+
+## Release procedure
+
+Create a PR to `release/production`; required checks remain `curtainsuk-production-gate` and `protected-production-policy`. Review this feature on a Vercel Preview of the existing `curtainsuk-staging-api` project, not a new deployment project. Do not bypass preview protection.
+
+The added tests, package scripts and isolated `hotel-studio-contracts` workflow are protected surfaces. The policy record describes these additions without changing existing assertions. Per `release/README.md`, the owner must add `OWNER_APPROVED_POLICY_CHANGE <CURRENT_HEAD_SHA>` to the reviewed PR before the policy check can pass. No approval is fabricated or posted on the owner's behalf.
+
+After explicit owner authorization and the required checks, follow `release/README.md`: deploy only the exact protected branch HEAD, enable the hotel route deliberately, install only the three additive theme files, create the Hotel Design Studio page and navigation entry, and run signed-proxy/storefront/mobile/save/export smoke checks. Do not publish this feature from its branch. Rollback is disabling the feature flag/removing the new navigation entry and restoring the last approved API deployment if necessary; domestic assets are unchanged.
+
+Before wider use: expand the approved Panaz range/feed and source maintenance, agree cloud project/enquiry services, obtain the intended hotel photo references, refine the concept geometry/material calibration, and verify physical touch devices and accessibility.
+
+## Third-party presentation dependencies
+
+The approved Three.js runtime is reused unchanged. PDF-Lib is locally vendored with its MIT licence; `@pdf-lib/fontkit` 1.1.1 is locally vendored from the public npm registry with its declared MIT attribution. Noto Sans Regular/Bold are from the official `notofonts/noto-fonts` repository under the bundled SIL Open Font License. Supplier swatch provenance is recorded per product; confirm ongoing supplier media permissions as part of the existing supplier relationship before public release.

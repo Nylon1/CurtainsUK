@@ -1,13 +1,15 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Checkout expected zero discounts. Paid samples did not issue reusable purchase credit. All existing pricing, delivery, stock and product identity checks remain in force.",
-  "newRule": "Permit only the exact server-verified sample credit on curtain lines, capped at the actual paid cost of ten sample products. Keep VAT, shipping and payment reconciliation exact; reserve each private code atomically and redeem only once after verified payment. Add protected My Home regression coverage for credits and unchanged no-code orders.",
-  "reason": "The owner requested paid sample costs to be deducted from later made-to-measure curtain orders, a private code by email and a customer-facing offer without disabling existing features.",
-  "ownerApprovedDecision": "Build requested in the conversation. Combination/single-use terms and the reviewed candidate are documented in docs/SAMPLE_CREDIT_CANDIDATE.md. Production publication and exact-head owner approval remain pending.",
+  "previousRule": "The existing protected cumulative capability gate and exact-head owner approval remain mandatory. No Hotel Design Studio contracts or preview scripts existed.",
+  "newRule": "Add isolated hotel project, Panaz catalogue and asset contract tests, local hotel preview/test scripts, and a read-only CI workflow running those new contracts. Existing protected assertions, required checks, purchase rules and release authority remain unchanged.",
+  "reason": "The owner requested a dedicated Hotel Design Studio and explicit verification of saving, independent materials, layouts, exceptions, exports, fallbacks and unchanged domestic behaviour.",
+  "ownerApprovedDecision": "Implementation and verification were requested in the conversation. The review candidate and limitations are documented in docs/HOTEL_DESIGN_STUDIO.md. Exact-head GitHub owner approval and production publication remain pending.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/cushion-studio/__tests__/my-home.test.ts",
-    "lib/storefront/__tests__/sample-credit.test.ts",
+    "lib/hotel-studio/__tests__/project.test.mjs",
+    "lib/hotel-studio/__tests__/server.test.ts",
+    "package.json",
+    ".github/workflows/hotel-studio.yml",
     "release/policy-change.json"
   ]
 }

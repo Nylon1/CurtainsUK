@@ -1,0 +1,4 @@
+{
+  "sections": {"hotel_studio": {"type": "curtainsuk-hotel-studio", "settings": {}}},
+  "order": ["hotel_studio"]
+}

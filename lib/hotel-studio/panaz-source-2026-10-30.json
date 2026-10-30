@@ -1,0 +1,272 @@
+{
+  "observedAt": "2026-10-30",
+  "method": "Read from supplier product pages; selected plain FR colourways, not a live or complete catalogue.",
+  "products": [
+    {
+      "attributes": {
+        "Collection": "Alba",
+        "Design": "Alba",
+        "Colourway": "841 Biscotti",
+        "Colour": "Cream",
+        "Product Type": "Woven",
+        "End Use": "Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% Polyester with Microporous Film and FR Backcoating",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "138"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/ALBA841BISCOTTI-WEB.jpg",
+      "sku": "206ALB4/841",
+      "title": "Alba Biscotti",
+      "url": "https://panaz.com/collections/alba/alba/841-biscotti/"
+    },
+    {
+      "attributes": {
+        "Collection": "Spectrum",
+        "Design": "Spectrum",
+        "Colourway": "116 Navy",
+        "Colour": "Blue",
+        "Product Type": "Woven",
+        "End Use": "Bed Throws, Curtains, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester Blend",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/090SPE1116.jpg",
+      "sku": "090SPE1/116",
+      "title": "Spectrum Navy",
+      "url": "https://panaz.com/collections/spectrum/spectrum/116-navy/"
+    },
+    {
+      "attributes": {
+        "Collection": "Spectrum",
+        "Design": "Spectrum",
+        "Colourway": "253 Cardamom",
+        "Colour": "Green",
+        "Product Type": "Woven",
+        "End Use": "Bed Throws, Curtains, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester Blend",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/090SPE1253.jpg",
+      "sku": "090SPE1/253",
+      "title": "Spectrum Cardamom",
+      "url": "https://panaz.com/collections/spectrum/spectrum/253-cardamom/"
+    },
+    {
+      "attributes": {
+        "Collection": "Spectrum",
+        "Design": "Spectrum",
+        "Colourway": "834 Honey",
+        "Colour": "Yellow",
+        "Product Type": "Woven",
+        "End Use": "Bed Throws, Curtains, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester Blend",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/090SPE1834.jpg",
+      "sku": "090SPE1/834",
+      "title": "Spectrum Honey",
+      "url": "https://panaz.com/collections/spectrum/spectrum/834-honey/"
+    },
+    {
+      "attributes": {
+        "Collection": "Spectrum",
+        "Design": "Spectrum",
+        "Colourway": "925 Putty",
+        "Colour": "Brown",
+        "Product Type": "Woven",
+        "End Use": "Bed Throws, Curtains, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester Blend",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/090SPE1925.jpg",
+      "sku": "090SPE1/925",
+      "title": "Spectrum Putty",
+      "url": "https://panaz.com/collections/spectrum/spectrum/925-putty/"
+    },
+    {
+      "attributes": {
+        "Collection": "Spectrum",
+        "Design": "Spectrum",
+        "Colourway": "905 Dove",
+        "Colour": "Brown, Grey",
+        "Product Type": "Woven",
+        "End Use": "Bed Throws, Curtains, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester Blend",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/090SPE1905.jpg",
+      "sku": "090SPE1/905",
+      "title": "Spectrum Dove",
+      "url": "https://panaz.com/collections/spectrum/spectrum/905-dove/"
+    },
+    {
+      "attributes": {
+        "Collection": "Spectrum",
+        "Design": "Spectrum",
+        "Colourway": "192 Ink",
+        "Colour": "Blue",
+        "Product Type": "Woven",
+        "End Use": "Bed Throws, Curtains, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester Blend",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/090SPE1192.jpg",
+      "sku": "090SPE1/192",
+      "title": "Spectrum Ink",
+      "url": "https://panaz.com/collections/spectrum/spectrum/192-ink/"
+    },
+    {
+      "attributes": {
+        "Collection": "Alba",
+        "Design": "Alba",
+        "Colourway": "215 Elm",
+        "Colour": "Green",
+        "Product Type": "Woven",
+        "End Use": "Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% Polyester with Microporous Film and FR Backcoating",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "138"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/08/Alba-215-Elm-700x700.jpg",
+      "sku": "206ALB4/215",
+      "title": "Alba Elm",
+      "url": "https://panaz.com/collections/alba/alba/215-elm/"
+    },
+    {
+      "attributes": {
+        "Collection": "Alba",
+        "Design": "Alba",
+        "Colourway": "129 Ocean",
+        "Colour": "Blue",
+        "Product Type": "Woven",
+        "End Use": "Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% Polyester with Microporous Film and FR Backcoating",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "138"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/08/Alba-129-Ocean-700x700.jpg",
+      "sku": "206ALB4/129",
+      "title": "Alba Ocean",
+      "url": "https://panaz.com/collections/alba/alba/129-ocean/"
+    },
+    {
+      "attributes": {
+        "Collection": "Alba",
+        "Design": "Alba",
+        "Colourway": "925 Putty",
+        "Colour": "Grey",
+        "Product Type": "Woven",
+        "End Use": "Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% Polyester with Microporous Film and FR Backcoating",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "138"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/08/Alba-925-Putty-700x700.jpg",
+      "sku": "206ALB4/925",
+      "title": "Alba Putty",
+      "url": "https://panaz.com/collections/alba/alba/925-putty/"
+    },
+    {
+      "attributes": {
+        "Collection": "Alba",
+        "Design": "Alba",
+        "Colourway": "321 Wheat",
+        "Colour": "Beige",
+        "Product Type": "Woven",
+        "End Use": "Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% Polyester with Microporous Film and FR Backcoating",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "138"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/08/Alba-321-Wheat-700x700.jpg",
+      "sku": "206ALB4/321",
+      "title": "Alba Wheat",
+      "url": "https://panaz.com/collections/alba/alba/321-wheat/"
+    },
+    {
+      "attributes": {
+        "Collection": "Serenity Sheers",
+        "Design": "Plain Voile",
+        "Colourway": "001 White",
+        "Colour": "White",
+        "Product Type": "Sheer",
+        "End Use": "Curtains",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester, 50% Recycled Polyester Content",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, NFPA 701, IMO FTP Code 2010 Part 7",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/366PLA1001.jpg",
+      "sku": "366PLA1/001",
+      "title": "Plain Voile White",
+      "url": "https://panaz.com/collections/serenity-sheers/plain-voile/001-white/"
+    },
+    {
+      "attributes": {
+        "Collection": "Serenity Sheers",
+        "Design": "Plain Voile",
+        "Colourway": "802 Champagne",
+        "Colour": "White",
+        "Product Type": "Sheer",
+        "End Use": "Curtains",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester, 50% Recycled Polyester Content",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, NFPA 701, IMO FTP Code 2010 Part 7",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/366PLA1802.jpg",
+      "sku": "366PLA1/802",
+      "title": "Plain Voile Champagne",
+      "url": "https://panaz.com/collections/serenity-sheers/plain-voile/802-champagne/"
+    },
+    {
+      "attributes": {
+        "Collection": "Serenity Sheers",
+        "Design": "Plain Voile",
+        "Colourway": "905 Dove",
+        "Colour": "White",
+        "Product Type": "Sheer",
+        "End Use": "Curtains",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "FR Polyester, 50% Recycled Polyester Content",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, NFPA 701, IMO FTP Code 2010 Part 7",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/366PLA1905.jpg",
+      "sku": "368PLA1/905",
+      "title": "Plain Voile Dove",
+      "url": "https://panaz.com/collections/serenity-sheers/plain-voile/905-dove/"
+    }
+  ]
+}

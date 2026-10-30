@@ -40,7 +40,9 @@
     "fabric:apply:media": "tsx scripts/curtainsuk-apply-media-mappings.ts",
     "fabric:preview:retail": "tsx scripts/curtainsuk-retail-local-preview.ts",
     "preview:curtainsuk-6a": "tsx scripts/curtainsuk-phase6a-preview.mts",
-    "test:smart-tracks": "node --import ./scripts/cushion-preview-register.mjs --import tsx --test lib/smart-track/__tests__/*.test.ts lib/smart-track/runtime/*.test.mjs"
+    "test:smart-tracks": "node --import ./scripts/cushion-preview-register.mjs --import tsx --test lib/smart-track/__tests__/*.test.ts lib/smart-track/runtime/*.test.mjs",
+    "preview:hotel": "tsx scripts/hotel-studio-preview.ts",
+    "test:hotel": "tsx --test lib/hotel-studio/__tests__/*.test.mjs lib/hotel-studio/__tests__/*.test.ts"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",

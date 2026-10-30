@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <base href="__HOTEL_BASE__" />
+    <title>Hotel Design Studio | CurtainsUK</title>
+    <link rel="stylesheet" href="studio.css" />
+    <script>
+      window.HOTEL_STUDIO_CONFIG = __HOTEL_CONFIG__;
+    </script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "__THREE_BASE__three.module.js",
+          "three/addons/": "__THREE_BASE__addons/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">Skip to design workspace</a>
+    <header class="brandbar">
+      <a
+        href="https://www.curtainsuk.com"
+        target="_top"
+        class="brand"
+        aria-label="CurtainsUK home"
+        >CURTAINS<span>UK</span><small>MADE FOR YOUR WORLD</small></a
+      ><span class="brand-divider"></span
+      ><span class="studio-brand">Hotel Design Studio</span>
+      <div class="brand-actions">
+        <span class="save-state" id="save-state" role="status"
+          >Browser saving</span
+        ><button class="button quiet" id="save-project">Save project</button
+        ><button class="button primary" id="brief-button">
+          Export project brief <span aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </header>
+    <div class="intro">
+      <div>
+        <p class="eyebrow">CURTAINSUK FOR HOSPITALITY</p>
+        <h1>Room for a considered stay.</h1>
+        <p>
+          Design your hotel rooms. Coordinate your furnishings. Plan your
+          project.
+        </p>
+      </div>
+      <div class="project-name">
+        <label for="project-name">YOUR PROJECT</label
+        ><input
+          id="project-name"
+          maxlength="160"
+          aria-label="Project name"
+        /><span>Saved in this browser · export a backup to keep a copy</span>
+      </div>
+    </div>
+    <nav
+      class="workspace-tabs"
+      aria-label="Hotel studio areas"
+      id="workspace-tabs"
+    ></nav>
+    <main id="workspace" tabindex="-1">
+      <div class="context-bar" id="context-bar"></div>
+      <div class="notice error" id="storage-error" role="alert" hidden></div>
+      <section id="design-view" class="design-layout">
+        <div class="preview-column">
+          <div class="preview-shell">
+            <div class="preview-top">
+              <span class="pill" id="scene-title">Standard Double</span>
+              <div class="segmented" aria-label="Camera view">
+                <button data-camera="room" aria-pressed="true">Room view</button
+                ><button data-camera="window" aria-pressed="false">
+                  Curtain detail
+                </button>
+              </div>
+            </div>
+            <canvas
+              id="hotel-scene"
+              aria-label="Illustrative hotel bedroom preview. Select furnishings using the controls alongside."
+              tabindex="0"
+            ></canvas>
+            <div class="scene-loading" id="scene-loading">
+              <span class="loading-mark"></span
+              ><strong>Bringing your room together</strong>
+              <p>Preparing the window and soft furnishings</p>
+            </div>
+            <div class="scene-error" id="scene-error" hidden>
+              <strong>Room preview unavailable</strong>
+              <p id="scene-error-message"></p>
+              <button class="button" id="retry-scene">Retry preview</button>
+            </div>
+            <div class="preview-bottom">
+              <span>ORIGINAL CONCEPT SCENE</span
+              ><button id="snapshot-button" class="text-button">
+                Save room image ↓
+              </button>
+            </div>
+          </div>
+          <p class="preview-note">
+            Illustrative Panaz colours and wave folds. Request physical samples
+            and verify intended use. Daylight imagery does not certify blackout
+            performance.
+          </p>
+          <div
+            class="scene-message"
+            id="scene-message"
+            role="status"
+            hidden
+          ></div>
+          <div class="scheme-strip" id="scheme-strip"></div>
+        </div>
+        <aside
+          class="control-panel"
+          id="design-controls"
+          aria-label="Design controls"
+        ></aside>
+      </section>
+      <section id="layout-view" hidden></section>
+      <section id="project-view" hidden></section>
+      <section id="saved-view" hidden></section>
+    </main>
+    <footer class="studio-footer">
+      <span>Thoughtful rooms. Beautifully coordinated.</span
+      ><span
+        >Concepts for discussion · measurements and materials require
+        review</span
+      >
+    </footer>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <dialog id="name-dialog" aria-labelledby="name-label">
+      <form method="dialog">
+        <h2 id="name-label">Name</h2>
+        <label>Name<input id="name-input" maxlength="120" required /></label>
+        <div class="actions" style="margin-top: 20px">
+          <button class="button primary" value="save">Save name</button
+          ><button class="button" value="cancel" formnovalidate>Cancel</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="fabric-dialog" aria-labelledby="fabric-title">
+      <header class="dialog-head">
+        <div>
+          <p class="eyebrow">PANAZ · PLAIN FR</p>
+          <h2 id="fabric-title">Choose a fabric</h2>
+        </div>
+        <button
+          class="icon-button"
+          data-close-dialog
+          aria-label="Close fabric library"
+        >
+          ×
+        </button>
+      </header>
+      <p id="fabric-for" class="muted"></p>
+      <form id="fabric-search">
+        <label class="sr-only" for="fabric-query">Search fabrics</label
+        ><input
+          id="fabric-query"
+          type="search"
+          placeholder="Search design, colour or collection"
+        /><button class="button primary">Search</button>
+      </form>
+      <p class="small muted">
+        Selected Panaz plain FR colourways: Spectrum, Alba and Plain Voile.
+        Supplier references checked 30 October 2026; this is not the complete or
+        live range. Published end uses guide selection; suitability for the
+        finished item and project still needs review.
+      </p>
+      <div id="fabric-results" aria-live="polite"></div>
+      <button id="fabric-more" class="button" hidden>Show more fabrics</button>
+    </dialog>
+    <dialog id="compare-dialog" aria-labelledby="compare-title">
+      <header class="dialog-head">
+        <div>
+          <p class="eyebrow">EXPLORE THE POSSIBILITIES</p>
+          <h2 id="compare-title">Compare schemes</h2>
+        </div>
+        <button
+          class="icon-button"
+          data-close-dialog
+          aria-label="Close comparison"
+        >
+          ×
+        </button>
+      </header>
+      <div id="compare-content"></div>
+    </dialog>
+    <dialog id="enquiry-dialog" aria-labelledby="enquiry-title">
+      <header class="dialog-head">
+        <div>
+          <p class="eyebrow">YOUR NEXT STEP</p>
+          <h2 id="enquiry-title">Prepare your enquiry</h2>
+        </div>
+        <button
+          class="icon-button"
+          data-close-dialog
+          aria-label="Close enquiry"
+        >
+          ×
+        </button>
+      </header>
+      <p class="notice">
+        This prepares a draft for you to send. Nothing is submitted, ordered or
+        booked by this studio.
+      </p>
+      <div id="enquiry-content"></div>
+    </dialog>
+    <dialog id="progress-dialog" aria-labelledby="progress-title">
+      <h2 id="progress-title">Preparing your project brief</h2>
+      <p id="export-progress" role="status">Gathering your saved designs…</p>
+      <span class="loading-mark"></span>
+    </dialog>
+    <input
+      type="file"
+      id="import-project"
+      accept="application/json,.json"
+      hidden
+    />
+    <noscript
+      ><p class="notice">
+        Enable JavaScript to use the Hotel Design Studio. You can
+        <a href="https://www.curtainsuk.com/pages/fabric-library" target="_top"
+          >browse the fabric library</a
+        >
+        or contact CurtainsUK with your project details.
+      </p></noscript
+    >
+    <script type="module" src="studio.mjs"></script>
+  </body>
+</html>

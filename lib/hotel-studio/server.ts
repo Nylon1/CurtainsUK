@@ -88,7 +88,11 @@ export async function hotelReviewCatalogue(request: Request) {
     range = (input.get("range") ?? "").slice(0, 100);
   const fabrics = PANAZ_FABRICS.filter(
     (f) =>
-      (!range || f.design === range) &&
+      f.availability !== "Discontinued" &&
+      (!range ||
+        (range === "sheers"
+          ? f.productType === "Sheer"
+          : f.design === range)) &&
       `${f.brand} ${f.design} ${f.colour} ${f.reference}`
         .toLowerCase()
         .includes(q),

@@ -98,3 +98,25 @@ test("production does not expose the unsigned hotel preview", () => {
     }
   }
 });
+
+test("FR sheer filter offers eight listed voiles and excludes retired White without losing assets", async () => {
+  const query = async (params: string) =>
+    (
+      await hotelReviewCatalogue(
+        new Request(`http://localhost/catalog?${params}`),
+      )
+    ).json();
+  const all = await query("range=sheers&item=voile");
+  assert.equal(all.fabrics.length, 8);
+  assert.ok(
+    all.fabrics.every(
+      (f: { productType: string; pattern: string }) =>
+        f.productType === "Sheer" && f.pattern === "Plain",
+    ),
+  );
+  assert.equal((await query("range=Batiste")).fabrics.length, 4);
+  assert.equal((await query("range=Charm")).fabrics.length, 2);
+  assert.equal((await query("range=sheers&query=White")).fabrics.length, 2);
+  assert.equal((await query("query=366PLA1%2F001")).fabrics.length, 0);
+  assert.equal((await query("")).fabrics.length, 55);
+});

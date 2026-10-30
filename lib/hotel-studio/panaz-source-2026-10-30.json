@@ -1,6 +1,6 @@
 {
   "observedAt": "2026-10-30",
-  "method": "Product-page attributes where available; Allure UK collection listings supplement plain-pattern evidence and six product records. Five of those SKUs cross-checked on official Panaz US pages; Wine uses its published colourway reference with SKU explicitly unconfirmed. A dated snapshot, not live availability.",
+  "method": "Product-page attributes where available; Allure UK collection listings supplement plain-pattern evidence and six product records. Five of those SKUs cross-checked on official Panaz US pages; Wine uses its published colourway reference with SKU explicitly unconfirmed. A dated snapshot, not live availability. Batiste and Charm attributes checked in the UK Serenity Sheers collection; four SKUs independently verified in official product pages/specification, two explicitly unconfirmed. Discontinued Plain Voile White retained only for saved-project compatibility.",
   "products": [
     {
       "attributes": {
@@ -228,7 +228,9 @@
       "image": "https://panaz.com/wp-content/uploads/2023/03/366PLA1001.jpg",
       "sku": "366PLA1/001",
       "title": "Plain Voile White",
-      "url": "https://panaz.com/collections/serenity-sheers/plain-voile/001-white/"
+      "url": "https://panaz.com/collections/serenity-sheers/plain-voile/001-white/",
+      "availability": "Discontinued",
+      "availabilitySourceUrl": "https://panaz.com/collection/serenity-sheers/"
     },
     {
       "attributes": {
@@ -1053,6 +1055,176 @@
       "url": "https://panaz.com/collections/allure-velvet/allure-velvet/414-wine/",
       "attributesSourceUrl": "https://panaz.com/collection/allure-velvet/page/2/",
       "referenceNote": "Supplier colourway confirmed in collection; product SKU was unavailable and must be checked. No SKU inferred."
+    },
+    {
+      "attributes": {
+        "Can be used Railroaded": "Yes",
+        "Collection": "Serenity Sheers",
+        "Colour": "White",
+        "Colourway": "802 Champagne",
+        "Composition": "FR Polyester, 50% Recycled Polyester Content",
+        "Design": "Batiste",
+        "End Use": "Curtains",
+        "FR Territories": "Cruise, France, Germany, UK, USA",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, M1, NFPA 701, IMO FTP Code 2010 Part 7",
+        "LRV": "69.6",
+        "LRV Scale": "",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Product Type": "Sheer",
+        "Sector": "Cruise, Hospitality",
+        "Weight (g/m2)": "65",
+        "Width": "Wide Width",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/367BAT1802.jpg",
+      "sku": "367BAT1/802",
+      "reference": "367BAT1/802",
+      "title": "Batiste Champagne",
+      "url": "https://panaz.com/collections/serenity-sheers/batiste/802-champagne/",
+      "attributesSourceUrl": "https://panaz.com/collection/serenity-sheers/",
+      "skuSourceUrl": "https://panaz.com/collections/serenity-sheers/batiste/802-champagne/"
+    },
+    {
+      "attributes": {
+        "Can be used Railroaded": "Yes",
+        "Collection": "Serenity Sheers",
+        "Colour": "Grey",
+        "Colourway": "905 Dove",
+        "Composition": "FR Polyester, 50% Recycled Polyester Content",
+        "Design": "Batiste",
+        "End Use": "Curtains",
+        "FR Territories": "Cruise, France, Germany, UK, USA",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, M1, NFPA 701, IMO FTP Code 2010 Part 7",
+        "LRV": "64.8",
+        "LRV Scale": "",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Product Type": "Sheer",
+        "Sector": "Cruise, Hospitality",
+        "Weight (g/m2)": "65",
+        "Width": "Wide Width",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/367BAT1905.jpg",
+      "sku": null,
+      "reference": "Batiste / 905 Dove (SKU to confirm)",
+      "title": "Batiste Dove",
+      "url": "https://panaz.com/collections/serenity-sheers/batiste/905-dove/",
+      "attributesSourceUrl": "https://panaz.com/collection/serenity-sheers/",
+      "referenceNote": "Colourway and FR attributes verified in UK collection. Product SKU not verified; no code inferred from image filename."
+    },
+    {
+      "attributes": {
+        "Can be used Railroaded": "Yes",
+        "Collection": "Serenity Sheers",
+        "Colour": "Grey",
+        "Colourway": "901 Silver",
+        "Composition": "FR Polyester, 50% Recycled Polyester Content",
+        "Design": "Batiste",
+        "End Use": "Curtains",
+        "FR Territories": "Cruise, France, Germany, UK, USA",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, M1, NFPA 701, IMO FTP Code 2010 Part 7",
+        "LRV": "52.5",
+        "LRV Scale": "",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Product Type": "Sheer",
+        "Sector": "Cruise, Hospitality",
+        "Weight (g/m2)": "65",
+        "Width": "Wide Width",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/367BAT1901.jpg",
+      "sku": null,
+      "reference": "Batiste / 901 Silver (SKU to confirm)",
+      "title": "Batiste Silver",
+      "url": "https://panaz.com/collections/serenity-sheers/batiste/901-silver/",
+      "attributesSourceUrl": "https://panaz.com/collection/serenity-sheers/",
+      "referenceNote": "Colourway and FR attributes verified in UK collection. Product SKU not verified; no code inferred from image filename."
+    },
+    {
+      "attributes": {
+        "Can be used Railroaded": "Yes",
+        "Collection": "Serenity Sheers",
+        "Colour": "White",
+        "Colourway": "001 White",
+        "Composition": "FR Polyester, 50% Recycled Polyester Content",
+        "Design": "Batiste",
+        "End Use": "Curtains",
+        "FR Territories": "Cruise, France, Germany, UK, USA",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, M1, NFPA 701, IMO FTP Code 2010 Part 7",
+        "LRV": "70.1",
+        "LRV Scale": "",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Product Type": "Sheer",
+        "Sector": "Cruise, Hospitality",
+        "Weight (g/m2)": "65",
+        "Width": "Wide Width",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/367BAT1001.jpg",
+      "sku": "367BAT1/001",
+      "reference": "367BAT1/001",
+      "title": "Batiste White",
+      "url": "https://panaz.com/collections/serenity-sheers/batiste/001-white/",
+      "attributesSourceUrl": "https://panaz.com/collection/serenity-sheers/",
+      "skuSourceUrl": "https://panaz.fr/collections/serenity-sheers/batiste/001-white/?print-products=pdf"
+    },
+    {
+      "attributes": {
+        "Can be used Railroaded": "Yes",
+        "Collection": "Serenity Sheers",
+        "Colour": "White",
+        "Colourway": "805 Cream",
+        "Composition": "100% FR Polyester",
+        "Design": "Charm",
+        "End Use": "Curtains",
+        "FR Territories": "Cruise, France, Germany, UK, USA",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, M1, NFPA 701, IMO FTP Code 2010 Part 7",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Product Type": "Sheer",
+        "Sector": "Cruise, Hospitality",
+        "Weight (g/m2)": "73",
+        "Width": "Wide Width",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/361CHA4805.jpg",
+      "sku": "361CHA4/805",
+      "reference": "361CHA4/805",
+      "title": "Charm Cream",
+      "url": "https://panaz.com/collections/serenity-sheers/charm/805-cream/",
+      "attributesSourceUrl": "https://panaz.com/collection/serenity-sheers/",
+      "skuSourceUrl": "https://panaz.com/collections/serenity-sheers/charm/805-cream/"
+    },
+    {
+      "attributes": {
+        "Can be used Railroaded": "Yes",
+        "Collection": "Serenity Sheers",
+        "Colour": "White",
+        "Colourway": "001 White",
+        "Composition": "100% FR Polyester",
+        "Design": "Charm",
+        "End Use": "Curtains",
+        "FR Territories": "Cruise, France, Germany, UK, USA",
+        "Flammability Ratings": "B1, BS 5867 pt 2 Type B, M1, NFPA 701, IMO FTP Code 2010 Part 7",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Product Type": "Sheer",
+        "Sector": "Cruise, Hospitality",
+        "Weight (g/m2)": "73",
+        "Width": "Wide Width",
+        "Width (cm)": "300"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/361CHA4001.jpg",
+      "sku": "361CHA4/001",
+      "reference": "361CHA4/001",
+      "title": "Charm White",
+      "url": "https://panaz.com/collections/serenity-sheers/charm/001-white/",
+      "attributesSourceUrl": "https://panaz.com/collection/serenity-sheers/",
+      "skuSourceUrl": "https://panaz.com/collections/serenity-sheers/charm/001-white/"
     }
   ],
   "excluded": [
@@ -1066,6 +1238,30 @@
       "title": "Allure Velvet Tuscan Red",
       "url": "https://panaz.com/collections/allure-velvet/allure-velvet/437-tuscan-red/",
       "reason": "Marked Discontinued on the Panaz collection page",
+      "observedAt": "2026-10-30"
+    },
+    {
+      "title": "Plain Voile White",
+      "url": "https://panaz.com/collections/serenity-sheers/plain-voile/001-white/",
+      "reason": "Supplier marks Discontinued; excluded from new choices",
+      "observedAt": "2026-10-30"
+    },
+    {
+      "title": "Savoy Silver",
+      "url": "https://panaz.com/collections/serenity-sheers/savoy/901-silver/",
+      "reason": "Supplier marks Discontinued; excluded from new choices",
+      "observedAt": "2026-10-30"
+    },
+    {
+      "title": "Savoy White",
+      "url": "https://panaz.com/collections/serenity-sheers/savoy/001-white/",
+      "reason": "Supplier marks Leaving Soon; not added",
+      "observedAt": "2026-10-30"
+    },
+    {
+      "title": "Simplicity Beige",
+      "url": "https://panaz.com/collections/serenity-sheers/simplicity/800-beige/",
+      "reason": "Supplier marks Leaving Soon; not added",
       "observedAt": "2026-10-30"
     }
   ]

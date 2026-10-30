@@ -156,6 +156,14 @@
       </header>
       <p id="fabric-for" class="muted"></p>
       <form id="fabric-search">
+        <label class="sr-only" for="fabric-range">Fabric range</label>
+        <select id="fabric-range">
+          <option value="">All Panaz ranges</option>
+          <option>Allure Velvet</option>
+          <option>Spectrum</option>
+          <option>Alba</option>
+          <option>Plain Voile</option>
+        </select>
         <label class="sr-only" for="fabric-query">Search fabrics</label
         ><input
           id="fabric-query"
@@ -164,10 +172,10 @@
         /><button class="button primary">Search</button>
       </form>
       <p class="small muted">
-        Selected Panaz plain FR colourways: Spectrum, Alba and Plain Voile.
-        Supplier references checked 30 October 2026; this is not the complete or
-        live range. Published end uses guide selection; suitability for the
-        finished item and project still needs review.
+        Panaz plain FR colourways: Allure Velvet, Spectrum, Alba and Plain
+        Voile. Supplier references checked 30 October 2026; this is not the
+        complete or live range. Published end uses guide selection; suitability
+        for the finished item and project still needs review.
       </p>
       <div id="fabric-results" aria-live="polite"></div>
       <button id="fabric-more" class="button" hidden>Show more fabrics</button>

@@ -1,6 +1,6 @@
 {
   "observedAt": "2026-10-30",
-  "method": "Read from supplier product pages; selected plain FR colourways, not a live or complete catalogue.",
+  "method": "Product-page attributes where available; Allure UK collection listings supplement plain-pattern evidence and six product records. Five of those SKUs cross-checked on official Panaz US pages; Wine uses its published colourway reference with SKU explicitly unconfirmed. A dated snapshot, not live availability.",
   "products": [
     {
       "attributes": {
@@ -267,6 +267,806 @@
       "sku": "368PLA1/905",
       "title": "Plain Voile Dove",
       "url": "https://panaz.com/collections/serenity-sheers/plain-voile/905-dove/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "131 Azure",
+        "Colour": "Blue",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Upholstery, Curtain, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/Allure-131-Azure.jpg",
+      "sku": "190ALL2/131",
+      "reference": "190ALL2/131",
+      "title": "Allure Velvet Azure",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/131-azure/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/131-azure/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "900 Black",
+        "Colour": "Black",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-900-Black.jpg",
+      "sku": "190ALL2/900",
+      "reference": "190ALL2/900",
+      "title": "Allure Velvet Black",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/900-black/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/900-black/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "100 Blue",
+        "Colour": "Blue",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-100-BLUE.jpg",
+      "sku": "190ALL2/100",
+      "reference": "190ALL2/100",
+      "title": "Allure Velvet Blue",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/100-blue/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/100-blue/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "407 Burgundy",
+        "Colour": "Red",
+        "Product Type": "Velvet",
+        "End Use": "Accessories, Curtains, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP Code 2010 pt 7, IMO FTP Code 2010 pt 8, IMO FTP Code 2010 pt 9, M1, NFPA 260, NFPA 701, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/03/Allure-407-Burgundy.jpg",
+      "sku": "190ALL2/407",
+      "reference": "190ALL2/407",
+      "title": "Allure Velvet Burgundy",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/407-burgundy/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/407-burgundy/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "903 Charcoal",
+        "Colour": "Black",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-903-Charcoal.jpg",
+      "sku": "190ALL2/903",
+      "reference": "190ALL2/903",
+      "title": "Allure Velvet Charcoal",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/903-charcoal/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/903-charcoal/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "447 Cinnamon",
+        "Colour": "Brown",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-447-Cinnamon.jpg",
+      "sku": "190ALL2/447",
+      "reference": "190ALL2/447",
+      "title": "Allure Velvet Cinnamon",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/447-cinnamon/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/447-cinnamon/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "805 Cream",
+        "Colour": "Cream",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-805-Cream.jpg",
+      "sku": "190ALL2/805",
+      "reference": "190ALL2/805",
+      "title": "Allure Velvet Cream",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/805-cream/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/805-cream/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "481 Damson",
+        "Colour": "Purple",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-481-DAMSON.jpg",
+      "sku": "190ALL2/481",
+      "reference": "190ALL2/481",
+      "title": "Allure Velvet Damson",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/481-damson/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/481-damson/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "574 Dark Coral",
+        "Colour": "Pink",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-574-DARK-CORAL.jpg",
+      "sku": "190ALL2/574",
+      "reference": "190ALL2/574",
+      "title": "Allure Velvet Dark Coral",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/574-dark-coral/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/574-dark-coral/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "905 Dove",
+        "Colour": "Grey",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-905-Dove.jpg",
+      "sku": "190ALL2/905",
+      "reference": "190ALL2/905",
+      "title": "Allure Velvet Dove",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/905-dove/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/905-dove/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "155 Duck Egg Blue",
+        "Colour": "Blue",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-155-Duckegg-Blue.jpg",
+      "sku": "190ALL2/155",
+      "reference": "190ALL2/155",
+      "title": "Allure Velvet Duck Egg Blue",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/155-duck-egg-blue/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/155-duck-egg-blue/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "203 Emerald",
+        "Colour": "Green",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-203-Emerald.jpg",
+      "sku": "190ALL2/203",
+      "reference": "190ALL2/203",
+      "title": "Allure Velvet Emerald",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/203-emerald/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/203-emerald/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "208 Fern Green",
+        "Colour": "Green",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-208-FERN-GREEN.jpg",
+      "sku": "190ALL2/208",
+      "reference": "190ALL2/208",
+      "title": "Allure Velvet Fern Green",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/208-fern-green/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/208-fern-green/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "648 Fig",
+        "Colour": "Purple",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-648-Fig.jpg",
+      "sku": "190ALL2/648",
+      "reference": "190ALL2/648",
+      "title": "Allure Velvet Fig",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/648-fig/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/648-fig/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "300 Gold",
+        "Colour": "Yellow",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-300-GOLD.jpg",
+      "sku": "190ALL2/300",
+      "reference": "190ALL2/300",
+      "title": "Allure Velvet Gold",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/300-gold/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/300-gold/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "953 Gunmetal",
+        "Colour": "Grey",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-953-Gunmetal.jpg",
+      "sku": "190ALL2/953",
+      "reference": "190ALL2/953",
+      "title": "Allure Velvet Gunmetal",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/953-gunmetal/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/953-gunmetal/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "404 Henna",
+        "Colour": "Brown, Orange",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-404-HENNA.jpg",
+      "sku": "190ALL2/404",
+      "reference": "190ALL2/404",
+      "title": "Allure Velvet Henna",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/404-henna/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/404-henna/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "192 Ink",
+        "Colour": "Blue",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-192-Ink.jpg",
+      "sku": "190ALL2/192",
+      "reference": "190ALL2/192",
+      "title": "Allure Velvet Ink",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/192-ink/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/192-ink/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "201 Jade",
+        "Colour": "Green",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-201-Jade.jpg",
+      "sku": "190ALL2/201",
+      "reference": "190ALL2/201",
+      "title": "Allure Velvet Jade",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/201-jade/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/201-jade/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "303 Lemon",
+        "Colour": "Yellow",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-303-Lemon.jpg",
+      "sku": "190ALL2/303",
+      "reference": "190ALL2/303",
+      "title": "Allure Velvet Lemon",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/303-lemon/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/303-lemon/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "791 Mocha",
+        "Colour": "Brown",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-791-Mocha.jpg",
+      "sku": "190ALL2/791",
+      "reference": "190ALL2/791",
+      "title": "Allure Velvet Mocha",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/791-mocha/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/791-mocha/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "314 Mustard",
+        "Colour": "Yellow",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "B1, BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/07/Allure-314-Mustard.jpg",
+      "sku": "190ALL2/314",
+      "reference": "190ALL2/314",
+      "title": "Allure Velvet Mustard",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/314-mustard/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/314-mustard/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "116 Navy",
+        "Colour": "Blue",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-116-Navy.jpg",
+      "sku": "190ALL2/116",
+      "reference": "190ALL2/116",
+      "title": "Allure Velvet Navy",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/116-navy/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/116-navy/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "824 Ochre",
+        "Colour": "Brown, Yellow",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-824-OCHRE.jpg",
+      "sku": "190ALL2/824",
+      "reference": "190ALL2/824",
+      "title": "Allure Velvet Ochre",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/824-ochre/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/824-ochre/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "231 Olive",
+        "Colour": "Green",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-231-Olive.jpg",
+      "sku": "190ALL2/231",
+      "reference": "190ALL2/231",
+      "title": "Allure Velvet Olive",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/231-olive/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/231-olive/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "233 Pistachio",
+        "Colour": "Green",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-233-Pistachio.jpg",
+      "sku": "190ALL2/233",
+      "reference": "190ALL2/233",
+      "title": "Allure Velvet Pistachio",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/233-pistachio/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/233-pistachio/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "952 Platinum",
+        "Colour": "Grey",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-952-Platinum.jpg",
+      "sku": "190ALL2/952",
+      "reference": "190ALL2/952",
+      "title": "Allure Velvet Platinum",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/952-platinum/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/952-platinum/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "205 Sage Green",
+        "Colour": "Green",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-205-SAGE-GREEN.jpg",
+      "sku": "190ALL2/205",
+      "reference": "190ALL2/205",
+      "title": "Allure Velvet Sage Green",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/205-sage-green/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/205-sage-green/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "219 Seafoam",
+        "Colour": "Blue",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, BS 5852: 2006 Ignition Source 5, BS 5867 Part 2 Type B, BS EN 13773, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-219-SEAFOAM.jpg",
+      "sku": "190ALL2/219",
+      "reference": "190ALL2/219",
+      "title": "Allure Velvet Seafoam",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/219-seafoam/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/219-seafoam/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "911 Steel",
+        "Colour": "Grey",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-911-Steel.jpg",
+      "sku": "190ALL2/911",
+      "reference": "190ALL2/911",
+      "title": "Allure Velvet Steel",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/911-steel/",
+      "attributesSourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/911-steel/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "826 Taupe",
+        "Colour": "Beige, Grey",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-826-TAUPE.jpg",
+      "sku": "190ALL2/826",
+      "reference": "190ALL2/826",
+      "title": "Allure Velvet Taupe",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/826-taupe/",
+      "attributesSourceUrl": "https://panaz.com/collection/allure-velvet/page/2/",
+      "skuSourceUrl": "https://panaz.us/collections/allure-velvet/allure-velvet/826-taupe/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "151 Teal",
+        "Colour": "Blue",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-151-Teal.jpg",
+      "sku": "190ALL2/151",
+      "reference": "190ALL2/151",
+      "title": "Allure Velvet Teal",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/151-teal/",
+      "attributesSourceUrl": "https://panaz.com/collection/allure-velvet/page/2/",
+      "skuSourceUrl": "https://panaz.us/collections/allure-velvet/allure-velvet/151-teal/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "408 Terracotta",
+        "Colour": "Orange",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Upholstery, Cushions",
+        "Material": "Fire Retardant, Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2024/09/ALLURE-408-TERRACOTTA.jpg",
+      "sku": "190ALL2/408",
+      "reference": "190ALL2/408",
+      "title": "Allure Velvet Terracotta",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/408-terracotta/",
+      "attributesSourceUrl": "https://panaz.com/collection/allure-velvet/page/2/",
+      "skuSourceUrl": "https://panaz.us/collections/allure-velvet/allure-velvet/408-terracotta/",
+      "patternEvidence": {
+        "url": "https://panaz.com/collection/allure-velvet/",
+        "excerpt": "This plain matt velvet"
+      }
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "001 White",
+        "Colour": "White",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-001-White.jpg",
+      "sku": "190AAA1/000",
+      "reference": "190AAA1/000",
+      "title": "Allure Velvet White",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/001-white/",
+      "attributesSourceUrl": "https://panaz.com/collection/allure-velvet/page/2/",
+      "skuSourceUrl": "https://panaz.us/collections/allure-velvet/allure-velvet/001-white/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "252 Willow",
+        "Colour": "Green",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-252-Willow.jpg",
+      "sku": "190ALL2/252",
+      "reference": "190ALL2/252",
+      "title": "Allure Velvet Willow",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/252-willow/",
+      "attributesSourceUrl": "https://panaz.com/collection/allure-velvet/page/2/",
+      "skuSourceUrl": "https://panaz.us/collections/allure-velvet/allure-velvet/252-willow/"
+    },
+    {
+      "attributes": {
+        "Collection": "Allure Velvet",
+        "Design": "Allure Velvet",
+        "Colourway": "414 Wine",
+        "Colour": "Red",
+        "Product Type": "Velvet",
+        "End Use": "Bed Throws, Curtains, Cushions, Upholstery",
+        "Material": "Fire Retardant, Polyester",
+        "Pattern Type": "Plain",
+        "Composition": "100% FR Polyester",
+        "Flammability Ratings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+        "Width (cm)": "140"
+      },
+      "image": "https://panaz.com/wp-content/uploads/2023/04/Allure-414-Wine.jpg",
+      "sku": null,
+      "reference": "Allure Velvet / 414 Wine (SKU to confirm)",
+      "title": "Allure Velvet Wine",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/414-wine/",
+      "attributesSourceUrl": "https://panaz.com/collection/allure-velvet/page/2/",
+      "referenceNote": "Supplier colourway confirmed in collection; product SKU was unavailable and must be checked. No SKU inferred."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "Allure Velvet Fuchsia",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/608-fuchsia/",
+      "reason": "Marked Discontinued on the Panaz collection page",
+      "observedAt": "2026-10-30"
+    },
+    {
+      "title": "Allure Velvet Tuscan Red",
+      "url": "https://panaz.com/collections/allure-velvet/allure-velvet/437-tuscan-red/",
+      "reason": "Marked Discontinued on the Panaz collection page",
+      "observedAt": "2026-10-30"
     }
   ]
 }

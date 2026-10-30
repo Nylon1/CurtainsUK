@@ -50,6 +50,23 @@ test("hotel catalogue exposes only known Panaz plains and keeps intended use sep
     0,
   );
 });
+test("Allure range filter combines with colour search and rejects unknown ranges", async () => {
+  const query = async (params: string) =>
+    (
+      await hotelReviewCatalogue(
+        new Request(`http://localhost/catalog?${params}`),
+      )
+    ).json();
+  const all = await query("range=Allure%20Velvet");
+  assert.equal(all.fabrics.length, 36);
+  assert.ok(
+    all.fabrics.every((f: { design: string }) => f.design === "Allure Velvet"),
+  );
+  const navy = await query("range=Allure%20Velvet&query=Navy");
+  assert.equal(navy.fabrics.length, 1);
+  assert.equal(navy.fabrics[0].reference, "190ALL2/116");
+  assert.equal((await query("range=unknown")).fabrics.length, 0);
+});
 test("production does not expose the unsigned hotel preview", () => {
   const before = {
     VERCEL_ENV: process.env.VERCEL_ENV,

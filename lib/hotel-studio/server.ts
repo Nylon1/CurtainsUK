@@ -84,11 +84,14 @@ export async function hotelAsset(
 export async function hotelReviewCatalogue(request: Request) {
   const input = new URL(request.url).searchParams,
     q = (input.get("query") ?? "").slice(0, 200).toLowerCase(),
-    item = input.get("item") ?? "curtains";
-  const fabrics = PANAZ_FABRICS.filter((f) =>
-    `${f.brand} ${f.design} ${f.colour} ${f.reference}`
-      .toLowerCase()
-      .includes(q),
+    item = input.get("item") ?? "curtains",
+    range = (input.get("range") ?? "").slice(0, 100);
+  const fabrics = PANAZ_FABRICS.filter(
+    (f) =>
+      (!range || f.design === range) &&
+      `${f.brand} ${f.design} ${f.colour} ${f.reference}`
+        .toLowerCase()
+        .includes(q),
   ).sort((a, b) => Number(listedUse(b, item)) - Number(listedUse(a, item)));
   return Response.json(
     {

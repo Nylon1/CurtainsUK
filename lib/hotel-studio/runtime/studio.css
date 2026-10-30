@@ -1128,13 +1128,22 @@ dialog::backdrop {
   margin-bottom: 7px;
 }
 #fabric-search {
-  display: flex;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) auto;
   gap: 9px;
   margin: 18px 0;
 }
 #fabric-search input {
   flex: 1;
   min-width: 0;
+}
+@media (max-width: 600px) {
+  #fabric-search {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  #fabric-range {
+    grid-column: 1 / -1;
+  }
 }
 .fabric-grid {
   display: grid;

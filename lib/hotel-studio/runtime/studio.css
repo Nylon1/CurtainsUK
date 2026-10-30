@@ -1002,6 +1002,222 @@ main {
   gap: 16px;
   margin-bottom: 23px;
 }
+.planner-total {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.planner-section {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.planner-section > summary {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 22px 25px;
+  min-height: 80px;
+  list-style: none;
+  font-size: 19px;
+}
+.planner-section > summary::-webkit-details-marker {
+  display: none;
+}
+.planner-section > summary::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 24px;
+  font-weight: 400;
+}
+.planner-section[open] > summary::after {
+  content: "−";
+}
+.planner-section > summary small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.planner-section > summary em {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 6px;
+}
+.planner-step {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--green);
+  font-size: 14px;
+}
+.planner-section-body {
+  padding: 0 25px 25px;
+}
+.room-type-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+.room-type-choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 15px;
+  text-align: left;
+  background: var(--white);
+  min-width: 0;
+  min-height: 64px;
+}
+.room-type-choice[aria-pressed="true"] {
+  border-color: var(--green);
+  background: #edf0e6;
+}
+.room-type-choice strong,
+.room-type-choice small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.room-type-choice strong {
+  font-size: 13px;
+}
+.room-type-choice small {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+.room-quantity {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.room-details-heading {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.planner-basics {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.individual-rooms {
+  margin: 24px 0;
+}
+.individual-rooms .subsection-heading p {
+  margin: 5px 0 0;
+}
+.individual-room-card {
+  padding: 18px;
+  margin: 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #faf9f5;
+}
+.individual-room-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.individual-room-card h4 {
+  margin: 0;
+  font-size: 14px;
+}
+.individual-measurements {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.individual-room-card summary {
+  min-height: 44px;
+  font-size: 12px;
+}
+.individual-empty {
+  padding: 20px;
+  margin-top: 15px;
+  border: 1px dashed #cbd2c4;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 800px) {
+  .individual-measurements {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .individual-room-card {
+    padding: 12px;
+  }
+  .individual-rooms > .subsection-heading {
+    flex-wrap: wrap;
+  }
+}
+.planner-help {
+  margin: 14px 0 20px;
+}
+.planner-details > details {
+  border-top: 1px solid var(--line);
+}
+.planner-details > details > summary {
+  min-height: 48px;
+  padding: 14px 0;
+  font-size: 13px;
+}
+.detail-count {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  margin-left: 7px;
+}
+.planner-enquiry-actions {
+  margin: 20px 0 10px;
+}
+@media (max-width: 800px) {
+  .planner-basics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .planner-section > summary {
+    padding: 17px 15px;
+    font-size: 17px;
+    gap: 10px;
+  }
+  .planner-section > summary small {
+    font-size: 11px;
+  }
+  .planner-section-body {
+    padding: 0 15px 18px;
+  }
+  .room-type-list {
+    grid-template-columns: 1fr;
+  }
+  .planner-total {
+    display: block;
+    margin-top: 12px;
+  }
+  .planner-basics {
+    grid-template-columns: 1fr !important;
+  }
+  .planner-enquiry-actions {
+    display: grid;
+  }
+  .planner-section .subsection-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .planner-section .subsection-heading h3 {
+    overflow-wrap: anywhere;
+  }
+}
 .summary-cell {
   padding: 20px;
   background: #e8ecdf;

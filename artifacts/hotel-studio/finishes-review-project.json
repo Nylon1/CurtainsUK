@@ -1,0 +1,946 @@
+{
+  "kind": "curtainsuk-hotel-project",
+  "version": 1,
+  "project": {
+    "version": 1,
+    "id": "045906e7-0620-4cf9-9a41-38930cb3c7b8",
+    "name": "Garden House Hotel – review",
+    "createdAt": "2026-10-30T18:13:56.759Z",
+    "updatedAt": "2026-10-30T23:10:07.386Z",
+    "roomId": "6d7a7ed0-ace0-47b1-9baf-95b4cb271b51",
+    "vatBasis": "exclusive",
+    "notes": "",
+    "contact": {
+      "name": "",
+      "email": "",
+      "hotel": "",
+      "location": ""
+    },
+    "rooms": [
+      {
+        "id": "6d7a7ed0-ace0-47b1-9baf-95b4cb271b51",
+        "name": "Standard Doubles",
+        "quantity": 30,
+        "schemeId": "a7d856bd-69e9-4d72-9e76-a9f2cae11f60",
+        "schemes": [
+          {
+            "id": "a7d856bd-69e9-4d72-9e76-a9f2cae11f60",
+            "name": "Warm welcome",
+            "scene": "standard",
+            "surfaces": {
+              "walls": "#a6af9c",
+              "ceiling": "#efe6d5",
+              "floor": "#74563f"
+            },
+            "lighting": {
+              "bedside": true,
+              "ceiling": true
+            },
+            "artwork": "botanical",
+            "wallRelief": "fluted",
+            "ceilingDesign": "coffered",
+            "items": {
+              "curtains": {
+                "colour": "#0f0f1c",
+                "fabric": {
+                  "id": "panaz-190all2-116",
+                  "brand": "Panaz",
+                  "design": "Allure Velvet",
+                  "colour": "116 Navy",
+                  "reference": "190ALL2/116",
+                  "image": "panaz/190ALL2-116.jpg",
+                  "texture": null,
+                  "source": {
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Bed Throws, Curtains, Cushions, Upholstery",
+                  "productType": "Velvet",
+                  "pattern": "Plain",
+                  "frRatings": "BS 5852 IGN Source 5, BS 5867 pt 2 Type B, BS 7176 Medium Hazard, BS EN 1021 1/2, BS EN 13373, CAL TB 117, IMO FTP CODE 2010 Part 8, M1, NFPA 260, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+                  "sourceUrl": "https://panaz.com/collections/allure-velvet/allure-velvet/116-navy/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#0f0f1c"
+                },
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "voile": {
+                "colour": "#c6c5b9",
+                "fabric": {
+                  "id": "panaz-361cha4-805",
+                  "brand": "Panaz",
+                  "design": "Charm",
+                  "colour": "805 Cream",
+                  "reference": "361CHA4/805",
+                  "image": "panaz/361CHA4-805.jpg",
+                  "texture": null,
+                  "source": {
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Curtains",
+                  "productType": "Sheer",
+                  "pattern": "Plain",
+                  "frRatings": "B1, BS 5867 pt 2 Type B, M1, NFPA 701, IMO FTP Code 2010 Part 7",
+                  "sourceUrl": "https://panaz.com/collections/serenity-sheers/charm/805-cream/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#c6c5b9"
+                },
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "runner": {
+                "colour": "#20223b",
+                "fabric": {
+                  "id": "panaz-090spe1-116",
+                  "brand": "Panaz",
+                  "design": "Spectrum",
+                  "colour": "116 Navy",
+                  "reference": "090SPE1/116",
+                  "image": "panaz/090SPE1-116.jpg",
+                  "texture": null,
+                  "source": {
+                    "widthCm": 30,
+                    "heightCm": 30,
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Bed Throws, Curtains, Cushions",
+                  "productType": "Woven",
+                  "pattern": "Plain",
+                  "frRatings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+                  "sourceUrl": "https://panaz.com/collections/spectrum/spectrum/116-navy/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#20223b"
+                },
+                "relationship": "same",
+                "referenceItem": "curtains"
+              },
+              "cushions": {
+                "colour": "#d7ab74",
+                "fabric": {
+                  "id": "panaz-090spe1-834",
+                  "brand": "Panaz",
+                  "design": "Spectrum",
+                  "colour": "834 Honey",
+                  "reference": "090SPE1/834",
+                  "image": "panaz/090SPE1-834.jpg",
+                  "texture": null,
+                  "source": {
+                    "widthCm": 30,
+                    "heightCm": 30,
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Bed Throws, Curtains, Cushions",
+                  "productType": "Woven",
+                  "pattern": "Plain",
+                  "frRatings": "B1, BS 5867 pt 2 Type B, BS 5867 pt 2 Type C, BS 7175 IGN Source 5, BS 7175 IGN Source 7, M1, NFPA 701, IMO FTP Code 2010 Part 7, IMO FTP Code 2010 Part 9",
+                  "sourceUrl": "https://panaz.com/collections/spectrum/spectrum/834-honey/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#d7ab74"
+                },
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "headboard": {
+                "colour": "#d2cbb7",
+                "fabric": {
+                  "id": "panaz-206alb4-841",
+                  "brand": "Panaz",
+                  "design": "Alba",
+                  "colour": "841 Biscotti",
+                  "reference": "206ALB4/841",
+                  "image": "panaz/206ALB4-841.jpg",
+                  "texture": null,
+                  "source": {
+                    "widthCm": 30,
+                    "heightCm": 30,
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Upholstery",
+                  "productType": "Woven",
+                  "pattern": "Plain",
+                  "frRatings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+                  "sourceUrl": "https://panaz.com/collections/alba/alba/841-biscotti/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#d2cbb7"
+                },
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "base": {
+                "colour": "#d2cbb7",
+                "fabric": {
+                  "id": "panaz-206alb4-841",
+                  "brand": "Panaz",
+                  "design": "Alba",
+                  "colour": "841 Biscotti",
+                  "reference": "206ALB4/841",
+                  "image": "panaz/206ALB4-841.jpg",
+                  "texture": null,
+                  "source": {
+                    "widthCm": 30,
+                    "heightCm": 30,
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Upholstery",
+                  "productType": "Woven",
+                  "pattern": "Plain",
+                  "frRatings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+                  "sourceUrl": "https://panaz.com/collections/alba/alba/841-biscotti/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#d2cbb7"
+                },
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "armchair": {
+                "colour": "#c4b693",
+                "fabric": {
+                  "id": "panaz-206alb4-321",
+                  "brand": "Panaz",
+                  "design": "Alba",
+                  "colour": "321 Wheat",
+                  "reference": "206ALB4/321",
+                  "image": "panaz/206ALB4-321.jpg",
+                  "texture": null,
+                  "source": {
+                    "widthCm": 30,
+                    "heightCm": 30,
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Upholstery",
+                  "productType": "Woven",
+                  "pattern": "Plain",
+                  "frRatings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+                  "sourceUrl": "https://panaz.com/collections/alba/alba/321-wheat/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#c4b693"
+                },
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "bench": {
+                "colour": "#4e9e85",
+                "fabric": {
+                  "id": "panaz-206alb4-129",
+                  "brand": "Panaz",
+                  "design": "Alba",
+                  "colour": "129 Ocean",
+                  "reference": "206ALB4/129",
+                  "image": "panaz/206ALB4-129.jpg",
+                  "texture": null,
+                  "source": {
+                    "widthCm": 30,
+                    "heightCm": 30,
+                    "scaleKind": "colour-only"
+                  },
+                  "usage": "Upholstery",
+                  "productType": "Woven",
+                  "pattern": "Plain",
+                  "frRatings": "BS 5852 IGN Source 5, BS 7176 Medium Hazard, BS EN 1021 1/2, CAL TB 117, IMO FTP CODE 2010 Part 8, NFPA 260, Italian Classe Uno UNI 9175 (1IM) UPHOLSTERY",
+                  "sourceUrl": "https://panaz.com/collections/alba/alba/129-ocean/",
+                  "observedAt": "2026-10-30",
+                  "displayColour": "#4e9e85"
+                },
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              }
+            },
+            "layers": "both",
+            "curtainOpen": 0.75,
+            "voileOpen": 0.04,
+            "voileOpacity": 0.42,
+            "layout": {
+              "width": 440,
+              "length": 500,
+              "confirmed": false,
+              "items": [
+                {
+                  "id": "29ec3e29-56c6-443e-93e9-e6e97ad1f69c",
+                  "kind": "double",
+                  "label": "Double bed",
+                  "x": 225,
+                  "y": 90,
+                  "width": 160,
+                  "depth": 210,
+                  "angle": 0
+                },
+                {
+                  "id": "1f447520-7ea3-421b-abb5-f74423b302a1",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 170,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "b0e19113-1cc8-45f2-b0e8-3737e026f225",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 395,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "106d298f-4681-4545-bbc1-957b21868160",
+                  "kind": "desk",
+                  "label": "Desk",
+                  "x": 15,
+                  "y": 220,
+                  "width": 120,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "f945e986-26e8-4af0-8016-d46345117103",
+                  "kind": "chair",
+                  "label": "Desk chair",
+                  "x": 75,
+                  "y": 285,
+                  "width": 50,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "37c5658d-9303-4ed7-b74f-7656484e57d8",
+                  "kind": "bench",
+                  "label": "Bed-end bench",
+                  "x": 240,
+                  "y": 330,
+                  "width": 130,
+                  "depth": 45,
+                  "angle": 0
+                },
+                {
+                  "id": "e6b2b45d-0732-42e0-98db-7cb20f869984",
+                  "kind": "armchair",
+                  "label": "Armchair",
+                  "x": 20,
+                  "y": 385,
+                  "width": 80,
+                  "depth": 85,
+                  "angle": 0
+                }
+              ],
+              "openings": [
+                {
+                  "id": "ffad0e43-2b71-4cc6-a934-01d0c5ff7bf7",
+                  "kind": "window",
+                  "wall": "north",
+                  "offset": 20,
+                  "width": 180,
+                  "height": 220
+                },
+                {
+                  "id": "6fc0f002-336e-4132-b77f-91efe395d28f",
+                  "kind": "door",
+                  "wall": "south",
+                  "offset": 20,
+                  "width": 85,
+                  "height": 210
+                }
+              ]
+            }
+          }
+        ],
+        "windowCount": 1,
+        "windows": [
+          {
+            "id": "2dc59a5b-7f15-4f65-be76-11c7a6524aee",
+            "name": "Window 1",
+            "width": 234.5,
+            "drop": 252,
+            "confirmed": true,
+            "notes": ""
+          }
+        ],
+        "notes": "",
+        "exceptions": [
+          {
+            "id": "ca8e39e0-31fb-4209-a7da-b015b86bb858",
+            "number": "214",
+            "notes": "Wider glazing; survey separately.",
+            "schemeId": "",
+            "width": 310,
+            "drop": 260,
+            "windowName": "Balcony",
+            "confirmed": false
+          }
+        ],
+        "sampleStatus": "Not requested",
+        "approvalStatus": "Draft",
+        "phase": "To be planned",
+        "budget": {
+          "furnishings": 250,
+          "tracks": null,
+          "survey": null,
+          "installation": null,
+          "other": null
+        }
+      },
+      {
+        "id": "ab6e4329-ba79-4cba-b011-96bb74d7a05b",
+        "name": "Twins",
+        "quantity": 12,
+        "schemeId": "a1f0e4de-eae7-4269-adc6-12e540adea98",
+        "schemes": [
+          {
+            "id": "a1f0e4de-eae7-4269-adc6-12e540adea98",
+            "name": "Warm welcome",
+            "scene": "standard",
+            "surfaces": {
+              "walls": "#eee9df",
+              "ceiling": "#f6f3eb",
+              "floor": "#b9a586"
+            },
+            "lighting": {
+              "bedside": true,
+              "ceiling": false
+            },
+            "artwork": "abstract",
+            "wallRelief": "none",
+            "ceilingDesign": "plain",
+            "items": {
+              "curtains": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "voile": {
+                "colour": "#f5f2e9",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "runner": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "cushions": {
+                "colour": "#b78d5b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "headboard": {
+                "colour": "#c6b59b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "base": {
+                "colour": "#c6b59b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "armchair": {
+                "colour": "#ab8767",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "bench": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              }
+            },
+            "layers": "both",
+            "curtainOpen": 0.7,
+            "voileOpen": 0,
+            "voileOpacity": 0.42,
+            "layout": {
+              "width": 440,
+              "length": 500,
+              "confirmed": false,
+              "items": [
+                {
+                  "id": "8cea0666-0844-4a91-9dfb-f9f85836959c",
+                  "kind": "double",
+                  "label": "Double bed",
+                  "x": 225,
+                  "y": 90,
+                  "width": 160,
+                  "depth": 210,
+                  "angle": 0
+                },
+                {
+                  "id": "c10f8bc2-9ed6-47d9-8907-a781dcfb9859",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 170,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "a6d16e8b-b233-46e2-a391-ac755d852af1",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 395,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "6743311a-a1fd-40b5-848a-f64fca7aee21",
+                  "kind": "desk",
+                  "label": "Desk",
+                  "x": 15,
+                  "y": 220,
+                  "width": 120,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "e57a7e89-3278-4b16-8214-00386fb6484a",
+                  "kind": "chair",
+                  "label": "Desk chair",
+                  "x": 75,
+                  "y": 285,
+                  "width": 50,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "6fc6e941-980d-4ed1-9710-236e9c1afcad",
+                  "kind": "bench",
+                  "label": "Bed-end bench",
+                  "x": 240,
+                  "y": 330,
+                  "width": 130,
+                  "depth": 45,
+                  "angle": 0
+                },
+                {
+                  "id": "6886e087-8d63-4589-a105-a521a96a3ec2",
+                  "kind": "armchair",
+                  "label": "Armchair",
+                  "x": 20,
+                  "y": 385,
+                  "width": 80,
+                  "depth": 85,
+                  "angle": 0
+                }
+              ],
+              "openings": [
+                {
+                  "id": "7638f6f9-d940-4a41-8e83-7764bd1c217c",
+                  "kind": "window",
+                  "wall": "north",
+                  "offset": 20,
+                  "width": 180,
+                  "height": 220
+                },
+                {
+                  "id": "4fc87d39-decb-477e-9bc6-0d0efb72d204",
+                  "kind": "door",
+                  "wall": "south",
+                  "offset": 20,
+                  "width": 85,
+                  "height": 210
+                }
+              ]
+            }
+          }
+        ],
+        "windowCount": 1,
+        "windows": [
+          {
+            "id": "911aa5ca-413f-4e92-b88e-c27203df5d1d",
+            "name": "Window 1",
+            "width": null,
+            "drop": null,
+            "confirmed": false,
+            "notes": ""
+          }
+        ],
+        "notes": "",
+        "exceptions": [],
+        "sampleStatus": "Not requested",
+        "approvalStatus": "Draft",
+        "phase": "To be planned",
+        "budget": {
+          "furnishings": null,
+          "tracks": null,
+          "survey": null,
+          "installation": null,
+          "other": null
+        }
+      },
+      {
+        "id": "577f17fc-4ccb-4e74-832c-a0b442306b15",
+        "name": "Superior rooms",
+        "quantity": 8,
+        "schemeId": "be121043-539e-469f-97f7-7c478f4ff9ac",
+        "schemes": [
+          {
+            "id": "daee0a36-a58e-4812-9c89-54a662bdcb8c",
+            "name": "Warm welcome",
+            "scene": "superior",
+            "surfaces": {
+              "walls": "#eee9df",
+              "ceiling": "#f6f3eb",
+              "floor": "#b9a586"
+            },
+            "lighting": {
+              "bedside": true,
+              "ceiling": false
+            },
+            "artwork": "abstract",
+            "wallRelief": "none",
+            "ceilingDesign": "plain",
+            "items": {
+              "curtains": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "voile": {
+                "colour": "#f5f2e9",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "runner": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "cushions": {
+                "colour": "#b78d5b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "headboard": {
+                "colour": "#c6b59b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "base": {
+                "colour": "#c6b59b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "armchair": {
+                "colour": "#ab8767",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "bench": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              }
+            },
+            "layers": "both",
+            "curtainOpen": 0.7,
+            "voileOpen": 0,
+            "voileOpacity": 0.42,
+            "layout": {
+              "width": 440,
+              "length": 500,
+              "confirmed": false,
+              "items": [
+                {
+                  "id": "5c345c49-9d96-4ad3-ad21-286ef0e05fbf",
+                  "kind": "double",
+                  "label": "Double bed",
+                  "x": 225,
+                  "y": 90,
+                  "width": 160,
+                  "depth": 210,
+                  "angle": 0
+                },
+                {
+                  "id": "07d6c0cf-d2f5-4dcc-a002-877168a17d6e",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 170,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "d902d143-5af6-4ab9-9627-1d2d149eb510",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 395,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "87d1f580-c723-4cce-b710-3035ee6263a0",
+                  "kind": "desk",
+                  "label": "Desk",
+                  "x": 15,
+                  "y": 220,
+                  "width": 120,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "e143562c-ed27-4136-abd9-885087939f77",
+                  "kind": "chair",
+                  "label": "Desk chair",
+                  "x": 75,
+                  "y": 285,
+                  "width": 50,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "68217a87-ea6b-4745-b6d9-603ba86c8c0c",
+                  "kind": "bench",
+                  "label": "Bed-end bench",
+                  "x": 240,
+                  "y": 330,
+                  "width": 130,
+                  "depth": 45,
+                  "angle": 0
+                },
+                {
+                  "id": "bb031d4f-20b2-4a15-88d8-adebdc391c92",
+                  "kind": "armchair",
+                  "label": "Armchair",
+                  "x": 20,
+                  "y": 385,
+                  "width": 80,
+                  "depth": 85,
+                  "angle": 0
+                }
+              ],
+              "openings": [
+                {
+                  "id": "99db339f-47a7-44ab-ba60-2fe129374f85",
+                  "kind": "window",
+                  "wall": "north",
+                  "offset": 20,
+                  "width": 180,
+                  "height": 220
+                },
+                {
+                  "id": "25107ff0-fd85-433f-bcb7-47e5beb5bcc3",
+                  "kind": "door",
+                  "wall": "south",
+                  "offset": 20,
+                  "width": 85,
+                  "height": 210
+                }
+              ]
+            }
+          },
+          {
+            "id": "be121043-539e-469f-97f7-7c478f4ff9ac",
+            "name": "Warm welcome alternative",
+            "scene": "superior",
+            "surfaces": {
+              "walls": "#eee9df",
+              "ceiling": "#f6f3eb",
+              "floor": "#b9a586"
+            },
+            "lighting": {
+              "bedside": true,
+              "ceiling": false
+            },
+            "artwork": "abstract",
+            "wallRelief": "none",
+            "ceilingDesign": "plain",
+            "items": {
+              "curtains": {
+                "colour": "#354b58",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "voile": {
+                "colour": "#f5f2e9",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "runner": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "cushions": {
+                "colour": "#b78d5b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "headboard": {
+                "colour": "#c6b59b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "base": {
+                "colour": "#c6b59b",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "armchair": {
+                "colour": "#ab8767",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              },
+              "bench": {
+                "colour": "#677566",
+                "fabric": null,
+                "relationship": "independent",
+                "referenceItem": "curtains"
+              }
+            },
+            "layers": "both",
+            "curtainOpen": 0.7,
+            "voileOpen": 0,
+            "voileOpacity": 0.42,
+            "layout": {
+              "width": 590,
+              "length": 620,
+              "confirmed": true,
+              "items": [
+                {
+                  "id": "46435b52-f366-4354-91a8-876acce0a8e3",
+                  "kind": "double",
+                  "label": "Double bed",
+                  "x": 250,
+                  "y": 90,
+                  "width": 160,
+                  "depth": 210,
+                  "angle": 180
+                },
+                {
+                  "id": "03330da3-9443-4591-9842-e42707a34b72",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 170,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "a53c5a43-2ef5-4c30-9562-1ef60d1608c7",
+                  "kind": "bedside",
+                  "label": "Bedside table",
+                  "x": 395,
+                  "y": 90,
+                  "width": 45,
+                  "depth": 40,
+                  "angle": 0
+                },
+                {
+                  "id": "77443161-e3da-479d-b737-2113786bd357",
+                  "kind": "desk",
+                  "label": "Desk",
+                  "x": 15,
+                  "y": 220,
+                  "width": 120,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "92533937-e051-4d5f-b71c-c56df9d8b24c",
+                  "kind": "chair",
+                  "label": "Desk chair",
+                  "x": 75,
+                  "y": 285,
+                  "width": 50,
+                  "depth": 55,
+                  "angle": 0
+                },
+                {
+                  "id": "46904ec9-a217-4bb1-aa0c-351c899c786a",
+                  "kind": "bench",
+                  "label": "Bed-end bench",
+                  "x": 240,
+                  "y": 330,
+                  "width": 130,
+                  "depth": 45,
+                  "angle": 0
+                },
+                {
+                  "id": "a4e3b483-4513-45bf-97e2-21a4431a3e02",
+                  "kind": "armchair",
+                  "label": "Armchair",
+                  "x": 20,
+                  "y": 385,
+                  "width": 80,
+                  "depth": 85,
+                  "angle": 0
+                }
+              ],
+              "openings": [
+                {
+                  "id": "0d8993c0-f2cd-4140-9b30-1a15381a9b80",
+                  "kind": "window",
+                  "wall": "north",
+                  "offset": 20,
+                  "width": 180,
+                  "height": 220
+                },
+                {
+                  "id": "0690d059-4dcf-47ee-9404-ffb088b0b875",
+                  "kind": "door",
+                  "wall": "south",
+                  "offset": 20,
+                  "width": 85,
+                  "height": 210
+                }
+              ]
+            }
+          }
+        ],
+        "windowCount": 1,
+        "windows": [
+          {
+            "id": "71d52cc9-b547-458c-863e-f73d177f566e",
+            "name": "Window 1",
+            "width": null,
+            "drop": null,
+            "confirmed": false,
+            "notes": ""
+          }
+        ],
+        "notes": "",
+        "exceptions": [],
+        "sampleStatus": "Not requested",
+        "approvalStatus": "Draft",
+        "phase": "To be planned",
+        "budget": {
+          "furnishings": null,
+          "tracks": null,
+          "survey": null,
+          "installation": null,
+          "other": null
+        }
+      }
+    ]
+  }
+}

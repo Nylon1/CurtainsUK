@@ -4,6 +4,22 @@
 
 ## What is implemented
 
+### Room finishes, lighting and architectural details
+
+Each scheme now saves walls, ceiling and floor colours independently of the eight fabric targets. There are 12 wall, eight ceiling and eight floor colour concepts, plus custom colour pickers. Warm neutrals, sage, muted blue and clay sit alongside light/dark timber tones. These are original palette names, not paint manufacturer references. Floor colour tints the existing timber texture; it does not replace the floor with a different construction or material.
+
+Bedside and ceiling lights have separate accessible on/off switches. Warm practical lights and emissive shades respond in both scenes; natural daylight remains on. Lighting is illustrative, with no lux calculation, electrical specification or blackout claim. Original abstract, botanical and coastal framed pictures can be selected or removed. Fine linear inlay, shallow arch relief and delicate fluting add tonal detail above the bed, independently of the pictures.
+
+Statement ceilings include an illuminated floating tray and architectural coffers, alongside a plain option. Their trim follows the ceiling colour; decorative light strips follow the ceiling-light switch. A ceiling camera view makes them easier to inspect. Geometry, dimensions and lighting are concept illustrations, not construction details. Briefs and comparisons capture the full room view even when the user is inspecting the ceiling.
+
+The preview is sticky on desktop and compact/sticky on mobile and tablet, with a visible unpin button. At narrow widths the duplicate material-story strip is omitted; furnishing controls remain available. The FR note applies to the Panaz fabric catalogue and directs users to supplier ratings and finished-item review. It does not certify colour concepts, walls, ceilings, flooring or the whole room.
+
+Existing version-one projects migrate missing finish fields to original colours, bedside lights on, plain ceiling and no relief. New schemes start with a tray ceiling and fine linear inlay. Invalid imports are rejected. New selections are included in PDF briefs, embedded JSON, room CSVs, enquiry drafts and scheme comparisons. Browser-only saving remains unchanged.
+
+Follow-up verification: 18 hotel tests and TypeScript pass. Desktop, 390 × 844 mobile and 768 × 1024 tablet checks cover pinned previews, palettes, separate light switches, pictures, ceiling styles, relief, saving/reopening and the two scenes. The refreshed 18-page brief's embedded project matches the downloaded JSON except the export timestamp; its CSV retains 30/12/8 quantities and its brief retains room 214. The rendered finish page was visually checked. Evidence: `room-finishes-mobile.png`, `room-finishes-standard.png`, `room-finishes-superior.png`, `statement-ceiling.png`, `finishes-export-validation.json` and `output/pdf/hotel-project-brief-finishes.pdf`.
+
+### Workspace capabilities
+
 - A dedicated CurtainsUK workspace with Room Visualiser, Furnishing Coordination, Room Layout Planner, Project Planner and Saved Projects.
 - Original Standard Double and Superior 3D concept rooms. Twin/Suite are future scene slots; twin furniture is already available in the 2D plan.
 - Wave curtains and a separate rear voile track, independent 0–100% travel, curtains/voile/both modes and illustrative sheer density. The background contains a real window opening, not baked-in curtains.

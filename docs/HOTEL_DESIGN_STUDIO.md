@@ -72,6 +72,10 @@ After explicit owner authorization and the required checks, follow `release/READ
 
 Before wider use: expand the approved Panaz range/feed and source maintenance, agree cloud project/enquiry services, obtain the intended hotel photo references, refine the concept geometry/material calibration, and verify physical touch devices and accessibility.
 
+### Preview packaging finding
+
+The first Git-source Vercel Preview failed the existing immutable-asset guard on the inherited `d5908d6eaf486ce33e2f72a5/core.mjs` pack. Its Git LF bytes hash to `a671ae21257feade086c0b2424eac9474e0fadd7ce29b497d3bd015fce7c89c4`; the validated Windows checkout uses CRLF and hashes to `8d1ceffc44fbb33b9e9a27a29dfdab76096cda2e27609bbfaffefd4f9ed5c202`. This feature does not change that pack or its manifest. The established source-upload path preserves the validated checkout bytes; its guard passes all 3,448 assets across four packs (240,574,325 bytes). The Git-source packaging inconsistency needs a separate reviewed repair before relying on Linux Git deployments. The preview keeps the guard enabled.
+
 ## Third-party presentation dependencies
 
 The approved Three.js runtime is reused unchanged. PDF-Lib is locally vendored with its MIT licence; `@pdf-lib/fontkit` 1.1.1 is locally vendored from the public npm registry with its declared MIT attribution. Noto Sans Regular/Bold are from the official `notofonts/noto-fonts` repository under the bundled SIL Open Font License. Supplier swatch provenance is recorded per product; confirm ongoing supplier media permissions as part of the existing supplier relationship before public release.

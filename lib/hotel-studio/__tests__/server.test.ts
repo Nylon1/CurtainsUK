@@ -120,3 +120,16 @@ test("FR sheer filter offers eight listed voiles and excludes retired White with
   assert.equal((await query("query=366PLA1%2F001")).fabrics.length, 0);
   assert.equal((await query("")).fabrics.length, 55);
 });
+
+test("guide uses the matching preview or signed studio base without requiring JavaScript", async () => {
+  for (const preview of [true, false]) {
+    const response = await hotelAsset(new Request("http://localhost:4368/hotel-design-studio-preview/"), "how-to-use.html", preview);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.ok(html.includes(preview ? 'http://localhost:4368/hotel-design-studio-preview/' : 'https://www.curtainsuk.com/apps/curtainsuk-decision/hotel-studio/'));
+    assert.ok(!html.includes('__HOTEL_BASE__'));
+    assert.match(html, /<strong>Single<\/strong>/);
+    assert.match(html, /id="save"/);
+    assert.ok(!html.includes('<script'));
+  }
+});

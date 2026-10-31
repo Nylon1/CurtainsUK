@@ -504,7 +504,7 @@ main {
 }
 .scene-options {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 .scene-option {
@@ -2093,4 +2093,38 @@ summary {
   .preview-column .scene-message {
     display: none;
   }
+}
+
+/* Standalone, script-free studio guidance. */
+.studio-guide { max-width: 1160px; margin: 0 auto; padding: 56px 28px; }
+.guide-intro { max-width: 760px; margin-bottom: 36px; }
+.guide-intro h1 { font-size: clamp(32px, 4vw, 54px); line-height: 1.12; margin: 16px 0 24px; }
+.guide-intro p { font-size: 17px; line-height: 1.7; margin-bottom: 20px; }
+.guide-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+.guide-jump a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 16px; border: 1px solid #d6d9cf; border-radius: 24px; text-decoration: none; color: #344c41; background: #fffefb; }
+.guide-jump a:hover { background: #e9ede3; }
+.guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.guide-card { padding: 28px; border: 1px solid #dfe0d7; border-radius: 14px; background: #fffefb; scroll-margin-top: 24px; }
+.guide-card h2 { font-size: 24px; margin: 18px 0; }
+.guide-card p, .guide-reminder p { line-height: 1.75; margin-bottom: 16px; }
+.guide-reminder { background: #e9ede3; padding: 32px; border-radius: 14px; margin-top: 30px; }
+.guide-reminder h2 { margin-bottom: 18px; }
+.guide-page .brandbar { flex-wrap: wrap; }
+.context-bar { flex-wrap: wrap; }
+@media (max-width: 650px) {
+  .studio-guide { padding: 32px 18px; }
+  .guide-grid { grid-template-columns: 1fr; gap: 16px; }
+  .guide-card, .guide-reminder { padding: 24px; }
+  .guide-page .brandbar { gap: 16px; }
+  .guide-page .brand-actions { margin-left: 0; }
+  .subsection-heading .actions { flex-wrap: wrap; }
+}
+@media (max-width: 650px) {
+  .brandbar { flex-wrap: wrap; gap: 12px; }
+  .brand-actions { width: 100%; margin-left: 0; justify-content: space-between; }
+  .brand-actions .button { min-height: 44px; }
+  .guide-page .brand-actions { width: auto; }
+  .context-bar label { flex: 1 1 28%; flex-direction: column; align-items: stretch; gap: 5px; }
+  .context-bar select { max-width: none; width: 100%; min-height: 44px; padding-left: 0; }
+  .context-dot { display: none; }
 }

@@ -5,6 +5,7 @@ import { PANAZ_FABRICS, listedUse } from "./runtime/panaz-catalogue.mjs";
 
 export const HOTEL_ASSETS: Record<string, string> = {
   "index.html": "text/html; charset=utf-8",
+  "how-to-use.html": "text/html; charset=utf-8",
   "studio.css": "text/css; charset=utf-8",
   "studio.mjs": "text/javascript; charset=utf-8",
   "model.mjs": "text/javascript; charset=utf-8",
@@ -57,7 +58,7 @@ export async function hotelAsset(
     preview,
   };
   const html =
-    name === "index.html"
+    name.endsWith(".html")
       ? body
           .toString("utf8")
           .replace(

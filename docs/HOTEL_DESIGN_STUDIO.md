@@ -29,7 +29,7 @@ Follow-up validation: 20 hotel tests pass. Desktop and 390 px mobile checks veri
 ### Workspace capabilities
 
 - A dedicated CurtainsUK workspace with Room Visualiser, Furnishing Coordination, Room Layout Planner, Project Planner and Saved Projects.
-- Original Standard Double and Superior 3D concept rooms. Twin/Suite are future scene slots; twin furniture is already available in the 2D plan.
+- Original Single, Standard Double and Superior 3D concept rooms. Twin/Suite are future scene slots; twin furniture is already available in the 2D plan.
 - Wave curtains and a separate rear voile track, independent 0–100% travel, curtains/voile/both modes and illustrative sheer density. The background contains a real window opening, not baked-in curtains.
 - Eight independently saved material choices: curtains, voile, runner, cushions, headboard, bed base, armchair and bench. Same fabric and matching colour copy the reference choice; later changes remain independent. Complementary choices are manual.
 - Panaz plain FR fabrics only. Fifty-five selectable supplier-published colourways from Allure Velvet (36), Spectrum (6), Alba (5), Plain Voile (2), Batiste (4) and Charm (2), with range filtering, source links, supplier references, observed date, published FR ratings and end uses. Wine, Batiste Dove and Batiste Silver have unverified SKUs explicitly marked for confirmation. Other brands and unrecognized imported fabric IDs are rejected. Supplier claims in an imported project are replaced with the checked snapshot.
@@ -117,3 +117,13 @@ Opening the library for a different furnishing resets search and chooses FR voil
 
 Follow-up validation: 16 hotel tests and TypeScript pass. Desktop checks confirmed the retained discontinued warning, eight sheer results, selection of Charm Cream and save/reload while Allure Navy curtains stayed unchanged. At 390 × 844 the Charm filter shows two swatches with no page overflow. Screenshots: fr-voiles.jpg and fr-voiles-mobile.jpg.
 
+
+### Single room and how-to guide
+
+The studio now includes **Single**, alongside Standard Double and Superior. Its original 3D concept has one narrower bed, one bedside table, a narrower runner and bench, and an independent 180 cm illustrative window. All eight furnishing targets and the existing lighting, finish, wall and ceiling controls work in this scene. The example 2D template uses one labelled single bed in a 360 x 450 cm room; dimensions remain unconfirmed examples.
+
+The room-scene selector is available across design and planning sections. Project Planner offers a scene choice when adding a room type, and Saved Projects offers a starting room choice when creating a project. Saved cards identify their scene types. Single describes a bed/room type and can have any entered quantity. Changing an existing scene preserves its 2D measurements; users can explicitly replace the layout with that scene's template.
+
+A standalone, responsive **How to use the Hotel Design Studio** page is served as `how-to-use.html` under the same studio base and linked from the header in every section. It needs no JavaScript, covers all five work areas and explains individual measurements, one-room projects, backup/import, exports, sample/enquiry drafts and material review. It opens in a separate tab so the working project stays available.
+
+Validation: 22 hotel tests and TypeScript pass. Single project creation, furnishing changes, its single-bed layout, quantity 8, room 301 window measurements (180 x 230 cm) and edited layout length (460 cm) were checked through browser save/reload. The guide's anchor navigation and return link work; mobile guide at 390 px has no horizontal overflow. Screenshot evidence: `single-room-desktop.png`, `how-to-use-desktop.png`, `how-to-use-mobile.png`.

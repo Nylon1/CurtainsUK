@@ -1218,7 +1218,7 @@
       ]
     },
     {
-      "assetBase": "/room-visualiser/1b93821070441c01c41c1962/",
+      "assetBase": "/room-visualiser/ebbd2298c7f52fd8c6c3359f/",
       "files": [
         {
           "path": "core.mjs",
@@ -1326,7 +1326,7 @@
         },
         {
           "path": "rooms/environment/ambience.mjs",
-          "sha256": "6c6a663e7d248c7498467db55437596aad634d3d30068cfbf4b34b11d6fd52f7"
+          "sha256": "861f3af13f3f7c8a8340005af0a425a0b69d0bc2145dcb3d72c56442fa49aceb"
         },
         {
           "path": "rooms/environment/assets/composition/textile/nor_gl.jpg",

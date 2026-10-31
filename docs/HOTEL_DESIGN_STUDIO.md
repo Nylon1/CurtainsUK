@@ -12,7 +12,7 @@ Bedside and ceiling lights have separate accessible on/off switches. Warm practi
 
 Statement ceilings include an illuminated floating tray and architectural coffers, alongside a plain option. Their trim follows the ceiling colour; decorative light strips follow the ceiling-light switch. A ceiling camera view makes them easier to inspect. Geometry, dimensions and lighting are concept illustrations, not construction details. Briefs and comparisons capture the full room view even when the user is inspecting the ceiling.
 
-The preview is sticky on desktop and compact/sticky on mobile and tablet, with a visible unpin button. At narrow widths the duplicate material-story strip is omitted; furnishing controls remain available. The FR note applies to the Panaz fabric catalogue and directs users to supplier ratings and finished-item review. It does not certify colour concepts, walls, ceilings, flooring or the whole room.
+Only the larger room image and its overlay controls stay pinned on desktop, tablet and mobile. Fabric guidance, status messages and the material-story strip scroll normally below it; a visible button can unpin the preview. The FR note applies to the Panaz fabric catalogue and directs users to supplier ratings and finished-item review. It does not certify colour concepts, walls, ceilings, flooring or the whole room.
 
 Existing version-one projects migrate missing finish fields to original colours, bedside lights on, plain ceiling and no relief. New schemes start with a tray ceiling and fine linear inlay. Invalid imports are rejected. New selections are included in PDF briefs, embedded JSON, room CSVs, enquiry drafts and scheme comparisons. Browser-only saving remains unchanged.
 

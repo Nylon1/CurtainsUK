@@ -128,6 +128,10 @@ A standalone, responsive **How to use the Hotel Design Studio** page is served a
 
 Validation: 22 hotel tests and TypeScript pass. Single project creation, furnishing changes, its single-bed layout, quantity 8, room 301 window measurements (180 x 230 cm) and edited layout length (460 cm) were checked through browser save/reload. The guide's anchor navigation and return link work; mobile guide at 390 px has no horizontal overflow. Screenshot evidence: `single-room-desktop.png`, `how-to-use-desktop.png`, `how-to-use-mobile.png`.
 
+### Sticky preview and compact navigation
+
+The published Shopify page presents the studio as a viewport workspace. The page header retains its brand, account and cart controls while the extra announcement, desktop site-link row and footer panels are hidden on this dedicated page. The studio iframe fills the height below the header, so the storefront and workspace do not compete for vertical scroll. The five studio areas remain available as tabs on desktop and one labelled selector on smaller screens. Both the area navigation and room preview stay visible while design controls scroll; users can unpin the preview. Selecting an area returns to the top of its workspace. The standalone studio route uses the same internal navigation and preview styling.
+
 ## Live publication
 
 Published 31 October 2026 at https://www.curtainsuk.com/pages/hotel-design-studio with the how-to guide linked in the studio and storefront Guide menu. Source, deployment, preserved settings and bounded live checks are recorded in [production surfaces](PRODUCTION_SURFACES.md#hotel-design-studio-31-october-2026). Browser-only saving and draft enquiry limitations remain as described above.

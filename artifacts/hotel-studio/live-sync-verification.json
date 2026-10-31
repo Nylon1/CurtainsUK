@@ -1,0 +1,63 @@
+{
+  "beforeCount": 598,
+  "afterCount": 601,
+  "added": [
+    "assets/curtainsuk-hotel-studio.css",
+    "sections/curtainsuk-hotel-studio.liquid",
+    "templates/page.hotel-design-studio.json"
+  ],
+  "removed": [],
+  "changed": [
+    "snippets/curtainsuk-header-navigation.liquid"
+  ],
+  "settingsUnchanged": true,
+  "smokeControlsUnchanged": true,
+  "smokeCapabilitiesUnchanged": true,
+  "preCapabilities": {
+    "fabricMaster": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "fabricKnowledge": {
+      "status": "FAIL",
+      "reason": "Exact live stored-reading control failed"
+    },
+    "samples": {
+      "status": "BLOCKED",
+      "priceControl": "PASS",
+      "reason": "£2.50 live product verified; signed sample eligibility/handoff probe still required"
+    },
+    "stock": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "pricing": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "singleCheckout": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "houseCheckout": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "financialReconciliation": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "paidLifecycle": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "manufacture": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "workroomRelease": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    }
+  }
+}

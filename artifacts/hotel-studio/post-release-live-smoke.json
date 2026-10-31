@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-10-31T11:08:58.179Z",
+  "controls": [
+    {
+      "id": "pt-1223-374",
+      "state": "COMPLETE",
+      "status": "PASS"
+    },
+    {
+      "id": "sdg-aarc520004",
+      "state": "COMPLETE",
+      "status": "PASS"
+    },
+    {
+      "id": "pt-1204-212",
+      "state": "PARTIAL",
+      "status": "PASS"
+    }
+  ],
+  "capabilities": {
+    "fabricMaster": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "fabricKnowledge": {
+      "status": "FAIL",
+      "reason": "Exact live stored-reading control failed"
+    },
+    "samples": {
+      "status": "BLOCKED",
+      "priceControl": "PASS",
+      "reason": "£2.50 live product verified; signed sample eligibility/handoff probe still required"
+    },
+    "stock": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "pricing": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "singleCheckout": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "houseCheckout": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "financialReconciliation": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "paidLifecycle": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "manufacture": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    },
+    "workroomRelease": {
+      "status": "BLOCKED",
+      "reason": "No approved non-purchasing deployed-runtime probe yet"
+    }
+  },
+  "status": "BLOCKED",
+  "writesPerformed": false
+}

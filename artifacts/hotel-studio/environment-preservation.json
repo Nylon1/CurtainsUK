@@ -1,0 +1,10 @@
+{
+  "before": 100,
+  "after": 101,
+  "removed": [],
+  "unexpectedChanges": [],
+  "added": [
+    "CURTAINSUK_HOTEL_STUDIO_ENABLED"
+  ],
+  "releaseMetadataPreserved": true
+}

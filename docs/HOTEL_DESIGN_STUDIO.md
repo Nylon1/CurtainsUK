@@ -127,3 +127,7 @@ The room-scene selector is available across design and planning sections. Projec
 A standalone, responsive **How to use the Hotel Design Studio** page is served as `how-to-use.html` under the same studio base and linked from the header in every section. It needs no JavaScript, covers all five work areas and explains individual measurements, one-room projects, backup/import, exports, sample/enquiry drafts and material review. It opens in a separate tab so the working project stays available.
 
 Validation: 22 hotel tests and TypeScript pass. Single project creation, furnishing changes, its single-bed layout, quantity 8, room 301 window measurements (180 x 230 cm) and edited layout length (460 cm) were checked through browser save/reload. The guide's anchor navigation and return link work; mobile guide at 390 px has no horizontal overflow. Screenshot evidence: `single-room-desktop.png`, `how-to-use-desktop.png`, `how-to-use-mobile.png`.
+
+## Live publication
+
+Published 31 October 2026 at https://www.curtainsuk.com/pages/hotel-design-studio with the how-to guide linked in the studio and storefront Guide menu. Source, deployment, preserved settings and bounded live checks are recorded in [production surfaces](PRODUCTION_SURFACES.md#hotel-design-studio-31-october-2026). Browser-only saving and draft enquiry limitations remain as described above.

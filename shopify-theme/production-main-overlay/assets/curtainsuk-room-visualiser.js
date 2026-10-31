@@ -44,7 +44,7 @@
         // Preserve duplicates so the runtime rejects an ambiguous fabric link rather than silently choosing one.
         for (const value of params.getAll('fabric')) source.searchParams.append('fabric', value);
         const room = params.get('room') || section.dataset.defaultRoom;
-        if (['living', 'bedroom', 'lounge', 'office'].includes(room)) source.searchParams.set('room', room);
+        if (['living', 'bedroom', 'lounge', 'office', 'bay'].includes(room)) source.searchParams.set('room', room);
         direct.href = source.href;
         source.searchParams.set('frameAttempt', String(attempt));
         frame.src = source.href;

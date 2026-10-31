@@ -1,15 +1,12 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The existing protected cumulative capability gate and exact-head owner approval remain mandatory. No Hotel Design Studio contracts or preview scripts existed.",
-  "newRule": "Add isolated hotel project, Panaz catalogue and asset contract tests, local hotel preview/test scripts, and a read-only CI workflow running those new contracts. Existing protected assertions, required checks, purchase rules and release authority remain unchanged.",
-  "reason": "The owner requested a dedicated Hotel Design Studio and explicit verification of saving, independent materials, layouts, exceptions, exports, fallbacks and unchanged domestic behaviour.",
-  "ownerApprovedDecision": "Implementation and verification were requested in the conversation. The review candidate and limitations are documented in docs/HOTEL_DESIGN_STUDIO.md. Exact-head GitHub owner approval and production publication remain pending.",
+  "previousRule": "The Shopify Room Visualiser wrapper forwards only the original four room IDs. The protected cumulative test verifies an existing bedroom link but does not cover the newly released Bay Window deep link.",
+  "newRule": "Forward bay alongside the original room IDs and add a protected regression test for the embedded URL, direct-open URL, retry, unknown-room rejection and duplicate-fabric preservation. All other release and capability rules stay in force.",
+  "reason": "The owner requested that the outstanding Bay Window link be updated for the live release and merged, while keeping production functions in sync. The earlier release made Bay selectable inside the visualiser, but the Shopify wrapper did not forward room=bay on an outer page link.",
+  "ownerApprovedDecision": "The owner authorised the Bay link and release-check follow-up in this conversation. The protected GitHub policy still requires the owner's exact-head approval comment before this PR can merge.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/hotel-studio/__tests__/project.test.mjs",
-    "lib/hotel-studio/__tests__/server.test.ts",
-    "package.json",
-    ".github/workflows/hotel-studio.yml",
+    "lib/storefront/__tests__/room-visualiser-iframe-recovery.test.ts",
     "release/policy-change.json"
   ]
 }

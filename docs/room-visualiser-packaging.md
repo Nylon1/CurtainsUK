@@ -16,6 +16,8 @@ Inspect the explicit existing Vercel project and run `vercel deploy --dry --json
 
 After promotion, verify the canonical production alias and both compatibility aliases, every released module/room asset and catalogue texture, then exercise the live Shopify page. STANDARD has Room and Curtain camera views; FIXED140 additionally has Full curtain view. Check the original four rooms and Bay Window, including four bay panels at open and closed positions, plus Daylight, Evening and Fabric inspection lighting. Record browser checks separately from physical devices.
 
+For the Bay Window link, open the Shopify page with `?room=bay&fabric=pt-1204-212`. Confirm that its embedded app-proxy URL and direct-open link both retain `room=bay`, and that the room is selected on first render and after retry. The wrapper must continue to ignore unknown room IDs and preserve duplicate fabric parameters for runtime validation.
+
 For a deliberately new renderer release, retain older immutable packs and extend `lib/room-visualiser/released-assets.json` with the new pack's original file hashes alongside its build manifest. Do not weaken the guard to make an incomplete deployment pass. For an unrelated deployment, no manifest or asset change is needed.
 
 Rollback must restore the immediately preceding live deployment, preserving newer services. A historical Room Visualiser deployment from before the specialist release is not a suitable whole-service rollback target.

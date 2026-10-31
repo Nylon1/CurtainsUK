@@ -66,6 +66,19 @@ test('iframe recovery keeps the chosen fabric and room in the direct link', () =
   assert.equal(f.timers.size, 0);
 });
 
+test('Bay Window links open Bay in the embedded and direct visualiser', () => {
+  const f = parentFixture('?fabric=pt-1204-212&room=bay');
+  const embedded = new URL(f.frame.src);
+  assert.equal(embedded.searchParams.get('room'), 'bay');
+  assert.equal(embedded.searchParams.get('fabric'), 'pt-1204-212');
+  assert.equal(f.direct.href, 'https://www.curtainsuk.com/apps/curtainsuk-decision/room-visualiser?fabric=pt-1204-212&room=bay');
+  f.listeners.get('retry:click')?.({});
+  assert.equal(new URL(f.frame.src).searchParams.get('room'), 'bay');
+  const invalid = new URL(parentFixture('?fabric=one&fabric=two&room=attic').frame.src);
+  assert.equal(invalid.searchParams.has('room'), false);
+  assert.deepEqual(invalid.searchParams.getAll('fabric'), ['one', 'two']);
+});
+
 test('blank frame reports a specific error and retry rejects stale ready signals', () => {
   const f = parentFixture();
   f.fireTimer(45000);

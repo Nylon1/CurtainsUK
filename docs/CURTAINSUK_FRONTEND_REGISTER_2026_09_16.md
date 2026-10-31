@@ -1,5 +1,7 @@
 # CurtainsUK Frontend Register — 16 September 2026
 
+> **Unpublished Hotel Design Studio candidate — 30 October 2026:** [implementation and validation](HOTEL_DESIGN_STUDIO.md). Dedicated hotel project workspace, original scenes, Panaz plain FR selection, 2D plans and local saved briefs. Existing production surfaces are unchanged; release remains gated through `release/production`.
+
 > **Current release pointer — 14 October 2026:** the dated snapshot below remains historical. PR #203 restored the existing Room Visualiser and added packaging protection; deployed protected commit `345c553c4553b159a587fdc6a7de7be48ca010e6` and current rollback/verification are recorded in [Production surfaces](PRODUCTION_SURFACES.md) and the [restoration record](room-visualiser-restoration-20261014.md). Shopify MAIN theme remains `182339731835`. Cushion Studio PR #201 remains a separate undeployed draft; stock-scheduler PR #202 is on `main`. Physical iPhone and spoken VoiceOver remain unverified. Use `release/production` for current storefront/API release authority.
 
 > **Unpublished feature candidate — 14 October 2026:** [Cushion Studio](CUSHION_STUDIO_IMPLEMENTATION.md) adds two separate signed-proxy views (individual configurator, then sofa/bed layout) within the existing Shopify direction. Its loopback review server is engineering tooling, not a fourth storefront. The native page/CTA and hosted purchase gates remain off; no published frontend is replaced.

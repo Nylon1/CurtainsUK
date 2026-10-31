@@ -16,3 +16,5 @@
 /public/room-visualiser/95e422156cb0e9ebfc266c6f/** -text whitespace=cr-at-eol,-space-before-tab
 # Preserve the exact reviewed bytes in this immutable room pack as well.
 /public/room-visualiser/38cfb614b31045034bf1d972/** -text whitespace=cr-at-eol,-space-before-tab
+# Preserve the fifth-room bay pack's recorded bytes across Windows and Linux.
+/public/room-visualiser/ebbd2298c7f52fd8c6c3359f/** -text whitespace=cr-at-eol,-space-before-tab

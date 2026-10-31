@@ -6,11 +6,12 @@ No external furniture, prop, room-scene, HDRI, artwork or texture downloads were
 
 | Room | Original assets and source |
 | --- | --- |
-| All four | Custom wall/floor/ceiling shell, actual window opening, frame, sill, glazing reference, skirting and cornice; `author.mjs` shell section. Room camera, lighting contract and editable palettes: `catalog.mjs`, `viewer.mjs`. |
+| Original four | Custom wall/floor/ceiling shell, actual window opening, frame, sill, glazing reference, skirting and cornice; `author.mjs` shell section. Room camera, lighting contract and editable palettes: `catalog.mjs`, `viewer.mjs`. |
 | Living Room | Tailored two-seat sofa, accent chair, oak coffee table, side table, table/floor lamps, bound wool rug, books, ceramic vessel, foliage and framed neutral relief; `authorRoom('living')` and its named helpers. |
 | Bedroom | Upholstered bed base, segmented headboard, mattress, pillows, draped cover, two bedside tables/lamps, bench, rug and foliage; `authorRoom('bedroom')`. |
 | Lounge | Rolled-arm loveseat, accent chair, round dark-timber table, side table/lamps, rug, books, ceramics, foliage and restrained wall mouldings; `authorRoom('lounge')`. Seating arrangement differs from Living Room. |
 | Office | Timber writing desk/drawer, upholstered swivel chair/base, monitor, keyboard, table lamp, bookcase, books, storage box, ceramics, rug and foliage; `authorRoom('office')`. |
+| Bay Window | Additive three-sided glazed bay, window seat, cushions, vase and four single-width 120 cm curtain presentations in `bay-room.mjs`. The original Living Room structural pack and existing garden image are reused; the user-supplied proposal image is a visual reference and is not a runtime asset. Verified 100 cm source previews retain their shorter drop. |
 | Shared room textures | Oak grain/plank tile, woven textile, plaster, rug and soft contact-shadow alpha. Deterministic original pixel generation in `build.mjs`; five PNGs in `packs/`. No photographic or AI-generated source. |
 
 Every pack has an asset inventory and material list in `packs/<room>.json`. Geometry is merged by material for delivery; the authoring source retains the named construction functions. Fixed decor is not made customer-editable.

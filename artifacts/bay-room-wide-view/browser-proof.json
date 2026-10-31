@@ -1,0 +1,45 @@
+{
+  "baseline": {
+    "bay": {
+      "panels": 4,
+      "dropCm": 120,
+      "oneWidthPerPanel": true
+    },
+    "profile": "FIXED140_SINGLE_WIDTH_V1"
+  },
+  "colours": {
+    "CEILING_MATERIAL": 1,
+    "WALL_MATERIAL": 2,
+    "FLOOR_MATERIAL": 2,
+    "CUSHION_UPHOLSTERY": 2,
+    "ARMCHAIR_UPHOLSTERY": 7
+  },
+  "rooms": [
+    {
+      "name": "Bedroom",
+      "error": ""
+    },
+    {
+      "name": "Lounge",
+      "error": ""
+    },
+    {
+      "name": "Office",
+      "error": ""
+    },
+    {
+      "name": "Living Room",
+      "error": ""
+    },
+    {
+      "name": "Bay Window",
+      "error": ""
+    }
+  ],
+  "retainedPalette": true,
+  "fabric": {
+    "id": "sdg-f1541-04",
+    "profile": "FIXED140_SINGLE_WIDTH_V1"
+  },
+  "errors": []
+}

@@ -18,6 +18,8 @@ After promotion, verify the canonical production alias and both compatibility al
 
 For the Bay Window link, open the Shopify page with `?room=bay&fabric=pt-1204-212`. Confirm that its embedded app-proxy URL and direct-open link both retain `room=bay`, and that the room is selected on first render and after retry. The wrapper must continue to ignore unknown room IDs and preserve duplicate fabric parameters for runtime validation.
 
+Bay Window Room view includes the reading chair, side table, round rug, footstool, lamp, planting and bookcase. Its camera shows the full furniture composition; Curtain and Full curtain views retain their fabric framing. Check that the Armchair colour control and existing wall, ceiling, floor and window-seat controls persist when leaving and returning to Bay. The four curtain panels still use one fabric width each and the existing verified 120 cm (or fabric-specific 100 cm) drop. Evening dims the garden and Lamps uses the room's existing lighting control.
+
 For a deliberately new renderer release, retain older immutable packs and extend `lib/room-visualiser/released-assets.json` with the new pack's original file hashes alongside its build manifest. Do not weaken the guard to make an incomplete deployment pass. For an unrelated deployment, no manifest or asset change is needed.
 
 Rollback must restore the immediately preceding live deployment, preserving newer services. A historical Room Visualiser deployment from before the specialist release is not a suitable whole-service rollback target.

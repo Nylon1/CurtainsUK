@@ -4,6 +4,24 @@
   <p class="cuk-hotel-open"><a href="/apps/curtainsuk-decision/hotel-studio" target="_blank" rel="noopener">Open Hotel Design Studio in its own window</a></p>
   <noscript><p>Enable JavaScript to design a hotel scheme, or <a href="/pages/fabric-library">browse fabrics</a>.</p></noscript>
 </section>
+<script>
+  (() => {
+    const mount = document.currentScript.previousElementSibling;
+    const frame = mount?.querySelector('.cuk-hotel-frame');
+    if (!frame) return;
+
+    const fitStudio = () => {
+      if (!frame.isConnected) return;
+      frame.style.height = `${Math.max(240, window.innerHeight - frame.getBoundingClientRect().top)}px`;
+    };
+
+    window.scrollTo(0, 0);
+    document.documentElement.classList.add('cuk-hotel-viewport');
+    fitStudio();
+    window.addEventListener('resize', fitStudio, { passive: true });
+    window.addEventListener('pageshow', fitStudio);
+  })();
+</script>
 {% schema %}
 {"name":"Hotel Design Studio","settings":[],"presets":[{"name":"Hotel Design Studio"}]}
 {% endschema %}

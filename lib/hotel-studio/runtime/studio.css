@@ -310,6 +310,12 @@ small,
   border-bottom: 1px solid var(--line);
   background: #eeeee7;
   overflow-x: auto;
+  position: sticky;
+  top: 0;
+  z-index: 8;
+}
+.workspace-mobile-menu {
+  display: none;
 }
 .workspace-tabs button {
   white-space: nowrap;
@@ -342,6 +348,9 @@ main {
   max-width: 1750px;
   margin: auto;
   padding: 0 3.5vw 35px;
+}
+#workspace {
+  scroll-margin-top: 72px;
 }
 .context-bar {
   min-height: 72px;
@@ -2027,7 +2036,7 @@ summary {
 }
 .preview-column {
   position: sticky;
-  top: 12px;
+  top: 69px;
   align-self: start;
   z-index: 4;
   background: var(--cream, #f7f6f0);
@@ -2043,14 +2052,14 @@ summary {
   border-radius: 4px;
 }
 #hotel-scene {
-  height: clamp(250px, calc(100dvh - 230px), 610px);
+  height: clamp(180px, calc(100dvh - 350px), 500px);
 }
 #room-finishes {
   scroll-margin-top: 20px;
 }
 @media (max-width: 800px) {
   .preview-column {
-    top: 0;
+    top: 60px;
     padding-top: 6px;
     box-shadow: 0 9px 14px -14px #243c2b;
   }
@@ -2079,7 +2088,7 @@ summary {
   }
   .control-panel :is(input, select, button),
   #room-finishes {
-    scroll-margin-top: calc(31svh + 115px);
+    scroll-margin-top: calc(31svh + 175px);
   }
   .surface-palette {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2092,6 +2101,35 @@ summary {
   .preview-note,
   .preview-column .scene-message {
     display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .workspace-tabs {
+    overflow: visible;
+    padding: 8px 4vw;
+  }
+  .workspace-tabs button {
+    display: none;
+  }
+  .workspace-mobile-menu {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .workspace-mobile-menu select {
+    min-width: 0;
+    flex: 1;
+    min-height: 44px;
+    padding: 8px 12px;
+    background: #fffefb;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    font: inherit;
+    color: var(--green);
   }
 }
 

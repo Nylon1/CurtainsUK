@@ -1,0 +1,52 @@
+<section class="cuk-beyond" data-cuk-beyond aria-label="Curtains Beyond Windows">
+  <div class="cuk-beyond__intro page-width">
+    <p class="cuk-beyond__eyebrow">CurtainsUK design studio</p>
+    <h1>Curtains Beyond Windows</h1>
+    <p>See how curtains can conceal a workspace, divide a room, create a private corner or become a decorative screen.</p>
+    <a data-beyond-open href="/apps/curtainsuk-decision/beyond-windows/" target="_blank" rel="noopener">Open the visualiser in a new tab ↗</a>
+  </div>
+  <div class="cuk-beyond__status page-width" data-beyond-status role="status">Preparing your space…</div>
+  <iframe title="Curtains Beyond Windows interactive visualiser" data-beyond-frame data-source="/apps/curtainsuk-decision/beyond-windows/" allow="fullscreen" loading="eager"></iframe>
+  <p class="cuk-beyond__note page-width">Visual guide only. Order a physical sample before choosing a fabric. Measurements, construction and specialist systems are confirmed by project quote.</p>
+  <noscript><p class="page-width">Please enable JavaScript to explore the visualiser, or <a href="/apps/curtainsuk-decision/beyond-windows/">open it directly</a>.</p></noscript>
+</section>
+<style>
+  .cuk-beyond__intro{padding-top:24px;padding-bottom:20px}
+  .cuk-beyond__eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:700;color:#527166}
+  .cuk-beyond__intro h1{font-size:clamp(30px,4vw,52px);margin:4px 0 12px}
+  .cuk-beyond__intro>p:not(.cuk-beyond__eyebrow){max-width:62ch;line-height:1.55}
+  .cuk-beyond__intro a{display:inline-block;color:#173d34;text-underline-offset:4px;margin-top:4px}
+  .cuk-beyond__status{padding-top:12px;padding-bottom:12px;background:#f5f3ec;color:#173d34}
+  .cuk-beyond__status[hidden]{display:none}
+  .cuk-beyond iframe{display:block;width:100%;height:max(720px,calc(100dvh - 80px));border:0}
+  .cuk-beyond__note{font-size:13px;line-height:1.55;padding-top:16px;padding-bottom:18px}
+  @media(max-width:700px){.cuk-beyond iframe{height:max(760px,calc(100dvh - 56px))}}
+</style>
+<script>
+(() => {
+  const root=document.querySelector('[data-cuk-beyond]');
+  if(!root)return;
+  const frame=root.querySelector('[data-beyond-frame]');
+  const status=root.querySelector('[data-beyond-status]');
+  const direct=root.querySelector('[data-beyond-open]');
+  const keys=['scene','layout','material','draw','construction','light','wall','density','view','open','layer','fabric','heading'];
+  const target=new URL(frame.dataset.source,location.origin);
+  const incoming=new URLSearchParams(location.search);
+  for(const key of keys)for(const value of incoming.getAll(key))target.searchParams.append(key,value);
+  direct.href=target.href;
+  frame.src=target.href;
+  frame.addEventListener('load',()=>{status.hidden=true});
+  frame.addEventListener('error',()=>{status.hidden=false;status.textContent='The visualiser could not load. Open it in a new tab or retry this page.'});
+  window.addEventListener('message',event=>{
+    if(event.origin!==location.origin||event.source!==frame.contentWindow||event.data?.type!=='curtainsuk:beyond-state'||typeof event.data.search!=='string')return;
+    const state=new URLSearchParams(event.data.search);
+    const address=new URL(location.href);
+    for(const key of keys){address.searchParams.delete(key);for(const value of state.getAll(key))address.searchParams.append(key,value)}
+    history.replaceState(null,'',address);
+    direct.href=new URL(target.pathname+'?'+state,location.origin).href;
+  });
+})();
+</script>
+{% schema %}
+{"name":"Curtains Beyond Windows","settings":[],"presets":[{"name":"Curtains Beyond Windows"}]}
+{% endschema %}

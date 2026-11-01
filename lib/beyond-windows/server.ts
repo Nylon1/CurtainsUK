@@ -19,7 +19,7 @@ export async function beyondAsset(request:Request,name='',preview=false){
   if(name==='index.html'){
     const existing=await readFile(path.join(process.cwd(),'lib/room-visualiser/runtime/rooms/customer.html'),'utf8');
     const dialog=existing.slice(existing.indexOf('<dialog'),existing.indexOf('</dialog>')+9).replace('Choose a fabric for this room','Choose your decorative fabric').replace('Only fabrics with a room preview appear here. Browse the full fabric library for other fabrics.',FABRIC_SCOPE);
-    body=new TextDecoder().decode(body).replace('__FABRIC_DIALOG__',dialog).replaceAll('__BEYOND_BASE__',assetBase).replaceAll('__RENDERER_BASE__',rendererBase).replace('__BEYOND_CONFIG__',JSON.stringify({assetBase,rendererBase,catalogueUrl:assetBase+'catalog',destination:assetBase,preview}).replaceAll('<','\\u003c'));
+    body=new TextDecoder().decode(body).replace('__FABRIC_DIALOG__',dialog).replaceAll('__BEYOND_BASE__',assetBase).replaceAll('__RENDERER_BASE__',rendererBase).replace('__BEYOND_CONFIG__',JSON.stringify({assetBase,rendererBase,catalogueUrl:assetBase+'catalog',destination:preview?assetBase:'https://www.curtainsuk.com/pages/curtains-beyond-windows',preview}).replaceAll('<','\\u003c'));
   }
   return new Response(body,{headers:{'Content-Type':assets[name],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'strict-origin-when-cross-origin'}});
 }

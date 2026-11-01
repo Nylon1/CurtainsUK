@@ -1,12 +1,13 @@
-# Curtains Beyond Windows — review milestone
+# Curtains Beyond Windows — review and live release
 
 Three scenes, organised around purpose: conceal a workspace/storage wall, divide an open room, wrap a workspace in a private enclosure, and add a decorative screen. The owner confirmed three scenes for this milestone on 1 November 2026; separate venue/treatment/dressing scenes remain later work.
 
 ## Routes and ownership
 
 - Review deployment: `/curtains-beyond-windows-preview/`, allowed only on Vercel Preview or local development. Not exposed on Production.
-- Intended Shopify destination: `/apps/curtainsuk-decision/beyond-windows/`, handled by the new authenticated nested app-proxy route. No new Shopify Page or unverified `/pages/` handle is assumed.
+- Shopify destination for the live release: `/pages/curtains-beyond-windows`, using a dedicated page template and the authenticated app proxy at `/apps/curtainsuk-decision/beyond-windows/`. The page forwards scene/configuration query parameters to the frame, and the frame sends updated state to the parent page so refresh and shared links retain the current design.
 - The existing Room Visualiser server HTML gains a link to that destination. Its immutable packs, entry modules and five room assets are unchanged.
+- The live theme's direct desktop/mobile/fallback navigation snippet adds a menu link beside Room Visualiser. The Shopify main menu resource also receives the Page link for any standard navigation using it. The established Room Visualiser page, template and five room assets remain unchanged.
 - `node scripts/beyond-windows-preview.mjs` serves the actual runtime on loopback port 4410, with a public, read-only live catalogue relay and a five-room regression page at `/pages/room-visualiser`.
 - No live theme, production deployment, database record, feature flag, price or supplier record is changed in this milestone.
 

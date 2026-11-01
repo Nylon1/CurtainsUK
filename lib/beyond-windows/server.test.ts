@@ -11,6 +11,12 @@ test('preview is local/deployment-preview only and runtime asset paths are allow
   assert.match(html,/Curtains beyond/);assert.match(html,/5ee06952561616a69bb63ecd/);assert.match(html,/data-cuk-fabric-browser/);assert.doesNotMatch(html,/__(?:BEYOND|FABRIC_DIALOG|RENDERER)/);
   assert.equal(page.headers.get('cache-control'),'no-store');
 });
+test('production app proxy shares the dedicated Shopify page while preview links stay in preview',async()=>{
+  const production=await beyondAsset(new Request('https://curtainsuk-production-api.vercel.app/api/staging/shopify-proxy/beyond-windows/'));
+  const html=await production.text();
+  assert.match(html,/"destination":"https:\/\/www\.curtainsuk\.com\/pages\/curtains-beyond-windows"/);
+  assert.match(html,/https:\/\/www\.curtainsuk\.com\/apps\/curtainsuk-decision\/beyond-windows\//);
+});
 test('catalogue relay forwards only public filters, never cookies, signatures or supplied hosts',async()=>{
   const original=global.fetch;let called='';
   global.fetch=async(input,init)=>{called=String(input);assert.deepEqual(init?.headers,{Accept:'application/json'});return Response.json({fabric});};

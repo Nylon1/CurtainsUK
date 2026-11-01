@@ -78,3 +78,11 @@ These are illustrative installation details, not a supplier fixing or structural
 - Project email drafts go to **enquiries@curtainsuk.com**. Nothing is sent automatically.
 
 Validation: 15 Beyond Windows tests, 8 immutable asset guard tests, 4 iframe/recovery tests and 3 error-category tests passed. TypeScript passed; six released packs (3,653 files) passed byte verification. Live relay checks returned one approved Bergamot colourway, no Mellora, and paginated Amalfi plains. Browser QA checked approved-plain selection, page 2/Previous, restricted direct links retaining curved layout and 37% opening, old pencil links, quote address, layout examples, material buttons, mobile sticky view, keyboard range movement, refresh and image Retry. Search responses observed around 1.1-1.6 seconds for these named searches, not a catalogue-wide performance guarantee. Physical mobile-device testing remains a production review dependency.
+
+## Enclosed interior revision
+
+The scene shell now has four continuous walls, a floor and ceiling with matching bounds, skirting and cornice around the perimeter, and one framed window opening. All whole-room, detail and reverse cameras stay inside that shell; walls are no longer swapped for a cutaway. The detached office backdrop was removed, and the reverse view includes an entrance and wall art.
+
+The home-office scene has a furnished seating foreground with a sofa, cushions, coffee table, woven rug and floor lamp. Upholstered shapes use corrected rounded geometry; shelving has open cavities rather than solid blocks. Existing immutable oak, weave, plaster, rug and contact-shadow assets are reused. Daylight comes from the window direction, with less ambient fill and contact shading. These are interactive 3D interiors, not photographic renders or changes to the fabric calibration.
+
+Track routes, installation height, panel gathering, approved fabric policy, reverse construction, sticky controls and quote destinations are retained. The overhead furniture plan was updated to match the revised seating. The camera containment regression covers all three scenes and views at four viewport aspect ratios; the Beyond Windows suite now contains 16 passing tests. Updated open/closed screenshots show the enclosed rooms.

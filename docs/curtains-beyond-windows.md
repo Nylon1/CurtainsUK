@@ -1,5 +1,11 @@
 # Curtains Beyond Windows — review and live release
 
+## Wall-anchored track correction — live 1 November 2026
+
+Straight routes in Hide & Reveal, Divide & Enclose and Screens & Layers reach the finished side walls, with a 2 cm allowance for track caps. The L-shaped route meets the back wall at one end and the right wall at the other. Only the curved activity enclosure retains free-standing ends. Two Divide & Enclose furnishings were moved clear of the extended L route. The overhead layout shows the actual track ends and parking; it no longer suggests an unobstructed passage through a closed wall-to-wall curtain. Access and stack space still need project specification.
+
+[PR #320](https://github.com/Nylon1/CurtainsUK/pull/320) merged at protected runtime source `482ac6b95184854f1507ed55efa66e670689872b` and is served by READY deployment `dpl_EjCvFnAXnTZnvqFdzDv7sYpHWGG5` on all three established API aliases. The existing Shopify MAIN theme `182339731835` was not uploaded or changed. Browser checks covered the revised Hide & Reveal and L-shaped routes, unchanged curved enclosure, wall-spanning chain screen, live signed Shopify page, and Bay Window regression. Fifteen Beyond Windows tests, TypeScript, protected checks and the six-pack immutable asset guard passed. Pricing and the made-to-order partition handoff remain held for separate product specification.
+
 Three scenes, organised around purpose: conceal a workspace/storage wall, divide an open room, wrap a workspace in a private enclosure, and add a decorative screen. The owner confirmed three scenes for this milestone on 1 November 2026; separate venue/treatment/dressing scenes remain later work.
 
 ## Routes and ownership

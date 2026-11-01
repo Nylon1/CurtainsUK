@@ -1,5 +1,13 @@
 # CurtainsUK production surfaces
 
+## Beyond Windows wall-anchored tracks, 1 November 2026
+
+[PR #320](https://github.com/Nylon1/CurtainsUK/pull/320) passed the production gate and protected policy checks and merged at **`482ac6b95184854f1507ed55efa66e670689872b`**. READY production deployment **`dpl_EjCvFnAXnTZnvqFdzDv7sYpHWGG5`** was built from that exact clean checkout. The `curtainsuk-production-api.vercel.app`, `curtainsuk-staging-api.vercel.app` and `curtainsuk-staging-gateway.vercel.app` aliases all resolve to this deployment. The prior runtime is **`dpl_Cak9TG8nqR8Gk4mLJmUfUja7qwVD`**. This subsequent record-only commit is not the serving runtime source.
+
+Straight curtains in Hide & Reveal, Divide & Enclose and Screens & Layers now meet both side walls. The L-shaped track meets the back and right walls; the curved enclosure retains free-standing ends. The overhead plan now describes access accurately. No theme, pricing, checkout or made-to-order handoff code changed. Shopify response headers still identify existing MAIN theme **`182339731835`**; its Beyond Windows menu link and page loaded. The live signed proxy loaded the revised room, and closing the curtain reached the wall. The original Room Visualiser still listed all five rooms and loaded Bay Window. All six released visualiser packs passed the immutable asset verifier (3,653 files).
+
+The Vercel project retained **100 environment entries, 72 targeting Production**. Only the four source-identity values advanced to the serving SHA, preserving their existing types and targets. No feature switch was edited; the existing plain Production `*_ENABLED` switches still read `true`. Sensitive and encrypted switch values were not decrypted for this audit. The staged signed route rejected an unsigned request with HTTP 401, and the direct preview route remained restricted on Production. The dedicated [Beyond Windows release notes](curtains-beyond-windows.md) describe the quote-only division boundary; this geometry release does not activate partition pricing.
+
 ## Hotel Studio preview and navigation, 31 October 2026
 
 The current Hotel Design Studio release is protected commit **`3b25038e81af76767b56d0ee4ea0801650b66e9d`**, tree **`f9f04f602f8910150aac8545eae70c4cb6180e0f`**, from owner-authorised [PR #312](https://github.com/Nylon1/CurtainsUK/pull/312) and [PR #313](https://github.com/Nylon1/CurtainsUK/pull/313). All protected checks passed. READY deployment **`dpl_5tp9Fev5Eb6ijkriXQVBV3eKfA2R`** records that source SHA; the canonical production API and both compatibility aliases resolve to it. Immediate runtime rollback is **`dpl_31mGiJ3vSwbAXS8dbaC16bzCd2Rm`**.

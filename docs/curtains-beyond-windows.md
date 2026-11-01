@@ -61,3 +61,9 @@ Screenshots and browser readback accompany the PR. Browser viewport/CPU observat
 | Screens & Layers | [Lounge open](beyond-windows-screenshots/screens-open.jpg) | [Fabric screen closed](beyond-windows-screenshots/screens-closed.jpg) |
 
 [Double-faced reverse](beyond-windows-screenshots/double-faced-reverse.jpg) · [Ball-chain detail and supplier reference](beyond-windows-screenshots/ball-chain.jpg) · [Mobile layered preview](beyond-windows-screenshots/mobile-layers.jpg).
+
+## Installation correction after visual review
+
+The first preview left suspension rods below the ceiling and removed the room shell from the reverse view, making the curtains look unsupported. The revised model uses a shared ceiling/rail/heading/floor datum: short ceiling brackets meet the track, moving heading connections join the cloth to it, and the hem clears the floor by approximately 1.5 cm. Each layer has its own mounted route; metallic strands also join their carrier. Whole-room cameras are lower, and reverse views retain the ceiling and opposite room walls. Furniture feet, booth bases and pendant suspension were also brought into contact with their supporting surfaces.
+
+These are illustrative installation details, not a supplier fixing or structural specification. Existing pattern coordinates, movement, double-faced selection, fabric/quote integrations and the original five rooms remain unchanged. The PR screenshots have been refreshed for this correction.

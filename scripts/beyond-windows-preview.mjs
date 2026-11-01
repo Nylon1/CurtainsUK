@@ -34,6 +34,12 @@ createServer(async(req,res)=>{
       body=await readFile(file);
       if(chosen==='index.html'){const existing=await readFile('lib/room-visualiser/runtime/rooms/customer.html','utf8'),dialog=existing.slice(existing.indexOf('<dialog'),existing.indexOf('</dialog>')+9).replace('Choose a fabric for this room','Choose your decorative fabric').replace('Only fabrics with a room preview appear here. Browse the full fabric library for other fabrics.',FABRIC_SCOPE);
         body=body.toString().replace('__FABRIC_DIALOG__',dialog).replaceAll('__BEYOND_BASE__',base).replaceAll('__RENDERER_BASE__',rendererBase).replace('__BEYOND_CONFIG__',JSON.stringify({assetBase:base,rendererBase,catalogueUrl:base+'catalog',destination:base,preview:true}));}
+    }else if(url.pathname==='/pages/curtains-beyond-windows'){
+      file='index.html';
+      const section=(await readFile('shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-beyond-windows.liquid','utf8'))
+        .replace(/\{% schema %\}[\s\S]*?\{% endschema %\}/,'')
+        .replaceAll('/apps/curtainsuk-decision/beyond-windows/','/curtains-beyond-windows-preview/');
+      body=`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Beyond Windows Shopify wrapper review</title><style>body{margin:0;font-family:Arial,sans-serif}.announcement-bar-section{height:32px;background:#f5f3ec;text-align:center}.cuknav__header{height:72px;background:#f6f3ec}.cuknav__desktop{height:48px;background:#f6f3ec}.shopify-section-group-footer-group{height:500px;background:#eee9dd}.page-width{padding-left:4vw;padding-right:4vw}</style></head><body><div class="announcement-bar-section">Made-to-measure curtains</div><header class="cuknav__header">CurtainsUK</header><nav class="cuknav__desktop">Room Visualiser　Beyond Windows</nav><main id="MainContent">${section}</main><footer class="shopify-section-group-footer-group">Site footer</footer></body></html>`;
     }else if(url.pathname==='/pages/room-visualiser'){
       file='customer.html';const fixed=JSON.parse(await readFile('lib/room-visualiser/fixed140-build.json'));
       body=(await readFile('lib/room-visualiser/runtime/rooms/customer.html','utf8')).replaceAll('__VISUALISER_ASSET_BASE__',rendererBase).replaceAll('__FIXED140_ASSET_BASE__',origin+fixed.assetBase).replace('<section id="visualiser"',`<p style="padding:16px"><a href="${base}">Explore Curtains Beyond Windows →</a></p><section id="visualiser"`);

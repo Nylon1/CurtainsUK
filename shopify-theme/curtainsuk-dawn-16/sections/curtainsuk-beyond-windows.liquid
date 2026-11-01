@@ -29,10 +29,10 @@
   const frame=root.querySelector('[data-beyond-frame]');
   const status=root.querySelector('[data-beyond-status]');
   const direct=root.querySelector('[data-beyond-open]');
-  const keys=['scene','layout','material','draw','construction','light','wall','density','view','open','layer','fabric','heading'];
+  const keys=['scene','layout','material','draw','construction','light','wall','density','camera','open','layer','fabric','heading'];
   const target=new URL(frame.dataset.source,location.origin);
   const incoming=new URLSearchParams(location.search);
-  for(const key of keys)for(const value of incoming.getAll(key))target.searchParams.append(key,value);
+  for(const key of keys)for(const value of incoming.getAll(key))target.searchParams.append(key==='camera'?'view':key,value);
   direct.href=target.href;
   frame.src=target.href;
   frame.addEventListener('load',()=>{status.hidden=true});
@@ -41,7 +41,8 @@
     if(event.origin!==location.origin||event.source!==frame.contentWindow||event.data?.type!=='curtainsuk:beyond-state'||typeof event.data.search!=='string')return;
     const state=new URLSearchParams(event.data.search);
     const address=new URL(location.href);
-    for(const key of keys){address.searchParams.delete(key);for(const value of state.getAll(key))address.searchParams.append(key,value)}
+    address.searchParams.delete('view');
+    for(const key of keys){address.searchParams.delete(key);for(const value of state.getAll(key==='camera'?'view':key))address.searchParams.append(key,value)}
     history.replaceState(null,'',address);
     direct.href=new URL(target.pathname+'?'+state,location.origin).href;
   });

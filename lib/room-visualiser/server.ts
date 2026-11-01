@@ -15,7 +15,9 @@ export async function visualiserPage(request:Request,registry:Fixed140Registry=f
   const profilePreview=url.searchParams.get('embed')==='fabric-profile';
   const html=await readFile(join(process.cwd(),profilePreview
     ? 'lib/room-visualiser/profile-curtain.html' : 'lib/room-visualiser/runtime/rooms/customer.html'),'utf8');
-  return new Response(html.replaceAll('__VISUALISER_ASSET_BASE__',`${origin}${build.assetBase}`).replaceAll('__FIXED140_ASSET_BASE__',`${origin}${fixed140Build.assetBase}`),{
+  const beyondHref='https://www.curtainsuk.com/apps/curtainsuk-decision/beyond-windows/';
+  const linkedHtml=profilePreview?html:html.replace('<section id="visualiser"',`<p style="padding:0 0 24px;font-size:14px"><a href="${beyondHref}" target="_top">More ways to use curtains: explore Curtains Beyond Windows →</a></p><section id="visualiser"`);
+  return new Response(linkedHtml.replaceAll('__VISUALISER_ASSET_BASE__',`${origin}${build.assetBase}`).replaceAll('__FIXED140_ASSET_BASE__',`${origin}${fixed140Build.assetBase}`),{
     headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'},
   });
 }

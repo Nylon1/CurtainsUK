@@ -1,6 +1,8 @@
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import build from '../room-visualiser/build.json';
+import manifest from '../room-visualiser/assets.json';
+import {createBeyondCatalogue,FABRIC_SCOPE} from './catalogue.mjs';
 
 const assets:Record<string,string>={'index.html':'text/html; charset=utf-8','style.css':'text/css; charset=utf-8','main.mjs':'text/javascript; charset=utf-8','model.mjs':'text/javascript; charset=utf-8','renderer.mjs':'text/javascript; charset=utf-8','furnishings.mjs':'text/javascript; charset=utf-8','screens.mjs':'text/javascript; charset=utf-8','airport-reference.jpeg':'image/jpeg','edge-ball-aluminium.png':'image/png'};
 export function beyondPreviewAllowed(request:Request){
@@ -16,23 +18,11 @@ export async function beyondAsset(request:Request,name='',preview=false){
   let body:Uint8Array<ArrayBuffer>|string=new Uint8Array(bytes);
   if(name==='index.html'){
     const existing=await readFile(path.join(process.cwd(),'lib/room-visualiser/runtime/rooms/customer.html'),'utf8');
-    const dialog=existing.slice(existing.indexOf('<dialog'),existing.indexOf('</dialog>')+9).replace('Choose a fabric for this room','Choose your decorative fabric');
+    const dialog=existing.slice(existing.indexOf('<dialog'),existing.indexOf('</dialog>')+9).replace('Choose a fabric for this room','Choose your decorative fabric').replace('Only fabrics with a room preview appear here. Browse the full fabric library for other fabrics.',FABRIC_SCOPE);
     body=new TextDecoder().decode(body).replace('__FABRIC_DIALOG__',dialog).replaceAll('__BEYOND_BASE__',assetBase).replaceAll('__RENDERER_BASE__',rendererBase).replace('__BEYOND_CONFIG__',JSON.stringify({assetBase,rendererBase,catalogueUrl:assetBase+'catalog',destination:assetBase,preview}).replaceAll('<','\\u003c'));
   }
   return new Response(body,{headers:{'Content-Type':assets[name],'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'strict-origin-when-cross-origin'}});
 }
 /** Read only, bounded public Fabric Master projection. No admin credential, user
  * cookie, arbitrary upstream URL or purchase mutation is forwarded. */
-export async function beyondCatalogue(request:Request){
-  const input=new URL(request.url).searchParams,url=new URL('https://www.curtainsuk.com/apps/curtainsuk-decision/catalog');
-  url.searchParams.set('view','retail');url.searchParams.set('visualiser','1');
-  for(const key of['fabric','query','colour','pattern','cursor']){
-    if(input.getAll(key).length>1)return Response.json({error:'Ambiguous catalogue request'},{status:400});
-    const value=input.get(key);if(value&&value.length>200)return Response.json({error:'Catalogue request too long'},{status:400});
-    if(value)url.searchParams.set(key,value);
-  }
-  try{const response=await fetch(url,{signal:AbortSignal.timeout(25000),headers:{Accept:'application/json'},cache:'no-store'});
-    if(!response.ok)return Response.json({error:'Fabric catalogue unavailable'},{status:response.status===404?404:503});
-    return Response.json(await response.json(),{headers:{'Cache-Control':'no-store'}});
-  }catch{return Response.json({error:'Fabric catalogue unavailable. Please retry.'},{status:503,headers:{'Cache-Control':'no-store'}});}
-}
+export const beyondCatalogue=createBeyondCatalogue(manifest).catalogue;

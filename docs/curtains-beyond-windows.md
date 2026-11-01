@@ -16,7 +16,7 @@ Three scenes, organised around purpose: conceal a workspace/storage wall, divide
 
 The existing Three.js library, motion timing, lighting-mode definitions, fabric browser, fabric-action validation, approved media and floor/garden assets are reused from the current immutable Room Visualiser pack. The new furnishings are original batched geometry. Fabric selection rebuilds neither the room nor its controls. State is kept in the URL; scene, layout, fabric, draw, heading, view, density, lighting and both opening positions survive refresh and Retry.
 
-Opaque cloth has separate front and lining materials. The reverse never receives the decorative face map. Generic voile is translucent and unlined. Chain uses actual instanced beads/connectors or alternating torus links, with empty space between them and an environment reflection; no fabric texture is assigned to chain. Chain remains fixed pending a specified movable assembly. Fabric + voile has independent controls; voile + ball chain moves only the voile.
+Opaque cloth defaults to separate front and neutral-lining materials. Following the owner's construction clarification, an explicit **Decorative fabric on both sides** option uses a second decorative face instead of lining. Its pattern keeps the same physical scale and orientation from the reverse, and its saved construction is carried into the quote brief. This option never changes a lined preview implicitly. Generic voile is translucent and unlined. Chain uses actual instanced beads/connectors or alternating torus links, with empty space between them and an environment reflection; no fabric texture is assigned to chain. Chain remains fixed pending a specified movable assembly. Fabric + voile has independent controls; voile + ball chain moves only the voile.
 
 Supplier-repeat tiling is used only when the existing Fabric Master worktable source is calibrated, the repeat fits the source, and the match is not half-drop/offset. Otherwise the preview is explicitly approximate. Source-image size is never used to calculate a quantity or price. Physical samples remain the colour reference.
 
@@ -44,9 +44,9 @@ Screenshots and browser readback accompany the PR. Browser viewport/CPU observat
 
 ## Review evidence — 1 November 2026
 
-- 8 Beyond Windows model/server tests passed, plus 8 released-asset guard tests and 7 existing iframe/recovery/error-category tests.
+- 9 Beyond Windows model/server tests passed, plus 8 released-asset guard tests and 7 existing iframe/recovery/error-category tests.
 - TypeScript `tsc --noEmit` passed. The immutable asset verifier passed for all six released packs (3,653 files); no released room geometry or integration module was modified.
-- Browser QA: three scene selectors; curved and L-shaped routes; centre pair and one-way draw; wave/pencil concepts; open/partial/closed movement; detail and lining-side cameras; fabric browser selection (Bergamot to Mellora); independent fabric/voile positions; ball and linked chain; fixed-chain controls; quote brief; URL refresh; image-failure Retry and catalogue-failure Retry preserving layout and position.
+- Browser QA: three scene selectors; straight, curved and L-shaped routes; centre pair and one-way draw; wave/pencil concepts; open/partial/closed movement; detail and reverse cameras with both neutral lining and double-faced fabric; fabric browser selection (Bergamot to Mellora); independent fabric/voile positions; ball and linked chain; fixed-chain controls; quote brief; URL refresh; image-failure Retry and catalogue-failure Retry preserving layout and position.
 - Existing five rooms loaded with Mellora retained. Open/close controls were exercised across the rooms, and Bay Window's room/detail controls were checked. This is targeted regression coverage, not a complete paid-checkout or adviser audit.
 - Desktop viewport: 1,521 × 722; mobile-width viewport: 390 × 844, no horizontal overflow, native range keyboard Home/Arrow movement verified. Physical touch-device testing remains outstanding; browser emulation is not a hardware test.
 - Warm fabric animation render submission p95 observed around 6–8 ms on this computer. Mobile-width mixed voile/ball-chain rendered about 815k triangles; dense chain about 1.58m. Render-on-demand avoids an idle animation loop. These CPU observations include neither GPU timing nor a guaranteed mobile frame rate; dense chain needs representative physical-device review before production sign-off.
@@ -60,4 +60,4 @@ Screenshots and browser readback accompany the PR. Browser viewport/CPU observat
 | Divide & Enclose | [Enclosure open](beyond-windows-screenshots/divide-open.jpg) | [Enclosure closed](beyond-windows-screenshots/divide-closed.jpg) |
 | Screens & Layers | [Lounge open](beyond-windows-screenshots/screens-open.jpg) | [Fabric screen closed](beyond-windows-screenshots/screens-closed.jpg) |
 
-[Ball-chain detail and supplier reference](beyond-windows-screenshots/ball-chain.jpg) · [Mobile layered preview](beyond-windows-screenshots/mobile-layers.jpg).
+[Double-faced reverse](beyond-windows-screenshots/double-faced-reverse.jpg) · [Ball-chain detail and supplier reference](beyond-windows-screenshots/ball-chain.jpg) · [Mobile layered preview](beyond-windows-screenshots/mobile-layers.jpg).

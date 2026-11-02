@@ -1,5 +1,9 @@
 # Curtains Beyond Windows — review and live release
 
+## Sticky preview and single-scroll page — live 2 November 2026
+
+The live Shopify page has one visualiser scrollbar after [PR #322](https://github.com/Nylon1/CurtainsUK/pull/322); a complete MAIN theme pull matches its 603-file protected manifest. [PR #323](https://github.com/Nylon1/CurtainsUK/pull/323) then repaired the runtime preview for short laptop viewports: the room and compact opening controls remain sticky while the settings scroll, and the instruction below the buttons is retained for assistive technology without taking visible space. The serving runtime is protected `6a15ec4261064c43927b627cbe6678cb28c8bd08`, tree `3f2d33fabf246d2ff8183462b396f908e73f60cb`, READY deployment `dpl_989A1riLFSQ58fJjGpEQ7i1uFZR1` on the three established API aliases. The four source-attestation settings agree with that deployed commit. See [production surfaces](PRODUCTION_SURFACES.md) for verification and rollback identity. No room geometry, fabric policy, quote/purchase boundary, Shopify setting or original five-room asset changed in this repair.
+
 ## Wall-anchored track correction — live 1 November 2026
 
 Straight routes in Hide & Reveal, Divide & Enclose and Screens & Layers reach the finished side walls, with a 2 cm allowance for track caps. The L-shaped route meets the back wall at one end and the right wall at the other. Only the curved activity enclosure retains free-standing ends. Two Divide & Enclose furnishings were moved clear of the extended L route. The overhead layout shows the actual track ends and parking; it no longer suggests an unobstructed passage through a closed wall-to-wall curtain. Access and stack space still need project specification.

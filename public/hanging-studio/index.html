@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#283e36">
+  <meta name="description" content="Learn to hang your curtains with close-up demonstrations, hands-on practice and a guide to follow at your window. A CurtainsUK learning experience.">
+  <title>Learn to hang your curtains · CurtainsUK</title>
+  <link rel="stylesheet" href="./studio.css">
+</head>
+<body>
+<a class="skip" href="#lesson">Skip to lesson</a>
+<header class="masthead"><a class="brand" href="https://www.curtainsuk.com" aria-label="CurtainsUK home">Curtains<span>UK</span><i></i></a><span class="masthead-label">THE FINISHING TOUCH</span><button class="text-button" id="helpButton">Before you begin <span aria-hidden="true">↗</span></button></header>
+<main>
+  <section class="intro"><div><p class="eyebrow">THE HANGING STUDIO <span></span> WATCH. PRACTISE. MAKE IT YOURS.</p><h1>Beautifully hung.<br><em>One step at a time.</em></h1><p class="intro-copy">From the first fold out of the box to the finishing touch.<br class="desktop"> Get closer to the details, then try it for yourself.</p></div><div class="intro-note"><span class="note-line"></span><p>A little know-how.<br>A lovely difference.</p><span>Designed to follow along<br>with your own curtains.</span></div></section>
+  <section aria-label="Choose your curtain heading" class="heading-picker" id="headings"></section>
+  <div class="lesson-top" id="lesson"><div><p class="eyebrow" id="lessonEyebrow"></p><h2 id="lessonTitle"></h2></div><button class="progress-pill" id="progressButton" title="Your progress is saved on this device"><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="progress-track" cx="18" cy="18" r="14"/><circle id="progressCircle" cx="18" cy="18" r="14"/></svg><span id="progressText"></span></button></div>
+  <nav class="step-nav" id="steps" aria-label="Lesson steps"></nav>
+  <div class="mode-tabs" role="tablist" aria-label="Learning mode"><button role="tab" data-mode="show" id="mode-show">▷ <span>Show me</span></button><button role="tab" data-mode="try" id="mode-try">✧ <span>Let me try</span></button><button role="tab" data-mode="mine" id="mode-mine">⌂ <span>Help me hang mine</span></button></div>
+  <section class="studio" aria-label="Curtain lesson">
+    <div class="visual-column"><div class="visual-sticky"><div class="canvas-shell"><div class="canvas-toolbar"><span class="scene-label" id="sceneLabel"></span><div id="viewButtons" class="view-buttons" aria-label="Demonstration view"></div></div><div id="scene" class="scene"></div><div class="scene-caption" id="sceneCaption"></div></div><div class="playback" id="playback"></div><div class="stage-controls" id="stageControls"></div><p class="illustration-note">Illustrated fittings. Match the parts supplied with your curtains.</p></div></div>
+    <div class="instruction-column" id="instruction"></div>
+  </section>
+  <section class="finish-card" id="finishCard" hidden></section>
+  <section class="small-help"><div><span class="eyebrow">A LITTLE EXTRA CONFIDENCE</span><h2>The small details matter.</h2></div><p>Your curtain’s own instructions come first. If your tape, hook or glider looks different, pause and match the fitting before you continue.</p><a href="https://www.curtainsuk.com/pages/contact-us" target="_blank" rel="noopener">Ask CurtainsUK <span>↗</span></a></section>
+</main>
+<footer><span class="brand small">Curtains<span>UK</span></span><p>Made for your home. A guide to the finishing touches.</p><button class="text-button" id="sourcesButton">About this guide</button></footer>
+<dialog id="infoDialog"><button class="dialog-close" aria-label="Close dialog">×</button><div id="dialogBody"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./app.js"></script>
+</body></html>

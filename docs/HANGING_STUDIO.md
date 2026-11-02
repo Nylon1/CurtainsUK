@@ -24,10 +24,12 @@ The ten photographic assets are original AI-created recreations, disclosed in th
 
 ## Verification and review limits
 
-15 passing Node tests cover all four complete practice journeys through a jsdom DOM, error feedback, hook-row height, sequential wave fitting, optional steaming, loose bands, wave-system gating, replay retaining the current real-world action, scrubbing, keyboard focus and on-demand supplier content. Every local image is present; the preview responds with HTTP 200.
+52 passing Node tests cover all four complete practice journeys through a jsdom DOM, error feedback, hook-row height, sequential wave fitting, optional steaming, loose bands, wave-system gating, replay retaining the current real-world action, scrubbing, keyboard focus and on-demand supplier content. Every local image is present; the preview responds with HTTP 200.
 
 Images and rasterised SVG compositions were visually reviewed. Browser layout inspection was unavailable because local browser use is disabled in Work settings. Desktop, short-laptop and mobile layout rules are implemented but must receive browser visual review before integration into the live shop. External YouTube playback also requires a browser check.
 
 The private Site is separate from CurtainsUK production. The repository integration bundle is prepared from protected source `12053b84`. No Shopify theme, live navigation, adviser routes, API aliases, checkout or feature switch is changed.
 
 Integration route: the static entry is `/hanging-studio/index.html`. It is intentionally unlinked pending browser visual review and product approval. The bundle can also be hosted separately for a Shopify page embed.
+
+The extended feature audit and prioritised improvements are recorded in [HANGING_STUDIO_QA.md](./HANGING_STUDIO_QA.md).

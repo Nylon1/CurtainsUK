@@ -1,3 +1,5 @@
+> Historical audit of the superseded multi-heading guide. The active pencil-only walkthrough and its 12 checks are described in HANGING_STUDIO.md.
+
 # Hanging Studio feature review — 2 November 2026
 
 The expanded automated suite passes **52 tests**, including all 12 heading/mode journeys (25 lesson steps across three modes). Ten newly added regression cases initially failed; the corresponding defects were repaired. This is a functional review, not a browser or accessibility certification.

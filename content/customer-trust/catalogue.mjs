@@ -147,7 +147,7 @@ export const pages = [
     ['Here to help','Contact '+support+' for customer support. CurtainsUK is operated by Apex Curtains Ltd.'],
   ],[],{titleTag:'About CurtainsUK | Made-to-Measure Curtains & Fabric Guidance',descriptionTag:'Learn about CurtainsUK, our fabric-first approach, Fabric Intelligence, curtain style guidance and made-to-measure service.'}),
 ];
-export const aliasesexport const aliases = {
+export const aliases = {
   '/pages/privacy-policy':'/policies/privacy-policy',
   '/pages/terms-and-conditions':'/policies/terms-of-service',
   '/pages/faq':'/pages/faq-1',

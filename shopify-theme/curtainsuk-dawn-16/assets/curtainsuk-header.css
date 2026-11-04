@@ -1,6 +1,6 @@
 .section-cuk-header { position: sticky; top: 0; z-index: 30; background: #f5f1e9; }
 #curtainsuk-inspiration, #curtainsuk-help { scroll-margin-top: 145px; }
-@media (max-width: 1050px) { #curtainsuk-inspiration, #curtainsuk-help { scroll-margin-top: 86px; } }
+@media (max-width: 1200px) { #curtainsuk-inspiration, #curtainsuk-help { scroll-margin-top: 86px; } }
 .cuknav { --cuknav-ink: #173d35; --cuknav-paper: #f5f1e9; display: block; color: var(--cuknav-ink); font-family: var(--font-body-family); }
 .cuknav *, .cuknav *::before, .cuknav *::after { box-sizing: border-box; }
 .cuknav a { color: inherit; text-decoration: none; }
@@ -55,6 +55,7 @@
 .cuknav__item--split > a { padding-right: 2px !important; }
 .cuknav__item--split > .cuknav__disclosure > summary { min-width: 30px; justify-content: center; padding-left: 5px; padding-right: 8px; }
 .cuknav__dropdown { box-shadow: 0 18px 35px #173d3523; border-radius: 0 0 12px 12px; }
+.cuknav__desktop .cuknav__item:is(:nth-last-child(2),:nth-last-child(3)) .cuknav__dropdown { left: auto; right: 0; }
 .cuknav__dropdown a { border-bottom: 1px solid #dfe4d9; transition: padding-left .18s ease, background-color .18s ease; }
 .cuknav__dropdown li:last-child a { border-bottom: 0; }
 .cuknav__dropdown a:hover, .cuknav__dropdown a:focus-visible { padding-left: 9px; background: #e8ede3; text-decoration: none; }
@@ -75,14 +76,14 @@
 .cuknav__search-field { display: flex; align-items: center; border-bottom: 1px solid #173d35; }
 .cuknav__search-field input { min-width: 0; width: 100%; min-height: 52px; border: 0; border-radius: 0; background: transparent; padding: 12px 0; font-size: 17px; }
 .cuknav__no-js { padding: 0 24px 24px; }
-@media (min-width: 1051px) { .cuknav__no-js { display: none; } }
+@media (min-width: 1201px) { .cuknav__no-js { display: none; } }
 .cuknav__desktop a[href="/pages/smart-track-studio"] { max-width: 120px; white-space: normal; text-align: center; }
-@media (min-width: 1051px) and (max-width: 1250px) {
+@media (min-width: 1201px) and (max-width: 1450px) {
   .cuknav .cuknav__desktop > .cuknav__list:has(a[href="/pages/smart-track-studio"]) { gap: 4px; padding-inline: 12px; }
   .cuknav__desktop .cuknav__list:has(a[href="/pages/smart-track-studio"]) .cuknav__item > a,
   .cuknav__desktop .cuknav__list:has(a[href="/pages/smart-track-studio"]) .cuknav__disclosure > summary { font-size: 13px; padding-inline: 4px; }
 }
-@media (max-width: 1050px) {
+@media (max-width: 1200px) {
   .cuknav__desktop, .cuknav__room-action, .cuknav__bar .cuknav__secondary, .cuknav__account { display: none; }
   .cuknav__bar { min-height: 68px; display: grid; grid-template-columns: 48px minmax(0, 1fr) 96px; gap: 0; padding: 0 12px; }
   .cuknav__menu-toggle { display: inline-flex; }

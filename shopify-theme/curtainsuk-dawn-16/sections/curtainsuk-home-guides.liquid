@@ -34,8 +34,26 @@
         </a>
       {% endfor %}
     </div>
+    <a class="cukfeature__hanging-feature" href="/pages/how-to-hang-curtains" aria-label="Explore How to Hang Your Curtains">
+      <span class="cukfeature__hanging-image"><img src="{{ 'cuk-home-heading-wave.webp' | asset_url }}" width="750" height="562" loading="lazy" decoding="async" alt="Wave curtains hanging in soft, even folds"></span>
+      <span class="cukfeature__hanging-copy"><span class="cukfeature__hanging-eyebrow">After delivery · The hanging guide</span><strong>Hang them beautifully.</strong><span>Watch the film, choose your heading and make a plan with your measurements.</span><span class="cukfeature__hanging-link">Explore the hanging guides <span aria-hidden="true">↗</span></span></span>
+    </a>
   </div>
 </section>
+<style>
+  .cukfeature__hanging-feature{display:grid;grid-template-columns:1.1fr .9fr;min-height:360px;margin-top:clamp(40px,5vw,70px);background:#173d35;color:#f8f6ef!important;text-decoration:none;overflow:hidden}
+  .cukfeature__hanging-image{display:block;min-height:360px;overflow:hidden}
+  .cukfeature__hanging-image img{width:100%;height:100%;min-height:360px;object-fit:cover;transition:transform .5s}
+  .cukfeature__hanging-feature:hover img{transform:scale(1.025)}
+  .cukfeature__hanging-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:20px;padding:clamp(30px,5vw,74px)}
+  .cukfeature__hanging-eyebrow{font-size:10px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#d0d8ca}
+  .cukfeature__hanging-copy strong{font:400 clamp(38px,4.4vw,65px)/1.05 Georgia,serif;letter-spacing:-.04em;max-width:11ch}
+  .cukfeature__hanging-copy>span:nth-child(3){font-size:15px;line-height:1.7;max-width:28em;color:#e1e8de}
+  .cukfeature__hanging-link{display:inline-flex;align-items:center;gap:25px;border-bottom:1px solid #e1e8de;padding-bottom:8px;margin-top:10px;font-size:12px;font-weight:600}
+  .cukfeature__hanging-feature:focus-visible{outline:3px solid #173d35;outline-offset:5px}
+  @media(max-width:749px){.cukfeature__hanging-feature{grid-template-columns:1fr}.cukfeature__hanging-image,.cukfeature__hanging-image img{min-height:0;aspect-ratio:1.45}.cukfeature__hanging-copy{padding:30px 25px 36px}}
+  @media(prefers-reduced-motion:reduce){.cukfeature__hanging-image img{transition:none}}
+</style>
 {% schema %}
 {"name":"Homepage visual guides","tag":"section","class":"section","enabled_on":{"templates":["index"]},"settings":[],"presets":[{"name":"Homepage visual guides"}]}
 {% endschema %}

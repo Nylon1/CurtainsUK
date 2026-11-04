@@ -1,0 +1,15 @@
+<section class="cuk-hanging-mount" aria-label="How to hang your curtains">
+  <iframe title="CurtainsUK hanging guides" src="/apps/curtainsuk-decision/hanging/index.html" loading="eager" allow="fullscreen"></iframe>
+  <p class="cuk-hanging-open"><a href="/apps/curtainsuk-decision/hanging/index.html" target="_blank" rel="noopener">Open the hanging guide in its own window</a></p>
+  <noscript><p>Enable JavaScript to use the personal hanging guide.</p></noscript>
+</section>
+<style>
+  .cuk-hanging-mount{width:100%;max-width:none;margin:0;padding:0}
+  .cuk-hanging-mount iframe{display:block;width:100%;min-height:800px;height:calc(100dvh - 80px);border:0;background:#faf9f5}
+  .cuk-hanging-open{position:absolute;left:-9999px}
+  .cuk-hanging-open:focus-within{position:static;padding:12px 20px}
+  @media(max-width:700px){.cuk-hanging-mount iframe{height:calc(100dvh - 56px)}}
+</style>
+{% schema %}
+{"name":"CurtainsUK hanging guide","settings":[],"presets":[{"name":"CurtainsUK hanging guide"}]}
+{% endschema %}

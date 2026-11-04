@@ -1,0 +1,11 @@
+header{position:sticky;top:0;z-index:20;height:72px;background:#faf9f5f5;backdrop-filter:blur(12px)}
+header .logo{height:52px;width:140px}
+header>a.all-guides{font-size:13px;text-decoration:none;border:0;padding:12px 0;min-height:44px;display:flex;align-items:center;gap:10px}
+header>a.all-guides:hover{text-decoration:underline;text-underline-offset:5px}
+.heading-picker{justify-content:flex-end;margin-bottom:22px;gap:12px}
+.heading-picker label{font-size:12px;font-weight:400;color:var(--muted)}
+.heading-picker select{min-width:168px;font-size:13px}
+.workspace,.watch-first+.workspace,#planSummary{scroll-margin-top:88px}
+.visual{top:86px}
+@media(max-width:700px){header{height:65px}.heading-picker{flex-wrap:nowrap;justify-content:flex-start;margin-bottom:20px}.heading-picker select{flex:0 1 185px;min-width:0}.visual{top:0}.workspace,.watch-first+.workspace,#planSummary{scroll-margin-top:80px}}
+@media print{header{display:none}}

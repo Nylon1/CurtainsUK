@@ -114,4 +114,5 @@
   .cuknav__mobile .cuknav__secondary { margin-top: 23px; padding-top: 12px; border-top: 1px solid #bec9b8; }
   .cuknav__mobile .cuknav__secondary a { display: flex; align-items: center; min-height: 48px; font-size: 15px; }
 }
+@media (max-width: 360px) { .cuknav__price-lead { display: none; } }
 @media (prefers-reduced-motion: reduce) { .cuknav *, .cuknav *::before, .cuknav *::after { scroll-behavior: auto; transition: none !important; } }

@@ -8,6 +8,7 @@
 {% liquid
   assign room_url = '/apps/curtainsuk-decision/consultation?experience=premium&entry=match'
   assign home_url = routes.root_url
+  assign campaign_date = 'now' | date: '%Y%m%d' | plus: 0
 %}
 <curtainsuk-header class="cuknav" data-section-id="{{ section.id }}">
   <header class="cuknav__header">
@@ -22,7 +23,13 @@
           <span>Curtains<span class="cuknav__brand-light">UK</span></span>
         {% endif %}
       </a>
-      <a class="cuknav__room-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
+      <div class="cuknav__campaign">
+        {% if campaign_date <= 20261119 %}<a class="cuknav__christmas" href="/pages/fabric-library?view=browse-fabrics"><strong>Order now for estimated delivery before Christmas</strong><span aria-hidden="true">↗</span></a>{% endif %}
+        <div class="cuknav__campaign-links">
+          <a class="cuknav__room-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
+          <a class="cuknav__price-promise" href="/pages/price-promise">Found it for less? Price match <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
       <nav class="cuknav__secondary" aria-label="More from CurtainsUK">
         {% render 'curtainsuk-advisory-navigation', as_link: true %}
         <a href="{{ routes.root_url }}#curtainsuk-help">Contact</a>
@@ -44,7 +51,7 @@
 
         {% if settings.curtainsuk_purchase_controls_enabled == true %}<a href="{{ routes.cart_url }}" class="cuknav__icon cuknav__cart" id="cart-icon-bubble">
           {% if cart == empty %}{{ 'icon-cart-empty.svg' | inline_asset_content }}{% else %}{{ 'icon-cart.svg' | inline_asset_content }}{% endif %}
-          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          <span class="visually-hidden">Samples cart</span>
           {% if cart != empty %}
             <div class="cart-count-bubble"><span aria-hidden="true">{{ cart.item_count }}</span><span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span></div>
           {% endif %}
@@ -60,7 +67,6 @@
   <dialog class="cuknav__dialog cuknav__mobile" id="CukMenu-{{ section.id }}" aria-labelledby="CukMenuTitle-{{ section.id }}" data-dialog="menu">
     <div class="cuknav__dialog-top"><span class="cuknav__dialog-brand" id="CukMenuTitle-{{ section.id }}">CurtainsUK</span><button type="button" class="cuknav__icon" aria-label="Close menu" data-close>{{ 'icon-close.svg' | inline_asset_content }}</button></div>
     <div class="cuknav__mobile-body">
-      <a class="cuknav__mobile-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
       <nav aria-label="Mobile navigation">{% render 'curtainsuk-header-navigation', location: 'mobile', section_id: section.id %}</nav>
       {% if shop.customer_accounts_enabled and settings.curtainsuk_purchase_controls_enabled == true %}<a class="cuknav__mobile-account" href="{{ routes.account_url }}">{{ 'customer.account.title' | t }} <span aria-hidden="true">→</span></a>{% endif %}
     </div>

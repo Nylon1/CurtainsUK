@@ -15,13 +15,13 @@
       "cta": "Choose fabrics & order samples",
       "step_sample": "Order samples. Feel them at home.",
       "step_code": "Receive your private code by email.",
-      "step_save": "Use your credit in Design My Home.",
+      "step_save": "Use your credit in Shopping Cart.",
       "note": "Samples are paid for when ordered. Credit is deducted from your curtain purchase; delivery is excluded.",
       "details": "How sample credit works"
     },
     "title": "Your samples, credited towards your curtains",
     "offer": "We’ll deduct the amount paid for up to 10 fabric samples from your made-to-measure curtain order, including fabrics you don’t choose.",
-    "how": "After payment, we’ll email your private code if you provide an email address. Enter it in Design My Home before checkout to see your saving. No email? Contact us with your sample order reference for help.",
+    "how": "After payment, we’ll email your private code if you provide an email address. Enter it in Shopping Cart before checkout to see your saving. No email? Contact us with your sample order reference for help.",
     "terms": "Codes can be combined for up to 10 samples per curtain order. Each code is single-use. Sample product costs only; delivery, cancelled and refunded samples are excluded. Keep your code private."
   },
   "curtainsuk": {
@@ -271,8 +271,8 @@
     }
   },
   "rooms": {
-    "navigation": "My Home",
-    "title": "My Home",
+    "navigation": "Shopping Cart",
+    "title": "Shopping Cart",
     "opening": "Opening your rooms…",
     "enable_javascript": "Please enable JavaScript to open your saved rooms.",
     "unavailable": "This experience is not available yet.",
@@ -1561,14 +1561,14 @@
       "try": "Try us"
     },
     "home": {
-      "eyebrow": "Design My Home",
+      "eyebrow": "Shopping Cart",
       "title": "Your choices. One beautiful order.",
       "copy": "Bring your chosen pieces together, review every detail and pay in one checkout. Start with one item or plan the whole home.",
       "curtains": "Curtains",
       "cushions": "Cushions",
       "tracks": "Motorised tracks",
       "cta": "Build & review my order",
-      "note": "Open Design My Home to add products or continue your saved order.",
+      "note": "Open Shopping Cart to add products or continue your saved order.",
       "living_alt": "Living room inspiration with curtains, an ivory sofa and coordinated cushions",
       "bedroom_alt": "Bedroom inspiration with curtains and soft upholstered furnishings"
     },
@@ -1773,7 +1773,7 @@
     "journey_styles": "Explore curtain styles",
     "journey_window": "Find your window solution",
     "journey_guides": "Measuring & fitting guides",
-    "journey_home": "Design My Home",
+    "journey_home": "Shopping Cart",
     "journey_advisers": "Meet your advisers",
     "worktable": "The worktable",
     "one_panel": "One panel, shown close up",

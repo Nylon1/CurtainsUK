@@ -898,7 +898,7 @@
       catch { return 0; }
     })();
     const orderEdit = roomsEnabled && params.get('order_item') ? window.CurtainsUKRooms?.orderItem(window.CurtainsUKRooms.ensure(), params.get('order_item')) : null;
-    if (params.get('order_item') && (!orderEdit || orderEdit.type !== 'CURTAIN')) { errorBox.textContent='This order item could not be found. Return to Design My Home.'; errorBox.hidden=false; return; }
+    if (params.get('order_item') && (!orderEdit || orderEdit.type !== 'CURTAIN')) { errorBox.textContent='This order item could not be found. Return to Shopping Cart.'; errorBox.hidden=false; return; }
     const roomsFresh = !orderEdit && roomsEnabled && (params.get('rooms_new') === '1' || roomIntent !== null || savedHouseCurtains > 0);
     const checkoutLabel = () => roomsEnabled ? (orderEdit ? 'Update my order' : 'Add to my order') : root.dataset.productionCheckout === 'true' ? 'Continue to secure checkout' : 'Prepare test checkout';
 
@@ -1318,7 +1318,7 @@
       if (!checkoutForm.reportValidity() || !lastEvaluation || lastEvaluation.calculation.outcome !== "INSTANT_PRICE") return;
       if (roomsEnabled) {
         const button = checkoutForm.querySelector('button[type=submit]');
-        button.disabled = true; button.textContent = 'Updating Design My Home…';
+        button.disabled = true; button.textContent = 'Updating Shopping Cart…';
         try {
           await window.CurtainsUKRoomsFlow.add(lastEvaluation, root.dataset.engineBase, {
             roomId: checkoutForm.elements.roomId.value || null,

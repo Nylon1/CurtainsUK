@@ -42,7 +42,9 @@
       </ul></div>
     </details>
   </li>
-  <li class="cuknav__item"><a href="{{ routes.cart_url }}"{% if request.path == routes.cart_url %} aria-current="page"{% endif %}>Shopping Cart</a></li>
+  {% if settings.curtainsuk_rooms_enabled %}
+    <li class="cuknav__item"><a href="/pages/build-my-rooms"{% if request.path == '/pages/build-my-rooms' %} aria-current="page"{% endif %}>Shopping Cart</a></li>
+  {% endif %}
 </ul>
 {% if location == 'mobile' or location == 'fallback' %}
   <ul class="cuknav__secondary" aria-label="More from CurtainsUK">

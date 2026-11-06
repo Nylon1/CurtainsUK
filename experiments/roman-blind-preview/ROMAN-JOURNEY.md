@@ -10,6 +10,10 @@ Prepared 6 November 2026. The owner subsequently authorised a live Roman blinds 
 - The Roman checkout release requires the database migration, signed production deployment, current Roman dispatch estimate, purchase gate and paid-webhook gate. Existing product gates are preserved. Adding an item to the browser cart is not a stock reservation.
 - The visualiser remains a fixed 140 × 140 cm example. It does not depict a blind to the customer's exact order dimensions.
 
+## Owner-confirmed dispatch, 6 November 2026
+
+The owner confirmed an estimated Roman blind dispatch of **4–5 calendar weeks after order confirmation**. This is dispatch, not a guaranteed delivery date. The server-only Vercel configuration `CURTAINSUK_MY_HOME_ROMAN_DISPATCH_JSON` was added for Production and Preview with `status: confirmed`, `unit: calendar-weeks`, `minimumCalendarWeeks: 4`, `maximumCalendarWeeks: 5`, `startsFrom: order-confirmation`, `confirmedAt: 2026-11-06` and the conversation approval reference. No existing environment value was edited. The Roman purchase and paid-webhook switches remain unset until the protected release is ready to activate.
+
 ## Pages
 
 - `/roman.html`: luxury landing page, supplied lounge photograph, transparent CurtainsUK logo, four poster links, fold comparison and fabric introduction.

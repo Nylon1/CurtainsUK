@@ -14,7 +14,7 @@
       <h1 id="cukstudio-title-{{ section.id }}">{{ 'homepage_studio.hero.title' | t }}</h1>
       <p class="cukstudio__intro">{{ 'homepage_studio.hero.intro' | t }}</p>
       <div class="cukstudio__actions">
-        <a class="cukstudio__button" href="/pages/fabric-library?view=browse-fabrics">{{ 'homepage_studio.hero.shop' | t }} <span aria-hidden="true">↗</span></a>
+        <a class="cukstudio__button" href="#homepage-shop-now">Shop now <span aria-hidden="true">↓</span></a>
         <a class="cukstudio__button cukstudio__button--outline" href="#homepage-room-visualiser">{{ 'homepage_studio.hero.visualiser' | t }} <span aria-hidden="true">↓</span></a>
       </div>
     </div>
@@ -25,6 +25,30 @@
         <img src="{{ 'cuk-home-room-inspiration.webp' | asset_url }}" width="1400" height="700" loading="eager" fetchpriority="high" alt="{{ 'homepage_studio.visualiser.inspiration_alt' | t | escape }}">
       {% endif %}
       <a class="cukstudio__hero-caption" href="#homepage-room-visualiser"><span><small>{{ 'homepage_studio.hero.caption_kicker' | t }}</small><strong>{{ 'homepage_studio.hero.caption' | t }}</strong></span><span class="cukstudio__circle" aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+  <section class="cukstudio__shop" id="homepage-shop-now" aria-labelledby="cukstudio-shop-title-{{ section.id }}">
+    <div class="cukstudio__shop-heading">
+      <p class="cukstudio__eyebrow">THE CURTAINSUK COLLECTION</p>
+      <h2 id="cukstudio-shop-title-{{ section.id }}">Shop now.</h2>
+      <p>Made to measure. Beautifully yours.</p>
+    </div>
+    <div class="cukstudio__shop-grid">
+      <a class="cukstudio__shop-card cukstudio__shop-card--curtains" href="/pages/fabric-library?view=browse-fabrics">
+        <img src="{{ 'cuk-home-room-inspiration.webp' | asset_url }}" width="1400" height="700" loading="lazy" decoding="async" alt="">
+        <span class="cukstudio__shop-card-top">01 / MADE TO MEASURE</span>
+        <span class="cukstudio__shop-card-bottom"><strong>Curtains</strong><span>Shop curtains <span aria-hidden="true">↗</span></span></span>
+      </a>
+      <a class="cukstudio__shop-card cukstudio__shop-card--romans" href="/apps/curtainsuk-decision/roman/shop.html">
+        <img src="{{ 'cuk-home-roman-lounge.jpg' | asset_url }}" width="1280" height="1280" loading="lazy" decoding="async" alt="">
+        <span class="cukstudio__shop-card-top">02 / TAILORED TO YOUR WINDOW</span>
+        <span class="cukstudio__shop-card-bottom"><strong>Roman blinds</strong><span>Shop Roman blinds <span aria-hidden="true">↗</span></span></span>
+      </a>
+      <a class="cukstudio__shop-card cukstudio__shop-card--cushions" href="/pages/cushion-studio">
+        <img src="{{ 'cuk-home-cushion-editorial.webp' | asset_url }}" width="1536" height="1024" loading="lazy" decoding="async" alt="">
+        <span class="cukstudio__shop-card-top">03 / THE FINISHING TOUCH</span>
+        <span class="cukstudio__shop-card-bottom"><strong>Cushions</strong><span>Shop cushions <span aria-hidden="true">↗</span></span></span>
+      </a>
     </div>
   </section>
   {% render 'curtainsuk-home-sample-credit', section_id: section.id %}

@@ -1,14 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The production mixed-order checkout accepts curtains, cushions and motorised tracks, while the Roman blind journey remains a local preview without an order path.",
-  "newRule": "The existing Shopping Cart also accepts Roman blinds with server-side pricing, current stock checks, a complete Evans headrail kit, shared shipping, immutable draft-order snapshots and paid fabric-usage recording. Existing product gates and checkout paths remain in force.",
-  "reason": "The owner asked for the Roman blinds journey to go live, for Add to Shopping Cart to save into Design My Home, and for Roman blinds to join a mixed order with curtains and other products. Protected regression tests cover cart persistence and paid-order reconciliation.",
-  "ownerApprovedDecision": "The owner explicitly authorised the live Roman blinds release and mixed-order path, then confirmed 4-5 calendar weeks after order confirmation for Roman dispatch. The protected GitHub policy still requires the owner's exact-head approval comment before this PR can merge.",
+  "previousRule": "The recorded production theme manifest predates the Roman blinds release and the homepage opens with a curtains-only shopping choice.",
+  "newRule": "The recorded production theme manifest includes the Roman blinds files, three homepage Shop now visuals for curtains, Roman blinds and cushions, and matching Shopping Cart guidance. The established production approval and deployment rules are unchanged.",
+  "reason": "The owner requested a prominent luxury Shop now entry on the homepage. The Shopping Cart copy now includes its Roman option. The source manifest is updated in the same follow-up so the composed MAIN theme can be verified against a full readback after scoped publication.",
+  "ownerApprovedDecision": "The owner explicitly requested the homepage product paths and high-quality visuals after authorising the Roman release. The protected GitHub policy requires a separate exact-head Nylon1 comment for this follow-up PR before it can merge.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/cushion-studio/__tests__/my-home-store.test.ts",
-    "lib/roman-blind/__tests__/mixed-order.test.ts",
-    "lib/smart-track/__tests__/smart-track.test.ts",
+    "docs/PRODUCTION_SURFACES.md",
+    "shopify-theme/production-main-overlay/manifest.json",
     "release/policy-change.json"
   ]
 }

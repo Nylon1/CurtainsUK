@@ -1,12 +1,12 @@
 # CurtainsUK sample-to-sale pilot
 
-Status: private review build on `feat/sample-to-sale-pilot`. It is not deployed or sending email.
+Status: deployed in the protected runtime at `04b4a8df7d61191277723dd03702b9be779575c5`, but gated off. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=false`; no customer code or marketing email has been issued. The active Shopify app version is `sample-to-sale-04b4a8df`, but the actual installation has not granted `read_customers`. Merchant reauthorization and an internal mixed-cart checkout test are still required before code issue.
 
 ## What the pilot now does
 
 The staff page at `/admin/sample-to-sale` reads recent Shopify orders, finds the fabric sample variant and its fabric ID, checks carrier delivery events, checks the customer's current email marketing state and searches their accessible order history for a prior eligible product purchase. It shows four fabric-specific message previews. At the offer stage, staff can generate one personal code after a fresh eligibility check. The page does not send email.
 
-The page uses the existing staff role check and private no-store response headers. The runtime Shopify app needs `read_customers` for current consent and order history, so that scope has been added to the app configuration for review. Until the actual app installation receives that scope, the page must not be treated as operational.
+The page uses the existing staff role check and private no-store response headers. The runtime Shopify app needs `read_customers` for current consent and order history. The scope is in the active app configuration, but is absent from the actual installation's `currentAppInstallation.accessScopes` read. The page must not be treated as operational until the merchant approves the updated scope and a fresh installation read verifies it.
 
 The planner withholds a customer if any required order history is incomplete. It also withholds test, unpaid or cancelled sample orders; orders without carrier-confirmed delivery; customers without a current `SUBSCRIBED` email state; and customers with an existing CurtainsUK product order. A fulfilled order alone is not treated as delivered. A subsequent product order ends the promotional journey.
 

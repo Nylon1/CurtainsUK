@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SIZE,SPEC,foldPlan,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,clothRelief,CHAIN,chainPoint} from './geometry.mjs';
+import {SIZE,SPEC,foldPlan,foldPoint,visibleDrop,sourceUv,MIN_PREVIEW_SOURCE,phaseForLift,coverage,clothRelief,CHAIN,chainPoint} from './geometry.mjs';
 test('published standard odd-section method includes the bottom half-fold',()=>{
  const p=foldPlan('stacked');assert.equal(p.rodCount,3);assert.equal(p.halfSections,7);
  assert.ok(Math.abs(p.depth-.19)<1e-12);assert.ok(Math.abs(p.bottomHalf-.19)<1e-12);
@@ -27,7 +27,11 @@ test('plans preserve finished cloth length and choose rod count from the actual 
 test('full-width square keeps the same physical scale in both directions',()=>{
  const a=sourceUv(.2,.3,1.42),b=sourceUv(.3,.4,1.42);
  assert.ok(Math.abs((b[0]-a[0])+(b[1]-a[1]))<1e-12);
- assert.throws(()=>sourceUv(0,0,1.37));
+ assert.equal(MIN_PREVIEW_SOURCE,1.3);
+ assert.deepEqual(sourceUv(0,0,1.3),[0,1]);
+ assert.deepEqual(sourceUv(SIZE,SIZE,1.3),[1,0]);
+ assert.throws(()=>sourceUv(0,0,1.299));
+ assert.throws(()=>sourceUv(0,0,NaN));
  for(const s of [0,.7,1.4])for(const x of [0,.7,1.4])for(const uv of sourceUv(x,s,1.42))assert.ok(uv>=0&&uv<=1);
 });
 test('both styles lower fully and raise monotonically without leaving the window',()=>{

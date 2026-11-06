@@ -10,7 +10,7 @@ Prepared 6 November 2026. Do not publish without the owner's later instruction.
 - `/install.html`: existing six-stage Evans BSXL installation guide.
 - `/shop.html`: finished measurements, full live catalogue search/pagination, standard/blackout lining, stacked/cascade, saved design and server-calculated estimate.
 
-Every page shares the same home/navigation/footer. `curtainsuk-roman-design-v1` holds choices locally. Measurement import reads the existing guide and applies no second deduction. Fabric choices collapse into a compact summary after selection. A selected fabric with a confirmed full-width square at least 140 cm wide can appear in the visualiser; narrower/missing-width images leave the shop selection intact and show an explained example in the fixed-size preview. The visualiser still illustrates ivory lining and does not resize to the ordered dimensions.
+Every page shares the same home/navigation/footer. `curtainsuk-roman-design-v1` holds choices locally. Measurement import reads the existing guide and applies no second deduction. Fabric choices collapse into a compact summary after selection. A selected fabric with a confirmed full-width square at least 130 cm wide can appear in the visualiser; narrower/missing-width images leave the shop selection intact and show an explained example in the fixed-size preview. The visualiser still illustrates ivory lining and does not resize to the ordered dimensions.
 
 ## Shared curtain commercial and availability logic
 
@@ -55,7 +55,7 @@ Supplier costs and credentials stay server-side. Only listed static assets are s
 
 The Roman visualiser now has a collapsible search under its featured swatches. It reads the same 11,815-fabric retail catalogue as Shop now, six results per page. It fetches exact fabric details on selection because catalogue browse cards omit full width. A selected fabric is saved in the shared design state and follows into Shop now; returning to the visualiser restores it.
 
-The fixed 140 cm window previews a catalogue fabric only when the verified width is at least 140 cm, its image loads from the CurtainsUK Shopify CDN and the source photograph is square within 5%. Texture UVs use the recorded physical width. An unsuitable or unavailable image leaves the last valid blind in place and explains why; the fabric remains selectable in Shop now. Three featured local swatches remain quick choices.
+The fixed 140 cm window previews a catalogue fabric when its verified width is at least 130 cm, its image loads from the CurtainsUK Shopify CDN and the source photograph is square within 5%. Fabric images from 130 to under 140 cm are enlarged by at most 7.7% to fill the example window, with an on-screen note. Wider images retain their recorded physical width and are centre-cropped. The shop quote still uses the actual fabric width and joins when required. An unsuitable or unavailable image leaves the last valid blind in place and explains why; the fabric remains selectable in Shop now. Three featured local swatches remain quick choices. On 6 November 2026, a read-only count of browsable records with approved square MAIN images found 7,964 at 140 cm or wider and a further 3,628 from 130 to under 140 cm, giving 11,592 previewable fabrics out of 11,815 browsable fabrics.
 
 Checked Acies Peacock (140 cm) in room view, persistence after reload and the handoff to Shop now. Abeja Blush (138 cm) gives the width explanation. Mobile 390 px has no horizontal overflow; desktop catalogue grid and image loading were inspected. No live publication.
 

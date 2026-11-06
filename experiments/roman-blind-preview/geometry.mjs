@@ -79,7 +79,14 @@ export function layerShade(point,phase,style='stacked'){
  return 1-Math.min(.27,shadow);
 }
 export function coverage(raised,style='stacked'){const covered=visibleDrop(raised,style)*100;return{coveredCm:covered,clearCm:SIZE*100-covered,percent:covered/SIZE};}
-export function sourceUv(x,s,fullWidth){if(fullWidth<SIZE)throw Error('Source square does not cover this preview');return[(fullWidth-SIZE)/(2*fullWidth)+x/fullWidth,1-s/fullWidth];}
+export const MIN_PREVIEW_SOURCE=1.3;
+export function sourceUv(x,s,fullWidth){
+ if(!Number.isFinite(fullWidth)||fullWidth<MIN_PREVIEW_SOURCE)throw Error('Source square is too narrow for this preview');
+ // A 130–139 cm square fills the 140 cm example with at most 7.7% enlargement.
+ // Wider squares retain their recorded physical scale and are centre-cropped.
+ const mappedWidth=Math.max(SIZE,fullWidth);
+ return[(mappedWidth-SIZE)/(2*mappedWidth)+x/mappedWidth,1-s/mappedWidth];
+}
 // Cloth relief in material coordinates: rod pockets, gentle panel fullness and hem.
 // Only depth changes; the cut plan, UVs and reported vertical coverage stay fixed.
 export function clothRelief(s,style='stacked'){

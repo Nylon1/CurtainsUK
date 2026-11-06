@@ -127,6 +127,10 @@ export function smartTrackLine(
 /** Reuses the existing checked custom-order transport and total reconciliation. */
 export function buildSmartTrackOrder(input: {
   snapshots: readonly Readonly<SmartTrackSnapshot>[];
+  additionalLines?: ShopifyDraftOrderInput['lineItems'];
+  additionalGoodsMinor?: number;
+  additionalVatMinor?: number;
+  additionalProductTypes?: string[];
   base?: ShopifyDraftOrderExecutionContract;
   key: string;
   reviewId: string;
@@ -140,21 +144,21 @@ export function buildSmartTrackOrder(input: {
   now?: Date;
 }): ShopifyDraftOrderExecutionContract {
   if (
-    !input.snapshots.length ||
+    (!input.snapshots.length && !input.additionalLines?.length) ||
     input.snapshots.length > 32 ||
     !/^[A-Za-z0-9-]{8,100}$/.test(input.key) ||
     !/^[a-f0-9]{64}$/.test(input.reviewId)
   )
     throw Error("TRACK_CHECKOUT_INVALID");
-  const lines = input.snapshots.map((s) => smartTrackLine(s, input.now));
+  const lines = [...input.snapshots.map((s) => smartTrackLine(s, input.now)),...(input.additionalLines??[])];
   if ((input.base?.input.lineItems.length ?? 0) + lines.length > 100)
     throw Error("TRACK_ORDER_TOO_LARGE");
   const goodsGrossAmountMinor =
     (input.base?.expected.goodsGrossAmountMinor ?? 0) +
-    input.snapshots.reduce((n, s) => n + s.price.goodsGrossMinor, 0);
+    input.snapshots.reduce((n, s) => n + s.price.goodsGrossMinor, 0)+(input.additionalGoodsMinor??0);
   const goodsVatAmountMinor =
     (input.base?.expected.goodsVatAmountMinor ?? 0) +
-    input.snapshots.reduce((n, s) => n + s.price.goodsVatMinor, 0);
+    input.snapshots.reduce((n, s) => n + s.price.goodsVatMinor, 0)+(input.additionalVatMinor??0);
   const tag = `CUK_TRACK_${createHash("sha256")
     .update(input.reviewId + ":" + input.key)
     .digest("hex")
@@ -195,7 +199,8 @@ export function buildSmartTrackOrder(input: {
         ...(input.production
           ? ["CURTAINSUK_PRODUCTION"]
           : ["CURTAINSUK_STAGING", "DO_NOT_FULFIL", "NO_REAL_PAYMENT"]),
-        "CURTAINSUK_SMART_TRACK",
+        ...(input.snapshots.length?["CURTAINSUK_SMART_TRACK"]:[]),
+        ...(input.additionalProductTypes?.includes('ROMAN_BLIND')?["CURTAINSUK_ROMAN_BLIND"]:[]),
         tag,
       ],
       customAttributes: [
@@ -213,7 +218,8 @@ export function buildSmartTrackOrder(input: {
               ...(input.base?.input.customAttributes
                 .find((a) => a.key === "curtainsuk_product_types")
                 ?.value.split(",") ?? (input.base ? ["CURTAIN"] : [])),
-              "SMART_TRACK",
+              ...(input.snapshots.length?["SMART_TRACK"]:[]),
+              ...(input.additionalProductTypes??[]),
             ]),
           ].join(","),
         },

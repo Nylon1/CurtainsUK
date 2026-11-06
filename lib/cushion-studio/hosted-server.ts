@@ -231,7 +231,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         const reviewOnly = operation === "my-home-review" || !body.cushions;
         const key = operation === "my-home-review" ? "my-home-review-only" : body.idempotencyKey;
         if (typeof key !== "string") throw Error("MY_HOME_INPUT_INVALID");
-        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly,myHomeCheckout:true}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks?createTrackServices(context):undefined});
+        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly,myHomeCheckout:true}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks||body.romans?createTrackServices(context,{forRoman:Boolean(body.romans)}):undefined});
         result = operation === "my-home-review" ? await reviewMyHomeWithSampleCredit(body as MyHomeInput,authority,{preview:previewSampleCredit}) : await checkoutMyHomeWithSampleCredit(body as MyHomeCheckoutInput,authority,{preview:previewSampleCredit});
       } else if (request.method === "GET" && operation === "catalogue")
         result = await services.catalogue(params);

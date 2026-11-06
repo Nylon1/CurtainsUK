@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Roman Studio | CurtainsUK</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="journey.css"></head>
+<body>
+<header><a class="brand" href="https://www.curtainsuk.com">Curtains<span>UK</span><small>BEAUTIFULLY MADE. PERSONALLY YOURS.</small></a><span class="preview-label">THE ROMAN BLIND STUDY <i>01</i></span></header>
+<main>
+ <section class="scene-panel" aria-label="Interactive Roman blind preview">
+  <div class="scene-heading"><span class="eyebrow">A NEW PERSPECTIVE</span><h1>A little lift.<br>A different light.</h1></div>
+  <div id="scene" role="img" aria-label="140 by 140 centimetre window with a stacked Roman blind"></div>
+  <div id="loading" role="status">Preparing your window…</div>
+  <button id="drag" aria-label="Drag the blind up or down; use arrow keys to adjust" title="Drag up or down"><span aria-hidden="true">↕</span></button>
+  <div class="view-controls" aria-label="View angle"><button data-view="front" aria-pressed="true">Front view</button><button data-view="detail" aria-pressed="false">See the folds</button><button data-view="reverse" aria-pressed="false">Reverse</button><button data-view="room" aria-pressed="false">Room view</button></div>
+  <div class="scene-caption"><span>140 × 140 cm window</span><span class="blind-caption"><span id="style-caption">Stacked Roman</span><small class="lining-note">Ivory lining</small></span></div>
+ </section>
+ <aside>
+  <span class="eyebrow">ROMAN STUDIO</span><h2>Fabric. Folds.<br>Your point of view.</h2><p class="intro">Explore your fabric in a new light. Lift the blind, reveal the view, find your favourite position.</p>
+  <a class="measuring-link" href="measure.html">How to measure your window <span aria-hidden="true">↗</span><small>Inside or outside recess, step by step</small></a>
+  <a class="measuring-link" href="install.html">How to install your blind <span aria-hidden="true">↗</span><small>Illustrated fitting guide for Evans BSXL</small></a>
+  <a class="measuring-link" id="browse-fabrics-link" href="shop.html?browse=1#fabrics">Browse fabrics &amp; shop <span aria-hidden="true">↗</span><small>Filter by price, colour and pattern</small></a><p id="catalogue-preview-note" class="size-note" role="status"></p><div class="section-label"><span>01 / YOUR FABRIC</span><span id="fabric-number">1 of 3</span></div>
+  <div id="swatches" class="swatches"></div>
+  <h3 id="fabric-name"></h3><p id="fabric-meta" class="muted"></p><a id="change-fabric-link" class="change-fabric-link" href="shop.html?browse=1#fabrics">Change fabric <span aria-hidden="true">↗</span></a>
+  <div class="divider"></div>
+  <div class="section-label"><span>02 / CHOOSE YOUR FOLDS</span></div>
+  <div class="styles"><button data-style="stacked" aria-pressed="true">Stacked<small>Neatly aligned folds</small></button><button data-style="cascade" aria-pressed="false">Cascade<small>Stepped layers</small></button></div>
+  <div class="section-label"><label for="lift">03 / LET THE LIGHT IN</label><output id="position">Fully lowered</output></div>
+  <input id="lift" type="range" min="0" max="100" value="0" aria-label="Blind raised percentage">
+  <div class="range-labels"><span>Lowered</span><span>Raised</span></div>
+  <div class="presets"><button data-lift="0" aria-pressed="true">Lowered</button><button data-lift="50" aria-pressed="false">Halfway</button><button data-lift="100" aria-pressed="false">Raised</button></div>
+  <p class="hint">Drag the bottom of the blind or move the slider. Stop wherever you like.</p>
+  <section id="room-controls" class="room-controls" aria-label="Customise the lounge" hidden>
+   <div class="section-label">04 / YOUR ROOM</div>
+   <div class="room-lighting" aria-label="Room lighting"><button data-room-mode="daylight" aria-pressed="true">Daylight</button><button data-room-mode="evening" aria-pressed="false">Evening</button></div>
+   <div class="room-light-options"><label><input id="room-lights" type="checkbox" checked> Lights on</label><label class="sr-only" for="light-tone">Light colour</label><select id="light-tone"><option value="warm">Warm white</option><option value="neutral">Neutral white</option></select></div>
+   <label class="room-label" for="room-asset">Change a colour</label>
+   <select id="room-asset"><option value="walls">Walls</option><option value="ceiling">Ceiling</option><option value="sofa">Sofa</option><option value="armchair">Armchair</option><option value="cushions">Cushions</option><option value="rug">Rug</option><option value="wood">Wood &amp; floor</option><option value="fittings">Light fittings</option><option value="shades">Lampshade</option></select>
+   <div id="room-colours" class="room-colours" aria-label="Room colour palette"></div>
+   <div class="room-custom-colour"><label for="room-colour">Custom colour</label><input id="room-colour" type="color" value="#8d978f"><button id="reset-room" type="button">Reset colours</button></div>
+  </section>
+  <div class="coverage-card"><div class="section-label"><span>WHEN FULLY RAISED</span><span class="estimate">PREVIEW ESTIMATE</span></div><div class="detail-card"><div><span>Window covered at top</span><strong id="covered"></strong></div><div><span>Clear opening below</span><strong id="clear"></strong></div></div><div class="coverage-bar"><span id="cover-bar"></span></div><p id="coverage-label"></p><p id="current-coverage"></p></div>
+  <p class="size-note">Window: 140 cm wide × 140 cm high</p><p id="fold-spec" class="size-note"></p>
+  <p id="scale-note" class="scale-note">Pattern shown at scale from the full-width fabric photograph.</p>
+  <details><summary>Fold calculation & estimates</summary><p>Uses the conventional odd half-section method, including the bottom half-section. Your 7 cm headrail allowance leaves 133 cm to fold. Stacked: seven half-sections at 19 cm, with three rods. Cascade: the folds grow by 2 cm towards the bottom, starting at 16.4 cm; the bottom flap is 22.4 cm. The 15–20 cm target selects the top fold, not a limit on every cascade layer.</p><p id="rod-plan"></p><p>Room view uses an illustrative 4.8 × 5.2 m lounge with a 2.8 m ceiling. The window opening is 140 × 140 cm in every view.</p><p>Coverage assumes the headrail allowance is inside the 140 cm window height. Estimates await your workroom check for fabric thickness, hems and hardware. Screen colours may differ from the sample.</p></details>
+ </aside>
+</main>
+<footer><span>CURTAINSUK / ROMAN STUDY</span><span>Start with the fabric. Make it yours.</span></footer>
+<script type="module" src="app.mjs"></script><script type="module" src="journey.mjs"></script></body></html>

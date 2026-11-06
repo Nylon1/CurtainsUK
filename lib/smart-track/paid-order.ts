@@ -3,6 +3,7 @@ import { expectedLineDiscount } from '../storefront/sample-credit';
 import type { TrackCheckoutGroup } from "./checkout";
 import { trackSpecificationDigest } from "./pricing";
 import { specDigest } from "../cushion-studio/repository";
+import {romanSpecDigest} from '../roman-blind/domain';
 import {
   housePaymentFromShopify,
   shopifyOrderAttributes,
@@ -15,11 +16,14 @@ export function hasSmartTrackPaidLines(value: unknown) {
       l.properties?.some(
         (p) =>
           p.name === "_curtainsuk_track_snapshot_id" ||
-          (p.name === "_curtainsuk_product_type" && p.value === "SMART_TRACK"),
+          p.name === "_curtainsuk_roman_snapshot_id" ||
+          (p.name === "_curtainsuk_product_type" && ["SMART_TRACK","ROMAN_BLIND"].includes(String(p.value))),
       ),
     )
   );
 }
+export function hasRomanPaidLines(value:unknown){return Array.isArray((value as {line_items?:unknown[]})?.line_items)&&
+ (value as {line_items:ShopifyPaidLine[]}).line_items.some(l=>l.properties?.some(p=>p.name==='_curtainsuk_roman_snapshot_id'||p.name==='_curtainsuk_product_type'&&p.value==='ROMAN_BLIND'));}
 const minor = (v: unknown) => {
   if (typeof v !== "string" || !/^\d+(?:\.\d{1,2})?$/.test(v))
     throw Error("TRACK_PAID_AMOUNT_INVALID");
@@ -32,6 +36,7 @@ const ids = [
   "_curtainsuk_track_snapshot_id",
   "_curtainsuk_cushion_snapshot_id",
   "_curtainsuk_snapshot_id",
+  "_curtainsuk_roman_snapshot_id",
 ];
 export interface TrackPaidServices {
   secret: string;
@@ -93,7 +98,8 @@ export async function processSmartTrackPaidOrder(
     tracks: Record<string, string>[];
     cushions: Record<string, string>[];
     curtains: Record<string, string>[];
-  } = { tracks: [], cushions: [], curtains: [] };
+    romans: Record<string, string>[];
+  } = { tracks: [], cushions: [], curtains: [], romans:[] };
   const seen = new Set<string>(),
     lineIds = new Set<number>();
   let goods = 0;
@@ -138,7 +144,7 @@ export async function processSmartTrackPaidOrder(
         ? "SMART_TRACK"
         : present[0] === ids[1]
           ? "CUSHION"
-          : "CURTAIN";
+          : present[0]===ids[3] ? "ROMAN_BLIND" : "CURTAIN";
     if (productType === "SMART_TRACK") {
       const s = group.snapshots.find((s) => s.id === snapshotId);
       if (
@@ -156,6 +162,10 @@ export async function processSmartTrackPaidOrder(
         s.price.goodsGrossMinor !== minor(line.price)
       )
         throw Error("TRACK_PAID_SNAPSHOT_MISMATCH");
+    } else if(productType==='ROMAN_BLIND'){
+      const s=(group.romans??[]).find(s=>s.id===snapshotId);
+      if(!s||s.specSha256!==romanSpecDigest(s.spec)||s.price.goodsGrossMinor!==minor(line.price)||!s.customerApproved)
+        throw Error('ROMAN_PAID_SNAPSHOT_MISMATCH');
     }
     if (
       !group.packets.some(
@@ -168,14 +178,15 @@ export async function processSmartTrackPaidOrder(
         ? "tracks"
         : productType === "CUSHION"
           ? "cushions"
-          : "curtains"
+          : productType === "ROMAN_BLIND" ? "romans" : "curtains"
     ].push({ productType, snapshotId, lineId: String(line.id) });
     goods += minor(line.price);
   }
   const shipping = p.total_shipping_price_set?.presentment_money;
   if (
-    !groups.tracks.length ||
+    !groups.tracks.length&&!groups.romans.length ||
     groups.tracks.length !== group.snapshots.length ||
+    groups.romans.length !== (group.romans??[]).length ||
     groups.cushions.length !== group.cushions.length ||
     goods !== contract.expected.goodsGrossAmountMinor ||
     shipping?.currency_code !== "GBP" ||

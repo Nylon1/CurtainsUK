@@ -1,0 +1,28 @@
+[
+  {
+    "id": "pt-1224-002",
+    "name": "Inverness",
+    "colour": "Caramel",
+    "width": 1.42,
+    "image": "assets/pt-1224-002.webp",
+    "sourceSha256": "e243a1fc6526467eddb8ae3bff0e3efc07f6a0f9e7fd4a4f5316a827b710d3fa",
+    "sourceImage": "/room-visualiser/fixed140/e243a1fc6526467eddb8ae3bff0e3efc07f6a0f9e7fd4a4f5316a827b710d3fa.webp"
+  },
+  {
+    "id": "pt-1225-314",
+    "name": "Stirling",
+    "colour": "Mulberry",
+    "width": 1.42,
+    "image": "assets/pt-1225-314.jpg",
+    "sourceSha256": "2b7cb727ed6d36ed7acc362c4dbc4bef05147226d59970a12d8fcd94804f80eb",
+    "sourceImage": "/room-visualiser/fixed140/2b7cb727ed6d36ed7acc362c4dbc4bef05147226d59970a12d8fcd94804f80eb.jpg"
+  },
+  {
+    "id": "sdg-dstr237715",
+    "name": "Sabu Stripe",
+    "colour": "Stone / Oak",
+    "width": 1.415,
+    "image": "assets/sdg-dstr237715.jpg",
+    "sourceSha256": "514dd76f625621c1b3001c688e2f62cdae813c0eff4d3a557c717be86bbfe82f"
+  }
+]

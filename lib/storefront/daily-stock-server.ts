@@ -35,6 +35,12 @@ export async function dailyStockPosition(
     if (usageError || typeof usage !== 'number' || !Number.isFinite(usage) || usage < 0) throw new Error('DAILY_STOCK_READ_UNAVAILABLE');
     position.confirmedUsageMetres += usage;
   }
+  if(row?.checkedAt&&process.env.CURTAINSUK_ROMAN_PURCHASES_ENABLED==='true'){
+    const {data:usage,error:usageError}=await createSupplierServiceClient().rpc('roman_usage_since',{p_supplier:supplierId,p_sku:supplierSku,p_observed:row.checkedAt});
+    const amount=typeof usage==='number'?usage:typeof usage==='string'?Number(usage):NaN;
+    if(usageError||!Number.isFinite(amount)||amount<0)throw Error('DAILY_STOCK_READ_UNAVAILABLE');
+    position.confirmedUsageMetres+=amount;
+  }
   return {
     decision: dailyStockDecision(position),
     position,

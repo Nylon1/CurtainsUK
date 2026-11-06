@@ -63,3 +63,23 @@ export function clothRelief(s,style='stacked'){
  const hem=Math.exp(-.5*((s-(SIZE-.012))/.008)**2);
  return{depth:.0032*wave*wave-.0011*seam+.005*hem,shade:1-.105*seam+.018*highlight-.045*Math.exp(-.5*((s-(SIZE-.003))/.0025)**2)};
 }
+// Small creases develop only around the fold currently being gathered. They
+// follow the lift position, so pausing the blind also pauses the cloth response.
+export function gatheringProfile(s,phase,style='stacked'){
+ const plan=plans[style];let start=SPEC.headrail;
+ for(let band=0;band<plan.rodCount;band++){
+  const length=plan.sections[band].length,p=progress(phase,band,plan.rodCount);
+  if(s>=start&&s<=start+length){
+   const turn=length*(1-p/2),distance=s-start-turn;
+   const strength=Math.sin(Math.PI*p)*Math.exp(-.5*(distance/.065)**2);
+   return{strength,distance,phase:p};
+  }
+  start+=length;
+ }
+ return{strength:0,distance:0,phase:0};
+}
+export function gatheringDepth(u,profile){
+ const edge=Math.sin(Math.PI*u);
+ // Broad cloth fullness plus shallow diagonal creases between lifting points.
+ return profile.strength*edge*(.006+.0035*Math.sin(7*Math.PI*u+profile.distance*95)*Math.sin(profile.distance*50+u*5));
+}

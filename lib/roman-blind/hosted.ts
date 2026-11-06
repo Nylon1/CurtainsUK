@@ -48,7 +48,7 @@ export async function romanHostedRequest(request:Request,parts:string[]=[]):Prom
  if(!type)return new Response('Not found',{status:404});
  const file=sharedFile?.file||path.join(previewRoot,name);
  try{
-  const body=await readFile(file);
+  const body=await readFile(/*turbopackIgnore: true*/ file);
   return new Response(new Uint8Array(body),{headers:{'Content-Type':type,'X-Content-Type-Options':'nosniff','Cache-Control':type.startsWith('image/')?'public, max-age=3600':'no-store'}});
  }catch{return new Response('Not found',{status:404});}
 }

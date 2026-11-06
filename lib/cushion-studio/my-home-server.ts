@@ -11,6 +11,9 @@ import type { MyHomeServices } from "./my-home";
  * server-only; a browser's asserted dispatch or release flag is never consumed. */
 export function createMyHomeServices(cushion: CushionCheckoutServices, options: {cushionPurchasesEnabled?: boolean;tracks?:SmartTrackServices} = {}): MyHomeServices {
   let curtainDispatch: unknown = OWNER_CONFIRMED_CURTAIN_DISPATCH;
+  let romanDispatch: unknown = null;
+  const romanSource = process.env.CURTAINSUK_MY_HOME_ROMAN_DISPATCH_JSON;
+  if(romanSource){try{romanDispatch=confirmedCushionDispatch(JSON.parse(romanSource));}catch{romanDispatch=null;}}
   const source = process.env.CURTAINSUK_MY_HOME_CURTAIN_DISPATCH_JSON;
   if (source) {
     try { curtainDispatch = confirmedCushionDispatch(JSON.parse(source)); }
@@ -22,7 +25,7 @@ export function createMyHomeServices(cushion: CushionCheckoutServices, options: 
     catch { /* Exploration remains possible while production gates are closed. */ }
   }
   return {
-    tracks:options.tracks,
+    tracks:options.tracks,romanDispatch,romanPurchasesEnabled:process.env.CURTAINSUK_ROMAN_PURCHASES_ENABLED==='true',
     mixed:createMixedServices(cushion),curtainDispatch,
     releases:{curtains,cushions:options.cushionPurchasesEnabled === true,mixed:mixedEnabled()},
     executeHouse:prepared=>executePreparedHouseCheckout(prepared,houseCheckoutConfigFromEnvironment()),

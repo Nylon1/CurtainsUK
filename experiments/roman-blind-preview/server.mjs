@@ -6,6 +6,7 @@ import {catalogue,fabricDetail,price} from './roman-api.ts';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(here,'../..');
 const fixed=new Map([
+ ['/rooms-store.js',path.join(root,'shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-rooms-store.js')],
  ['/logo.png',path.join(root,'lib/hanging-guide/runtime/logo.png')],
  ['/vendor/three.module.js',path.join(root,'lib/room-visualiser/runtime/vendor/three.module.js')],
  ['/vendor/three.core.js',path.join(root,'lib/room-visualiser/runtime/vendor/three.core.js')],

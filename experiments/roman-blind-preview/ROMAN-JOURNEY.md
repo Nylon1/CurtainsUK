@@ -1,6 +1,14 @@
-# Roman blinds journey, local preview
+# Roman blinds journey and mixed-order release
 
-Prepared 6 November 2026. Do not publish without the owner's later instruction.
+Prepared 6 November 2026. The owner subsequently authorised a live Roman blinds journey and a mixed-order Shopping Cart path. The release is still pending production deployment and verification. The earlier sections below record the local preview state at the time of those checks.
+
+## Shopping Cart integration, 6 November 2026
+
+- `shop.html` now offers Add to Shopping Cart when a fabric, finished size, current availability and price estimate are confirmed. It saves a Roman blind product with stable identity into the existing `curtainsuk_house_v1` browser order and opens `/pages/build-my-rooms`.
+- The existing cart displays Roman fabric, finished size, lining, folds, quantity, optional room assignment, and edit/remove actions. Its single review payload includes Roman blinds alongside curtains, cushions and motorised tracks.
+- Server review independently validates the blind specification, fabric, stock, complete Evans headrail tier, pricing, VAT and delivery. The mixed-order draft binds all product snapshots and one shipping amount. The paid-order handler verifies the exact Roman line and records fabric usage once.
+- The Roman checkout release requires the database migration, signed production deployment, current Roman dispatch estimate, purchase gate and paid-webhook gate. Existing product gates are preserved. Adding an item to the browser cart is not a stock reservation.
+- The visualiser remains a fixed 140 × 140 cm example. It does not depict a blind to the customer's exact order dimensions.
 
 ## Pages
 

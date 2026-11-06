@@ -1,4 +1,4 @@
-import * as T from '/vendor/three.module.js';
+import * as T from './vendor/three.module.js';
 import {SIZE,MIN_PREVIEW_SOURCE,FOLDS,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,foldPlan,clothRelief,gatheringProfile,gatheringDepth,layerShade,CHAIN,chainPoint} from './geometry.mjs';
 import {makeMotion,motionPosition} from './motion.mjs';
 import {createLounge} from './lounge.mjs';
@@ -27,7 +27,7 @@ box(5.8,.14,.07,0,.07,-.075,'#f3eee3');
 // Recess, casement frame and projecting sill.
 for(const x of [-.735,.735]){box(.07,1.55,.18,x,1.68,-.08,'#f9f4e8');box(.025,1.38,.06,x<0?-.68:.68,1.68,-.19,'#ece8dd');}
 box(1.54,.07,.18,0,2.415,-.08,'#f9f4e8');box(1.64,.065,.33,0,.94,.015,'#f8f2e5');box(1.53,.06,.13,0,.89,-.02,'#e1d7c4');
-const gardenTexture=await new T.TextureLoader().loadAsync('/garden.jpg');gardenTexture.colorSpace=T.SRGBColorSpace;
+const gardenTexture=await new T.TextureLoader().loadAsync('./garden.jpg');gardenTexture.colorSpace=T.SRGBColorSpace;
 gardenTexture.repeat.set(1,.55);gardenTexture.offset.set(0,.45);
 const garden=new T.Mesh(new T.PlaneGeometry(1.5,1.5),new T.MeshBasicMaterial({map:gardenTexture,color:'#d0d6ba'}));garden.position.set(0,1.68,-.34);scene.add(garden);
 const lounge=await createLounge();lounge.root.visible=false;scene.add(lounge.root);
@@ -103,7 +103,7 @@ if(chosenId){
  const existing=fabrics.findIndex(f=>f.id===chosenId);
  if(existing>=0)initialFabric=existing;
  else try{
-  const response=await fetch('/roman-api/fabric?id='+encodeURIComponent(chosenId));if(!response.ok)throw Error();const chosen=await response.json();
+  const response=await fetch('./roman-api/fabric?id='+encodeURIComponent(chosenId));if(!response.ok)throw Error();const chosen=await response.json();
   if(Number.isFinite(chosen.fullWidthMm)&&chosen.fullWidthMm>=MIN_PREVIEW_SOURCE*1000&&/^https:\/\/cdn\.shopify\.com\//.test(chosen.image)){
    fabrics.push({...chosen,width:chosen.fullWidthMm/1000});initialFabric=fabrics.length-1;
   }else{fallbackPreviewNote='Your selected fabric remains saved in Shop now. This preview needs a verified full-width square image at least 130 cm wide, so an example fabric is shown here.';}

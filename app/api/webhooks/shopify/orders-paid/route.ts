@@ -4,7 +4,7 @@ import { housePaymentFromShopify, shopifyOrderAttributes, type ShopifyPaidLine }
 import { assertVerifiedShopifyWebhook } from "@/lib/storefront/security/shopify-webhook";
 import { sendOpenAiOrderCreated } from "@/lib/storefront/openai-ads-conversions";
 import { hasCushionPaidLines, recordHostedCushionPaidOrder } from '@/lib/cushion-studio/hosted-paid-order';
-import {hasSmartTrackPaidLines} from '@/lib/smart-track/paid-order';
+import {hasSmartTrackPaidLines,hasRomanPaidLines} from '@/lib/smart-track/paid-order';
 import {recordHostedSmartTrackPaidOrder} from '@/lib/smart-track/hosted-paid-order';
 import { SAMPLE_VARIANT_ID } from '@/lib/storefront/sample-order';
 import { issueSampleCredit, settlePaidSampleCredit } from '@/lib/storefront/sample-credit-server';
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     }
     await settlePaidSampleCredit(payload as Record<string,unknown>);
     if(hasSmartTrackPaidLines(payload)){
-      if(process.env.CURTAINSUK_SMART_TRACK_WEBHOOK_ENABLED!=='true')return new NextResponse('Smart track receiver is not enabled',{status:503,headers:{'Cache-Control':'no-store'}});
+      if(hasRomanPaidLines(payload)?process.env.CURTAINSUK_ROMAN_WEBHOOK_ENABLED!=='true':process.env.CURTAINSUK_SMART_TRACK_WEBHOOK_ENABLED!=='true')return new NextResponse('Custom order receiver is not enabled',{status:503,headers:{'Cache-Control':'no-store'}});
       await recordHostedSmartTrackPaidOrder(rawBody,request.headers.get('x-shopify-hmac-sha256'));
       return new NextResponse(null,{status:200});
     }

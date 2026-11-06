@@ -21,10 +21,13 @@ import {
   customerMyHomeDispatch,
   type combinedMyHomeDispatch,
 } from "../cushion-studio/dispatch";
+import {createRomanSnapshot,romanLine,type RomanSnapshot} from '../roman-blind/commerce';
+import type {RomanQuote} from '../roman-blind/pricing';
 export type TrackCheckoutGroup = {
   reviewId: string;
   contract: ShopifyDraftOrderExecutionContract;
   snapshots: Readonly<SmartTrackSnapshot>[];
+  romans?: Readonly<RomanSnapshot>[];
   packets: Record<string, unknown>[];
   cushions: CushionOrderSnapshot[];
 };
@@ -46,6 +49,7 @@ export async function checkoutSmartTrackOrder(
   services: MyHomeServices,
   review: {
     quotes: SmartTrackQuote[];
+    romans?: RomanQuote[];
     shipping: {
       grossMinor: number;
       vatMinor: number;
@@ -62,14 +66,15 @@ export async function checkoutSmartTrackOrder(
   },
 ) {
   const tracks = services.tracks;
-  if (!tracks?.purchasesEnabled || !review.quotes.every((q) => q.purchaseReady))
+  if (!tracks || (review.quotes.length>0&&!tracks.purchasesEnabled) || !review.quotes.every((q) => q.purchaseReady) || !(review.romans??[]).every(q=>q.ready))
     throw Error("TRACK_PURCHASE_DISABLED");
   const prior = await tracks.existing(input.idempotencyKey);
   const execute = async (group: TrackCheckoutGroup) => {
     if (
       group.reviewId !== input.reviewId ||
       !group.contract.paymentEnabled ||
-      group.snapshots.some((s) => s.designId !== input.id)
+      group.snapshots.some((s) => s.designId !== input.id) ||
+      (group.romans??[]).some(s=>s.designId!==input.id)
     )
       throw Error("TRACK_IDEMPOTENCY_CONFLICT");
     const result = await tracks.execute(input.idempotencyKey, group.contract);
@@ -142,6 +147,7 @@ export async function checkoutSmartTrackOrder(
       review.dispatch,
     ),
   );
+  const romans=(review.romans??[]).map(q=>createRomanSnapshot(q,input.id,review.dispatch));
   packets.push(
     ...snapshots.map((s) => ({
       version: 1,
@@ -156,8 +162,13 @@ export async function checkoutSmartTrackOrder(
       dispatchCommitment: s.dispatchCommitment,
     })),
   );
+  packets.push(...romans.map(s=>({version:1,productType:'ROMAN_BLIND',snapshotId:s.id,spec:s.spec,fabric:s.fabric,kit:s.kit,price:s.price,dispatchCommitment:s.dispatchCommitment})));
   const contract = buildSmartTrackOrder({
     snapshots,
+    additionalLines:romans.map(s=>romanLine(s)),
+    additionalGoodsMinor:romans.reduce((n,s)=>n+s.price.goodsGrossMinor,0),
+    additionalVatMinor:romans.reduce((n,s)=>n+s.price.goodsVatMinor,0),
+    additionalProductTypes:romans.length?['ROMAN_BLIND']:[],
     base,
     key: input.idempotencyKey,
     reviewId: input.reviewId,
@@ -178,6 +189,7 @@ export async function checkoutSmartTrackOrder(
     reviewId: input.reviewId,
     contract,
     snapshots,
+    romans,
     packets,
     cushions,
   };

@@ -758,6 +758,7 @@ test("migration denies browser access and enforces immutable track snapshots and
         "utf8",
       ),
     );
+    await db.exec(await readFile("supabase/migrations/20261106183000_roman_mixed_checkout.sql","utf8"));
     const s = spec(),
       p = readyPackage(s.system),
       snapshot = createSmartTrackSnapshot(

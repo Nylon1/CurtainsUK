@@ -15,8 +15,9 @@ import {
 } from "./server";
 export function createTrackServices(
   context: ShopifyAppProxyContext,
+  options:{forRoman?:boolean}={},
 ): SmartTrackServices | undefined {
-  if (!smartTrackEnabled()) return;
+  if (!smartTrackEnabled()&&!options.forRoman) return;
   const owner = (key: string) => myHomeCheckoutOwnerHash(context, key);
   const legacyOwner = context.loggedInCustomerId ? cushionOwnerHash(context) : null;
   const executionOwners = new Map<string, string>();
@@ -58,7 +59,7 @@ export function createTrackServices(
     async execute(key, contract) {
       const config = shopifyDraftOrderConfigFromEnvironment();
       if (
-        !smartTrackPurchasesEnabled() ||
+        !(smartTrackPurchasesEnabled()||(options.forRoman&&process.env.CURTAINSUK_ROMAN_PURCHASES_ENABLED==='true')) ||
         config?.mode !== "CREATE_PRODUCTION_DRAFT"
       )
         throw Error("TRACK_PURCHASE_DISABLED");

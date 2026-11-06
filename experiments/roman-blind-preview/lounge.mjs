@@ -1,11 +1,11 @@
-import * as T from '/vendor/three.module.js';
+import * as T from './vendor/three.module.js';
 
 // Metres. The room is illustrative; the adjoining window remains 1.4 x 1.4 m.
 export const ROOM=Object.freeze({width:4.8,depth:5.2,height:2.8});
 export async function createLounge(){
  const root=new T.Group();root.name='Illustrative lounge, 4.8 x 5.2 x 2.8 m';
  const load=new T.TextureLoader();
- const [oakMap,weaveMap]=await Promise.all([load.loadAsync('/oak.png'),load.loadAsync('/weave.png')]);
+ const [oakMap,weaveMap]=await Promise.all([load.loadAsync('./oak.png'),load.loadAsync('./weave.png')]);
  for(const map of [oakMap,weaveMap]){map.colorSpace=T.SRGBColorSpace;map.wrapS=map.wrapT=T.RepeatWrapping;map.anisotropy=4;}
  oakMap.repeat.set(2,2);weaveMap.repeat.set(5,5);
  const mat=(color,extra={})=>new T.MeshStandardMaterial({color,roughness:.9,...extra});

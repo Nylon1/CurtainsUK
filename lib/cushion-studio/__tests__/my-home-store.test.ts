@@ -45,3 +45,19 @@ test('Removing a room removes its curtains and cushions from checkout, preserves
  house=await Store.removeRoom(lounge.room_id,house.revision,disk);assert.equal(Store.orderItems(house).length,0);
  assert.equal(Store.orderedCushionSpecs(house).length,0);assert.equal(house.rooms.length,0);
 });
+
+test('Roman blinds join the same saved mixed order and retain identity through an edit',async()=>{
+ const disk=storage();let house=(await Store.addCurtain(retained(),{},disk)).house;
+ const roman={version:1,productType:'ROMAN_BLIND',id:randomUUID(),fabricId:'fixture-plain',width:140,drop:160,lining:'STANDARD',fold:'stacked',quantity:1,measurementsConfirmed:true};
+ house=(await Store.addRomanBlind(roman,{},disk)).house;
+ assert.deepEqual(Store.orderItems(house).map((item:any)=>item.type),['CURTAIN','ROMAN_BLIND']);
+ assert.deepEqual(Store.orderedRomanSpecs(house),[roman]);
+ const original=house.products[0].id;
+ house=await Store.updateOrderItem(original,{quantity:2},house.revision,disk);
+ house=(await Store.addRomanBlind({...roman,fold:'cascade',quantity:2},{editItemId:original},disk)).house;
+ assert.equal(house.products[0].id,original);
+ assert.equal(Store.orderedRomanSpecs(house)[0].fold,'cascade');
+ assert.equal(Store.orderedRomanSpecs(house)[0].quantity,2);
+ house=await Store.updateOrderItem(original,{remove:true},house.revision,disk);
+ assert.deepEqual(Store.orderItems(house).map((item:any)=>item.type),['CURTAIN']);
+});

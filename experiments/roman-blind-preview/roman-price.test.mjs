@@ -19,7 +19,7 @@ test('blackout changes the lining rate; cascade does not invent an unapproved su
 test('finished width selects the next verified rail tier at the exact boundary',()=>{
  const a=romanEstimate({...input,width:140},fabric,rules),b=romanEstimate({...input,width:140.1},fabric,rules);
  assert.equal(a.totalMinor,22200);assert.equal(b.totalMinor,22600);
- assert.equal(romanEstimate({...input,width:180.1},fabric,rules).status,'review');
+ assert.equal(romanEstimate({...input,width:180.1},fabric,rules).status,'estimate');
 });
 test('unsupported matching, absent supplier cost and invalid input never produce a numeric price',()=>{
  for(const f of [{...fabric,patternMatchType:'HALF_DROP_MATCH'},{...fabric,supplierCostPerMetre:null},{...fabric,usableWidthMm:0}])assert.equal(romanEstimate(input,f,rules).totalMinor,null);
@@ -38,10 +38,14 @@ test('side seam allowance triggers a join only when cut width exceeds usable fab
  assert.ok(Math.abs(one._fabricMetres-1.7)<1e-8);assert.ok(Math.abs(joined._fabricMetres-3.3)<1e-8);
  assert.equal(joined.totalMinor,22200);
 });
-test('Evans 1:4 set-size range reaches 300 cm, but unpriced tiers stay pending',()=>{
- assert.match(romanEstimate({...input,width:200},fabric,rules).message,/250 cm kit/);
- assert.match(romanEstimate({...input,width:250.1},fabric,rules).message,/300 cm kit/);
- assert.equal(romanEstimate({...input,width:250},fabric,rules).status,'review');
+test('Evans 1:4 set-size range prices 250 and 300 cm tiers',()=>{
+ const at200=romanEstimate({...input,width:200},fabric,rules);
+ const at250=romanEstimate({...input,width:250},fabric,rules);
+ const above250=romanEstimate({...input,width:250.1},fabric,rules);
+ assert.equal(at200.status,'estimate');
+ assert.equal(at250.status,'estimate');
+ assert.equal(above250.status,'estimate');
+ assert.ok(above250.totalMinor>at250.totalMinor);
  assert.match(romanEstimate({...input,width:300.1},fabric,rules).message,/above the largest listed/);
 });
 

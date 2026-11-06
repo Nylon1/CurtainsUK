@@ -1,7 +1,7 @@
 // Local Roman estimate adapter. Uses flat blind quantities, not curtain fullness.
 // These are the BSXL 1:4 trade tiers observed in the signed-in Evans catalogue, 6 Nov 2026.
-// Wider rails require verification rather than extrapolation.
-export const headrails=Object.freeze([{widthMm:1000,costMinor:2024,sku:'790471'},{widthMm:1400,costMinor:2401,sku:'790472'},{widthMm:1800,costMinor:2625,sku:'790473'}]);
+// The 250 and 300 cm tiers were confirmed by owner-supplied Evans account screenshots, 6 Nov 2026.
+export const headrails=Object.freeze([{widthMm:1000,costMinor:2024,sku:'790471'},{widthMm:1400,costMinor:2401,sku:'790472'},{widthMm:1800,costMinor:2625,sku:'790473'},{widthMm:2500,costMinor:3172,sku:'790474'},{widthMm:3000,costMinor:3694,sku:'790475'}]);
 export const romanAllowances=Object.freeze({sideSeamsTotalMm:100,topAndHemTotalMm:250});
 export const evansSetSizeMaxWidthMm=3000;
 export const standardRomanMaxDropCm=250;
@@ -13,7 +13,7 @@ export function romanEstimate(input,fabric,rules){
  if(finishedWidthMm>evansSetSizeMaxWidthMm)return pending('This width is above the largest listed Evans 1:4 set-size headrail, 300 cm. Please ask for a custom quote.');
  if(input.drop>standardRomanMaxDropCm)return pending('Standard Roman blinds have a maximum drop of 250 cm. Please ask for a custom quote for this drop.');
  const rail=headrails.find(r=>r.widthMm>=finishedWidthMm);
- if(!rail)return pending(`This width uses the Evans ${finishedWidthMm<=2500?'250':'300'} cm kit. Its trade price is being confirmed. You can still save your design.`);
+ if(!rail)return pending('This width needs a headrail price check. You can still save your design.');
  if(!Number.isFinite(fabric.usableWidthMm)||fabric.usableWidthMm<=0||!Number.isInteger(fabric.supplierCostPerMetre?.amountMinor)||fabric.supplierCostPerMetre.amountMinor<=0)return pending('This fabric needs a verified price or width before we can calculate.');
  if(fabric.patternMatchType==='HALF_DROP_MATCH')return pending('This pattern needs a workroom matching check before we price your blind.');
  const widths=Math.ceil(cutWidthMm/fabric.usableWidthMm);

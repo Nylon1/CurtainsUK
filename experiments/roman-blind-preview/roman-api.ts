@@ -2,6 +2,7 @@ import { fabricMasterRecordById, verifiedSupplierCostMinor } from '../../lib/fab
 import { toDecisionEngineFabric } from '../../lib/fabric-master/decision-engine';
 import { MTM_PRODUCTION_PRICING_RULE_SET } from '../../lib/decision-engine/seed/production-pricing-rules';
 import { fabricIsPriceEligible } from '../../lib/fabric-master/projection';
+import { BROWSE_PRICE_BANDS } from '../../lib/fabric-master/browse-price-guide';
 import { dailyStockProjection } from '../../lib/storefront/daily-stock-server';
 import { romanEstimate } from './roman-price-core.mjs';
 const upstream='https://www.curtainsuk.com/apps/curtainsuk-decision/catalog';
@@ -15,8 +16,9 @@ function publicFabric(f:any){return {id:f.id,brand:f.brand,collection:f.collecti
 export async function catalogue(params:URLSearchParams){
  const page=Math.max(1,Math.min(10000,Math.floor(Number(params.get('page'))||1))),pageSize=6;
  const query=new URLSearchParams({view:'retail',browseGuide:'1',browseCards:'1',page:String(Math.ceil(page/4))});
- for(const key of ['query','brand'])if(params.get(key))query.set(key,params.get(key)!.slice(0,100));
- const data=await remote(query);return {fabrics:data.fabrics.slice(((page-1)%4)*pageSize,((page-1)%4+1)*pageSize).map(publicFabric),total:data.total,pages:Math.ceil(data.total/pageSize),page};
+ for(const key of ['query','brand','colour','pattern'])if(params.get(key))query.set(key,params.get(key)!.slice(0,150));
+ const price=params.get('guidePrice');if(price&&BROWSE_PRICE_BANDS.some(band=>band.value===price))query.set('guidePrice',price);
+ const data=await remote(query);return {fabrics:data.fabrics.slice(((page-1)%4)*pageSize,((page-1)%4+1)*pageSize).map(publicFabric),total:data.total,pages:Math.ceil(data.total/pageSize),page,facets:{guidePrices:data.facets?.guidePrices??[],discovery:(data.facets?.discovery??[]).filter((facet:any)=>['colour','pattern'].includes(facet.key))}};
 }
 export async function fabricDetail(id:string){if(!/^[a-z0-9][a-z0-9-]{1,100}$/.test(id))throw new Error('Invalid fabric');const data=await remote(new URLSearchParams({view:'retail',fabric:id,visualiser:'1'}));const f=data.fabric??data.fabrics?.[0];if(!f)throw new Error('Fabric unavailable');return publicFabric(f);}
 export async function price(input:any){

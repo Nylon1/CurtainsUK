@@ -19,6 +19,7 @@ Owner instructed that Roman fabric pricing/availability follow curtains. The loc
 The same stock function handles supplier freshness, existing usage and the required metres. The Roman adapter supplies its flat fabric requirement. Stale/insufficient/unavailable stock remains distinct from a price estimate; no ordering or stock reservation is implemented here.
 
 The catalogue uses the existing customer-safe retail endpoint with browseGuide/browseCards enabled, including all 11,815 browsable fabrics observed at verification. Six cards per local page are slices of the existing 24-card server pages. No visualiser-only catalogue filter is applied to shopping.
+The Roman fabric picker now exposes the Browse Fabrics guide-price bands, colour families and pattern choices from the same endpoint. Price bands refer to fabric per metre; the made-to-measure Roman estimate remains separate. Colour and pattern allow multiple selections, price allows one, and all three filters combine with search on the server before pagination. The local API returns only the required public facets. A 6 November 2026 local check found 21 matches for under £30, blue and stripe together; Clear filters restored the full catalogue.
 
 ## Estimate calculation and limits
 

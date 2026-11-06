@@ -12,6 +12,7 @@ Open http://127.0.0.1:4318. The server binds only to loopback and serves an expl
 ## Agreed scope
 
 - A 140 × 140 cm window and matching illustrative blind face.
+- Room view is the fourth camera option. A 4.8 × 5.2 × 2.8 m illustrative lounge uses metre-scale geometry, including a 2.2 m sofa, armchair, coffee table, rug, rear console, art and lighting. The window opening stays exactly 1.4 × 1.4 m across all views; cameras change perspective, never model scale. Reverse reveals this same 3D interior as the blind opens, with warm-grey exterior surround for ivory contrast. Room dimensions are not customer measurements.
 - Stacked and cascade choices, continuous drag, range input, keyboard adjustment and lowered/halfway/raised presets.
 - Full travel takes eight seconds with a gentle start and stop; half travel takes four. Retargeting starts from the current position. Direct dragging follows the hand, and reduced-motion preferences bypass animation. Position and coverage readouts follow the rendered blind.
 - Shallow, local creases develop around the fold being gathered. They follow the material and remain stable when stopped midway, without artificial flutter or changing the calculated coverage.
@@ -31,6 +32,6 @@ The fold plan now uses the conventional odd half-section method, with the shorte
 
 The fold animation is an illustrative surface, not a validated physical simulation. Surface relief now adds restrained rod-pocket creases, gentle panel fullness, rounded returning folds and bottom-hem thickness. These are kept in material coordinates and do not alter physical artwork calibration. Raised coverage remains an estimate pending workroom hardware, lining, hem and stack checks. The headrail allowance is assumed inside the window opening.
 
-Room geometry is original illustrative context. The existing approved garden reference and locally bundled Three.js renderer are reused. No new third-party scene asset or AI-generated supplier artwork is used. Fabric appearance is subject to screen/lighting differences.
+Room geometry is original illustrative context. The existing approved garden reference, oak/weave maps and locally bundled Three.js renderer are reused. No new third-party scene asset or AI-generated supplier artwork is used. Fabric appearance is subject to screen/lighting differences.
 
 Full room customisation, arbitrary window sizes, complete catalogue search, production fitting/calculation rules, quoting and checkout are future scope. Existing curtain/cushion calibration is untouched.

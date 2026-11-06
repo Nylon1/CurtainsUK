@@ -1,6 +1,7 @@
 import * as T from '/vendor/three.module.js';
 import {SIZE,FOLDS,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,foldPlan,clothRelief,gatheringProfile,gatheringDepth,layerShade,CHAIN,chainPoint} from './geometry.mjs';
 import {makeMotion,motionPosition} from './motion.mjs';
+import {createLounge} from './lounge.mjs';
 const $=id=>document.getElementById(id);
 const host=$('scene'), loading=$('loading');
 let renderer;
@@ -15,8 +16,8 @@ const reverseFill=new T.DirectionalLight('#fff6e9',2.3);reverseFill.position.set
 function box(w,h,d,x,y,z,color){const mesh=new T.Mesh(new T.BoxGeometry(w,h,d),new T.MeshStandardMaterial({color,roughness:.85}));mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);return mesh;}
 // Window opening is exactly 1.4 x 1.4 m. Surrounding room is illustrative.
 const top=2.38,bottom=top-SIZE;
-box(2.2,3.3,.18,-1.8,1.65,-.22,'#e6e0d2');box(2.2,3.3,.18,1.8,1.65,-.22,'#e6e0d2');
-box(1.4,.92,.18,0,2.84,-.22,'#e6e0d2');box(1.4,.98,.18,0,.49,-.22,'#e6e0d2');
+const windowWalls=[box(2.2,3.3,.18,-1.8,1.65,-.22,'#e6e0d2'),box(2.2,3.3,.18,1.8,1.65,-.22,'#e6e0d2'),
+ box(1.4,.92,.18,0,2.84,-.22,'#e6e0d2'),box(1.4,.98,.18,0,.49,-.22,'#e6e0d2')];
 box(8,.06,8,0,-.03,1.8,'#bbb09a');
 box(5.8,.14,.07,0,.07,-.075,'#f3eee3');
 // Recess, casement frame and projecting sill.
@@ -25,6 +26,7 @@ box(1.54,.07,.18,0,2.415,-.08,'#f9f4e8');box(1.64,.065,.33,0,.94,.015,'#f8f2e5')
 const gardenTexture=await new T.TextureLoader().loadAsync('/garden.jpg');gardenTexture.colorSpace=T.SRGBColorSpace;
 gardenTexture.repeat.set(1,.55);gardenTexture.offset.set(0,.45);
 const garden=new T.Mesh(new T.PlaneGeometry(1.5,1.5),new T.MeshBasicMaterial({map:gardenTexture,color:'#d0d6ba'}));garden.position.set(0,1.68,-.34);scene.add(garden);
+const lounge=await createLounge();lounge.root.visible=false;scene.add(lounge.root);
 box(.032,1.4,.045,0,1.68,-.22,'#f3f0e7');box(1.4,.032,.045,0,1.55,-.22,'#f3f0e7');
 box(1.42,.045,.06,0,top+.012,.06,'#ded6c5');
 // Right-side operating chain, with a fixed pulley and lower tensioner.
@@ -91,7 +93,7 @@ $('drag').addEventListener('pointerdown',e=>{setLift(raised,true);const rect=hos
 $('drag').addEventListener('pointermove',e=>{if(dragging)setLift(dragging.start+(dragging.startY-e.clientY)/dragging.range,true);});
 function endDrag(){dragging=null;}$('drag').addEventListener('pointerup',endDrag);$('drag').addEventListener('pointercancel',endDrag);$('drag').addEventListener('lostpointercapture',endDrag);
 $('drag').addEventListener('keydown',e=>{const moves={ArrowUp:.05,ArrowDown:-.05,PageUp:.1,PageDown:-.1};if(e.key in moves){e.preventDefault();setLift(target+moves[e.key]);}if(e.key==='Home'){e.preventDefault();setLift(0);}if(e.key==='End'){e.preventDefault();setLift(1);}});
-function resize(){host.parentElement.dataset.view=view;reverseFill.visible=view==='reverse';const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else if(view==='reverse'){camera.position.set(0,1.77,narrow?-4.1:-3.1);camera.lookAt(0,1.73,.09);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
+function resize(){host.parentElement.dataset.view=view;reverseFill.visible=view==='reverse';lounge.root.visible=view==='reverse'||view==='room';garden.visible=view!=='reverse';windowWalls.forEach(w=>w.material.color.set(view==='reverse'?'#97958c':'#e6e0d2'));scene.background.set(view==='reverse'?'#a19e95':'#e5e1d6');const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;camera.fov=view==='room'?(narrow?72:60):36;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else if(view==='reverse'){camera.position.set(0,1.77,narrow?-4.1:-3.1);camera.lookAt(0,1.73,.09);}else if(view==='room'){camera.position.set(0,1.65,4.9);camera.lookAt(0,.95,1.4);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
 new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(0);await selectFabric(0);
 function render(now){
  if(motion){raised=motionPosition(motion,now);if(now>=motion.started+motion.duration){raised=motion.to;motion=null;}updateCloth();syncPosition();}

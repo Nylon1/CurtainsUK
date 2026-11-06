@@ -22,29 +22,34 @@ export function foldPlan(style='stacked',drop=SIZE){
 }
 export const FOLDS=foldPlan().rodCount;
 const plans={stacked:foldPlan('stacked'),cascade:foldPlan('cascade')};
-function progress(phase,band,rods){return Math.max(0,Math.min(1,phase*rods-(rods-1-band)));}
+function progress(phase,band,rods){
+ // The next rod starts gathering just before the lower section finishes.
+ // This keeps the individual folding panels visible through each handover.
+ const handover=.18;
+ return Math.max(0,Math.min(1,(phase*(rods+handover)-(rods-1-band))/(1+handover)));
+}
 // A finite-radius return replaces the sharp doubled-back sheet. Its semicircle
 // consumes real material length; the two straight legs still meet at the rods.
-function foldRadius(p,length){return Math.min(.022*Math.sin(p*Math.PI/2),length*p/Math.PI);}
+function foldRadius(p,length,band){return Math.min((.030-.010*band)*Math.sin(p*Math.PI/2),length*p/Math.PI);}
 function atPhase(s,phase,style){
  const plan=plans[style];
  if(s<=SPEC.headrail)return{down:s,depth:0};
  let local=s-SPEC.headrail,band=0,start=SPEC.headrail,back=0;
  while(band<plan.sections.length&&local>plan.sections[band].length){
   const p=progress(phase,band,plan.rodCount);local-=plan.sections[band].length;
-  start+=plan.sections[band].length*(1-p);back+=2*foldRadius(p,plan.sections[band].length);band++;
+  start+=plan.sections[band].length*(1-p);back+=2*foldRadius(p,plan.sections[band].length,band);band++;
  }
  // The bottom half remains a hanging flap below the last lifting rod.
  if(band===plan.sections.length)return{down:start+local,depth:-back};
  const p=progress(phase,band,plan.rodCount),length=plan.sections[band].length;
  if(p===0)return{down:start+local,depth:-back};
- const h=length*(1-p),radius=foldRadius(p,length),arc=Math.PI*radius;
+ const h=length*(1-p),radius=foldRadius(p,length,band),arc=Math.PI*radius;
  const front=(length-arc+h)/2,returnLength=(length-arc-h)/2;
  let down,depth;
  if(local<front){
   const t=local/front;
   // The face gently bows as it loses tension, with smooth tangency at each end.
-  const fullness=.018*Math.sin(p*Math.PI/2)+.010*Math.sin(p*Math.PI);
+  const fullness=.010*Math.sin(p*Math.PI/2)+.007*Math.sin(p*Math.PI);
   down=local;depth=fullness*Math.sin(Math.PI*t)**2;
  }else if(local<=front+arc&&radius>1e-10){
   const angle=(local-front)/radius;
@@ -65,7 +70,7 @@ export function layerShade(point,phase,style='stacked'){
  const plan=plans[style];let start=plan.headrail,back=0,shadow=0;
  for(let band=0;band<plan.rodCount;band++){
   const length=plan.sections[band].length,p=progress(phase,band,plan.rodCount);
-  const radius=foldRadius(p,length),h=length*(1-p);
+  const radius=foldRadius(p,length,band),h=length*(1-p);
   const edge=start+(length-Math.PI*radius+h)/2+radius;
   const behind=Math.max(0,Math.min(1,(-back-radius-point.depth-.003)/.018));
   shadow+=.22*p*behind*Math.exp(-.5*((point.down-edge-.004)/.014)**2);
@@ -106,4 +111,18 @@ export function gatheringDepth(u,profile){
  const edge=Math.sin(Math.PI*u);
  // Broad cloth fullness plus shallow diagonal creases between lifting points.
  return profile.strength*edge*(.006+.0035*Math.sin(7*Math.PI*u+profile.distance*95)*Math.sin(profile.distance*50+u*5));
+}
+
+export const CHAIN=Object.freeze({radius:.018,straight:.62,length:2*.62+2*Math.PI*.018});
+// A fixed continuous loop. Beads circulate; the loop itself does not bob up/down.
+export function chainPoint(distance){
+ const {radius:r,straight:h,length}=CHAIN;
+ let s=((distance%length)+length)%length;
+ if(s<h)return{x:r,y:-s};
+ s-=h;
+ if(s<Math.PI*r){const a=s/r;return{x:r*Math.cos(a),y:-h-r*Math.sin(a)};}
+ s-=Math.PI*r;
+ if(s<h)return{x:-r,y:-h+s};
+ const a=Math.PI+(s-h)/r;
+ return{x:r*Math.cos(a),y:-r*Math.sin(a)};
 }

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SIZE,SPEC,foldPlan,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,clothRelief} from './geometry.mjs';
+import {SIZE,SPEC,foldPlan,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,clothRelief,CHAIN,chainPoint} from './geometry.mjs';
 test('published standard odd-section method includes the bottom half-fold',()=>{
  const p=foldPlan('stacked');assert.equal(p.rodCount,3);assert.equal(p.halfSections,7);
  assert.ok(Math.abs(p.depth-.19)<1e-12);assert.ok(Math.abs(p.bottomHalf-.19)<1e-12);
@@ -74,4 +74,32 @@ test('rounded folds stay attached at rods and retain their material length',()=>
   }
   assert.ok(Math.abs(length-SIZE)<SIZE*.02,'rounded returns do not stretch the fabric significantly');
  }
+});
+
+test('nested stacked sections retain distinct visible return edges',()=>{
+ const plan=foldPlan('stacked'),phase=phaseForLift(1);let start=plan.headrail,last=null;
+ for(const section of plan.sections){
+  let edge={down:-Infinity};
+  for(let i=0;i<=1000;i++){
+   const point=foldPoint(start+section.length*i/1000,1,phase);
+   if(point.down>edge.down)edge=point;
+  }
+  if(last){assert.ok(edge.down-last.down>.003);assert.ok(edge.depth<last.depth-.01);}
+  last=edge;start+=section.length;
+ }
+});
+
+test('operating chain loops continuously with opposing strand travel',()=>{
+ const period=CHAIN.length;
+ for(const distance of [-.2,0,.1,period,period+.5]){
+  const a=chainPoint(distance),b=chainPoint(distance+period);
+  assert.ok(Math.hypot(a.x-b.x,a.y-b.y)<1e-12);
+ }
+ for(const join of [0,CHAIN.straight,CHAIN.straight+Math.PI*CHAIN.radius,2*CHAIN.straight+Math.PI*CHAIN.radius]){
+  const a=chainPoint(join-1e-7),b=chainPoint(join+1e-7);
+  assert.ok(Math.hypot(a.x-b.x,a.y-b.y)<3e-7);
+ }
+ const other=CHAIN.straight+Math.PI*CHAIN.radius;
+ assert.ok(chainPoint(.21).y<chainPoint(.2).y);
+ assert.ok(chainPoint(other+.21).y>chainPoint(other+.2).y);
 });

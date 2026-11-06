@@ -1,5 +1,5 @@
 import * as T from '/vendor/three.module.js';
-import {SIZE,FOLDS,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,foldPlan,clothRelief,gatheringProfile,gatheringDepth,layerShade} from './geometry.mjs';
+import {SIZE,FOLDS,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,foldPlan,clothRelief,gatheringProfile,gatheringDepth,layerShade,CHAIN,chainPoint} from './geometry.mjs';
 import {makeMotion,motionPosition} from './motion.mjs';
 const $=id=>document.getElementById(id);
 const host=$('scene'), loading=$('loading');
@@ -26,6 +26,25 @@ gardenTexture.repeat.set(1,.55);gardenTexture.offset.set(0,.45);
 const garden=new T.Mesh(new T.PlaneGeometry(1.5,1.5),new T.MeshBasicMaterial({map:gardenTexture,color:'#d0d6ba'}));garden.position.set(0,1.68,-.34);scene.add(garden);
 box(.032,1.4,.045,0,1.68,-.22,'#f3f0e7');box(1.4,.032,.045,0,1.55,-.22,'#f3f0e7');
 box(1.42,.045,.06,0,top+.012,.06,'#ded6c5');
+// Right-side operating chain, with a fixed pulley and lower tensioner.
+const chainX=.795,chainTop=top-.035,chainZ=.15;
+box(.052,.054,.04,chainX,chainTop+.008,.115,'#b8b2a3');
+box(.028,.04,.025,chainX,chainTop-CHAIN.straight-CHAIN.radius,.125,'#c2bcad');
+class ChainLoop extends T.Curve{getPoint(t,target=new T.Vector3()){const p=chainPoint(t*CHAIN.length);return target.set(chainX+p.x,chainTop+p.y,chainZ);}}
+const chainCord=new T.Mesh(new T.TubeGeometry(new ChainLoop(),180,.0011,5,true),new T.MeshStandardMaterial({color:'#827a6d',roughness:.55}));scene.add(chainCord);
+const beadCount=Math.ceil(CHAIN.length/.012),chainBeads=new T.InstancedMesh(new T.SphereGeometry(.0035,8,6),new T.MeshStandardMaterial({color:'#c3b9a5',metalness:.5,roughness:.35}),beadCount);
+chainBeads.instanceMatrix.setUsage(T.DynamicDrawUsage);chainBeads.castShadow=true;chainBeads.frustumCulled=false;scene.add(chainBeads);
+const beadMatrix=new T.Matrix4();let lastChainLift=-1;
+function updateChain(lift){
+ if(lift===lastChainLift)return;lastChainLift=lift;
+ // The right strand travels down when raising; lowering reverses both strands.
+ for(let i=0;i<beadCount;i++){
+  const p=chainPoint(i*CHAIN.length/beadCount+lift*1.5);
+  beadMatrix.makeTranslation(chainX+p.x,chainTop+p.y,chainZ);chainBeads.setMatrixAt(i,beadMatrix);
+ }
+ chainBeads.instanceMatrix.needsUpdate=true;
+ host.dataset.chainTravel=(lift*1.5).toFixed(4);
+}
 // Quiet interior details give scale without adding room controls to this study.
 box(.82,.045,.42,-1.35,.65,.25,'#b39c7b');for(const x of [-1.69,-1.01])for(const z of [.11,.4])box(.035,.64,.035,x,.32,z,'#b8a283');
 const pot=new T.Mesh(new T.CylinderGeometry(.1,.075,.24,40),new T.MeshStandardMaterial({color:'#cbbda3',roughness:1}));pot.position.set(-1.34,.79,.2);pot.castShadow=true;scene.add(pot);
@@ -67,10 +86,11 @@ $('drag').addEventListener('pointerdown',e=>{setLift(raised,true);const rect=hos
 $('drag').addEventListener('pointermove',e=>{if(dragging)setLift(dragging.start+(dragging.startY-e.clientY)/dragging.range,true);});
 function endDrag(){dragging=null;}$('drag').addEventListener('pointerup',endDrag);$('drag').addEventListener('pointercancel',endDrag);$('drag').addEventListener('lostpointercapture',endDrag);
 $('drag').addEventListener('keydown',e=>{const moves={ArrowUp:.05,ArrowDown:-.05,PageUp:.1,PageDown:-.1};if(e.key in moves){e.preventDefault();setLift(target+moves[e.key]);}if(e.key==='Home'){e.preventDefault();setLift(0);}if(e.key==='End'){e.preventDefault();setLift(1);}});
-function resize(){host.parentElement.dataset.view=view;const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else{camera.position.set(narrow?1.5:1.2,2.12,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
+function resize(){host.parentElement.dataset.view=view;const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
 new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(0);await selectFabric(0);
 function render(now){
  if(motion){raised=motionPosition(motion,now);if(now>=motion.started+motion.duration){raised=motion.to;motion=null;}updateCloth();syncPosition();}
+ updateChain(raised);
  const point=new T.Vector3(0,top-visibleDrop(raised,style),.11).project(camera);const rect=host.getBoundingClientRect();
  $('drag').style.left=((point.x+1)*rect.width/2)+'px';$('drag').style.top=((1-point.y)*rect.height/2+10)+'px';
  renderer.render(scene,camera);requestAnimationFrame(render);

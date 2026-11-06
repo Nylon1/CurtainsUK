@@ -2,6 +2,8 @@ import * as T from '/vendor/three.module.js';
 import {SIZE,FOLDS,foldPoint,visibleDrop,sourceUv,phaseForLift,coverage,foldPlan,clothRelief,gatheringProfile,gatheringDepth,layerShade,CHAIN,chainPoint} from './geometry.mjs';
 import {makeMotion,motionPosition} from './motion.mjs';
 import {createLounge} from './lounge.mjs';
+import {readDesign,saveDesign} from './journey.mjs';
+const journeyChoice=readDesign(),journeyQuery=new URLSearchParams(location.search);
 const $=id=>document.getElementById(id);
 const host=$('scene'), loading=$('loading');
 let renderer;
@@ -92,8 +94,21 @@ $('room-asset').addEventListener('change',syncRoomControls);$('room-colour').add
 $('reset-room').addEventListener('click',()=>{roomState.colours={...lounge.defaults};lounge.resetColors();syncRoomControls();applyRoomScene();saveRoom();});syncRoomControls();
 function updateCloth(){const phase=phaseForLift(raised,style);for(let r=0;r<=rows;r++){const s=r/rows*SIZE,p=foldPoint(s,raised,phase,style),relief=clothRelief(s,style),gather=gatheringProfile(s,phase,style),shade=relief.shade*layerShade(p,phase,style);for(let c=0;c<=columns;c++){const x=c/columns*SIZE,i=r*(columns+1)+c;positions[i*3]=x-SIZE/2;positions[i*3+1]=top-p.down;positions[i*3+2]=.09+p.depth+relief.depth*(.85+.15*Math.sin(c/columns*Math.PI))+gatheringDepth(c/columns,gather)+.00035*Math.sin(c/columns*Math.PI*4)*Math.sin(r/rows*Math.PI);colours[i*3]=colours[i*3+1]=colours[i*3+2]=shade;const uv=sourceUv(x,s,currentWidth);uvs[i*2]=uv[0];uvs[i*2+1]=uv[1];}}geometry.attributes.position.needsUpdate=true;geometry.attributes.uv.needsUpdate=true;geometry.attributes.color.needsUpdate=true;geometry.computeVertexNormals();geometry.computeBoundingSphere();}
 const fabrics=await fetch('fabrics.json').then(r=>r.json());
+let initialFabric=0;
+const chosenId=journeyQuery.get('fabric')||journeyChoice.fabricId;
+if(chosenId){
+ const existing=fabrics.findIndex(f=>f.id===chosenId);
+ if(existing>=0)initialFabric=existing;
+ else try{
+  const response=await fetch('/roman-api/fabric?id='+encodeURIComponent(chosenId));if(!response.ok)throw Error();const chosen=await response.json();
+  if(Number.isFinite(chosen.fullWidthMm)&&chosen.fullWidthMm>=SIZE*1000&&/^https:\/\/cdn\.shopify\.com\//.test(chosen.image)){
+   fabrics.push({...chosen,width:chosen.fullWidthMm/1000});initialFabric=fabrics.length-1;
+  }else{$('catalogue-preview-note').textContent='Your selected fabric remains saved in Shop now. This fixed 140 cm preview needs a full-width image at least 140 cm wide, so an example fabric is shown here.';}
+ }catch{$('catalogue-preview-note').textContent='Your selected fabric could not load here. Your shop choices remain saved; an example fabric is shown.';}
+}
+if(journeyChoice.lining==='BLACKOUT')$('catalogue-preview-note').textContent+=' The visualiser shows ivory lining; your blackout choice stays saved in Shop now.';
 async function selectFabric(index){const token=++request;loading.hidden=false;loading.textContent='Loading fabric…';try{const f=fabrics[index],texture=await new T.TextureLoader().loadAsync(f.image);if(token!==request){texture.dispose();return;}texture.colorSpace=T.SRGBColorSpace;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());material.map=texture;material.needsUpdate=true;currentTexture?.dispose();currentTexture=texture;currentWidth=f.width;selected=index;updateCloth();$('fabric-name').textContent=f.name;$('fabric-meta').textContent=f.colour;$('fabric-number').textContent=`${index+1} of ${fabrics.length}`;document.querySelectorAll('#swatches [data-fabric]').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));loading.hidden=true;host.dataset.fabric=f.id;host.dataset.sourceWidth=String(f.width*100);}catch{loading.textContent='Fabric could not load. Choose a fabric to try again.';}}
-fabrics.forEach((f,i)=>{const button=document.createElement('button');button.dataset.fabric=f.id;button.setAttribute('aria-label',`${f.name}, ${f.colour}`);button.setAttribute('aria-pressed','false');const img=document.createElement('img');img.src=f.image;img.alt='';button.append(img);button.addEventListener('click',()=>selectFabric(i));$('swatches').append(button);});
+fabrics.forEach((f,i)=>{const button=document.createElement('button');button.dataset.fabric=f.id;button.setAttribute('aria-label',`${f.name}, ${f.colour}`);button.setAttribute('aria-pressed','false');const img=document.createElement('img');img.src=f.image;img.alt='';button.append(img);button.addEventListener('click',()=>{saveDesign({fabricId:f.id,fabric:f});selectFabric(i);});$('swatches').append(button);});
 function syncPosition(){
  const percent=Math.round(raised*100),moving=motion!==null;
  const label=moving?(target>raised?'Raising':'Lowering')+' · '+percent+'%':percent===0?'Fully lowered':percent===100?'Fully raised':percent+'% raised';
@@ -112,7 +127,7 @@ function setLift(value,direct=false){
  host.dataset.raised=String(Math.round(target*100));updateCoverage();syncPosition();
 }
 function updateCoverage(){const plan=foldPlan(style);$('rod-plan').textContent='Rod pockets from the top: '+plan.rodPositions.map(p=>(p*100).toFixed(1)).join(', ')+' cm.';$('fold-spec').textContent='7 cm headrail · '+plan.rodCount+' rods · '+(plan.depth*100).toFixed(1)+(style==='cascade'?' cm top fold · 2 cm cascade step':' cm fold depth');host.setAttribute('aria-label','140 by 140 centimetre window with a '+style+' Roman blind');const full=coverage(1,style),current=coverage(raised,style);$('covered').innerHTML=full.coveredCm.toFixed(1)+' <small>cm</small>';$('clear').innerHTML=full.clearCm.toFixed(1)+' <small>cm</small>';$('coverage-label').textContent=Math.round(full.percent)+'% of the window height covered';$('cover-bar').style.width=full.percent+'%';$('current-coverage').textContent='At this position: '+current.coveredCm.toFixed(1)+' cm covered · '+current.clearCm.toFixed(1)+' cm clear';}
-document.querySelectorAll('button[data-style]').forEach(b=>b.addEventListener('click',()=>{style=b.dataset.style;document.querySelectorAll('button[data-style]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('style-caption').textContent=(style==='stacked'?'Stacked':'Cascade')+' Roman';host.dataset.style=style;updateCloth();updateCoverage();}));
+document.querySelectorAll('button[data-style]').forEach(b=>b.addEventListener('click',()=>{style=b.dataset.style;saveDesign({fold:style});document.querySelectorAll('button[data-style]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('style-caption').textContent=(style==='stacked'?'Stacked':'Cascade')+' Roman';host.dataset.style=style;updateCloth();updateCoverage();}));
 $('lift').addEventListener('input',e=>setLift(Number(e.target.value)/100));document.querySelectorAll('[data-lift]').forEach(b=>b.addEventListener('click',()=>setLift(Number(b.dataset.lift)/100)));
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));resize();}));
 let dragging=null;
@@ -121,7 +136,13 @@ $('drag').addEventListener('pointermove',e=>{if(dragging)setLift(dragging.start+
 function endDrag(){dragging=null;}$('drag').addEventListener('pointerup',endDrag);$('drag').addEventListener('pointercancel',endDrag);$('drag').addEventListener('lostpointercapture',endDrag);
 $('drag').addEventListener('keydown',e=>{const moves={ArrowUp:.05,ArrowDown:-.05,PageUp:.1,PageDown:-.1};if(e.key in moves){e.preventDefault();setLift(target+moves[e.key]);}if(e.key==='Home'){e.preventDefault();setLift(0);}if(e.key==='End'){e.preventDefault();setLift(1);}});
 function resize(){host.parentElement.dataset.view=view;applyRoomScene();garden.visible=view!=='reverse';scene.background.set(view==='reverse'?'#a19e95':'#e5e1d6');const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;camera.fov=view==='room'?(narrow?72:66):36;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else if(view==='reverse'){camera.position.set(0,1.77,narrow?-4.1:-3.1);camera.lookAt(0,1.73,.09);}else if(view==='room'){camera.position.set(0,1.65,4.9);camera.lookAt(0,.95,1.4);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
-new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(0);await selectFabric(0);
+const requestedStyle=journeyQuery.get('style')||journeyChoice.fold;
+if(['stacked','cascade'].includes(requestedStyle))style=requestedStyle;
+if(journeyQuery.get('view')==='room')view='room';
+document.querySelectorAll('button[data-style]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===style)));
+document.querySelectorAll('button[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
+$('style-caption').textContent=(style==='stacked'?'Stacked':'Cascade')+' Roman';host.dataset.style=style;
+new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(0);await selectFabric(initialFabric);
 function render(now){
  if(motion){raised=motionPosition(motion,now);if(now>=motion.started+motion.duration){raised=motion.to;motion=null;}updateCloth();syncPosition();}
  updateChain(raised);

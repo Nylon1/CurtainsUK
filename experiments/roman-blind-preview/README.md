@@ -3,11 +3,13 @@
 Local preview only, based on protected source `48170133`. Start from the repository root:
 
 ```
-node experiments/roman-blind-preview/server.mjs
+node --import ./scripts/curtainsuk-server-script-loader.mjs --import tsx experiments/roman-blind-preview/server.mjs
 node --test experiments/roman-blind-preview/geometry.test.mjs experiments/roman-blind-preview/motion.test.mjs
 ```
 
-Open http://127.0.0.1:4318. The server binds only to loopback and serves an explicit asset allowlist. No production theme, runtime, flag, database or fabric eligibility changes are included.
+Open http://127.0.0.1:4318/roman.html for the landing page or http://127.0.0.1:4318/index.html for the visualiser. The server binds only to loopback and serves an explicit asset allowlist. No production theme, runtime, flag, database or fabric eligibility changes are included.
+
+The price adapter requires the existing Supabase server environment. Load it with Node's env-file option when launching. Keep that private environment file outside this directory and out of version control. Without it, the public catalogue still works but prices require confirmation. See ROMAN-JOURNEY.md for the estimate assumptions and remaining workroom checks.
 
 ## Agreed scope
 
@@ -36,7 +38,7 @@ The fold animation is an illustrative surface, not a validated physical simulati
 
 Room geometry is original illustrative context. The existing approved garden reference, oak/weave maps and locally bundled Three.js renderer are reused. No new third-party scene asset or AI-generated supplier artwork is used. Fabric appearance is subject to screen/lighting differences.
 
-Full room customisation, arbitrary window sizes, complete catalogue search, production fitting/calculation rules, quoting and checkout are future scope. Existing curtain/cushion calibration is untouched.
+Arbitrary window sizes, final production Roman construction rules and checkout remain future scope. The local Roman landing page, complete catalogue search and server-calculated price estimates are now available. Existing curtain/cushion calibration is untouched.
 
 ## Measuring guide (local draft)
 

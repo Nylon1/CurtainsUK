@@ -49,3 +49,11 @@ Supplier costs and credentials stay server-side. Only listed static assets are s
 - `capture=1` hides scene overlays for screenshot capture without changing geometry or camera. Room capture used a 914 x 640 scene crop; fold captures used x190/y120/600x280 at the normal desktop viewport. No AI reconstruction or altered fabric imagery.
 - Comparison links use `view=detail&style=stacked|cascade&lift=100`; the visualiser validates view/style and clamps finite lift values. Normal entry stays fully lowered. Screenshot mode is not included in customer links.
 - Desktop and 390px mobile checked: no horizontal overflow, all images load, no console errors. Cascade link confirmed detail view, cascade selected and 100% raised. Syntax and diff checks pass. Still local only.
+
+## Visualiser fabric catalogue, 6 November 2026
+
+The Roman visualiser now has a collapsible search under its featured swatches. It reads the same 11,815-fabric retail catalogue as Shop now, six results per page. It fetches exact fabric details on selection because catalogue browse cards omit full width. A selected fabric is saved in the shared design state and follows into Shop now; returning to the visualiser restores it.
+
+The fixed 140 cm window previews a catalogue fabric only when the verified width is at least 140 cm, its image loads from the CurtainsUK Shopify CDN and the source photograph is square within 5%. Texture UVs use the recorded physical width. An unsuitable or unavailable image leaves the last valid blind in place and explains why; the fabric remains selectable in Shop now. Three featured local swatches remain quick choices.
+
+Checked Acies Peacock (140 cm) in room view, persistence after reload and the handoff to Shop now. Abeja Blush (138 cm) gives the width explanation. Mobile 390 px has no horizontal overflow; desktop catalogue grid and image loading were inspected. No live publication.

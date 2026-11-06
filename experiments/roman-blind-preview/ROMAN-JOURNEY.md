@@ -51,13 +51,13 @@ Supplier costs and credentials stay server-side. Only listed static assets are s
 - Comparison links use `view=detail&style=stacked|cascade&lift=100`; the visualiser validates view/style and clamps finite lift values. Normal entry stays fully lowered. Screenshot mode is not included in customer links.
 - Desktop and 390px mobile checked: no horizontal overflow, all images load, no console errors. Cascade link confirmed detail view, cascade selected and 100% raised. Syntax and diff checks pass. Still local only.
 
-## Visualiser fabric catalogue, 6 November 2026
+## Visualiser fabric handoff, 6 November 2026
 
-The Roman visualiser now has a collapsible search under its featured swatches. It reads the same 11,815-fabric retail catalogue as Shop now, six results per page. It fetches exact fabric details on selection because catalogue browse cards omit full width. A selected fabric is saved in the shared design state and follows into Shop now; returning to the visualiser restores it.
+The visualiser keeps its featured swatches and selected fabric. Its Browse fabrics & shop link now leads to `shop.html?browse=1#fabrics`, with the price, colour and pattern filters visible even when a fabric was saved earlier. The active visualiser fabric ID travels in the link, and Shop now returns to the visualiser with the fabric selected. A Change fabric link sits beside the visualiser’s selected fabric and returns to the same Shop now filters. The Shop now summary has a prominent room visualiser link for the return trip. The duplicate search and six-card pagination have been removed from the visualiser.
 
 The fixed 140 cm window previews a catalogue fabric when its verified width is at least 130 cm, its image loads from the CurtainsUK Shopify CDN and the source photograph is square within 5%. Fabric images from 130 to under 140 cm are enlarged by at most 7.7% to fill the example window, with an on-screen note. Wider images retain their recorded physical width and are centre-cropped. The shop quote still uses the actual fabric width and joins when required. An unsuitable or unavailable image leaves the last valid blind in place and explains why; the fabric remains selectable in Shop now. Three featured local swatches remain quick choices. On 6 November 2026, a read-only count of browsable records with approved square MAIN images found 7,964 at 140 cm or wider and a further 3,628 from 130 to under 140 cm, giving 11,592 previewable fabrics out of 11,815 browsable fabrics.
 
-Checked Acies Peacock (140 cm) in room view, persistence after reload and the handoff to Shop now. Abeja Blush (138 cm) gives the width explanation. Mobile 390 px has no horizontal overflow; desktop catalogue grid and image loading were inspected. No live publication.
+Checked Acies Peacock (140 cm) in room view, persistence after reload and the handoff to Shop now. Fenella Linen (137 cm) now previews with a scale note. Mobile 390 px has no horizontal overflow; the desktop visualiser and shop catalogue were inspected. No live publication.
 
 ## Roman cutting and Evans range check, 6 November 2026
 

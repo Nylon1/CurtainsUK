@@ -2,6 +2,7 @@ import {readDesign,saveDesign} from './journey.mjs';
 import {finishedPlan} from './measure-plan.mjs';
 const $=id=>document.getElementById(id),money=new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0});
 const saved=readDesign();let selectionVersion=0,fabric=null,page=1,pages=1,query='',guidePrice='',colours=new Set(),patterns=new Set(),listToken=0,priceToken=0,quote=null,priceTimer,priceAbort;
+const incoming=new URLSearchParams(location.search),browseRequested=incoming.get('browse')==='1';
 const palette={white:'#f6f3e9',cream:'#eae1cb',beige:'#c7b79c',taupe:'#a79888',grey:'#92928c',black:'#333733',blue:'#587887',green:'#718367',pink:'#c99caa',red:'#9c4a4a',orange:'#bc8055',gold:'#b49a55',yellow:'#d4bd65',purple:'#86728d',brown:'#795c49',neutral:'#d1c7b6',multicolour:'linear-gradient(120deg,#738c87,#c99caa,#c3ac65)','white/cream':'linear-gradient(120deg,#f6f3e9 50%,#eae1cb 50%)','beige/taupe':'linear-gradient(120deg,#c7b79c 50%,#a79888 50%)','yellow/gold':'linear-gradient(120deg,#d4bd65 50%,#b49a55 50%)'};
 const readable=value=>String(value).replaceAll('-', ' ').replace(/\b\w/g,letter=>letter.toUpperCase());
 for(const id of ['width','drop'])if(typeof saved[id]==='number'&&saved[id]>=30&&saved[id]<=500)$(id).value=saved[id];
@@ -70,5 +71,6 @@ for(const [id,direction] of [['previous',-1],['more',1]])$(id).addEventListener(
 $('save-design').addEventListener('click',()=>{if(persist()){$('save-status').textContent='Design saved in this browser. You can return and continue any time.';saveDesign({savedAt:new Date().toISOString()});}});
 try{const m=JSON.parse(localStorage.getItem('curtainsuk-roman-measure-v1')||'null');if(m&&['inside','outside'].includes(m.fit)){const plan=finishedPlan(m.fit,m[m.fit]||{},m.clearance);if(plan.complete){const panel=$('measure-import');panel.hidden=false;const text=document.createElement('span');text.textContent=`From your guide: ${plan.width} × ${plan.drop} cm finished size${m.fit==='inside'?` (${plan.deductionMm} mm width allowance already applied)`:''}.`;const button=document.createElement('button');button.className='text-button';button.textContent='Use these measurements →';button.addEventListener('click',()=>{$('width').value=plan.width;$('drop').value=plan.drop;update();});panel.append(text,button);}}}catch{}
 await loadList();
-if(typeof saved.fabricId==='string'){try{const res=await fetch(`/roman-api/fabric?id=${encodeURIComponent(saved.fabricId)}`);if(res.ok){const restored=await res.json();if(selectionVersion===0){fabric=restored;collapseFabric();}}}catch{}}
+const requestedFabricId=incoming.get('fabric')||saved.fabricId;
+if(typeof requestedFabricId==='string'&&/^[a-z0-9][a-z0-9-]{1,100}$/.test(requestedFabricId)){try{const res=await fetch(`/roman-api/fabric?id=${encodeURIComponent(requestedFabricId)}`);if(res.ok){const restored=await res.json();if(selectionVersion===0){fabric=restored;if(!browseRequested)collapseFabric();}}}catch{}}
 update();

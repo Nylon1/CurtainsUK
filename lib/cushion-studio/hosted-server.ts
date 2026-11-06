@@ -35,6 +35,7 @@ import { endpointRateLimitResponse } from "../storefront/security/endpoint-rate-
 import { type MyHomeInput, type MyHomeCheckoutInput } from "./my-home";
 import { reviewMyHomeWithSampleCredit, checkoutMyHomeWithSampleCredit } from '../storefront/sample-credit-my-home';
 import { previewSampleCredit } from '../storefront/sample-credit-server';
+import { previewPromotionCode } from '../storefront/sample-to-sale-offer-server';
 import { createMyHomeServices } from "./my-home-server";
 
 const responseHeaders = {
@@ -232,7 +233,8 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         const key = operation === "my-home-review" ? "my-home-review-only" : body.idempotencyKey;
         if (typeof key !== "string") throw Error("MY_HOME_INPUT_INVALID");
         const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly,myHomeCheckout:true}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks||body.romans?createTrackServices(context,{forRoman:Boolean(body.romans)}):undefined});
-        result = operation === "my-home-review" ? await reviewMyHomeWithSampleCredit(body as MyHomeInput,authority,{preview:previewSampleCredit}) : await checkoutMyHomeWithSampleCredit(body as MyHomeCheckoutInput,authority,{preview:previewSampleCredit});
+        const offer={preview:(code:unknown,reviewId:string,goodsMinor:number)=>previewPromotionCode(code,reviewId,goodsMinor,context.loggedInCustomerId)};
+        result = operation === "my-home-review" ? await reviewMyHomeWithSampleCredit(body as MyHomeInput,authority,{preview:previewSampleCredit},offer) : await checkoutMyHomeWithSampleCredit(body as MyHomeCheckoutInput,authority,{preview:previewSampleCredit},offer);
       } else if (request.method === "GET" && operation === "catalogue")
         result = await services.catalogue(params);
       else if (request.method === "POST" && operation === "quote") {
@@ -382,6 +384,16 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         SAMPLE_CREDIT_SERVICE_UNAVAILABLE: 'We cannot check sample credit right now. Your order is saved. Try again, or remove the code to continue without the deduction.',
         SAMPLE_CREDIT_SOURCE_REVIEW_REQUIRED: 'Your sample purchase needs a quick check. Please contact us with your sample order reference.',
         SAMPLE_CREDIT_CHECKOUT_CONFLICT: 'This code belongs to a different saved checkout. Contact us so we can help you use it safely.',
+        SAMPLE_TO_SALE_CODE_INVALID: 'Check your personal offer code and try again.',
+        SAMPLE_TO_SALE_SIGN_IN_REQUIRED: 'Sign in to the CurtainsUK account used for your sample order to apply this personal offer.',
+        SAMPLE_TO_SALE_UNAVAILABLE: 'This offer is unavailable or has expired. Check your code or contact us for help.',
+        SAMPLE_TO_SALE_FIRST_ORDER_ONLY: 'This personal offer is for your first eligible product order.',
+        SAMPLE_TO_SALE_HISTORY_REQUIRED: 'We could not confirm offer eligibility right now. Try again or contact us for help.',
+        SAMPLE_TO_SALE_MINIMUM_NOT_MET: 'Add at least £150 of products before the offer is applied. Delivery does not count.',
+        SAMPLE_TO_SALE_CREDIT_EXCEEDS_GOODS: 'Your sample credit is more than the remaining curtain price. Contact us so we can help apply both savings.',
+        SAMPLE_TO_SALE_RESERVED: 'This offer is attached to an existing checkout. Return to that checkout or contact us to change it.',
+        SAMPLE_TO_SALE_PRICE_CHANGED: 'A product price changed. Review your savings again before checkout.',
+        SAMPLE_TO_SALE_CHECKOUT_CONFLICT: 'This offer belongs to a different checkout. Contact us so we can help.',
         MY_HOME_REVIEW_CHANGED: "Your order or price has changed. Update the My Home review before continuing.",
         TRACK_UNAVAILABLE: "Smart-track ordering is not currently available. Your saved design is unchanged.",
         TRACK_ORDER_TOO_LARGE: "This combined order needs an assisted checkout. Please contact CurtainsUK.",

@@ -8,6 +8,7 @@ import {hasSmartTrackPaidLines,hasRomanPaidLines} from '@/lib/smart-track/paid-o
 import {recordHostedSmartTrackPaidOrder} from '@/lib/smart-track/hosted-paid-order';
 import { SAMPLE_VARIANT_ID } from '@/lib/storefront/sample-order';
 import { issueSampleCredit, settlePaidSampleCredit } from '@/lib/storefront/sample-credit-server';
+import { settlePaidPromotion } from '@/lib/storefront/sample-to-sale-offer-server';
 import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const runtime = "nodejs";
@@ -60,6 +61,7 @@ export async function POST(request: Request) {
     if ((payload.line_items as Array<{variant_id?:number}>|undefined)?.some(line=>line.variant_id===SAMPLE_VARIANT_ID)) {
       await issueSampleCredit(asOrderGid(payload));
     }
+    await settlePaidPromotion(payload as Record<string,unknown>);
     await settlePaidSampleCredit(payload as Record<string,unknown>);
     if(hasSmartTrackPaidLines(payload)){
       if(hasRomanPaidLines(payload)?process.env.CURTAINSUK_ROMAN_WEBHOOK_ENABLED!=='true':process.env.CURTAINSUK_SMART_TRACK_WEBHOOK_ENABLED!=='true')return new NextResponse('Custom order receiver is not enabled',{status:503,headers:{'Cache-Control':'no-store'}});
@@ -128,7 +130,7 @@ export async function POST(request: Request) {
     return new NextResponse(null, { status: 200 });
   } catch (error) {
     const code = error instanceof Error ? error.message : "SHOPIFY_WEBHOOK_FAILED";
-    if(code.startsWith('SAMPLE_CREDIT_') || code.startsWith('SHOPIFY_ADMIN_')) {
+    if(code.startsWith('SAMPLE_CREDIT_') || code.startsWith('SAMPLE_TO_SALE_') || code.startsWith('SHOPIFY_ADMIN_')) {
       await recordOperationalError({routePath:'/api/webhooks/shopify/orders-paid',code:/^[A-Z][A-Z0-9_]{1,63}$/.test(code)?code:'SAMPLE_CREDIT_WEBHOOK_FAILED',source:'HANDLED'});
       return new NextResponse('Webhook retry required',{status:503,headers:{'Cache-Control':'no-store'}});
     }

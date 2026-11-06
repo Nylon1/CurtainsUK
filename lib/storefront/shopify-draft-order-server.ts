@@ -576,16 +576,26 @@ async function executeShopifyDraftOrderBase(input: {
 }
 
 export async function executeShopifyDraftOrder(input: Parameters<typeof executeShopifyDraftOrderBase>[0]) {
-  if(input.contract.sampleCreditQuote) {
+  if(input.contract.sampleCreditQuote || input.contract.promotionQuote) {
     if(input.config?.mode!=='CREATE_PRODUCTION_DRAFT')throw Error('SAMPLE_CREDIT_PRODUCTION_REQUIRED');
-    const {reserveSampleCredit}=await import('./sample-credit-server');
-    await reserveSampleCredit(input.contract.sampleCreditQuote,input.contract);
+    if(input.contract.promotionQuote){
+      const {reservePromotionWithCredit}=await import('./sample-to-sale-offer-server');
+      await reservePromotionWithCredit(input.contract.promotionQuote,input.contract);
+    }else{
+      const {reserveSampleCredit}=await import('./sample-credit-server');
+      await reserveSampleCredit(input.contract.sampleCreditQuote!,input.contract);
+    }
   }
   const result=await executeShopifyDraftOrderBase(input);
   if(input.contract.sampleCreditQuote && result.draftOrderId) {
     const {createSupplierServiceClient}=await import('../supabase/supplier-service');
     const {error}=await createSupplierServiceClient().from('sample_credit_redemptions').update({draft_gid:result.draftOrderId}).eq('id',input.contract.sampleCreditQuote.reservationId).eq('state','RESERVED');
     if(error)throw Error('SAMPLE_CREDIT_DRAFT_BINDING_FAILED');
+  }
+  if(input.contract.promotionQuote && result.draftOrderId) {
+    const {createSupplierServiceClient}=await import('../supabase/supplier-service');
+    const {error}=await createSupplierServiceClient().from('sample_to_sale_redemptions').update({draft_gid:result.draftOrderId}).eq('id',input.contract.promotionQuote.reservationId).eq('state','RESERVED');
+    if(error)throw Error('SAMPLE_TO_SALE_DRAFT_BINDING_FAILED');
   }
   return result;
 }

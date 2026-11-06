@@ -4,6 +4,8 @@ import {makeMotion,motionPosition} from './motion.mjs';
 import {createLounge} from './lounge.mjs';
 import {readDesign,saveDesign} from './journey.mjs';
 const journeyChoice=readDesign(),journeyQuery=new URLSearchParams(location.search);
+// Clean scene screenshots for the landing page, using this same renderer.
+if(journeyQuery.get('capture')==='1')document.body.classList.add('scene-capture');
 const $=id=>document.getElementById(id);
 const host=$('scene'), loading=$('loading');
 let renderer;
@@ -138,11 +140,12 @@ $('drag').addEventListener('keydown',e=>{const moves={ArrowUp:.05,ArrowDown:-.05
 function resize(){host.parentElement.dataset.view=view;applyRoomScene();garden.visible=view!=='reverse';scene.background.set(view==='reverse'?'#a19e95':'#e5e1d6');const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;camera.fov=view==='room'?(narrow?72:66):36;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else if(view==='reverse'){camera.position.set(0,1.77,narrow?-4.1:-3.1);camera.lookAt(0,1.73,.09);}else if(view==='room'){camera.position.set(0,1.65,4.9);camera.lookAt(0,.95,1.4);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
 const requestedStyle=journeyQuery.get('style')||journeyChoice.fold;
 if(['stacked','cascade'].includes(requestedStyle))style=requestedStyle;
-if(journeyQuery.get('view')==='room')view='room';
+if(['front','detail','reverse','room'].includes(journeyQuery.get('view')))view=journeyQuery.get('view');
 document.querySelectorAll('button[data-style]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===style)));
 document.querySelectorAll('button[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
 $('style-caption').textContent=(style==='stacked'?'Stacked':'Cascade')+' Roman';host.dataset.style=style;
-new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(0);await selectFabric(initialFabric);
+const initialLift=Number(journeyQuery.get('lift'));
+new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(Number.isFinite(initialLift)?initialLift/100:0,true);await selectFabric(initialFabric);
 function render(now){
  if(motion){raised=motionPosition(motion,now);if(now>=motion.started+motion.duration){raised=motion.to;motion=null;}updateCloth();syncPosition();}
  updateChain(raised);

@@ -41,3 +41,11 @@ Supplier costs and credentials stay server-side. Only listed static assets are s
 - 139 × 140 cm Inverness example changes from £175 standard to £188 blackout; its current shared stock response is out of stock. Values are verification examples, not a stock promise.
 - Tested mobile 390 px and desktop; no horizontal overflow in landing, shopping or measuring. Shared links and selected cascade/fabric visualiser entry checked. Clearing dimensions removes the previous price immediately.
 - Existing supplied hero photo is copied unchanged. Original SVG diagrams form the measuring/install posters. No live Shopify/Vercel deployment or live configuration change.
+
+## Landing imagery revision, 6 November 2026
+
+- Room visualiser poster now uses `assets/roman-room-preview.png`, captured from the actual local lounge renderer with Inverness Caramel, stacked folds, 50% raised and the saved sage/evening room palette.
+- Stacked/cascade comparison uses matching renderer captures at 100% raised in detail view, with Sabu Stripe Stone/Oak. Same camera and crop show the fold edges beneath the headrail. The obsolete slat-like CSS illustrations were removed.
+- `capture=1` hides scene overlays for screenshot capture without changing geometry or camera. Room capture used a 914 x 640 scene crop; fold captures used x190/y120/600x280 at the normal desktop viewport. No AI reconstruction or altered fabric imagery.
+- Comparison links use `view=detail&style=stacked|cascade&lift=100`; the visualiser validates view/style and clamps finite lift values. Normal entry stays fully lowered. Screenshot mode is not included in customer links.
+- Desktop and 390px mobile checked: no horizontal overflow, all images load, no console errors. Cascade link confirmed detail view, cascade selected and 100% raised. Syntax and diff checks pass. Still local only.

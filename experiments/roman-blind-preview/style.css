@@ -11,3 +11,6 @@
 
 #drag{width:44px;height:44px;padding:0;border:0;background:transparent;box-shadow:none;display:grid;place-items:center}#drag span{display:grid;place-items:center;width:26px;height:22px;margin:0;border:1px solid #c9c4b8;border-radius:12px;background:#fffdf5cc;box-shadow:0 2px 5px #0001;font-size:14px;line-height:1}#drag:hover span,#drag:focus-visible span{background:#fffdf5;box-shadow:0 2px 7px #0002}
 .measuring-link{display:block;border:1px solid #bdc9bb;border-radius:5px;padding:15px 16px;margin:-10px 0 28px;color:#203b33;text-decoration:none;font-size:13px;background:#edf0e7}.measuring-link span{float:right}.measuring-link small{display:block;margin-top:7px;font-size:11px;color:#6b7569}.measuring-link:hover{background:#e4e9dc}
+
+/* Screenshot mode leaves scene dimensions and rendering unchanged. */
+.scene-capture .scene-heading,.scene-capture .view-controls,.scene-capture .scene-caption,.scene-capture #drag{visibility:hidden}

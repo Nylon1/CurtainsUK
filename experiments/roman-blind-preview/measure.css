@@ -5,3 +5,8 @@
 @media screen{main{padding-top:26px}.intro{margin-bottom:22px}h1{font-size:44px}.steps{padding-bottom:18px;margin-bottom:24px}.step-footer{position:sticky;bottom:0;z-index:5;background:var(--cream);padding:12px 0;margin-top:24px}html{scroll-padding-bottom:90px}}
 @media screen and (max-width:720px){h1{font-size:34px}.step-footer{margin-left:-4px;margin-right:-4px;padding-left:4px;padding-right:4px}.steps{margin-bottom:20px}}
 [hidden]{display:none!important}
+
+.clearance-choice{border:0;padding:0;margin:24px 0}.clearance-choice legend{font:23px/1.2 Georgia,serif;padding:0}.clearance-choice>p{font-size:13px;color:var(--muted);margin:8px 0 14px}.clearance-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}.clearance-options button{text-align:left;padding:12px;border:1px solid #bbc5b9;border-radius:6px;background:#fffdf8;min-width:0}.clearance-options button[aria-pressed=true]{border:2px solid var(--green);padding:11px;background:#edf1e7}.clearance-options svg{width:100%;height:65px;display:block;margin-bottom:10px}.clearance-options strong{display:block;font:21px Georgia,serif}.clearance-options small{display:block;font-size:12px;line-height:1.5;margin:8px 0 12px;color:var(--muted)}.clearance-options span{font-size:11px;font-weight:bold}.clearance-choice .helper{font-size:11px;margin-top:12px}
+@media print{.no-print{display:none!important}}
+
+.summary-list .calculated-size{background:#e6ebe2;padding:12px;margin:0 -12px}.calculated-size dd{font-size:18px}

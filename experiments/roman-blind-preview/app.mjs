@@ -11,6 +11,7 @@ const camera=new T.PerspectiveCamera(36,1,.1,40);
 const ambient=new T.HemisphereLight('#fff6e7','#7b8374',2);scene.add(ambient);
 const sun=new T.DirectionalLight('#fff1d4',3.1);sun.position.set(-2.5,4.5,4);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-4,right:4,top:4,bottom:-4,near:.1,far:15});sun.shadow.bias=-.0003;sun.shadow.normalBias=.012;sun.shadow.radius=4;scene.add(sun);
 const fill=new T.DirectionalLight('#dce8ef',.6);fill.position.set(3,2,2);scene.add(fill);
+const reverseFill=new T.DirectionalLight('#fff6e9',2.3);reverseFill.position.set(-2,3,-4);reverseFill.visible=false;scene.add(reverseFill);
 function box(w,h,d,x,y,z,color){const mesh=new T.Mesh(new T.BoxGeometry(w,h,d),new T.MeshStandardMaterial({color,roughness:.85}));mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);return mesh;}
 // Window opening is exactly 1.4 x 1.4 m. Surrounding room is illustrative.
 const top=2.38,bottom=top-SIZE;
@@ -53,8 +54,12 @@ for(let i=0;i<12;i++){const stem=new T.Mesh(new T.CylinderGeometry(.002,.003,.35
 const columns=64,rows=700,positions=new Float32Array((columns+1)*(rows+1)*3),uvs=new Float32Array((columns+1)*(rows+1)*2),colours=new Float32Array((columns+1)*(rows+1)*3),indices=[];
 for(let r=0;r<rows;r++)for(let c=0;c<columns;c++){const a=r*(columns+1)+c,b=a+1,d=a+columns+1;indices.push(a,d,b,b,d,d+1);}
 const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.BufferAttribute(positions,3));geometry.setAttribute('uv',new T.BufferAttribute(uvs,2));geometry.setIndex(indices);geometry.setAttribute('color',new T.BufferAttribute(colours,3));
-const material=new T.MeshStandardMaterial({color:'#ffffff',roughness:1,side:T.DoubleSide,vertexColors:true});
+const material=new T.MeshStandardMaterial({color:'#ffffff',roughness:1,side:T.FrontSide,shadowSide:T.DoubleSide,vertexColors:true});
 const blind=new T.Mesh(geometry,material);blind.castShadow=true;blind.receiveShadow=true;scene.add(blind);
+// Both faces share the same moving surface. Back-face culling reveals cream
+// lining only on the reverse, without printing the supplier pattern through it.
+const liningMaterial=new T.MeshStandardMaterial({color:'#eee3cb',roughness:1,side:T.BackSide,vertexColors:true});
+const lining=new T.Mesh(geometry,liningMaterial);lining.receiveShadow=true;scene.add(lining);
 let motion=null,style='stacked',raised=0,target=0,currentWidth=1.42,view='front',selected=-1,request=0,currentTexture=null;
 function updateCloth(){const phase=phaseForLift(raised,style);for(let r=0;r<=rows;r++){const s=r/rows*SIZE,p=foldPoint(s,raised,phase,style),relief=clothRelief(s,style),gather=gatheringProfile(s,phase,style),shade=relief.shade*layerShade(p,phase,style);for(let c=0;c<=columns;c++){const x=c/columns*SIZE,i=r*(columns+1)+c;positions[i*3]=x-SIZE/2;positions[i*3+1]=top-p.down;positions[i*3+2]=.09+p.depth+relief.depth*(.85+.15*Math.sin(c/columns*Math.PI))+gatheringDepth(c/columns,gather)+.00035*Math.sin(c/columns*Math.PI*4)*Math.sin(r/rows*Math.PI);colours[i*3]=colours[i*3+1]=colours[i*3+2]=shade;const uv=sourceUv(x,s,currentWidth);uvs[i*2]=uv[0];uvs[i*2+1]=uv[1];}}geometry.attributes.position.needsUpdate=true;geometry.attributes.uv.needsUpdate=true;geometry.attributes.color.needsUpdate=true;geometry.computeVertexNormals();geometry.computeBoundingSphere();}
 const fabrics=await fetch('fabrics.json').then(r=>r.json());
@@ -86,7 +91,7 @@ $('drag').addEventListener('pointerdown',e=>{setLift(raised,true);const rect=hos
 $('drag').addEventListener('pointermove',e=>{if(dragging)setLift(dragging.start+(dragging.startY-e.clientY)/dragging.range,true);});
 function endDrag(){dragging=null;}$('drag').addEventListener('pointerup',endDrag);$('drag').addEventListener('pointercancel',endDrag);$('drag').addEventListener('lostpointercapture',endDrag);
 $('drag').addEventListener('keydown',e=>{const moves={ArrowUp:.05,ArrowDown:-.05,PageUp:.1,PageDown:-.1};if(e.key in moves){e.preventDefault();setLift(target+moves[e.key]);}if(e.key==='Home'){e.preventDefault();setLift(0);}if(e.key==='End'){e.preventDefault();setLift(1);}});
-function resize(){host.parentElement.dataset.view=view;const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
+function resize(){host.parentElement.dataset.view=view;reverseFill.visible=view==='reverse';const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else if(view==='reverse'){camera.position.set(0,1.77,narrow?-4.1:-3.1);camera.lookAt(0,1.73,.09);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
 new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(0);await selectFabric(0);
 function render(now){
  if(motion){raised=motionPosition(motion,now);if(now>=motion.started+motion.duration){raised=motion.to;motion=null;}updateCloth();syncPosition();}

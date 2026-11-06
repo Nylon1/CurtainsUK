@@ -1,5 +1,19 @@
 # CurtainsUK production surfaces
 
+## Current production source map, 6 November 2026 at 19:50 GMT
+
+The protected release authority is `release/production`. Its latest storefront-code checkpoint is **`6165d6743d270069734c20f223b7f5ea8bc29aa4`**, tree **`2bbfea6cc9902b425f953e41c5adb3e0a2d6543d`**. [PR #334](https://github.com/Nylon1/CurtainsUK/pull/334) passed both required checks after Nylon1 approved its exact head and merged at this commit. It changed only the homepage and Shopping Cart theme files, the composed-theme manifest, and release documentation. The shared API did not need redeployment. Later documentation-only commits may advance the branch tip without changing either serving source.
+
+| Surface | Serving source of truth | Fresh check |
+| --- | --- | --- |
+| Shopify storefront | MAIN theme `182339731835`, composed from the protected Dawn base and `production-main-overlay/manifest.json` at `6165d674` | A complete new MAIN pull matched all **606** recorded files. `config/settings_data.json` is unchanged at SHA-256 `3BB8BC0C780E34939031EE83BCA41584CF973018A8EAAAC112B1027D7F45E502`. |
+| Shared app-proxy API | Protected runtime commit `17af7187ad3966b643930455287abf3b8771a4b2` on READY Vercel deployment `dpl_8mUfEn7fLPcFgPc9ytJetyCetrLj` | The canonical `curtainsuk-production-api.vercel.app` and both compatibility aliases, `curtainsuk-staging-api.vercel.app` and `curtainsuk-staging-gateway.vercel.app`, all target this deployment. The two plain runtime source attestations remain `17af7187`. |
+| Roman persistence | Supabase project `hqysjumypgeapgmqkcrx`, migration `20261106185605_roman_mixed_checkout` | Migration is present. Both private Roman tables have RLS enabled and forced. |
+
+The 6 November theme-only difference from runtime commit `17af7187` to branch head `6165d674` is confined to `docs/PRODUCTION_SURFACES.md`, `release/policy-change.json`, four Shopify theme files and the composed-theme manifest. This dated source-map addition is documentation-only. Do not interpret the earlier candidate status inside `release/policy-change.json` as the current deployment status; the merged PR, checks, source manifest and live readback establish it.
+
+The homepage now has a Shop now section for curtains, Roman blinds and cushions. Live Chrome showed the three photographic cards, opened the Roman shop from its card, and confirmed Shopping Cart names Roman blinds in both its introduction and product chooser. The homepage, fabric library, Cushion Studio, Shopping Cart, Roman landing, visualiser, measure, install and shop routes each returned HTTP 200. All visible plain Production `*_ENABLED` switches are `true`, including the two Roman switches; 76 Production environment entries are listed. Sensitive and encrypted switches were not decrypted. Signed-in mixed checkout, paid ordering, physical-phone behaviour and every legacy feature were not replayed, so this is a bounded synchronization check rather than a claim that every customer flow was exercised.
+
 ## Roman blinds journey, 6 November 2026
 
 [PR #333](https://github.com/Nylon1/CurtainsUK/pull/333) passed the production and protected-policy checks after Nylon1 posted the exact-head approval. It merged at protected source **`17af7187ad3966b643930455287abf3b8771a4b2`**, tree **`87d18241003c0b1f14c6097995546d3230a8012c`**. The exact Git export passed the six-pack Room Visualiser guard (3,653 files). READY production deployment **`dpl_8mUfEn7fLPcFgPc9ytJetyCetrLj`** serves all three established API aliases. Its immediate runtime rollback is **`dpl_EArttFHqYDeHmZiqqRyADP8D5wr4`**, the same source before the Roman-only purchase and paid-webhook switches were enabled.

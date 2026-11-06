@@ -27,6 +27,9 @@ const gardenTexture=await new T.TextureLoader().loadAsync('/garden.jpg');gardenT
 gardenTexture.repeat.set(1,.55);gardenTexture.offset.set(0,.45);
 const garden=new T.Mesh(new T.PlaneGeometry(1.5,1.5),new T.MeshBasicMaterial({map:gardenTexture,color:'#d0d6ba'}));garden.position.set(0,1.68,-.34);scene.add(garden);
 const lounge=await createLounge();lounge.root.visible=false;scene.add(lounge.root);
+const roomState={mode:'daylight',lights:true,tone:'warm',colours:{...lounge.defaults}};
+try{const saved=JSON.parse(localStorage.getItem('curtainsuk-roman-room-v1')||'null');if(saved){if(['daylight','evening'].includes(saved.mode))roomState.mode=saved.mode;if(typeof saved.lights==='boolean')roomState.lights=saved.lights;if(['warm','neutral'].includes(saved.tone))roomState.tone=saved.tone;for(const key of Object.keys(roomState.colours))if(/^#[0-9a-f]{6}$/i.test(saved.colours?.[key]||''))roomState.colours[key]=saved.colours[key];}}catch{}
+for(const [key,color]of Object.entries(roomState.colours))lounge.setColor(key,color);
 box(.032,1.4,.045,0,1.68,-.22,'#f3f0e7');box(1.4,.032,.045,0,1.55,-.22,'#f3f0e7');
 box(1.42,.045,.06,0,top+.012,.06,'#ded6c5');
 // Right-side operating chain, with a fixed pulley and lower tensioner.
@@ -63,6 +66,30 @@ const blind=new T.Mesh(geometry,material);blind.castShadow=true;blind.receiveSha
 const liningMaterial=new T.MeshStandardMaterial({color:'#eee3cb',roughness:1,side:T.BackSide,vertexColors:true});
 const lining=new T.Mesh(geometry,liningMaterial);lining.receiveShadow=true;scene.add(lining);
 let motion=null,style='stacked',raised=0,target=0,currentWidth=1.42,view='front',selected=-1,request=0,currentTexture=null;
+function saveRoom(){try{localStorage.setItem('curtainsuk-roman-room-v1',JSON.stringify(roomState));}catch{}}
+function applyRoomScene(){
+ const inRoom=view==='room'||view==='reverse',evening=inRoom&&roomState.mode==='evening';
+ lounge.root.visible=inRoom;$('room-controls').hidden=!inRoom;
+ ambient.intensity=evening?.45:2;sun.intensity=evening?.10:3.1;fill.intensity=evening?.12:.6;
+ reverseFill.visible=view==='reverse';reverseFill.intensity=evening?.45:2.3;
+ lounge.setLighting(roomState.lights,roomState.tone==='warm');
+ windowWalls.forEach(w=>w.material.color.set(view==='reverse'?'#97958c':view==='room'?roomState.colours.walls:'#e6e0d2'));
+}
+function syncRoomControls(){
+ document.querySelectorAll('[data-room-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.roomMode===roomState.mode)));
+ $('room-lights').checked=roomState.lights;$('light-tone').value=roomState.tone;
+ const colour=roomState.colours[$('room-asset').value];$('room-colour').value=colour;
+ document.querySelectorAll('[data-room-colour]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.roomColour===colour)));
+}
+function setRoomColour(colour){const key=$('room-asset').value;if(lounge.setColor(key,colour)){roomState.colours[key]=colour;syncRoomControls();applyRoomScene();saveRoom();}}
+for(const [name,colour]of [['Ivory','#e8e0d0'],['Stone','#b9b5aa'],['Sage','#8d978f'],['Forest','#365947'],['Clay','#ae7865'],['Slate','#65717a'],['Charcoal','#383d3b'],['Brass','#a48b62']]){
+ const button=document.createElement('button');button.type='button';button.dataset.roomColour=colour;button.style.backgroundColor=colour;button.setAttribute('aria-label',name);button.title=name;button.addEventListener('click',()=>setRoomColour(colour));$('room-colours').append(button);
+}
+document.querySelectorAll('[data-room-mode]').forEach(b=>b.addEventListener('click',()=>{roomState.mode=b.dataset.roomMode;syncRoomControls();applyRoomScene();saveRoom();}));
+$('room-lights').addEventListener('change',e=>{roomState.lights=e.target.checked;applyRoomScene();saveRoom();});
+$('light-tone').addEventListener('change',e=>{roomState.tone=e.target.value;applyRoomScene();saveRoom();});
+$('room-asset').addEventListener('change',syncRoomControls);$('room-colour').addEventListener('input',e=>setRoomColour(e.target.value));
+$('reset-room').addEventListener('click',()=>{roomState.colours={...lounge.defaults};lounge.resetColors();syncRoomControls();applyRoomScene();saveRoom();});syncRoomControls();
 function updateCloth(){const phase=phaseForLift(raised,style);for(let r=0;r<=rows;r++){const s=r/rows*SIZE,p=foldPoint(s,raised,phase,style),relief=clothRelief(s,style),gather=gatheringProfile(s,phase,style),shade=relief.shade*layerShade(p,phase,style);for(let c=0;c<=columns;c++){const x=c/columns*SIZE,i=r*(columns+1)+c;positions[i*3]=x-SIZE/2;positions[i*3+1]=top-p.down;positions[i*3+2]=.09+p.depth+relief.depth*(.85+.15*Math.sin(c/columns*Math.PI))+gatheringDepth(c/columns,gather)+.00035*Math.sin(c/columns*Math.PI*4)*Math.sin(r/rows*Math.PI);colours[i*3]=colours[i*3+1]=colours[i*3+2]=shade;const uv=sourceUv(x,s,currentWidth);uvs[i*2]=uv[0];uvs[i*2+1]=uv[1];}}geometry.attributes.position.needsUpdate=true;geometry.attributes.uv.needsUpdate=true;geometry.attributes.color.needsUpdate=true;geometry.computeVertexNormals();geometry.computeBoundingSphere();}
 const fabrics=await fetch('fabrics.json').then(r=>r.json());
 async function selectFabric(index){const token=++request;loading.hidden=false;loading.textContent='Loading fabric…';try{const f=fabrics[index],texture=await new T.TextureLoader().loadAsync(f.image);if(token!==request){texture.dispose();return;}texture.colorSpace=T.SRGBColorSpace;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());material.map=texture;material.needsUpdate=true;currentTexture?.dispose();currentTexture=texture;currentWidth=f.width;selected=index;updateCloth();$('fabric-name').textContent=f.name;$('fabric-meta').textContent=f.colour;$('fabric-number').textContent=`${index+1} of ${fabrics.length}`;document.querySelectorAll('#swatches [data-fabric]').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));loading.hidden=true;host.dataset.fabric=f.id;host.dataset.sourceWidth=String(f.width*100);}catch{loading.textContent='Fabric could not load. Choose a fabric to try again.';}}
@@ -93,12 +120,12 @@ $('drag').addEventListener('pointerdown',e=>{setLift(raised,true);const rect=hos
 $('drag').addEventListener('pointermove',e=>{if(dragging)setLift(dragging.start+(dragging.startY-e.clientY)/dragging.range,true);});
 function endDrag(){dragging=null;}$('drag').addEventListener('pointerup',endDrag);$('drag').addEventListener('pointercancel',endDrag);$('drag').addEventListener('lostpointercapture',endDrag);
 $('drag').addEventListener('keydown',e=>{const moves={ArrowUp:.05,ArrowDown:-.05,PageUp:.1,PageDown:-.1};if(e.key in moves){e.preventDefault();setLift(target+moves[e.key]);}if(e.key==='Home'){e.preventDefault();setLift(0);}if(e.key==='End'){e.preventDefault();setLift(1);}});
-function resize(){host.parentElement.dataset.view=view;reverseFill.visible=view==='reverse';lounge.root.visible=view==='reverse'||view==='room';garden.visible=view!=='reverse';windowWalls.forEach(w=>w.material.color.set(view==='reverse'?'#97958c':'#e6e0d2'));scene.background.set(view==='reverse'?'#a19e95':'#e5e1d6');const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;camera.fov=view==='room'?(narrow?72:60):36;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else if(view==='reverse'){camera.position.set(0,1.77,narrow?-4.1:-3.1);camera.lookAt(0,1.73,.09);}else if(view==='room'){camera.position.set(0,1.65,4.9);camera.lookAt(0,.95,1.4);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
+function resize(){host.parentElement.dataset.view=view;applyRoomScene();garden.visible=view!=='reverse';scene.background.set(view==='reverse'?'#a19e95':'#e5e1d6');const {width,height}=host.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;const narrow=width<550;camera.fov=view==='room'?(narrow?72:66):36;if(view==='front'){camera.position.set(0,1.77,narrow?4.1:4.65);camera.lookAt(0,narrow?1.8:1.61,0);}else if(view==='reverse'){camera.position.set(0,1.77,narrow?-4.1:-3.1);camera.lookAt(0,1.73,.09);}else if(view==='room'){camera.position.set(0,1.65,4.9);camera.lookAt(0,.95,1.4);}else{camera.position.set(narrow?1.5:1.2,1.55,narrow?3.8:2.8);camera.lookAt(0,1.73,.04);}camera.updateProjectionMatrix();}
 new ResizeObserver(resize).observe(host);resize();updateCloth();setLift(0);await selectFabric(0);
 function render(now){
  if(motion){raised=motionPosition(motion,now);if(now>=motion.started+motion.duration){raised=motion.to;motion=null;}updateCloth();syncPosition();}
  updateChain(raised);
  const point=new T.Vector3(0,top-visibleDrop(raised,style),.11).project(camera);const rect=host.getBoundingClientRect();
- $('drag').style.left=((point.x+1)*rect.width/2)+'px';$('drag').style.top=((1-point.y)*rect.height/2+10)+'px';
+ $('drag').style.left=((point.x+1)*rect.width/2)+'px';$('drag').style.top=((1-point.y)*rect.height/2+16)+'px';
  renderer.render(scene,camera);requestAnimationFrame(render);
 }requestAnimationFrame(render);

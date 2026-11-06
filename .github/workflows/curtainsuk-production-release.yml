@@ -1,6 +1,11 @@
 name: CurtainsUK protected release validation
 on:
   workflow_dispatch:
+    inputs:
+      gateway_deployment_id:
+        description: Production gateway deployment ID that will receive the live smoke
+        required: true
+        type: string
 permissions:
   contents: read
 concurrency:
@@ -30,6 +35,12 @@ jobs:
       - name: Advisory live smoke
         continue-on-error: true
         run: node release/live-smoke.mjs
+      - name: Require gateway deployment identity before accepting live smoke
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          CURTAINSUK_GATEWAY_ALIAS: curtainsuk-staging-gateway.vercel.app
+          CURTAINSUK_GATEWAY_DEPLOYMENT_ID: ${{ inputs.gateway_deployment_id }}
+        run: node release/verify-gateway-routing.mjs
       - name: Confirm manual release eligibility
         run: |
           echo "Protected validation passed for $GITHUB_SHA."

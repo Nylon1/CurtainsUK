@@ -25,7 +25,7 @@ const plans={stacked:foldPlan('stacked'),cascade:foldPlan('cascade')};
 function progress(phase,band,rods){return Math.max(0,Math.min(1,phase*rods-(rods-1-band)));}
 // A finite-radius return replaces the sharp doubled-back sheet. Its semicircle
 // consumes real material length; the two straight legs still meet at the rods.
-function foldRadius(p,length){return Math.min(.012*Math.sin(p*Math.PI/2),length*p/Math.PI);}
+function foldRadius(p,length){return Math.min(.022*Math.sin(p*Math.PI/2),length*p/Math.PI);}
 function atPhase(s,phase,style){
  const plan=plans[style];
  if(s<=SPEC.headrail)return{down:s,depth:0};
@@ -44,14 +44,14 @@ function atPhase(s,phase,style){
  if(local<front){
   const t=local/front;
   // The face gently bows as it loses tension, with smooth tangency at each end.
-  const fullness=.008*Math.sin(p*Math.PI/2)+.009*Math.sin(p*Math.PI);
+  const fullness=.018*Math.sin(p*Math.PI/2)+.010*Math.sin(p*Math.PI);
   down=local;depth=fullness*Math.sin(Math.PI*t)**2;
  }else if(local<=front+arc&&radius>1e-10){
   const angle=(local-front)/radius;
   down=front+radius*Math.sin(angle);depth=-radius*(1-Math.cos(angle));
  }else{
   const tail=local-front-arc,t=returnLength>1e-10?tail/returnLength:1;
-  down=front-tail;depth=-2*radius-.0025*p*Math.sin(Math.PI*t)**2;
+  down=front-tail;depth=-2*radius-.004*p*Math.sin(Math.PI*t)**2;
  }
  return{down:start+down,depth:-back+depth};
 }
@@ -59,6 +59,20 @@ function phaseDrop(phase,style){const plan=plans[style];let down=plan.headrail;p
 export function visibleDrop(raised,style='stacked'){return SIZE+(phaseDrop(1,style)-SIZE)*raised;}
 export function phaseForLift(raised,style='stacked'){let low=0,high=1;const desired=visibleDrop(raised,style);for(let i=0;i<24;i++){const mid=(low+high)/2;if(phaseDrop(mid,style)>desired)low=mid;else high=mid;}return(low+high)/2;}
 export function foldPoint(s,raised,phase=phaseForLift(raised),style='stacked'){return atPhase(s,phase,style);}
+// Local contact shading follows the projected edge of each overlapping layer.
+// This is independent of the fabric artwork and fades out as a fold opens.
+export function layerShade(point,phase,style='stacked'){
+ const plan=plans[style];let start=plan.headrail,back=0,shadow=0;
+ for(let band=0;band<plan.rodCount;band++){
+  const length=plan.sections[band].length,p=progress(phase,band,plan.rodCount);
+  const radius=foldRadius(p,length),h=length*(1-p);
+  const edge=start+(length-Math.PI*radius+h)/2+radius;
+  const behind=Math.max(0,Math.min(1,(-back-radius-point.depth-.003)/.018));
+  shadow+=.22*p*behind*Math.exp(-.5*((point.down-edge-.004)/.014)**2);
+  start+=h;back+=2*radius;
+ }
+ return 1-Math.min(.27,shadow);
+}
 export function coverage(raised,style='stacked'){const covered=visibleDrop(raised,style)*100;return{coveredCm:covered,clearCm:SIZE*100-covered,percent:covered/SIZE};}
 export function sourceUv(x,s,fullWidth){if(fullWidth<SIZE)throw Error('Source square does not cover this preview');return[(fullWidth-SIZE)/(2*fullWidth)+x/fullWidth,1-s/fullWidth];}
 // Cloth relief in material coordinates: rod pockets, gentle panel fullness and hem.

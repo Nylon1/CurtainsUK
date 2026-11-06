@@ -39,6 +39,15 @@ test('side seam allowance triggers a join only when cut width exceeds usable fab
  assert.equal(joined.totalMinor,22200);
 });
 test('Evans 1:4 set-size range reaches 300 cm, but unpriced tiers stay pending',()=>{
+ assert.match(romanEstimate({...input,width:200},fabric,rules).message,/250 cm kit/);
+ assert.match(romanEstimate({...input,width:250.1},fabric,rules).message,/300 cm kit/);
  assert.equal(romanEstimate({...input,width:250},fabric,rules).status,'review');
  assert.match(romanEstimate({...input,width:300.1},fabric,rules).message,/above the largest listed/);
+});
+
+test('250 cm is the standard drop boundary; taller blinds need a custom quote',()=>{
+ const within=romanEstimate({...input,drop:250},fabric,rules);
+ const over=romanEstimate({...input,drop:250.1},fabric,rules);
+ assert.equal(within.status,'estimate');assert.equal(over.totalMinor,null);
+ assert.match(over.message,/maximum drop of 250 cm/);
 });

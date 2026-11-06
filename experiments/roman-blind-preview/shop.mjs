@@ -5,7 +5,7 @@ const saved=readDesign();let selectionVersion=0,fabric=null,page=1,pages=1,query
 for(const id of ['width','drop'])if(typeof saved[id]==='number'&&saved[id]>=30&&saved[id]<=500)$(id).value=saved[id];
 for(const name of ['lining','fold']){const allowed=name==='lining'?['STANDARD','BLACKOUT']:['stacked','cascade'];if(allowed.includes(saved[name]))document.querySelector(`input[name="${name}"][value="${saved[name]}"]`).checked=true;}
 function config(){return {width:Number($('width').value)||null,drop:Number($('drop').value)||null,lining:document.querySelector('[name=lining]:checked').value,fold:document.querySelector('[name=fold]:checked').value,fabricId:fabric?.id||null};}
-function validSize(value){return typeof value==='number'&&value>=30&&value<=500&&Math.abs(value*10-Math.round(value*10))<1e-7;}
+function validSize(value,max=500){return typeof value==='number'&&value>=30&&value<=max&&Math.abs(value*10-Math.round(value*10))<1e-7;}
 function imageUrl(url){try{const u=new URL(url,location.href);return u.origin===location.origin||u.protocol==='https:'&&u.hostname==='cdn.shopify.com'?u.href:'';}catch{return '';}}
 function persist(){const okay=saveDesign({...config(),fabric});$('save-status').textContent=okay?'Your choices stay in this browser.':'Browser storage is unavailable. Keep this tab open to retain your design.';return okay;}
 function collapseFabric(){
@@ -16,15 +16,15 @@ function collapseFabric(){
 $('change-fabric').addEventListener('click',()=>{$('fabric-browser').hidden=false;$('fabric-selection').hidden=true;$('fabric-search').focus();});
 function update(){
  const c=config();quote=null;priceToken++;priceAbort?.abort();clearTimeout(priceTimer);
- $('summary-size').textContent=validSize(c.width)&&validSize(c.drop)?`${c.width} × ${c.drop} cm`:'Add your measurements';
+ $('summary-size').textContent=validSize(c.width,300)&&validSize(c.drop)?`${c.width} × ${c.drop} cm`:'Add your measurements';
  $('summary-availability').textContent=fabric?'Checking availability…':'Choose a fabric';
  $('summary-lining').textContent=c.lining==='BLACKOUT'?'Blackout':'Standard ivory';$('summary-fold').textContent=c.fold==='cascade'?'Cascade':'Stacked';
  $('chosen-name').textContent=fabric?.name||'The start of something beautiful.';$('chosen-colour').textContent=fabric?`${fabric.colour} · ${fabric.brand}`:'Choose a fabric to begin.';
  $('chosen-image').src=fabric?imageUrl(fabric.image)||'assets/roman-lounge.jpg':'assets/roman-lounge.jpg';$('chosen-image').alt=fabric?`${fabric.name}, ${fabric.colour} fabric`:'Roman blind inspiration';$('image-caption').textContent=fabric?'YOUR SELECTED FABRIC':'YOUR ROMAN BLIND';
  $('preview-design').href=`index.html?style=${c.fold}${fabric?`&fabric=${encodeURIComponent(fabric.id)}`:''}`;
- const valid=validSize(c.width)&&validSize(c.drop);$('save-design').disabled=!valid||!fabric;
- for(const id of ['width','drop'])$(id).setAttribute('aria-invalid',String($(id).value!==''&&!validSize(c[id])));
- $('size-message').textContent=['width','drop'].some(id=>$(id).value!==''&&!validSize(c[id]))?'Use centimetres from 30 to 500, with no more than one decimal place.':'Finished sizes only. No further deduction is applied.';
+ const valid=validSize(c.width,300)&&validSize(c.drop);$('save-design').disabled=!valid||!fabric;
+ for(const id of ['width','drop'])$(id).setAttribute('aria-invalid',String($(id).value!==''&&!validSize(c[id],id==='width'?300:500)));
+ $('size-message').textContent=$('width').value!==''&&!validSize(c.width,300)?'Width must be between 30 and 300 cm, to one decimal place.':$('drop').value!==''&&!validSize(c.drop)?'Drop must be between 30 and 500 cm, to one decimal place.':c.drop>250?'Drops over 250 cm need a custom quote. You can still save your design.':'Standard size: up to 300 cm wide and 250 cm drop. No further deduction is applied.';
  $('price').textContent=valid&&fabric?'Calculating…':'Add size & fabric';$('price-message').textContent='Your estimate will include VAT.';persist();
  document.querySelectorAll('[data-fabric]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.fabric===fabric?.id)));
  if(fabric&&!valid)$('summary-availability').textContent='Add size to check required quantity';

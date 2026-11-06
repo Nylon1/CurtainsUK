@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Roman Studio | CurtainsUK</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><a class="brand" href="https://www.curtainsuk.com">Curtains<span>UK</span><small>BEAUTIFULLY MADE. PERSONALLY YOURS.</small></a><span class="preview-label">THE ROMAN BLIND STUDY <i>01</i></span></header>
+<main>
+ <section class="scene-panel" aria-label="Interactive Roman blind preview">
+  <div class="scene-heading"><span class="eyebrow">A NEW PERSPECTIVE</span><h1>A little lift.<br>A different light.</h1></div>
+  <div id="scene" role="img" aria-label="140 by 140 centimetre window with a stacked Roman blind"></div>
+  <div id="loading" role="status">Preparing your window…</div>
+  <button id="drag" aria-label="Drag the blind up or down; use arrow keys to adjust" title="Drag up or down"><span>↕</span> Drag blind</button>
+  <div class="view-controls" aria-label="View angle"><button data-view="front" aria-pressed="true">Front view</button><button data-view="detail" aria-pressed="false">See the folds</button></div>
+  <div class="scene-caption"><span>140 × 140 cm window</span><span id="style-caption">Stacked Roman</span></div>
+ </section>
+ <aside>
+  <span class="eyebrow">ROMAN STUDIO</span><h2>Fabric. Folds.<br>Your point of view.</h2><p class="intro">Explore your fabric in a new light. Lift the blind, reveal the view, find your favourite position.</p>
+  <div class="section-label"><span>01 / YOUR FABRIC</span><span id="fabric-number">1 of 3</span></div>
+  <div id="swatches" class="swatches"></div>
+  <h3 id="fabric-name"></h3><p id="fabric-meta" class="muted"></p>
+  <div class="divider"></div>
+  <div class="section-label"><span>02 / CHOOSE YOUR FOLDS</span></div>
+  <div class="styles"><button data-style="stacked" aria-pressed="true">Stacked<small>Neatly aligned folds</small></button><button data-style="cascade" aria-pressed="false">Cascade<small>Stepped layers</small></button></div>
+  <div class="section-label"><label for="lift">03 / LET THE LIGHT IN</label><output id="position">Fully lowered</output></div>
+  <input id="lift" type="range" min="0" max="100" value="0" aria-label="Blind raised percentage">
+  <div class="range-labels"><span>Lowered</span><span>Raised</span></div>
+  <div class="presets"><button data-lift="0" aria-pressed="true">Lowered</button><button data-lift="50" aria-pressed="false">Halfway</button><button data-lift="100" aria-pressed="false">Raised</button></div>
+  <p class="hint">Drag the bottom of the blind or move the slider. Stop wherever you like.</p>
+  <div class="coverage-card"><div class="section-label"><span>WHEN FULLY RAISED</span><span class="estimate">PREVIEW ESTIMATE</span></div><div class="detail-card"><div><span>Window covered at top</span><strong id="covered"></strong></div><div><span>Clear opening below</span><strong id="clear"></strong></div></div><div class="coverage-bar"><span id="cover-bar"></span></div><p id="coverage-label"></p><p id="current-coverage" aria-live="polite"></p></div>
+  <p class="size-note">Window: 140 cm wide × 140 cm high</p><p id="fold-spec" class="size-note"></p>
+  <p class="scale-note">Pattern shown at scale from the full-width fabric photograph.</p>
+  <details><summary>About these estimates</summary><p>Uses your 7 cm headrail allowance, a target fold depth of 15–20 cm and a 2 cm cascade increment. Four fold sections are calculated from the remaining drop. Cascade section lengths are balanced to keep the same total cloth drop while creating 2 cm steps. Coverage assumes the headrail allowance is inside the 140 cm window height. These estimates need checking against your workroom construction, including fabric thickness, hems and hardware. Fabric uses your confirmed full-width square calibration. Screen colours may differ from the sample.</p></details>
+ </aside>
+</main>
+<footer><span>CURTAINSUK / ROMAN STUDY</span><span>Start with the fabric. Make it yours.</span></footer>
+<script type="module" src="app.mjs"></script></body></html>

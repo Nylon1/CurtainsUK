@@ -24,16 +24,23 @@
         {% endif %}
       </a>
       <div class="cuknav__campaign">
-        {% if campaign_date <= 20261119 %}
-          <a class="cuknav__christmas" href="/pages/fabric-library?view=browse-fabrics">
-            <svg class="cuknav__christmas-star" width="30" height="48" viewBox="0 0 30 48" fill="none" aria-hidden="true" focusable="false"><path d="M15 0v10" stroke="currentColor" opacity=".6"/><path d="m15 12 3.5 10.5L29 26l-10.5 3.5L15 40l-3.5-10.5L1 26l10.5-3.5L15 12Z" stroke="currentColor"/><path d="m15 19 1.8 5.2L22 26l-5.2 1.8L15 33l-1.8-5.2L8 26l5.2-1.8L15 19Z" fill="currentColor"/><circle cx="25" cy="43" r="1" fill="currentColor"/><circle cx="4" cy="13" r="1" fill="currentColor"/></svg>
-            <span class="cuknav__christmas-copy"><strong>Home for Christmas</strong><span>Order now for estimated delivery before Christmas</span></span>
-            <span class="cuknav__christmas-button">Shop curtains <span aria-hidden="true">↗</span></span>
-          </a>
-        {% endif %}
-        <div class="cuknav__campaign-links">
-          <a class="cuknav__room-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
-          <a class="cuknav__price-promise" href="/pages/price-promise"><span><span class="cuknav__price-lead">Found it for less? </span>Price match</span><span aria-hidden="true">↗</span></a>
+        <nav class="cuknav__product-links{% if settings.curtainsuk_smart_track_enabled %} cuknav__product-links--four{% endif %}" aria-label="Shop our products">
+          <a href="/pages/fabric-library?view=browse-fabrics">Curtains <span aria-hidden="true">↗</span></a>
+          <a href="/apps/curtainsuk-decision/roman/roman.html">Roman Blinds <span aria-hidden="true">↗</span></a>
+          <a href="/pages/cushion-studio">Cushions <span aria-hidden="true">↗</span></a>
+          {% if settings.curtainsuk_smart_track_enabled %}<a href="/pages/smart-track-studio">Motorised Tracks <span aria-hidden="true">↗</span></a>{% endif %}
+        </nav>
+        <div class="cuknav__campaign-support">
+          {% if campaign_date <= 20261119 %}
+            <a class="cuknav__christmas" href="/pages/fabric-library?view=browse-fabrics">
+              <svg class="cuknav__christmas-star" width="16" height="22" viewBox="0 0 30 48" fill="none" aria-hidden="true" focusable="false"><path d="M15 0v10" stroke="currentColor" opacity=".6"/><path d="m15 12 3.5 10.5L29 26l-10.5 3.5L15 40l-3.5-10.5L1 26l10.5-3.5L15 12Z" stroke="currentColor"/><path d="m15 19 1.8 5.2L22 26l-5.2 1.8L15 33l-1.8-5.2L8 26l5.2-1.8L15 19Z" fill="currentColor"/></svg>
+              <span class="cuknav__christmas-copy"><strong>Home for Christmas</strong><span>Estimated delivery before Christmas</span></span>
+            </a>
+          {% endif %}
+          <div class="cuknav__campaign-links">
+            <a class="cuknav__room-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
+            <a class="cuknav__price-promise" href="/pages/price-promise">Price match <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
       <nav class="cuknav__secondary" aria-label="More from CurtainsUK">

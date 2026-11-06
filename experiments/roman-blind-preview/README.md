@@ -37,3 +37,7 @@ The fold animation is an illustrative surface, not a validated physical simulati
 Room geometry is original illustrative context. The existing approved garden reference, oak/weave maps and locally bundled Three.js renderer are reused. No new third-party scene asset or AI-generated supplier artwork is used. Fabric appearance is subject to screen/lighting differences.
 
 Full room customisation, arbitrary window sizes, complete catalogue search, production fitting/calculation rules, quoting and checkout are future scope. Existing curtain/cushion calibration is untouched.
+
+## Measuring guide (local draft)
+
+Open http://127.0.0.1:4318/measure.html or use “How to measure your window” in the visualiser. The five-stage illustrated guide covers inside and outside recess, saves each set of measurements locally, and links back to the visualiser. It does not change the fixed example window size. See MEASURING-GUIDE.md for measurement conventions, source references and checks. The owner explicitly requested no live publication on 6 November 2026.

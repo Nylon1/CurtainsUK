@@ -16,7 +16,7 @@ http.createServer(async(req,res)=>{try{
  const url=new URL(req.url,'http://localhost');
  const relative=url.pathname==='/'?'index.html':decodeURIComponent(url.pathname.slice(1));
  const file=fixed.get(url.pathname)||path.resolve(here,relative);
- if(!fixed.has(url.pathname)&&(!file.startsWith(here+path.sep)||!['index.html','style.css','app.mjs','geometry.mjs','motion.mjs','lounge.mjs','fabrics.json'].includes(relative)&&!/^assets\/[a-z0-9-]+\.(jpg|webp)$/.test(relative))){res.writeHead(404).end();return;}
+ if(!fixed.has(url.pathname)&&(!file.startsWith(here+path.sep)||!['index.html','style.css','app.mjs','geometry.mjs','motion.mjs','lounge.mjs','fabrics.json','measure.html','measure.css','measure.mjs','measure-plan.mjs'].includes(relative)&&!/^assets\/[a-z0-9-]+\.(jpg|webp)$/.test(relative))){res.writeHead(404).end();return;}
  const body=await readFile(file);res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});res.end(body);
  }catch{res.writeHead(404).end('Not found');}
 }).listen(4318,'127.0.0.1',()=>console.log('Roman preview: http://127.0.0.1:4318'));

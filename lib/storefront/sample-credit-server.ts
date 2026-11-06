@@ -104,7 +104,7 @@ export async function retrySampleCreditEmails() {
 }
 
 /** Recheck the original paid purchases both before invoice creation and before fulfilment. */
-async function revalidateCreditUnits(quote:SampleCreditQuote) {
+export async function revalidateCreditUnits(quote:SampleCreditQuote) {
   const {data,error}=await db().from('sample_credit_grants').select('id,order_gid,units').in('id',quote.grants.map(g=>g.id));
   if(error || data?.length!==quote.grants.length)throw Error('SAMPLE_CREDIT_SOURCE_REVIEW_REQUIRED');
   for(const grant of data){

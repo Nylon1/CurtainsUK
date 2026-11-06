@@ -25,6 +25,7 @@ export type CustomerOrder = {
 };
 
 export type PilotCandidate = {
+  customerId: string | null;
   orderId: string;
   orderName: string;
   firstName: string;
@@ -49,7 +50,7 @@ export function hasBoughtCurtains(orders: CustomerOrder[] | null, sourceOrderId:
   if (!orders) return false;
   return orders.some(order => order.id !== sourceOrderId && !order.test && !order.cancelledAt
     && (order.tags.includes('CURTAINSUK_PRODUCTION') || order.lineItems.nodes.some(line =>
-      line.variant?.id !== SAMPLE_VARIANT_GID && (/^CUK-/.test(line.sku ?? '') || /made.to.measure\s+curtains?|\bcurtains?\b/i.test(line.title))
+      line.variant?.id !== SAMPLE_VARIANT_GID && (/^CUK-/.test(line.sku ?? '') || /made.to.measure\s+curtains?|\bcurtains?\b|\broman blinds?\b|\bcushions?\b|\bmotorised (?:curtain )?tracks?\b/i.test(line.title))
     )));
 }
 
@@ -85,7 +86,7 @@ export function planSampleToSale(order: PilotOrder, customerOrders: CustomerOrde
   else if (!delivered) reason = 'no_delivery';
   else if (marketingState !== 'SUBSCRIBED') reason = 'no_marketing_permission';
   return {
-    orderId: order.id, orderName: order.name, firstName: order.customer?.firstName?.trim() || 'there',
+    customerId:order.customer?.id??null,orderId: order.id, orderName: order.name, firstName: order.customer?.firstName?.trim() || 'there',
     fabricName, fabricId, deliveredAt: delivered, marketingState,
     stage: reason === 'ready' ? pilotStage(delivered!, now) : 'not_ready', reason, curtainBought,
   };
@@ -105,15 +106,15 @@ export function pilotMessage(candidate: PilotCandidate, stage: Exclude<PilotStag
     body: `${hello}\n\nWe hope your ${fabric} sample has arrived. How does it look in your room? If you would like help with colour, measurements or lining, simply reply and our team will help.\n\nSee your fabric in a room: ${link}\n\nWarm regards,\nThe CurtainsUK Team`,
   };
   if (stage === 'inspiration') return {
-    subject: `See ${fabric} as made-to-measure curtains`,
-    body: `${hello}\n\nYou chose ${fabric}. Try it in our Room Visualiser, then enter your measurements to see your curtain price. If you received a sample credit code, you can enter it in Design My Home before payment.\n\nExplore your fabric: ${link}\n\nNeed a hand with a heading or measuring? Reply to this email.\n\nThe CurtainsUK Team`,
+    subject: `See what ${fabric} could become`,
+    body: `${hello}\n\nYou chose ${fabric}. Try it in our Room Visualiser, then explore curtains, Roman blinds and cushions for your room. If you received a sample credit code, you can enter it in Shopping Cart before payment on an eligible curtain order.\n\nExplore your fabric: ${link}\n\nNeed a hand with measuring? Reply to this email.\n\nThe CurtainsUK Team`,
   };
   if (stage === 'offer') return {
-    subject: `A personal curtain offer for your ${fabric} sample`,
-    body: `${hello}\n\nWe hope ${fabric} feels right at home. As a thank-you, we have a personal 10% offer for a first made-to-measure curtain order of £150 or more. You can use your existing sample credit as well.\n\nYour code: [UNIQUE CODE]\nValid until: [EXPIRY DATE]\n\nCreate your curtains: ${link}\n\nThe 10% applies to eligible curtain goods, before sample credit. It excludes samples and delivery, can be used once per customer, and cannot be combined with other promotional offers. Terms and exclusions apply.\n\nNeed measuring help? Reply and we will be happy to assist.\n\nThe CurtainsUK Team`,
+    subject: `A personal CurtainsUK offer for your ${fabric} sample`,
+    body: `${hello}\n\nWe hope ${fabric} feels right at home. As a thank-you, we have a personal 10% offer for your first product order of £150 or more in our Shopping Cart. It covers curtains, Roman blinds, cushions and motorised curtain tracks. You can use your existing sample credit on curtains as well.\n\nYour code: [UNIQUE CODE]\nValid until: [EXPIRY DATE]\n\nExplore your fabric: ${link}\nReview your Shopping Cart: https://www.curtainsuk.com/pages/build-my-rooms\n\nThe 10% applies to products before sample credit. Delivery is excluded. The code can be used once per customer and cannot be combined with other promotional offers. Terms apply.\n\nNeed help? Reply and we will be happy to assist.\n\nThe CurtainsUK Team`,
   };
   return {
-    subject: `Your ${fabric} curtain offer ends soon`,
-    body: `${hello}\n\nA gentle reminder that your personal curtain offer ends on [EXPIRY DATE]. If you need help measuring or choosing a heading, reply and we will help.\n\nView ${fabric} and create your curtains: ${link}\n\nYour code: [UNIQUE CODE]\n\nThe CurtainsUK Team`,
+    subject: `Your personal ${fabric} offer ends soon`,
+    body: `${hello}\n\nA gentle reminder that your personal 10% offer ends on [EXPIRY DATE]. If you need help measuring or choosing a product, reply and we will help.\n\nExplore ${fabric}: ${link}\nReview your Shopping Cart: https://www.curtainsuk.com/pages/build-my-rooms\n\nYour code: [UNIQUE CODE]\n\nThe CurtainsUK Team`,
   };
 }

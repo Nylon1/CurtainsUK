@@ -1,5 +1,8 @@
 import 'server-only';
 import { sampleCreditAdminRequest } from './shopify-draft-order-server';
+import { randomUUID } from 'node:crypto';
+import { createSupplierServiceClient } from '../supabase/supplier-service';
+import { promotionCode, promotionCodeHash } from './sample-to-sale-code';
 import { isSampleOrder, planSampleToSale, type CustomerOrder, type PilotCandidate, type PilotOrder } from './sample-to-sale';
 
 const ORDERS_QUERY = `query CurtainsUKSampleToSaleOrders {
@@ -59,4 +62,31 @@ export async function readSampleToSalePilot(): Promise<{ candidates: PilotCandid
     }).filter((candidate): candidate is PilotCandidate => candidate !== null),
     partial: source.orders.pageInfo.hasNextPage,
   };
+}
+
+/** Issue one private, redeemable code after a fresh eligibility read. No email is sent. */
+export async function issueSampleToSaleCode(sampleOrderId: string) {
+  if(process.env.CURTAINSUK_SAMPLE_TO_SALE_ENABLED!=='true')throw Error('SAMPLE_TO_SALE_DISABLED');
+  const secret=process.env.CURTAINSUK_SAMPLE_TO_SALE_SECRET??'';
+  if(secret.length<32)throw Error('SAMPLE_TO_SALE_CONFIGURATION_REQUIRED');
+  if(!/^gid:\/\/shopify\/Order\/\d+$/.test(sampleOrderId))throw Error('SAMPLE_TO_SALE_ORDER_INVALID');
+  const {candidates}=await readSampleToSalePilot();
+  const candidate=candidates.find(c=>c.orderId===sampleOrderId);
+  if(!candidate||candidate.reason!=='ready'||!['offer','reminder'].includes(candidate.stage)
+    ||!candidate.customerId||!/^gid:\/\/shopify\/Customer\/\d+$/.test(candidate.customerId))throw Error('SAMPLE_TO_SALE_INELIGIBLE');
+  const database=createSupplierServiceClient();
+  const {data:existing,error:existingError}=await database.from('sample_to_sale_offers')
+    .select('id,customer_gid,code_hash,expires_at,state').eq('customer_gid',candidate.customerId).maybeSingle();
+  if(existingError)throw Error('SAMPLE_TO_SALE_STORAGE_UNAVAILABLE');
+  if(existing){
+    const code=promotionCode(existing.id,secret);
+    if(existing.state!=='AVAILABLE'||Date.parse(existing.expires_at)<=Date.now()||promotionCodeHash(code)!==existing.code_hash)throw Error('SAMPLE_TO_SALE_ALREADY_ISSUED');
+    return {code,expiresAt:existing.expires_at,candidate};
+  }
+  const id=randomUUID(),issuedAt=new Date(),expiresAt=new Date(issuedAt.getTime()+14*86_400_000).toISOString();
+  const code=promotionCode(id,secret);
+  const {error}=await database.from('sample_to_sale_offers').insert({id,sample_order_gid:sampleOrderId,
+    customer_gid:candidate.customerId,code_hash:promotionCodeHash(code),issued_at:issuedAt.toISOString(),expires_at:expiresAt});
+  if(error)throw Error('SAMPLE_TO_SALE_STORAGE_UNAVAILABLE');
+  return {code,expiresAt,candidate};
 }

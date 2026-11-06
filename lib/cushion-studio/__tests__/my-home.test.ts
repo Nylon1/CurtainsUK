@@ -459,3 +459,32 @@ test("sample credit preserves ordinary reviews and discounts only curtains in a 
   const cushionOnly={...input,curtains:undefined};
   await assert.rejects(()=>reviewMyHomeWithSampleCredit(cushionOnly,f.services,authority),/SAMPLE_CREDIT_CURTAINS_REQUIRED/);
 });
+
+test('personal offer and sample credit stack in mixed Shopping Cart review and checkout',async()=>{
+  const {reviewMyHomeWithSampleCredit,checkoutMyHomeWithSampleCredit}=await import('../../storefront/sample-credit-my-home');
+  const {quoteSampleCredit,sampleCreditCode}=await import('../../storefront/sample-credit');
+  const {quotePromotion}=await import('../../storefront/sample-to-sale-code');
+  const f=await homeFixture(),base=await reviewMyHome(f.input,f.services);
+  assert.ok(base.goodsMinor!==null&&base.goodsMinor>=15_000);
+  const promotionAmount=Math.round(base.goodsMinor*0.1);
+  const credit={preview:async (_codes:unknown,id:string)=>quoteSampleCredit(id,[{id:'00000000-0000-4000-8000-000000000001',units:[{lineId:'test',ordinal:0,amountMinor:250}]}])};
+  const offer={preview:async (_code:unknown,id:string,goods:number)=>{
+    assert.equal(goods,base.goodsMinor);
+    return quotePromotion({offerId:'10000000-0000-4000-8000-000000000001',codeHash:'a'.repeat(64),expiresAt:'2026-11-20T12:00:00Z',baseReviewId:id,amountMinor:promotionAmount});
+  }};
+  const input={...f.input,sampleCreditCodes:[sampleCreditCode('gid://shopify/Order/100','synthetic-test-secret'.repeat(3))],promotionCode:'CUK10-10000000-AAAAAAAAAAAAAAAAAAAA'};
+  const reviewed=await reviewMyHomeWithSampleCredit(input,f.services,credit,offer);
+  assert.equal(reviewed.totalMinor,base.totalMinor!-promotionAmount-250);
+  assert.ok('promotion' in reviewed&&'sampleCredit' in reviewed);
+  assert.equal(reviewed.promotion?.amountMinor,promotionAmount);
+  assert.equal(reviewed.sampleCredit?.amountMinor,250);
+  let executed:import('../../storefront/shopify-draft-order-core').ShopifyDraftOrderExecutionContract|undefined;
+  const original=f.services.mixed.cushion.execute;
+  f.services.mixed.cushion.execute=async c=>{executed=c;return original(c);};
+  await checkoutMyHomeWithSampleCredit(checkoutInput(input,reviewed),f.services,credit,offer);
+  assert.ok(executed);
+  assert.equal(executed.expected.orderGrossAmountMinor,reviewed.totalMinor);
+  assert.equal(executed.expected.orderVatAmountMinor,reviewed.vatMinor);
+  assert.equal(executed.expected.discountAmountMinor,promotionAmount+250);
+  assert.equal(executed.input.lineItems.reduce((sum,l)=>sum+Math.round((l.appliedDiscount?.value??0)*100),0),promotionAmount+250);
+});

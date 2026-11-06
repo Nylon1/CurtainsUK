@@ -15,6 +15,7 @@ test('carrier delivery and subscription make a sample eligible after one day',()
   assert.equal(result.reason,'ready');
   assert.equal(result.stage,'check_in');
   assert.equal(result.fabricId,'sdg-f1068-20');
+  assert.equal(result.customerId,'gid://shopify/Customer/1');
 });
 
 test('fulfilment without a delivery event cannot start the journey',()=>{
@@ -37,6 +38,14 @@ test('a paid made-to-measure order suppresses all promotions',()=>{
 test('a placed curtain order suppresses the journey even if payment is pending',()=>{
   const curtains:CustomerOrder={id:'gid://shopify/Order/3',test:false,cancelledAt:null,displayFinancialStatus:'PENDING',tags:[],lineItems:{pageInfo:{hasNextPage:false},nodes:[{title:'Made to measure Curtains - Customer',sku:null,variant:null}]}};
   assert.equal(planSampleToSale(sample,[...customerOrders,curtains],true,new Date('2026-11-06T12:00:00Z'))?.reason,'already_bought');
+});
+
+test('a prior Roman blind, cushion or motorised track order suppresses a first-product code',()=>{
+  for(const title of ['Made-to-measure Roman blind','Cushion','Motorised curtain track']){
+    const order:CustomerOrder={id:'gid://shopify/Order/5',test:false,cancelledAt:null,displayFinancialStatus:'PAID',tags:[],
+      lineItems:{pageInfo:{hasNextPage:false},nodes:[{title,sku:null,variant:null}]}};
+    assert.equal(planSampleToSale(sample,[...customerOrders,order],true,new Date('2026-11-15T12:00:00Z'))?.reason,'already_bought');
+  }
 });
 
 test('incomplete customer history is withheld rather than assuming no purchase',()=>{

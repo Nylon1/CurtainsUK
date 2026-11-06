@@ -90,6 +90,7 @@ export interface ShopifyDraftOrderContract {
  */
 export interface ShopifyDraftOrderExecutionContract {
   sampleCreditQuote?: import('./sample-credit').SampleCreditQuote;
+  promotionQuote?: import('./sample-to-sale-code').PromotionQuote;
   apiVersion: typeof SHOPIFY_DRAFT_ORDER_API_VERSION;
   environment: "STAGING" | "PRODUCTION";
   idempotencyTag: string;

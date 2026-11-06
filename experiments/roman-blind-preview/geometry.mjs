@@ -23,27 +23,37 @@ export function foldPlan(style='stacked',drop=SIZE){
 export const FOLDS=foldPlan().rodCount;
 const plans={stacked:foldPlan('stacked'),cascade:foldPlan('cascade')};
 function progress(phase,band,rods){return Math.max(0,Math.min(1,phase*rods-(rods-1-band)));}
+// A finite-radius return replaces the sharp doubled-back sheet. Its semicircle
+// consumes real material length; the two straight legs still meet at the rods.
+function foldRadius(p,length){return Math.min(.012*Math.sin(p*Math.PI/2),length*p/Math.PI);}
 function atPhase(s,phase,style){
  const plan=plans[style];
  if(s<=SPEC.headrail)return{down:s,depth:0};
  let local=s-SPEC.headrail,band=0,start=SPEC.headrail,back=0;
  while(band<plan.sections.length&&local>plan.sections[band].length){
   const p=progress(phase,band,plan.rodCount);local-=plan.sections[band].length;
-  start+=plan.sections[band].length*(1-p);back+=.014*p;band++;
+  start+=plan.sections[band].length*(1-p);back+=2*foldRadius(p,plan.sections[band].length);band++;
  }
  // The bottom half remains a hanging flap below the last lifting rod.
  if(band===plan.sections.length)return{down:start+local,depth:-back};
  const p=progress(phase,band,plan.rodCount),length=plan.sections[band].length;
- const h=length*(1-p),turn=(length+h)/2,delta=local-turn;
- const radius=Math.min(.007*p,Math.max(0,length-turn));
- // Rounded U-shaped fold, continuously attached to the cloth coordinates.
- let down=turn-Math.abs(delta),depth=delta>0?-.014*p:0;
- if(radius>.000001&&Math.abs(delta)<radius){
-  const angle=delta/radius*Math.PI/2;
-  down=turn-radius+radius*Math.cos(angle);
-  depth=-radius-radius*Math.sin(angle);
+ if(p===0)return{down:start+local,depth:-back};
+ const h=length*(1-p),radius=foldRadius(p,length),arc=Math.PI*radius;
+ const front=(length-arc+h)/2,returnLength=(length-arc-h)/2;
+ let down,depth;
+ if(local<front){
+  const t=local/front;
+  // The face gently bows as it loses tension, with smooth tangency at each end.
+  const fullness=.008*Math.sin(p*Math.PI/2)+.009*Math.sin(p*Math.PI);
+  down=local;depth=fullness*Math.sin(Math.PI*t)**2;
+ }else if(local<=front+arc&&radius>1e-10){
+  const angle=(local-front)/radius;
+  down=front+radius*Math.sin(angle);depth=-radius*(1-Math.cos(angle));
+ }else{
+  const tail=local-front-arc,t=returnLength>1e-10?tail/returnLength:1;
+  down=front-tail;depth=-2*radius-.0025*p*Math.sin(Math.PI*t)**2;
  }
- return{down:start+(p===0?local:down),depth:-back+depth};
+ return{down:start+down,depth:-back+depth};
 }
 function phaseDrop(phase,style){const plan=plans[style];let down=plan.headrail;plan.sections.forEach(({length},i)=>{down+=length*(1-progress(phase,i,plan.rodCount));});return down+plan.bottomHalf;}
 export function visibleDrop(raised,style='stacked'){return SIZE+(phaseDrop(1,style)-SIZE)*raised;}

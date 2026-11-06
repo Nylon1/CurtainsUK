@@ -59,3 +59,19 @@ test('rod-pocket relief follows calculated positions without changing UV or cove
  }
  assert.throws(()=>foldPlan('cascade',2.2),/No fold plan/);
 });
+
+test('rounded folds stay attached at rods and retain their material length',()=>{
+ for(const style of ['stacked','cascade'])for(const lift of [.08,.25,.5,.75,1]){
+  const phase=phaseForLift(lift,style),plan=foldPlan(style);
+  for(const rod of plan.rodPositions){
+   const a=foldPoint(rod-1e-7,lift,phase,style),b=foldPoint(rod+1e-7,lift,phase,style);
+   assert.ok(Math.hypot(a.down-b.down,a.depth-b.depth)<1e-6,'no split at a rod pocket');
+  }
+  let length=0,previous=foldPoint(0,lift,phase,style);
+  for(let i=1;i<=14000;i++){
+   const point=foldPoint(SIZE*i/14000,lift,phase,style);
+   length+=Math.hypot(point.down-previous.down,point.depth-previous.depth);previous=point;
+  }
+  assert.ok(Math.abs(length-SIZE)<SIZE*.02,'rounded returns do not stretch the fabric significantly');
+ }
+});

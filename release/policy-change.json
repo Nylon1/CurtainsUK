@@ -1,13 +1,14 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The recorded production theme manifest predates the Roman blinds release and the homepage opens with a curtains-only shopping choice.",
-  "newRule": "The recorded production theme manifest includes the Roman blinds files, three homepage Shop now visuals for curtains, Roman blinds and cushions, and matching Shopping Cart guidance. The established production approval and deployment rules are unchanged.",
-  "reason": "The owner requested a prominent luxury Shop now entry on the homepage. The Shopping Cart copy now includes its Roman option. The source manifest is updated in the same follow-up so the composed MAIN theme can be verified against a full readback after scoped publication.",
-  "ownerApprovedDecision": "The owner explicitly requested the homepage product paths and high-quality visuals after authorising the Roman release. The protected GitHub policy requires a separate exact-head Nylon1 comment for this follow-up PR before it can merge.",
+  "previousRule": "Production has a transactional sample-credit email but no staff sample-to-sale pilot, marketing eligibility checks or tested stacked promotional calculation.",
+  "newRule": "A private preview shows carrier delivery, current marketing state, curtain-order suppression and four message drafts. Tests model the owner's confirmed 10% plus sample-credit rule. No marketing send, discount redemption or Flow activation is enabled.",
+  "reason": "The owner requested a personalised sample follow-up journey and explicitly chose to combine the proposed 10% promotion with the existing sample credit. The pilot must be reviewable before any customer contact or checkout change.",
+  "ownerApprovedDecision": "Owner review is requested for this protected test and policy record change. The repository still requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "docs/PRODUCTION_SURFACES.md",
-    "shopify-theme/production-main-overlay/manifest.json",
+    "lib/storefront/__tests__/sample-to-sale.test.ts",
+    "lib/storefront/__tests__/sample-to-sale-offer.test.ts",
+    "shopify.app.toml",
     "release/policy-change.json"
   ]
 }

@@ -28,6 +28,10 @@ Six paid sample orders appear in the current Shopify order view across five cust
 
 The existing sample-credit email is transactional and already sent through the paid-order webhook. It must not be reused as marketing permission. The sample credit is a promised customer benefit and is applied as a line discount in the custom Draft Order checkout. That checkout sets `allowDiscountCodesInCheckout: false`. A Shopify code created in Admin would not currently redeem through Design My Home. The public sale is already included in displayed prices, according to the owner-approved homepage release record. A further 10% needs a real price and margin check.
 
+Providing an email address for an order is not, by itself, a marketing subscription. For a UK existing-customer soft opt-in, retain evidence that a clear opt-out was offered when the address was collected, use the address only for similar CurtainsUK products, and give an opt-out in each message. Until that evidence is verified, the strict `SUBSCRIBED` gate remains in force. A current `UNSUBSCRIBED` state must always suppress marketing.
+
+The private pilot provides an **Add a verified email** entry to Shopify Customers. Staff can review the customer's consent evidence, record when and where it was given and the wording used, check later opt-outs, then update the customer's marketing settings in Shopify. Newly verified addresses can be added as Shopify customers there. Shopify remains the subscription source of truth; the pilot reads its current status after refresh. A staff-entered email alone does not enter the automation.
+
 ## Offer contract to finish before enabling promotion
 
 - 10% on eligible made-to-measure curtain goods with a £150 qualifying curtain subtotal. Exclude samples, delivery, Roman blinds, cushions and other parts unless separately approved.

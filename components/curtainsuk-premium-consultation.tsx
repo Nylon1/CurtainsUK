@@ -346,7 +346,7 @@ export default function CurtainsUkPremiumConsultation() {
       <section className={styles.nextDestinations} aria-labelledby="fabric-next-heading"><p className={styles.eyebrow}>Bring your ideas home</p><h2 id="fabric-next-heading">Your next step, <em>made simple.</em></h2><p>Keep exploring, plan a whole room or get help with measuring and fitting.</p><div>{[
         ['/pages/fabric-library?view=browse-fabrics', 'Browse all fabrics', 'Explore more colours, patterns and textures.'],
         ['/pages/smart-track-studio', 'Motorised Curtain Tracks', 'Try the remote and explore your track options.'],
-        ['/pages/build-my-rooms', 'Design My Home', 'Bring your saved room designs together.'],
+        ['/pages/build-my-rooms', 'Shopping Cart', 'Bring your saved room designs together.'],
         ['/pages/how-to-use', 'Explore our guides', 'Find help with using the studios, measuring and fitting.'],
       ].map(([href, title, description]) => <a key={href} href={fullUrl(href)}><strong>{title}<span aria-hidden="true">↗</span></strong><small>{description}</small></a>)}</div></section>
     </section>}

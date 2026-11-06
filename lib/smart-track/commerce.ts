@@ -190,7 +190,7 @@ export function buildSmartTrackOrder(input: {
           currencyCode: "GBP",
         },
       },
-      note: "CurtainsUK Design My Home. Hold all products together. Use each distinct immutable fulfilment snapshot after staff review.",
+      note: "CurtainsUK Shopping Cart. Hold all products together. Use each distinct immutable fulfilment snapshot after staff review.",
       tags: [
         ...(input.production
           ? ["CURTAINSUK_PRODUCTION"]

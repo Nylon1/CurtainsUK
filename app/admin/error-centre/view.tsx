@@ -36,7 +36,7 @@ const messages: Record<string, string> = {
 };
 const features: Record<string, string> = {
   FABRICS: 'Fabric browsing', CUSHION_STUDIO: 'Cushion Studio', ROOM_VISUALISER: 'Room Visualiser',
-  SMART_TRACK_STUDIO: 'Smart Track Studio', DESIGN_MY_HOME: 'Design My Home', FITTING_GUIDE: 'Fitting guide',
+  SMART_TRACK_STUDIO: 'Smart Track Studio', DESIGN_MY_HOME: 'Shopping Cart', FITTING_GUIDE: 'Fitting guide',
   PRODUCT_PAGE: 'Product page', POLICY_PAGE: 'Policy page', GENERAL: 'General page',
   JANE_ADVISOR: 'Jane adviser', SPECIALISTS: 'Specialist advisers',
   FABRIC_INTELLIGENCE: 'Fabric Intelligence', FABRIC_STOCK: 'Fabric stock',

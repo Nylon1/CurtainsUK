@@ -25,7 +25,7 @@ export function sampleOrderProperties(fabric: FabricMasterRecord, secret: string
     'Brand': fabric.brand_name,
     'Design': fabric.design_name,
     'Colourway': fabric.colour_name,
-    'Sample credit': 'We credit the amount paid for up to 10 samples towards your later made-to-measure curtain order. Use your emailed code in Design My Home.',
+    'Sample credit': 'We credit the amount paid for up to 10 samples towards your later made-to-measure curtain order. Use your emailed code in your made-to-measure Shopping Cart.',
   };
   if (context) {
     properties['Consultation ID'] = context.sessionId;

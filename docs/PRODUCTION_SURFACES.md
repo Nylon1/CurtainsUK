@@ -1,5 +1,12 @@
 # CurtainsUK production surfaces
 
+## Sample email send controls, 7 November 2026
+
+[PR #350](https://github.com/Nylon1/CurtainsUK/pull/350) added staff-reviewed Send now and per-customer Automatic emails controls to the private Sample to Sale page. [PR #351](https://github.com/Nylon1/CurtainsUK/pull/351) restored the published Room Visualiser bytes in Linux Git builds before the unchanged hash guard runs. Both passed the production gate and protected policy checks. The protected runtime source is **`8d4221b136ef14007b28d75e3d41df62ef6cc113`** on READY deployment **`dpl_C9Cw7bNLdQcHdRmuAh3ViDzcXiT4`**, serving the canonical production API alias and both compatibility aliases. Its rollback target is **`dpl_AvSvVbnAfqtAsUnEcd69QbuFfQxB`**. All four source-attestation environment values match the new runtime commit.
+
+The private `sample_to_sale_enrolments` migration is applied with row level security. It has zero enrolled customers; the send ledger has zero SENT rows. Existing email and offer switches remain true, and the internal synthetic canary remains unchanged. A real customer enters the automatic sequence only after a supplier admin turns it on for that customer. The signed-out staff route redirects to login with no-store headers on all three aliases; invalid unsubscribe input returns 400. Thirteen focused email tests, TypeScript and targeted lint passed. A signed-in staff browser visit, real customer send, and paid mixed-cart invoice were not replayed.
+
+
 ## Sample follow-up release, 7 November 2026
 
 [PR #348](https://github.com/Nylon1/CurtainsUK/pull/348) passed both required checks and merged at protected source **`869dcf77c0df384a9897006477865dad1160e5a3`**, tree **`8c27a7a088b2424ff40b5eb2748ab72423fa9693`**. Its exact protected export passed the six-pack Room Visualiser guard. READY deployment **`dpl_AvSvVbnAfqtAsUnEcd69QbuFfQxB`** was staged, checked and promoted to the canonical API alias and both compatibility aliases. The previous serving deployment **`dpl_fhVz3DZ1mQK5fDWDqCkXAi6s5GpV`** is the runtime rollback target. The four source-attestation values now match this protected SHA.

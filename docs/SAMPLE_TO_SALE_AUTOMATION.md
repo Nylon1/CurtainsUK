@@ -1,6 +1,6 @@
 # CurtainsUK sample-to-sale pilot
 
-Status, 7 November 2026: deployed in the protected runtime at `86a08ead957c4cb33ac01e3a00ea54fed67d6486`, but gated off. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=false`; no customer code or marketing email has been issued. The active Shopify app version is `sample-to-sale-04b4a8df`, and `currentAppInstallation.accessScopes` now confirms the installed `read_customers` grant. An internal mixed-cart invoice test, combined sample-credit redemption and margin review are still required before code issue.
+Status, 7 November 2026: deployed in the protected runtime at `a814eb9ff45c04c143f986a5e0fc4c730c5a7852`, but gated off. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=false`; no customer code or marketing email has been issued. The active Shopify app version is `sample-to-sale-04b4a8df`, and `currentAppInstallation.accessScopes` now confirms the installed `read_customers` grant. An internal mixed-cart invoice test, combined sample-credit redemption and margin review are still required before code issue.
 
 ## What the pilot now does
 

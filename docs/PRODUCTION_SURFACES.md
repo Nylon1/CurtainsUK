@@ -2,18 +2,22 @@
 
 ## Current production source map, 7 November 2026
 
+The Roman sample-note refinement in [PR #341](https://github.com/Nylon1/CurtainsUK/pull/341) passed both protected checks and merged at **`a814eb9ff45c04c143f986a5e0fc4c730c5a7852`**, tree **`c8e6837d03ce9a738484846a4f308fee5c44ed65`**. READY deployment **`dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`** now serves all three API aliases. Its immediate runtime rollback is **`dpl_5vTqaWL9SY6p4VHaHP5o9UCtFx2y`**. Only the four source-attestation values were advanced; purchase, adviser and sample-to-sale switches were not changed. The staged unsigned specialist route returned 401, and all three live aliases returned 401 at that route. The live Roman visualiser now shows one note beneath the raised-coverage estimate, “Verify actual pattern scale and colour with a real fabric sample.” The removed size, rod and fold-detail copy did not return after changing fabric and fold style.
+
+| Surface | Current source of truth |
+| --- | --- |
+| Shopify storefront | MAIN theme `182339731835`, 606 files matching the protected composed theme at `86a08ead` |
+| Shared app-proxy API | Protected runtime `a814eb9ff45c04c143f986a5e0fc4c730c5a7852` on READY deployment `dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`, assigned to all three established aliases |
+| Private persistence | Supabase project `hqysjumypgeapgmqkcrx`; Roman and sample-to-sale migrations recorded as at the previous checkpoint |
+| Shopify app | `curtains-uk-mtm` active version `sample-to-sale-04b4a8df`; installed `read_customers` scope granted; code issuer switch remains false |
+
+### Earlier 7 November release
+
 The Roman sticky-preview, chain-side and header refinement in [PR #339](https://github.com/Nylon1/CurtainsUK/pull/339) passed both protected checks and merged at **`86a08ead957c4cb33ac01e3a00ea54fed67d6486`**, tree **`815e600124db572637455a03c47ca98779049863`**. READY production deployment **`dpl_5vTqaWL9SY6p4VHaHP5o9UCtFx2y`** was staged without domains, checked, then assigned to the canonical API alias and both compatibility aliases. The previous READY deployment **`dpl_3AvLVYJjJPCTTxuTBo5QcNDpVVsk`** is the immediate runtime rollback. The four Production source attestations were advanced to the new protected commit; the existing feature switches were retained. Unsigned specialist access returned 401 and direct Roman preview access 404 on the staged deployment.
 
 The Shopify MAIN theme `182339731835` received only `assets/curtainsuk-header.css` and `sections/curtainsuk-header.liquid`, with deletion disabled. A complete post-upload pull matched all **606** files against the protected source manifest. Live desktop and narrow browser checks showed the deeper forest header and four champagne product buttons without horizontal overflow. On the signed Roman visualiser, the lounge preview remained sticky while narrow-screen settings scrolled; selecting Left side was reflected in the preview and carried into the Roman shop. The shop keeps the chain side in the order specification. A paid order and signed-in mixed checkout were not replayed for this release.
 
 The installed `curtains-uk-mtm` Shopify app now grants `read_customers`, verified from `currentAppInstallation.accessScopes`. Sample-to-sale code issue remains **off** because the internal mixed-cart invoice, combined sample-credit redemption and margin review have not yet been completed. No customer code or marketing email was issued.
-
-| Surface | Current source of truth |
-| --- | --- |
-| Shopify storefront | MAIN theme `182339731835`, 606 files matching the protected composed theme at `86a08ead` |
-| Shared app-proxy API | Protected runtime `86a08ead957c4cb33ac01e3a00ea54fed67d6486` on READY deployment `dpl_5vTqaWL9SY6p4VHaHP5o9UCtFx2y`, assigned to all three established aliases |
-| Private persistence | Supabase project `hqysjumypgeapgmqkcrx`; Roman and sample-to-sale migrations recorded as at the previous checkpoint |
-| Shopify app | `curtains-uk-mtm` active version `sample-to-sale-04b4a8df`; installed `read_customers` scope granted; code issuer switch remains false |
 
 ### Previous checkpoint, 6 November 2026
 

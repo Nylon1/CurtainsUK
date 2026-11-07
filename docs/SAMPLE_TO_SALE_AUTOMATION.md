@@ -1,6 +1,6 @@
 # CurtainsUK sample-to-sale pilot
 
-Status, 7 November 2026: deployed in the protected runtime at `dba75cb1580abc90e18ac9454f051d174ff00f0d` on READY deployment `dpl_Dd2ZD4SRUFTc2yyfmKW4nvgYjWpa`, but gated off. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=false`; no customer code or marketing email has been issued. The active Shopify app version is `sample-to-sale-04b4a8df`, and `currentAppInstallation.accessScopes` confirms the installed `read_customers` grant. The private offer ledger has zero rows. An internal mixed-cart invoice test, combined sample-credit redemption and margin review are still required before code issue.
+Status, 7 November 2026: deployed in the protected runtime at `dba75cb1580abc90e18ac9454f051d174ff00f0d` on READY deployment `dpl_HsTwfRukNgmWLLjubiL6Zsf1fKM9`. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`; staff can generate a code for a currently eligible customer after a fresh eligibility read. The active Shopify app version is `sample-to-sale-04b4a8df`, and `currentAppInstallation.accessScopes` confirms the installed `read_customers` grant. At the activation check, the private offer and redemption ledgers had zero rows and no marketing email had been sent. An internal mixed-cart paid invoice and actual margin outcome have not yet been replayed; limit initial use and review the first redemption carefully.
 
 ## What the pilot now does
 
@@ -38,11 +38,11 @@ The private pilot provides an **Add a verified email** entry to Shopify Customer
 - First qualifying product order only, one redemption per customer, 14 days from issue. The staff page displays an exact expiry in Europe/London time.
 - The 10% and already-promised sample credit can be used together. Apply 10% to all product lines first, then sample credit to the remaining curtain lines. Do not combine with other promotional offers.
 - The code is bound to the original Shopify customer account. The customer signs in, enters both codes in Shopping Cart, sees each saving in the review, and receives the exact combined line discount in the Draft Order. The paid-order webhook verifies the invoice and consumes both ledgers.
-- The code issuer is off unless `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`, a separate 32-character-plus secret is configured, and the private ledger migration is applied. Do not issue customer codes until the resulting order margin and live discount total are reviewed. The current pricing target is 35% gross margin before this promotion.
+- The code issuer requires `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`, a separate 32-character-plus secret, and the private ledger migration. The owner directed a limited first pilot before a paid mixed-cart replay. Review the first resulting invoice, margin and live discount total before wider issue. The current pricing target is 35% gross margin before this promotion.
 
-## Activation route
+## Operational follow-up
 
-1. Review the offer contract and run an internal end-to-end checkout with a mixed product order, sample credit, expiry and double redemption. The local unit and private-ledger tests are not a substitute for a real Shopify invoice test.
+1. Complete an internal end-to-end checkout with a mixed product order, sample credit, expiry and double redemption before expanding beyond the owner-directed first pilot. The local unit and private-ledger tests are not a substitute for a real Shopify invoice test.
 2. `read_customers` is granted on the actual `curtains-uk-mtm` app installation. Review the sample checkout's consent capture and any claimed soft opt-in evidence. The initial pilot uses only Shopify `SUBSCRIBED` customers.
 3. Build an inactive custom Shopify Flow workflow from a confirmed delivery trigger. Use Shopify Messaging for customer email, not Flow's internal staff email action. Recheck consent and order state after every wait. Include unsubscribe and suppression in the sender. The staff code issue action does not send email.
 4. Dry-run the first three eligible customers in the staff view, test the complete journey with internal test recipients, and review actual message rendering and destination links. Record sent, clicked, quote requested, purchased and unsubscribed states.

@@ -2,9 +2,20 @@
 
 ## Current production source map, 7 November 2026
 
-The sample-to-sale `do-not-action` safeguard in [PR #343](https://github.com/Nylon1/CurtainsUK/pull/343) passed both protected checks and merged at **`dba75cb1580abc90e18ac9454f051d174ff00f0d`**. READY deployment **`dpl_Dd2ZD4SRUFTc2yyfmKW4nvgYjWpa`** now serves the canonical API alias and both compatibility aliases. Its immediate runtime rollback is **`dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`**. The four Production source-attestation values were advanced to `dba75cb1`; the sample-to-sale switch remains **false**. The staged unsigned specialist route returned 401 and the private sample page redirected to sign-in. All three live API aliases returned 401 at the unsigned specialist route. No customer code or marketing email was issued; the offer ledger still held zero rows at the release check. The latest internal test account has no sample order, while the paid, delivered sample customer reviewed on 7 November is not subscribed in Shopify. A paid mixed-cart checkout and margin review remain outstanding.
+The owner directed activation of the private sample-to-sale pilot after Shopify confirmed a subscribed, delivered, paid sample customer with complete purchase history and no earlier product order. The same protected runtime source **`dba75cb1580abc90e18ac9454f051d174ff00f0d`** was rebuilt as READY deployment **`dpl_HsTwfRukNgmWLLjubiL6Zsf1fKM9`**, staged without aliases and then assigned to all three established API aliases. Its immediate runtime rollback is **`dpl_Dd2ZD4SRUFTc2yyfmKW4nvgYjWpa`**. Only `CURTAINSUK_SAMPLE_TO_SALE_ENABLED` changed to **true**; purchase, adviser and other feature settings were not edited. The staged unsigned specialist route returned 401 and the private sample page redirected to sign-in. The canonical live alias returned the same boundaries after promotion. Both private offer and redemption ledgers held zero rows at the release check. A browser transport failure prevented staff-page code issue from this session, and the local Vercel environment export redacted credentials, so no customer code or email was issued. The internal paid mixed-cart checkout and actual margin outcome have not been replayed.
 
 | Surface | Current source of truth |
+| --- | --- |
+| Shopify storefront | MAIN theme `182339731835`, 606 files matching the protected composed theme at `86a08ead`; unchanged by this activation |
+| Shared app-proxy API | Protected runtime `dba75cb1580abc90e18ac9454f051d174ff00f0d` on READY deployment `dpl_HsTwfRukNgmWLLjubiL6Zsf1fKM9`, assigned to all three established aliases |
+| Private persistence | Supabase project `hqysjumypgeapgmqkcrx`; offer and redemption ledgers each held zero rows at the release check |
+| Shopify app | `curtains-uk-mtm` active version `sample-to-sale-04b4a8df`; installed `read_customers` scope granted; staff-only code issuer switch is true |
+
+### Earlier 7 November suppression release
+
+The sample-to-sale `do-not-action` safeguard in [PR #343](https://github.com/Nylon1/CurtainsUK/pull/343) passed both protected checks and merged at **`dba75cb1580abc90e18ac9454f051d174ff00f0d`**. READY deployment **`dpl_Dd2ZD4SRUFTc2yyfmKW4nvgYjWpa`** served the canonical API alias and both compatibility aliases at that checkpoint. Its immediate runtime rollback was **`dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`**. The four Production source-attestation values were advanced to `dba75cb1`; the sample-to-sale switch was still **false**. The staged unsigned specialist route returned 401 and the private sample page redirected to sign-in. All three live API aliases returned 401 at the unsigned specialist route. No customer code or marketing email was issued; the offer ledger held zero rows at that release check. The paid, delivered sample customer reviewed on 7 November was not subscribed at that checkpoint and subscribed later the same day. A paid mixed-cart checkout and margin review remained outstanding.
+
+| Surface | Source at that checkpoint |
 | --- | --- |
 | Shopify storefront | MAIN theme `182339731835`, 606 files matching the protected composed theme at `86a08ead`; unchanged by PR #343 |
 | Shared app-proxy API | Protected runtime `dba75cb1580abc90e18ac9454f051d174ff00f0d` on READY deployment `dpl_Dd2ZD4SRUFTc2yyfmKW4nvgYjWpa`, assigned to all three established aliases |

@@ -2,6 +2,7 @@ import { build } from 'esbuild';
 import { copyFile, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { verifyReleasedVisualiserAssets } from './verify-released-visualiser-assets.mjs';
+import './restore-released-visualiser-line-endings.mjs';
 
 // Run before compilation: a sparse deploy must fail, not remove live assets.
 console.log('Released Room Visualiser assets:', await verifyReleasedVisualiserAssets());

@@ -1,12 +1,12 @@
 # CurtainsUK sample-to-sale pilot
 
-Status: deployed in the protected runtime at `04b4a8df7d61191277723dd03702b9be779575c5`, but gated off. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=false`; no customer code or marketing email has been issued. The active Shopify app version is `sample-to-sale-04b4a8df`, but the actual installation has not granted `read_customers`. Merchant reauthorization and an internal mixed-cart checkout test are still required before code issue.
+Status, 7 November 2026: deployed in the protected runtime at `86a08ead957c4cb33ac01e3a00ea54fed67d6486`, but gated off. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=false`; no customer code or marketing email has been issued. The active Shopify app version is `sample-to-sale-04b4a8df`, and `currentAppInstallation.accessScopes` now confirms the installed `read_customers` grant. An internal mixed-cart invoice test, combined sample-credit redemption and margin review are still required before code issue.
 
 ## What the pilot now does
 
 The staff page at `/admin/sample-to-sale` reads recent Shopify orders, finds the fabric sample variant and its fabric ID, checks carrier delivery events, checks the customer's current email marketing state and searches their accessible order history for a prior eligible product purchase. It shows four fabric-specific message previews. At the offer stage, staff can generate one personal code after a fresh eligibility check. The page does not send email.
 
-The page uses the existing staff role check and private no-store response headers. The runtime Shopify app needs `read_customers` for current consent and order history. The scope is in the active app configuration, but is absent from the actual installation's `currentAppInstallation.accessScopes` read. The page must not be treated as operational until the merchant approves the updated scope and a fresh installation read verifies it.
+The page uses the existing staff role check and private no-store response headers. The runtime Shopify app needs `read_customers` for current consent and order history. The scope is in the active app configuration and the actual installation now grants it. Offer issue remains gated pending the internal invoice and margin checks above.
 
 The planner withholds a customer if any required order history is incomplete. It also withholds test, unpaid or cancelled sample orders; orders without carrier-confirmed delivery; customers without a current `SUBSCRIBED` email state; and customers with an existing CurtainsUK product order. A fulfilled order alone is not treated as delivered. A subsequent product order ends the promotional journey.
 
@@ -43,7 +43,7 @@ The private pilot provides an **Add a verified email** entry to Shopify Customer
 ## Activation route
 
 1. Review the offer contract and run an internal end-to-end checkout with a mixed product order, sample credit, expiry and double redemption. The local unit and private-ledger tests are not a substitute for a real Shopify invoice test.
-2. Grant and verify `read_customers` on the actual `curtains-uk-mtm` app installation. Review the sample checkout's consent capture and any claimed soft opt-in evidence. The initial pilot uses only Shopify `SUBSCRIBED` customers.
+2. `read_customers` is granted on the actual `curtains-uk-mtm` app installation. Review the sample checkout's consent capture and any claimed soft opt-in evidence. The initial pilot uses only Shopify `SUBSCRIBED` customers.
 3. Build an inactive custom Shopify Flow workflow from a confirmed delivery trigger. Use Shopify Messaging for customer email, not Flow's internal staff email action. Recheck consent and order state after every wait. Include unsubscribe and suppression in the sender. The staff code issue action does not send email.
 4. Dry-run the first three eligible customers in the staff view, test the complete journey with internal test recipients, and review actual message rendering and destination links. Record sent, clicked, quote requested, purchased and unsubscribed states.
 5. Activate only after the owner reviews the exact copy, pricing treatment and recipient list. Keep the first cohort small, and stop immediately on an order, opt-out, complaint or bounce.

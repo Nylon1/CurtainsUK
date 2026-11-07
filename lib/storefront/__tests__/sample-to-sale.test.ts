@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { planSampleToSale, pilotStage, type CustomerOrder, type PilotOrder } from '../sample-to-sale';
+import { sampleToSaleEmail, SAMPLE_TO_SALE_BCC } from '../sample-to-sale-email';
+import { sampleToSaleUnsubscribeToken, validSampleToSaleUnsubscribeToken } from '../sample-to-sale-unsubscribe';
 
 const sample: PilotOrder = {
   id:'gid://shopify/Order/1',name:'#1',test:false,cancelledAt:null,displayFinancialStatus:'PAID',
@@ -10,8 +12,8 @@ const sample: PilotOrder = {
 };
 const customerOrders: CustomerOrder[] = [{id:sample.id,test:false,cancelledAt:null,displayFinancialStatus:'PAID',tags:[],lineItems:{pageInfo:{hasNextPage:false},nodes:[{title:'Fabric Sample',sku:null,variant:{id:'gid://shopify/ProductVariant/56120226873723'}}]}}];
 
-test('carrier delivery and subscription make a sample eligible after one day',()=>{
-  const result=planSampleToSale(sample,customerOrders,true,new Date('2026-11-06T12:00:00Z'))!;
+test('carrier delivery and subscription make a sample eligible on day three',()=>{
+  const result=planSampleToSale(sample,customerOrders,true,new Date('2026-11-08T12:00:00Z'))!;
   assert.equal(result.reason,'ready');
   assert.equal(result.stage,'check_in');
   assert.equal(result.fabricId,'sdg-f1068-20');
@@ -52,8 +54,44 @@ test('incomplete customer history is withheld rather than assuming no purchase',
   assert.equal(planSampleToSale(sample,customerOrders,false,new Date('2026-11-06T12:00:00Z'))?.reason,'incomplete_order_data');
 });
 
-test('offer and reminder windows stop after the 14-day offer period',()=>{
-  assert.equal(pilotStage('2026-11-01T10:00:00Z',new Date('2026-11-09T10:00:00Z')),'offer');
-  assert.equal(pilotStage('2026-11-01T10:00:00Z',new Date('2026-11-16T10:00:00Z')),'reminder');
-  assert.equal(pilotStage('2026-11-01T10:00:00Z',new Date('2026-11-23T10:00:00Z')),'expired');
+test('journey changes at days three, five, seven and fourteen',()=>{
+  const delivered='2026-11-01T10:00:00Z';
+  const atDay=(day:number)=>new Date(Date.parse(delivered)+day*86_400_000);
+  assert.equal(pilotStage(delivered,atDay(2)),'not_ready');
+  assert.equal(pilotStage(delivered,atDay(3)),'check_in');
+  assert.equal(pilotStage(delivered,atDay(5)),'inspiration');
+  assert.equal(pilotStage(delivered,atDay(7)),'offer');
+  assert.equal(pilotStage(delivered,atDay(14)),'reminder');
+  assert.equal(pilotStage(delivered,atDay(21)),'expired');
+});
+
+test('branded offer email has private code, BCC, telephone CTA and unsubscribe',()=>{
+  const candidate=planSampleToSale(sample,customerOrders,true,new Date('2026-11-12T10:00:00Z'))!;
+  const mail=sampleToSaleEmail(candidate,'offer',{code:'CUK-TEST',expiry:'21 November 2026',unsubscribeUrl:'https://example.com/unsubscribe'});
+  assert.deepEqual(mail.bcc,[SAMPLE_TO_SALE_BCC]);
+  assert.match(mail.html,/tel:\+448007720367/);
+  assert.match(mail.html,/Mon(?:day)? to Fri(?:day)?, 9am to 5pm/);
+  assert.match(mail.html,/CUK-TEST/);
+  assert.match(mail.html,/Unsubscribe/);
+  assert.match(mail.text,/0800 772 0367/);
+  assert.match(mail.text,/https:\/\/example.com\/unsubscribe/);
+});
+
+test('email renderer escapes untrusted names and requires a real unsubscribe URL',()=>{
+  const candidate=planSampleToSale(sample,customerOrders,true,new Date('2026-11-12T10:00:00Z'))!;
+  const malicious={...candidate,firstName:'<script>alert(1)</script>'};
+  const mail=sampleToSaleEmail(malicious,'check_in',{unsubscribeUrl:'https://example.com/unsubscribe'});
+  assert.doesNotMatch(mail.html,/<script>/);
+  assert.match(mail.html,/&lt;script&gt;/);
+  assert.throws(()=>sampleToSaleEmail(candidate,'offer',{unsubscribeUrl:'https://example.com/unsubscribe'}),/CODE_REQUIRED/);
+  assert.throws(()=>sampleToSaleEmail(candidate,'check_in',{unsubscribeUrl:''}),/UNSUBSCRIBE_REQUIRED/);
+});
+
+test('one customer unsubscribe token cannot suppress another customer',()=>{
+  const secret='sample-to-sale-test-secret-at-least-32-characters';
+  const customer='gid://shopify/Customer/1';
+  const token=sampleToSaleUnsubscribeToken(customer,secret);
+  assert.equal(validSampleToSaleUnsubscribeToken(customer,token,secret),true);
+  assert.equal(validSampleToSaleUnsubscribeToken('gid://shopify/Customer/2',token,secret),false);
+  assert.equal(validSampleToSaleUnsubscribeToken(customer,'not-a-token',secret),false);
 });

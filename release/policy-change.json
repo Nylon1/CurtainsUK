@@ -1,12 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The live staff page shows an eligible code button, but its POST rejects a browser form as Invalid request. The guard compares Origin with the runtime URL, which can differ from the public alias used by the browser.",
-  "newRule": "The code-issue POST validates the public staff host and browser Origin or same-origin Fetch Metadata, retains URL-encoded form and size limits, and still requires a SUPPLIER_ADMIN session and fresh customer eligibility checks. The staff page displays fabric names and message previews without em dashes while preserving catalogue data.",
-  "reason": "The owner asked to issue sample follow-up codes through the live staff page. The first authorised form submission returned Invalid request and the private ledgers stayed empty. The correction keeps cross-site submissions blocked while accepting the public alias form.",
-  "ownerApprovedDecision": "Owner review is requested for the corrected staff code form and protected test. The repository requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
+  "previousRule": "Sample follow-up stages are manual staff previews at days 1, 4, 8 and 15 after carrier delivery. The staff page can issue a personal code but never sends an email.",
+  "newRule": "The journey stages become days 3, 5, 7 and 14. A separate disabled-by-default sender uses current Shopify subscription and order history, a private one-message-per-stage outbox, a one-click unsubscribe endpoint, a verified CurtainsUK sending domain, a Resend idempotency key, and an owner-requested BCC. The staff page offers branded email previews and a telephone CTA. The shared Shopify header gains a call button and hours.",
+  "reason": "The owner requested automation, exact journey timing, a luxury email design, a BCC copy to an internal inbox, and a call button on the site. The new sender remains disabled until DNS, migration, and internal delivery checks are complete.",
+  "ownerApprovedDecision": "Owner review is requested for the new marketing-email policy, timing and protected tests. The repository requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/sample-to-sale-staff-form.test.ts",
+    "lib/storefront/__tests__/sample-to-sale.test.ts",
+    "shopify-theme/production-main-overlay/manifest.json",
     "release/policy-change.json"
   ]
 }

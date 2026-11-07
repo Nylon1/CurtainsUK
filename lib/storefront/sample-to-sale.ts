@@ -1,4 +1,4 @@
-/** Private, read-only pilot. No customer messages or discount codes are issued here. */
+/** Private journey planning and message previews. This module never sends email. */
 export const SAMPLE_VARIANT_GID = 'gid://shopify/ProductVariant/56120226873723';
 
 export type PilotStage = 'not_ready' | 'check_in' | 'inspiration' | 'offer' | 'reminder' | 'expired';
@@ -10,7 +10,7 @@ export type PilotOrder = {
   test: boolean;
   cancelledAt: string | null;
   displayFinancialStatus: string;
-  customer: { id: string; firstName: string | null; tags?: string[]; defaultEmailAddress: { marketingState: string } | null } | null;
+  customer: { id: string; firstName: string | null; tags?: string[]; defaultEmailAddress: { emailAddress?: string; marketingState: string } | null } | null;
   lineItems: { pageInfo: { hasNextPage: boolean }; nodes: Array<{ title: string; quantity: number; variant: { id: string } | null; customAttributes: Array<{ key: string; value: string }> }> };
   fulfillments: Array<{ events: { pageInfo: { hasNextPage: boolean }; nodes: Array<{ status: string; happenedAt: string | null }> } }>;
 };
@@ -26,6 +26,7 @@ export type CustomerOrder = {
 
 export type PilotCandidate = {
   customerId: string | null;
+  email: string | null;
   orderId: string;
   orderName: string;
   firstName: string;
@@ -61,11 +62,11 @@ export function hasBoughtCurtains(orders: CustomerOrder[] | null, sourceOrderId:
 const DAY = 86_400_000;
 export function pilotStage(deliveredAt: string, now: Date): PilotStage {
   const elapsed = now.getTime() - Date.parse(deliveredAt);
-  if (!Number.isFinite(elapsed) || elapsed < DAY) return 'not_ready';
-  if (elapsed < 4 * DAY) return 'check_in';
-  if (elapsed < 8 * DAY) return 'inspiration';
-  if (elapsed < 15 * DAY) return 'offer';
-  if (elapsed < 22 * DAY) return 'reminder';
+  if (!Number.isFinite(elapsed) || elapsed < 3 * DAY) return 'not_ready';
+  if (elapsed < 5 * DAY) return 'check_in';
+  if (elapsed < 7 * DAY) return 'inspiration';
+  if (elapsed < 14 * DAY) return 'offer';
+  if (elapsed < 21 * DAY) return 'reminder';
   return 'expired';
 }
 
@@ -91,7 +92,8 @@ export function planSampleToSale(order: PilotOrder, customerOrders: CustomerOrde
   else if (!delivered) reason = 'no_delivery';
   else if (marketingState !== 'SUBSCRIBED') reason = 'no_marketing_permission';
   return {
-    customerId:order.customer?.id??null,orderId: order.id, orderName: order.name, firstName: order.customer?.firstName?.trim() || 'there',
+    customerId:order.customer?.id??null,email:order.customer?.defaultEmailAddress?.emailAddress??null,
+    orderId: order.id, orderName: order.name, firstName: order.customer?.firstName?.trim() || 'there',
     fabricName, fabricId, deliveredAt: delivered, marketingState,
     stage: reason === 'ready' ? pilotStage(delivered!, now) : 'not_ready', reason, curtainBought,
   };

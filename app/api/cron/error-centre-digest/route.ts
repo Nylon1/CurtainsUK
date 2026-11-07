@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { previousCompletedHour, sendHourlyErrorCentreDigest } from '@/lib/storefront/hourly-error-centre-digest';
 import { PRIVATE_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
 import { retrySampleCreditEmails } from '@/lib/storefront/sample-credit-server';
+import { sendSampleToSaleJourney } from '@/lib/storefront/sample-to-sale-email-server';
 import { recordOperationalError } from '@/lib/storefront/operational-error';
 
 export const runtime = 'nodejs';
@@ -19,6 +20,8 @@ export async function GET(request: Request) {
   try {
     try { await retrySampleCreditEmails(); }
     catch { await recordOperationalError({routePath:'/api/cron/error-centre-digest',code:'SAMPLE_CREDIT_EMAIL_QUEUE_FAILED',source:'HANDLED'}); }
+    try { await sendSampleToSaleJourney(); }
+    catch { await recordOperationalError({routePath:'/api/cron/error-centre-digest',code:'SAMPLE_TO_SALE_EMAIL_QUEUE_FAILED',source:'HANDLED'}); }
     await sendHourlyErrorCentreDigest(previousCompletedHour());
     return new NextResponse(null, { status: 204, headers: PRIVATE_NO_STORE_HEADERS });
   } catch {

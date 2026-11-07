@@ -1,6 +1,8 @@
 # CurtainsUK sample-to-sale pilot
 
-Status, 7 November 2026: deployed in the protected runtime at `dba75cb1580abc90e18ac9454f051d174ff00f0d` on READY deployment `dpl_HsTwfRukNgmWLLjubiL6Zsf1fKM9`. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`; staff can review currently eligible customers. The owner explicitly requested full supplier admin access for `hmaliks924@gmail.com`; Supabase readback confirmed `SUPPLIER_ADMIN` alongside the existing Error Centre viewer role and supplier price approval permission. The signed-in staff page opened and showed #1037 eligible, but the code form returned Invalid request. A fresh read confirmed zero offers and zero redemptions; no marketing email was sent. The active Shopify app version is `sample-to-sale-04b4a8df`, and `currentAppInstallation.accessScopes` confirms the installed `read_customers` grant. An internal mixed-cart paid invoice and actual margin outcome have not yet been replayed; limit initial use and review the first redemption carefully.
+Status, 7 November 2026: the protected runtime is commit `5eb081265ea83e414d3feaf7c5e3376b30bac846` on READY deployment `dpl_fhVz3DZ1mQK5fDWDqCkXAi6s5GpV`, assigned to all three API aliases. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`. The signed-in staff page issued one personal code for sample order #1037. The private ledger showed that code as available until 21 November 2026 at 10:25 GMT. No marketing email was sent. A paid mixed-cart invoice and margin outcome have not yet been replayed. The Shopify app installation grants `read_customers`.
+
+This branch prepares the day 3, 5, 7 and 14 email journey. The new `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_ENABLED` switch defaults to off. It must stay off until the sending domain is verified, the private migration is applied, the sender address is configured, and an internal delivery and unsubscribe test passes. The sender also requires `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_CANARY_CUSTOMERS`, a comma-separated allowlist of Shopify customer GIDs; an empty list sends nothing. The existing code-issue switch is separate.
 
 ## What the pilot now does
 
@@ -14,13 +16,15 @@ The planner withholds a customer if any required order history is incomplete. It
 
 | Stage | Earliest time after confirmed delivery | Purpose |
 | --- | --- | --- |
-| Check in | 1 day | Ask how the sample looks and offer help |
-| Inspiration | 4 days | Show the chosen fabric and link to the Room Visualiser |
-| Offer review | 8 days | Prepare the 10% offer only if still eligible |
-| Reminder review | 15 days | Remind the customer while the offer is valid |
-| End | 22 days | Stop the sequence |
+| Check in | 3 days | Ask how the sample looks and offer help |
+| Inspiration | 5 days | Show the chosen fabric and link to the Room Visualiser |
+| Offer review | 7 days | Prepare the 10% offer only if still eligible |
+| Reminder review | 14 days | Remind the customer while the offer is valid |
+| End | 21 days | Stop the sequence |
 
-These are review windows, not scheduled sends. The eventual sender must retain a per-customer delivery and message ledger, check consent and purchase again immediately before each send, include an unsubscribe mechanism, and use an idempotency key for each step. It should count quote requests separately from paid curtain orders.
+The live release still uses review windows. The proposed sender checks the current Shopify subscription and complete purchase history immediately before each send. It stores one outbox row per customer and stage, uses a stable Resend idempotency key, and stops on an order or an unsubscribe. The unsubscribe link requires confirmation for a browser visit and accepts one-click email-client POST requests. It stops this sample follow-up journey; Shopify's wider marketing status remains a separate source of truth. Resend automatically suppresses hard bounces and complaints. The designed emails BCC `hm4335575@gmail.com`, include a call button for 0800 772 0367 and show Mon to Fri, 9am to 5pm hours. Open and click tracking are off on the new sending domain.
+
+The new domain `curtainsuk.com` has been created in Resend's EU region but remains unverified until its DNS records are published. Automated sending is off. The staff page has styled previews; no preview sends email. The offer code remains valid for 14 days from issue. The first real send needs an internal inbox and unsubscribe test before enabling the switch.
 
 ## Live evidence on 6 November 2026
 
@@ -44,9 +48,9 @@ The private pilot provides an **Add a verified email** entry to Shopify Customer
 
 1. Complete an internal end-to-end checkout with a mixed product order, sample credit, expiry and double redemption before expanding beyond the owner-directed first pilot. The local unit and private-ledger tests are not a substitute for a real Shopify invoice test.
 2. `read_customers` is granted on the actual `curtains-uk-mtm` app installation. Review the sample checkout's consent capture and any claimed soft opt-in evidence. The initial pilot uses only Shopify `SUBSCRIBED` customers.
-3. Build an inactive custom Shopify Flow workflow from a confirmed delivery trigger. Use Shopify Messaging for customer email, not Flow's internal staff email action. Recheck consent and order state after every wait. Include unsubscribe and suppression in the sender. The staff code issue action does not send email.
-4. Dry-run the first three eligible customers in the staff view, test the complete journey with internal test recipients, and review actual message rendering and destination links. Record sent, clicked, quote requested, purchased and unsubscribed states.
-5. Activate only after the owner reviews the exact copy, pricing treatment and recipient list. Keep the first cohort small, and stop immediately on an order, opt-out, complaint or bounce.
+3. Publish the Resend DNS records for `curtainsuk.com` and verify the domain. Set `CURTAINSUK_SAMPLE_TO_SALE_FROM` to a CurtainsUK address on that verified domain. Apply the private outbox migration before enabling `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_ENABLED`.
+4. Dry-run an internal test recipient through the sequence and unsubscribe route. Review the BCC copy, rendering, links, inbox placement and one-click opt-out. Check Shopify access to customer email addresses and the complete order history. The sender fails closed if the latest 50-order scan is partial.
+5. Activate only after the owner reviews the exact copy, pricing treatment and recipient list. Keep the first cohort small, review the first paid mixed-cart invoice, and stop immediately on an order, opt-out, complaint or bounce. Count quote requests separately from paid orders.
 
 ## References
 

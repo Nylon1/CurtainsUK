@@ -1,6 +1,6 @@
 # CurtainsUK sample-to-sale pilot
 
-Status, 7 November 2026: protected runtime `869dcf77c0df384a9897006477865dad1160e5a3` on READY deployment `dpl_AvSvVbnAfqtAsUnEcd69QbuFfQxB` serves all three API aliases. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`. The signed-in staff page issued one personal code for sample order #1037. The private ledger showed that code as available until 21 November 2026 at 10:25 GMT. The Shopify app installation grants `read_customers`. A paid mixed-cart invoice and margin outcome have not yet been replayed.
+Status, 7 November 2026: protected runtime `8d4221b136ef14007b28d75e3d41df62ef6cc113` on READY deployment `dpl_C9Cw7bNLdQcHdRmuAh3ViDzcXiT4` serves all three API aliases. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`. The signed-in staff page issued one personal code for sample order #1037. The private ledger showed that code as available until 21 November 2026 at 10:25 GMT. The Shopify app installation grants `read_customers`. A paid mixed-cart invoice and margin outcome have not yet been replayed.
 
 The day 3, 5, 7 and 14 email journey has a private send ledger. The sending domain, sender address, internal delivery and unsubscribe tests are complete. `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_ENABLED=true`. A customer enters the automated journey only after a supplier admin explicitly starts Automatic emails on that customer's Sample to Sale review page. The original internal synthetic canary remains for test use. No customer marketing email had been sent at the previous release check. The existing code-issue switch is separate.
 

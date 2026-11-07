@@ -18,7 +18,7 @@ export function romanLine(snapshot:Readonly<RomanSnapshot>,now=new Date()):Shopi
  return {title:`Made-to-measure Roman blind, ${snapshot.fabric.name} ${snapshot.fabric.colour}, ${s.width} × ${s.drop} cm (${s.quantity})`,quantity:1,
   originalUnitPriceWithCurrency:{amount:(snapshot.price.goodsGrossMinor/100).toFixed(2),currencyCode:'GBP'},requiresShipping:true,taxable:true,sku:`CUK-ROMAN-${snapshot.id}`,
   customAttributes:[{key:'Product type',value:'Roman blind'},{key:'Finished width',value:`${s.width} cm`},{key:'Finished drop',value:`${s.drop} cm`},{key:'Fabric',value:`${snapshot.fabric.name} · ${snapshot.fabric.colour}`},
-   {key:'Lining',value:s.lining==='BLACKOUT'?'Blackout':'Standard ivory'},{key:'Folds',value:s.fold==='cascade'?'Cascade':'Stacked'},{key:'Blind quantity',value:String(s.quantity)},
+   {key:'Lining',value:s.lining==='BLACKOUT'?'Blackout':'Standard ivory'},{key:'Folds',value:s.fold==='cascade'?'Cascade':'Stacked'},{key:'Operating chain',value:s.chainSide==='LEFT'?'Left side':'Right side'},{key:'Blind quantity',value:String(s.quantity)},
    {key:'Included',value:'Evans Evaglide full headrail kit, fabric, lining and making'},
    {key:'_curtainsuk_product_type',value:'ROMAN_BLIND'},{key:'_curtainsuk_roman_snapshot_id',value:snapshot.id},{key:'_curtainsuk_roman_spec_sha256',value:snapshot.specSha256},{key:'_curtainsuk_mtm_locked',value:'true'}]};
 }

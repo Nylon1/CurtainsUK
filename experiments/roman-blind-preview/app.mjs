@@ -36,12 +36,13 @@ try{const saved=JSON.parse(localStorage.getItem('curtainsuk-roman-room-v1')||'nu
 for(const [key,color]of Object.entries(roomState.colours))lounge.setColor(key,color);
 box(.032,1.4,.045,0,1.68,-.22,'#f3f0e7');box(1.4,.032,.045,0,1.55,-.22,'#f3f0e7');
 box(1.42,.045,.06,0,top+.012,.06,'#ded6c5');
-// Right-side operating chain, with a fixed pulley and lower tensioner.
-const chainX=.795,chainTop=top-.035,chainZ=.15;
-box(.052,.054,.04,chainX,chainTop+.008,.115,'#b8b2a3');
-box(.028,.04,.025,chainX,chainTop-CHAIN.straight-CHAIN.radius,.125,'#c2bcad');
-class ChainLoop extends T.Curve{getPoint(t,target=new T.Vector3()){const p=chainPoint(t*CHAIN.length);return target.set(chainX+p.x,chainTop+p.y,chainZ);}}
+// The operating side is a customer choice; both fixed fittings move with the chain.
+let chainX=.795,chainSide='RIGHT';const chainTop=top-.035,chainZ=.15;
+const chainPulley=box(.052,.054,.04,chainX,chainTop+.008,.115,'#b8b2a3');
+const chainTensioner=box(.028,.04,.025,chainX,chainTop-CHAIN.straight-CHAIN.radius,.125,'#c2bcad');
+class ChainLoop extends T.Curve{getPoint(t,target=new T.Vector3()){const p=chainPoint(t*CHAIN.length);return target.set(p.x,chainTop+p.y,chainZ);}}
 const chainCord=new T.Mesh(new T.TubeGeometry(new ChainLoop(),180,.0011,5,true),new T.MeshStandardMaterial({color:'#827a6d',roughness:.55}));scene.add(chainCord);
+chainCord.position.x=chainX;
 const beadCount=Math.ceil(CHAIN.length/.012),chainBeads=new T.InstancedMesh(new T.SphereGeometry(.0035,8,6),new T.MeshStandardMaterial({color:'#c3b9a5',metalness:.5,roughness:.35}),beadCount);
 chainBeads.instanceMatrix.setUsage(T.DynamicDrawUsage);chainBeads.castShadow=true;chainBeads.frustumCulled=false;scene.add(chainBeads);
 const beadMatrix=new T.Matrix4();let lastChainLift=-1;
@@ -54,6 +55,14 @@ function updateChain(lift){
  }
  chainBeads.instanceMatrix.needsUpdate=true;
  host.dataset.chainTravel=(lift*1.5).toFixed(4);
+}
+function setChainSide(side,persist=false){
+ chainSide=side==='LEFT'?'LEFT':'RIGHT';chainX=chainSide==='LEFT'?-.795:.795;
+ chainPulley.position.x=chainTensioner.position.x=chainCord.position.x=chainX;
+ lastChainLift=-1;updateChain(raised);
+ document.querySelectorAll('[data-chain-side]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.chainSide===chainSide)));
+ host.dataset.chainSide=chainSide;
+ if(persist)saveDesign({chainSide});
 }
 // Quiet interior details give scale without adding room controls to this study.
 box(.82,.045,.42,-1.35,.65,.25,'#b39c7b');for(const x of [-1.69,-1.01])for(const z of [.11,.4])box(.035,.64,.035,x,.32,z,'#b8a283');
@@ -133,6 +142,7 @@ function setLift(value,direct=false){
 }
 function updateCoverage(){const plan=foldPlan(style);$('rod-plan').textContent='Rod pockets from the top: '+plan.rodPositions.map(p=>(p*100).toFixed(1)).join(', ')+' cm.';$('fold-spec').textContent='7 cm headrail · '+plan.rodCount+' rods · '+(plan.depth*100).toFixed(1)+(style==='cascade'?' cm top fold · 2 cm cascade step':' cm fold depth');host.setAttribute('aria-label','140 by 140 centimetre window with a '+style+' Roman blind');const full=coverage(1,style),current=coverage(raised,style);$('covered').innerHTML=full.coveredCm.toFixed(1)+' <small>cm</small>';$('clear').innerHTML=full.clearCm.toFixed(1)+' <small>cm</small>';$('coverage-label').textContent=Math.round(full.percent)+'% of the window height covered';$('cover-bar').style.width=full.percent+'%';$('current-coverage').textContent='At this position: '+current.coveredCm.toFixed(1)+' cm covered · '+current.clearCm.toFixed(1)+' cm clear';}
 document.querySelectorAll('button[data-style]').forEach(b=>b.addEventListener('click',()=>{style=b.dataset.style;saveDesign({fold:style});document.querySelectorAll('button[data-style]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('style-caption').textContent=(style==='stacked'?'Stacked':'Cascade')+' Roman';host.dataset.style=style;updateCloth();updateCoverage();}));
+document.querySelectorAll('button[data-chain-side]').forEach(b=>b.addEventListener('click',()=>setChainSide(b.dataset.chainSide,true)));
 $('lift').addEventListener('input',e=>setLift(Number(e.target.value)/100));document.querySelectorAll('[data-lift]').forEach(b=>b.addEventListener('click',()=>setLift(Number(b.dataset.lift)/100)));
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));resize();}));
 let dragging=null;
@@ -144,6 +154,7 @@ function resize(){host.parentElement.dataset.view=view;applyRoomScene();garden.v
 const requestedStyle=journeyQuery.get('style')||journeyChoice.fold;
 if(['stacked','cascade'].includes(requestedStyle))style=requestedStyle;
 if(['front','detail','reverse','room'].includes(journeyQuery.get('view')))view=journeyQuery.get('view');
+setChainSide(journeyQuery.get('chain')||journeyChoice.chainSide);
 document.querySelectorAll('button[data-style]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===style)));
 document.querySelectorAll('button[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
 $('style-caption').textContent=(style==='stacked'?'Stacked':'Cascade')+' Roman';host.dataset.style=style;

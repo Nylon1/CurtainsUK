@@ -8,7 +8,8 @@ const palette={white:'#f6f3e9',cream:'#eae1cb',beige:'#c7b79c',taupe:'#a79888',g
 const readable=value=>String(value).replaceAll('-', ' ').replace(/\b\w/g,letter=>letter.toUpperCase());
 for(const id of ['width','drop'])if(typeof saved[id]==='number'&&saved[id]>=30&&saved[id]<=500)$(id).value=saved[id];
 for(const name of ['lining','fold']){const allowed=name==='lining'?['STANDARD','BLACKOUT']:['stacked','cascade'];if(allowed.includes(saved[name]))document.querySelector(`input[name="${name}"][value="${saved[name]}"]`).checked=true;}
-function config(){return {width:Number($('width').value)||null,drop:Number($('drop').value)||null,lining:document.querySelector('[name=lining]:checked').value,fold:document.querySelector('[name=fold]:checked').value,fabricId:fabric?.id||null};}
+if(['LEFT','RIGHT'].includes(saved.chainSide))document.querySelector(`input[name="chainSide"][value="${saved.chainSide}"]`).checked=true;
+function config(){return {width:Number($('width').value)||null,drop:Number($('drop').value)||null,lining:document.querySelector('[name=lining]:checked').value,fold:document.querySelector('[name=fold]:checked').value,chainSide:document.querySelector('[name=chainSide]:checked').value,fabricId:fabric?.id||null};}
 function validSize(value,max=500){return typeof value==='number'&&value>=30&&value<=max&&Math.abs(value*10-Math.round(value*10))<1e-7;}
 function imageUrl(url){try{const u=new URL(url,location.href);return u.origin===location.origin||u.protocol==='https:'&&u.hostname==='cdn.shopify.com'?u.href:'';}catch{return '';}}
 function persist(){const okay=saveDesign({...config(),fabric});$('save-status').textContent=okay?'Your choices stay in this browser.':'Browser storage is unavailable. Keep this tab open to retain your design.';return okay;}
@@ -22,10 +23,10 @@ function update(){
  const c=config();quote=null;priceToken++;priceAbort?.abort();clearTimeout(priceTimer);
  $('summary-size').textContent=validSize(c.width,300)&&validSize(c.drop)?`${c.width} × ${c.drop} cm`:'Add your measurements';
  $('summary-availability').textContent=fabric?'Checking availability…':'Choose a fabric';
- $('summary-lining').textContent=c.lining==='BLACKOUT'?'Blackout':'Standard ivory';$('summary-fold').textContent=c.fold==='cascade'?'Cascade':'Stacked';
+ $('summary-lining').textContent=c.lining==='BLACKOUT'?'Blackout':'Standard ivory';$('summary-fold').textContent=c.fold==='cascade'?'Cascade':'Stacked';$('summary-chain').textContent=c.chainSide==='LEFT'?'Left side':'Right side';
  $('chosen-name').textContent=fabric?.name||'The start of something beautiful.';$('chosen-colour').textContent=fabric?`${fabric.colour} · ${fabric.brand}`:'Choose a fabric to begin.';
  $('chosen-image').src=fabric?imageUrl(fabric.image)||'assets/roman-lounge.jpg':'assets/roman-lounge.jpg';$('chosen-image').alt=fabric?`${fabric.name}, ${fabric.colour} fabric`:'Roman blind inspiration';$('image-caption').textContent=fabric?'YOUR SELECTED FABRIC':'YOUR ROMAN BLIND';
- $('preview-design').href=`index.html?style=${c.fold}${fabric?`&fabric=${encodeURIComponent(fabric.id)}`:''}`;
+ $('preview-design').href=`index.html?style=${c.fold}&chain=${c.chainSide}${fabric?`&fabric=${encodeURIComponent(fabric.id)}`:''}`;
  const valid=validSize(c.width,300)&&validSize(c.drop);$('save-design').disabled=!valid||!fabric;$('add-to-cart').disabled=true;
  for(const id of ['width','drop'])$(id).setAttribute('aria-invalid',String($(id).value!==''&&!validSize(c[id],id==='width'?300:500)));
  $('size-message').textContent=$('width').value!==''&&!validSize(c.width,300)?'Width must be between 30 and 300 cm, to one decimal place.':$('drop').value!==''&&!validSize(c.drop)?'Drop must be between 30 and 500 cm, to one decimal place.':c.drop>250?'Drops over 250 cm need a custom quote. You can still save your design.':'Standard size: up to 300 cm wide and 250 cm drop. No further deduction is applied.';
@@ -64,7 +65,7 @@ async function loadList(){const token=++listToken;$('catalogue-count').textConte
  $('previous').disabled=page<=1;$('more').disabled=page>=pages;$('clear-search').hidden=!query;
  }catch{if(token!==listToken)return;$('catalogue-count').textContent='The catalogue could not load.';$('fabric-grid').innerHTML='<div class="catalogue-error">Your choices are safe. Please try loading the collection again.<br><button class="roman-button outline" id="retry">Try again</button></div>';$('retry').addEventListener('click',loadList);}finally{if(token===listToken)$('fabric-grid').removeAttribute('aria-busy');}}
 for(const id of ['width','drop'])$(id).addEventListener('input',update);
-document.querySelectorAll('[name=lining],[name=fold]').forEach(input=>input.addEventListener('change',update));
+document.querySelectorAll('[name=lining],[name=fold],[name=chainSide]').forEach(input=>input.addEventListener('change',update));
 $('search-form').addEventListener('submit',event=>{event.preventDefault();query=$('fabric-search').value.trim().slice(0,100);page=1;loadList();});
 $('clear-search').addEventListener('click',()=>{query='';$('fabric-search').value='';page=1;loadList();});
 $('clear-filters').addEventListener('click',()=>{guidePrice='';colours.clear();patterns.clear();$('fabric-filters').querySelectorAll('details').forEach(item=>{item.open=false;});page=1;loadList();});
@@ -73,7 +74,7 @@ $('save-design').addEventListener('click',()=>{if(persist()){$('save-status').te
 $('add-to-cart').addEventListener('click',async()=>{const store=window.CurtainsUKRooms,c=config();if(!store||!quote||quote.status!=='estimate'||quote.availabilityCode!=='FABRIC_AVAILABLE'||quote.stockSnapshotStale||!fabric||!validSize(c.width,300)||!validSize(c.drop,250)){ $('save-status').textContent='Please refresh the price and fabric availability, then try again.';return;}
  const existingId=incoming.get('order_item');const existing=existingId?store.orderItem(store.ensure(),existingId):null;
  if(existingId&&(!existing||existing.type!=='ROMAN_BLIND')){$('save-status').textContent='This saved blind has changed. Reopen Shopping Cart and try again.';return;}
- const spec={version:1,productType:'ROMAN_BLIND',id:existing?.id||crypto.randomUUID(),fabricId:c.fabricId,width:c.width,drop:c.drop,lining:c.lining,fold:c.fold,quantity:existing?.quantity||1,measurementsConfirmed:true};
+ const spec={version:1,productType:'ROMAN_BLIND',id:existing?.id||crypto.randomUUID(),fabricId:c.fabricId,width:c.width,drop:c.drop,lining:c.lining,fold:c.fold,chainSide:c.chainSide,quantity:existing?.quantity||1,measurementsConfirmed:true};
  const button=$('add-to-cart');button.disabled=true;try{persist();await store.addRomanBlind(spec,{editItemId:existing?.id,roomId:incoming.get('room_id')||undefined,fabric});location.assign('/pages/build-my-rooms');}catch(error){button.disabled=false;$('save-status').textContent=error?.message||'Your blind could not be saved to Shopping Cart. Please try again.';}
 });
 try{const m=JSON.parse(localStorage.getItem('curtainsuk-roman-measure-v1')||'null');if(m&&['inside','outside'].includes(m.fit)){const plan=finishedPlan(m.fit,m[m.fit]||{},m.clearance);if(plan.complete){const panel=$('measure-import');panel.hidden=false;const text=document.createElement('span');text.textContent=`From your guide: ${plan.width} × ${plan.drop} cm finished size${m.fit==='inside'?` (${plan.deductionMm} mm width allowance already applied)`:''}.`;const button=document.createElement('button');button.className='text-button';button.textContent='Use these measurements →';button.addEventListener('click',()=>{$('width').value=plan.width;$('drop').value=plan.drop;update();});panel.append(text,button);}}}catch{}

@@ -9,9 +9,10 @@ import {buildSmartTrackOrder} from '../../smart-track/commerce';
 import {processSmartTrackPaidOrder,hasRomanPaidLines} from '../../smart-track/paid-order';
 
 test('Roman-only My Home draft and paid receipt bind the immutable blind and exact total',async()=>{
- const spec=parseRomanSpec({version:1,productType:'ROMAN_BLIND',id:randomUUID(),fabricId:'fixture-plain',width:140,drop:160,lining:'STANDARD',fold:'stacked',quantity:2,measurementsConfirmed:true});
+ const spec=parseRomanSpec({version:1,productType:'ROMAN_BLIND',id:randomUUID(),fabricId:'fixture-plain',width:140,drop:160,lining:'STANDARD',fold:'stacked',chainSide:'LEFT',quantity:2,measurementsConfirmed:true});
  const quote={spec,ready:true,issues:[],unitMinor:20000,goodsMinor:40000,vatMinor:6667,fabricMetres:8,fabricSupplierId:'fixture',fabricSupplierSku:'sku',fabricName:'Plain',fabricColour:'Blue',fabricImage:null,quoteId:'a'.repeat(64),quotedAt:new Date().toISOString()};
  const snapshot=createRomanSnapshot(quote,randomUUID(),{version:'confirmed'}),line=romanLine(snapshot),reviewId='b'.repeat(64),key=randomUUID();
+ assert.equal(line.customAttributes?.find(attribute=>attribute.key==='Operating chain')?.value,'Left side');
  const contract=buildSmartTrackOrder({snapshots:[],additionalLines:[line],additionalGoodsMinor:40000,additionalVatMinor:6667,additionalProductTypes:['ROMAN_BLIND'],key,reviewId,shipping:{grossMinor:1295,vatMinor:216,title:'Combined order delivery',postcode:'BB23FA'},production:true});
  assert.equal(contract.expected.orderGrossAmountMinor,41295);
  assert.equal(contract.expected.orderVatAmountMinor,6883);

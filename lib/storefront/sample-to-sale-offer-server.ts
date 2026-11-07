@@ -2,7 +2,7 @@ import 'server-only';
 import { createSupplierServiceClient } from '../supabase/supplier-service';
 import { sampleCreditAdminRequest, shopifyDraftOrderConfigFromEnvironment, verifyCushionPaidDraftLink } from './shopify-draft-order-server';
 import { calculateStackedOffer } from './sample-to-sale-offer';
-import { hasBoughtCurtains, type CustomerOrder } from './sample-to-sale';
+import { hasBoughtCurtains, hasDoNotActionTag, type CustomerOrder } from './sample-to-sale';
 import { normalizePromotionCode, promotionCodeHash, quotePromotion, verifyPromotionCode, type PromotionQuote } from './sample-to-sale-code';
 import type { ShopifyDraftOrderExecutionContract } from './shopify-draft-order-core';
 import { parseShopifyMoneyMinor } from './shopify-draft-order-core';
@@ -10,7 +10,7 @@ import { creditDigest, expectedLineDiscount } from './sample-credit';
 import { revalidateCreditUnits } from './sample-credit-server';
 
 const CUSTOMER_ORDERS_QUERY = `query CurtainsUKPromotionCustomer($id: ID!) {
-  customer(id: $id) { id numberOfOrders
+  customer(id: $id) { id tags numberOfOrders
     orders(first: 100, reverse: true) { pageInfo { hasNextPage }
       nodes { id test cancelledAt displayFinancialStatus tags
         lineItems(first: 100) { pageInfo { hasNextPage } nodes { title sku variant { id } } }
@@ -19,7 +19,7 @@ const CUSTOMER_ORDERS_QUERY = `query CurtainsUKPromotionCustomer($id: ID!) {
   }
 }`;
 
-type CustomerResponse = {customer: {numberOfOrders: string | number; orders: {pageInfo:{hasNextPage:boolean};nodes:CustomerOrder[]}} | null};
+type CustomerResponse = {customer: {tags: string[]; numberOfOrders: string | number; orders: {pageInfo:{hasNextPage:boolean};nodes:CustomerOrder[]}} | null};
 const db = () => createSupplierServiceClient();
 const secret = () => process.env.CURTAINSUK_SAMPLE_TO_SALE_SECRET ?? '';
 
@@ -34,6 +34,7 @@ export async function previewPromotionCode(codeInput: unknown, baseReviewId: str
   if (error || !offer || !['AVAILABLE','RESERVED'].includes(offer.state) || Date.parse(offer.expires_at)<=Date.now()) throw Error('SAMPLE_TO_SALE_UNAVAILABLE');
   if (!verifyPromotionCode(code,offer.id,secret()) || offer.customer_gid!==`gid://shopify/Customer/${loggedInCustomerId}`) throw Error('SAMPLE_TO_SALE_UNAVAILABLE');
   const customer=await sampleCreditAdminRequest(CUSTOMER_ORDERS_QUERY,{id:offer.customer_gid}) as CustomerResponse;
+  if (hasDoNotActionTag(customer.customer?.tags)) throw Error('SAMPLE_TO_SALE_SUPPRESSED');
   const orders=customer.customer?.orders.nodes;
   const count=Number(customer.customer?.numberOfOrders);
   if (!orders || customer.customer?.orders.pageInfo.hasNextPage || !Number.isSafeInteger(count) || count!==orders.length || orders.some(o=>o.lineItems.pageInfo.hasNextPage)) throw Error('SAMPLE_TO_SALE_HISTORY_REQUIRED');

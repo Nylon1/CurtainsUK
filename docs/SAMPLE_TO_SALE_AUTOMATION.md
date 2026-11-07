@@ -8,7 +8,7 @@ The staff page at `/admin/sample-to-sale` reads recent Shopify orders, finds the
 
 The page uses the existing staff role check and private no-store response headers. The runtime Shopify app needs `read_customers` for current consent and order history. The scope is in the active app configuration and the actual installation now grants it. Offer issue remains gated pending the internal invoice and margin checks above.
 
-The planner withholds a customer if any required order history is incomplete. It also withholds test, unpaid or cancelled sample orders; orders without carrier-confirmed delivery; customers without a current `SUBSCRIBED` email state; and customers with an existing CurtainsUK product order. A fulfilled order alone is not treated as delivered. A subsequent product order ends the promotional journey.
+The planner withholds a customer if any required order history is incomplete. It also withholds test, unpaid or cancelled sample orders; orders without carrier-confirmed delivery; customers without a current `SUBSCRIBED` email state; customers tagged `do-not-action`; and customers with an existing CurtainsUK product order. A fulfilled order alone is not treated as delivered. A subsequent product order ends the promotional journey. A newly added `do-not-action` tag also blocks redemption of an issued code before checkout.
 
 ## Pilot timing
 

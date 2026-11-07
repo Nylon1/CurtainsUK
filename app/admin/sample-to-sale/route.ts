@@ -15,7 +15,8 @@ const page = (body: string, status = 200) => new Response(`<!doctype html><html 
 const reasonText: Record<PilotReason, string> = {
   test_or_unpaid: 'Test or unpaid sample order', cancelled: 'Sample order cancelled',
   incomplete_order_data: 'Purchase history needs checking', already_bought: 'Product order found. Promotional journey stopped.',
-  no_delivery: 'Delivery has not been confirmed', no_marketing_permission: 'No verified marketing subscription', ready: 'Eligible for review',
+  no_delivery: 'Delivery has not been confirmed', no_marketing_permission: 'No verified marketing subscription',
+  do_not_action: 'Customer marked do not action', ready: 'Eligible for review',
 };
 const stageText: Record<PilotStage, string> = {not_ready:'Awaiting first step',check_in:'Check in',inspiration:'Inspiration',offer:'Offer review',reminder:'Reminder review',expired:'Journey window ended'};
 const stages = ['check_in','inspiration','offer','reminder'] as const;

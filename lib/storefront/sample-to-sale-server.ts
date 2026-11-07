@@ -10,7 +10,7 @@ const ORDERS_QUERY = `query CurtainsUKSampleToSaleOrders {
     pageInfo { hasNextPage }
     nodes {
       id name test cancelledAt displayFinancialStatus
-      customer { id firstName defaultEmailAddress { marketingState } }
+      customer { id firstName tags defaultEmailAddress { marketingState } }
       lineItems(first: 50) { pageInfo { hasNextPage } nodes { title quantity variant { id } customAttributes { key value } } }
       fulfillments { events(first: 20) { pageInfo { hasNextPage } nodes { status happenedAt } } }
     }

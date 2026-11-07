@@ -1,8 +1,8 @@
 # CurtainsUK sample-to-sale pilot
 
-Status, 7 November 2026: the protected runtime is commit `5eb081265ea83e414d3feaf7c5e3376b30bac846` on READY deployment `dpl_fhVz3DZ1mQK5fDWDqCkXAi6s5GpV`, assigned to all three API aliases. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`. The signed-in staff page issued one personal code for sample order #1037. The private ledger showed that code as available until 21 November 2026 at 10:25 GMT. No marketing email was sent. A paid mixed-cart invoice and margin outcome have not yet been replayed. The Shopify app installation grants `read_customers`.
+Status, 7 November 2026: protected runtime `869dcf77c0df384a9897006477865dad1160e5a3` on READY deployment `dpl_AvSvVbnAfqtAsUnEcd69QbuFfQxB` serves all three API aliases. `CURTAINSUK_SAMPLE_TO_SALE_ENABLED=true`. The signed-in staff page issued one personal code for sample order #1037. The private ledger showed that code as available until 21 November 2026 at 10:25 GMT. The Shopify app installation grants `read_customers`. A paid mixed-cart invoice and margin outcome have not yet been replayed.
 
-This branch prepares the day 3, 5, 7 and 14 email journey. The new `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_ENABLED` switch defaults to off. It must stay off until the sending domain is verified, the private migration is applied, the sender address is configured, and an internal delivery and unsubscribe test passes. The sender also requires `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_CANARY_CUSTOMERS`, a comma-separated allowlist of Shopify customer GIDs; an empty list sends nothing. The existing code-issue switch is separate.
+The day 3, 5, 7 and 14 email journey is deployed. The sending domain, private migration, sender address, internal delivery and unsubscribe tests are complete. `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_ENABLED=true`, with `CURTAINSUK_SAMPLE_TO_SALE_EMAIL_CANARY_CUSTOMERS` restricted to one internal synthetic customer with zero orders. The sender checks the comma-separated Shopify customer GID allowlist; an empty list sends nothing. No customer marketing email has been sent. The existing code-issue switch is separate.
 
 ## What the pilot now does
 
@@ -24,7 +24,7 @@ The planner withholds a customer if any required order history is incomplete. It
 
 The live release still uses review windows. The proposed sender checks the current Shopify subscription and complete purchase history immediately before each send. It stores one outbox row per customer and stage, uses a stable Resend idempotency key, and stops on an order or an unsubscribe. The unsubscribe link requires confirmation for a browser visit and accepts one-click email-client POST requests. It stops this sample follow-up journey; Shopify's wider marketing status remains a separate source of truth. Resend automatically suppresses hard bounces and complaints. The designed emails BCC `hm4335575@gmail.com`, include a call button for 0800 772 0367 and show Mon to Fri, 9am to 5pm hours. Open and click tracking are off on the new sending domain.
 
-The new domain `curtainsuk.com` has been created in Resend's EU region but remains unverified until its DNS records are published. Automated sending is off. The staff page has styled previews; no preview sends email. The offer code remains valid for 14 days from issue. The first real send needs an internal inbox and unsubscribe test before enabling the switch.
+The Resend sending domain `curtainsuk.com` is verified. The internal sender and designed follow-up tests were delivered, including BCC. A signed unsubscribe link saved a synthetic suppression row; an invalid link returned 400. The staff page has styled previews; no preview sends email. The offer code remains valid for 14 days from issue. The automatic sender is on for the internal-only canary, with no eligible internal sample order and no customer marketing send at this checkpoint.
 
 ## Live evidence on 6 November 2026
 

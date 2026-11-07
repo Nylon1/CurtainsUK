@@ -2,7 +2,8 @@ import { createClient } from '@/lib/supabase/server';
 import { hasSupplierAdminRole } from '@/lib/supplier-intelligence/authz';
 import { PRIVATE_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
 import { issueSampleToSaleCode, readSampleToSalePilot } from '@/lib/storefront/sample-to-sale-server';
-import { fabricPreviewUrl, pilotMessage, type PilotCandidate, type PilotReason, type PilotStage } from '@/lib/storefront/sample-to-sale';
+import { validSampleToSaleStaffForm } from '@/lib/storefront/sample-to-sale-staff-form';
+import { displaySampleFabricName, fabricPreviewUrl, pilotMessage, type PilotCandidate, type PilotReason, type PilotStage } from '@/lib/storefront/sample-to-sale';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -25,7 +26,7 @@ function renderCandidate(candidate: PilotCandidate): string {
   const eligible = candidate.reason === 'ready';
   const delivered = candidate.deliveredAt ? new Date(candidate.deliveredAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'Europe/London'}) : 'Unconfirmed';
   const link = fabricPreviewUrl(candidate.fabricId);
-  return `<article class="card"><span class="eyebrow">${escape(candidate.orderName)} · ${escape(delivered)}</span><h3>${escape(candidate.fabricName)}</h3><p class="sub">${escape(candidate.firstName)} · Marketing: ${escape(candidate.marketingState.toLowerCase().replaceAll('_',' '))}</p><div class="bar"><span style="width:${eligible ? candidate.stage === 'check_in' ? '25%' : candidate.stage === 'inspiration' ? '50%' : candidate.stage === 'offer' ? '75%' : candidate.stage === 'reminder' ? '95%' : '100%' : '0%'}"></span></div><p class="state ${eligible?'ready':'blocked'}">${eligible?escape(stageText[candidate.stage]):escape(reasonText[candidate.reason])}</p><div class="links"><a href="${escape(link)}" target="_blank" rel="noopener noreferrer">View fabric ↗</a></div>${eligible&&['offer','reminder'].includes(candidate.stage)&&process.env.CURTAINSUK_SAMPLE_TO_SALE_ENABLED==='true'?`<form method="post"><input type="hidden" name="sampleOrderId" value="${escape(candidate.orderId)}"><button class="tag" type="submit">Generate personal 10% code</button></form>`:''}<div class="messages"><p class="sub">Message previews. No customer email is sent from this page.</p>${stages.map(stage=>{const message=pilotMessage(candidate,stage);return `<details><summary>${escape(stageText[stage])}</summary><p><strong>Subject:</strong> ${escape(message.subject)}</p><pre>${escape(message.body)}</pre></details>`;}).join('')}</div></article>`;
+  return `<article class="card"><span class="eyebrow">${escape(candidate.orderName)} · ${escape(delivered)}</span><h3>${escape(displaySampleFabricName(candidate.fabricName))}</h3><p class="sub">${escape(candidate.firstName)} · Marketing: ${escape(candidate.marketingState.toLowerCase().replaceAll('_',' '))}</p><div class="bar"><span style="width:${eligible ? candidate.stage === 'check_in' ? '25%' : candidate.stage === 'inspiration' ? '50%' : candidate.stage === 'offer' ? '75%' : candidate.stage === 'reminder' ? '95%' : '100%' : '0%'}"></span></div><p class="state ${eligible?'ready':'blocked'}">${eligible?escape(stageText[candidate.stage]):escape(reasonText[candidate.reason])}</p><div class="links"><a href="${escape(link)}" target="_blank" rel="noopener noreferrer">View fabric ↗</a></div>${eligible&&['offer','reminder'].includes(candidate.stage)&&process.env.CURTAINSUK_SAMPLE_TO_SALE_ENABLED==='true'?`<form method="post"><input type="hidden" name="sampleOrderId" value="${escape(candidate.orderId)}"><button class="tag" type="submit">Generate personal 10% code</button></form>`:''}<div class="messages"><p class="sub">Message previews. No customer email is sent from this page.</p>${stages.map(stage=>{const message=pilotMessage(candidate,stage);return `<details><summary>${escape(stageText[stage])}</summary><p><strong>Subject:</strong> ${escape(message.subject)}</p><pre>${escape(message.body)}</pre></details>`;}).join('')}</div></article>`;
 }
 
 export async function GET() {
@@ -49,16 +50,14 @@ export async function POST(request:Request) {
   const auth=await createClient();
   const {data:{user},error}=await auth.auth.getUser();
   if(error||!user||user.is_anonymous||!hasSupplierAdminRole(user.app_metadata))return page('Staff sign-in required.',error?503:user?403:401);
-  if(request.headers.get('origin')!==new URL(request.url).origin
-    ||request.headers.get('content-type')?.split(';',1)[0].toLowerCase()!=='application/x-www-form-urlencoded'
-    ||Number(request.headers.get('content-length')??0)>512)return page('<p>Invalid request. <a href="/admin/sample-to-sale">Return to sample follow-up</a></p>',400);
+  if(!validSampleToSaleStaffForm(request))return page('<p>Invalid request. <a href="/admin/sample-to-sale">Return to sample follow-up</a></p>',400);
   try{
     const form=await request.formData();
     const sampleOrderId=form.get('sampleOrderId');
     if(typeof sampleOrderId!=='string')throw Error('SAMPLE_TO_SALE_ORDER_INVALID');
     const result=await issueSampleToSaleCode(sampleOrderId);
     const expiry=new Date(result.expiresAt).toLocaleString('en-GB',{timeZone:'Europe/London',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
-    return page(`<a href="/admin/sample-to-sale">← Sample follow-up</a><section class="hero"><span class="tag">Personal code issued</span><h1>${escape(result.candidate.fabricName)}</h1><p>For ${escape(result.candidate.firstName)}. Copy this code into the approved offer message after checking consent again. The customer must sign in to redeem it.</p></section><section class="note"><h2>${escape(result.code)}</h2><p>Expires ${escape(expiry)}. One use on a first eligible product order of £150 or more. Applies to all products in the custom Shopping Cart; delivery is excluded. Sample credit can also be applied to curtains.</p></section>`);
+    return page(`<a href="/admin/sample-to-sale">← Sample follow-up</a><section class="hero"><span class="tag">Personal code issued</span><h1>${escape(displaySampleFabricName(result.candidate.fabricName))}</h1><p>For ${escape(result.candidate.firstName)}. Copy this code into the approved offer message after checking consent again. The customer must sign in to redeem it.</p></section><section class="note"><h2>${escape(result.code)}</h2><p>Expires ${escape(expiry)}. One use on a first eligible product order of £150 or more. Applies to all products in the custom Shopping Cart; delivery is excluded. Sample credit can also be applied to curtains.</p></section>`);
   }catch(error){
     const code=error instanceof Error?error.message:'SAMPLE_TO_SALE_UNAVAILABLE';
     return page(`<p>The code was not issued: ${escape(code)}. <a href="/admin/sample-to-sale">Return to sample follow-up</a></p>`,409);

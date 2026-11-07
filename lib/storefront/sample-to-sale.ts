@@ -2,7 +2,7 @@
 export const SAMPLE_VARIANT_GID = 'gid://shopify/ProductVariant/56120226873723';
 
 export type PilotStage = 'not_ready' | 'check_in' | 'inspiration' | 'offer' | 'reminder' | 'expired';
-export type PilotReason = 'test_or_unpaid' | 'cancelled' | 'incomplete_order_data' | 'already_bought' | 'no_delivery' | 'no_marketing_permission' | 'ready';
+export type PilotReason = 'test_or_unpaid' | 'cancelled' | 'incomplete_order_data' | 'already_bought' | 'no_delivery' | 'no_marketing_permission' | 'do_not_action' | 'ready';
 
 export type PilotOrder = {
   id: string;
@@ -10,7 +10,7 @@ export type PilotOrder = {
   test: boolean;
   cancelledAt: string | null;
   displayFinancialStatus: string;
-  customer: { id: string; firstName: string | null; defaultEmailAddress: { marketingState: string } | null } | null;
+  customer: { id: string; firstName: string | null; tags?: string[]; defaultEmailAddress: { marketingState: string } | null } | null;
   lineItems: { pageInfo: { hasNextPage: boolean }; nodes: Array<{ title: string; quantity: number; variant: { id: string } | null; customAttributes: Array<{ key: string; value: string }> }> };
   fulfillments: Array<{ events: { pageInfo: { hasNextPage: boolean }; nodes: Array<{ status: string; happenedAt: string | null }> } }>;
 };
@@ -44,6 +44,10 @@ function attribute(line: PilotOrder['lineItems']['nodes'][number], key: string):
 
 export function isSampleOrder(order: PilotOrder): boolean {
   return order.lineItems.nodes.some(line => line.variant?.id === SAMPLE_VARIANT_GID);
+}
+
+export function hasDoNotActionTag(tags: string[] | null | undefined): boolean {
+  return tags?.some(tag => tag.trim().toLowerCase() === 'do-not-action') ?? false;
 }
 
 export function hasBoughtCurtains(orders: CustomerOrder[] | null, sourceOrderId: string): boolean {
@@ -83,6 +87,7 @@ export function planSampleToSale(order: PilotOrder, customerOrders: CustomerOrde
   else if (order.lineItems.pageInfo.hasNextPage || order.fulfillments.some(f => f.events.pageInfo.hasNextPage)
     || !order.customer || !completeCustomerHistory || customerOrders?.some(o => o.lineItems.pageInfo.hasNextPage)) reason = 'incomplete_order_data';
   else if (curtainBought) reason = 'already_bought';
+  else if (hasDoNotActionTag(order.customer.tags)) reason = 'do_not_action';
   else if (!delivered) reason = 'no_delivery';
   else if (marketingState !== 'SUBSCRIBED') reason = 'no_marketing_permission';
   return {

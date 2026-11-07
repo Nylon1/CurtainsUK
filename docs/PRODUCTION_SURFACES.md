@@ -2,9 +2,20 @@
 
 ## Current production source map, 7 November 2026
 
-The Roman sample-note refinement in [PR #341](https://github.com/Nylon1/CurtainsUK/pull/341) passed both protected checks and merged at **`a814eb9ff45c04c143f986a5e0fc4c730c5a7852`**, tree **`c8e6837d03ce9a738484846a4f308fee5c44ed65`**. READY deployment **`dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`** now serves all three API aliases. Its immediate runtime rollback is **`dpl_5vTqaWL9SY6p4VHaHP5o9UCtFx2y`**. Only the four source-attestation values were advanced; purchase, adviser and sample-to-sale switches were not changed. The staged unsigned specialist route returned 401, and all three live aliases returned 401 at that route. The live Roman visualiser now shows one note beneath the raised-coverage estimate, “Verify actual pattern scale and colour with a real fabric sample.” The removed size, rod and fold-detail copy did not return after changing fabric and fold style.
+The sample-to-sale `do-not-action` safeguard in [PR #343](https://github.com/Nylon1/CurtainsUK/pull/343) passed both protected checks and merged at **`dba75cb1580abc90e18ac9454f051d174ff00f0d`**. READY deployment **`dpl_Dd2ZD4SRUFTc2yyfmKW4nvgYjWpa`** now serves the canonical API alias and both compatibility aliases. Its immediate runtime rollback is **`dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`**. The four Production source-attestation values were advanced to `dba75cb1`; the sample-to-sale switch remains **false**. The staged unsigned specialist route returned 401 and the private sample page redirected to sign-in. All three live API aliases returned 401 at the unsigned specialist route. No customer code or marketing email was issued; the offer ledger still held zero rows at the release check. The latest internal test account has no sample order, while the paid, delivered sample customer reviewed on 7 November is not subscribed in Shopify. A paid mixed-cart checkout and margin review remain outstanding.
 
 | Surface | Current source of truth |
+| --- | --- |
+| Shopify storefront | MAIN theme `182339731835`, 606 files matching the protected composed theme at `86a08ead`; unchanged by PR #343 |
+| Shared app-proxy API | Protected runtime `dba75cb1580abc90e18ac9454f051d174ff00f0d` on READY deployment `dpl_Dd2ZD4SRUFTc2yyfmKW4nvgYjWpa`, assigned to all three established aliases |
+| Private persistence | Supabase project `hqysjumypgeapgmqkcrx`; sample-to-sale offer ledger exists with zero issued offers at the release check |
+| Shopify app | `curtains-uk-mtm` active version `sample-to-sale-04b4a8df`; installed `read_customers` scope granted; code issuer switch remains false |
+
+### Earlier 7 November Roman note release
+
+The Roman sample-note refinement in [PR #341](https://github.com/Nylon1/CurtainsUK/pull/341) passed both protected checks and merged at **`a814eb9ff45c04c143f986a5e0fc4c730c5a7852`**, tree **`c8e6837d03ce9a738484846a4f308fee5c44ed65`**. READY deployment **`dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`** served all three API aliases at that checkpoint. Its immediate runtime rollback was **`dpl_5vTqaWL9SY6p4VHaHP5o9UCtFx2y`**. Only the four source-attestation values were advanced; purchase, adviser and sample-to-sale switches were not changed. The staged unsigned specialist route returned 401, and all three live aliases returned 401 at that route. The live Roman visualiser showed one note beneath the raised-coverage estimate, “Verify actual pattern scale and colour with a real fabric sample.” The removed size, rod and fold-detail copy did not return after changing fabric and fold style.
+
+| Surface | Source at that checkpoint |
 | --- | --- |
 | Shopify storefront | MAIN theme `182339731835`, 606 files matching the protected composed theme at `86a08ead` |
 | Shared app-proxy API | Protected runtime `a814eb9ff45c04c143f986a5e0fc4c730c5a7852` on READY deployment `dpl_DpXUyZ3paws8dAgKB5DhrSKeAbmn`, assigned to all three established aliases |

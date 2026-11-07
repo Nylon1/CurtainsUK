@@ -102,8 +102,12 @@ export function fabricPreviewUrl(fabricId: string | null): string {
     : 'https://www.curtainsuk.com/pages/browse-fabrics';
 }
 
+export function displaySampleFabricName(name: string): string {
+  return name.replace(/\s*—\s*/g, ', ');
+}
+
 export function pilotMessage(candidate: PilotCandidate, stage: Exclude<PilotStage, 'not_ready' | 'expired'>): { subject: string; body: string } {
-  const fabric = candidate.fabricName;
+  const fabric = displaySampleFabricName(candidate.fabricName);
   const link = fabricPreviewUrl(candidate.fabricId);
   const hello = `Hi ${candidate.firstName},`;
   if (stage === 'check_in') return {

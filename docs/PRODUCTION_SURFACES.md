@@ -1,5 +1,12 @@
 # CurtainsUK production surfaces
 
+## Hourly digest sender repair, 7 November 2026
+
+The Customer Experience dashboard recorded 46 service errors between 14:05 and 21:35 UTC, all `HOURLY_DIGEST_DELIVERY_FAILED` on `/api/cron/error-centre-digest`. The last successful hourly summary at 13:05 used `hello@apexcurtains.com`. The shared Resend key installed for Sample to Sale at 13:14 is restricted to the verified `curtainsuk.com` domain. The digest's production sender was changed to `CurtainsUK <enquiries@curtainsuk.com>`; no schedule or email switch was disabled.
+
+The unchanged protected runtime source `8d4221b136ef14007b28d75e3d41df62ef6cc113` was redeployed as READY deployment `dpl_8odfGnXuU9UNRXAQpmhNpqEPDQPq`, now on all three API aliases. Its rollback target is `dpl_C9Cw7bNLdQcHdRmuAh3ViDzcXiT4`. The next scheduled run wrote a SENT provider receipt for the 20:00 UTC summary at 21:45, and Resend reported delivery. Seven summaries for 13:00 through 19:00 UTC remain failed and were not backfilled. Their 46 retry errors remain visible until the dashboard's seven-day window moves past them. No Shopify theme or other production variable was changed.
+
+
 ## Sample email send controls, 7 November 2026
 
 [PR #350](https://github.com/Nylon1/CurtainsUK/pull/350) added staff-reviewed Send now and per-customer Automatic emails controls to the private Sample to Sale page. [PR #351](https://github.com/Nylon1/CurtainsUK/pull/351) restored the published Room Visualiser bytes in Linux Git builds before the unchanged hash guard runs. Both passed the production gate and protected policy checks. The protected runtime source is **`8d4221b136ef14007b28d75e3d41df62ef6cc113`** on READY deployment **`dpl_C9Cw7bNLdQcHdRmuAh3ViDzcXiT4`**, serving the canonical production API alias and both compatibility aliases. Its rollback target is **`dpl_AvSvVbnAfqtAsUnEcd69QbuFfQxB`**. All four source-attestation environment values match the new runtime commit.

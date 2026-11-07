@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
-import { hasSupplierAdminRole } from '@/lib/supplier-intelligence/authz';
+import { hasSampleToSaleRole } from '@/lib/storefront/sample-to-sale-authz';
 import { PRIVATE_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
 import { issueSampleToSaleCode, readSampleToSalePilot } from '@/lib/storefront/sample-to-sale-server';
 import { fabricPreviewUrl, pilotMessage, type PilotCandidate, type PilotReason, type PilotStage } from '@/lib/storefront/sample-to-sale';
@@ -31,7 +31,7 @@ function renderCandidate(candidate: PilotCandidate): string {
 export async function GET() {
   const auth = await createClient();
   const {data:{user},error} = await auth.auth.getUser();
-  if (error || !user || user.is_anonymous || !hasSupplierAdminRole(user.app_metadata)) return page('<p><a href="/admin/login?next=%2Fadmin%2Fsample-to-sale">Staff sign-in required →</a></p>',error?503:user?403:401);
+  if (error || !user || user.is_anonymous || !hasSampleToSaleRole(user.app_metadata)) return page('<p><a href="/admin/login?next=%2Fadmin%2Fsample-to-sale">Staff sign-in required →</a></p>',error?503:user?403:401);
   const hero = '<a href="/admin">← Admin</a><section class="hero"><span class="tag">Private sample follow-up</span><h1>From sample<br>to finished room.</h1><p>Review delivery, marketing permission and purchase history. When the offer stage is due, generate a personal code to place in your approved message. This page does not send email.</p></section><section class="note"><h2>Add a verified email</h2><p>After you have seen the customer’s marketing permission, record its date, source and exact wording in the customer record. Check for any later opt-out. Then use Shopify Customers → Manage → Edit marketing settings to update that customer’s email status. For a new address, add the customer in Shopify first. Refresh this page to see the current status.</p><p><a class="tag" href="https://admin.shopify.com/store/madetomeasurecurtains/customers" target="_blank" rel="noopener noreferrer">Open Shopify Customers ↗</a></p></section>';
   try {
     const {candidates,partial} = await readSampleToSalePilot();
@@ -48,7 +48,7 @@ export async function GET() {
 export async function POST(request:Request) {
   const auth=await createClient();
   const {data:{user},error}=await auth.auth.getUser();
-  if(error||!user||user.is_anonymous||!hasSupplierAdminRole(user.app_metadata))return page('Staff sign-in required.',error?503:user?403:401);
+  if(error||!user||user.is_anonymous||!hasSampleToSaleRole(user.app_metadata))return page('Staff sign-in required.',error?503:user?403:401);
   if(request.headers.get('origin')!==new URL(request.url).origin
     ||request.headers.get('content-type')?.split(';',1)[0].toLowerCase()!=='application/x-www-form-urlencoded'
     ||Number(request.headers.get('content-length')??0)>512)return page('<p>Invalid request. <a href="/admin/sample-to-sale">Return to sample follow-up</a></p>',400);

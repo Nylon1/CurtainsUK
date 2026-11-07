@@ -1,16 +1,12 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Production has a transactional sample-credit email but no staff sample-to-sale pilot, marketing eligibility checks or tested stacked promotional calculation.",
-  "newRule": "A staff-only sample follow-up page checks delivered samples, marketing status and prior product orders before issuing a personal 14-day code. The custom Shopping Cart calculates 10% on product goods of at least £150, including curtains, Roman blinds, cushions and motorised tracks, and stacks existing sample credit on curtains. A private ledger reserves and redeems the code after exact invoice verification. No marketing send or Flow activation is enabled.",
-  "reason": "The owner requested redeemable eligible codes, approved combining 10% with sample credit, and extended 10% to every product in the custom cart. The protected tests and policy record capture those changes for review before deployment.",
-  "ownerApprovedDecision": "Owner review is requested for this protected test and policy record change. The repository still requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
+  "previousRule": "The sample-to-sale staff route requires SUPPLIER_ADMIN, while the owner's signed-in account has only CURTAINSUK_ERROR_CENTRE_VIEWER. The Content Admin card is visible, but the private pilot cannot open for the owner.",
+  "newRule": "The sample-to-sale GET and POST routes accept either SUPPLIER_ADMIN or the dedicated CURTAINSUK_SAMPLE_TO_SALE_MANAGER role. The dedicated role does not authorize supplier administration. All customer eligibility, delivery, consent, purchase-history, switch and code checks remain in place.",
+  "reason": "The owner requested a usable private sample-to-sale pilot and demonstrated that the Content Admin link led to a staff access message. A narrowly scoped role fixes access without granting broader supplier administration.",
+  "ownerApprovedDecision": "Owner review is requested for this sample-pilot access policy and its protected test. The repository requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/sample-to-sale.test.ts",
-    "lib/storefront/__tests__/sample-to-sale-offer.test.ts",
-    "lib/cushion-studio/__tests__/my-home.test.ts",
-    "supabase/migrations/20261106220140_sample_to_sale_offers.sql",
-    "shopify.app.toml",
+    "lib/storefront/__tests__/sample-to-sale-authz.test.ts",
     "release/policy-change.json"
   ]
 }

@@ -6,7 +6,7 @@
   const idleMs = 30 * 60 * 1000;
   const excluded = /(?:^|\/)(?:account|checkout|orders|apps)(?:\/|$)/i;
   const safePath = /^\/[a-z0-9/_-]{0,159}$/i;
-  const release = 'journey-20261021-v3';
+  const release = 'journey-20261107-v4';
   const nativeFetch = window.fetch.bind(window);
   let journeyId = null;
   let enabled = false;
@@ -74,6 +74,10 @@
     const page = path(location.href) || '';
     if (page === '/pages/fabric-library' || page.startsWith('/pages/fabric/')) return 'FABRICS';
     if (page === '/pages/cushion-studio') return 'CUSHION_STUDIO';
+    if (page === '/pages/how-to-hang-curtains') return 'HANGING_GUIDE';
+    if (page === '/pages/curtains-beyond-windows') return 'BEYOND_WINDOWS';
+    if (page === '/pages/hotel-design-studio') return 'HOTEL_STUDIO';
+    if (page.startsWith('/pages/roman-')) return 'ROMAN_BLINDS';
     if (page === '/pages/room-visualiser' || page === '/pages/curtain-visualiser') return 'ROOM_VISUALISER';
     if (page.startsWith('/pages/smart-track-')) return 'SMART_TRACK_STUDIO';
     if (page === '/pages/build-my-rooms') return 'DESIGN_MY_HOME';
@@ -84,6 +88,7 @@
   }
 
   function apiFeature(route) {
+    if (/\/price(?:\/|$)/i.test(route)) return 'PRICE_CALCULATOR';
     if (/jane/i.test(route)) return 'JANE_ADVISOR';
     if (/specialists|advisor/i.test(route)) return 'SPECIALISTS';
     if (/consultation|fabric-intelligence|review-fabric/i.test(route)) return 'FABRIC_INTELLIGENCE';
@@ -91,6 +96,10 @@
     if (/cushion/i.test(route)) return 'CUSHION_STUDIO';
     if (/room-visualiser|curtain-visualiser/i.test(route)) return 'ROOM_VISUALISER';
     if (/smart-track/i.test(route)) return 'SMART_TRACK_STUDIO';
+    if (/roman/i.test(route)) return 'ROMAN_BLINDS';
+    if (/hanging/i.test(route)) return 'HANGING_GUIDE';
+    if (/hotel-studio/i.test(route)) return 'HOTEL_STUDIO';
+    if (/beyond-windows/i.test(route)) return 'BEYOND_WINDOWS';
     if (/my-home|checkout-handoff/i.test(route)) return 'DESIGN_MY_HOME';
     return feature();
   }
@@ -98,7 +107,8 @@
   const apiOperations = new Set(['jane', 'specialists', 'catalog', 'naila-catalog', 'premium-catalog',
     'consultation', 'premium-session', 'premium-command', 'hci-session', 'hci-command',
     'price', 'rooms', 'sample-order', 'checkout-handoff', 'review-request', 'review-acceptance',
-    'room-visualiser', 'cushion-studio', 'smart-track', 'my-home-checkout']);
+    'room-visualiser', 'cushion-studio', 'smart-track', 'my-home-checkout',
+    'roman', 'hanging', 'hotel-studio', 'beyond-windows']);
 
   function safeApiRoute(route) {
     const proxy = route.match(/^\/apps\/curtainsuk-decision\/([a-z-]+)/);
@@ -180,10 +190,11 @@
       if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
       const own = url.hostname === location.hostname || /^(?:curtainsuk-production-api|curtainsuk-staging-api|curtainsuk-staging-gateway)\.vercel\.app$/.test(url.hostname);
       const theme = /^curtainsuk-[a-z0-9._-]{1,65}\.js$/.test(name) || name === 'customer-journey.js';
-      const script = (own || url.hostname === 'cdn.shopify.com') && /^[a-z0-9][a-z0-9._-]{0,79}\.js$/.test(name) ? name : null;
+      const script = (own || url.hostname === 'cdn.shopify.com') && /^[a-z0-9][a-z0-9._-]{0,79}\.m?js$/.test(name) ? name : null;
       // Shopify serves its platform listener from the shop hostname, alongside theme assets.
       if (own && /^shop_events_listener-[a-f0-9]+\.js$/.test(name)) return { origin: 'SHOPIFY', script };
       if (theme && (own || url.hostname === 'cdn.shopify.com')) return { origin: 'THEME', script };
+      if (own && url.pathname.startsWith('/apps/curtainsuk-decision/')) return { origin: 'APP', script };
       if (own) return { origin: url.hostname === location.hostname ? 'THEME' : 'APP', script };
       if (url.hostname === 'cdn.shopify.com' || url.hostname.endsWith('.shopify.com')) return { origin: 'SHOPIFY', script: null };
       return { origin: 'EXTERNAL', script: null };
@@ -234,7 +245,7 @@
   }
 
   function record(kind, name, code = null, status = null, pagePath = path(location.href), detail = null) {
-    if (!enabled || !pagePath || sent >= 120 || !journeyId) return;
+    if (!enabled || !pagePath || sent >= (kind === 'ERROR' ? 120 : 90) || !journeyId) return;
     queue.push({ eventId: crypto.randomUUID(), kind, name, code, status, pagePath, release, detail,
       channel: name === 'VISIT_START' ? channel() : null });
     sent += 1;
@@ -293,6 +304,88 @@
   }, true);
   window.addEventListener('unhandledrejection', (event) => record('ERROR', 'BROWSER_ERROR', 'PROMISE_REJECTION',
     null, path(location.href), errorDetail(event.reason)));
+  // App-proxy tools run in their own window. A parent window's error handlers
+  // cannot observe their failures, even when the iframe is on the same origin.
+  const observedFrames = new WeakSet();
+  const observedDocuments = new WeakSet();
+  function observeEmbeddedFrame(frame) {
+    if (!frame?.addEventListener || observedFrames.has(frame)) return;
+    const configured = frame.getAttribute?.('src') || frame.dataset?.source || frame.src || '';
+    let configuredRoute;
+    try {
+      const url = new URL(configured, location.origin);
+      if (url.origin !== location.origin) return;
+      configuredRoute = safeApiRoute(url.pathname);
+    } catch { return; }
+    if (!configuredRoute) return;
+    observedFrames.add(frame);
+    frame.addEventListener('error', () => record('ERROR', 'BROWSER_ERROR', 'EMBEDDED_FRAME_LOAD_FAILED',
+      null, path(location.href), { type: 'ResourceError', message: 'ASSET_LOAD_FAILED',
+        script: null, line: null, column: null, origin: 'APP', feature: apiFeature(configuredRoute),
+        messageText: null, frames: [], reasonCode: 'EMBEDDED_FRAME_LOAD_FAILED',
+        request: { method: 'GET', route: configuredRoute } }));
+    const attach = () => {
+      try {
+        const child = frame.contentWindow;
+        const childDocument = child?.document;
+        const childRoute = safeApiRoute(child.location.pathname);
+        if (!childDocument || !childRoute || child.location.origin !== location.origin
+          || observedDocuments.has(childDocument)) return;
+        observedDocuments.add(childDocument);
+        const detail = (cause, hint = null, message = null, asset = false) => {
+          const value = errorDetail(cause, hint, message, asset);
+          value.feature = apiFeature(childRoute);
+          value.request = { method: 'GET', route: childRoute };
+          if (value.origin === 'UNKNOWN') value.origin = 'APP';
+          return value;
+        };
+        child.addEventListener('error', (event) => {
+          const asset = event.target && event.target !== child;
+          const source = asset ? (event.target?.currentSrc || event.target?.src || event.target?.href) : event.filename;
+          record('ERROR', asset ? 'ASSET_FAILURE' : 'BROWSER_ERROR',
+            asset ? 'EMBEDDED_ASSET_FAILED' : 'EMBEDDED_EXCEPTION', null, path(location.href),
+            detail(asset ? null : event.error, source ? { url: source, line: event.lineno, column: event.colno } : null,
+              event.message, asset));
+        }, true);
+        child.addEventListener('unhandledrejection', (event) => record('ERROR', 'BROWSER_ERROR',
+          'EMBEDDED_PROMISE_REJECTION', null, path(location.href), detail(event.reason)));
+        const childFetch = child.fetch.bind(child);
+        child.fetch = (...args) => {
+          const result = childFetch(...args);
+          const requestUrl = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
+          let route = null;
+          try {
+            const url = new URL(requestUrl, child.location.origin);
+            if (url.origin === location.origin) route = safeApiRoute(url.pathname);
+          } catch { /* A malformed URL remains the tool's own error. */ }
+          if (route) {
+            const method = String(args[1]?.method || args[0]?.method || 'GET').toUpperCase();
+            void result.then((response) => {
+              if (response.status >= 500 || [400, 404, 409].includes(response.status))
+                record('ERROR', 'API_FAILURE', response.status >= 500 ? 'API_SERVER_ERROR' : 'API_REQUEST_REJECTED',
+                  response.status, path(location.href), apiDetail(response.status >= 500 ? 'HTTP_SERVER_ERROR' :
+                    'HTTP_REQUEST_REJECTED', route, method));
+            }, (error) => {
+              if (error?.name === 'AbortError' || args[1]?.signal?.aborted) return;
+              record('ERROR', 'API_FAILURE', 'API_NETWORK_ERROR', null, path(location.href),
+                apiDetail('NETWORK_REQUEST_FAILED', route, method, error));
+            });
+          }
+          return result;
+        };
+      } catch { /* Cross-origin or sandboxed frames are outside this collector. */ }
+    };
+    frame.addEventListener('load', attach);
+    try { if (frame.contentDocument?.readyState === 'complete') attach(); }
+    catch { /* A redirected frame may no longer be same-origin. */ }
+  }
+  function scanEmbeddedFrames() {
+    document.querySelectorAll?.('iframe').forEach(observeEmbeddedFrame);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scanEmbeddedFrames, { once: true });
+  else scanEmbeddedFrames();
+  if (typeof MutationObserver !== 'undefined' && document.documentElement)
+    new MutationObserver(scanEmbeddedFrames).observe(document.documentElement, { childList: true, subtree: true });
   const roomFrameReasons = new Set(['ROOM_FRAME_ABOUT_BLANK', 'ROOM_FRAME_NOT_READY',
     'ROOM_FRAME_INACCESSIBLE', 'ROOM_FRAME_LOAD_ERROR', 'ROOM_FRAME_CHILD_ERROR',
     'ROOM_FRAME_GRAPHICS_UNAVAILABLE', 'ROOM_FRAME_MODULE_UNAVAILABLE',

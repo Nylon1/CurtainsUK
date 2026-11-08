@@ -1,0 +1,87 @@
+name: CurtainsUK customer journey monitor
+on:
+  schedule:
+    - cron: '17 */4 * * *'
+    - cron: '43 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: customer-journey-monitor
+  cancel-in-progress: false
+jobs:
+  critical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.14.0'
+      - run: npm ci --ignore-scripts --no-audit
+      - run: npx playwright install --with-deps chromium
+      - name: Check public tools and live prices without placing orders
+        id: scan
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/customer-journey-smoke.mjs | tee customer-journey-monitor.log
+      - name: Check pricing, mixed orders and checkout contracts
+        id: contracts
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node --import ./scripts/cushion-preview-register.mjs --import tsx --test --test-concurrency=1 \
+            lib/storefront/__tests__/production-pricing.test.ts \
+            lib/storefront/__tests__/configurator-pricing-lifecycle.test.ts \
+            lib/storefront/__tests__/checkout-review.test.ts \
+            lib/roman-blind/__tests__/mixed-order.test.ts \
+            lib/cushion-studio/__tests__/commerce.test.ts \
+            lib/cushion-studio/__tests__/my-home.test.ts \
+            lib/cushion-studio/__tests__/guest-checkout.test.ts \
+            lib/smart-track/__tests__/smart-track.test.ts | tee customer-contract-monitor.log
+      - name: Check daily pages or the current catalogue rotation
+        id: sitemap
+        continue-on-error: true
+        shell: bash
+        env:
+          MONITOR_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          set -o pipefail
+          if [ "$MONITOR_SCHEDULE" = '17 */4 * * *' ]; then
+            hour=$(date -u +%H)
+            slot=$((10#$hour / 4))
+            node scripts/customer-site-sitemap-scan.mjs "--rotation=$slot" | tee customer-sitemap-monitor.log
+          else
+            node scripts/customer-site-sitemap-scan.mjs | tee customer-sitemap-monitor.log
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: customer-journey-monitor-${{ github.run_id }}
+          path: |
+            customer-journey-monitor.log
+            customer-contract-monitor.log
+            customer-sitemap-monitor.log
+          if-no-files-found: ignore
+      - name: Open or close critical journey incident
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          OUTCOME: ${{ steps.scan.outcome }}-${{ steps.contracts.outcome }}-${{ steps.sitemap.outcome }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          issue=$(gh issue list --repo "$GH_REPO" --state open --search 'CurtainsUK critical journey monitor failed in:title' --json number --jq '.[0].number // empty')
+          if [ "$OUTCOME" != success-success-success ]; then
+            if [ -z "$issue" ]; then
+              gh issue create --repo "$GH_REPO" --title 'CurtainsUK critical journey monitor failed' --body "A public shopping or tool check failed. Check the attached run log: $RUN_URL"
+            else
+              gh issue edit "$issue" --repo "$GH_REPO" --body "A public shopping or tool check still fails. Latest run: $RUN_URL"
+            fi
+            exit 1
+          fi
+          if [ -n "$issue" ]; then gh issue close "$issue" --repo "$GH_REPO" --comment "Public checks recovered: $RUN_URL"; fi

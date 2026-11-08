@@ -120,6 +120,53 @@ test('server rejects free-form error detail that could contain customer data', (
       messageText: 'Request for private@example.com failed', frames: [], request: null } }] }, 'Chrome/120'), /JOURNEY_INPUT_INVALID/);
 });
 
+test('same-origin embedded tools report failures without URL queries or form values', async () => {
+  const sent: string[] = [];
+  const childListeners = new Map<string, (event: any) => void>();
+  const frameListeners = new Map<string, () => void>();
+  const childDocument = { readyState: 'complete' };
+  const child: any = {
+    location: { origin: 'https://www.curtainsuk.com', pathname: '/apps/curtainsuk-decision/smart-track/' },
+    document: childDocument,
+    addEventListener(name: string, listener: (event: any) => void) { childListeners.set(name, listener); },
+    fetch: async () => ({ status: 503 }),
+  };
+  const frame = {
+    dataset: { source: '/apps/curtainsuk-decision/smart-track/?email=private@example.com' },
+    getAttribute() { return ''; }, contentWindow: child, contentDocument: childDocument,
+    addEventListener(name: string, listener: () => void) { frameListeners.set(name, listener); },
+  };
+  const win: any = { Shopify: { customerPrivacy: { analyticsProcessingAllowed: () => true } },
+    addEventListener() {}, fetch: async (url: string, options: { body: string }) => {
+      if (url.endsWith('/journey')) sent.push(options.body);
+      return { status: 200, ok: true };
+    } };
+  runInNewContext(readFileSync('shopify-theme/curtainsuk-dawn-16/assets/customer-journey.js', 'utf8'), {
+    window: win, location: { origin: 'https://www.curtainsuk.com', hostname: 'www.curtainsuk.com',
+      href: 'https://www.curtainsuk.com/pages/smart-track-studio?customer=private@example.com' },
+    URL, Promise, document: { readyState: 'complete', referrer: '', addEventListener() {},
+      querySelectorAll: () => [frame] },
+    sessionStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+    crypto: { randomUUID }, navigator: {}, performance: { getEntriesByType: () => [], now: () => 0 },
+    setInterval: () => 1, clearInterval() {}, setTimeout: () => 1, clearTimeout() {},
+  });
+  const failure = new TypeError('Cannot read properties of undefined (reading private@example.com)');
+  failure.stack = `TypeError: ${failure.message}\n at https://www.curtainsuk.com/apps/curtainsuk-decision/smart-track/scene.mjs?token=secret:27:5`;
+  childListeners.get('unhandledrejection')?.({ reason: failure });
+  await child.fetch('/apps/curtainsuk-decision/smart-track/api/quote?email=private@example.com',
+    { method: 'POST', body: 'private customer details' });
+  await Promise.resolve();
+  const events = sent.flatMap(body => parseJourneyBatch(JSON.parse(body), 'Chrome/120'));
+  assert.equal(events.find(event => event.code === 'EMBEDDED_PROMISE_REJECTION')?.error_detail?.feature,
+    'SMART_TRACK_STUDIO');
+  assert.equal(events.find(event => event.code === 'EMBEDDED_PROMISE_REJECTION')?.error_detail?.script,
+    'scene.mjs');
+  assert.deepEqual(events.find(event => event.code === 'API_SERVER_ERROR')?.error_detail?.request,
+    { method: 'POST', route: '/apps/curtainsuk-decision/smart-track' });
+  assert.doesNotMatch(sent.join(''), /private@example\.com|token=secret|private customer details/);
+  assert.equal(frameListeners.has('load'), true);
+});
+
 test('server-side caught exceptions retain source location while redacting customer text', () => {
   const cause = new TypeError('Request for private@example.com failed at https://example.com/order?token=secret');
   cause.stack = `TypeError: ${cause.message}\n at handler (file:///var/task/.next/server/chunks/proxy.js:73:11)`;

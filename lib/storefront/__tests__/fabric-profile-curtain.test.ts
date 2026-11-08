@@ -117,7 +117,8 @@ test('the motor demo keeps both released render profiles and leaves normal Room 
   const original = readFileSync(new URL('../../room-visualiser/runtime/rooms/customer.html', import.meta.url), 'utf8');
   const standard = JSON.parse(readFileSync(new URL('../../room-visualiser/build.json', import.meta.url), 'utf8'));
   const fixed = JSON.parse(readFileSync(new URL('../../room-visualiser/fixed140-build.json', import.meta.url), 'utf8'));
-  assert.equal(full, original.replaceAll('__VISUALISER_ASSET_BASE__', `https://curtainsuk-production-api.vercel.app${standard.assetBase}`)
+  assert.equal(full, original.replace('<section id="visualiser"', '<p style="padding:0 0 24px;font-size:14px"><a href="https://www.curtainsuk.com/apps/curtainsuk-decision/beyond-windows/" target="_top">More ways to use curtains: explore Curtains Beyond Windows →</a></p><section id="visualiser"')
+    .replaceAll('__VISUALISER_ASSET_BASE__', `https://curtainsuk-production-api.vercel.app${standard.assetBase}`)
     .replaceAll('__FIXED140_ASSET_BASE__', `https://curtainsuk-production-api.vercel.app${fixed.assetBase}`));
   const demo = await (await visualiserPage(new Request(`${url}&embed=fabric-profile`))).text();
   assert.doesNotMatch(demo, /__VISUALISER_ASSET_BASE__|__FIXED140_ASSET_BASE__/);

@@ -9,6 +9,7 @@ import { linkedCurtainEvidence } from "./linked";
 import { quoteSmartTrack } from "./pricing";
 import { parseSmartTrackSpec, UUID } from "./domain";
 import { smartTrackAsset } from "./assets";
+import { recordOperationalError } from "../storefront/operational-error";
 import type { HouseReviewRequest } from "../storefront/rooms-core";
 const headers = {
   "Cache-Control": "no-store, private",
@@ -80,12 +81,16 @@ export async function handleSmartTrack(request: Request, segments: string[]) {
     const body = await boundedCushionBody(request),
       operation = segments[1];
     if (operation === "diagnostic") {
+      const stage = String(body.stage);
       trackDiagnostic(
-        String(body.stage),
+        stage,
         typeof body.requestId === "string" && UUID.test(body.requestId)
           ? body.requestId
           : requestId,
       );
+      if (["SCENE", "ASSET", "CONTROL", "CATALOGUE", "QUOTE", "COMPATIBILITY", "SAVE", "REVIEW", "CHECKOUT"].includes(stage))
+        await recordOperationalError({ routePath: '/api/staging/shopify-proxy/smart-track',
+          code: `SMART_TRACK_${stage}_FAILED`, source: 'HANDLED' });
       return Response.json({ requestId }, { headers });
     }
     if (operation === "quote") {
@@ -139,6 +144,12 @@ export async function handleSmartTrack(request: Request, segments: string[]) {
         "Check the track, motor, mounting and heading choices.",
       TRACK_WAVE_SPACING_REQUIRED: "Choose 60 mm or 80 mm wave spacing.",
     };
+    if (!Object.hasOwn(messages, code)) {
+      await recordOperationalError({ routePath: '/api/staging/shopify-proxy/smart-track',
+        code: 'SMART_TRACK_UNEXPECTED_FAILURE', status: 503, source: 'HANDLED', cause: error });
+      return Response.json({ message: 'This selection is temporarily unavailable. Please try again.', requestId },
+        { status: 503, headers });
+    }
     return Response.json(
       {
         message:

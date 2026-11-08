@@ -1,12 +1,15 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Sample follow-up stages are manual staff previews at days 1, 4, 8 and 15 after carrier delivery. The staff page can issue a personal code but never sends an email.",
-  "newRule": "The journey stages become days 3, 5, 7 and 14. A separate disabled-by-default sender uses current Shopify subscription and order history, a private one-message-per-stage outbox, a one-click unsubscribe endpoint, a verified CurtainsUK sending domain, a Resend idempotency key, and an owner-requested BCC. The staff page offers branded email previews and a telephone CTA. The shared Shopify header gains a call button and hours.",
-  "reason": "The owner requested automation, exact journey timing, a luxury email design, a BCC copy to an internal inbox, and a call button on the site. The new sender remains disabled until DNS, migration, and internal delivery checks are complete.",
-  "ownerApprovedDecision": "Owner review is requested for the new marketing-email policy, timing and protected tests. The repository requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
+  "previousRule": "Production checks rely on existing source tests, a limited advisory live smoke and hourly customer error summaries. Browser errors in same-origin embedded tools can be missed, and no scheduled browser journey checks run across the current storefront.",
+  "newRule": "A read-only browser monitor checks public shopping tools and live curtain and Roman prices every four hours. The same run checks one sixth of every sitemap URL, covering the listed catalogue within a day. A daily scan checks all published page URLs and representative product and fabric URLs. Failed checks open a GitHub incident issue. Existing consented browser diagnostics also cover same-origin tool frames, and a ten-minute critical alert reports recorded customer-facing failures.",
+  "reason": "The owner asked for comprehensive error detection across curtains, Romans, cushions, tracks, visualisers, cart, fabrics, Fabric Intelligence, Naila and AI advisers because undetected faults may lose customers. The checks avoid orders and payments and preserve existing feature switches.",
+  "ownerApprovedDecision": "Owner review is requested for the scheduled monitoring workflow, Playwright test dependency and protected policy record. The repository requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/storefront/__tests__/sample-to-sale.test.ts",
+    ".github/workflows/customer-journey-monitor.yml",
+    "package.json",
+    "package-lock.json",
+    "lib/storefront/__tests__/fabric-profile-curtain.test.ts",
     "shopify-theme/production-main-overlay/manifest.json",
     "release/policy-change.json"
   ]

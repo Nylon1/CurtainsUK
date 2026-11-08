@@ -18,7 +18,12 @@
       </a>
       <a href="{{ home_url }}" class="cuknav__brand" aria-label="CurtainsUK home">
         {% if settings.logo != blank %}
-          {{ settings.logo | image_url: width: 420 | image_tag: widths: '180, 280, 420', sizes: '180px', loading: 'eager', alt: 'CurtainsUK' }}
+          {% assign configured_logo_url = settings.logo | image_url: width: 420 %}
+          {% if configured_logo_url contains 'logo_curtainsuk_1.svg' %}
+            <img src="{{ 'curtainsuk-header-logo-transparent.png' | asset_url }}" width="1774" height="887" loading="eager" alt="">
+          {% else %}
+            {{ settings.logo | image_url: width: 420 | image_tag: widths: '180, 280, 420', sizes: '180px', loading: 'eager', alt: 'CurtainsUK' }}
+          {% endif %}
         {% else %}
           <span>Curtains<span class="cuknav__brand-light">UK</span></span>
         {% endif %}

@@ -31,6 +31,18 @@ const routes = [
 const browser = await chromium.launch({ headless: true, ...(browserPath ? { executablePath: browserPath } : {}) });
 const context = await browser.newContext({ viewport: { width: 1365, height: 800 } });
 const results = [];
+async function waitForToolFrame(page, slug) {
+  const path = `/apps/curtainsuk-decision/${slug}`;
+  const deadline = Date.now() + 15_000;
+  while (Date.now() < deadline) {
+    const frame = page.frames().find(candidate =>
+      candidate !== page.mainFrame() && candidate.url().includes(path));
+    if (frame) return frame;
+    await page.waitForTimeout(250);
+  }
+  return null;
+}
+
 try {
   for (const [name, route, embedded] of routes) {
     const page = await context.newPage();
@@ -53,11 +65,9 @@ try {
       if (body.length < 40) failures.push('blank or nearly blank page');
       if (/^(?:404|not found|application error)$/i.test(body.slice(0, 40))) failures.push('error page');
       if (embedded) {
-        await page.waitForTimeout(2_000);
-        const frames = page.frames().filter(frame => frame !== page.mainFrame());
-        const tool = frames.find(frame => frame.url().includes(`/apps/curtainsuk-decision/${embedded}`));
+        const tool = await waitForToolFrame(page, embedded);
         if (!tool)
-          failures.push(`${embedded} frame did not load`);
+          failures.push(`${embedded} frame did not load within 15 seconds`);
         else if (route === '/pages/smart-track-studio') {
           await tool.locator('canvas').first().waitFor({ state: 'attached', timeout: 10_000 });
           await tool.waitForFunction(() => /YOUR TRACK · INCLUDES VAT\s*£[\d,.]+/.test(document.body.innerText),
@@ -173,10 +183,8 @@ try {
         if (response?.status() !== 200) failures.push(`page HTTP ${response?.status() ?? 'no response'}`);
         if ((await page.locator('body').innerText()).trim().length < 40) failures.push('blank page');
         if (embedded) {
-          await page.waitForTimeout(2_000);
-          if (!page.frames().some(frame => frame !== page.mainFrame() &&
-              frame.url().includes(`/apps/curtainsuk-decision/${embedded}`)))
-            failures.push('mobile tool frame did not load');
+          if (!await waitForToolFrame(page, embedded))
+            failures.push('mobile tool frame did not load within 15 seconds');
         }
       } catch (error) { failures.push(String(error.message).slice(0, 160)); }
       results.push({ name: `Mobile ${name}`, route, status: failures.length ? 'FAIL' : 'PASS', failures });

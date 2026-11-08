@@ -1,15 +1,17 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Production checks rely on existing source tests, a limited advisory live smoke and hourly customer error summaries. Browser errors in same-origin embedded tools can be missed, and no scheduled browser journey checks run across the current storefront.",
-  "newRule": "A read-only browser monitor checks public shopping tools and live curtain and Roman prices every four hours. The same run checks one sixth of every sitemap URL, covering the listed catalogue within a day. A daily scan checks all published page URLs and representative product and fabric URLs. Failed checks open a GitHub incident issue. Existing consented browser diagnostics also cover same-origin tool frames, and a ten-minute critical alert reports recorded customer-facing failures.",
-  "reason": "The owner asked for comprehensive error detection across curtains, Romans, cushions, tracks, visualisers, cart, fabrics, Fabric Intelligence, Naila and AI advisers because undetected faults may lose customers. The checks avoid orders and payments and preserve existing feature switches.",
-  "ownerApprovedDecision": "Owner review is requested for the scheduled monitoring workflow, Playwright test dependency and protected policy record. The repository requires an exact-head Nylon1 comment on this PR before merge; this field does not substitute for that comment.",
+  "previousRule": "The shared header provides a Shopify samples cart icon while the Design My Home Shopping Cart is available only through the main menu. A customer who leaves its Shopify draft-order checkout has no direct link back to that checkout from the saved order page.",
+  "newRule": "The shared header provides separate, labelled shortcuts for fabric samples and the saved made-to-measure Shopping Cart. The saved order page offers a same-session link to resume a previously opened Shopify checkout when the saved order is unchanged. The checkout URL is validated, expires after 24 hours and is held in session storage. The production MAIN theme manifest records the updated six theme files.",
+  "reason": "The owner asked for an unmistakable route between the samples cart, Design My Home Shopping Cart and Shopify checkout, including a way back to an interrupted checkout. The store is on Shopify Basic, so the hosted checkout cart link cannot be customised through Checkout Branding.",
+  "ownerApprovedDecision": "Owner review is requested for the protected theme manifest and policy record on this production release PR. The repository requires an exact-head Nylon1 comment before merge; this field does not substitute for that comment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    ".github/workflows/customer-journey-monitor.yml",
-    "package.json",
-    "package-lock.json",
-    "lib/storefront/__tests__/fabric-profile-curtain.test.ts",
+    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-header.css",
+    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-header.js",
+    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-my-home.css",
+    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-my-home.js",
+    "shopify-theme/curtainsuk-dawn-16/sections/cart-icon-bubble.liquid",
+    "shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-header.liquid",
     "shopify-theme/production-main-overlay/manifest.json",
     "release/policy-change.json"
   ]

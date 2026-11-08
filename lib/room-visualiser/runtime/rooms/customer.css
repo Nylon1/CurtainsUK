@@ -16,8 +16,13 @@
 .shopify-page-scroll{overflow:clip}
 .shopify-page-scroll #fabric-dialog{position:fixed;top:var(--room-dialog-top);bottom:auto;margin:0 auto;height:min(880px,var(--room-visible-height));max-height:var(--room-visible-height)}
 @media(max-width:900px){
+  .shopify-page-scroll main>.intro{display:none}
   .scene{display:contents}
-  .scene-viewport{position:sticky;top:var(--room-sticky-top);z-index:2;border-bottom:1px solid #deded5}
+  #rooms{overflow-x:auto;scroll-snap-type:x proximity}
+  #rooms button{flex:0 0 auto;min-width:100px;white-space:nowrap;scroll-snap-align:start}
+  .scene-viewport{position:sticky;top:var(--room-sticky-top);z-index:2;border-bottom:1px solid #deded5;overflow:hidden}
+  .scene-viewport .view-choices{position:absolute;top:8px;left:8px;z-index:3;margin:0;background:#f8f7f3e8;box-shadow:0 2px 9px #203b3326}
+  .scene-viewport .view-choices button{min-height:40px;padding:8px 12px}
   .scene-viewport>.poses button{flex:1}
   .customer-options :is(button,a,input,summary){scroll-margin-top:calc(var(--room-canvas-max-height) + 118px)}
 }

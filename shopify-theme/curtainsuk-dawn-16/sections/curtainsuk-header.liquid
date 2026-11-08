@@ -10,7 +10,7 @@
   assign home_url = routes.root_url
   assign campaign_date = 'now' | date: '%Y%m%d' | plus: 0
 %}
-<curtainsuk-header class="cuknav" data-section-id="{{ section.id }}">
+<curtainsuk-header class="cuknav{% if page.handle == 'room-visualiser' or page.handle == 'cushion-studio' or page.handle == 'hotel-design-studio' or page.handle == 'smart-track-studio' %} cuknav--visualiser{% endif %}" data-section-id="{{ section.id }}">
   <header class="cuknav__header">
     <div class="cuknav__bar">
       <a class="cuknav__icon cuknav__menu-toggle" href="#CukMenu-{{ section.id }}" aria-label="Open menu" aria-controls="CukMenu-{{ section.id }}" aria-expanded="false" data-open="menu">
@@ -53,6 +53,7 @@
         <a href="{{ routes.root_url }}#curtainsuk-help">Contact</a>
       </nav>
       <div class="cuknav__tools">
+        {% if page.handle == 'room-visualiser' or page.handle == 'cushion-studio' or page.handle == 'hotel-design-studio' or page.handle == 'smart-track-studio' %}<a class="cuknav__call-mini" href="tel:+448007720367" aria-label="Call CurtainsUK on 0800 772 0367, Monday to Friday, 9am to 5pm">Call</a>{% endif %}
         <a href="{{ routes.search_url }}" class="cuknav__icon" aria-label="Search" aria-controls="CukSearch-{{ section.id }}" aria-expanded="false" data-open="search">
           {{ 'icon-search.svg' | inline_asset_content }}
         </a>

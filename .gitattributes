@@ -20,3 +20,5 @@
 /public/room-visualiser/ebbd2298c7f52fd8c6c3359f/** -text whitespace=cr-at-eol,-space-before-tab
 # Preserve the reviewed wider Bay room bundle across Windows and Linux.
 /public/room-visualiser/5ee06952561616a69bb63ecd/** -text whitespace=cr-at-eol,-space-before-tab
+# Preserve the mobile room layout pack's reviewed bytes in every checkout.
+/public/room-visualiser/d0a422c5ae1387e4fe01ae7e/** -text whitespace=cr-at-eol,-space-before-tab

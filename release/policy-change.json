@@ -1,16 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The shared header provides a Shopify samples cart icon while the Design My Home Shopping Cart is available only through the main menu. A customer who leaves its Shopify draft-order checkout has no direct link back to that checkout from the saved order page.",
-  "newRule": "The shared header provides separate, labelled shortcuts for fabric samples and the saved made-to-measure Shopping Cart. The saved order page offers a same-session link to resume a previously opened Shopify checkout when the saved order is unchanged. The checkout URL is validated, expires after 24 hours and is held in session storage. The production MAIN theme manifest records the updated six theme files.",
-  "reason": "The owner asked for an unmistakable route between the samples cart, Design My Home Shopping Cart and Shopify checkout, including a way back to an interrupted checkout. The store is on Shopify Basic, so the hosted checkout cart link cannot be customised through Checkout Branding.",
+  "previousRule": "The shared header renders the configured logo as an SVG containing an embedded PNG and gives its product links and support row more height than needed. On the owner's mobile browser the logo can appear as a solid white rectangle over the home link. The desktop campaign also takes too much vertical space.",
+  "newRule": "For the current CurtainsUK logo file only, the shared header uses the identical transparent PNG embedded in that SVG. Other configured logos still use the normal Shopify image path. The home link remains unchanged. The campaign tiles and support row use a compact layout on desktop and tablet, with the existing phone controls preserved. The production MAIN theme manifest records the asset, section and CSS changes.",
+  "reason": "The owner reported a covered logo home link and an oversized desktop banner. The PNG preserves the exact logo artwork and transparency. The reduced tile and support heights give more room to page content without removing product, help or cart links.",
   "ownerApprovedDecision": "Owner review is requested for the protected theme manifest and policy record on this production release PR. The repository requires an exact-head Nylon1 comment before merge; this field does not substitute for that comment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
+    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-header-logo-transparent.png",
     "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-header.css",
-    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-header.js",
-    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-my-home.css",
-    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-my-home.js",
-    "shopify-theme/curtainsuk-dawn-16/sections/cart-icon-bubble.liquid",
     "shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-header.liquid",
     "shopify-theme/production-main-overlay/manifest.json",
     "release/policy-change.json"

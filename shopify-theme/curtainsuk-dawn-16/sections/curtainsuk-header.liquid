@@ -27,19 +27,19 @@
         <span class="cuknav__campaign-eyebrow">MADE TO MEASURE · MADE FOR LIVING</span>
         <nav class="cuknav__product-links{% if settings.curtainsuk_smart_track_enabled %} cuknav__product-links--four{% endif %}" aria-label="Shop our products">
           <a href="/pages/fabric-library?view=browse-fabrics"><span class="cuknav__product-number" aria-hidden="true">01</span><span class="cuknav__product-name">Curtains</span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
-          <a href="/apps/curtainsuk-decision/roman/roman.html"><span class="cuknav__product-number" aria-hidden="true">02</span><span class="cuknav__product-name">Roman Blinds</span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
+          <a href="/apps/curtainsuk-decision/roman/roman.html" aria-label="Roman Blinds"><span class="cuknav__product-number" aria-hidden="true">02</span><span class="cuknav__product-name"><span class="cuknav__desktop-label">Roman Blinds</span><span class="cuknav__mobile-label" aria-hidden="true">Romans</span></span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
           <a href="/pages/cushion-studio"><span class="cuknav__product-number" aria-hidden="true">03</span><span class="cuknav__product-name">Cushions</span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
-          {% if settings.curtainsuk_smart_track_enabled %}<a href="/pages/smart-track-studio"><span class="cuknav__product-number" aria-hidden="true">04</span><span class="cuknav__product-name">Motorised Tracks</span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>{% endif %}
+          {% if settings.curtainsuk_smart_track_enabled %}<a href="/pages/smart-track-studio" aria-label="Motorised Tracks"><span class="cuknav__product-number" aria-hidden="true">04</span><span class="cuknav__product-name"><span class="cuknav__desktop-label">Motorised Tracks</span><span class="cuknav__mobile-label" aria-hidden="true">Tracks</span></span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>{% endif %}
         </nav>
         <div class="cuknav__campaign-support">
           {% if campaign_date <= 20261119 %}
-            <a class="cuknav__christmas" href="/pages/fabric-library?view=browse-fabrics">
+            <a class="cuknav__christmas" href="/pages/fabric-library?view=browse-fabrics" aria-label="Home for Christmas, estimated delivery before Christmas">
               <svg class="cuknav__christmas-star" width="16" height="22" viewBox="0 0 30 48" fill="none" aria-hidden="true" focusable="false"><path d="M15 0v10" stroke="currentColor" opacity=".6"/><path d="m15 12 3.5 10.5L29 26l-10.5 3.5L15 40l-3.5-10.5L1 26l10.5-3.5L15 12Z" stroke="currentColor"/><path d="m15 19 1.8 5.2L22 26l-5.2 1.8L15 33l-1.8-5.2L8 26l5.2-1.8L15 19Z" fill="currentColor"/></svg>
-              <span class="cuknav__christmas-copy"><strong>Home for Christmas</strong><span>Estimated delivery before Christmas</span></span>
+              <span class="cuknav__christmas-copy"><strong><span class="cuknav__desktop-label">Home for Christmas</span><span class="cuknav__mobile-label" aria-hidden="true">Christmas</span></strong><span>Estimated delivery before Christmas</span></span>
             </a>
           {% endif %}
           <div class="cuknav__campaign-links">
-            <a class="cuknav__room-action" href="{{ room_url }}">Let us read your room <span aria-hidden="true">→</span></a>
+            <a class="cuknav__room-action" href="{{ room_url }}" aria-label="Let us read your room"><span class="cuknav__desktop-label">Let us read your room</span><span class="cuknav__mobile-label" aria-hidden="true">Room advice</span> <span aria-hidden="true">→</span></a>
             <a class="cuknav__price-promise" href="/pages/price-promise">Price match <span aria-hidden="true">↗</span></a>
           </div>
           <a class="cuknav__help-call" href="tel:+448007720367" aria-label="Need help? Call CurtainsUK on 0800 772 0367, Monday to Friday, 9am to 5pm">

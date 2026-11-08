@@ -20,6 +20,7 @@
 .cuknav__product-links a:hover { background: #fffaf0; border-color: #f5e8ca; transform: translateY(-2px); }
 .cuknav__product-number { align-self: start; padding-top: 1px; color: #8e7245; font: 8px/1 Arial,sans-serif; letter-spacing: .06em; }
 .cuknav__product-name { min-width: 0; font: clamp(14px,1.15vw,18px)/1.1 Georgia,'Times New Roman',serif; letter-spacing: -.025em; }
+.cuknav__mobile-label { display: none; }
 .cuknav__product-arrow { align-self: end; color: #8e7245; font: 14px/1 Arial,sans-serif; }
 .cuknav__product-links a:hover .cuknav__product-number,.cuknav__product-links a:hover .cuknav__product-arrow { color: #6d5734; }
 .cuknav__campaign-support { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 14px; width: 100%; min-width: 0; }
@@ -132,13 +133,32 @@
   .cuknav__mobile .cuknav__secondary a { display: flex; align-items: center; min-height: 48px; font-size: 15px; }
 }
 @media (max-width: 600px) {
-  .cuknav__product-links, .cuknav__product-links--four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
-  .cuknav__product-links a { min-height: 48px; gap: 5px; padding: 7px 8px; }
-  .cuknav__product-name { font-size: clamp(13px,3.7vw,17px); }
-  .cuknav__campaign-support { flex-wrap: wrap; gap: 0 12px; }
+  .cuknav__bar { min-height: 60px; }
+  .cuknav__brand img { max-height: 36px; }
+  .cuknav__campaign { padding: 4px 0 6px; gap: 4px; }
+  .cuknav__campaign-eyebrow { display: none; }
+  .cuknav__desktop-label { display: none; }
+  .cuknav__mobile-label { display: inline; }
+  .cuknav__product-links, .cuknav__product-links--four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; max-width: none; }
+  .cuknav__product-links:not(.cuknav__product-links--four) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cuknav__product-links a { display: flex; justify-content: center; min-height: 44px; padding: 4px 2px; text-align: center; }
+  .cuknav__product-number, .cuknav__product-arrow { display: none; }
+  .cuknav__product-name { font-size: clamp(11px,3vw,14px); white-space: nowrap; }
+  .cuknav__campaign-support { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; }
+  .cuknav__campaign-support:not(:has(.cuknav__christmas)) { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .cuknav__christmas, .cuknav__campaign-links, .cuknav__help-call { min-width: 0; width: 100%; min-height: 32px; }
+  .cuknav__christmas { justify-content: center; gap: 3px; }
+  .cuknav__christmas-star { flex-basis: 11px; width: 11px; height: 18px; }
+  .cuknav__christmas-copy strong { font: 10px/1 Arial,sans-serif; }
   .cuknav__christmas-copy > span { display: none; }
-  .cuknav__help-call { width: 100%; min-height: 44px; flex-direction: row; gap: 8px; padding: 6px 8px; }
-  .cuknav__help-call small { margin: 0; }
+  .cuknav__campaign-links { display: contents; }
+  .cuknav__room-action, .cuknav__price-promise { justify-content: center; min-height: 32px; gap: 2px; font-size: 10px; }
+  .cuknav__help-call { padding: 3px; border-radius: 2px; }
+  .cuknav__help-call > span { font: 10px/1.1 Arial,sans-serif; white-space: nowrap; }
+  .cuknav__help-call > span > strong { font-weight: 700; }
+  .cuknav__help-call > span { font-size: 0; }
+  .cuknav__help-call > span > strong { font-size: 10px; }
+  .cuknav__help-call small { display: none; }
 }
 /* Give the interactive studios the phone viewport after the visitor scrolls in. */
 @media (max-width: 900px) {
@@ -147,5 +167,5 @@
   .cuknav--visualiser .cuknav__bar { grid-template-columns: 48px minmax(0, 1fr) 132px; }
   .cuknav--visualiser .cuknav__call-mini { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; min-height: 44px; font-size: 12px; font-weight: 600; color: #f8f3e8; }
 }
-@media (max-width: 360px) { .cuknav__christmas-star { display: none; } .cuknav__campaign-links { gap: 8px; } .cuknav__help-call { flex-direction: column; gap: 2px; } }
+@media (max-width: 360px) { .cuknav__christmas-star { display: none; } }
 @media (prefers-reduced-motion: reduce) { .cuknav *, .cuknav *::before, .cuknav *::after { scroll-behavior: auto; transition: none !important; } }

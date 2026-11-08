@@ -14,12 +14,14 @@ const MESSAGE_CODES = new Set(["MESSAGE_UNAVAILABLE", "NETWORK_REQUEST_FAILED", 
 const ORIGINS = new Set(["THEME", "APP", "SHOPIFY", "EXTERNAL", "EXTENSION", "UNKNOWN"]);
 const FEATURES = new Set(["FABRICS", "CUSHION_STUDIO", "ROOM_VISUALISER", "SMART_TRACK_STUDIO",
   "DESIGN_MY_HOME", "FITTING_GUIDE", "PRODUCT_PAGE", "POLICY_PAGE", "GENERAL",
-  "JANE_ADVISOR", "SPECIALISTS", "FABRIC_INTELLIGENCE", "FABRIC_STOCK"]);
+  "JANE_ADVISOR", "SPECIALISTS", "FABRIC_INTELLIGENCE", "FABRIC_STOCK",
+  "ROMAN_BLINDS", "HANGING_GUIDE", "HOTEL_STUDIO", "BEYOND_WINDOWS", "PRICE_CALCULATOR"]);
 const API_OPERATIONS = new Set(["jane", "specialists", "catalog", "naila-catalog", "premium-catalog",
   "consultation", "premium-session", "premium-command", "hci-session", "hci-command",
   "price", "rooms", "sample-order", "checkout-handoff", "review-request", "review-acceptance",
-  "room-visualiser", "cushion-studio", "smart-track", "my-home-checkout"]);
-const SCRIPT = /^[a-z0-9][a-z0-9._-]{0,79}\.js$/;
+  "room-visualiser", "cushion-studio", "smart-track", "my-home-checkout",
+  "roman", "hanging", "hotel-studio", "beyond-windows"]);
+const SCRIPT = /^[a-z0-9][a-z0-9._-]{0,79}\.m?js$/;
 
 export function sanitizeErrorMessage(value: unknown): string | null {
   if (typeof value !== 'string' || !value || value.length > 2048) return null;

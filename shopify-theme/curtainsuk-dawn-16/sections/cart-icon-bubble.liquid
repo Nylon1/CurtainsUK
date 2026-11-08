@@ -1,10 +1,5 @@
-{% if cart == empty %}
-  <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-{% else %}
-  <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-{% endif %}
-
-<span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+<svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M7 4.5h18v23H7z" stroke="currentColor" stroke-width="1.6"/><path d="M10 8h12v12H10z" fill="currentColor" fill-opacity=".16" stroke="currentColor" stroke-width="1.2"/><path d="M10 23h12" stroke="currentColor" stroke-width="1.2"/></svg>
+<span class="cuknav__tool-label" aria-hidden="true">Samples</span>
 {%- if cart != empty -%}
   <div class="cart-count-bubble">
     {%- if cart.item_count < 100 -%}

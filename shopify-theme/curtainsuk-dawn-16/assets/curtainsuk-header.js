@@ -2,12 +2,18 @@
 (function syncSavedHouseNavigation() {
   const update = () => {
     const links = document.querySelectorAll('[data-cuk-house-nav]');
-    if (!links.length || !window.CurtainsUKRooms) return;
+    const shortcuts = document.querySelectorAll('[data-cuk-order-shortcut]');
+    if ((!links.length && !shortcuts.length) || !window.CurtainsUKRooms) return;
     let count = 0;
-    try { count = window.CurtainsUKRooms.orderItems(window.CurtainsUKRooms.read() || window.CurtainsUKRooms.ensure()).reduce((n,item)=>n+item.quantity,0); } catch { return; }
+    try { const saved = window.CurtainsUKRooms.read(); count = saved ? window.CurtainsUKRooms.orderItems(saved).reduce((n,item)=>n+item.quantity,0) : 0; } catch { return; }
     links.forEach((link) => {
       link.textContent = count ? `Shopping Cart · ${count}` : 'Shopping Cart';
       link.setAttribute('aria-label', count ? `Shopping Cart, ${count} saved ${count === 1 ? 'item' : 'items'}` : 'Shopping Cart');
+    });
+    shortcuts.forEach((link) => {
+      link.setAttribute('aria-label', count ? `Shopping Cart, ${count} saved ${count === 1 ? 'item' : 'items'}` : 'Shopping Cart, your saved made-to-measure order');
+      const badge = link.querySelector('[data-cuk-order-count]');
+      if (badge) { badge.hidden = !count; badge.textContent = count > 99 ? '99+' : String(count); }
     });
   };
   window.addEventListener('storage', (event) => { if (event.key === window.CurtainsUKRooms?.KEY) update(); });

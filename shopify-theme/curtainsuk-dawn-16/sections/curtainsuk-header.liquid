@@ -68,14 +68,18 @@
       {%- endif -%}
 
 
-        {% if settings.curtainsuk_purchase_controls_enabled == true %}<a href="{{ routes.cart_url }}" class="cuknav__icon cuknav__cart" id="cart-icon-bubble">
-          {% if cart == empty %}{{ 'icon-cart-empty.svg' | inline_asset_content }}{% else %}{{ 'icon-cart.svg' | inline_asset_content }}{% endif %}
-          <span class="visually-hidden">Samples cart</span>
+        {% if settings.curtainsuk_purchase_controls_enabled == true %}<a href="{{ routes.cart_url }}" class="cuknav__icon cuknav__cart cuknav__samples-cart" id="cart-icon-bubble" aria-label="Fabric samples cart">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M7 4.5h18v23H7z" stroke="currentColor" stroke-width="1.6"/><path d="M10 8h12v12H10z" fill="currentColor" fill-opacity=".16" stroke="currentColor" stroke-width="1.2"/><path d="M10 23h12" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span class="cuknav__tool-label" aria-hidden="true">Samples</span>
           {% if cart != empty %}
             <div class="cart-count-bubble"><span aria-hidden="true">{{ cart.item_count }}</span><span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span></div>
           {% endif %}
         </a>
         {% endif %}
+        {% if settings.curtainsuk_rooms_enabled %}<a href="/pages/build-my-rooms" class="cuknav__icon cuknav__order-cart" aria-label="Shopping Cart, your saved made-to-measure order" data-cuk-order-shortcut>
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M6 11h20l-1.5 16h-17L6 11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M11 12V9a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span class="cuknav__tool-label" aria-hidden="true">Order</span><span class="cuknav__order-count" data-cuk-order-count hidden></span>
+        </a>{% endif %}
         {% for block in section.blocks %}{% render block %}{% endfor %}
       </div>
     </div>

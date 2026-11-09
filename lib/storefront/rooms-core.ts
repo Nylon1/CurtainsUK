@@ -176,7 +176,13 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
   // Five-minute review signature binds names, membership, prices, destination and revision.
   // A digest binds every receipt without duplicating the whole House in the token.
   const reviewToken = seal<HouseReviewClaims>('review', { requestDigest: roomsDigest(input), financialDigest: reviewFinancialDigest(result), reviewedAt: result.validated_at, expiresAt: Date.parse(result.validated_at) + 300_000 }, services.secret);
-  return { ...result, reviewToken };
+  const reviewed = { ...result, reviewToken };
+  // Only server-side mixed-order checks need these authoritative quantities.
+  // Keep them out of the customer review JSON and signed financial digest.
+  return Object.defineProperty(reviewed, 'stockRequirements', {
+    value: new Map([...stockGroups].map(([id, group]) => [id, group.metres])),
+    enumerable: false,
+  }) as typeof reviewed & { stockRequirements: ReadonlyMap<string, number> };
 }
 
 export function assertHouseCheckoutReleased(environment: NodeJS.ProcessEnv = process.env): void {

@@ -1,14 +1,17 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The shared header renders the configured logo as an SVG containing an embedded PNG and gives its product links and support row more height than needed. On the owner's mobile browser the logo can appear as a solid white rectangle over the home link. The desktop campaign also takes too much vertical space.",
-  "newRule": "For the current CurtainsUK logo file only, the shared header uses the identical transparent PNG embedded in that SVG. Other configured logos still use the normal Shopify image path. The home link remains unchanged. The campaign tiles and support row use a compact layout on desktop and tablet, with the existing phone controls preserved. The production MAIN theme manifest records the asset, section and CSS changes.",
-  "reason": "The owner reported a covered logo home link and an oversized desktop banner. The PNG preserves the exact logo artwork and transparency. The reduced tile and support heights give more room to page content without removing product, help or cart links.",
-  "ownerApprovedDecision": "Owner review is requested for the protected theme manifest and policy record on this production release PR. The repository requires an exact-head Nylon1 comment before merge; this field does not substitute for that comment.",
+  "previousRule": "Shopping Cart required a delivery postcode and specification checkbox before a customer could continue to Shopify. Delivery could show Awaiting confirmation despite an approved standard UK charge, and the ordinary cart could show Ordering is not yet enabled for this review. Northern Ireland and Highland standard rates were higher than the owner's new UK-wide instruction.",
+  "newRule": "Valid curtains, Roman blinds, smart tracks and cushions receive an immediate reviewed total with one approved £12.95 standard delivery charge for UK destinations, without a cart postcode or checkbox. One Order now action opens Shopify's address and payment steps. Genuine product and specialist delivery gates remain. Sample credit and eligible personal 10% codes remain available in expandable sections, with guest checkout available without a personal code. The mobile order action stays visible without obscuring the cart, and the production MAIN theme manifest records the two changed assets.",
+  "reason": "The owner found that the extra cart steps and ordering-disabled wording confused customers. The owner explicitly set £12.95 for every UK address and asked for an immediate, accessible, one-click path from a valid quote to checkout. The existing cart price and Shopify draft delivery must stay consistent across regions.",
+  "ownerApprovedDecision": "The owner directed this urgent cart simplification and UK-wide £12.95 standard delivery in chat. Repository policy still requires a separate exact-head Nylon1 approval comment on the production release PR before merge; this record does not substitute for that comment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-header-logo-transparent.png",
-    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-header.css",
-    "shopify-theme/curtainsuk-dawn-16/sections/curtainsuk-header.liquid",
+    "config/curtainsuk-shipping-owner-inputs.json",
+    "lib/cushion-studio/my-home.ts",
+    "lib/smart-track/delivery.ts",
+    "lib/storefront/shipping-owner-inputs.ts",
+    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-my-home.css",
+    "shopify-theme/curtainsuk-dawn-16/assets/curtainsuk-my-home.js",
     "shopify-theme/production-main-overlay/manifest.json",
     "release/policy-change.json"
   ]

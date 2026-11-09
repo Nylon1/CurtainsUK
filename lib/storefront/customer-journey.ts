@@ -1,7 +1,10 @@
 import { parsePriceDiagnosticContext, type PriceDiagnosticContext } from './price-diagnostics';
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const NAME = /^(VISIT_START|PAGE_VIEW|NAVIGATE|CART_ADD|CART_VIEW|CHECKOUT_START|API_FAILURE|BROWSER_ERROR|ASSET_FAILURE|PAGE_SLOW|API_SLOW)$/;
+const NAME = /^(VISIT_START|PAGE_VIEW|NAVIGATE|CART_ADD|CART_VIEW|CHECKOUT_START|MY_HOME_CART_VIEW|MY_HOME_REVIEW_READY|MY_HOME_REVIEW_BLOCKED|MY_HOME_REVIEW_FAILED|MY_HOME_ORDER_NOW|MY_HOME_HANDOFF_READY|MY_HOME_HANDOFF_FAILED|MY_HOME_RETURNED|API_FAILURE|BROWSER_ERROR|ASSET_FAILURE|PAGE_SLOW|API_SLOW)$/;
+const MY_HOME_ACTIONS = new Set(["MY_HOME_CART_VIEW", "MY_HOME_REVIEW_READY", "MY_HOME_REVIEW_BLOCKED",
+  "MY_HOME_REVIEW_FAILED", "MY_HOME_ORDER_NOW", "MY_HOME_HANDOFF_READY", "MY_HOME_HANDOFF_FAILED", "MY_HOME_RETURNED"]);
+const PRODUCT_MIX = /^(?:CURTAIN|ROMAN|CUSHION|TRACK)(?:_(?:CURTAIN|ROMAN|CUSHION|TRACK)){0,3}$/;
 const CODE = /^[A-Z][A-Z0-9_]{1,63}$/;
 const SAFE_PATH = /^\/[a-z0-9/_-]{0,159}$/i;
 const ERROR_TYPES = new Set(["Error", "TypeError", "ReferenceError", "SyntaxError", "RangeError", "URIError",
@@ -160,7 +163,8 @@ export function parseJourneyBatch(input: unknown, userAgent: string): JourneyEve
       || (kind === "ERROR" && code === null)
       || (kind === "PERFORMANCE" && code === null)
       || (kind === "PAGE" && !["VISIT_START", "PAGE_VIEW"].includes(name))
-      || (kind === "ACTION" && !["NAVIGATE", "CART_ADD", "CART_VIEW", "CHECKOUT_START"].includes(name))
+      || (kind === "ACTION" && !["NAVIGATE", "CART_ADD", "CART_VIEW", "CHECKOUT_START", ...MY_HOME_ACTIONS].includes(name))
+      || (MY_HOME_ACTIONS.has(name) && (pagePath !== '/pages/build-my-rooms' || code === null || !PRODUCT_MIX.test(code)))
       || (kind === "ERROR" && !["API_FAILURE", "BROWSER_ERROR", "ASSET_FAILURE"].includes(name))
       || (kind === "PERFORMANCE" && !["PAGE_SLOW", "API_SLOW"].includes(name))
       || (channel !== null && (!["Direct", "Search", "Social", "Paid", "Email", "Referral", "Unknown"].includes(channel) || name !== "VISIT_START"))

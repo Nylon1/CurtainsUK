@@ -6,7 +6,11 @@
   const idleMs = 30 * 60 * 1000;
   const excluded = /(?:^|\/)(?:account|checkout|orders|apps)(?:\/|$)/i;
   const safePath = /^\/[a-z0-9/_-]{0,159}$/i;
-  const release = 'journey-20261107-v4';
+  const release = 'journey-20261109-v5';
+  const myHomeSteps = new Set(['MY_HOME_CART_VIEW', 'MY_HOME_REVIEW_READY', 'MY_HOME_REVIEW_BLOCKED',
+    'MY_HOME_REVIEW_FAILED', 'MY_HOME_ORDER_NOW', 'MY_HOME_HANDOFF_READY',
+    'MY_HOME_HANDOFF_FAILED', 'MY_HOME_RETURNED']);
+  const productMix = /^(?:CURTAIN|ROMAN|CUSHION|TRACK)(?:_(?:CURTAIN|ROMAN|CUSHION|TRACK)){0,3}$/;
   const nativeFetch = window.fetch.bind(window);
   let journeyId = null;
   let enabled = false;
@@ -246,10 +250,11 @@
 
   function record(kind, name, code = null, status = null, pagePath = path(location.href), detail = null) {
     if (!enabled || !pagePath || sent >= (kind === 'ERROR' ? 120 : 90) || !journeyId) return;
-    queue.push({ eventId: crypto.randomUUID(), kind, name, code, status, pagePath, release, detail,
+    const qa = (() => { try { return sessionStorage.getItem('cuk_qa_telemetry') === '1'; } catch { return false; } })();
+    queue.push({ eventId: crypto.randomUUID(), kind, name, code, status, pagePath, release: qa ? release + '-qa' : release, detail,
       channel: name === 'VISIT_START' ? channel() : null });
     sent += 1;
-    if (queue.length >= 12 || kind === 'ERROR') flush();
+    if (queue.length >= 12 || kind === 'ERROR' || myHomeSteps.has(name)) flush();
     else if (!timer) timer = setTimeout(flush, 2500);
   }
 
@@ -287,6 +292,17 @@
     if (enabled || ++privacyChecks >= 20) clearInterval(privacyTimer);
   }, 250);
   window.addEventListener('pagehide', () => flush(true));
+
+  // The made-to-measure cart does not use Shopify's native cart/add.js path.
+  // Product mix is a fixed category list, never a product, fabric or customer value.
+  window.CurtainsUKJourney = Object.freeze({
+    trackMyHome(name, mix) {
+      if (path(location.href) !== '/pages/build-my-rooms' || !myHomeSteps.has(name)
+        || typeof mix !== 'string' || !productMix.test(mix) || !enabled) return false;
+      record('ACTION', name, mix, null, '/pages/build-my-rooms');
+      return true;
+    }
+  });
 
   document.addEventListener('click', (event) => {
     const link = event.target?.closest?.('a[href]');

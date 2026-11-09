@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PriceDiagnosticContext } from '@/lib/storefront/price-diagnostics';
+import type { FunnelRow, MyHomeStep } from '@/lib/storefront/checkout-funnel';
+import type { CheckoutStage } from '@/lib/storefront/checkout-stage';
 
 type Event = { event_id: string; journey_id: string; request_id: string; occurred_at: string; kind: string;
   page_path: string; name: string; code: string | null; status: number | null; release: string; browser: string; channel: string | null;
@@ -15,6 +17,9 @@ type Summary = { visits: number; journeys: number; pageViews: number; cartAdds: 
   cartViews: number; checkoutStarts: number; errors: number; slowEvents: number; paidOrders: number;
   topPages: { path: string; views: number }[]; channels: { name: string; visits: number }[] };
 type Payload = { summary: Summary; errors: Event[]; visits: Event[]; timeline: Event[]; slow: Event[];
+  myHomeFunnel: FunnelRow[]; funnelTruncated: boolean;
+  checkoutStages: { mix: string; checkouts: number; stages: Record<CheckoutStage, number>;
+    lastObservedAfter24h: Partial<Record<CheckoutStage, number>> }[]; checkoutStagesTruncated: boolean; checkoutStagesUnavailable: boolean;
   selectedJourney: string | null; nextBefore: string | null; retentionDays: number;
   pendingEmailAlerts: number; emailAlertsConfigured: boolean; serviceErrorCount: number;
   serviceErrors: { error_id: string; occurred_at: string; request_id: string; route_path: string;
@@ -24,6 +29,24 @@ type Payload = { summary: Summary; errors: Event[]; visits: Event[]; timeline: E
 
 const date = (value: string) => new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
 const card = 'rounded-2xl border border-[#d7d6c9] bg-white p-5 shadow-sm';
+const funnelColumns: { key: MyHomeStep; label: string }[] = [
+  { key: 'MY_HOME_CART_VIEW', label: 'Cart viewed' },
+  { key: 'MY_HOME_REVIEW_READY', label: 'Price ready' },
+  { key: 'MY_HOME_REVIEW_BLOCKED', label: 'Price blocked' },
+  { key: 'MY_HOME_REVIEW_FAILED', label: 'Price failed' },
+  { key: 'MY_HOME_ORDER_NOW', label: 'Order now' },
+  { key: 'MY_HOME_HANDOFF_READY', label: 'Checkout link ready' },
+  { key: 'MY_HOME_HANDOFF_FAILED', label: 'Handoff failed' },
+  { key: 'MY_HOME_RETURNED', label: 'Returned' },
+];
+const checkoutColumns: { key: CheckoutStage; label: string }[] = [
+  { key: 'CHECKOUT_STARTED', label: 'Checkout opened' },
+  { key: 'CONTACT_SUBMITTED', label: 'Contact' },
+  { key: 'ADDRESS_SUBMITTED', label: 'Address' },
+  { key: 'SHIPPING_SUBMITTED', label: 'Delivery' },
+  { key: 'PAYMENT_SUBMITTED', label: 'Payment submitted' },
+  { key: 'CHECKOUT_COMPLETED', label: 'Completed' },
+];
 const messages: Record<string, string> = {
   MESSAGE_UNAVAILABLE: 'No message supplied by the browser', NETWORK_REQUEST_FAILED: 'Network request failed',
   PROPERTY_READ_UNDEFINED: 'Read a property of undefined', PROPERTY_READ_NULL: 'Read a property of null',
@@ -121,7 +144,7 @@ export default function ErrorCentre() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#927246]">CurtainsUK operations</p>
           <h1 className="mt-2 font-serif text-4xl">Customer Experience</h1>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#586c61]">Anonymous journeys, shopping steps and errors. Only visits with analytics permission appear here. Shopify checkout is outside this journey view.</p></div>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#586c61]">Anonymous journeys, shopping steps and errors. Only activity with analytics permission appears here. Shopify checkout stages are grouped separately.</p></div>
         <div className="flex flex-wrap gap-2"><button className="rounded-full border border-[#9aab9f] px-4 py-2 text-sm hover:bg-white" onClick={() => void refresh()}>Refresh</button>
           <button className="rounded-full bg-[#173d33] px-4 py-2 text-sm text-white hover:bg-[#295c4c]" onClick={() => void enableNotifications()}>{notifications ? 'Visit alerts on' : 'Enable visit alerts'}</button></div>
       </div>
@@ -131,11 +154,27 @@ export default function ErrorCentre() {
       <div className="mt-6 flex gap-2" role="group" aria-label="Reporting period">{([7, 30] as const).map((value) => <button key={value} onClick={() => setDays(value)} aria-pressed={days === value} className={`rounded-full px-4 py-2 text-sm ${days === value ? 'bg-[#173d33] text-white' : 'border border-[#9aab9f] bg-white'}`}>Last {value} days</button>)}</div>
       <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[
         ['New visits', data?.summary?.visits], ['Page views', data?.summary?.pageViews],
-        ['Cart additions', data?.summary?.cartAdds], ['Checkout starts', data?.summary?.checkoutStarts],
-        ['Cart visits', data?.summary?.cartViews], ['Paid orders', data?.summary?.paidOrders],
+        ['Native cart additions', data?.summary?.cartAdds], ['Native checkout starts', data?.summary?.checkoutStarts],
+        ['Native cart visits', data?.summary?.cartViews], ['Paid orders', data?.summary?.paidOrders],
         ['Browser/API errors', data?.summary?.errors], ['Service errors', data?.serviceErrorCount],
         ['Slow loads', data?.summary?.slowEvents],
       ].map(([label, value]) => <div className={card} key={String(label)}><p className="text-xs font-semibold uppercase tracking-wider text-[#61756a]">{label}</p><p className="mt-3 font-serif text-3xl">{value ?? '—'}</p></div>)}</div>
+      <section className={`${card} mt-6`}><h2 className="font-serif text-2xl">Made-to-measure order funnel</h2>
+        <p className="mt-1 text-sm text-[#61756a]">Curtains, Roman blinds, cushions and tracks. Each number counts anonymous, consented browser journeys once per step and product combination. A shopper can appear in several columns when they progress.</p>
+        <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[900px] border-collapse text-left text-sm"><thead><tr className="border-b border-[#d7d6c9]"><th className="py-2 pr-4">Products</th>{funnelColumns.map(column=><th key={column.key} className="px-2 py-2">{column.label}</th>)}</tr></thead><tbody>{data?.myHomeFunnel?.map(row=><tr key={row.mix} className="border-b border-[#ece9df]"><th className="py-3 pr-4 font-medium">{row.mix.replaceAll('_',' + ').toLowerCase()}</th>{funnelColumns.map(column=><td key={column.key} className="px-2 py-3 tabular-nums">{row.steps[column.key]}</td>)}</tr>)}</tbody></table></div>
+        {data && !data.myHomeFunnel.length && <p className="mt-4 text-sm">No made-to-measure checkout steps have been recorded in this period yet.</p>}
+        {data?.myHomeFunnel?.some(row=>Object.keys(row.lastObservedAfter24h).length>0) && <div className="mt-5"><h3 className="font-semibold">Last observed step, at least 24 hours ago</h3><p className="mt-1 text-sm text-[#61756a]">These journeys had no later recorded step. This is a signal to investigate, not proof that the customer abandoned or failed payment.</p><ul className="mt-2 space-y-1 text-sm">{data.myHomeFunnel.flatMap(row=>funnelColumns.filter(column=>row.lastObservedAfter24h[column.key]).map(column=><li key={`${row.mix}-${column.key}`}>{row.mix.replaceAll('_',' + ').toLowerCase()}: {row.lastObservedAfter24h[column.key]} at {column.label.toLowerCase()}</li>))}</ul></div>}
+        {data?.funnelTruncated && <p role="alert" className="mt-3 text-sm">The funnel reached its 10,000 event reporting limit. Narrow the period or expand the report before using these totals.</p>}
+        <p className="mt-4 text-xs text-[#66766c]">QA sessions marked for testing are excluded. The checkout events below are a separate consented stream, grouped by checkout. They are not yet linked to these browser journeys.</p>
+      </section>
+      <section className={`${card} mt-6`}><h2 className="font-serif text-2xl">Shopify checkout steps</h2>
+        <p className="mt-1 text-sm text-[#61756a]">Distinct consented checkouts by product combination. Address, delivery and payment events depend on Shopify Checkout Extensibility and analytics permission.</p>
+        {data?.checkoutStagesUnavailable && <p role="status" className="mt-3 text-sm">Checkout stage storage is being prepared. Cart reporting remains available.</p>}
+        <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[760px] border-collapse text-left text-sm"><thead><tr className="border-b border-[#d7d6c9]"><th className="py-2 pr-4">Products</th>{checkoutColumns.map(column=><th key={column.key} className="px-2 py-2">{column.label}</th>)}</tr></thead><tbody>{data?.checkoutStages?.map(row=><tr key={row.mix} className="border-b border-[#ece9df]"><th className="py-3 pr-4 font-medium">{row.mix.replaceAll('_',' + ').toLowerCase()}</th>{checkoutColumns.map(column=><td key={column.key} className="px-2 py-3 tabular-nums">{row.stages[column.key]}</td>)}</tr>)}</tbody></table></div>
+        {data && !data.checkoutStagesUnavailable && !data.checkoutStages.length && <p className="mt-4 text-sm">No consented checkout stage events have been recorded yet.</p>}
+        {data?.checkoutStages?.some(row=>Object.keys(row.lastObservedAfter24h).length>0) && <div className="mt-5"><h3 className="font-semibold">Last checkout step, at least 24 hours ago</h3><p className="mt-1 text-sm text-[#61756a]">No completion event was observed for these checkouts. Consent changes, blocked pixels and delayed purchases can affect this count.</p><ul className="mt-2 space-y-1 text-sm">{data.checkoutStages.flatMap(row=>checkoutColumns.filter(column=>row.lastObservedAfter24h[column.key]).map(column=><li key={`${row.mix}-${column.key}`}>{row.mix.replaceAll('_',' + ').toLowerCase()}: {row.lastObservedAfter24h[column.key]} at {column.label.toLowerCase()}</li>))}</ul></div>}
+        {data?.checkoutStagesTruncated && <p role="alert" className="mt-3 text-sm">The checkout report reached its 10,000 event limit. Narrow the period or expand the report before using these totals.</p>}
+      </section>
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
         <section className={card}><h2 className="font-serif text-2xl">Pages people explore</h2><p className="mt-1 text-sm text-[#61756a]">Consented page views in the selected period, without search terms or URL parameters.</p>
           <ol className="mt-4 space-y-2">{data?.summary?.topPages?.map((page) => <li key={page.path} className="flex justify-between gap-4 border-b border-[#ece9df] py-2 text-sm"><span className="min-w-0 truncate">{page.path}</span><strong>{page.views}</strong></li>)}</ol>

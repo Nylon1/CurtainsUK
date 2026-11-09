@@ -83,6 +83,7 @@ document.querySelectorAll('[data-cuk-my-home]').forEach(root=>{
   checkoutButton.textContent=checkingOut?'Opening secure checkout…':`Order now · ${money(review?.totalMinor)}`;
   checkoutButton.disabled=busy||review?.purchaseEnabled!==true||review?.ready!==true;
   checkoutButton.hidden=!items.length||!review?.purchaseEnabled||!review?.ready;
+  root.querySelector('.myhome-confirm-note').hidden=checkoutButton.hidden;
   checkoutButton.setAttribute('aria-busy',checkingOut?'true':'false');
   const checkoutStatus=document.createElement('div');
   checkoutStatus.className='myhome-checkout-status';
@@ -108,7 +109,7 @@ document.querySelectorAll('[data-cuk-my-home]').forEach(root=>{
  const creditField=root.querySelector('[data-credit-codes]');
  if(creditField){
   root.querySelector('[data-credit-panel]').ontoggle=e=>{creditOpen=e.target.open;};
-  creditField.oninput=e=>{creditText=e.target.value;review=null;sequence++;busy=false;root.querySelector('[data-checkout]').disabled=true;root.querySelector('[data-credit-remove]').disabled=!creditText;root.querySelector('[data-credit-apply]').disabled=false;root.querySelectorAll('.myhome-summary dl dd').forEach(el=>el.textContent=money(null));root.querySelector('.myhome-price-status').textContent='Apply your code to check your saving and total.';};
+  creditField.oninput=e=>{creditText=e.target.value;review=null;sequence++;busy=false;checkoutButton.disabled=true;checkoutButton.hidden=true;root.querySelector('.myhome-confirm-note').hidden=true;root.querySelector('[data-credit-remove]').disabled=!creditText;root.querySelector('[data-credit-apply]').disabled=false;root.querySelectorAll('.myhome-summary dl dd').forEach(el=>el.textContent=money(null));root.querySelector('.myhome-price-status').textContent='Apply your code to check your saving and total.';};
   root.querySelector('[data-credit-apply]').onclick=refresh;
   root.querySelector('[data-credit-remove]').onclick=()=>{creditText='';refresh();};
  }
@@ -116,7 +117,7 @@ document.querySelectorAll('[data-cuk-my-home]').forEach(root=>{
  const promoField=root.querySelector('[data-promo-code]');
  if(promoField){
   root.querySelector('[data-promo-panel]').ontoggle=e=>{promoOpen=e.target.open;};
-  promoField.oninput=e=>{promoText=e.target.value;review=null;sequence++;busy=false;root.querySelector('[data-checkout]').disabled=true;root.querySelector('[data-promo-remove]').disabled=!promoText;root.querySelector('[data-promo-apply]').disabled=false;root.querySelectorAll('.myhome-summary dl dd').forEach(el=>el.textContent=money(null));root.querySelector('.myhome-price-status').textContent='Apply your personal code to check your saving and total.';};
+  promoField.oninput=e=>{promoText=e.target.value;review=null;sequence++;busy=false;checkoutButton.disabled=true;checkoutButton.hidden=true;root.querySelector('.myhome-confirm-note').hidden=true;root.querySelector('[data-promo-remove]').disabled=!promoText;root.querySelector('[data-promo-apply]').disabled=false;root.querySelectorAll('.myhome-summary dl dd').forEach(el=>el.textContent=money(null));root.querySelector('.myhome-price-status').textContent='Apply your personal code to check your saving and total.';};
   root.querySelector('[data-promo-apply]').onclick=refresh;
   root.querySelector('[data-promo-remove]').onclick=()=>{promoText='';refresh();};
  }
@@ -140,6 +141,6 @@ document.querySelectorAll('[data-cuk-my-home]').forEach(root=>{
  async function refresh(){const token=++sequence;if(!Store.orderItems(house).length){review=null;render();return;}busy=true;error='';render();try{const result=await api('my-home-review',payload());if(token!==sequence)return;review=result;}catch(e){if(token===sequence){review=null;error=e.message;}}finally{if(token===sequence){busy=false;render();}}}
   async function checkout(){if(!review?.ready||!review.purchaseEnabled)return;busy=true;checkingOut=true;const button=root.querySelector('[data-checkout]'),status=root.querySelector('.myhome-checkout-status');button.textContent='Opening Shopify checkout...';button.setAttribute('aria-busy','true');status.hidden=false;status.textContent='Checking your order and opening Shopify checkout. Please wait.';root.querySelectorAll('button,input,select,textarea').forEach(control=>control.disabled=true);const reviewed=review,request=payload();try{if(!attempt||attempt.reviewId!==reviewed.reviewId){attempt={reviewId:reviewed.reviewId,key:crypto.randomUUID()};sessionStorage.setItem(attemptKey,JSON.stringify(attempt));}
   const result=await api('my-home-checkout',{...request,...(request.cushions?{cushions:{...request.cushions,expectedQuoteId:reviewed.quoteId}}:{}),reviewId:reviewed.reviewId,houseReviewToken:reviewed.houseReviewToken,acceptedPriceChanges:reviewed.acceptedPriceChanges||[],measurementsConfirmed:true,idempotencyKey:attempt.key});if(!result.paymentEnabled&&!result.purchaseEnabled)throw Error(result.message||'Checkout is not enabled. Your order remains saved.');const url=new URL(result.checkoutUrl);if(url.protocol!=='https:'||!['www.curtainsuk.com','carpetup.myshopify.com'].includes(url.hostname)||url.username||url.password||url.port)throw Error('The checkout link could not be verified.');try{sessionStorage.setItem(checkoutReturnKey,JSON.stringify({houseId:house.house_id,revision:house.revision,url:url.href,savedAt:Date.now(),creditText,promoText}));}catch{}location.assign(url.href);}catch(e){error=e.message;review=null;busy=false;checkingOut=false;render();}}
- window.addEventListener('storage',e=>{if(e.key===Store.KEY){sequence++;busy=false;sync();refresh();}});window.addEventListener('pageshow',e=>{if(e.persisted){sync();refresh();}});sync();refresh();
+  window.addEventListener('storage',e=>{if(e.key===Store.KEY){sequence++;busy=false;sync();refresh();}});window.addEventListener('pageshow',e=>{if(e.persisted){cartObserver.observe(root);sync();refresh();}});sync();refresh();
 });
 })();

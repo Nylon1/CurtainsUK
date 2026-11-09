@@ -253,7 +253,7 @@ function romanQuote(id=randomUUID(),fabricId=source.id): RomanQuote {
 }
 function checkoutInput(input:MyHomeInput,review:Awaited<ReturnType<typeof reviewMyHome>>) {
   return {...input,reviewId:review.reviewId,houseReviewToken:review.houseReviewToken ?? undefined,
-    acceptedPriceChanges:review.acceptedPriceChanges,measurementsConfirmed:true,idempotencyKey:"my-home-test-checkout"};
+    acceptedPriceChanges:review.acceptedPriceChanges,idempotencyKey:"my-home-test-checkout"};
 }
 
 test("My Home reviews both types, one curtain delivery and latest confirmed hold-together dispatch without writes",async()=>{
@@ -482,11 +482,13 @@ test("one unconfirmed filling blocks only its line while shared set prices remai
 });
 
 
-test("cushion-only checkout requires explicit specification confirmation",async()=>{
+test("cushion-only checkout accepts Order now without a cart confirmation field",async()=>{
   const f=await homeFixture();delete f.input.curtains;
   const review=await reviewMyHome(f.input,f.services);
   await assert.rejects(checkoutMyHome({...checkoutInput(f.input,review),measurementsConfirmed:false},f.services),/MY_HOME_CHECKOUT_INVALID/);
   assert.deepEqual(f.effects,[]);
+  await checkoutMyHome(checkoutInput(f.input,review),f.services);
+  assert.equal(f.effects.filter(effect=>effect==="cushions").length,1);
 });
 
 test('Current curtain fabric card resolves the exact identity without changing pricing or review identity on a photo refresh',async()=>{

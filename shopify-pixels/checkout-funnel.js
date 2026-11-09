@@ -1,16 +1,7 @@
 /* CurtainsUK Customer Events custom pixel. Analytics permission only.
- * Sends fixed checkout stages and price bands; no contact, address, URL or discount code.
+ * Sends fixed checkout stages and prices; no contact, address, URL or discount code.
  */
-(() => {
   const endpoint = 'https://curtainsuk-production-api.vercel.app/api/checkout-stage';
-  const stages = {
-    checkout_started: 'CHECKOUT_STARTED',
-    checkout_contact_info_submitted: 'CONTACT_SUBMITTED',
-    checkout_address_info_submitted: 'ADDRESS_SUBMITTED',
-    checkout_shipping_info_submitted: 'SHIPPING_SUBMITTED',
-    payment_info_submitted: 'PAYMENT_SUBMITTED',
-    checkout_completed: 'CHECKOUT_COMPLETED',
-  };
   let allowed = init.customerPrivacy?.analyticsProcessingAllowed === true;
   if (typeof customerPrivacy !== 'undefined')
     customerPrivacy.subscribe('visitorConsentCollected', event => {
@@ -36,8 +27,7 @@
     const madeToMeasure = ['CURTAIN', 'ROMAN', 'CUSHION', 'TRACK'].filter(type => types.has(type));
     return madeToMeasure.length ? madeToMeasure.join('_') : types.has('SAMPLE') ? 'SAMPLE' : 'OTHER';
   }
-  for (const [shopifyEvent, stage] of Object.entries(stages)) {
-    analytics.subscribe(shopifyEvent, async event => {
+  const send = stage => async event => {
       if (!allowed) return;
       const checkout = event.data?.checkout;
       if (!checkout || typeof checkout.token !== 'string' || !checkout.token || !event.id) return;
@@ -55,6 +45,10 @@
         await fetch(endpoint, { method: 'POST', mode: 'cors', credentials: 'omit', keepalive: true,
           headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       } catch { /* Telemetry must never interrupt checkout. */ }
-    });
-  }
-})();
+  };
+  analytics.subscribe('checkout_started', event => send('CHECKOUT_STARTED')(event));
+  analytics.subscribe('checkout_contact_info_submitted', event => send('CONTACT_SUBMITTED')(event));
+  analytics.subscribe('checkout_address_info_submitted', event => send('ADDRESS_SUBMITTED')(event));
+  analytics.subscribe('checkout_shipping_info_submitted', event => send('SHIPPING_SUBMITTED')(event));
+  analytics.subscribe('payment_info_submitted', event => send('PAYMENT_SUBMITTED')(event));
+  analytics.subscribe('checkout_completed', event => send('CHECKOUT_COMPLETED')(event));

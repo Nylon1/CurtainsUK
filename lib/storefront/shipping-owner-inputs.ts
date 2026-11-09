@@ -109,20 +109,24 @@ export function quoteOwnerApprovedCurtainShipping(input: {
   const policy = input.policy ?? STAGING_SHIPPING_OWNER_INPUTS;
   const blocked = quoteUkShipping({ region: input.selectedRegion, parcelClass: "STANDARD", rules: [] });
   const unavailable = { ...blocked, status: "RATE_REQUIRES_CONFIRMATION" as const, message: "Delivery confirmed after review" };
-  if (!input.postcode || shippingPolicyBlockers(policy).length || !(input.fabricMetres > 0) || !(input.maximumDropCm > 0)) return unavailable;
+  if (shippingPolicyBlockers(policy).length || !(input.fabricMetres > 0) || !(input.maximumDropCm > 0)) return unavailable;
   if (policy.launchMode === "SINGLE_RATE") {
     try {
-      const region = resolveOwnerShippingRegion(input.postcode, policy);
-      if (region !== input.selectedRegion) return unavailable;
-      const postcode = input.postcode.toUpperCase().replace(/\s/g, "");
+      // The shop's active market is GB only. The address is collected by
+      // Shopify checkout; the same approved standard rate applies UK-wide.
+      const region = input.postcode ? resolveOwnerShippingRegion(input.postcode, policy) : "UK_MAINLAND";
+      const postcode = input.postcode?.toUpperCase().replace(/\s/g, "");
       if (input.requiresDeliveryReview || input.packedParcel?.specialistHandling) {
         const approved = input.approvedDelivery;
-        if (!approved || approved.region !== region || approved.postcode !== postcode) return unavailable;
+        if (!postcode || !approved || approved.region !== region || approved.postcode !== postcode) return unavailable;
         return {...blocked,region,parcelClass:"SPECIALIST",status:"READY",grossAmountMinor:approved.grossAmountMinor,postcode,policyVersion:policy.version,message:"Delivery confirmed after review"};
       }
-      return {...quoteUkShipping({region,parcelClass:"STANDARD",rules:input.rules}),postcode,policyVersion:policy.version};
+      const rate = policy.rates.find(rule => rule.region === region && rule.parcelClass === "STANDARD" && rule.status === "VALIDATED");
+      if (!rate || !Number.isSafeInteger(rate.grossAmountMinor) || rate.grossAmountMinor <= 0) return unavailable;
+      return {...blocked,region,parcelClass:"STANDARD",status:"READY",grossAmountMinor:rate.grossAmountMinor,...(postcode?{postcode}:{}),policyVersion:policy.version,message:"Standard UK delivery"};
     } catch { return unavailable; }
   }
+  if (!input.postcode) return unavailable;
   const packing = policy.packingRules.filter(rule => input.fabricMetres > rule.minFabricMetresExclusive
     && input.fabricMetres <= rule.maxFabricMetres && input.maximumDropCm <= rule.maxFinishedDropCm);
   if (!input.packedParcel && packing.length !== 1) return unavailable;

@@ -44,3 +44,19 @@
 
 /* Paid sample credit stays secondary to the order review. */
 .myhome-credit{border:1px solid #d7dfd5;border-radius:12px;padding:14px;margin:18px 0;background:#f4f5ed}.myhome-credit summary{cursor:pointer;font-weight:600}.myhome-credit p,.myhome-credit small{font-size:13px;line-height:1.5}.myhome-credit textarea,.myhome-credit input[data-promo-code]{display:block;box-sizing:border-box;width:100%;resize:vertical;min-height:70px;padding:10px;border:1px solid #89968b;border-radius:6px;background:#fff;font:14px/1.5 monospace}.myhome-credit>div{display:flex;gap:10px;margin-top:12px}.myhome-credit button{min-height:44px;padding:8px 16px;border:1px solid #193e32;border-radius:8px}.myhome-credit button:first-child{background:#193e32;color:#fff}.myhome-credit :focus-visible{outline:3px solid #9d7845;outline-offset:3px}.myhome-credit-saving{color:#23503c}.myhome-credit-saving small{display:block;font-size:12px}
+
+/* Keep the single checkout action in reach without covering the last cart controls. */
+[data-cuk-my-home].myhome-has-items .myhome-editorial{min-height:0;margin:0 0 10px;padding:16px 0;background:none}
+[data-cuk-my-home].myhome-has-items .myhome-editorial:after,[data-cuk-my-home].myhome-has-items .myhome-editorial .cukrooms__hero-photo,[data-cuk-my-home].myhome-has-items .myhome-editorial .cukrooms__hero-caption,[data-cuk-my-home].myhome-has-items .myhome-editorial .cukrooms__counts,[data-cuk-my-home].myhome-has-items .myhome-editorial .cukrooms__intro-description{display:none}
+[data-cuk-my-home].myhome-has-items .myhome-editorial h1{font-size:clamp(30px,3vw,42px);margin:4px 0}
+[data-cuk-my-home].myhome-has-items .myhome-hero-actions{margin-top:10px}
+[data-cuk-my-home].myhome-has-items .myhome-rich-item .myhome-rich-visual{min-height:280px}
+.myhome-summary [data-checkout][hidden]{display:none!important}
+.myhome-summary [data-checkout][hidden]+.myhome-confirm-note{display:none}
+[data-cuk-my-home] .myhome-summary [data-checkout]{box-sizing:border-box;min-height:52px;font-weight:700}
+[data-cuk-my-home] .cukrooms__discovery a{box-sizing:border-box;max-width:100%}
+.myhome-summary .myhome-confirm-note{padding:12px 14px;border-left:3px solid #365b4a;background:#f7f9f4}
+.myhome-summary .myhome-price-change{padding:12px 14px;border:1px solid #ae7a28;border-radius:8px;background:#fff7e8;font-weight:700}
+.myhome-credit a{color:#193e32;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:1150px){[data-cuk-my-home]{padding-bottom:calc(82px + env(safe-area-inset-bottom,0px))}.myhome-summary{padding-bottom:72px}.myhome-in-view .myhome-summary [data-checkout]{position:fixed;z-index:40;right:18px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:310px;max-width:calc(100vw - 32px);margin:0;box-shadow:0 8px 28px #10251d3d}}
+@media(max-width:749px){[data-cuk-my-home].myhome-has-items .myhome-editorial{padding:12px 4px}[data-cuk-my-home].myhome-has-items .myhome-rich-item .myhome-rich-visual{height:220px;min-height:0}[data-cuk-my-home].myhome-has-items .myhome-product-symbol{min-height:220px}.myhome-in-view .myhome-summary [data-checkout]{left:12px;right:12px;width:calc(100vw - 24px);max-width:none}}

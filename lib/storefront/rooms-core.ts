@@ -171,7 +171,7 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
     requiresPriceAcknowledgement: lines.some(line => line.status === 'PRICE_CHANGED'),
     goods, delivery: deliveryAmount, total: ready ? goods! + deliveryAmount! : null, vat,
     pricingVersion: ROOMS_RULESET, currency: 'GBP' as const,
-    deliveryMessage: delivery?.message || 'Enter a UK Mainland postcode to confirm delivery.',
+    deliveryMessage: delivery?.message || 'Delivery needs confirmation.',
   };
   // Five-minute review signature binds names, membership, prices, destination and revision.
   // A digest binds every receipt without duplicating the whole House in the token.

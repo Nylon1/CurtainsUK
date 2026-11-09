@@ -4,7 +4,6 @@ import { verifyReviewSubmission } from './review-token';
 import { fabricMasterRecordById } from '@/lib/fabric-master/repository';
 import { projectCustomerSafeFabric } from '@/lib/fabric-master/projection';
 import { dailyStockProjection } from './daily-stock-server';
-import { loadStagingUkShippingRules } from './shipping-repository';
 import { quoteOwnerApprovedCurtainShipping, STAGING_SHIPPING_OWNER_INPUTS, deliveryRequiresReview } from './shipping-owner-inputs';
 import { retainCurtain, reviewHouse, type HouseReviewRequest } from './rooms-core';
 import { prepareHouseCheckout, type HouseCheckoutInput, type HouseCheckoutServices } from './rooms-checkout';
@@ -40,7 +39,7 @@ export function houseCheckoutServices(): HouseCheckoutServices {
       return quoteOwnerApprovedCurtainShipping({ selectedRegion: 'UK_MAINLAND', postcode,
         fabricMetres: calculations.reduce((total, price) => total + price.fabricMetres!, 0), maximumDropCm: Math.max(...configurations.map(c=>c.dropCm)),
         requiresDeliveryReview: configurations.some(c=>deliveryRequiresReview(c.windowSlug,{ coverage_width:c.widthCm, finished_drop:c.dropCm })),
-        rules: await loadStagingUkShippingRules() });
+        rules: [] });
     }
   };
 }

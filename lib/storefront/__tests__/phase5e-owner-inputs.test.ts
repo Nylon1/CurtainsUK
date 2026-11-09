@@ -59,7 +59,7 @@ test("owner postcode ranges and inclusive packed length/weight boundaries", () =
   for (const changes of [{lengthMm:1801},{weightGrams:20001},{specialistHandling:true}]) assert.equal(resolve("SW1A 1AA",changes).parcelClass,"OVERSIZE");
   for (const postcode of ["", "BT", "not a postcode", "JE1 1AA", "GY1 1AA", "IM1 1AA"]) assert.throws(()=>resolve(postcode));
   for (const changes of [{lengthMm:0},{weightGrams:NaN},{weightGrams:-1}]) assert.throws(()=>resolve("SW1A 1AA",changes));
-  assert.deepEqual(STAGING_SHIPPING_OWNER_INPUTS.rates.map(r=>r.grossAmountMinor),[1295,1995,2995,1995,2995,4495,1995,2995,4495]);
+  assert.deepEqual(STAGING_SHIPPING_OWNER_INPUTS.rates.map(r=>r.grossAmountMinor),[1295,1995,2995,1295,2995,4495,1295,2995,4495]);
 });
 
 
@@ -77,12 +77,13 @@ test("delivery uses trusted packed measurements and blocks missing or ambiguous 
 });
 
 
-test("launch delivery needs only the postcode, not packing evidence", () => {
+test("launch standard delivery is £12.95 UK-wide without a cart postcode", () => {
   const rules = STAGING_SHIPPING_OWNER_INPUTS.rates.map(r => ({...r,region:r.region as "UK_MAINLAND",parcelClass:r.parcelClass as "STANDARD",currency:"GBP" as const,enabled:true,status:"VALIDATED" as const}));
-  for (const [postcode, selectedRegion, expected] of [["SW1A 1AA","UK_MAINLAND",1295],["BT1 1AA","NORTHERN_IRELAND",1995],["IV1 1AA","HIGHLANDS_ISLANDS",1995],["HS1 1AA","HIGHLANDS_ISLANDS",1995]] as const) {
+  for (const [postcode, selectedRegion, expected] of [["","UK_MAINLAND",1295],["SW1A 1AA","UK_MAINLAND",1295],["BT1 1AA","NORTHERN_IRELAND",1295],["IV1 1AA","HIGHLANDS_ISLANDS",1295],["HS1 1AA","HIGHLANDS_ISLANDS",1295]] as const) {
     const quote = quoteOwnerApprovedCurtainShipping({postcode,selectedRegion,fabricMetres:10.6,maximumDropCm:220,rules});
     assert.equal(quote.status,"READY"); assert.equal(quote.grossAmountMinor,expected);
   }
+  assert.equal(quoteOwnerApprovedCurtainShipping({postcode:"JE1 1AA",selectedRegion:"UK_MAINLAND",fabricMetres:10.6,maximumDropCm:220,rules}).status,"RATE_REQUIRES_CONFIRMATION");
 });
 
 test("specialist delivery requires an exact staff quote bound to destination; Bay alone is ordinary", () => {

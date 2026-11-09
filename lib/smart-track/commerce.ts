@@ -186,7 +186,7 @@ export function buildSmartTrackOrder(input: {
       presentmentCurrencyCode: "GBP",
       taxExempt: false,
       lineItems: [...(input.base?.input.lineItems ?? []), ...lines],
-      shippingAddress: { countryCode: "GB", zip: input.shipping.postcode },
+      shippingAddress: { countryCode: "GB", ...(input.shipping.postcode ? {zip: input.shipping.postcode} : {}) },
       shippingLine: {
         title: input.shipping.title,
         priceWithCurrency: {

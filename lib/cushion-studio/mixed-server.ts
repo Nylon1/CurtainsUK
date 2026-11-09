@@ -14,7 +14,6 @@ import {
   STAGING_SHIPPING_OWNER_INPUTS,
   deliveryRequiresReview,
 } from "../storefront/shipping-owner-inputs";
-import { loadStagingUkShippingRules } from "../storefront/shipping-repository";
 import { CURTAINSUK_RETAIL_VAT_RATE_BASIS_POINTS } from "../storefront/checkout-gates";
 import {
   executeMixedCheckout,
@@ -63,7 +62,7 @@ export function createMixedServices(cushion: CushionCheckoutServices): MixedServ
             finished_drop: c.dropCm,
           }),
         ),
-        rules: await loadStagingUkShippingRules(),
+        rules: [],
       });
       if (shipping.status !== "READY" || shipping.grossAmountMinor === null)
         throw Error("MIXED_DELIVERY_REVIEW_REQUIRED");

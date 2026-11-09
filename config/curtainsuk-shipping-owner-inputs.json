@@ -1,9 +1,9 @@
 {
   "environment": "STAGING",
-  "version": "phase5m-single-rate-shipping-v3",
+  "version": "uk-flat-standard-2026-11-09-v1",
   "status": "VALIDATED",
-  "approvedBy": "CurtainsUK owner — single-rate staging launch instruction",
-  "approvedAt": "2026-09-08T15:56:37.711926+00:00",
+  "approvedBy": "CurtainsUK owner — £12.95 for every UK address in 2026-11-09 chat",
+  "approvedAt": "2026-11-09T07:21:35+00:00",
   "currency": "GBP",
   "ratesIncludeVat": true,
   "rates": [
@@ -28,7 +28,7 @@
     {
       "region": "HIGHLANDS_ISLANDS",
       "parcelClass": "STANDARD",
-      "grossAmountMinor": 1995,
+      "grossAmountMinor": 1295,
       "status": "VALIDATED"
     },
     {
@@ -46,7 +46,7 @@
     {
       "region": "NORTHERN_IRELAND",
       "parcelClass": "STANDARD",
-      "grossAmountMinor": 1995,
+      "grossAmountMinor": 1295,
       "status": "VALIDATED"
     },
     {

@@ -45,7 +45,7 @@ export interface SmartTrackServices {
   ): Promise<ShopifyDraftOrderExecutionResult>;
 }
 export async function checkoutSmartTrackOrder(
-  input: MyHomeCheckoutInput,
+  input: MyHomeCheckoutInput & { measurementsConfirmed: true },
   services: MyHomeServices,
   review: {
     quotes: SmartTrackQuote[];

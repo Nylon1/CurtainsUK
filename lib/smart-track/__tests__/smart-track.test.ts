@@ -562,7 +562,7 @@ test("Roman alone and with curtains, cushions and tracks reaches one no-postcode
     assert.equal(review.purchaseEnabled,true,combination);
     assert.equal(review.deliveryMinor,1295,combination);
     assert.equal(review.totalMinor,review.goodsMinor!+1295,combination);
-    const checkout={...input,reviewId:review.reviewId,measurementsConfirmed:true,idempotencyKey:randomUUID(),houseReviewToken:review.houseReviewToken??undefined,acceptedPriceChanges:review.acceptedPriceChanges,cushions:input.cushions?{...input.cushions,expectedQuoteId:review.quoteId!}:undefined};
+    const checkout={...input,reviewId:review.reviewId,idempotencyKey:randomUUID(),houseReviewToken:review.houseReviewToken??undefined,acceptedPriceChanges:review.acceptedPriceChanges,cushions:input.cushions?{...input.cushions,expectedQuoteId:review.quoteId!}:undefined};
     await checkoutMyHome(checkout,f.services);
     assert.ok(executed,combination);
     assert.equal(executed.input.shippingAddress.zip,undefined);

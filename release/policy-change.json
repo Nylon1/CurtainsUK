@@ -1,12 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "A Roman blind sharing a fabric with a curtain or cushion was always blocked, even when each product and the combined supplier quantity were available. Several Romans did receive an aggregate check. Mixed first-attempt checkout revalidated product authorities in sequence and the endpoint had no entry-to-exit timing record.",
-  "newRule": "Allow a shared Roman fabric only when the authoritative combined metres pass current supplier stock validation. Apply the curtain commercial floor whenever a curtain uses that fabric, and fail closed for stale, missing or insufficient stock. Review independent product authorities concurrently and record safe checkout request timing without customer details. Replace ambiguous price and dispatch loading copy with a short checking status. Prices, delivery and discount eligibility remain governed by their existing rules.",
-  "reason": "Live review showed a ready Abeja Teal curtain and Roman blocked solely by the unconditional shared-fabric gate. The current stock policy checks a 96-hour observation, 30-metre curtain floor and total order consumption. Five fresh four-product carts reached checkout on the first attempt, but a prior unexplained 40-second HTML 500 was absent from application logs, so timing telemetry is needed for recurrence.",
-  "ownerApprovedDecision": "The owner requested an urgent detailed checkout investigation and fix while holding any paid test. This change is prepared for exact-head protected owner approval before merge and production release.",
+  "previousRule": "The My Home checkout API rejected an otherwise valid reviewed order unless the request contained measurementsConfirmed: true. The cart no longer showed a confirmation checkbox, but its JavaScript silently supplied that flag. A direct request without it returned a generic input error.",
+  "newRule": "Treat the Order now action and valid current review as the cart-level confirmation. Do not require or send the removed top-level measurementsConfirmed field, while respecting an explicit false value. Continue revalidating each product specification, stock, current price, review identity and idempotency key. Pass the internal confirmation to the existing product checkout contracts after those checks succeed.",
+  "reason": "A post-release live test proved the shared-fabric order could be quoted and purchased through the browser, but a request omitting the old checkbox field failed before checkout. The owner explicitly required server acceptance without the removed checkbox and a one-click customer path.",
+  "ownerApprovedDecision": "The owner asked for a complete urgent checkout fix and held payment testing. This follow-up requires exact-head protected owner approval before merge and production release.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
     "lib/cushion-studio/__tests__/my-home.test.ts",
+    "lib/smart-track/__tests__/smart-track.test.ts",
     "release/policy-change.json"
   ]
 }

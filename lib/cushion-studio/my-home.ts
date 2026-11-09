@@ -191,16 +191,16 @@ export async function reviewMyHome(input: MyHomeInput, services: MyHomeServices)
 
 export type MyHomeCheckoutInput = MyHomeInput & {
   reviewId: string; houseReviewToken?: string; acceptedPriceChanges?: Array<{configuration_id:string;currentPrice:number}>;
-  measurementsConfirmed: boolean; idempotencyKey: string;
+  measurementsConfirmed?: boolean; idempotencyKey: string;
 };
 /** Entire order is revalidated, never the active room or last edited cushion only. */
 export async function checkoutMyHome(input: MyHomeCheckoutInput, services: MyHomeServices) {
-  if (input.measurementsConfirmed !== true || !/^[a-f0-9]{64}$/.test(input.reviewId) || !/^[a-zA-Z0-9-]{8,100}$/.test(input.idempotencyKey)) throw Error("MY_HOME_CHECKOUT_INVALID");
+  if (input.measurementsConfirmed === false || !/^[a-f0-9]{64}$/.test(input.reviewId) || !/^[a-zA-Z0-9-]{8,100}$/.test(input.idempotencyKey)) throw Error("MY_HOME_CHECKOUT_INVALID");
   const review = await currentReview(input,services);
   if (review.response.reviewId !== input.reviewId) throw Error("MY_HOME_REVIEW_CHANGED");
   if (!review.response.purchaseEnabled) throw Error("MY_HOME_PURCHASE_DISABLED");
   const dispatch = review.dispatch!;
-  if(input.tracks||input.romans) return checkoutSmartTrackOrder(input,services,{quotes:review.tracks,romans:review.romans,shipping:(review.trackDelivery??review.romanDelivery)!,dispatch,
+  if(input.tracks||input.romans) return checkoutSmartTrackOrder({...input,measurementsConfirmed:true},services,{quotes:review.tracks,romans:review.romans,shipping:(review.trackDelivery??review.romanDelivery)!,dispatch,
     mixed:review.mixed,expected:review.response});
   const decorate = (contract: Parameters<CushionCheckoutServices["execute"]>[0]) => ({...contract,input:{...contract.input,
     customAttributes:[...contract.input.customAttributes.filter(attribute=>!["curtainsuk_my_home_review_id","curtainsuk_hold_together","curtainsuk_my_home_dispatch"].includes(attribute.key)),
@@ -224,13 +224,13 @@ export async function checkoutMyHome(input: MyHomeCheckoutInput, services: MyHom
   if (review.mixedInput) {
     const result = await executeMixedCheckout({...review.mixedInput,reviewId:review.mixed!.reviewId,
       houseReviewToken:input.houseReviewToken ?? "",acceptedPriceChanges:input.acceptedPriceChanges ?? [],
-      measurementsConfirmed:input.measurementsConfirmed,idempotencyKey:input.idempotencyKey},
+      measurementsConfirmed:true,idempotencyKey:input.idempotencyKey},
       {...services.mixed,cushion:wrapCushion});
     return {checkoutUrl:result.execution.checkoutUrl,purchaseEnabled:result.execution.paymentEnabled,status:result.execution.status};
   }
   if (input.curtains) {
     const prepared = await prepareHouseCheckout({house:input.curtains,reviewToken:input.houseReviewToken ?? "",
-      acceptedPriceChanges:input.acceptedPriceChanges ?? [],measurementsConfirmed:input.measurementsConfirmed},services.mixed.house);
+      acceptedPriceChanges:input.acceptedPriceChanges ?? [],measurementsConfirmed:true},services.mixed.house);
     if (!prepared.prepared) throw Error("MY_HOME_REVIEW_CHANGED");
     const fingerprint = roomsDigest({native:prepared.contract.fingerprint,myHomeReviewId:input.reviewId});
     const result = await services.executeHouse({...prepared,contract:{...prepared.contract,fingerprint,

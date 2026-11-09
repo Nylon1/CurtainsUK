@@ -7,6 +7,8 @@ import {
   shopifyDraftOrderConfigFromEnvironment,
 } from "../storefront/shopify-draft-order-server";
 import type { TrackCheckoutGroup, SmartTrackServices } from "./checkout";
+import { executeWithDraftReceipt } from '../storefront/draft-receipt';
+import { myHomeDraftReceipt } from '../storefront/draft-receipt-repository';
 import { trackPackage } from "./package";
 import {
   smartTrackEnabled,
@@ -63,9 +65,12 @@ export function createTrackServices(
         config?.mode !== "CREATE_PRODUCTION_DRAFT"
       )
         throw Error("TRACK_PURCHASE_DISABLED");
-      return executeShopifyDraftOrder({
+      const receipt = myHomeDraftReceipt({kind:'SMART_TRACK',
+        owner:executionOwners.get(key) ?? owner(key),key,tag:contract.idempotencyTag});
+      return executeWithDraftReceipt({...receipt,execute:existingDraftOrderId=>executeShopifyDraftOrder({
         contract,
         config,
+        existingDraftOrderId,
         claimCreate: async () => {
           const { data, error } = await createSupplierServiceClient().rpc(
             "claim_smart_track_draft_creation",
@@ -74,7 +79,7 @@ export function createTrackServices(
           if (error) throw Error("TRACK_PERSISTENCE_FAILED");
           return data === true;
         },
-      });
+      })});
     },
   };
 }

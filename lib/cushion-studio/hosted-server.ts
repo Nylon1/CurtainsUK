@@ -37,6 +37,8 @@ import { reviewMyHomeWithSampleCredit, checkoutMyHomeWithSampleCredit } from '..
 import { previewSampleCredit } from '../storefront/sample-credit-server';
 import { previewPromotionCode } from '../storefront/sample-to-sale-offer-server';
 import { createMyHomeServices } from "./my-home-server";
+import { executeWithDraftReceipt } from '../storefront/draft-receipt';
+import { myHomeDraftReceipt } from '../storefront/draft-receipt-repository';
 
 const responseHeaders = {
   "Cache-Control": "no-store, private",
@@ -120,12 +122,15 @@ export function createHostedCheckoutServices(
       if (previous) executionOwner = previousOwner;
       return previous;
     },
-    execute: (contract) =>
-      executeShopifyDraftOrder({
+    execute: (contract) => !runtimeConfig ? executeShopifyDraftOrder({contract,config:null}) : executeWithDraftReceipt({
+      ...myHomeDraftReceipt({kind:'CUSHION',owner:executionOwner ?? primaryOwner(),key,tag:contract.idempotencyTag}),
+      execute: existingDraftOrderId => executeShopifyDraftOrder({
         contract,
         config: runtimeConfig,
+        existingDraftOrderId,
         claimCreate: () => repository(executionOwner ?? primaryOwner()).claimCreate(key),
       }),
+    }),
   };
 }
 // Explicit input allowlist keeps internal pricing, database and supplier failures private.
@@ -338,8 +343,12 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         return new Response(null, { status: 404, headers: responseHeaders });
       return Response.json(trackRequestId?{...(result as Record<string,unknown>),requestId:trackRequestId}:result, { headers: responseHeaders });
     } catch (error) {
-      if(trackRequestId)trackDiagnostic(segments[1]==='my-home-checkout'?'CHECKOUT':'REVIEW',trackRequestId);
       const code = error instanceof Error ? error.message : "";
+      if (code === 'SHOPIFY_DRAFT_ORDER_PENDING') return Response.json({
+        code:'CHECKOUT_PREPARING',
+        message:'Your secure checkout is still being prepared. Please try again shortly. Your items are saved.',
+      },{status:409,headers:{...responseHeaders,'Retry-After':'2'}});
+      if(trackRequestId)trackDiagnostic(segments[1]==='my-home-checkout'?'CHECKOUT':'REVIEW',trackRequestId);
       if (segments[0] === "api" && segments[1] === "my-home-checkout") {
         const safeCode = /^(?:SHOPIFY|MY_HOME|CUSHION|CURTAINSUK)_[A-Z0-9_]{1,100}$/.test(code)
           ? code

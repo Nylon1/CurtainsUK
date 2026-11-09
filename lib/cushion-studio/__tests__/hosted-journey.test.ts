@@ -603,3 +603,14 @@ test("My Home invalid order input returns safe validation errors",async(t)=>{
   const response=await f.call('my-home-review','1001',{...home.input,id:'not-an-order'});
   assert.equal(response.status,400);assert.equal((await response.json()).code,'CUSHION_INPUT_INVALID');assert.equal(home.effects.length,0);
 });
+
+test('a pending draft returns a retryable customer response instead of a proxy server error',async(t)=>{
+  const f=await fixture(t);
+  f.services.checkoutServices=()=>{throw Error('SHOPIFY_DRAFT_ORDER_PENDING');};
+  const response=await f.call('my-home-checkout','',{idempotencyKey:'pending-attempt'});
+  assert.equal(response.status,409);
+  assert.equal(response.headers.get('Retry-After'),'2');
+  const body=await response.json();assert.equal(body.code,'CHECKOUT_PREPARING');
+  assert.match(body.message,/still being prepared/);
+  assert.doesNotMatch(body.message,/ordering.*not.*enabled|sign in|JSON|500/i);
+});

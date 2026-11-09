@@ -16,16 +16,13 @@ import {
 import type { StagingPriceRequest } from "../../storefront/staging-pricing";
 import type { HouseCheckoutServices } from "../../storefront/rooms-checkout";
 import { quoteCushion } from "../pricing";
-import {
-  reviewMixedCheckout,
-  executeMixedCheckout,
-  type MixedServices,
-} from "../mixed-checkout";
+import { type MixedServices } from "../mixed-checkout";
 import type {
   CushionSpec,
   FabricCuttingFacts,
   CushionPricingRules,
 } from "../domain";
+import type { RomanQuote } from '../../roman-blind/pricing';
 
 // Synthetic authority fixtures: no hosted writes, rates or customer records.
 const secret = "mixed-local-fixture-".repeat(4),
@@ -178,7 +175,7 @@ async function fixture() {
     ],
   };
   const effects: string[] = [],
-    stored = new Map<string, any>();
+    stored = new Map<string, Parameters<MixedServices['cushion']['persist']>[0]>();
   let seenMetres = 0;
   const services: MixedServices = {
     house,
@@ -249,6 +246,11 @@ async function homeFixture() {
     executeHouse:async prepared=>{f.effects.push("house-execute");assert.equal(prepared.prepared,true);return {checkoutUrl:null,paymentEnabled:false,status:"REVIEW"};}};
   return {...f,input,services};
 }
+function romanQuote(id=randomUUID(),fabricId=source.id): RomanQuote {
+  return {spec:{version:1,productType:'ROMAN_BLIND',id,fabricId,width:120,drop:120,lining:'STANDARD',fold:'stacked',quantity:1,measurementsConfirmed:true},
+    ready:true,issues:[],unitMinor:10000,goodsMinor:10000,vatMinor:1667,fabricMetres:3.2,
+    fabricSupplierId:'synthetic-supplier',fabricSupplierSku:'synthetic-sku',fabricName:'Test',fabricColour:'Test',fabricImage:null,quoteId:`roman-${id}`,quotedAt:now.toISOString()};
+}
 function checkoutInput(input:MyHomeInput,review:Awaited<ReturnType<typeof reviewMyHome>>) {
   return {...input,reviewId:review.reviewId,houseReviewToken:review.houseReviewToken ?? undefined,
     acceptedPriceChanges:review.acceptedPriceChanges,measurementsConfirmed:true,idempotencyKey:"my-home-test-checkout"};
@@ -263,6 +265,7 @@ test("My Home reviews both types, one curtain delivery and latest confirmed hold
   assert.equal(review.dispatchEstimate!.minimum,5);
   assert.equal(review.dispatchEstimate!.policy,"hold-together");
   assert.doesNotMatch(JSON.stringify(review),/approvalReference|supplierCostMinor/);
+  assert.doesNotMatch(JSON.stringify(review),/stockRequirements|fabricMetres/);
   assert.deepEqual(f.effects,[]);
 });
 
@@ -345,15 +348,16 @@ test("changed quantity or dispatch invalidates exact review and retries reuse im
   await assert.rejects(checkoutMyHome(request,f.services),/MY_HOME_REVIEW_CHANGED/);
   delete f.input.curtains!.rooms[0].curtains[0].quantity;
   await checkoutMyHome(request,f.services);
-  const stored=f.stored.get(request.idempotencyKey),ids=stored.snapshots.map((s:any)=>s.id);
-  assert.equal(stored.snapshots[0].manufacturing.myHomeDispatch.maximum,6);
+  const stored=f.stored.get(request.idempotencyKey);assert.ok(stored);
+  const ids=stored.snapshots.map(s=>s.id);
+  assert.equal((stored.snapshots[0].manufacturing.myHomeDispatch as {maximum:number}).maximum,6);
   const executed=f.services.mixed.cushion.execute;
   f.services.mixed.cushion.execute=async contract=>{
     assert.deepEqual(contract,stored.contract);
     return executed(contract);
   };
   await checkoutMyHome(request,f.services);
-  assert.deepEqual(f.stored.get(request.idempotencyKey).snapshots.map((s:any)=>s.id),ids);
+  assert.deepEqual(f.stored.get(request.idempotencyKey)?.snapshots.map(s=>s.id),ids);
   assert.equal(f.effects.filter(x=>x==="cushions").length,1);
   f.services.curtainDispatch={...OWNER_CONFIRMED_CUSHION_DISPATCH,maximumCalendarWeeks:7};
   await assert.rejects(checkoutMyHome(request,f.services),/MY_HOME_REVIEW_CHANGED/);
@@ -365,6 +369,59 @@ test("mixed shared stock failure blocks the order even when each product authori
   assert.equal(review.ready,false);assert.equal(review.totalMinor,null);
   assert.match(review.issues.join(" "),/Combined.*availability/);
   assert.deepEqual(f.effects,[]);
+});
+
+test('curtain and Roman sharing available fabric can order; their complete quantity is checked',async()=>{
+  const f=await homeFixture();delete f.input.cushions;
+  const roman=romanQuote();f.input.romans={specs:[roman.spec]};
+  f.services.romanQuote=async()=>roman;f.services.romanDispatch=OWNER_CONFIRMED_CUSHION_DISPATCH;f.services.romanPurchasesEnabled=true;
+  let combined=0;
+  f.services.mixed.stock=async (_id,metres)=>{combined=metres;return true;};
+  const review=await reviewMyHome(f.input,f.services);
+  assert.equal(review.purchaseEnabled,true);
+  assert.equal(combined,f.curtainMetres+roman.fabricMetres!);
+  f.services.mixed.stock=async()=>false;
+  const shortage=await reviewMyHome(f.input,f.services);
+  assert.equal(shortage.purchaseEnabled,false);
+  assert.match(shortage.issues.join(' '),/Combined fabric availability/);
+});
+
+test('cushion and Roman sharing fabric use their combined quantity and fail closed',async()=>{
+  const f=await homeFixture();delete f.input.curtains;
+  const roman=romanQuote();f.input.romans={specs:[roman.spec]};
+  f.services.romanQuote=async()=>roman;f.services.romanDispatch=OWNER_CONFIRMED_CUSHION_DISPATCH;f.services.romanPurchasesEnabled=true;
+  let combined=0;
+  f.services.romanCombinedStock=async (_supplier,_sku,metres)=>{combined=metres;return true;};
+  const review=await reviewMyHome(f.input,f.services);
+  assert.equal(review.purchaseEnabled,true);
+  assert.ok(combined>roman.fabricMetres!);
+  f.services.romanCombinedStock=async()=>false;
+  const shortage=await reviewMyHome(f.input,f.services);
+  assert.equal(shortage.purchaseEnabled,false);
+  assert.match(shortage.issues.join(' '),/Combined fabric availability/);
+});
+
+test('curtain, cushion and Roman share one aggregate stock check',async()=>{
+  const f=await homeFixture();const roman=romanQuote();f.input.romans={specs:[roman.spec]};
+  f.services.romanQuote=async()=>roman;f.services.romanDispatch=OWNER_CONFIRMED_CUSHION_DISPATCH;f.services.romanPurchasesEnabled=true;
+  const quantities:number[]=[];
+  f.services.mixed.stock=async (_id,metres)=>{quantities.push(metres);return true;};
+  const review=await reviewMyHome(f.input,f.services);
+  assert.equal(review.purchaseEnabled,true);
+  assert.ok(quantities.some(metres=>metres>f.curtainMetres+roman.fabricMetres!));
+});
+
+test('two Romans in one fabric recheck their total and keep a real shortage blocked',async()=>{
+  const f=await homeFixture();delete f.input.curtains;delete f.input.cushions;
+  const romans=[romanQuote(),romanQuote()];f.input.romans={specs:romans.map(r=>r.spec)};
+  f.services.romanQuote=async spec=>romans.find(r=>r.spec.id===(spec as RomanQuote['spec']).id)!;
+  f.services.romanDispatch=OWNER_CONFIRMED_CUSHION_DISPATCH;f.services.romanPurchasesEnabled=true;
+  let checked=0;
+  f.services.romanCombinedStock=async (_supplier,_sku,metres)=>{checked=metres;return true;};
+  assert.equal((await reviewMyHome(f.input,f.services)).purchaseEnabled,true);
+  assert.equal(checked,6.4);
+  f.services.romanCombinedStock=async()=>{throw Error('stale stock');};
+  assert.equal((await reviewMyHome(f.input,f.services)).purchaseEnabled,false);
 });
 
 test("hold-together does not invent conversions or start dates for incomparable estimates",()=>{
@@ -389,12 +446,12 @@ test("cushion-only retry keeps held dispatch evidence and refuses key reuse afte
   const f=await homeFixture();delete f.input.curtains;
   const review=await reviewMyHome(f.input,f.services),request=checkoutInput(f.input,review);
   await checkoutMyHome(request,f.services);
-  const stored=f.stored.get(request.idempotencyKey);
+  const stored=f.stored.get(request.idempotencyKey);assert.ok(stored);
   const executed=f.services.mixed.cushion.execute;
   f.services.mixed.cushion.execute=async contract=>{assert.deepEqual(contract,stored.contract);return executed(contract);};
   await checkoutMyHome(request,f.services);
   assert.equal(f.effects.filter(x=>x==="cushions").length,1);
-  assert.equal(stored.snapshots[0].manufacturing.myHomeDispatch.policy,"hold-together");
+  assert.equal((stored.snapshots[0].manufacturing.myHomeDispatch as {policy:string}).policy,"hold-together");
   f.input.cushions!.specs=[{...spec,quantity:2}];
   const changed=await reviewMyHome(f.input,f.services);
   await assert.rejects(checkoutMyHome(checkoutInput(f.input,changed),f.services),/MY_HOME_IDEMPOTENCY_CONFLICT/);

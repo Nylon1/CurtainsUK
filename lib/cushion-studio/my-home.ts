@@ -14,8 +14,8 @@ import { allocateVatFromGross } from '../storefront/shopify-draft-order-core';
 import { CURTAINSUK_RETAIL_VAT_RATE_BASIS_POINTS } from '../storefront/checkout-gates';
 import { checkoutSmartTrackOrder, type SmartTrackServices } from '../smart-track/checkout';
 import type {RomanQuote} from '../roman-blind/pricing';
-import {parseRomanSpec} from '../roman-blind/domain';
 import {quoteOwnerApprovedCurtainShipping,STAGING_SHIPPING_OWNER_INPUTS,deliveryRequiresReview} from '../storefront/shipping-owner-inputs';
+import { combinedRomanStockAvailable } from './combined-roman-stock';
 
 export type MyHomeInput = {
   version: 1;
@@ -34,6 +34,7 @@ export type MyHomeServices = {
   romanDispatch?: unknown;
   romanPurchasesEnabled?: boolean;
   romanQuote?: (spec: unknown) => Promise<RomanQuote>;
+  romanCombinedStock?: (supplierId: string, supplierSku: string, metres: number) => Promise<boolean>;
   tracks?: SmartTrackServices;
   executeHouse(prepared: Extract<Awaited<ReturnType<typeof prepareHouseCheckout>>, {prepared:true}>): Promise<{checkoutUrl: string | null; paymentEnabled: boolean; status?: string}>;
 };
@@ -76,15 +77,19 @@ async function cushionQuote(input: NonNullable<MyHomeInput["cushions"]>, service
 
 async function currentReview(input: MyHomeInput, services: MyHomeServices) {
   validate(input);
-  const house = input.curtains ? await reviewHouse(input.curtains,services.mixed.house) : null;
-  const cushionReview = input.cushions ? await cushionQuote(input.cushions,services.mixed.cushion) : null;
-  const cushion = cushionReview?.set ?? null;
   if(input.tracks&&!services.tracks)throw Error('TRACK_UNAVAILABLE');
-  const tracks = input.tracks ? await Promise.all(input.tracks.specs.map(async spec => {
+  // Each product authority is independent until the combined stock and delivery
+  // checks below. Run them together to keep the first checkout handoff responsive.
+  const [house,cushionReview,tracks,romans] = await Promise.all([
+    input.curtains ? reviewHouse(input.curtains,services.mixed.house) : Promise.resolve(null),
+    input.cushions ? cushionQuote(input.cushions,services.mixed.cushion) : Promise.resolve(null),
+    input.tracks ? Promise.all(input.tracks.specs.map(async spec => {
     const id=(spec as {linkedCurtain?:{configurationId:string}})?.linkedCurtain?.configurationId;
     return quoteSmartTrack(spec,{package:services.tracks!.package(parseSmartTrackSpec(spec).system),linked:id?await linkedCurtainEvidence(id,input.curtains,services.mixed.house,services.tracks?.fabricWeight):undefined});
-  })) : [];
-  const romans:RomanQuote[]=input.romans?await Promise.all(input.romans.specs.map(services.romanQuote??(await import('../roman-blind/pricing')).quoteRoman)):[];
+    })) : Promise.resolve([]),
+    input.romans ? (async()=>Promise.all(input.romans!.specs.map(services.romanQuote??(await import('../roman-blind/pricing')).quoteRoman)))() : Promise.resolve([] as RomanQuote[]),
+  ]);
+  const cushion = cushionReview?.set ?? null;
   if(new Set([...tracks.map(t=>t.spec.id),...romans.map(r=>r.spec.id),...(cushion?.specs.map(s=>s.id)??[]),...(house?.lines.map(l=>l.configuration_id)??[])]).size!==tracks.length+romans.length+(cushion?.specs.length??0)+(house?.lines.length??0))throw Error('MY_HOME_IDENTITY_MISMATCH');
   const trackDelivery = tracks.length ? smartTrackDelivery(input.postcode) : null;
   let romanDelivery: {grossMinor:number;vatMinor:number;title:string;postcode:string}|null=null;
@@ -126,19 +131,6 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
     ...(!dispatch ? ["A confirmed, comparable dispatch estimate is required for every product type. Your items remain saved and will be held together."] : []),
   ];
   const mixedInput = house && cushion ? {house:input.curtains!,designId:input.id,specs:cushion.specs,expectedQuoteId:cushion.quoteId} : null;
-  const romanFabricIds=new Set(romans.map(r=>r.spec.fabricId));
-  const sharedRomanFabric=Boolean(house?.lines.some(l=>romanFabricIds.has(l.fabric?.id||''))||cushion?.specs.some(s=>romanFabricIds.has(s.fabricId)||Boolean(s.pipingFabricId&&romanFabricIds.has(s.pipingFabricId))));
-  if(sharedRomanFabric)issues.push('Combined fabric quantity needs a workroom stock check for this order.');
-  let repeatedRomanFabricUnavailable=false;
-  for(const fabricId of romanFabricIds){const same=romans.filter(r=>r.spec.fabricId===fabricId);
-    if(same.length<2)continue;
-    const first=same[0];
-    if(!first.fabricSupplierId||!first.fabricSupplierSku||same.some(r=>r.fabricMetres===null)){repeatedRomanFabricUnavailable=true;continue;}
-    try{const stock=await (await import('../storefront/daily-stock-server')).dailyStockProjection({supplierId:first.fabricSupplierId,supplierSku:first.fabricSupplierSku,requirement:{quantity:same.reduce((n,r)=>n+r.fabricMetres!,0),stock_unit:'METRE'}});
-      if(stock.stale||stock.availability!=='FABRIC_AVAILABLE')repeatedRomanFabricUnavailable=true;
-    }catch{repeatedRomanFabricUnavailable=true;}
-  }
-  if(repeatedRomanFabricUnavailable)issues.push('Combined Roman blind fabric quantity needs a workroom stock check for this order.');
   let mixed: Awaited<ReturnType<typeof reviewMixedCheckout>> | null = null;
   if (mixedInput && house!.ready && cushion!.ready) {
     try { mixed = await reviewMixedCheckout(mixedInput,services.mixed); }
@@ -147,10 +139,27 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
       issues.push(error.message === "MIXED_COMBINED_STOCK_CHANGED" ? "Combined curtain and cushion fabric availability needs review." : "Combined delivery needs review.");
     }
   }
+  const cushionRequirements = new Map<string, number>();
+  for (const cloth of cushion?.cutPlan.fabrics ?? []) {
+    cushionRequirements.set(cloth.fabricId,cloth.orderedMetres === null ? NaN :
+      (cushionRequirements.get(cloth.fabricId)??0)+cloth.orderedMetres);
+  }
+  for (const spec of cushion?.specs ?? []) for (const id of [spec.fabricId,spec.pipingFabricId]) {
+    if (id && !cushionRequirements.has(id)) cushionRequirements.set(id,NaN);
+  }
+  const combinedRomanStockReady = !romans.length || await combinedRomanStockAvailable({
+    curtains: house?.stockRequirements ?? new Map(), cushions:cushionRequirements, romans,
+    curtainStock: services.mixed.stock,
+    romanStock: services.romanCombinedStock ?? (async (supplierId,supplierSku,metres) => {
+      const stock=await (await import('../storefront/daily-stock-server')).dailyStockProjection({supplierId,supplierSku,requirement:{quantity:metres,stock_unit:'METRE'}});
+      return !stock.stale && stock.availability==='FABRIC_AVAILABLE';
+    }),
+  });
+  if(!combinedRomanStockReady)issues.push('Combined fabric availability needs confirmation for this order.');
   const tooManyTrackOrderLines=(tracks.length>0||romans.length>0)&&tracks.length+romans.length+(cushion?.specs.length??0)+(house?.lines.reduce((n,l)=>n+(l.quantity??1),0)??0)>100;
   if(tooManyTrackOrderLines)issues.push("This combined order is too large for one checkout. Please contact us to arrange it.");
   const baseReady = Boolean((!house || house.ready) && (!cushion || cushion.ready) && (!mixedInput || mixed));
-  const productReady = baseReady && !tooManyTrackOrderLines && !sharedRomanFabric && !repeatedRomanFabricUnavailable && (!tracks.length || Boolean(trackDelivery) && tracks.every(t=>t.purchaseReady)) && (!romans.length||Boolean(romanDelivery)&&romans.every(r=>r.ready));
+  const productReady = baseReady && !tooManyTrackOrderLines && combinedRomanStockReady && (!tracks.length || Boolean(trackDelivery) && tracks.every(t=>t.purchaseReady)) && (!romans.length||Boolean(romanDelivery)&&romans.every(r=>r.ready));
   const gross = baseReady&&romans.every(r=>r.goodsMinor!==null) ? (mixed?.contract.expected.goodsGrossAmountMinor ?? house?.goods ?? cushion?.items.reduce((n,item)=>n+item.goodsGrossMinor!,0) ?? 0)+tracks.reduce((n,t)=>n+t.goodsMinor,0)+romans.reduce((n,r)=>n+r.goodsMinor!,0) : null;
   // Presence of curtains always selects the governed curtain delivery once.
   const delivery = tracks.length ? trackDelivery?.grossMinor ?? null : romans.length ? romanDelivery?.grossMinor ?? null : house ? mixed?.contract.expected.shippingGrossAmountMinor ?? house.delivery : cushion?.deliveryGrossMinor ?? null;

@@ -266,6 +266,18 @@ test("My Home reviews both types, one curtain delivery and latest confirmed hold
   assert.deepEqual(f.effects,[]);
 });
 
+test("a curtain order is ready for guest checkout with no cart postcode",async()=>{
+  const f=await homeFixture();delete f.input.cushions;
+  f.input.postcode="";f.input.curtains!.postcode="";
+  const review=await reviewMyHome(f.input,f.services);
+  assert.equal(review.ready,true);
+  assert.equal(review.purchaseEnabled,true);
+  assert.equal(review.deliveryMinor,1295);
+  assert.equal(review.totalMinor,review.goodsMinor!+1295);
+  await checkoutMyHome(checkoutInput(f.input,review),f.services);
+  assert.deepEqual(f.effects,["house-execute"]);
+});
+
 test("cushion-only aggregate keeps separate specs, shared minimum, quantity and exactly 495 delivery",async()=>{
   const f=await homeFixture();delete f.input.curtains;
   f.input.cushions!.specs=[{...spec,id:"one",quantity:2},{...spec,id:"two",sizeId:"square-45"}];

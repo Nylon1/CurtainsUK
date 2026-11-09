@@ -10,6 +10,7 @@ import { trackPackage, OWNER_CONFIRMED_TRACK_DISPATCH, type TrackPackage } from 
 import { combinedMyHomeDispatch, customerMyHomeDispatch, OWNER_CONFIRMED_CUSHION_DISPATCH, OWNER_CONFIRMED_CURTAIN_DISPATCH } from "../../cushion-studio/dispatch";
 import { checkTrackWeight, materialWeightKg } from "../weight";
 import { smartTrackDelivery } from "../delivery";
+import type { RomanQuote } from "../../roman-blind/pricing";
 import { createSmartTrackSnapshot, buildSmartTrackOrder } from "../commerce";
 import { processSmartTrackPaidOrder } from "../paid-order";
 import { reviewMyHome, checkoutMyHome } from "../../cushion-studio/my-home";
@@ -394,11 +395,13 @@ test("linked curtain changes, eyelets and operation differences need review; cov
     false,
   );
 });
-test("existing postcode restrictions still apply to the one smart-track charge", () => {
+test("smart-track charge is £12.95 throughout the UK without a cart postcode", () => {
   assert.equal(smartTrackDelivery("BB2 3FA")?.grossMinor, 1295);
-  assert.equal(smartTrackDelivery(""), null);
-  assert.equal(smartTrackDelivery("BT1 1AA"), null);
+  assert.equal(smartTrackDelivery("")?.grossMinor, 1295);
+  assert.equal(smartTrackDelivery("BT1 1AA")?.grossMinor, 1295);
+  assert.equal(smartTrackDelivery("IV1 1AA")?.grossMinor, 1295);
   assert.equal(smartTrackDelivery("SW1A"), null);
+  assert.equal(smartTrackDelivery("JE1 1AA"), null);
 });
 test("track-only and every mixed combination reconcile once and persist distinct identities", async () => {
   for (const curtain of [false, true])
@@ -428,7 +431,8 @@ test("track-only and every mixed combination reconcile once and persist distinct
       };
       const input = {
         ...f.input,
-        curtains: curtain ? f.input.curtains : undefined,
+        postcode: "",
+        curtains: curtain ? {...f.input.curtains!,postcode:""} : undefined,
         cushions: cushion ? f.input.cushions : undefined,
         tracks: {
           specs: [s, spec({ system: "FOREST_SHUTTLE_ION", quantity: 2 })],
@@ -459,6 +463,7 @@ test("track-only and every mixed combination reconcile once and persist distinct
       assert.ok(executed);
       assert.equal(executed.expected.orderGrossAmountMinor, review.totalMinor);
       assert.equal(executed.expected.orderVatAmountMinor, review.vatMinor);
+      assert.equal(executed.input.shippingAddress.zip, undefined);
       assert.equal(
         executed.input.lineItems.length,
         2 + Number(curtain) + Number(cushion),
@@ -539,6 +544,34 @@ test("track-only and every mixed combination reconcile once and persist distinct
         /REVIEW_CHANGED/,
       );
     }
+});
+
+test("Roman alone and with curtains, cushions and tracks reaches one no-postcode checkout", async () => {
+  for (const combination of ["roman", "curtain-roman", "all-four"] as const) {
+    const f = await homeFixture();
+    const romanSpec = {version:1 as const,productType:"ROMAN_BLIND" as const,id:randomUUID(),fabricId:"roman-fixture",width:120,drop:120,lining:"STANDARD" as const,fold:"stacked" as const,chainSide:"RIGHT" as const,quantity:1,measurementsConfirmed:true as const};
+    const quote:RomanQuote = {spec:romanSpec,ready:true,issues:[],unitMinor:17000,goodsMinor:17000,vatMinor:2833,fabricMetres:3.2,fabricSupplierId:"roman-supplier",fabricSupplierSku:"roman-sku",fabricName:"Roman test fabric",fabricColour:"Teal",fabricImage:null,quoteId:"c".repeat(64),quotedAt:new Date().toISOString()};
+    const stored = new Map<string,TrackCheckoutGroup>();
+    let executed:TrackCheckoutGroup["contract"]|undefined;
+    f.services.romanQuote=async()=>quote;
+    f.services.romanDispatch=OWNER_CONFIRMED_CURTAIN_DISPATCH;
+    f.services.romanPurchasesEnabled=true;
+    f.services.tracks={package:trackPackage,purchasesEnabled:true,existing:async key=>stored.get(key)??null,persist:async(key,group)=>{stored.set(key,group);},execute:async(_key,contract)=>{executed=contract;return {status:"DISABLED",paymentEnabled:false,checkoutUrl:null,draftOrderId:null,draftOrderName:null,shopifyWritePerformed:false};}};
+    const input={...f.input,postcode:"",curtains:combination==="roman"?undefined:{...f.input.curtains!,postcode:""},cushions:combination==="all-four"?f.input.cushions:undefined,tracks:combination==="all-four"?{specs:[spec()]}:undefined,romans:{specs:[romanSpec]}};
+    const review=await reviewMyHome(input,f.services);
+    assert.equal(review.purchaseEnabled,true,combination);
+    assert.equal(review.deliveryMinor,1295,combination);
+    assert.equal(review.totalMinor,review.goodsMinor!+1295,combination);
+    const checkout={...input,reviewId:review.reviewId,measurementsConfirmed:true,idempotencyKey:randomUUID(),houseReviewToken:review.houseReviewToken??undefined,acceptedPriceChanges:review.acceptedPriceChanges,cushions:input.cushions?{...input.cushions,expectedQuoteId:review.quoteId!}:undefined};
+    await checkoutMyHome(checkout,f.services);
+    assert.ok(executed,combination);
+    assert.equal(executed.input.shippingAddress.zip,undefined);
+    assert.equal(executed.expected.orderGrossAmountMinor,review.totalMinor);
+    assert.equal(executed.input.lineItems.length,combination==="all-four"?4:combination==="curtain-roman"?2:1);
+    assert.ok(executed.input.lineItems.some(line=>line.customAttributes.some(attribute=>attribute.key==="_curtainsuk_product_type"&&attribute.value==="ROMAN_BLIND")));
+    await checkoutMyHome(checkout,f.services);
+    assert.equal(stored.size,1,combination);
+  }
 });
 
 test("browser assets exclude private prices and adviser knowledge follows release state", async () => {

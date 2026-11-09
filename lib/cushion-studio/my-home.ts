@@ -33,6 +33,7 @@ export type MyHomeServices = {
   curtainDispatch: unknown;
   romanDispatch?: unknown;
   romanPurchasesEnabled?: boolean;
+  romanQuote?: (spec: unknown) => Promise<RomanQuote>;
   tracks?: SmartTrackServices;
   executeHouse(prepared: Extract<Awaited<ReturnType<typeof prepareHouseCheckout>>, {prepared:true}>): Promise<{checkoutUrl: string | null; paymentEnabled: boolean; status?: string}>;
 };
@@ -83,7 +84,7 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
     const id=(spec as {linkedCurtain?:{configurationId:string}})?.linkedCurtain?.configurationId;
     return quoteSmartTrack(spec,{package:services.tracks!.package(parseSmartTrackSpec(spec).system),linked:id?await linkedCurtainEvidence(id,input.curtains,services.mixed.house,services.tracks?.fabricWeight):undefined});
   })) : [];
-  const romans:RomanQuote[]=input.romans?await Promise.all(input.romans.specs.map((await import('../roman-blind/pricing')).quoteRoman)):[];
+  const romans:RomanQuote[]=input.romans?await Promise.all(input.romans.specs.map(services.romanQuote??(await import('../roman-blind/pricing')).quoteRoman)):[];
   if(new Set([...tracks.map(t=>t.spec.id),...romans.map(r=>r.spec.id),...(cushion?.specs.map(s=>s.id)??[]),...(house?.lines.map(l=>l.configuration_id)??[])]).size!==tracks.length+romans.length+(cushion?.specs.length??0)+(house?.lines.length??0))throw Error('MY_HOME_IDENTITY_MISMATCH');
   const trackDelivery = tracks.length ? smartTrackDelivery(input.postcode) : null;
   let romanDelivery: {grossMinor:number;vatMinor:number;title:string;postcode:string}|null=null;
@@ -92,7 +93,7 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
     const quoted=quoteOwnerApprovedCurtainShipping({selectedRegion:'UK_MAINLAND',postcode:input.postcode,
       fabricMetres:romans.reduce((n,r)=>n+r.fabricMetres!,0),maximumDropCm:highestDrop,
       requiresDeliveryReview:romans.some(r=>deliveryRequiresReview('roman-blind',{coverage_width:r.spec.width,finished_drop:r.spec.drop})),
-      rules:await (await import('../storefront/shipping-repository')).loadStagingUkShippingRules(),policy:STAGING_SHIPPING_OWNER_INPUTS});
+      rules:[],policy:STAGING_SHIPPING_OWNER_INPUTS});
     if(quoted.status==='READY'&&quoted.grossAmountMinor!==null)romanDelivery={grossMinor:quoted.grossAmountMinor,vatMinor:allocateVatFromGross(quoted.grossAmountMinor,CURTAINSUK_RETAIL_VAT_RATE_BASIS_POINTS),title:'Combined order delivery',postcode:input.postcode.toUpperCase().replace(/\s/g,'')};
   }
   const dispatch = combinedMyHomeDispatch([
@@ -117,9 +118,9 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
   ];
   const issues = [
     ...romans.flatMap(r=>r.issues),
-    ...(romans.length&&!romanDelivery?['Roman blind delivery needs confirmation for this postcode and size.']:[]),
+    ...(romans.length&&!romanDelivery?['Roman blind delivery needs confirmation for this size.']:[]),
     ...tracks.flatMap(t=>t.issues),
-    ...(tracks.length&&!trackDelivery?['Enter a supported UK mainland delivery postcode to confirm smart-track delivery.']:[]),
+    ...(tracks.length&&!trackDelivery?['Smart-track delivery needs confirmation.']:[]),
     ...(house && !house.ready ? ["Curtain price, stock or delivery needs review."] : []),
     ...(cushion && !cushion.ready ? cushion.issues : []),
     ...(!dispatch ? ["A confirmed, comparable dispatch estimate is required for every product type. Your items remain saved and will be held together."] : []),

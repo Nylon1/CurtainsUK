@@ -9,11 +9,13 @@ import { CURTAINSUK_RETAIL_VAT_RATE_BASIS_POINTS } from "../storefront/checkout-
 export function smartTrackDelivery(postcode: string) {
   if (shippingPolicyBlockers(STAGING_SHIPPING_OWNER_INPUTS).length) return null;
   try {
-    if (resolveOwnerShippingRegion(postcode) !== "UK_MAINLAND") return null;
+    if (postcode) resolveOwnerShippingRegion(postcode);
+    const standardRate = STAGING_SHIPPING_OWNER_INPUTS.rates.find(rate => rate.region === "UK_MAINLAND" && rate.parcelClass === "STANDARD" && rate.status === "VALIDATED");
+    if (!standardRate || !Number.isSafeInteger(standardRate.grossAmountMinor) || standardRate.grossAmountMinor <= 0) return null;
     return {
-      grossMinor: 1295,
+      grossMinor: standardRate.grossAmountMinor,
       vatMinor: allocateVatFromGross(
-        1295,
+        standardRate.grossAmountMinor,
         CURTAINSUK_RETAIL_VAT_RATE_BASIS_POINTS,
       ),
       title: "Combined order delivery",

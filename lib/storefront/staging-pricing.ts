@@ -262,7 +262,7 @@ export function calculateCustomerPriceWithRules(
     currency: "GBP",
     totalCoverageWidthCm: widthCm,
     bayTrackOrPoleFitted: bay ? input.bayTrackOrPoleFitted ?? null : null,
-    delivery: "UK delivery shown separately after postcode confirmation. Specialist delivery confirmed after review",
+    delivery: "UK delivery £12.95 per order, added in Shopping Cart.",
     availability,
     message: manualQuote
       ? "Price confirmed after technical review"

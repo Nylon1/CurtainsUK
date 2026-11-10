@@ -1,12 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The mixed cart repeated current curtain calculations, fabric and stock checks and cushion facts and rules inside one read-only review request, then ran Roman combined stock after the mixed review. Checkout separately revalidated all authorities.",
-  "newRule": "One cart review may reuse its own freshly checked curtain calculations, fabric availability, delivery, cushion facts and cushion rules for mixed preparation. Combined curtain and cushion stock and combined Roman stock remain mandatory, and Roman stock may run alongside mixed preparation. Checkout still performs a separate fresh review before any order write.",
-  "reason": "Production timing showed a 9.3-second four-product review, including a 3.7-second duplicate curtain preparation. Same-request reuse removes redundant supplier reads without accepting client-provided prices or stock and keeps every combined shortage check.",
-  "ownerApprovedDecision": "The owner requested a faster and reliable checkout. This protected regression-test and policy-record change requires Nylon1's exact-current-head PR comment before merge or deployment; this record does not grant approval.",
+  "previousRule": "The source tests covered historical insert stock observations and approved HCI component hashes but did not assert a public Design Library destination or a currently orderable 55 cm filled cushion.",
+  "newRule": "The source tests retain approved HCI hashes, require all six Design Library topics to render on the CurtainsUK storefront with useful shopping links and context preservation, and require the supplier-observed 55 cm filled cushion to price and remain orderable while unavailable inserts still fail closed.",
+  "reason": "The cross-tool audit found six broken guide links, fabric URLs built on the wrong host, unavailable visualiser defaults and a 55 cm cushion stock observation that has since changed. The new tests protect the customer journey without weakening pricing, stock or checkout authorities.",
+  "ownerApprovedDecision": "The owner requested a focused storefront reliability release. This protected regression-test and policy-record change still requires Nylon1's exact-current-head PR comment before merge or deployment; this record does not grant approval.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/cushion-studio/__tests__/my-home.test.ts",
+    "lib/cushion-studio/__tests__/insert-sourcing.test.ts",
+    "lib/storefront/__tests__/design-guide-response.test.ts",
     "release/policy-change.json"
   ]
 }

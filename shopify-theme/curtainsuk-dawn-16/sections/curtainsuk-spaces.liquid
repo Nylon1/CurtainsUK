@@ -1,5 +1,6 @@
 {{ 'curtainsuk-home-editorial.css' | asset_url | stylesheet_tag }}
 {{ 'curtainsuk-spaces.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curtainsuk-spaces.js' | asset_url }}" defer></script>
 
 {%- assign intelligence_url = '/apps/curtainsuk-decision/consultation?experience=premium&entry=match' -%}
 <div class="cukfi cukspace">
@@ -25,7 +26,7 @@
 
   <div class="cukfi__wrap cukspace__chapters">
     {% for block in section.blocks %}
-      <section id="space-{{ block.settings.anchor }}" class="cukspace__chapter cukspace__chapter--{{ block.settings.anchor }}" aria-labelledby="space-title-{{ block.id }}" {{ block.shopify_attributes }}>
+      <section id="space-{{ block.settings.anchor }}" class="cukspace__chapter cukspace__chapter--{{ block.settings.anchor }}" aria-labelledby="space-title-{{ block.id }}" data-shop-window-space="{{ block.settings.anchor | escape }}" data-shop-window-name="{{ block.settings.title | escape }}" data-shop-window-primary="{{ block.settings.primary_colour | escape }}" data-shop-window-secondary="{{ block.settings.secondary_colour | escape }}" data-shop-window-accent="{{ block.settings.accent_colour | escape }}" {{ block.shopify_attributes }}>
         <header class="cukspace__chapter-heading">
           <p class="cukfi__eyebrow">0{{ forloop.index }} / {{ block.settings.eyebrow }}</p>
           <h2 id="space-title-{{ block.id }}">{{ block.settings.title }}</h2>
@@ -61,7 +62,7 @@
         <div class="cukspace__takeaway">
           <div><h3>What works</h3><p>{{ block.settings.thinking }}</p></div>
           <div><h3>What needs care</h3><p>{{ block.settings.consider }}</p></div>
-          <a class="cukspace__link" href="{{ intelligence_url }}">{{ block.settings.cta }} <span aria-hidden="true">→</span></a>
+          <a class="cukspace__link" data-shop-window-handoff href="{{ intelligence_url }}">{{ block.settings.cta }} <span aria-hidden="true">→</span></a>
         </div>
       </section>
     {% endfor %}

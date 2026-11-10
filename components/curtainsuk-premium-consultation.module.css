@@ -221,3 +221,5 @@
 @media(max-width:700px){
  .welcome{display:flex;flex-direction:column;align-items:stretch;gap:16px}.welcomeCopy{display:contents}.welcomeCopy>.eyebrow{order:0;margin:0}.welcome h1{order:1;margin:0;font-size:38px}.welcome>.roomInspiration{order:2;border-radius:42px 10px 10px 10px}.welcome>.roomInspiration>div{aspect-ratio:1.95}.welcome>.roomInspiration figcaption{display:none}.welcomeCopy>p:not(.eyebrow){order:3;margin:0;font-size:14px}.welcome .welcomeActions{order:4;margin:0}.welcomeCopy>.helpNote{order:5!important;font-size:12px!important}
 }
+.windowContext{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem .75rem;margin:.7rem auto;padding:.6rem 1rem;max-width:1100px;background:#eef2e9;color:#173e35;border-radius:.5rem;font-size:.85rem;text-transform:capitalize}
+.windowContext strong{font-weight:700}.windowContext a{margin-left:auto;color:inherit;text-decoration:underline}.windowContextColours{display:inline-flex;gap:.2rem}.windowContextColours i{width:1rem;height:1rem;border:1px solid #173e3540;border-radius:50%}

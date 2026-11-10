@@ -1,12 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "A discounted My Home checkout persists a derived idempotency key, but the hosted cushion service used the original browser attempt key when claiming draft creation and reading its receipt.",
-  "newRule": "A hosted cushion checkout must use the persisted group's exact key and owner for both its draft receipt and claim, including a retry that finds an existing group. An unexpected non-JSON app proxy response must show a safe customer retry message and preserve the cart.",
-  "reason": "The live WELCOME5 mixed curtain and cushion handoff failed with CUSHION_OWNER_MISMATCH. The proxy rendered its 503 as HTML, exposing a JSON parsing error in the cart. The key mismatch also applies to other derived discount keys.",
-  "ownerApprovedDecision": "The owner requested an urgent complete checkout fix and detailed verification. The protected release still requires Nylon1 to post the exact current PR head approval comment before merge or production deployment.",
+  "previousRule": "WELCOME5, personal 10% offer and sample-credit checkout derived mixed-cart persistence keys from stable review or reservation data. Fresh guest attempts with the same cart could reuse a globally unique group key under a different owner, causing a 409 database conflict.",
+  "newRule": "All three discounted mixed-cart paths include the browser's random order attempt in the derived persistence key. Repeating one attempt remains idempotent; a new guest attempt with the same configuration gets a distinct group. Offer and credit reservation identifiers retain their existing eligibility semantics.",
+  "reason": "After the first checkout-key fix went live, a fresh-browser WELCOME5 checkout still failed. Production Supabase logged a duplicate cushion_checkout_groups primary key on commit_cushion_checkout. The other discounted paths shared the same key-scoping risk. This follow-up prevents cross-attempt collisions without changing discounts or stock checks.",
+  "ownerApprovedDecision": "The owner requested complete checkout reliability and posted the exact-head approval for the preceding hotfix. This new protected change requires a new Nylon1 exact-current-head comment before merge or production deployment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/cushion-studio/__tests__/discounted-guest-checkout-key.test.ts",
+    "lib/cushion-studio/__tests__/my-home.test.ts",
+    "lib/storefront/sample-credit-my-home.ts",
     "release/policy-change.json"
   ]
 }

@@ -1,17 +1,12 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "Manual production packaging used a temporary tar archive, verified only the immutable visualiser asset manifest, and recorded the Git commit without checking every exported file. An older export also contained an unexpected .env.local file.",
-  "newRule": "Every protected PR and protected release validation exports the exact Git tree, audits all tracked bytes, rejects unexpected files, permits only manifest-hash-matched published line-ending variants, runs the immutable visualiser guard, and records a receipt. The manual Vercel deploy command re-audits the receipt before staging. Release packaging scripts are protected policy surfaces.",
-  "reason": "Windows archive materialization changed thousands of line endings while published immutable assets require 146 specific CRLF variants. A commit label and partial asset guard could not establish source integrity. The manual archive also filled the local disk. Streaming export and full audit make source provenance checkable before deployment.",
-  "ownerApprovedDecision": "The owner explicitly requested a permanent Git source to verified export to full integrity audit to protected asset guard to deployment safeguard. The protected policy still requires Nylon1's exact-current-head comment for this PR.",
+  "previousRule": "The new verified deployment command invoked Vercel CLI link when project metadata was absent. The CLI modified the verified export's .gitignore and created .env.local, so the full audit correctly stopped the first release attempt before deployment.",
+  "newRule": "The deployment command writes only the fixed, non-secret project and team IDs into .vercel/project.json. It then rechecks the entire export and immutable asset guard before invoking Vercel deploy. No CLI link operation may mutate the source package.",
+  "reason": "A release safeguard must work on a fresh export without weakening the unexpected-file check. Vercel link's side effects are unrelated to the Git tree and would make every first deployment fail or tempt an unsafe audit exception.",
+  "ownerApprovedDecision": "The owner requested a permanent fail-closed production safeguard and authorized completion of the release. This protected follow-up requires a new Nylon1 exact-current-head comment before merge.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    ".github/workflows/curtainsuk-production-gate.yml",
-    ".github/workflows/curtainsuk-production-release.yml",
     "release/README.md",
-    "release/policy-change.mjs",
-    "scripts/prepare-production-source.mjs",
-    "scripts/audit-production-export.mjs",
     "scripts/deploy-verified-production.mjs",
     "release/policy-change.json"
   ]

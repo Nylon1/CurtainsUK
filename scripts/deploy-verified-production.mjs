@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {resolve} from 'node:path';
-import {existsSync,readFileSync} from 'node:fs';
+import {existsSync,mkdirSync,readFileSync,writeFileSync} from 'node:fs';
 
 const output=process.argv[2];
 const scope=process.argv[3]||'hamzas-projects-4ef62f35';
@@ -12,8 +12,14 @@ const source=resolve(output);
 const receipt=JSON.parse(readFileSync(source+'.receipt.json','utf8'));
 const linkPath=resolve(source,'.vercel/project.json');
 if(!existsSync(linkPath)){
-  const linked=spawnSync('vercel',['link','--yes','--project','curtainsuk-staging-api','--team','team_U8WXxsKS9LT2DmEllVkOpihz'],{cwd:source,stdio:'inherit',shell:process.platform==='win32'});
-  if(linked.status!==0)throw Error('Vercel project link failed.');
+  // Vercel CLI link mutates .gitignore and writes .env.local. Only fixed, non-secret
+  // project metadata is needed for a deployment from this already-verified export.
+  mkdirSync(resolve(source,'.vercel'),{recursive:true});
+  writeFileSync(linkPath,JSON.stringify({
+    projectId:'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA',
+    orgId:'team_U8WXxsKS9LT2DmEllVkOpihz',
+    projectName:'curtainsuk-staging-api',
+  })+'\n');
 }
 const link=JSON.parse(readFileSync(resolve(source,'.vercel/project.json'),'utf8'));
 assert.equal(link.projectId,'prj_vl2GLLlSf0AJAKqjs1Nk26ipKHBA','Unexpected Vercel project');

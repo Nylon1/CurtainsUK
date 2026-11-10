@@ -14,6 +14,8 @@ async function discountReview(input:Input,services:MyHomeServices,credit:CreditS
   const codes=normalizeSampleCreditCodes(input.sampleCreditCodes);
   const promotionCode=orderPromotionCode(input.promotionCode);
   if(!codes.length&&!promotionCode)return {base,response:base,creditQuote:null,offerQuote:null};
+  const discountStarted=performance.now();
+  let creditPreviewMs=0,offerPreviewMs=0;
   if(!base.ready || base.totalMinor===null || base.vatMinor===null){
     if(!codes.length)return {base,response:base,creditQuote:null,offerQuote:null};
     throw Error('SAMPLE_CREDIT_CURTAINS_REQUIRED');
@@ -23,7 +25,7 @@ async function discountReview(input:Input,services:MyHomeServices,credit:CreditS
     if(l.totalMinor===null || l.totalMinor%l.quantity!==0)throw Error('SAMPLE_CREDIT_CURTAINS_REQUIRED');
     return Array.from({length:l.quantity},()=>l.totalMinor!/l.quantity);
   });
-  const creditQuote=codes.length?await credit.preview(codes,base.reviewId):null;
+  const creditQuote=codes.length?await (async()=>{const started=performance.now();try{return await credit.preview(codes,base.reviewId);}finally{creditPreviewMs=Math.round(performance.now()-started);}})():null;
   if(codes.length&&!creditQuote)throw Error('SAMPLE_CREDIT_UNAVAILABLE');
   const goods:OfferLine[]=base.lines.flatMap(line=>{
     if(line.totalMinor===null)throw Error('SAMPLE_TO_SALE_PRICE_INVALID');
@@ -34,8 +36,10 @@ async function discountReview(input:Input,services:MyHomeServices,credit:CreditS
     return [{kind:line.kind,grossMinor:line.totalMinor}];
   });
   const welcome=promotionCode==='WELCOME5';
-  const offerQuote=promotionCode&&!welcome?await offer?.preview(promotionCode,base.reviewId,goods.reduce((a,b)=>a+b.grossMinor,0)):null;
+  const offerQuote=promotionCode&&!welcome?await (async()=>{const started=performance.now();try{return await offer?.preview(promotionCode,base.reviewId,goods.reduce((a,b)=>a+b.grossMinor,0));}finally{offerPreviewMs=Math.round(performance.now()-started);}})():null;
   if(promotionCode&&!welcome&&!offerQuote)throw Error('SAMPLE_TO_SALE_UNAVAILABLE');
+  try{services.reviewTiming?.({stage:'discount',durationMs:Math.round(performance.now()-discountStarted),productTypes:[],
+    phasesMs:{creditPreview:creditPreviewMs,personalOfferPreview:offerPreviewMs},calls:{}});}catch{/* Timing must never block an order. */}
   if(welcome){
     const saving=calculateWelcomeOffer(goods,creditQuote?.amountMinor??0);
     const reviewId=creditDigest({base:base.reviewId,credit:creditQuote?.digest??null,promotion:'WELCOME5'});

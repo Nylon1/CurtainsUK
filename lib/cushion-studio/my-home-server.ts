@@ -26,6 +26,7 @@ export function createMyHomeServices(cushion: CushionCheckoutServices, options: 
   }
   return {
     tracks:options.tracks,romanDispatch,romanPurchasesEnabled:process.env.CURTAINSUK_ROMAN_PURCHASES_ENABLED==='true',
+    reviewTiming:timing=>console.info(JSON.stringify({event:'MY_HOME_REVIEW_TIMING',...timing})),
     mixed:createMixedServices(cushion),curtainDispatch,
     releases:{curtains,cushions:options.cushionPurchasesEnabled === true,mixed:mixedEnabled()},
     executeHouse:prepared=>executePreparedHouseCheckout(prepared,houseCheckoutConfigFromEnvironment()),

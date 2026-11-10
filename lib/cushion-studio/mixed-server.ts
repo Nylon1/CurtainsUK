@@ -42,15 +42,11 @@ export function createMixedServices(cushion: CushionCheckoutServices): MixedServ
     house,
     cushion,
     stock: house.stock,
-    async shipping({ house: request, requirements }) {
+    async shipping({ house: request, configurations, requirements }) {
       if (STAGING_SHIPPING_OWNER_INPUTS.launchMode !== "SINGLE_RATE")
         throw Error("MIXED_DELIVERY_POLICY_REQUIRED");
-      // The signed receipt authority resolves and validates the configurations;
-      // no parcel class, drop or shipping price comes from the client.
-      const { reviewHouse } = await import("../storefront/rooms-core");
-      const review = await reviewHouse(request, house);
-      if (!review.ready) throw Error("MIXED_CURTAIN_REVIEW_REQUIRED");
-      const configurations = review.lines.map((line) => line.configuration!);
+      // These configurations come from the freshly prepared, stock-checked
+      // curtain review. The client cannot supply them or the delivery price.
       const shipping = quoteOwnerApprovedCurtainShipping({
         selectedRegion: "UK_MAINLAND",
         postcode: request.postcode,

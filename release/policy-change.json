@@ -1,13 +1,13 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The new verified deployment command invoked Vercel CLI link when project metadata was absent. The CLI modified the verified export's .gitignore and created .env.local, so the full audit correctly stopped the first release attempt before deployment.",
-  "newRule": "The deployment command writes only the fixed, non-secret project and team IDs into .vercel/project.json. It then rechecks the entire export and immutable asset guard before invoking Vercel deploy. No CLI link operation may mutate the source package.",
-  "reason": "A release safeguard must work on a fresh export without weakening the unexpected-file check. Vercel link's side effects are unrelated to the Git tree and would make every first deployment fail or tempt an unsafe audit exception.",
-  "ownerApprovedDecision": "The owner requested a permanent fail-closed production safeguard and authorized completion of the release. This protected follow-up requires a new Nylon1 exact-current-head comment before merge.",
+  "previousRule": "The protected release checks require exact-head owner approval when checkout regression tests or release policy records change. Mixed-cart reviews repeated a full curtain review for preparation and again for delivery after the initial My Home review.",
+  "newRule": "The mixed review reuses the initial signed curtain review within the same request, keeps a fresh curtain price and stock revalidation during preparation, runs independent cushion preparation concurrently, and calculates delivery from those freshly verified curtain configurations. New regression assertions cover shared stock, overlap, one delivery and the absence of writes. A Git attribute preserves the exact bytes of one previously unmarked immutable visualiser pack on Windows checkouts.",
+  "reason": "Live mixed-cart reviews took 9–12 seconds. Removing redundant reads can improve response time without reusing stale prices, bypassing combined fabric checks, changing delivery charges or weakening the protected asset guard. Anonymous phase timings will measure the production result.",
+  "ownerApprovedDecision": "The owner prioritised mixed-cart performance and asked for the checkout to remain easy and reliable. The protected PR must receive Nylon1's exact-current-head approval comment before merge or deployment; this record alone grants no approval.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "release/README.md",
-    "scripts/deploy-verified-production.mjs",
+    "lib/cushion-studio/__tests__/mixed.test.ts",
+    "lib/cushion-studio/__tests__/my-home.test.ts",
     "release/policy-change.json"
   ]
 }

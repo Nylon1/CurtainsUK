@@ -268,6 +268,29 @@ test("My Home reviews both types, one curtain delivery and latest confirmed hold
   assert.doesNotMatch(JSON.stringify(review),/stockRequirements|fabricMetres/);
   assert.deepEqual(f.effects,[]);
 });
+test("My Home reuses its curtain review in mixed preparation while retaining fresh stock checks",async()=>{
+  const f=await homeFixture();
+  const timings:Parameters<NonNullable<MyHomeServices['reviewTiming']>>[0][]=[];
+  f.services.reviewTiming=timing=>{timings.push(timing);};
+  const calculate=f.services.mixed.house.calculate;
+  const stock=f.services.mixed.house.stock;
+  let calculations=0,stockChecks=0;
+  f.services.mixed.house.calculate=async configuration=>{calculations++;return calculate(configuration);};
+  f.services.mixed.house.stock=async (id,metres)=>{stockChecks++;return stock(id,metres);};
+  const review=await reviewMyHome(f.input,f.services);
+  assert.equal(review.ready,true);
+  assert.equal(calculations,2);
+  assert.equal(stockChecks,2);
+  assert.equal(f.seen(),f.curtainMetres+0.57);
+  assert.deepEqual(timings[0].productTypes,['CURTAIN','CUSHION']);
+  assert.equal(timings[0].calls.curtainPricing.count,2);
+  assert.equal(timings[0].calls.curtainStock.count,2);
+  assert.equal(timings[0].calls.combinedStock.count,1);
+  assert.ok(timings[0].phasesMs.mixedCurtainPreparation>=0);
+  assert.ok(timings[0].phasesMs.mixedCushionPreparation>=0);
+  assert.ok(timings[0].phasesMs.mixedCombinedStock>=0);
+  assert.deepEqual(f.effects,[]);
+});
 
 test("a curtain order is ready for guest checkout with no cart postcode",async()=>{
   const f=await homeFixture();delete f.input.cushions;

@@ -77,6 +77,7 @@ export function createHostedCheckoutServices(
     ? cushionOwnerHash(context)
     : null;
   let executionOwner: string | null = null;
+  let executionKey: string | null = null;
   const repository = (owner = primaryOwner()) => createHostedCushionRepository(owner);
   const runtimeConfig = options.reviewOnly
     ? null
@@ -104,14 +105,17 @@ export function createHostedCheckoutServices(
       };
     },
     persist: async (input) => {
-      executionOwner = primaryOwner();
-      await repository(executionOwner).appendCheckout(input);
+      const owner = primaryOwner();
+      await repository(owner).appendCheckout(input);
+      executionOwner = owner;
+      executionKey = input.key;
     },
     existing: async (requestedKey) => {
       const owner = primaryOwner();
       const current = await repository(owner).checkout(requestedKey);
       if (current) {
         executionOwner = owner;
+        executionKey = requestedKey;
         return current;
       }
       // Orders started before guest checkout used the signed-in owner. Keep
@@ -119,18 +123,26 @@ export function createHostedCheckoutServices(
       const previousOwner = legacyOwner();
       if (!previousOwner) return null;
       const previous = await repository(previousOwner).checkout(requestedKey);
-      if (previous) executionOwner = previousOwner;
+      if (previous) {
+        executionOwner = previousOwner;
+        executionKey = requestedKey;
+      }
       return previous;
     },
-    execute: (contract) => !runtimeConfig ? executeShopifyDraftOrder({contract,config:null}) : executeWithDraftReceipt({
-      ...myHomeDraftReceipt({kind:'CUSHION',owner:executionOwner ?? primaryOwner(),key,tag:contract.idempotencyTag}),
-      execute: existingDraftOrderId => executeShopifyDraftOrder({
-        contract,
-        config: runtimeConfig,
-        existingDraftOrderId,
-        claimCreate: () => repository(executionOwner ?? primaryOwner()).claimCreate(key),
-      }),
-    }),
+    execute: (contract) => {
+      const persistedKey = executionKey;
+      if (!persistedKey) throw new Error('CUSHION_CHECKOUT_NOT_PREPARED');
+      const owner = executionOwner ?? primaryOwner();
+      return !runtimeConfig ? executeShopifyDraftOrder({contract,config:null}) : executeWithDraftReceipt({
+        ...myHomeDraftReceipt({kind:'CUSHION',owner,key:persistedKey,tag:contract.idempotencyTag}),
+        execute: existingDraftOrderId => executeShopifyDraftOrder({
+          contract,
+          config: runtimeConfig,
+          existingDraftOrderId,
+          claimCreate: () => repository(owner).claimCreate(persistedKey),
+        }),
+      });
+    },
   };
 }
 // Explicit input allowlist keeps internal pricing, database and supplier failures private.

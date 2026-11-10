@@ -69,7 +69,7 @@ The required PR gate performs the same export, full integrity audit, protected a
 
 `node scripts/deploy-verified-production.mjs <new-export-directory> <vercel-scope>`
 
-The deployment command stages a production build without moving the live alias. Promote it only after staged smoke checks pass. A Vercel project link in `.vercel/project.json` is the only deployment metadata allowed alongside the verified Git tree. Any other extra file, including `.env.local`, blocks the release.
+The deployment command links the fixed CurtainsUK Vercel project when needed and stages a production build without moving the live alias. Promote it only after staged smoke checks pass. A Vercel project link in `.vercel/project.json` is the only deployment metadata allowed alongside the verified Git tree. Any other extra file, including `.env.local`, blocks the release.
 
 ## Future automation
 

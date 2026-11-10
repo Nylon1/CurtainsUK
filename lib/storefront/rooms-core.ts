@@ -109,12 +109,22 @@ export type ReviewedLine = {
   status: 'READY' | 'PRICE_CHANGED' | 'BLOCKED'; previousPrice: number | null; currentPrice: number | null;
   message: string; configuration?: StagingPriceRequest; fabric?: RoomsFabric;
 };
+// Keep the server's checked calculations available only within this request.
+// They are never serialized into a customer response or accepted from a client.
+const reviewAuthorities = new WeakMap<object, {
+  request: HouseReviewRequest;
+  unitPrices: StagingPriceResponse[];
+  delivery: ShippingQuote | null;
+}>();
+export function houseReviewAuthority(review: object) {
+  return reviewAuthorities.get(review);
+}
 export async function reviewHouse(input: HouseReviewRequest, services: RoomsServices) {
   if (!input || !uuid.test(input.house_id) || !Number.isSafeInteger(input.revision) || input.revision < 0 || !Array.isArray(input.rooms) || !input.rooms.length) throw Error('ROOMS_HOUSE_INVALID');
   const roomIds = new Set<string>(), configIds = new Set<string>();
   let totalUnits = 0;
   if (input.rooms.length > 100 || input.rooms.reduce((n, room) => n + (Array.isArray(room.curtains) ? room.curtains.length : 0), 0) > 100) throw Error('ROOMS_HOUSE_INVALID');
-  const lines: ReviewedLine[] = [], prices: StagingPriceResponse[] = [];
+  const lines: ReviewedLine[] = [], prices: StagingPriceResponse[] = [], unitPrices: StagingPriceResponse[] = [];
   const stockGroups = new Map<string, { metres: number; lineIndexes: number[] }>();
   for (const room of input.rooms) {
     if (!uuid.test(room.room_id) || roomIds.has(room.room_id) || !Array.isArray(room.curtains)) throw Error('ROOMS_ROOM_INVALID');
@@ -139,6 +149,7 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
         line.currentPrice = price.totalAmountMinor! * quantity;
         line.status = price.totalAmountMinor === saved.last_validated_price ? 'READY' : 'PRICE_CHANGED';
         line.message = line.status === 'READY' ? 'Current price and availability checked.' : 'Please acknowledge the updated price before checkout.';
+        unitPrices.push(price);
         prices.push({...price, totalAmountMinor: price.totalAmountMinor! * quantity, netAmountMinor: price.netAmountMinor! * quantity, vatAmountMinor: price.vatAmountMinor! * quantity, fabricMetres: price.fabricMetres! * quantity});
         const group = stockGroups.get(fabric.id) || { metres: 0, lineIndexes: [] };
         group.metres += price.fabricMetres! * quantity;
@@ -177,6 +188,7 @@ export async function reviewHouse(input: HouseReviewRequest, services: RoomsServ
   // A digest binds every receipt without duplicating the whole House in the token.
   const reviewToken = seal<HouseReviewClaims>('review', { requestDigest: roomsDigest(input), financialDigest: reviewFinancialDigest(result), reviewedAt: result.validated_at, expiresAt: Date.parse(result.validated_at) + 300_000 }, services.secret);
   const reviewed = { ...result, reviewToken };
+  reviewAuthorities.set(reviewed, { request: input, unitPrices, delivery });
   // Only server-side mixed-order checks need these authoritative quantities.
   // Keep them out of the customer review JSON and signed financial digest.
   return Object.defineProperty(reviewed, 'stockRequirements', {

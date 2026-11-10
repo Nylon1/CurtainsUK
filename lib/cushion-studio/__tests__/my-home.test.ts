@@ -526,6 +526,11 @@ test("sample credit preserves ordinary reviews and discounts only curtains in a 
   const first=JSON.stringify(executed);
   await checkoutMyHomeWithSampleCredit(checkoutInput(input,reviewed),f.services,authority);
   assert.equal(JSON.stringify(executed),first);
+  const firstKey=[...f.stored.keys()][0];
+  assert.match(firstKey,/^sc-[a-f0-9]{64}$/);
+  await checkoutMyHomeWithSampleCredit({...checkoutInput(input,reviewed),idempotencyKey:'00000000-0000-4000-8000-000000000005'},f.services,authority);
+  assert.equal(f.stored.size,2);
+  assert.notEqual([...f.stored.keys()][1],firstKey);
   await assert.rejects(()=>checkoutMyHomeWithSampleCredit(checkoutInput(input,base),f.services,authority),/MY_HOME_REVIEW_CHANGED/);
   const cushionOnly={...input,curtains:undefined};
   await assert.rejects(()=>reviewMyHomeWithSampleCredit(cushionOnly,f.services,authority),/SAMPLE_CREDIT_CURTAINS_REQUIRED/);
@@ -561,6 +566,11 @@ test('personal offer and sample credit stack in mixed Shopping Cart review and c
   const first=JSON.stringify(executed);
   await checkoutMyHomeWithSampleCredit(checkoutInput(input,reviewed),f.services,credit,offer);
   assert.equal(JSON.stringify(executed),first);
+  const firstKey=[...f.stored.keys()][0];
+  assert.match(firstKey,/^so-[a-f0-9]{64}$/);
+  await checkoutMyHomeWithSampleCredit({...checkoutInput(input,reviewed),idempotencyKey:'00000000-0000-4000-8000-000000000006'},f.services,credit,offer);
+  assert.equal(f.stored.size,2);
+  assert.notEqual([...f.stored.keys()][1],firstKey);
 });
 
 test('guest WELCOME5 review and mixed checkout keep the exact saving, credit and delivery on retry',async()=>{

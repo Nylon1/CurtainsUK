@@ -7,17 +7,21 @@ on:
 permissions:
   contents: read
   issues: write
+  id-token: write
 concurrency:
   group: customer-journey-monitor
   cancel-in-progress: false
 jobs:
   critical:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: release/production
+
+      - name: Record monitor start
+        run: date -u +%Y-%m-%dT%H:%M:%SZ > customer-monitor-started-at.txt
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.14.0'
@@ -60,6 +64,24 @@ jobs:
           else
             node scripts/customer-site-sitemap-scan.mjs | tee customer-sitemap-monitor.log
           fi
+      - name: Record authenticated journey health heartbeat
+        id: publish
+        if: always()
+        continue-on-error: true
+        shell: bash
+        env:
+          CONTRACT_OUTCOME: ${{ steps.contracts.outcome }}
+          SITEMAP_OUTCOME: ${{ steps.sitemap.outcome }}
+        run: |
+          set -euo pipefail
+          node scripts/customer-journey-report.mjs
+          response=$(curl -fsS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=curtainsuk:journey-health:v1")
+          token=$(printf '%s' "$response" | jq -er .value)
+          curl --fail-with-body -fsS -X POST \
+            -H "Authorization: Bearer $token" -H 'Content-Type: application/json' \
+            --data-binary @customer-journey-report.json \
+            https://curtainsuk-production-api.vercel.app/api/monitor/journey-health
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -68,22 +90,24 @@ jobs:
             customer-journey-monitor.log
             customer-contract-monitor.log
             customer-sitemap-monitor.log
+            customer-journey-monitor.json
+            customer-journey-report.json
           if-no-files-found: ignore
       - name: Open or close critical journey incident
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          OUTCOME: ${{ steps.scan.outcome }}-${{ steps.contracts.outcome }}-${{ steps.sitemap.outcome }}
+          OUTCOME: ${{ steps.scan.outcome }}-${{ steps.contracts.outcome }}-${{ steps.sitemap.outcome }}-${{ steps.publish.outcome }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           issue=$(gh issue list --repo "$GH_REPO" --state open --search 'CurtainsUK critical journey monitor failed in:title' --json number --jq '.[0].number // empty')
-          if [ "$OUTCOME" != success-success-success ]; then
+          if [ "$OUTCOME" != success-success-success-success ]; then
             if [ -z "$issue" ]; then
-              gh issue create --repo "$GH_REPO" --title 'CurtainsUK critical journey monitor failed' --body "A public shopping or tool check failed. Check the attached run log: $RUN_URL"
+              gh issue create --repo "$GH_REPO" --title 'CurtainsUK critical journey monitor failed' --body "A customer journey, contract, link scan or monitor reporting check failed. Check the attached run log: $RUN_URL"
             else
-              gh issue edit "$issue" --repo "$GH_REPO" --body "A public shopping or tool check still fails. Latest run: $RUN_URL"
+              gh issue edit "$issue" --repo "$GH_REPO" --body "A customer journey, contract, link scan or monitor reporting check still fails. Latest run: $RUN_URL"
             fi
             exit 1
           fi
-          if [ -n "$issue" ]; then gh issue close "$issue" --repo "$GH_REPO" --comment "Public checks recovered: $RUN_URL"; fi
+          if [ -n "$issue" ]; then gh issue close "$issue" --repo "$GH_REPO" --comment "Scheduled checks recovered: $RUN_URL"; fi

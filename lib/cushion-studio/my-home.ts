@@ -35,6 +35,7 @@ export type MyHomeServices = {
   romanPurchasesEnabled?: boolean;
   romanQuote?: (spec: unknown) => Promise<RomanQuote>;
   romanCombinedStock?: (supplierId: string, supplierSku: string, metres: number) => Promise<boolean>;
+  reviewTiming?: (timing: {stage:"base"|"discount";durationMs:number;productTypes:string[];phasesMs:Record<string,number>;calls:Record<string,{count:number;totalMs:number;maxMs:number}>}) => void;
   tracks?: SmartTrackServices;
   executeHouse(prepared: Extract<Awaited<ReturnType<typeof prepareHouseCheckout>>, {prepared:true}>): Promise<{checkoutUrl: string | null; paymentEnabled: boolean; status?: string}>;
 };
@@ -76,18 +77,46 @@ async function cushionQuote(input: NonNullable<MyHomeInput["cushions"]>, service
 }
 
 async function currentReview(input: MyHomeInput, services: MyHomeServices) {
+  const started=performance.now();
+  const phasesMs:Record<string,number>={};
+  const calls:Record<string,{count:number;totalMs:number;maxMs:number}>={};
+  const timed=async <T>(phase:string,promise:Promise<T>):Promise<T>=>{
+    const phaseStarted=performance.now();
+    try{return await promise;}finally{phasesMs[phase]=Math.round(performance.now()-phaseStarted);}
+  };
+  const instrument=<A extends unknown[],T>(name:string,fn:(...args:A)=>Promise<T>)=>async (...args:A):Promise<T>=>{
+    const callStarted=performance.now();
+    try{return await fn(...args);}finally{
+      const duration=Math.round(performance.now()-callStarted);
+      const entry=calls[name]??{count:0,totalMs:0,maxMs:0};
+      entry.count++;entry.totalMs+=duration;entry.maxMs=Math.max(entry.maxMs,duration);calls[name]=entry;
+    }
+  };
+  const mixedServices:MixedServices=services.reviewTiming?{...services.mixed,
+    house:{...services.mixed.house,
+      calculate:instrument("curtainPricing",services.mixed.house.calculate),
+      fabric:instrument("curtainFabric",services.mixed.house.fabric),
+      stock:instrument("curtainStock",services.mixed.house.stock),
+      delivery:instrument("curtainDelivery",services.mixed.house.delivery),
+      productionFabric:instrument("curtainIdentity",services.mixed.house.productionFabric)},
+    cushion:{...services.mixed.cushion,
+      facts:instrument("cushionFacts",services.mixed.cushion.facts),
+      rules:instrument("cushionRules",services.mixed.cushion.rules),
+      identity:instrument("cushionIdentity",services.mixed.cushion.identity)},
+    stock:instrument("combinedStock",services.mixed.stock),
+  }:services.mixed;
   validate(input);
   if(input.tracks&&!services.tracks)throw Error('TRACK_UNAVAILABLE');
   // Each product authority is independent until the combined stock and delivery
   // checks below. Run them together to keep the first checkout handoff responsive.
   const [house,cushionReview,tracks,romans] = await Promise.all([
-    input.curtains ? reviewHouse(input.curtains,services.mixed.house) : Promise.resolve(null),
-    input.cushions ? cushionQuote(input.cushions,services.mixed.cushion) : Promise.resolve(null),
-    input.tracks ? Promise.all(input.tracks.specs.map(async spec => {
+    input.curtains ? timed("curtainReview",reviewHouse(input.curtains,mixedServices.house)) : Promise.resolve(null),
+    input.cushions ? timed("cushionQuote",cushionQuote(input.cushions,mixedServices.cushion)) : Promise.resolve(null),
+    input.tracks ? timed("trackQuote",Promise.all(input.tracks.specs.map(async spec => {
     const id=(spec as {linkedCurtain?:{configurationId:string}})?.linkedCurtain?.configurationId;
-    return quoteSmartTrack(spec,{package:services.tracks!.package(parseSmartTrackSpec(spec).system),linked:id?await linkedCurtainEvidence(id,input.curtains,services.mixed.house,services.tracks?.fabricWeight):undefined});
-    })) : Promise.resolve([]),
-    input.romans ? (async()=>Promise.all(input.romans!.specs.map(services.romanQuote??(await import('../roman-blind/pricing')).quoteRoman)))() : Promise.resolve([] as RomanQuote[]),
+    return quoteSmartTrack(spec,{package:services.tracks!.package(parseSmartTrackSpec(spec).system),linked:id?await linkedCurtainEvidence(id,input.curtains,mixedServices.house,services.tracks?.fabricWeight):undefined});
+    }))) : Promise.resolve([]),
+    input.romans ? timed("romanQuote",(async()=>Promise.all(input.romans!.specs.map(services.romanQuote??(await import('../roman-blind/pricing')).quoteRoman)))()) : Promise.resolve([] as RomanQuote[]),
   ]);
   const cushion = cushionReview?.set ?? null;
   if(new Set([...tracks.map(t=>t.spec.id),...romans.map(r=>r.spec.id),...(cushion?.specs.map(s=>s.id)??[]),...(house?.lines.map(l=>l.configuration_id)??[])]).size!==tracks.length+romans.length+(cushion?.specs.length??0)+(house?.lines.length??0))throw Error('MY_HOME_IDENTITY_MISMATCH');
@@ -133,7 +162,7 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
   const mixedInput = house && cushion ? {house:input.curtains!,designId:input.id,specs:cushion.specs,expectedQuoteId:cushion.quoteId} : null;
   let mixed: Awaited<ReturnType<typeof reviewMixedCheckout>> | null = null;
   if (mixedInput && house!.ready && cushion!.ready) {
-    try { mixed = await reviewMixedCheckout(mixedInput,services.mixed); }
+    try { mixed = await timed("mixedReview",reviewMixedCheckout(mixedInput,mixedServices,{request:input.curtains!,result:house!},(phase,duration)=>{phasesMs[phase]=duration;})); }
     catch (error) {
       if (!(error instanceof Error) || !["MIXED_COMBINED_STOCK_CHANGED","MIXED_DELIVERY_REVIEW_REQUIRED","MIXED_DELIVERY_POLICY_REQUIRED"].includes(error.message)) throw error;
       issues.push(error.message === "MIXED_COMBINED_STOCK_CHANGED" ? "Combined curtain and cushion fabric availability needs review." : "Combined delivery needs review.");
@@ -147,14 +176,14 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
   for (const spec of cushion?.specs ?? []) for (const id of [spec.fabricId,spec.pipingFabricId]) {
     if (id && !cushionRequirements.has(id)) cushionRequirements.set(id,NaN);
   }
-  const combinedRomanStockReady = !romans.length || await combinedRomanStockAvailable({
+  const combinedRomanStockReady = !romans.length || await timed("combinedRomanStock",combinedRomanStockAvailable({
     curtains: house?.stockRequirements ?? new Map(), cushions:cushionRequirements, romans,
-    curtainStock: services.mixed.stock,
+    curtainStock: mixedServices.stock,
     romanStock: services.romanCombinedStock ?? (async (supplierId,supplierSku,metres) => {
       const stock=await (await import('../storefront/daily-stock-server')).dailyStockProjection({supplierId,supplierSku,requirement:{quantity:metres,stock_unit:'METRE'}});
       return !stock.stale && stock.availability==='FABRIC_AVAILABLE';
     }),
-  });
+  }));
   if(!combinedRomanStockReady)issues.push('Combined fabric availability needs confirmation for this order.');
   const tooManyTrackOrderLines=(tracks.length>0||romans.length>0)&&tracks.length+romans.length+(cushion?.specs.length??0)+(house?.lines.reduce((n,l)=>n+(l.quantity??1),0)??0)>100;
   if(tooManyTrackOrderLines)issues.push("This combined order is too large for one checkout. Please contact us to arrange it.");
@@ -175,6 +204,9 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
     curtains:input.curtains ?? null,cushionSpecs:cushion?.specs ?? null,quoteId:cushion?.quoteId ?? null,
     mixedReviewId:mixed?.reviewId ?? null,...(tracks.length?{trackQuotes:tracks.map(t=>t.quoteId)}:{}),romanQuotes:romans.map(r=>r.quoteId),lines,goods:gross,delivery,total,vat,dispatch});
   const acceptedPriceChanges = house?.lines.filter(line=>line.status === "PRICE_CHANGED").map(line=>({configuration_id:line.configuration_id,currentPrice:line.currentPrice!})) ?? [];
+  try{services.reviewTiming?.({stage:"base",durationMs:Math.round(performance.now()-started),
+    productTypes:[...(input.curtains?["CURTAIN"]:[]),...(input.cushions?["CUSHION"]:[]),...(input.romans?["ROMAN_BLIND"]:[]),...(input.tracks?["SMART_TRACK"]:[])],
+    phasesMs,calls});}catch{/* Timing must never block an order. */}
   return { house,cushion,mixed,mixedInput,dispatch,tracks,trackDelivery,romans,romanDelivery, response:{
     version:1 as const,id:input.id,revision:input.revision,reviewId,ready:productReady,
     purchaseReady:productReady && dispatch !== null,purchaseEnabled:release && productReady && dispatch !== null,

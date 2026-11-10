@@ -13,6 +13,7 @@ import {
 import { buildMixedDraftContract } from "./commerce";
 import type { ShopifyDraftOrderExecutionContract } from "../storefront/shopify-draft-order-core";
 import type { CushionCutPlan } from "./cutting";
+import type { StagingPriceRequest } from "../storefront/staging-pricing";
 
 export type MixedInput = {
   house: HouseReviewRequest;
@@ -27,6 +28,7 @@ export type MixedServices = {
   shipping(input: {
     house: HouseReviewRequest;
     requirements: Map<string, number>;
+    configurations: StagingPriceRequest[];
   }): Promise<{ grossMinor: number; vatMinor: number; title: string }>;
   stock(id: string, combinedMetres: number): Promise<boolean>;
   persistCurtains(
@@ -49,26 +51,40 @@ const disabled = {
 export async function reviewMixedCheckout(
   input: MixedInput,
   services: MixedServices,
+  preReviewedHouse?: { request: HouseReviewRequest; result: Awaited<ReturnType<typeof reviewHouse>> },
+  onTiming?: (phase: string, durationMs: number) => void,
 ) {
-  const houseReview = await reviewHouse(input.house, services.house);
-  if (!houseReview.ready) throw Error("MIXED_CURTAIN_REVIEW_REQUIRED");
-  const acceptedPriceChanges = houseReview.lines
-    .filter((line) => line.status === "PRICE_CHANGED")
-    .map((line) => ({
-      configuration_id: line.configuration_id,
-      currentPrice: line.currentPrice!,
-    }));
-  const house = await prepareHouseCheckout(
-    {
-      house: input.house,
-      reviewToken: houseReview.reviewToken!,
-      measurementsConfirmed: true,
-      acceptedPriceChanges,
-    },
-    services.house,
-  );
-  if (!house.prepared) throw Error("MIXED_CURTAIN_REVIEW_CHANGED");
-  const cushion = await prepareCushionCheckout(
+  const timed = async <T>(phase: string, work: () => Promise<T>): Promise<T> => {
+    const started = performance.now();
+    try { return await work(); }
+    finally { onTiming?.(phase, Math.round(performance.now() - started)); }
+  };
+  if (preReviewedHouse && preReviewedHouse.request !== input.house)
+    throw Error("MIXED_CURTAIN_REVIEW_CHANGED");
+  // Curtain and cushion preparation are independent, read-only authorities at
+  // review time. Both still revalidate current prices and stock before checkout.
+  const houseWork = timed("mixedCurtainPreparation", async () => {
+    const houseReview = preReviewedHouse?.result ?? await reviewHouse(input.house, services.house);
+    if (!houseReview.ready) throw Error("MIXED_CURTAIN_REVIEW_REQUIRED");
+    const acceptedPriceChanges = houseReview.lines
+      .filter((line) => line.status === "PRICE_CHANGED")
+      .map((line) => ({
+        configuration_id: line.configuration_id,
+        currentPrice: line.currentPrice!,
+      }));
+    const house = await prepareHouseCheckout(
+      {
+        house: input.house,
+        reviewToken: houseReview.reviewToken!,
+        measurementsConfirmed: true,
+        acceptedPriceChanges,
+      },
+      services.house,
+    );
+    if (!house.prepared) throw Error("MIXED_CURTAIN_REVIEW_CHANGED");
+    return { house, acceptedPriceChanges };
+  });
+  const cushionWork = timed("mixedCushionPreparation", () => prepareCushionCheckout(
     { ...input, idempotencyKey: "mixed-review-only" },
     {
       ...services.cushion,
@@ -77,7 +93,8 @@ export async function reviewMixedCheckout(
       existing: undefined,
       execute: async () => disabled,
     },
-  );
+  ));
+  const [{ house, acceptedPriceChanges }, cushion] = await Promise.all([houseWork, cushionWork]);
   const requirements = new Map<string, number>();
   const curtainFabricIds = new Set(
     house.curtains.map((curtain) => curtain.handoff.snapshot.fabricMasterId),
@@ -99,13 +116,16 @@ export async function reviewMixedCheckout(
   // The cushion set was already checked against its current governed stock.
   // Apply the curtain stock floor only where curtains use the fabric, with
   // cushion consumption included when both products share that fabric.
-  for (const [id, metres] of requirements)
-    if (curtainFabricIds.has(id) && !(await services.stock(id, metres)))
-      throw Error("MIXED_COMBINED_STOCK_CHANGED");
-  const shipping = await services.shipping({
+  await timed("mixedCombinedStock", async () => {
+    for (const [id, metres] of requirements)
+      if (curtainFabricIds.has(id) && !(await services.stock(id, metres)))
+        throw Error("MIXED_COMBINED_STOCK_CHANGED");
+  });
+  const shipping = await timed("mixedShipping", () => services.shipping({
     house: input.house,
     requirements,
-  });
+    configurations: house.review.lines.map(line => line.configuration!),
+  }));
   const contract = buildMixedDraftContract({
     curtain: house.contract,
     cushion: cushion.contract,

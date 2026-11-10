@@ -255,6 +255,35 @@ test("mixed review revalidates signed curtains and one cushion plan, sums shared
   );
   assert.equal(r.contract.paymentEnabled, false);
 });
+test("mixed preparation overlaps independent cushion reads and uses verified curtain configurations for delivery", async () => {
+  const f = await fixture();
+  const calculate = f.services.house.calculate;
+  const facts = f.services.cushion.facts;
+  let releaseCurtain!: () => void;
+  const curtainGate = new Promise<void>(resolve => { releaseCurtain = resolve; });
+  let cushionStarted = false;
+  f.services.house.calculate = async configuration => {
+    await curtainGate;
+    return calculate(configuration);
+  };
+  f.services.cushion.facts = async id => {
+    cushionStarted = true;
+    return facts(id);
+  };
+  let shippingConfigurations: StagingPriceRequest[] = [];
+  const shipping = f.services.shipping;
+  f.services.shipping = async input => {
+    shippingConfigurations = input.configurations;
+    return shipping(input);
+  };
+  const pending = reviewMixedCheckout(f.input, f.services);
+  assert.equal(cushionStarted, true);
+  releaseCurtain();
+  const result = await pending;
+  assert.deepEqual(shippingConfigurations, [configuration]);
+  assert.equal(result.contract.expected.orderGrossAmountMinor, result.house.contract.expected.goodsGrossAmountMinor + result.cushion.contract.expected.goodsGrossAmountMinor + 1295);
+  assert.deepEqual(f.effects, []);
+});
 test("individually sufficient stock cannot pass when combined curtain and cushion requirements exceed it", async () => {
   const f = await fixture();
   f.services.stock = async (_, metres) => metres <= f.curtainMetres;

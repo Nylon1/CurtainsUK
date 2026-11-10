@@ -202,11 +202,21 @@ export async function checkoutMyHome(input: MyHomeCheckoutInput, services: MyHom
   const dispatch = review.dispatch!;
   if(input.tracks||input.romans) return checkoutSmartTrackOrder({...input,measurementsConfirmed:true},services,{quotes:review.tracks,romans:review.romans,shipping:(review.trackDelivery??review.romanDelivery)!,dispatch,
     mixed:review.mixed,expected:review.response});
-  const decorate = (contract: Parameters<CushionCheckoutServices["execute"]>[0]) => ({...contract,input:{...contract.input,
-    customAttributes:[...contract.input.customAttributes.filter(attribute=>!["curtainsuk_my_home_review_id","curtainsuk_hold_together","curtainsuk_my_home_dispatch"].includes(attribute.key)),
-      {key:"curtainsuk_my_home_review_id",value:input.reviewId},
-      {key:"curtainsuk_hold_together",value:"true"},
-      {key:"curtainsuk_my_home_dispatch",value:JSON.stringify(customerMyHomeDispatch(dispatch))}]}});
+  const decorate = (contract: Parameters<CushionCheckoutServices["execute"]>[0]) => {
+    const attributes=contract.input.customAttributes;
+    const current=attributes.find(attribute=>attribute.key==="curtainsuk_my_home_review_id");
+    const dispatchValue=JSON.stringify(customerMyHomeDispatch(dispatch));
+    if(current){
+      if(current.value!==input.reviewId || attributes.find(attribute=>attribute.key==="curtainsuk_hold_together")?.value!=="true" ||
+        attributes.find(attribute=>attribute.key==="curtainsuk_my_home_dispatch")?.value!==dispatchValue)throw Error("MY_HOME_IDEMPOTENCY_CONFLICT");
+      return contract;
+    }
+    return {...contract,input:{...contract.input,
+      customAttributes:[...attributes.filter(attribute=>!["curtainsuk_hold_together","curtainsuk_my_home_dispatch"].includes(attribute.key)),
+        {key:"curtainsuk_my_home_review_id",value:input.reviewId},
+        {key:"curtainsuk_hold_together",value:"true"},
+        {key:"curtainsuk_my_home_dispatch",value:dispatchValue}]}};
+  };
   const wrapCushion: CushionCheckoutServices = {
     ...services.mixed.cushion,
     existing: services.mixed.cushion.existing ? async key => {

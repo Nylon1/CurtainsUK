@@ -1,19 +1,24 @@
 import { reviewMyHome, checkoutMyHome, type MyHomeInput, type MyHomeCheckoutInput, type MyHomeServices } from '../cushion-studio/my-home';
 import { applySampleCredit, creditDigest, curtainCreditAllocation, normalizeSampleCreditCodes, type SampleCreditQuote } from './sample-credit';
-import { applyStackedCurtainOffer, calculateStackedOffer, type OfferLine } from './sample-to-sale-offer';
+import { applyStackedCurtainOffer, applyWelcomeOffer, calculateStackedOffer, calculateWelcomeOffer, type OfferLine } from './sample-to-sale-offer';
 import { normalizePromotionCode, type PromotionQuote } from './sample-to-sale-code';
 import type { ShopifyDraftOrderExecutionContract } from './shopify-draft-order-core';
 
 type Input = MyHomeInput & {sampleCreditCodes?:unknown;promotionCode?:unknown};
 type CreditServices = {preview(codes:unknown,baseReviewId:string):Promise<SampleCreditQuote|null>};
 type OfferServices = {preview(code:unknown,baseReviewId:string,goodsMinor:number):Promise<PromotionQuote|null>};
+const orderPromotionCode=(value:unknown)=>typeof value==='string'&&value.trim().toUpperCase()==='WELCOME5'?'WELCOME5':normalizePromotionCode(value);
 
 async function discountReview(input:Input,services:MyHomeServices,credit:CreditServices,offer?:OfferServices) {
   const base=await reviewMyHome(input,services);
   const codes=normalizeSampleCreditCodes(input.sampleCreditCodes);
-  const promotionCode=normalizePromotionCode(input.promotionCode);
+  const promotionCode=orderPromotionCode(input.promotionCode);
   if(!codes.length&&!promotionCode)return {base,response:base,creditQuote:null,offerQuote:null};
-  if(!base.ready || base.totalMinor===null || base.vatMinor===null || (codes.length&&!input.curtains))throw Error('SAMPLE_CREDIT_CURTAINS_REQUIRED');
+  if(!base.ready || base.totalMinor===null || base.vatMinor===null){
+    if(!codes.length)return {base,response:base,creditQuote:null,offerQuote:null};
+    throw Error('SAMPLE_CREDIT_CURTAINS_REQUIRED');
+  }
+  if(codes.length&&!input.curtains)throw Error('SAMPLE_CREDIT_CURTAINS_REQUIRED');
   const gross=base.lines.filter(l=>l.kind==='CURTAIN').flatMap(l=>{
     if(l.totalMinor===null || l.totalMinor%l.quantity!==0)throw Error('SAMPLE_CREDIT_CURTAINS_REQUIRED');
     return Array.from({length:l.quantity},()=>l.totalMinor!/l.quantity);
@@ -28,8 +33,17 @@ async function discountReview(input:Input,services:MyHomeServices,credit:CreditS
     }
     return [{kind:line.kind,grossMinor:line.totalMinor}];
   });
-  const offerQuote=promotionCode?await offer?.preview(promotionCode,base.reviewId,goods.reduce((a,b)=>a+b.grossMinor,0)):null;
-  if(promotionCode&&!offerQuote)throw Error('SAMPLE_TO_SALE_UNAVAILABLE');
+  const welcome=promotionCode==='WELCOME5';
+  const offerQuote=promotionCode&&!welcome?await offer?.preview(promotionCode,base.reviewId,goods.reduce((a,b)=>a+b.grossMinor,0)):null;
+  if(promotionCode&&!welcome&&!offerQuote)throw Error('SAMPLE_TO_SALE_UNAVAILABLE');
+  if(welcome){
+    const saving=calculateWelcomeOffer(goods,creditQuote?.amountMinor??0);
+    const reviewId=creditDigest({base:base.reviewId,credit:creditQuote?.digest??null,promotion:'WELCOME5'});
+    return {base,creditQuote,offerQuote:null,welcome:true,response:{...base,reviewId,totalMinor:base.totalMinor-saving.totalSavingMinor,vatMinor:base.vatMinor-saving.vatReductionMinor,
+      ...(creditQuote?{sampleCredit:{amountMinor:creditQuote.amountMinor,sampleCount:creditQuote.sampleCount}}:{}),
+      promotion:{amountMinor:saving.promotionalSavingMinor,code:'WELCOME5'},
+    }};
+  }
   if(offerQuote){
     const saving=calculateStackedOffer(goods,creditQuote?.amountMinor??0);
     if(saving.promotionalSavingMinor!==offerQuote.amountMinor)throw Error('SAMPLE_TO_SALE_PRICE_CHANGED');
@@ -49,13 +63,14 @@ async function discountReview(input:Input,services:MyHomeServices,credit:CreditS
 export async function reviewMyHomeWithSampleCredit(input:Input,services:MyHomeServices,credit:CreditServices,offer?:OfferServices){return (await discountReview(input,services,credit,offer)).response;}
 
 export async function checkoutMyHomeWithSampleCredit(input:MyHomeCheckoutInput&Input,services:MyHomeServices,credit:CreditServices,offer?:OfferServices) {
-  if(!normalizeSampleCreditCodes(input.sampleCreditCodes).length&&!normalizePromotionCode(input.promotionCode))return checkoutMyHome(input,services);
+  if(!normalizeSampleCreditCodes(input.sampleCreditCodes).length&&!orderPromotionCode(input.promotionCode))return checkoutMyHome(input,services);
   const checked=await discountReview(input,services,credit,offer);
-  if(checked.response.reviewId!==input.reviewId || (!checked.creditQuote&&!checked.offerQuote))throw Error('MY_HOME_REVIEW_CHANGED');
+  if(checked.response.reviewId!==input.reviewId || (!checked.creditQuote&&!checked.offerQuote&&!('welcome' in checked)))throw Error('MY_HOME_REVIEW_CHANGED');
   const quote=checked.creditQuote, promotion=checked.offerQuote;
-  const apply=<T extends ShopifyDraftOrderExecutionContract>(contract:T):T=>promotion?applyStackedCurtainOffer(contract,promotion,quote):applySampleCredit(contract,quote!);
+  const welcome='welcome' in checked;
+  const apply=<T extends ShopifyDraftOrderExecutionContract>(contract:T):T=>welcome?applyWelcomeOffer(contract,quote):promotion?applyStackedCurtainOffer(contract,promotion,quote):applySampleCredit(contract,quote!);
   const verifySaved=(saved:{contract:Parameters<typeof applySampleCredit>[0]}|null|undefined)=>{
-    if(saved && (promotion?saved.contract.promotionQuote?.reservationId!==promotion.reservationId:saved.contract.sampleCreditQuote?.reservationId!==quote!.reservationId))throw Error('SAMPLE_CREDIT_CHECKOUT_CONFLICT');
+    if(saved && (welcome?saved.contract.input.customAttributes.find(a=>a.key==='curtainsuk_welcome_code')?.value!=='WELCOME5'||(saved.contract.sampleCreditQuote?.reservationId??null)!==(quote?.reservationId??null):promotion?saved.contract.promotionQuote?.reservationId!==promotion.reservationId:saved.contract.sampleCreditQuote?.reservationId!==quote!.reservationId))throw Error('SAMPLE_CREDIT_CHECKOUT_CONFLICT');
     if(saved)apply(saved.contract);
     return saved;
   };
@@ -73,6 +88,6 @@ export async function checkoutMyHomeWithSampleCredit(input:MyHomeCheckoutInput&I
       execute:(key,contract)=>services.tracks!.execute(key,apply(contract)),
     }:undefined,
   };
-  const key=promotion?`so-${promotion.reservationId}`:`sc-${quote!.reservationId}`;
+  const key=welcome?`welcome-${creditDigest({review:checked.response.reviewId,credit:quote?.reservationId??null})}`:promotion?`so-${promotion.reservationId}`:`sc-${quote!.reservationId}`;
   return checkoutMyHome({...input,reviewId:checked.base.reviewId,idempotencyKey:key},wrapped);
 }

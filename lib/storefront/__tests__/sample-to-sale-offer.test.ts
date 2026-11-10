@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { applyStackedCurtainOffer, calculateStackedCurtainOffer, calculateStackedOffer } from '../sample-to-sale-offer';
+import { applyStackedCurtainOffer, applyWelcomeOffer, calculateStackedCurtainOffer, calculateStackedOffer, calculateWelcomeOffer } from '../sample-to-sale-offer';
 import { promotionCode, promotionCodeHash, quotePromotion, verifyPromotionCode } from '../sample-to-sale-code';
 import { allocateVatFromGross, type ShopifyDraftOrderExecutionContract } from '../shopify-draft-order-core';
 import type { SampleCreditQuote } from '../sample-credit';
@@ -48,6 +48,39 @@ test('a track-only order qualifies at £150 and shipping is outside the product 
   assert.throws(()=>calculateStackedOffer([{kind:'SMART_TRACK',grossMinor:14_999}]),/SAMPLE_TO_SALE_MINIMUM_NOT_MET/);
 });
 
+test('WELCOME5 discounts all four product types without a minimum and leaves delivery untouched',()=>{
+  const lines=[
+    {kind:'ROMAN_BLIND' as const,grossMinor:6_001},{kind:'SMART_TRACK' as const,grossMinor:5_002},
+    {kind:'CURTAIN' as const,grossMinor:4_003},{kind:'CUSHION' as const,grossMinor:2_004},
+  ];
+  const saving=calculateWelcomeOffer(lines,250);
+  assert.equal(saving.eligibleGoodsMinor,17_010);
+  assert.equal(saving.promotionalSavingMinor,851);
+  assert.equal(saving.totalSavingMinor,1_101);
+  assert.deepEqual(saving.sampleCreditAllocationsMinor,[0,0,250,0]);
+  assert.equal(calculateWelcomeOffer([{kind:'CUSHION',grossMinor:1_000}]).promotionalSavingMinor,50);
+  assert.throws(()=>calculateStackedOffer([{kind:'CUSHION',grossMinor:1_000}]),/SAMPLE_TO_SALE_MINIMUM_NOT_MET/);
+  const goodsVat=lines.reduce((n,l)=>n+allocateVatFromGross(l.grossMinor,2000),0);
+  const keys=['_curtainsuk_roman_snapshot_id','_curtainsuk_track_snapshot_id','_curtainsuk_snapshot_id','_curtainsuk_cushion_snapshot_id'];
+  const contract={apiVersion:'2026-07',environment:'PRODUCTION',idempotencyTag:'original-tag',requiredScopes:['write_draft_orders'],
+    paymentEnabled:true,completionMutationAllowed:false,invoiceSendAllowed:false,
+    expected:{currency:'GBP',goodsGrossAmountMinor:17_010,goodsVatAmountMinor:goodsVat,shippingGrossAmountMinor:1_295,
+      shippingVatAmountMinor:allocateVatFromGross(1_295,2000),orderGrossAmountMinor:18_305,orderVatAmountMinor:goodsVat+allocateVatFromGross(1_295,2000)},
+    input:{acceptAutomaticDiscounts:false,allowDiscountCodesInCheckout:false,customAttributes:[],
+      lineItems:lines.map((l,index)=>({title:'Product',quantity:1,originalUnitPriceWithCurrency:{amount:(l.grossMinor/100).toFixed(2),currencyCode:'GBP'},
+        requiresShipping:true,taxable:true,sku:`CUK-${index}`,customAttributes:[{key:keys[index],value:`item-${index}`}]})),
+      note:'test',presentmentCurrencyCode:'GBP',shippingLine:{title:'Delivery',priceWithCurrency:{amount:'12.95',currencyCode:'GBP'}},
+      shippingAddress:{countryCode:'GB'},tags:['original-tag'],taxExempt:false}} as ShopifyDraftOrderExecutionContract;
+  const credit:SampleCreditQuote={version:'sample-credit-v1',reservationId:'c'.repeat(64),digest:'d'.repeat(64),amountMinor:250,sampleCount:1,grants:[{id:'30000000-0000-4000-8000-000000000001',units:[{lineId:'sample',ordinal:0,amountMinor:250}]}]};
+  const applied=applyWelcomeOffer(contract,credit);
+  assert.equal(applied.expected.discountAmountMinor,1_101);
+  assert.equal(applied.expected.orderGrossAmountMinor,17_204);
+  assert.equal(applied.expected.shippingGrossAmountMinor,1_295);
+  assert.equal(applied.input.lineItems.reduce((n,l)=>n+Math.round((l.appliedDiscount?.value??0)*100),0),1_101);
+  assert.equal(applied.input.customAttributes.find(a=>a.key==='curtainsuk_welcome_code')?.value,'WELCOME5');
+  assert.deepEqual(applyWelcomeOffer(applied,credit),applied);
+});
+
 test('the reviewed mixed offer becomes exact line discounts while delivery stays full price',()=>{
   const amounts=[6_000,5_000,4_000,2_000],keys=['_curtainsuk_roman_snapshot_id','_curtainsuk_track_snapshot_id','_curtainsuk_snapshot_id','_curtainsuk_cushion_snapshot_id'];
   const goodsVat=amounts.reduce((n,a)=>n+allocateVatFromGross(a,2000),0);
@@ -82,7 +115,7 @@ test('offer ledger migration applies after sample credit and keeps browser roles
   const db=new PGlite();
   try{
     await db.exec('create role anon; create role authenticated; create role service_role; create schema curtainsuk_private;');
-    for(const file of ['20261028200448_sample_credit.sql','20261106220140_sample_to_sale_offers.sql'])
+    for(const file of ['20261028200448_sample_credit.sql','20261106220140_sample_to_sale_offers.sql','20261110054127_welcome_offer_sample_credit.sql'])
       await db.exec(readFileSync(new URL(`../../../supabase/migrations/${file}`,import.meta.url),'utf8'));
     const access=await db.query("select has_table_privilege('anon','curtainsuk_private.sample_to_sale_offers','SELECT') allowed");
     assert.equal((access.rows[0] as {allowed:boolean}).allowed,false);
@@ -108,5 +141,17 @@ test('offer ledger migration applies after sample credit and keeps browser roles
     await db.query('select curtainsuk_private.reserve_sample_to_sale($1::jsonb)',[JSON.stringify(combined)]);
     const both=await db.query('select state from curtainsuk_private.sample_credit_grants where id=$1',[grantId]);
     assert.equal((both.rows[0] as {state:string}).state,'RESERVED');
+    const welcomeGrant='40000000-0000-4000-8000-000000000001',welcomeReservation='5'.repeat(64);
+    await db.query("insert into curtainsuk_private.sample_credit_grants(id,order_gid,order_name,code_hash,units) values($1,'gid://shopify/Order/5','#5',$2,'[{\"lineId\":\"welcome-sample\"}]'::jsonb)",[welcomeGrant,'6'.repeat(64)]);
+    const welcomeCredit={reservationId:welcomeReservation,digest:'7'.repeat(64),grants:[{id:welcomeGrant,units:[{lineId:'welcome-sample',ordinal:0,amountMinor:250}]}],sampleCount:1,amountMinor:250};
+    const welcomeContract={sampleCreditQuote:welcomeCredit,expected:{goodsGrossAmountMinor:10_000,discountAmountMinor:750},
+      input:{customAttributes:[{key:'curtainsuk_welcome_code',value:'WELCOME5'},{key:'curtainsuk_sample_credit_id',value:welcomeReservation}]}};
+    await assert.rejects(db.query('select curtainsuk_private.reserve_sample_credit($1::jsonb,$2::jsonb)',[JSON.stringify(welcomeCredit),JSON.stringify({...welcomeContract,expected:{...welcomeContract.expected,discountAmountMinor:749}})]),/SAMPLE_CREDIT_INVALID/);
+    await db.query('select curtainsuk_private.reserve_sample_credit($1::jsonb,$2::jsonb)',[JSON.stringify(welcomeCredit),JSON.stringify(welcomeContract)]);
+    await db.query('select curtainsuk_private.reserve_sample_credit($1::jsonb,$2::jsonb)',[JSON.stringify(welcomeCredit),JSON.stringify(welcomeContract)]);
+    const welcomeState=await db.query('select state from curtainsuk_private.sample_credit_grants where id=$1',[welcomeGrant]);
+    assert.equal((welcomeState.rows[0] as {state:string}).state,'RESERVED');
+    const privilege=await db.query("select has_function_privilege('anon','curtainsuk_private.reserve_sample_credit(jsonb,jsonb)','EXECUTE') allowed");
+    assert.equal((privilege.rows[0] as {allowed:boolean}).allowed,false);
   }finally{await db.close();}
 });

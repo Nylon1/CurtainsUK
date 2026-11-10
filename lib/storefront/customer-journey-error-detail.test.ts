@@ -107,6 +107,50 @@ test('storefront sends useful browser and API details without leaking messages o
   assert.doesNotMatch(requests[5], /private-value/);
 });
 
+test('technical faults are reported without analytics consent or a stored journey', async () => {
+  const requests: { body: string; credentials?: string }[] = [];
+  const listeners: Record<string, (event: any) => void> = {};
+  const storage = { getItem() { throw Error('storage read'); }, setItem() { throw Error('storage write'); },
+    removeItem() { throw Error('storage removal'); } };
+  const window: any = {
+    Shopify: { customerPrivacy: { analyticsProcessingAllowed: () => false } },
+    addEventListener(name: string, listener: (event: any) => void) { listeners[name] = listener; },
+    fetch(url: string, options: any) {
+      if (url.endsWith('/journey')) {
+        requests.push({ body: options.body, credentials: options.credentials });
+        return Promise.resolve({ ok: true, status: 204 });
+      }
+      return Promise.resolve({ ok: false, status: 503, headers: { get: () => null } });
+    },
+  };
+  runInNewContext(readFileSync('shopify-theme/curtainsuk-dawn-16/assets/customer-journey.js', 'utf8'), {
+    window, location: { origin: 'https://www.curtainsuk.com', hostname: 'www.curtainsuk.com',
+      href: 'https://www.curtainsuk.com/pages/fabric-library?email=private@example.com' },
+    URL, Promise, document: { readyState: 'complete', referrer: 'https://example.com/private', addEventListener() {} },
+    sessionStorage: storage, crypto: { randomUUID }, navigator: {},
+    performance: { getEntriesByType: () => [], now: () => 0 },
+    setInterval: () => 1, clearInterval() {}, setTimeout: () => 1, clearTimeout() {},
+  });
+  const reason = new TypeError('Cannot read private@example.com');
+  reason.stack = 'TypeError: private@example.com\n at https://www.curtainsuk.com/cdn/shop/curtainsuk-test.js?secret=1:8:3';
+  listeners.unhandledrejection({ reason });
+  listeners.unhandledrejection({ reason });
+  await window.fetch('/apps/curtainsuk-decision/catalog?customer=private@example.com', { method: 'GET' });
+  await Promise.resolve();
+  assert.equal(requests.length, 2, 'duplicate browser fault is suppressed and one API fault is sent');
+  for (const request of requests) {
+    assert.equal(request.credentials, 'omit');
+    assert.doesNotMatch(request.body, /private@example\.com|secret=|customer=|example\.com\/private|VISIT_START|PAGE_VIEW/);
+    const [event] = parseJourneyBatch(JSON.parse(request.body), 'Chrome/120');
+    assert.equal(event.kind, 'ERROR');
+    assert.equal(event.page_path, '/pages/fabric-library');
+    assert.match(event.release, /-fault$/);
+    assert.equal(event.channel, null);
+    assert.equal(event.event_id, event.journey_id);
+    assert.equal(event.error_detail?.messageText, undefined);
+  }
+});
+
 test('server rejects free-form error detail that could contain customer data', () => {
   assert.throws(() => parseJourneyBatch({ journeyId: randomUUID(), events: [{ eventId: randomUUID(),
     kind: 'ERROR', name: 'BROWSER_ERROR', pagePath: '/', code: 'PROMISE_REJECTION', status: null,

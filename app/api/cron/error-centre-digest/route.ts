@@ -6,6 +6,7 @@ import { retrySampleCreditEmails } from '@/lib/storefront/sample-credit-server';
 import { sendSampleToSaleJourney } from '@/lib/storefront/sample-to-sale-email-server';
 import { recordOperationalError } from '@/lib/storefront/operational-error';
 import { sendCriticalErrorAlert } from '@/lib/storefront/critical-error-alert';
+import { sendMonitorStaleAlert } from '@/lib/storefront/synthetic-monitor-alert';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -25,6 +26,8 @@ export async function GET(request: Request) {
     catch { await recordOperationalError({routePath:'/api/cron/error-centre-digest',code:'SAMPLE_TO_SALE_EMAIL_QUEUE_FAILED',source:'HANDLED'}); }
     try { await sendCriticalErrorAlert(); }
     catch { await recordOperationalError({routePath:'/api/cron/error-centre-digest',code:'CRITICAL_ALERT_DELIVERY_FAILED',source:'HANDLED'}); }
+    try { await sendMonitorStaleAlert(); }
+    catch { await recordOperationalError({routePath:'/api/cron/error-centre-digest',code:'MONITOR_STALE_ALERT_FAILED',source:'HANDLED'}); }
     await sendHourlyErrorCentreDigest(previousCompletedHour());
     return new NextResponse(null, { status: 204, headers: PRIVATE_NO_STORE_HEADERS });
   } catch {

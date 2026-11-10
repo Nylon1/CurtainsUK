@@ -1,0 +1,31 @@
+{% doc %}
+  Compact newsletter signup and sample offer entry point for storefront and Design My Home cart.
+{% enddoc %}
+<dialog class="cuk-welcome" id="cuk-welcome" aria-labelledby="cuk-welcome-title" data-cuk-welcome>
+  <button class="cuk-welcome__close" type="button" data-welcome-close aria-label="Close welcome offer">×</button>
+  <p class="cuk-welcome__eyebrow">Welcome offer</p>
+  <h2 id="cuk-welcome-title">5% off your first order</h2>
+  <div data-welcome-form-panel>
+    <p>Sign up for your code. Use it on curtains, Roman blinds, cushions and motorised tracks in Design My Home.</p>
+    {% form 'customer', id: 'ContactWelcome' %}
+      <input type="hidden" name="contact[tags]" value="newsletter,welcome5">
+      <label for="cuk-welcome-email">Email address</label>
+      <input id="cuk-welcome-email" type="email" name="contact[email]" value="{{ form.email | escape }}" autocomplete="email" required {% if form.errors %}aria-invalid="true" aria-describedby="cuk-welcome-error"{% endif %}>
+      {% if form.errors %}<p class="cuk-welcome__error" id="cuk-welcome-error" role="alert">Please check your email address and try again.</p>{% endif %}
+      <button class="cuk-welcome__primary" type="submit">Get my 5% code</button>
+      {% if form.posted_successfully? %}<span data-welcome-success hidden></span>{% endif %}
+    {% endform %}
+    <small>By signing up, you agree to receive our emails. Unsubscribe any time. <a href="/policies/privacy-policy">Privacy policy</a>.</small>
+  </div>
+  <div data-welcome-code-panel hidden>
+    <p>Your code is ready. We’ll apply it to your Design My Home cart on this device if no other promotion is in use.</p>
+    <div class="cuk-welcome__code"><strong>WELCOME5</strong><button type="button" data-welcome-copy>Copy code</button></div>
+    <a class="cuk-welcome__primary" href="/pages/build-my-rooms">Go to my cart</a>
+  </div>
+  <div class="cuk-welcome__samples">
+    <strong>Want to see fabrics first?</strong>
+    <p>Order samples to qualify for <strong>10% off</strong> your next eligible order. Eligible sample costs can also be credited towards made-to-measure curtains.</p>
+    <a href="/pages/fabric-library?view=browse-fabrics">Explore fabrics and samples →</a>
+    <details><summary>Offer details</summary><p>Use one percentage code per order: WELCOME5 or your personal sample 10% code. The personal offer needs a £150 product order and is sent after eligible samples are delivered. Sample credit has separate rules, applies to curtains only, and can be used with either code. Delivery is excluded from discounts.</p></details>
+  </div>
+</dialog>

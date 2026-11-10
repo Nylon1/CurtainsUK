@@ -825,5 +825,8 @@ if (document.readyState === "loading") {
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    {{ 'curtainsuk-welcome-offer.css' | asset_url | stylesheet_tag }}
+    {% render 'curtainsuk-welcome-offer' %}
+    <script src="{{ 'curtainsuk-welcome-offer.js' | asset_url }}" defer></script>
   </body>
 </html>

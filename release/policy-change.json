@@ -1,13 +1,14 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The My Home checkout API rejected an otherwise valid reviewed order unless the request contained measurementsConfirmed: true. The cart no longer showed a confirmation checkbox, but its JavaScript silently supplied that flag. A direct request without it returned a generic input error.",
-  "newRule": "Treat the Order now action and valid current review as the cart-level confirmation. Do not require or send the removed top-level measurementsConfirmed field, while respecting an explicit false value. Continue revalidating each product specification, stock, current price, review identity and idempotency key. Pass the internal confirmation to the existing product checkout contracts after those checks succeed.",
-  "reason": "A post-release live test proved the shared-fabric order could be quoted and purchased through the browser, but a request omitting the old checkbox field failed before checkout. The owner explicitly required server acceptance without the removed checkbox and a one-click customer path.",
-  "ownerApprovedDecision": "The owner asked for a complete urgent checkout fix and held payment testing. This follow-up requires exact-head protected owner approval before merge and production release.",
+  "previousRule": "The production checkout regression suite covered the personal sample offer and sample credit, but had no WELCOME5 route or database reservation check. The shared draft-order offer adapter changed the mixed-cart idempotency tag on retry.",
+  "newRule": "Cover guest WELCOME5 pricing, sample credit, four product types, exact draft-order totals, and stable retries. Preserve the personal 10% eligibility rules and one percentage code per order. The private sample-credit reservation accepts the server-calculated 5% welcome saving in addition to eligible curtain sample credit.",
+  "reason": "The owner requested a useful welcome signup popup and a cart entry point. A new mixed-cart test exposed a retry identity conflict, and the existing private sample-credit reservation would reject a valid WELCOME5 plus credit checkout without a scoped migration.",
+  "ownerApprovedDecision": "The owner requested implementation of this welcome offer. The protected release still requires Nylon1 to post the exact current PR head approval comment before merge or production deployment.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
     "lib/cushion-studio/__tests__/my-home.test.ts",
-    "lib/smart-track/__tests__/smart-track.test.ts",
+    "lib/storefront/__tests__/sample-to-sale-offer.test.ts",
+    "supabase/migrations/20261110054127_welcome_offer_sample_credit.sql",
     "release/policy-change.json"
   ]
 }

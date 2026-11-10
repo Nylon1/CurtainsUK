@@ -62,7 +62,7 @@
         <div class="cukstudio__viewer-toolbar"><span class="cukstudio__preview-name"><span class="cukstudio__live-dot" aria-hidden="true"></span>{{ 'homepage_studio.visualiser.preview_label' | t }}</span><div class="cukstudio__lighting" data-lighting hidden role="group" aria-label="{{ 'homepage_studio.visualiser.lighting_label' | t | escape }}"><button type="button" data-mode="daylight" aria-pressed="true"><span aria-hidden="true">☀</span> {{ 'homepage_studio.visualiser.daylight' | t }}</button><button type="button" data-mode="evening" aria-pressed="false"><span aria-hidden="true">☾</span> {{ 'homepage_studio.visualiser.evening' | t }}</button></div></div>
         <div class="cukstudio__room-stage" id="cukstudio-room-panel-{{ section.id }}" data-room-panel>
           <img data-room-image src="{{ 'cuk-home-living-daylight.webp' | asset_url }}" width="1026" height="642" loading="lazy" alt="{{ 'homepage_studio.rooms.living_alt' | t | escape }}">
-          <a class="cukstudio__hotspot" data-room-hotspot href="/pages/room-visualiser?room=living&amp;fabric=sdg-f1541-01"><span aria-hidden="true">+</span>{{ 'homepage_studio.visualiser.hotspot' | t }}</a>
+          <a class="cukstudio__hotspot" data-room-hotspot href="/pages/room-visualiser?room=living"><span aria-hidden="true">+</span>{{ 'homepage_studio.visualiser.hotspot' | t }}</a>
           <div class="cukstudio__stage-caption"><span data-room-title>{{ 'homepage_studio.rooms.living_title' | t }}</span><span data-room-mood>{{ 'homepage_studio.visualiser.daylight' | t }}</span></div>
         </div>
         <div class="cukstudio__room-tabs" data-room-tabs aria-label="{{ 'homepage_studio.visualiser.choose_room' | t | escape }}">
@@ -74,10 +74,10 @@
               assign day_image = room | prepend: 'cuk-home-' | append: '-daylight.webp'
               assign evening_image = room | prepend: 'cuk-home-' | append: '-evening.webp'
             %}
-            <a href="/pages/room-visualiser?room={{ room }}&amp;fabric=sdg-f1541-01" class="cukstudio__room-tab{% if forloop.first %} is-active{% endif %}" id="cukstudio-room-tab-{{ section.id }}-{{ room }}" data-room="{{ room }}" data-daylight="{{ day_image | asset_url }}" data-evening="{{ evening_image | asset_url }}" data-title="{{ title_key | t | escape }}" data-alt="{{ alt_key | t | escape }}" data-description="{{ text_key | t | escape }}"><img src="{{ day_image | asset_url }}" width="1026" height="642" loading="lazy" alt=""><span><strong>{{ title_key | t }}</strong><small>{{ text_key | t }}</small></span><span class="cukstudio__room-arrow" aria-hidden="true">↗</span></a>
+            <a href="/pages/room-visualiser?room={{ room }}" class="cukstudio__room-tab{% if forloop.first %} is-active{% endif %}" id="cukstudio-room-tab-{{ section.id }}-{{ room }}" data-room="{{ room }}" data-daylight="{{ day_image | asset_url }}" data-evening="{{ evening_image | asset_url }}" data-title="{{ title_key | t | escape }}" data-alt="{{ alt_key | t | escape }}" data-description="{{ text_key | t | escape }}"><img src="{{ day_image | asset_url }}" width="1026" height="642" loading="lazy" alt=""><span><strong>{{ title_key | t }}</strong><small>{{ text_key | t }}</small></span><span class="cukstudio__room-arrow" aria-hidden="true">↗</span></a>
           {% endfor %}
         </div>
-        <div class="cukstudio__viewer-footer"><p data-room-description>{{ 'homepage_studio.rooms.living_text' | t }}</p><a class="cukstudio__button" data-room-cta href="/pages/room-visualiser?room=living&amp;fabric=sdg-f1541-01"><span>{{ 'homepage_studio.visualiser.cta' | t }}</span><span aria-hidden="true">↗</span></a></div>
+        <div class="cukstudio__viewer-footer"><p data-room-description>{{ 'homepage_studio.rooms.living_text' | t }}</p><a class="cukstudio__button" data-room-cta href="/pages/room-visualiser?room=living"><span>{{ 'homepage_studio.visualiser.cta' | t }}</span><span aria-hidden="true">↗</span></a></div>
         <p class="visually-hidden" data-room-status role="status" aria-live="polite"></p><p class="cukstudio__preview-error" data-room-error hidden>{{ 'homepage_studio.visualiser.error' | t }}</p>
       </div>
       <div class="cukstudio__preview-notes"><p>{{ 'homepage_studio.visualiser.advisory' | t }}</p><a href="/pages/samples">{{ 'homepage_studio.visualiser.samples' | t }} <span aria-hidden="true">↗</span></a></div>

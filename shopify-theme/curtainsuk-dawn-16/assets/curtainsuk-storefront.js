@@ -1169,8 +1169,8 @@
           : await fetchJson(endpoint(root.dataset.engineBase, path), { method: "POST", body: JSON.stringify(body), headers: { 'Content-Type': 'application/json', 'X-CurtainsUK-Storefront-Release': mtm.release } });
         if (submittedSequence !== livePriceSequence) return;
         // Refresh retired presentation copy without changing a resumed price or identity.
-        const deliveryLabel = response.delivery === "UK delivery shown separately; postcode and packed parcel confirmation required"
-          ? "UK delivery shown separately after postcode confirmation. Specialist delivery confirmed after review"
+        const deliveryLabel = response.delivery?.includes("postcode")
+          ? "UK delivery £12.95 per order, added in Shopping Cart."
           : response.delivery || "Delivery shown separately";
         localStorage.setItem(EVALUATION_KEY, JSON.stringify({configuration: body, calculation: response, checkoutAttempted: matchingSaved && savedEvaluation.checkoutAttempted === true}));
         const isManualQuote = response.outcome === "MANUAL_QUOTE";

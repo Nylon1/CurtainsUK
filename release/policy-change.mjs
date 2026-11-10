@@ -48,6 +48,7 @@ export async function runPolicyCheck() {
   const changes = execFileSync('git', ['diff', '--name-only', base, head], {encoding: 'utf8'}).trim().split('\n');
   const protectedPath = path =>
     path.startsWith('release/') || path.startsWith('.github/') || path.includes('/__tests__/') ||
+    ['scripts/prepare-production-source.mjs','scripts/audit-production-export.mjs','scripts/deploy-verified-production.mjs','scripts/verify-released-visualiser-assets.mjs'].includes(path) ||
     ['package.json', 'package-lock.json'].includes(path);
 
   if (!changes.some(protectedPath)) return;

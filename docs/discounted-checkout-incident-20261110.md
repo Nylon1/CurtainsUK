@@ -14,6 +14,16 @@ The cart now retains the previous quote when an entered code fails, labels it as
 
 ## Verification and remaining release checks
 
-The new regression test exercises all three derived-key prefixes and rejects an unbound non-UUID key. Smart-track, cushion, theme and TypeScript checks pass locally. The production API and MAIN theme still require deployment and a fresh live four-product checkout check before this incident can be closed. Verify £1,314.40 at payment, repeat with a fresh cart, and confirm retry does not create duplicate drafts. Test invalid and valid codes, sample credit, desktop and mobile scrolling, and the final Shopify total. A paid order remains on hold.
+The new regression test exercises all three derived-key prefixes and rejects an unbound non-UUID key. Smart-track, cushion, theme and TypeScript checks passed locally. The original release checklist is superseded by the live evidence below. A paid order remains on hold.
 
 The 8–10-second review delay remains open. Product authorities run concurrently, then the combined curtain-and-cushion availability review runs after them; current timing data does not isolate which authority dominates the delay.
+
+## Live verification and source of truth
+
+PR #374 merged as `f3bf6addb93e6eb96ee6cb6e8514c222f6238a2e` and reached the production API and MAIN Shopify theme. The exact four-product WELCOME5 cart reached Shopify payment on the first click with £1,369.95 goods, £12.95 UK delivery, a £68.50 saving and £1,314.40 total. The curtain, cushion, Roman and motorised-track specifications were present. Guest checkout did not require sign-in. Returning and retrying used the same Shopify checkout URL; duplicate draft count was not independently checked in Shopify Admin. No payment or order was submitted.
+
+An invalid code displayed a clear correction message and preserved the previous total; checkout remained disabled until WELCOME5 was reapplied. The valid code survived refresh and back navigation. Mobile scrolling to the footer and back did not cover content. A valid private sample-credit code was unavailable for a positive live redemption test.
+
+PR #375 merged as `e7a83c770eda826bbb8fd0b8bd88cc77c6f314aa` and is the current live runtime source. The production API deployment is `dpl_CpYnqjxFe3MZNdzTSpZ573aojZ1K`; all three production aliases point to it. The two changed MAIN theme assets were read back byte for byte against the verified source. This follow-up corrected old curtain delivery wording, removed premature track checkout wording, and kept the desktop Order now button fixed while scrolling. The live four-item cart showed £1,382.90 before a code with a visible fixed Order now button.
+
+The e7a83 export audited 11,565 tracked files. Exactly 146 published visualiser files used their manifest-matched CRLF bytes; the protected guard passed 8 packs and 3,859 files. The source receipt is `C:/Users/hamza/curtainsuk-pr375-source.receipt.json`. An unexpected `.env.local` in the older export was removed; future release packaging rejects extra files.

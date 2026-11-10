@@ -17,10 +17,12 @@ import {
 } from "./server";
 export function createTrackServices(
   context: ShopifyAppProxyContext,
-  options:{forRoman?:boolean}={},
+  options:{forRoman?:boolean;ownerAttemptKey?:string}={},
 ): SmartTrackServices | undefined {
   if (!smartTrackEnabled()&&!options.forRoman) return;
-  const owner = (key: string) => myHomeCheckoutOwnerHash(context, key);
+  // Discounted groups have a derived persistence key. Ownership must still be
+  // bound to the original random browser attempt, not that derived key.
+  const owner = (key: string) => myHomeCheckoutOwnerHash(context, options.ownerAttemptKey ?? key);
   const legacyOwner = context.loggedInCustomerId ? cushionOwnerHash(context) : null;
   const executionOwners = new Map<string, string>();
   const checkout = async (key: string, ownerHash: string) => {

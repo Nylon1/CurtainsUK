@@ -249,7 +249,7 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
         const reviewOnly = operation === "my-home-review" || !body.cushions;
         const key = operation === "my-home-review" ? "my-home-review-only" : body.idempotencyKey;
         if (typeof key !== "string") throw Error("MY_HOME_INPUT_INVALID");
-        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly,myHomeCheckout:true}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks||body.romans?createTrackServices(context,{forRoman:Boolean(body.romans)}):undefined});
+        const authority = (services.myHomeServices ?? createMyHomeServices)(services.checkoutServices(context,key,{reviewOnly,myHomeCheckout:true}),{cushionPurchasesEnabled:services.purchasesEnabled(),tracks:body.tracks||body.romans?createTrackServices(context,{forRoman:Boolean(body.romans),ownerAttemptKey:operation==='my-home-checkout'?key:undefined}):undefined});
         const offer={preview:(code:unknown,reviewId:string,goodsMinor:number)=>previewPromotionCode(code,reviewId,goodsMinor,context.loggedInCustomerId)};
         result = operation === "my-home-review" ? await reviewMyHomeWithSampleCredit(body as MyHomeInput,authority,{preview:previewSampleCredit},offer) : await checkoutMyHomeWithSampleCredit(body as MyHomeCheckoutInput,authority,{preview:previewSampleCredit},offer);
       } else if (request.method === "GET" && operation === "catalogue")
@@ -447,7 +447,12 @@ export function createHostedCushionHandler(services: HostedCushionServices) {
           },
           { status: 413, headers: responseHeaders },
         );
-      if (clientInputErrors.has(code) || ["MY_HOME_INPUT_INVALID","MY_HOME_IDENTITY_MISMATCH","MY_HOME_CHECKOUT_INVALID"].includes(code))
+      if (code === "MY_HOME_CHECKOUT_INVALID")
+        return Response.json(
+          { code, message: "We could not open checkout. Your order is saved. Please try again." },
+          { status: 400, headers: responseHeaders },
+        );
+      if (clientInputErrors.has(code) || ["MY_HOME_INPUT_INVALID", "MY_HOME_IDENTITY_MISMATCH"].includes(code))
         return Response.json(
           {
             code: "CUSHION_INPUT_INVALID",

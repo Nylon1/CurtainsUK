@@ -25,9 +25,12 @@ A manual production deployment is permitted only when:
 
 1. the code being deployed is the exact current HEAD of protected branch `release/production`;
 2. the required PR checks passed before that code entered the protected branch;
-3. the normal CurtainsUK Vercel production deployment method is used;
-4. post-deployment smoke checks are run immediately;
-5. any regression stops the release and restores the prior live deployment.
+3. `scripts/prepare-production-source.mjs` exports the exact Git tree without an intermediate tar file, audits every tracked file and rejects unexpected files;
+4. the published visualiser asset hashes pass the protected asset guard, with only manifest-matched line-ending exceptions;
+5. `scripts/deploy-verified-production.mjs` rechecks the receipt immediately before staging a Vercel production build;
+6. changed MAIN Shopify theme assets are read back and compared with the verified export;
+7. post-deployment smoke checks are run immediately;
+8. any regression stops the release and restores the prior live deployment.
 
 Feature branches, local worktrees and stale SHAs must not be deployed directly to Production.
 
@@ -49,12 +52,24 @@ The validation workflow runs live smoke as advisory so its results remain visibl
 
 `.github/workflows/curtainsuk-production-release.yml` is a protected release-validation workflow. It:
 
+- exports the complete exact protected Git tree;
+- audits every tracked file and rejects unexpected files;
+- checks published immutable visualiser asset hashes;
+- re-audits the export and uploads its source receipt;
 - validates the candidate against the protected capability baseline;
 - runs the current live smoke script for advisory evidence;
 - records the exact protected SHA eligible for manual deployment;
 - uploads the production-gate artifacts.
 
 It deliberately does not contain a Vercel deployment credential or hidden deploy command.
+
+The required PR gate performs the same export, full integrity audit, protected asset guard and receipt check for each candidate. A release operator uses:
+
+`node scripts/prepare-production-source.mjs <new-export-directory>`
+
+`node scripts/deploy-verified-production.mjs <new-export-directory> <vercel-scope>`
+
+The deployment command stages a production build without moving the live alias. Promote it only after staged smoke checks pass. A Vercel project link in `.vercel/project.json` is the only deployment metadata allowed alongside the verified Git tree. Any other extra file, including `.env.local`, blocks the release.
 
 ## Future automation
 

@@ -38,6 +38,15 @@ jobs:
         run: |
           npm ci --ignore-scripts --no-audit --prefix candidate
           npm ci --ignore-scripts --no-audit --prefix trusted
+      - name: Export and audit the complete candidate Git tree
+        env:
+          CANDIDATE_SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        working-directory: candidate
+        run: |
+          node scripts/prepare-production-source.mjs --candidate "$RUNNER_TEMP/curtainsuk-candidate-export"
+          node scripts/prepare-production-source.mjs --verify "$RUNNER_TEMP/curtainsuk-candidate-export"
+          mkdir -p artifacts/production-gate
+          cp "$RUNNER_TEMP/curtainsuk-candidate-export.receipt.json" artifacts/production-gate/source-receipt.json
       - name: Run baseline assertions against both trees
         run: node trusted/release/gate.mjs candidate trusted
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

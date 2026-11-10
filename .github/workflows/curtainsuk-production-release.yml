@@ -20,6 +20,12 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.14.0'
+      - name: Export, audit and guard the exact protected source
+        run: |
+          node scripts/prepare-production-source.mjs "$RUNNER_TEMP/curtainsuk-release-export"
+          node scripts/prepare-production-source.mjs --verify "$RUNNER_TEMP/curtainsuk-release-export"
+          mkdir -p artifacts/production-gate
+          cp "$RUNNER_TEMP/curtainsuk-release-export.receipt.json" artifacts/production-gate/source-receipt.json
       - name: Install and compare with recorded production source
         run: |
           npm ci --ignore-scripts --no-audit
@@ -33,7 +39,7 @@ jobs:
       - name: Confirm manual release eligibility
         run: |
           echo "Protected validation passed for $GITHUB_SHA."
-          echo "Owner-authorised manual Vercel deployment is permitted only from this exact release/production HEAD."
+          echo "Owner-authorised manual Vercel deployment requires scripts/deploy-verified-production.mjs and its exact-source receipt."
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

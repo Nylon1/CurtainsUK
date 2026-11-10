@@ -268,7 +268,7 @@ test("My Home reviews both types, one curtain delivery and latest confirmed hold
   assert.doesNotMatch(JSON.stringify(review),/stockRequirements|fabricMetres/);
   assert.deepEqual(f.effects,[]);
 });
-test("My Home reuses its curtain review in mixed preparation while retaining fresh stock checks",async()=>{
+test("My Home reuses the same request's checked curtain calculations and stock, then checks combined stock",async()=>{
   const f=await homeFixture();
   const timings:Parameters<NonNullable<MyHomeServices['reviewTiming']>>[0][]=[];
   f.services.reviewTiming=timing=>{timings.push(timing);};
@@ -279,12 +279,14 @@ test("My Home reuses its curtain review in mixed preparation while retaining fre
   f.services.mixed.house.stock=async (id,metres)=>{stockChecks++;return stock(id,metres);};
   const review=await reviewMyHome(f.input,f.services);
   assert.equal(review.ready,true);
-  assert.equal(calculations,2);
-  assert.equal(stockChecks,2);
+  assert.equal(calculations,1);
+  assert.equal(stockChecks,1);
   assert.equal(f.seen(),f.curtainMetres+0.57);
   assert.deepEqual(timings[0].productTypes,['CURTAIN','CUSHION']);
-  assert.equal(timings[0].calls.curtainPricing.count,2);
-  assert.equal(timings[0].calls.curtainStock.count,2);
+  assert.equal(timings[0].calls.curtainPricing.count,1);
+  assert.equal(timings[0].calls.curtainStock.count,1);
+  assert.equal(timings[0].calls.cushionFacts.count,1);
+  assert.equal(timings[0].calls.cushionRules.count,1);
   assert.equal(timings[0].calls.combinedStock.count,1);
   assert.ok(timings[0].phasesMs.mixedCurtainPreparation>=0);
   assert.ok(timings[0].phasesMs.mixedCushionPreparation>=0);
@@ -392,6 +394,22 @@ test("mixed shared stock failure blocks the order even when each product authori
   assert.equal(review.ready,false);assert.equal(review.totalMinor,null);
   assert.match(review.issues.join(" "),/Combined.*availability/);
   assert.deepEqual(f.effects,[]);
+});
+
+test("checkout rechecks stock after cart review and uses one current curtain calculation",async()=>{
+  const f=await homeFixture(),review=await reviewMyHome(f.input,f.services);
+  const calculate=f.services.mixed.house.calculate;
+  let calculations=0;
+  f.services.mixed.house.calculate=async configuration=>{calculations++;return calculate(configuration);};
+  await checkoutMyHome(checkoutInput(f.input,review),f.services);
+  assert.equal(calculations,1);
+
+  const blocked=await homeFixture(),first=await reviewMyHome(blocked.input,blocked.services);
+  let stockChecks=0;
+  blocked.services.mixed.house.stock=async()=>{stockChecks++;return false;};
+  await assert.rejects(checkoutMyHome(checkoutInput(blocked.input,first),blocked.services),/MY_HOME_REVIEW_CHANGED/);
+  assert.equal(stockChecks,1);
+  assert.deepEqual(blocked.effects,[]);
 });
 
 test('curtain and Roman sharing available fabric can order; their complete quantity is checked',async()=>{

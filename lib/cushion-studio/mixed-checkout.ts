@@ -80,6 +80,7 @@ export async function reviewMixedCheckout(
         acceptedPriceChanges,
       },
       services.house,
+      preReviewedHouse?.result,
     );
     if (!house.prepared) throw Error("MIXED_CURTAIN_REVIEW_CHANGED");
     return { house, acceptedPriceChanges };
@@ -157,13 +158,17 @@ export async function executeMixedCheckout(
     idempotencyKey: string;
   },
   services: MixedServices,
+  preReviewedHouse?: { request: HouseReviewRequest; result: Awaited<ReturnType<typeof reviewHouse>> },
 ) {
   if (
     input.measurementsConfirmed !== true ||
     !/^[a-zA-Z0-9-]{8,100}$/.test(input.idempotencyKey)
   )
     throw Error("MIXED_CONFIRMATION_REQUIRED");
-  // Check the exact customer-reviewed native curtain token before the second fresh review.
+  if (preReviewedHouse && preReviewedHouse.request !== input.house)
+    throw Error("MIXED_CURTAIN_REVIEW_CHANGED");
+  // Check the exact customer-reviewed native curtain token against a current
+  // review. My Home may reuse its own review from this same checkout request.
   const accepted = await prepareHouseCheckout(
     {
       house: input.house,
@@ -172,9 +177,10 @@ export async function executeMixedCheckout(
       acceptedPriceChanges: input.acceptedPriceChanges,
     },
     services.house,
+    preReviewedHouse?.result,
   );
   if (!accepted.prepared) throw Error("MIXED_CURTAIN_REVIEW_CHANGED");
-  const reviewed = await reviewMixedCheckout(input, services);
+  const reviewed = await reviewMixedCheckout(input, services, {request:input.house,result:accepted.review});
   if (reviewed.reviewId !== input.reviewId)
     throw Error("MIXED_PRICE_OR_STOCK_CHANGED");
   if (

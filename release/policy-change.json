@@ -1,12 +1,11 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The protected release checks require exact-head owner approval when checkout regression tests or release policy records change. Mixed-cart reviews repeated a full curtain review for preparation and again for delivery after the initial My Home review.",
-  "newRule": "The mixed review reuses the initial signed curtain review within the same request, keeps a fresh curtain price and stock revalidation during preparation, runs independent cushion preparation concurrently, and calculates delivery from those freshly verified curtain configurations. New regression assertions cover shared stock, overlap, one delivery and the absence of writes. A Git attribute preserves the exact bytes of one previously unmarked immutable visualiser pack on Windows checkouts.",
-  "reason": "Live mixed-cart reviews took 9–12 seconds. Removing redundant reads can improve response time without reusing stale prices, bypassing combined fabric checks, changing delivery charges or weakening the protected asset guard. Anonymous phase timings will measure the production result.",
-  "ownerApprovedDecision": "The owner prioritised mixed-cart performance and asked for the checkout to remain easy and reliable. The protected PR must receive Nylon1's exact-current-head approval comment before merge or deployment; this record alone grants no approval.",
+  "previousRule": "The mixed cart repeated current curtain calculations, fabric and stock checks and cushion facts and rules inside one read-only review request, then ran Roman combined stock after the mixed review. Checkout separately revalidated all authorities.",
+  "newRule": "One cart review may reuse its own freshly checked curtain calculations, fabric availability, delivery, cushion facts and cushion rules for mixed preparation. Combined curtain and cushion stock and combined Roman stock remain mandatory, and Roman stock may run alongside mixed preparation. Checkout still performs a separate fresh review before any order write.",
+  "reason": "Production timing showed a 9.3-second four-product review, including a 3.7-second duplicate curtain preparation. Same-request reuse removes redundant supplier reads without accepting client-provided prices or stock and keeps every combined shortage check.",
+  "ownerApprovedDecision": "The owner requested a faster and reliable checkout. This protected regression-test and policy-record change requires Nylon1's exact-current-head PR comment before merge or deployment; this record does not grant approval.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
-    "lib/cushion-studio/__tests__/mixed.test.ts",
     "lib/cushion-studio/__tests__/my-home.test.ts",
     "release/policy-change.json"
   ]

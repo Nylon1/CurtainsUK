@@ -1,7 +1,7 @@
 import { createImmutableConfigurationSnapshot, evaluateCheckoutGate, prepareStagingCheckoutHandoff } from './checkout-gates';
 import { stagingCheckoutIdentity } from './checkout-idempotency';
 import { buildHouseDraftContract, type HouseCurtainReference } from './rooms-order-contract';
-import { reviewHouse, reviewFinancialDigest, roomsDigest, unseal, type HouseReviewClaims, type HouseReviewRequest, type RoomsServices } from './rooms-core';
+import { houseReviewAuthority, reviewHouse, reviewFinancialDigest, roomsDigest, unseal, type HouseReviewClaims, type HouseReviewRequest, type RoomsServices } from './rooms-core';
 import type { ShippingQuote } from './shipping';
 import type { StagingPriceResponse } from './staging-pricing';
 
@@ -16,23 +16,30 @@ export type HouseCheckoutServices = RoomsServices & {
 };
 
 /** Preparation only. All effects are in the server binding; no browser price is authority. */
-export async function prepareHouseCheckout(input: HouseCheckoutInput, services: HouseCheckoutServices) {
+export async function prepareHouseCheckout(input: HouseCheckoutInput, services: HouseCheckoutServices, preReviewed?: Awaited<ReturnType<typeof reviewHouse>>) {
   if (!input || input.measurementsConfirmed !== true || !Array.isArray(input.acceptedPriceChanges)) throw Error('ROOMS_CONFIRMATION_REQUIRED');
   const claims = unseal<HouseReviewClaims>('review', input.reviewToken, services.secret);
   if (!Number.isFinite(claims.expiresAt) || claims.expiresAt <= Date.parse(services.now())) throw Error('ROOMS_REVIEW_EXPIRED');
   if (claims.requestDigest !== roomsDigest(input.house)) throw Error('ROOMS_REVIEW_CHANGED');
+  const authority = preReviewed ? houseReviewAuthority(preReviewed) : undefined;
+  if (preReviewed && (!authority || authority.request !== input.house)) throw Error('ROOMS_REVIEW_CHANGED');
   const prices: StagingPriceResponse[] = [];
   let delivery: ShippingQuote | undefined;
-  const review = await reviewHouse(input.house, { ...services,
+  const review = preReviewed ?? await reviewHouse(input.house, { ...services,
     async calculate(configuration) { const price = await services.calculate(configuration); prices.push(price); return price; },
     async delivery(...args) { delivery = await services.delivery(...args); return delivery; },
   });
+  if (authority) {
+    prices.push(...authority.unitPrices);
+    delivery = authority.delivery ?? undefined;
+  }
   // Return fresh, line-specific state so the customer can acknowledge a new price or remove an unavailable curtain.
   if (!review.ready || claims.financialDigest !== reviewFinancialDigest(review)) return { prepared: false as const, review };
   for (const line of review.lines) {
     if (line.status === 'PRICE_CHANGED' && !input.acceptedPriceChanges.some(ack => ack.configuration_id === line.configuration_id && ack.currentPrice === line.currentPrice)) throw Error('ROOMS_CONFIRMATION_REQUIRED');
   }
   if (!delivery || delivery.status !== 'READY') throw Error('ROOMS_DELIVERY_INVALID');
+  if (prices.length !== review.lines.length) throw Error('ROOMS_REVIEW_CHANGED');
   const curtains: HouseCurtainReference[] = [];
   for (const [index, line] of review.lines.entries()) {
     const configuration = line.configuration!, calculation = prices[index];

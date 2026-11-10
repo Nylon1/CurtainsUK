@@ -73,7 +73,7 @@ async function cushionQuote(input: NonNullable<MyHomeInput["cushions"]>, service
     const individual = quoteCushionSet([entry],rules);
     return [entry.spec.id,{ready:individual.ready,issues:individual.issues}] as const;
   }));
-  return {set,individualReadiness};
+  return {set,individualReadiness,facts,rules};
 }
 
 async function currentReview(input: MyHomeInput, services: MyHomeServices) {
@@ -92,7 +92,7 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
       entry.count++;entry.totalMs+=duration;entry.maxMs=Math.max(entry.maxMs,duration);calls[name]=entry;
     }
   };
-  const mixedServices:MixedServices=services.reviewTiming?{...services.mixed,
+  let mixedServices:MixedServices=services.reviewTiming?{...services.mixed,
     house:{...services.mixed.house,
       calculate:instrument("curtainPricing",services.mixed.house.calculate),
       fabric:instrument("curtainFabric",services.mixed.house.fabric),
@@ -118,6 +118,18 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
     }))) : Promise.resolve([]),
     input.romans ? timed("romanQuote",(async()=>Promise.all(input.romans!.specs.map(services.romanQuote??(await import('../roman-blind/pricing')).quoteRoman)))()) : Promise.resolve([] as RomanQuote[]),
   ]);
+  if(cushionReview){
+    // Preparation in this same request consumes the facts and rules just read
+    // for the customer's quote. Checkout runs a separate fresh review.
+    mixedServices={...mixedServices,cushion:{...mixedServices.cushion,
+      facts:async id=>{
+        const fact=cushionReview.facts.get(id);
+        if(!fact)throw Error('CUSHION_FABRIC_CURRENT_RECORD_REQUIRED');
+        return fact;
+      },
+      rules:async()=>cushionReview.rules,
+    }};
+  }
   const cushion = cushionReview?.set ?? null;
   if(new Set([...tracks.map(t=>t.spec.id),...romans.map(r=>r.spec.id),...(cushion?.specs.map(s=>s.id)??[]),...(house?.lines.map(l=>l.configuration_id)??[])]).size!==tracks.length+romans.length+(cushion?.specs.length??0)+(house?.lines.length??0))throw Error('MY_HOME_IDENTITY_MISMATCH');
   const trackDelivery = tracks.length ? smartTrackDelivery(input.postcode) : null;
@@ -160,14 +172,6 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
     ...(!dispatch ? ["A confirmed, comparable dispatch estimate is required for every product type. Your items remain saved and will be held together."] : []),
   ];
   const mixedInput = house && cushion ? {house:input.curtains!,designId:input.id,specs:cushion.specs,expectedQuoteId:cushion.quoteId} : null;
-  let mixed: Awaited<ReturnType<typeof reviewMixedCheckout>> | null = null;
-  if (mixedInput && house!.ready && cushion!.ready) {
-    try { mixed = await timed("mixedReview",reviewMixedCheckout(mixedInput,mixedServices,{request:input.curtains!,result:house!},(phase,duration)=>{phasesMs[phase]=duration;})); }
-    catch (error) {
-      if (!(error instanceof Error) || !["MIXED_COMBINED_STOCK_CHANGED","MIXED_DELIVERY_REVIEW_REQUIRED","MIXED_DELIVERY_POLICY_REQUIRED"].includes(error.message)) throw error;
-      issues.push(error.message === "MIXED_COMBINED_STOCK_CHANGED" ? "Combined curtain and cushion fabric availability needs review." : "Combined delivery needs review.");
-    }
-  }
   const cushionRequirements = new Map<string, number>();
   for (const cloth of cushion?.cutPlan.fabrics ?? []) {
     cushionRequirements.set(cloth.fabricId,cloth.orderedMetres === null ? NaN :
@@ -176,14 +180,25 @@ async function currentReview(input: MyHomeInput, services: MyHomeServices) {
   for (const spec of cushion?.specs ?? []) for (const id of [spec.fabricId,spec.pipingFabricId]) {
     if (id && !cushionRequirements.has(id)) cushionRequirements.set(id,NaN);
   }
-  const combinedRomanStockReady = !romans.length || await timed("combinedRomanStock",combinedRomanStockAvailable({
+  const romanStockOutcome = (!romans.length ? Promise.resolve(true) : timed("combinedRomanStock",combinedRomanStockAvailable({
     curtains: house?.stockRequirements ?? new Map(), cushions:cushionRequirements, romans,
     curtainStock: mixedServices.stock,
     romanStock: services.romanCombinedStock ?? (async (supplierId,supplierSku,metres) => {
       const stock=await (await import('../storefront/daily-stock-server')).dailyStockProjection({supplierId,supplierSku,requirement:{quantity:metres,stock_unit:'METRE'}});
       return !stock.stale && stock.availability==='FABRIC_AVAILABLE';
     }),
-  }));
+  }))).then(value=>({value}),error=>({error}));
+  let mixed: Awaited<ReturnType<typeof reviewMixedCheckout>> | null = null;
+  if (mixedInput && house!.ready && cushion!.ready) {
+    try { mixed = await timed("mixedReview",reviewMixedCheckout(mixedInput,mixedServices,{request:input.curtains!,result:house!},(phase,duration)=>{phasesMs[phase]=duration;})); }
+    catch (error) {
+      if (!(error instanceof Error) || !["MIXED_COMBINED_STOCK_CHANGED","MIXED_DELIVERY_REVIEW_REQUIRED","MIXED_DELIVERY_POLICY_REQUIRED"].includes(error.message)) throw error;
+      issues.push(error.message === "MIXED_COMBINED_STOCK_CHANGED" ? "Combined curtain and cushion fabric availability needs review." : "Combined delivery needs review.");
+    }
+  }
+  const romanStockResult = await romanStockOutcome;
+  if ('error' in romanStockResult) throw romanStockResult.error;
+  const combinedRomanStockReady = romanStockResult.value;
   if(!combinedRomanStockReady)issues.push('Combined fabric availability needs confirmation for this order.');
   const tooManyTrackOrderLines=(tracks.length>0||romans.length>0)&&tracks.length+romans.length+(cushion?.specs.length??0)+(house?.lines.reduce((n,l)=>n+(l.quantity??1),0)??0)>100;
   if(tooManyTrackOrderLines)issues.push("This combined order is too large for one checkout. Please contact us to arrange it.");
@@ -267,7 +282,8 @@ export async function checkoutMyHome(input: MyHomeCheckoutInput, services: MyHom
     const result = await executeMixedCheckout({...review.mixedInput,reviewId:review.mixed!.reviewId,
       houseReviewToken:input.houseReviewToken ?? "",acceptedPriceChanges:input.acceptedPriceChanges ?? [],
       measurementsConfirmed:true,idempotencyKey:input.idempotencyKey},
-      {...services.mixed,cushion:wrapCushion});
+      {...services.mixed,cushion:wrapCushion},
+      review.house ? {request:input.curtains!,result:review.house} : undefined);
     return {checkoutUrl:result.execution.checkoutUrl,purchaseEnabled:result.execution.paymentEnabled,status:result.execution.status};
   }
   if (input.curtains) {

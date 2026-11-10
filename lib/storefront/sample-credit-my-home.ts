@@ -88,6 +88,6 @@ export async function checkoutMyHomeWithSampleCredit(input:MyHomeCheckoutInput&I
       execute:(key,contract)=>services.tracks!.execute(key,apply(contract)),
     }:undefined,
   };
-  const key=welcome?`welcome-${creditDigest({review:checked.response.reviewId,credit:quote?.reservationId??null})}`:promotion?`so-${promotion.reservationId}`:`sc-${quote!.reservationId}`;
+  const key=welcome?`welcome-${creditDigest({attempt:input.idempotencyKey,review:checked.response.reviewId,credit:quote?.reservationId??null})}`:promotion?`so-${promotion.reservationId}`:`sc-${quote!.reservationId}`;
   return checkoutMyHome({...input,reviewId:checked.base.reviewId,idempotencyKey:key},wrapped);
 }

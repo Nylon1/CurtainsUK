@@ -102,10 +102,10 @@ jobs:
           issue=$(gh issue list --repo "$GH_REPO" --state open --search 'CurtainsUK critical journey monitor failed in:title' --json number --jq '.[0].number // empty')
           if [ "$OUTCOME" != success-success-success-success ]; then
             if [ -z "$issue" ]; then
-              gh issue create --repo "$GH_REPO" --title 'CurtainsUK critical journey monitor failed' --body "A public shopping or tool check failed. Check the attached run log: $RUN_URL"
+              gh issue create --repo "$GH_REPO" --title 'CurtainsUK critical journey monitor failed' --body "A customer journey, contract, link scan or monitor reporting check failed. Check the attached run log: $RUN_URL"
             else
-              gh issue edit "$issue" --repo "$GH_REPO" --body "A public shopping or tool check still fails. Latest run: $RUN_URL"
+              gh issue edit "$issue" --repo "$GH_REPO" --body "A customer journey, contract, link scan or monitor reporting check still fails. Latest run: $RUN_URL"
             fi
             exit 1
           fi
-          if [ -n "$issue" ]; then gh issue close "$issue" --repo "$GH_REPO" --comment "Public checks recovered: $RUN_URL"; fi
+          if [ -n "$issue" ]; then gh issue close "$issue" --repo "$GH_REPO" --comment "Scheduled checks recovered: $RUN_URL"; fi

@@ -4,6 +4,7 @@ import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 import { PRIVATE_NO_STORE_HEADERS } from '@/lib/storefront/security/http';
 import { summarizeMyHomeFunnel, type FunnelEvent } from '@/lib/storefront/checkout-funnel';
 import { summarizeCheckoutStages, type CheckoutStageRow } from '@/lib/storefront/checkout-stage';
+import { monitorHealth, type StoredMonitorRun } from '@/lib/storefront/synthetic-monitor';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -31,7 +32,7 @@ export async function GET(request: Request) {
     const arrivalQuery = db.from('customer_journey_events').select(columns).eq('name', 'VISIT_START')
       .order('occurred_at', { ascending: Boolean(since) }).limit(since ? 100 : 30);
     if (since) arrivalQuery.gt('occurred_at', since);
-    const [summary, errors, visits, timeline, slow, alerts, serviceErrors, serviceErrorCount] = await Promise.all([
+    const [summary, errors, visits, timeline, slow, alerts, serviceErrors, serviceErrorCount, monitorRuns, monitorFindings, monitorRecoveries, monitorRegistry] = await Promise.all([
       db.rpc('customer_journey_summary', { p_days: days }),
       errorQuery,
       arrivalQuery,
@@ -43,8 +44,18 @@ export async function GET(request: Request) {
       db.from('customer_operational_errors').select('error_id,occurred_at,request_id,route_path,code,status,release,source,diagnostic')
         .gte('occurred_at', periodStart).order('occurred_at', { ascending: false }).limit(50),
       db.from('customer_operational_errors').select('error_id', { count: 'exact', head: true }).gte('occurred_at', periodStart),
+      db.from('customer_synthetic_monitor_runs')
+        .select('run_id,attempt,started_at,completed_at,expected_next_at,workflow_sha,source_sha,deployment_sha,deployment_id,report')
+        .order('completed_at', { ascending: false }).limit(100),
+      db.from('customer_synthetic_findings')
+        .select('check_id,name,feature,route_path,severity,reason,state,occurrences,first_detected_at,last_detected_at,recovered_at,source_sha,deployment_sha,deployment_id')
+        .eq('state', 'OPEN').order('last_detected_at', { ascending: false }).limit(100),
+      db.from('customer_synthetic_findings')
+        .select('check_id,name,feature,recovered_at,occurrences')
+        .eq('state', 'RESOLVED').order('recovered_at', { ascending: false }).limit(10),
+      db.from('customer_synthetic_check_registry').select('check_id').limit(100),
     ]);
-    if (summary.error || errors.error || visits.error || timeline.error || slow.error || alerts.error || serviceErrors.error || serviceErrorCount.error) throw Error('ERROR_CENTRE_QUERY_FAILED');
+    if (summary.error || errors.error || visits.error || timeline.error || slow.error || alerts.error || serviceErrors.error || serviceErrorCount.error || monitorRuns.error || monitorFindings.error || monitorRecoveries.error || monitorRegistry.error) throw Error('ERROR_CENTRE_QUERY_FAILED');
     const funnelEvents: FunnelEvent[] = [];
     let funnelTruncated = false;
     for (let offset = 0; offset < 10_000; offset += 1_000) {
@@ -78,6 +89,11 @@ export async function GET(request: Request) {
       visits: visits.data ?? [], timeline: timeline.data ?? [], slow: slow.data ?? [], selectedJourney: journey,
       retentionDays: 30, pendingEmailAlerts: alerts.count ?? 0,
       serviceErrors: serviceErrors.data ?? [], serviceErrorCount: serviceErrorCount.count ?? 0,
+      synthetic: { ...monitorHealth((monitorRuns.data ?? []) as StoredMonitorRun[], new Date(),
+        (monitorRegistry.data ?? []).map(row => row.check_id), monitorFindings.data ?? []),
+        incidents: monitorFindings.data ?? [],
+        recoveries: monitorRecoveries.data ?? [],
+        checks: (monitorRuns.data?.[0]?.report as StoredMonitorRun['report'] | undefined)?.checks ?? [] },
       myHomeFunnel: summarizeMyHomeFunnel(funnelEvents), funnelTruncated,
       checkoutStages: summarizeCheckoutStages(checkoutEvents), checkoutStagesTruncated, checkoutStagesUnavailable,
       emailAlertsConfigured: Boolean(process.env.CRON_SECRET && process.env.RESEND_API_KEY

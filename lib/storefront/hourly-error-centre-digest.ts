@@ -2,6 +2,7 @@ import 'server-only';
 import { Resend } from 'resend';
 import { createSupplierServiceClient } from '@/lib/supabase/supplier-service';
 import { recordOperationalError } from './operational-error';
+import { monitorHealth, type StoredMonitorRun } from './synthetic-monitor';
 
 const dashboardUrl = 'https://curtainsuk-production-api.vercel.app/admin/error-centre';
 const routePath = '/api/cron/error-centre-digest';
@@ -15,6 +16,7 @@ export type HourlyDigestSummary = {
   serviceErrors: number; slowLoads: number;
   topPages: Page[]; channels: Channel[];
   browserErrorGroups: ErrorGroup[]; serviceErrorGroups: ErrorGroup[];
+  syntheticHealth?: { state: string; checked: number; failed: number; findings: string[] };
 };
 
 export function previousCompletedHour(now = new Date()) {
@@ -47,9 +49,12 @@ export function formatHourlyDigest(summary: HourlyDigestSummary, hourStart: Date
       `Service errors: ${summary.serviceErrors}\n\n` +
       `Browser/API errors by code and page\n${errorLines(summary.browserErrorGroups)}\n\n` +
       `Service errors by code and route\n${errorLines(summary.serviceErrorGroups)}\n\n` +
+      `Scheduled journey checks\n${summary.syntheticHealth
+        ? `${summary.syntheticHealth.state}: ${summary.syntheticHealth.checked} checked, ${summary.syntheticHealth.failed} failed.\n${summary.syntheticHealth.findings.map(item => `- ${item}`).join('\n') || '- No open synthetic findings'}`
+        : 'Monitoring status unavailable'}\n\n` +
       `Most viewed pages\n${topPages}\n\nArrival sources\n${channels}\n\n` +
       `Open the private dashboard for full error details and journeys: ${dashboardUrl}\n\n` +
-      `Visits and page activity include only analytics-consented browsers. A visit is a browser session, not a verified new customer. Counts reflect events recorded by the end of the hour and may lag late-arriving events.`,
+      `Visits and page activity include only analytics-consented browsers. Minimal technical fault counts can include browsers without analytics consent. A visit is a browser session, not a verified new customer. Counts reflect events recorded by the end of the hour and may lag late-arriving events.`,
   };
 }
 
@@ -63,13 +68,27 @@ export async function sendHourlyErrorCentreDigest(hourStart: Date) {
   try {
     const { data, error } = await db.rpc('customer_hourly_digest_summary', { p_hour_start: key });
     if (error || !data) throw Error('HOURLY_DIGEST_SUMMARY_FAILED');
+    const [runs, findings, registry] = await Promise.all([
+      db.from('customer_synthetic_monitor_runs')
+        .select('run_id,attempt,started_at,completed_at,expected_next_at,workflow_sha,source_sha,deployment_sha,deployment_id,report')
+        .order('completed_at', { ascending: false }).limit(2),
+      db.from('customer_synthetic_findings').select('name,severity,state')
+        .eq('state', 'OPEN').order('last_detected_at', { ascending: false }).limit(10),
+      db.from('customer_synthetic_check_registry').select('check_id').limit(100),
+    ]);
+    const syntheticHealth = runs.error || findings.error || registry.error ? undefined : (() => {
+      const health = monitorHealth((runs.data ?? []) as StoredMonitorRun[], new Date(),
+        (registry.data ?? []).map(row => row.check_id), findings.data ?? []);
+      return { state: health.state, checked: health.checked, failed: health.failed,
+        findings: (findings.data ?? []).slice(0, 5).map(row => `${row.severity}: ${row.name}`) };
+    })();
     const apiKey = process.env.RESEND_API_KEY;
     const from = process.env.CURTAINSUK_VISIT_ALERT_FROM;
     const to = process.env.CURTAINSUK_VISIT_ALERT_EMAIL;
     if (!apiKey || !from || !to || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) {
       throw Error('HOURLY_DIGEST_NOT_CONFIGURED');
     }
-    const message = formatHourlyDigest(data as HourlyDigestSummary, hourStart);
+    const message = formatHourlyDigest({ ...data as HourlyDigestSummary, syntheticHealth }, hourStart);
     const result = await new Resend(apiKey).emails.send({ from, to: [to], ...message },
       { idempotencyKey: `curtainsuk-hourly-digest/${key}` });
     if (result.error || !result.data?.id) throw Error('HOURLY_DIGEST_DELIVERY_FAILED');

@@ -74,7 +74,7 @@ export async function sendCriticalErrorAlert(now = new Date()) {
     subject: `CurtainsUK customer journey alert | ${start.toISOString().slice(0, 16)} UTC`,
     text: `Customer-facing failures were recorded from ${start.toISOString()} to ${end.toISOString()}.\n\n` +
       `${lines}\n\nInvestigate the private Error Centre: ${dashboard}\n\n` +
-      'This is an operational alert, not a count of lost orders. Browser events include only visitors who allowed analytics.' },
+      'This is an operational alert, not a count of lost orders. Browser faults may include minimal diagnostics without analytics consent; visit tracking remains consented.' },
   { idempotencyKey: `curtainsuk-critical-alert/${start.toISOString()}` });
   if (result.error || !result.data?.id) throw Error('CRITICAL_ALERT_DELIVERY_FAILED');
   return 'sent';

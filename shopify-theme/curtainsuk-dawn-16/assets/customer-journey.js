@@ -1,4 +1,4 @@
-/* Anonymous, consented diagnostics. Short redacted errors only; no form values, URL queries or raw stacks. */
+/* Consented journey analytics; isolated, minimal fault diagnostics work without analytics consent. */
 (() => {
   'use strict';
   const endpoint = '/apps/curtainsuk-decision/journey';
@@ -6,7 +6,7 @@
   const idleMs = 30 * 60 * 1000;
   const excluded = /(?:^|\/)(?:account|checkout|orders|apps)(?:\/|$)/i;
   const safePath = /^\/[a-z0-9/_-]{0,159}$/i;
-  const release = 'journey-20261109-v5';
+  const release = 'journey-20261110-v6';
   const myHomeSteps = new Set(['MY_HOME_CART_VIEW', 'MY_HOME_REVIEW_READY', 'MY_HOME_REVIEW_BLOCKED',
     'MY_HOME_REVIEW_FAILED', 'MY_HOME_ORDER_NOW', 'MY_HOME_HANDOFF_READY',
     'MY_HOME_HANDOFF_FAILED', 'MY_HOME_RETURNED']);
@@ -17,6 +17,8 @@
   let sent = 0;
   let timer = null;
   let queue = [];
+  let faultCount = 0;
+  const reportedFaults = new Set();
 
   function path(value) {
     try {
@@ -248,7 +250,31 @@
       feature: feature(), messageText: asset ? null : redactedMessage(message), frames: frames.slice(0, 3), reasonCode: null, request: null };
   }
 
+  function reportFaultWithoutConsent(name, code, status, pagePath, detail) {
+    if (!pagePath || faultCount >= 12 || !detail || detail.origin === 'EXTENSION'
+      || (name === 'API_FAILURE' && status !== null && status < 500)) return;
+    const diagnostic = { type: detail.type, message: detail.message,
+      script: detail.script, line: detail.line, column: detail.column,
+      origin: detail.origin, feature: detail.feature };
+    const signature = [name, code, pagePath, diagnostic.script, diagnostic.line].join('|');
+    if (reportedFaults.has(signature)) return;
+    reportedFaults.add(signature);
+    faultCount += 1;
+    const id = crypto.randomUUID();
+    // Each fault is its own journey. No cookie, storage, referral, campaign or customer identity is read.
+    const body = JSON.stringify({ journeyId: id, events: [{ eventId: id, kind: 'ERROR', name,
+      code, status, pagePath, release: release + '-fault', detail: diagnostic, channel: null }] });
+    try {
+      void nativeFetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body, keepalive: true, credentials: 'omit' }).catch(() => {});
+    } catch { /* Diagnostics never block shopping. */ }
+  }
+
   function record(kind, name, code = null, status = null, pagePath = path(location.href), detail = null) {
+    if (kind === 'ERROR' && !enabled) {
+      reportFaultWithoutConsent(name, code, status, pagePath, detail);
+      return;
+    }
     if (!enabled || !pagePath || sent >= (kind === 'ERROR' ? 120 : 90) || !journeyId) return;
     const qa = (() => { try { return sessionStorage.getItem('cuk_qa_telemetry') === '1'; } catch { return false; } })();
     queue.push({ eventId: crypto.randomUUID(), kind, name, code, status, pagePath, release: qa ? release + '-qa' : release, detail,
@@ -421,24 +447,25 @@
 
   window.fetch = function (...args) {
     const result = nativeFetch(...args);
+    const requestUrl = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
+    const apiUrl = (() => { try { return new URL(requestUrl, location.origin); } catch { return null; } })();
+    const nativePath = apiUrl?.pathname || '';
+    const method = String(args[1]?.method || args[0]?.method || 'GET').toUpperCase();
     if (enabled) {
-      const requestUrl = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
-      const apiUrl = (() => { try { return new URL(requestUrl, location.origin); } catch { return null; } })();
-      const nativePath = apiUrl?.pathname || '';
-      const method = String(args[1]?.method || args[0]?.method || 'GET').toUpperCase();
       if (nativePath === '/cart/add.js') {
         void result.then((response) => { if (response.ok) record('ACTION', 'CART_ADD'); }, () => {});
       }
       if (/^\/apps\/curtainsuk-decision\/(?:my-home-checkout|checkout-handoff)$/.test(nativePath)) {
         void result.then((response) => { if (response.ok) record('ACTION', 'CHECKOUT_START'); }, () => {});
       }
-      const observedApi = apiUrl && ((apiUrl.origin === location.origin &&
+    }
+    const observedApi = apiUrl && ((apiUrl.origin === location.origin &&
         (nativePath.startsWith('/apps/curtainsuk-decision/') || nativePath.startsWith('/api/')))
         || /^(?:curtainsuk-production-api|curtainsuk-staging-api|curtainsuk-staging-gateway)\.vercel\.app$/.test(apiUrl.hostname));
-      if (observedApi && nativePath !== endpoint) {
+    if (observedApi && nativePath !== endpoint) {
         const started = performance.now();
         void result.then((response) => {
-          if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
+          if (enabled && performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
           const diagnostic = response.headers?.get?.('X-CurtainsUK-Diagnostic-Code');
           const reasonCode = safeApiRoute(nativePath) && /^[A-Z][A-Z0-9_]{1,63}$/.test(diagnostic || '') ? diagnostic : null;
           if (response.status >= 500) record('ERROR', 'API_FAILURE', 'API_SERVER_ERROR', response.status,
@@ -446,11 +473,10 @@
           else if ([400, 404, 409].includes(response.status)) record('ERROR', 'API_FAILURE', 'API_REQUEST_REJECTED',
             response.status, path(location.href), apiDetail('HTTP_REQUEST_REJECTED', nativePath, method, null, reasonCode, priceContext(response, nativePath)));
         }, (error) => {
-          if (performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
+          if (enabled && performance.now() - started >= 5000) record('PERFORMANCE', 'API_SLOW', 'API_OVER_5S');
           record('ERROR', 'API_FAILURE', 'API_NETWORK_ERROR', null, path(location.href),
             apiDetail('NETWORK_REQUEST_FAILED', nativePath, method, error));
         });
-      }
     }
     return result;
   };

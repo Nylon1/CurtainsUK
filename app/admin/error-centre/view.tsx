@@ -22,6 +22,19 @@ type Payload = { summary: Summary; errors: Event[]; visits: Event[]; timeline: E
     lastObservedAfter24h: Partial<Record<CheckoutStage, number>> }[]; checkoutStagesTruncated: boolean; checkoutStagesUnavailable: boolean;
   selectedJourney: string | null; nextBefore: string | null; retentionDays: number;
   pendingEmailAlerts: number; emailAlertsConfigured: boolean; serviceErrorCount: number;
+  synthetic: { state: 'HEALTHY' | 'DEGRADED' | 'FAILED' | 'STALE' | 'UNKNOWN';
+    latest: { startedAt: string; completedAt: string; expectedNextAt: string;
+      workflowSha: string; sourceSha: string;
+      deploymentSha: string | null; deploymentId: string | null; runId: number; attempt: number } | null;
+    lastHealthyAt: string | null; checked: number; passed: number; failed: number; missing: number;
+    checks: { id: string; name: string; feature: string; route: string; status: 'PASS' | 'FAIL';
+      severity: string; reason: string | null }[];
+    incidents: { check_id: string; name: string; feature: string; route_path: string;
+      severity: string; reason: string; occurrences: number; first_detected_at: string;
+      last_detected_at: string; source_sha: string; deployment_sha: string | null;
+      deployment_id: string | null }[];
+    recoveries: { check_id: string; name: string; feature: string;
+      recovered_at: string; occurrences: number }[] };
   serviceErrors: { error_id: string; occurred_at: string; request_id: string; route_path: string;
     code: string; status: number; release: string; source: string;
     diagnostic: { type: string; messageText: string | null; script: string | null;
@@ -144,7 +157,7 @@ export default function ErrorCentre() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#927246]">CurtainsUK operations</p>
           <h1 className="mt-2 font-serif text-4xl">Customer Experience</h1>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#586c61]">Anonymous journeys, shopping steps and errors. Only activity with analytics permission appears here. Shopify checkout stages are grouped separately.</p></div>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#586c61]">Shopping journeys, technical faults and scheduled checks in one place. Visits and checkout steps require analytics permission; minimal technical fault reports do not. Synthetic checks are separate from customer activity.</p></div>
         <div className="flex flex-wrap gap-2"><button className="rounded-full border border-[#9aab9f] px-4 py-2 text-sm hover:bg-white" onClick={() => void refresh()}>Refresh</button>
           <button className="rounded-full bg-[#173d33] px-4 py-2 text-sm text-white hover:bg-[#295c4c]" onClick={() => void enableNotifications()}>{notifications ? 'Visit alerts on' : 'Enable visit alerts'}</button></div>
       </div>
@@ -159,6 +172,30 @@ export default function ErrorCentre() {
         ['Browser/API errors', data?.summary?.errors], ['Service errors', data?.serviceErrorCount],
         ['Slow loads', data?.summary?.slowEvents],
       ].map(([label, value]) => <div className={card} key={String(label)}><p className="text-xs font-semibold uppercase tracking-wider text-[#61756a]">{label}</p><p className="mt-3 font-serif text-3xl">{value ?? '—'}</p></div>)}</div>
+      <section className={`${card} mt-6`} aria-labelledby="journey-health-title">
+        <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 id="journey-health-title" className="font-serif text-2xl">Journey health</h2>
+          <p className="mt-1 text-sm text-[#61756a]">Scheduled storefront, adviser, link, pricing and checkout checks. These are test results, not customer incidents.</p></div>
+          <strong className={`rounded-full px-3 py-1 text-sm ${data?.synthetic.state === 'HEALTHY' ? 'bg-[#e2f2e7] text-[#175736]' : data?.synthetic.state === 'FAILED' || data?.synthetic.state === 'STALE' ? 'bg-[#ffe5db] text-[#863c25]' : 'bg-[#fff0d4] text-[#775314]'}`}>{data?.synthetic.state ?? 'UNKNOWN'}</strong></div>
+        {data?.synthetic.latest ? <div className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
+          <p><strong>Last completed</strong><br />{date(data.synthetic.latest.completedAt)}</p>
+          <p><strong>Next expected by</strong><br />{date(data.synthetic.latest.expectedNextAt)}</p>
+          <p><strong>Checks</strong><br />{data.synthetic.passed} passed · {data.synthetic.failed} failed</p>
+          <p><strong>Source / API deployment</strong><br /><span className="font-mono text-xs">{data.synthetic.latest.sourceSha.slice(0, 12)} / {data.synthetic.latest.deploymentId ?? data.synthetic.latest.deploymentSha?.slice(0, 12) ?? 'Not reported'}</span></p>
+        </div> : <p role="status" className="mt-4 text-sm">Monitoring unavailable: no authenticated scheduled run has reported yet.</p>}
+        {data?.synthetic.state === 'STALE' && <p role="alert" className="mt-4 rounded-lg bg-[#ffe5db] p-3 text-sm">Monitoring unavailable. The last run missed its expected follow-up; the absence of new failures does not mean the site is healthy.</p>}
+        {Boolean(data?.synthetic.missing) && <p role="alert" className="mt-4 rounded-lg bg-[#fff0d4] p-3 text-sm">{data?.synthetic.missing} previously checked {data?.synthetic.missing === 1 ? 'journey is' : 'journeys are'} missing from the latest run.</p>}
+        {data?.synthetic.incidents.length ? <ol className="mt-4 grid gap-2 md:grid-cols-2">{data.synthetic.incidents.map(item => <li key={item.check_id} className="rounded-lg border border-[#e5cfb9] bg-[#fffaf3] p-3 text-sm">
+          <strong>{item.severity} · {item.name}</strong><p className="mt-1">{item.feature} · {item.route_path} · {item.reason.replaceAll('_', ' ').toLowerCase()}</p>
+          <p className="mt-1 text-xs text-[#61756a]">{item.occurrences} failed {item.occurrences === 1 ? 'run' : 'runs'} · first detected {date(item.first_detected_at)} · last detected {date(item.last_detected_at)}</p>
+          <p className="mt-1 font-mono text-xs text-[#61756a]">Source {item.source_sha.slice(0, 12)} · deployment {item.deployment_id ?? item.deployment_sha?.slice(0, 12) ?? 'unavailable'}</p>
+        </li>)}</ol> : data?.synthetic.state === 'HEALTHY' && <p className="mt-4 text-sm">No open synthetic findings.</p>}
+        {Boolean(data?.synthetic.recoveries.length) && <details className="mt-4 text-sm"><summary className="cursor-pointer font-semibold">Verified recoveries</summary>
+          <ol className="mt-2 space-y-1">{data?.synthetic.recoveries.map(item => <li key={item.check_id}>{item.name} · recovered {date(item.recovered_at)} after {item.occurrences} failed {item.occurrences === 1 ? 'run' : 'runs'}</li>)}</ol>
+        </details>}
+        <details className="mt-4 text-sm"><summary className="cursor-pointer font-semibold">See every check in the latest run</summary>
+          <ol className="mt-2 grid gap-1 sm:grid-cols-2">{data?.synthetic.checks.map(check => <li key={check.id} className="flex justify-between gap-2 border-b border-[#ece9df] py-2"><span>{check.name}</span><strong className={check.status === 'PASS' ? 'text-[#175736]' : 'text-[#863c25]'}>{check.status}</strong></li>)}</ol>
+        </details>
+      </section>
       <section className={`${card} mt-6`}><h2 className="font-serif text-2xl">Made-to-measure order funnel</h2>
         <p className="mt-1 text-sm text-[#61756a]">Curtains, Roman blinds, cushions and tracks. Each number counts anonymous, consented browser journeys once per step and product combination. A shopper can appear in several columns when they progress.</p>
         <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[900px] border-collapse text-left text-sm"><thead><tr className="border-b border-[#d7d6c9]"><th className="py-2 pr-4">Products</th>{funnelColumns.map(column=><th key={column.key} className="px-2 py-2">{column.label}</th>)}</tr></thead><tbody>{data?.myHomeFunnel?.map(row=><tr key={row.mix} className="border-b border-[#ece9df]"><th className="py-3 pr-4 font-medium">{row.mix.replaceAll('_',' + ').toLowerCase()}</th>{funnelColumns.map(column=><td key={column.key} className="px-2 py-3 tabular-nums">{row.steps[column.key]}</td>)}</tr>)}</tbody></table></div>
@@ -192,12 +229,12 @@ export default function ErrorCentre() {
         <ol className="mt-4 grid gap-2 md:grid-cols-2">{data?.slow?.map((event) => <li key={event.event_id} className="rounded-lg border border-[#ece9df] p-3 text-sm"><strong>{event.code}</strong><span className="ml-2 text-[#708276]">{date(event.occurred_at)}</span><p className="mt-1 truncate">{event.page_path} · {event.browser}</p></li>)}</ol>
         {data && !data.slow.length && <p className="mt-4 text-sm">No slow-load reports yet.</p>}</section>
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr]">
-        <section className={card}><h2 className="font-serif text-2xl">Customer errors</h2><p className="mt-1 text-sm text-[#61756a]">New errors show the browser message with sensitive values redacted, source frames and the failing request when available. Select one to inspect its anonymous journey.</p>
-          <ol className="mt-4 max-h-[500px] space-y-2 overflow-auto">{data?.errors?.map((event) => <li key={event.event_id}><button className="w-full rounded-lg border border-[#ece9df] p-3 text-left text-sm hover:bg-[#f6f6f0]" onClick={() => setJourney(event.journey_id)}><span className="flex justify-between gap-3"><strong>{event.code}</strong><time className="text-[#6a7b71]">{date(event.occurred_at)}</time></span><span className="mt-1 block">{errorDetail(event)}</span><span className="mt-1 block truncate text-xs text-[#708276]">{event.page_path} · {event.browser} {event.status ?? ''}</span></button></li>)}</ol>
+        <section className={card}><h2 className="font-serif text-2xl">Browser faults</h2><p className="mt-1 text-sm text-[#61756a]">Consented error events include redacted diagnostic detail. Minimal technical faults can also appear without analytics permission; these contain no browsing timeline. Select an event for available detail.</p>
+          <ol className="mt-4 max-h-[500px] space-y-2 overflow-auto">{data?.errors?.map((event) => <li key={event.event_id}><button className="w-full rounded-lg border border-[#ece9df] p-3 text-left text-sm hover:bg-[#f6f6f0]" onClick={() => setJourney(event.journey_id)}><span className="flex justify-between gap-3"><strong>{event.code}</strong><time className="text-[#6a7b71]">{date(event.occurred_at)}</time></span><span className="mt-1 block">{errorDetail(event)}</span><span className="mt-1 block truncate text-xs text-[#708276]">{event.page_path} · {event.browser} {event.status ?? ''}{event.release.endsWith('-fault') ? ' · Technical fault only' : ''}</span></button></li>)}</ol>
           {data && !data.errors.length && <p className="mt-4 text-sm">No browser errors recorded in this page of results.</p>}
           {data?.nextBefore && <button className="mt-4 underline" onClick={() => setBefore(data.nextBefore)}>Older errors</button>}</section>
         <section className={card}><div className="flex justify-between gap-3"><h2 className="font-serif text-2xl">Journey timeline</h2>{journey && <button className="text-sm underline" onClick={() => setJourney(null)}>Clear</button>}</div>
-          <p className="mt-1 text-sm text-[#61756a]">Pages, cart steps and errors from one browser session. No recording of the screen or personal details.</p>
+          <p className="mt-1 text-sm text-[#61756a]">Consented journeys show pages and cart steps. Technical faults without analytics permission show only the single fault.</p>
           {journey ? <ol className="mt-4 max-h-[500px] space-y-2 overflow-auto">{data?.timeline?.map((event) => <li key={event.event_id} className="rounded-lg border border-[#ece9df] p-3 text-sm"><span className="font-semibold">{event.name.replaceAll('_', ' ')}</span><span className="ml-2 text-[#708276]">{date(event.occurred_at)}</span><p className="mt-1 break-all">{event.page_path}{event.code ? ` · ${event.code}` : ''}</p>{event.kind === 'ERROR' && <p className="mt-1">{errorDetail(event)}</p>}</li>)}</ol> : <p className="mt-6 text-sm">Select a visit or error to see its timeline.</p>}</section>
       </div>
       <p className="py-8 text-xs text-[#66766c]">Journey data is deleted after {data?.retentionDays ?? 30} days. Browser alerts require this dashboard to remain open. Regional visitor data is omitted until a trustworthy source is available.</p>

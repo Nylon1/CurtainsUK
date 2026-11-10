@@ -96,8 +96,8 @@ export const DUNELM_STANDARD_INSERT_CANDIDATES = [
     "grossPriceMinor": 900,
     "supplierFillingDescription": "polyester hollowfibre with cotton casing",
     "hollowfibreVerified": true,
-    "observedInStock": false,
-    "observedAt": "2026-10-16T03:18:31.809999+00:00",
+    "observedInStock": true,
+    "observedAt": "2026-11-10",
     "intendedFinishedCoverDimensionsMm": [
       550,
       550

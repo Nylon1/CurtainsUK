@@ -25,7 +25,7 @@
         {% for direction in directions %}
           {% assign colour_key = direction | append: '_colour' %}
           <div class="cukspace__choice">
-            <input type="radio" id="{{ space.id }}-{{ direction }}" name="{{ space.id }}-relationship" value="{{ direction }}"{% if forloop.first %} checked{% endif %} aria-controls="{{ space.id }}-direction-notes">
+            <input type="radio" id="{{ space.id }}-{{ direction }}" name="{{ space.id }}-relationship" value="{{ direction }}" data-shop-window-colour="{{ space.settings[colour_key] | escape }}"{% if forloop.first %} checked{% endif %} aria-controls="{{ space.id }}-direction-notes">
             <label for="{{ space.id }}-{{ direction }}"><span style="--sample:{{ space.settings[colour_key] }}" aria-hidden="true"></span>{{ direction | capitalize }}<i aria-hidden="true">✓</i></label>
           </div>
         {% endfor %}

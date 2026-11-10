@@ -31,7 +31,9 @@ export function customerCushionQuote(quote: CushionQuote) {
     previewMaterials: quote.previewMaterials,
     message: quote.ready
       ? "Your cushion price is ready."
-      : "Some options or prices still need confirmation before ordering.",
+      : quote.issues.some((issue) => issue.includes("selected insert was unavailable"))
+        ? "The insert for this filled cushion is unavailable. Choose cover only or a different filled size to continue."
+        : "Some options or prices still need confirmation before ordering.",
   };
 }
 

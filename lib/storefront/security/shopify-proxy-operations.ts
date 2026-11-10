@@ -1,4 +1,4 @@
-export const SHOPIFY_PROXY_OPERATIONS = ["room-visualiser", "catalog", "fabric-sitemap", "naila-catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff", "rooms", "sample-order", "consultation", "consultation-asset", "premium-asset", "premium-catalog", "premium-session", "premium-command", "hci-session", "hci-command", "image-privacy", "journey"] as const;
+export const SHOPIFY_PROXY_OPERATIONS = ["room-visualiser", "design-guide", "catalog", "fabric-sitemap", "naila-catalog", "price", "specialist-review", "review-request", "review-acceptance", "checkout-handoff", "rooms", "sample-order", "consultation", "consultation-asset", "premium-asset", "premium-catalog", "premium-session", "premium-command", "hci-session", "hci-command", "image-privacy", "journey"] as const;
 export type ShopifyProxyOperation = typeof SHOPIFY_PROXY_OPERATIONS[number];
 
 export function isShopifyProxyOperation(value: string): value is ShopifyProxyOperation {
@@ -11,6 +11,7 @@ export const SHOPIFY_PROXY_OPERATION_POLICY: Record<ShopifyProxyOperation, {
   rateLimit: { limit: number; windowSeconds: number };
 }> = {
   "room-visualiser": {methods:["GET"],maximumBytes:0,rateLimit:{limit:120,windowSeconds:60}},
+  "design-guide": {methods:["GET"],maximumBytes:0,rateLimit:{limit:120,windowSeconds:60}},
   rooms: { methods: ["POST"], maximumBytes: 512 * 1024, rateLimit: { limit: 20, windowSeconds: 900 } },
   // Per signed-shop, operation and platform-forwarded client address. These
   // application limits sit behind the much more generous WAF log thresholds.

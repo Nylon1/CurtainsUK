@@ -1,4 +1,5 @@
 import {visualiserPage,withRoomPreview} from '@/lib/room-visualiser/server';
+import { designGuideResponse } from '@/lib/storefront/design-guide-response';
 import {searchVisualiserFabrics} from '@/lib/room-visualiser/visualiser-catalogue';
 import { NextResponse } from "next/server";
 import { roomsCommand } from '@/lib/storefront/rooms-server';
@@ -122,6 +123,7 @@ export async function GET(request: Request, context: { params: Promise<{ operati
   try {
     const selected = await operation(request, (await context.params).operation);
     if (selected === 'room-visualiser') return visualiserPage(request);
+    if (selected === 'design-guide') return designGuideResponse(request);
     if (selected === 'fabric-sitemap') return (await import('@/lib/storefront/fabric-sitemap-response')).fabricSitemapResponse();
     if(selected==='consultation')return new URL(request.url).searchParams.get('experience')==='premium' ? premiumProxyPage() : proxyConsultationAsset('consultation.html');
     if(selected==='premium-asset')return premiumProxyAsset(new URL(request.url).searchParams.get('name')??'');

@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
 import { fullUrl } from '@/lib/sitemap-utils';
+import { designGuideUrl } from '@/lib/storefront/design-guide-url';
 import { consultationFabricLinks, shopifyConsultationHandoff } from '@/lib/storefront/consultation-navigation';
 import { acknowledgedPremiumRevision, premiumSessionStorageKey, savedPremiumSession } from './curtainsuk-premium-transport';
 import { fiSessionStorageKey, isFiReadOnlyResumeConflict, nailaPresentationStorageKey, selectFiResumeSession } from './curtainsuk-fi-session';
@@ -38,6 +39,17 @@ type View = {
   directionDelivery?: { current: number; total: number };
 };
 type Fabric = { id: string; brand: string; design: string; colour: string; images: { url: string }[]; sampleAvailable: boolean; availability: string; configurable: boolean; configurationMessage: string; fabricProfileUrl?: string; browseReady?: boolean; launchReady?: boolean };
+type WindowContext = { space: string; direction: string; colour: string; primary: string; secondary: string; accent: string };
+function readWindowContext(search: string): WindowContext | null {
+  const query = new URLSearchParams(search);
+  if (query.get('source') !== 'shop-by-window') return null;
+  const space = query.get('space') ?? '';
+  if (!/^[a-z-]{1,40}$/.test(space)) return null;
+  const validColour = (key: string) => /^#[a-f0-9]{6}$/i.test(query.get(key) ?? '') ? query.get(key)! : '';
+  const direction = query.get('direction') ?? '';
+  return { space, direction: ['blend', 'coordinate', 'lift', 'contrast'].includes(direction) ? direction : '',
+    colour: validColour('colour'), primary: validColour('primary'), secondary: validColour('secondary'), accent: validColour('accent') };
+}
 
 const reactionCopy = [
   ['LOVE', 'Love this'], ['MORE_LIKE_THIS', 'Show me more like this'], ['NOT_QUITE', 'Not quite'], ['NOT_FOR_ME', 'Not for me'],
@@ -53,6 +65,7 @@ function base64(bytes: ArrayBuffer) {
 export default function CurtainsUkPremiumConsultation() {
   const [view, setView] = useState<View | null>(null);
   const [entry, setEntry] = useState<'match' | 'guided'>('match');
+  const [windowContext, setWindowContext] = useState<WindowContext | null>(null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
   const [resumeConflict, setResumeConflict] = useState(false);
@@ -159,6 +172,7 @@ export default function CurtainsUkPremiumConsultation() {
     if (!loaded.current) {
       loaded.current = true;
       setEntry(new URLSearchParams(window.location.search).get('entry') === 'guided' ? 'guided' : 'match');
+      setWindowContext(readWindowContext(window.location.search));
       try {
         resumeSession.current = selectFiResumeSession(
           sessionStorage.getItem(fiSessionStorageKey),
@@ -171,6 +185,30 @@ export default function CurtainsUkPremiumConsultation() {
       void send();
     }
   // This initializes exactly one anonymous consultation; re-running would create a second request.
+  }, []);
+  useEffect(() => {
+    const topics = new Set(['colour-palettes', 'undertones', 'tonal-complement-contrast', 'pattern-scale', '60-30-10', 'light-and-colour']);
+    const root = document.getElementById('curtainsuk-premium-root');
+    if (!root) return;
+    const rewrite = () => {
+      for (const link of root.querySelectorAll<HTMLAnchorElement>('a[href^="/learn/"]')) {
+        const topic = link.getAttribute('href')?.slice('/learn/'.length) ?? '';
+        if (!topics.has(topic)) continue;
+        link.dataset.cukGuideUrl = designGuideUrl(topic, window.location.search);
+        link.href = link.dataset.cukGuideUrl;
+      }
+    };
+    const navigate = (event: globalThis.MouseEvent) => {
+      const link = (event.target as Element | null)?.closest?.<HTMLAnchorElement>('a[data-cuk-guide-url]');
+      if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault(); event.stopPropagation();
+      window.location.assign(link.dataset.cukGuideUrl!);
+    };
+    rewrite();
+    const observer = new MutationObserver(rewrite);
+    observer.observe(root, { childList: true, subtree: true });
+    root.addEventListener('click', navigate, true);
+    return () => { observer.disconnect(); root.removeEventListener('click', navigate, true); };
   }, []);
   useEffect(() => {
     if (!view?.directions.length) return;
@@ -281,6 +319,7 @@ export default function CurtainsUkPremiumConsultation() {
 
   return <main className={`${showUpload || showPalette ? `${referenceStyles.shell} ${styles.referenceHost}` : styles.shell} ${styles.visualShell}`}>
     <header className={styles.header}><Link href={fullUrl('/')} className={styles.wordmark}>Curtains<span>UK</span></Link><span className={styles.headerLabel}>Fabric Intelligence™</span><a href={fullUrl('/pages/fabric-library')}>Browse fabrics ↗</a><button className={styles.headerRestart} type="button" disabled={busy} onClick={() => setRestartPrompt(true)}>Start again</button></header>
+    {windowContext && <aside className={styles.windowContext} aria-label="Your Shop by Window choices"><span>Your room idea</span><strong>{windowContext.space.replaceAll('-', ' ')}{windowContext.direction ? ` · ${windowContext.direction}` : ''}</strong><span className={styles.windowContextColours} aria-label="Colours brought from Shop by Window">{[windowContext.primary, windowContext.secondary, windowContext.accent, windowContext.colour].filter(Boolean).map((colour, index) => <i key={`${colour}-${index}`} style={{ backgroundColor: colour }} title={colour} />)}</span><a href={`/pages/solve-my-window?${new URLSearchParams({ space: windowContext.space, ...(windowContext.direction ? { direction: windowContext.direction } : {}) })}#space-${windowContext.space}`}>Edit in Shop by Window</a></aside>}
     <JourneySteps current={journeyStep} />
     {(showUpload || showPalette) && <p className={styles.stageNote}>{showUpload ? 'Start with a photograph. Phone photos up to 20 MB are resized on your device before analysis. Then confirm the colours that matter before we explore your style.' : 'Check each colour and tell us where it belongs. Your confirmed palette helps guide the fabrics we suggest.'}</p>}
     {notice && <div className={styles.notice} role="alert">{notice}<button onClick={() => void send(undefined, true)}>Try again</button></div>}

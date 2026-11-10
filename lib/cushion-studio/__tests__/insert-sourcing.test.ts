@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { PREVIEW_PRICING_RULES, insertForSpec, parseCushionSpec, type CushionSpec, type FabricCuttingFacts } from "../domain";
 import { DUNELM_INSERTS_BY_SIZE, WILLOWS_INSERTS_BY_SIZE } from "../insert-sourcing";
 import { quoteCushion, quoteCushionSet } from "../pricing";
+import { customerCushionQuote } from "../commerce";
 import { buildCutPlan } from "../cutting";
 const fabric: FabricCuttingFacts={id:"test",fullWidthMm:1400,usableWidthMm:1400,pattern:{kind:"plain",horizontalRepeatMm:0,verticalRepeatMm:0},directional:false,calibration:{imageUrl:"https://example.invalid/plain",physicalWidthMm:1400,physicalHeightMm:1000,evidence:"TEST",orientation:"upright",tileable:false},supplierCostMinorPerMetre:2000,minimumOrderMetres:1,orderIncrementMetres:.01,availableMetres:100};
 const spec=(sizeId:string,id=sizeId):CushionSpec=>({version:1,id,sizeId,rangeVersion:"standard-inserts-v1",manufacturingProfile:"flat-sewn-v1",fabricId:fabric.id,filling:"filled",fillingType:"polyester",edge:"unpiped",placementMm:{x:100,y:100},quantity:1});
@@ -13,7 +14,9 @@ test("selected Dunelm variants retain actual costs and separate pad and cover di
  assert.equal(Object.keys(DUNELM_INSERTS_BY_SIZE).length,11);
  for(const [id,[sku,gross,pad,cover]] of Object.entries(expected)){
  const r=DUNELM_INSERTS_BY_SIZE[id];assert.equal(r.supplierSku,sku);assert.equal(r.sourcing!.grossPriceMinor,gross);assert.equal(r.costMinor,Math.round(gross/1.2));assert.deepEqual(r.dimensionsMm,pad);assert.deepEqual(r.finishedCoverDimensionsMm,cover);assert.equal(r.confirmed,true);assert.equal(r.fitEvidence!.status,"confirmed");assert.equal(r.fillingType,id.startsWith("rectangle")||id.startsWith("bolster")?"polyester":"hollowfibre");}
- for(const id of ["square-55","rectangle-38-58"])assert.equal(DUNELM_INSERTS_BY_SIZE[id].sourcing!.stockObservation!.status,"out-of-stock");
+ assert.equal(DUNELM_INSERTS_BY_SIZE["square-55"].sourcing!.stockObservation!.status,"in-stock");
+ assert.equal(DUNELM_INSERTS_BY_SIZE["square-55"].sourcing!.stockObservation!.observedAt,"2026-11-10");
+ assert.equal(DUNELM_INSERTS_BY_SIZE["rectangle-38-58"].sourcing!.stockObservation!.status,"out-of-stock");
  for(const [id,variant,price,pad] of [["round-40","39462557516011",599,450],["round-50","39462564724971",699,550]] as const){const r=WILLOWS_INSERTS_BY_SIZE[id];assert.equal(r.supplierVariantId,variant);assert.equal(r.supplierSku,"");assert.equal(r.costMinor,price);assert.equal(r.costBasisConfirmed,true);assert.equal(r.confirmed,true);assert.equal(r.fitEvidence!.status,"confirmed");assert.equal(r.sourcing!.vatBasisPoints,null);assert.deepEqual(r.dimensionsMm,[pad]);}
 });
 test("workroom-approved fit prices inserts and still validates their dimensions",()=>{
@@ -24,6 +27,17 @@ test("workroom-approved fit prices inserts and still validates their dimensions"
  pad.confirmed=true;assert.equal(quoteCushion(s,fabric,r).purchaseReady,true);
  pad.finishedCoverDimensionsMm=[520,520];assert.equal(quoteCushion(s,fabric,r).purchaseReady,false);
  pad.finishedCoverDimensionsMm=[500,500];delete pad.fitEvidence;delete pad.sourcing;assert.equal(quoteCushion(s,fabric,r).purchaseReady,false,"new range cannot bypass fit by omitting source metadata");
+});
+test("supplier-available 55 cm filled cushion can be ordered",()=>{
+ const quote=quoteCushion(spec("square-55"),fabric,rules());
+ assert.equal(quote.purchaseReady,true,quote.issues.join(" "));
+ assert.equal(quote.insertSpecification?.supplierSku,"30287927");
+});
+test("an unavailable filled insert explains cover-only and alternate-size choices",()=>{
+ const quote=quoteCushion(spec("rectangle-38-58"),fabric,rules());
+ assert.equal(quote.purchaseReady,false);
+ assert.match(customerCushionQuote(quote).message,/insert.*unavailable.*cover only.*different filled size/i);
+ assert.equal(quoteCushion({...spec("rectangle-38-58"),filling:"cover",fillingType:undefined},fabric,rules()).purchaseReady,true);
 });
 test("individual and set prices reconcile actual pad costs with one shared cloth minimum",()=>{
  const r=rules(),s=spec("square-45"),pad=r.compatibleInsertsBySize![s.sizeId];pad.confirmed=true;pad.fitEvidence={version:"TEST",status:"confirmed",reference:"Synthetic approval only"};

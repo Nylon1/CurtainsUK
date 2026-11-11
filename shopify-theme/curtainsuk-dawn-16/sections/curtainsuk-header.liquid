@@ -30,11 +30,12 @@
       </a>
       <div class="cuknav__campaign">
         <span class="cuknav__campaign-eyebrow">MADE TO MEASURE · MADE FOR LIVING</span>
-        <nav class="cuknav__product-links{% if settings.curtainsuk_smart_track_enabled %} cuknav__product-links--four{% endif %}" aria-label="Shop our products">
+        <nav class="cuknav__product-links{% if settings.curtainsuk_smart_track_enabled %} cuknav__product-links--five{% else %} cuknav__product-links--four{% endif %}" aria-label="Shop and explore CurtainsUK">
           <a href="/pages/fabric-library?view=browse-fabrics"><span class="cuknav__product-number" aria-hidden="true">01</span><span class="cuknav__product-name">Curtains</span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
           <a href="/apps/curtainsuk-decision/roman/roman.html" aria-label="Roman Blinds"><span class="cuknav__product-number" aria-hidden="true">02</span><span class="cuknav__product-name"><span class="cuknav__desktop-label">Roman Blinds</span><span class="cuknav__mobile-label" aria-hidden="true">Romans</span></span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
           <a href="/pages/cushion-studio"><span class="cuknav__product-number" aria-hidden="true">03</span><span class="cuknav__product-name">Cushions</span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
           {% if settings.curtainsuk_smart_track_enabled %}<a href="/pages/smart-track-studio" aria-label="Motorised Tracks"><span class="cuknav__product-number" aria-hidden="true">04</span><span class="cuknav__product-name"><span class="cuknav__desktop-label">Motorised Tracks</span><span class="cuknav__mobile-label" aria-hidden="true">Tracks</span></span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>{% endif %}
+          <a href="/pages/inspirational-gallery" aria-label="Inspirational Gallery"{% if request.path == '/pages/inspirational-gallery' %} aria-current="page"{% endif %}><span class="cuknav__product-number" aria-hidden="true">{% if settings.curtainsuk_smart_track_enabled %}05{% else %}04{% endif %}</span><span class="cuknav__product-name"><span class="cuknav__desktop-label">Inspirational Gallery</span><span class="cuknav__mobile-label" aria-hidden="true">Gallery</span></span><span class="cuknav__product-arrow" aria-hidden="true">↗</span></a>
         </nav>
         <div class="cuknav__campaign-support">
           {% if campaign_date <= 20261119 %}

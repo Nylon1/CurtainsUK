@@ -35,6 +35,7 @@
       <summary aria-expanded="false" aria-controls="CukGuides-{{ location }}-{{ section_id }}">Guide <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
       <div class="cuknav__dropdown" id="CukGuides-{{ location }}-{{ section_id }}"><ul>
         <li><a href="/pages/how-to-use">How to use CurtainsUK</a></li>
+        <li><a href="/pages/inspirational-gallery"{% if request.path == '/pages/inspirational-gallery' %} aria-current="page"{% endif %}>Inspirational Gallery</a></li>
         <li><a href="/apps/curtainsuk-decision/hotel-studio/how-to-use.html">How to use the Hotel Studio</a></li>
         <li><a href="/pages/how-to-measure">How to Measure</a></li>
         <li><a href="/pages/how-to-hang-curtains">How to Hang Your Curtains</a></li>

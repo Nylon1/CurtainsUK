@@ -1,5 +1,15 @@
 # CurtainsUK production surfaces
 
+## Inspirational Gallery release, verified 11 November 2026
+
+[PR #391](https://github.com/Nylon1/CurtainsUK/pull/391) passed `curtainsuk-production-gate` and `protected-production-policy` and merged into `release/production` at source commit `5e9bea2057d9c53403c1675d7e02ae4c992715f4`. The [Inspirational Gallery](https://www.curtainsuk.com/pages/inspirational-gallery) is published as Shopify page `gid://shopify/Page/693913092475` with template suffix `inspirational-gallery`. It presents 43 room settings and 16 complete films, with room palettes, curtain notes, and links to the Room Visualiser and fabric library. The Guide menu and sticky product bar link to the page; the mobile bar uses the shorter visible label “Gallery” with the full accessible name.
+
+Shopify MAIN theme `182339731835` remained MAIN. A scoped CLI push uploaded only `assets/curtainsuk-header.css`, `assets/curtainsuk-inspirational-gallery.js`, `sections/curtainsuk-header.liquid`, `sections/curtainsuk-inspirational-gallery.liquid`, `snippets/curtainsuk-header-navigation.liquid`, and `templates/page.inspirational-gallery.json` with deletion disabled. All six fresh MAIN file checksums matched the merged source's local files exactly. The existing `config/settings_data.json` remained at MD5 `89ecbb35c33d8948471082f13341ab44` before and after; no feature setting, existing route, or unrelated theme file was part of the upload. The 614-file composed source manifest verifies against the release.
+
+All 75 new gallery media files (16 videos and 59 images) reached Shopify `READY` status. The storefront gallery script and film/image URLs use Shopify CDN, so the customer page has no dependency on the separate owner-only Sites preview. That preview is retained at version 22 with its `custom` owner-only audience.
+
+Live browser checks covered desktop and 390 px and 320 px mobile widths: the gallery index rendered, the five sticky links fitted, the Guide menu link was present, and the Connaught Place film loaded from Shopify CDN in portrait form with sticky positioning. The mobile page had no horizontal overflow. The homepage, gallery, Room Visualiser, fabric library, Roman blinds, Cushion Studio, Smart Track Studio and Shopping Cart returned HTTP 200 after publication. These checks establish page and playback availability, not every checkout or signed-in journey.
+
 ## Monitoring recovery release, verified 11 November 2026 at 17:06 UTC
 
 The monitoring fix is **live and verified healthy**. [PR #388](https://github.com/Nylon1/CurtainsUK/pull/388) passed `curtainsuk-production-gate` and `protected-production-policy` after the owner's approval for the exact PR commit, then merged into `release/production`. [PR #389](https://github.com/Nylon1/CurtainsUK/pull/389) activated the matching scheduler on default `main`, preserving its checkout of `release/production`.

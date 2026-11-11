@@ -12,6 +12,14 @@ Live browser checks covered desktop and 390 px and 320 px mobile widths: the gal
 
 Follow-up [PR #393](https://github.com/Nylon1/CurtainsUK/pull/393) merged at `9900ed7ebf0c4c455b5af91f890a677bd1c76441`. With the owner's separate approval, a one-file CLI push updated only `assets/curtainsuk-inspirational-gallery.js` on the same MAIN theme, with deletion disabled. Its fresh readback MD5 matched the merged asset at `03e23c27908dcc5b792a0548682f7dd5`; `config/settings_data.json` remained `89ecbb35c33d8948471082f13341ab44`. Gallery cards now open the complete film at 00:00 while showing the chosen room's palette and notes. Explicit chapter buttons still seek to their timestamps. The live penthouse dining card was checked on desktop and at 390 px mobile width: its 27-second film started at 00:00, and the dining chapter sought to 00:18.1. The private Sites preview was synchronized at version 23.
 
+### Five-film gallery addition, verified 11 November 2026
+
+[PR #395](https://github.com/Nylon1/CurtainsUK/pull/395) passed the protected checks and merged into `release/production` at `cce14e68a48ab76bfb10699dce08eef939f6a4a2`. It added five films and six settings to the Inspirational Gallery: Ghaf Woods, High-floor residence, Hyde Park, Morning-light residence, and Garden-view master suite. The live gallery displays 49 settings and 21 films. Five videos and eleven images were uploaded to Shopify Files and reached `READY`; the owner-only Sites preview is version 25.
+
+With the owner's separate approval, a scoped Shopify CLI push uploaded only `assets/curtainsuk-inspirational-gallery.js` to MAIN theme `182339731835`, with deletion disabled. Fresh Shopify readback matched the protected source at MD5 `58a195c56b434373d6994fb86bdf081a` (320,826 bytes). `config/settings_data.json` remained at MD5 `89ecbb35c33d8948471082f13341ab44`; no settings, menu, or template file was uploaded in this push.
+
+Live browser checks at 1440 px desktop and 390 px and 320 px mobile widths found no horizontal overflow. All five new tour pages rendered at mobile width with a portrait, sticky Shopify CDN video. A new gallery card opened the selected room at the beginning of the film. These were browser checks, not physical-device or full-film playback tests.
+
 ## Monitoring recovery release, verified 11 November 2026 at 17:06 UTC
 
 The monitoring fix is **live and verified healthy**. [PR #388](https://github.com/Nylon1/CurtainsUK/pull/388) passed `curtainsuk-production-gate` and `protected-production-policy` after the owner's approval for the exact PR commit, then merged into `release/production`. [PR #389](https://github.com/Nylon1/CurtainsUK/pull/389) activated the matching scheduler on default `main`, preserving its checkout of `release/production`.

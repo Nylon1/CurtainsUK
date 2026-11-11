@@ -6,6 +6,14 @@ const startedAt = readFileSync('customer-monitor-started-at.txt', 'utf8').trim()
 const completedAt = new Date().toISOString();
 const expectedNextAt = new Date(Date.parse(completedAt) + 5 * 3_600_000).toISOString();
 const checks = [];
+// Unavailable coverage stays failing, but must not claim that an unrun checkout
+// assertion found a customer-facing defect. Keep IDs stable for later recovery.
+const notRunReason = (outcome, needsBrowser) => {
+  if (outcome === 'success' || outcome === 'failure') return null;
+  if (value('DEPENDENCY_OUTCOME') === 'failure') return 'MONITOR_DEPENDENCY_SETUP_FAILED';
+  if (needsBrowser && value('BROWSER_OUTCOME') === 'failure') return 'MONITOR_BROWSER_SETUP_FAILED';
+  return 'MONITOR_CHECK_NOT_RUN';
+};
 const classify = (name, route) => {
   const label = name.toLowerCase();
   if (/checkout|cart|price|order/.test(label)) return ['CHECKOUT', 'CRITICAL'];
@@ -31,8 +39,10 @@ const reason = failures => {
   return 'JOURNEY_CHECK_FAILED';
 };
 try {
+  if (notRunReason(value('SCAN_OUTCOME'), true) && value('SCAN_OUTCOME'))
+    throw Error('scan did not run');
   const source = JSON.parse(readFileSync('customer-journey-monitor.json', 'utf8'));
-  if (source.schema !== 1 || !Array.isArray(source.checks)) throw Error('missing checks');
+  if (source.schema !== 1 || !Array.isArray(source.checks) || !source.checks.length) throw Error('missing checks');
   for (const row of source.checks) {
     const id = row.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const route = new URL(row.route, 'https://www.curtainsuk.com').pathname;
@@ -41,17 +51,25 @@ try {
       feature, route, status: row.status, severity,
       reason: row.status === 'FAIL' ? reason(row.failures || [row.reason || '']) : null });
   }
+  checks.push({ id: 'public-journeys', name: 'Public journey monitor output', feature: 'BACKEND',
+    route: '/', status: 'PASS', severity: 'CRITICAL', reason: null });
 } catch {
-  checks.push({ id: 'public-journeys', name: 'Public journey scan', feature: 'STOREFRONT',
-    route: '/', status: 'FAIL', severity: 'CRITICAL', reason: 'MONITOR_OUTPUT_MISSING' });
+  const unavailable = notRunReason(value('SCAN_OUTCOME'), true);
+  checks.push({ id: 'public-journeys', name: 'Public journey monitor unavailable', feature: 'BACKEND',
+    route: '/', status: 'FAIL', severity: 'CRITICAL', reason: unavailable || 'MONITOR_OUTPUT_MISSING' });
 }
 for (const [id, name, feature, route, severity, outcome, failure] of [
   ['checkout-contracts', 'Pricing and checkout contracts', 'CHECKOUT', '/pages/build-my-rooms',
     'CRITICAL', value('CONTRACT_OUTCOME'), 'CHECKOUT_CONTRACT_FAILED'],
   ['catalogue-links', 'Catalogue and page links', 'LINKS', '/pages/fabric-library',
     'HIGH', value('SITEMAP_OUTCOME'), 'LINK_SCAN_FAILED'],
-]) checks.push({ id, name, feature, route, severity, status: outcome === 'success' ? 'PASS' : 'FAIL',
-  reason: outcome === 'success' ? null : failure });
+]) {
+  const unavailable = notRunReason(outcome, id === 'catalogue-links');
+  checks.push({ id, name: unavailable ? `${name} not run` : name,
+    feature: unavailable ? 'BACKEND' : feature, route, severity,
+    status: outcome === 'success' ? 'PASS' : 'FAIL',
+    reason: outcome === 'success' ? null : unavailable || failure });
+}
 
 const report = { schema: 1, runId: Number(value('GITHUB_RUN_ID')),
   attempt: Number(value('GITHUB_RUN_ATTEMPT')), startedAt, completedAt,

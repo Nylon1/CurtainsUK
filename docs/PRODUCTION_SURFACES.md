@@ -1,5 +1,29 @@
 # CurtainsUK production surfaces
 
+## Monitoring recovery release, verified 11 November 2026 at 17:06 UTC
+
+The monitoring fix is **live and verified healthy**. [PR #388](https://github.com/Nylon1/CurtainsUK/pull/388) passed `curtainsuk-production-gate` and `protected-production-policy` after the owner's approval for the exact PR commit, then merged into `release/production`. [PR #389](https://github.com/Nylon1/CurtainsUK/pull/389) activated the matching scheduler on default `main`, preserving its checkout of `release/production`.
+
+| Surface | Verified source of truth |
+| --- | --- |
+| Monitoring source release checkpoint | `952d604d3b6d57bd8c6a9de70f651eafbbcfc479` on `release/production` |
+| Active scheduled workflow | `05ce26df258c613be9b49899547dac7ec510e70b` on `main` |
+| Successful verification run | [43064122101](https://github.com/Nylon1/CurtainsUK/actions/runs/43064122101), attempt 1 |
+| Saved report | 65 checks, zero failures; completed `2026-11-11T17:06:21.970Z` |
+| Persistent monitoring findings | Zero open findings and zero missing registered checks |
+| Recovered incident | [#387](https://github.com/Nylon1/CurtainsUK/issues/387), automatically closed at `17:06:25Z` |
+| Serving API deployment | `dpl_743KV2XCSoV8av1bSawoN5bzfpmu`, serving source `e214055e33645abc88470d7df6a07d63ac4d5c1a` |
+
+This release changes the GitHub Actions workflow and report builder. The existing Vercel API accepts and stores the new reports; its serving deployment remains the 10 November release below. Documentation-only commits may advance the protected branch after the monitoring source checkpoint above.
+
+The original [run 43055714384](https://github.com/Nylon1/CurtainsUK/actions/runs/43055714384) failed during browser dependency installation because the runner could not resolve Ubuntu download mirrors. The public journey, checkout contract and link checks were skipped. Reporting incorrectly called the skipped checkout suite `CHECKOUT_CONTRACT_FAILED`; that run did not establish a checkout defect.
+
+Checkout contracts now run before browser setup. Browser installation has two bounded attempts, and browser scans require successful setup. Unrun checks remain failing coverage with explicit monitoring infrastructure reasons. Valid subsequent scan output explicitly passes the `public-journeys` availability check, clearing the previously persistent missing-output incident.
+
+The released workflow passed **74 pricing and checkout contract tests**, **62 desktop/mobile public journey checks**, and **636 page/catalogue URLs across 18 sitemaps**, with zero failures. Its 65 saved report entries comprise the 62 public journeys, monitor-output availability, checkout contracts and catalogue links. Read-only verification in the existing CurtainsUK database `hqysjumypgeapgmqkcrx` confirmed the exact workflow/source/deployment identities and resolved all three findings (`public-journeys`, `checkout-contracts`, `catalogue-links`) at `17:06:21.970Z`. The saved freshness deadline is `2026-11-11T22:06:21.970Z`; later health must be assessed from newer heartbeats.
+
+Pre-release validation also passed ten reporting/recovery tests, including seven new regressions, workflow YAML/Bash parsing, and immediate-success, retry-success and exhausted-retry installer simulations. These checks do not establish completed payment, full catalogue rotation, photo analysis, signed-in adviser conversations or customer email delivery. No order or payment was placed by this verification.
+
 ## Customer Experience 2.0 monitoring release, 10 November 2026
 
 [PR #384](https://github.com/Nylon1/CurtainsUK/pull/384) passed both protected production checks and merged at source **`e214055e33645abc88470d7df6a07d63ac4d5c1a`**, tree **`22bc3591a09703a2c1d85e6b85d0c30b57e1c7e9`**. The exact Git export and independent receipt recheck covered **11,684 tracked files**, content digest **`22240936bf1bfecd300bac973d41ee4fb08c3333d1763889c21bf7cd6e670628`**. The protected Room Visualiser guard verified **nine packs, 3,962 files and 321,831,726 bytes**. No protected visualiser asset changed.

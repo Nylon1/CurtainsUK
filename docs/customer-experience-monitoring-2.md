@@ -1,5 +1,13 @@
 # Customer Experience monitoring 2.0
 
+Live checkpoint, 11 November 2026: monitoring source `952d604d`, scheduled
+workflow `05ce26df`. [Run 43064122101](https://github.com/Nylon1/CurtainsUK/actions/runs/43064122101)
+completed successfully at 17:06 UTC with 65 saved checks, zero failures, zero
+open findings and zero missing registered checks. All three findings from the
+browser-installation incident are resolved. See the dated
+[production source-of-truth record](PRODUCTION_SURFACES.md) for exact commits,
+serving deployment identity, test evidence and coverage limits.
+
 Production source: `release/production`. The scheduled workflow lives on GitHub's
 default `main` branch and checks out `release/production` for its test code.
 Its workflow copy must be synchronised to `main` after the protected production

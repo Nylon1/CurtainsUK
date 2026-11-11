@@ -125,8 +125,8 @@ renderRoom(tour.initial);
 const requestedRoom=new URLSearchParams(window.location.search).get('room');
 if(requestedRoom&&Object.prototype.hasOwnProperty.call(rooms,requestedRoom)){
   renderRoom(requestedRoom);
-  showAt(roomTime(requestedRoom),false);
-  status.textContent='Paused on '+rooms[requestedRoom].name.toLowerCase()+'. Press play to watch the tour.';
+  showAt(0,false);
+  status.textContent='Full film ready from the beginning. '+rooms[requestedRoom].name+' details are shown below.';
 }
 
  })(scopedDocument);

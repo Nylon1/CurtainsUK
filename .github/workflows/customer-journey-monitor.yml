@@ -25,15 +25,9 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.14.0'
-      - run: npm ci --ignore-scripts --no-audit
-      - run: npx playwright install --with-deps chromium
-      - name: Check public tools and live prices without placing orders
-        id: scan
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -o pipefail
-          node scripts/customer-journey-smoke.mjs | tee customer-journey-monitor.log
+      - name: Install monitor dependencies
+        id: dependencies
+        run: npm ci --ignore-scripts --no-audit
       - name: Check pricing, mixed orders and checkout contracts
         id: contracts
         continue-on-error: true
@@ -49,8 +43,31 @@ jobs:
             lib/cushion-studio/__tests__/my-home.test.ts \
             lib/cushion-studio/__tests__/guest-checkout.test.ts \
             lib/smart-track/__tests__/smart-track.test.ts | tee customer-contract-monitor.log
+      - name: Install browser with bounded retries
+        id: browsers
+        continue-on-error: true
+        timeout-minutes: 5
+        shell: bash
+        run: |
+          for attempt in 1 2; do
+            if timeout --kill-after=10s 120s npx playwright install --with-deps chromium; then
+              exit 0
+            fi
+            echo "::warning::Browser setup attempt $attempt failed; customer browser checks have not run."
+            if [ "$attempt" -lt 2 ]; then sleep 10; fi
+          done
+          exit 1
+      - name: Check public tools and live prices without placing orders
+        id: scan
+        if: steps.browsers.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/customer-journey-smoke.mjs | tee customer-journey-monitor.log
       - name: Check daily pages or the current catalogue rotation
         id: sitemap
+        if: steps.browsers.outcome == 'success'
         continue-on-error: true
         shell: bash
         env:
@@ -70,6 +87,9 @@ jobs:
         continue-on-error: true
         shell: bash
         env:
+          DEPENDENCY_OUTCOME: ${{ steps.dependencies.outcome }}
+          BROWSER_OUTCOME: ${{ steps.browsers.outcome }}
+          SCAN_OUTCOME: ${{ steps.scan.outcome }}
           CONTRACT_OUTCOME: ${{ steps.contracts.outcome }}
           SITEMAP_OUTCOME: ${{ steps.sitemap.outcome }}
         run: |

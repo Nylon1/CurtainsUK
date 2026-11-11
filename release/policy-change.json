@@ -1,14 +1,12 @@
 {
   "classification": "OWNER_APPROVED_POLICY_CHANGE",
-  "previousRule": "The scheduled customer journey workflow wrote logs and a generic GitHub issue, but did not publish authenticated pass and fail heartbeats into the private Customer Experience dashboard.",
-  "newRule": "The scheduled workflow publishes a signed, bounded report to separate private synthetic storage. The dashboard distinguishes healthy, degraded, failed, stale and unknown monitor states, groups repeat findings, and marks recovery only after a passing check.",
-  "reason": "The owner requested site-wide operational monitoring with coverage status, release attribution, no-consent technical fault diagnostics, and a monitored monitor while preserving consented visit analytics and existing commerce behaviour.",
-  "ownerApprovedDecision": "This monitoring-only change is awaiting Nylon1's exact-current-head PR approval under release/policy-change.mjs. This policy record does not grant approval or permit deployment by itself.",
+  "previousRule": "Browser installation ran before all checks without bounded retry. A setup failure skipped checkout contracts and reported CHECKOUT_CONTRACT_FAILED. Later valid scan output did not explicitly clear the public-journeys missing-output incident.",
+  "newRule": "Checkout contracts run before browser setup. Browser installation has two bounded attempts; browser scans require successful setup. Skipped checks remain failing coverage with infrastructure reason codes, and valid later scan output clears the missing-output incident.",
+  "reason": "Run 43055714384 failed on Ubuntu mirror DNS resolution before any customer check ran. The owner requested deployment of the tested correction onto the latest production source.",
+  "ownerApprovedDecision": "The owner authorised this monitoring fix in chat on 11 November 2026 with Let us deploy it to latest. The separate exact-current-head GitHub approval required by release/policy-change.mjs remains pending; this record cannot approve itself.",
   "approvalStatus": "EXACT_HEAD_OWNER_APPROVAL_PENDING",
   "changedProtectedSurfaces": [
     ".github/workflows/customer-journey-monitor.yml",
-    "lib/storefront/customer-journey-error-detail.test.ts",
-    "lib/storefront/synthetic-monitor.test.ts",
     "release/policy-change.json"
   ]
 }

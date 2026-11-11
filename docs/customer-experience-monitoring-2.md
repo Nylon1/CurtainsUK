@@ -4,6 +4,19 @@ Production source: `release/production`. The scheduled workflow lives on GitHub'
 default `main` branch and checks out `release/production` for its test code.
 Its workflow copy must be synchronised to `main` after the protected production
 release. A manual workflow dispatch is required for the first live heartbeat.
+Preserve the `ref: release/production` checkout in the default-branch copy.
+
+Browser installation has two bounded attempts. Pricing and checkout contracts
+run before browser installation, so an Ubuntu mirror or browser download outage
+does not suppress those independent checks. Browser scans run only after a
+successful installation. Unrun checks remain failing coverage, with a `BACKEND`
+classification and `MONITOR_BROWSER_SETUP_FAILED`,
+`MONITOR_DEPENDENCY_SETUP_FAILED` or `MONITOR_CHECK_NOT_RUN` reason; they do not
+claim a checkout assertion failed. A valid later scan explicitly passes the
+`public-journeys` output check so a missing-output incident can recover.
+
+Reporting and recovery regression checks:
+`node --import tsx --test scripts/customer-journey-report.test.mjs lib/storefront/synthetic-monitor.test.ts`.
 
 ## Separate operational sources
 

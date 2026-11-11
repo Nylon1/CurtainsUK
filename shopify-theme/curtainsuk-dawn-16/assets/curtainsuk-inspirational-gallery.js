@@ -117,7 +117,7 @@ document.getElementById('save-palette').addEventListener('click',()=>{
   ctx.font='20px Arial';ctx.fillStyle='#666c62';
   ctx.fillText('Colours are interpreted from the footage, not exact paint or fabric matches.',60,705);
   ctx.fillText(tour.credit,60,750);
-  ctx.fillText('Room tour: curtain-inspiration-marylebone.hmaliks924.chatgpt.site/'+tour.slug+'.html',60,795);
+  ctx.fillText('Room tour: '+window.location.href.replace(/^https?:\/\//,''),60,795);
   const link=document.createElement('a');link.download=tour.slug+'-'+selected+'-palette.png';link.href=canvas.toDataURL('image/png');link.click();
   status.textContent=room.name+' palette saved.';
 });

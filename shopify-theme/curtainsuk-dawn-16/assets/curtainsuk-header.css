@@ -16,6 +16,7 @@
 .cuknav__campaign-eyebrow { color: #dbc9a3; font-size: 8px; font-weight: 650; letter-spacing: .26em; text-align: center; line-height: 1.2; }
 .cuknav__product-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%; max-width: 780px; }
 .cuknav__product-links--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cuknav__product-links--five { grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 900px; }
 .cuknav__product-links a { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 7px; min-width: 0; min-height: 40px; padding: 5px 9px; border: 1px solid #e1d1ad; border-radius: 2px; background: linear-gradient(135deg,#f6f1e6,#e5dcc9); box-shadow: inset 0 1px #fff,0 3px 12px #0b211a26; color: #17382f; text-align: left; line-height: 1.1; transition: background-color .18s ease, border-color .18s ease, transform .18s ease; }
 .cuknav__product-links a:hover { background: #fffaf0; border-color: #f5e8ca; transform: translateY(-2px); }
 .cuknav__product-number { align-self: start; padding-top: 1px; color: #8e7245; font: 8px/1 Arial,sans-serif; letter-spacing: .06em; }
@@ -152,7 +153,8 @@
   .cuknav__desktop-label { display: none; }
   .cuknav__mobile-label { display: inline; }
   .cuknav__product-links, .cuknav__product-links--four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; max-width: none; }
-  .cuknav__product-links:not(.cuknav__product-links--four) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cuknav__product-links--five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .cuknav__product-links:not(.cuknav__product-links--four):not(.cuknav__product-links--five) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .cuknav__product-links a { display: flex; justify-content: center; min-height: 44px; padding: 4px 2px; text-align: center; }
   .cuknav__product-number, .cuknav__product-arrow { display: none; }
   .cuknav__product-name { font-size: clamp(11px,3vw,14px); white-space: nowrap; }

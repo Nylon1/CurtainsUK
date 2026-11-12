@@ -1,5 +1,15 @@
 # CurtainsUK production surfaces
 
+## Room divider gallery and return navigation, verified 12 November 2026
+
+[PR #406](https://github.com/Nylon1/CurtainsUK/pull/406) added 15 Room divider films and 15 setting cards to the [Inspirational Gallery](https://www.curtainsuk.com/pages/inspirational-gallery?category=room-divider), with room palettes, details, source credit and a category link to the [Room Divider Visualiser](https://www.curtainsuk.com/pages/curtains-beyond-windows). The gallery has 61 room inspiration settings, 15 Curtain fitting guides, 16 Motorised curtains settings and 15 Room divider settings across 70 films. All 15 new videos and 30 images reached `READY` in Shopify Files. The owner-only Sites preview is version 33.
+
+[PR #407](https://github.com/Nylon1/CurtainsUK/pull/407) repaired gallery film return navigation. [PR #408](https://github.com/Nylon1/CurtainsUK/pull/408) added `room-divider` to the direct URL category filter, passed `curtainsuk-production-gate` and `protected-production-policy`, and merged into `release/production` at `052ebafc2d10482dd536b0837ab914f1db48d129`. The protected composed theme verifies all 614 files against its manifest.
+
+After the owner's separate approvals, scoped Shopify CLI pushes updated only `assets/curtainsuk-inspirational-gallery.js` on existing MAIN theme `182339731835`, with deletion disabled. Fresh Shopify Admin readback reports the final gallery asset MD5 `2ac6f3cc96c0a141c460f83ea1fadfab`, matching the protected source. `config/settings_data.json` remains at MD5 `89ecbb35c33d8948471082f13341ab44`; no setting, feature switch, template, menu or other theme file was uploaded in these pushes.
+
+Live browser verification opened the direct `?category=room-divider` URL with Room divider selected, 15 visible cards and the Room Divider Visualiser link. A card opened its complete film; its return link reopened the same category with all 15 cards visible. These checks cover the public route and rendered initial film state, not full playback of every film or a physical-device test.
+
 ## Motorised curtains gallery, verified 12 November 2026
 
 [PR #403](https://github.com/Nylon1/CurtainsUK/pull/403) passed `curtainsuk-production-gate` and `protected-production-policy` and merged into `release/production` at `6dc04f115c897c3de6c99486c9314976ac0cd731`. Sixteen supplied reels became 15 complete portrait films and 16 setting cards in the [Inspirational Gallery’s Motorised curtains category](https://www.curtainsuk.com/pages/inspirational-gallery?category=motorised-curtains). Two clips under ten seconds share a film with separate setting details. Every card has five interpreted colours, visible treatment and room notes, creator credit, and links to the Room Visualiser and fabric library. The notes distinguish motorised blinds and a roller from motorised fabric curtains where applicable. The gallery now has 61 room settings, 15 Curtain fitting guides, 16 motorised settings and 56 films.

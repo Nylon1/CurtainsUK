@@ -1,5 +1,15 @@
 # CurtainsUK production surfaces
 
+## Roman blinds gallery, verified 12 November 2026
+
+[PR #410](https://github.com/Nylon1/CurtainsUK/pull/410) passed `curtainsuk-production-gate` and `protected-production-policy` and merged into `release/production` at `1fbb037eec7d0103350614f2281899feb329cab0`. Eight supplied Roman blind reels became seven complete portrait films and eight setting cards. Two short clips share one film with separate chapters. The new [Roman blinds category](https://www.curtainsuk.com/pages/inspirational-gallery?category=roman-blinds) includes five earlier Roman settings, giving it 13 cards. The gallery totals 77 films and 115 cards, including 69 room inspiration settings. Each new Roman study has five interpreted palette colours, visible treatment and room notes, creator credit, and a link to the [Roman blind visualiser](https://www.curtainsuk.com/apps/curtainsuk-decision/roman/roman.html).
+
+All seven new videos and 15 images reached `READY` in Shopify Files. The owner-only Sites preview is version 34. Browser checks at 1280 px desktop and 390 px and 320 px mobile widths showed portrait sticky video, five swatches, no horizontal overflow, chapter selection and return to the Roman category. The protected composed theme's 614-file manifest verified against the merged source.
+
+After the owner's separate approval, a scoped Shopify CLI push updated only `assets/curtainsuk-inspirational-gallery.js` on existing MAIN theme `182339731835`, with deletion disabled. Fresh Shopify Admin readback matched the protected source at MD5 `411483b9915c56b89391a8ca8cf48b2e`. `config/settings_data.json` remained at MD5 `89ecbb35c33d8948471082f13341ab44`; no setting, feature switch, template, menu or other theme file was uploaded.
+
+The live direct Roman category URL selected Roman blinds, showed 13 cards and linked to the Roman blind visualiser. The first paired film opened from a card with a Shopify CDN video link and two room chapters. Selecting the second chapter updated the title and five palette colours; the return link reopened the Roman category with all 13 cards. These checks establish the public route and rendered film details, not full playback of every film or a physical-device test.
+
 ## Room divider gallery and return navigation, verified 12 November 2026
 
 [PR #406](https://github.com/Nylon1/CurtainsUK/pull/406) added 15 Room divider films and 15 setting cards to the [Inspirational Gallery](https://www.curtainsuk.com/pages/inspirational-gallery?category=room-divider), with room palettes, details, source credit and a category link to the [Room Divider Visualiser](https://www.curtainsuk.com/pages/curtains-beyond-windows). The gallery has 61 room inspiration settings, 15 Curtain fitting guides, 16 Motorised curtains settings and 15 Room divider settings across 70 films. All 15 new videos and 30 images reached `READY` in Shopify Files. The owner-only Sites preview is version 33.

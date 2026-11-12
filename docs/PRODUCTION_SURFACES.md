@@ -28,6 +28,14 @@ After the owner's separate approval, a scoped Shopify CLI push uploaded only `as
 
 Live browser checks at 1440 px desktop and 390 px and 320 px mobile widths found no horizontal overflow. All five new room pages rendered with a portrait, sticky Shopify CDN video and five colour swatches. The Beverly Hills card opened its film at 00:00. These checks establish layout and initial playback state; they do not represent complete playback of every film on physical devices.
 
+### Pink room and Curtain fitting gallery expansion, verified 12 November 2026
+
+[PR #399](https://github.com/Nylon1/CurtainsUK/pull/399) passed `curtainsuk-production-gate` and `protected-production-policy` and merged into `release/production` at `6b5d2291204a29cae22d7a9c1858baed9b4b368a`. The [Inspirational Gallery](https://www.curtainsuk.com/pages/inspirational-gallery) now presents 61 room settings and 36 films, plus a Curtain fitting category with seven guides. Seven pink reels became five films and seven room settings; seven fitting reels became five films and seven guides. The short paired films have separate chapters, palette details and source credits. The owner-only Sites preview is version 28.
+
+All ten new videos and fourteen poster or chapter images were uploaded to Shopify Files and reached `READY`. After the owner's separate approval, a scoped Shopify CLI push uploaded only `assets/curtainsuk-inspirational-gallery.js` to MAIN theme `182339731835`, with deletion disabled. Fresh Shopify readback matched the protected source at MD5 `089e28892d34579a3f5b2bf1a0f302ab` (537,807 bytes). `config/settings_data.json` retained MD5 `89ecbb35c33d8948471082f13341ab44` and its earlier update time; no setting, feature switch, template or other theme file was uploaded.
+
+The live gallery index showed 61 settings and the Curtain fitting filter showed seven guides. A paired fitting film and paired pink film opened from Shopify CDN with two chapters, five colour swatches and sticky portrait video. Browser layout checks at desktop, 390 px and 320 px widths found no horizontal overflow. These checks cover the published layout and initial video source, not full-film playback or physical devices.
+
 ## Monitoring recovery release, verified 11 November 2026 at 17:06 UTC
 
 The monitoring fix is **live and verified healthy**. [PR #388](https://github.com/Nylon1/CurtainsUK/pull/388) passed `curtainsuk-production-gate` and `protected-production-policy` after the owner's approval for the exact PR commit, then merged into `release/production`. [PR #389](https://github.com/Nylon1/CurtainsUK/pull/389) activated the matching scheduler on default `main`, preserving its checkout of `release/production`.

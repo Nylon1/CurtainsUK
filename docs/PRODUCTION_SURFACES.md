@@ -20,6 +20,14 @@ With the owner's separate approval, a scoped Shopify CLI push uploaded only `ass
 
 Live browser checks at 1440 px desktop and 390 px and 320 px mobile widths found no horizontal overflow. All five new tour pages rendered at mobile width with a portrait, sticky Shopify CDN video. A new gallery card opened the selected room at the beginning of the film. These were browser checks, not physical-device or full-film playback tests.
 
+### Five Instagram room studies, verified 12 November 2026
+
+[PR #397](https://github.com/Nylon1/CurtainsUK/pull/397) passed the protected gates and merged into `release/production` at `31fa2b3cc2db7a345e44cc15582a2256a3b02df5`. It added five complete films and five settings to the [Inspirational Gallery](https://www.curtainsuk.com/pages/inspirational-gallery): Beverly Hills terrace, Brentwood sunroom, Contemporary reception, Belgravia townhouse kitchen, and Al Qana majlis. Each study includes five room colours, curtain and setting details, a Room Visualiser prompt, creator credit, and a link to its original reel. The live gallery now shows 54 settings and 26 films. All five Shopify videos and their posters reached `READY`; the owner-only Sites preview is version 26.
+
+After the owner's separate approval, a scoped Shopify CLI push uploaded only `assets/curtainsuk-inspirational-gallery.js` to MAIN theme `182339731835`, with deletion disabled. Fresh Shopify readback matched the protected source at MD5 `b9588cf5d7e32e544ef57b42c205f6f0` (384,678 bytes). `config/settings_data.json` retained MD5 `89ecbb35c33d8948471082f13341ab44` and its prior update time. No settings, menu, template, or other theme file was uploaded in this push.
+
+Live browser checks at 1440 px desktop and 390 px and 320 px mobile widths found no horizontal overflow. All five new room pages rendered with a portrait, sticky Shopify CDN video and five colour swatches. The Beverly Hills card opened its film at 00:00. These checks establish layout and initial playback state; they do not represent complete playback of every film on physical devices.
+
 ## Monitoring recovery release, verified 11 November 2026 at 17:06 UTC
 
 The monitoring fix is **live and verified healthy**. [PR #388](https://github.com/Nylon1/CurtainsUK/pull/388) passed `curtainsuk-production-gate` and `protected-production-policy` after the owner's approval for the exact PR commit, then merged into `release/production`. [PR #389](https://github.com/Nylon1/CurtainsUK/pull/389) activated the matching scheduler on default `main`, preserving its checkout of `release/production`.

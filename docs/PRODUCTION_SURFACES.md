@@ -36,6 +36,14 @@ All ten new videos and fourteen poster or chapter images were uploaded to Shopif
 
 The live gallery index showed 61 settings and the Curtain fitting filter showed seven guides. A paired fitting film and paired pink film opened from Shopify CDN with two chapters, five colour swatches and sticky portrait video. Browser layout checks at desktop, 390 px and 320 px widths found no horizontal overflow. These checks cover the published layout and initial video source, not full-film playback or physical devices.
 
+### Eight Curtain fitting guides, verified 12 November 2026
+
+[PR #401](https://github.com/Nylon1/CurtainsUK/pull/401) passed `curtainsuk-production-gate` and `protected-production-policy` and merged into `release/production` at `306063f903ae310b5bd1558f49af9b66105fff28`. Eight supplied fitting reels became five complete portrait films and eight new guides. The [Inspirational Gallery](https://www.curtainsuk.com/pages/inspirational-gallery) now shows 61 room settings, 41 films and 15 Curtain fitting guides. Compatible short reels are paired with separate chapters; every guide has five interpreted palette colours, fitting and room notes, and an original creator link. The owner-only Sites preview is version 29.
+
+All five new videos and thirteen poster or chapter images reached `READY` in Shopify Files. With the owner's separate approval, a scoped Shopify CLI push uploaded only `assets/curtainsuk-inspirational-gallery.js` to MAIN theme `182339731835`, with deletion disabled. Fresh Shopify readback matched the protected source at MD5 `c1bf8f760478077e2e35cfe30f22bb05` (625,974 bytes). `config/settings_data.json` retained MD5 `89ecbb35c33d8948471082f13341ab44` and its earlier update time; no setting, feature switch, template, menu or other theme file was uploaded.
+
+The live Curtain fitting filter returned 15 guides. A new paired film opened from Shopify CDN with two chapters and five swatches; selecting the second chapter sought to 00:07.02 and updated the room details. Browser layout checks at desktop, 390 px and 320 px widths found a sticky portrait player and no horizontal overflow. These checks cover the rendered layout and the selected chapter, not full-film playback or physical devices.
+
 ## Monitoring recovery release, verified 11 November 2026 at 17:06 UTC
 
 The monitoring fix is **live and verified healthy**. [PR #388](https://github.com/Nylon1/CurtainsUK/pull/388) passed `curtainsuk-production-gate` and `protected-production-policy` after the owner's approval for the exact PR commit, then merged into `release/production`. [PR #389](https://github.com/Nylon1/CurtainsUK/pull/389) activated the matching scheduler on default `main`, preserving its checkout of `release/production`.

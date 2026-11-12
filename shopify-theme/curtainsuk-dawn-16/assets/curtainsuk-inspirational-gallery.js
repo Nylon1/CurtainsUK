@@ -205,7 +205,7 @@ document.getElementById('show-all-settings').addEventListener('click',resetFilte
 treatmentButtons.forEach(button=>button.addEventListener('click',()=>{treatment=button.dataset.treatmentFilter;filterSettings();}));
 categoryButtons.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.categoryFilter;room='all';treatment='all';colourSelect.value='all';filterSettings();}));
 const initialFilters=new URLSearchParams(window.location.search);
-if(['curtain-fitting','motorised-curtains'].includes(initialFilters.get('category')))category=initialFilters.get('category');
+if(['curtain-fitting','motorised-curtains','room-divider'].includes(initialFilters.get('category')))category=initialFilters.get('category');
 if(['curtains','roman-blinds'].includes(initialFilters.get('treatment')))treatment=initialFilters.get('treatment');
 if(['living','dining','bedroom','study','kitchen'].includes(initialFilters.get('room')))room=initialFilters.get('room');
 if(['neutral','green','blue','grey','blush','red','yellow','purple'].includes(initialFilters.get('colour')))colourSelect.value=initialFilters.get('colour');

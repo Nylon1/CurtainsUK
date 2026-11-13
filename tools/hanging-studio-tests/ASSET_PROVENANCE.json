@@ -1,0 +1,61 @@
+{
+  "created": "2026-11-02",
+  "generator": "Built-in image_gen",
+  "reference": {
+    "title": "Evans Textiles D19 76 mm woven-pocket pencil pleat tape",
+    "url": "https://evans-textiles.com/d19-76mm-wvn-pkt-pencil-pleat-500mts-76323"
+  },
+  "assets": [
+    {
+      "name": "tape",
+      "prompt": "Use case: scientific-educational. Create an original photoreal editorial macro photograph for a premium UK curtain-hanging tutorial. Reference image is solely a construction reference for the white 76mm pencil pleat heading tape: exactly three horizontal rows of repeating woven pockets, small woven fabric bridges with open lower edges; the gathering cords run horizontally independently, not as hook loops. Recreate this construction very faithfully. Scene: back of an oatmeal linen curtain lying on a pale oak worktable, white heading tape sewn across its top, straight and almost flat for the demonstration. Close-up, very slightly angled overhead view. Tape extends horizontally left to right and occupies the middle of the photograph, with all three rows clearly distinguishable; fine white woven texture and slight shadow under each real fabric pocket mouth. One adult hand at the right edge holds a small conventional white plastic curtain hook below the middle row, its straight insertion arm points upward ready to slide under the woven pocket, its curved hanging arm points down. Keep hand away from most of the tape. No metal grommets, no holes punched through the tape, no stitches pinning the pocket shut, no rectangular drawn outlines. Warm natural daylight, exquisite textile detail, authentic everyday British curtain fitting. Landscape 3:2 composition. No text, no labels, no logos, no watermarks, no collage. Photograph must be original and not reproduce the reference's layout or logo.",
+      "file": "assets/tape.webp"
+    },
+    {
+      "name": "unpack",
+      "prompt": "Original premium editorial photograph for CurtainsUK curtain fitting tutorial. Top-down close shot on a pale oak table: a pair of oatmeal linen curtains being unfolded from unbranded cream tissue paper by two natural adult hands. One panel neatly folded to the left; other laid out on right with white 76mm pencil pleat heading tape visible across its back. Small white plastic curtain hooks in a shallow ceramic dish; small care label at fabric edge. Warm natural daylight, realistic beautiful linen fibres, quiet cream and sage interior palette. No faces, no logos, no words or text, no graphics. Landscape 3:2, authentic UK curtain workroom, highly realistic.",
+      "file": "assets/unpack.webp"
+    },
+    {
+      "name": "gather",
+      "prompt": "Original realistic macro photograph for a UK pencil pleat curtain hanging tutorial. Same pale oak worktable, oatmeal linen curtain face down, white 76mm woven-pocket heading tape sewn horizontally along top. The left two thirds are gathered into many narrow regular pencil pleats, the right third is still flatter. Three separate white gathering cords emerge together from the far right edge and are held gently in one adult hand. Other adult hand slides fabric leftwards along all three cords together. The tape has three horizontal rows of woven cloth pockets distinct from the cords, as in typical UK 3 inch pencil pleat tape. Macro enough to see the fabric thread and tape. Natural daylight, premium educational photography, true physical construction, landscape 3:2. No scissors, no cut cords, no text, no watermark, no logos.",
+      "file": "assets/gather.webp"
+    },
+    {
+      "name": "dress",
+      "prompt": "Original photoreal editorial image for a premium UK curtain hanging guide. Close mid-height view of a beautiful oatmeal linen curtain hanging in long soft vertical folds by a bright window. Two adult hands carefully arrange the parallel folds, one guiding a forward fold with fingertips, one supporting the fabric further down. Linen weave crisp, folds tangible with soft shadows. White plaster wall, calm warm daylight, muted sage accents far background, composition dominated by fabric and hands, no person's face. Landscape 3:2. No text, watermark or logo, no tiebacks, no machinery.",
+      "file": "assets/dress.webp"
+    },
+    {
+      "name": "hang",
+      "prompt": "Original editorial macro photograph for UK curtain hanging tutorial. View from behind the heading of a hung oatmeal linen pencil pleat curtain, looking slightly upwards at a short white aluminium curtain track. The track runs horizontally across top of photograph and contains small white plastic gliders with closed oval hanging eyes protruding beneath it. Four already seated conventional small white plastic curtain hooks connect the gathered white heading tape to four individual glider eyes. One adult hand supports curtain heading and positions a fifth hook into the fifth eye, clear visible hardware contact point. White tape has three horizontal rows of woven fabric pockets. Elegant daylight, realistic small domestic fittings, accurate physically plausible fabric weight, shallow depth of field but the central hook and glider sharply focused, cream plaster backdrop. Landscape 3:2, no logos, no text.",
+      "file": "assets/hang.webp"
+    },
+    {
+      "name": "steam",
+      "prompt": "Original editorial photoreal close-up for UK curtain care guide. Oatmeal linen curtain already hanging in even soft vertical folds by a bright window. An adult hand holds a compact ivory handheld garment steamer upright a short distance in front of fabric, very light barely visible steam. Hand safely around steamer handle clear of nozzle and steam. Clear gap between nozzle and fabric. Warm cream room, natural side light, subtle green background, richly detailed cloth weave. Landscape 3:2 with curtain occupying 70 percent and steamer lower right. No logos, no text, no haze obscuring subject.",
+      "file": "assets/steam.webp"
+    },
+    {
+      "name": "settle",
+      "prompt": "Original premium photoreal photograph for curtain dressing tutorial. Oatmeal linen curtain neatly stacked into six parallel vertical folds at side of white plaster window. At mid height two adult hands loosely wrap a wide soft ivory cotton fabric band around the folded stack. A second loose cotton band already in place lower down. Bands only hold folds gently and do not pinch or crush the fabric, the long folds remain straight. Natural daylight, elegant cream and sage palette, sharply detailed linen, original interior photograph, landscape 3:2, no face, no text, no logo.",
+      "file": "assets/settle.webp"
+    },
+    {
+      "name": "eyelet",
+      "prompt": "Original editorial close-up photograph for a UK eyelet curtain hanging guide. Oatmeal linen curtain with large satin brass grommets in its top edge threading onto a smooth slim brass curtain pole, a natural adult hand guiding the last grommet. Pole horizontal at top third, four eyelets already threaded and fabric alternates front and back into S folds. At left edge a visible brass wall bracket supports pole; one outside eyelet positioned between bracket and round finial. Physical structure correct, crisp focus on ring and rod, bright warm off-white room, soft daylight and realistic textile fibres. Landscape 3:2, no text, no labels, no logos.",
+      "file": "assets/eyelet.webp",
+      "correction": "Edit this realistic curtain installation photograph with ONE critical mechanical correction. Keep the same oatmeal fabric, four brass eyelets, pole, ball finial on the left, hand on the right, daylight and composition. Move the brass WALL BRACKET currently at the far left (near x200) to a position BETWEEN the FIRST eyelet (near x340) and the SECOND eyelet (near x630), approximately x485. Remove the old bracket entirely. Exactly ONE outermost eyelet must now sit to the LEFT of the end bracket, in the gap between ball finial and bracket; all remaining eyelets sit to its right. The bracket wall mounting plate and support should be clearly visible between those first two eyelets, behind the pole. Mechanically plausible real brass pole support. Do not add or remove eyelets. No text, no arrows, no graphic overlays. This is a factual teaching image demonstrating anchoring the outside eyelet beyond the end bracket."
+    },
+    {
+      "name": "pinch",
+      "prompt": "Original photoreal educational macro photo of the BACK of a sewn double pinch pleat oatmeal linen curtain. One individual pinched sewn pleat seen from lining side with a small white adjustable plastic curtain hook on its vertical sewn-in slider. Adult hand gently adjusts the sliding hook; nearby matching pleats visible either side. This is a pre-sewn pinch pleat heading, no pencil pleat gathering tape. Cream lining, realistic delicate stitch detail and small functional curtain hook, accurate technical workroom photography. Close-up landscape 3:2, gentle daylight, pale oak worktable background, no text or logos.",
+      "file": "assets/pinch.webp"
+    },
+    {
+      "name": "wave",
+      "prompt": "Original realistic editorial photograph of the BACK and upper edge of an oatmeal linen wave curtain hanging from a slim white ceiling-mounted track. Three quarter overhead angle clearly reveals the alternate forward/backward S-shaped fabric folds and small white hooks entering the individual glider eyes. White translucent heading tape on curtain back, neatly arranged smooth regular waves. Adult fingertips gently guide one forward fold. Clear realistic hardware, warm soft daylight, off-white wall, richly textured cloth. Landscape 3:2, no text, no labels, no logos.",
+      "file": "assets/wave.webp"
+    }
+  ]
+}

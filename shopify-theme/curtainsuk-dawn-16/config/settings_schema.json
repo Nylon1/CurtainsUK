@@ -1526,7 +1526,7 @@
       {
         "type": "checkbox",
         "id": "curtainsuk_fabric_search_menus_enabled",
-        "label": "Show Shop by Colour and Shop by Type",
+        "label": "Show Shop by Colour, Type and Price",
         "default": false,
         "info": "Adds shortcuts to the existing Browse Fabrics filters."
       }

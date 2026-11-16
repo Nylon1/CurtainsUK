@@ -1,31 +1,37 @@
 {% doc %}
-  Colour and type entry links using the existing fabric browser.
+  Colour, type and price entry links using the existing fabric browser.
   @param {string} location - Navigation scope
   @param {string} section_id - Parent section identifier
 {% enddoc %}
-{% assign menus = 'colour,type' | split: ',' %}
+{% assign menus = 'colour,type,price' | split: ',' %}
 {% for menu in menus %}
   {% if menu == 'colour' %}
     {% assign choices = 'white/cream|beige/taupe|blue|green|grey|pink|red|purple|black|brown|orange|yellow/gold|neutral|multicolour' | split: '|' %}
     {% assign labels = 'colour_white_cream|colour_beige_taupe|colour_blue|colour_green|colour_grey|colour_pink|colour_red|colour_purple|colour_black|colour_brown|colour_orange|colour_yellow_gold|colour_neutral|colour_multicolour' | split: '|' %}
     {% assign parameter = 'colour' %}
     {% assign title = 'fabric_search_menu.shop_colour' %}
+  {% elsif menu == 'price' %}
+    {% assign choices = 'under-30|30-60|60-100|100-150|150-plus' | split: '|' %}
+    {% assign labels = 'price_under_30|price_30_60|price_60_100|price_100_150|price_150_plus' | split: '|' %}
+    {% assign parameter = 'guidePrice' %}
+    {% assign title = 'fabric_search_menu.shop_price' %}
   {% else %}
     {% assign choices = 'plain,textured-plain|flower|stripe,check|geometric|botanical,bird,animal' | split: '|' %}
     {% assign labels = 'plains|florals|stripes|geometrics|botanicals' | split: '|' %}
     {% assign parameter = 'pattern' %}
     {% assign title = 'fabric_search_menu.shop_type' %}
   {% endif %}
-  <li class="cuknav__item">
-    <details class="cuknav__disclosure">
+  <li class="cuknav__item cuk-fabric-search-item">
+    <details class="cuknav__disclosure cuk-fabric-search-disclosure">
       <summary aria-expanded="false" aria-controls="CukBrowse-{{ menu }}-{{ location }}-{{ section_id }}">{{ title | t }} <span class="cuknav__caret" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span></summary>
-      <div class="cuknav__dropdown cuk-fabric-search-menu" id="CukBrowse-{{ menu }}-{{ location }}-{{ section_id }}">
+      <div class="cuknav__dropdown cuk-fabric-search-menu cuk-fabric-search-menu--{{ menu }}" id="CukBrowse-{{ menu }}-{{ location }}-{{ section_id }}">
+        {% if menu == 'price' %}<p class="cuk-fabric-search-menu__note">{{ 'fabric_search_menu.price_unit' | t }}</p>{% endif %}
         <ul>
           {% for choice in choices %}
             {% assign label = 'fabric_search_menu.' | append: labels[forloop.index0] %}
-            <li><a href="/pages/fabric-library?view=browse-fabrics&amp;{{ parameter }}={{ choice | url_encode }}#cuk-fabric-library-search">{% if menu == 'colour' %}<i data-cuk-nav-colour="{{ choice | handleize }}" aria-hidden="true"></i>{% endif %}{{ label | t }}</a></li>
+            <li><a href="/pages/fabric-library?view=browse-fabrics&amp;{{ parameter }}={{ choice | url_encode }}#cuk-fabric-library-search">{% if menu == 'colour' %}<i data-cuk-nav-colour="{{ choice | handleize }}" aria-hidden="true"></i>{% endif %}<span>{{ label | t }}</span></a></li>
           {% endfor %}
-          <li><a href="/pages/fabric-library?view=browse-fabrics">{{ 'fabric_search_menu.all_fabrics' | t }}</a></li>
+          <li class="cuk-fabric-search-menu__all"><a href="/pages/fabric-library?view=browse-fabrics">{{ 'fabric_search_menu.all_fabrics' | t }} <span aria-hidden="true">→</span></a></li>
         </ul>
       </div>
     </details>

@@ -1911,6 +1911,13 @@
   "fabric_search_menu": {
     "shop_colour": "Shop by Colour",
     "shop_type": "Shop by Type",
+    "shop_price": "Shop by Price",
+    "price_unit": "Fabric price per metre",
+    "price_under_30": "Under £30",
+    "price_30_60": "£30 – under £60",
+    "price_60_100": "£60 – under £100",
+    "price_100_150": "£100 – under £150",
+    "price_150_plus": "£150+",
     "plains": "Plain & Textured Plains",
     "florals": "Florals",
     "stripes": "Stripes & Checks",

@@ -1907,5 +1907,30 @@
       "jane": "Ask Jane",
       "pricing": "Make curtains & live pricing"
     }
+  },
+  "fabric_search_menu": {
+    "shop_colour": "Shop by Colour",
+    "shop_type": "Shop by Type",
+    "plains": "Plain & Textured Plains",
+    "florals": "Florals",
+    "stripes": "Stripes & Checks",
+    "geometrics": "Geometrics",
+    "botanicals": "Botanical, Birds & Animals",
+    "all_fabrics": "Browse all fabrics",
+    "colour_error": "We could not load that colourway. Your previous choice is still selected. Please try again.",
+    "colour_white_cream": "White & Cream",
+    "colour_beige_taupe": "Beige & Taupe",
+    "colour_blue": "Blue",
+    "colour_green": "Green",
+    "colour_grey": "Grey",
+    "colour_pink": "Pink",
+    "colour_red": "Red",
+    "colour_purple": "Purple",
+    "colour_black": "Black",
+    "colour_brown": "Brown",
+    "colour_orange": "Orange",
+    "colour_yellow_gold": "Yellow & Gold",
+    "colour_neutral": "Neutral",
+    "colour_multicolour": "Multicolour"
   }
 }

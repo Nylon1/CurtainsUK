@@ -5,6 +5,9 @@
 {% enddoc %}
 <ul class="cuknav__list">
   <li class="cuknav__item"><a href="/pages/fabric-library?view=browse-fabrics">Browse Fabrics</a></li>
+  {% if settings.curtainsuk_fabric_search_menus_enabled %}
+    {% render 'curtainsuk-fabric-search-navigation', location: location, section_id: section_id %}
+  {% endif %}
   <li class="cuknav__item"><a href="/pages/fabric/sdg-f1325-02-abeja-ivory#cuk-making-studio">{{ 'making_studio.navigation' | t }}</a></li>
   <li class="cuknav__item"><a href="/pages/room-visualiser">Room Visualiser</a></li>
   <li class="cuknav__item"><a href="/pages/curtains-beyond-windows"{% if request.path == '/pages/curtains-beyond-windows' %} aria-current="page"{% endif %}>Beyond Windows</a></li>

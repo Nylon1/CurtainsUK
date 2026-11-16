@@ -187,3 +187,10 @@
 }
 @media (max-width: 360px) { .cuknav__christmas-star { display: none; } .cuknav--visualiser .cuknav__brand { transform: translateX(-10px); } }
 @media (prefers-reduced-motion: reduce) { .cuknav *, .cuknav *::before, .cuknav *::after { scroll-behavior: auto; transition: none !important; } }
+
+.cuknav__dropdown.cuk-fabric-search-menu{min-width:280px}.cuk-fabric-search-menu ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px}@media(max-width:749px){.cuknav__dropdown.cuk-fabric-search-menu{min-width:0}}
+
+[data-cuk-nav-colour]{display:inline-block;width:16px;height:16px;flex-shrink:0;border:1px solid #0002;border-radius:50%;margin-right:7px}
+[data-cuk-nav-colour="white-cream"]{background:#eee9dc}[data-cuk-nav-colour="beige-taupe"]{background:#b9aa96}[data-cuk-nav-colour="blue"]{background:#567f9a}[data-cuk-nav-colour="green"]{background:#71816b}[data-cuk-nav-colour="grey"]{background:#959693}[data-cuk-nav-colour="pink"]{background:#c991a3}[data-cuk-nav-colour="red"]{background:#9b4945}[data-cuk-nav-colour="purple"]{background:#89758d}[data-cuk-nav-colour="black"]{background:#333630}[data-cuk-nav-colour="brown"]{background:#806651}[data-cuk-nav-colour="orange"]{background:#c78450}[data-cuk-nav-colour="yellow-gold"]{background:#cfb66c}[data-cuk-nav-colour="neutral"]{background:#d7ccba}[data-cuk-nav-colour="multicolour"]{background:linear-gradient(135deg,#829a84,#c8979e,#d4b86f)}
+
+.cuknav .cuknav__desktop > .cuknav__list:has(.cuk-fabric-search-menu){flex-wrap:wrap;column-gap:clamp(2px,.55vw,10px)}

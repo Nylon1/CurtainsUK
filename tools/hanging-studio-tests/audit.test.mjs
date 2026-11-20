@@ -1,0 +1,44 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {app} from './harness.mjs';
+import {lessons} from '../../public/hanging-studio/lessons.js';
+const check=(name,fn,options)=>test(name,()=>{const a=app(options);try{fn(a);}finally{a.w.close();}});
+
+for(const mode of ['show','mine'])for(const [heading,lesson] of Object.entries(lessons))check(`${lesson.name}: all ${mode} steps finish`,a=>{
+ a.click(`[data-heading="${heading}"]`);a.click(`[data-mode="${mode}"]`);
+ for(let i=0;i<lesson.steps.length;i++){
+  assert.equal(a.$('[aria-current="step"]').dataset.step,String(i));
+  if(a.$('#waveMatch'))a.change('#waveMatch',true);
+  for(let n=0;n<(mode==='mine'?3:1);n++)a.action(mode==='mine'?'done-mine':'next');
+ }
+ assert.equal(a.$('#finishCard').hidden,false);a.action('restart');assert.equal(a.$('[aria-selected="true"]').dataset.mode,'mine');assert.equal(a.$('[aria-current="step"]').dataset.step,'0');
+});
+check('player pauses, resumes, ends and restarts at the correct times',a=>{
+ a.action('play');a.advance(4500);assert.equal(a.$('#scrub').value,'50');a.action('play');assert.equal(a.frames.size,0);a.advance(2000);assert.equal(a.$('#scrub').value,'50');a.action('play');a.advance(4500);assert.equal(a.$('#scrub').value,'100');assert.equal(a.frames.size,0);assert.equal(a.$('.play-button').getAttribute('aria-label'),'Play demonstration');a.action('play');assert.equal(a.$('#scrub').value,'0');
+});
+check('half-speed playback takes twice as long',a=>{a.change('#speed','0.5');a.action('play');a.advance(9000);assert.equal(a.$('#scrub').value,'50');a.advance(9000);assert.equal(a.$('#scrub').value,'100');});
+check('replay replaces the current animation instead of adding a second loop',a=>{a.action('play');a.advance(1000);a.action('replay');assert.equal(a.frames.size,1);a.action('play');assert.equal(a.frames.size,0);});
+check('changing step or mode stops playback',a=>{a.action('play');a.click('[data-step="1"]');assert.equal(a.frames.size,0);a.action('play');a.click('[data-mode="try"]');assert.equal(a.frames.size,0);assert.equal(a.$('#scrub'),null);});
+check('hiding the page pauses the player and updates its control',a=>{a.action('play');a.hide();assert.equal(a.frames.size,0);assert.equal(a.$('.play-button').getAttribute('aria-label'),'Play demonstration');});
+check('animation preserves focus on the pause control',a=>{a.$('.play-button').focus();a.action('play');a.advance(1000);assert.equal(a.w.document.activeElement.dataset.action,'play');});
+check('reduced-motion replay remains paused and can be scrubbed',a=>{a.action('replay');assert.equal(a.frames.size,0);a.input('#scrub',70);assert.equal(a.$('#scrub').value,'70');},{reducedMotion:true});
+check('view buttons keep keyboard focus after replacing the view',a=>{a.$('[data-view="close"]').focus();a.click('[data-view="close"]');assert.equal(a.w.document.activeElement.dataset.view,'close');});
+check('demonstration views do not expose inert practice buttons',a=>{a.click('[data-step="2"]');a.click('[data-view="inspect"]');assert.equal(a.$('#scene [role="button"]'),null);});
+check('mode tabs support left and right arrow navigation',a=>{a.$('#mode-show').focus();a.key('#mode-show','ArrowRight');assert.equal(a.w.document.activeElement.id,'mode-try');assert.equal(a.$('[aria-selected="true"]').id,'mode-try');a.key('#mode-try','ArrowLeft');assert.equal(a.w.document.activeElement.id,'mode-show');});
+check('SVG hotspots accept keyboard input',a=>{a.click('[data-mode="try"]');a.key('#scene [data-action="found-heading"]','Enter');a.key('#scene [data-action="found-label"]',' ');assert.equal(a.$('.primary').disabled,false);});
+check('hook can be inserted by an upward drag',a=>{a.click('[data-mode="try"]');a.click('[data-step="2"]');a.pointer('pointerdown','[data-drag]',100,300);a.pointer('pointerup','#scene',100,200);assert.match(a.$('#feedback').textContent,/inside the woven pocket/);});
+check('a horizontal hook drag must not count as insertion',a=>{a.click('[data-mode="try"]');a.click('[data-step="2"]');a.pointer('pointerdown','[data-drag]',100,300);a.pointer('pointerup','#scene',250,300);assert.equal(a.$('#feedback').classList.contains('error'),true);});
+check('a wrong drag followed by the compatibility click must stay rejected',a=>{a.click('[data-mode="try"]');a.click('[data-step="2"]');a.pointer('pointerdown','[data-drag]',100,300);a.pointer('pointerup','#scene',100,350);a.click('[data-drag]');assert.equal(a.$('#feedback').classList.contains('error'),true);});
+check('practice reset restores its completion gate',a=>{a.click('[data-mode="try"]');a.action('found-heading');a.action('found-label');assert.equal(a.$('.primary').disabled,false);a.action('reset-practice');assert.equal(a.$('.primary').disabled,true);});
+check('ring selection updates the lesson and inspection labels',a=>{a.click('[data-mode="try"]');a.click('[data-step="3"]');a.change('#support','pole');assert.match(a.$('#stageControls').textContent,/Ring 1/);assert.match(a.$('#instruction h3').textContent,/ring/i);assert.doesNotMatch(a.$('#scene').textContent,/rail carries the glider/);});
+check('pinch-hook type can be changed and resets practice',a=>{a.click('[data-heading="pinch"]');a.click('[data-mode="try"]');a.click('[data-step="1"]');a.action('pinch');assert.equal(a.$('.primary').disabled,false);a.change('#pinchType','pin');assert.equal(a.$('.primary').disabled,true);assert.match(a.$('#stageControls').textContent,/Conceal pin/);a.action('pinch');assert.equal(a.$('.primary').disabled,false);});
+check('own-curtain steaming can be skipped',a=>{a.click('[data-mode="mine"]');a.click('[data-step="5"]');a.action('skip-mine-steam');assert.equal(a.$('[aria-current="step"]').dataset.step,'6');});
+check('help and source dialogs open, close and release video embeds',a=>{a.click('#helpButton');assert.equal(a.$('#infoDialog').open,true);a.click('.dialog-close');a.action('reference-video');assert.ok(a.$('iframe'));a.click('.dialog-close');assert.equal(a.$('iframe'),null);a.click('#sourcesButton');assert.match(a.$('#dialogBody').textContent,/AI-created/);assert.ok(a.$('#dialogBody a[href*="evans-textiles"]'));});
+check('reset saved progress clears completion across modes',a=>{a.action('next');assert.match(a.$('#progressText').textContent,/1 of/);a.click('#sourcesButton');a.click('#clearProgress');assert.match(a.$('#progressText').textContent,/0 of/);const stored=JSON.parse(a.w.localStorage.getItem('curtainsuk.hanging.v1'));assert.deepEqual(stored.done,{});});
+check('saved heading, step, mode and completed steps are restored',a=>{assert.equal(a.$('[data-heading="eyelet"]').getAttribute('aria-pressed'),'true');assert.equal(a.$('[aria-current="step"]').dataset.step,'2');assert.equal(a.$('[aria-selected="true"]').dataset.mode,'mine');assert.match(a.$('#progressText').textContent,/1 of 6/);},{storage:JSON.stringify({heading:'eyelet',step:2,mode:'mine',done:{'eyelet:mine:unpack':true}})});
+for(const [name,storage] of [['invalid JSON','{broken'],['JSON null','null'],['inherited heading',JSON.stringify({heading:'toString'})]])check(`corrupt saved state: ${name} recovers to a usable lesson`,a=>{assert.ok(a.$('#instruction h3'));assert.ok(a.$('#scene svg'));},{storage});
+check('the guide works when browser storage is unavailable',a=>{a.action('next');assert.equal(a.$('[aria-current="step"]').dataset.step,'1');},{storageUnavailable:true});
+check('wave matching gates all fitting steps and can be revoked',a=>{a.click('[data-heading="wave"]');a.click('[data-mode="mine"]');for(const i of [1,2,3]){a.click(`[data-step="${i}"]`);assert.equal(a.$('.primary').disabled,true);a.change('#waveMatch',true);assert.equal(a.$('.primary').disabled,false);a.change('#waveMatch',false);assert.equal(a.$('.primary').disabled,true);}});
+check('cancelled drag cannot insert the hook',a=>{a.click('[data-mode="try"]');a.click('[data-step="2"]');a.pointer('pointerdown','[data-drag]',100,300);a.pointer('pointercancel','#scene',100,200);a.pointer('pointerup','#scene',100,150);assert.doesNotMatch(a.$('#feedback').textContent,/inside the woven pocket/);});
+check('completion belongs only to the chosen mode and heading',a=>{a.action('next');assert.match(a.$('#progressText').textContent,/1 of 7/);a.click('[data-mode="try"]');assert.match(a.$('#progressText').textContent,/0 of 7/);a.click('[data-heading="eyelet"]');assert.match(a.$('#progressText').textContent,/0 of 6/);a.click('[data-heading="pencil"]');a.click('[data-mode="show"]');assert.match(a.$('#progressText').textContent,/1 of 7/);});
+check('eyelet video uses its own reference and close-up changes image scale',a=>{a.click('[data-heading="eyelet"]');a.action('reference-video');assert.match(a.$('iframe').src,/QBlDnfZX2GE/);a.click('.dialog-close');a.click('[data-view="close"]');assert.match(a.$('#scene image').getAttribute('transform'),/scale\(1.24\)/);});

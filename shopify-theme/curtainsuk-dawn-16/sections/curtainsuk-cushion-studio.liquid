@@ -4,6 +4,11 @@
 {% endcomment %}
 {% if section.settings.enabled %}
   <section class="cuk-cushion-studio" aria-label="Cushion Studio">
+    <nav class="cuk-cushion-shopping" aria-label="{{ 'curtainsuk.cushion_navigation' | t }}">
+      <a href="{{ routes.root_url }}">← {{ 'curtainsuk.track_main_menu' | t }}</a>
+      <span>{{ 'curtainsuk.cushion_section' | t }}</span>
+      <button type="button" data-cuk-cushion-shop>{{ 'curtainsuk.cushion_shop' | t }}</button>
+    </nav>
     <header class="page-width cuk-cushion-studio__intro">
       <h1>{{ section.settings.heading | escape }}</h1>
       <p>{{ section.settings.introduction | escape }}</p>
@@ -28,6 +33,11 @@
   .cuk-cushion-studio__intro { padding-top: 3rem; padding-bottom: 2rem; }
   .cuk-cushion-studio__intro h1 { margin-bottom: 1rem; }
   .cuk-cushion-studio__frame { display: block; width: 100%; height: max(880px, 85vh); border: 0; background: #f5f1e9; }
+  .cuk-cushion-shopping{position:sticky;top:var(--cuk-cushion-header-bottom,86px);z-index:25;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px max(12px,3vw);background:#f5f1e9;border-bottom:1px solid #d8d1c3;color:#203f35;font:13px/1.4 Arial,sans-serif}
+  .cuk-cushion-shopping a,.cuk-cushion-shopping button{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:inherit;font:inherit}
+  .cuk-cushion-shopping button{background:#203f35;color:#fff;border:0;padding:10px 14px;border-radius:3px;cursor:pointer}
+  .cuk-cushion-shopping :focus-visible{outline:3px solid #ab8c58;outline-offset:2px}
+  @media(max-width:600px){.cuk-cushion-shopping{font-size:12px;gap:8px}.cuk-cushion-shopping button{padding:8px 12px}}
   @media (max-width: 749px) { .cuk-cushion-studio__frame { height: 1250px; } }
 {% endstylesheet %}
 {% javascript %}
@@ -42,6 +52,10 @@
     if (orderItem && /^[0-9a-f-]{36}$/i.test(orderItem)) source.searchParams.set('order_item', orderItem);
     if (params.get('new_order_product') === '1') source.searchParams.set('new_order_product', '1');
     frame.src = source.pathname + source.search;
+    var bar=frame.closest('.cuk-cushion-studio').querySelector('.cuk-cushion-shopping');
+    bar.querySelector('[data-cuk-cushion-shop]').addEventListener('click',function(){
+      frame.contentWindow.postMessage({type:'cuk-cushion-shop'},window.location.origin);
+    });
     // The app proxy frame is served on this storefront origin. Keep only its
     // visual preview in view on mobile while the editor scrolls underneath.
     // The service's product geometry and camera controls remain unchanged.
@@ -95,7 +109,8 @@
       var header = document.querySelector('.section-cuk-header');
       var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
       var viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-      var top = headerBottom + 12;
+      bar.style.setProperty('--cuk-cushion-header-bottom',headerBottom+'px');
+      var top = headerBottom + bar.getBoundingClientRect().height + 12;
       frame.contentWindow.postMessage({
         type: 'cuk-cushion-viewport',
         offset: top - frame.getBoundingClientRect().top,
@@ -115,6 +130,13 @@
     if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleViewport);
     window.addEventListener('message', function (event) {
       if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
+      if(event.data && event.data.type==='cuk-cushion-shop-ready'){
+        var target=frame.contentDocument&&frame.contentDocument.querySelector('.editor');
+        if(!target)return;
+        var header=document.querySelector('.section-cuk-header');
+        var offset=Math.max(0,header?header.getBoundingClientRect().bottom:0)+bar.getBoundingClientRect().height+12;
+        window.scrollTo({top:window.scrollY+frame.getBoundingClientRect().top+target.getBoundingClientRect().top-offset,behavior:'auto'});
+      }
       if (event.data && event.data.type === 'cuk-cushion-height' && Number.isFinite(event.data.height)) {
         frame.style.height = Math.min(20000, Math.max(700, Math.ceil(event.data.height))) + 'px';
         scheduleViewport();

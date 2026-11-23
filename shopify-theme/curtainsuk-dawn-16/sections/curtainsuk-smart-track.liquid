@@ -1,4 +1,9 @@
 {% if settings.curtainsuk_smart_track_enabled %}
+  <nav class="cuk-track-shopping" aria-label="{{ 'curtainsuk.track_navigation' | t }}">
+    <a href="{{ routes.root_url }}">← {{ 'curtainsuk.track_main_menu' | t }}</a>
+    <span>{{ 'curtainsuk.track_section' | t }}</span>
+    <a class="cuk-track-shopping__action" data-cuk-track-shop href="/pages/smart-track-studio?configure=1">{{ 'curtainsuk.track_shop' | t }}</a>
+  </nav>
   <iframe data-cuk-track-frame data-source="/apps/curtainsuk-decision/smart-track/{% if section.settings.motor_guide %}motors.html{% elsif section.settings.fitting_guide %}fitting.html{% endif %}" title="{% if section.settings.motor_guide %}{{ 'curtainsuk.smart_track_motor_guide' | t | escape }}{% elsif section.settings.fitting_guide %}Visual smart track fitting guide{% else %}Smart Track Studio{% endif %}" class="cuk-track-frame" loading="eager"></iframe>
   <noscript><div class="page-width"><h1>Forest smart tracks</h1><p>Enable JavaScript for the configurator. For fitting instructions, <a href="https://www.forestgroup.co.uk/uk/downloads/technical-documents">open Forest’s technical manuals</a>.</p></div></noscript>
 {% elsif request.design_mode %}
@@ -6,18 +11,38 @@
 {% endif %}
 {% stylesheet %}
   .cuk-track-frame{display:block;width:100%;height:1600px;border:0;background:#f5f2e9}
+  .cuk-track-shopping{position:sticky;top:var(--cuk-track-header-bottom,86px);z-index:25;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px max(12px,3vw);background:#f5f2e9;border-bottom:1px solid #d8d1c3;color:#203f35;font:13px/1.4 Arial,sans-serif}
+  .cuk-track-shopping a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}
+  .cuk-track-shopping__action{background:#203f35;color:#fff!important;padding:10px 14px;border-radius:3px}
+  .cuk-track-shopping a:focus-visible{outline:3px solid #ab8c58;outline-offset:2px}
+  @media(max-width:600px){.cuk-track-shopping{flex-wrap:wrap;font-size:12px;gap:2px 8px}.cuk-track-shopping>span{order:-1;flex-basis:100%;text-align:center;font-size:11px}.cuk-track-shopping__action{padding:8px 12px}}
 {% endstylesheet %}
 {% javascript %}
   document.querySelectorAll('[data-cuk-track-frame]').forEach(function(frame){
     var url=new URL(frame.dataset.source,location.origin),params=new URLSearchParams(location.search);
     ['order_item','room_id','linked_curtain'].forEach(function(key){var value=params.get(key);if(value&&/^[a-f0-9-]{36}$/i.test(value))url.searchParams.set(key,value);});
     frame.src=url.pathname+url.search;
+    var bar=frame.previousElementSibling,shop=bar.querySelector('[data-cuk-track-shop]');
+    var destination=new URL(shop.href);
+    ['order_item','room_id','linked_curtain'].forEach(function(key){if(url.searchParams.has(key))destination.searchParams.set(key,url.searchParams.get(key));});
+    shop.href=destination.pathname+destination.search;
+    function configure(){
+      var target=frame.contentDocument&&frame.contentDocument.getElementById('configure');
+      if(!target)return;
+      var header=document.querySelector('.section-cuk-header');
+      var offset=Math.max(0,header?header.getBoundingClientRect().bottom:0)+bar.getBoundingClientRect().height+12;
+      window.scrollTo({top:window.scrollY+frame.getBoundingClientRect().top+target.getBoundingClientRect().top-offset,behavior:'auto'});
+    }
+    if(location.pathname==='/pages/smart-track-studio')shop.addEventListener('click',function(event){event.preventDefault();configure();});
+    frame.addEventListener('load',function(){if(params.get('configure')==='1')configure();});
     var viewportTick=0;
     function sendViewport(){
       viewportTick=0;
       if(!frame.isConnected||!frame.contentWindow)return;
       var header=document.querySelector('.section-cuk-header');
-      var top=Math.max(0,header?header.getBoundingClientRect().bottom:0)+12;
+      var headerBottom=Math.max(0,header?header.getBoundingClientRect().bottom:0);
+      bar.style.setProperty('--cuk-track-header-bottom',headerBottom+'px');
+      var top=headerBottom+bar.getBoundingClientRect().height+12;
       var height=window.visualViewport?window.visualViewport.height:window.innerHeight;
       frame.contentWindow.postMessage({type:'curtainsuk-smart-track-viewport',offset:top-frame.getBoundingClientRect().top,availableHeight:Math.max(300,height-top-12)},location.origin);
     }
@@ -29,6 +54,7 @@
     window.addEventListener('message',function(event){
       if(event.source!==frame.contentWindow||event.origin!==location.origin||event.data?.type!=='curtainsuk-smart-track-height')return;
       if(Number.isFinite(event.data.height))frame.style.height=Math.max(600,Math.min(40000,Math.ceil(event.data.height)))+'px';
+      if(params.get('configure')==='1'){configure();params.delete('configure');}
       scheduleViewport();
     });
   });

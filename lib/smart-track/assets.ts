@@ -42,6 +42,7 @@ export async function smartTrackAsset(
     "guide.mjs",
     "studio.mjs",
     "state.mjs",
+    "draft.mjs",
     "scene.mjs",
     "room-design.mjs",
     "cloth.mjs",

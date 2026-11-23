@@ -131,7 +131,7 @@
     window.addEventListener('message', function (event) {
       if (event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
       if(event.data && event.data.type==='cuk-cushion-shop-ready'){
-        var target=frame.contentDocument&&frame.contentDocument.querySelector('.editor');
+        var target=frame.contentDocument&&frame.contentDocument.querySelector(window.matchMedia('(max-width:749px)').matches?'.workspace':'.editor');
         if(!target)return;
         var header=document.querySelector('.section-cuk-header');
         var offset=Math.max(0,header?header.getBoundingClientRect().bottom:0)+bar.getBoundingClientRect().height+12;

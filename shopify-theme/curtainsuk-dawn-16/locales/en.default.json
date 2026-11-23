@@ -25,7 +25,11 @@
     "terms": "Codes can be combined for up to 10 samples per curtain order. Each code is single-use. Sample product costs only; delivery, cancelled and refunded samples are excluded. Keep your code private."
   },
   "curtainsuk": {
-    "smart_track_motor_guide": "Interactive Forest Shuttle motor guide"
+    "smart_track_motor_guide": "Interactive Forest Shuttle motor guide",
+    "track_navigation": "Curtain track shopping",
+    "track_main_menu": "Main menu",
+    "track_section": "Motorised curtain tracks",
+    "track_shop": "Shop curtain tracks"
   },
   "advisory_team": {
     "spotlight": {
